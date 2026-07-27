@@ -1,0 +1,27 @@
+#!/bin/sh
+# Run "$@" inside the pinned guix environment when possible; otherwise
+# fall back to whatever is on PATH, with a loud warning. Used by
+# githooks/pre-commit and the makefile so that hooks/checks/exports
+# still work before Guix is installed or before guix/channels.scm has
+# been regenerated from a template (see README.org "Bootstrap") --
+# without this, nobody could make the very first commit to this repo.
+set -eu
+
+repo_root=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
+channels="$repo_root/guix/channels.scm"
+
+if command -v guix >/dev/null 2>&1 \
+   && [ -f "$channels" ] \
+   && ! grep -q 'REPLACE-WITH-REAL-COMMIT' "$channels"; then
+    exec guix time-machine -C "$channels" -- shell -- "$@"
+else
+    echo "guix-run: guix unavailable or guix/channels.scm still a template" >&2
+    echo "guix-run: running unisolated with whatever is on PATH -- see README.org" >&2
+    # No arguments means "drop into an interactive shell" (see `make
+    # shell`); `exec` with zero words is a shell error, not a no-op.
+    if [ "$#" -eq 0 ]; then
+        exec "${SHELL:-/bin/sh}"
+    else
+        exec "$@"
+    fi
+fi

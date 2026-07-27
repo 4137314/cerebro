@@ -1,0 +1,34 @@
+#!/bin/sh
+# Reports which cerebro prerequisites are actually present on this
+# machine. Run directly, or via `make bootstrap-check`.
+set -eu
+
+status=0
+
+check() {
+    label=$1
+    bin=$2
+    if command -v "$bin" >/dev/null 2>&1; then
+        printf '[ok]      %-10s %s\n' "$label" "$(command -v "$bin")"
+    else
+        printf '[missing] %-10s not found on PATH\n' "$label"
+        status=1
+    fi
+}
+
+check guix   guix
+check direnv direnv
+check emacs  emacs
+check git    git
+check task   task
+check timew  timew
+
+repo_root=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
+channels="$repo_root/guix/channels.scm"
+if [ -f "$channels" ] && grep -q 'REPLACE-WITH-REAL-COMMIT' "$channels"; then
+    echo "[missing] guix/channels.scm is still a template -- run:"
+    echo "            guix describe -f channels > guix/channels.scm"
+    status=1
+fi
+
+exit "$status"

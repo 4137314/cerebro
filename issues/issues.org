@@ -1,0 +1,18 @@
+#+TITLE: cerebro issues
+#+STARTUP: overview
+
+Personal, non-proprietary issue tracker: plain Org headings, no
+external service, no database. Picked up by org-agenda-files (see
+.emacs.d/lisp/cerebro-org.el). Create new entries with
+=bin/cerebro-issue "title" [tag1 tag2 ...]= or =M-x org-capture=;
+browse with =C-c i= (see .emacs.d/lisp/cerebro-issues.el).
+
+* TODO Example: regenerate guix/channels.scm after installing Guix :bootstrap:
+:PROPERTIES:
+:ID: 20260727T000000
+:CREATED: [2026-07-27 Mon 00:00]
+:END:
+
+guix/channels.scm currently ships as a template (see the comments in
+that file). Run =guix describe -f channels > guix/channels.scm= once
+Guix is installed and =guix pull= has run, then commit the result.

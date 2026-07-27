@@ -1,0 +1,101 @@
+#+TITLE: cerebro
+
+A personal, second-brain for mathematics: rigorous notes in English,
+written in Org-mode/Org-roam, exported to LaTeX through a parametric
+pipeline, in an environment isolated and pinned with GNU Guix. Meant to
+last through a mathematics degree, a PhD, and an academic career after
+that -- so everything here favours plain text, GNU tools, and things
+that are easy to understand years from now over anything clever.
+
+* Principles
+
+- Plain text, versioned in git. No proprietary formats, no cloud
+  services, no databases you can't read with a text editor.
+- Isolation means Guix, not MELPA/straight.el at runtime. Every Emacs
+  package comes from =guix.scm=; nothing is fetched from the network
+  when Emacs starts.
+- Reproducibility means a pinned Guix channel (=guix/channels.scm=),
+  not just "uses Guix". Without a pin, the same commands can give you
+  a different environment next year.
+- Hooks are thin wrappers around =make= targets. The logic lives in
+  the makefile, testable by hand; a hook only calls =make=. This is
+  also the entire "CI/CD": local only, no forge dependency.
+- One Org source, several LaTeX/PDF variants -- never duplicated
+  content. See "Parametric export" below.
+- One source of truth per domain: notes live in Org/Org-roam, tasks
+  and deadlines live in Taskwarrior, time lives in Timewarrior. The
+  bridges between them are explicit, one-way scripts, not
+  bidirectional sync.
+
+* Repo map
+
+| Path                     | What                                          |
+|--------------------------+------------------------------------------------|
+| =guix.scm=               | Isolated environment: Emacs, Org-roam, LaTeX, English spell-check, git |
+| =guix/channels.scm=      | Pinned Guix channel -- the actual reproducibility mechanism |
+| =.envrc=                 | direnv: activates the pinned environment on =cd= |
+| =makefile=               | Entry points: =install=, =shell=, =export=, =ci=, =bootstrap-check= |
+| =.emacs.d/=              | Emacs config: thin =init.el= + modules under =lisp/= |
+| =latex/cerebro.cls=      | Shared LaTeX class: theorem/definition/proof envs, =proofs=/=noproofs= option |
+| =notes/=                 | Org-roam root -- the actual math content, in English |
+| =issues/issues.org=      | Personal issue tracker: plain Org headings, no external tool |
+| =bin/=                   | Small scripts: doctor, parametric exporter, issue creator |
+| =githooks/=              | Versioned git hooks (wired via =core.hooksPath=, see =make install-hooks=) |
+
+* Bootstrap
+
+Manual, one-time steps this repo cannot script for you:
+
+1. Install Guix itself (this machine does not have it): follow the
+   official manual's binary installation for a foreign distribution --
+   https://guix.gnu.org/manual/en/html_node/Binary-Installation.html
+2. After installing, run =guix pull= once, then regenerate the pin:
+   =guix describe -f channels > guix/channels.scm= and commit it.
+   Until you do this, =guix/channels.scm= is a template and anything
+   that uses it will fail loudly on purpose (see the comments in that
+   file).
+3. =direnv allow= in this directory.
+
+Then:
+
+- =make bootstrap-check= -- reports which prerequisites are present.
+- =make shell= -- drop into the isolated environment interactively.
+- =make install= -- installs the =cerbero= launcher (=~/.local/bin=)
+  and wires up the versioned git hooks (=make install-hooks=, i.e.
+  =git config core.hooksPath githooks=).
+
+Taskwarrior/Timewarrior are deliberately *not* part of the Guix
+environment above: they are general system tools (install via your
+distro's package manager -- Timewarrior is already present on this
+machine; Taskwarrior is not, yet). The scriptable bridge between them
+and Org lives in =.emacs.d/lisp/cerebro-time.el=.
+
+* Parametric export
+
+: make export FILE=notes/example.org PROFILE=full
+: make export FILE=notes/example.org PROFILE=statements-only
+
+Same source, two PDFs: the second drops every =#+begin_proof= block
+and switches =latex/cerebro.cls='s option to =noproofs=, without
+touching a word of the note. See =.emacs.d/lisp/cerebro-latex.el= for
+the mechanism and =notes/example.org= for a worked example. Note
+files must never set =#+LATEX_CLASS_OPTIONS= or =#+EXCLUDE_TAGS=
+themselves -- profile selection needs to be the only thing controlling
+those, or a file-local setting will silently win.
+
+* Issues
+
+Personal, non-proprietary issue tracking: Org headings in
+=issues/issues.org=, no external service. Create one with
+=bin/cerebro-issue "title" [tag...]=, browse with =C-c i= inside
+Emacs, or just edit the file directly.
+
+* Status
+
+This is the foundational skeleton: environment, Emacs config, the
+parametric export pipeline, git hooks, and the issue tracker are all
+wired up and working end to end on the example note. Not yet built:
+Taskwarrior hooks with real content, richer Org-roam capture templates
+(bibliography, more theorem variants), and an org<->task bridge script
+-- these depend on how the workflow actually gets used once there is
+real coursework to take notes on.

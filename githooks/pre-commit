@@ -1,0 +1,26 @@
+#!/bin/sh
+# Versioned pre-commit hook for cerebro. Installed via
+# `make install-hooks` (git config core.hooksPath githooks) so it lives
+# as a tracked file instead of the untracked .git/hooks/. Kept small on
+# purpose: the real checks live in bin/ so they can be run by hand too.
+#
+# NOTE: assumes staged .org filenames contain no spaces (keep note
+# filenames kebab-case).
+set -eu
+cd "$(git rev-parse --show-toplevel)"
+
+staged_org=$(git diff --cached --name-only --diff-filter=ACM -- '*.org')
+if [ -n "$staged_org" ]; then
+    echo "pre-commit: checking staged .org files parse cleanly..."
+    ./bin/guix-run emacs --batch -l bin/org-check-staged.el -- $staged_org
+fi
+
+artifacts=$(git diff --cached --name-only --diff-filter=ACM \
+    | grep -E '\.(aux|log|out|toc|fls|fdb_latexmk)$|\.synctex\.gz$' || true)
+if [ -n "$artifacts" ]; then
+    echo "pre-commit: refusing to commit LaTeX build artifacts:"
+    echo "$artifacts"
+    exit 1
+fi
+
+echo "pre-commit: ok"

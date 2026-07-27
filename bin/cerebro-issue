@@ -1,0 +1,25 @@
+#!/bin/sh
+# Append a new issue heading to issues/issues.org.
+# Usage: bin/cerebro-issue "title of the issue" [tag1 tag2 ...]
+set -eu
+
+repo_root=$(git rev-parse --show-toplevel)
+issues_file="$repo_root/issues/issues.org"
+
+title=${1:?"usage: cerebro-issue \"title\" [tag1 tag2 ...]"}
+shift
+
+tags=""
+for t in "$@"; do tags="${tags}:${t}"; done
+[ -n "$tags" ] && tags="${tags}:"
+
+id=$(date -u +%Y%m%dT%H%M%S)
+created=$(date "+[%Y-%m-%d %a %H:%M]")
+
+{
+    printf '\n* TODO %s' "$title"
+    [ -n "$tags" ] && printf '   %s' "$tags"
+    printf '\n:PROPERTIES:\n:ID: %s\n:CREATED: %s\n:END:\n' "$id" "$created"
+} >> "$issues_file"
+
+echo "added issue $id: $title"
