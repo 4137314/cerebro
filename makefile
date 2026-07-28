@@ -1,7 +1,7 @@
 PROJECT_DIR := $(shell pwd)
 GUIX_RUN     := ./bin/guix-run
 
-.PHONY: install install-hooks bootstrap-check shell ci test export lint query clean-latex
+.PHONY: install install-hooks bootstrap-check shell ci test export lint query stats garden clean-latex
 
 ## One-time setup: installs the 'cerbero' launcher and wires up the
 ## versioned git hooks in githooks/ (see githooks/pre-commit,
@@ -23,8 +23,9 @@ install: install-hooks
 ## "versioned" (the canonical copy lives in the repo; the ones Git/Task
 ## actually read are a config pointer and a symlink respectively).
 install-hooks:
-	@chmod +x githooks/* bin/bootstrap-check bin/cerebro-issue bin/guix-run \
+	@chmod +x githooks/* bin/bootstrap-check bin/cerebro-issue bin/guix-run bin/emacs \
 		bin/cerebro-lint bin/cerebro-query bin/task-to-org bin/cerebro-new-book \
+		bin/cerebro-stats bin/cerebro-publish-garden \
 		taskwarrior/hooks/*
 	@git config core.hooksPath githooks
 	@echo "git core.hooksPath -> githooks/"
@@ -66,6 +67,15 @@ query:
 agenda/taskwarrior.org:
 	@$(GUIX_RUN) ./bin/task-to-org
 
+## Notes/rigor/task/time dashboard (see bin/cerebro-stats).
+stats:
+	@$(GUIX_RUN) ./bin/cerebro-stats
+
+## Publish evergreen notes as a static HTML "digital garden" (see
+## bin/cerebro-publish-garden). Output in public/ (gitignored).
+garden:
+	@$(GUIX_RUN) ./bin/cerebro-publish-garden
+
 ## ERT (Elisp) tests + POSIX-sh tests for the bin/ scripts.
 test:
 	@$(GUIX_RUN) emacs --batch -L .emacs.d/lisp -l tests/cerebro-latex-tests.el -f ert-run-tests-batch-and-exit
@@ -92,6 +102,7 @@ ci:
 clean-latex:
 	@find notes latex -type f \( -name '*.aux' -o -name '*.log' -o -name '*.out' \
 		-o -name '*.toc' -o -name '*.fls' -o -name '*.fdb_latexmk' -o -name '*.synctex.gz' \
-		-o -name '*.nav' -o -name '*.snm' -o -name '*.vrb' \) -delete
+		-o -name '*.nav' -o -name '*.snm' -o -name '*.vrb' \
+		-o -name '*.bbl' -o -name '*.bcf' -o -name '*.blg' -o -name '*.run.xml' \) -delete
 	@find notes -type f -name '*.tex' -delete
 	@find notes -type f -name '*.pdf' -delete

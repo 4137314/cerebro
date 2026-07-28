@@ -1,0 +1,32 @@
+#!/bin/sh
+# Publish every note with `#+FILETAGS: :evergreen:' (see notes/TAGS.org)
+# as a static HTML "digital garden" in public/ (gitignored) -- Org's
+# own org-publish, no new dependency. A note qualifies as a whole file
+# (via FILETAGS), not per-heading: `evergreen' is a per-note maturity
+# rating, and org-publish's :select-tags only filters headings *within*
+# a file that already has at least one match -- if a file has none at
+# all, org-publish exports the whole thing anyway (confirmed against a
+# real run), which is the wrong default for "only evergreen notes get
+# published". A staging directory of symlinks to just the qualifying
+# files sidesteps that entirely.
+set -eu
+
+repo_root=$(git rev-parse --show-toplevel)
+cd "$repo_root"
+
+staging=$(mktemp -d)
+trap 'rm -rf "$staging"' EXIT
+
+count=0
+for f in $(grep -lrE '^#\+FILETAGS:.*:evergreen:' notes --include='*.org' 2>/dev/null || true); do
+    ln -s "$repo_root/$f" "$staging/$(basename "$f")"
+    count=$((count + 1))
+done
+
+if [ "$count" -eq 0 ]; then
+    echo "cerebro-publish-garden: no notes tagged #+FILETAGS: :evergreen: yet -- nothing to publish"
+    exit 0
+fi
+
+emacs --batch -l "$repo_root/bin/cerebro-publish-garden.el" -- "$staging" "$repo_root/public"
+echo "cerebro-publish-garden: published $count note(s) to public/"

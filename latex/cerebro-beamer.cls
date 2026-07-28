@@ -25,6 +25,15 @@
 \RequirePackage[english]{babel}
 \RequirePackage{cerebro-macros}
 
+% [cite:@key] works in slide content too (same bib/references.bib as
+% cerebro.cls), but *not* auto-printed here: beamer requires all
+% content inside \begin{frame}...\end{frame}, so an \AtEndDocument
+% \printbibliography (fine for article/report/manual) would land
+% outside any frame and produce nothing. Add a references frame by
+% hand with a raw LaTeX export snippet if a deck needs one.
+\RequirePackage[backend=biber,style=numeric]{biblatex}
+\addbibresource{references.bib}
+
 \usetheme{default}
 \usecolortheme{seahorse}
 \setbeamertemplate{navigation symbols}{}

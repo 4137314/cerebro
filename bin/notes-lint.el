@@ -3,7 +3,8 @@
 ;; Usage: emacs --batch -l bin/notes-lint.el -- [file.org ...]
 ;; (default, no args: every .org file under notes/)
 ;;
-;; Two tiers, matching how the rest of the tooling degrades:
+;; Two tiers, matching how the rest of the tooling degrades, plus a
+;; separate advisory-only spelling pass:
 ;; - Tier 1 (pure org-element, always runs): duplicate #+NAME labels
 ;;   (would silently break LaTeX compilation), a
 ;;   theorem/lemma/proposition/corollary block with no adjacent proof
@@ -14,6 +15,11 @@
 ;;   unavailable): broken id: links, fully orphaned nodes
 ;;   (informational only -- normal for a fresh `seed' note, not an
 ;;   error).
+;; - Spelling (needs aspell/hunspell on PATH, skipped with a message if
+;;   neither is found): always informational, never fails the push --
+;;   prose spell-checkers have false positives (proper nouns, jargon,
+;;   the occasional stray bit of math notation) often enough that
+;;   treating them as hard errors would just get the check ignored.
 
 (let* ((here (file-name-directory (or load-file-name buffer-file-name)))
        (lisp-dir (expand-file-name "../.emacs.d/lisp" here)))
@@ -21,6 +27,7 @@
 (require 'cl-lib)
 (require 'org)
 (require 'org-element)
+(require 'flyspell)
 (require 'cerebro-org)
 
 (defvar cerebro-lint--errors nil)
@@ -79,6 +86,54 @@
               (cerebro-lint--err "%s: heading `%s' uses undeclared tag `%s' (see notes/TAGS.org)"
                                   file (org-element-property :raw-value h) tag))))))))
 
+(defvar cerebro-lint--ispell-program
+  (or (executable-find "aspell") (executable-find "hunspell"))
+  "Which spell-checker backend to use, if any. aspell (from guix.scm)
+is preferred; hunspell is an acceptable fallback if that's what's on
+PATH (e.g. testing outside the guix environment).")
+
+(defun cerebro-lint--prose-only (file)
+  "Best-effort prose extraction from FILE for spell-checking: drops
+#+begin_.../#+end_... blocks and #+KEYWORD: lines, leaving running
+text. Not a full Org parser -- e.g. inline $math$ isn't specially
+stripped -- which is exactly why the spelling check this feeds is
+informational only, never a hard failure."
+  (with-temp-buffer
+    (insert-file-contents file)
+    (let ((lines (split-string (buffer-string) "\n"))
+          (in-block nil)
+          kept)
+      (dolist (line lines)
+        (cond
+         (in-block (when (string-match-p "\\`[ \t]*#\\+end_" line) (setq in-block nil)))
+         ((string-match-p "\\`[ \t]*#\\+begin_" line) (setq in-block t))
+         ((string-match-p "\\`[ \t]*#\\+[[:alpha:]_]+:" line)) ;; drop keyword lines
+         (t (push line kept))))
+      (mapconcat #'identity (nreverse kept) "\n"))))
+
+(defun cerebro-lint--spelling-file (file)
+  (when cerebro-lint--ispell-program
+    (with-temp-buffer
+      (insert (cerebro-lint--prose-only file))
+      (text-mode)
+      (let ((ispell-program-name cerebro-lint--ispell-program)
+            (ispell-dictionary "en_US"))
+        (condition-case err
+            (progn
+              (ispell-set-spellchecker-params)
+              (flyspell-mode 1)
+              (flyspell-buffer)
+              (let (words)
+                (dolist (ov (overlays-in (point-min) (point-max)))
+                  (when (overlay-get ov 'flyspell-overlay)
+                    (push (buffer-substring-no-properties (overlay-start ov) (overlay-end ov))
+                          words)))
+                (dolist (w (delete-dups words))
+                  (cerebro-lint--note "%s: possible misspelling `%s'" file w))))
+          (error
+           (message "notes-lint: spelling check unavailable (%s)"
+                     (error-message-string err))))))))
+
 (defun cerebro-lint--tier2 ()
   (if (not (require 'org-roam nil t))
       (message "notes-lint: org-roam unavailable, skipping tier-2 graph checks")
@@ -106,7 +161,10 @@
   (unless files
     (setq files (directory-files-recursively
                  (expand-file-name "notes" cerebro-root) "\\.org\\'")))
-  (dolist (f files) (cerebro-lint--tier1-file f)))
+  (dolist (f files) (cerebro-lint--tier1-file f))
+  (if cerebro-lint--ispell-program
+      (dolist (f files) (cerebro-lint--spelling-file f))
+    (message "notes-lint: no aspell/hunspell on PATH, skipping the spelling pass")))
 (cerebro-lint--tier2)
 
 (dolist (i (reverse cerebro-lint--info)) (message "notes-lint: info: %s" i))

@@ -32,7 +32,17 @@
 (require 'ox-latex)
 (require 'ox-beamer)
 (require 'org-element)
+(require 'oc)
+(require 'oc-biblatex)
 (require 'cerebro-org)
+
+;; Citations: [cite:@key] in Org -> \autocite{key} via org-cite's own
+;; biblatex export processor (built into Org core since 9.5, no new
+;; package). One shared bib/references.bib, like the notation in
+;; cerebro-macros.sty.
+(setq org-cite-global-bibliography
+      (list (expand-file-name "bib/references.bib" cerebro-root)))
+(setq org-cite-export-processors '((latex biblatex) (t basic)))
 
 (defvar cerebro-latex-content-modes
   '((full        . (:exclude-blocks nil))
@@ -197,8 +207,9 @@ bin/org-export-latex.el / `make export'."
          ;; still find them. Trailing bare ":" = "then the default
          ;; search path".
          (process-environment
-          (cons (format "TEXINPUTS=%s:" (expand-file-name "latex" cerebro-root))
-                process-environment))
+          (append (list (format "TEXINPUTS=%s:" (expand-file-name "latex" cerebro-root))
+                        (format "BIBINPUTS=%s:" (expand-file-name "bib" cerebro-root)))
+                  process-environment))
          (export-fn (if (eq doctype-name 'beamer)
                         #'org-beamer-export-to-pdf
                       #'org-latex-export-to-pdf)))

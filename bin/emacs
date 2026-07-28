@@ -1,0 +1,17 @@
+#!/bin/sh
+# Shim so plain `emacs`, typed interactively from a terminal inside
+# this repo, picks up the project-local .emacs.d instead of the
+# default ~/.emacs.d. Only reachable via PATH once direnv is active
+# (`direnv allow`) and has prepended bin/ ahead of the real emacs (see
+# .envrc's `PATH_add bin`); a `guix shell -f guix.scm --` invocation
+# (bin/guix-run, `make export`/`ci`/`test`) re-prepends its own
+# profile's bin first regardless, so those keep using the real,
+# unwrapped emacs, not this script.
+#
+# Strip our own directory from PATH before re-invoking `emacs`, or
+# this would just call itself.
+here=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+repo_root=$(dirname -- "$here")
+PATH=$(printf '%s' "$PATH" | tr ':' '\n' | grep -v -x "$here" | tr '\n' ':')
+export PATH
+exec emacs --init-directory="$repo_root/.emacs.d" "$@"

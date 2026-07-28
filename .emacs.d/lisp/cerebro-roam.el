@@ -24,6 +24,14 @@
          "#+begin_theorem\n%?\n#+end_theorem\n\n#+begin_proof\n\n#+end_proof\n"
          :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
                              "#+TITLE: ${title}\n#+DATE: %U\n\n")
+         :unnarrowed t)
+        ;; org-drill (cerebro-drill.el) drills headings tagged :drill:,
+        ;; heading = prompt, body = answer -- an `entry', not `plain',
+        ;; template, so capture actually creates that heading structure.
+        ("f" "flashcard" entry
+         "* %^{Question}                                                     :drill:\n%?"
+         :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                             "#+TITLE: ${title}\n#+DATE: %U\n\n")
          :unnarrowed t)))
 
 (provide 'cerebro-roam)

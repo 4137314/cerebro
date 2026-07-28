@@ -56,7 +56,29 @@
         ("easy" . ?1) ("medium" . ?2) ("hard" . ?3)
         (:endgroup . nil)
         ("conjecture" . ?c) ("folklore" . ?f) ("open_problem" . ?o)
-        ("analysis" . ?a) ("algebra" . ?l) ("topology" . ?t) ("logic" . ?g)))
+        ("analysis" . ?a) ("algebra" . ?l) ("topology" . ?t) ("logic" . ?g)
+        ("crypt" . ?x) ("drill" . ?d)))
+
+;; One combined view instead of checking issues/tasks/stale notes
+;; separately: `M-x org-agenda m' (or `C-c a m'). Each block restricts
+;; org-agenda-files to just what it needs rather than introducing a
+;; new tag to filter by.
+(setq org-agenda-custom-commands
+      '(("m" "Morning review"
+         ((agenda "" ((org-agenda-span 1)))
+          (todo "TODO"
+                ((org-agenda-overriding-header "Academic tasks (Taskwarrior, via bin/task-to-org)")
+                 (org-agenda-files
+                  (list (expand-file-name "agenda/taskwarrior.org" cerebro-root)))))
+          (todo "TODO"
+                ((org-agenda-overriding-header "Open issues")
+                 (org-agenda-files (list (expand-file-name "issues/issues.org" cerebro-root)))))
+          (tags "growing"
+                ((org-agenda-overriding-header "Growing notes -- candidates to push toward evergreen")
+                 (org-agenda-files (list org-directory))))
+          (tags "seed"
+                ((org-agenda-overriding-header "Seed notes -- still need a first real pass")
+                 (org-agenda-files (list org-directory))))))))
 
 (defun cerebro-known-tags ()
   "Flatten `org-tag-alist' into the actual tag strings, dropping the

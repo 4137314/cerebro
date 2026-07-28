@@ -27,6 +27,7 @@
              (gnu packages aspell)
              (gnu packages task-management)
              (gnu packages web)
+             (gnu packages gnupg)
              (guix packages)
              (guix licenses)
              (guix gexp)
@@ -50,6 +51,11 @@
     ;; editor + zettelkasten
     emacs
     emacs-org-roam
+    emacs-org-drill ;; spaced repetition over :drill:-tagged headings (cerebro-drill.el)
+
+    ;; org-crypt (built into Org core, cerebro-crypt.el) needs a GPG
+    ;; backend for symmetric encryption of :crypt:-tagged subtrees.
+    gnupg
 
     ;; LaTeX toolchain: pdflatex/xelatex/lualatex + latexmk + TikZ/pgfplots
     ;; + every standard package needed by latex/*.cls.

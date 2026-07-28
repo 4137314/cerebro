@@ -59,6 +59,15 @@
 \RequirePackage{geometry}
 \geometry{margin=2.5cm}
 
+% Shared bibliography (bib/references.bib, found via BIBINPUTS -- see
+% .emacs.d/lisp/cerebro-latex.el). [cite:@key] in Org becomes \autocite
+% via org-cite's biblatex export processor. \printbibliography at the
+% end is harmless when nothing was cited (confirmed against a real
+% compile: biblatex/biber print an empty bibliography, not an error).
+\RequirePackage[backend=biber,style=numeric]{biblatex}
+\addbibresource{references.bib}
+\AtEndDocument{\printbibliography}
+
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{example}[definition]{Example}

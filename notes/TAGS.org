@@ -45,3 +45,15 @@ carries one of these tags.
 Starting set: =analysis=, =algebra=, =topology=, =logic=. Add more in
 =org-tag-alist= as coursework expands -- this group is deliberately
 open-ended, unlike the two exclusive groups above.
+
+* Functional tags (freestanding, drive actual behavior)
+
+Not descriptive metadata -- these two change what a tool does.
+
+- =crypt= :: this heading's body is encrypted at rest
+  (=cerebro-crypt.el=, built on Org's own =org-crypt=). Symmetric
+  (passphrase) by default.
+- =drill= :: this heading is a spaced-repetition flashcard
+  (=cerebro-drill.el=, =emacs-org-drill=): heading = prompt, body =
+  answer. The =f= (flashcard) Org-roam capture template
+  (=cerebro-roam.el=) creates the right structure for you.

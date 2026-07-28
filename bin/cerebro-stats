@@ -1,0 +1,46 @@
+#!/bin/sh
+# A quick dashboard over the whole cerebro second brain: how many
+# notes, how mature, how much has actually been proved (vs asserted),
+# and how much task/time activity has gone into it. Mostly glue over
+# things already built (the tag taxonomy, Taskwarrior, Timewarrior) --
+# see `make stats`. Run inside the guix environment (or via `make
+# stats`) so task/timew are on PATH; the note-counting section works
+# either way since it's plain grep/find.
+set -eu
+
+repo_root=$(git rev-parse --show-toplevel)
+cd "$repo_root"
+
+echo "== Notes =="
+total=$(find notes -name '*.org' -not -name 'TAGS.org' -not -name 'README.org' | wc -l)
+echo "total note files: $total"
+for m in seed growing evergreen; do
+    n=$(grep -rl ":$m:" notes --include='*.org' 2>/dev/null | wc -l || true)
+    echo "  $m: $n"
+done
+
+echo
+echo "== Rigor =="
+theorems=$(grep -rohE '^#\+begin_(theorem|lemma|proposition|corollary)' notes --include='*.org' 2>/dev/null | wc -l)
+proofs=$(grep -roh '^#+begin_proof' notes --include='*.org' 2>/dev/null | wc -l)
+conjectures=$(grep -rohE '^#\+begin_(conjecture|open_problem)' notes --include='*.org' 2>/dev/null | wc -l)
+echo "theorem-like blocks: $theorems"
+echo "proof blocks: $proofs"
+echo "conjecture/open-problem blocks: $conjectures"
+echo "(run bin/cerebro-lint for exactly which theorems still lack a proof)"
+
+echo
+echo "== Taskwarrior (academic) =="
+if command -v task >/dev/null 2>&1; then
+    task rc.verbose=nothing +cerebro count 2>/dev/null || echo "(no matching tasks yet)"
+else
+    echo "(task not on PATH -- run via 'make stats' or inside the guix environment)"
+fi
+
+echo
+echo "== Timewarrior (this month) =="
+if command -v timew >/dev/null 2>&1; then
+    timew summary :month 2>/dev/null || echo "(no time tracked yet)"
+else
+    echo "(timew not on PATH -- run via 'make stats' or inside the guix environment)"
+fi
