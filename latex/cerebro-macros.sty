@@ -1,0 +1,50 @@
+% cerebro-macros.sty -- shared math notation, for every cerebro class.
+%
+% Single source of truth for notation: \RequirePackage'd by both
+% latex/cerebro.cls (article/report/manual) and
+% latex/cerebro-beamer.cls (slides), so a symbol means the same thing
+% no matter which output format a note is compiled to.
+%
+% Deliberately NOT loading cleveref here: cleveref must load after
+% hyperref, and hyperref is one of Org's own default export packages,
+% added to the preamble *after* \documentclass processing (and hence
+% after anything \RequirePackage'd from this file) -- see
+% .emacs.d/lisp/cerebro-latex.el, which adds cleveref via
+% `org-latex-packages-alist' instead, at the correct point in the
+% preamble. This was verified against a real compile, not assumed.
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cerebro-macros}[2026/01/01 cerebro shared math notation]
+
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{mathtools}
+\RequirePackage{tikz}
+\RequirePackage{tikz-cd}
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% -- Number systems -----------------------------------------------------
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+% -- Delimiters, auto-sized, consistent across every note ---------------
+% \abs*{x} for auto-\left\right sizing, \abs{x} for a fixed-size fallback.
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiterX{\inner}[2]{\langle}{\rangle}{#1,#2}
+
+% -- Everyday shorthands --------------------------------------------------
+\newcommand{\eps}{\varepsilon}
+\newcommand{\dd}{\mathrm{d}}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\endinput

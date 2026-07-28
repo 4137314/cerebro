@@ -1,0 +1,9 @@
+#!/bin/sh
+# Versioned pre-push hook: the thorough, slower consistency check
+# (bin/cerebro-lint -- duplicate labels, unproved theorems, undeclared
+# tags, and -- if the Org-roam DB is available -- broken links).
+# Deliberately not in pre-commit: graph-wide checks don't belong on the
+# fast path of every commit. Installed via `make install-hooks`.
+set -eu
+cd "$(git rev-parse --show-toplevel)"
+./bin/cerebro-lint

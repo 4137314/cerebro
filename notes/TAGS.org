@@ -1,0 +1,47 @@
+#+TITLE: Tag taxonomy
+
+The controlled vocabulary is data, not documentation: it lives in
+=org-tag-alist= in .emacs.d/lisp/cerebro-org.el, and any tag used in a
+note that isn't declared there gets flagged by =bin/cerebro-lint=
+(tier 1, no Org-roam needed). This file is what each one *means* --
+extend the vocabulary in cerebro-org.el first, then explain it here.
+
+* Maturity (mutually exclusive)
+
+Borrowed from the "evergreen notes" idea: make how well-formed an idea
+still is visible, instead of only implying it.
+
+- =seed= :: a fragment, a question, something copied from a lecture
+  almost verbatim. Not yet understood well enough to explain in your
+  own words.
+- =growing= :: reworked at least once, connected to other notes, but
+  still has rough edges or open questions attached.
+- =evergreen= :: written in your own words, understood well enough to
+  teach, stable under revision. This is the tag =cerebro-query.el='s
+  "stale hubs" query cares about: an evergreen note nobody has touched
+  in a long time is fine; a =growing= one that's also a hub is a
+  signal to go back and finish it.
+
+* Difficulty (mutually exclusive)
+
+=easy=, =medium=, =hard= -- relative to your own current level, not to
+some absolute scale. Re-tag as you improve; a note doesn't need to keep
+the difficulty rating you gave it as a first-year student.
+
+* Epistemic status (freestanding)
+
+These matter structurally, not just descriptively: =bin/notes-lint.el=
+(tier 1) treats a =theorem=/=lemma=/=proposition=/=corollary= special
+block with no adjacent =proof= block as an error *unless* its heading
+carries one of these tags.
+
+- =conjecture= :: believed true, not proved (by you, or at all).
+- =folklore= :: "well known," proof omitted because it's standard/long
+  /ubiquitous, not because it doesn't exist.
+- =open_problem= :: actually unresolved (in the field, not just by you).
+
+* Area (freestanding, extend freely)
+
+Starting set: =analysis=, =algebra=, =topology=, =logic=. Add more in
+=org-tag-alist= as coursework expands -- this group is deliberately
+open-ended, unlike the two exclusive groups above.

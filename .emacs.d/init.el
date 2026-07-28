@@ -17,4 +17,6 @@
 (require 'cerebro-latex)
 (require 'cerebro-time)
 (require 'cerebro-issues)
+(require 'cerebro-query)
+(require 'cerebro-appearance)
 (require 'cerebro-keys)

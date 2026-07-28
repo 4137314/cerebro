@@ -9,14 +9,30 @@ set -eu
 
 repo_root=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
 channels="$repo_root/guix/channels.scm"
+guix_scm="$repo_root/guix.scm"
 
-if command -v guix >/dev/null 2>&1 \
+# `guix` is only on PATH in shells that source /etc/profile.d/guix.sh (or
+# equivalent) -- e.g. an interactive login shell, but not necessarily a
+# git hook or non-login script. Fall back to the two well-known install
+# locations before giving up on Guix being usable at all.
+guix_bin=""
+if command -v guix >/dev/null 2>&1; then
+    guix_bin=guix
+else
+    for candidate in "$HOME/.config/guix/current/bin/guix" "$HOME/.guix-profile/bin/guix"; do
+        [ -x "$candidate" ] && guix_bin="$candidate" && break
+    done
+fi
+
+if [ -n "$guix_bin" ] \
    && [ -f "$channels" ] \
    && ! grep -q 'REPLACE-WITH-REAL-COMMIT' "$channels"; then
-    exec guix time-machine -C "$channels" -- shell -- "$@"
+    # -f (not -D): guix.scm is a fake package whose only job is to
+    # propagate real dependencies -- see the comment at its top.
+    exec "$guix_bin" time-machine -C "$channels" -- shell -f "$guix_scm" -- "$@"
 else
-    echo "guix-run: guix unavailable or guix/channels.scm still a template" >&2
-    echo "guix-run: running unisolated with whatever is on PATH -- see README.org" >&2
+    echo "guix-run: guix not found (checked PATH, ~/.config/guix/current, ~/.guix-profile)" >&2
+    echo "guix-run: or guix/channels.scm still a template -- running unisolated, see README.org" >&2
     # No arguments means "drop into an interactive shell" (see `make
     # shell`); `exec` with zero words is a shell error, not a no-op.
     if [ "$#" -eq 0 ]; then

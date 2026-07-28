@@ -6,9 +6,8 @@
 (require 'cerebro-org)
 (require 'org-roam)
 
-(setq org-roam-directory org-directory)
-(setq org-roam-db-location (expand-file-name ".org-roam.db" cerebro-root))
-
+;; org-roam-directory / org-roam-db-location are set in cerebro-org.el,
+;; shared with bin/notes-lint.el and cerebro-query.el.
 (org-roam-db-autosync-mode 1)
 
 (setq org-roam-capture-templates

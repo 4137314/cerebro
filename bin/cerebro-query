@@ -1,0 +1,9 @@
+#!/bin/sh
+# Scriptable entry point for the Org-roam graph queries in
+# .emacs.d/lisp/cerebro-query.el.
+# Usage: bin/cerebro-query orphans|hubs|stale-hubs|co-citation|by-tag [args...]
+set -eu
+repo_root=$(git rev-parse --show-toplevel)
+cmd=${1:?"usage: cerebro-query orphans|hubs|stale-hubs|co-citation|by-tag [args...]"}
+shift
+"$repo_root/bin/guix-run" emacs --batch -l "$repo_root/bin/cerebro-query.el" -- "$cmd" "$@"

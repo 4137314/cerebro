@@ -1,0 +1,8 @@
+#!/bin/sh
+# Thorough note consistency checks -- see bin/notes-lint.el for what
+# runs. Used by githooks/pre-push (the "slower but thorough" gate,
+# githooks/pre-commit stays fast) and can be run by hand any time.
+# Usage: bin/cerebro-lint [file.org ...]   (default: all of notes/)
+set -eu
+repo_root=$(git rev-parse --show-toplevel)
+"$repo_root/bin/guix-run" emacs --batch -l "$repo_root/bin/notes-lint.el" -- "$@"

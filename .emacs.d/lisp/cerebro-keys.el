@@ -7,4 +7,10 @@
 (global-set-key (kbd "C-c c")   #'org-capture)
 (global-set-key (kbd "C-c i")   #'cerebro-issues-open)
 
+(global-set-key (kbd "C-c q o") #'cerebro-query-orphans)
+(global-set-key (kbd "C-c q h") #'cerebro-query-hubs)
+(global-set-key (kbd "C-c q s") #'cerebro-query-stale-hubs)
+(global-set-key (kbd "C-c q c") #'cerebro-query-co-citation)
+(global-set-key (kbd "C-c q t") #'cerebro-query-by-tag)
+
 (provide 'cerebro-keys)

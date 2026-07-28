@@ -1,20 +1,45 @@
 #+TITLE: A first cerebro note: uniqueness of limits
-#+LATEX_CLASS: cerebro
 #+OPTIONS: toc:nil
 
-This file exists to exercise the parametric export pipeline end to end:
+#+begin_comment
+This whole block is an Org comment: visible when editing the source,
+excluded from every export profile (including `slides', where a plain
+paragraph here would otherwise become its own frame ahead of the real
+content -- verified against a real compile). This is also the general
+answer to "where do I put meta-commentary that isn't part of the
+note itself": a #+begin_comment block, not plain prose.
 
-: make export FILE=notes/example.org PROFILE=full
-: make export FILE=notes/example.org PROFILE=statements-only
+This file exercises the parametric export pipeline end to end, across
+every named profile in .emacs.d/lisp/cerebro-latex.el:
 
-Compare the two PDFs: the proof disappears in the second without a
-single word of the source changing. See .emacs.d/lisp/cerebro-latex.el
-for how, and latex/cerebro.cls for the shared theorem environments.
+  make export FILE=notes/example.org PROFILE=full
+  make export FILE=notes/example.org PROFILE=statements
+  make export FILE=notes/example.org PROFILE=lecture
+  make export FILE=notes/example.org PROFILE=report
+  make export FILE=notes/example.org PROFILE=manual
+  make export FILE=notes/example.org PROFILE=slides
+  make export FILE=notes/example.org PROFILE=single TARGET=thm-uniqueness-of-limits
 
-Convention: never set =#+LATEX_CLASS_OPTIONS= or =#+EXCLUDE_TAGS= in a
-note file -- profile selection controls the equivalent of both at
-export time, and a file-local setting would silently win over it. Write
-special block names lowercase (=#+begin_theorem=, not =#+begin_Theorem=).
+Conventions for note authors, load-bearing for the pipeline above --
+getting any of these wrong fails silently, not loudly:
+- Never set #+LATEX_CLASS, #+LATEX_CLASS_OPTIONS or #+EXCLUDE_TAGS in a
+  note file. Profile selection controls all three at export time; a
+  file-local setting would silently win over it (Org's own precedence
+  rules), so profile selection would silently stop doing anything.
+- Write special block names lowercase (#+begin_theorem, not
+  #+begin_Theorem).
+- Keep LaTeX display equations on a single line starting with \[, not
+  |. A line whose first character is | is Org table syntax, full stop
+  -- it will silently eat a multi-line \[ ... \] display equation
+  instead of passing it through to LaTeX (this bit the very first
+  draft of this file).
+- The `single' profile keeps exactly one #+NAME'd block plus an
+  immediately following sibling `proof' block, nothing else in the
+  file -- give the theorem you want to isolate for focused study a
+  #+NAME, and pass that name as TARGET.
+#+end_comment
+
+* Limits of sequences
 
 #+begin_definition
 A sequence $(a_n)_{n \in \mathbb{N}}$ of real numbers /converges/ to
@@ -22,21 +47,32 @@ $L \in \mathbb{R}$ if for every $\varepsilon > 0$ there exists
 $N \in \mathbb{N}$ such that $|a_n - L| < \varepsilon$ for all $n \geq N$.
 #+end_definition
 
+#+begin_axiom
+The real numbers $\R$ are Dedekind-complete: every non-empty subset of
+$\R$ bounded above has a least upper bound in $\R$.
+#+end_axiom
+
+#+NAME: thm-uniqueness-of-limits
 #+begin_theorem
 If $(a_n)$ converges to both $L_1$ and $L_2$, then $L_1 = L_2$.
 #+end_theorem
 
 #+begin_proof
-Suppose $L_1 \neq L_2$. Let $\varepsilon = |L_1 - L_2| / 2 > 0$. By
-convergence to $L_1$ there is $N_1$ with $|a_n - L_1| < \varepsilon$ for
+Suppose $L_1 \neq L_2$. Let $\eps = \abs{L_1 - L_2} / 2 > 0$. By
+convergence to $L_1$ there is $N_1$ with $\abs{a_n - L_1} < \eps$ for
 all $n \geq N_1$; similarly there is $N_2$ for $L_2$. Then for
 $n \geq \max(N_1, N_2)$,
-\[|L_1 - L_2| \leq |L_1 - a_n| + |a_n - L_2| < 2\varepsilon = |L_1 - L_2|,\]
+\[\abs{L_1 - L_2} \leq \abs{L_1 - a_n} + \abs{a_n - L_2} < 2\eps = \abs{L_1 - L_2},\]
 a contradiction. Hence $L_1 = L_2$.
-
-Note for note authors: keep LaTeX display equations like the one above
-on a single line starting with =\[=, not =|=. A line whose first
-character is =|= is Org table syntax, full stop -- it will silently
-eat a multi-line =\[ ... \]= display equation instead of passing it
-through to LaTeX (this bit the very first draft of this file).
 #+end_proof
+
+#+begin_remark
+Uniqueness of limits is why writing "$\lim_{n\to\infty} a_n = L$" for
+/the/ limit, rather than /a/ limit, is legitimate at all.
+#+end_remark
+
+#+begin_conjecture
+(Not a real open problem -- just here to exercise the =conjecture=
+environment.) Every convergent sequence of rationals converges to a
+rational.
+#+end_conjecture

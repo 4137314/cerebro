@@ -1,0 +1,28 @@
+#!/bin/sh
+# Scaffold a book.org that aggregates every .org note in a course
+# directory into one document, in filename order, via Org's own
+# #+INCLUDE (no new export mechanism needed for the `manual' profile --
+# see .emacs.d/lisp/cerebro-latex.el). Re-run any time to regenerate
+# the include list after adding notes; hand-written prose you add
+# around the #+INCLUDE lines is not touched unless you re-run this on
+# top of it, so keep such prose in a separate chapter file if you want
+# it preserved across regenerations.
+#
+# Usage: bin/cerebro-new-book notes/courses/analysis "Real Analysis I"
+set -eu
+
+dir=${1:?"usage: cerebro-new-book DIR [TITLE]"}
+title=${2:-$(basename "$dir")}
+book="$dir/book.org"
+
+{
+    printf '#+TITLE: %s\n\n' "$title"
+    for f in "$dir"/*.org; do
+        base=$(basename "$f")
+        [ "$base" = "book.org" ] && continue
+        [ "$base" = "README.org" ] && continue
+        printf '#+INCLUDE: "%s" :minlevel 1\n' "$base"
+    done
+} > "$book"
+
+echo "wrote $book -- compile with: make export FILE=$book PROFILE=manual"

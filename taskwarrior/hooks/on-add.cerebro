@@ -1,0 +1,29 @@
+#!/bin/sh
+# Taskwarrior on-add hook. Tasks under the `academic' project (or any
+# sub-project, e.g. academic.analysis) get auto-tagged `cerebro' -- so
+# bin/task-to-org can select exactly these tasks for the one-way
+# Taskwarrior -> Org bridge -- plus a dated annotation for traceability.
+#
+# Installed via `make install-hooks' (symlinked into ~/.task/hooks/);
+# canonical copy lives here, versioned with everything else.
+#
+# Protocol (Taskwarrior hook API): one line of task JSON on stdin;
+# print the (possibly modified) task JSON as the first line of stdout.
+set -eu
+
+task_json=$(cat)
+project=$(printf '%s' "$task_json" | jq -r '.project // empty')
+
+case "$project" in
+    academic|academic.*)
+        task_json=$(printf '%s' "$task_json" | jq -c '
+            .tags = ((.tags // []) + ["cerebro"] | unique)
+            | .annotations = ((.annotations // [])
+                + [{"entry": (now | strftime("%Y%m%dT%H%M%S")),
+                    "description": "cerebro: tracked"}])
+        ')
+        echo "cerebro: tagged academic task" >&2
+        ;;
+esac
+
+printf '%s\n' "$task_json"

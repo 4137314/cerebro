@@ -1,0 +1,32 @@
+#!/bin/sh
+# Taskwarrior on-modify hook: keeps the `cerebro' tag in sync if a
+# task's project is changed into or out of `academic'/`academic.*'
+# after creation (on-add alone would miss that case).
+#
+# Installed via `make install-hooks' (symlinked into ~/.task/hooks/);
+# canonical copy lives here, versioned with everything else.
+#
+# Protocol (Taskwarrior hook API): two lines on stdin, old task JSON
+# then new task JSON; print the (possibly modified) new task JSON as
+# the first line of stdout.
+set -eu
+
+IFS= read -r old_json
+IFS= read -r new_json
+
+project=$(printf '%s' "$new_json" | jq -r '.project // empty')
+
+case "$project" in
+    academic|academic.*)
+        new_json=$(printf '%s' "$new_json" | jq -c '
+            .tags = ((.tags // []) + ["cerebro"] | unique)
+        ')
+        ;;
+    *)
+        new_json=$(printf '%s' "$new_json" | jq -c '
+            .tags = ((.tags // []) - ["cerebro"])
+        ')
+        ;;
+esac
+
+printf '%s\n' "$new_json"
