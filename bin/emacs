@@ -8,6 +8,13 @@
 # profile's bin first regardless, so those keep using the real,
 # unwrapped emacs, not this script.
 #
+# `set -u` only (guard unset vars), deliberately not `set -e`: the PATH
+# rewrite below pipes through `grep -v`, which exits non-zero when it
+# prints no lines -- with `-e` that would abort the shim in the corner
+# case where bin/ is the only PATH entry. The other bin/ scripts use
+# `set -eu`; this one documents why it can't.
+set -u
+
 # Strip our own directory from PATH before re-invoking `emacs`, or
 # this would just call itself.
 here=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)

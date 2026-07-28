@@ -12,6 +12,8 @@
 
 (require 'cl-lib)
 (require 'cerebro-org)
+(require 'cerebro-graph) ;; the pure counting/joining, unit-tested on its own
+(require 'cerebro-msc)   ;; the by-msc query
 (require 'org-roam)
 
 (defun cerebro-query--nodes ()
@@ -57,15 +59,10 @@ buffer, TITLE as a heading, FORMAT-ROW turning one row into a line."
   "Nodes with no incoming and no outgoing links -- not connected to
 the rest of the graph at all yet."
   (interactive)
-  (let* ((nodes (cerebro-query--nodes))
-         (connected (make-hash-table :test 'equal)))
-    (dolist (l (cerebro-query--id-links))
-      (puthash (nth 0 l) t connected)
-      (puthash (nth 1 l) t connected))
-    (cerebro-query--report
-     "Orphans (no links in or out)"
-     (seq-filter (lambda (n) (not (gethash (nth 0 n) connected))) nodes)
-     (lambda (n) (format "%s  [%s]" (nth 1 n) (nth 2 n))))))
+  (cerebro-query--report
+   "Orphans (no links in or out)"
+   (cerebro-graph-orphans (cerebro-query--nodes) (cerebro-query--id-links))
+   (lambda (n) (format "%s  [%s]" (nth 1 n) (nth 2 n)))))
 
 ;;;###autoload
 (defun cerebro-query-hubs ()
@@ -74,17 +71,13 @@ your load-bearing concepts."
   (interactive)
   (let* ((nodes (cerebro-query--nodes))
          (titles (cerebro-query--titles-table nodes))
-         (counts (make-hash-table :test 'equal)))
-    (dolist (l (cerebro-query--id-links))
-      (let ((dest (nth 1 l)))
-        (when (gethash dest titles)
-          (puthash dest (1+ (gethash dest counts 0)) counts))))
-    (let (rows)
-      (maphash (lambda (id n) (push (list n (gethash id titles)) rows)) counts)
-      (setq rows (sort rows (lambda (a b) (> (car a) (car b)))))
-      (cerebro-query--report
-       "Hubs (ranked by backlink count)" rows
-       (lambda (r) (format "%3d  %s" (car r) (cadr r)))))))
+         (counts (cerebro-graph-backlink-counts (cerebro-query--id-links) titles))
+         rows)
+    (maphash (lambda (id n) (push (list n (gethash id titles)) rows)) counts)
+    (setq rows (sort rows (lambda (a b) (> (car a) (car b)))))
+    (cerebro-query--report
+     "Hubs (ranked by backlink count)" rows
+     (lambda (r) (format "%3d  %s" (car r) (cadr r))))))
 
 ;;;###autoload
 (defun cerebro-query-stale-hubs (&optional days min-backlinks)
@@ -98,11 +91,7 @@ in DAYS (default 30) -- foundational but neglected."
          (titles (cerebro-query--titles-table nodes))
          (files (cerebro-query--files-table nodes))
          (mtimes (cerebro-query--mtimes-table))
-         (counts (make-hash-table :test 'equal)))
-    (dolist (l (cerebro-query--id-links))
-      (let ((dest (nth 1 l)))
-        (when (gethash dest titles)
-          (puthash dest (1+ (gethash dest counts 0)) counts))))
+         (counts (cerebro-graph-backlink-counts (cerebro-query--id-links) titles)))
     (let (rows)
       (maphash
        (lambda (id n)
@@ -128,33 +117,16 @@ won't show you."
   (let* ((min-common (or min-common 2))
          (nodes (cerebro-query--nodes))
          (titles (cerebro-query--titles-table nodes))
-         (by-source (make-hash-table :test 'equal))
-         (direct (make-hash-table :test 'equal))
-         (pair-counts (make-hash-table :test 'equal)))
-    (dolist (l (cerebro-query--id-links))
-      (cl-pushnew (nth 1 l) (gethash (nth 0 l) by-source) :test #'equal)
-      (puthash (cons (nth 0 l) (nth 1 l)) t direct))
-    (maphash
-     (lambda (_source dests)
-       (let ((remaining dests))
-         (while remaining
-           (let ((a (car remaining)))
-             (dolist (b (cdr remaining))
-               (unless (or (gethash (cons a b) direct) (gethash (cons b a) direct))
-                 (let ((key (if (string< a b) (cons a b) (cons b a))))
-                   (puthash key (1+ (gethash key pair-counts 0)) pair-counts))))
-             (setq remaining (cdr remaining))))))
-     by-source)
-    (let (rows)
-      (maphash (lambda (k v)
-                 (when (>= v min-common)
-                   (push (list v (gethash (car k) titles) (gethash (cdr k) titles)) rows)))
-               pair-counts)
-      (setq rows (sort rows (lambda (a b) (> (car a) (car b)))))
-      (cerebro-query--report
-       (format "Co-citation (>=%d shared citing nodes, never linked directly)" min-common)
-       rows
-       (lambda (r) (format "%3d  %s  <->  %s" (nth 0 r) (nth 1 r) (nth 2 r)))))))
+         (pairs (cerebro-graph-co-citation-pairs (cerebro-query--id-links) min-common))
+         (rows (mapcar (lambda (p)
+                         (list (nth 0 p)
+                               (gethash (nth 1 p) titles)
+                               (gethash (nth 2 p) titles)))
+                       pairs)))
+    (cerebro-query--report
+     (format "Co-citation (>=%d shared citing nodes, never linked directly)" min-common)
+     rows
+     (lambda (r) (format "%3d  %s  <->  %s" (nth 0 r) (nth 1 r) (nth 2 r))))))
 
 ;;;###autoload
 (defun cerebro-query-by-tag (tag)
@@ -168,5 +140,42 @@ won't show you."
     (cerebro-query--report
      (format "Nodes tagged `%s'" tag) matches
      (lambda (r) (format "%s" (gethash (nth 0 r) titles))))))
+
+(defun cerebro-query--file-keyword (regexp)
+  "First captured group of REGEXP in the current buffer, or nil.
+A light, mode-free `#+KEYWORD:' scan -- avoids turning on org-mode
+across every file just to read a header line."
+  (save-excursion
+    (goto-char (point-min))
+    (when (re-search-forward regexp nil t)
+      (string-trim (match-string 1)))))
+
+;;;###autoload
+(defun cerebro-query-by-msc (query)
+  "Notes whose #+MSC: contains a code matching QUERY -- a full code
+(=47A75=) or a two-digit top-level class (=47=), matched as a prefix.
+Reads the files directly (like `bin/cerebro-stats'), not the Org-roam
+graph, so it works whether or not the note is linked in yet."
+  (interactive (list (read-string "MSC code or class: ")))
+  (let ((query (string-trim query))
+        rows)
+    (dolist (file (directory-files-recursively org-directory "\\.org\\'"))
+      (with-temp-buffer
+        (insert-file-contents file)
+        (let* ((msc (cerebro-msc-parse
+                     (cerebro-query--file-keyword "^#\\+MSC:[ \t]*\\(.*\\)$")))
+               (title (or (cerebro-query--file-keyword "^#\\+TITLE:[ \t]*\\(.*\\)$")
+                          (file-name-nondirectory file))))
+          (when (seq-some (lambda (c) (string-prefix-p query c)) msc)
+            (push (list title (string-join msc ", ")
+                        (file-relative-name file cerebro-root))
+                  rows)))))
+    (setq rows (sort rows (lambda (a b) (string< (car a) (car b)))))
+    (cerebro-query--report
+     (format "Notes with MSC matching `%s'%s" query
+             (let ((name (cerebro-msc-class-name query)))
+               (if name (format " (%s)" name) "")))
+     rows
+     (lambda (r) (format "%s  [%s]  (%s)" (nth 0 r) (nth 1 r) (nth 2 r))))))
 
 (provide 'cerebro-query)

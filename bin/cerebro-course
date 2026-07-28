@@ -1,0 +1,91 @@
+#!/bin/sh
+# Scaffold a course as *data*: one definition, many outputs.
+#
+# Creates (idempotently) two files in DIR:
+#   course.org  -- metadata + syllabus content. The source for the
+#                  `syllabus' profile, and the single place the course's
+#                  title/term/level/prereqs/textbook/MSC live.
+#   book.org    -- aggregates the course's note files via #+INCLUDE (from
+#                  bin/cerebro-new-book). The source for the `dispensa'
+#                  and `manual' profiles.
+#
+# From those, the parametric export pipeline (.emacs.d/lisp/cerebro-latex.el)
+# gives you the whole family of course documents off the same notes:
+#   syllabus, dispensa, per-lecture articles, slides, printable handouts.
+#
+# Usage: bin/cerebro-course DIR ["Course Title"]
+#   bin/cerebro-course notes/courses/analysis-1 "Analysis I"
+set -eu
+
+repo_root=$(git rev-parse --show-toplevel)
+dir=${1:?"usage: cerebro-course DIR [\"Course Title\"]"}
+title=${2:-$(basename "$dir")}
+mkdir -p "$dir"
+course="$dir/course.org"
+today=$(date +%Y-%m-%d)
+
+if [ -e "$course" ]; then
+    echo "cerebro-course: $course already exists -- leaving it untouched"
+else
+    cat > "$course" <<EOF
+#+TITLE: ${title} -- syllabus
+#+COURSE_TITLE: ${title}
+#+COURSE_CODE:
+#+TERM:
+#+LEVEL: undergraduate
+#+INSTRUCTOR:
+#+CREDITS:
+#+PREREQS:
+#+TEXTBOOK:
+#+MSC:
+#+KEYWORDS:
+#+DATE: ${today}
+
+* Description
+#+begin_comment
+One paragraph: what the course is about and who it is for. (Comment
+blocks are excluded from every export -- replace with real prose.)
+#+end_comment
+
+* Objectives
+By the end of the course, a student can:
+-
+
+* Schedule
+#+begin_comment
+Ordered topics. As you write the underlying notes, link them by id: so
+the syllabus stays connected to the actual content, and the graph
+queries (make query) see the course too.
+#+end_comment
+1.
+
+* Assessment
+-
+
+* Bibliography
+#+begin_comment
+Cite with [cite:@key] against bib/references.bib; the syllabus profile
+prints the reference list.
+#+end_comment
+EOF
+    echo "wrote $course"
+fi
+
+# Aggregate the course's notes into book.org (dispensa/manual source).
+# Safe to re-run: it regenerates the #+INCLUDE list, skipping course.org.
+"$repo_root/bin/cerebro-new-book" "$dir" "$title"
+
+cat <<EOF
+
+Course scaffolded in $dir. One definition, many outputs:
+  make export FILE=$course PROFILE=syllabus
+  make export FILE=$dir/book.org PROFILE=dispensa
+  make export FILE=$dir/book.org PROFILE=manual
+  # per-lecture note:
+  make export FILE=$dir/<note>.org PROFILE=lecture
+  make export FILE=$dir/<note>.org PROFILE=slides
+  make export FILE=$dir/<note>.org PROFILE=handout
+  # problem sheet from a note carrying #+begin_exercise blocks:
+  make export FILE=$dir/<note>.org PROFILE=exercises   # with solutions
+  make export FILE=$dir/<note>.org PROFILE=problems    # without
+EOF

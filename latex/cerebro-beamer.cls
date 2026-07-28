@@ -13,10 +13,15 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{cerebro-beamer}[2026/01/01 cerebro slide deck class]
 
-\newif\ifcerebro@proofs
-\cerebro@proofstrue
+\newif\ifcerebro@proofs      \cerebro@proofstrue
+\newif\ifcerebro@solutions   \cerebro@solutionstrue
 \DeclareOption{proofs}{\cerebro@proofstrue}
 \DeclareOption{noproofs}{\cerebro@proofsfalse}
+\DeclareOption{solutions}{\cerebro@solutionstrue}
+\DeclareOption{nosolutions}{\cerebro@solutionsfalse}
+% Any other option (notably `handout', the `handout' doctype in
+% cerebro-latex.el, which renders the deck as a printable, overlay-free
+% handout) is passed straight through to beamer.
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{beamer}}
 \ProcessOptions\relax
 \LoadClass{beamer}
@@ -53,8 +58,16 @@
 \newtheorem{conjecture}{Conjecture}
 \newtheorem{exercise}{Exercise}
 \newtheorem{notation}{Notation}
+\newtheorem{solution}{Solution}
+\newtheorem{hint}{Hint}
 
+% Same proofs/noproofs and solutions/nosolutions toggles as cerebro.cls,
+% so a #+begin_proof / #+begin_solution means the same thing whether a
+% note is compiled to an article or to a slide deck / handout.
+\RequirePackage{comment}
 \ifcerebro@proofs\else
-  \RequirePackage{comment}
   \renewenvironment{proof}[1][]{\comment}{\endcomment}
+\fi
+\ifcerebro@solutions\else
+  \renewenvironment{solution}[1][]{\comment}{\endcomment}
 \fi

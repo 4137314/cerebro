@@ -1,9 +1,15 @@
 #!/bin/sh
-# Versioned pre-push hook: the thorough, slower consistency check
-# (bin/cerebro-lint -- duplicate labels, unproved theorems, undeclared
-# tags, and -- if the Org-roam DB is available -- broken links).
-# Deliberately not in pre-commit: graph-wide checks don't belong on the
-# fast path of every commit. Installed via `make install-hooks`.
+# Versioned pre-push hook: the thorough, slower gate, run before sharing
+# rather than on every commit (the project's own principle). Two parts:
+#   1. bin/cerebro-lint -- duplicate labels, unproved theorems,
+#      undeclared tags, and -- if the Org-roam DB is available -- broken
+#      links (graph-wide checks that don't belong on the commit path).
+#   2. make export-matrix -- compile every named profile against
+#      notes/example.org, the integration smoke test that used to run on
+#      every commit via post-commit (a multi-minute TeX matrix); push is
+#      the right, less frequent boundary for it.
+# Installed via `make install-hooks`.
 set -eu
 cd "$(git rev-parse --show-toplevel)"
 ./bin/cerebro-lint
+make export-matrix

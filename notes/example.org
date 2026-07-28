@@ -1,5 +1,7 @@
 #+TITLE: A first cerebro note: uniqueness of limits
 #+OPTIONS: toc:nil
+#+MSC: 26A03, 40A05
+#+KEYWORDS: limit, uniqueness, real sequence
 
 #+begin_comment
 This whole block is an Org comment: visible when editing the source,
@@ -77,3 +79,29 @@ Uniqueness of limits is why writing "$\lim_{n\to\infty} a_n = L$" for
 environment.) Every convergent sequence of rationals converges to a
 rational.
 #+end_conjecture
+
+* Exercises
+
+#+begin_comment
+Exercise/hint/solution blocks exercise the pedagogical apparatus: the
+=exercises= profile keeps all three, =problems= drops the solution
+(student copy), and =paper= drops the whole lot (a publishable note
+carries no homework). See .emacs.d/lisp/cerebro-latex.el.
+#+end_comment
+
+#+begin_exercise
+Show that a sequence $(a_n)$ with $a_n \to L$ and $a_n \to L'$ must have
+$L = L'$ without appealing to the theorem above -- redo the argument
+from the $\eps$--$\delta$ definition.
+#+end_exercise
+
+#+begin_hint
+Suppose $L \neq L'$ and feed $\eps = \abs{L - L'}/2$ to both limits.
+#+end_hint
+
+#+begin_solution
+If $L \neq L'$, set $\eps = \abs{L - L'}/2 > 0$. For large $n$ we get
+both $\abs{a_n - L} < \eps$ and $\abs{a_n - L'} < \eps$, so
+$\abs{L - L'} \leq \abs{L - a_n} + \abs{a_n - L'} < 2\eps = \abs{L - L'}$,
+a contradiction. Hence $L = L'$.
+#+end_solution

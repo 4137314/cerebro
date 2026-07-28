@@ -13,8 +13,18 @@
 (require 'cerebro-latex)
 
 (ert-deftest cerebro-latex-test-known-profiles-resolve ()
-  (dolist (name '(full statements statements-only report manual lecture slides single))
+  (dolist (name '(full statements statements-only report manual dispensa
+                  lecture slides handout syllabus paper preprint
+                  exercises problems single))
     (should (cerebro-latex--profile name))))
+
+(ert-deftest cerebro-latex-test-every-profile-composes ()
+  ;; Each profile must reference a real content mode and a real doctype
+  ;; -- guards against a typo in the profiles alist.
+  (dolist (entry cerebro-latex-profiles)
+    (let ((p (cdr entry)))
+      (should (cerebro-latex--content-mode (plist-get p :content)))
+      (should (cerebro-latex--doctype (plist-get p :doctype))))))
 
 (ert-deftest cerebro-latex-test-unknown-profile-errors ()
   (should-error (cerebro-latex--profile 'no-such-profile)))
@@ -26,13 +36,20 @@
   (should-error (cerebro-latex--doctype 'no-such-doctype)))
 
 (ert-deftest cerebro-latex-test-class-options-composition ()
-  (should (equal (cerebro-latex--class-options 'article t) "[proofs,article]"))
-  (should (equal (cerebro-latex--class-options 'article nil) "[noproofs,article]"))
-  (should (equal (cerebro-latex--class-options 'report t) "[proofs,report]"))
-  (should (equal (cerebro-latex--class-options 'manual t) "[proofs,book]"))
+  ;; cerebro family: proofs and solutions toggles, then the doctype option.
+  (should (equal (cerebro-latex--class-options 'article t t) "[proofs,solutions,article]"))
+  (should (equal (cerebro-latex--class-options 'article nil nil) "[noproofs,nosolutions,article]"))
+  (should (equal (cerebro-latex--class-options 'article t nil) "[proofs,nosolutions,article]"))
+  (should (equal (cerebro-latex--class-options 'report t t) "[proofs,solutions,report]"))
+  (should (equal (cerebro-latex--class-options 'manual t t) "[proofs,solutions,book]"))
+  (should (equal (cerebro-latex--class-options 'syllabus t t) "[proofs,solutions,syllabus]"))
   ;; beamer's :class-options is "" -- no trailing comma/empty component.
-  (should (equal (cerebro-latex--class-options 'beamer t) "[proofs]"))
-  (should (equal (cerebro-latex--class-options 'beamer nil) "[noproofs]")))
+  (should (equal (cerebro-latex--class-options 'beamer t t) "[proofs,solutions]"))
+  (should (equal (cerebro-latex--class-options 'handout t t) "[proofs,solutions,handout]"))
+  ;; amsart family: its own options only, no cerebro toggles; empty
+  ;; options yield no brackets at all.
+  (should (equal (cerebro-latex--class-options 'paper t t) ""))
+  (should (equal (cerebro-latex--class-options 'preprint t t) "[preprint]")))
 
 (ert-deftest cerebro-latex-test-statements-only-is-an-alias ()
   (should (equal (cerebro-latex--profile 'statements)
@@ -86,5 +103,34 @@
 (ert-deftest cerebro-latex-test-export-requires-target-for-single ()
   (should-error
    (cerebro-latex-export-to-pdf "/nonexistent/does-not-matter.org" 'single nil)))
+
+(ert-deftest cerebro-latex-test-keep-only-blocks ()
+  ;; A problem sheet: keep only exercise blocks, drop the surrounding
+  ;; theory (definition/theorem/proof) special blocks.
+  (cerebro-latex-test--with-parsed-org
+      (concat "#+begin_definition\ndrop\n#+end_definition\n\n"
+              "#+begin_exercise\nkeep\n#+end_exercise\n\n"
+              "#+begin_theorem\ndrop\n#+end_theorem\n\n"
+              "#+begin_proof\ndrop\n#+end_proof\n")
+    (let ((cerebro-latex--only-blocks '("exercise")))
+      (cerebro-latex--keep-only-blocks tree nil nil))
+    (let ((types (org-element-map tree 'special-block
+                   (lambda (b) (org-element-property :type b)))))
+      (should (equal types '("exercise"))))))
+
+(ert-deftest cerebro-latex-test-keep-only-blocks-noop-when-nil ()
+  (cerebro-latex-test--with-parsed-org
+      "#+begin_theorem\nkeep\n#+end_theorem\n"
+    (let ((cerebro-latex--only-blocks nil))
+      (cerebro-latex--keep-only-blocks tree nil nil))
+    (should (org-element-map tree 'special-block
+              (lambda (b) (equal (org-element-property :type b) "theorem"))))))
+
+(ert-deftest cerebro-latex-test-paper-doctype-is-amsart ()
+  (let ((paper (cerebro-latex--doctype 'paper))
+        (preprint (cerebro-latex--doctype 'preprint)))
+    (should (equal (plist-get paper :class) "amsart"))
+    (should (eq (plist-get paper :family) 'amsart))
+    (should (eq (plist-get preprint :family) 'amsart))))
 
 (provide 'cerebro-latex-tests)

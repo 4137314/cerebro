@@ -14,19 +14,28 @@ set -eu
 IFS= read -r old_json
 IFS= read -r new_json
 
-project=$(printf '%s' "$new_json" | jq -r '.project // empty')
+old_project=$(printf '%s' "$old_json" | jq -r '.project // empty')
+new_project=$(printf '%s' "$new_json" | jq -r '.project // empty')
 
-case "$project" in
-    academic|academic.*)
-        new_json=$(printf '%s' "$new_json" | jq -c '
-            .tags = ((.tags // []) + ["cerebro"] | unique)
-        ')
-        ;;
-    *)
-        new_json=$(printf '%s' "$new_json" | jq -c '
-            .tags = ((.tags // []) - ["cerebro"])
-        ')
-        ;;
-esac
+is_academic() {
+    case "$1" in
+        academic|academic.*) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+if is_academic "$new_project"; then
+    # Moved into (or still in) academic: ensure the auto-tag is present.
+    new_json=$(printf '%s' "$new_json" | jq -c '
+        .tags = ((.tags // []) + ["cerebro"] | unique)
+    ')
+elif is_academic "$old_project"; then
+    # Moved OUT of academic: drop the tag this hook family added. Only in
+    # this transition -- a `cerebro' tag put on a non-academic task by
+    # hand is left alone (the old behaviour stripped it on every modify).
+    new_json=$(printf '%s' "$new_json" | jq -c '
+        .tags = ((.tags // []) - ["cerebro"])
+    ')
+fi
 
 printf '%s\n' "$new_json"

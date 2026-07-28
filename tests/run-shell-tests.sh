@@ -73,5 +73,47 @@ else
 fi
 rm -rf "$tmp"
 
+# -- cerebro-course: scaffolds course.org + book.org; book aggregates
+#    notes but never the syllabus (course.org) ------------------------
+tmp=$(mktemp -d)
+( cd "$repo_root" && sh bin/cerebro-course "$tmp/algebra" "Algebra I" >/dev/null )
+: > "$tmp/algebra/01-groups.org"
+( cd "$repo_root" && sh bin/cerebro-course "$tmp/algebra" "Algebra I" >/dev/null )
+if [ -f "$tmp/algebra/course.org" ] \
+   && grep -q '#+COURSE_TITLE: Algebra I' "$tmp/algebra/course.org" \
+   && grep -q '01-groups.org' "$tmp/algebra/book.org" \
+   && ! grep -q 'course.org' "$tmp/algebra/book.org"; then
+    ok "cerebro-course scaffolds course.org + book.org (book skips course.org)"
+else
+    bad "cerebro-course scaffolds course.org + book.org (book skips course.org)"
+fi
+rm -rf "$tmp"
+
+# -- on-modify.cerebro: tag is auto-managed on the academic transition,
+#    but a hand-added tag off-academic is left alone (needs jq) ---------
+if command -v jq >/dev/null 2>&1; then
+    hook="$repo_root/taskwarrior/hooks/on-modify.cerebro"
+
+    out=$(printf '%s\n%s\n' \
+        '{"project":"academic","tags":["cerebro"]}' \
+        '{"project":"personal","tags":["cerebro"]}' | sh "$hook")
+    if printf '%s' "$out" | jq -e '((.tags // []) | index("cerebro")) | not' >/dev/null; then
+        ok "on-modify.cerebro drops the tag when a task leaves academic"
+    else
+        bad "on-modify.cerebro drops the tag when a task leaves academic"
+    fi
+
+    out=$(printf '%s\n%s\n' \
+        '{"project":"personal","tags":["cerebro"]}' \
+        '{"project":"personal","tags":["cerebro"],"priority":"H"}' | sh "$hook")
+    if printf '%s' "$out" | jq -e '(.tags // []) | index("cerebro")' >/dev/null; then
+        ok "on-modify.cerebro preserves a manual cerebro tag off-academic"
+    else
+        bad "on-modify.cerebro preserves a manual cerebro tag off-academic"
+    fi
+else
+    echo "skip - on-modify.cerebro tests (jq not on PATH)"
+fi
+
 echo "-- $pass passed, $fail failed --"
 [ "$fail" -eq 0 ]

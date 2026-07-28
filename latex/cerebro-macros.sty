@@ -47,4 +47,96 @@
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
 
+% ======================================================================
+% Notation spanning the whole database: algebra, category theory,
+% geometry, and mathematical physics. Kept in one shared file (not
+% per-note, not per-class) so a symbol means the same thing in a first
+% analysis note, a graduate algebra dispensa, and a submitted paper.
+% Names are chosen to avoid clashes with LaTeX/amsmath primitives
+% (\Div not \div, \Span not \span, \PP not \P, \HH not \H, and no \Mod
+% since amsmath already defines it).
+% ======================================================================
+
+% -- More number systems and fields ------------------------------------
+\newcommand{\F}{\mathbb{F}}          % a finite / generic field F_q
+\newcommand{\K}{\mathbb{K}}          % a ground field
+\newcommand{\Field}{\mathbb{K}}
+\newcommand{\A}{\mathbb{A}}          % affine space / adeles
+\newcommand{\PP}{\mathbb{P}}         % projective space
+\newcommand{\HH}{\mathbb{H}}         % quaternions / upper half-plane
+
+% -- Algebra: standard groups, functors, operators ---------------------
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\PGL}{PGL}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\Orth}{O}       % orthogonal group
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\U}{U}          % unitary group
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Sp}{Sp}        % symplectic group
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Proj}{Proj}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\ad}{ad}
+\newcommand{\normalin}{\trianglelefteq}
+\newcommand{\iso}{\cong}
+\newcommand{\isoto}{\xrightarrow{\sim}}
+
+% -- Category theory ----------------------------------------------------
+\newcommand{\cat}[1]{\mathsf{#1}}
+\newcommand{\Set}{\cat{Set}}
+\newcommand{\Grp}{\cat{Grp}}
+\newcommand{\Ab}{\cat{Ab}}
+\newcommand{\Ring}{\cat{Ring}}
+\newcommand{\Vect}{\cat{Vect}}
+\newcommand{\Top}{\cat{Top}}
+\newcommand{\RMod}{\cat{Mod}}        % (amsmath owns \Mod, so not that)
+\newcommand{\op}{^{\mathrm{op}}}
+\DeclareMathOperator{\Ob}{Ob}
+\DeclareMathOperator{\Mor}{Mor}
+\DeclareMathOperator{\colim}{colim}
+
+% -- Geometry and analysis on manifolds --------------------------------
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Div}{div}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\scal}{scal}
+\newcommand{\Manifold}{\mathcal{M}}
+\newcommand{\Lie}{\mathcal{L}}       % Lie derivative
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\restrict}[1]{\big|_{#1}}
+
+% -- Mathematical physics ----------------------------------------------
+\newcommand{\Hilb}{\mathcal{H}}      % Hilbert space
+\newcommand{\Ham}{\mathcal{H}}       % Hamiltonian (context disambiguates)
+\newcommand{\Lag}{\mathcal{L}}       % Lagrangian
+\newcommand{\dg}{^{\dagger}}         % Hermitian conjugate: A\dg
+\DeclarePairedDelimiter{\bra}{\langle}{\rvert}
+\DeclarePairedDelimiter{\ket}{\lvert}{\rangle}
+\DeclarePairedDelimiterX{\braket}[2]{\langle}{\rangle}{#1\,\delimsize\vert\,#2}
+\DeclarePairedDelimiterX{\ketbra}[2]{\lvert}{\rvert}{#1\delimsize\rangle\!\langle\delimsize#2}
+\newcommand{\comm}[2]{\left[#1,#2\right]}
+\newcommand{\acomm}[2]{\left\{#1,#2\right\}}
+\newcommand{\expval}[1]{\left\langle #1 \right\rangle}
+
 \endinput

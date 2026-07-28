@@ -2,7 +2,10 @@
 
 (require 'org)
 (require 'org-agenda)
+(require 'org-id)
+(require 'org-refile)
 (require 'ispell)
+(require 'cerebro-taxonomy) ;; area supertag hierarchy (data), expanded below
 
 (defvar cerebro-root
   (expand-file-name "../.." (file-name-directory (or load-file-name buffer-file-name)))
@@ -41,23 +44,73 @@
 (setq org-startup-indented t)
 (setq org-hide-emphasis-markers t)
 
+;; -- Durability of the archive ----------------------------------------
+;; A second brain meant to outlive many file reorganizations must not
+;; depend on file paths. Links are made by :ID: (org-roam gives every
+;; node one), so a note keeps resolving after it is renamed or moved.
+;; `use-existing' means "prefer an id: link when the target already has
+;; an ID" -- it never litters new IDs into files just from storing a
+;; link. The id<->file map is cached in a repo-local, gitignored file.
+(setq org-id-link-to-org-use-id 'use-existing)
+(setq org-id-locations-file (expand-file-name ".org-id-locations" cerebro-root))
+(setq org-return-follows-link t)
+
+;; Guard against silently editing text hidden inside a fold -- most
+;; importantly an encrypted :crypt: subtree (cerebro-crypt.el): an
+;; invisible edit there could corrupt the ciphertext. Show the context
+;; and refuse, rather than letting it through.
+(setq org-catch-invisible-edits 'show-and-error)
+
+;; Keep state-change and clock logging in a tidy :LOGBOOK: drawer instead
+;; of scattered inline lines -- notes stay readable as they accumulate a
+;; long history.
+(setq org-log-into-drawer t)
+
+;; Refile a heading anywhere in the notes/issues without retyping paths:
+;; complete against the full outline of every agenda file.
+(setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+(setq org-refile-use-outline-path 'file)
+(setq org-outline-path-complete-in-steps nil)
+(setq org-refile-allow-creating-parent-nodes 'confirm)
+
+;; Agenda: don't nag about finished items; a week's deadline lead time.
+(setq org-deadline-warning-days 7)
+(setq org-agenda-skip-scheduled-if-done t)
+(setq org-agenda-skip-deadline-if-done t)
+
+;; Cap oversized inline figures (TikZ/plot previews) to a sane width.
+(setq org-image-actual-width '(600))
+
 ;; Configurable, parametric tag taxonomy: a controlled vocabulary (data,
 ;; not free text) enforced by completion here and checked for drift by
 ;; bin/notes-lint.el (any tag NOT in this list is flagged). See
 ;; notes/TAGS.org for what each one means and when to use it.
 ;; :startgroup:/:endgroup: make each group mutually exclusive (a note
-;; has at most one maturity, one difficulty); area and epistemic status
-;; are free-standing so several can apply at once.
+;; has at most one maturity, one difficulty); epistemic status and the
+;; functional tags are free-standing so several can apply at once. The
+;; area block is spliced in from cerebro-taxonomy.el as Org group tags
+;; (:startgrouptag/:grouptag/:endgrouptag) -- a two-level hierarchy where
+;; a supertag (e.g. `analysis') expands to its members
+;; (`functional_analysis', ...) in searches and agenda filters.
 (setq org-tag-alist
-      '((:startgroup . nil)
-        ("seed" . ?s) ("growing" . ?w) ("evergreen" . ?e)
-        (:endgroup . nil)
-        (:startgroup . nil)
-        ("easy" . ?1) ("medium" . ?2) ("hard" . ?3)
-        (:endgroup . nil)
-        ("conjecture" . ?c) ("folklore" . ?f) ("open_problem" . ?o)
-        ("analysis" . ?a) ("algebra" . ?l) ("topology" . ?t) ("logic" . ?g)
-        ("crypt" . ?x) ("drill" . ?d)))
+      (append
+       '((:startgroup . nil)
+         ("seed" . ?s) ("growing" . ?w) ("evergreen" . ?e)
+         (:endgroup . nil)
+         (:startgroup . nil)
+         ("easy" . ?1) ("medium" . ?2) ("hard" . ?3)
+         (:endgroup . nil)
+         ("conjecture" . ?c) ("folklore" . ?f) ("open_problem" . ?o))
+       (cerebro-taxonomy-org-group-tags)
+       ;; Functional/structural tags: crypt (encrypted), drill (flashcard),
+       ;; daily (an org-roam-dailies journal note -- see cerebro-roam.el).
+       '(("crypt" . ?x) ("drill" . ?d) ("daily" . ?y))))
+
+;; MSC2020 (cerebro-msc.el) is recorded per note as a plain `#+MSC:'
+;; keyword line, not a tag -- the codes carry punctuation tags can't
+;; hold. No registration needed: Org keeps unknown keyword lines, and
+;; both the linter and the exporter read them back with
+;; `org-collect-keywords'. The codes are validated in bin/notes-lint.el.
 
 ;; One combined view instead of checking issues/tasks/stale notes
 ;; separately: `M-x org-agenda m' (or `C-c a m'). Each block restricts
@@ -82,8 +135,11 @@
 
 (defun cerebro-known-tags ()
   "Flatten `org-tag-alist' into the actual tag strings, dropping the
-:startgroup:/:endgroup: group markers. Shared by bin/notes-lint.el
-(flagging undeclared tags) and cerebro-query.el (tag completion)."
+group markers (:startgroup:/:endgroup: and the area hierarchy's
+:startgrouptag:/:grouptag:/:endgrouptag:, whose car is a keyword, not a
+string). Shared by bin/notes-lint.el (flagging undeclared tags) and
+cerebro-query.el (tag completion). Includes both area supertags and
+subtags, so any declared area tag passes the linter."
   (delq nil (mapcar (lambda (x) (and (consp x) (stringp (car x)) (car x)))
                      org-tag-alist)))
 

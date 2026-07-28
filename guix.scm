@@ -52,6 +52,12 @@
     emacs
     emacs-org-roam
     emacs-org-drill ;; spaced repetition over :drill:-tagged headings (cerebro-drill.el)
+    ;; org-ql: the content/metadata query surface (cerebro-ql.el),
+    ;; complementary to cerebro-query.el's org-roam graph queries. Long
+    ;; present in Guix; confirm at the pin with `guix show emacs-org-ql'
+    ;; (it pulls dash/s/f/ts/peg, all already in Guix, as propagated
+    ;; inputs -- no other line needed here).
+    emacs-org-ql
 
     ;; org-crypt (built into Org core, cerebro-crypt.el) needs a GPG
     ;; backend for symmetric encryption of :crypt:-tagged subtrees.
@@ -59,6 +65,21 @@
 
     ;; LaTeX toolchain: pdflatex/xelatex/lualatex + latexmk + TikZ/pgfplots
     ;; + every standard package needed by latex/*.cls.
+    ;;
+    ;; texlive-scheme-full is convenient but very large (several GB to
+    ;; realise), which is a lot to carry for an environment that is
+    ;; re-materialised via `guix time-machine'. A curated set covering
+    ;; exactly what latex/*.cls and cerebro-macros.sty use would be much
+    ;; lighter -- roughly:
+    ;;   texlive-latexmk texlive-amsmath texlive-amscls texlive-amsfonts
+    ;;   texlive-mathtools texlive-pgf texlive-pgfplots texlive-tikz-cd
+    ;;   texlive-biblatex biber texlive-cleveref texlive-hyperref
+    ;;   texlive-enumitem texlive-microtype texlive-beamer texlive-xcolor ...
+    ;; It is left as scheme-full deliberately for now: trimming it must be
+    ;; validated against a real Guix build AND a real compile of all seven
+    ;; export profiles (`make export-matrix'), because a missing package
+    ;; fails a compile silently -- exactly the failure mode the project
+    ;; warns about. Swap it in only once you can run that matrix.
     texlive-scheme-full
 
     ;; notes are written in English

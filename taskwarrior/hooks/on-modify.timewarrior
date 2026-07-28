@@ -1,0 +1,70 @@
+#!/bin/sh
+# Taskwarrior -> Timewarrior bridge: when you `task start' an academic
+# task, Timewarrior starts tracking with that task's tags; when you
+# `task stop' / `task done' / `task delete' it, Timewarrior stops. This
+# closes the loop begun in guix.scm (timew is already in the isolated
+# environment) and cerebro-time.el (which mirrors org-clock into timew);
+# now `task start' feeds the same Timewarrior reporting too, so `make
+# stats' / `timew summary' see all cerebro time in one place.
+#
+# Scoped to the `academic'/`academic.*' project (like on-add.cerebro and
+# on-modify.cerebro), so only cerebro time is auto-tracked -- your other
+# tasks keep whatever Timewarrior behaviour you set up for them.
+#
+# This is the canonical Taskwarrior<->Timewarrior integration (the one
+# shipped with Timewarrior upstream), rewritten in POSIX sh + jq (jq is
+# already a cerebro dependency) to match the other hooks here instead of
+# pulling in Timewarrior's Python version.
+#
+# Installed via `make install-hooks' (symlinked into ~/.task/hooks/,
+# picked up by the taskwarrior/hooks/* glob); canonical copy lives here.
+#
+# Protocol (Taskwarrior hook API): two lines on stdin, old task JSON
+# then new task JSON; print the (possibly modified) new task JSON as the
+# first line of stdout. This hook never modifies the task -- it only
+# reacts to start/stop transitions -- so it echoes new_json unchanged.
+set -eu
+
+IFS= read -r old_json
+IFS= read -r new_json
+
+emit() { printf '%s\n' "$new_json"; exit 0; }
+
+# Only cerebro (academic) time is auto-tracked.
+new_project=$(printf '%s' "$new_json" | jq -r '.project // empty')
+case "$new_project" in
+    academic|academic.*) ;;
+    *) emit ;;
+esac
+
+# Nothing to do if Timewarrior isn't on PATH (e.g. outside the guix
+# environment) -- never let that fail a task modification.
+command -v timew >/dev/null 2>&1 || emit
+
+old_start=$(printf '%s' "$old_json" | jq -r '.start // empty')
+new_start=$(printf '%s' "$new_json" | jq -r '.start // empty')
+new_status=$(printf '%s' "$new_json" | jq -r '.status // empty')
+
+# Tags for the interval: description + project + the task's own tags,
+# shell-quoted by jq's @sh so multi-word values survive the `eval' below
+# as single arguments. The `:yes' hint auto-confirms Timewarrior's
+# overlap prompt, exactly as the upstream integration does.
+tags=$(printf '%s' "$new_json" | jq -r '
+    [ .description, .project ] + (.tags // [])
+    | map(select(. != null and . != ""))
+    | @sh')
+
+if [ -z "$old_start" ] && [ -n "$new_start" ]; then
+    # Transition: not started -> started.
+    eval "timew start $tags :yes" >/dev/null 2>&1 || true
+elif [ -n "$old_start" ]; then
+    # Was started; stop on an explicit stop, or on done/deleted.
+    case "$new_status" in
+        completed|deleted)
+            timew stop :yes >/dev/null 2>&1 || true ;;
+        *)
+            [ -z "$new_start" ] && timew stop :yes >/dev/null 2>&1 || true ;;
+    esac
+fi
+
+emit

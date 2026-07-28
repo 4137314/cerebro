@@ -29,6 +29,7 @@
 (require 'org-element)
 (require 'flyspell)
 (require 'cerebro-org)
+(require 'cerebro-msc) ;; validate #+MSC: codes against MSC2020
 
 (defvar cerebro-lint--errors nil)
 (defvar cerebro-lint--info nil)
@@ -84,7 +85,25 @@
           (dolist (tag (org-element-property :tags h))
             (unless (member tag known-tags)
               (cerebro-lint--err "%s: heading `%s' uses undeclared tag `%s' (see notes/TAGS.org)"
-                                  file (org-element-property :raw-value h) tag))))))))
+                                  file (org-element-property :raw-value h) tag)))))
+      ;; MSC2020 classification (cerebro-msc.el): every code in a #+MSC:
+      ;; line must be well-formed and name a real top-level class -- a
+      ;; typo'd code silently mis-files a note and breaks \subjclass on a
+      ;; paper export. Advisory-only nudge: an evergreen note with no MSC
+      ;; at all is worth classifying, but not an error.
+      (let* ((msc-values (org-element-map tree 'keyword
+                           (lambda (k) (and (equal (org-element-property :key k) "MSC")
+                                            (org-element-property :value k)))))
+             (filetags (org-element-map tree 'keyword
+                         (lambda (k) (and (equal (org-element-property :key k) "FILETAGS")
+                                          (org-element-property :value k)))
+                         nil t))
+             (codes (apply #'append (mapcar #'cerebro-msc-parse msc-values))))
+        (dolist (bad (cerebro-msc-invalid codes))
+          (cerebro-lint--err "%s: invalid MSC code `%s' (not MSC2020 -- see notes/TAGS.org)"
+                              file bad))
+        (when (and filetags (string-match-p ":evergreen:" filetags) (null codes))
+          (cerebro-lint--note "%s: evergreen note has no #+MSC: classification" file))))))
 
 (defvar cerebro-lint--ispell-program
   (or (executable-find "aspell") (executable-find "hunspell"))
@@ -141,6 +160,14 @@ informational only, never a hard failure."
                   org-roam-db-location
                   (file-exists-p org-roam-db-location)))
         (message "notes-lint: no Org-roam database yet, skipping tier-2 graph checks")
+      ;; Refresh the cache first: pre-push runs this from the CLI, where
+      ;; no autosync Emacs is keeping it current, so broken-link / orphan
+      ;; checks would otherwise run against a possibly stale DB. Best
+      ;; effort -- fall back to the existing DB if the sync errors.
+      (condition-case err
+          (org-roam-db-sync)
+        (error (message "notes-lint: org-roam-db-sync failed (%s), checking existing DB"
+                        (error-message-string err))))
       (let* ((nodes (org-roam-db-query [:select [id title] :from nodes]))
              (titles (let ((h (make-hash-table :test 'equal)))
                        (dolist (n nodes) (puthash (nth 0 n) (nth 1 n) h))

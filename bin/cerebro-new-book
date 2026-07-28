@@ -21,6 +21,9 @@ book="$dir/book.org"
         base=$(basename "$f")
         [ "$base" = "book.org" ] && continue
         [ "$base" = "README.org" ] && continue
+        # course.org is the syllabus/metadata (see bin/cerebro-course),
+        # not a chapter -- never fold it into the aggregated book.
+        [ "$base" = "course.org" ] && continue
         printf '#+INCLUDE: "%s" :minlevel 1\n' "$base"
     done
 } > "$book"

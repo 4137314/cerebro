@@ -17,11 +17,22 @@ cd "$repo_root"
 staging=$(mktemp -d)
 trap 'rm -rf "$staging"' EXIT
 
+# Split grep's file list on newlines only (not spaces), with globbing
+# disabled (set -f), so a note filename containing a space is linked as
+# one path rather than word-split into pieces. (Filenames with embedded
+# newlines are unsupported, but note filenames never contain them.)
 count=0
+set -f
+oldifs=$IFS
+IFS='
+'
 for f in $(grep -lrE '^#\+FILETAGS:.*:evergreen:' notes --include='*.org' 2>/dev/null || true); do
+    [ -n "$f" ] || continue
     ln -s "$repo_root/$f" "$staging/$(basename "$f")"
     count=$((count + 1))
 done
+IFS=$oldifs
+set +f
 
 if [ "$count" -eq 0 ]; then
     echo "cerebro-publish-garden: no notes tagged #+FILETAGS: :evergreen: yet -- nothing to publish"

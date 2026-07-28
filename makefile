@@ -1,22 +1,46 @@
 PROJECT_DIR := $(shell pwd)
 GUIX_RUN     := ./bin/guix-run
 
-.PHONY: install install-hooks bootstrap-check shell ci test export lint query stats garden clean-latex
+.PHONY: help install install-hooks bootstrap-check shell ci test export-matrix export lint query stats garden course clean clean-latex
 
-## One-time setup: installs the 'cerbero' launcher and wires up the
+## Bare `make` should never have a side effect: the first target used to
+## be `install' (which rewrites git config and drops symlinks into
+## $HOME), which made an idle `make` a footgun. Default to the harmless
+## `help' summary instead; run setup explicitly with `make install'.
+.DEFAULT_GOAL := help
+
+help:
+	@echo "cerebro make targets:"
+	@echo "  make install        one-time setup: launcher + git/Taskwarrior hooks"
+	@echo "  make bootstrap-check report which prerequisites are present"
+	@echo "  make shell          drop into the pinned, isolated guix environment"
+	@echo "  make export FILE=notes/x.org PROFILE=full   one .org -> one LaTeX/PDF"
+	@echo "      profiles: full statements lecture report manual dispensa slides"
+	@echo "                handout syllabus exercises problems paper preprint single"
+	@echo "  make course DIR=notes/courses/x TITLE=...    scaffold a course as data"
+	@echo "  make lint           thorough note consistency checks (see pre-push)"
+	@echo "  make query Q=hubs   graph queries (orphans hubs stale-hubs co-citation by-tag by-msc)"
+	@echo "  make stats          notes/rigor/classification/task/time dashboard"
+	@echo "  make garden         publish evergreen notes as a static HTML site"
+	@echo "  make test           ERT + shell tests (fast; the post-commit gate)"
+	@echo "  make export-matrix  compile every profile against example.org (pre-push gate)"
+	@echo "  make ci             test + export-matrix (the thorough, pre-push gate)"
+	@echo "  make clean          remove all generated output (LaTeX, public/, agenda/, DB)"
+
+## One-time setup: installs the 'cerebro' launcher and wires up the
 ## versioned git hooks in githooks/ (see githooks/pre-commit,
 ## post-commit, pre-push) and the Taskwarrior hooks in taskwarrior/hooks/.
 install: install-hooks
 	@mkdir -p $(HOME)/.local/bin
-	@echo '#!/bin/sh' > $(HOME)/.local/bin/cerbero
-	@echo 'cd "$(PROJECT_DIR)"' >> $(HOME)/.local/bin/cerbero
-	@echo 'if [ -n "$$DISPLAY" ] || [ -n "$$WAYLAND_DISPLAY" ]; then' >> $(HOME)/.local/bin/cerbero
-	@echo '    $(GUIX_RUN) emacsclient -c --alternate-editor="emacs --init-directory=.emacs.d --daemon"' >> $(HOME)/.local/bin/cerbero
-	@echo 'else' >> $(HOME)/.local/bin/cerbero
-	@echo '    $(GUIX_RUN) emacs -nw --init-directory=.emacs.d' >> $(HOME)/.local/bin/cerbero
-	@echo 'fi' >> $(HOME)/.local/bin/cerbero
-	@chmod +x $(HOME)/.local/bin/cerbero
-	@echo "Installed 'cerbero' launcher in ~/.local/bin/cerbero"
+	@echo '#!/bin/sh' > $(HOME)/.local/bin/cerebro
+	@echo 'cd "$(PROJECT_DIR)"' >> $(HOME)/.local/bin/cerebro
+	@echo 'if [ -n "$$DISPLAY" ] || [ -n "$$WAYLAND_DISPLAY" ]; then' >> $(HOME)/.local/bin/cerebro
+	@echo '    $(GUIX_RUN) emacsclient -c --alternate-editor="emacs --init-directory=.emacs.d --daemon"' >> $(HOME)/.local/bin/cerebro
+	@echo 'else' >> $(HOME)/.local/bin/cerebro
+	@echo '    $(GUIX_RUN) emacs -nw --init-directory=.emacs.d' >> $(HOME)/.local/bin/cerebro
+	@echo 'fi' >> $(HOME)/.local/bin/cerebro
+	@chmod +x $(HOME)/.local/bin/cerebro
+	@echo "Installed 'cerebro' launcher in ~/.local/bin/cerebro"
 
 ## Hooks are tracked files in githooks/ and taskwarrior/hooks/, not the
 ## untracked ~/.git/hooks/ or ~/.task/hooks/ -- this is what makes them
@@ -25,7 +49,7 @@ install: install-hooks
 install-hooks:
 	@chmod +x githooks/* bin/bootstrap-check bin/cerebro-issue bin/guix-run bin/emacs \
 		bin/cerebro-lint bin/cerebro-query bin/task-to-org bin/cerebro-new-book \
-		bin/cerebro-stats bin/cerebro-publish-garden \
+		bin/cerebro-course bin/cerebro-stats bin/cerebro-publish-garden \
 		taskwarrior/hooks/*
 	@git config core.hooksPath githooks
 	@echo "git core.hooksPath -> githooks/"
@@ -60,7 +84,7 @@ lint:
 ## Graph queries over the Org-roam database (see cerebro-query.el).
 ## Usage: make query Q=hubs   /   make query Q=by-tag ARGS=evergreen
 query:
-	@test -n "$(Q)" || (echo "usage: make query Q=orphans|hubs|stale-hubs|co-citation|by-tag [ARGS=...]"; exit 1)
+	@test -n "$(Q)" || (echo "usage: make query Q=orphans|hubs|stale-hubs|co-citation|by-tag|by-msc [ARGS=...]"; exit 1)
 	@./bin/cerebro-query $(Q) $(ARGS)
 
 ## Refresh the generated Taskwarrior -> Org agenda file.
@@ -76,26 +100,49 @@ stats:
 garden:
 	@$(GUIX_RUN) ./bin/cerebro-publish-garden
 
-## ERT (Elisp) tests + POSIX-sh tests for the bin/ scripts.
+## ERT (Elisp) tests + POSIX-sh tests for the bin/ scripts. Fast enough
+## to be the post-commit gate (githooks/post-commit) -- it does NOT run
+## the LaTeX profile matrix (that is `export-matrix', a pre-push
+## concern). cerebro-graph-tests.el needs neither Org-roam nor Guix.
 test:
-	@$(GUIX_RUN) emacs --batch -L .emacs.d/lisp -l tests/cerebro-latex-tests.el -f ert-run-tests-batch-and-exit
+	@$(GUIX_RUN) emacs --batch -L .emacs.d/lisp \
+		-l tests/cerebro-latex-tests.el \
+		-l tests/cerebro-graph-tests.el \
+		-l tests/cerebro-msc-tests.el \
+		-l tests/cerebro-taxonomy-tests.el \
+		-f ert-run-tests-batch-and-exit
 	@sh tests/run-shell-tests.sh
 
-## Local "CI/CD": no server, no forge dependency -- this is what
-## githooks/post-commit calls. bootstrap-check's exit status is only a
-## warning here (not a hard prerequisite): a missing tool shouldn't turn
-## an informational post-commit step into a scary failure on every
-## commit before Guix is even installed -- see bin/guix-run.
+## Integration smoke test: compile EVERY named profile against
+## notes/example.org, including the amsart paper/preprint. Slow (a real
+## LaTeX run per profile), so it lives on the pre-push path
+## (githooks/pre-push), never on every commit. The whole matrix is
+## certified end to end against a real Guix LaTeX toolchain.
+export-matrix:
+	@for p in full statements lecture report manual dispensa slides handout syllabus exercises problems paper preprint; do \
+		echo "export-matrix: profile=$$p"; \
+		$(GUIX_RUN) emacs --batch -l bin/org-export-latex.el -- --profile=$$p notes/example.org || exit 1; \
+	done
+	@echo "export-matrix: profile=single target=thm-uniqueness-of-limits"
+	@$(GUIX_RUN) emacs --batch -l bin/org-export-latex.el -- --profile=single --target=thm-uniqueness-of-limits notes/example.org
+	@$(MAKE) clean-latex
+	@echo "export-matrix: ok"
+
+## Scaffold a course as data (course.org + book.org); see bin/cerebro-course.
+## Usage: make course DIR=notes/courses/analysis-1 TITLE="Analysis I"
+course:
+	@test -n "$(DIR)" || (echo "usage: make course DIR=notes/courses/<slug> [TITLE=\"...\"]"; exit 1)
+	@./bin/cerebro-course "$(DIR)" $(if $(TITLE),"$(TITLE)")
+
+## Local "CI/CD": no server, no forge dependency. The thorough gate --
+## run by githooks/pre-push (before sharing), not on every commit.
+## bootstrap-check's exit status is only a warning here (not a hard
+## prerequisite): a missing tool shouldn't turn an informational step
+## into a scary failure before Guix is even installed -- see bin/guix-run.
 ci:
 	@./bin/bootstrap-check || echo "ci: bootstrap-check found gaps (see above) -- continuing anyway"
 	@$(MAKE) test
-	@for p in full statements lecture report manual slides; do \
-		echo "ci: export profile=$$p"; \
-		$(GUIX_RUN) emacs --batch -l bin/org-export-latex.el -- --profile=$$p notes/example.org || exit 1; \
-	done
-	@echo "ci: export profile=single target=thm-uniqueness-of-limits"
-	@$(GUIX_RUN) emacs --batch -l bin/org-export-latex.el -- --profile=single --target=thm-uniqueness-of-limits notes/example.org
-	@$(MAKE) clean-latex
+	@$(MAKE) export-matrix
 	@echo "ci: ok (test suite + full profile matrix export succeeded)"
 
 ## Generated build output only -- never touches latex/cerebro.cls itself.
@@ -106,3 +153,11 @@ clean-latex:
 		-o -name '*.bbl' -o -name '*.bcf' -o -name '*.blg' -o -name '*.run.xml' \) -delete
 	@find notes -type f -name '*.tex' -delete
 	@find notes -type f -name '*.pdf' -delete
+
+## Everything generated, in one sweep: LaTeX build output plus the
+## gitignored generated trees (public/ garden, agenda/ Taskwarrior
+## bridge, the rebuildable Org-roam sqlite cache). Never touches source.
+clean: clean-latex
+	@rm -rf public agenda
+	@rm -f .org-roam.db .org-roam.db-shm .org-roam.db-wal
+	@echo "clean: removed LaTeX output, public/, agenda/, and the Org-roam cache"

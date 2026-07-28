@@ -4,15 +4,20 @@
 # as a tracked file instead of the untracked .git/hooks/. Kept small on
 # purpose: the real checks live in bin/ so they can be run by hand too.
 #
-# NOTE: assumes staged .org filenames contain no spaces (keep note
-# filenames kebab-case).
+# Staged filenames are passed NUL-delimited (git -z ... | xargs -0), so
+# a note filename with spaces is handled correctly -- no kebab-case
+# assumption on the parse check.
 set -eu
 cd "$(git rev-parse --show-toplevel)"
 
-staged_org=$(git diff --cached --name-only --diff-filter=ACM -- '*.org')
-if [ -n "$staged_org" ]; then
+# Count staged .org files by counting NUL terminators; only spin up the
+# (guix) Emacs when there is at least one.
+staged_org_count=$(git diff --cached --name-only --diff-filter=ACM -z -- '*.org' \
+    | tr -dc '\0' | wc -c)
+if [ "$staged_org_count" -gt 0 ]; then
     echo "pre-commit: checking staged .org files parse cleanly..."
-    ./bin/guix-run emacs --batch -l bin/org-check-staged.el -- $staged_org
+    git diff --cached --name-only --diff-filter=ACM -z -- '*.org' \
+        | xargs -0 -r ./bin/guix-run emacs --batch -l bin/org-check-staged.el --
 fi
 
 artifacts=$(git diff --cached --name-only --diff-filter=ACM \

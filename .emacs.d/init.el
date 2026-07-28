@@ -18,6 +18,7 @@
 (require 'cerebro-time)
 (require 'cerebro-issues)
 (require 'cerebro-query)
+(require 'cerebro-ql)
 (require 'cerebro-crypt)
 (require 'cerebro-drill)
 (require 'cerebro-appearance)

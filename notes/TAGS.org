@@ -40,11 +40,38 @@ carries one of these tags.
   /ubiquitous, not because it doesn't exist.
 - =open_problem= :: actually unresolved (in the field, not just by you).
 
-* Area (freestanding, extend freely)
+* Area (a two-level hierarchy, freestanding, extend freely)
 
-Starting set: =analysis=, =algebra=, =topology=, =logic=. Add more in
-=org-tag-alist= as coursework expands -- this group is deliberately
-open-ended, unlike the two exclusive groups above.
+The coarse "what shelf" dimension. It is data in
+=.emacs.d/lisp/cerebro-taxonomy.el= (=cerebro-area-taxonomy=), spliced
+into =org-tag-alist= as Org /group tags/: a *supertag* stands for all
+of its *subtags*, so filtering the agenda or a query by =analysis= also
+matches a note tagged only =functional_analysis=.
+
+Supertags (each with its own subtags -- see the file for the full
+list): =analysis=, =algebra=, =geometry=, =topology=, =number_theory=,
+=foundations= (incl. =logic=, =category_theory=), =combinatorics=,
+=probability=, =dynamics=, =numerics=, =mathematical_physics=.
+
+Tag with the *most specific* subtag you can (=riemannian_geometry=, not
+just =geometry=); the supertag still finds it. Add an area by editing
+=cerebro-area-taxonomy=; both the linter's vocabulary and the agenda
+grouping update from it automatically.
+
+* Classification: the =#+MSC:= keyword (not a tag)
+
+The fine "what leaf" dimension, and the one journals want. Recorded as
+a per-file keyword, not a tag (MSC codes carry punctuation tags can't):
+
+: #+MSC: 47A75, 46C05, 35Q41
+
+The codes are MSC2020 (data in =.emacs.d/lisp/cerebro-msc.el=). The
+first is the primary classification. =bin/cerebro-lint= rejects a code
+that is not valid MSC2020 and nudges (advisory) an =evergreen= note that
+has none. On a =paper=/=preprint= export the codes become
+=\subjclass[2020]{...}= automatically; =make query Q=by-msc= and
+=make stats= read them back. The area tags above are for quick
+browsing; MSC is for precise filing and publication -- keep both.
 
 * Functional tags (freestanding, drive actual behavior)
 
@@ -57,3 +84,6 @@ Not descriptive metadata -- these two change what a tool does.
   (=cerebro-drill.el=, =emacs-org-drill=): heading = prompt, body =
   answer. The =f= (flashcard) Org-roam capture template
   (=cerebro-roam.el=) creates the right structure for you.
+- =daily= :: an org-roam-dailies journal note (=C-c n d=), living in
+  =notes/daily/=. Set automatically by the dailies capture template
+  (=cerebro-roam.el=); you rarely type it by hand.
