@@ -115,5 +115,110 @@ else
     echo "skip - on-modify.cerebro tests (jq not on PATH)"
 fi
 
+# -- cerebro-issue -p: records an Org priority, uppercased --------------
+tmp=$(mktemp -d)
+( cd "$tmp" && git init -q && mkdir issues && printf '#+TITLE: t\n' > issues/issues.org \
+    && "$repo_root/bin/cerebro-issue" -p a "Prioritised issue" latex >/dev/null )
+if grep -q '^\* TODO \[#A\] Prioritised issue' "$tmp/issues/issues.org"; then
+    ok "cerebro-issue -p records an uppercased priority"
+else
+    bad "cerebro-issue -p records an uppercased priority"
+fi
+rm -rf "$tmp"
+
+# -- cerebro-issue-scan: creates from a marker, then is idempotent ------
+tmp=$(mktemp -d)
+mkdir -p "$tmp/bin" "$tmp/issues"
+cp "$repo_root/bin/cerebro-issue" "$repo_root/bin/cerebro-issue-scan" "$tmp/bin/"
+chmod +x "$tmp"/bin/*
+printf '#+TITLE: t\n' > "$tmp/issues/issues.org"
+printf ';; CEREBRO-ISSUE: wire up the frobnicator\n' > "$tmp/src.el"
+( cd "$tmp" && git init -q && git add -A \
+    && bin/cerebro-issue-scan >/dev/null \
+    && bin/cerebro-issue-scan > scan2.out )
+if grep -q 'wire up the frobnicator' "$tmp/issues/issues.org" \
+   && grep -q '0 created, 1 skipped' "$tmp/scan2.out"; then
+    ok "cerebro-issue-scan creates once, then is idempotent"
+else
+    bad "cerebro-issue-scan creates once, then is idempotent"
+fi
+rm -rf "$tmp"
+
+# -- cerebro-issues next/note: pick the top issue, log a note (needs
+#    emacs; CEREBRO_ISSUES_FILE keeps it off the real tracker) ----------
+if command -v emacs >/dev/null 2>&1; then
+    tmp=$(mktemp -d)
+    cat > "$tmp/issues.org" <<'ISS'
+#+TITLE: t
+* TODO [#C] Low :x:
+:PROPERTIES:
+:ID: 20260101T000009
+:END:
+* TODO [#A] High :x:
+:PROPERTIES:
+:ID: 20260101T000008
+:END:
+ISS
+    nxt=$(CEREBRO_ISSUES_FILE="$tmp/issues.org" emacs --batch \
+              -l "$repo_root/bin/cerebro-issues.el" -- next 2>/dev/null)
+    CEREBRO_ISSUES_FILE="$tmp/issues.org" emacs --batch \
+        -l "$repo_root/bin/cerebro-issues.el" -- note 20260101T000008 "in progress" >/dev/null 2>&1 || true
+    if printf '%s' "$nxt" | grep -q 'High' \
+       && grep -q '^- \[.*\] in progress' "$tmp/issues.org"; then
+        ok "cerebro-issues next picks [#A], note logs a timestamped line"
+    else
+        bad "cerebro-issues next picks [#A], note logs a timestamped line"
+    fi
+    rm -rf "$tmp"
+else
+    echo "skip - cerebro-issues next/note test (emacs not on PATH)"
+fi
+
+# -- cerebro-note new: writes a born-classified note (id, :seed:, msc) --
+tmp=$(mktemp -d)
+( cd "$tmp" && git init -q && mkdir notes \
+    && "$repo_root/bin/cerebro-note" new "Test Note" analysis,topology 54D30 >/dev/null )
+f=$(ls "$tmp"/notes/*.org 2>/dev/null | head -1)
+if [ -n "$f" ] && grep -q '^#+TITLE: Test Note' "$f" \
+   && grep -q ':seed:analysis:topology:' "$f" \
+   && grep -q '^:ID:' "$f" && grep -q '^#+MSC: 54D30' "$f"; then
+    ok "cerebro-note new writes a born-classified note"
+else
+    bad "cerebro-note new writes a born-classified note"
+fi
+rm -rf "$tmp"
+
+# -- cerebro dispatcher: help prints usage, unknown command errors -------
+if "$repo_root/bin/cerebro" help 2>&1 | grep -q 'command-line workflow' \
+   && ! "$repo_root/bin/cerebro" frobnicate >/dev/null 2>&1; then
+    ok "cerebro dispatcher: help works, unknown command fails"
+else
+    bad "cerebro dispatcher: help works, unknown command fails"
+fi
+
+# -- cerebro-issues close: sets DONE on an isolated issue file (needs
+#    emacs; CEREBRO_ISSUES_FILE redirects it off the real tracker) -------
+if command -v emacs >/dev/null 2>&1; then
+    tmp=$(mktemp -d)
+    cat > "$tmp/issues.org" <<'ISS'
+#+TITLE: t
+* TODO Sample issue :x:
+:PROPERTIES:
+:ID: 20260101T000000
+:CREATED: [2026-01-01 Mon 00:00]
+:END:
+ISS
+    CEREBRO_ISSUES_FILE="$tmp/issues.org" emacs --batch \
+        -l "$repo_root/bin/cerebro-issues.el" -- close 20260101T000000 >/dev/null 2>&1 || true
+    if grep -q '^\* DONE Sample issue' "$tmp/issues.org"; then
+        ok "cerebro-issues close sets an issue DONE"
+    else
+        bad "cerebro-issues close sets an issue DONE"
+    fi
+    rm -rf "$tmp"
+else
+    echo "skip - cerebro-issues close test (emacs not on PATH)"
+fi
+
 echo "-- $pass passed, $fail failed --"
 [ "$fail" -eq 0 ]

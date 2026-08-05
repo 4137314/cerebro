@@ -1,23 +1,44 @@
 #!/bin/sh
 # Append a new issue heading to issues/issues.org.
-# Usage: bin/cerebro-issue "title of the issue" [tag1 tag2 ...]
+# Usage: bin/cerebro-issue [-p A|B|C] "title of the issue" [tag1 tag2 ...]
+#   -p PRIORITY   Org priority letter (A highest); optional.
 set -eu
 
 repo_root=$(git rev-parse --show-toplevel)
 issues_file="$repo_root/issues/issues.org"
 
-title=${1:?"usage: cerebro-issue \"title\" [tag1 tag2 ...]"}
+# Optional leading options (only -p for now). Stops at the first
+# non-option, so the old positional form `cerebro-issue "title" tags...`
+# still works unchanged.
+priority=""
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        -p) priority=$2; shift 2 ;;
+        -p*) priority=${1#-p}; shift ;;
+        --) shift; break ;;
+        -*) echo "cerebro-issue: unknown option $1" >&2; exit 1 ;;
+        *) break ;;
+    esac
+done
+
+title=${1:?"usage: cerebro-issue [-p A|B|C] \"title\" [tag1 tag2 ...]"}
 shift
 
 tags=""
 for t in "$@"; do tags="${tags}:${t}"; done
 [ -n "$tags" ] && tags="${tags}:"
 
+prio=""
+if [ -n "$priority" ]; then
+    priority=$(printf '%s' "$priority" | tr '[:lower:]' '[:upper:]')
+    prio="[#${priority}] "
+fi
+
 id=$(date -u +%Y%m%dT%H%M%S)
 created=$(date "+[%Y-%m-%d %a %H:%M]")
 
 {
-    printf '\n* TODO %s' "$title"
+    printf '\n* TODO %s%s' "$prio" "$title"
     [ -n "$tags" ] && printf '   %s' "$tags"
     printf '\n:PROPERTIES:\n:ID: %s\n:CREATED: %s\n:END:\n' "$id" "$created"
 } >> "$issues_file"

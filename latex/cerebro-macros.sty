@@ -139,4 +139,28 @@
 \newcommand{\acomm}[2]{\left\{#1,#2\right\}}
 \newcommand{\expval}[1]{\left\langle #1 \right\rangle}
 
+% -- Sets and definitions ----------------------------------------------
+% \set*{x} auto-sizes the braces; \setst{x}{P(x)} is set-builder with a
+% sized middle bar: { x | P(x) }. \defeq is the "defined to equal" colon-
+% equals (mathtools' \coloneqq), for stating definitions unambiguously.
+\DeclarePairedDelimiter{\set}{\{}{\}}
+\DeclarePairedDelimiterX{\setst}[2]{\{}{\}}{#1 \,\delimsize\vert\, #2}
+\newcommand{\defeq}{\coloneqq}
+
+% -- Probability and statistics ----------------------------------------
+% Blackboard operators for expectation/probability (distinct from the
+% builtin \Pr), and upright operators for the named quantities.
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\indicator}{\mathbf{1}}   % indicator random variable / function
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+
+% -- Asymptotics and a few more analysis operators ---------------------
+\newcommand{\bigO}{\mathcal{O}}       % Landau big-O
+\newcommand{\smallo}{o}               % Landau little-o
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\Res}{Res}       % residue (complex analysis)
+
 \endinput

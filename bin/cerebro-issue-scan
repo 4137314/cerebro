@@ -1,0 +1,48 @@
+#!/bin/sh
+# cerebro-issue-scan -- turn `CEREBRO-ISSUE: <title>' markers left in the
+# tracked source into issues. "Automatic issue generation", but opt-in and
+# safe: the marker is a fixed, deliberate string (not generic TODO/FIXME,
+# which would flood a math+elisp repo), the scan only ever APPENDS issues
+# (it never rewrites your source), and it is idempotent -- a marker whose
+# title already names an issue is skipped. Each new issue is tagged
+# `from-code' and its source location is recorded as a note.
+#
+# Usage: cerebro-issue-scan        (or `cerebro issue scan')
+set -eu
+
+repo_root=$(git rev-parse --show-toplevel)
+issues_file="$repo_root/issues/issues.org"
+cd "$repo_root"
+
+# Only tracked files, and never the places that mention the marker as
+# documentation rather than as a real to-do (this script, the dispatcher's
+# help text, the manuals, the tracker itself).
+tmpf=$(mktemp)
+git grep -n 'CEREBRO-ISSUE:' -- . \
+    ':!bin/cerebro-issue-scan' ':!bin/cerebro' ':!README.org' ':!CLAUDE.md' \
+    ':!issues/' ':!tests/' \
+    > "$tmpf" 2>/dev/null || true
+
+created=0
+skipped=0
+while IFS= read -r m; do
+    [ -n "$m" ] || continue
+    file=${m%%:*}
+    rest=${m#*:}
+    lineno=${rest%%:*}
+    title=$(printf '%s' "$rest" | sed 's/.*CEREBRO-ISSUE:[[:space:]]*//; s/[[:space:]]*$//')
+    [ -n "$title" ] || continue
+    if grep -qF -- "$title" "$issues_file"; then
+        echo "skip (exists): $title"
+        skipped=$((skipped + 1))
+    else
+        "$repo_root/bin/cerebro-issue" "$title" from-code >/dev/null
+        # Record where it came from, as a committed note on the issue.
+        "$repo_root/bin/cerebro-issues" note "$title" "from CEREBRO-ISSUE marker at $file:$lineno" >/dev/null 2>&1 || true
+        echo "created: $title  [$file:$lineno]"
+        created=$((created + 1))
+    fi
+done < "$tmpf"
+rm -f "$tmpf"
+
+echo "scan: $created created, $skipped skipped"

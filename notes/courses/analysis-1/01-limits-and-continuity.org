@@ -16,31 +16,41 @@ area subtag that the `analysis' supertag expands to.
 
 * Continuity at a point
 
+#+NAME: def-continuity-at-point
 #+begin_definition
-Let $f\colon D \to \R$ with $D \subseteq \R$ and let $x_0 \in D$. Then
-$f$ is /continuous/ at $x_0$ if for every $\eps > 0$ there is a
-$\delta > 0$ such that $\abs{f(x) - f(x_0)} < \eps$ whenever $x \in D$
-and $\abs{x - x_0} < \delta$.
+Let \(f\colon D \to \R\) with \(D \subseteq \R\) and let \(x_0 \in D\). Then
+\(f\) is /continuous/ at \(x_0\) if for every \(\eps > 0\) there is a
+\(\delta > 0\) such that \(\abs{f(x) - f(x_0)} < \eps\) whenever \(x \in D\)
+and \(\abs{x - x_0} < \delta\).
 #+end_definition
 
+#+begin_comment
+The theorem below rests on the definition above: =#+DEPENDS:= records that
+as data (see .emacs.d/lisp/cerebro-results.el). It is invisible to every
+export profile -- Org drops unknown keywords, like #+MSC: -- and only
+feeds the logical-dependency graph: =make results CMD=dependents
+NAME=def-continuity-at-point= now lists this theorem, and
+=make results CMD=deps NAME=thm-sum-of-continuous= lists the definition.
+#+end_comment
+#+DEPENDS: def-continuity-at-point
 #+NAME: thm-sum-of-continuous
 #+begin_theorem
-If $f, g \colon D \to \R$ are continuous at $x_0$, then so is $f + g$.
+If \(f, g \colon D \to \R\) are continuous at \(x_0\), then so is \(f + g\).
 #+end_theorem
 
 #+begin_proof
-Fix $\eps > 0$. By continuity of $f$ and $g$ at $x_0$ there are
-$\delta_1, \delta_2 > 0$ with $\abs{f(x) - f(x_0)} < \eps/2$ for
-$\abs{x - x_0} < \delta_1$ and $\abs{g(x) - g(x_0)} < \eps/2$ for
-$\abs{x - x_0} < \delta_2$. Put $\delta = \min(\delta_1, \delta_2)$.
-Then for $\abs{x - x_0} < \delta$,
+Fix \(\eps > 0\). By continuity of \(f\) and \(g\) at \(x_0\) there are
+\(\delta_1, \delta_2 > 0\) with \(\abs{f(x) - f(x_0)} < \eps/2\) for
+\(\abs{x - x_0} < \delta_1\) and \(\abs{g(x) - g(x_0)} < \eps/2\) for
+\(\abs{x - x_0} < \delta_2\). Put \(\delta = \min(\delta_1, \delta_2)\).
+Then for \(\abs{x - x_0} < \delta\),
 \[\abs{(f+g)(x) - (f+g)(x_0)} \leq \abs{f(x) - f(x_0)} + \abs{g(x) - g(x_0)} < \eps,\]
-so $f + g$ is continuous at $x_0$.
+so \(f + g\) is continuous at \(x_0\).
 #+end_proof
 
 #+begin_example
-The function $f(x) = x$ is continuous at every $x_0$: take
-$\delta = \eps$.
+The function \(f(x) = x\) is continuous at every \(x_0\): take
+\(\delta = \eps\).
 #+end_example
 
 #+begin_remark
@@ -51,16 +61,16 @@ function can be continuous at some points of its domain and not others.
 * Exercises
 
 #+begin_exercise
-Show that $f(x) = \abs{x}$ is continuous at $x_0 = 0$ directly from the
-$\eps$--$\delta$ definition.
+Show that \(f(x) = \abs{x}\) is continuous at \(x_0 = 0\) directly from the
+\(\eps\)--\(\delta\) definition.
 #+end_exercise
 
 #+begin_hint
-Given $\eps > 0$, what is the largest $\delta$ that visibly works?
+Given \(\eps > 0\), what is the largest \(\delta\) that visibly works?
 #+end_hint
 
 #+begin_solution
-Let $\eps > 0$ and take $\delta = \eps$. If $\abs{x - 0} < \delta$ then
-$\abs{\,\abs{x} - \abs{0}\,} = \abs{x} < \delta = \eps$. Hence $f$ is
-continuous at $0$.
+Let \(\eps > 0\) and take \(\delta = \eps\). If \(\abs{x - 0} < \delta\) then
+\(\abs{\,\abs{x} - \abs{0}\,} = \abs{x} < \delta = \eps\). Hence \(f\) is
+continuous at \(0\).
 #+end_solution

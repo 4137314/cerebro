@@ -41,18 +41,12 @@
     h))
 
 (defun cerebro-query--report (title rows format-row)
-  "Show ROWS (already sorted/filtered) in a simple `*cerebro-query*'
-buffer, TITLE as a heading, FORMAT-ROW turning one row into a line."
-  (let ((buf (get-buffer-create "*cerebro-query*")))
-    (with-current-buffer buf
-      (let ((inhibit-read-only t))
-        (erase-buffer)
-        (insert (format "%s\n%s\n\n" title (make-string (length title) ?=)))
-        (if (not rows)
-            (insert "(nothing found)\n")
-          (dolist (r rows) (insert (funcall format-row r) "\n"))))
-      (goto-char (point-min)))
-    (display-buffer buf)))
+  "Show ROWS (already sorted/filtered) in a `*cerebro-query*' buffer,
+TITLE as a heading, FORMAT-ROW turning one row into a line. A thin
+wrapper over the shared `cerebro-report' (cerebro-org.el) that fixes the
+buffer name, so the graph queries and the results layer render
+identically."
+  (cerebro-report title rows format-row "*cerebro-query*"))
 
 ;;;###autoload
 (defun cerebro-query-orphans ()

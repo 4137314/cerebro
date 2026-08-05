@@ -1,0 +1,125 @@
+#!/bin/sh
+# cerebro -- git-style command-line workflow for the second brain.
+#
+# Every operation the project supports is a subcommand here, so the whole
+# workflow is scriptable from the terminal -- and Emacs maps keys straight
+# onto `cerebro <cmd>' (see .emacs.d/lisp/cerebro-cli.el), so there is ONE
+# implementation of each operation, reachable from the shell and the editor
+# alike. Bare `cerebro' (no subcommand) opens the editor, preserving the
+# old launcher behaviour.
+#
+# Fast by default: the pure-Emacs/POSIX operations (issue, note, results,
+# stats) run on the plain tools on PATH; only the ones that genuinely need
+# the pinned environment (query's Org-roam DB, lint's aspell, time/task's
+# timew/task, export's LaTeX) go through bin/guix-run.
+set -eu
+
+# Resolve the repo root even when invoked via a ~/.local/bin symlink.
+script=$(readlink -f "$0" 2>/dev/null || echo "$0")
+here=$(cd "$(dirname "$script")" && pwd)
+repo_root=$(dirname "$here")
+cd "$repo_root"
+
+usage() {
+  cat <<'EOF'
+cerebro -- command-line workflow for the second brain
+
+  cerebro                         open the editor (Emacs, in the guix env)
+  cerebro shell                   drop into the pinned guix shell
+
+  cerebro issue new "t" [-p A] [tags]  create an issue (logged in issues/issues.org)
+  cerebro issue list [open|all|done] [tag]
+  cerebro issue show   <id|query>
+  cerebro issue close  <id|query>      set DONE  (logs a CLOSED timestamp)
+  cerebro issue start  <id|query>      set DOING
+  cerebro issue reopen <id|query>      set TODO
+  cerebro issue note   <id|query> "t"  append a timestamped progress note
+  cerebro issue next                   the single most urgent open issue
+  cerebro issue scan                   create issues from CEREBRO-ISSUE: markers
+  cerebro issue report                 counts by state and tag
+
+  cerebro note new "t" [tags] [msc]   create a note (born classified)
+  cerebro note find QUERY             search notes by title/body
+  cerebro note list
+
+  cerebro today | cerebro agenda [m|i]   the morning review / an agenda view
+  cerebro results [index|check|deps|dependents] [NAME]   logical-dependency graph
+  cerebro query <orphans|hubs|stale-hubs|co-citation|by-tag|by-msc> [args]
+  cerebro lint [file...]          note consistency checks
+  cerebro stats                   notes / rigor / classification / task / time
+
+  cerebro time [today|week|month|year]   timewarrior summary
+  cerebro time start [tags...] | stop    clock time (tagged `cerebro')
+  cerebro task [args...]                 taskwarrior (+cerebro by default)
+  cerebro sync                           refresh the Taskwarrior -> Org agenda
+
+  cerebro export FILE PROFILE [TARGET]   compile one note to PDF
+  cerebro course DIR [TITLE]             scaffold a course
+  cerebro garden                         publish the evergreen HTML garden
+  cerebro doctor                         report which prerequisites are present
+  cerebro help                           this message
+EOF
+}
+
+cmd=${1:-}
+[ "$#" -gt 0 ] && shift || true
+
+case "$cmd" in
+  ""|edit)
+    if [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; then
+      exec "$here/guix-run" emacsclient -c \
+           --alternate-editor="emacs --init-directory=$repo_root/.emacs.d --daemon"
+    else
+      exec "$here/guix-run" emacs -nw --init-directory="$repo_root/.emacs.d"
+    fi ;;
+  help|-h|--help) usage ;;
+  shell) exec "$here/guix-run" ;;
+
+  # -- fast, pure-Emacs / POSIX operations (no guix-run) --
+  issue)
+    sub=${1:-list}; [ "$#" -gt 0 ] && shift || true
+    case "$sub" in
+      new)  exec "$here/cerebro-issue" "$@" ;;
+      scan) exec "$here/cerebro-issue-scan" ;;
+      *)    exec "$here/cerebro-issues" "$sub" "$@" ;;
+    esac ;;
+  note)    exec "$here/cerebro-note" "$@" ;;
+  results) exec "$here/cerebro-results" "$@" ;;
+  stats)   exec "$here/cerebro-stats" ;;
+  today)   exec emacs --batch -l "$here/cerebro-today.el" -- m ;;
+  agenda)  exec emacs --batch -l "$here/cerebro-today.el" -- "${1:-m}" ;;
+  doctor)  exec "$here/bootstrap-check" ;;
+
+  # -- operations that genuinely need the pinned environment --
+  query)   exec "$here/cerebro-query" "$@" ;;
+  lint)    exec "$here/cerebro-lint" "$@" ;;
+  sync)    exec "$here/guix-run" "$here/task-to-org" ;;
+  time)
+    sub=${1:-week}; [ "$#" -gt 0 ] && shift || true
+    case "$sub" in
+      start) exec "$here/guix-run" timew start cerebro "$@" ;;
+      stop)  exec "$here/guix-run" timew stop ;;
+      today) exec "$here/guix-run" timew summary :day ;;
+      week)  exec "$here/guix-run" timew summary :week ;;
+      month) exec "$here/guix-run" timew summary :month ;;
+      year)  exec "$here/guix-run" timew summary :year ;;
+      *)     exec "$here/guix-run" timew summary "$sub" "$@" ;;
+    esac ;;
+  task)
+    if [ "$#" -eq 0 ]; then exec "$here/guix-run" task +cerebro
+    else exec "$here/guix-run" task "$@"; fi ;;
+  export)
+    file=${1:?"usage: cerebro export FILE PROFILE [TARGET]"}
+    profile=${2:-full}; target=${3:-}
+    if [ -n "$target" ]; then
+      exec "$here/guix-run" emacs --batch -l "$here/org-export-latex.el" -- \
+           --profile="$profile" --target="$target" "$file"
+    else
+      exec "$here/guix-run" emacs --batch -l "$here/org-export-latex.el" -- \
+           --profile="$profile" "$file"
+    fi ;;
+  course)  exec "$here/cerebro-course" "$@" ;;
+  garden)  exec "$here/cerebro-publish-garden" ;;
+
+  *) echo "cerebro: unknown command '$cmd'" >&2; usage; exit 1 ;;
+esac

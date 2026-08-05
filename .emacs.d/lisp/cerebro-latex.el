@@ -45,6 +45,22 @@
       (list (expand-file-name "bib/references.bib" cerebro-root)))
 (setq org-cite-export-processors '((latex biblatex) (t basic)))
 
+;; Compile strictly and correctly. `latexmk' drives the whole
+;; pdflatex/biber/pdflatex loop by itself -- so citations ([cite:@key])
+;; and cross-references (cleveref) resolve in a single `make export',
+;; with no hand-counted passes -- and it auto-detects biber from the
+;; biblatex .bcf. Crucially, `-halt-on-error' makes a *real* LaTeX error
+;; FAIL the export (no PDF -> Org signals an error) instead of Org's
+;; default `-interaction=nonstopmode' alone, under which TeX "inserts a $
+;; and proceeds", shipping a malformed PDF the pipeline would wrongly
+;; treat as success. That silent-failure mode is exactly what the
+;; naked-`$' linter check (bin/notes-lint.el) now prevents at the source;
+;; this makes the compile itself honest as a second line of defence. Both
+;; the generic LaTeX backend and ox-beamer share `org-latex-pdf-process'.
+(setq org-latex-pdf-process
+      (list (concat "latexmk -pdf -halt-on-error "
+                    "-interaction=nonstopmode -output-directory=%o %f")))
+
 (defvar cerebro-latex-content-modes
   '((full        . (:exclude-blocks nil))
     (statements  . (:exclude-blocks ("proof")))
@@ -290,6 +306,10 @@ journal submission needs. Returns nil when there is nothing to add."
          (msc (cerebro-msc-parse (cadr (assoc "MSC" kw))))
          (keywords (cadr (assoc "KEYWORDS" kw))))
     (concat "\\usepackage{cerebro-macros}\n"
+            ;; amsart defines no theorem environments itself, so without
+            ;; this \begin{definition}/\begin{theorem}/... are undefined --
+            ;; the shared suite cerebro.cls also uses (cerebro-theorems.sty).
+            "\\usepackage{cerebro-theorems}\n"
             (when msc
               (format "\\subjclass[2020]{%s}\n" (mapconcat #'identity msc ", ")))
             (when (and keywords (not (string-empty-p (string-trim keywords))))

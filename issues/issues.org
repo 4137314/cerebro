@@ -1,18 +1,153 @@
 #+TITLE: cerebro issues
 #+STARTUP: overview
 
-Personal, non-proprietary issue tracker: plain Org headings, no
-external service, no database. Picked up by org-agenda-files (see
-.emacs.d/lisp/cerebro-org.el). Create new entries with
-=bin/cerebro-issue "title" [tag1 tag2 ...]= or =M-x org-capture=;
-browse with =C-c i= (see .emacs.d/lisp/cerebro-issues.el).
+Personal, non-proprietary issue tracker AND the project's committed
+roadmap: plain Org headings, no external service, no database. This file
+is versioned in git on purpose -- it is the shared, reproducible task
+state, so a fresh clone (and a fresh Claude Code session -- see
+../CLAUDE.md) sees what is planned and why. Personal time tracking is
+separate and local (Taskwarrior/Timewarrior); to time-track work on an
+issue, =org-clock-in= on its heading (cerebro-time.el mirrors it into
+=timew=).
 
-* TODO Example: regenerate guix/channels.scm after installing Guix :bootstrap:
+Everything here is scriptable (see ../CLAUDE.md and the =cerebro= CLI):
+=cerebro issue list|show|close|start|reopen|report=, =cerebro issue new
+"title" [tags...]=. Inside Emacs: =C-c a i=, =C-c i=, =C-c c i=.
+Priorities are Org's own =[#A]/[#B]/[#C]=.
+
+* DONE Regenerate guix/channels.scm from a real pin                :bootstrap:
 :PROPERTIES:
 :ID: 20260727T000000
 :CREATED: [2026-07-27 Mon 00:00]
 :END:
 
-guix/channels.scm currently ships as a template (see the comments in
-that file). Run =guix describe -f channels > guix/channels.scm= once
-Guix is installed and =guix pull= has run, then commit the result.
+Done: guix/channels.scm carries a real commit pin
+(=862e2bf1...=), not the template placeholder, so
+=guix time-machine -C guix/channels.scm= resolves a reproducible
+environment. Kept as a record of the one manual bootstrap step.
+
+* TODO [#A] Certify the strict export under Guix (texlive-scheme-full) :latex:ci:
+:PROPERTIES:
+:ID: 20260729T120000
+:CREATED: [2026-07-29 Tue 12:00]
+:END:
+
+The export now compiles strictly (=latexmk -halt-on-error=, see
+cerebro-latex.el) and the theorem environments were factored into
+latex/cerebro-theorems.sty (shared by cerebro.cls and the amsart
+paper/preprint path, which previously had NO theorem environments defined
+-- a real latent bug). All 14 profiles + =single= were verified against
+the *system* TeX Live. Re-run =make export-matrix= inside the pinned Guix
+environment to confirm the same under =texlive-scheme-full=, then this is
+fully certified end to end again.
+
+* TODO [#A] Results graph: reference results by :ID: as well as #+NAME :results:graph:
+:PROPERTIES:
+:ID: 20260729T120100
+:CREATED: [2026-07-29 Tue 12:01]
+:END:
+
+=#+DEPENDS= currently names dependencies by =#+NAME= (cerebro-results.el),
+which does not survive a rename of the target result. Org-roam solved the
+same problem for note links with stable =:ID:=s. Allow a =#+DEPENDS= entry
+to be an org-id too (or add =#+DEPENDS_ID=), so the logical-dependency
+graph is durable across renames -- essential for a database meant to last
+a career. Keep the pure/testable split; update tests and the linter.
+
+* TODO [#B] Proof status in the results index (proved/assumed/open) :results:rigor:
+:PROPERTIES:
+:ID: 20260729T120200
+:CREATED: [2026-07-29 Tue 12:02]
+:END:
+
+Surface each result's rigor status in =cerebro results= / =C-c r i=:
+proved (adjacent proof block), assumed (=axiom=), open (heading tagged
+conjecture/folklore/open_problem), or unproved (theorem-like, no proof --
+already a hard linter error). Extend the pure parser to see the adjacent
+proof and the heading tags; the linter tier-1 check stays authoritative
+for the gate. Add ERT tests for the new status logic.
+
+* TODO [#B] Notation registry with consistency checking            :rigor:latex:
+:PROPERTIES:
+:ID: 20260729T120300
+:CREATED: [2026-07-29 Tue 12:03]
+:END:
+
+cerebro-macros.sty is the LaTeX side of notation; add the semantic side:
+a glossary (symbol -> meaning -> where used) as data, plus an advisory
+lint pass flagging a symbol used with two different meanings, or a macro
+defined but never used. For a lifelong archive, notation drift is a real
+problem; making it visible is high value and fits the data-driven style.
+
+* TODO [#B] Graph visualization: cerebro graph -> static SVG         :graph:viz:
+:PROPERTIES:
+:ID: 20260729T120400
+:CREATED: [2026-07-29 Tue 12:04]
+:END:
+
+The queries (cerebro-query.el, cerebro-results.el) are text-only. Add a
+=cerebro graph= that emits a static SVG of the note graph and/or the
+results dependency DAG via Graphviz -- local, static output, no browser or
+websocket, consistent with the no-cloud principle (org-roam-ui is
+deliberately not used).
+
+* TODO [#B] Global theorem/definition index with cross-note numbering :results:latex:
+:PROPERTIES:
+:ID: 20260729T120500
+:CREATED: [2026-07-29 Tue 12:05]
+:END:
+
+cleveref numbers results within one file. Add cross-note referencing so a
+proof in note B can cite "Theorem X (in note A)" with a stable label,
+built on the global =#+NAME= keys the results layer already indexes. Feeds
+a real "theorem database" a researcher can grep across a career.
+
+* TODO [#B] Trim texlive-scheme-full to a curated manifest           :guix:latex:
+:PROPERTIES:
+:ID: 20260729T120600
+:CREATED: [2026-07-29 Tue 12:06]
+:END:
+
+=texlive-scheme-full= is several GB to realise via =guix time-machine=.
+Replace it in guix.scm with the exact set the classes and
+cerebro-macros.sty use (amsmath/amscls/amsfonts, mathtools, pgf/pgfplots/
+tikz-cd, biblatex/biber, cleveref/hyperref, enumitem, microtype, beamer,
+xcolor, koma-script, ...). A missing package fails a compile silently, so
+validate the trimmed set against a full =make export-matrix=. See the
+comment already in guix.scm.
+
+* TODO [#C] Literature layer: citar + arXiv/DOI import + PDF notes   :bib:research:
+:PROPERTIES:
+:ID: 20260729T120700
+:CREATED: [2026-07-29 Tue 12:07]
+:END:
+
+bib/references.bib is edited by hand. Add emacs-citar (rich citation
+insertion/preview over org-cite), a =cerebro cite doi:...|arxiv:...=
+importer that appends a de-duplicated bibentry, and pdf-tools/org-noter
+for a read -> literature-note -> permanent-note flow. Adds Guix packages
+(all packaged): weigh against the "small dependency set" value.
+
+* TODO [#C] Formalization bridge to Lean 4 / mathlib               :formal:research:
+:PROPERTIES:
+:ID: 20260729T120900
+:CREATED: [2026-07-29 Tue 12:09]
+:END:
+
+Link an informal =#+NAME='d theorem to a formal Lean declaration and check
+it in CI, so the database can grow a machine-checked spine. Packaging
+caveat: Lean/mathlib are not in official Guix -- this needs a channel or
+an external toolchain, in tension with the strict-isolation principle.
+Ambitious; scope carefully before starting.
+
+* TODO [#C] Real-usage tuning: drill scheduling, crypt, Taskwarrior hooks :caveat:
+:PROPERTIES:
+:ID: 20260729T121000
+:CREATED: [2026-07-29 Tue 12:10]
+:END:
+
+From README "Status": org-drill's review scheduling, org-crypt's
+interactive passphrase flow, and the Taskwarrior hook tag policy are wired
+up and unit/smoke-tested, but not yet exercised by real coursework. They
+are standard mechanisms, so this is "tune once there is real content," not
+"might not work." Revisit when the first real course notes land.

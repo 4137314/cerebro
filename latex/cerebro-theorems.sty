@@ -1,0 +1,51 @@
+% cerebro-theorems.sty -- the shared theorem-environment suite.
+%
+% Single source of truth for the theorem-like environments, so
+% #+begin_theorem / #+begin_definition / ... mean the same thing (same
+% names, same styles, same shared counter) in EVERY non-beamer output:
+% the cerebro.cls family (article/report/book/syllabus) AND the amsart
+% `paper'/`preprint' doctypes. Before this file existed the amsart path
+% defined no theorem environments at all, so every paper compiled with
+% `\begin{definition}' undefined -- a real error that Org's nonstopmode
+% quietly stepped over (fixed together with the strict `latexmk
+% -halt-on-error' process in .emacs.d/lisp/cerebro-latex.el).
+%
+% beamer is deliberately NOT a client of this file: it predefines several
+% of these environments itself and manages its own counters, so
+% cerebro-beamer.cls declares only what beamer lacks, defensively -- see
+% that class.
+%
+% Requires amsthm (idempotent: cerebro.cls loads it too, and amsart is
+% amsthm-compatible). One shared `[definition]' counter chain, so a
+% Definition, Theorem, Lemma, ... are numbered in a single sequence per
+% section -- the convention a rigorous document wants for unambiguous
+% cross-references.
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cerebro-theorems}[2026/01/01 cerebro shared theorem environments]
+
+\RequirePackage{amsthm}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}[definition]{Example}
+\newtheorem{exercise}[definition]{Exercise}
+\newtheorem{notation}[definition]{Notation}
+
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{axiom}[definition]{Axiom}
+\newtheorem{conjecture}[definition]{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{Remark}
+% Pedagogical apparatus for exercise sheets / handouts. Unnumbered
+% (starred), remark-styled: a Hint or Solution attached to the preceding
+% Exercise, not a numbered result in its own right.
+\newtheorem*{hint}{Hint}
+\newtheorem*{solution}{Solution}
+
+\endinput

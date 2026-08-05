@@ -1,0 +1,77 @@
+#!/bin/sh
+# cerebro-note -- scriptable note operations over notes/.
+# Usage:
+#   cerebro-note new "Title" [tag1,tag2] [msc-code]   create a note file
+#   cerebro-note find QUERY                            grep title+body
+#   cerebro-note list                                  every note + title
+#
+# `new' writes a note that is born classified exactly like the Emacs
+# capture template (cerebro-roam.el): a file-level :ID: (so it is a proper
+# Org-roam node -- backlinks/hubs/queries work), a :seed: maturity tag,
+# and an empty #+MSC: line ready to fill in. Plain files, so this is fully
+# scriptable and needs no running Emacs.
+set -eu
+
+repo_root=$(git rev-parse --show-toplevel)
+notes_dir="$repo_root/notes"
+
+# Files that are not prose notes (mirrors cerebro-note-files in
+# cerebro-org.el): generated aggregators + headingless meta. ERE, since
+# every use below is `grep -E'.
+not_a_note='/(book|README|TAGS|course)\.org$'
+
+cmd=${1:-list}
+[ "$#" -gt 0 ] && shift || true
+
+new_id() {
+    # A proper node needs a stable :ID:. Prefer uuidgen (org's default
+    # id-method); fall back to a timestamp+nanoseconds id if it is absent.
+    if command -v uuidgen >/dev/null 2>&1; then uuidgen
+    else date +%Y%m%dT%H%M%S%N; fi
+}
+
+slug() {
+    printf '%s' "$1" | tr '[:upper:]' '[:lower:]' \
+        | sed -e 's/[^a-z0-9]\{1,\}/-/g' -e 's/^-//' -e 's/-$//'
+}
+
+case "$cmd" in
+  new)
+    title=${1:?"usage: cerebro-note new \"Title\" [tag1,tag2] [msc]"}
+    tags=${2:-}
+    msc=${3:-}
+    ts=$(date +%Y%m%d%H%M%S)
+    file="$notes_dir/${ts}-$(slug "$title").org"
+    filetags=":seed:"
+    if [ -n "$tags" ]; then
+        filetags=":seed:$(printf '%s' "$tags" | tr ',' ':' | sed 's/::*/:/g;s/^://;s/:$//'):"
+    fi
+    {
+        printf ':PROPERTIES:\n:ID:       %s\n:END:\n' "$(new_id)"
+        printf '#+TITLE: %s\n' "$title"
+        printf '#+DATE: %s\n' "$(date '+[%Y-%m-%d %a %H:%M]')"
+        printf '#+FILETAGS: %s\n' "$filetags"
+        printf '#+MSC: %s\n\n' "$msc"
+    } > "$file"
+    echo "created $(printf '%s' "$file" | sed "s#^$repo_root/##")"
+    ;;
+  find)
+    query=${1:?"usage: cerebro-note find QUERY"}
+    grep -rilE "$query" "$notes_dir" --include='*.org' 2>/dev/null \
+        | grep -vE "$not_a_note" | sort | while IFS= read -r f; do
+        title=$(sed -n 's/^#+TITLE:[[:space:]]*//p' "$f" | head -1)
+        printf '%s\t%s\n' "$(printf '%s' "$f" | sed "s#^$repo_root/##")" "${title:-(untitled)}"
+    done
+    ;;
+  list)
+    find "$notes_dir" -name '*.org' 2>/dev/null | grep -vE "$not_a_note" | sort \
+      | while IFS= read -r f; do
+        title=$(sed -n 's/^#+TITLE:[[:space:]]*//p' "$f" | head -1)
+        printf '%s\t%s\n' "$(printf '%s' "$f" | sed "s#^$repo_root/##")" "${title:-(untitled)}"
+    done
+    ;;
+  *)
+    echo "cerebro-note: unknown command '$cmd' (know: new find list)" >&2
+    exit 1
+    ;;
+esac

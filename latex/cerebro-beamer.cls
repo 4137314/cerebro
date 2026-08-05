@@ -45,21 +45,25 @@
 
 % Same environment names as cerebro.cls, so #+begin_theorem etc. mean
 % the same thing regardless of output format. beamer already predefines
-% theorem/corollary/definition/example/lemma/proof itself (verified
-% against a real compile: redefining them with \newtheorem fails with
-% "already defined", cascading into broken numbering for everything
-% declared to share their counter) -- only declare the ones beamer does
-% NOT already provide, each with its own independent counter. A slide
-% deck does not need cross-references numbered consistently with the
-% article/report/manual doctypes' shared [definition] counter chain.
-\newtheorem{proposition}{Proposition}
-\newtheorem{remark}{Remark}
-\newtheorem{axiom}{Axiom}
-\newtheorem{conjecture}{Conjecture}
-\newtheorem{exercise}{Exercise}
-\newtheorem{notation}{Notation}
-\newtheorem{solution}{Solution}
-\newtheorem{hint}{Hint}
+% theorem/corollary/definition/example/lemma/proof itself (redefining
+% them with \newtheorem fails with "already defined", cascading into
+% broken numbering for everything declared to share their counter) -- so
+% declare only what beamer lacks. Which environments beamer predefines
+% has varied across TeX Live releases (e.g. some ship a `solution' too,
+% which made `\newtheorem{solution}' clash), so guard EACH declaration
+% with \@ifundefined: define an environment only when this beamer does
+% not already provide it. Version-robust, and each gets its own counter.
+% A slide deck does not need cross-references numbered consistently with
+% the article/report/manual doctypes' shared [definition] counter chain.
+\newcommand{\cerebro@newtheorem}[2]{\@ifundefined{#1}{\newtheorem{#1}{#2}}{}}
+\cerebro@newtheorem{proposition}{Proposition}
+\cerebro@newtheorem{remark}{Remark}
+\cerebro@newtheorem{axiom}{Axiom}
+\cerebro@newtheorem{conjecture}{Conjecture}
+\cerebro@newtheorem{exercise}{Exercise}
+\cerebro@newtheorem{notation}{Notation}
+\cerebro@newtheorem{solution}{Solution}
+\cerebro@newtheorem{hint}{Hint}
 
 % Same proofs/noproofs and solutions/nosolutions toggles as cerebro.cls,
 % so a #+begin_proof / #+begin_solution means the same thing whether a

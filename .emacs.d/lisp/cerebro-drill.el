@@ -11,10 +11,12 @@
 (require 'cerebro-org)
 (require 'org-drill)
 
-;; Reuse org-agenda-files (cerebro-org.el) rather than defining a
-;; second list of "where the notes are" -- 'directory would only catch
-;; files next to whichever one is currently open, missing the nested
-;; notes/courses/*/notes/daily/* structure.
+;; Reuse org-agenda-files (cerebro-org.el) rather than defining a second
+;; list of "where the notes are". Since org-agenda-files is now built from
+;; `cerebro-note-directories' (every subdirectory of notes/, not just the
+;; top level), 'agenda genuinely covers the whole nested tree --
+;; notes/courses/*/ and notes/daily/ included -- which a plain 'directory
+;; scope (files next to the current buffer only) would miss.
 (setq org-drill-scope 'agenda)
 
 (provide 'cerebro-drill)

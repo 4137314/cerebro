@@ -1,0 +1,19 @@
+#!/bin/sh
+# Scriptable entry point for the results layer in
+# .emacs.d/lisp/cerebro-results.el -- the #+NAME/#+DEPENDS
+# logical-dependency graph over theorems/definitions.
+# Usage: bin/cerebro-results [index|check|deps|dependents] [NAME]
+#   index        every named result across the notes (default)
+#   check        cycles, dangling #+DEPENDS, duplicate names
+#   deps NAME    what result NAME rests on (transitively)
+#   dependents NAME   what rests on NAME (impact of changing it)
+#
+# Pure Elisp (no Org-roam, no database, no LaTeX), so it runs on the plain
+# `emacs' on PATH -- deliberately NOT through bin/guix-run, which would pay
+# the cost of materialising the whole pinned profile for a query that needs
+# none of it. Fast enough to bind to a key.
+set -eu
+repo_root=$(git rev-parse --show-toplevel)
+cmd=${1:-index}
+[ "$#" -gt 0 ] && shift
+exec emacs --batch -l "$repo_root/bin/cerebro-results.el" -- "$cmd" "$@"

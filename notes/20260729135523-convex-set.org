@@ -1,0 +1,23 @@
+:PROPERTIES:
+:ID:       29371f24-12c6-4151-80ae-3f459e7c83f6
+:END:
+#+TITLE: Convex set
+#+DATE: [2026-07-29 Wed 13:55]
+#+FILETAGS: :evergreen:easy:convex_geometry:
+#+MSC: 52A05
+
+Convexity is the most basic shape condition on a subset of a real
+[[id:7c54b427-4d7a-4511-b374-58c7bb44fb84][vector space]]: it must contain the whole segment between any two of its
+points.
+
+#+DEPENDS: def-vector-space
+#+NAME: def-convex-set
+#+begin_definition
+Let \(V\) be a real [[id:7c54b427-4d7a-4511-b374-58c7bb44fb84][vector space]]. A subset \(C \subseteq V\) is
+*convex* if for all \(x, y \in C\) and all \(t \in [0, 1]\),
+\[
+  t x + (1 - t) y \in C .
+\]
+As \(t\) runs over \([0, 1]\) the point \(t x + (1 - t) y\) traces the
+segment from \(x\) to \(y\); convexity says that segment stays inside \(C\).
+#+end_definition

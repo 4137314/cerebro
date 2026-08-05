@@ -39,41 +39,58 @@ getting any of these wrong fails silently, not loudly:
   immediately following sibling `proof' block, nothing else in the
   file -- give the theorem you want to isolate for focused study a
   #+NAME, and pass that name as TARGET.
+- Name a result you want to reference (or depend on) with a globally
+  unique kebab-case #+NAME (thm-..., def-..., lem-...) placed directly on
+  top of the #+begin_ line, and record what it rests on with a #+DEPENDS:
+  line ABOVE that #+NAME (order matters -- see the "Results layer" in
+  README.org). #+DEPENDS is data for `make results', invisible to every
+  export; the linter rejects a dangling or cyclic dependency.
+- Use \(...\) for inline math and \[...\] for display math -- never bare
+  $...$. A $ next to punctuation (e.g. $x$--$y$) silently mis-parses in
+  Org into a literal dollar that then fails to compile; the linter now
+  rejects any naked $.
 #+end_comment
 
 * Limits of sequences
 
+#+NAME: def-convergence
 #+begin_definition
-A sequence $(a_n)_{n \in \mathbb{N}}$ of real numbers /converges/ to
-$L \in \mathbb{R}$ if for every $\varepsilon > 0$ there exists
-$N \in \mathbb{N}$ such that $|a_n - L| < \varepsilon$ for all $n \geq N$.
+A sequence \((a_n)_{n \in \mathbb{N}}\) of real numbers /converges/ to
+\(L \in \mathbb{R}\) if for every \(\varepsilon > 0\) there exists
+\(N \in \mathbb{N}\) such that \(|a_n - L| < \varepsilon\) for all \(n \geq N\).
 This is the standard definition, see [cite:@rudin1976principles].
 #+end_definition
 
+#+NAME: ax-dedekind-completeness
 #+begin_axiom
-The real numbers $\R$ are Dedekind-complete: every non-empty subset of
-$\R$ bounded above has a least upper bound in $\R$.
+The real numbers \(\R\) are Dedekind-complete: every non-empty subset of
+\(\R\) bounded above has a least upper bound in \(\R\).
 #+end_axiom
 
+# Uniqueness of limits rests on the definition of convergence -- and on
+# nothing else (in particular not on completeness): #+DEPENDS records
+# exactly that. `make results CMD=deps NAME=thm-uniqueness-of-limits'.
+#+DEPENDS: def-convergence
 #+NAME: thm-uniqueness-of-limits
 #+begin_theorem
-If $(a_n)$ converges to both $L_1$ and $L_2$, then $L_1 = L_2$.
+If \((a_n)\) converges to both \(L_1\) and \(L_2\), then \(L_1 = L_2\).
 #+end_theorem
 
 #+begin_proof
-Suppose $L_1 \neq L_2$. Let $\eps = \abs{L_1 - L_2} / 2 > 0$. By
-convergence to $L_1$ there is $N_1$ with $\abs{a_n - L_1} < \eps$ for
-all $n \geq N_1$; similarly there is $N_2$ for $L_2$. Then for
-$n \geq \max(N_1, N_2)$,
+Suppose \(L_1 \neq L_2\). Let \(\eps = \abs{L_1 - L_2} / 2 > 0\). By
+convergence to \(L_1\) there is \(N_1\) with \(\abs{a_n - L_1} < \eps\) for
+all \(n \geq N_1\); similarly there is \(N_2\) for \(L_2\). Then for
+\(n \geq \max(N_1, N_2)\),
 \[\abs{L_1 - L_2} \leq \abs{L_1 - a_n} + \abs{a_n - L_2} < 2\eps = \abs{L_1 - L_2},\]
-a contradiction. Hence $L_1 = L_2$.
+a contradiction. Hence \(L_1 = L_2\).
 #+end_proof
 
 #+begin_remark
-Uniqueness of limits is why writing "$\lim_{n\to\infty} a_n = L$" for
+Uniqueness of limits is why writing "\(\lim_{n\to\infty} a_n = L\)" for
 /the/ limit, rather than /a/ limit, is legitimate at all.
 #+end_remark
 
+#+NAME: conj-rational-limits
 #+begin_conjecture
 (Not a real open problem -- just here to exercise the =conjecture=
 environment.) Every convergent sequence of rationals converges to a
@@ -90,18 +107,18 @@ carries no homework). See .emacs.d/lisp/cerebro-latex.el.
 #+end_comment
 
 #+begin_exercise
-Show that a sequence $(a_n)$ with $a_n \to L$ and $a_n \to L'$ must have
-$L = L'$ without appealing to the theorem above -- redo the argument
-from the $\eps$--$\delta$ definition.
+Show that a sequence \((a_n)\) with \(a_n \to L\) and \(a_n \to L'\) must have
+\(L = L'\) without appealing to the theorem above -- redo the argument
+from the \(\eps\)--\(\delta\) definition.
 #+end_exercise
 
 #+begin_hint
-Suppose $L \neq L'$ and feed $\eps = \abs{L - L'}/2$ to both limits.
+Suppose \(L \neq L'\) and feed \(\eps = \abs{L - L'}/2\) to both limits.
 #+end_hint
 
 #+begin_solution
-If $L \neq L'$, set $\eps = \abs{L - L'}/2 > 0$. For large $n$ we get
-both $\abs{a_n - L} < \eps$ and $\abs{a_n - L'} < \eps$, so
-$\abs{L - L'} \leq \abs{L - a_n} + \abs{a_n - L'} < 2\eps = \abs{L - L'}$,
-a contradiction. Hence $L = L'$.
+If \(L \neq L'\), set \(\eps = \abs{L - L'}/2 > 0\). For large \(n\) we get
+both \(\abs{a_n - L} < \eps\) and \(\abs{a_n - L'} < \eps\), so
+\(\abs{L - L'} \leq \abs{L - a_n} + \abs{a_n - L'} < 2\eps = \abs{L - L'}\),
+a contradiction. Hence \(L = L'\).
 #+end_solution

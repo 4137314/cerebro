@@ -78,27 +78,9 @@
 \addbibresource{references.bib}
 \AtEndDocument{\printbibliography}
 
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{example}[definition]{Example}
-\newtheorem{exercise}[definition]{Exercise}
-\newtheorem{notation}[definition]{Notation}
-
-\theoremstyle{plain}
-\newtheorem{theorem}[definition]{Theorem}
-\newtheorem{lemma}[definition]{Lemma}
-\newtheorem{proposition}[definition]{Proposition}
-\newtheorem{corollary}[definition]{Corollary}
-\newtheorem{axiom}[definition]{Axiom}
-\newtheorem{conjecture}[definition]{Conjecture}
-
-\theoremstyle{remark}
-\newtheorem{remark}[definition]{Remark}
-% Pedagogical apparatus for exercise sheets / handouts. Unnumbered
-% (starred), remark-styled: a Hint or Solution attached to the preceding
-% Exercise, not a numbered result in its own right.
-\newtheorem*{hint}{Hint}
-\newtheorem*{solution}{Solution}
+% The theorem-like environments live in a shared package so amsart
+% (paper/preprint) gets exactly the same ones -- see cerebro-theorems.sty.
+\RequirePackage{cerebro-theorems}
 
 % `comment' is used to drop proof and/or solution bodies when the
 % matching toggle is off. Loaded once, unconditionally: \RequirePackage

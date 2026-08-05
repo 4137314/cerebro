@@ -23,17 +23,14 @@
 (require 'org-ql-view)
 
 (defun cerebro-ql-files ()
-  "The search surface for org-ql: every note (recursively, so
-notes/courses/*/ is included) plus the issue tracker, minus the
-non-note files -- the generated book.org aggregators and the headingless
-meta files (README.org, TAGS.org), which org-ql would otherwise warn
-about. Recursive on purpose -- a plain `org-agenda-files' directory
-entry is not expanded into subdirectories."
-  (seq-remove
-   (lambda (f) (string-match-p "/\\(book\\|README\\|TAGS\\)\\.org\\'" f))
-   (append (directory-files-recursively org-directory "\\.org\\'")
-           (let ((issues (expand-file-name "issues/issues.org" cerebro-root)))
-             (and (file-exists-p issues) (list issues))))))
+  "The search surface for org-ql: every real note (recursively, via the
+shared `cerebro-note-files', so notes/courses/*/ is included) plus the
+issue tracker. Sharing `cerebro-note-files' with the agenda's directory
+list (cerebro-org.el) is deliberate: the two query surfaces are then
+provably scanning the same corpus, never one recursive and one not."
+  (append (cerebro-note-files)
+          (let ((issues (expand-file-name "issues/issues.org" cerebro-root)))
+            (and (file-exists-p issues) (list issues)))))
 
 ;; Curated, cerebro-specific saved views. `org-ql-view' (C-c v v) lists
 ;; them; each is one (NAME . PLIST) entry -- add a view by adding a line.

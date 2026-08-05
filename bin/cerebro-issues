@@ -1,0 +1,11 @@
+#!/bin/sh
+# Issue lifecycle over issues/issues.org -- see bin/cerebro-issues.el.
+# Usage: cerebro-issues [list|show|close|start|reopen|report] [arg]
+#
+# Pure Emacs (org-mode only, no Org-roam/Guix/LaTeX), so it runs on the
+# plain `emacs' on PATH -- fast, not routed through bin/guix-run. The
+# `cerebro' dispatcher sends `cerebro issue <cmd>' here (except `new',
+# which is the faster POSIX-sh bin/cerebro-issue).
+set -eu
+repo_root=$(git rev-parse --show-toplevel)
+exec emacs --batch -l "$repo_root/bin/cerebro-issues.el" -- "$@"

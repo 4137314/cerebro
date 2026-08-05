@@ -1,7 +1,7 @@
 PROJECT_DIR := $(shell pwd)
 GUIX_RUN     := ./bin/guix-run
 
-.PHONY: help install install-hooks bootstrap-check shell ci test export-matrix export lint query stats garden course clean clean-latex
+.PHONY: help install install-hooks bootstrap-check shell ci test export-matrix export lint query results stats garden course clean clean-latex
 
 ## Bare `make` should never have a side effect: the first target used to
 ## be `install' (which rewrites git config and drops symlinks into
@@ -10,8 +10,8 @@ GUIX_RUN     := ./bin/guix-run
 .DEFAULT_GOAL := help
 
 help:
-	@echo "cerebro make targets:"
-	@echo "  make install        one-time setup: launcher + git/Taskwarrior hooks"
+	@echo "cerebro make targets (for the scriptable day-to-day CLI, see 'cerebro help'):"
+	@echo "  make install        one-time setup: 'cerebro' CLI + git/Taskwarrior hooks"
 	@echo "  make bootstrap-check report which prerequisites are present"
 	@echo "  make shell          drop into the pinned, isolated guix environment"
 	@echo "  make export FILE=notes/x.org PROFILE=full   one .org -> one LaTeX/PDF"
@@ -20,6 +20,7 @@ help:
 	@echo "  make course DIR=notes/courses/x TITLE=...    scaffold a course as data"
 	@echo "  make lint           thorough note consistency checks (see pre-push)"
 	@echo "  make query Q=hubs   graph queries (orphans hubs stale-hubs co-citation by-tag by-msc)"
+	@echo "  make results        results layer: index | check | deps NAME=... | dependents NAME=..."
 	@echo "  make stats          notes/rigor/classification/task/time dashboard"
 	@echo "  make garden         publish evergreen notes as a static HTML site"
 	@echo "  make test           ERT + shell tests (fast; the post-commit gate)"
@@ -32,25 +33,19 @@ help:
 ## post-commit, pre-push) and the Taskwarrior hooks in taskwarrior/hooks/.
 install: install-hooks
 	@mkdir -p $(HOME)/.local/bin
-	@echo '#!/bin/sh' > $(HOME)/.local/bin/cerebro
-	@echo 'cd "$(PROJECT_DIR)"' >> $(HOME)/.local/bin/cerebro
-	@echo 'if [ -n "$$DISPLAY" ] || [ -n "$$WAYLAND_DISPLAY" ]; then' >> $(HOME)/.local/bin/cerebro
-	@echo '    $(GUIX_RUN) emacsclient -c --alternate-editor="emacs --init-directory=.emacs.d --daemon"' >> $(HOME)/.local/bin/cerebro
-	@echo 'else' >> $(HOME)/.local/bin/cerebro
-	@echo '    $(GUIX_RUN) emacs -nw --init-directory=.emacs.d' >> $(HOME)/.local/bin/cerebro
-	@echo 'fi' >> $(HOME)/.local/bin/cerebro
-	@chmod +x $(HOME)/.local/bin/cerebro
-	@echo "Installed 'cerebro' launcher in ~/.local/bin/cerebro"
+	@ln -sf "$(PROJECT_DIR)/bin/cerebro" "$(HOME)/.local/bin/cerebro"
+	@echo "Linked the 'cerebro' CLI -> ~/.local/bin/cerebro"
+	@echo "  bare 'cerebro' opens the editor; 'cerebro help' lists every subcommand"
 
 ## Hooks are tracked files in githooks/ and taskwarrior/hooks/, not the
 ## untracked ~/.git/hooks/ or ~/.task/hooks/ -- this is what makes them
 ## "versioned" (the canonical copy lives in the repo; the ones Git/Task
 ## actually read are a config pointer and a symlink respectively).
 install-hooks:
-	@chmod +x githooks/* bin/bootstrap-check bin/cerebro-issue bin/guix-run bin/emacs \
-		bin/cerebro-lint bin/cerebro-query bin/task-to-org bin/cerebro-new-book \
-		bin/cerebro-course bin/cerebro-stats bin/cerebro-publish-garden \
-		taskwarrior/hooks/*
+	@chmod +x githooks/* bin/cerebro bin/bootstrap-check bin/cerebro-issue bin/cerebro-issues \
+		bin/cerebro-issue-scan bin/cerebro-note bin/guix-run bin/emacs bin/cerebro-lint \
+		bin/cerebro-query bin/cerebro-results bin/task-to-org bin/cerebro-new-book \
+		bin/cerebro-course bin/cerebro-stats bin/cerebro-publish-garden taskwarrior/hooks/*
 	@git config core.hooksPath githooks
 	@echo "git core.hooksPath -> githooks/"
 	@mkdir -p $(HOME)/.task/hooks
@@ -87,6 +82,16 @@ query:
 	@test -n "$(Q)" || (echo "usage: make query Q=orphans|hubs|stale-hubs|co-citation|by-tag|by-msc [ARGS=...]"; exit 1)
 	@./bin/cerebro-query $(Q) $(ARGS)
 
+## Results layer: the #+NAME/#+DEPENDS logical-dependency graph over
+## theorems/definitions (see .emacs.d/lisp/cerebro-results.el).
+## Usage: make results                (index -- every named result)
+##        make results CMD=check      (cycles / dangling / duplicate names)
+##        make results CMD=deps       NAME=thm-heine-borel   (what it rests on)
+##        make results CMD=dependents NAME=def-compact       (what rests on it)
+CMD ?= index
+results:
+	@./bin/cerebro-results $(CMD) $(NAME)
+
 ## Refresh the generated Taskwarrior -> Org agenda file.
 agenda/taskwarrior.org:
 	@$(GUIX_RUN) ./bin/task-to-org
@@ -110,6 +115,8 @@ test:
 		-l tests/cerebro-graph-tests.el \
 		-l tests/cerebro-msc-tests.el \
 		-l tests/cerebro-taxonomy-tests.el \
+		-l tests/cerebro-org-tests.el \
+		-l tests/cerebro-results-tests.el \
 		-f ert-run-tests-batch-and-exit
 	@sh tests/run-shell-tests.sh
 

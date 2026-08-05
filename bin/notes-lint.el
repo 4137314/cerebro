@@ -30,6 +30,7 @@
 (require 'flyspell)
 (require 'cerebro-org)
 (require 'cerebro-msc) ;; validate #+MSC: codes against MSC2020
+(require 'cerebro-results) ;; the #+NAME/#+DEPENDS logical-dependency graph
 
 (defvar cerebro-lint--errors nil)
 (defvar cerebro-lint--info nil)
@@ -80,6 +81,34 @@
                   (cerebro-lint--err
                    "%s: %s `%s' has no adjacent proof block (tag its heading conjecture/folklore/open_problem if that's intentional)"
                    file type (or (org-element-property :name block) "(unnamed)"))))))))
+      ;; A referenceable result block (cerebro-results.el's types) with no
+      ;; #+NAME can't be cited in the dependency graph or the index -- a
+      ;; rigorous archive names everything it might depend on. Advisory: a
+      ;; freshly captured scratch statement need not be named yet.
+      (org-element-map tree 'special-block
+        (lambda (block)
+          (let ((type (downcase (or (org-element-property :type block) ""))))
+            (when (and (member type cerebro-results-types)
+                       (not (org-element-property :name block)))
+              (cerebro-lint--note
+               "%s: %s block has no #+NAME (not referenceable in `make results')"
+               file type)))))
+      ;; A `proof' whose immediately preceding sibling is not a theorem-like
+      ;; block is probably misplaced (a proof attaches to the statement just
+      ;; above it -- the same adjacency the proof check above relies on).
+      ;; Advisory.
+      (org-element-map tree 'special-block
+        (lambda (block)
+          (when (equal (downcase (or (org-element-property :type block) "")) "proof")
+            (let* ((parent (org-element-property :parent block))
+                   (siblings (org-element-contents parent))
+                   (idx (cl-position block siblings))
+                   (prev (and idx (> idx 0) (nth (1- idx) siblings)))
+                   (prev-type (and prev (eq (org-element-type prev) 'special-block)
+                                   (downcase (or (org-element-property :type prev) "")))))
+              (unless (member prev-type '("theorem" "lemma" "proposition" "corollary"))
+                (cerebro-lint--note
+                 "%s: proof block has no theorem-like block immediately before it" file))))))
       (org-element-map tree 'headline
         (lambda (h)
           (dolist (tag (org-element-property :tags h))
@@ -153,6 +182,56 @@ informational only, never a hard failure."
            (message "notes-lint: spelling check unavailable (%s)"
                      (error-message-string err))))))))
 
+(defun cerebro-lint--naked-dollar (file)
+  "Flag any unescaped `$' outside a src/example/export block. Notes use
+\\(...\\) for inline math and \\[...\\] for display; a bare `$...$' is
+fragile in Org -- next to punctuation (the classic `$x$--$y$') it
+silently mis-parses, leaving a literal `$' that fails to compile (TeX's
+`Missing $ inserted', a wrong PDF under nonstopmode). Raw line scan on
+purpose: that broken case is exactly the one Org does NOT parse as a
+latex-fragment, so an org-element check would miss it. A hard error --
+this is the world-class-parsability convention, not a suggestion."
+  (with-temp-buffer
+    (insert-file-contents file)
+    ;; src/example/export are verbatim (a $ there is literal text, not
+    ;; math); comment blocks are never exported, so a $ in one can't cause
+    ;; a compile error and may legitimately illustrate the very convention
+    ;; this check enforces. Skip all four.
+    (let ((in-verbatim nil) (lineno 0))
+      (dolist (line (split-string (buffer-string) "\n"))
+        (setq lineno (1+ lineno))
+        (cond
+         (in-verbatim
+          (when (string-match-p "\\`[ \t]*#\\+end_\\(src\\|example\\|export\\|comment\\)" line)
+            (setq in-verbatim nil)))
+         ((string-match-p "\\`[ \t]*#\\+begin_\\(src\\|example\\|export\\|comment\\)" line)
+          (setq in-verbatim t))
+         ((string-match-p "\\(?:^\\|[^\\]\\)\\$" line)
+          (cerebro-lint--err
+           "%s:%d: naked `$' in math -- use \\(...\\) inline and \\[...\\] for display ($...$ mis-parses next to punctuation in Org)"
+           file lineno)))))))
+
+(defun cerebro-lint--results ()
+  "Corpus-level checks on the #+NAME/#+DEPENDS results graph
+(cerebro-results.el): a result name defined twice (an ambiguous global
+key), a #+DEPENDS: pointing at a result that no note defines (a typo or a
+stale rename), and a dependency cycle (a result that rests, transitively,
+on itself -- always a bug). These need the *whole* corpus, since a
+dependency and its dependents routinely live in different files, so --
+like the tier-2 graph checks -- they always scan all of notes/,
+independent of the file arguments. Pure Elisp: no Org-roam, no Guix."
+  (let ((records (cerebro-results-scan)))
+    (dolist (n (cerebro-results-duplicate-names records))
+      (cerebro-lint--err
+       "result #+NAME `%s' is defined more than once (a result name is a global key)" n))
+    (dolist (d (cerebro-results-dangling records))
+      (cerebro-lint--err
+       "result `%s' #+DEPENDS on `%s', which no note defines (typo or stale rename)"
+       (car d) (cdr d)))
+    (dolist (c (cerebro-results-cycles records))
+      (cerebro-lint--err
+       "result `%s' is on a dependency cycle -- it rests transitively on itself" c))))
+
 (defun cerebro-lint--tier2 ()
   (if (not (require 'org-roam nil t))
       (message "notes-lint: org-roam unavailable, skipping tier-2 graph checks")
@@ -188,10 +267,11 @@ informational only, never a hard failure."
   (unless files
     (setq files (directory-files-recursively
                  (expand-file-name "notes" cerebro-root) "\\.org\\'")))
-  (dolist (f files) (cerebro-lint--tier1-file f))
+  (dolist (f files) (cerebro-lint--tier1-file f) (cerebro-lint--naked-dollar f))
   (if cerebro-lint--ispell-program
       (dolist (f files) (cerebro-lint--spelling-file f))
     (message "notes-lint: no aspell/hunspell on PATH, skipping the spelling pass")))
+(cerebro-lint--results)
 (cerebro-lint--tier2)
 
 (dolist (i (reverse cerebro-lint--info)) (message "notes-lint: info: %s" i))
