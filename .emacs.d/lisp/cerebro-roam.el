@@ -38,28 +38,42 @@
 ;; workflow starts here and matures toward `:evergreen:') and an empty
 ;; `#+MSC:' line ready for a classification. Filling the MSC in later is
 ;; what the linter's advisory nudge and `make query Q=by-msc' encourage.
+;; Captures land in notes/math/ (`cerebro-math-directory'), like every
+;; other way of making a note here -- the org-roam target is relative to
+;; `org-roam-directory', hence a plain subdirectory name rather than the
+;; absolute path. Kept as one constant so the three templates below cannot
+;; drift apart from each other.
+(defconst cerebro-roam--math-subdir
+  (file-name-as-directory
+   (file-relative-name cerebro-math-directory org-directory))
+  "Capture subdirectory for concept notes, relative to the roam root.")
+
 (defconst cerebro-roam--head
   "#+TITLE: ${title}\n#+DATE: %U\n#+FILETAGS: :seed:\n#+MSC: \n\n"
   "Shared front matter for every org-roam capture template.")
 
 (setq org-roam-capture-templates
       `(("n" "note" plain "%?"
-         :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" ,cerebro-roam--head)
+         :target (file+head ,(concat cerebro-roam--math-subdir "%<%Y%m%d%H%M%S>-${slug}.org")
+                            ,cerebro-roam--head)
          :unnarrowed t)
         ("d" "definition" plain
          "#+begin_definition\n%?\n#+end_definition\n"
-         :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" ,cerebro-roam--head)
+         :target (file+head ,(concat cerebro-roam--math-subdir "%<%Y%m%d%H%M%S>-${slug}.org")
+                            ,cerebro-roam--head)
          :unnarrowed t)
         ("t" "theorem" plain
          "#+begin_theorem\n%?\n#+end_theorem\n\n#+begin_proof\n\n#+end_proof\n"
-         :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" ,cerebro-roam--head)
+         :target (file+head ,(concat cerebro-roam--math-subdir "%<%Y%m%d%H%M%S>-${slug}.org")
+                            ,cerebro-roam--head)
          :unnarrowed t)
         ;; org-drill (cerebro-drill.el) drills headings tagged :drill:,
         ;; heading = prompt, body = answer -- an `entry', not `plain',
         ;; template, so capture actually creates that heading structure.
         ("f" "flashcard" entry
          "* %^{Question}                                                     :drill:\n%?"
-         :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" ,cerebro-roam--head)
+         :target (file+head ,(concat cerebro-roam--math-subdir "%<%Y%m%d%H%M%S>-${slug}.org")
+                            ,cerebro-roam--head)
          :unnarrowed t)))
 
 ;; Turn on autosync last, after directory/location (cerebro-org.el) and

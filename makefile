@@ -1,7 +1,7 @@
 PROJECT_DIR := $(shell pwd)
 GUIX_RUN     := ./bin/guix-run
 
-.PHONY: help install install-hooks bootstrap-check shell ci test export-matrix export lint query results stats garden course clean clean-latex
+.PHONY: help install install-hooks bootstrap-check env shell ci test export-matrix export lint query results stats garden course clean clean-latex
 
 ## Bare `make` should never have a side effect: the first target used to
 ## be `install' (which rewrites git config and drops symlinks into
@@ -13,6 +13,7 @@ help:
 	@echo "cerebro make targets (for the scriptable day-to-day CLI, see 'cerebro help'):"
 	@echo "  make install        one-time setup: 'cerebro' CLI + git/Taskwarrior hooks"
 	@echo "  make bootstrap-check report which prerequisites are present"
+	@echo "  make env            report the pinned environment the editor gets"
 	@echo "  make shell          drop into the pinned, isolated guix environment"
 	@echo "  make export FILE=notes/x.org PROFILE=full   one .org -> one LaTeX/PDF"
 	@echo "      profiles: full statements lecture report manual dispensa slides"
@@ -57,6 +58,12 @@ install-hooks:
 ## Reports which prerequisites are actually present on this machine.
 bootstrap-check:
 	@./bin/bootstrap-check
+
+## Reports the environment the *editor* runs in: profile, channel pin,
+## and which guix.scm Emacs packages the config actually got (the shell
+## twin of `M-x cerebro-guix-status'; see bin/cerebro-env.el).
+env:
+	@./bin/cerebro env
 
 ## Drop into the pinned, isolated environment interactively.
 shell:
@@ -117,6 +124,17 @@ test:
 		-l tests/cerebro-taxonomy-tests.el \
 		-l tests/cerebro-org-tests.el \
 		-l tests/cerebro-results-tests.el \
+		-l tests/cerebro-guix-tests.el \
+		-l tests/cerebro-dashboard-tests.el \
+		-l tests/cerebro-theme-tests.el \
+		-l tests/cerebro-modeline-tests.el \
+		-l tests/cerebro-focus-tests.el \
+		-l tests/cerebro-preview-tests.el \
+		-l tests/cerebro-math-tests.el \
+		-l tests/cerebro-pdf-tests.el \
+		-l tests/cerebro-course-tests.el \
+		-l tests/cerebro-code-tests.el \
+		-l tests/cerebro-graph-view-tests.el \
 		-f ert-run-tests-batch-and-exit
 	@sh tests/run-shell-tests.sh
 

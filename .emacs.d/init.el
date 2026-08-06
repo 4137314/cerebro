@@ -26,9 +26,34 @@
 (require 'cerebro-agenda)  ; agenda views (morning review, issues)
 (require 'cerebro-time)
 (require 'cerebro-issues)
+(require 'cerebro-math)     ; one note per result, in one keystroke
+(require 'cerebro-course)   ; a course is an ordered index into notes/math/
 (require 'cerebro-cli)      ; drive the `cerebro' CLI from Emacs
 (require 'cerebro-crypt)
-(require 'cerebro-appearance)
+(require 'cerebro-guix)     ; the environment, observable from inside Emacs
+(require 'cerebro-theme)    ; colour, typography, frame chrome
+(require 'cerebro-modeline) ; the status line, as segments
+
+;; -- Soft modules ------------------------------------------------------
+;; These configure packages that come from guix.scm (completion, the file
+;; tree, magit, the dashboard, and the presentation layer: org-modern,
+;; olivetti, corfu, pulsar, ...) but pull every one of them through
+;; `cerebro-guix-soft-require': a package that isn't there is recorded as
+;; a datum, never an error. So they are core-loadable like the block
+;; above -- outside the pinned environment they degrade feature by
+;; feature (stock completion, no sidebar, a plain-text dashboard) instead
+;; of failing, and `M-x cerebro-guix-status' lists exactly what is
+;; missing.
+(require 'cerebro-appearance) ; org-modern/org-appear/hl-todo presentation
+(require 'cerebro-preview)  ; LaTeX fragments rendered in the buffer
+(require 'cerebro-focus)    ; the centred reading/writing column (C-c u f)
+(require 'cerebro-code)     ; diagnostics, templates, formatting, breadcrumbs
+(require 'cerebro-graph-view) ; the note graph, drawn (C-c q g)
+(require 'cerebro-pdf)      ; compile a note and read the PDF beside it
+(require 'cerebro-complete) ; vertico/orderless/marginalia/consult + corfu/cape
+(require 'cerebro-ui)       ; file-tree sidebar, window discipline, pulsar/avy
+(require 'cerebro-vc)       ; magit over the notes repo
+(require 'cerebro-dashboard); the start page (also `initial-buffer-choice')
 
 ;; -- Optional modules --------------------------------------------------
 ;; Each of these pulls a guix-only Emacs package (org-roam, org-ql,

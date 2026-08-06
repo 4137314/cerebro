@@ -1,5 +1,30 @@
 #+TITLE: Courses
 
-One subdirectory per course/topic (e.g. =analysis/=, =algebra/=,
-=topology/=). Each note inside is an Org-roam node written in English;
-see .emacs.d/lisp/cerebro-roam.el for capture templates (=C-c n c=).
+One subdirectory per course. A course here owns *no mathematics*: it is
+an ordered index into =notes/math/=.
+
+Each directory holds exactly two files:
+
+- =course.org= -- the syllabus: metadata (=#+COURSE_TITLE:=, =#+TERM:=,
+  =#+MSC:=, ...), the course prose, and a =* Programme= section that
+  lists, in teaching order, =id:= links to notes that already exist.
+  This is the file you write; it is also what the =syllabus= profile
+  exports.
+- =book.org= -- *generated* from that programme (=bin/cerebro-new-book=,
+  or =C-c e b= from inside the course): the programme's sub-headings
+  become the book's chapters, and every link becomes an Org =#+INCLUDE=
+  of the note it points at. Never edit it by hand. It is what the
+  =dispensa= and =manual= profiles export.
+
+The point of the split: you write a book only once the atomic notes
+exist, and the book never contains a second copy of anything. Correct a
+proof in =notes/math/= and every course that teaches it is corrected --
+including the one you taught last year. A note can appear in several
+courses; moving or renaming it breaks nothing, because the programme
+refers to it by =:ID:=.
+
+: bin/cerebro-course notes/courses/analysis-1 "Analysis I"   # scaffold
+: bin/cerebro-new-book notes/courses/analysis-1              # (re)build the book
+
+See =analysis-1/= for a worked example, and
+=.emacs.d/lisp/cerebro-course.el= for the generator.

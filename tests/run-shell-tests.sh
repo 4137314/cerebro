@@ -58,34 +58,38 @@ else
 fi
 rm -rf "$tmp"
 
-# -- cerebro-new-book: scaffolds one #+INCLUDE per note, skips itself --
-tmp=$(mktemp -d)
-mkdir -p "$tmp/course"
-: > "$tmp/course/a.org"
-: > "$tmp/course/b.org"
-: > "$tmp/course/README.org"
-sh "$repo_root/bin/cerebro-new-book" "$tmp/course" "Test Book" >/dev/null
-includes=$(grep -c '^#+INCLUDE:' "$tmp/course/book.org")
-if [ "$includes" = "2" ] && ! grep -q 'README.org' "$tmp/course/book.org"; then
-    ok "cerebro-new-book includes notes but skips README.org/book.org"
+# -- cerebro-new-book: a course book is a *view* of notes/math/ --------
+#    Run against the repo's own course (the generator resolves id: links
+#    through Org, so it needs the real note database). It must be
+#    idempotent -- it regenerates a tracked file, and a generator that
+#    rewrites it differently every run would show up as noise in `git
+#    status' forever.
+if command -v emacs >/dev/null 2>&1; then
+    book="$repo_root/notes/courses/analysis-1/book.org"
+    before=$(cat "$book" 2>/dev/null || true)
+    if sh "$repo_root/bin/cerebro-new-book" notes/courses/analysis-1 >/dev/null 2>&1 \
+       && grep -q '^#+INCLUDE: "\.\./\.\./math/' "$book" \
+       && ! grep -q 'begin_theorem' "$book" \
+       && [ "$before" = "$(cat "$book")" ]; then
+        ok "cerebro-new-book regenerates a course book of #+INCLUDEs, idempotently"
+    else
+        bad "cerebro-new-book regenerates a course book of #+INCLUDEs, idempotently"
+    fi
 else
-    bad "cerebro-new-book includes notes but skips README.org/book.org"
+    echo "skip - cerebro-new-book test (emacs not on PATH)"
 fi
-rm -rf "$tmp"
 
-# -- cerebro-course: scaffolds course.org + book.org; book aggregates
-#    notes but never the syllabus (course.org) ------------------------
+# -- cerebro-course: scaffolds a syllabus with an empty programme, and
+#    generates no book until notes are actually listed ------------------
 tmp=$(mktemp -d)
-( cd "$repo_root" && sh bin/cerebro-course "$tmp/algebra" "Algebra I" >/dev/null )
-: > "$tmp/algebra/01-groups.org"
 ( cd "$repo_root" && sh bin/cerebro-course "$tmp/algebra" "Algebra I" >/dev/null )
 if [ -f "$tmp/algebra/course.org" ] \
    && grep -q '#+COURSE_TITLE: Algebra I' "$tmp/algebra/course.org" \
-   && grep -q '01-groups.org' "$tmp/algebra/book.org" \
-   && ! grep -q 'course.org' "$tmp/algebra/book.org"; then
-    ok "cerebro-course scaffolds course.org + book.org (book skips course.org)"
+   && grep -q '^\* Programme' "$tmp/algebra/course.org" \
+   && [ ! -f "$tmp/algebra/book.org" ]; then
+    ok "cerebro-course scaffolds a syllabus; no book until the programme lists notes"
 else
-    bad "cerebro-course scaffolds course.org + book.org (book skips course.org)"
+    bad "cerebro-course scaffolds a syllabus; no book until the programme lists notes"
 fi
 rm -rf "$tmp"
 
@@ -174,17 +178,20 @@ else
     echo "skip - cerebro-issues next/note test (emacs not on PATH)"
 fi
 
-# -- cerebro-note new: writes a born-classified note (id, :seed:, msc) --
+# -- cerebro-note new: writes a born-classified note (id, :seed:, msc) in
+#    notes/math/ -- the concept-graph directory every way of making a note
+#    now defaults to (cerebro-math-directory; the dir is created if
+#    missing, so a fresh clone needs no setup step) ----------------------
 tmp=$(mktemp -d)
 ( cd "$tmp" && git init -q && mkdir notes \
     && "$repo_root/bin/cerebro-note" new "Test Note" analysis,topology 54D30 >/dev/null )
-f=$(ls "$tmp"/notes/*.org 2>/dev/null | head -1)
+f=$(ls "$tmp"/notes/math/*.org 2>/dev/null | head -1)
 if [ -n "$f" ] && grep -q '^#+TITLE: Test Note' "$f" \
    && grep -q ':seed:analysis:topology:' "$f" \
    && grep -q '^:ID:' "$f" && grep -q '^#+MSC: 54D30' "$f"; then
-    ok "cerebro-note new writes a born-classified note"
+    ok "cerebro-note new writes a born-classified note into notes/math/"
 else
-    bad "cerebro-note new writes a born-classified note"
+    bad "cerebro-note new writes a born-classified note into notes/math/"
 fi
 rm -rf "$tmp"
 

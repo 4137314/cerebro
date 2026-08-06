@@ -1,0 +1,72 @@
+;;; cerebro templates -*- mode: lisp-data -*-
+;;
+;; Templates for `tempel', expanded through the same completion popup as
+;; everything else: type the name and complete it (M-TAB, or just keep
+;; typing -- corfu offers them), then TAB moves between the fields.
+;;
+;; The Org ones are the conventions of this repo made into muscle memory:
+;; `#+NAME:' on the line directly above `#+begin_' (anything in between
+;; detaches it silently), `#+DEPENDS:' above the name, the result-kind
+;; prefixes the results layer reads, and `\(...\)' / `\[...\]' for maths
+;; because a bare `$' is rejected by the linter.
+;;
+;; Data, not code: adding a template is adding a form here.
+
+org-mode
+
+(thm "#+NAME: thm-" p "\n#+begin_theorem\n" p "\n#+end_theorem\n\n#+begin_proof\n" p "\n#+end_proof")
+(def "#+NAME: def-" p "\n#+begin_definition\n" p "\n#+end_definition")
+(lem "#+NAME: lem-" p "\n#+begin_lemma\n" p "\n#+end_lemma\n\n#+begin_proof\n" p "\n#+end_proof")
+(prop "#+NAME: prop-" p "\n#+begin_proposition\n" p "\n#+end_proposition\n\n#+begin_proof\n" p "\n#+end_proof")
+(cor "#+NAME: cor-" p "\n#+begin_corollary\n" p "\n#+end_corollary\n\n#+begin_proof\n" p "\n#+end_proof")
+(ex "#+begin_example\n" p "\n#+end_example")
+(rem "#+begin_remark\n" p "\n#+end_remark")
+(proof "#+begin_proof\n" p "\n#+end_proof")
+(exercise "#+begin_exercise\n" p "\n#+end_exercise\n\n#+begin_hint\n" p "\n#+end_hint\n\n#+begin_solution\n" p "\n#+end_solution")
+
+;; Depends goes ABOVE the name; the name touches the block.
+(dep "#+DEPENDS: " p)
+
+;; Maths. Never `$...$' -- bin/notes-lint.el rejects it.
+(m "\\(" p "\\)")
+(dm "\\[" p "\\]")
+(frac "\\frac{" p "}{" p "}")
+(sum "\\sum_{" p "}^{" p "} " p)
+(int "\\int_{" p "}^{" p "} " p " \\, d" p)
+(lim "\\lim_{" p " \\to " p "} " p)
+(set "\\{ " p " \\mid " p " \\}")
+(norm "\\norm{" p "}")
+(inner "\\inner{" p "}{" p "}")
+(abs "\\abs{" p "}")
+
+;; A note's front matter, for the rare hand-made file (C-c m t writes it
+;; for you otherwise).
+(front ":PROPERTIES:\n:ID:       " (p (org-id-new)) "\n:END:\n#+TITLE: " p
+       "\n#+DATE: " (format-time-string "[%Y-%m-%d %a %H:%M]")
+       "\n#+FILETAGS: :seed:\n#+MSC: " p "\n\n")
+
+(src "#+begin_src " (p "latex") "\n" p "\n#+end_src")
+(fig "#+begin_src latex :file " (p "figure.svg") " :exports results\n"
+     "\\begin{tikzpicture}\n" p "\n\\end{tikzpicture}\n#+end_src")
+(comment "#+begin_comment\n" p "\n#+end_comment")
+
+emacs-lisp-mode
+
+(defun "(defun " p " (" p ")\n  \"" p "\"\n  " p ")")
+(defcustom "(defcustom " p " " p "\n  \"" p "\"\n  :type '" p "\n  :group 'cerebro)")
+(defconst "(defconst " p " " p "\n  \"" p "\")")
+(deftest "(ert-deftest " p " ()\n  \"" p "\"\n  (should " p "))")
+(let "(let ((" p " " p "))\n  " p ")")
+(when-let "(when-let* ((" p " " p "))\n  " p ")")
+(dolist "(dolist (" p " " p ")\n  " p ")")
+
+sh-mode
+
+(usage "usage: " (file-name-nondirectory (or (buffer-file-name) "script")) " " p)
+(strict "set -eu")
+(root "repo_root=$(git rev-parse --show-toplevel)")
+
+fundamental-mode
+
+(today (format-time-string "%Y-%m-%d"))
+(now (format-time-string "[%Y-%m-%d %a %H:%M]"))

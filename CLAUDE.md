@@ -48,6 +48,7 @@ cerebro query <hubs|orphans|by-tag|...>   # org-roam graph (needs guix)
 cerebro lint | stats | doctor
 cerebro time [today|week|month] | time start [tags]|stop | task [args] | sync
 cerebro export FILE PROFILE [TARGET]
+cerebro env                               what the pinned profile gives the editor
 ```
 
 `cerebro issue scan` imports `CEREBRO-ISSUE: <title>` markers from code
@@ -72,6 +73,12 @@ emacs --batch -L .emacs.d/lisp \
   -l tests/cerebro-latex-tests.el -l tests/cerebro-graph-tests.el \
   -l tests/cerebro-msc-tests.el -l tests/cerebro-taxonomy-tests.el \
   -l tests/cerebro-org-tests.el -l tests/cerebro-results-tests.el \
+  -l tests/cerebro-guix-tests.el -l tests/cerebro-dashboard-tests.el \
+  -l tests/cerebro-theme-tests.el -l tests/cerebro-modeline-tests.el \
+  -l tests/cerebro-focus-tests.el -l tests/cerebro-preview-tests.el \
+  -l tests/cerebro-math-tests.el -l tests/cerebro-pdf-tests.el \
+  -l tests/cerebro-course-tests.el -l tests/cerebro-code-tests.el \
+  -l tests/cerebro-graph-view-tests.el \
   -f ert-run-tests-batch-and-exit
 sh tests/run-shell-tests.sh
 
@@ -142,6 +149,16 @@ quietly. The linter now catches most of them.
 - Special block names are **lowercase** (`#+begin_theorem`). Meta-comments
   go in a `#+begin_comment` block, not plain prose. Display equations stay
   on one line starting with `\[`.
+- **A course directory holds only `course.org` and the generated
+  `book.org`.** Never put a lecture note inside it: write the note in
+  `notes/math/` and list it under `* Programme` as an `id:` link. Editing
+  `book.org` by hand is pointless — it is regenerated from the programme.
+- **Outside math, `_` is a literal underscore, not a subscript.** Org is
+  set to `org-use-sub-superscripts '{}` (cerebro-org.el), so only `x_{1}`
+  subscripts — because every formula here is inside `\(...\)`/`\[...\]`
+  (which Org passes through verbatim), while prose is full of tag names
+  and `#+begin_` markers that must stay literal on screen *and* in the
+  PDF. Write subscripts inside the math, braced.
 - See [notes/example.org](notes/example.org) (the exemplar, exercised by
   every export profile) and [notes/TAGS.org](notes/TAGS.org).
 
@@ -149,6 +166,59 @@ quietly. The linter now catches most of them.
 
 - `.emacs.d/init.el` + `.emacs.d/lisp/cerebro-*.el` — the config
   (org/roam/latex/results/query/ql/drill/crypt/time/session/keys, ...).
+- `.emacs.d/lisp/cerebro-guix.el` — the environment made observable from
+  inside Emacs (`C-c G s` / `cerebro env`), and
+  **`cerebro-guix-soft-require`: the one way a module may pull a
+  guix.scm Emacs package**. Use it for anything optional — it records a
+  missing package as a datum instead of breaking the module (invariant 4)
+  and adds it to `cerebro-guix-optional-packages`, the single list the
+  status report, the dashboard census and the startup warning all read.
+- `.emacs.d/lisp/cerebro-{complete,ui,vc,dashboard}.el` — the editing
+  surface built on that: minibuffer + in-buffer completion (vertico/
+  orderless/marginalia/consult, corfu/cape), the dired-sidebar file tree
+  + window rules + jump feedback (pulsar/avy), magit, and the start page.
+  All soft-loaded, so they degrade outside Guix.
+- `.emacs.d/lisp/cerebro-{theme,modeline,appearance,focus,preview}.el` —
+  how it *looks and reads*, each one a table of data plus a few pure
+  functions: the palette/typography (built-in modus themes, fonts as an
+  ordered preference list, one size driving everything, and
+  `cerebro-theme-after-apply-hook` as the seam for anything colour- or
+  size-dependent); a status line built from segments; Org presentation
+  (org-modern/org-appear/hl-todo); the centred reading mode; and LaTeX
+  fragments rendered *with the notes' own macros*, so a preview that
+  fails is a compile that will fail. Keys under `C-c u`.
+- `.emacs.d/lisp/cerebro-math.el` — making a note *is* one keystroke
+  (`C-c m t` = a theorem, in a file you never named, with an `:ID:`, a
+  `:seed:` tag and a `#+NAME:` the results graph can cite; `C-c m e`
+  extracts a selected statement into its own note and leaves a link).
+  New notes go to `notes/math/` (`cerebro-math-directory`) — as do
+  `cerebro note new` and the org-roam captures.
+- `.emacs.d/lisp/cerebro-course.el` — a course owns **no mathematics**:
+  `course.org`'s `* Programme` lists `id:` links to notes in
+  `notes/math/`, and `book.org` is *generated* from it as one
+  `#+INCLUDE` per note (`C-c e b`, `bin/cerebro-new-book`). Write the
+  atomic notes first; a book is a view of them, never a copy.
+- `.emacs.d/lisp/cerebro-pdf.el` — compile the note asynchronously
+  (through the *same* `bin/org-export-latex.el` as `make export`) and
+  read the PDF in a side window that auto-reverts; `C-c e r` compiles
+  only the result at point via the `single` profile. pdf-tools when the
+  environment has it, built-in doc-view otherwise.
+- `.emacs.d/lisp/cerebro-code.el` — the modern editing surface, all of
+  it on built-in mechanisms: flymake diagnostics (elisp byte-compiler,
+  shellcheck, **and a backend running `bin/notes-lint.el` live on the
+  note you are writing**), tempel templates from `.emacs.d/templates`
+  (the `thm`/`def` scaffolds), apheleia format-on-save for code only,
+  indent bars, a breadcrumb header line, tree-sitter where a grammar
+  exists. `cerebro-code-interactive-buffer-p` is the guard that keeps
+  every one of those *out* of the notes the agenda/dashboard open in the
+  background.
+- `.emacs.d/lisp/cerebro-graph-view.el` — the note graph drawn offline:
+  SQLite → DOT → graphviz → SVG → an Emacs image (`C-c q g`, `C-c q G`).
+  Not org-roam-ui: Emacs 30.2 needs WebKitGTK < 2.41.92 for xwidgets and
+  Guix ships 2.50.3, so an xwidgets Emacs cannot be built at this pin
+  (verified — it fails at configure).
+- `bin/cerebro-course-export` — every document of a course from
+  `course.org` (7 profiles), each named per output in `out/`, plus a zip.
 - `latex/cerebro*.cls`, `cerebro-macros.sty`, `cerebro-theorems.sty` —
   the parametric class family + shared notation + shared theorem suite.
 - `.emacs.d/lisp/cerebro-latex.el` — the profile → (content × doctype)

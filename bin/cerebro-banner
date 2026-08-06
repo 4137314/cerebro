@@ -1,0 +1,93 @@
+#!/bin/sh
+# cerebro-banner -- (re)draw the start page's banner: .emacs.d/banner.png
+#
+# The image is committed, so this script is not needed to *use* cerebro --
+# it is here so the banner is not a mystery binary in the tree: it is
+# drawn from these thirty lines with ImageMagick, offline, and you can
+# change the palette or the geometry and re-run it.
+#
+# A ringed planet, lit from the upper left, in the same pastel range as
+# the editor's theme, on a transparent background so it sits on a dark or
+# a light buffer equally. Drawn in the order things are actually in front
+# of each other: stars, the halo, the half of the rings that passes
+# BEHIND, the planet, the half that passes in FRONT, a moon.
+#
+# Usage: bin/cerebro-banner [OUTPUT.png]   (needs ImageMagick, not pinned:
+#        this is a design-time tool, not part of the environment)
+set -eu
+
+out=${1:-"$(git rev-parse --show-toplevel)/.emacs.d/banner.png"}
+command -v magick >/dev/null 2>&1 || {
+    echo "cerebro-banner: needs ImageMagick (magick) -- the committed banner.png is still there" >&2
+    exit 2
+}
+
+W=900; H=520; CX=450; CY=262; R=148
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
+
+# -- the planet: an off-centre radial gradient, cut to a disc -----------
+magick -size 700x700 radial-gradient:'#f2e6ff'-'#241c3d' -crop 296x296+120+120 +repage "$tmp/grad.png"
+magick -size 296x296 xc:none -fill white -draw "circle 148,148 148,0" "$tmp/mask.png"
+magick "$tmp/grad.png" "$tmp/mask.png" -alpha off -compose CopyOpacity -composite "$tmp/planet.png"
+
+# Bands on their own layer, blurred before they are laid on: hard ellipse
+# edges read as painted stripes rather than as a planet.
+magick -size 296x296 xc:none \
+  -fill '#1b143066' -draw "ellipse 148,196 150,24 0,360" \
+  -fill '#1b143044' -draw "ellipse 148,104 145,12 0,360" \
+  -fill '#f7d9b033' -draw "ellipse 148,142 140,7 0,360" \
+  -fill '#1b143033' -draw "ellipse 148,246 118,16 0,360" \
+  -blur 0x7 "$tmp/bands.png"
+magick "$tmp/planet.png" "$tmp/bands.png" -compose over -composite "$tmp/planet-b.png"
+
+# The terminator: a soft shadow towards the lower right, which is what
+# makes a flat disc read as a sphere.
+magick -size 296x296 xc:none -fill '#0d0a1a99' -draw "circle 216,220 216,66" -blur 0x34 "$tmp/term.png"
+magick "$tmp/planet-b.png" "$tmp/term.png" -compose over -composite \
+       "$tmp/mask.png" -alpha off -compose CopyOpacity -composite "$tmp/planet-f.png"
+
+# -- atmosphere --------------------------------------------------------
+magick -size ${W}x${H} xc:none -fill none -stroke '#a8d8e8' -strokewidth 10 \
+  -draw "circle $CX,$CY $((CX+R+3)),$CY" -blur 0x10 \
+  -channel A -evaluate multiply 0.45 +channel "$tmp/halo.png"
+
+# -- rings: three bands, with a gap ------------------------------------
+ring() { magick -size ${W}x${H} xc:none -fill none -stroke "$2" -strokewidth "$3" \
+           -draw "ellipse $CX,$CY $1,$(( $1 * 26 / 100 )) 0,360" "$4"; }
+ring 268 '#f7c9a0e0' 13 "$tmp/r1.png"
+ring 300 '#e9bfe0b0' 7  "$tmp/r2.png"
+ring 330 '#a8d8e890' 4  "$tmp/r3.png"
+magick "$tmp/r1.png" "$tmp/r2.png" -composite "$tmp/r3.png" -composite "$tmp/rings.png"
+magick "$tmp/rings.png" -crop ${W}x$((CY-6))+0+0 +repage "$tmp/ring-back.png"
+magick "$tmp/rings.png" -crop ${W}x$((H-CY))+0+$CY +repage "$tmp/ring-front.png"
+
+# -- stars: four pastel tints, three sizes. None is pure white: a white
+#    star is invisible on the light theme. ------------------------------
+magick -size ${W}x${H} xc:none \
+  -fill '#cfc9e6ee' -draw "circle 118,74 119,74" -draw "circle 742,96 743,96" \
+     -draw "circle 296,436 297,436" -draw "circle 654,404 655,404" -draw "circle 62,286 63,286" \
+     -draw "circle 858,246 859,246" -draw "circle 430,58 431,58" \
+  -fill '#cbb6f2cc' -draw "circle 186,158 188,158" -draw "circle 806,142 808,142" \
+     -draw "circle 148,392 150,392" -draw "circle 700,470 702,470" -draw "circle 360,486 362,486" \
+  -fill '#f7c9a0bb' -draw "circle 84,180 85,180" -draw "circle 566,472 567,472" \
+     -draw "circle 872,382 873,382" -draw "circle 246,52 247,52" -draw "circle 512,32 513,32" \
+  -fill '#a8d8e8aa' -draw "circle 40,110 41,110" -draw "circle 776,336 777,336" \
+     -draw "circle 214,338 215,338" -draw "circle 620,150 621,150" \
+  "$tmp/stars.png"
+
+# -- a moon ------------------------------------------------------------
+magick -size 200x200 radial-gradient:'#fdf0e0'-'#5a4a6a' -crop 46x46+70+70 +repage "$tmp/mg.png"
+magick -size 46x46 xc:none -fill white -draw "circle 23,23 23,0" "$tmp/mm.png"
+magick "$tmp/mg.png" "$tmp/mm.png" -alpha off -compose CopyOpacity -composite "$tmp/moon.png"
+
+magick -size ${W}x${H} xc:none \
+  "$tmp/stars.png" -composite \
+  "$tmp/halo.png" -composite \
+  "$tmp/ring-back.png" -geometry +0+0 -composite \
+  "$tmp/planet-f.png" -geometry +$((CX-148))+$((CY-148)) -composite \
+  "$tmp/ring-front.png" -geometry +0+$CY -composite \
+  "$tmp/moon.png" -geometry +742+108 -composite \
+  "$out"
+
+echo "wrote ${out}"

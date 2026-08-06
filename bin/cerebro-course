@@ -1,13 +1,19 @@
 #!/bin/sh
 # Scaffold a course as *data*: one definition, many outputs.
 #
+# A course owns NO mathematics of its own. It is an index into
+# notes/math/: course.org's `* Programme' section lists, in teaching
+# order, id: links to notes that already exist, and book.org is generated
+# from that list as one #+INCLUDE per note -- nothing is copied, so a
+# note edited once is corrected everywhere it is taught.
+#
 # Creates (idempotently) two files in DIR:
-#   course.org  -- metadata + syllabus content. The source for the
-#                  `syllabus' profile, and the single place the course's
-#                  title/term/level/prereqs/textbook/MSC live.
-#   book.org    -- aggregates the course's note files via #+INCLUDE (from
-#                  bin/cerebro-new-book). The source for the `dispensa'
-#                  and `manual' profiles.
+#   course.org  -- metadata, syllabus prose, and the programme. The
+#                  source for the `syllabus' profile, and the single
+#                  place the course's title/term/level/prereqs/MSC live.
+#   book.org    -- GENERATED from the programme (bin/cerebro-new-book).
+#                  The source for the `dispensa' and `manual' profiles.
+#                  Never edit it by hand.
 #
 # From those, the parametric export pipeline (.emacs.d/lisp/cerebro-latex.el)
 # gives you the whole family of course documents off the same notes:
@@ -51,13 +57,23 @@ blocks are excluded from every export -- replace with real prose.)
 By the end of the course, a student can:
 -
 
-* Schedule
+* Programme
 #+begin_comment
-Ordered topics. As you write the underlying notes, link them by id: so
-the syllabus stays connected to the actual content, and the graph
-queries (make query) see the course too.
+The course, as an ordered index into notes/math/ -- this section IS the
+manifest book.org is generated from (bin/cerebro-new-book).
+
+Write the atomic notes first (C-c m t / C-c m d), then list them here in
+teaching order, linked by id: (C-c n i inserts one). Sub-headings become
+the book's chapters; every link becomes an #+INCLUDE of that note, so
+nothing is ever copied and editing the note updates every course that
+teaches it.
+
+  ** Continuity
+  - [[id:...][Limits and continuity]]
+  ** Inner product spaces
+  - [[id:...][Inner product space]]
+  - [[id:...][Cauchy--Schwarz inequality]]
 #+end_comment
-1.
 
 * Assessment
 -
@@ -71,21 +87,33 @@ EOF
     echo "wrote $course"
 fi
 
-# Aggregate the course's notes into book.org (dispensa/manual source).
-# Safe to re-run: it regenerates the #+INCLUDE list, skipping course.org.
-"$repo_root/bin/cerebro-new-book" "$dir" "$title"
+# Generate book.org from the programme (dispensa/manual source). A fresh
+# course has an empty programme and therefore no book yet -- that is the
+# point of the model, so do not fail on it.
+if "$repo_root/bin/cerebro-new-book" "$dir" 2>/dev/null; then
+    :
+else
+    echo "no notes listed under '* Programme' yet -- write the notes first,"
+    echo "list them there, then run: bin/cerebro-new-book $dir"
+fi
 
 cat <<EOF
 
-Course scaffolded in $dir. One definition, many outputs:
+Course scaffolded in $dir. Next: write the notes, then list them.
+
+  1. atomic notes in notes/math/    C-c m t (theorem), C-c m d (definition)
+  2. list them under '* Programme' in $course  (C-c n i inserts an id: link)
+  3. regenerate the book            bin/cerebro-new-book $dir   (or C-c e b)
+
+Then, from the same two files:
   make export FILE=$course PROFILE=syllabus
   make export FILE=$dir/book.org PROFILE=dispensa
   make export FILE=$dir/book.org PROFILE=manual
-  # per-lecture note:
-  make export FILE=$dir/<note>.org PROFILE=lecture
-  make export FILE=$dir/<note>.org PROFILE=slides
-  make export FILE=$dir/<note>.org PROFILE=handout
+  # any single note, straight from notes/math/:
+  make export FILE=notes/math/<note>.org PROFILE=lecture
+  make export FILE=notes/math/<note>.org PROFILE=slides
+  make export FILE=notes/math/<note>.org PROFILE=handout
   # problem sheet from a note carrying #+begin_exercise blocks:
-  make export FILE=$dir/<note>.org PROFILE=exercises   # with solutions
-  make export FILE=$dir/<note>.org PROFILE=problems    # without
+  make export FILE=notes/math/<note>.org PROFILE=exercises   # with solutions
+  make export FILE=notes/math/<note>.org PROFILE=problems    # without
 EOF

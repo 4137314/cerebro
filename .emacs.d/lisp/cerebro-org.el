@@ -13,6 +13,22 @@
 
 (setq org-directory (expand-file-name "notes" cerebro-root))
 
+(defconst cerebro-math-directory (expand-file-name "math" org-directory)
+  "Where mathematical notes live: notes/math/.
+
+The notes tree has one directory per *kind* of writing, because they have
+different lifecycles: `math/' is the permanent concept graph (a note per
+definition, theorem, construction -- the thing this repo exists for),
+`courses/' is material organised by a course that ends, `daily/' is the
+journal. Only this one is a default anywhere: it is where a new note goes
+unless you say otherwise (`C-c m ...', `cerebro note new', the org-roam
+capture templates -- and bin/cerebro-note mirrors this path, deliberately
+duplicated there so the shell tools need no Emacs).
+
+Nothing *requires* a note to be here: `cerebro-note-files' walks the whole
+tree, so the graph, the agenda, the linter and every query keep seeing a
+note wherever it sits.")
+
 (defun cerebro-note-directories (&optional dir)
   "DIR (default `org-directory') plus every subdirectory under it.
 `org-agenda-files' expands a *directory* entry only to the .org files
@@ -68,6 +84,20 @@ the agenda's directory entries above."
 (setq org-log-done 'time)
 (setq org-startup-indented t)
 (setq org-hide-emphasis-markers t)
+
+;; A bare `_' is *not* a subscript here -- only a braced one (`x_{1}') is.
+;; Every formula in these notes lives inside a `\(...\)' or `\[...\]'
+;; fragment, which Org hands to LaTeX untouched, so an underscore in the
+;; surrounding prose is never notation: it is a tag (`open_problem'), a
+;; file name, or -- constantly, in a repo that documents its own
+;; conventions -- a block name. Left at Org's default, the sentence "use a
+;; #+begin_comment block" both *renders* and *exports* as "#+begin" with a
+;; subscripted "comment" (seen on screen, in this repo's own exemplar
+;; note). Set here rather than in cerebro-appearance.el because
+;; bin/org-export-latex.el loads this module and not that one: the screen
+;; and the PDF have to make the same choice.
+(setq org-use-sub-superscripts '{}
+      org-export-with-sub-superscripts '{})
 
 ;; -- Durability of the archive ----------------------------------------
 ;; A second brain meant to outlive many file reorganizations must not
@@ -148,6 +178,27 @@ the agenda's directory entries above."
 
 ;; The agenda custom commands (morning review, issues view) live in their
 ;; own module, cerebro-agenda.el -- kept out of this base-setup file.
+
+(defun cerebro-interactive-note-buffer-p ()
+  "Non-nil when this buffer is a note a *person* is looking at.
+
+The agenda, the start page and org-roam open notes in the background to
+read them -- dozens at a time, killed again a moment later. Anything in
+`org-mode-hook' that starts a process, a timer or an overlay therefore
+runs dozens of times for nothing, in buffers that may be dead before it
+answers. That is not hypothetical: live previews, live linting and
+`org-appear' between them produced a \"Cache must be active\" error in
+the echo area every time the dashboard refreshed its agenda section,
+because Org disables its element cache while it prepares those buffers.
+
+Org binds `org-agenda-inhibit-startup' during exactly that preparation,
+which is the signal used here. Defined in this module, rather than in
+one of the presentation modules, because three of them need it and none
+of them should require another."
+  (and (buffer-file-name)
+       (not noninteractive)
+       (not (bound-and-true-p org-agenda-inhibit-startup))
+       (not (string-prefix-p " " (buffer-name)))))
 
 (defun cerebro-report (title rows format-row &optional buffer-name)
   "Show ROWS (already sorted/filtered) in a simple read-only report

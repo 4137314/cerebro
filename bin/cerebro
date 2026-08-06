@@ -57,6 +57,7 @@ cerebro -- command-line workflow for the second brain
   cerebro course DIR [TITLE]             scaffold a course
   cerebro garden                         publish the evergreen HTML garden
   cerebro doctor                         report which prerequisites are present
+  cerebro env                            report the pinned environment the editor gets
   cerebro help                           this message
 EOF
 }
@@ -89,6 +90,10 @@ case "$cmd" in
   today)   exec emacs --batch -l "$here/cerebro-today.el" -- m ;;
   agenda)  exec emacs --batch -l "$here/cerebro-today.el" -- "${1:-m}" ;;
   doctor)  exec "$here/bootstrap-check" ;;
+  # Through guix-run on purpose: the interesting answer is what the
+  # *pinned* profile provides to the editor, which a bare `emacs --batch`
+  # on the host PATH could not report (see bin/cerebro-env.el).
+  env)     exec "$here/guix-run" emacs --batch -l "$here/cerebro-env.el" ;;
 
   # -- operations that genuinely need the pinned environment --
   query)   exec "$here/cerebro-query" "$@" ;;

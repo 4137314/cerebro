@@ -84,8 +84,13 @@ special-cased: see `cerebro-latex--extract-single'.")
   ;; (the standard AMS article class, submission-ready -- its own options
   ;; only, plus \subjclass/\keywords injected from #+MSC:/#+KEYWORDS:).
   '((article  . (:class "cerebro"         :class-options "article"  :family cerebro))
-    (report   . (:class "cerebro"         :class-options "report"   :family cerebro))
-    (manual   . (:class "cerebro"         :class-options "book"     :family cerebro))
+    ;; report/manual load scrreprt/scrbook, which have \chapter -- so
+    ;; they use the chaptered sectioning map below. A course book is the
+    ;; case that made this visible: its top level is a *chapter* of the
+    ;; programme, and mapping it to \section numbered every result
+    ;; "0.1.1" (sections before a chapter that never comes).
+    (report   . (:class "cerebro-chaptered" :class-options "report" :family cerebro))
+    (manual   . (:class "cerebro-chaptered" :class-options "book"   :family cerebro))
     (syllabus . (:class "cerebro"         :class-options "syllabus" :family cerebro))
     (beamer   . (:class "cerebro-beamer"  :class-options ""         :family cerebro))
     (handout  . (:class "cerebro-beamer"  :class-options "handout"  :family cerebro))
@@ -257,6 +262,18 @@ is set (amsart doctypes emit the abstract before \\maketitle instead)."
 (add-to-list 'org-latex-classes
              '("cerebro"
                "\\documentclass{cerebro}"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
+
+;; Same class file, chaptered: for the doctypes whose base class
+;; (scrreprt/scrbook) provides \chapter. Org maps outline level N to the
+;; Nth entry, so this is the whole difference -- one datum per doctype in
+;; `cerebro-latex-doctypes' chooses between the two.
+(add-to-list 'org-latex-classes
+             '("cerebro-chaptered"
+               "\\documentclass{cerebro}"
+               ("\\chapter{%s}" . "\\chapter*{%s}")
                ("\\section{%s}" . "\\section*{%s}")
                ("\\subsection{%s}" . "\\subsection*{%s}")
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))

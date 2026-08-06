@@ -14,6 +14,11 @@ set -eu
 
 repo_root=$(git rev-parse --show-toplevel)
 notes_dir="$repo_root/notes"
+# Where a *new* note goes: notes/math/, the concept graph (mirrors
+# `cerebro-math-directory' in .emacs.d/lisp/cerebro-org.el -- duplicated
+# on purpose so these tools need no Emacs). Reading still walks the whole
+# tree: `find' and `list' below use $notes_dir.
+math_dir="$notes_dir/math"
 
 # Files that are not prose notes (mirrors cerebro-note-files in
 # cerebro-org.el): generated aggregators + headingless meta. ERE, since
@@ -41,7 +46,8 @@ case "$cmd" in
     tags=${2:-}
     msc=${3:-}
     ts=$(date +%Y%m%d%H%M%S)
-    file="$notes_dir/${ts}-$(slug "$title").org"
+    mkdir -p "$math_dir"
+    file="$math_dir/${ts}-$(slug "$title").org"
     filetags=":seed:"
     if [ -n "$tags" ]; then
         filetags=":seed:$(printf '%s' "$tags" | tr ',' ':' | sed 's/::*/:/g;s/^://;s/:$//'):"
