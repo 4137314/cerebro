@@ -1,0 +1,59 @@
+:PROPERTIES:
+:ID:       d6f8d660-acf1-44ff-bd97-3b1164e69d7a
+:END:
+#+TITLE: The limit of a function and its sequential characterisation
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A03
+#+HASH: 05b1ee1eae14
+
+The limit of a function is the same idea as the limit of a sequence with
+the index replaced by a continuous variable, and the proposition below
+says so precisely. It is the bridge that lets every theorem about
+sequences be spent on functions.
+
+#+NAME: def-accumulation-point
+#+begin_definition
+Let \(D \subseteq \R\). A point \(c \in \R\) is an /accumulation point/
+of \(D\) if every interval \((c - \delta, c + \delta)\) with
+\(\delta > 0\) contains a point of \(D\) other than \(c\).
+#+end_definition
+
+#+DEPENDS: def-accumulation-point
+#+NAME: def-function-limit
+#+begin_definition
+Let \(f \colon D \to \R\) and let \(c\) be an accumulation point of
+\(D\). One writes \(\lim_{x \to c} f(x) = L\) if for every \(\eps > 0\)
+there is \(\delta > 0\) such that \(\abs{f(x) - L} < \eps\) for every
+\(x \in D\) with \(0 < \abs{x - c} < \delta\).
+#+end_definition
+
+#+DEPENDS: def-function-limit, def-sequence-limit
+#+NAME: prop-sequential-limit
+#+begin_proposition
+Let \(f \colon D \to \R\) and let \(c\) be an accumulation point of
+\(D\). Then \(\lim_{x \to c} f(x) = L\) if and only if
+\(f(x_{n}) \to L\) for every sequence \((x_{n})\) in
+\(D \setminus \set{c}\) with \(x_{n} \to c\).
+#+end_proposition
+
+#+begin_proof
+Suppose the limit is \(L\) and let \(x_{n} \to c\) with
+\(x_{n} \in D \setminus \set{c}\). Given \(\eps > 0\), take \(\delta\)
+from the definition and then \(N\) with \(\abs{x_{n} - c} < \delta\) for
+\(n \ge N\); since \(x_{n} \ne c\), this gives
+\(\abs{f(x_{n}) - L} < \eps\) for \(n \ge N\).
+
+Conversely, suppose the limit is not \(L\). Then some \(\eps > 0\)
+admits no \(\delta\), so for every \(n\) the choice
+\(\delta = 1/n\) produces \(x_{n} \in D\) with
+\(0 < \abs{x_{n} - c} < 1/n\) and \(\abs{f(x_{n}) - L} \ge \eps\). This
+sequence lies in \(D \setminus \set{c}\) and converges to \(c\), while
+\(f(x_{n})\) does not converge to \(L\).
+#+end_proof
+
+#+begin_remark
+The second half is the useful one in practice: to show a limit does /not/
+exist, produce two sequences approaching \(c\) along which \(f\) tends to
+different values.
+#+end_remark

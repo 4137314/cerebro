@@ -1,0 +1,25 @@
+#!/bin/sh
+# cerebro-backup -- run the configured backup targets, or report them.
+#
+# The policy itself lives in .emacs.d/lisp/cerebro-backup.el as data
+# (`cerebro-backup-targets': a name, a shell command, whether it is
+# enabled) so that the editor and this script cannot disagree about what
+# a backup is. Nothing is enabled out of the box -- where a copy of your
+# archive should go is your decision, not this repository's.
+#
+# Usage:
+#   cerebro-backup            run every enabled target
+#   cerebro-backup status     what is configured, and when it last worked
+#   cerebro-backup NAME       run one target (git | mirror | archive | ...)
+#
+# Meant to be cron-able: it needs no display, exits non-zero when a
+# target fails, and appends one line per success to
+# .emacs.d/var/backup-log, which is plain text on purpose -- "when did
+# this last work?" must be answerable on a machine where Emacs no longer
+# starts.
+set -eu
+
+repo_root=$(git rev-parse --show-toplevel)
+cmd=${1:-run}
+
+exec emacs --batch -l "$repo_root/bin/cerebro-backup.el" -- "$cmd"

@@ -1,0 +1,43 @@
+:PROPERTIES:
+:ID:       5481ff0d-b2c8-4368-b2c9-3a0206dead8b
+:END:
+#+TITLE: Uniform continuity and the Heine--Cantor theorem
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A15
+#+HASH: c08c4f15f2f4
+
+Continuity allows \(\delta\) to depend on the point; uniform continuity
+does not. The distinction is invisible on a closed bounded interval --
+that is the theorem below -- and decisive everywhere else: \(1/x\) on
+\((0,1]\) is continuous and not uniformly so.
+
+#+DEPENDS: def-continuity-at-point
+#+NAME: def-uniform-continuity
+#+begin_definition
+A function \(f \colon D \to \R\) is /uniformly continuous/ if for every
+\(\eps > 0\) there is \(\delta > 0\) such that
+\(\abs{f(x) - f(y)} < \eps\) for all \(x, y \in D\) with
+\(\abs{x - y} < \delta\).
+#+end_definition
+
+#+DEPENDS: def-uniform-continuity, thm-bolzano-weierstrass
+#+NAME: thm-heine-cantor
+#+begin_theorem
+A continuous function on a closed bounded interval \([a,b]\) is
+uniformly continuous.
+#+end_theorem
+
+#+begin_proof
+Suppose not. Then there is \(\eps > 0\) such that for every \(n\) the
+choice \(\delta = 1/n\) fails: there are \(x_{n}, y_{n} \in [a,b]\) with
+\(\abs{x_{n} - y_{n}} < 1/n\) and
+\(\abs{f(x_{n}) - f(y_{n})} \ge \eps\). The sequence \((x_{n})\) is
+bounded, so by Bolzano--Weierstrass a subsequence \(x_{n_{k}} \to c\),
+and \(c \in [a,b]\) because the interval is closed. Since
+\(\abs{x_{n_{k}} - y_{n_{k}}} \to 0\), also \(y_{n_{k}} \to c\).
+Continuity at \(c\) gives \(f(x_{n_{k}}) \to f(c)\) and
+\(f(y_{n_{k}}) \to f(c)\), so
+\(\abs{f(x_{n_{k}}) - f(y_{n_{k}})} \to 0\), contradicting that it is at
+least \(\eps\) for every \(k\).
+#+end_proof

@@ -1,12 +1,23 @@
 ;;; cerebro-issues.el --- batch issue lifecycle over issues/issues.org -*- lexical-binding: t; -*-
 
 ;; Usage: emacs --batch -l bin/cerebro-issues.el -- <cmd> [arg]
-;;   list [open|all|done]   list issues (default: open = TODO + DOING)
+;;   list [open|all|done] [tag] [--all-modes]
+;;                          list issues (default: open = TODO + DOING,
+;;                          and only this mode's work -- see below)
 ;;   show   <id|query>      print one issue in full
 ;;   close  <id|query>      set state DONE   (logs a CLOSED timestamp)
 ;;   start  <id|query>      set state DOING
 ;;   reopen <id|query>      set state TODO
 ;;   report                 counts by state and by tag
+;;
+;; `list' and `next' answer "what should I work on", so they answer it for
+;; the mode this session is in (cerebro-mode.el): in `math' an issue
+;; tagged only `:guix:ci:' is not your problem this morning, and in `dev'
+;; a `:research:' one is not. Nothing is lost by it -- an issue tagged for
+;; neither mode belongs to both, only the other mode's *explicit* work is
+;; hidden, the count of what was hidden goes to stderr, and `--all-modes'
+;; turns the filter off. Acting on a named issue (`show', `close', ...)
+;; is never filtered: an id you can name is an id you can close.
 ;;
 ;; The issue tracker is just Org (issues/issues.org, git-committed), so
 ;; every operation here is a plain Org edit done through org-mode itself --
@@ -22,6 +33,7 @@
   (add-to-list 'load-path lisp-dir))
 (require 'cerebro-org)    ; org-todo-keywords, org-log-done, cerebro-root
 (require 'cerebro-issues) ; cerebro-issues-file
+(require 'cerebro-mode)   ; whose work is this issue: math or dev
 
 (defun cerebro-issues-cli--file ()
   "The issue file to operate on: $CEREBRO_ISSUES_FILE when set (so you can
@@ -83,6 +95,27 @@ substring. Returns a list of entry plists."
           (or (plist-get e :title) "")
           (if (plist-get e :tags) (format "  :%s:" (mapconcat #'identity (plist-get e :tags) ":")) "")))
 
+(defvar cerebro-issues-cli-all-modes nil
+  "Non-nil to list every issue, not only the current mode's work.
+Set by the `--all-modes' flag; see the commentary at the top.")
+
+(defun cerebro-issues-cli--this-mode (rows)
+  "ROWS reduced to the current mode's work, unless `--all-modes'.
+Says on stderr how many it hid and how to see them: a filter that is
+silent about what it removed is indistinguishable from an empty backlog.
+`message' rather than `princ' precisely so the listing on stdout stays
+machine-readable (cerebro-cli.el picks issue ids out of these lines)."
+  (if cerebro-issues-cli-all-modes
+      rows
+    (let* ((mode (cerebro-mode-active))
+           (kept (seq-filter (lambda (e) (cerebro-mode-issue-p (plist-get e :tags) mode))
+                             rows))
+           (hidden (- (length rows) (length kept))))
+      (when (> hidden 0)
+        (message "cerebro issue: %d %s issue%s hidden (mode is %s; --all-modes shows them)"
+                 hidden (cerebro-mode-other mode) (if (= hidden 1) "" "s") mode))
+      kept)))
+
 (defun cerebro-issues-cli-list (&optional which tag)
   (let* ((which (or which "open"))
          (all (cerebro-issues-cli--entries))
@@ -92,7 +125,8 @@ substring. Returns a list of entry plists."
                  (_ (seq-filter (lambda (e) (member (plist-get e :todo) '("TODO" "DOING"))) all))))
          (rows (if (and tag (not (string-empty-p tag)))
                    (seq-filter (lambda (e) (member tag (plist-get e :tags))) rows)
-                 rows)))
+                 rows))
+         (rows (cerebro-issues-cli--this-mode rows)))
     (if rows
         (dolist (e rows) (princ (cerebro-issues-cli--fmt e)) (terpri))
       (princ (format "(no %s issues%s)\n" which (if tag (format " tagged %s" tag) ""))))))
@@ -104,8 +138,9 @@ substring. Returns a list of entry plists."
 (defun cerebro-issues-cli-next ()
   "Print the single most urgent open issue: highest priority, DOING
 before TODO, oldest first -- \"what should I work on now\"."
-  (let* ((open (seq-filter (lambda (e) (member (plist-get e :todo) '("TODO" "DOING")))
-                           (cerebro-issues-cli--entries)))
+  (let* ((open (cerebro-issues-cli--this-mode
+                (seq-filter (lambda (e) (member (plist-get e :todo) '("TODO" "DOING")))
+                            (cerebro-issues-cli--entries))))
          (sorted (sort open
                        (lambda (a b)
                          (let ((ra (cerebro-issues-cli--prio-rank a))
@@ -164,6 +199,11 @@ issue keeps a committed work log."
            (princ (format "  %-15s %d\n" (car p) (cdr p)))))))
 
 (let* ((args (delete "--" (copy-sequence command-line-args-left)))
+       ;; Stripped before the positional arguments are read, so the flag
+       ;; can go anywhere on the line -- `list --all-modes' and `list open
+       ;; latex --all-modes' both work, and neither is mistaken for a tag.
+       (cerebro-issues-cli-all-modes (and (member "--all-modes" args) t))
+       (args (delete "--all-modes" args))
        (cmd (or (car args) "list"))
        (arg (cadr args)))
   (condition-case err

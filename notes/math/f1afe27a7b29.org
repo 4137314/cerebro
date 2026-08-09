@@ -1,0 +1,103 @@
+:PROPERTIES:
+:ID:       844044ec-e5a0-41e4-9a47-639bb67e36b2
+:END:
+#+TITLE: Projective space, affine charts and the dimension formula
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:geometry:algebraic_geometry:
+#+MSC: 51N15, 14A10
+#+HASH: f1afe27a7b29
+
+Two lines in a plane meet in a point, unless they are parallel. The
+exception is not a fact about lines but about the plane: adding one
+point per direction removes it, and the resulting space is the set of
+lines through the origin of a vector space one dimension higher. Every
+statement about intersections then becomes the Grassmann formula.
+
+#+DEPENDS: def-vector-space, def-equivalence-relation, thm-equivalence-partition
+#+NAME: def-projective-space
+#+begin_definition
+Let \(V\) be a vector space over a field \(K\). The /projective space/
+\(\PP(V)\) is the set of one-dimensional subspaces of \(V\);
+equivalently \((V \setminus \set{0})/{\sim}\) where \(v \sim w\) means
+\(w = \lambda v\) for some \(\lambda \ne 0\). One writes
+\(\PP^{n}(K) = \PP(K^{n+1})\), and \([x_{0} : \cdots : x_{n}]\) for the
+class of \((x_{0},\dots,x_{n})\) -- its /homogeneous coordinates/. The
+dimension of \(\PP(V)\) is \(\dim V - 1\).
+#+end_definition
+
+#+DEPENDS: def-projective-space, def-equivalence-relation
+#+NAME: prop-projective-space-is-a-quotient
+#+begin_proposition
+The relation \(v \sim w\) above is an equivalence relation on
+\(V \setminus \set{0}\), and its classes are exactly the sets
+\(L \setminus \set{0}\) for \(L\) a one-dimensional subspace; so the two
+descriptions in the definition agree.
+#+end_proposition
+
+#+begin_proof
+Reflexivity uses \(\lambda = 1\), symmetry \(\lambda^{-1}\), and
+transitivity the product of the two scalars -- all available since
+\(K \setminus \set{0}\) is a group under multiplication. The class of
+\(v \ne 0\) is \(\setst{\lambda v}{\lambda \ne 0} = \Span\set{v} \setminus \set{0}\),
+and every one-dimensional subspace is \(\Span\set{v}\) for such a \(v\).
+#+end_proof
+
+#+DEPENDS: def-projective-space, prop-projective-space-is-a-quotient
+#+NAME: prop-affine-charts
+#+begin_proposition
+For each \(i\) let \(U_{i} = \setst{[x_{0}:\cdots:x_{n}]}{x_{i} \ne 0}\).
+Then the \(U_{i}\) cover \(\PP^{n}(K)\), and
+\[ \varphi_{i} \colon U_{i} \to K^{n}, \qquad [x_{0}:\cdots:x_{n}] \mapsto (x_{0}/x_{i}, \dots, x_{i-1}/x_{i}, x_{i+1}/x_{i}, \dots, x_{n}/x_{i}) \]
+is a well-defined bijection -- the \(i\)-th entry, which is always
+\(1\), being omitted. Moreover \(\PP^{n}(K) \setminus U_{n}\) is a copy
+of \(\PP^{n-1}(K)\).
+#+end_proposition
+
+#+begin_proof
+Every non-zero vector has some non-zero coordinate, so the \(U_{i}\)
+cover. The formula is well defined because replacing \(x\) by
+\(\lambda x\) multiplies numerator and denominator alike. It is
+injective: from the image one recovers the point as
+\([y_{0}:\cdots:1:\cdots:y_{n}]\) with \(1\) in position \(i\), and this
+is a preimage, so it is also surjective. Finally \(x_{n} = 0\) cuts out
+the classes of non-zero vectors of the hyperplane
+\(\setst{x}{x_{n}=0} \iso K^{n}\), which is \(\PP^{n-1}(K)\).
+#+end_proof
+
+#+DEPENDS: def-projective-space, def-span-and-independence
+#+NAME: def-projective-subspace
+#+begin_definition
+A /projective subspace/ of \(\PP(V)\) is \(\PP(W)\) for a linear
+subspace \(W \subseteq V\); its dimension is \(\dim W - 1\). Subspaces
+of dimension \(0, 1, 2\) are /points/, /lines/ and /planes/, and one of
+dimension \(\dim\PP(V) - 1\) is a /hyperplane/.
+#+end_definition
+
+#+DEPENDS: def-projective-subspace, prop-grassmann-formula
+#+NAME: thm-projective-dimension-formula
+#+begin_theorem
+Let \(\PP(U)\) and \(\PP(W)\) be projective subspaces of \(\PP(V)\) with
+\(V\) finite-dimensional. Then
+\[ \dim \PP(U \cap W) = \dim\PP(U) + \dim\PP(W) - \dim\PP(U + W), \]
+with the convention \(\dim\PP(\set{0}) = -1\). In particular, in
+\(\PP^{2}(K)\) any two distinct lines meet in exactly one point.
+#+end_theorem
+
+#+begin_proof
+Subtracting \(1\) from each term, the identity is exactly the Grassmann
+formula \(\dim(U\cap W) = \dim U + \dim W - \dim(U+W)\). For two
+distinct lines in \(\PP^{2}(K)\): they are \(\PP(U)\), \(\PP(W)\) with
+\(\dim U = \dim W = 2\) inside \(\dim V = 3\), and \(U + W\) has
+dimension \(3\), being strictly larger than \(U\); so
+\(\dim(U \cap W) = 2 + 2 - 3 = 1\) and the intersection is a single
+projective point.
+#+end_proof
+
+#+begin_remark
+The parallel case has not been handled separately anywhere above, and
+that is the point of the construction: in the affine chart \(U_{2}\) the
+two lines may fail to meet, and the missing intersection is a point of
+the hyperplane at infinity \(\PP^{1}(K)\), which the formula counts like
+any other. Removing exceptions from statements is what compactifying a
+space is for.
+#+end_remark

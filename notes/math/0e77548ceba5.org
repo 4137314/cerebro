@@ -1,0 +1,95 @@
+:PROPERTIES:
+:ID:       7560e120-7246-45b6-ac7a-998bc9f39136
+:END:
+#+TITLE: Well-ordered sets and transfinite induction
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:foundations:set_theory:
+#+MSC: 03E10, 03E25
+#+HASH: 0e77548ceba5
+
+Induction on \(\N\) works because every non-empty set of natural numbers
+has a least element -- not because the elements are numbers. Isolating
+that property gives a principle of induction available on any set that
+can be well ordered, which by the well-ordering theorem is every set.
+This is what allows a construction to run "along" an arbitrary set
+rather than along a sequence.
+
+#+DEPENDS: def-partial-order, def-poset-bounds
+#+NAME: def-well-order
+#+begin_definition
+A /well order/ on a set \(W\) is a total order in which every non-empty
+subset has a least element. An /initial segment/ of \(W\) is a subset
+\(S\) such that \(y \le x\) and \(x \in S\) imply \(y \in S\); for
+\(x \in W\) the set \(W_{<x} = \setst{y \in W}{y < x}\) is the initial
+segment /determined by/ \(x\).
+#+end_definition
+
+#+DEPENDS: def-well-order
+#+NAME: prop-initial-segments-of-a-well-order
+#+begin_proposition
+Every initial segment \(S \subsetneq W\) of a well-ordered set is
+\(W_{<x}\) for exactly one \(x \in W\).
+#+end_proposition
+
+#+begin_proof
+The complement \(W \setminus S\) is non-empty, so it has a least
+element \(x\). If \(y < x\) then \(y \notin W \setminus S\) by
+minimality, so \(y \in S\); conversely if \(y \in S\) then \(y < x\),
+since \(y \ge x\) would put \(x\) in \(S\) because \(S\) is initial.
+Hence \(S = W_{<x}\). If also \(S = W_{<x'}\) then \(x\) and \(x'\) are
+both the least element of the complement, so they are equal.
+#+end_proof
+
+#+DEPENDS: def-well-order
+#+NAME: thm-transfinite-induction
+#+begin_theorem
+Let \(W\) be well ordered and \(S \subseteq W\) be such that
+\(W_{<x} \subseteq S\) implies \(x \in S\), for every \(x \in W\). Then
+\(S = W\).
+#+end_theorem
+
+#+begin_proof
+Suppose \(W \setminus S\) is non-empty and let \(x\) be its least
+element. Every \(y < x\) then lies in \(S\), that is
+\(W_{<x} \subseteq S\), so \(x \in S\) by hypothesis -- a contradiction.
+#+end_proof
+
+#+begin_remark
+Ordinary induction on \(\N\) is this theorem for the usual order, and
+the familiar two-case form (base case, successor step) is an artefact
+of \(\N\): every non-zero natural number has an immediate predecessor.
+A general well order has limit points, where nothing is inherited from
+"the previous element" because there is none, and the hypothesis above
+is exactly the one that covers both situations at once.
+#+end_remark
+
+#+DEPENDS: def-well-order, thm-zorn, prop-initial-segments-of-a-well-order
+#+NAME: thm-well-ordering
+#+begin_theorem
+Every set admits a well order.
+#+end_theorem
+
+#+begin_proof
+Let \(X\) be a set and let \(P\) be the set of pairs \((A, \le_{A})\)
+with \(A \subseteq X\) and \(\le_{A}\) a well order on \(A\), ordered by
+\((A, \le_{A}) \preceq (B, \le_{B})\) when \(A\) is an initial segment
+of \(B\) and \(\le_{B}\) restricts to \(\le_{A}\) on \(A\). This is a
+partial order, and \(P\) is non-empty since the empty order qualifies.
+
+A chain \(\mathcal{C}\) in \(P\) has an upper bound: let \(U\) be the
+union of the underlying sets, ordered by \(x \le y\) whenever this holds
+in some member of the chain (consistent, because any two members are
+comparable and the smaller is an initial segment of the larger). The
+order is total, and it is a well order: a non-empty \(S \subseteq U\)
+meets some \(A\), and the \(\le_{A}\)-least element of \(S \cap A\) is
+least in \(S\), because any element of \(U\) below it already lies in
+the initial segment \(A\). Each member of the chain is an initial
+segment of \(U\), so \((U, \le)\) is an upper bound.
+
+By Zorn's lemma \(P\) has a maximal element \((M, \le_{M})\). If some
+\(x \in X \setminus M\) existed, extending \(\le_{M}\) to
+\(M \cup \set{x}\) by declaring \(x\) larger than everything in \(M\)
+would again be a well order -- a non-empty subset either meets \(M\), and
+has its least element there, or is \(\set{x}\) -- with \(M\) as an
+initial segment, contradicting maximality. Hence \(M = X\).
+#+end_proof

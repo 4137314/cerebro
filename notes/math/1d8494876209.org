@@ -1,0 +1,97 @@
+:PROPERTIES:
+:ID:       e0e0ff63-6493-4efb-9eab-b96ff4d568ea
+:END:
+#+TITLE: The isomorphism theorems for groups
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:algebra:group_theory:
+#+MSC: 20A05
+#+HASH: 1d8494876209
+
+The canonical factorisation of a map says every function is a quotient
+followed by an injection. A [[id:86b6c9ba-76e4-49d1-b6a5-729af64e963c][homomorphism]] is a map that respects the
+operation, so its factorisation must respect it too -- and the
+equivalence relation involved is the one whose classes are the cosets of
+the kernel. The three theorems below are that observation, plus the two
+standard ways of comparing quotients.
+
+#+DEPENDS: def-group-homomorphism, def-subgroup
+#+NAME: prop-image-is-a-subgroup
+#+begin_proposition
+The image \(\varphi(G)\) of a homomorphism \(\varphi \colon G \to H\) is
+a subgroup of \(H\), and the preimage of a subgroup of \(H\) is a
+subgroup of \(G\), normal if the subgroup is.
+#+end_proposition
+
+#+begin_proof
+The image contains \(\varphi(e) = e\) and satisfies
+\(\varphi(a)\varphi(b)^{-1} = \varphi(ab^{-1})\), so the subgroup
+criterion applies. For \(K \le H\), the preimage contains \(e\) and
+\(a, b \in \varphi^{-1}(K)\) gives
+\(\varphi(ab^{-1}) = \varphi(a)\varphi(b)^{-1} \in K\). If \(K\) is
+normal in \(H\) and \(a \in \varphi^{-1}(K)\), \(g \in G\), then
+\(\varphi(gag^{-1}) = \varphi(g)\varphi(a)\varphi(g)^{-1} \in K\).
+#+end_proof
+
+#+DEPENDS: thm-quotient-group, prop-kernel-is-normal, thm-canonical-factorisation, prop-image-is-a-subgroup
+#+NAME: thm-first-isomorphism-groups
+#+begin_theorem
+Let \(\varphi \colon G \to H\) be a homomorphism. Then
+\(G/\ker\varphi \iso \varphi(G)\), the isomorphism being
+\(a \ker\varphi \mapsto \varphi(a)\).
+#+end_theorem
+
+#+begin_proof
+Put \(N = \ker\varphi\), normal by the earlier proposition, so \(G/N\)
+is a group. The cosets of \(N\) are exactly the fibres of \(\varphi\):
+\(aN = bN\) iff \(a^{-1}b \in N\) iff \(\varphi(a) = \varphi(b)\).
+Hence \(\varphi\) is constant on cosets and the induced map
+\(\bar{\varphi}(aN) = \varphi(a)\) is well defined and injective, by the
+canonical factorisation; it is surjective onto \(\varphi(G)\) by
+construction. It is a homomorphism because
+\(\bar{\varphi}(aN \cdot bN) = \bar{\varphi}(abN) = \varphi(ab) = \varphi(a)\varphi(b)\).
+#+end_proof
+
+#+DEPENDS: thm-first-isomorphism-groups, prop-subgroup-criterion
+#+NAME: thm-second-isomorphism-groups
+#+begin_theorem
+Let \(H \le G\) and \(N \normalin G\). Then \(HN = \setst{hn}{h \in H, n \in N}\)
+is a subgroup of \(G\), \(H \cap N \normalin H\), and
+\(HN/N \iso H/(H \cap N)\).
+#+end_theorem
+
+#+begin_proof
+\(HN\) is a subgroup: for \(h n, h'n' \in HN\),
+\((hn)(h'n')^{-1} = h (n n'^{-1}) h'^{-1} = (h h'^{-1}) \bigl(h' (n n'^{-1}) h'^{-1}\bigr)\),
+and the second factor lies in \(N\) by normality. Also \(N \normalin HN\),
+since \(N\) is normal in all of \(G\).
+
+Let \(\psi \colon H \to HN/N\) be the restriction to \(H\) of the
+projection \(HN \to HN/N\). It is a homomorphism; it is surjective
+because \(hnN = hN = \psi(h)\); and \(\psi(h) = N\) means \(h \in N\),
+so \(\ker\psi = H \cap N\), which is therefore normal in \(H\). The
+first isomorphism theorem gives \(H/(H \cap N) \iso HN/N\).
+#+end_proof
+
+#+DEPENDS: thm-first-isomorphism-groups, thm-quotient-group
+#+NAME: thm-third-isomorphism-groups
+#+begin_theorem
+Let \(N \normalin G\) and \(K \normalin G\) with \(N \subseteq K\). Then
+\(K/N \normalin G/N\) and \((G/N)/(K/N) \iso G/K\).
+#+end_theorem
+
+#+begin_proof
+Define \(\varphi \colon G/N \to G/K\) by \(\varphi(aN) = aK\). It is
+well defined: \(aN = bN\) gives \(a^{-1}b \in N \subseteq K\), hence
+\(aK = bK\). It is a surjective homomorphism, directly from the
+definitions of the two products. Its kernel is
+\(\setst{aN}{a \in K} = K/N\), which is therefore a normal subgroup of
+\(G/N\), and the first isomorphism theorem gives the claim.
+#+end_proof
+
+#+begin_remark
+The third theorem is the statement that quotienting twice is
+quotienting once, so a tower of normal subgroups can be analysed one
+step at a time -- the hypothesis under which "build a group out of
+simpler pieces" is a well-posed programme, and the reason simple groups
+(those with no proper non-trivial normal subgroup) are the atoms of it.
+#+end_remark

@@ -1,0 +1,116 @@
+:PROPERTIES:
+:ID:       950b13df-a19e-4dee-9050-7f4a5e546cd1
+:END:
+#+TITLE: Polynomial rings, division and roots
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:algebra:commutative_algebra:
+#+MSC: 13F20, 12E05
+#+HASH: 6ad59197d502
+
+A polynomial is not a function -- over a finite field two different
+polynomials can induce the same function -- but a formal object, a
+finitely supported sequence of coefficients. Keeping the distinction is
+what makes the degree an invariant, and the degree is what makes
+division with remainder possible; everything else in this note is that
+division, applied.
+
+#+DEPENDS: def-ring
+#+NAME: def-polynomial-ring
+#+begin_definition
+Let \(R\) be a commutative ring. A /polynomial/ over \(R\) is a sequence
+\((a_{0}, a_{1}, \dots)\) in \(R\) with \(a_{i} = 0\) for all but
+finitely many \(i\), written \(\sum_{i} a_{i} x^{i}\). With coefficientwise
+addition and the product \((ab)_{k} = \sum_{i+j=k} a_{i} b_{j}\) these
+form the /polynomial ring/ \(R[x]\). The /degree/ \(\deg f\) of
+\(f \ne 0\) is the largest \(i\) with \(a_{i} \ne 0\), and \(f\) is
+/monic/ if that coefficient is \(1\); the degree of \(0\) is left
+undefined.
+#+end_definition
+
+#+DEPENDS: def-polynomial-ring, def-integral-domain
+#+NAME: prop-degree-over-a-domain
+#+begin_proposition
+If \(R\) is an integral domain and \(f, g \in R[x]\) are non-zero, then
+\(fg \ne 0\) and \(\deg(fg) = \deg f + \deg g\). Consequently \(R[x]\)
+is a domain and its units are the units of \(R\).
+#+end_proposition
+
+#+begin_proof
+Let \(a_{m}, b_{n}\) be the leading coefficients. The coefficient of
+\(x^{m+n}\) in \(fg\) is \(a_{m}b_{n}\), which is non-zero since \(R\)
+is a domain, and every higher coefficient vanishes because each of its
+terms has a factor of index above the degree. Hence \(fg \ne 0\) with
+the stated degree. If \(fg = 1\) then \(\deg f + \deg g = 0\), so both
+are constants, and they are inverse units of \(R\).
+#+end_proof
+
+#+DEPENDS: def-polynomial-ring
+#+NAME: thm-polynomial-division
+#+begin_theorem
+Let \(R\) be commutative, \(g \in R[x]\) monic of degree \(n \ge 0\).
+For every \(f \in R[x]\) there are unique \(q, r \in R[x]\) with
+\(f = qg + r\) and either \(r = 0\) or \(\deg r < n\).
+#+end_theorem
+
+#+begin_proof
+Existence, by induction on \(\deg f\) (the case \(f = 0\) or
+\(\deg f < n\) being \(q = 0\), \(r = f\)). If \(\deg f = m \ge n\)
+with leading coefficient \(a\), then \(f - a x^{m-n} g\) has degree less
+than \(m\), because \(g\) is monic and the two leading terms cancel; by
+induction it is \(q_{1}g + r\), so \(f = (a x^{m-n} + q_{1})g + r\).
+
+Uniqueness: if \(q g + r = q'g + r'\) then \((q - q')g = r' - r\). Were
+\(q \ne q'\), the left side would have degree at least \(n\) -- \(g\) is
+monic, so multiplying by \(g\) adds exactly \(n\) to the degree, no
+cancellation of the leading term being possible -- while the right side
+has degree less than \(n\) or is \(0\). So \(q = q'\) and then
+\(r = r'\).
+#+end_proof
+
+#+begin_remark
+Monic, not merely non-zero: over a general commutative ring one cannot
+divide by the leading coefficient. Over a field every non-zero \(g\) is
+a unit multiple of a monic one, so the theorem holds there for all
+\(g \ne 0\) -- which is the form used to prove that \(K[x]\) is a
+principal ideal domain.
+#+end_remark
+
+#+DEPENDS: thm-polynomial-division
+#+NAME: cor-root-factor-theorem
+#+begin_corollary
+Let \(R\) be commutative and \(f \in R[x]\). Then \(a \in R\) is a root
+of \(f\), that is \(f(a) = 0\), if and only if \(x - a\) divides \(f\)
+in \(R[x]\).
+#+end_corollary
+
+#+begin_proof
+Divide by the monic \(x - a\): \(f = q \cdot (x-a) + r\) with \(r\)
+constant. Evaluating at \(a\) -- a ring homomorphism \(R[x] \to R\),
+since \(R\) is commutative -- gives \(f(a) = r\). So \(f(a) = 0\)
+exactly when \(r = 0\).
+#+end_proof
+
+#+DEPENDS: cor-root-factor-theorem, prop-degree-over-a-domain
+#+NAME: cor-number-of-roots
+#+begin_corollary
+A non-zero polynomial of degree \(n\) over an integral domain has at
+most \(n\) roots in that domain.
+#+end_corollary
+
+#+begin_proof
+Induct on \(n\). A non-zero constant has no roots. If \(\deg f = n \ge 1\)
+and \(f\) has a root \(a\), write \(f = (x-a)q\) with
+\(\deg q = n - 1\). Any root \(b \ne a\) satisfies
+\((b-a)q(b) = 0\) with \(b - a \ne 0\), so \(q(b) = 0\) because the ring
+is a domain; by induction there are at most \(n-1\) such \(b\), giving
+at most \(n\) roots in all.
+#+end_proof
+
+#+begin_remark
+The hypothesis is not decorative: over a ring with zero divisors it
+fails outright, and the failure is what the corollary is really about.
+Read positively, it is the statement that a polynomial identity of
+degree \(n\) can be checked on \(n+1\) points -- the principle behind
+interpolation and behind every "two polynomials that agree often are
+equal" argument.
+#+end_remark

@@ -1,0 +1,129 @@
+:PROPERTIES:
+:ID:       94026fa9-c00a-4e36-845c-cadacd4d94ee
+:END:
+#+TITLE: Euclidean domains, principal ideals and unique factorisation
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:algebra:commutative_algebra:
+#+MSC: 13F07, 13G05
+#+HASH: 6081a520abfc
+
+Unique factorisation in \(\Z\) is usually proved from Euclid's lemma,
+and Euclid's lemma from the division algorithm. Each of those steps is a
+separate property of the ring, and separating them shows what the
+theorem costs: division gives principal ideals, principal ideals make
+irreducible elements prime, and primality gives uniqueness. The same
+chain applies verbatim to polynomials over a field.
+
+#+DEPENDS: def-integral-domain, def-ideal
+#+NAME: def-euclidean-domain
+#+begin_definition
+An integral domain \(R\) is a /Euclidean domain/ if there is a function
+\(\delta\) from \(R \setminus \set{0}\) to \(\N\) such that for all
+\(a, b \in R\) with \(b \ne 0\) there are \(q, r\) with \(a = qb + r\)
+and either \(r = 0\) or \(\delta(r) < \delta(b)\). It is a /principal
+ideal domain/ (PID) if every ideal is principal.
+#+end_definition
+
+#+DEPENDS: def-euclidean-domain
+#+NAME: thm-euclidean-is-a-pid
+#+begin_theorem
+Every Euclidean domain is a principal ideal domain. In particular
+\(\Z\) is one, and so is \(K[x]\) for a field \(K\).
+#+end_theorem
+
+#+begin_proof
+Let \(I \ne \set{0}\) be an ideal and choose \(b \in I \setminus \set{0}\)
+with \(\delta(b)\) least. For \(a \in I\) write \(a = qb + r\); then
+\(r = a - qb \in I\), and \(r \ne 0\) would contradict minimality since
+\(\delta(r) < \delta(b)\). So \(a \in (b)\) and \(I = (b)\); the zero
+ideal is \((0)\). For \(\Z\) take \(\delta(n) = \abs{n}\), and for
+\(K[x]\) take \(\delta = \deg\), the division theorem applying to every
+non-zero divisor because a field allows scaling to a monic polynomial.
+#+end_proof
+
+#+DEPENDS: def-integral-domain, def-prime-and-maximal
+#+NAME: def-irreducible-and-prime
+#+begin_definition
+Let \(R\) be a domain and \(p\) a non-zero non-unit. Then \(p\) is
+/irreducible/ if \(p = ab\) forces \(a\) or \(b\) to be a unit, and
+/prime/ if \(p \mid ab\) implies \(p \mid a\) or \(p \mid b\) --
+equivalently, if the ideal \((p)\) is prime.
+#+end_definition
+
+#+DEPENDS: def-irreducible-and-prime
+#+NAME: prop-prime-implies-irreducible
+#+begin_proposition
+In an integral domain every prime element is irreducible.
+#+end_proposition
+
+#+begin_proof
+Let \(p\) be prime and \(p = ab\). Then \(p \mid ab\), so \(p\) divides
+one factor, say \(a = pc\). Then \(p = pcb\), and cancelling \(p\) in
+the domain gives \(1 = cb\), so \(b\) is a unit.
+#+end_proof
+
+#+DEPENDS: def-irreducible-and-prime, def-euclidean-domain, thm-maximal-iff-quotient-is-a-field, cor-maximal-implies-prime
+#+NAME: prop-irreducible-is-prime-in-a-pid
+#+begin_proposition
+In a principal ideal domain every irreducible element is prime.
+#+end_proposition
+
+#+begin_proof
+Let \(p\) be irreducible; \((p)\) is proper because \(p\) is not a unit.
+If \((p) \subseteq J = (c) \subseteq R\), then \(p = cd\), so by
+irreducibility either \(c\) is a unit, giving \(J = R\), or \(d\) is a
+unit, giving \(J = (p)\). Hence \((p)\) is maximal, therefore prime, and
+\(p\) is a prime element.
+#+end_proof
+
+#+DEPENDS: def-euclidean-domain, def-ideal
+#+NAME: lem-pid-has-no-infinite-ascending-chain
+#+begin_lemma
+In a principal ideal domain there is no strictly increasing infinite
+chain of ideals \(I_{1} \subsetneq I_{2} \subsetneq \cdots\).
+#+end_lemma
+
+#+begin_proof
+Let \(U = \bigcup_{n} I_{n}\). It is an ideal: two of its elements lie
+in a common \(I_{n}\), so their difference does, and absorption is
+inherited. Being a PID, \(U = (c)\) for some \(c\), and \(c\) lies in
+some \(I_{N}\); then \(U = (c) \subseteq I_{N} \subseteq U\), so the
+chain is constant from \(N\) on.
+#+end_proof
+
+#+DEPENDS: lem-pid-has-no-infinite-ascending-chain, prop-irreducible-is-prime-in-a-pid, prop-prime-implies-irreducible
+#+NAME: thm-pid-is-a-ufd
+#+begin_theorem
+In a principal ideal domain every non-zero non-unit is a product of
+irreducible elements, and the factorisation is unique up to the order of
+the factors and multiplication by units.
+#+end_theorem
+
+#+begin_proof
+*Existence.* Suppose some non-zero non-unit \(a\) admits no such
+factorisation. Then \(a\) is not irreducible, so \(a = a_{1}b_{1}\) with
+both factors non-units, and at least one of them -- call it \(a_{1}\) --
+again admits no factorisation. Since \(b_{1}\) is not a unit,
+\((a) \subsetneq (a_{1})\). Iterating produces a strictly increasing
+chain \((a) \subsetneq (a_{1}) \subsetneq (a_{2}) \subsetneq \cdots\),
+contradicting the lemma.
+
+*Uniqueness.* Let \(p_{1}\cdots p_{m} = q_{1} \cdots q_{n}\) with all
+factors irreducible, and induct on \(m\). Then \(p_{1}\) is prime and
+divides the right-hand product, so it divides some \(q_{j}\); after
+reordering, \(q_{1} = up_{1}\), and \(u\) is a unit because \(q_{1}\) is
+irreducible and \(p_{1}\) is not a unit. Cancelling \(p_{1}\) leaves
+\(p_{2}\cdots p_{m} = (u q_{2}) q_{3} \cdots q_{n}\), where \(uq_{2}\)
+is again irreducible. By induction \(m - 1 = n - 1\) and the remaining
+factors match up to order and units.
+#+end_proof
+
+#+begin_remark
+Each implication in the chain is strict. There are principal ideal
+domains that are not Euclidean, and unique factorisation domains that
+are not principal -- \(\Z[x]\) is one, since the ideal generated by
+\(2\) and \(x\) is not principal. So the theorem is a sufficient
+condition, and the reason \(\Z\) and \(K[x]\) behave alike is that both
+sit at the top of the chain rather than that unique factorisation is
+common.
+#+end_remark

@@ -1,0 +1,63 @@
+:PROPERTIES:
+:ID:       eb17807e-bad5-473d-a2ec-a48309679afd
+:END:
+#+TITLE: Series and convergence of the partial sums
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 40A05
+#+HASH: 8c7cf1c9fc06
+
+A series is not a new object: it is a sequence, the sequence of its
+partial sums, and every statement about series is a statement about that
+sequence. Keeping this in view is what makes the convergence tests
+proofs rather than recipes.
+
+#+DEPENDS: def-sequence-limit
+#+NAME: def-series-convergence
+#+begin_definition
+Given a sequence \((a_{n})_{n \ge 1}\) of real numbers, its /partial
+sums/ are \(s_{N} = \sum_{n=1}^{N} a_{n}\). The /series/
+\(\sum_{n \ge 1} a_{n}\) /converges/ to \(s \in \R\) if
+\(s_{N} \to s\), and /diverges/ otherwise.
+#+end_definition
+
+#+DEPENDS: def-series-convergence
+#+NAME: prop-term-test
+#+begin_proposition
+If \(\sum_{n \ge 1} a_{n}\) converges, then \(a_{n} \to 0\).
+#+end_proposition
+
+#+begin_proof
+Let \(s_{N} \to s\). Then \(a_{N} = s_{N} - s_{N-1} \to s - s = 0\).
+#+end_proof
+
+#+begin_remark
+The converse fails, and failing to notice this is the standard first
+error: the harmonic series \(\sum 1/n\) has terms tending to \(0\) and
+diverges, since \(s_{2^{k}} \ge 1 + k/2\).
+#+end_remark
+
+#+DEPENDS: def-series-convergence, prop-term-test
+#+NAME: thm-geometric-series
+#+begin_theorem
+Let \(x \in \R\). The series \(\sum_{n \ge 0} x^{n}\) converges if and
+only if \(\abs{x} < 1\), and then
+\[ \sum_{n = 0}^{\infty} x^{n} = \frac{1}{1 - x}. \]
+#+end_theorem
+
+#+begin_proof
+For \(x \ne 1\) the partial sums satisfy
+\((1 - x) s_{N} = 1 - x^{N+1}\), hence
+\(s_{N} = (1 - x^{N+1})/(1 - x)\). If \(\abs{x} < 1\) then
+\(x^{N+1} \to 0\), so \(s_{N} \to 1/(1-x)\). If \(\abs{x} \ge 1\) then
+\(\abs{x^{n}} \ge 1\) for every \(n\), so the terms do not tend to
+\(0\) and the series diverges by the term test; for \(x = 1\) the
+partial sums are \(N + 1\) directly.
+#+end_proof
+
+#+begin_remark
+This is the comparison object the ratio and root tests are calibrated
+against: both work by dominating a series eventually by a geometric one
+with ratio \(r < 1\), so everything they can prove is a consequence of
+this identity.
+#+end_remark

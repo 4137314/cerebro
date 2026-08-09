@@ -1,0 +1,40 @@
+:PROPERTIES:
+:ID:       43670a22-2d73-4d27-af1e-f2367c3d5476
+:END:
+#+TITLE: Limit of a sequence
+#+DATE: [2026-08-06 Thu]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 40A05
+#+HASH: 595e836b3cae
+
+#+NAME: def-sequence-limit
+#+begin_definition
+A sequence \((a_{n})_{n \in \N}\) of real numbers /converges/ to
+\(L \in \R\) if for every \(\eps > 0\) there is \(N \in \N\) such that
+\(\abs{a_{n} - L} < \eps\) for all \(n \ge N\). One writes
+\(\lim_{n \to \infty} a_{n} = L\), and calls \(L\) the /limit/ of the
+sequence.
+#+end_definition
+
+#+DEPENDS: def-sequence-limit
+#+NAME: thm-limit-unique
+#+begin_theorem
+A convergent sequence has exactly one limit.
+#+end_theorem
+
+#+begin_proof
+Suppose \(a_{n} \to L\) and \(a_{n} \to M\) with \(L \ne M\), and put
+\(\eps = \abs{L - M}/2 > 0\). Choose \(N_{1}\) with
+\(\abs{a_{n} - L} < \eps\) for \(n \ge N_{1}\) and \(N_{2}\) with
+\(\abs{a_{n} - M} < \eps\) for \(n \ge N_{2}\). For
+\(n \ge \max(N_{1}, N_{2})\) the triangle inequality gives
+\[ \abs{L - M} \le \abs{L - a_{n}} + \abs{a_{n} - M} < 2\eps = \abs{L - M}, \]
+which is absurd. Hence \(L = M\).
+#+end_proof
+
+#+NAME: def-bounded-sequence
+#+begin_definition
+A sequence \((a_{n})\) is /bounded/ if there is \(C > 0\) with
+\(\abs{a_{n}} \le C\) for every \(n\), and /monotone increasing/ if
+\(a_{n} \le a_{n+1}\) for every \(n\).
+#+end_definition

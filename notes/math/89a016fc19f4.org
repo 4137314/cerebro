@@ -1,0 +1,49 @@
+:PROPERTIES:
+:ID:       0951689a-630a-41a9-9a31-a61b2f129444
+:END:
+#+TITLE: Continuous functions on a compact interval
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A15
+#+HASH: 89a016fc19f4
+
+Two properties of a continuous function on \([a,b]\) that fail on an
+open or unbounded interval, and both come from Bolzano--Weierstrass: it
+is bounded, and it attains its bounds.
+
+#+DEPENDS: def-continuity-at-point, thm-bolzano-weierstrass
+#+NAME: thm-boundedness
+#+begin_theorem
+A continuous function \(f \colon [a,b] \to \R\) is bounded.
+#+end_theorem
+
+#+begin_proof
+Suppose not. Then for every \(n\) there is \(x_{n} \in [a,b]\) with
+\(\abs{f(x_{n})} > n\). By Bolzano--Weierstrass a subsequence
+\(x_{n_{k}} \to c\), and \(c \in [a,b]\) since the interval is closed.
+Continuity at \(c\) gives \(f(x_{n_{k}}) \to f(c)\), so
+\((f(x_{n_{k}}))\) is bounded -- contradicting
+\(\abs{f(x_{n_{k}})} > n_{k} \to \infty\).
+#+end_proof
+
+#+DEPENDS: thm-boundedness, prop-supremum-characterisation, thm-bolzano-weierstrass
+#+NAME: thm-extreme-value
+#+begin_theorem
+A continuous function \(f \colon [a,b] \to \R\) attains a maximum and a
+minimum: there are \(p, q \in [a,b]\) with \(f(p) \le f(x) \le f(q)\)
+for every \(x \in [a,b]\).
+#+end_theorem
+
+#+begin_proof
+By the previous theorem \(M = \sup_{x \in [a,b]} f(x)\) exists. By the
+characterisation of the supremum, for every \(n\) there is
+\(x_{n} \in [a,b]\) with \(f(x_{n}) > M - 1/n\). By
+Bolzano--Weierstrass a subsequence \(x_{n_{k}} \to q \in [a,b]\), and
+continuity gives \(f(q) = \lim_{k} f(x_{n_{k}}) = M\). Applying this to
+\(-f\) produces the minimum.
+#+end_proof
+
+#+begin_remark
+Both fail without compactness: \(f(x) = 1/x\) is continuous and unbounded
+on \((0,1]\), and \(f(x) = x\) attains no maximum on \([0,1)\).
+#+end_remark

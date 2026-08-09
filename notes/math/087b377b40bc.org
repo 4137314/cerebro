@@ -1,0 +1,63 @@
+:PROPERTIES:
+:ID:       1baff983-b527-4d87-b1e6-1ec701dc12c0
+:END:
+#+TITLE: The contraction mapping principle
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:general_topology:
+#+MSC: 54E45, 34A12
+#+HASH: 087b377b40bc
+
+One theorem, proved once, in a complete metric space, and then spent
+three times: on the existence and uniqueness of solutions of a
+differential equation, on the inverse function theorem, and on the
+implicit function theorem. What it says is that a map which shrinks
+distances by a fixed factor has exactly one fixed point, and that the
+point is the limit of iterating the map from anywhere at all -- so the
+proof is also an algorithm.
+
+#+DEPENDS: def-metric-space
+#+NAME: def-contraction
+#+begin_definition
+A map \(T \colon X \to X\) on a metric space is a /contraction/ if
+there is \(k < 1\) with \(d(Tx, Ty) \le k \, d(x,y)\) for all
+\(x, y \in X\).
+#+end_definition
+
+#+DEPENDS: def-contraction, def-metric-convergence, thm-geometric-series, prop-metric-limits-unique
+#+NAME: thm-banach-fixed-point
+#+begin_theorem
+A contraction on a non-empty complete metric space has exactly one
+fixed point, and for every \(x_{0}\) the iterates
+\(x_{n+1} = T x_{n}\) converge to it.
+#+end_theorem
+
+#+begin_proof
+Fix \(x_{0}\) and put \(x_{n+1} = Tx_{n}\). By induction
+\(d(x_{n+1}, x_{n}) \le k^{n} d(x_{1}, x_{0})\), so for \(m > n\) the
+triangle inequality and the geometric series give
+\[ d(x_{m}, x_{n}) \le \sum_{j=n}^{m-1} k^{j} d(x_{1}, x_{0}) \le \frac{k^{n}}{1-k} d(x_{1}, x_{0}). \]
+Since \(k < 1\) this tends to \(0\), so \((x_{n})\) is Cauchy and, by
+completeness, converges to some \(x\). A contraction is continuous
+(take \(\delta = \eps\)), so \(Tx = \lim T x_{n} = \lim x_{n+1} = x\).
+If \(Tx = x\) and \(Ty = y\) then
+\(d(x,y) = d(Tx,Ty) \le k \, d(x,y)\), which forces \(d(x,y) = 0\).
+#+end_proof
+
+#+begin_remark
+Completeness is where the fixed point comes from and is not removable:
+on \(\Q\) a contraction can have its fixed point at an irrational and
+the iterates converge to nothing in the space. That is the same
+observation as the Cauchy criterion in the first course, and it is why
+this theorem belongs to metric spaces rather than to \(\R^{n}\).
+#+end_remark
+
+#+DEPENDS: thm-banach-fixed-point
+#+NAME: cor-contraction-error-bound
+#+begin_corollary
+With the notation above, \(d(x_{n}, x) \le \frac{k^{n}}{1-k} d(x_{1}, x_{0})\).
+#+end_corollary
+
+#+begin_proof
+Let \(m \to \infty\) in the displayed estimate of the proof, using that
+\(d(\cdot, x_{m}) \to d(\cdot, x)\) by continuity of the distance.
+#+end_proof

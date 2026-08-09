@@ -1,0 +1,50 @@
+#+TITLE: Conjectures
+
+Mine. Statements I believe and cannot prove, written down so that
+"things I am actually stuck on" is a question with an answer instead of
+a feeling.
+
+A conjecture is a different /kind/ of writing from a result, which is
+why it has a directory rather than a tag: a theorem is finished and a
+conjecture is an argument you keep having with yourself for years. Apart
+from that they are ordinary notes -- hash-named (=cerebro-hash.el= owns
+this directory exactly like =notes/math/=), carrying an =:ID:=, read by
+the results graph, so a note in =math/= may cite one and
+=cerebro results open= counts it among what the archive owes.
+
+* Making one
+
+: C-c m j          a conjecture note, here, born tagged :conjecture:
+
+The tag is not decoration: =bin/notes-lint.el= exempts a statement
+tagged =conjecture= from the "every theorem needs an adjacent proof"
+rule, which is precisely what an unproved claim of your own needs.
+
+Write the statement in a =#+begin_conjecture= block with a =#+NAME:=
+(=conj-...=), and use =#+DEPENDS:= for the results it would rest on if
+it were true. That is what makes a conjecture a node: =cerebro results
+dependents conj-something= then answers "what would follow".
+
+* Printing them
+
+: make export FILE=notes/conjectures/<hash>.org PROFILE=conjecture
+
+The =conjecture= profile is a *two-column article* -- cerebro.cls with
+KOMA's =twocolumn=, the same class, macros and theorem suite as every
+other output here. A page of open questions is a page of short,
+self-contained statements, and the narrow measure of two columns is what
+that reads best in. Everything else about it is the archive's standard
+look: the same linear title block, the same numbering, the same
+bibliography.
+
+* Conventions
+
+The ones from [[file:../README.org][notes/README.org]] apply unchanged. Two are worth repeating
+here because a conjecture is where they are most tempting to skip:
+
+- *State it precisely enough to be wrong.* A conjecture you cannot
+  refute is not a conjecture, it is a mood. Quantifiers explicit,
+  hypotheses named.
+- *Record what made you believe it* -- the special cases you checked,
+  the analogy it came from -- in a =#+begin_remark=. In two years that
+  paragraph is the whole value of the file.

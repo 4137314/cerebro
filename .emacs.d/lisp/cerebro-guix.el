@@ -26,8 +26,29 @@
 ;; *outside* the guix environment, since that is exactly the situation it
 ;; exists to explain. It fetches nothing and starts no process at load.
 
-(require 'cerebro-org) ;; cerebro-root, cerebro-report
-(require 'compile)     ;; the guix commands report into a compilation buffer
+;; cerebro-base, not cerebro-org: the three things this module uses --
+;; `cerebro-root', `cerebro-report' and `org-directory' -- all live in
+;; the base layer, and the comment on this line has named them since
+;; before they moved there. The `require' did not follow, so a module
+;; whose header says "pure Elisp on Emacs core, deliberately: this has
+;; to work OUTSIDE the guix environment" was loading org, org-agenda,
+;; org-refile and ispell to print a status report.
+;;
+;; It matters far past this file. `cerebro-guix-soft-require' below is
+;; the one way any module may reach a guix.scm package, so *fourteen*
+;; modules require this one -- including the entire presentation layer
+;; (theme, modeline, focus, appearance), which has nothing to do with
+;; Org and was paying ~340ms for an agenda it never opens. Measured,
+;; cold, one process per module:
+;;
+;;     cerebro-guix        375 ms  ->   48 ms
+;;     cerebro-theme       485 ms  ->  156 ms
+;;     cerebro-modeline    398 ms  ->   71 ms
+;;
+;; `cerebro-org-free-modules' (cerebro-base.el) is what holds the line
+;; now, since a comment demonstrably could not.
+(require 'cerebro-base) ;; cerebro-root, cerebro-report, org-directory
+(require 'compile)      ;; the guix commands report into a compilation buffer
 
 ;; -- What the pinned profile is supposed to provide ---------------------
 ;; Data, not code paths (invariant 3): adding an Emacs package to guix.scm
@@ -43,8 +64,6 @@
     (marginalia    . "annotations next to completion candidates")
     (consult       . "live search/jump commands (M-s, M-g, C-x b)")
     (dashboard     . "the startup dashboard (C-c h)")
-    (dired-sidebar . "the file tree sidebar (C-c t)")
-    (dired-subtree . "expandable directories inside dired (TAB)")
     (magit         . "git porcelain for the notes repo (C-c g)")
     ;; The editing surface: how a note looks and reads (cerebro-theme.el,
     ;; -appearance.el, -focus.el, -preview.el, -complete.el, -ui.el).
@@ -67,16 +86,40 @@
     (nerd-icons       . "icons as font glyphs -- needs a Nerd Font too")
     (nerd-icons-completion . "...in the minibuffer")
     (nerd-icons-corfu . "...in the completion popup")
-    (nerd-icons-dired . "...in the file tree")
     (tempel           . "templates through the completion popup")
     (tempel-collection . "templates for languages this repo does not write")
     (apheleia         . "format code on save, in a subprocess")
     (indent-bars      . "indentation made visible, in code only"))
   "Every Emacs package cerebro takes from guix.scm, and what it buys.
-The feature symbol is what `require' wants; `dired-subtree' comes from
-the emacs-dired-hacks package rather than one of its own, which is why
-this maps *features* (what Emacs can check with `featurep') and not
-package names.")
+Maps *features* (what Emacs can check with `featurep') rather than
+package names, because the two do not always coincide -- a package can
+provide several features, and a feature can come from a package named
+after something else.")
+
+(defconst cerebro-guix-programs
+  '(("emacs"      . "the editor itself")
+    ("latexmk"    . "the export pipeline (every PROFILE)")
+    ("dvisvgm"    . "in-buffer formula previews (C-c u p)")
+    ("aspell"     . "the linter's spelling pass")
+    ("zip"        . "one archive per course (C-c e a)")
+    ("shellcheck" . "live diagnostics in bin/*.sh")
+    ("rg"         . "the live search behind C-c s")
+    ("rsync"      . "the `mirror' backup target, if you use it")
+    ("gpg"        . "encrypted :crypt: subtrees")
+    ("git"        . "the repository the notes live in")
+    ("task"       . "Taskwarrior bridge")
+    ("timew"      . "Timewarrior bridge"))
+  "Programs -- not Emacs packages -- the config shells out to.
+The package list above answers \"what did Emacs load?\"; this answers
+\"what can it *run*?\", which is the other half of \"why did that key do
+nothing?\". Both come from guix.scm, so inside the pinned environment
+both are complete.")
+
+(defun cerebro-guix-program-status ()
+  "Alist of (PROGRAM PATH-OR-NIL . WHY) for `cerebro-guix-programs'."
+  (mapcar (lambda (cell)
+            (list (car cell) (executable-find (car cell)) (cdr cell)))
+          cerebro-guix-programs))
 
 (defvar cerebro-guix-missing-packages nil
   "Features from `cerebro-guix-optional-packages' that failed to load.
@@ -168,6 +211,11 @@ buffer, the CLI could print it verbatim."
                        (if (featurep (car cell)) "ok" "--")
                        (car cell) (cdr cell)))
              cerebro-guix-optional-packages)
+     (list "" "programs (guix.scm):")
+     (mapcar (lambda (row)
+               (format "  [%s] %-11s %s"
+                       (if (nth 1 row) "ok" "--") (nth 0 row) (nth 2 row)))
+             (cerebro-guix-program-status))
      (when cerebro-guix-missing-packages
        (list ""
              "Missing packages mean this Emacs was started outside the pinned"

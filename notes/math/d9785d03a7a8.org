@@ -1,0 +1,100 @@
+:PROPERTIES:
+:ID:       1ef16512-bb90-4204-bd8e-9f75293df0cc
+:END:
+#+TITLE: Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:foundations:set_theory:
+#+MSC: 03E10
+#+HASH: d9785d03a7a8
+
+Counting a finite set means putting it in bijection with an initial
+segment of \(\N\). Dropping "finite" from that sentence leaves a
+definition that still works, and the two theorems below are what make it
+behave like a notion of size: comparison by injections is antisymmetric,
+and the scale it measures has no top.
+
+#+DEPENDS: def-injective-surjective
+#+NAME: def-equinumerous
+#+begin_definition
+Sets \(X\) and \(Y\) are /equinumerous/, written \(X \approx Y\), if
+there is a bijection \(X \to Y\); one writes \(X \preceq Y\) if there is
+an injection \(X \to Y\). A set is /countable/ if it is equinumerous
+with a subset of \(\N\), and /uncountable/ otherwise.
+#+end_definition
+
+#+DEPENDS: def-equinumerous
+#+NAME: thm-cantor
+#+begin_theorem
+For every set \(X\) there is no surjection from \(X\) onto its power set
+\(\mathcal{P}(X)\). In particular \(X \not\approx \mathcal{P}(X)\),
+while \(x \mapsto \set{x}\) gives \(X \preceq \mathcal{P}(X)\).
+#+end_theorem
+
+#+begin_proof
+Let \(f \colon X \to \mathcal{P}(X)\) be any map and put
+\(D = \setst{x \in X}{x \notin f(x)}\). If \(D = f(a)\) for some
+\(a \in X\), then \(a \in D\) is by definition \(a \notin f(a) = D\), a
+contradiction either way. So \(D\) is not in the image and \(f\) is not
+surjective. The map \(x \mapsto \set{x}\) is injective because
+\(\set{x} = \set{y}\) forces \(x = y\).
+#+end_proof
+
+#+begin_remark
+The proof uses nothing about \(X\), so there is no largest set and no
+largest cardinality: the scale is unbounded. Applied to \(X = \N\) it
+says \(\mathcal{P}(\N)\) is uncountable, which is the same argument as
+the diagonal one for the real numbers, with the binary expansion
+removed.
+#+end_remark
+
+#+DEPENDS: def-equinumerous, thm-knaster-tarski
+#+NAME: thm-cantor-schroder-bernstein
+#+begin_theorem
+If \(X \preceq Y\) and \(Y \preceq X\) then \(X \approx Y\).
+#+end_theorem
+
+#+begin_proof
+Let \(f \colon X \to Y\) and \(g \colon Y \to X\) be injections. On the
+power set \(\mathcal{P}(X)\), ordered by inclusion, every subset has a
+supremum (its union), so it is a complete lattice. The map
+\[ \Phi(A) = X \setminus g\bigl(Y \setminus f(A)\bigr) \]
+is monotone: enlarging \(A\) enlarges \(f(A)\), shrinks
+\(Y \setminus f(A)\) and its image under \(g\), and so enlarges the
+complement. By the Knaster-Tarski theorem there is \(A\) with
+\(\Phi(A) = A\), that is \(X \setminus A = g(Y \setminus f(A))\).
+
+Define \(h \colon X \to Y\) by \(h(x) = f(x)\) for \(x \in A\) and
+\(h(x) = g^{-1}(x)\) for \(x \notin A\), the latter being defined and
+single-valued because \(x \in X \setminus A\) lies in the image of the
+injective \(g\). It is surjective: a point of \(f(A)\) is hit by the
+first clause, and a point \(y \in Y \setminus f(A)\) satisfies
+\(g(y) \notin A\) and \(h(g(y)) = y\). It is injective: \(f\) and
+\(g^{-1}\) are injective on their domains, and their images
+\(f(A)\) and \(Y \setminus f(A)\) are disjoint.
+#+end_proof
+
+#+DEPENDS: def-equinumerous, ax-choice
+#+NAME: prop-countable-union
+#+begin_proposition
+A countable union of countable sets is countable.
+#+end_proposition
+
+#+begin_proof
+Let \(X = \bigcup_{n \in \N} X_{n}\) with each \(X_{n}\) countable.
+Choose, for each \(n\), an injection \(e_{n} \colon X_{n} \to \N\) --
+this is a choice from the non-empty set of such injections, one for
+each \(n\). Define \(F \colon X \to \N \times \N\) by sending \(x\) to
+\((n, e_{n}(x))\) where \(n\) is least with \(x \in X_{n}\). It is
+injective: the first coordinate recovers \(n\), and \(e_{n}\) is
+injective on \(X_{n}\). Since
+\((n,m) \mapsto 2^{n} 3^{m}\) is injective by unique factorisation,
+\(\N \times \N\) is countable, hence so is \(X\).
+#+end_proof
+
+#+begin_remark
+The choice of the injections is not decoration: without some form of the
+axiom of choice the statement is not provable, because "each \(X_{n}\)
+is countable" gives, for each \(n\), a non-empty set of enumerations and
+no way to name one. It is the cleanest place in this archive where a
+familiar-looking statement turns out to rest on choice.
+#+end_remark

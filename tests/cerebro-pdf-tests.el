@@ -23,12 +23,19 @@
 ;; -- Where the PDF is ---------------------------------------------------
 
 (ert-deftest cerebro-pdf-test-file-for-note ()
-  "The PDF sits next to the note, same name -- where Org writes it."
+  "The PDF is in .build/ beside the note, not next to it.
+Every product of a compile lives there (`cerebro-latex-output-file'), so
+a directory of mathematics contains mathematics -- and this module,
+`make export' and bin/cerebro-course-export all ask the same function
+rather than each building the path themselves."
   (should (equal (cerebro-pdf-file-for "/repo/notes/math/limits.org")
-                 "/repo/notes/math/limits.pdf"))
+                 "/repo/notes/math/.build/limits.pdf"))
   ;; A name with dots keeps everything but the extension.
   (should (equal (cerebro-pdf-file-for "/repo/notes/math/l1.p.org")
-                 "/repo/notes/math/l1.p.pdf")))
+                 "/repo/notes/math/.build/l1.p.pdf"))
+  ;; The log lives beside it, which is what the error reporter reads.
+  (should (equal (cerebro-pdf-log-file "/repo/notes/math/limits.org")
+                 "/repo/notes/math/.build/limits.log")))
 
 (ert-deftest cerebro-pdf-test-staleness ()
   "Missing or older than the note = stale; newer = current."

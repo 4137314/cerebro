@@ -1,0 +1,91 @@
+:PROPERTIES:
+:ID:       da2475a4-40d1-48a3-8f06-cef2ef4ad52a
+:END:
+#+TITLE: Maps, invertibility and the canonical factorisation
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:foundations:set_theory:
+#+MSC: 03E20
+#+HASH: 8862850c34db
+
+Injectivity and surjectivity are usually introduced as two properties a
+map may happen to have. They are better read as the two halves of one
+statement: every map is a surjection followed by an injection, and the
+surjection is a quotient. The isomorphism theorems of algebra are that
+sentence, repeated once per structure.
+
+#+NAME: def-injective-surjective
+#+begin_definition
+A map \(f \colon X \to Y\) is /injective/ if \(f(x) = f(x')\) implies
+\(x = x'\), /surjective/ if every \(y \in Y\) is \(f(x)\) for some
+\(x \in X\), and /bijective/ if it is both. Its /image/ is
+\(f(X) = \setst{f(x)}{x \in X}\), and the /fibre/ over \(y\) is
+\(f^{-1}(y) = \setst{x \in X}{f(x) = y}\).
+#+end_definition
+
+#+DEPENDS: def-injective-surjective
+#+NAME: prop-bijective-iff-invertible
+#+begin_proposition
+A map \(f \colon X \to Y\) is bijective if and only if there is a map
+\(g \colon Y \to X\) with \(g \circ f = \id_{X}\) and
+\(f \circ g = \id_{Y}\), and then \(g\) is unique.
+#+end_proposition
+
+#+begin_proof
+Let \(f\) be bijective. For \(y \in Y\) surjectivity provides some
+\(x\) with \(f(x) = y\) and injectivity makes it unique, so
+\(g(y) = x\) defines a map; by construction \(f(g(y)) = y\), and
+\(g(f(x)) = x\) because \(x\) is the unique preimage of \(f(x)\).
+Conversely, given such a \(g\): if \(f(x) = f(x')\) then applying \(g\)
+gives \(x = x'\), and every \(y\) equals \(f(g(y))\).
+
+For uniqueness, if \(g\) and \(h\) both work then
+\(g = g \circ (f \circ h) = (g \circ f) \circ h = h\).
+#+end_proof
+
+#+DEPENDS: def-injective-surjective, def-equivalence-relation
+#+NAME: prop-fibres-are-an-equivalence-relation
+#+begin_proposition
+For any map \(f \colon X \to Y\), the relation \(x \sim_{f} x'\)
+defined by \(f(x) = f(x')\) is an equivalence relation, and its classes
+are exactly the non-empty fibres of \(f\).
+#+end_proposition
+
+#+begin_proof
+Reflexivity, symmetry and transitivity are those of equality in \(Y\).
+The class of \(x\) is \(\setst{x'}{f(x') = f(x)} = f^{-1}(f(x))\), a
+fibre containing \(x\), and every non-empty fibre \(f^{-1}(y)\) is of
+this form since \(y = f(x)\) for any of its elements.
+#+end_proof
+
+#+DEPENDS: prop-fibres-are-an-equivalence-relation, thm-universal-property-of-a-quotient-set, prop-bijective-iff-invertible
+#+NAME: thm-canonical-factorisation
+#+begin_theorem
+Every map \(f \colon X \to Y\) factors as
+\[ X \xrightarrow{\ \pi\ } X/{\sim_{f}} \xrightarrow{\ \bar{f}\ } f(X) \xrightarrow{\ \iota\ } Y, \]
+where \(\pi\) is the canonical projection, \(\iota\) the inclusion, and
+\(\bar{f}\) a bijection; and this factorisation is unique.
+#+end_theorem
+
+#+begin_proof
+The map \(x \mapsto f(x)\), viewed into \(f(X)\), is constant on the
+classes of \(\sim_{f}\) by the definition of that relation, so the
+universal property of the quotient gives a unique
+\(\bar{f} \colon X/{\sim_{f}} \to f(X)\) with \(\bar{f} \circ \pi = f\).
+It is surjective because \(f\) is onto \(f(X)\) and \(\pi\) is
+surjective; it is injective because \(\bar{f}([x]) = \bar{f}([x'])\)
+says \(f(x) = f(x')\), which is exactly \([x] = [x']\). Composing with
+the inclusion gives the displayed factorisation.
+
+Uniqueness: in any such factorisation the middle map must satisfy
+\(\bar{f}(\pi(x)) = f(x)\), and \(\pi\) is surjective, so \(\bar{f}\) is
+determined.
+#+end_proof
+
+#+begin_remark
+The three arrows are "forget what \(f\) cannot distinguish", "the
+bijection that is left", and "remember where the values live". Read in
+that order, the first isomorphism theorem for groups, for rings and for
+vector spaces are all this statement with the observation that
+\(\sim_{f}\) is compatible with the structure -- which for a
+homomorphism means its classes are the cosets of the kernel.
+#+end_remark

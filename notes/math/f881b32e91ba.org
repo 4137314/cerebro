@@ -1,0 +1,86 @@
+:PROPERTIES:
+:ID:       0d794fd8-b77f-4412-b6e1-8cbfedb7131b
+:END:
+#+TITLE: Poisson brackets
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:mathematical_physics:classical_mechanics:
+#+MSC: 70H15, 37J05
+#+HASH: f881b32e91ba
+
+Hamilton's equations single out one function, \(H\), and describe how the
+coordinates move. The bracket makes the picture symmetric: it says how
+*any* observable moves, it turns "is conserved" into an algebraic
+identity, and it makes the set of observables a Lie algebra in which the
+dynamics is a single bracket with \(H\).
+
+#+DEPENDS: def-hamiltonian, def-differentiable-multivariable
+#+NAME: def-poisson-bracket
+#+begin_definition
+For continuously differentiable \(F, G\) on phase space, the /Poisson
+bracket/ is
+\[ \{F, G\} = \sum_{i} \Bigl( \frac{\partial F}{\partial q_{i}} \frac{\partial G}{\partial p_{i}} - \frac{\partial F}{\partial p_{i}} \frac{\partial G}{\partial q_{i}} \Bigr). \]
+#+end_definition
+
+#+DEPENDS: def-poisson-bracket, thm-derivative-algebra
+#+NAME: prop-poisson-bracket-is-a-lie-bracket
+#+begin_proposition
+The bracket is bilinear, antisymmetric, satisfies the Leibniz rule
+\(\{F, GK\} = \{F,G\}K + G\{F,K\}\), and satisfies the Jacobi identity
+\[ \{F, \{G,K\}\} + \{G, \{K,F\}\} + \{K, \{F,G\}\} = 0. \]
+#+end_proposition
+
+#+begin_proof
+Bilinearity is immediate from linearity of the partial derivatives, and
+antisymmetry from exchanging the two terms of the sum. The Leibniz rule
+is the product rule applied to each partial derivative of \(GK\).
+
+For Jacobi, observe that each of the three double brackets is a sum of
+terms containing *second* derivatives of exactly one of \(F, G, K\).
+Collect the terms carrying second derivatives of \(K\): they come from
+\(\{F,\{G,K\}\}\) and \(\{G,\{K,F\}\} = -\{G,\{F,K\}\}\), and their sum
+is the expression obtained by applying the antisymmetric second-order
+operator \(\{F, \{G, \cdot\}\} - \{G, \{F, \cdot\}\}\) to \(K\). That
+operator is a first-order derivation -- its second-order parts cancel
+because mixed partials commute -- so no second derivatives of \(K\)
+survive. By symmetry the same holds for \(F\) and \(G\), and a sum with
+no second-derivative terms and no first-derivative terms is zero.
+#+end_proof
+
+#+DEPENDS: def-poisson-bracket, thm-hamilton-equations
+#+NAME: thm-evolution-is-a-bracket
+#+begin_theorem
+Along any solution of Hamilton's equations, a continuously
+differentiable observable \(F(q,p,t)\) satisfies
+\[ \frac{\dd F}{\dd t} = \{F, H\} + \frac{\partial F}{\partial t}. \]
+In particular a time-independent \(F\) is conserved if and only if
+\(\{F, H\} = 0\).
+#+end_theorem
+
+#+begin_proof
+By the chain rule,
+\(\dd F/\dd t = \sum_{i} (\partial_{q_{i}} F \, \dot q_{i} + \partial_{p_{i}} F \, \dot p_{i}) + \partial_{t} F\).
+Substituting \(\dot q_{i} = \partial H/\partial p_{i}\) and
+\(\dot p_{i} = -\partial H/\partial q_{i}\) turns the sum into exactly
+\(\{F, H\}\).
+#+end_proof
+
+#+DEPENDS: thm-evolution-is-a-bracket, prop-poisson-bracket-is-a-lie-bracket
+#+NAME: cor-poisson-theorem
+#+begin_corollary
+If \(F\) and \(G\) are conserved and time-independent, so is
+\(\{F, G\}\).
+#+end_corollary
+
+#+begin_proof
+By the Jacobi identity,
+\(\{\{F,G\}, H\} = -\{\{G,H\},F\} - \{\{H,F\},G\}\), and both brackets
+on the right vanish because \(\{F,H\} = \{G,H\} = 0\). Hence
+\(\{F,G\}\) has vanishing bracket with \(H\) and is conserved.
+#+end_proof
+
+#+begin_remark
+The corollary is why the Jacobi identity is worth proving rather than
+quoting: it says the conserved quantities form a Lie subalgebra, so
+symmetries can be *combined*, and it is the classical shadow of the
+commutator identity that plays the same role in quantum mechanics.
+#+end_remark

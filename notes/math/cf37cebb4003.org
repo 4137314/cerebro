@@ -1,0 +1,65 @@
+:PROPERTIES:
+:ID:       03e16e45-1d12-46e1-af18-9f149478b146
+:END:
+#+TITLE: Cauchy sequences and the completeness criterion
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 40A05
+#+HASH: cf37cebb4003
+
+The definition of convergence names the limit, so it cannot be used to
+/prove/ that a limit exists without producing a candidate first. The
+Cauchy condition removes that obstacle: it speaks only about the terms
+of the sequence, and in \(\R\) it is equivalent to convergence.
+
+#+DEPENDS: def-sequence-limit
+#+NAME: def-cauchy-sequence
+#+begin_definition
+A sequence \((a_{n})\) of real numbers is a /Cauchy sequence/ if for
+every \(\eps > 0\) there is \(N \in \N\) such that
+\(\abs{a_{n} - a_{m}} < \eps\) for all \(n, m \ge N\).
+#+end_definition
+
+#+DEPENDS: def-cauchy-sequence
+#+NAME: prop-convergent-implies-cauchy
+#+begin_proposition
+Every convergent sequence is a Cauchy sequence, and every Cauchy
+sequence is bounded.
+#+end_proposition
+
+#+begin_proof
+If \(a_{n} \to L\), fix \(\eps > 0\) and choose \(N\) with
+\(\abs{a_{n} - L} < \eps/2\) for \(n \ge N\); then for \(n, m \ge N\),
+\(\abs{a_{n} - a_{m}} \le \abs{a_{n} - L} + \abs{L - a_{m}} < \eps\).
+For boundedness, take \(\eps = 1\) in the Cauchy condition and let \(N\)
+be as given: for \(n \ge N\) one has
+\(\abs{a_{n}} \le \abs{a_{N}} + 1\), so
+\(C = \max(\abs{a_{1}}, \dots, \abs{a_{N-1}}, \abs{a_{N}} + 1)\) bounds
+every term.
+#+end_proof
+
+#+DEPENDS: prop-convergent-implies-cauchy, thm-bolzano-weierstrass
+#+NAME: thm-cauchy-criterion
+#+begin_theorem
+A sequence of real numbers converges if and only if it is a Cauchy
+sequence.
+#+end_theorem
+
+#+begin_proof
+One direction is the proposition above. Conversely, let \((a_{n})\) be
+Cauchy. It is bounded, so by Bolzano--Weierstrass some subsequence
+\((a_{n_{k}})\) converges, say to \(L\). Fix \(\eps > 0\) and choose
+\(N\) with \(\abs{a_{n} - a_{m}} < \eps/2\) for \(n, m \ge N\), and then
+\(k\) with \(n_{k} \ge N\) and \(\abs{a_{n_{k}} - L} < \eps/2\). For
+every \(n \ge N\),
+\[ \abs{a_{n} - L} \le \abs{a_{n} - a_{n_{k}}} + \abs{a_{n_{k}} - L} < \eps, \]
+so \(a_{n} \to L\).
+#+end_proof
+
+#+begin_remark
+This is the point at which \(\R\) and \(\Q\) part company for the second
+time: the sequence of decimal truncations of \(\sqrt{2}\) is Cauchy in
+\(\Q\) and converges to nothing there. Completeness, stated as an axiom
+about suprema, has just been shown to imply completeness in the metric
+sense.
+#+end_remark

@@ -1,0 +1,84 @@
+:PROPERTIES:
+:ID:       01edf0f1-4a90-46e1-9404-7577de287554
+:END:
+#+TITLE: Monotone functions are integrable, and the mean value theorem for integrals
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A42, 26A48
+#+HASH: b8a24fc9e3e0
+
+Continuity is sufficient for integrability, not necessary, and the
+cheapest demonstration of that is monotonicity: a monotone function may
+have infinitely many discontinuities and is integrable all the same,
+because on a partition into equal pieces its oscillations telescope.
+The mean value theorem for integrals is the other half of this note --
+the statement that an integral of a continuous function is a value of
+it, which is what turns the first fundamental theorem into a one-line
+argument.
+
+#+DEPENDS: thm-riemann-criterion, def-darboux-sums, thm-archimedean
+#+NAME: thm-monotone-is-integrable
+#+begin_theorem
+Every monotone function \(f \colon [a,b] \to \R\) is Riemann
+integrable.
+#+end_theorem
+
+#+begin_proof
+Assume \(f\) increasing (otherwise replace it by \(-f\)); it is bounded,
+since \(f(a) \le f(x) \le f(b)\). Let \(\eps > 0\) and take the
+partition \(P\) into \(n\) equal subintervals of length
+\((b-a)/n\). On \([x_{i-1}, x_{i}]\) monotonicity gives
+\(m_{i} = f(x_{i-1})\) and \(M_{i} = f(x_{i})\), so the sum telescopes:
+\[ U(f,P) - L(f,P) = \frac{b-a}{n} \sum_{i=1}^{n} \bigl( f(x_{i}) - f(x_{i-1}) \bigr) = \frac{(b-a)\bigl( f(b) - f(a) \bigr)}{n}. \]
+By the Archimedean property choose \(n\) with this below \(\eps\); the
+Riemann criterion gives integrability.
+#+end_proof
+
+#+DEPENDS: thm-monotone-is-integrable, cor-monotone-jump-discontinuities, thm-comparison-test
+#+NAME: prop-integrable-with-dense-discontinuities
+#+begin_proposition
+There is a Riemann integrable function on \([0,1]\) whose set of
+discontinuities is dense: continuity is sufficient for integrability
+and far from necessary.
+#+end_proposition
+
+#+begin_proof
+Enumerate the rationals of \([0,1]\) as \((q_{n})_{n \ge 1}\) and set
+\(f(x) = \sum_{q_{n} \le x} 2^{-n}\), the sum taken over those indices
+\(n\) with \(q_{n} \le x\). The sum converges by comparison with
+\(\sum 2^{-n}\), and \(f\) is increasing: enlarging \(x\) only adds
+non-negative terms. At each \(q_{m}\) the value jumps by at least
+\(2^{-m}\), since the term \(2^{-m}\) is present for \(x \ge q_{m}\)
+and absent below, so \(f\) is discontinuous there by the jump
+description of a monotone function's discontinuities. The rationals are
+dense in \([0,1]\), and \(f\), being monotone, is integrable.
+#+end_proof
+
+#+DEPENDS: prop-integral-monotonicity, thm-intermediate-value, thm-extreme-value, thm-continuous-is-integrable
+#+NAME: thm-integral-mean-value
+#+begin_theorem
+Let \(f \colon [a,b] \to \R\) be continuous. Then there is
+\(c \in [a,b]\) with
+\[ \int_{a}^{b} f(x) \dd x = f(c) \, (b - a). \]
+#+end_theorem
+
+#+begin_proof
+By the extreme value theorem \(f\) attains a minimum \(m\) and a
+maximum \(M\) on \([a,b]\), and it is integrable. Monotonicity of the
+integral gives
+\(m (b-a) \le \int_{a}^{b} f \le M (b-a)\), so the number
+\[ \mu = \frac{1}{b-a} \int_{a}^{b} f(x) \dd x \]
+lies in \([m, M]\). Since \(m\) and \(M\) are attained, the
+intermediate value theorem produces \(c \in [a,b]\) with
+\(f(c) = \mu\).
+#+end_proof
+
+#+begin_remark
+The hypothesis of continuity is used only in the last step, and it is
+used essentially: for the integrable but discontinuous \(f\) equal to
+\(0\) on \([0,1)\) and \(1\) at \(1\), the average \(\mu = 0\) is
+attained, but a two-valued step function on \([-1,1]\) has average
+\(\tfrac{1}{2}\) and never takes it. What the theorem really says is
+that a continuous function attains its own average, which is the
+intermediate value theorem wearing different notation.
+#+end_remark

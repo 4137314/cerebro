@@ -15,7 +15,7 @@
 ;; list of "where the notes are". Since org-agenda-files is now built from
 ;; `cerebro-note-directories' (every subdirectory of notes/, not just the
 ;; top level), 'agenda genuinely covers the whole nested tree --
-;; notes/courses/*/ and notes/daily/ included -- which a plain 'directory
+;; notes/courses/ and notes/conjectures/ included -- which a plain 'directory
 ;; scope (files next to the current buffer only) would miss.
 (setq org-drill-scope 'agenda)
 

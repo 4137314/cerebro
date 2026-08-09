@@ -1,0 +1,56 @@
+:PROPERTIES:
+:ID:       58132cb5-dd59-4713-b746-80a740fd394a
+:END:
+#+TITLE: The Archimedean property and the density of the rationals
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A03
+#+HASH: a7d7a2acf70b
+
+Completeness is an axiom about suprema; the two statements below are the
+first things it buys. Every later argument that manufactures an index
+\(N\) out of an \(\eps\) rests on one of them, which is why they come
+before anything about convergence.
+
+#+DEPENDS: ax-completeness
+#+NAME: thm-archimedean
+#+begin_theorem
+For every \(x \in \R\) there is \(n \in \N\) with \(n > x\).
+Equivalently: for every \(\eps > 0\) there is \(n \in \N\) with
+\(1/n < \eps\).
+#+end_theorem
+
+#+begin_proof
+Suppose that for some \(x \in \R\) no such \(n\) exists. Then \(x\) is an
+upper bound of \(\N\), so by completeness \(s = \sup \N\) exists in
+\(\R\). Since \(s - 1 < s\), the number \(s - 1\) is not an upper bound
+of \(\N\), so there is \(m \in \N\) with \(m > s - 1\). Then
+\(m + 1 \in \N\) and \(m + 1 > s\), contradicting that \(s\) is an upper
+bound of \(\N\). For the second form, apply the first to \(1/\eps\):
+any \(n > 1/\eps\) satisfies \(1/n < \eps\).
+#+end_proof
+
+#+DEPENDS: thm-archimedean
+#+NAME: thm-density-of-rationals
+#+begin_theorem
+For all \(x, y \in \R\) with \(x < y\) there is \(q \in \Q\) with
+\(x < q < y\).
+#+end_theorem
+
+#+begin_proof
+By the Archimedean property choose \(n \in \N\) with \(1/n < y - x\),
+so that \(ny - nx > 1\). Let \(m\) be the least integer with \(m > nx\);
+it exists because the set of integers exceeding \(nx\) is non-empty (again
+by the Archimedean property) and bounded below. Minimality gives
+\(m - 1 \le nx\), hence
+\[ nx < m \le nx + 1 < nx + (ny - nx) = ny. \]
+Dividing by \(n > 0\) yields \(x < m/n < y\), and \(q = m/n\) is rational.
+#+end_proof
+
+#+begin_remark
+The Archimedean property fails in some ordered fields: there are
+non-Archimedean ordered fields containing an element larger than every
+natural number. What excludes them here is completeness, so the two
+theorems above are genuinely statements about \(\R\), not about ordered
+fields in general.
+#+end_remark

@@ -3,6 +3,30 @@
 # runs. Used by githooks/pre-push (the "slower but thorough" gate,
 # githooks/pre-commit stays fast) and can be run by hand any time.
 # Usage: bin/cerebro-lint [file.org ...]   (default: all of notes/)
+#
+# Runs on the Emacs already on PATH rather than through bin/guix-run, and
+# that is a deliberate reversal. Inside `make shell', the `cerebro'
+# launcher or a direnv-activated directory, the Emacs on PATH *is* the
+# pinned one -- so nothing changes on the normal path. Outside it,
+# guix-run spent ~90 seconds re-resolving the channel before every lint,
+# which put three and a half minutes on the path of every `git push':
+# the gate the project's own README calls "a gate you learn to bypass
+# with --no-verify, which is worse than not having one".
+#
+# What is actually lost outside the environment is bounded and loud: the
+# linter already treats aspell and org-roam as optional (see
+# bin/notes-lint.el -- `executable-find', `(require 'org-roam nil t)')
+# and says which pass it skipped. Every structural check -- names,
+# dependencies, tags, MSC codes, hashes, citations -- is pure Elisp and
+# runs either way.
+#
+# CEREBRO_GUIX_FORCE=1 takes the pinned path deliberately, the same knob
+# bin/guix-run and the makefile's pure steps use.
 set -eu
 repo_root=$(git rev-parse --show-toplevel)
-"$repo_root/bin/guix-run" emacs --batch -l "$repo_root/bin/notes-lint.el" -- "$@"
+
+if [ -n "${CEREBRO_GUIX_FORCE:-}" ]; then
+    exec "$repo_root/bin/guix-run" emacs --batch -l "$repo_root/bin/notes-lint.el" -- "$@"
+else
+    exec emacs --batch -l "$repo_root/bin/notes-lint.el" -- "$@"
+fi

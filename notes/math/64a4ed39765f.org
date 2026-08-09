@@ -1,0 +1,110 @@
+:PROPERTIES:
+:ID:       734ca2fe-0727-4155-992a-7b46244de19e
+:END:
+#+TITLE: Affine spaces, affine subspaces and affine maps
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:geometry:linear_algebra:
+#+MSC: 51N10, 15A03
+#+HASH: 64a4ed39765f
+
+A [[id:7c54b427-4d7a-4511-b374-58c7bb44fb84][vector space]] has a distinguished point, and geometry does not: no
+point of the plane is the origin until one is chosen. An affine space is
+what remains of a vector space when the origin is forgotten -- points,
+and differences of points which are vectors -- and it is the right home
+for everything stated in terms of lines, parallelism and barycentres.
+
+#+DEPENDS: def-vector-space, def-group-action
+#+NAME: def-affine-space
+#+begin_definition
+An /affine space/ over a field \(K\) is a non-empty set \(A\) together
+with a vector space \(V\) over \(K\) and a map
+\(A \times A \to V\), \((P,Q) \mapsto \vec{PQ}\), such that
+\(\vec{PQ} + \vec{QR} = \vec{PR}\) for all \(P,Q,R\), and for each
+\(P \in A\) the map \(Q \mapsto \vec{PQ}\) is a bijection \(A \to V\).
+One writes \(Q = P + v\) for the inverse of that bijection, and
+\(\dim A = \dim V\).
+#+end_definition
+
+#+DEPENDS: def-affine-space
+#+NAME: prop-affine-elementary-identities
+#+begin_proposition
+In an affine space \(\vec{PP} = 0\) and \(\vec{QP} = -\vec{PQ}\); the
+map \((P, v) \mapsto P + v\) is an action of the additive group of
+\(V\) on \(A\), and it is transitive with trivial stabilisers.
+#+end_proposition
+
+#+begin_proof
+Taking \(P = Q = R\) in the identity gives
+\(\vec{PP} + \vec{PP} = \vec{PP}\), so \(\vec{PP} = 0\); then
+\(\vec{PQ} + \vec{QP} = \vec{PP} = 0\). For the action,
+\(P + 0 = P\) because \(\vec{PP} = 0\), and
+\((P + v) + w = P + (v+w)\) because
+\(\vec{P(P+v)} + \vec{(P+v)((P+v)+w)} = v + w\). Transitivity and
+triviality of the stabilisers are the statement that
+\(Q \mapsto \vec{PQ}\) is a bijection.
+#+end_proof
+
+#+DEPENDS: def-affine-space, def-span-and-independence
+#+NAME: def-affine-subspace
+#+begin_definition
+A subset \(S \subseteq A\) is an /affine subspace/ if it is non-empty
+and \(\vec{S} = \setst{\vec{PQ}}{P,Q \in S}\) is a linear subspace of
+\(V\) with \(S = P_{0} + \vec{S}\) for some (hence any)
+\(P_{0} \in S\). Its /direction/ is \(\vec{S}\), and two affine
+subspaces are /parallel/ if one direction contains the other.
+#+end_definition
+
+#+DEPENDS: def-affine-subspace
+#+NAME: prop-affine-subspaces-are-translates
+#+begin_proposition
+A non-empty \(S \subseteq A\) is an affine subspace if and only if
+\(S = P_{0} + W\) for some \(P_{0} \in A\) and some linear subspace
+\(W \subseteq V\), and then \(W = \vec{S}\) is determined by \(S\).
+#+end_proposition
+
+#+begin_proof
+One direction is the definition. Conversely let \(S = P_{0} + W\). For
+\(P = P_{0}+w\) and \(Q = P_{0}+w'\) in \(S\) we get
+\(\vec{PQ} = w' - w \in W\), and every \(w \in W\) arises as
+\(\vec{P_{0}(P_{0}+w)}\); hence \(\vec{S} = W\), a subspace, and
+\(S = P_{0} + \vec{S}\). Since \(\vec{S}\) is defined from \(S\) alone,
+\(W\) is determined.
+#+end_proof
+
+#+DEPENDS: def-affine-space, def-linear-map
+#+NAME: def-affine-map
+#+begin_definition
+A map \(f \colon A \to B\) between affine spaces over \(K\), with
+directions \(V\) and \(W\), is /affine/ if there is a linear
+\(\vec{f} \colon V \to W\) with
+\(\vec{f(P)f(Q)} = \vec{f}(\vec{PQ})\) for all \(P, Q \in A\). The map
+\(\vec{f}\) is the /linear part/ of \(f\).
+#+end_definition
+
+#+DEPENDS: def-affine-map, prop-affine-subspaces-are-translates
+#+NAME: prop-affine-maps-preserve-barycentres
+#+begin_proposition
+The linear part of an affine map is unique; the composition of affine
+maps is affine with linear part the composition of the linear parts; and
+an affine map preserves barycentres:
+\(f\bigl(P_{0} + \sum_{i} \lambda_{i} \vec{P_{0}P_{i}}\bigr) = f(P_{0}) + \sum_{i} \lambda_{i}\vec{f(P_{0})f(P_{i})}\).
+#+end_proposition
+
+#+begin_proof
+Uniqueness: fixing \(P\), every \(v \in V\) is \(\vec{PQ}\) for exactly
+one \(Q\), and \(\vec{f}(v)\) is then forced. Composition: if
+\(\vec{f}\) and \(\vec{g}\) are the linear parts of \(f\) and \(g\),
+then \(\vec{g(f(P))g(f(Q))} = \vec{g}(\vec{f}(\vec{PQ}))\). For
+barycentres, put \(v = \sum_{i}\lambda_{i}\vec{P_{0}P_{i}}\); then
+\(f(P_{0}+v) = f(P_{0}) + \vec{f}(v)\) by definition of the linear part,
+and \(\vec{f}(v) = \sum_{i}\lambda_{i}\vec{f}(\vec{P_{0}P_{i}})\) by
+linearity.
+#+end_proof
+
+#+begin_remark
+Choosing a point \(O \in A\) identifies \(A\) with \(V\) and every
+affine map with \(x \mapsto \vec{f}(x) + b\). That is why affine
+geometry can always be computed in coordinates -- and why one should
+not: the statements that survive are exactly those, like the
+preservation of barycentres, that never mention \(O\).
+#+end_remark

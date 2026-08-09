@@ -1,0 +1,26 @@
+:PROPERTIES:
+:ID:       c74536f9-f1a8-4ce8-a26f-8ae6300aa2eb
+:END:
+#+TITLE: Group
+#+DATE: [2026-07-29 Wed 13:55]
+#+FILETAGS: :evergreen:easy:group_theory:
+#+MSC: 20A05
+#+HASH: d394496b0545
+
+A /group/ is the least structure in which one can meaningfully undo
+operations: a [[id:44abe21d-eefe-4e35-b5ba-b3dd472eb071][binary operation]] that is associative, has an identity,
+and in which every element is invertible.
+
+#+DEPENDS: def-binary-operation
+#+NAME: def-group
+#+begin_definition
+A *group* is a pair \((G, \ast)\) consisting of a set \(G\) and a
+[[id:44abe21d-eefe-4e35-b5ba-b3dd472eb071][binary operation]] \(\ast\) on \(G\) such that
+1. (associativity) \((a \ast b) \ast c = a \ast (b \ast c)\) for all \(a, b, c \in G\);
+2. (identity) there is \(e \in G\) with \(e \ast a = a \ast e = a\) for all \(a \in G\);
+3. (inverses) for every \(a \in G\) there is \(a^{-1} \in G\) with
+   \(a \ast a^{-1} = a^{-1} \ast a = e\).
+#+end_definition
+
+The identity and the inverses granted by the axioms turn out to be
+unique, so one may speak of /the/ identity and /the/ inverse.

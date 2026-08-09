@@ -48,7 +48,8 @@
 ;; the tooling.
 
 (require 'cl-lib)
-(require 'cerebro-org)
+(require 'cerebro-base)     ;; paths, the note lister, the report buffer
+(require 'cerebro-taxonomy) ;; cerebro-proof-status-p -- data, 1ms, no Org
 
 (defconst cerebro-results-types
   '("theorem" "lemma" "proposition" "corollary"
@@ -83,46 +84,159 @@ Separators are commas and/or whitespace; empty pieces dropped (as
 
 (defun cerebro-results-parse-string (text &optional file)
   "Parse note TEXT into a list of result plists.
-Each is (:name :type :deps :file :line :heading) for one #+NAMEd result
-block whose type is in `cerebro-results-types'. FILE is stored verbatim
-(a display label); :line is 1-based, at the #+begin_ line; :heading is
-the nearest preceding headline title (tags stripped), for context.
-Unnamed result blocks are skipped -- naming a result is what makes it a
-first-class, referenceable node."
+Each is (:name :type :deps :status :file :line :heading) for one #+NAMEd
+result block whose type is in `cerebro-results-types'. FILE is stored
+verbatim (a display label); :line is 1-based, at the #+begin_ line;
+:heading is the nearest preceding headline title (tags stripped), for
+context. Unnamed result blocks are skipped -- naming a result is what
+makes it a first-class, referenceable node.
+
+:status is the proof status (see `cerebro-proof-statuses'): an explicit
+`#+STATUS:' if the note gives one, else `proved' when a proof block
+follows the statement directly -- this repo's own convention, and what
+the `single' export profile already relies on -- else `open' for the
+types a proof is expected for.
+
+A tiny state machine rather than org-element: it must see the file as
+*text*, because the mistakes it exists to catch (a `#+DEPENDS:' wedged
+between `#+NAME:' and its block) are exactly the ones that make
+org-element parse something different from what was meant."
   (let ((case-fold-search t)
         (line-no 0)
-        heading pending-name pending-deps results)
+        heading pending-name pending-deps pending-status results
+        in-block          ; the open blocks, innermost first
+        awaiting-proof)   ; the record a proof could still attach to
     (dolist (line (split-string text "\n"))
       (setq line-no (1+ line-no))
       (cond
-       ;; A headline: remember its title, and break any pending block.
+       ;; Inside a block: only nesting and its end matter.
+       ;;
+       ;; A stack, not a flag, and not a single type: this closed on the
+       ;; first `#+end_' of ANY type, so one nested block inside a
+       ;; statement ended the statement early --
+       ;;
+       ;;     #+NAME: thm-a
+       ;;     #+begin_theorem
+       ;;     #+begin_quote ... #+end_quote     <- closed the theorem
+       ;;     #+end_theorem                     <- read as prose, which
+       ;;     #+begin_proof                        cleared `awaiting-proof'
+       ;;
+       ;; -- and the proof directly below it was no longer that theorem's
+       ;; proof. The result came out `open' forever, in `cerebro results
+       ;; open' and on the start page, while bin/notes-lint.el (which
+       ;; reads the same convention through org-element, and gets nesting
+       ;; right) went on saying it was proved. Two views of one
+       ;; convention, disagreeing -- which is the one thing the module
+       ;; commentary above promises cannot happen.
+       ;;
+       ;; An `#+end_' naming a block that is open but not innermost
+       ;; unwinds to it, so an inner block someone forgot to close cannot
+       ;; swallow the rest of the file either.
+       (in-block
+        (cond
+         ((string-match "\\`[ \t]*#\\+begin_\\([a-zA-Z]+\\)" line)
+          (push (downcase (match-string 1 line)) in-block))
+         ((string-match "\\`[ \t]*#\\+end_\\([a-zA-Z]+\\)" line)
+          (let ((type (downcase (match-string 1 line))))
+            (when (member type in-block)
+              (while (not (equal (car in-block) type)) (pop in-block))
+              (pop in-block))))))
+       ;; A headline breaks everything: a proof under a different heading
+       ;; is not this statement's proof.
        ((string-match "\\`\\*+[ \t]+\\(.*\\)\\'" line)
         (setq heading (cerebro-results--strip-tags (match-string 1 line))
-              pending-name nil pending-deps nil))
+              pending-name nil pending-deps nil pending-status nil
+              awaiting-proof nil))
        ((string-match "\\`[ \t]*#\\+NAME:[ \t]*\\(.*\\)\\'" line)
         (setq pending-name (string-trim (match-string 1 line))))
+       ;; `#+DEPENDS:' is NOT an Org affiliated keyword, so -- like any
+       ;; non-affiliated line -- it detaches a `#+NAME' written *above*
+       ;; it from the block below: org-element would then see no :name,
+       ;; silently breaking the `single' export and the duplicate-name
+       ;; check while this parser still saw the name. Clearing
+       ;; pending-name here is what keeps the two from ever disagreeing.
+       ;; The convention that follows: `#+DEPENDS:'/`#+STATUS:' go ABOVE
+       ;; `#+NAME:', and `#+NAME:' stays directly on top of `#+begin_'.
        ((string-match "\\`[ \t]*#\\+DEPENDS:[ \t]*\\(.*\\)\\'" line)
-        ;; #+DEPENDS is NOT an Org affiliated keyword, so -- like any
-        ;; non-affiliated line -- it detaches a #+NAME written *above* it
-        ;; from the block below: org-element would then see no :name,
-        ;; silently breaking the `single' export and the duplicate-name
-        ;; check while this parser still saw the name. Clear pending-name
-        ;; here so the two can never disagree. The convention that follows:
-        ;; #+DEPENDS goes ABOVE #+NAME, and #+NAME stays directly on top of
-        ;; the #+begin_ line.
         (setq pending-deps (cerebro-results--split (match-string 1 line))
+              pending-name nil))
+       ((string-match "\\`[ \t]*#\\+STATUS:[ \t]*\\(.*\\)\\'" line)
+        (setq pending-status (downcase (string-trim (match-string 1 line)))
               pending-name nil))
        ((string-match "\\`[ \t]*#\\+begin_\\([a-zA-Z]+\\)" line)
         (let ((type (downcase (match-string 1 line))))
-          (when (and pending-name (member type cerebro-results-types))
-            (push (list :name pending-name :type type :deps pending-deps
-                        :file file :line line-no :heading heading)
-                  results)))
-        (setq pending-name nil pending-deps nil))
-       ;; Any other non-blank line (prose, a different keyword) ends the
-       ;; contiguous affiliated-keyword run; a blank line does too.
-       (t (setq pending-name nil pending-deps nil))))
-    (nreverse results)))
+          (setq in-block (list type))
+          (cond
+           ;; A proof directly after a statement proves it, unless the
+           ;; statement said otherwise itself.
+           ((and (equal type "proof") awaiting-proof)
+            (unless (plist-get awaiting-proof :status)
+              (plist-put awaiting-proof :status "proved"))
+            (setq awaiting-proof nil))
+           ((and pending-name (member type cerebro-results-types))
+            (let ((record (list :name pending-name :type type :deps pending-deps
+                                :status (when (cerebro-proof-status-p pending-status)
+                                          pending-status)
+                                :file file :line line-no :heading heading)))
+              (push record results)
+              ;; The proof may follow after this block closes.
+              (setq awaiting-proof record)))
+           (t (setq awaiting-proof nil))))
+        (setq pending-name nil pending-deps nil pending-status nil))
+       ;; A blank line between a statement and its proof is normal, and
+       ;; must not break the pair.
+       ((string-match-p "\\`[ \t]*\\'" line)
+        (setq pending-name nil pending-deps nil pending-status nil))
+       ;; Any other content outside a block: prose has resumed, so
+       ;; whatever comes later is no longer *this* statement's proof.
+       (t (setq pending-name nil pending-deps nil pending-status nil
+                awaiting-proof nil))))
+    (mapcar #'cerebro-results--with-default-status (nreverse results))))
+
+(defconst cerebro-results-provable-types
+  '("theorem" "lemma" "proposition" "corollary")
+  "Result types that a proof is *expected* for.
+A definition or an example is not unproved -- it is not the kind of thing
+that gets proved -- so leaving them out is what keeps
+`cerebro-results-open' a list of real work rather than of every block in
+the archive.
+
+This is the one list of \"needs a proof\" in the repository:
+bin/notes-lint.el reads it rather than repeating it, because a type
+added here and forgotten there is a result the linter stops asking for a
+proof of -- silently, which is the only kind of rot that matters in an
+archive meant to last.
+
+Necessarily a subset of `cerebro-results-types': a type the parser never
+records cannot be reported unproved. It held a fifth entry, \"claim\",
+for a while -- not in `cerebro-results-types', not an environment in
+latex/cerebro-theorems.sty, so it could never match anything and a
+`#+begin_claim' would have failed to compile anyway. A test now pins the
+subset relation, which is what makes that mistake loud instead of
+invisible.")
+
+(defun cerebro-results--with-default-status (record)
+  "RECORD with `:status' filled in when it can be inferred.
+Explicit `#+STATUS:' always wins; a statement followed by a proof block
+is `proved'; anything else that ought to have a proof is `open'; the
+types that are not proved at all keep no status."
+  (or (plist-get record :status)
+      (plist-put record :status
+                 (when (member (plist-get record :type) cerebro-results-provable-types)
+                   "open")))
+  record)
+
+(defun cerebro-results-by-status (records status)
+  "The RECORDS whose `:status' is STATUS. Pure."
+  (seq-filter (lambda (r) (equal (plist-get r :status) status)) records))
+
+(defun cerebro-results-unproved (records)
+  "RECORDS that are `open' or `assumed', open first -- the work list.
+`assumed' is included on purpose: something you decided to take for
+granted is still something the archive owes an argument for, and it is
+the thing you forget you decided."
+  (append (cerebro-results-by-status records "open")
+          (cerebro-results-by-status records "assumed")))
 
 ;; -- Pure graph algorithms (over parsed records) -----------------------
 
@@ -218,7 +332,20 @@ cannot, even transitively, rest on itself."
 (defun cerebro-results-scan (&optional dir)
   "Parse every note under DIR (default `org-directory') into one flat
 list of result records -- the whole-corpus view the graph needs (a
-dependency and its dependents commonly live in different files)."
+dependency and its dependents commonly live in different files).
+
+Memoised on the notes' mtimes (cerebro-cache.el): this reads and parses
+every file in the archive, and the start page, the index and the
+dependency queries all ask for it in the same second."
+  (let* ((dir (or dir org-directory))
+         (files (cerebro-note-files dir)))
+    (cerebro-cache-get
+     (list 'results-scan dir)
+     (cerebro-cache-file-signature files)
+     (lambda () (cerebro-results-scan--uncached dir)))))
+
+(defun cerebro-results-scan--uncached (&optional dir)
+  "The real work behind `cerebro-results-scan'."
   (let (all)
     (dolist (f (cerebro-note-files dir))
       (with-temp-buffer
@@ -234,9 +361,10 @@ dependency and its dependents commonly live in different files)."
     h))
 
 (defun cerebro-results--line (r)
-  "One display line for record R: `TYPE  name  -- heading  (file:line)'."
-  (format "%-11s %s%s%s"
+  "One display line for record R: `TYPE [status] name -- heading (file:line)'."
+  (format "%-11s %-9s %s%s%s"
           (plist-get r :type)
+          (let ((status (plist-get r :status))) (if status (format "[%s]" status) ""))
           (plist-get r :name)
           (let ((h (plist-get r :heading))) (if (and h (not (string-empty-p h)))
                                                  (format "  -- %s" h) ""))
@@ -314,5 +442,24 @@ interactive view of them."
      (if rows (format "Results check -- %d problem(s)" (length rows))
        "Results check -- clean")
      (nreverse rows) #'identity "*cerebro-results*")))
+
+
+;;;###autoload
+(defun cerebro-results-open ()
+  "What the archive still owes a proof (`C-c r o').
+Everything `open' first, then everything `assumed' -- the second list is
+the one that goes unnoticed, because an assumption reads like a decision
+rather than like a debt."
+  (interactive)
+  (let* ((records (cerebro-results-scan))
+         (unproved (cerebro-results-unproved records)))
+    (cerebro-report
+     (format "cerebro results -- %d unproved of %d (%d open, %d assumed)"
+             (length unproved) (length records)
+             (length (cerebro-results-by-status records "open"))
+             (length (cerebro-results-by-status records "assumed")))
+     unproved
+     #'cerebro-results--line
+     "*cerebro-results*")))
 
 (provide 'cerebro-results)

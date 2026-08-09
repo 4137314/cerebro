@@ -22,7 +22,7 @@
 ;;      and cursor position per file -- so reopening the database feels
 ;;      continuous across sessions. All three are built into Emacs.
 
-(require 'cerebro-org) ;; for `cerebro-root'
+(require 'cerebro-base) ;; for `cerebro-root' -- which is where it lives
 (require 'recentf)
 (require 'savehist)
 (require 'saveplace)

@@ -10,7 +10,8 @@
 ;;   theorem/lemma/proposition/corollary block with no adjacent proof
 ;;   block *and* no conjecture/folklore/open_problem tag on its
 ;;   nearest enclosing heading, headings using tags not declared in
-;;   org-tag-alist (see notes/TAGS.org).
+;;   org-tag-alist (see notes/README.org), and -- in notes/math/ -- a
+;;   file whose name is no longer the digest of its own metadata.
 ;; - Tier 2 (needs the Org-roam DB, skipped with a message if
 ;;   unavailable): broken id: links, fully orphaned nodes
 ;;   (informational only -- normal for a fresh `seed' note, not an
@@ -30,6 +31,8 @@
 (require 'flyspell)
 (require 'cerebro-org)
 (require 'cerebro-msc) ;; validate #+MSC: codes against MSC2020
+(require 'cerebro-hash) ;; a note in notes/math/ is named by its metadata
+(require 'cerebro-bib)  ;; the one bibliography every [cite:@key] must be in
 (require 'cerebro-results) ;; the #+NAME/#+DEPENDS logical-dependency graph
 
 (defvar cerebro-lint--errors nil)
@@ -64,7 +67,13 @@
       (org-element-map tree 'special-block
         (lambda (block)
           (let ((type (downcase (or (org-element-property :type block) ""))))
-            (when (member type '("theorem" "lemma" "proposition" "corollary"))
+            ;; `cerebro-results-provable-types', not a fourth copy of the
+            ;; list: which blocks owe a proof is one decision, and it is
+            ;; already made in cerebro-results.el (which this file
+            ;; requires). Adding a result type there now teaches the
+            ;; linter about it too, instead of leaving a type the
+            ;; dependency graph tracks and the push gate ignores.
+            (when (member type cerebro-results-provable-types)
               (let* ((parent (org-element-property :parent block))
                      (siblings (org-element-contents parent))
                      (idx (cl-position block siblings))
@@ -81,6 +90,35 @@
                   (cerebro-lint--err
                    "%s: %s `%s' has no adjacent proof block (tag its heading conjecture/folklore/open_problem if that's intentional)"
                    file type (or (org-element-property :name block) "(unnamed)"))))))))
+      ;; This archive is theory: definitions, statements, proofs. An
+      ;; example is a particular object, and a particular object is the
+      ;; one thing a note cannot be reused as -- it cannot be cited, it
+      ;; cannot be depended on, and it says nothing that survives being
+      ;; generalised. A would-be example with real content *is* a
+      ;; proposition and should be stated as one; an exercise is a proof
+      ;; someone decided not to write down.
+      ;;
+      ;; An error, not advice: this is a convention about what the
+      ;; archive *is*, and the whole point of putting it in the push gate
+      ;; is that it cannot drift back one note at a time.
+      ;;
+      ;; Two element types, because Org parses these differently:
+      ;; `#+begin_example' is an `example-block' (Org reserves the name
+      ;; for verbatim text), while exercise/hint/solution are ordinary
+      ;; special blocks.
+      (org-element-map tree 'example-block
+        (lambda (block)
+          (cerebro-lint--err
+           "%s: `#+begin_example' -- this archive holds no examples; state it as a proposition, or as prose"
+           file)
+          (ignore block)))
+      (org-element-map tree 'special-block
+        (lambda (block)
+          (let ((type (downcase (or (org-element-property :type block) ""))))
+            (when (member type '("exercise" "hint" "solution"))
+              (cerebro-lint--err
+               "%s: `#+begin_%s' -- this archive holds no exercises; write the proof out"
+               file type)))))
       ;; A referenceable result block (cerebro-results.el's types) with no
       ;; #+NAME can't be cited in the dependency graph or the index -- a
       ;; rigorous archive names everything it might depend on. Advisory: a
@@ -106,19 +144,21 @@
                    (prev (and idx (> idx 0) (nth (1- idx) siblings)))
                    (prev-type (and prev (eq (org-element-type prev) 'special-block)
                                    (downcase (or (org-element-property :type prev) "")))))
-              (unless (member prev-type '("theorem" "lemma" "proposition" "corollary"))
+              ;; Same list, same reason: what a proof may attach to is
+              ;; what a proof is expected for.
+              (unless (member prev-type cerebro-results-provable-types)
                 (cerebro-lint--note
                  "%s: proof block has no theorem-like block immediately before it" file))))))
       (org-element-map tree 'headline
         (lambda (h)
           (dolist (tag (org-element-property :tags h))
             (unless (member tag known-tags)
-              (cerebro-lint--err "%s: heading `%s' uses undeclared tag `%s' (see notes/TAGS.org)"
+              (cerebro-lint--err "%s: heading `%s' uses undeclared tag `%s' (see notes/README.org)"
                                   file (org-element-property :raw-value h) tag)))))
       ;; MSC2020 classification (cerebro-msc.el): every code in a #+MSC:
       ;; line must be well-formed and name a real top-level class -- a
       ;; typo'd code silently mis-files a note and breaks \subjclass on a
-      ;; paper export. Advisory-only nudge: an evergreen note with no MSC
+      ;; note. Advisory-only nudge: an evergreen note with no MSC
       ;; at all is worth classifying, but not an error.
       (let* ((msc-values (org-element-map tree 'keyword
                            (lambda (k) (and (equal (org-element-property :key k) "MSC")
@@ -129,7 +169,7 @@
                          nil t))
              (codes (apply #'append (mapcar #'cerebro-msc-parse msc-values))))
         (dolist (bad (cerebro-msc-invalid codes))
-          (cerebro-lint--err "%s: invalid MSC code `%s' (not MSC2020 -- see notes/TAGS.org)"
+          (cerebro-lint--err "%s: invalid MSC code `%s' (not MSC2020 -- see notes/README.org)"
                               file bad))
         (when (and filetags (string-match-p ":evergreen:" filetags) (null codes))
           (cerebro-lint--note "%s: evergreen note has no #+MSC: classification" file))))))
@@ -139,6 +179,11 @@
   "Which spell-checker backend to use, if any. aspell (from guix.scm)
 is preferred; hunspell is an acceptable fallback if that's what's on
 PATH (e.g. testing outside the guix environment).")
+
+(defvar cerebro-lint--spelling-warned nil
+  "Whether the \"spelling unavailable\" notice has been printed already.
+Once per run, not once per note: the same message twelve times reads
+like twelve problems.")
 
 (defun cerebro-lint--prose-only (file)
   "Best-effort prose extraction from FILE for spell-checking: drops
@@ -179,8 +224,17 @@ informational only, never a hard failure."
                 (dolist (w (delete-dups words))
                   (cerebro-lint--note "%s: possible misspelling `%s'" file w))))
           (error
-           (message "notes-lint: spelling check unavailable (%s)"
-                     (error-message-string err))))))))
+           ;; The usual cause is running outside the pinned environment:
+           ;; aspell and its dictionary come from guix.scm, and whatever
+           ;; the host happens to have (often hunspell with no matching
+           ;; dictionary) then fails. That is not a defect in the notes,
+           ;; so say what it is and how to get the check back -- once.
+           (unless cerebro-lint--spelling-warned
+             (setq cerebro-lint--spelling-warned t)
+             (message "notes-lint: spelling check skipped -- %s"
+                      (if (string-suffix-p "hunspell" (or cerebro-lint--ispell-program ""))
+                          "hunspell has no usable dictionary here; run inside the pinned environment (aspell comes from guix.scm)"
+                        (error-message-string err))))))))))
 
 (defun cerebro-lint--naked-dollar (file)
   "Flag any unescaped `$' outside a src/example/export block. Notes use
@@ -210,6 +264,64 @@ this is the world-class-parsability convention, not a suggestion."
           (cerebro-lint--err
            "%s:%d: naked `$' in math -- use \\(...\\) inline and \\[...\\] for display ($...$ mis-parses next to punctuation in Org)"
            file lineno)))))))
+
+(defun cerebro-lint--hash-name (file)
+  "In notes/math/, check that FILE is called what its metadata says.
+
+The name is derived data (cerebro-hash.el), and derived data that
+nothing checks is derived data that quietly stops being derived: an
+editor other than Emacs, a `git checkout' of an older revision, or a
+hand-written file all leave a note whose name no longer follows from its
+contents. An error, not a nudge -- with a one-command repair, which is
+what makes it fair to insist."
+  (when (cerebro-hash-note-p file)
+    (when-let* ((wrong (cerebro-hash-check-file file)))
+      (cerebro-lint--err
+       "%s: metadata says this note is `%s' (run `cerebro note rehash')"
+       file (cerebro-hash-file-name (plist-get wrong :hash))))))
+
+(defun cerebro-lint--citations (file keys)
+  "Flag every `[cite:@key]' in FILE whose key is not in KEYS.
+
+The one thing about a citation that used to fail silently: a mistyped or
+renamed key compiles into a bold `[key?]' in the middle of a paragraph,
+and biber says so in a .blg nobody reads. Checking it here, against the
+single bibliography, is what makes `C-c b i' worth trusting -- and what
+makes a wrong key a push that does not happen rather than a PDF you hand
+someone."
+  (with-temp-buffer
+    (insert-file-contents file)
+    (let ((lineno 0)
+          (bib (file-relative-name cerebro-bib-file cerebro-root)))
+      (dolist (line (split-string (buffer-string) "\n"))
+        (setq lineno (1+ lineno))
+        ;; `[cite:@a;@b]' and `[cite/t:@a]' both scan: the keys are what
+        ;; matters, not which citation style asked for them.
+        ;;
+        ;; Both loops read `match-end' into a local BEFORE doing anything
+        ;; else, because reporting an error runs `format' and `push' and
+        ;; those leave the match data as whatever they last matched. Read
+        ;; afterwards, the position went backwards on exactly the inputs
+        ;; this function exists to catch -- a wrong key -- and the scan
+        ;; looped forever on them. (It did. That is why this is written
+        ;; out rather than inlined.)
+        (dolist (key (cerebro-lint--citation-keys line))
+          (unless (member key keys)
+            (cerebro-lint--err "%s:%d: [cite:@%s] -- no such entry in %s"
+                               file lineno key bib)))))))
+
+(defun cerebro-lint--citation-keys (line)
+  "Every citation key referenced in LINE. Pure."
+  (let ((keys nil) (pos 0))
+    (while (string-match "\\[cite[^]:]*:\\([^]]*\\)\\]" line pos)
+      (let ((body (match-string 1 line))
+            (end (match-end 0))
+            (inner 0))
+        (while (string-match "@\\([^];, \t]+\\)" body inner)
+          (setq inner (match-end 0))
+          (push (match-string 1 body) keys))
+        (setq pos end)))
+    (nreverse keys)))
 
 (defun cerebro-lint--results ()
   "Corpus-level checks on the #+NAME/#+DEPENDS results graph
@@ -265,9 +377,17 @@ independent of the file arguments. Pure Elisp: no Org-roam, no Guix."
 
 (let ((files (delete "--" (copy-sequence command-line-args-left))))
   (unless files
-    (setq files (directory-files-recursively
-                 (expand-file-name "notes" cerebro-root) "\\.org\\'")))
-  (dolist (f files) (cerebro-lint--tier1-file f) (cerebro-lint--naked-dollar f))
+    ;; `cerebro-note-files' rather than a raw walk: it is the single
+    ;; definition of "which .org files are notes", and it knows that a
+    ;; course composed into .build/ for an export is a build product, not
+    ;; something to lint (and to report twice, once per included note).
+    (setq files (cerebro-note-files)))
+  (let ((keys (cerebro-bib-keys)))
+    (dolist (f files)
+      (cerebro-lint--tier1-file f)
+      (cerebro-lint--naked-dollar f)
+      (cerebro-lint--hash-name f)
+      (cerebro-lint--citations f keys)))
   (if cerebro-lint--ispell-program
       (dolist (f files) (cerebro-lint--spelling-file f))
     (message "notes-lint: no aspell/hunspell on PATH, skipping the spelling pass")))

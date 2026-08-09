@@ -1,15 +1,19 @@
 #!/bin/sh
-# Versioned pre-push hook: the thorough, slower gate, run before sharing
-# rather than on every commit (the project's own principle). Two parts:
-#   1. bin/cerebro-lint -- duplicate labels, unproved theorems,
-#      undeclared tags, and -- if the Org-roam DB is available -- broken
-#      links (graph-wide checks that don't belong on the commit path).
-#   2. make export-matrix -- compile every named profile against
-#      notes/example.org, the integration smoke test that used to run on
-#      every commit via post-commit (a multi-minute TeX matrix); push is
-#      the right, less frequent boundary for it.
-# Installed via `make install-hooks`.
+# Versioned pre-push hook: the gate before sharing. Two checks, both fast:
+#
+#   1. the test suite  (ERT + the POSIX-sh tests)
+#   2. bin/cerebro-lint -- duplicate labels, unproved theorems, undeclared
+#      tags, and -- when the Org-roam DB is available -- broken links
+#
+# What is NOT here, deliberately: `make export-matrix', the fourteen-way
+# LaTeX compile. It takes tens of minutes, and a gate that slow is a gate
+# you learn to bypass with --no-verify -- which is worse than not having
+# one. Run it when you touch latex/, the export profiles or the course
+# generator: `make export-matrix', or `make ci' for everything.
+#
+# Inside the pinned environment this whole hook is seconds (bin/guix-run
+# does not re-resolve the channel when GUIX_ENVIRONMENT is already set).
+# Installed via `make install-hooks'.
 set -eu
 cd "$(git rev-parse --show-toplevel)"
-./bin/cerebro-lint
-make export-matrix
+make check

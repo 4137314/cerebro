@@ -1,0 +1,48 @@
+:PROPERTIES:
+:ID:       845f24c9-1f1d-4d2d-8cc1-1f7f81ab3647
+:END:
+#+TITLE: The ratio and root tests
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 40A05
+#+HASH: 82c787d47f77
+
+Both tests do the same thing: they compare a series with a geometric one
+that dominates it eventually. Neither says anything when its limit is
+\(1\), and neither can, since \(\sum 1/n\) and \(\sum 1/n^{2}\) both hit
+that case with different answers.
+
+#+DEPENDS: thm-comparison-test, def-series-convergence
+#+NAME: thm-root-test
+#+begin_theorem
+Let \(L = \lim_{n \to \infty} \abs{a_{n}}^{1/n}\) exist. If \(L < 1\)
+the series \(\sum a_{n}\) converges absolutely; if \(L > 1\) it diverges.
+#+end_theorem
+
+#+begin_proof
+Suppose \(L < 1\) and pick \(r\) with \(L < r < 1\). There is \(N\) with
+\(\abs{a_{n}}^{1/n} \le r\), that is \(\abs{a_{n}} \le r^{n}\), for all
+\(n \ge N\). The geometric series \(\sum r^{n}\) converges, so by
+comparison \(\sum_{n \ge N} \abs{a_{n}}\) converges, and adding the
+finitely many earlier terms changes nothing. If \(L > 1\) then
+\(\abs{a_{n}} \ge 1\) for infinitely many \(n\), so the terms do not tend
+to \(0\) and the series diverges.
+#+end_proof
+
+#+DEPENDS: thm-comparison-test, def-series-convergence
+#+NAME: thm-ratio-test
+#+begin_theorem
+Let \(a_{n} \ne 0\) for all \(n\) and let
+\(L = \lim_{n \to \infty} \abs{a_{n+1}/a_{n}}\) exist. If \(L < 1\) the
+series \(\sum a_{n}\) converges absolutely; if \(L > 1\) it diverges.
+#+end_theorem
+
+#+begin_proof
+Suppose \(L < 1\) and pick \(r\) with \(L < r < 1\). There is \(N\) with
+\(\abs{a_{n+1}} \le r \abs{a_{n}}\) for \(n \ge N\), whence by induction
+\(\abs{a_{N+k}} \le r^{k} \abs{a_{N}}\) for every \(k \ge 0\).
+Comparison with the convergent geometric series
+\(\abs{a_{N}} \sum_{k \ge 0} r^{k}\) gives absolute convergence. If
+\(L > 1\) then \(\abs{a_{n+1}} \ge \abs{a_{n}} > 0\) for all large
+\(n\), so the terms cannot tend to \(0\).
+#+end_proof

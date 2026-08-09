@@ -1,0 +1,66 @@
+:PROPERTIES:
+:ID:       2d28bca1-3909-4862-8c64-da1d91d4f27a
+:END:
+#+TITLE: The Euler-Lagrange equations
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:mathematical_physics:classical_mechanics:
+#+MSC: 70H03, 49S05
+#+HASH: 981f7e2ef909
+
+The condition "stationary among all paths with these endpoints" is one
+statement about a functional; the Euler-Lagrange equations are the same
+statement as \(n\) ordinary differential equations. The step between them
+is an integration by parts, and the boundary term it produces vanishes
+precisely because the variation was required to fix the endpoints --
+which is where that hypothesis is used, and the only place.
+
+#+DEPENDS: def-action-functional, def-variation, lem-fundamental-lemma-of-the-calculus-of-variations, thm-integration-by-parts, thm-derivative-algebra
+#+NAME: thm-euler-lagrange
+#+begin_theorem
+A twice continuously differentiable path \(q\) is stationary for the
+action if and only if it satisfies, for \(i = 1, \dots, n\),
+\[ \frac{\dd}{\dd t} \frac{\partial L}{\partial \dot q_{i}}\bigl( q, \dot q, t \bigr) - \frac{\partial L}{\partial q_{i}}\bigl( q, \dot q, t \bigr) = 0. \]
+#+end_theorem
+
+#+begin_proof
+Differentiating under the integral sign -- legitimate because \(L\) is
+twice continuously differentiable and the domain of integration is
+compact -- gives
+\[ \left. \frac{\dd}{\dd \eps} S[q + \eps\eta] \right|_{0} = \int_{t_{0}}^{t_{1}} \Bigl( \frac{\partial L}{\partial q_{i}} \eta_{i} + \frac{\partial L}{\partial \dot q_{i}} \dot\eta_{i} \Bigr) \dd t, \]
+summed over \(i\). Integrating the second term by parts,
+\[ \int_{t_{0}}^{t_{1}} \frac{\partial L}{\partial \dot q_{i}} \dot\eta_{i} \dd t = \Bigl[ \frac{\partial L}{\partial \dot q_{i}} \eta_{i} \Bigr]_{t_{0}}^{t_{1}} - \int_{t_{0}}^{t_{1}} \frac{\dd}{\dd t}\Bigl( \frac{\partial L}{\partial \dot q_{i}} \Bigr) \eta_{i} \dd t, \]
+and the bracket vanishes because \(\eta(t_{0}) = \eta(t_{1}) = 0\). So
+the first variation equals
+\(\int (\partial L/\partial q_{i} - \frac{\dd}{\dd t} \partial L / \partial \dot q_{i}) \eta_{i} \dd t\).
+It vanishes for every admissible \(\eta\) exactly when the bracketed
+function vanishes identically, by the fundamental lemma.
+#+end_proof
+
+#+DEPENDS: thm-euler-lagrange
+#+NAME: def-conjugate-momentum
+#+begin_definition
+The /momentum conjugate/ to \(q_{i}\) is
+\(p_{i} = \partial L / \partial \dot q_{i}\). A coordinate \(q_{i}\) is
+/cyclic/ if \(L\) does not depend on it.
+#+end_definition
+
+#+DEPENDS: def-conjugate-momentum, thm-euler-lagrange, cor-vanishing-derivative
+#+NAME: prop-cyclic-coordinate-conserves-momentum
+#+begin_proposition
+The momentum conjugate to a cyclic coordinate is constant along any
+solution.
+#+end_proposition
+
+#+begin_proof
+If \(\partial L / \partial q_{i} = 0\) then the Euler-Lagrange equation
+for that index reads \(\dd p_{i} / \dd t = 0\), so \(p_{i}\) has
+vanishing derivative on an interval and is therefore constant.
+#+end_proof
+
+#+begin_remark
+This is the first conservation law, and it is already the whole
+mechanism: a symmetry of \(L\) -- here, invariance under translating one
+coordinate -- produces a quantity that does not change. Noether's
+theorem is this observation made independent of the choice of
+coordinates.
+#+end_remark

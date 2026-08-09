@@ -1,0 +1,121 @@
+:PROPERTIES:
+:ID:       06b49b70-2706-41e5-b4e0-612723e3adcf
+:END:
+#+TITLE: Field extensions, the tower law and minimal polynomials
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:algebra:field_theory:
+#+MSC: 12F05
+#+HASH: b86e0f0301c3
+
+An extension of fields is a vector space, and that single observation is
+what makes field theory finite: questions about which numbers can be
+adjoined to \(\Q\) become questions about dimensions, which multiply
+along towers. The classical impossibility results -- duplicating the
+cube, trisecting an angle -- are the tower law and nothing else.
+
+#+DEPENDS: def-integral-domain, def-vector-space
+#+NAME: def-field-extension
+#+begin_definition
+A /field extension/ \(L/K\) is a field \(L\) containing \(K\) as a
+subfield. Then \(L\) is a vector space over \(K\), and the /degree/
+\([L : K]\) is \(\dim_{K} L\); the extension is /finite/ if the degree
+is finite. For \(\alpha \in L\), \(K(\alpha)\) denotes the smallest
+subfield of \(L\) containing \(K\) and \(\alpha\).
+#+end_definition
+
+#+DEPENDS: def-field-extension, thm-dimension-is-well-defined, prop-basis-gives-unique-coordinates
+#+NAME: thm-tower-law
+#+begin_theorem
+Let \(K \subseteq L \subseteq M\) be fields. Then
+\([M : K] = [M : L]\,[L : K]\), in the sense that \(M/K\) is finite
+exactly when both \(M/L\) and \(L/K\) are, and then the degrees
+multiply.
+#+end_theorem
+
+#+begin_proof
+Let \((u_{i})_{i \le m}\) be a basis of \(L\) over \(K\) and
+\((v_{j})_{j \le n}\) a basis of \(M\) over \(L\). We claim the \(mn\)
+products \(u_{i}v_{j}\) form a basis of \(M\) over \(K\).
+
+They span: \(x \in M\) is \(\sum_{j} \lambda_{j} v_{j}\) with
+\(\lambda_{j} \in L\), and each \(\lambda_{j}\) is
+\(\sum_{i} \mu_{ij} u_{i}\) with \(\mu_{ij} \in K\), so
+\(x = \sum_{i,j} \mu_{ij} u_{i} v_{j}\). They are independent: if
+\(\sum_{i,j}\mu_{ij}u_{i}v_{j} = 0\), then grouping as
+\(\sum_{j} \bigl(\sum_{i}\mu_{ij}u_{i}\bigr) v_{j} = 0\) with
+coefficients in \(L\) forces each \(\sum_{i}\mu_{ij}u_{i} = 0\) by
+independence of the \(v_{j}\) over \(L\), and then each
+\(\mu_{ij} = 0\) by independence of the \(u_{i}\) over \(K\).
+
+If \(M/K\) is finite, then \(L\) is a \(K\)-subspace of \(M\), so
+\(L/K\) is finite; and a \(K\)-spanning set of \(M\) spans it over the
+larger field \(L\), so \(M/L\) is finite. The displayed count then
+applies.
+#+end_proof
+
+#+DEPENDS: def-field-extension, def-polynomial-ring
+#+NAME: def-algebraic-element
+#+begin_definition
+Let \(L/K\) be an extension. An element \(\alpha \in L\) is /algebraic/
+over \(K\) if \(f(\alpha) = 0\) for some non-zero \(f \in K[x]\), and
+/transcendental/ otherwise. The extension is /algebraic/ if every
+element of \(L\) is.
+#+end_definition
+
+#+DEPENDS: def-algebraic-element, thm-euclidean-is-a-pid, thm-maximal-iff-quotient-is-a-field
+#+NAME: thm-minimal-polynomial
+#+begin_theorem
+Let \(\alpha \in L\) be algebraic over \(K\). Then there is a unique
+monic \(m \in K[x]\) of least degree with \(m(\alpha) = 0\); it is
+irreducible, it divides every polynomial vanishing at \(\alpha\), and
+\[ K(\alpha) \iso K[x]/(m), \qquad [K(\alpha) : K] = \deg m, \]
+with \(1, \alpha, \dots, \alpha^{\deg m - 1}\) as a \(K\)-basis of
+\(K(\alpha)\).
+#+end_theorem
+
+#+begin_proof
+Let \(\eps \colon K[x] \to L\) be evaluation at \(\alpha\), a ring
+homomorphism. Its kernel is a non-zero ideal, hence \((m)\) for a
+unique monic \(m\), since \(K[x]\) is a principal ideal domain; \(m\)
+has least degree among the non-zero elements of the kernel and divides
+every one of them. The image of \(\eps\) is \(K[\alpha]\), the set of
+polynomial expressions in \(\alpha\), so
+\(K[x]/(m) \iso K[\alpha]\) by the first isomorphism theorem. Since
+\(K[\alpha]\) is a subring of a field it is an integral domain, so
+\((m)\) is a prime ideal and \(m\) is irreducible; in a principal ideal
+domain \((m)\) is then maximal, so \(K[x]/(m)\) is a field. Hence
+\(K[\alpha]\) is a field containing \(K\) and \(\alpha\), and being
+contained in any such field it equals \(K(\alpha)\).
+
+For the basis: dividing any \(f\) by \(m\) leaves a remainder of degree
+less than \(d = \deg m\) with the same value at \(\alpha\), so
+\(1, \alpha, \dots, \alpha^{d-1}\) span \(K(\alpha)\) over \(K\); and a
+non-trivial \(K\)-relation among them would be a non-zero polynomial of
+degree less than \(d\) vanishing at \(\alpha\), contradicting
+minimality.
+#+end_proof
+
+#+DEPENDS: thm-minimal-polynomial, thm-tower-law
+#+NAME: cor-finite-extensions-are-algebraic
+#+begin_corollary
+Every finite extension \(L/K\) is algebraic, and
+\([K(\alpha) : K]\) divides \([L : K]\) for every \(\alpha \in L\).
+#+end_corollary
+
+#+begin_proof
+Let \(n = [L : K]\) and \(\alpha \in L\). The \(n+1\) elements
+\(1, \alpha, \dots, \alpha^{n}\) cannot be independent over \(K\), so
+some non-trivial relation among them holds -- a non-zero polynomial over
+\(K\) vanishing at \(\alpha\). Thus \(\alpha\) is algebraic. Applying
+the tower law to \(K \subseteq K(\alpha) \subseteq L\) gives
+\([L : K] = [L : K(\alpha)]\,[K(\alpha) : K]\).
+#+end_proof
+
+#+begin_remark
+The converse fails: the field of all algebraic numbers is an algebraic
+extension of \(\Q\) of infinite degree. What the corollary does give is
+the classical impossibility argument in one line -- a point constructible
+by ruler and compass lies in a tower of quadratic extensions, so its
+degree over \(\Q\) is a power of \(2\), while \(\sqrt[3]{2}\) has degree
+\(3\).
+#+end_remark

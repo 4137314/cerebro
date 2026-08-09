@@ -23,6 +23,17 @@ check git    git
 check task   task
 check timew  timew
 
+# Programs the config shells out to. They all come from guix.scm, so
+# inside the pinned environment every one of these is present -- the
+# point of listing them is the *other* case: "why did that key do
+# nothing?" answered here instead of by a silent no-op.
+check latexmk  latexmk    # the export pipeline
+check dvisvgm  dvisvgm    # in-buffer formula previews (cerebro-preview.el)
+check aspell   aspell     # the linter's spelling pass
+check zip      zip        # one archive per course (cerebro-course-export)
+check shellcheck shellcheck # live diagnostics in bin/*.sh (cerebro-code.el)
+check rg       rg         # the live note search (C-c s)
+
 repo_root=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
 channels="$repo_root/guix/channels.scm"
 if [ -f "$channels" ] && grep -q 'REPLACE-WITH-REAL-COMMIT' "$channels"; then

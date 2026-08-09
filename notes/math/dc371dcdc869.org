@@ -1,0 +1,51 @@
+:PROPERTIES:
+:ID:       3df902f9-c527-40c3-994a-78fa87ef1063
+:END:
+#+TITLE: Supremum and infimum
+#+DATE: [2026-08-06 Thu]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A03
+#+HASH: dc371dcdc869
+
+The least upper bound is the notion that makes \(\R\) different from
+\(\Q\): a bounded set of rationals need not have a rational least upper
+bound, and the whole of analysis rests on the fact that a bounded set of
+reals always has a real one.
+
+#+NAME: def-upper-bound
+#+begin_definition
+Let \(A \subseteq \R\) be non-empty. A number \(M \in \R\) is an /upper
+bound/ of \(A\) if \(a \le M\) for every \(a \in A\). The set \(A\) is
+/bounded above/ if it has an upper bound.
+#+end_definition
+
+#+DEPENDS: def-upper-bound
+#+NAME: def-supremum
+#+begin_definition
+An upper bound \(s\) of \(A\) is the /supremum/ of \(A\), written
+\(s = \sup A\), if \(s \le M\) for every upper bound \(M\) of \(A\):
+the least upper bound. The /infimum/ \(\inf A\) is defined dually, as the
+greatest lower bound.
+#+end_definition
+
+#+DEPENDS: def-supremum
+#+NAME: prop-supremum-characterisation
+#+begin_proposition
+Let \(A \subseteq \R\) be non-empty and bounded above, and let \(s\) be an
+upper bound of \(A\). Then \(s = \sup A\) if and only if for every
+\(\eps > 0\) there is \(a \in A\) with \(a > s - \eps\).
+#+end_proposition
+
+#+begin_proof
+Suppose \(s = \sup A\) and let \(\eps > 0\). If no \(a \in A\) satisfied
+\(a > s - \eps\), then \(s - \eps\) would be an upper bound of \(A\)
+smaller than \(s\), contradicting leastness. Conversely, suppose the
+condition holds and let \(M\) be any upper bound of \(A\). If \(M < s\),
+take \(\eps = s - M > 0\): there is \(a \in A\) with \(a > s - \eps = M\),
+contradicting that \(M\) is an upper bound. Hence \(s \le M\), so \(s\) is
+least.
+#+end_proof
+
+This characterisation is what one actually uses: it turns "least upper
+bound" into a statement about approximating \(s\) from inside \(A\), which
+is the form every \(\eps\)--\(\delta\) argument needs.

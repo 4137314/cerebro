@@ -1,0 +1,55 @@
+:PROPERTIES:
+:ID:       a7b50bb3-2a00-4d1c-a808-a6fcc1c43f78
+:END:
+#+TITLE: Noether's theorem
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:mathematical_physics:classical_mechanics:
+#+MSC: 70H03, 70G65
+#+HASH: 0bdd1cd532be
+
+A cyclic coordinate conserves its momentum, but "cyclic" is a statement
+about a chart, and a symmetry need not be aligned with any coordinate.
+Noether's theorem removes the chart: to every one-parameter family of
+transformations leaving the Lagrangian invariant it attaches a quantity
+constant along every solution, and the correspondence is explicit rather
+than existential.
+
+#+DEPENDS: def-action-functional, def-differentiable-multivariable
+#+NAME: def-variational-symmetry
+#+begin_definition
+A continuously differentiable family of maps
+\(\Phi_{s} \colon \R^{n} \to \R^{n}\), \(s\) in a neighbourhood of
+\(0\), with \(\Phi_{0} = \mathrm{id}\), is a /symmetry/ of \(L\) if
+\[ L\bigl( \Phi_{s}(q), \, D\Phi_{s}(q) \dot q, \, t \bigr) = L(q, \dot q, t) \]
+for all \(q, \dot q, t\) and all \(s\). Its /generator/ is the vector
+field \(X(q) = \left. \frac{\partial}{\partial s} \Phi_{s}(q) \right|_{s=0}\).
+#+end_definition
+
+#+DEPENDS: def-variational-symmetry, thm-euler-lagrange, def-conjugate-momentum, cor-vanishing-derivative
+#+NAME: thm-noether
+#+begin_theorem
+If \(\Phi_{s}\) is a symmetry of \(L\) with generator \(X\), then
+\[ I(q, \dot q) = \sum_{i} \frac{\partial L}{\partial \dot q_{i}}(q, \dot q, t) \, X_{i}(q) = p \cdot X(q) \]
+is constant along every solution of the Euler-Lagrange equations.
+#+end_theorem
+
+#+begin_proof
+Differentiate the invariance identity with respect to \(s\) at
+\(s = 0\). Writing \(q^{s} = \Phi_{s}(q)\), the chain rule gives
+\[ 0 = \sum_{i} \frac{\partial L}{\partial q_{i}} X_{i}(q) + \sum_{i} \frac{\partial L}{\partial \dot q_{i}} \frac{\dd}{\dd t} X_{i}(q), \]
+the second term because differentiating \(D\Phi_{s}(q)\dot q\) in \(s\)
+at \(0\) produces exactly the time derivative of \(X_{i}\) along the
+path. Now let \(q\) solve the Euler-Lagrange equations, so that
+\(\partial L/\partial q_{i} = \dd p_{i}/\dd t\). Substituting,
+\[ 0 = \sum_{i} \Bigl( \frac{\dd p_{i}}{\dd t} X_{i} + p_{i} \frac{\dd X_{i}}{\dd t} \Bigr) = \frac{\dd}{\dd t} \sum_{i} p_{i} X_{i}, \]
+by the product rule. A function with vanishing derivative on an
+interval is constant.
+#+end_proof
+
+#+begin_remark
+A cyclic coordinate is the special case \(\Phi_{s}(q) = q + s e_{i}\),
+whose generator is the constant field \(e_{i}\) and whose conserved
+quantity is \(p_{i}\). The theorem's content is that nothing depended on
+the symmetry being a translation of a coordinate: invariance is a
+property of \(L\), and the conserved quantity is read off the generator.
+#+end_remark

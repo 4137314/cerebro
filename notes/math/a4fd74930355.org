@@ -1,0 +1,110 @@
+:PROPERTIES:
+:ID:       27ec50b5-1e22-4d41-8edb-d13292004a0f
+:END:
+#+TITLE: Cosets, the index and Lagrange's theorem
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:algebra:group_theory:
+#+MSC: 20A05, 20D60
+#+HASH: a4fd74930355
+
+A subgroup cuts the group into translated copies of itself, all of the
+same size. That single observation is the whole of Lagrange's theorem,
+and it is the reason finite group theory is a subject with arithmetic in
+it: the order of a subgroup, and hence the order of every element,
+divides the order of the group before any structure is examined.
+
+#+DEPENDS: def-subgroup, def-equivalence-relation
+#+NAME: def-coset
+#+begin_definition
+Let \(H \le G\) and \(a \in G\). The /left coset/ of \(H\) by \(a\) is
+\(aH = \setst{ah}{h \in H}\), and the /right coset/ is
+\(Ha = \setst{ha}{h \in H}\). The set of left cosets is written
+\(G/H\).
+#+end_definition
+
+#+DEPENDS: def-coset, thm-equivalence-partition
+#+NAME: prop-cosets-partition
+#+begin_proposition
+The relation \(a \sim b\) defined by \(a^{-1}b \in H\) is an equivalence
+relation on \(G\) whose classes are the left cosets of \(H\). In
+particular the left cosets partition \(G\), and \(aH = bH\) if and only
+if \(a^{-1}b \in H\).
+#+end_proposition
+
+#+begin_proof
+Reflexivity is \(a^{-1}a = e \in H\); symmetry follows because
+\((a^{-1}b)^{-1} = b^{-1}a\) and \(H\) is closed under inverses;
+transitivity because \(a^{-1}c = (a^{-1}b)(b^{-1}c)\) and \(H\) is
+closed under products. The class of \(a\) is
+\(\setst{b}{a^{-1}b \in H} = \setst{ah}{h \in H} = aH\). The classes of
+an equivalence relation partition the set, and two classes coincide
+exactly when their representatives are related.
+#+end_proof
+
+#+DEPENDS: def-coset, prop-bijective-iff-invertible
+#+NAME: prop-cosets-are-equinumerous
+#+begin_proposition
+For every \(a \in G\) the map \(h \mapsto ah\) is a bijection
+\(H \to aH\); so all left cosets of \(H\) have the same cardinality as
+\(H\).
+#+end_proposition
+
+#+begin_proof
+It is surjective by the definition of \(aH\) and injective because
+\(ah = ah'\) gives \(h = h'\) on multiplying by \(a^{-1}\). Its inverse
+is \(x \mapsto a^{-1}x\).
+#+end_proof
+
+#+DEPENDS: prop-cosets-partition, prop-cosets-are-equinumerous
+#+NAME: def-index
+#+begin_definition
+The /index/ \([G : H]\) of \(H\) in \(G\) is the cardinality of
+\(G/H\), the number of distinct left cosets.
+#+end_definition
+
+#+DEPENDS: def-index, prop-cosets-partition, prop-cosets-are-equinumerous
+#+NAME: thm-lagrange
+#+begin_theorem
+If \(G\) is a finite group and \(H \le G\), then
+\(\abs{G} = [G : H] \cdot \abs{H}\). In particular \(\abs{H}\) divides
+\(\abs{G}\).
+#+end_theorem
+
+#+begin_proof
+The left cosets partition \(G\), so \(\abs{G}\) is the sum of their
+cardinalities; there are \([G : H]\) of them and each has \(\abs{H}\)
+elements.
+#+end_proof
+
+#+DEPENDS: thm-lagrange, prop-order-and-powers
+#+NAME: cor-order-of-an-element-divides
+#+begin_corollary
+In a finite group \(G\), the order of every element divides \(\abs{G}\),
+and \(a^{\abs{G}} = e\) for all \(a \in G\).
+#+end_corollary
+
+#+begin_proof
+The subgroup \(\langle a \rangle\) has exactly \(\ord(a)\) elements, so
+\(\ord(a)\) divides \(\abs{G}\) by Lagrange. Writing
+\(\abs{G} = \ord(a) k\) gives \(a^{\abs{G}} = (a^{\ord(a)})^{k} = e\).
+#+end_proof
+
+#+DEPENDS: cor-order-of-an-element-divides, thm-classification-of-cyclic-groups
+#+NAME: cor-groups-of-prime-order
+#+begin_corollary
+A group of prime order \(p\) is cyclic, and every element other than
+the identity generates it.
+#+end_corollary
+
+#+begin_proof
+Take \(a \ne e\). Then \(\ord(a)\) divides \(p\) and is not \(1\), so it
+is \(p\); hence \(\langle a \rangle\) has \(p\) elements and equals
+\(G\). By the classification of cyclic groups \(G \iso \Z/p\Z\).
+#+end_proof
+
+#+begin_remark
+The converse of Lagrange's theorem is false -- a divisor of \(\abs{G}\)
+need not be the order of a subgroup -- and repairing it partially is what
+the Sylow theorems do. That the failure is only partial is why the
+theorem above is a genuine constraint rather than a classification.
+#+end_remark

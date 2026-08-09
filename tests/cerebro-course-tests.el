@@ -4,29 +4,34 @@
 ;;          -f ert-run-tests-batch-and-exit
 ;; (see `make test').
 ;;
-;; book.org is generated, so the generator is the only thing standing
-;; between a syllabus and a document that fails to compile. Three things
-;; are worth pinning down, and all three are silent failures:
+;; A course is one file, and the composer is the only thing standing
+;; between it and a document that fails to compile. Three things are
+;; worth pinning down, and all three are silent failures:
 ;;
 ;;   - the programme must be read as a *subtree*: a link in the
-;;     bibliography or the assessment section is not part of the course;
+;;     description or the bibliography is not part of the course;
 ;;   - the include must start below the note's front matter, or the
-;;     second `#+TITLE:' spliced into the middle of the book silently
-;;     overrides the book's own title (and the note's tags and :ID: land
-;;     in the text);
+;;     second `#+TITLE:' spliced into the middle of the document
+;;     silently overrides its own title (and the note's tags, :ID: and
+;;     #+HASH: land in the text);
 ;;   - a link to a note that no longer exists must be *reported*, not
 ;;     quietly dropped -- a chapter missing from a book is not something
-;;     you notice by reading the LaTeX log.
+;;     you notice by reading the LaTeX log. (Collecting them through a
+;;     symbol the caller named is what broke this the first time: the
+;;     file is lexically bound, so the first missing note crashed the
+;;     composer instead of being reported by it.)
 ;;
 ;; The one impure step (an ID -> a file) is injected, so none of this
 ;; needs a note database.
 
 (require 'ert)
 (require 'cerebro-course)
+(require 'cerebro-latex) ;; the outputs must name real export profiles
 
 (defconst cerebro-course-tests--syllabus "\
 #+TITLE: Analysis I -- syllabus
 #+COURSE_TITLE: Analysis I
+#+DATE: [2026-08-07 Fri]
 
 * Description
 Some prose, and a link that is NOT part of the programme:
@@ -38,6 +43,9 @@ Some prose, and a link that is NOT part of the programme:
 ** Inner product spaces
 - [[id:bbb][Inner product space]]
 - [[id:ccc][Cauchy--Schwarz inequality]]
+
+* Appendices
+- [[id:bbb][Inner product space]]
 
 * Bibliography
 [[id:zzz][A book I like]]
@@ -123,46 +131,81 @@ The body starts here.
   ;; Front matter only: the include is empty rather than wrong.
   (should (> (cerebro-course-note-body-line "#+TITLE: t\n") 1)))
 
-;; -- Generating the book -----------------------------------------------
+;; -- Composing the document ---------------------------------------------
 
-(ert-deftest cerebro-course-test-book-includes-instead-of-copying ()
-  "Every note becomes an #+INCLUDE with a path relative to the book."
-  (let* ((entries (cerebro-course-parse-programme cerebro-course-tests--syllabus))
-         (book (plist-get (cerebro-course-book-string
-                           "Analysis I" entries #'cerebro-course-tests--resolve
-                           "/repo/notes/courses/analysis-1")
-                          :text)))
-    (should (string-match-p "^#\\+TITLE: Analysis I$" book))
+(ert-deftest cerebro-course-test-composition-includes-instead-of-copying ()
+  "Every note becomes an #+INCLUDE with a path relative to the composed
+file. Nothing of a note's text is ever copied into a course."
+  (let ((text (plist-get (cerebro-course-compose
+                          cerebro-course-tests--syllabus
+                          #'cerebro-course-tests--resolve
+                          "/repo/notes/courses/.build")
+                         :text)))
+    ;; The course's own front matter travels with it -- a composed
+    ;; document with no title is a book by nobody.
+    (should (string-match-p "^#\\+TITLE: Analysis I -- syllabus$" text))
+    (should (string-match-p "^#\\+COURSE_TITLE: Analysis I$" text))
     (should (string-match-p
              "#\\+INCLUDE: \"\\.\\./\\.\\./math/limits\\.org\" :lines \"7-\" :minlevel 3"
-             book))
+             text))
     ;; The note's own title heads its section -- the link description is
     ;; only a fallback, since the note is the authority on its name.
-    (should (string-match-p "^\\*\\* Limits and continuity$" book))
+    (should (string-match-p "^\\*\\* Limits and continuity$" text))
     ;; Chapters from the programme's own outline.
-    (should (string-match-p "^\\* Continuity$" book))
-    (should (string-match-p "^\\* Inner product spaces$" book))
-    ;; Nothing of the note's text is copied into the book.
-    (should-not (string-match-p "\\\\(" book))))
+    (should (string-match-p "^\\* Continuity$" text))
+    (should (string-match-p "^\\* Inner product spaces$" text))
+    ;; Nothing of the note's text is copied in.
+    (should-not (string-match-p "\\\\(" text))))
 
-(ert-deftest cerebro-course-test-book-reports-missing-notes ()
-  "A link to a note that is gone is reported *and* visible in the book."
-  (let* ((entries (cerebro-course-parse-programme cerebro-course-tests--syllabus))
-         (result (cerebro-course-book-string
-                  "Analysis I" entries #'cerebro-course-tests--resolve
-                  "/repo/notes/courses/analysis-1")))
+(ert-deftest cerebro-course-test-appendices-are-lettered ()
+  "An `* Appendices' section is composed after \\appendix, so those
+chapters are lettered rather than numbered -- and it is the COURSE that
+says so, not any note."
+  (let ((text (plist-get (cerebro-course-compose
+                          cerebro-course-tests--syllabus
+                          #'cerebro-course-tests--resolve
+                          "/repo/notes/courses/.build")
+                         :text)))
+    (should (string-match-p "#\\+LATEX: .appendix" text))
+    ;; ...and after the programme, not before it.
+    (should (< (string-match "\\* Continuity" text)
+               (string-match "#\\+LATEX: .appendix" text))))
+  ;; A course with no appendices emits no \appendix at all.
+  (let ((text (plist-get (cerebro-course-compose
+                          "#+TITLE: T\n* Programme\n- [[id:aaa][One]]\n"
+                          #'cerebro-course-tests--resolve "/repo/x")
+                         :text)))
+    (should-not (string-match-p "appendix" text))))
+
+(ert-deftest cerebro-course-test-composition-reports-missing-notes ()
+  "A link to a note that is gone is reported *and* visible in the text."
+  (let ((result (cerebro-course-compose
+                 cerebro-course-tests--syllabus
+                 #'cerebro-course-tests--resolve
+                 "/repo/notes/courses/.build")))
     (should (equal (plist-get result :missing) '("ccc")))
     (should (string-match-p "MISSING NOTE: id:ccc" (plist-get result :text)))))
 
-(ert-deftest cerebro-course-test-book-says-it-is-generated ()
-  "The file warns the reader before they edit it by hand."
-  (let ((book (plist-get (cerebro-course-book-string
-                          "T" (cerebro-course-parse-programme
-                               "* Programme\n- [[id:aaa][One]]\n")
-                          #'cerebro-course-tests--resolve "/repo/notes/courses/x")
+(ert-deftest cerebro-course-test-composition-says-it-is-derived ()
+  "The composed file warns whoever opens it in a build directory."
+  (let ((text (plist-get (cerebro-course-compose
+                          "#+TITLE: T\n* Programme\n- [[id:aaa][One]]\n"
+                          #'cerebro-course-tests--resolve "/repo/x")
                          :text)))
-    (should (string-match-p "GENERATED" book))
-    (should (string-match-p "buffer-read-only" book))))
+    (should (string-match-p "COMPOSED" text))
+    (should (string-match-p "buffer-read-only" text))))
+
+(ert-deftest cerebro-course-test-only-the-syllabus-is-the-file-itself ()
+  "The syllabus IS the course file -- two pages a person wrote. Every
+other profile compiles the composition of it."
+  (let ((course "/repo/notes/courses/analysis-A.org"))
+    (should (equal (cerebro-course-composed-file course 'handbook)
+                   "/repo/notes/courses/.build/analysis-A-handbook.org"))
+    ;; And a build never nests: the composed file's own build directory
+    ;; is the one it already sits in.
+    (should (equal (cerebro-latex-build-dir
+                    "/repo/notes/courses/.build/analysis-A-handbook.org")
+                   "/repo/notes/courses/.build"))))
 
 (ert-deftest cerebro-course-test-title-comes-from-the-course ()
   "`#+COURSE_TITLE:' is the one place a course is named."
@@ -172,17 +215,50 @@ The body starts here.
 
 ;; -- The real course in this repo --------------------------------------
 
-(ert-deftest cerebro-course-test-repo-course-is-an-index ()
-  "The demo course owns no mathematics of its own.
-The model is the point: a course directory holds course.org and the
-generated book.org, and every chapter is a link into notes/math/."
-  (let* ((directory (expand-file-name "notes/courses/analysis-1" cerebro-root))
-         (files (directory-files directory nil "\\.org\\'")))
-    (should (equal (sort files #'string<) '("book.org" "course.org")))
-    (let ((entries (cerebro-course-parse-programme
-                    (with-temp-buffer
-                      (insert-file-contents (cerebro-course-file directory))
-                      (buffer-string)))))
-      (should (seq-some (lambda (e) (eq (plist-get e :kind) 'note)) entries)))))
+(ert-deftest cerebro-course-test-repo-course-is-one-file ()
+  "The real course owns no mathematics of its own, and is ONE file.
+The model is the point: notes/courses/<slug>.org indexes notes/math/,
+and there is no second, generated file to keep in step with it."
+  (let ((course (expand-file-name "notes/courses/analysis-A.org" cerebro-root)))
+    (should (file-readable-p course))
+    (should (cerebro-course-file-p course))
+    (should-not (file-directory-p
+                 (expand-file-name "notes/courses/analysis-A" cerebro-root)))
+    (let ((text (with-temp-buffer (insert-file-contents course) (buffer-string))))
+      (should (seq-some (lambda (e) (eq (plist-get e :kind) 'note))
+                        (cerebro-course-parse-programme text)))
+      ;; A syllabus of topics to study: no examination apparatus.
+      (should-not (string-match-p "(?i)assessment" text)))))
+
+(ert-deftest cerebro-course-test-the-readme-is-not-a-course ()
+  "Being in notes/courses/ does not make a file a course.
+
+notes/courses/README.org is this repository explaining the directory.
+It answered yes to `cerebro-course-file-p', which put it in the `C-c e
+o' picker and let `C-c e c' offer to build four documents out of it --
+the first of which, the syllabus, would have compiled, because a
+syllabus is just the course file typeset."
+  (let ((readme (expand-file-name "notes/courses/README.org" cerebro-root)))
+    (should (file-readable-p readme))
+    (should-not (cerebro-course-file-p readme)))
+  ;; A composed build product is not a course either.
+  (should-not (cerebro-course-file-p
+               (expand-file-name "notes/courses/.build/analysis-A-handbook.org"
+                                 cerebro-root)))
+  (should (cerebro-course-file-p
+           (expand-file-name "notes/courses/analysis-A.org" cerebro-root))))
+
+(ert-deftest cerebro-course-test-a-course-has-four-documents ()
+  "One per audience: what the course is, what I say, what they see,
+what they keep. The table is also what bin/cerebro-course-export
+iterates, so a fifth entry here without one there is a document Emacs
+offers to build and the CLI cannot."
+  (should (equal (mapcar #'car cerebro-course-outputs)
+                 '(syllabus lecture slides handbook)))
+  ;; Every one of them names a real export profile, and each says what
+  ;; it is for -- that string is what `C-c e c' shows.
+  (dolist (row cerebro-course-outputs)
+    (should (cerebro-latex--profile (car row)))
+    (should (stringp (plist-get (cdr row) :what)))))
 
 (provide 'cerebro-course-tests)

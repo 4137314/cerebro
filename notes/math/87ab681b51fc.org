@@ -1,0 +1,87 @@
+:PROPERTIES:
+:ID:       da136910-2118-46eb-a4ff-00876ad862e2
+:END:
+#+TITLE: One-sided limits and the discontinuities of a monotone function
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A15, 26A48
+#+HASH: 87ab681b51fc
+
+A limit either exists or it does not, and the two-sided definition
+gives no vocabulary for /how/ it fails. Splitting it in two supplies
+that vocabulary, and it immediately pays: a monotone function turns out
+to have both one-sided limits everywhere, so the only discontinuity it
+can have is a jump.
+
+#+DEPENDS: def-function-limit
+#+NAME: def-one-sided-limit
+#+begin_definition
+Let \(f \colon D \to \R\) and let \(c\) be an accumulation point of
+\(D \cap (c, \infty)\). One writes \(\lim_{x \to c^{+}} f(x) = L\), the
+/right-hand limit/, if for every \(\eps > 0\) there is \(\delta > 0\)
+with \(\abs{f(x) - L} < \eps\) for every \(x \in D\) satisfying
+\(c < x < c + \delta\). The /left-hand limit/
+\(\lim_{x \to c^{-}} f(x)\) is defined symmetrically, on
+\(c - \delta < x < c\).
+#+end_definition
+
+#+DEPENDS: def-one-sided-limit, def-function-limit
+#+NAME: prop-limit-iff-one-sided
+#+begin_proposition
+Let \(c\) be an accumulation point of \(D\) from both sides. Then
+\(\lim_{x \to c} f(x) = L\) if and only if both one-sided limits exist
+and equal \(L\).
+#+end_proposition
+
+#+begin_proof
+If the two-sided limit is \(L\), the \(\delta\) it supplies works for
+each side, since each side's condition is a restriction of
+\(0 < \abs{x - c} < \delta\). Conversely, given \(\eps > 0\) take
+\(\delta_{+}\) and \(\delta_{-}\) from the two one-sided limits and put
+\(\delta = \min(\delta_{+}, \delta_{-})\). Any \(x\) with
+\(0 < \abs{x - c} < \delta\) lies strictly on one side of \(c\), so it
+satisfies that side's estimate.
+#+end_proof
+
+#+DEPENDS: def-one-sided-limit, ax-completeness, prop-supremum-characterisation
+#+NAME: thm-monotone-one-sided
+#+begin_theorem
+Let \(f \colon (a,b) \to \R\) be increasing. Then both one-sided limits
+exist at every \(c \in (a,b)\), and
+\[ \lim_{x \to c^{-}} f(x) = \sup_{x < c} f(x) \le f(c) \le \inf_{x > c} f(x) = \lim_{x \to c^{+}} f(x). \]
+#+end_theorem
+
+#+begin_proof
+The set \(\setst{f(x)}{a < x < c}\) is non-empty and bounded above by
+\(f(c)\), so \(s = \sup_{x < c} f(x)\) exists by completeness and
+\(s \le f(c)\). Let \(\eps > 0\). By the characterisation of the
+supremum there is \(x_{0} < c\) with \(f(x_{0}) > s - \eps\), and for
+every \(x\) with \(x_{0} < x < c\) monotonicity gives
+\(s - \eps < f(x_{0}) \le f(x) \le s\). Taking
+\(\delta = c - x_{0}\) shows \(\lim_{x \to c^{-}} f(x) = s\). The
+right-hand statement is the same argument applied to the infimum.
+#+end_proof
+
+#+DEPENDS: thm-monotone-one-sided, prop-limit-iff-one-sided
+#+NAME: cor-monotone-jump-discontinuities
+#+begin_corollary
+An increasing \(f \colon (a,b) \to \R\) is continuous at \(c\) if and
+only if \(\sup_{x < c} f(x) = \inf_{x > c} f(x)\). Every discontinuity
+of \(f\) is thus a /jump/: both one-sided limits exist and differ.
+#+end_corollary
+
+#+begin_proof
+By the theorem the two one-sided limits exist and are the stated
+supremum and infimum, and they bracket \(f(c)\). By the proposition,
+continuity at \(c\) is the existence of the two-sided limit together
+with its equalling \(f(c)\), which happens exactly when the two agree
+-- and then, being squeezed around \(f(c)\), they agree with it.
+#+end_proof
+
+#+begin_remark
+The corollary is the reason a monotone function has at most countably
+many discontinuities: each jump contains a distinct rational, and the
+rationals are countable. That argument needs the density of the
+rationals and nothing else about \(f\), which is a fair summary of how
+much structure monotonicity alone carries.
+#+end_remark

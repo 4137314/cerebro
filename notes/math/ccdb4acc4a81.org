@@ -1,0 +1,75 @@
+:PROPERTIES:
+:ID:       d0a81ce3-163c-4582-8001-fda678f92371
+:END:
+#+TITLE: Monotonicity and the sign of the derivative
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A24, 26A48
+#+HASH: ccdb4acc4a81
+
+The derivative is defined pointwise and monotonicity is a statement
+about pairs of points, so nothing connects them locally. The mean value
+theorem is the bridge, and it is the only one: every "the function
+increases because the derivative is positive" argument in the course is
+this corollary, and the asymmetry in it -- the strict version goes one
+way only -- is what the standard mistake gets wrong.
+
+#+DEPENDS: thm-mean-value
+#+NAME: cor-monotone-from-derivative
+#+begin_corollary
+Let \(f\) be continuous on an interval \(I\) and differentiable on its
+interior. If \(f' \ge 0\) throughout the interior then \(f\) is
+increasing on \(I\); if \(f' \le 0\) it is decreasing; and \(f' > 0\)
+makes \(f\) strictly increasing.
+#+end_corollary
+
+#+begin_proof
+Let \(x < y\) in \(I\). The mean value theorem on \([x,y]\) gives
+\(c \in (x,y)\) with \(f(y) - f(x) = f'(c)(y - x)\). The factor
+\(y - x\) is positive, so the sign of \(f(y) - f(x)\) is the sign of
+\(f'(c)\): non-negative, non-positive or strictly positive according to
+the hypothesis.
+#+end_proof
+
+#+DEPENDS: cor-monotone-from-derivative
+#+NAME: prop-strict-monotone-derivative-converse
+#+begin_proposition
+A differentiable strictly increasing function satisfies \(f' \ge 0\),
+and this cannot be improved to \(f' > 0\).
+#+end_proposition
+
+#+begin_proof
+For \(h > 0\) the quotient \((f(c+h) - f(c))/h\) is positive and for
+\(h < 0\) it is again positive, so its limit \(f'(c)\) is
+non-negative; a limit of positive numbers need not be positive, which
+is exactly the loss. That the loss is real is shown by \(f(x) = x^{3}\),
+strictly increasing on \(\R\) with \(f'(0) = 0\).
+#+end_proof
+
+#+DEPENDS: cor-monotone-from-derivative, lem-interior-extremum
+#+NAME: prop-first-derivative-test
+#+begin_proposition
+Let \(f\) be continuous at \(c\) and differentiable on
+\((c - \delta, c) \cup (c, c + \delta)\) for some \(\delta > 0\). If
+\(f' > 0\) on the left piece and \(f' < 0\) on the right, then \(f\) has
+a local maximum at \(c\); with the signs reversed, a local minimum.
+#+end_proposition
+
+#+begin_proof
+On \((c - \delta, c]\) the function is continuous and has positive
+derivative on the interior, so it is increasing there by the corollary,
+giving \(f(x) \le f(c)\) for those \(x\). Symmetrically \(f\) is
+decreasing on \([c, c + \delta)\), so \(f(x) \le f(c)\) there too.
+Hence \(f(c)\) is a maximum over the whole neighbourhood. The other
+case follows by applying this to \(-f\).
+#+end_proof
+
+#+begin_remark
+Note which direction each statement runs. The interior extremum lemma
+says a local extremum at an interior differentiable point forces
+\(f'(c) = 0\); it does /not/ say a zero of \(f'\) is an extremum, and
+\(x^{3}\) at the origin is again the counterexample. The first
+derivative test above is the converse that is actually true, and it
+asks for the sign of \(f'\) on both sides rather than its value at the
+point.
+#+end_remark

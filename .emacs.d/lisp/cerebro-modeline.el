@@ -15,6 +15,8 @@
 ;; cerebro-modeline-tests.el) because none of them touches redisplay.
 ;;
 ;; What earns a place, and why:
+;;   work          math or dev (cerebro-mode.el): in dev every file in
+;;                 the repository is writable, which you must not forget
 ;;   ● modified     the only file-state flag that ever changes here
 ;;   name           with the notes/-relative directory, since twenty notes
 ;;                  named after twenty theorems live in different courses
@@ -26,7 +28,8 @@
 ;; No icons, no external package: everything renders in a terminal frame
 ;; exactly as in a graphical one.
 
-(require 'cerebro-guix) ;; cerebro-guix-inside-p
+(require 'cerebro-guix)     ;; cerebro-guix-inside-p
+(require 'cerebro-taxonomy) ;; the maturity ladder -- data, 1ms, no Org
 (require 'org-clock)
 (require 'vc-hooks)
 
@@ -43,7 +46,7 @@
 (defface cerebro-modeline-alert '((t :inherit warning))
   "Face for state that should be noticed: unsaved changes, a running clock.")
 
-(defcustom cerebro-modeline-left '(state buffer position narrow)
+(defcustom cerebro-modeline-left '(work state buffer maturity position result narrow study)
   "Segments shown on the left, in order.
 Symbols must be keys of `cerebro-modeline-segment-alist'."
   :type '(repeat symbol)
@@ -64,6 +67,25 @@ Symbols must be keys of `cerebro-modeline-segment-alist'."
 ;; the current buffer and nothing else, which is what makes them testable
 ;; with `with-temp-buffer'.
 
+(defun cerebro-modeline-segment-work ()
+  "Which of the two jobs this session is doing: `math' or `dev'.
+
+First on the line, because it frames everything to its right -- in `dev'
+every file in the repository is writable and a note opens as source, and
+being wrong about that is how you edit a module thinking it is a note.
+Drawn as alert in `dev' for the same reason the `env' segment is: it is
+the state where a guard rail is off.
+
+Read through `bound-and-true-p' rather than by requiring cerebro-mode.el,
+like the `study' segment below: a segment that can error takes the whole
+status line with it, and the label is precomputed there precisely so this
+costs a variable reference per redisplay."
+  (when-let* ((mode (bound-and-true-p cerebro-mode-current))
+              (label (bound-and-true-p cerebro-mode-lighter)))
+    (propertize label 'face (if (eq mode 'dev)
+                                'cerebro-modeline-alert
+                              'cerebro-modeline-dim))))
+
 (defun cerebro-modeline-segment-state ()
   "Buffer state: unsaved changes, or read-only."
   (cond
@@ -73,7 +95,7 @@ Symbols must be keys of `cerebro-modeline-segment-alist'."
 (defun cerebro-modeline-buffer-context ()
   "The notes/-relative directory of the current file, with a trailing /.
 Nil for a buffer with no file, or one sitting directly in notes/. This is
-the segment that makes twenty `example.org's tellable apart -- the path
+the segment that makes twenty digest-named notes tellable apart -- the path
 carries the course, which the file name deliberately does not."
   (let ((file (buffer-file-name)))
     (when (and file (boundp 'org-directory) org-directory)
@@ -110,6 +132,24 @@ nothing."
   (when (buffer-narrowed-p)
     (propertize "narrow" 'face 'cerebro-modeline-alert)))
 
+(defun cerebro-modeline-segment-study ()
+  "The reading/writing mode of this note (see cerebro-study.el).
+
+Read through `bound-and-true-p' rather than by requiring that module:
+the status line has to render in a buffer of any kind, including one
+that existed before cerebro-study loaded, and a segment that can error
+takes the whole line with it.
+
+`source' is drawn as alert and the other modes dim, because `source' is
+the one whose *absence of rendering* would otherwise look like previews
+that failed -- which is the confusion this segment exists to prevent."
+  (when-let* ((mode (and (derived-mode-p 'org-mode)
+                         (bound-and-true-p cerebro-study-mode-name))))
+    (propertize (symbol-name mode)
+                'face (if (eq mode 'source)
+                          'cerebro-modeline-alert
+                        'cerebro-modeline-dim))))
+
 (defun cerebro-modeline-clock-string ()
   "The running org-clock as \"HEADING 12m\", or nil when nothing is clocked.
 Pure formatting split from the segment so the truncation is testable."
@@ -138,6 +178,71 @@ Pure formatting split from the segment so the truncation is testable."
     (propertize (string-trim (replace-regexp-in-string "\\`[ ]*Git[-:@]" "" vc-mode))
                 'face 'cerebro-modeline-dim)))
 
+;; -- What you are inside ------------------------------------------------
+;; Two segments that only make sense in this repository, and are the two
+;; facts a status line here can carry that a general one cannot: which
+;; named result point is inside, and how mature the note is.
+;;
+;; Both are *bounded* searches, and that is not an optimisation detail --
+;; a mode-line segment runs on every redisplay, which under
+;; `pixel-scroll-precision-mode' is around a hundred times a second while
+;; you scroll. An unbounded `re-search-backward' in a long note is
+;; exactly the shape of the bug that made scrolling unusable before
+;; (cerebro-study.el). So each looks at a fixed window of characters and
+;; gives up rather than scanning the buffer.
+
+(defcustom cerebro-modeline-search-limit 4000
+  "How far the note-aware segments look, in characters.
+
+Bounds the per-redisplay cost to something independent of note length.
+Four thousand characters is several screens: far enough that the answer
+is right in every note this archive actually holds, near enough that the
+search is measured in microseconds."
+  :type 'integer
+  :group 'cerebro-modeline)
+
+(defconst cerebro-modeline-result-regexp "^[ \t]*#\\+NAME:[ \t]*\\(.+\\)$"
+  "How a named result begins. Mirrors `cerebro-nav-result-regexp'.
+Duplicated rather than required: the status line must render in a buffer
+of any kind, and it is not worth loading the navigation module to draw
+one segment.")
+
+(defun cerebro-modeline-segment-result ()
+  "The `#+NAME'd result point is inside, in an Org buffer.
+
+The question this answers is asked constantly while reading a long note
+and has no other cheap answer: a proof three screens below its statement
+looks exactly like a proof of the statement above it."
+  (when (derived-mode-p 'org-mode)
+    (save-excursion
+      (save-match-data
+        (let ((bound (max (point-min) (- (point) cerebro-modeline-search-limit))))
+          (end-of-line)
+          (when (re-search-backward cerebro-modeline-result-regexp bound t)
+            (propertize (truncate-string-to-width
+                         (string-trim (match-string-no-properties 1)) 28 nil nil "…")
+                        'face 'cerebro-modeline-dim)))))))
+
+(defun cerebro-modeline-segment-maturity ()
+  "The note's rung on the maturity ladder: seed, growing or evergreen.
+
+Visible because it is meant to be changed. The ladder already argues
+that \"a state nobody can change with a keystroke is a state nobody
+updates\" (`C-c m +'); a state nobody can *see* is one nobody
+reconsiders, which is how an archive fills with notes that were seeds
+two years ago."
+  (when (derived-mode-p 'org-mode)
+    (save-excursion
+      (save-match-data
+        (goto-char (point-min))
+        (when (re-search-forward "^[ \t]*#\\+FILETAGS:[ \t]*\\(.*\\)$"
+                                 (min (point-max) cerebro-modeline-search-limit) t)
+          (when-let* ((rung (cerebro-taxonomy-maturity
+                             (split-string (string-trim (match-string 1)) ":" t))))
+            (propertize rung 'face (if (equal rung "seed")
+                                       'cerebro-modeline-alert
+                                     'cerebro-modeline-dim))))))))
+
 (defconst cerebro-modeline-mode-names
   '((org-mode . "org")
     (emacs-lisp-mode . "elisp")
@@ -145,7 +250,6 @@ Pure formatting split from the segment so the truncation is testable."
     (scheme-mode . "scheme")
     (latex-mode . "latex")
     (dired-mode . "dired")
-    (dired-sidebar-mode . "tree")
     (org-agenda-mode . "agenda")
     (magit-status-mode . "magit"))
   "Short names for the modes seen daily here; anything else uses `mode-name'.")
@@ -168,10 +272,14 @@ state -- the status line stays quiet."
     (propertize "host" 'face 'cerebro-modeline-alert)))
 
 (defconst cerebro-modeline-segment-alist
-  '((state . cerebro-modeline-segment-state)
+  '((work . cerebro-modeline-segment-work)
+    (state . cerebro-modeline-segment-state)
     (buffer . cerebro-modeline-segment-buffer)
     (position . cerebro-modeline-segment-position)
     (narrow . cerebro-modeline-segment-narrow)
+    (study . cerebro-modeline-segment-study)
+    (result . cerebro-modeline-segment-result)
+    (maturity . cerebro-modeline-segment-maturity)
     (clock . cerebro-modeline-segment-clock)
     (vc . cerebro-modeline-segment-vc)
     (mode . cerebro-modeline-segment-mode)
@@ -257,7 +365,7 @@ that was in effect when it was first turned on."
     (setq-default mode-line-format (or cerebro-modeline--saved-format
                                        (default-value 'mode-line-format))))
   ;; Buffers that already exist keep a buffer-local copy of the old
-  ;; format if anything ever set one; leave those alone (dired-sidebar and
+  ;; format if anything ever set one; leave those alone (the
   ;; magit do this deliberately) and just force a redisplay.
   (force-mode-line-update t))
 

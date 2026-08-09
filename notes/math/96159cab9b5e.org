@@ -1,0 +1,80 @@
+:PROPERTIES:
+:ID:       8cd15fbc-3e1f-41a6-8fde-31963a195e78
+:END:
+#+TITLE: Existence and uniqueness for ordinary differential equations
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:ordinary_differential_equations:
+#+MSC: 34A12, 34A30
+#+HASH: 96159cab9b5e
+
+An initial value problem is a differential statement, and differential
+statements are hard to iterate. The move that makes the whole theory
+work is to turn it into an *integral* equation, which says the same
+thing and is a fixed-point equation for an operator on a space of
+functions. Existence and uniqueness are then not a new argument: they
+are the contraction principle, applied to that operator.
+
+#+DEPENDS: def-derivative, thm-ftc-second
+#+NAME: prop-ivp-equals-integral-equation
+#+begin_proposition
+Let \(f\) be continuous on a neighbourhood of \((t_{0}, y_{0})\). A
+continuously differentiable \(y\) solves
+\(y'(t) = f(t, y(t))\), \(y(t_{0}) = y_{0}\) on an interval \(I\) if and
+only if it is continuous and satisfies
+\[ y(t) = y_{0} + \int_{t_{0}}^{t} f(s, y(s)) \dd s \qquad (t \in I). \]
+#+end_proposition
+
+#+begin_proof
+If \(y\) solves the differential problem, \(s \mapsto f(s, y(s))\) is
+continuous and equals \(y'\), so the second fundamental theorem gives
+the integral identity. Conversely, if \(y\) is continuous and satisfies
+the identity, the integrand is continuous, so the first fundamental
+theorem makes the right-hand side differentiable with derivative
+\(f(t, y(t))\); evaluating at \(t_{0}\) gives \(y(t_{0}) = y_{0}\).
+#+end_proof
+
+#+DEPENDS: def-metric-space
+#+NAME: def-lipschitz-in-y
+#+begin_definition
+A function \(f\) is /Lipschitz in the second variable/ on a set \(S\)
+if there is \(L\) with
+\(\abs{f(t, y) - f(t, z)} \le L \abs{y - z}\) whenever \((t,y)\) and
+\((t,z)\) lie in \(S\).
+#+end_definition
+
+#+DEPENDS: prop-ivp-equals-integral-equation, def-lipschitz-in-y, thm-banach-fixed-point, thm-uniform-cauchy-criterion, cor-integral-triangle-inequality
+#+NAME: thm-picard-lindelof
+#+begin_theorem
+Let \(f\) be continuous on
+\(R = \setst{(t,y)}{\abs{t - t_{0}} \le a, \ \abs{y - y_{0}} \le b}\),
+bounded there by \(M\), and Lipschitz in \(y\) with constant \(L\).
+Then the initial value problem has exactly one solution on
+\(\abs{t - t_{0}} \le \alpha\) for any
+\(\alpha < \min(a, b/M, 1/L)\).
+#+end_theorem
+
+#+begin_proof
+Let \(X\) be the continuous functions on \(I = [t_{0}-\alpha, t_{0}+\alpha]\)
+with \(\abs{y(t) - y_{0}} \le b\), under the distance
+\(d(y,z) = \sup_{I} \abs{y - z}\). It is complete: a uniformly Cauchy
+sequence converges uniformly by the uniform Cauchy criterion, the limit
+is continuous, and the bound \(\abs{y - y_{0}} \le b\) passes to the
+limit.
+
+Define \((Ty)(t) = y_{0} + \int_{t_{0}}^{t} f(s, y(s)) \dd s\). It maps
+\(X\) into \(X\): the integrand is bounded by \(M\), so
+\(\abs{(Ty)(t) - y_{0}} \le M\alpha \le b\). It is a contraction:
+\[ \abs{(Ty)(t) - (Tz)(t)} \le \Bigl| \int_{t_{0}}^{t} \abs{f(s,y(s)) - f(s,z(s))} \dd s \Bigr| \le L \alpha \, d(y,z), \]
+and \(L\alpha < 1\). The contraction principle gives a unique fixed
+point, which by the previous proposition is the unique solution.
+#+end_proof
+
+#+begin_remark
+Both hypotheses are doing visible work and neither can be dropped.
+Continuity alone gives existence but not uniqueness -- \(y' = \abs{y}^{1/2}\)
+with \(y(0) = 0\) is solved by \(y \equiv 0\) and by \(y = t^{2}/4\),
+and \(\abs{y}^{1/2}\) is not Lipschitz at the origin. And the interval
+is short by necessity, not by weakness of the proof: a solution can
+leave the rectangle in finite time, so a *local* statement is the only
+true one.
+#+end_remark

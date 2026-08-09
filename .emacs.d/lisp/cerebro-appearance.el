@@ -26,14 +26,32 @@
 (require 'org)
 
 ;; -- Org's own presentation --------------------------------------------
-;; Math-heavy notes read better with entities and sub/superscripts
-;; rendered (\alpha as α, `x_{1}' with a real subscript) instead of shown
-;; as raw markup -- built into Org, no plugin.
-;; (Which `_' counts as a subscript at all is decided once in
+;; `org-pretty-entities' is OFF, deliberately, and this is the one place
+;; that decides it. Turned on, Org substitutes a glyph for the source of
+;; every entity it recognises: `\in' is drawn as a character, `\pi' as
+;; another, `x_{1}' with a raised/lowered baseline. That is a second,
+;; lossy rendering of mathematics this repository already renders
+;; properly -- and it renders exactly the wrong half.
+;;
+;;   - It is not the PDF. Only the entities in `org-entities' get a
+;;     glyph, so `\eps', `\abs{x}' and every macro from
+;;     latex/cerebro-macros.sty stay as source beside a `\in' that does
+;;     not. A formula half-drawn is harder to read than one not drawn at
+;;     all, and it hides the one thing worth checking on screen: whether
+;;     what you typed is the LaTeX you meant.
+;;   - The real preview already exists and is honest about being one:
+;;     cerebro-preview.el compiles the fragment with the notes' own
+;;     macros (`C-c u p'), so what you see is what latexmk will accept.
+;;   - The substitution moves the point: a `\in' occupying one column and
+;;     six characters makes editing inside `\(...\)' guesswork, and a
+;;     subscript drawn small is unselectable text at a different height.
+;;
+;; So the buffer shows the file: linear, textual, the bytes that compile.
+;; (Which `_' counts as a subscript at all is still decided once in
 ;; cerebro-org.el -- braced only -- because the batch exporter loads that
 ;; module and never this one, and the screen and the PDF must agree.)
-(setq org-pretty-entities t
-      org-pretty-entities-include-sub-superscripts t
+(setq org-pretty-entities nil
+      org-pretty-entities-include-sub-superscripts nil
       org-ellipsis " ▾"       ; "..." -> a small triangle, less noisy
       org-hide-leading-stars t
       org-fontify-quote-and-verse-blocks t
@@ -68,16 +86,24 @@
 (when (cerebro-guix-soft-require 'org-appear)
   (setq org-appear-autoemphasis t
         org-appear-autolinks t
-        org-appear-autosubmarkers t
-        org-appear-delay 0.0)
-  ;; Not in the notes the agenda and the start page open in the
-  ;; background: org-appear watches point with a timer and asks Org for
-  ;; the element at it, and in those buffers the element cache is off --
-  ;; which surfaces as "Cache must be active" in the echo area, from a
-  ;; buffer you never opened (see `cerebro-interactive-note-buffer-p').
-  (defun cerebro-appearance--maybe-org-appear ()
-    (when (cerebro-interactive-note-buffer-p) (org-appear-mode 1)))
-  (add-hook 'org-mode-hook #'cerebro-appearance--maybe-org-appear))
+        ;; Nothing to bring back: `org-appear-autosubmarkers' un-hides a
+        ;; subscript that `org-pretty-entities-include-sub-superscripts'
+        ;; hid, and that is nil above. Left off so the two settings say
+        ;; the same thing.
+        org-appear-autosubmarkers nil
+        ;; NOT 0.0. org-appear re-checks the element at point from
+        ;; `post-command-hook', and a zero delay means every command pays
+        ;; for it immediately -- including the ~100 commands a second a
+        ;; trackpad generates under `pixel-scroll-precision-mode', in
+        ;; none of which point has moved. A short delay lets a burst
+        ;; collapse into one check, and is imperceptible when the command
+        ;; really was a cursor movement.
+        org-appear-delay 0.15))
+;; Nothing enables org-appear here. Showing the markup around the word at
+;; point is a *writing* affordance, so it is one column of
+;; `cerebro-study-modes' (cerebro-study.el) rather than something every
+;; Org buffer gets -- see that file for the measurement behind the
+;; distinction.
 
 ;; -- Code buffers -------------------------------------------------------
 ;; This repo is also ~3000 lines of Elisp and shell that you edit in the

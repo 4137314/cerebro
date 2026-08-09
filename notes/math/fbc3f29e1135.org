@@ -1,0 +1,65 @@
+:PROPERTIES:
+:ID:       ffb30124-1e7a-490f-97f7-dd6ecbc43e7f
+:END:
+#+TITLE: Integration by parts and substitution
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A42
+#+HASH: fbc3f29e1135
+
+Neither of these is a technique. Each is a differentiation rule read
+backwards through the fundamental theorem: the product rule becomes
+integration by parts, the chain rule becomes substitution. Stating them
+that way is what fixes the hypotheses -- the versions taught as
+manipulations quietly assume a continuous derivative, and it is worth
+seeing where that assumption enters.
+
+#+DEPENDS: thm-derivative-algebra, thm-ftc-second, thm-integral-linearity, thm-continuous-is-integrable
+#+NAME: thm-integration-by-parts
+#+begin_theorem
+Let \(u, v \colon [a,b] \to \R\) be differentiable with \(u'\) and
+\(v'\) continuous. Then
+\[ \int_{a}^{b} u(x) v'(x) \dd x = u(b) v(b) - u(a) v(a) - \int_{a}^{b} u'(x) v(x) \dd x. \]
+#+end_theorem
+
+#+begin_proof
+The product rule gives \((uv)' = u'v + uv'\) on \([a,b]\). Both
+\(u'v\) and \(uv'\) are continuous, hence integrable, and so is their
+sum \((uv)'\). Since \(uv\) is an antiderivative of \((uv)'\), the
+second fundamental theorem gives
+\[ \int_{a}^{b} \bigl( u'(x) v(x) + u(x) v'(x) \bigr) \dd x = u(b) v(b) - u(a) v(a), \]
+and linearity of the integral splits the left-hand side into the two
+integrals of the claim.
+#+end_proof
+
+#+DEPENDS: thm-chain-rule, thm-ftc-first, thm-ftc-second, thm-continuous-is-integrable
+#+NAME: thm-substitution
+#+begin_theorem
+Let \(\varphi \colon [a,b] \to \R\) be differentiable with
+\(\varphi'\) continuous, and let \(f\) be continuous on an interval
+containing \(\varphi([a,b])\). Then
+\[ \int_{a}^{b} f\bigl( \varphi(x) \bigr) \varphi'(x) \dd x = \int_{\varphi(a)}^{\varphi(b)} f(y) \dd y. \]
+#+end_theorem
+
+#+begin_proof
+Let \(F(y) = \int_{\varphi(a)}^{y} f(t) \dd t\). Since \(f\) is
+continuous, the first fundamental theorem gives \(F' = f\). By the
+chain rule \(F \circ \varphi\) is differentiable with
+\[ (F \circ \varphi)'(x) = F'\bigl( \varphi(x) \bigr) \varphi'(x) = f\bigl( \varphi(x) \bigr) \varphi'(x), \]
+which is continuous and therefore integrable. Applying the second
+fundamental theorem to \(F \circ \varphi\) on \([a,b]\),
+\[ \int_{a}^{b} f\bigl( \varphi(x) \bigr) \varphi'(x) \dd x = F\bigl( \varphi(b) \bigr) - F\bigl( \varphi(a) \bigr) = \int_{\varphi(a)}^{\varphi(b)} f(y) \dd y, \]
+since \(F(\varphi(a)) = 0\) by definition.
+#+end_proof
+
+#+begin_remark
+Note what the substitution theorem does /not/ require: \(\varphi\) need
+not be injective, and \(\varphi(a)\) need not be less than
+\(\varphi(b)\). The identity is between two numbers, and the
+orientation is carried by the convention
+\(\int_{\beta}^{\alpha} = -\int_{\alpha}^{\beta}\). The version that
+does need injectivity is the other direction -- rewriting
+\(\int f(y) \dd y\) as an integral in \(x\), which requires
+\(\varphi^{-1}\) to exist -- and conflating the two is the usual source
+of a substitution that loses a sign.
+#+end_remark

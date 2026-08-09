@@ -1,55 +1,54 @@
 #!/bin/sh
-# Scaffold a course as *data*: one definition, many outputs.
+# Scaffold a course as *data*: one file, many outputs.
 #
-# A course owns NO mathematics of its own. It is an index into
-# notes/math/: course.org's `* Programme' section lists, in teaching
-# order, id: links to notes that already exist, and book.org is generated
-# from that list as one #+INCLUDE per note -- nothing is copied, so a
-# note edited once is corrected everywhere it is taught.
+# A course owns NO mathematics of its own, and it is not a directory: it
+# is one file, notes/courses/<slug>.org, whose `* Programme' section
+# lists -- in teaching order -- id: links to notes that already exist in
+# notes/math/. The four documents are composed from that list at export
+# time (bin/cerebro-course-export), so nothing is ever copied and no
+# generated file is committed.
 #
-# Creates (idempotently) two files in DIR:
-#   course.org  -- metadata, syllabus prose, and the programme. The
-#                  source for the `syllabus' profile, and the single
-#                  place the course's title/term/level/prereqs/MSC live.
-#   book.org    -- GENERATED from the programme (bin/cerebro-new-book).
-#                  The source for the `dispensa' and `manual' profiles.
-#                  Never edit it by hand.
+# What the file is for, in one line each:
+#   metadata      #+COURSE_TITLE / #+MSC / #+KEYWORDS, written once
+#   prose         what the subject is, and what one can do having read it
+#   * Programme   the manifest: the notes, in order, as id: links
+#   * Appendices  optional: notes typeset after \appendix, lettered
 #
-# From those, the parametric export pipeline (.emacs.d/lisp/cerebro-latex.el)
-# gives you the whole family of course documents off the same notes:
-#   syllabus, dispensa, per-lecture articles, slides, printable handouts.
+# Deliberately absent: instructor, credits, term, level, prerequisites,
+# textbook, examination format, marking, deadlines. THESE ARE NOTES.
+# A course here is an ordering of mathematics, not a module description:
+# none of that administrative apparatus is about the subject, all of it
+# goes out of date before the mathematics does, and it belongs wherever
+# your institution keeps such things.
 #
-# Usage: bin/cerebro-course DIR ["Course Title"]
-#   bin/cerebro-course notes/courses/analysis-1 "Analysis I"
+# Usage: bin/cerebro-course SLUG ["Course Title"]
+#   bin/cerebro-course analysis-B "Mathematical Analysis B"
 set -eu
 
 repo_root=$(git rev-parse --show-toplevel)
-dir=${1:?"usage: cerebro-course DIR [\"Course Title\"]"}
-title=${2:-$(basename "$dir")}
-mkdir -p "$dir"
-course="$dir/course.org"
+slug=${1:?"usage: cerebro-course SLUG [\"Course Title\"]"}
+# A path is accepted too, so `cerebro-course notes/courses/x' keeps working.
+slug=$(basename "$slug" .org)
+title=${2:-$slug}
+dir="$repo_root/notes/courses"
+course="$dir/$slug.org"
 today=$(date +%Y-%m-%d)
 
+mkdir -p "$dir"
+
 if [ -e "$course" ]; then
-    echo "cerebro-course: $course already exists -- leaving it untouched"
+    echo "cerebro-course: ${course#"$repo_root"/} already exists -- leaving it untouched"
 else
     cat > "$course" <<EOF
 #+TITLE: ${title} -- syllabus
 #+COURSE_TITLE: ${title}
-#+COURSE_CODE:
-#+TERM:
-#+LEVEL: undergraduate
-#+INSTRUCTOR:
-#+CREDITS:
-#+PREREQS:
-#+TEXTBOOK:
 #+MSC:
 #+KEYWORDS:
 #+DATE: ${today}
 
 * Description
 #+begin_comment
-One paragraph: what the course is about and who it is for. (Comment
+One paragraph: what the subject is and what holds it together. (Comment
 blocks are excluded from every export -- replace with real prose.)
 #+end_comment
 
@@ -60,13 +59,13 @@ By the end of the course, a student can:
 * Programme
 #+begin_comment
 The course, as an ordered index into notes/math/ -- this section IS the
-manifest book.org is generated from (bin/cerebro-new-book).
+manifest the lecture notes, the slides and the handbook are composed
+from, at export time. There is no generated second file to keep in step.
 
 Write the atomic notes first (C-c m t / C-c m d), then list them here in
 teaching order, linked by id: (C-c n i inserts one). Sub-headings become
-the book's chapters; every link becomes an #+INCLUDE of that note, so
-nothing is ever copied and editing the note updates every course that
-teaches it.
+the chapters; every link becomes an #+INCLUDE of that note, so nothing
+is ever copied and editing the note updates every course that teaches it.
 
   ** Continuity
   - [[id:...][Limits and continuity]]
@@ -75,45 +74,36 @@ teaches it.
   - [[id:...][Cauchy--Schwarz inequality]]
 #+end_comment
 
-* Assessment
--
+* Appendices
+#+begin_comment
+Optional, and written exactly like the programme: background the course
+uses without proving. Composed after \appendix, so these chapters are
+lettered rather than numbered. Delete this section if there are none.
+#+end_comment
 
 * Bibliography
 #+begin_comment
-Cite with [cite:@key] against bib/references.bib; the syllabus profile
+Cite with [cite:@key] against the central bib/references.bib (C-c b i
+inserts a citation, C-c b n adds a new entry). Every non-slide profile
 prints the reference list.
 #+end_comment
 EOF
-    echo "wrote $course"
-fi
-
-# Generate book.org from the programme (dispensa/manual source). A fresh
-# course has an empty programme and therefore no book yet -- that is the
-# point of the model, so do not fail on it.
-if "$repo_root/bin/cerebro-new-book" "$dir" 2>/dev/null; then
-    :
-else
-    echo "no notes listed under '* Programme' yet -- write the notes first,"
-    echo "list them there, then run: bin/cerebro-new-book $dir"
+    echo "wrote ${course#"$repo_root"/}"
 fi
 
 cat <<EOF
 
-Course scaffolded in $dir. Next: write the notes, then list them.
+Course scaffolded. Next: write the notes, then list them.
 
   1. atomic notes in notes/math/    C-c m t (theorem), C-c m d (definition)
-  2. list them under '* Programme' in $course  (C-c n i inserts an id: link)
-  3. regenerate the book            bin/cerebro-new-book $dir   (or C-c e b)
+  2. list them under '* Programme'  in ${course#"$repo_root"/}   (C-c n i inserts an id: link)
 
-Then, from the same two files:
-  make export FILE=$course PROFILE=syllabus
-  make export FILE=$dir/book.org PROFILE=dispensa
-  make export FILE=$dir/book.org PROFILE=manual
-  # any single note, straight from notes/math/:
-  make export FILE=notes/math/<note>.org PROFILE=lecture
-  make export FILE=notes/math/<note>.org PROFILE=slides
-  make export FILE=notes/math/<note>.org PROFILE=handout
-  # problem sheet from a note carrying #+begin_exercise blocks:
-  make export FILE=notes/math/<note>.org PROFILE=exercises   # with solutions
-  make export FILE=notes/math/<note>.org PROFILE=problems    # without
+Then all four documents, from that one file:
+  bin/cerebro-course-export ${course#"$repo_root"/}
+
+or one at a time:
+  make export FILE=${course#"$repo_root"/} PROFILE=syllabus
+  make export FILE=${course#"$repo_root"/} PROFILE=lecture
+  make export FILE=${course#"$repo_root"/} PROFILE=slides
+  make export FILE=${course#"$repo_root"/} PROFILE=handbook
 EOF

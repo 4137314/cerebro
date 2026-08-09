@@ -20,15 +20,31 @@ here=$(cd "$(dirname "$script")" && pwd)
 repo_root=$(dirname "$here")
 cd "$repo_root"
 
+# Opening the editor: one implementation, because `cerebro', `cerebro
+# math' and `cerebro dev' differ only in the mode they hand it (see
+# bin/cerebro-mode.el -- CEREBRO_MODE names the mode for one session
+# without changing the remembered one).
+open_editor() {
+  if [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; then
+    exec "$here/guix-run" emacsclient -c \
+         --alternate-editor="emacs --init-directory=$repo_root/.emacs.d --daemon"
+  else
+    exec "$here/guix-run" emacs -nw --init-directory="$repo_root/.emacs.d"
+  fi
+}
+
 usage() {
   cat <<'EOF'
 cerebro -- command-line workflow for the second brain
 
   cerebro                         open the editor (Emacs, in the guix env)
+  cerebro math | cerebro dev      ...in one of the two modes, just this once
+  cerebro mode [math|dev]         report the mode / set the remembered one
   cerebro shell                   drop into the pinned guix shell
 
   cerebro issue new "t" [-p A] [tags]  create an issue (logged in issues/issues.org)
-  cerebro issue list [open|all|done] [tag]
+  cerebro issue list [open|all|done] [tag] [--all-modes]
+                                       (this mode's work only, by default)
   cerebro issue show   <id|query>
   cerebro issue close  <id|query>      set DONE  (logs a CLOSED timestamp)
   cerebro issue start  <id|query>      set DOING
@@ -41,9 +57,10 @@ cerebro -- command-line workflow for the second brain
   cerebro note new "t" [tags] [msc]   create a note (born classified)
   cerebro note find QUERY             search notes by title/body
   cerebro note list
+  cerebro note rehash                 re-derive every notes/math/ file name
 
   cerebro today | cerebro agenda [m|i]   the morning review / an agenda view
-  cerebro results [index|check|deps|dependents] [NAME]   logical-dependency graph
+  cerebro results [index|check|open|deps|dependents] [NAME]   logical-dependency graph
   cerebro query <orphans|hubs|stale-hubs|co-citation|by-tag|by-msc> [args]
   cerebro lint [file...]          note consistency checks
   cerebro stats                   notes / rigor / classification / task / time
@@ -54,9 +71,11 @@ cerebro -- command-line workflow for the second brain
   cerebro sync                           refresh the Taskwarrior -> Org agenda
 
   cerebro export FILE PROFILE [TARGET]   compile one note to PDF
-  cerebro course DIR [TITLE]             scaffold a course
+                     (syllabus|lecture|slides|handbook|conjecture|single)
+  cerebro course SLUG [TITLE]            scaffold a course (ONE file)
   cerebro garden                         publish the evergreen HTML garden
   cerebro doctor                         report which prerequisites are present
+  cerebro backup [status|NAME]           run the configured backups (see cerebro-backup.el)
   cerebro env                            report the pinned environment the editor gets
   cerebro help                           this message
 EOF
@@ -66,13 +85,15 @@ cmd=${1:-}
 [ "$#" -gt 0 ] && shift || true
 
 case "$cmd" in
-  ""|edit)
-    if [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; then
-      exec "$here/guix-run" emacsclient -c \
-           --alternate-editor="emacs --init-directory=$repo_root/.emacs.d --daemon"
-    else
-      exec "$here/guix-run" emacs -nw --init-directory="$repo_root/.emacs.d"
-    fi ;;
+  ""|edit) open_editor ;;
+  # The two macro-modes (.emacs.d/lisp/cerebro-mode.el): `math' studies
+  # and writes the archive, `dev' maintains the machinery that holds it.
+  # As a subcommand they open the editor in that mode for THIS session
+  # only -- `cerebro mode dev' is the one that changes the default, so
+  # that "let me fix the linter for ten minutes" cannot silently become
+  # how the editor starts tomorrow morning.
+  math|dev) CEREBRO_MODE="$cmd"; export CEREBRO_MODE; open_editor ;;
+  mode)    exec emacs --batch -l "$here/cerebro-mode.el" -- "$@" ;;
   help|-h|--help) usage ;;
   shell) exec "$here/guix-run" ;;
 
@@ -94,6 +115,9 @@ case "$cmd" in
   # *pinned* profile provides to the editor, which a bare `emacs --batch`
   # on the host PATH could not report (see bin/cerebro-env.el).
   env)     exec "$here/guix-run" emacs --batch -l "$here/cerebro-env.el" ;;
+  # Backups: policy as data in cerebro-backup.el, nothing enabled until
+  # you say where a copy should go. Cron-able (see bin/cerebro-backup).
+  backup)  exec "$here/cerebro-backup" "$@" ;;
 
   # -- operations that genuinely need the pinned environment --
   query)   exec "$here/cerebro-query" "$@" ;;
@@ -115,7 +139,21 @@ case "$cmd" in
     else exec "$here/guix-run" task "$@"; fi ;;
   export)
     file=${1:?"usage: cerebro export FILE PROFILE [TARGET]"}
-    profile=${2:-full}; target=${3:-}
+    # PROFILE is required, and says so. It used to default to `full',
+    # which is not a profile and has not been one since the fourteen
+    # presets became six: `full' is a *content mode*
+    # (cerebro-latex-content-modes), an internal half of a profile. So
+    # `cerebro export notes/x.org' -- the obvious way to try the command
+    # -- died with "unknown export profile `full'", naming something the
+    # user had not typed and could not find in the help above.
+    profile=${2:-}
+    if [ -z "$profile" ]; then
+      echo "cerebro: export needs a profile" >&2
+      echo "  usage: cerebro export FILE PROFILE [TARGET]" >&2
+      echo "  profiles: syllabus lecture slides handbook conjecture single" >&2
+      exit 1
+    fi
+    target=${3:-}
     if [ -n "$target" ]; then
       exec "$here/guix-run" emacs --batch -l "$here/org-export-latex.el" -- \
            --profile="$profile" --target="$target" "$file"

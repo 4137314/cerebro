@@ -1,0 +1,141 @@
+:PROPERTIES:
+:ID:       2f070853-c1c0-4018-9a23-d2caac15f2b4
+:END:
+#+TITLE: Total boundedness and compactness in metric spaces
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:topology:general_topology:
+#+MSC: 54E45, 54D30
+#+HASH: 13141a6ac77e
+
+Compactness was defined by open covers and Bolzano-Weierstrass by
+subsequences, and in \(\R\) the two arguments were used
+interchangeably. In a metric space that is a theorem, and it has a
+third face: complete plus totally bounded. Each formulation is the one
+that makes some proof short, and the equivalence is what allows moving
+between them without comment.
+
+#+DEPENDS: def-metric-space, def-open-set
+#+NAME: def-totally-bounded
+#+begin_definition
+A metric space \(X\) is /totally bounded/ if for every \(\eps > 0\) it
+is covered by finitely many balls of radius \(\eps\), and
+/sequentially compact/ if every sequence in it has a convergent
+subsequence.
+#+end_definition
+
+#+DEPENDS: def-totally-bounded, def-metric-convergence, def-subsequence
+#+NAME: lem-sequentially-compact-is-complete-and-totally-bounded
+#+begin_lemma
+A sequentially compact metric space is complete and totally bounded.
+#+end_lemma
+
+#+begin_proof
+Completeness: a Cauchy sequence with a subsequence converging to \(x\)
+converges to \(x\), since \(d(x_{n},x) \le d(x_{n},x_{n_{k}}) + d(x_{n_{k}},x)\)
+and both terms can be made small.
+
+Total boundedness: suppose some \(\eps > 0\) admits no finite cover by
+\(\eps\)-balls. Choose \(x_{1}\) arbitrarily and, recursively, \(x_{n+1}\)
+outside \(B(x_{1},\eps)\cup\cdots\cup B(x_{n},\eps)\), which is possible
+because those balls do not cover \(X\). Then \(d(x_{i},x_{j}) \ge \eps\)
+for \(i \ne j\), so no subsequence is Cauchy, hence none converges --
+contradicting sequential compactness.
+#+end_proof
+
+#+DEPENDS: def-totally-bounded, def-cauchy-sequence, def-metric-convergence
+#+NAME: lem-complete-and-totally-bounded-is-sequentially-compact
+#+begin_lemma
+A complete, totally bounded metric space is sequentially compact.
+#+end_lemma
+
+#+begin_proof
+Let \((x_{n})\) be a sequence. Cover \(X\) by finitely many balls of
+radius \(1\); one of them contains \(x_{n}\) for infinitely many \(n\),
+giving an infinite index set \(I_{1}\). Inside that ball, cover \(X\) by
+finitely many balls of radius \(1/2\) and extract an infinite
+\(I_{2} \subseteq I_{1}\) whose terms lie in one of them; continue, so
+that \(I_{1} \supseteq I_{2} \supseteq \cdots\) with the terms indexed
+by \(I_{k}\) lying in a ball of radius \(1/k\).
+
+Pick \(n_{1} < n_{2} < \cdots\) with \(n_{k} \in I_{k}\). For
+\(l \ge k\) both \(x_{n_{k}}\) and \(x_{n_{l}}\) lie in a ball of radius
+\(1/k\), so \(d(x_{n_{k}}, x_{n_{l}}) < 2/k\): the subsequence is
+Cauchy, hence convergent by completeness.
+#+end_proof
+
+#+DEPENDS: def-totally-bounded, def-compact, thm-balls-are-a-basis
+#+NAME: lem-lebesgue-number
+#+begin_lemma
+Let \(X\) be sequentially compact and \(\mathcal{U}\) an open cover.
+Then there is \(\delta > 0\) -- a /Lebesgue number/ -- such that every
+subset of diameter less than \(\delta\) is contained in a single member
+of \(\mathcal{U}\).
+#+end_lemma
+
+#+begin_proof
+Suppose not. For each \(n\) there is a set \(A_{n}\) of diameter less
+than \(1/n\) contained in no member of \(\mathcal{U}\); in particular
+\(A_{n} \ne \emptyset\), so pick \(x_{n} \in A_{n}\). By sequential
+compactness a subsequence \(x_{n_{k}} \to x\), and \(x \in U\) for some
+\(U \in \mathcal{U}\), with \(B(x,\eps) \subseteq U\) for some
+\(\eps > 0\). Choose \(k\) with \(d(x_{n_{k}},x) < \eps/2\) and
+\(1/n_{k} < \eps/2\); then every point of \(A_{n_{k}}\) is within
+\(\eps\) of \(x\), so \(A_{n_{k}} \subseteq B(x,\eps) \subseteq U\) --
+a contradiction.
+#+end_proof
+
+#+DEPENDS: lem-sequentially-compact-is-complete-and-totally-bounded, lem-complete-and-totally-bounded-is-sequentially-compact, lem-lebesgue-number, def-compact
+#+NAME: thm-compactness-in-metric-spaces
+#+begin_theorem
+For a metric space \(X\) the following are equivalent: (i) \(X\) is
+compact; (ii) \(X\) is sequentially compact; (iii) \(X\) is complete and
+totally bounded.
+#+end_theorem
+
+#+begin_proof
+(i) implies (ii): let \((x_{n})\) have no convergent subsequence. Then
+no point \(x\) is the limit of a subsequence, so each \(x\) has a ball
+\(B(x,r_{x})\) containing \(x_{n}\) for only finitely many indices
+\(n\). These balls cover \(X\); a finite subcover would leave only
+finitely many indices in total, which is absurd.
+
+(ii) is equivalent to (iii) by the first two lemmas.
+
+(ii) implies (i): let \(\mathcal{U}\) be an open cover, \(\delta\) a
+Lebesgue number for it. By (ii) and the first lemma \(X\) is totally
+bounded, so it is covered by finitely many balls of radius
+\(\delta/3\); each such ball has diameter at most \(2\delta/3 < \delta\)
+and so lies in a single member of \(\mathcal{U}\). Those finitely many
+members cover \(X\).
+#+end_proof
+
+#+DEPENDS: thm-compactness-in-metric-spaces, thm-euclidean-space-complete, prop-closed-iff-sequentially-closed
+#+NAME: cor-heine-borel-in-euclidean-space
+#+begin_corollary
+A subset of \(\R^{n}\) is compact if and only if it is closed and
+bounded.
+#+end_corollary
+
+#+begin_proof
+Let \(K\) be closed and bounded. It is complete: a Cauchy sequence in
+\(K\) converges in \(\R^{n}\) by completeness of \(\R^{n}\), and the
+limit lies in \(K\) because \(K\) is closed. It is totally bounded:
+\(K\) lies in a cube of side \(2R\), which for any \(\eps > 0\) is a
+union of finitely many subcubes of diameter less than \(\eps\), each
+contained in an \(\eps\)-ball about any of its points. By the theorem
+\(K\) is compact.
+
+Conversely a compact metric space is totally bounded, hence bounded, and
+complete; and a complete subspace of a metric space is closed, since the
+limit of a convergent sequence of its points is Cauchy and its limit in
+the subspace must agree with it.
+#+end_proof
+
+#+begin_remark
+Total boundedness, not boundedness, is the operative hypothesis: the
+unit ball of an infinite-dimensional normed space is bounded, closed and
+complete, and not compact -- the vectors of an orthonormal sequence stay
+at distance \(\sqrt{2}\) from each other. That failure is the reason
+functional analysis needs weaker topologies, and it is invisible in
+\(\R^{n}\), where the two notions coincide.
+#+end_remark

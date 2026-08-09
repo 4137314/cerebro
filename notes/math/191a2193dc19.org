@@ -1,0 +1,114 @@
+:PROPERTIES:
+:ID:       262a69a5-8543-4bdd-b811-47a6fa876b8d
+:END:
+#+TITLE: Compactness and the Heine-Borel theorem
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:topology:general_topology:
+#+MSC: 54D30
+#+HASH: 191a2193dc19
+
+Every theorem of the first course about [[id:0951689a-630a-41a9-9a31-a61b2f129444][continuous functions on a closed
+interval]] -- boundedness, attainment of extrema, uniform continuity --
+used the same feature of \([a,b]\) and nothing else: a local condition
+holding at every point can be made to hold uniformly, because finitely
+many neighbourhoods suffice. Compactness is that feature, named, and it
+is what makes those proofs transfer.
+
+#+DEPENDS: def-topological-space
+#+NAME: def-compact
+#+begin_definition
+An /open cover/ of a topological space \(X\) is a family of open sets
+whose union is \(X\). The space is /compact/ if every open cover has a
+finite subcover. A subset is compact if it is so in the subspace
+topology, equivalently if every cover of it by open sets of \(X\) has a
+finite subfamily covering it.
+#+end_definition
+
+#+DEPENDS: def-compact, def-continuous-map
+#+NAME: thm-continuous-image-of-a-compact-space
+#+begin_theorem
+The continuous image of a compact space is compact. Compactness is
+therefore a topological invariant.
+#+end_theorem
+
+#+begin_proof
+Let \(f \colon X \to Y\) be continuous and surjective with \(X\)
+compact, and let \((V_{i})\) cover \(Y\). The sets \(f^{-1}(V_{i})\) are
+open and cover \(X\), so finitely many of them cover \(X\); the
+corresponding \(V_{i}\) then cover \(f(X) = Y\).
+#+end_proof
+
+#+DEPENDS: def-compact, prop-closed-sets-of-a-topology
+#+NAME: prop-closed-subspace-of-a-compact-space
+#+begin_proposition
+A closed subset of a compact space is compact.
+#+end_proposition
+
+#+begin_proof
+Let \(C \subseteq X\) be closed and let \((U_{i})\) be open sets of
+\(X\) covering \(C\). Adding \(X \setminus C\), which is open, gives an
+open cover of \(X\); extract a finite subcover and discard
+\(X\setminus C\) from it. What remains is a finite subfamily of the
+\(U_{i}\) covering \(C\).
+#+end_proof
+
+#+DEPENDS: def-compact, ax-completeness, def-supremum
+#+NAME: thm-closed-interval-is-compact
+#+begin_theorem
+Every closed bounded interval \([a,b] \subseteq \R\) is compact.
+#+end_theorem
+
+#+begin_proof
+Let \(\mathcal{U}\) be a cover of \([a,b]\) by sets open in \(\R\), and
+let
+\(S = \setst{x \in [a,b]}{[a,x] \text{ is covered by finitely many members of } \mathcal{U}}\).
+It contains \(a\) and is bounded above by \(b\), so \(s = \sup S\)
+exists by completeness, and \(s \in [a,b]\).
+
+Some \(U \in \mathcal{U}\) contains \(s\), and being open it contains
+\((s-\delta, s+\delta)\) for some \(\delta > 0\). By definition of the
+supremum there is \(x \in S\) with \(x > s - \delta\); a finite
+subfamily covers \([a,x]\), and adding \(U\) covers
+\([a, \min(s+\delta/2, b)]\). Hence \(s \in S\), and if \(s < b\) then
+some point of \(S\) exceeds \(s\) -- impossible. So \(s = b \in S\).
+#+end_proof
+
+#+DEPENDS: thm-closed-interval-is-compact, prop-closed-subspace-of-a-compact-space, prop-compact-subset-of-a-hausdorff-space-is-closed
+#+NAME: thm-heine-borel-on-the-line
+#+begin_theorem
+A subset of \(\R\) is compact if and only if it is closed and bounded.
+#+end_theorem
+
+#+begin_proof
+Let \(K\) be closed and bounded, so \(K \subseteq [a,b]\) for some
+interval. Then \(K\) is a closed subset of the compact space \([a,b]\),
+hence compact.
+
+Conversely let \(K\) be compact. It is closed, being a compact subset of
+the Hausdorff space \(\R\). It is bounded: the open intervals
+\((-n, n)\), \(n \in \N\), cover \(K\), so finitely many do, and their
+union is the largest of them.
+#+end_proof
+
+#+DEPENDS: thm-continuous-image-of-a-compact-space, thm-heine-borel-on-the-line, def-supremum, thm-extreme-value
+#+NAME: cor-extreme-value-on-a-compact-space
+#+begin_corollary
+A continuous real-valued function on a non-empty compact space is
+bounded and attains its supremum and its infimum.
+#+end_corollary
+
+#+begin_proof
+The image \(f(X) \subseteq \R\) is compact, hence closed and bounded.
+Bounded and non-empty, it has a supremum \(M\); every neighbourhood of
+\(M\) meets \(f(X)\) by the definition of the supremum, so
+\(M \in \overline{f(X)} = f(X)\), that is \(M = f(x)\) for some \(x\).
+The infimum is the same argument applied to \(-f\).
+#+end_proof
+
+#+begin_remark
+This is the extreme value theorem of the first course with the interval
+replaced by any compact space, and the proof no longer mentions
+sequences or subsequences at all. Which formulation to prove first is a
+real choice: on metric spaces the covering and sequential definitions
+agree, and the equivalence is itself a theorem worth isolating.
+#+end_remark

@@ -1,0 +1,71 @@
+:PROPERTIES:
+:ID:       d6c0b313-33dd-4059-8ccc-6ed4d98093de
+:END:
+#+TITLE: Taylor's theorem with the Peano remainder
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A24
+#+HASH: a7c8cbb56cfd
+
+The Lagrange remainder is an identity with an unknown point in it, and
+it asks for one more derivative than the polynomial uses. The Peano
+form asks for no extra derivative and gives no identity -- only the
+rate at which the error vanishes. That is weaker, and it is the form
+every limit computation and every local extremum test actually needs.
+
+#+DEPENDS: def-taylor-polynomial, thm-lhopital, prop-limit-iff-one-sided
+#+NAME: thm-taylor-peano
+#+begin_theorem
+Let \(f\) be \(n\) times differentiable at \(a\), with \(f^{(n-1)}\)
+defined on a neighbourhood of \(a\). Then
+\[ \lim_{x \to a} \frac{f(x) - T_{n}(x)}{(x - a)^{n}} = 0, \]
+where \(T_{n}\) is the Taylor polynomial of order \(n\) at \(a\).
+#+end_theorem
+
+#+begin_proof
+Put \(r(x) = f(x) - T_{n}(x)\) and \(q(x) = (x - a)^{n}\). By
+construction \(r^{(k)}(a) = 0\) for \(k = 0, 1, \dots, n\), and
+\(q^{(k)}(a) = 0\) for \(k < n\) while \(q^{(n)} \equiv n!\).
+
+Work on one side of \(a\) at a time; the two-sided limit then follows
+from the characterisation of a limit by its one-sided limits. On
+\((a, a + \delta)\), apply de l'Hopital's rule \(n - 1\) times: at each
+stage the numerator \(r^{(k)}\) and the denominator \(q^{(k)}\) both
+tend to \(0\) at \(a\), and \(q^{(k+1)}\) is a non-zero multiple of
+\((x - a)^{n - k - 1}\), which does not vanish for \(x \ne a\). This
+reduces the claim to
+\[ \lim_{x \to a} \frac{r^{(n-1)}(x)}{n! \, (x - a)} = \lim_{x \to a} \frac{1}{n!} \cdot \frac{r^{(n-1)}(x) - r^{(n-1)}(a)}{x - a} = \frac{r^{(n)}(a)}{n!} = 0, \]
+using \(r^{(n-1)}(a) = 0\); the middle expression is exactly the
+difference quotient defining \(r^{(n)}(a)\), which exists by hypothesis
+and vanishes. The argument on \((a - \delta, a)\) is identical.
+#+end_proof
+
+#+DEPENDS: thm-taylor-peano, lem-interior-extremum
+#+NAME: cor-second-derivative-test
+#+begin_corollary
+Let \(f\) be twice differentiable at an interior point \(c\) with
+\(f'(c) = 0\). If \(f''(c) > 0\) then \(f\) has a strict local minimum
+at \(c\); if \(f''(c) < 0\), a strict local maximum.
+#+end_corollary
+
+#+begin_proof
+Suppose \(f''(c) > 0\). The Taylor polynomial of order two at \(c\) is
+\(T_{2}(x) = f(c) + \tfrac{1}{2} f''(c) (x - c)^{2}\), since
+\(f'(c) = 0\), so the theorem gives a function \(\eta\) with
+\(\eta(x) \to 0\) and
+\[ f(x) - f(c) = \Bigl( \frac{f''(c)}{2} + \eta(x) \Bigr) (x - c)^{2}. \]
+Choose \(\delta > 0\) with \(\abs{\eta(x)} < f''(c)/2\) for
+\(0 < \abs{x - c} < \delta\); the bracket is then positive, and
+\((x-c)^{2} > 0\), so \(f(x) > f(c)\) on that punctured
+neighbourhood. The case \(f''(c) < 0\) follows by applying this to
+\(-f\).
+#+end_proof
+
+#+begin_remark
+The test says nothing when \(f''(c) = 0\), and cannot: \(x^{4}\),
+\(-x^{4}\) and \(x^{3}\) all have vanishing first and second
+derivatives at the origin, with a minimum, a maximum and neither. What
+decides those cases is the first non-vanishing higher derivative, and
+the Peano form gives that argument verbatim with \(n\) in place of
+\(2\).
+#+end_remark

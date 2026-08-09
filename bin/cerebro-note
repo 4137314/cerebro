@@ -4,12 +4,21 @@
 #   cerebro-note new "Title" [tag1,tag2] [msc-code]   create a note file
 #   cerebro-note find QUERY                            grep title+body
 #   cerebro-note list                                  every note + title
+#   cerebro-note rehash                                re-derive every name
 #
 # `new' writes a note that is born classified exactly like the Emacs
 # capture template (cerebro-roam.el): a file-level :ID: (so it is a proper
 # Org-roam node -- backlinks/hubs/queries work), a :seed: maturity tag,
 # and an empty #+MSC: line ready to fill in. Plain files, so this is fully
 # scriptable and needs no running Emacs.
+#
+# A note in notes/math/ is named by the digest of its own metadata
+# (.emacs.d/lisp/cerebro-hash.el), so this script has to be able to
+# compute that digest without Emacs -- see `note_hash' below, which
+# reproduces the canonical string cerebro-hash.el hashes, byte for byte.
+# Duplicated deliberately, and pinned from both sides: the ERT suite
+# checks the Elisp digest of a fixed note against the same constant this
+# script produces, so the two cannot drift apart quietly.
 set -eu
 
 repo_root=$(git rev-parse --show-toplevel)
@@ -19,11 +28,21 @@ notes_dir="$repo_root/notes"
 # on purpose so these tools need no Emacs). Reading still walks the whole
 # tree: `find' and `list' below use $notes_dir.
 math_dir="$notes_dir/math"
+# The directories whose file names are digests (mirrors
+# `cerebro-hash-directories' in .emacs.d/lisp/cerebro-hash.el).
+hash_dirs="$notes_dir/math $notes_dir/conjectures"
 
-# Files that are not prose notes (mirrors cerebro-note-files in
-# cerebro-org.el): generated aggregators + headingless meta. ERE, since
-# every use below is `grep -E'.
-not_a_note='/(book|README|TAGS|course)\.org$'
+# Files that are not prose notes -- byte for byte the two cases of
+# `cerebro-not-a-note-regexp' (.emacs.d/lisp/cerebro-base.el): a build
+# product, and this repository talking about itself. ERE, since every use
+# below is `grep -E'.
+#
+# It carried a third case, `course.org', from the layout where a course
+# was a directory holding course.org + book.org. A course has been ONE
+# file named after itself for a while now, so that clause matched nothing
+# -- and would have hidden a real course from `find'/`list' the day
+# somebody wrote notes/courses/course.org.
+not_a_note='(/\.build/|/README\.org$)'
 
 cmd=${1:-list}
 [ "$#" -gt 0 ] && shift || true
@@ -35,9 +54,63 @@ new_id() {
     else date +%Y%m%dT%H%M%S%N; fi
 }
 
-slug() {
-    printf '%s' "$1" | tr '[:upper:]' '[:lower:]' \
-        | sed -e 's/[^a-z0-9]\{1,\}/-/g' -e 's/^-//' -e 's/-$//'
+sha256() {
+    if command -v sha256sum >/dev/null 2>&1; then sha256sum
+    else shasum -a 256; fi
+}
+
+# One metadata field of a note, trimmed, internal whitespace collapsed --
+# exactly what `cerebro-hash--field-value' does in Elisp. PREFIX is the
+# literal key including its colons (`:ID:', `#+TITLE:').
+meta_field() {
+    awk -v p="$2" '
+      { line = $0; sub(/^[ \t]+/, "", line) }
+      !found && index(line, p) == 1 {
+        v = substr(line, length(p) + 1)
+        gsub(/[ \t]+/, " ", v); sub(/^ /, "", v); sub(/ $/, "", v)
+        print v; found = 1
+      }' "$1"
+}
+
+# The digest a note in notes/math/ is named after: SHA-256 of one
+# `FIELD: value' line per field, in this exact order, first 12 hex
+# characters. `cerebro-hash-canonical' is the other half of this.
+note_hash() {
+    {
+        printf 'ID: %s\n'       "$(meta_field "$1" ':ID:')"
+        printf 'TITLE: %s\n'    "$(meta_field "$1" '#+TITLE:')"
+        printf 'DATE: %s\n'     "$(meta_field "$1" '#+DATE:')"
+        printf 'FILETAGS: %s\n' "$(meta_field "$1" '#+FILETAGS:')"
+        printf 'MSC: %s\n'      "$(meta_field "$1" '#+MSC:')"
+    } | sha256 | cut -c1-12
+}
+
+# Rewrite FILE's `#+HASH:' line to HASH -- replacing it if it is there,
+# otherwise adding it after the last *declared metadata* keyword. Only
+# those four names, never `#+[A-Za-z]+:' in general: `#+NAME:' is a
+# keyword too, it sits directly above the block it names, and a line
+# inserted between them detaches the name and silently breaks the
+# `single' export. Same rule as `cerebro-hash-set-line' in Elisp.
+set_hash_line() {
+    tmp="$1.tmp.$$"
+    awk -v h="$2" '
+      /^[ \t]*#\+HASH:/ { next }
+      {
+        lines[n++] = $0
+        if ($0 ~ /^[ \t]*#\+(TITLE|DATE|FILETAGS|MSC):/) last = n
+      }
+      END {
+        # No declared keyword at all (nothing this repository writes):
+        # at the top, which is where cerebro-hash-set-line puts it. This
+        # printed it at the *bottom*, so the one input the two
+        # implementations could still disagree about, they did.
+        if (last == 0) print "#+HASH: " h
+        for (i = 0; i < n; i++) {
+          print lines[i]
+          if (i + 1 == last) print "#+HASH: " h
+        }
+      }' "$1" > "$tmp"
+    mv "$tmp" "$1"
 }
 
 case "$cmd" in
@@ -45,13 +118,14 @@ case "$cmd" in
     title=${1:?"usage: cerebro-note new \"Title\" [tag1,tag2] [msc]"}
     tags=${2:-}
     msc=${3:-}
-    ts=$(date +%Y%m%d%H%M%S)
     mkdir -p "$math_dir"
-    file="$math_dir/${ts}-$(slug "$title").org"
     filetags=":seed:"
     if [ -n "$tags" ]; then
         filetags=":seed:$(printf '%s' "$tags" | tr ',' ':' | sed 's/::*/:/g;s/^://;s/:$//'):"
     fi
+    # Written first, named second: the name is a function of what is in
+    # the file, so the file has to exist before it can be called anything.
+    file="$math_dir/.new.$$.org"
     {
         printf ':PROPERTIES:\n:ID:       %s\n:END:\n' "$(new_id)"
         printf '#+TITLE: %s\n' "$title"
@@ -59,7 +133,54 @@ case "$cmd" in
         printf '#+FILETAGS: %s\n' "$filetags"
         printf '#+MSC: %s\n\n' "$msc"
     } > "$file"
+    hash=$(note_hash "$file")
+    set_hash_line "$file" "$hash"
+    mv "$file" "$math_dir/$hash.org"
+    file="$math_dir/$hash.org"
     echo "created $(printf '%s' "$file" | sed "s#^$repo_root/##")"
+    ;;
+  rehash)
+    # Every hash-named note gets the name its metadata says it has.
+    # Idempotent, and the repair for anything that edited a note without
+    # going through Emacs -- including `git checkout' of an old revision.
+    renamed=0
+    for dir in $hash_dirs; do
+        [ -d "$dir" ] || continue
+        for f in "$dir"/*.org; do
+            [ -f "$f" ] || continue
+            case "$(basename "$f")" in README.org) continue ;; esac
+            hash=$(note_hash "$f")
+            recorded=$(meta_field "$f" '#+HASH:')
+            [ "$recorded" = "$hash" ] || set_hash_line "$f" "$hash"
+            target="$dir/$hash.org"
+            [ "$f" = "$target" ] && continue
+            if [ -e "$target" ]; then
+                echo "cerebro-note: $hash.org is taken -- leaving $(basename "$f") alone" >&2
+                continue
+            fi
+            mv "$f" "$target"
+            echo "renamed $(basename "$f") -> $hash.org"
+            renamed=$((renamed + 1))
+        done
+    done
+    # A rename invalidates the id -> path map, and that map is what the
+    # course composer resolves every `id:' link through
+    # (cerebro-course-resolve-id -> org-id-find-id-file). It is a *cache*
+    # -- derived, gitignored, rebuilt by `org-id-update-id-locations' --
+    # so the correct thing to do here is drop it, which needs no Emacs
+    # and keeps this script runnable without one.
+    #
+    # Not dropping it was a real failure and an ugly one to read: the
+    # first export after retitling a note died with `Cannot include file
+    # .../<previous digest>.org', naming a file that had just stopped
+    # existing, and the retry succeeded because something else had
+    # refreshed the map in between. Every export was composing against
+    # the names the notes had one rehash ago.
+    if [ "$renamed" -gt 0 ] && [ -f "$repo_root/.org-id-locations" ]; then
+        rm -f "$repo_root/.org-id-locations"
+        echo "dropped the stale id->path cache (.org-id-locations)"
+    fi
+    echo "$renamed note(s) renamed"
     ;;
   find)
     query=${1:?"usage: cerebro-note find QUERY"}
@@ -77,7 +198,7 @@ case "$cmd" in
     done
     ;;
   *)
-    echo "cerebro-note: unknown command '$cmd' (know: new find list)" >&2
+    echo "cerebro-note: unknown command '$cmd' (know: new find list rehash)" >&2
     exit 1
     ;;
 esac

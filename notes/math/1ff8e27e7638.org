@@ -1,0 +1,42 @@
+:PROPERTIES:
+:ID:       f9557e4d-84b0-4e19-942a-c87d3aaa533f
+:END:
+#+TITLE: The derivative
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A24
+#+HASH: 1ff8e27e7638
+
+The derivative is a limit, so everything proved about limits applies to
+it unchanged. The one implication worth isolating at once is that
+differentiability is strictly stronger than continuity.
+
+#+DEPENDS: def-function-limit
+#+NAME: def-derivative
+#+begin_definition
+Let \(I \subseteq \R\) be an open interval, \(f \colon I \to \R\) and
+\(c \in I\). Then \(f\) is /differentiable/ at \(c\) if
+\[ f'(c) = \lim_{h \to 0} \frac{f(c + h) - f(c)}{h} \]
+exists in \(\R\); the number \(f'(c)\) is the /derivative/ of \(f\) at
+\(c\). If this holds at every point of \(I\), \(f\) is differentiable on
+\(I\).
+#+end_definition
+
+#+DEPENDS: def-derivative, def-continuity-at-point
+#+NAME: prop-differentiable-implies-continuous
+#+begin_proposition
+If \(f\) is differentiable at \(c\), then \(f\) is continuous at \(c\).
+#+end_proposition
+
+#+begin_proof
+For \(h \ne 0\) write
+\(f(c + h) - f(c) = h \cdot \frac{f(c+h) - f(c)}{h}\). As \(h \to 0\)
+the second factor tends to \(f'(c)\) and the first to \(0\), so the
+product tends to \(0\), which is exactly \(f(c + h) \to f(c)\).
+#+end_proof
+
+#+begin_remark
+The converse fails at a single point already: \(\abs{x}\) is continuous
+at \(0\) and has one-sided difference quotients \(1\) and \(-1\) there,
+so the limit defining the derivative does not exist.
+#+end_remark

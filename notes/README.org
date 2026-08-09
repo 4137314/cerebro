@@ -1,0 +1,337 @@
+#+TITLE: The archive: what a note is, and how one is written
+#+OPTIONS: toc:nil
+#+MSC: 26A03, 40A05
+#+KEYWORDS: conventions, taxonomy, exemplar
+
+#+begin_comment
+This file is three things at once, on purpose, because they were three
+files and the third one nobody read:
+
+  1. the map of notes/ and the rules for writing in it;
+  2. the tag taxonomy -- what each tag in the controlled vocabulary
+     means (this was notes/TAGS.org);
+  3. a real, compilable exemplar -- the mathematics below is not a
+     mock-up. `make export-matrix' compiles THIS FILE through every
+     named profile, so a convention documented here and broken in the
+     pipeline fails a build rather than misleading a reader (this was
+     notes/example.org).
+
+Everything in this block is an Org comment: visible while editing,
+excluded from every export -- which is also the general answer to
+"where does meta-commentary go?". Not in plain prose: in a comment
+block. On the `slides' profile a stray paragraph would otherwise
+become part of a frame ahead of the real content.
+
+The naked-dollar convention, stated with the characters it is about
+(they are legal here, in a comment block, and nowhere else): write
+inline math as \(x\) and display math as \[x\], never as $x$. A $ next
+to punctuation -- the classic $x$--$y$ -- silently mis-parses in Org
+into a literal dollar that then fails to compile, and TeX's recovery
+("insert a $ and proceed") used to ship a malformed PDF the pipeline
+called a success. bin/notes-lint.el rejects any naked $ outside a
+src/example/export/comment block.
+#+end_comment
+
+* What is in notes/
+
+| directory        | what lives there                                            |
+|------------------+-------------------------------------------------------------|
+| =math/=          | the concept graph: one note per result, permanent           |
+| =conjectures/=   | mine, unproved (=C-c m j=); typeset two-column              |
+| =courses/=       | ONE file per course: an index into =math/=                  |
+| =README.org=     | this file: the conventions, the taxonomy, and the exemplar  |
+
+Only =math/= is a default: =C-c m t=, =cerebro note new= and the
+org-roam captures all put a new note there, and =C-c m j= is the one
+exception (a conjecture goes to =conjectures/=). Nothing /requires/ a
+note to be in either -- the graph, the agenda and the linter walk the
+whole tree -- but a course owns no mathematics of its own.
+
+There is *no journal*. This is a second brain for mathematics: the unit
+is a result, not a day, and a dated file is the one kind of note nothing
+ever links to. What a journal gets reached for -- "what was I doing?" --
+is answered by =cerebro today=, the issue tracker and Timewarrior, each
+of which already knows.
+
+A course is one file, =courses/<slug>.org=: metadata, prose, and a
+=* Programme= section of =id:= links. The lecture notes, the slides and
+the handbook are *composed* from it at export time (into =.build/=,
+gitignored), so there is no generated file in the repository and no way
+to compile a book that no longer matches its programme.
+
+* What a note is
+
+One *result* per note: a definition, a theorem, a construction. The unit
+is deliberately small, because a note that holds three ideas can only be
+linked to as if it held one.
+
+Every note opens with the same front matter, one field per line, in this
+order:
+
+: :PROPERTIES:
+: :ID:       3df902f9-c527-40c3-994a-78fa87ef1063
+: :END:
+: #+TITLE: Supremum and infimum
+: #+DATE: [2026-08-06 Thu]
+: #+FILETAGS: :growing:analysis:real_analysis:
+: #+MSC: 26A03
+: #+HASH: dc371dcdc869
+
+That block is the note's metadata, and it is written to be *parsed*: a
+key per line, no continuation lines, no prose. Three different readers
+depend on it -- Emacs, =bin/= shell scripts with no Emacs at all, and
+the naming rule below.
+
+** The file has no name
+
+A note in =notes/math/= is called =dc371dcdc869.org=. The digest is
+SHA-256 over exactly the metadata above, first twelve hex characters
+(=.emacs.d/lisp/cerebro-hash.el=), and =#+HASH:= records it in the file.
+
+Saving a note recomputes it. Change the title, the tags or the
+classification and the file renames itself; rewrite a proof and it does
+not, because the proof is not part of what the note /is/.
+
+- Nothing here resolves a note by file name -- links are =id:= links --
+  so a rename breaks nothing, ever.
+- A name that means something is a second title, and a second title
+  goes stale: =20260806140000-supremum.org= went on saying "supremum"
+  long after the note had been retitled. A digest cannot go stale; it
+  can only be *wrong*, and =cerebro lint= recomputes it and says so.
+- =cerebro note rehash= re-derives every name in one pass. It is the
+  repair for anything that edited a note without Emacs, and it is
+  idempotent.
+
+To find a note, use its title: =C-c m f=, =cerebro note find QUERY=,
+=cerebro note list=, or the org-roam search. Each reads the title out of
+the file, which is where a title belongs.
+
+* The conventions that fail silently
+
+Get one of these wrong and nothing complains at the time; the note
+compiles into the wrong thing, or drops out of the graph. The linter now
+catches most of them.
+
+- *Inline math is* =\(...\)=, *display is* =\[...\]=. Never a bare
+  dollar sign (see the comment block at the top of this file for why).
+  Keep a display equation on a single line starting with =\[=: a line
+  whose first character is a vertical bar is Org table syntax, full
+  stop, and it silently eats the equation.
+- *Name every result you might cite* with a globally unique kebab-case
+  =#+NAME= (=thm-=, =def-=, =lem-=, =prop-=, =cor-=, =ax-=), placed
+  *directly above* its =#+begin_= line.
+- *=#+DEPENDS:= goes ABOVE =#+NAME:=*. It lists the names a result rests
+  on. It is not an Org affiliated keyword, so putting it /between/
+  =#+NAME= and the block detaches the name and breaks the =single=
+  export. =make results= reads this graph; the linter rejects a dangling
+  or cyclic dependency and a duplicate name.
+- *Never set* =#+LATEX_CLASS=, =#+LATEX_CLASS_OPTIONS= or
+  =#+EXCLUDE_TAGS= in a note. The export profile controls all three, and
+  a file-local setting silently wins -- profile selection would stop
+  doing anything, quietly.
+- *Block names are lowercase*: =#+begin_theorem=, not =#+begin_Theorem=.
+- *No examples, no exercises.* This archive is theory: definitions,
+  statements, proofs. =#+begin_example=, =#+begin_exercise=,
+  =#+begin_hint= and =#+begin_solution= are *rejected by the linter*,
+  and there is nothing to argue with at the point of writing.
+
+  The reason is not taste. An example is a particular object, and a
+  particular object is the one thing a note cannot be reused as: it
+  cannot be cited, it cannot be depended on, and it says nothing that
+  survives being generalised. If a would-be example carries real
+  content, it *is* a proposition -- "there is an integrable function
+  whose discontinuities are dense" is a theorem with a proof, not an
+  illustration -- so state it as one, name it, and let something else
+  depend on it. If it carries none, it is prose.
+
+  Exercises are the same argument from the other side: an exercise is a
+  proof you have decided not to write down. Write it down.
+
+  (Org reserves =example= for *verbatim* text anyway, so code goes in
+  =#+begin_src=, a quotation in =#+begin_quote=, and literal text -- like
+  the front matter above -- on =:= fixed-width lines.)
+- *Outside math, an underscore is a literal underscore.* Org is set to
+  =org-use-sub-superscripts '{}=, so only a braced =x_{1}= subscripts.
+  Every formula here lives inside =\(...\)= or =\[...\]= anyway, while
+  prose is full of tag names and block markers that must stay literal.
+- *A result's proof status is inferred*: a statement with a
+  =#+begin_proof= directly after it is /proved/, another provable
+  statement without one is /open/, and =#+STATUS: assumed= (above
+  =#+NAME:=, like =#+DEPENDS:=) overrides both. =cerebro results open=
+  is the list of what the archive owes.
+
+* An exemplar
+
+Everything from here down is real mathematics, and it is what
+=make export-matrix= compiles -- through =syllabus=, =lecture=,
+=slides=, =handbook= and =single=. A convention this file states and the
+pipeline does not honour therefore fails a build.
+
+** Limits of sequences
+
+#+NAME: def-convergence
+#+begin_definition
+A sequence \((a_n)_{n \in \N}\) of real numbers /converges/ to
+\(L \in \R\) if for every \(\eps > 0\) there exists \(N \in \N\) such
+that \(\abs{a_n - L} < \eps\) for all \(n \geq N\). This is the standard
+definition, see [cite:@rudin1976principles].
+#+end_definition
+
+#+NAME: ax-dedekind-completeness
+#+begin_axiom
+The real numbers \(\R\) are Dedekind-complete: every non-empty subset of
+\(\R\) bounded above has a least upper bound in \(\R\).
+#+end_axiom
+
+# Uniqueness of limits rests on the definition of convergence -- and on
+# nothing else (in particular not on completeness): #+DEPENDS records
+# exactly that. `cerebro results deps thm-uniqueness-of-limits'.
+#+DEPENDS: def-convergence
+#+NAME: thm-uniqueness-of-limits
+#+begin_theorem
+If \((a_n)\) converges to both \(L_1\) and \(L_2\), then \(L_1 = L_2\).
+#+end_theorem
+
+#+begin_proof
+Suppose \(L_1 \neq L_2\). Let \(\eps = \abs{L_1 - L_2} / 2 > 0\). By
+convergence to \(L_1\) there is \(N_1\) with \(\abs{a_n - L_1} < \eps\) for
+all \(n \geq N_1\); similarly there is \(N_2\) for \(L_2\). Then for
+\(n \geq \max(N_1, N_2)\),
+\[\abs{L_1 - L_2} \leq \abs{L_1 - a_n} + \abs{a_n - L_2} < 2\eps = \abs{L_1 - L_2},\]
+a contradiction. Hence \(L_1 = L_2\).
+#+end_proof
+
+#+begin_remark
+Uniqueness of limits is why writing "\(\lim_{n\to\infty} a_n = L\)" for
+/the/ limit, rather than /a/ limit, is legitimate at all. A remark is an
+aside: the =lecture= and =slides= profiles both drop it.
+#+end_remark
+
+#+NAME: conj-rational-limits
+#+begin_conjecture
+(Not an open problem -- here to exercise the =conjecture= environment.)
+Every convergent sequence of rationals converges to a rational.
+#+end_conjecture
+
+
+* The tag taxonomy
+
+The controlled vocabulary is *data, not documentation*: it lives in
+=org-tag-alist= in =.emacs.d/lisp/cerebro-org.el= (with the area
+hierarchy in =cerebro-taxonomy.el=), and any tag used in a note that is
+not declared there is an error from =cerebro lint=. This section is what
+each one *means* -- extend the vocabulary in the Elisp first, then
+explain it here.
+
+** Maturity (mutually exclusive)
+
+How well-formed the idea still is, made visible instead of merely
+implied.
+
+- =seed= :: a fragment, a question, something copied from a lecture
+  almost verbatim. Not yet understood well enough to explain in your own
+  words.
+- =growing= :: reworked at least once, connected to other notes, but
+  still has rough edges or open questions attached.
+- =evergreen= :: written in your own words, understood well enough to
+  teach, stable under revision. This is the tag =cerebro-query.el='s
+  "stale hubs" query cares about: an evergreen note nobody has touched
+  in a long time is fine; a =growing= one that is also a hub is a signal
+  to go back and finish it.
+
+=C-c m += moves a note one rung up the ladder; =C-c m s= sets it
+outright.
+
+** Difficulty (mutually exclusive)
+
+=easy=, =medium=, =hard= -- relative to your own current level, not to
+some absolute scale. Re-tag as you improve.
+
+** Epistemic status (freestanding)
+
+These matter structurally, not just descriptively: =bin/notes-lint.el=
+treats a =theorem=/=lemma=/=proposition=/=corollary= block with no
+adjacent =proof= block as an *error* unless its heading carries one of
+these tags.
+
+- =conjecture= :: believed true, not proved (by you, or at all).
+- =folklore= :: "well known", proof omitted because it is standard,
+  long or ubiquitous -- not because it does not exist.
+- =open_problem= :: actually unresolved (in the field, not just by you).
+
+** Area (a two-level hierarchy, freestanding, extend freely)
+
+The coarse "what shelf" dimension. It is data in
+=.emacs.d/lisp/cerebro-taxonomy.el= (=cerebro-area-taxonomy=), spliced
+into =org-tag-alist= as Org /group tags/: a *supertag* stands for all of
+its *subtags*, so filtering the agenda or a query by =analysis= also
+matches a note tagged only =functional_analysis=.
+
+Supertags, each with its own subtags (see the file for the full list):
+=analysis=, =algebra=, =geometry=, =topology=, =number_theory=,
+=foundations= (incl. =logic=, =category_theory=), =combinatorics=,
+=probability=, =dynamics=, =numerics=, =mathematical_physics=.
+
+Tag with the *most specific* subtag you can (=riemannian_geometry=, not
+just =geometry=); the supertag still finds it. Add an area by editing
+=cerebro-area-taxonomy=; the linter's vocabulary and the agenda grouping
+both update from it.
+
+** Functional tags (freestanding, they change what a tool does)
+
+- =crypt= :: this heading's body is encrypted at rest
+  (=cerebro-crypt.el=, on Org's own =org-crypt=). Symmetric by default.
+- =drill= :: this heading is a spaced-repetition flashcard
+  (=cerebro-drill.el=): heading = prompt, body = answer.
+- =appendix= :: this heading is an appendix of the document it is
+  composed into -- lettered rather than numbered. (A course usually says
+  this in its own =* Appendices= section instead; the tag is for a note
+  that is an appendix wherever it appears.)
+
+** Classification: the =#+MSC:= keyword (not a tag)
+
+The fine "what leaf" dimension, and the one journals want. Recorded as a
+per-file keyword rather than a tag, because the codes carry punctuation
+tags cannot hold:
+
+: #+MSC: 47A75, 46C05, 35Q41
+
+The codes are MSC2020 (data in =.emacs.d/lisp/cerebro-msc.el=), the
+first being the primary classification. =cerebro lint= rejects a code
+that is not valid MSC2020 and nudges (advisory) an =evergreen= note that
+has none; =cerebro query by-msc= and =cerebro stats= read them back. The
+area tags are for browsing, MSC for precise filing -- keep both.
+
+* Citations
+
+One bibliography for the whole archive: =bib/references.bib=. Not one
+per course, not one per paper -- a reference is a fact about the
+literature, not about the document citing it, and two files is how the
+same book acquires two keys.
+
+| Key       | What                                                          |
+|-----------+---------------------------------------------------------------|
+| =C-c b i= | insert =[cite:@key]=, completing over author/year/title       |
+| =C-c b n= | add a new entry: it asks for the fields, generates the key    |
+| =C-c b y= | import a BibTeX entry from the kill ring, re-keyed            |
+| =C-c b o= | open what the citation at point points at                     |
+| =C-c b f= | open the bibliography                                         |
+
+Keys are generated, not invented: surname + year + first meaningful word
+of the title (=rudin1976principles=), suffixed =a=, =b=, ... if that is
+already taken. And =cerebro lint= reads every =[cite:@key]= in every
+note and *fails* on one the bibliography does not define -- a wrong key
+used to typeset as a bold =[key?]= in the middle of a paragraph and be
+mentioned only in a =.blg= nobody reads.
+
+Every non-slide profile prints the reference list at the end.
+
+* The index
+
+A handbook ends with an analytical index, and nothing writes it: every
+=#+NAME='d result contributes its own entry (=def-supremum= indexes
+"supremum"), because naming results is something this archive already
+requires. For a term no name expresses, add =#+INDEX: term= -- Org
+transcodes that itself. Both are inert in the profiles that have no
+index, so a note carrying either still compiles as a lecture sheet or a
+deck.

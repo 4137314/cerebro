@@ -1,0 +1,68 @@
+:PROPERTIES:
+:ID:       9df53a2d-7920-4887-96c2-72a1271929c8
+:END:
+#+TITLE: The Legendre transform
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:mathematical_physics:real_analysis:
+#+MSC: 26A51, 70H05
+#+HASH: 7e0d9e3cf01a
+
+Passing from the Lagrangian to the Hamiltonian is not a change of
+notation: it is a change of *variable*, from velocity to momentum, and
+what makes it invertible is convexity. Stated for a convex function of
+one variable first, because that is where the hypothesis is visible and
+the geometry -- a function recovered from the family of its tangent
+lines -- is the whole idea.
+
+#+DEPENDS: def-convex-function, def-supremum
+#+NAME: def-legendre-transform
+#+begin_definition
+Let \(f \colon \R \to \R\) be convex. Its /Legendre transform/ is
+\[ f^{*}(p) = \sup_{v \in \R} \bigl( p v - f(v) \bigr), \]
+defined for those \(p\) where the supremum is finite.
+#+end_definition
+
+#+DEPENDS: def-legendre-transform, def-convex-function
+#+NAME: prop-legendre-transform-is-convex
+#+begin_proposition
+\(f^{*}\) is convex on the set where it is finite.
+#+end_proposition
+
+#+begin_proof
+For each fixed \(v\) the map \(p \mapsto pv - f(v)\) is affine, hence
+convex. A supremum of convex functions is convex: for
+\(\lambda \in [0,1]\),
+\(\lambda g_{v}(p) + (1-\lambda) g_{v}(p') \ge g_{v}(\lambda p + (1-\lambda)p')\)
+for every \(v\), and taking the supremum on the left over \(v\) --
+which only increases it -- preserves the inequality.
+#+end_proof
+
+#+DEPENDS: def-legendre-transform, prop-convexity-from-second-derivative, lem-interior-extremum, cor-monotone-from-derivative
+#+NAME: thm-legendre-stationary-point
+#+begin_theorem
+Let \(f\) be twice continuously differentiable with \(f'' > 0\). Then
+for each \(p\) in the range of \(f'\) the supremum defining
+\(f^{*}(p)\) is attained at the unique \(v\) with \(f'(v) = p\), and
+\[ f^{*}(p) = p v - f(v), \qquad (f^{*})'(p) = v. \]
+#+end_theorem
+
+#+begin_proof
+Fix \(p\) and put \(g(v) = pv - f(v)\), so \(g'(v) = p - f'(v)\) and
+\(g'' = -f'' < 0\). Since \(f'' > 0\), \(f'\) is strictly increasing, so
+\(g'\) vanishes at exactly one \(v\), and \(g\) increases before it and
+decreases after: that \(v\) is the unique maximum, so the supremum is
+attained there and equals \(pv - f(v)\).
+
+For the derivative, let \(v(p)\) denote that unique point. Then
+\(f^{*}(p) = p \, v(p) - f(v(p))\), and differentiating,
+\[ (f^{*})'(p) = v(p) + p \, v'(p) - f'(v(p)) v'(p) = v(p), \]
+because \(f'(v(p)) = p\) makes the last two terms cancel.
+#+end_proof
+
+#+begin_remark
+The transform is an involution on strictly convex functions -- the
+derivative of \(f^{*}\) inverts the derivative of \(f\) -- and that is
+why the passage to the Hamiltonian loses nothing. Convexity of \(L\) in
+\(\dot q\) is therefore not a technical convenience: it is the exact
+condition under which velocity and momentum determine each other.
+#+end_remark

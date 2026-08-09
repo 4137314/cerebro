@@ -41,27 +41,35 @@
 ;; to the light one for a bright room or a projector, and the two are
 ;; palette-compatible, so every face keeps its meaning.
 (defconst cerebro-theme-variants
-  '((dark   . modus-vivendi)
-    (light  . modus-operandi)
-    ;; The pastel pair, from ef-themes (guix.scm) -- same author as modus,
-    ;; so the same contrast discipline, but coloured rather than maximally
-    ;; contrasted. Soft-required: on a machine without the package the two
-    ;; built-in variants above still work, which is why they stay first.
-    (pastel      . ef-dream)
-    (pastel-light . ef-spring))
+  '(;; The hermetic pair, and the default: ink and aged paper. `ef-autumn'
+    ;; is warm browns and golds on near-black -- iron gall ink by
+    ;; candlelight; `ef-eagle' is the sepia parchment side of the same
+    ;; register. Chosen to sit under the engraving on the start page
+    ;; rather than fight it.
+    (hermes       . ef-autumn)
+    (hermes-light . ef-eagle)
+    ;; The pastel pair: coloured, cooler, no particular period.
+    (pastel       . ef-dream)
+    (pastel-light . ef-spring)
+    ;; The two that ship *inside* Emacs, and therefore the floor: these
+    ;; are what you get when ef-themes is not installed.
+    (dark   . modus-vivendi)
+    (light  . modus-operandi))
   "Map of variant name -> Emacs theme, the only place a theme is named.
-The first two ship *inside* Emacs; the pastel pair needs ef-themes, and
-`cerebro-theme-apply' falls back to the dark built-in when it is absent
-rather than leaving you with no theme at all.")
+`dark'/`light' ship inside Emacs; the hermetic and pastel pairs need
+ef-themes (guix.scm), and `cerebro-theme-apply' falls back to the dark
+built-in when it is absent rather than leaving you with no theme at all.")
 
-(defcustom cerebro-theme-variant 'pastel
+(defcustom cerebro-theme-variant 'hermes
   "Which entry of `cerebro-theme-variants' is active."
-  :type '(choice (const dark) (const light)
-                 (const pastel) (const pastel-light))
+  :type '(choice (const hermes) (const hermes-light)
+                 (const pastel) (const pastel-light)
+                 (const dark) (const light))
   :group 'cerebro-theme)
 
 (defcustom cerebro-theme-pairs
-  '((dark . light) (light . dark)
+  '((hermes . hermes-light) (hermes-light . hermes)
+    (dark . light) (light . dark)
     (pastel . pastel-light) (pastel-light . pastel))
   "Which variant `cerebro-theme-toggle' switches to, from each one.
 A pair, not a cycle: the toggle is for the room you are in (a bright
@@ -197,6 +205,27 @@ them afterwards is a silent no-op until the next reload."
       (when (or (boundp (car cell)) (not (featurep 'modus-themes)))
         (set (car cell) (cdr cell))))))
 
+(defun cerebro-theme--configure-ef ()
+  "The same decisions, for the ef-themes variants.
+
+Every option above is named `modus-themes-...' and therefore did nothing
+at all under `hermes' or `pastel' -- which are ef-themes. So four of the
+five variants had no heading scale and, worse, no `mixed-fonts': a
+proportional heading font applied to *everything*, shearing Org tables
+and aligned mathematics. ef-themes exposes the same two decisions under
+its own names, and this is them, so the look does not depend on which
+family the chosen variant happens to come from.
+
+Guarded exactly like the modus half: an option this ef-themes does not
+define is skipped, never an error at startup."
+  (let ((variable-font (cerebro-theme-font 'variable)))
+    (dolist (cell `((ef-themes-mixed-fonts . t)
+                    (ef-themes-variable-pitch-ui . nil)
+                    (ef-themes-headings . ,(cerebro-theme-heading-spec variable-font))
+                    (ef-themes-to-toggle . (ef-autumn ef-eagle))))
+      (when (or (boundp (car cell)) (not (featurep 'ef-themes)))
+        (set (car cell) (cdr cell))))))
+
 (defun cerebro-theme--apply-fonts (&optional frame)
   "Set the default/fixed/variable faces from `cerebro-theme-font-families'.
 Does nothing without a window system (a terminal has one font, chosen by
@@ -226,16 +255,21 @@ switching never leaves two palettes half-applied, and runs
   (let* ((variant (or variant cerebro-theme-variant))
          (theme (or (cdr (assq variant cerebro-theme-variants))
                     (user-error "cerebro-theme: unknown variant `%s'" variant))))
-    ;; A variant from a package (the pastel pair) is only loadable if the
-    ;; package is here. Falling back to the built-in dark theme is the
-    ;; right failure: a config that refuses to start because a *colour
-    ;; scheme* is missing would be the silliest possible way to lose an
-    ;; editor.
+    ;; A variant from a package (the hermetic and pastel pairs) is only
+    ;; loadable if the package is here. Falling back to the built-in dark
+    ;; theme is the right failure: a config that refuses to start because
+    ;; a *colour scheme* is missing would be the silliest possible way to
+    ;; lose an editor.
     (unless (memq theme (custom-available-themes))
       (setq theme (cdr (assq 'dark cerebro-theme-variants))
             variant 'dark))
     (mapc #'disable-theme custom-enabled-themes)
+    ;; Both families, unconditionally: each function only sets options its
+    ;; own package defines, and the variant that is about to load reads
+    ;; whichever set belongs to it. Configuring only the family we think
+    ;; we are loading is how the ef variants ended up unconfigured.
     (cerebro-theme--configure-modus)
+    (cerebro-theme--configure-ef)
     (load-theme theme t)
     (setq cerebro-theme-variant variant)
     (cerebro-theme--apply-fonts)
@@ -375,12 +409,71 @@ one buffer needs a closer look."
       window-divider-default-bottom-width 1)
 (when (fboundp 'window-divider-mode) (window-divider-mode 1))
 
-;; Cursor: a solid bar that does not blink. Blinking is motion in the
-;; corner of the eye while reading a proof; a bar sits between characters,
+;; -- The cursor ---------------------------------------------------------
+;; A bar that does not blink, because blinking is motion in the corner of
+;; the eye while reading a proof, and a bar sits *between* characters,
 ;; which reads as "insert here" rather than covering the glyph.
-(setq-default cursor-type 'bar)
+;;
+;; Both of those are still true and both nearly cost the cursor. It was
+;; `bar' -- one pixel wide -- and not blinking, so it had no width and no
+;; motion; `global-hl-line-mode' puts a background under the line it is
+;; on; and the cursor's *colour* comes from whichever theme is loaded. On
+;; the palette this configuration defaults to, those four facts add up to
+;; a cursor you cannot find. Reported, and reproduced from the settings.
+;;
+;; The two decisions that fix it, and neither gives up the reasoning
+;; above:
+;;
+;;   - width. A three-pixel bar is still between characters and still
+;;     does not cover the glyph; it is simply visible. One pixel was
+;;     never a considered number, it was the default of `bar'.
+;;   - colour. `cerebro-theme-cursor-follows-text' paints the cursor in
+;;     the *body text* colour, which is the one colour guaranteed to
+;;     contrast with the background -- that is what makes it text -- and
+;;     which every theme also keeps readable against its own hl-line.
+;;     So the cursor is visible by construction rather than by whichever
+;;     accent the theme happened to choose, in every variant, including
+;;     ones added later.
+
+(defcustom cerebro-theme-cursor-type '(bar . 3)
+  "Shape of the insertion cursor.
+
+`(bar . N)' is an N-pixel vertical bar; plain `bar' is one pixel, which
+is what made it disappear. `box' covers the glyph and is the most
+visible of all -- worth setting on a very dense screen, at the cost of
+hiding the character you are on."
+  :type '(choice (const :tag "Thin bar (1px)" bar)
+                 (cons :tag "Bar, N pixels wide" (const bar) integer)
+                 (const :tag "Box over the glyph" box)
+                 (const :tag "Underline" hbar))
+  :group 'cerebro-theme)
+
+(defcustom cerebro-theme-cursor-follows-text t
+  "Whether the cursor takes the colour of the body text.
+
+The point is contrast that cannot depend on the theme: the foreground
+colour is readable on the background by definition, and readable on the
+current-line highlight because themes are built that way. A theme's own
+`cursor' colour is an accent, chosen to look right, not to be found."
+  :type 'boolean
+  :group 'cerebro-theme)
+
+(defun cerebro-theme--apply-cursor ()
+  "Set the cursor's shape and, optionally, its colour.
+
+Hung on `cerebro-theme-after-apply-hook' rather than run once: `cursor'
+is a *face*, so every `load-theme' replaces it, and a colour set at
+startup would quietly go back to the theme's own at the first `C-c u t'."
+  (setq-default cursor-type cerebro-theme-cursor-type)
+  (when (and cerebro-theme-cursor-follows-text (display-graphic-p))
+    (when-let* ((fg (face-attribute 'default :foreground nil t)))
+      (unless (eq fg 'unspecified)
+        (set-face-attribute 'cursor nil :background fg)))))
+
 (blink-cursor-mode -1)
 (setq x-stretch-cursor nil)
+(cerebro-theme--apply-cursor)
+(add-hook 'cerebro-theme-after-apply-hook #'cerebro-theme--apply-cursor)
 
 ;; Reading comfort in every buffer: a little air between lines (dense
 ;; mathematical prose is unreadable at Emacs' default leading), smooth
@@ -388,11 +481,129 @@ one buffer needs a closer look."
 (setq-default line-spacing 0.15)
 (global-hl-line-mode 1)
 (setq-default truncate-lines nil)
+;; `scroll-margin' is 0, and that is a fix rather than a preference.
+;;
+;; A margin asks redisplay to keep point some lines away from the window
+;; edge. Under `pixel-scroll-precision-mode' a gesture moves the window
+;; by *sub-line* amounts, and each time the scroll brings point within
+;; the margin redisplay corrects it by pulling the window back -- so a
+;; steady downward scroll occasionally jumps upwards. Measured, scrolling
+;; a real note in a graphical frame, 240 sub-line steps:
+;;
+;;     scroll-margin 3    6 backwards jumps
+;;     scroll-margin 0    0
+;;
+;; and every other candidate left it at 6: `scroll-conservatively',
+;; `scroll-preserve-screen-position', `global-hl-line-mode', and
+;; `line-spacing' (fractional or not). Stock `emacs -Q' -- which has no
+;; margin -- shows none at all, which is what said the fault was here and
+;; not upstream.
+;;
+;; The margin is worth something when moving by keyboard, and nothing
+;; like enough to pay for that: a window that walks backwards while you
+;; read is the most distracting thing an editor can do.
 (setq scroll-conservatively 101      ; scroll a line at a time, never recentre
-      scroll-margin 3
+      scroll-margin 0
       scroll-preserve-screen-position t)
 (when (fboundp 'pixel-scroll-precision-mode)
   (pixel-scroll-precision-mode 1))
+
+;; Redisplay under a trackpad, and one setting rather than four -- the
+;; other three were removed, having caused the problem they were meant to
+;; solve.
+;;
+;; `fast-but-imprecise-scrolling', `redisplay-skip-fontification-on-input'
+;; and `jit-lock-defer-time' were added here to make scrolling cheaper.
+;; Read together, all three do the *same* thing: they let redisplay draw
+;; text before it has been fontified and repaint it a moment later. On a
+;; keypress that is invisible. Under a trackpad -- a continuous stream of
+;; input events, so "input is pending" is true for the whole gesture --
+;; it is a continuous stream of repaints: text appears unstyled, then
+;; recolours, forty times a second. That is exactly what "flickering
+;; while scrolling" is, and it was self-inflicted.
+;;
+;; They also bought nothing. The measured cost of scrolling a note was
+;; never fontification: it was the point-following modes asking
+;; `org-element-context' on every command (~4ms each, ~100 commands a
+;; second), which is fixed in cerebro-study.el by not running them while
+;; reading. These four were measured *after* that change and moved
+;; nothing -- which was recorded here at the time and should have been
+;; read as "so remove them" rather than "so keep them".
+;;
+;; What is left is the one that defers no drawing: `auto-window-vscroll'
+;; makes Emacs compute a per-line vertical scroll position it does not
+;; need here, and turning it off costs nothing and changes nothing about
+;; when pixels are painted.
+;;
+;; The rule this leaves behind: a redisplay setting whose mechanism is
+;; "draw now, correct later" does not belong in a config for reading
+;; mathematics. Smooth means every frame is right, not that frames are
+;; cheap.
+(setq auto-window-vscroll nil)
+
+;; -- Watching the window jump -------------------------------------------
+;; "I scroll down and every so often it goes back up" is a report about
+;; *window-start* moving backwards, and the useful question is what moved
+;; it. Five experiments in a real graphical frame under Xvfb -- with and
+;; without rendered formulas, with `scroll-margin' at 3 and at 0, and
+;; with a keystroke after the gesture -- failed to reproduce it here, so
+;; rather than guess again this makes the thing observable in the session
+;; where it actually happens.
+;;
+;; It records every backwards move of `window-start' together with the
+;; command that was running, which is the pair that identifies the cause:
+;; a scroll command doing it means a pixel-scroll problem, any other
+;; command means something is pulling the window back to point.
+
+(defvar cerebro-scroll-trace-log nil
+  "Backwards `window-start' movements, newest first: (COMMAND FROM TO).")
+
+(defvar cerebro-scroll--last-start nil)
+
+(defun cerebro-scroll--watch ()
+  "Record a backwards jump of `window-start' in this window."
+  (when (eq (window-buffer) (current-buffer))
+    (let ((start (window-start)))
+      (when (and cerebro-scroll--last-start (< start cerebro-scroll--last-start))
+        (push (list this-command cerebro-scroll--last-start start)
+              cerebro-scroll-trace-log))
+      (setq cerebro-scroll--last-start start))))
+
+;;;###autoload
+(define-minor-mode cerebro-scroll-trace-mode
+  "Log every backwards jump of the window while scrolling.
+
+Turn it on, scroll until it misbehaves, then `M-x
+cerebro-scroll-trace-report'. What you want from the report is the
+command column: a `pixel-scroll-...' there means the scrolling itself is
+at fault; anything else -- a self-insert, a timer's command, an Org
+function -- means that command is pulling the window back to point, and
+names the culprit.
+
+Read the log knowing what it cannot tell apart: scrolling *up* moves
+`window-start' backwards legitimately, and is recorded like anything
+else. The signal is a backwards move that breaks the sequence -- one
+entry out of order in an otherwise monotonic run -- which is exactly how
+the `scroll-margin' fault above was found."
+  :global t
+  :group 'cerebro-theme
+  (if cerebro-scroll-trace-mode
+      (progn (setq cerebro-scroll-trace-log nil
+                   cerebro-scroll--last-start nil)
+             (add-hook 'post-command-hook #'cerebro-scroll--watch))
+    (remove-hook 'post-command-hook #'cerebro-scroll--watch)))
+
+;;;###autoload
+(defun cerebro-scroll-trace-report ()
+  "Show what has been pulling the window backwards (`cerebro-scroll-trace-mode')."
+  (interactive)
+  (cerebro-report
+   (format "Backwards window jumps (%d)" (length cerebro-scroll-trace-log))
+   (or (mapcar (lambda (row)
+                 (format "%-38s %8d -> %8d" (car row) (nth 1 row) (nth 2 row)))
+               cerebro-scroll-trace-log)
+       (list "nothing recorded -- is cerebro-scroll-trace-mode on?"))
+   #'identity "*cerebro-scroll*"))
 
 ;; Line numbers where they are information (code, LaTeX sources) and
 ;; nowhere else -- a note is prose, and a column of grey digits next to a

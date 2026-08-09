@@ -1,0 +1,50 @@
+:PROPERTIES:
+:ID:       03d0aa48-fd59-4965-91e2-5dafe84ce087
+:END:
+#+TITLE: Taylor's theorem with the Lagrange remainder
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A24
+#+HASH: 4de1b459b17c
+
+A polynomial that matches \(n\) derivatives at a point is easy to write
+down; what makes it useful is a formula for the error, and Taylor's
+theorem gives one that is exact, at an unknown point.
+
+#+DEPENDS: def-derivative
+#+NAME: def-taylor-polynomial
+#+begin_definition
+Let \(f\) be \(n\) times differentiable at \(a\). Its /Taylor polynomial
+of order/ \(n\) at \(a\) is
+\[ T_{n}(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!} (x - a)^{k}. \]
+#+end_definition
+
+#+DEPENDS: def-taylor-polynomial, thm-rolle
+#+NAME: thm-taylor-lagrange
+#+begin_theorem
+Let \(f\) be \(n+1\) times differentiable on an open interval containing
+\(a\) and \(x\). Then there is \(\xi\) strictly between \(a\) and \(x\)
+with
+\[ f(x) - T_{n}(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} (x - a)^{n+1}. \]
+#+end_theorem
+
+#+begin_proof
+Fix \(x \ne a\) and choose \(M\) so that
+\(f(x) - T_{n}(x) = M (x - a)^{n+1}\). Define, for \(t\) between \(a\)
+and \(x\),
+\[ g(t) = f(x) - \sum_{k=0}^{n} \frac{f^{(k)}(t)}{k!} (x - t)^{k} - M (x - t)^{n+1}. \]
+Then \(g(x) = 0\) by construction and \(g(a) = 0\) by the choice of
+\(M\). The sum telescopes on differentiation: all terms cancel in pairs
+except the last, giving
+\[ g'(t) = -\frac{f^{(n+1)}(t)}{n!} (x - t)^{n} + (n+1) M (x - t)^{n}. \]
+By Rolle's theorem there is \(\xi\) strictly between \(a\) and \(x\)
+with \(g'(\xi) = 0\), and since \((x - \xi)^{n} \ne 0\) this forces
+\(M = f^{(n+1)}(\xi)/(n+1)!\), which is the claim.
+#+end_proof
+
+#+begin_remark
+The remainder is stated with an existential \(\xi\) that is never
+computed. What one uses is a bound on \(f^{(n+1)}\) over the interval,
+which turns the identity into the estimate that actually appears in
+applications.
+#+end_remark

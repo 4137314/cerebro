@@ -1,0 +1,28 @@
+:PROPERTIES:
+:ID:       7c54b427-4d7a-4511-b374-58c7bb44fb84
+:END:
+#+TITLE: Vector space
+#+DATE: [2026-07-29 Wed 13:55]
+#+FILETAGS: :evergreen:easy:linear_algebra:
+#+MSC: 15A03
+#+HASH: 66b99e0acf84
+
+A /vector space/ endows an [[id:c982302e-b3f8-40d7-b38d-73177ae644d4][abelian group]] with a compatible action of a
+field of scalars -- the arena of linear algebra and the local model of
+every geometry considered here.
+
+#+DEPENDS: def-abelian-group
+#+NAME: def-vector-space
+#+begin_definition
+Let \(K\) be a field. A *vector space* over \(K\) is an [[id:c982302e-b3f8-40d7-b38d-73177ae644d4][abelian group]]
+\((V, +)\) together with a *scalar multiplication* \(K \times V \to V\),
+\((\lambda, v) \mapsto \lambda v\), such that for all \(\lambda, \mu \in K\)
+and \(u, v \in V\):
+1. \(\lambda (u + v) = \lambda u + \lambda v\);
+2. \((\lambda + \mu) v = \lambda v + \mu v\);
+3. \((\lambda \mu) v = \lambda (\mu v)\);
+4. \(1\, v = v\), where \(1\) is the multiplicative identity of \(K\).
+#+end_definition
+
+Elements of \(V\) are /vectors/, elements of \(K\) /scalars/. The running
+example is \(K = \R\) and \(V = \R^{n}\).

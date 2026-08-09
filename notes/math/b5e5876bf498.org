@@ -1,0 +1,98 @@
+:PROPERTIES:
+:ID:       65032090-bc6b-4a06-a74a-ef155052a6df
+:END:
+#+TITLE: Normal subgroups and the quotient group
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:algebra:group_theory:
+#+MSC: 20A05, 20E15
+#+HASH: b5e5876bf498
+
+The set of cosets always exists; what is not automatic is that it
+carries a group structure. The obstruction is measured exactly by one
+condition on the subgroup, and the condition turns out to be the same as
+"is the kernel of some homomorphism". Normality is therefore not a
+technical hypothesis but the answer to "which subgroups can be divided
+out".
+
+#+DEPENDS: def-subgroup, def-coset
+#+NAME: def-normal-subgroup
+#+begin_definition
+A subgroup \(N \le G\) is /normal/, written \(N \normalin G\), if
+\(gNg^{-1} = N\) for every \(g \in G\), where
+\(gNg^{-1} = \setst{gng^{-1}}{n \in N}\).
+#+end_definition
+
+#+DEPENDS: def-normal-subgroup, prop-cosets-partition
+#+NAME: prop-normality-criteria
+#+begin_proposition
+For \(N \le G\) the following are equivalent: (i) \(N \normalin G\);
+(ii) \(gNg^{-1} \subseteq N\) for all \(g \in G\); (iii) \(gN = Ng\) for
+all \(g \in G\).
+#+end_proposition
+
+#+begin_proof
+(i) implies (ii) trivially. Assume (ii); applying it to \(g^{-1}\) gives
+\(g^{-1}Ng \subseteq N\), and conjugating by \(g\) turns this into
+\(N \subseteq gNg^{-1}\), so (i) holds. Given (i), multiplying
+\(gNg^{-1} = N\) on the right by \(g\) gives \(gN = Ng\), which is
+(iii); and multiplying (iii) on the right by \(g^{-1}\) returns (i).
+#+end_proof
+
+#+DEPENDS: def-normal-subgroup, prop-normality-criteria, thm-universal-property-of-a-quotient-set
+#+NAME: thm-quotient-group
+#+begin_theorem
+Let \(N \normalin G\). Then \(G/N\) is a group under
+\((aN)(bN) = abN\), the operation is well defined, and
+\(\pi \colon G \to G/N\), \(\pi(a) = aN\), is a surjective homomorphism
+with kernel \(N\).
+#+end_theorem
+
+#+begin_proof
+Well-definedness is the only issue. Suppose \(aN = a'N\) and
+\(bN = b'N\), so \(a' = an\) and \(b' = bm\) with \(n, m \in N\). Then
+\(a'b' = anbm = ab (b^{-1}nb) m\), and \(b^{-1}nb \in N\) by normality,
+so \(a'b'N = abN\). Associativity is inherited from \(G\); \(eN = N\) is
+an identity; and \(a^{-1}N\) inverts \(aN\). The map \(\pi\) is a
+homomorphism by the very definition of the product, and surjective by
+construction. Finally \(\pi(a) = N\) means \(aN = N\), that is
+\(a \in N\).
+#+end_proof
+
+#+DEPENDS: def-group-homomorphism, def-normal-subgroup
+#+NAME: prop-kernel-is-normal
+#+begin_proposition
+The kernel \(\ker \varphi = \setst{a \in G}{\varphi(a) = e}\) of a
+homomorphism \(\varphi \colon G \to H\) is a normal subgroup of \(G\),
+and every normal subgroup is such a kernel.
+#+end_proposition
+
+#+begin_proof
+\(\ker\varphi\) is a subgroup: \(\varphi(e) = e\), and if
+\(\varphi(a) = \varphi(b) = e\) then
+\(\varphi(ab^{-1}) = \varphi(a)\varphi(b)^{-1} = e\). It is normal:
+\(\varphi(gag^{-1}) = \varphi(g) e \varphi(g)^{-1} = e\) for
+\(a \in \ker\varphi\). Conversely, a normal \(N\) is the kernel of the
+projection \(\pi \colon G \to G/N\) by the previous theorem.
+#+end_proof
+
+#+DEPENDS: def-group-homomorphism, prop-kernel-is-normal
+#+NAME: prop-injective-iff-trivial-kernel
+#+begin_proposition
+A homomorphism \(\varphi\) is injective if and only if
+\(\ker\varphi = \set{e}\).
+#+end_proposition
+
+#+begin_proof
+If \(\varphi\) is injective and \(\varphi(a) = e = \varphi(e)\), then
+\(a = e\). Conversely, if the kernel is trivial and
+\(\varphi(a) = \varphi(b)\), then \(\varphi(ab^{-1}) = e\), so
+\(ab^{-1} = e\) and \(a = b\).
+#+end_proof
+
+#+begin_remark
+The last two propositions together say that a homomorphism is measured
+by a single subgroup: how far it is from injective is \(\ker\varphi\),
+and nothing else. That is what makes the isomorphism theorems possible,
+and it is a phenomenon of algebra rather than of sets -- for a bare map,
+the failure of injectivity is a whole partition, not one class of it.
+#+end_remark

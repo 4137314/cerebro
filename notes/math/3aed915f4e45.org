@@ -1,0 +1,61 @@
+:PROPERTIES:
+:ID:       4187e02b-9197-43e5-816b-c6e8cd98425b
+:END:
+#+TITLE: Absolute convergence and the comparison test
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 40A05
+#+HASH: 3aed915f4e45
+
+Two tools, and the second is the reason the first is worth having: a
+series of non-negative terms is a monotone sequence of partial sums, so
+its convergence is decided by boundedness alone -- and absolute
+convergence reduces the general case to that one.
+
+#+DEPENDS: def-series-convergence, thm-monotone-convergence
+#+NAME: thm-comparison-test
+#+begin_theorem
+Let \(0 \le a_{n} \le b_{n}\) for all \(n\). If
+\(\sum_{n \ge 1} b_{n}\) converges then so does
+\(\sum_{n \ge 1} a_{n}\); if \(\sum_{n \ge 1} a_{n}\) diverges then so
+does \(\sum_{n \ge 1} b_{n}\).
+#+end_theorem
+
+#+begin_proof
+Write \(s_{N}\) and \(t_{N}\) for the partial sums of \((a_{n})\) and
+\((b_{n})\). Both are increasing, and \(s_{N} \le t_{N}\) for every
+\(N\). If \(\sum b_{n}\) converges then \((t_{N})\) is bounded above,
+hence so is \((s_{N})\), and an increasing bounded sequence converges by
+the monotone convergence theorem. The second statement is the
+contrapositive of the first.
+#+end_proof
+
+#+DEPENDS: def-series-convergence
+#+NAME: def-absolute-convergence
+#+begin_definition
+The series \(\sum_{n \ge 1} a_{n}\) /converges absolutely/ if
+\(\sum_{n \ge 1} \abs{a_{n}}\) converges.
+#+end_definition
+
+#+DEPENDS: def-absolute-convergence, thm-cauchy-criterion
+#+NAME: thm-absolute-convergence
+#+begin_theorem
+An absolutely convergent series converges.
+#+end_theorem
+
+#+begin_proof
+Let \(s_{N}\) and \(\sigma_{N}\) be the partial sums of \((a_{n})\) and
+\((\abs{a_{n}})\). Since \((\sigma_{N})\) converges it is Cauchy, so
+given \(\eps > 0\) there is \(N\) with
+\(\sigma_{m} - \sigma_{n} < \eps\) for \(m > n \ge N\). By the triangle
+inequality,
+\[ \abs{s_{m} - s_{n}} = \Bigl| \sum_{k=n+1}^{m} a_{k} \Bigr| \le \sum_{k=n+1}^{m} \abs{a_{k}} = \sigma_{m} - \sigma_{n} < \eps, \]
+so \((s_{N})\) is Cauchy and therefore converges.
+#+end_proof
+
+#+begin_remark
+The converse fails: \(\sum (-1)^{n+1}/n\) converges (its partial sums
+interlace) while \(\sum 1/n\) does not. A convergent series that is not
+absolutely convergent can be rearranged to sum to anything, which is why
+absolute convergence is the hypothesis that appears everywhere later.
+#+end_remark

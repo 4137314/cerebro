@@ -1,0 +1,106 @@
+:PROPERTIES:
+:ID:       63a183cf-d837-4b64-9987-ea0bacf0c0b1
+:END:
+#+TITLE: Linear maps, quotient spaces and the rank-nullity theorem
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:algebra:linear_algebra:
+#+MSC: 15A04, 15A03
+#+HASH: 023f63eea88e
+
+For groups, a homomorphism is measured by one subgroup, its kernel. For
+vector spaces the same is true and, because dimension exists, the
+measurement becomes a number: what the map loses plus what it keeps is
+what it started with. Rank-nullity is the first isomorphism theorem with
+a dimension count attached.
+
+#+DEPENDS: def-vector-space, def-span-and-independence
+#+NAME: def-linear-map
+#+begin_definition
+A map \(f \colon V \to W\) between vector spaces over \(K\) is /linear/
+if \(f(u + v) = f(u) + f(v)\) and \(f(\lambda v) = \lambda f(v)\). Its
+/kernel/ is \(\ker f = \setst{v \in V}{f(v) = 0}\) and its /image/ is
+\(\im f = f(V)\); the /rank/ of \(f\) is \(\dim \im f\) and its
+/nullity/ is \(\dim \ker f\).
+#+end_definition
+
+#+DEPENDS: def-linear-map
+#+NAME: prop-kernel-and-image-are-subspaces
+#+begin_proposition
+\(\ker f\) is a subspace of \(V\) and \(\im f\) is a subspace of \(W\);
+and \(f\) is injective if and only if \(\ker f = \set{0}\).
+#+end_proposition
+
+#+begin_proof
+Both contain \(0\) and are closed under sums and scalar multiples, by
+linearity. If \(f\) is injective and \(f(v) = 0 = f(0)\) then \(v = 0\);
+conversely if the kernel is trivial and \(f(u) = f(v)\) then
+\(f(u - v) = 0\), so \(u = v\).
+#+end_proof
+
+#+DEPENDS: def-linear-map, thm-universal-property-of-a-quotient-set, prop-kernel-and-image-are-subspaces
+#+NAME: thm-quotient-vector-space
+#+begin_theorem
+Let \(U \subseteq V\) be a subspace. The quotient group \(V/U\) is a
+vector space under \(\lambda(v + U) = \lambda v + U\), the projection
+\(\pi \colon V \to V/U\) is linear with kernel \(U\), and every linear
+\(f \colon V \to W\) vanishing on \(U\) factors uniquely as
+\(f = \bar{f} \circ \pi\) with \(\bar{f}\) linear.
+#+end_theorem
+
+#+begin_proof
+Scalar multiplication is well defined: if \(v + U = v' + U\) then
+\(v - v' \in U\), so \(\lambda v - \lambda v' \in U\). The vector space
+axioms are inherited coset by coset, and \(\pi\) is linear with kernel
+\(U\) by construction. If \(f\) vanishes on \(U\) it is constant on
+cosets, so the universal property of the quotient set gives a unique
+\(\bar{f}\) with \(\bar{f}\circ\pi = f\); it is linear because
+\(\bar{f}(\lambda(v+U) + (v'+U)) = f(\lambda v + v') = \lambda \bar{f}(v+U) + \bar{f}(v'+U)\).
+#+end_proof
+
+#+DEPENDS: thm-quotient-vector-space, cor-extension-to-a-basis, thm-dimension-is-well-defined
+#+NAME: thm-rank-nullity
+#+begin_theorem
+Let \(f \colon V \to W\) be linear with \(V\) finite-dimensional. Then
+\(V/\ker f \iso \im f\) and
+\[ \dim \ker f + \dim \im f = \dim V. \]
+#+end_theorem
+
+#+begin_proof
+The induced \(\bar{f} \colon V/\ker f \to \im f\) is linear, surjective
+by construction, and injective because \(\bar{f}(v + \ker f) = 0\) means
+\(v \in \ker f\); so it is an isomorphism.
+
+For the count, take a basis \(u_{1}, \dots, u_{k}\) of \(\ker f\) and
+extend it to a basis \(u_{1},\dots,u_{k},v_{1},\dots,v_{r}\) of \(V\).
+The vectors \(f(v_{1}), \dots, f(v_{r})\) span \(\im f\), since the
+\(u_{i}\) contribute nothing; and they are independent, because
+\(\sum \lambda_{j} f(v_{j}) = 0\) puts \(\sum \lambda_{j} v_{j}\) in
+\(\ker f\), hence expresses it in the \(u_{i}\), and independence of the
+full basis forces every \(\lambda_{j} = 0\). So
+\(\dim \im f = r = \dim V - k\).
+#+end_proof
+
+#+DEPENDS: thm-rank-nullity, prop-kernel-and-image-are-subspaces, prop-bijective-iff-invertible
+#+NAME: cor-injective-iff-surjective-in-finite-dimension
+#+begin_corollary
+Let \(f \colon V \to V\) be linear with \(\dim V = n\) finite. Then
+\(f\) is injective if and only if it is surjective, if and only if it is
+an isomorphism.
+#+end_corollary
+
+#+begin_proof
+Injectivity is \(\dim\ker f = 0\), which by rank-nullity is
+\(\dim \im f = n\), which for a subspace of \(V\) means
+\(\im f = V\), that is surjectivity. A bijective linear map has a
+linear inverse: the set-theoretic inverse \(g\) satisfies
+\(f(g(u)+g(v)) = u+v = f(g(u+v))\), and \(f\) is injective, so \(g\) is
+additive; homogeneity is the same argument.
+#+end_proof
+
+#+begin_remark
+The corollary is false in infinite dimensions -- the shift
+\((a_{1}, a_{2}, \dots) \mapsto (0, a_{1}, a_{2}, \dots)\) is injective
+and not surjective -- and the failure is not a curiosity: it is why
+operator theory exists as a subject separate from linear algebra, and
+why the spectrum of an operator is more than its set of eigenvalues.
+#+end_remark

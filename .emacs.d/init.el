@@ -19,6 +19,9 @@
 ;; dependency, so they are required unguarded (loudly). `cerebro-session'
 ;; goes first so backups/lock-files are redirected before any note is
 ;; touched.
+(require 'cerebro-base)   ; paths + the note lister, with no Org loaded to say so
+(require 'cerebro-mode)   ; math or dev -- which of the two jobs this session is
+(require 'cerebro-isolation) ; the archive is writable, the machinery is not
 (require 'cerebro-org)
 (require 'cerebro-session)
 (require 'cerebro-latex)
@@ -26,10 +29,13 @@
 (require 'cerebro-agenda)  ; agenda views (morning review, issues)
 (require 'cerebro-time)
 (require 'cerebro-issues)
+(require 'cerebro-hash)     ; a note in notes/math/ is named by its metadata
+(require 'cerebro-bib)      ; one bibliography, and the keys to feed it
 (require 'cerebro-math)     ; one note per result, in one keystroke
 (require 'cerebro-course)   ; a course is an ordered index into notes/math/
 (require 'cerebro-cli)      ; drive the `cerebro' CLI from Emacs
 (require 'cerebro-crypt)
+(require 'cerebro-backup)   ; where a copy of the archive goes
 (require 'cerebro-guix)     ; the environment, observable from inside Emacs
 (require 'cerebro-theme)    ; colour, typography, frame chrome
 (require 'cerebro-modeline) ; the status line, as segments
@@ -47,8 +53,11 @@
 (require 'cerebro-appearance) ; org-modern/org-appear/hl-todo presentation
 (require 'cerebro-preview)  ; LaTeX fragments rendered in the buffer
 (require 'cerebro-focus)    ; the centred reading/writing column (C-c u f)
+(require 'cerebro-study)    ; source / write / study -- what you are doing (C-c u s)
+(require 'cerebro-find)     ; reach a file by what it is (C-c f) -- replaces the tree
+(require 'cerebro-nav)      ; the results graph as movement (C-c r j/n/p/u/b)
+(require 'cerebro-help)     ; the manual, the conventions, the settings (C-c H)
 (require 'cerebro-code)     ; diagnostics, templates, formatting, breadcrumbs
-(require 'cerebro-graph-view) ; the note graph, drawn (C-c q g)
 (require 'cerebro-pdf)      ; compile a note and read the PDF beside it
 (require 'cerebro-complete) ; vertico/orderless/marginalia/consult + corfu/cape
 (require 'cerebro-ui)       ; file-tree sidebar, window discipline, pulsar/avy
@@ -96,3 +105,16 @@ was started outside the guix environment). Empty on the normal path.")
 ;; simply reports a void command if pressed in the degraded, outside-guix
 ;; mode).
 (require 'cerebro-keys)
+
+;; The one hook this file installs itself, because it is a property of the
+;; archive and not of any one module: a note in notes/math/ is named by
+;; its own metadata, and saving it is what keeps that true
+;; (cerebro-hash.el).
+(cerebro-hash-install)
+
+;; Last, because it configures the modules above rather than being one of
+;; them: put the session into `math' or `dev' (CEREBRO_MODE, else the
+;; remembered mode, else the default). It sets what may be written, what
+;; a note opens as, and which issues the start page shows -- see
+;; cerebro-mode.el, and `C-c M s' for what is in force and why.
+(cerebro-mode-apply)

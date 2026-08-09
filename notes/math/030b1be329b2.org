@@ -1,0 +1,32 @@
+:PROPERTIES:
+:ID:       a8f6ea88-2ae8-479a-bbbd-729e7e40ae78
+:END:
+#+TITLE: Completeness of the real numbers
+#+DATE: [2026-08-06 Thu]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A03
+#+HASH: 030b1be329b2
+
+#+DEPENDS: def-supremum
+
+\(\Q\) is an ordered field and so is \(\R\); what separates them is one
+axiom. Everything in a first analysis course that is not pure algebra --
+convergence, continuity, the intermediate value theorem, the integral --
+is downstream of it.
+#+STATUS: assumed
+#+NAME: ax-completeness
+#+begin_axiom
+Every non-empty subset of \(\R\) that is bounded above has a supremum in
+\(\R\).
+#+end_axiom
+
+#+begin_remark
+This is an /axiom/ here, and marked as such: it is part of what defines
+\(\R\), not a theorem about it. In a construction of the reals (Dedekind
+cuts, or equivalence classes of Cauchy sequences of rationals) it becomes
+a proposition, and the construction is what one proves instead.
+#+end_remark
+
+The set \(\{q \in \Q \mid q^{2} < 2\}\) is the standard witness that
+\(\Q\) fails it: bounded above, non-empty, and with no least upper bound
+in \(\Q\).

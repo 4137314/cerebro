@@ -101,7 +101,20 @@
   (global-set-key (kbd "M-g o")   #'consult-outline)   ; jump by heading
   (global-set-key (kbd "M-s l")   #'consult-line)
   (global-set-key (kbd "M-s f")   #'consult-find)
-  (global-set-key (kbd "M-s g")   #'consult-grep))
+  ;; `M-s g' stays grep over the *repository* (code included); `C-c s' is
+  ;; the notes. Both go through ripgrep when it is there.
+  (global-set-key (kbd "M-s g")   (if (executable-find "rg")
+                                      #'consult-ripgrep #'consult-grep))
+  (global-set-key (kbd "M-s r")   #'consult-ripgrep)
+
+  ;; What makes the search feel fuzzy: consult splits the input at the
+  ;; first space, sends the head to ripgrep and filters the rest with the
+  ;; completion style -- which is `orderless' here, so the remaining
+  ;; words match in any order.
+  (setq consult-async-min-input 2
+        consult-async-refresh-delay 0.15
+        consult-async-input-debounce 0.1
+        consult-async-input-throttle 0.2))
 
 ;; -- corfu: the same idea, inside the buffer ---------------------------
 ;; Completion in the *buffer* (`completion-at-point') is the other half of
@@ -187,16 +200,27 @@ saved -- and re-loading this module cannot then install it twice."
 
 ;;;###autoload
 (defun cerebro-search-notes ()
-  "Grep the whole notes tree, live (`C-c s').
-The one command for \"where did I write that\": it searches the *text*
-of every note, which is deliberately different from the two structured
-searches next to it -- `C-c n f' (org-roam, by title) and `C-c v s'
-(org-ql, by Org metadata). Falls back to the built-in `rgrep' when
-consult is absent, so the key always does something."
+  "Search the text of every note, live and fuzzily (`C-c s').
+
+The one command for \"where did I write that\", and deliberately
+different from the two structured searches next to it -- `C-c n f'
+(org-roam, by title) and `C-c v s' (org-ql, by Org metadata).
+
+Three levels, best first, because the key must always do *something*:
+ripgrep through consult (fast enough that each keystroke re-searches the
+whole archive), consult over GNU grep, and finally the built-in `rgrep'
+with no package at all.
+
+Fuzzy in the sense that matters here: type `borel heine cover' and the
+words are matched in any order, anywhere in the line -- consult sends the
+first token to the search program and `orderless' filters the rest, so
+you never have to remember how you phrased something."
   (interactive)
-  (if (fboundp 'consult-grep)
-      (consult-grep org-directory)
-    (let ((default-directory org-directory))
-      (call-interactively #'rgrep))))
+  (cond
+   ((and (fboundp 'consult-ripgrep) (executable-find "rg"))
+    (consult-ripgrep org-directory))
+   ((fboundp 'consult-grep) (consult-grep org-directory))
+   (t (let ((default-directory org-directory))
+        (call-interactively #'rgrep)))))
 
 (provide 'cerebro-complete)

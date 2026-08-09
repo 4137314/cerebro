@@ -1,0 +1,139 @@
+:PROPERTIES:
+:ID:       49031e90-dddd-4b31-b30c-bff152d81526
+:END:
+#+TITLE: First-order languages, structures and satisfaction
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:foundations:model_theory:
+#+MSC: 03C07
+#+HASH: 49ad9e2a9198
+
+A group, a ring, an ordered field and a graph are the same kind of
+object seen four times: a set with named operations and relations. Once
+that is said precisely, "\(G\) satisfies the group axioms" becomes a
+mathematical statement about a pair (a structure, a set of formulas)
+rather than a description of what is written on the page -- and
+statements about *all* structures satisfying a set of axioms become
+available.
+
+#+NAME: def-first-order-language
+#+begin_definition
+A /language/ (or signature) \(L\) consists of a set of /constant
+symbols/, a set of /function symbols/ and a set of /relation symbols/,
+each function and relation symbol carrying an /arity/ in
+\(\N \setminus \set{0}\). The /terms/ of \(L\) form the smallest set
+containing the variables \(x_{0}, x_{1}, \dots\) and the constant
+symbols and closed under \(t_{1}, \dots, t_{n} \mapsto F(t_{1}, \dots, t_{n})\)
+for each \(n\)-ary function symbol \(F\). The /formulas/ of \(L\) form
+the smallest set containing the /atomic/ ones -- \(t_{1} = t_{2}\) and
+\(R(t_{1}, \dots, t_{n})\) for an \(n\)-ary relation symbol \(R\) --
+and closed under \(\varphi \mapsto \neg \varphi\),
+\((\varphi, \psi) \mapsto (\varphi \wedge \psi)\) and
+\(\varphi \mapsto \exists x_{i} \, \varphi\).
+#+end_definition
+
+#+DEPENDS: def-first-order-language
+#+NAME: def-structure
+#+begin_definition
+An /\(L\)-structure/ \(\mathcal{A}\) is a non-empty set \(A\), its
+/domain/, together with an element \(c^{\mathcal{A}} \in A\) for each
+constant symbol \(c\), a map
+\(F^{\mathcal{A}} \colon A^{n} \to A\) for each \(n\)-ary function
+symbol \(F\), and a subset \(R^{\mathcal{A}} \subseteq A^{n}\) for each
+\(n\)-ary relation symbol \(R\).
+#+end_definition
+
+#+DEPENDS: def-structure
+#+NAME: def-satisfaction
+#+begin_definition
+Let \(\mathcal{A}\) be an \(L\)-structure. An /assignment/ is a map
+\(\beta\) from the variables to \(A\); it extends to terms by
+\(\beta(c) = c^{\mathcal{A}}\) and
+\(\beta(F(t_{1},\dots,t_{n})) = F^{\mathcal{A}}(\beta(t_{1}), \dots, \beta(t_{n}))\).
+/Satisfaction/ \(\mathcal{A} \models \varphi[\beta]\) is defined by
+induction on \(\varphi\):
+1. \(\mathcal{A} \models (t_{1} = t_{2})[\beta]\) iff \(\beta(t_{1}) = \beta(t_{2})\);
+2. \(\mathcal{A} \models R(t_{1},\dots,t_{n})[\beta]\) iff \((\beta(t_{1}),\dots,\beta(t_{n})) \in R^{\mathcal{A}}\);
+3. \(\mathcal{A} \models \neg\varphi[\beta]\) iff not \(\mathcal{A} \models \varphi[\beta]\);
+4. \(\mathcal{A} \models (\varphi \wedge \psi)[\beta]\) iff both hold;
+5. \(\mathcal{A} \models \exists x_{i}\, \varphi[\beta]\) iff \(\mathcal{A} \models \varphi[\beta']\) for some \(\beta'\) agreeing with \(\beta\) off \(x_{i}\).
+A variable occurrence not inside the scope of a quantifier binding it is
+/free/; a formula with no free variables is a /sentence/.
+#+end_definition
+
+#+DEPENDS: def-satisfaction
+#+NAME: prop-coincidence-lemma
+#+begin_proposition
+If assignments \(\beta\) and \(\gamma\) agree on every variable free in
+\(\varphi\), then \(\mathcal{A} \models \varphi[\beta]\) if and only if
+\(\mathcal{A} \models \varphi[\gamma]\). In particular, whether a
+sentence holds in \(\mathcal{A}\) does not depend on any assignment.
+#+end_proposition
+
+#+begin_proof
+First, if \(\beta\) and \(\gamma\) agree on the variables occurring in a
+term \(t\), then \(\beta(t) = \gamma(t)\): true for variables and
+constants, and preserved by the clause for \(F\), so it holds for all
+terms by induction on terms.
+
+Now induct on \(\varphi\). For atomic formulas the claim follows from
+the statement about terms, since every variable of an atomic formula is
+free in it. The cases of \(\neg\) and \(\wedge\) are immediate from the
+induction hypothesis, the free variables of the compound formula being
+those of its parts. For \(\exists x_{i} \, \varphi\): the free variables
+of \(\varphi\) are those of \(\exists x_{i}\,\varphi\) together with
+possibly \(x_{i}\). If \(\mathcal{A} \models \varphi[\beta']\) with
+\(\beta'\) agreeing with \(\beta\) off \(x_{i}\), let \(\gamma'\) agree
+with \(\gamma\) off \(x_{i}\) and take the same value as \(\beta'\) at
+\(x_{i}\). Then \(\beta'\) and \(\gamma'\) agree on all free variables
+of \(\varphi\), so \(\mathcal{A} \models \varphi[\gamma']\) by
+induction, whence \(\mathcal{A} \models \exists x_{i}\,\varphi[\gamma]\).
+The converse is symmetric.
+#+end_proof
+
+#+DEPENDS: def-satisfaction, prop-coincidence-lemma
+#+NAME: def-theory-and-model
+#+begin_definition
+An /\(L\)-theory/ is a set \(T\) of \(L\)-sentences; a structure
+\(\mathcal{A}\) is a /model/ of \(T\), written
+\(\mathcal{A} \models T\), if it satisfies every sentence of \(T\). A
+sentence \(\sigma\) is a /consequence/ of \(T\), written
+\(T \models \sigma\), if every model of \(T\) satisfies \(\sigma\).
+#+end_definition
+
+#+DEPENDS: def-structure, def-satisfaction
+#+NAME: def-substructure
+#+begin_definition
+\(\mathcal{B}\) is a /substructure/ of \(\mathcal{A}\) if
+\(B \subseteq A\), \(B\) contains every \(c^{\mathcal{A}}\) and is
+closed under every \(F^{\mathcal{A}}\), and the interpretations of
+\(\mathcal{B}\) are the restrictions:
+\(F^{\mathcal{B}} = F^{\mathcal{A}}\restrict{B^{n}}\) and
+\(R^{\mathcal{B}} = R^{\mathcal{A}} \cap B^{n}\).
+#+end_definition
+
+#+DEPENDS: def-substructure, prop-coincidence-lemma
+#+NAME: prop-quantifier-free-is-absolute
+#+begin_proposition
+Let \(\mathcal{B}\) be a substructure of \(\mathcal{A}\) and \(\beta\)
+an assignment with values in \(B\). Then for every quantifier-free
+\(\varphi\), \(\mathcal{B} \models \varphi[\beta]\) if and only if
+\(\mathcal{A} \models \varphi[\beta]\).
+#+end_proposition
+
+#+begin_proof
+For a term \(t\) with variables assigned in \(B\), induction on terms
+gives \(\beta^{\mathcal{B}}(t) = \beta^{\mathcal{A}}(t)\): the constants
+agree, and \(F^{\mathcal{B}}\) is the restriction of
+\(F^{\mathcal{A}}\), which is where closure of \(B\) is used. Atomic
+formulas then agree because equality is the same relation and
+\(R^{\mathcal{B}} = R^{\mathcal{A}} \cap B^{n}\), and the clauses for
+\(\neg\) and \(\wedge\) preserve the equivalence.
+#+end_proof
+
+#+begin_remark
+The proposition fails at the first quantifier, and that failure is the
+subject: \(\exists\) ranges over the domain, so a substructure can lose
+witnesses. The two-line proof marks exactly the boundary between the
+statements that are inherited by substructures -- the equational axioms
+of algebra among them -- and those that are not.
+#+end_remark

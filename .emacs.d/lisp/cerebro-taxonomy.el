@@ -94,4 +94,62 @@ would collide -- select an area by name (completion) instead."
         (push '(:endgrouptag) entries)))
     (nreverse entries)))
 
+
+;; -- States ------------------------------------------------------------
+;; Two vocabularies that are *ordered*, unlike the area tags above, and
+;; that is what makes them states rather than labels: a note climbs the
+;; maturity ladder, a result moves towards being proved. Ordered data
+;; means the tooling can say "promote", "what is still at the bottom",
+;; "what rests on something unproved" -- none of which a flat tag can
+;; answer.
+;;
+;; Both live here, with the rest of the controlled vocabulary, so the
+;; linter (which rejects any tag not in `cerebro-known-tags'), the
+;; capture templates and the reports read one definition.
+
+(defconst cerebro-maturity-ladder '("seed" "growing" "evergreen")
+  "How much a note can be trusted, in increasing order.
+`seed' is written down, `growing' is being worked out, `evergreen' is
+something you would hand to someone else. Exactly one applies at a time
+-- Org enforces that through the mutually exclusive tag group in
+cerebro-org.el.")
+
+(defun cerebro-taxonomy-maturity (tags)
+  "The maturity tag among TAGS, or nil. Pure."
+  (seq-find (lambda (tag) (member tag cerebro-maturity-ladder)) tags))
+
+(defun cerebro-taxonomy-next-maturity (tag)
+  "The rung above TAG, or nil at the top (and `seed' from nothing).
+Promotion is one-way on purpose: a note that has been rewritten from
+scratch is demoted by editing the tag, which is a deliberate act, not a
+keystroke."
+  (cond ((null tag) (car cerebro-maturity-ladder))
+        ((equal tag (car (last cerebro-maturity-ladder))) nil)
+        (t (nth (1+ (seq-position cerebro-maturity-ladder tag))
+                cerebro-maturity-ladder))))
+
+(defun cerebro-taxonomy-set-maturity (tags maturity)
+  "TAGS with its maturity tag replaced by MATURITY (nil removes it).
+Order is preserved and nothing else is touched: the area tags, `crypt',
+`drill' and the rest are none of this function's business. Pure."
+  (let ((rest (seq-remove (lambda (tag) (member tag cerebro-maturity-ladder)) tags)))
+    (if maturity (cons maturity rest) rest)))
+
+(defconst cerebro-proof-statuses
+  '(("proved"  . "there is a proof, here or cited")
+    ("assumed" . "taken as given on purpose -- an axiom, a hypothesis, a black box")
+    ("open"    . "no proof yet, and none assumed"))
+  "What a result's `#+STATUS:' can say, and what each value means.
+
+The point is `assumed': a second brain accumulates results used before
+they are proved, and the difference between proving something, choosing
+to assume it, and simply not having got to it is the difference between
+mathematics and wishful thinking. Recording it makes
+`cerebro-results-open' possible, and with it the only question that
+matters at scale: what rests on something I have not proved?")
+
+(defun cerebro-proof-status-p (value)
+  "Non-nil when VALUE is one of `cerebro-proof-statuses'."
+  (and (stringp value) (assoc value cerebro-proof-statuses) t))
+
 (provide 'cerebro-taxonomy)

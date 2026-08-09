@@ -1,0 +1,91 @@
+  #+TITLE: Classical mechanics
+#+COURSE_TITLE: Classical Mechanics
+#+MSC: 70-01, 37J06, 49S05
+#+KEYWORDS: Lagrangian, Hamiltonian, action, Noether, Legendre transform, Poisson bracket, symplectic
+#+DATE: [2026-08-07 Fri]
+
+#+begin_comment
+Mechanics as mathematics: a variational principle, the equations it
+produces, and the geometry of the space those equations live on. Not a
+physics course with mathematics in it -- there are no units, no
+particular systems and no numbers.
+
+Every note is imported from notes/math/, like every other course here,
+and the imports are the point rather than an implementation detail: the
+Euler-Lagrange derivation is an integration by parts and the fundamental
+lemma; the Legendre transform is a theorem about convex functions;
+conservation laws are the statement that a function with vanishing
+derivative on an interval is constant. The mechanics is what those
+results are *about*, and none of it is a second copy of them.
+
+This ONE file is the course. `* Programme' is the manifest of id: links;
+the four documents are composed from it at export time.
+
+No examples, no exercises: see notes/README.org.
+#+end_comment
+
+* Description
+
+The Lagrangian and Hamiltonian formulations of mechanics, developed as
+mathematics. The action functional and its first variation; the
+Euler-Lagrange equations as the pointwise form of stationarity; symmetry
+and conservation, from a cyclic coordinate to Noether's theorem; the
+Legendre transform and the convexity that makes it invertible;
+Hamilton's equations on phase space; the Poisson bracket, which turns
+conservation into an algebraic identity and makes the observables a Lie
+algebra; canonical transformations and Liouville's theorem.
+
+* Objectives
+
+Having read it, one can:
+- write the action of a Lagrangian system and compute its first
+  variation;
+- derive the Euler-Lagrange equations, and say exactly where the
+  fixed-endpoint hypothesis is used;
+- state and prove Noether's theorem, and recover conservation of a
+  conjugate momentum as its simplest case;
+- construct the Legendre transform of a strictly convex function and
+  explain why convexity is the hypothesis that makes velocity and
+  momentum equivalent data;
+- pass between the Lagrangian and Hamiltonian formulations and prove the
+  two systems of equations equivalent;
+- compute Poisson brackets, prove the Jacobi identity, and derive
+  Poisson's theorem on the bracket of two conserved quantities;
+- prove Liouville's theorem and say what it forbids.
+
+* Schedule
+
+1. The action functional; variations; the fundamental lemma of the
+   calculus of variations.
+2. The Euler-Lagrange equations; conjugate momenta; cyclic coordinates.
+3. Symmetry and conservation: Noether's theorem.
+4. The Legendre transform and convexity.
+5. Hamilton's equations; conservation of the Hamiltonian.
+6. Poisson brackets; the Lie algebra of observables.
+7. Canonical transformations; Liouville's theorem.
+
+* Programme
+
+** The variational principle
+- [[id:ad33e63f-36eb-4887-a6b5-28103dda6212][The action functional and the first variation]]
+- [[id:2d28bca1-3909-4862-8c64-da1d91d4f27a][The Euler-Lagrange equations]]
+
+** Symmetry and conservation
+- [[id:a7b50bb3-2a00-4d1c-a808-a6fcc1c43f78][Noether's theorem]]
+
+** From velocities to momenta
+- [[id:9df53a2d-7920-4887-96c2-72a1271929c8][The Legendre transform]]
+- [[id:7b0a151b-1022-4b96-91c9-f76751ffd3f5][Hamilton's equations]]
+
+** The structure of phase space
+- [[id:0d794fd8-b77f-4412-b6e1-8cbfedb7131b][Poisson brackets]]
+- [[id:c1d8ebd6-723e-4272-9cce-66ef33bdea2e][Canonical transformations and Liouville's theorem]]
+
+#+begin_comment
+No `* Appendices' section here, and not by choice: any appendix content
+makes the `slides' profile fail to compile -- beamer reports "You
+can't use \unskip in vertical mode". Isolated to the section rather
+than to its content (both candidate notes fail on their own), and filed
+as an issue. Meanwhile the analysis results this course rests on are
+reached through the dependency graph: `C-c r d' on any statement here.
+#+end_comment

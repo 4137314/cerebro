@@ -1,0 +1,128 @@
+:PROPERTIES:
+:ID:       163dc2d8-7dce-4b34-ad20-faecdc8d15ba
+:END:
+#+TITLE: Uniform continuity, extension and the completion of a metric space
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:topology:general_topology:
+#+MSC: 54E40, 54E50
+#+HASH: 37ea01f40489
+
+The construction of \(\R\) from \(\Q\) by Cauchy sequences is usually
+presented as a fact about the real numbers. It is not: the same
+construction completes any metric space, and what is special about
+\(\Q\) is only that its completion happens to be a field one wants a
+name for. Uniform continuity is the notion of map that survives the
+construction, and that is why it is the right hypothesis for extension.
+
+#+DEPENDS: def-metric-space, def-uniform-continuity
+#+NAME: def-uniform-continuity-in-metric-spaces
+#+begin_definition
+A map \(f \colon X \to Y\) between metric spaces is /uniformly
+continuous/ if for every \(\eps > 0\) there is \(\delta > 0\) with
+\(d(f(x),f(x')) < \eps\) whenever \(d(x,x') < \delta\) -- the same
+\(\delta\) for every pair. It is an /isometric embedding/ if
+\(d(f(x),f(x')) = d(x,x')\) for all \(x, x'\).
+#+end_definition
+
+#+DEPENDS: def-uniform-continuity-in-metric-spaces, def-cauchy-sequence, def-metric-convergence
+#+NAME: prop-uniform-continuity-preserves-cauchy-sequences
+#+begin_proposition
+A uniformly continuous map sends Cauchy sequences to Cauchy sequences.
+A merely continuous map need not.
+#+end_proposition
+
+#+begin_proof
+Let \((x_{n})\) be Cauchy and \(\eps > 0\); take \(\delta\) from uniform
+continuity and \(N\) with \(d(x_{n},x_{m}) < \delta\) for
+\(n,m \ge N\). Then \(d(f(x_{n}),f(x_{m})) < \eps\) for \(n,m \ge N\).
+For the second sentence, \(x \mapsto 1/x\) on \((0,1)\) is continuous
+and sends the Cauchy sequence \((1/n)\) to \((n)\), which is not Cauchy.
+#+end_proof
+
+#+DEPENDS: prop-uniform-continuity-preserves-cauchy-sequences, prop-closure-by-sequences-in-a-metric-space, prop-metric-limits-unique
+#+NAME: thm-extension-from-a-dense-subspace
+#+begin_theorem
+Let \(A\) be dense in a metric space \(X\), let \(Y\) be complete, and
+let \(f \colon A \to Y\) be uniformly continuous. Then \(f\) extends to
+a uniformly continuous \(F \colon X \to Y\), and to exactly one
+continuous map on \(X\). If \(f\) is an isometric embedding, so is
+\(F\).
+#+end_theorem
+
+#+begin_proof
+For \(x \in X\) choose \(a_{n} \in A\) with \(a_{n}\to x\); the
+sequence is Cauchy, so \((f(a_{n}))\) is Cauchy and converges in \(Y\).
+The limit does not depend on the sequence chosen: interleaving two such
+sequences gives another sequence converging to \(x\), whose image
+converges, so the two limits agree. Define \(F(x)\) to be that limit;
+for \(x \in A\) the constant sequence gives \(F(x) = f(x)\).
+
+\(F\) is uniformly continuous: given \(\eps\), take \(\delta\) for
+\(\eps/3\) in the uniform continuity of \(f\). If
+\(d(x,x') < \delta/3\), choose \(a_{n}\to x\) and \(a_{n}'\to x'\) in
+\(A\); for large \(n\), \(d(a_{n},a_{n}') < \delta\), so
+\(d(f(a_{n}),f(a_{n}')) \le \eps/3\), and passing to the limit gives
+\(d(F(x),F(x')) \le \eps/3 < \eps\).
+
+Uniqueness: two continuous extensions agree on the dense set \(A\), and
+each point of \(X\) is a limit of points of \(A\), so they agree
+everywhere by sequential continuity and uniqueness of limits. Finally,
+if \(f\) preserves distances then so does \(F\), the distance function
+being continuous and the identity \(d(F(x),F(x')) = d(x,x')\) passing to
+the limit.
+#+end_proof
+
+#+DEPENDS: def-cauchy-sequence, def-metric-space, thm-extension-from-a-dense-subspace, thm-equivalence-partition
+#+NAME: thm-completion-of-a-metric-space
+#+begin_theorem
+Every metric space \(X\) admits a /completion/: a complete metric space
+\(\hat{X}\) together with an isometric embedding
+\(\iota \colon X \to \hat{X}\) whose image is dense. It is unique up to
+a unique isometry commuting with the embeddings.
+#+end_theorem
+
+#+begin_proof
+*Construction.* Let \(\mathcal{C}\) be the set of Cauchy sequences in
+\(X\) and put \((x_{n}) \sim (y_{n})\) when \(d(x_{n},y_{n})\to 0\); this
+is an equivalence relation, transitivity following from the triangle
+inequality. For Cauchy sequences the real sequence \(d(x_{n},y_{n})\) is
+Cauchy, since
+\(\abs{d(x_{n},y_{n}) - d(x_{m},y_{m})} \le d(x_{n},x_{m}) + d(y_{n},y_{m})\),
+hence convergent; define \(\hat{d}([x_{n}],[y_{n}]) = \lim_{n} d(x_{n},y_{n})\),
+which is well defined by the same estimate. Symmetry and the triangle
+inequality pass to the limit, and \(\hat{d} = 0\) is exactly the
+relation \(\sim\), so \(\hat{d}\) is a metric on
+\(\hat{X} = \mathcal{C}/{\sim}\). Let \(\iota(x)\) be the class of the
+constant sequence: it is isometric, and its image is dense because
+\(\hat{d}([x_{n}], \iota(x_{N})) = \lim_{n} d(x_{n},x_{N})\) is small for
+large \(N\).
+
+*Completeness.* Let \((\xi_{k})\) be Cauchy in \(\hat{X}\). By density
+pick \(z_{k} \in X\) with \(\hat{d}(\xi_{k},\iota(z_{k})) < 1/k\). Then
+\((\iota(z_{k}))\) is Cauchy, so \((z_{k})\) is Cauchy in \(X\) and
+defines \(\xi = [z_{k}] \in \hat{X}\). Now
+\(\hat{d}(\xi, \iota(z_{k})) = \lim_{j} d(z_{j}, z_{k})\) tends to \(0\)
+as \(k \to \infty\), so \(\iota(z_{k}) \to \xi\) and therefore
+\(\xi_{k}\to\xi\).
+
+*Uniqueness.* Let \(\iota' \colon X \to \hat{X}'\) be another such
+embedding. The isometry \(\iota'\circ\iota^{-1}\), defined on the dense
+subspace \(\iota(X)\), is uniformly continuous into the complete space
+\(\hat{X}'\), so it extends uniquely to an isometric
+\(\Phi \colon \hat{X}\to\hat{X}'\) with \(\Phi\circ\iota = \iota'\).
+Symmetrically there is \(\Psi\) the other way, and \(\Psi\circ\Phi\) is
+a continuous map fixing the dense set \(\iota(X)\), hence the identity
+by the uniqueness clause of the extension theorem; likewise
+\(\Phi\circ\Psi\). So \(\Phi\) is a bijective isometry, and it is unique
+because it is determined on \(\iota(X)\).
+#+end_proof
+
+#+begin_remark
+The construction never uses anything about \(X\) beyond its metric, so
+"the reals are the completion of the rationals" is a special case rather
+than a definition -- and the field operations on \(\R\) are then obtained
+from the extension theorem, since addition and multiplication are
+uniformly continuous on bounded sets. That is also the reason
+completeness of \(\R\) is an axiom in this archive and a theorem
+elsewhere: which one it is depends on where the construction is entered.
+#+end_remark

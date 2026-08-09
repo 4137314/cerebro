@@ -6,53 +6,11 @@
 (require 'org-refile)
 (require 'ispell)
 (require 'cerebro-taxonomy) ;; area supertag hierarchy (data), expanded below
-
-(defvar cerebro-root
-  (expand-file-name "../.." (file-name-directory (or load-file-name buffer-file-name)))
-  "Root of the cerebro repository.")
-
-(setq org-directory (expand-file-name "notes" cerebro-root))
-
-(defconst cerebro-math-directory (expand-file-name "math" org-directory)
-  "Where mathematical notes live: notes/math/.
-
-The notes tree has one directory per *kind* of writing, because they have
-different lifecycles: `math/' is the permanent concept graph (a note per
-definition, theorem, construction -- the thing this repo exists for),
-`courses/' is material organised by a course that ends, `daily/' is the
-journal. Only this one is a default anywhere: it is where a new note goes
-unless you say otherwise (`C-c m ...', `cerebro note new', the org-roam
-capture templates -- and bin/cerebro-note mirrors this path, deliberately
-duplicated there so the shell tools need no Emacs).
-
-Nothing *requires* a note to be here: `cerebro-note-files' walks the whole
-tree, so the graph, the agenda, the linter and every query keep seeing a
-note wherever it sits.")
-
-(defun cerebro-note-directories (&optional dir)
-  "DIR (default `org-directory') plus every subdirectory under it.
-`org-agenda-files' expands a *directory* entry only to the .org files
-directly inside it -- it does NOT recurse -- so a lifelong tree like
-notes/courses/analysis-1/ and notes/daily/ is invisible to the agenda,
-the morning review, and org-drill (whose scope is `agenda') unless
-every subdirectory is listed. Listing directories rather than a frozen
-file list keeps Org's own re-scan: a note dropped into any known dir
-shows up in the agenda with no reload."
-  (let ((root (or dir org-directory)))
-    (cons root
-          (seq-filter #'file-directory-p
-                      (directory-files-recursively root "" t)))))
-
-(defun cerebro-note-files (&optional dir)
-  "Every real note file under DIR (default `org-directory'), recursively.
-All .org files minus the non-note ones: the generated book.org
-aggregators and the headingless meta files (README.org, TAGS.org). This
-is the single definition of \"where the prose notes are\" -- reused by the
-org-ql search surface (cerebro-ql.el) so it can't drift out of sync with
-the agenda's directory entries above."
-  (seq-remove
-   (lambda (f) (string-match-p "/\\(book\\|README\\|TAGS\\)\\.org\\'" f))
-   (directory-files-recursively (or dir org-directory) "\\.org\\'")))
+;; Paths, the note lister and the report buffer -- everything that is
+;; true about the archive without an Org buffer being involved. Split out
+;; so cerebro-results.el and cerebro-hash.el can have those answers
+;; without loading org/org-agenda/ispell for them (see cerebro-base.el).
+(require 'cerebro-base)
 
 (setq org-agenda-files
       (append (cerebro-note-directories)
@@ -65,6 +23,28 @@ the agenda's directory entries above."
 ;; since org-agenda-files entries aren't unconditionally guaranteed to
 ;; exist by default.
 (setq org-agenda-skip-unavailable-files t)
+
+;; Set for *correctness*, not for speed, and the distinction is worth
+;; stating because the obvious reading is the wrong one.
+;;
+;; Org binds `org-inhibit-startup' to this value while it prepares agenda
+;; buffers (`org-agenda-prepare-buffers', in org.el), and that binding is
+;; the only signal available to tell a note a person opened from one the
+;; agenda is merely reading. `cerebro-interactive-note-buffer-p' tests
+;; it, and the presentation modules hang off that: leaving this nil means
+;; the agenda's 52 background buffers each get live previews, live
+;; linting and org-appear, in buffers killed a moment later.
+;;
+;; What it does NOT do is make the agenda faster. Skipping `#+STARTUP:'
+;; and visibility work sounds like it should, and measured warm it is
+;; 99ms against 97ms -- noise. (An earlier version of this comment
+;; claimed 30x, from timing the first agenda in a process against the
+;; second: the first pays for parsing 52 files and for JIT regardless of
+;; this setting, so that comparison measured the cache, not the flag.
+;; One process per configuration is the only way to measure this, and
+;; the other agenda knobs -- dim-blocked-tasks, tag inheritance,
+;; ignore-properties -- came out the same way.)
+(setq org-agenda-inhibit-startup t)
 
 ;; Where the Org-roam database lives -- set here, not in cerebro-roam.el,
 ;; so bin/notes-lint.el and cerebro-query.el can find it without pulling
@@ -142,13 +122,15 @@ the agenda's directory entries above."
 (setq org-agenda-skip-scheduled-if-done t)
 (setq org-agenda-skip-deadline-if-done t)
 
-;; Cap oversized inline figures (TikZ/plot previews) to a sane width.
-(setq org-image-actual-width '(600))
+;; How wide an inline figure is drawn is a *display* decision that has to
+;; follow the body font, so it lives with the rest of the preview sizing
+;; (cerebro-preview.el, `cerebro-preview-figure-columns'). A pixel
+;; constant here meant one thing at 12pt and something else at 18pt.
 
 ;; Configurable, parametric tag taxonomy: a controlled vocabulary (data,
 ;; not free text) enforced by completion here and checked for drift by
 ;; bin/notes-lint.el (any tag NOT in this list is flagged). See
-;; notes/TAGS.org for what each one means and when to use it.
+;; notes/README.org for what each one means and when to use it.
 ;; :startgroup:/:endgroup: make each group mutually exclusive (a note
 ;; has at most one maturity, one difficulty); epistemic status and the
 ;; functional tags are free-standing so several can apply at once. The
@@ -166,9 +148,10 @@ the agenda's directory entries above."
          (:endgroup . nil)
          ("conjecture" . ?c) ("folklore" . ?f) ("open_problem" . ?o))
        (cerebro-taxonomy-org-group-tags)
-       ;; Functional/structural tags: crypt (encrypted), drill (flashcard),
-       ;; daily (an org-roam-dailies journal note -- see cerebro-roam.el).
-       '(("crypt" . ?x) ("drill" . ?d) ("daily" . ?y))))
+       ;; Functional/structural tags: crypt (encrypted), drill
+       ;; (flashcard), appendix (this heading is an appendix of the
+       ;; document it is composed into -- see cerebro-course.el).
+       '(("crypt" . ?x) ("drill" . ?d) ("appendix" . ?p))))
 
 ;; MSC2020 (cerebro-msc.el) is recorded per note as a plain `#+MSC:'
 ;; keyword line, not a tag -- the codes carry punctuation tags can't
@@ -191,33 +174,23 @@ answers. That is not hypothetical: live previews, live linting and
 the echo area every time the dashboard refreshed its agenda section,
 because Org disables its element cache while it prepares those buffers.
 
-Org binds `org-agenda-inhibit-startup' during exactly that preparation,
-which is the signal used here. Defined in this module, rather than in
-one of the presentation modules, because three of them need it and none
-of them should require another."
+The signal is `org-inhibit-startup', which Org dynamically binds to t
+around every buffer it opens for its own purposes: `org-agenda-prepare-
+buffers' binds it to `org-agenda-inhibit-startup' (org.el), and the
+background-visit paths bind it to t outright. Defined in this module,
+rather than in one of the presentation modules, because three of them
+need it and none of them should require another.
+
+It used to test `org-agenda-inhibit-startup' instead -- the *user
+option*, whose global value Org never changes. Being nil by default,
+that clause was always true, so this predicate answered \"yes, a person
+is looking at it\" for every background buffer and the guard it exists
+to provide had never once fired. The \"Cache must be active\" errors
+described above are what that looked like from the outside."
   (and (buffer-file-name)
        (not noninteractive)
-       (not (bound-and-true-p org-agenda-inhibit-startup))
+       (not (bound-and-true-p org-inhibit-startup))
        (not (string-prefix-p " " (buffer-name)))))
-
-(defun cerebro-report (title rows format-row &optional buffer-name)
-  "Show ROWS (already sorted/filtered) in a simple read-only report
-buffer. TITLE heads it, FORMAT-ROW turns one row into a line,
-BUFFER-NAME defaults to *cerebro*. The one report primitive shared by
-cerebro-query.el (graph structure) and cerebro-results.el (the results
-layer), so every cerebro report looks and behaves the same -- `q' buries
-it (special-mode)."
-  (let ((buf (get-buffer-create (or buffer-name "*cerebro*"))))
-    (with-current-buffer buf
-      (let ((inhibit-read-only t))
-        (erase-buffer)
-        (insert (format "%s\n%s\n\n" title (make-string (length title) ?=)))
-        (if (not rows)
-            (insert "(nothing found)\n")
-          (dolist (r rows) (insert (funcall format-row r) "\n"))))
-      (goto-char (point-min))
-      (special-mode))
-    (display-buffer buf)))
 
 (defun cerebro-known-tags ()
   "Flatten `org-tag-alist' into the actual tag strings, dropping the

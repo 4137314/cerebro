@@ -1,0 +1,103 @@
+:PROPERTIES:
+:ID:       3b9421b3-cb06-43d8-bd6a-aae10da6fd6f
+:END:
+#+TITLE: Convex hulls and Caratheodory's theorem
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:geometry:convex_geometry:
+#+MSC: 52A20, 52A35
+#+HASH: 978016369c18
+
+The convex hull of a set is defined by an intersection, which says
+nothing about how to reach a point of it. Caratheodory's theorem says
+one never needs more than \(n+1\) of the original points, whatever the
+set: convexity in dimension \(n\) is a finitary condition, and this is
+the reason the theory has compactness statements at all.
+
+#+DEPENDS: def-convex-set
+#+NAME: def-convex-hull
+#+begin_definition
+The /convex hull/ \(\operatorname{conv} S\) of \(S \subseteq \R^{n}\) is the
+intersection of all convex sets containing \(S\). A /convex combination/
+of \(v_{1},\dots,v_{k}\) is \(\sum_{i}\lambda_{i}v_{i}\) with
+\(\lambda_{i} \ge 0\) and \(\sum_{i}\lambda_{i} = 1\).
+#+end_definition
+
+#+DEPENDS: def-convex-hull
+#+NAME: prop-hull-is-the-set-of-convex-combinations
+#+begin_proposition
+An intersection of convex sets is convex, so \(\operatorname{conv} S\) is the smallest
+convex set containing \(S\); and \(\operatorname{conv} S\) is exactly the set of
+convex combinations of finitely many points of \(S\).
+#+end_proposition
+
+#+begin_proof
+If each \(C_{i}\) is convex and \(x, y\) lie in all of them, then so
+does \((1-t)x+ty\) for \(t \in [0,1]\); hence the intersection is
+convex, and by construction it is contained in every convex set
+containing \(S\).
+
+Let \(K\) be the set of convex combinations of points of \(S\). Any
+convex set containing \(S\) contains \(K\): by induction on \(k\), if
+\(\lambda_{k} < 1\) then
+\(\sum_{i \le k}\lambda_{i}v_{i} = (1-\lambda_{k}) w + \lambda_{k}v_{k}\)
+with \(w = \sum_{i<k}\frac{\lambda_{i}}{1-\lambda_{k}}v_{i}\) a convex
+combination of \(k-1\) points. So \(K \subseteq \operatorname{conv} S\). Conversely
+\(K\) is itself convex -- a convex combination of two convex
+combinations is one, after collecting coefficients, which are again
+non-negative and sum to \(1\) -- and it contains \(S\), so
+\(\operatorname{conv} S \subseteq K\).
+#+end_proof
+
+#+DEPENDS: prop-hull-is-the-set-of-convex-combinations, def-span-and-independence
+#+NAME: thm-caratheodory
+#+begin_theorem
+Every point of \(\operatorname{conv} S\), for \(S \subseteq \R^{n}\), is a convex
+combination of at most \(n+1\) points of \(S\).
+#+end_theorem
+
+#+begin_proof
+Let \(x = \sum_{i=1}^{k}\lambda_{i}v_{i}\) be a convex combination with
+\(k\) minimal, all \(\lambda_{i} > 0\), and suppose \(k > n+1\). The
+\(k-1 > n\) vectors \(v_{2}-v_{1}, \dots, v_{k}-v_{1}\) lie in
+\(\R^{n}\), so they are dependent: there are \(\mu_{2},\dots,\mu_{k}\),
+not all zero, with \(\sum_{i \ge 2}\mu_{i}(v_{i}-v_{1}) = 0\). Putting
+\(\mu_{1} = -\sum_{i\ge2}\mu_{i}\) gives
+\(\sum_{i}\mu_{i}v_{i} = 0\) and \(\sum_{i}\mu_{i} = 0\), with some
+\(\mu_{i} \ne 0\) and therefore some \(\mu_{i} > 0\).
+
+Let \(t = \min\setst{\lambda_{i}/\mu_{i}}{\mu_{i} > 0}\), attained at
+\(i = j\). Then \(x = \sum_{i}(\lambda_{i} - t\mu_{i})v_{i}\), the new
+coefficients are non-negative -- for \(\mu_{i} \le 0\) obviously, and
+for \(\mu_{i} > 0\) by the choice of \(t\) -- they sum to \(1\), and the
+\(j\)-th vanishes. This is a convex combination of \(k-1\) of the
+points, contradicting minimality. Hence \(k \le n+1\).
+#+end_proof
+
+#+DEPENDS: thm-caratheodory, thm-bolzano-weierstrass, prop-closed-iff-sequentially-closed
+#+NAME: cor-hull-of-a-compact-set-is-closed
+#+begin_corollary
+If \(S \subseteq \R^{n}\) is closed and bounded, so is \(\operatorname{conv} S\).
+#+end_corollary
+
+#+begin_proof
+Boundedness is clear, a convex combination of points of norm at most
+\(R\) having norm at most \(R\). For closedness, let
+\(x_{m} \to x\) with \(x_{m} \in \operatorname{conv} S\). By the theorem, write
+\(x_{m} = \sum_{i=1}^{n+1}\lambda_{i}^{(m)}v_{i}^{(m)}\) with
+\(v_{i}^{(m)} \in S\) and \(\lambda^{(m)}\) in the set of non-negative
+vectors summing to \(1\) (padding with repeated points if fewer than
+\(n+1\) are needed). Both the \(v_{i}^{(m)}\) and the
+\(\lambda^{(m)}\) range over closed bounded sets, so by
+Bolzano-Weierstrass, applied finitely many times, a subsequence has
+\(v_{i}^{(m)} \to v_{i} \in S\) and
+\(\lambda^{(m)} \to \lambda\) with \(\lambda_{i} \ge 0\) summing to
+\(1\). Passing to the limit gives \(x = \sum_{i}\lambda_{i}v_{i} \in \operatorname{conv} S\).
+#+end_proof
+
+#+begin_remark
+Without Caratheodory the corollary is not available in this form: the
+number of points in the combinations would grow with \(m\) and there
+would be no fixed finite-dimensional compact set to extract a
+convergent subsequence from. That is the sense in which the theorem is
+about finiteness rather than about counting.
+#+end_remark

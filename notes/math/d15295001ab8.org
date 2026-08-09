@@ -1,0 +1,133 @@
+:PROPERTIES:
+:ID:       c9c12e48-ddd2-4359-917d-138e90df9416
+:END:
+#+TITLE: Integral domains, fields, prime and maximal ideals
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:algebra:commutative_algebra:
+#+MSC: 13A15, 13C05
+#+HASH: d15295001ab8
+
+Two properties a ring may have -- no zero divisors, every non-zero
+element invertible -- turn out to be properties of *ideals* of a larger
+ring, read off from the quotient. That translation is what makes
+commutative algebra geometric: a prime ideal is a point of a space, and
+the dictionary below is the first entry of it.
+
+#+DEPENDS: def-ring
+#+NAME: def-integral-domain
+#+begin_definition
+A commutative ring \(R\) with \(1 \ne 0\) is an /integral domain/ if
+\(ab = 0\) implies \(a = 0\) or \(b = 0\). It is a /field/ if every
+non-zero element is a unit.
+#+end_definition
+
+#+DEPENDS: def-integral-domain
+#+NAME: prop-a-field-is-a-domain
+#+begin_proposition
+Every field is an integral domain, and every finite integral domain is
+a field.
+#+end_proposition
+
+#+begin_proof
+If \(ab = 0\) in a field with \(a \ne 0\), multiplying by \(a^{-1}\)
+gives \(b = 0\). Let now \(R\) be a finite domain and \(a \ne 0\). The
+map \(x \mapsto ax\) is injective, since \(ax = ay\) gives
+\(a(x-y) = 0\) and hence \(x = y\); an injective map of a finite set to
+itself is surjective, so \(ax = 1\) for some \(x\).
+#+end_proof
+
+#+DEPENDS: def-integral-domain, def-ideal
+#+NAME: prop-ideals-of-a-field
+#+begin_proposition
+A commutative ring \(R\) with \(1 \ne 0\) is a field if and only if its
+only ideals are \(\set{0}\) and \(R\).
+#+end_proposition
+
+#+begin_proof
+Let \(R\) be a field and \(I \ne \set{0}\) an ideal, say \(a \in I\)
+with \(a \ne 0\). Then \(1 = a^{-1}a \in I\), so \(r = r \cdot 1 \in I\)
+for every \(r\) and \(I = R\). Conversely, if the only ideals are the
+trivial ones and \(a \ne 0\), the principal ideal \((a)\) is not
+\(\set{0}\), hence equals \(R\), so \(1 = ab\) for some \(b\).
+#+end_proof
+
+#+DEPENDS: def-ideal, def-integral-domain
+#+NAME: def-prime-and-maximal
+#+begin_definition
+Let \(R\) be commutative. A proper ideal \(P \subsetneq R\) is /prime/
+if \(ab \in P\) implies \(a \in P\) or \(b \in P\); a proper ideal
+\(M \subsetneq R\) is /maximal/ if no ideal lies strictly between \(M\)
+and \(R\).
+#+end_definition
+
+#+DEPENDS: def-prime-and-maximal, thm-quotient-ring
+#+NAME: thm-prime-iff-quotient-is-a-domain
+#+begin_theorem
+A proper ideal \(P\) of a commutative ring \(R\) is prime if and only if
+\(R/P\) is an integral domain.
+#+end_theorem
+
+#+begin_proof
+\(R/P\) is commutative with \(1 + P \ne 0 + P\) exactly when \(P\) is
+proper. Now \((a+P)(b+P) = 0 + P\) means \(ab \in P\), and
+\(a + P = 0 + P\) means \(a \in P\). So "no zero divisors in \(R/P\)"
+is literally the statement that \(ab \in P\) implies \(a \in P\) or
+\(b \in P\).
+#+end_proof
+
+#+DEPENDS: def-prime-and-maximal, thm-quotient-ring, prop-ideals-of-a-field
+#+NAME: thm-maximal-iff-quotient-is-a-field
+#+begin_theorem
+A proper ideal \(M\) of a commutative ring \(R\) is maximal if and only
+if \(R/M\) is a field.
+#+end_theorem
+
+#+begin_proof
+The ideals of \(R/M\) are exactly the \(J/M\) for ideals \(J\) with
+\(M \subseteq J \subseteq R\): the preimage under \(\pi\) of an ideal of
+\(R/M\) is such a \(J\), and \(\pi(J)\) recovers it, since \(\pi\) is
+surjective and \(\pi^{-1}(\pi(J)) = J\) when \(J \supseteq M\). So
+\(R/M\) has only the two trivial ideals precisely when there is no ideal
+strictly between \(M\) and \(R\); by the previous proposition that is
+exactly when \(R/M\) is a field.
+#+end_proof
+
+#+DEPENDS: thm-prime-iff-quotient-is-a-domain, thm-maximal-iff-quotient-is-a-field, prop-a-field-is-a-domain
+#+NAME: cor-maximal-implies-prime
+#+begin_corollary
+Every maximal ideal of a commutative ring is prime.
+#+end_corollary
+
+#+begin_proof
+If \(M\) is maximal then \(R/M\) is a field, hence an integral domain,
+hence \(M\) is prime.
+#+end_proof
+
+#+DEPENDS: def-prime-and-maximal, thm-zorn
+#+NAME: thm-krull
+#+begin_theorem
+Every commutative ring with \(1 \ne 0\) has a maximal ideal; more
+generally every proper ideal is contained in one.
+#+end_theorem
+
+#+begin_proof
+Let \(I\) be a proper ideal and order by inclusion the set \(P\) of
+proper ideals containing \(I\); it is non-empty, containing \(I\). Let
+\(\mathcal{C}\) be a chain in \(P\) and \(U\) the union of its members.
+\(U\) is an ideal: two elements of \(U\) lie in a common member of the
+chain, so their difference lies in \(U\), and absorption is inherited.
+\(U\) is proper, because \(1 \in U\) would put \(1\) in some member of
+the chain, which is proper. So \(U \in P\) is an upper bound, and Zorn's
+lemma gives a maximal element of \(P\) -- an ideal maximal among the
+proper ideals containing \(I\), which is maximal outright since any
+ideal strictly containing it is proper or all of \(R\).
+#+end_proof
+
+#+begin_remark
+"\(1 \in U\) would put \(1\) in some member of the chain" is the whole
+reason the proof works, and the reason ideals are required to be proper:
+properness is a *finitary* condition, so it survives unions of chains.
+The same argument proves that every vector space has a basis and that
+every finitely satisfiable set of formulas has a maximal such extension
+-- three instances of one Zorn argument.
+#+end_remark

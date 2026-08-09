@@ -29,7 +29,7 @@
              (gnu packages web)
              (gnu packages pdf) ;; poppler: doc-view's page renderer
              (gnu packages compression) ;; zip: one file to hand a course over
-             (gnu packages graphviz)    ;; the note graph, drawn offline
+             (gnu packages rust-apps)   ;; ripgrep: what C-c s actually runs
              (gnu packages tree-sitter)
              (gnu packages haskell-apps) ;; shellcheck
              (gnu packages gnupg)
@@ -83,6 +83,20 @@
     ;; Minibuffer completion: four packages that improve the *built-in*
     ;; completion instead of replacing it -- drop any one of them and
     ;; completion falls back to vanilla Emacs, nothing else breaks.
+    ;; Citations. citar is the completion front end org-cite delegates
+    ;; to (insert/follow/activate): candidates are author, year and
+    ;; title rather than bare keys, against the one bib/references.bib
+    ;; (cerebro-bib.el). embark is what makes a candidate actionable --
+    ;; open the PDF, copy the key, visit the entry.
+    ;;
+    ;; Two packages, not three: `citar-embark' -- the glue that
+    ;; introduces them to each other -- ships INSIDE emacs-citar here
+    ;; (citar-embark.el is in its site-lisp), and asking Guix for it by
+    ;; name is an unbound-variable error that fails every `guix shell'.
+    ;; Verified against the pinned channel, not assumed.
+    emacs-citar
+    emacs-embark
+
     emacs-vertico    ;; candidates listed vertically in the minibuffer
     emacs-orderless  ;; "heine borel" matches "Borel--Heine ..."
     emacs-marginalia ;; annotations next to candidates
@@ -92,14 +106,17 @@
     ;; point of guix.scm is that the environment does not depend on that.
     grep
     findutils
+    ;; ripgrep: what `C-c s' actually uses. It matters more than a
+    ;; speed-up sounds -- consult sends each keystroke to a fresh search
+    ;; process, so how fast the whole archive can be scanned is how
+    ;; interactive "where did I write that" feels. It also skips .git/,
+    ;; the build artefacts and the preview cache by itself.
+    ripgrep
 
-    ;; File tree: `dired-sidebar' is dired in a side window, and
-    ;; `dired-subtree' (from emacs-dired-hacks) expands a directory in
-    ;; place. Chosen over a standalone tree package because every dired
-    ;; key still works, it needs no icon fonts (the `ascii' theme renders
-    ;; in a terminal), and the fallback if it ever disappears is `C-x d'.
-    emacs-dired-sidebar
-    emacs-dired-hacks
+    ;; No file-tree package, deliberately: a tree answers "what is in
+    ;; this directory?", which is not a question this archive has. Files
+    ;; are reached by *kind* -- note, course, conjecture, result -- from
+    ;; `C-c f' (cerebro-find.el). `C-x d' is still dired if you want it.
 
     ;; The notes repo is a git repo whose gates are git hooks; magit
     ;; makes committing (and seeing a hook fail) an in-editor operation.
@@ -169,7 +186,6 @@
     emacs-nerd-icons
     emacs-nerd-icons-completion ;; icons in the minibuffer (vertico)
     emacs-nerd-icons-corfu      ;; ...and in the in-buffer popup
-    emacs-nerd-icons-dired      ;; ...and in the file tree
 
     ;; A second theme family: ef-themes are the same author as modus, so
     ;; the same accessibility discipline, but colourful/pastel rather than
@@ -203,11 +219,6 @@
     ;; nor Emacs Lisp has an upstream grammar, so tree-sitter simply does
     ;; not apply to most of what is edited here.
     tree-sitter-bash
-
-    ;; The note graph, drawn as a real graph: cerebro-graph-view.el emits
-    ;; DOT and renders it to SVG, which Emacs displays natively (RSVG is
-    ;; in its feature list). No browser, no JavaScript, works offline.
-    graphviz
 
     ;; One file to hand a course to someone (bin/cerebro-course-export).
     zip

@@ -1,0 +1,37 @@
+:PROPERTIES:
+:ID:       902b2920-a465-45dc-91a9-01af8e7b7c2d
+:END:
+#+TITLE: Monotone convergence theorem
+#+DATE: [2026-08-06 Thu]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 40A05
+#+HASH: d734c2a06f77
+
+The first theorem of the course that genuinely uses completeness, and the
+one every later convergence argument is built on: monotonicity plus a
+bound is enough, no candidate limit required.
+
+#+DEPENDS: def-sequence-limit, def-bounded-sequence, ax-completeness, prop-supremum-characterisation
+#+NAME: thm-monotone-convergence
+#+begin_theorem
+Every monotone increasing sequence of real numbers that is bounded above
+converges, and its limit is the supremum of its set of values.
+#+end_theorem
+
+#+begin_proof
+Let \((a_{n})\) be increasing and bounded above, and let
+\(A = \{a_{n} \mid n \in \N\}\). The set \(A\) is non-empty and bounded
+above, so by completeness it has a supremum \(s = \sup A\). Let
+\(\eps > 0\). By the characterisation of the supremum there is \(N\) with
+\(a_{N} > s - \eps\), and since the sequence is increasing,
+\(a_{n} \ge a_{N} > s - \eps\) for every \(n \ge N\). As \(s\) is an upper
+bound, \(a_{n} \le s < s + \eps\) as well, so
+\[ \abs{a_{n} - s} < \eps \quad \text{for all } n \ge N. \]
+Hence \(a_{n} \to s\).
+#+end_proof
+
+#+begin_remark
+The dual statement holds for decreasing sequences bounded below, with the
+infimum as the limit; the proof is the same with the inequalities
+reversed.
+#+end_remark

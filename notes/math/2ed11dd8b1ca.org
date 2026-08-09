@@ -1,0 +1,96 @@
+:PROPERTIES:
+:ID:       e7861508-66ab-4d49-b445-48fd09e4bca6
+:END:
+#+TITLE: The algebra of limits
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 40A05
+#+HASH: 2ed11dd8b1ca
+
+A first course proves a handful of limits from the definition and then
+never does so again: from here on limits are computed by combining ones
+already known. These are the rules that make that legitimate, and the
+reason they are theorems rather than notation is that each one needs
+the triangle inequality and a boundedness argument to hold at all.
+
+#+DEPENDS: def-sequence-limit, def-bounded-sequence, thm-triangle-inequality
+#+NAME: prop-convergent-is-bounded
+#+begin_proposition
+Every convergent sequence is bounded.
+#+end_proposition
+
+#+begin_proof
+Let \(a_{n} \to L\) and take \(\eps = 1\): there is \(N\) with
+\(\abs{a_{n} - L} < 1\) for \(n \ge N\), hence
+\(\abs{a_{n}} \le \abs{L} + 1\) for those \(n\). Then
+\(C = \max(\abs{a_{1}}, \dots, \abs{a_{N-1}}, \abs{L} + 1)\) bounds every
+term.
+#+end_proof
+
+#+DEPENDS: prop-convergent-is-bounded, thm-triangle-inequality
+#+NAME: thm-limit-algebra
+#+begin_theorem
+Let \(a_{n} \to L\) and \(b_{n} \to M\). Then
+\(a_{n} + b_{n} \to L + M\), \(a_{n} b_{n} \to LM\), and, provided
+\(M \ne 0\) and \(b_{n} \ne 0\) for all \(n\),
+\(a_{n}/b_{n} \to L/M\).
+#+end_theorem
+
+#+begin_proof
+/Sum./ Given \(\eps > 0\), choose \(N\) beyond which both
+\(\abs{a_{n} - L} < \eps/2\) and \(\abs{b_{n} - M} < \eps/2\); the
+triangle inequality gives
+\(\abs{(a_{n} + b_{n}) - (L + M)} < \eps\).
+
+/Product./ Write
+\(a_{n} b_{n} - LM = a_{n}(b_{n} - M) + M(a_{n} - L)\). The sequence
+\((a_{n})\) is bounded, say by \(C > 0\), by the proposition above.
+Given \(\eps > 0\), choose \(N\) beyond which
+\(\abs{b_{n} - M} < \eps / (2C)\) and
+\(\abs{a_{n} - L} < \eps / (2(\abs{M} + 1))\). Then
+\[ \abs{a_{n} b_{n} - LM} \le C \abs{b_{n} - M} + \abs{M} \abs{a_{n} - L} < \frac{\eps}{2} + \frac{\eps}{2} = \eps. \]
+
+/Quotient./ It suffices to prove \(1/b_{n} \to 1/M\) and apply the
+product rule. Since \(\abs{M} > 0\), there is \(N_{0}\) with
+\(\abs{b_{n} - M} < \abs{M}/2\) for \(n \ge N_{0}\), whence
+\(\abs{b_{n}} > \abs{M}/2\) by the reverse triangle inequality. For
+\(n \ge N_{0}\),
+\[ \Bigl| \frac{1}{b_{n}} - \frac{1}{M} \Bigr| = \frac{\abs{M - b_{n}}}{\abs{b_{n}} \abs{M}} \le \frac{2}{\abs{M}^{2}} \abs{b_{n} - M}, \]
+and the right-hand side is below \(\eps\) for \(n\) large.
+#+end_proof
+
+#+DEPENDS: def-sequence-limit
+#+NAME: prop-limits-preserve-order
+#+begin_proposition
+If \(a_{n} \to L\), \(b_{n} \to M\) and \(a_{n} \le b_{n}\) for all
+\(n\), then \(L \le M\).
+#+end_proposition
+
+#+begin_proof
+Suppose \(L > M\) and put \(\eps = (L - M)/2 > 0\). For large \(n\) both
+\(a_{n} > L - \eps\) and \(b_{n} < M + \eps\), and
+\(L - \eps = M + \eps\), so \(a_{n} > b_{n}\) -- a contradiction.
+#+end_proof
+
+#+DEPENDS: prop-limits-preserve-order, def-sequence-limit
+#+NAME: thm-squeeze
+#+begin_theorem
+Let \(a_{n} \le c_{n} \le b_{n}\) for all \(n\), with
+\(a_{n} \to L\) and \(b_{n} \to L\). Then \(c_{n} \to L\).
+#+end_theorem
+
+#+begin_proof
+Given \(\eps > 0\), choose \(N\) beyond which
+\(\abs{a_{n} - L} < \eps\) and \(\abs{b_{n} - L} < \eps\). For those
+\(n\),
+\(L - \eps < a_{n} \le c_{n} \le b_{n} < L + \eps\), so
+\(\abs{c_{n} - L} < \eps\).
+#+end_proof
+
+#+begin_remark
+Note what the order statement does /not/ say: strict inequality is not
+preserved. Taking \(a_{n} = 0\) and \(b_{n} = 1/n\) gives
+\(a_{n} < b_{n}\) for every \(n\) and equal limits. A limit is a
+statement about the tail, and strictness is exactly the property a tail
+can lose.
+#+end_remark

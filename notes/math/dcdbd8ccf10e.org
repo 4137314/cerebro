@@ -1,0 +1,87 @@
+:PROPERTIES:
+:ID:       da89a245-3a03-40a2-ac1d-7f4b6f34bdf3
+:END:
+#+TITLE: The metric topology and continuity in metric spaces
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:topology:general_topology:
+#+MSC: 54E35, 54E40
+#+HASH: dcdbd8ccf10e
+
+A [[id:ab5041dc-f782-4348-8303-01facc0b23d1][metric]] determines a topology, and two different metrics can determine
+the same one -- so a topological statement about a metric space is a
+statement about less than the metric. This note fixes the translation
+in both directions and records the one thing metric spaces have that
+general spaces do not: the countable basis of balls at each point, which
+is what makes sequences sufficient.
+
+#+DEPENDS: def-metric-space, def-open-set, thm-basis-criterion
+#+NAME: thm-balls-are-a-basis
+#+begin_theorem
+In a metric space \(X\) the open balls form a basis of a topology, whose
+open sets are exactly the sets open in the metric sense. Every point has
+the countable neighbourhood basis \(\set{B(x,1/n)}_{n \ge 1}\).
+#+end_theorem
+
+#+begin_proof
+The balls cover \(X\), and if \(z \in B(x,r)\cap B(y,s)\) then with
+\(\rho = \min(r - d(x,z), s - d(y,z)) > 0\) the triangle inequality
+gives \(B(z,\rho) \subseteq B(x,r)\cap B(y,s)\); so the basis criterion
+applies. A set is a union of balls exactly when each of its points has a
+ball about it inside the set, which is the metric definition of open.
+For the last claim, any ball \(B(x,r)\) contains \(B(x,1/n)\) as soon as
+\(1/n < r\).
+#+end_proof
+
+#+DEPENDS: thm-balls-are-a-basis, def-continuous-map, def-continuity-at-point, prop-sequential-limit
+#+NAME: thm-continuity-in-metric-spaces
+#+begin_theorem
+For \(f \colon X \to Y\) between metric spaces and \(a \in X\) the
+following are equivalent: (i) for every \(\eps > 0\) there is
+\(\delta > 0\) with \(d(f(x), f(a)) < \eps\) whenever
+\(d(x,a) < \delta\); (ii) \(f\) is continuous at \(a\) for the metric
+topologies; (iii) \(x_{n} \to a\) implies \(f(x_{n}) \to f(a)\).
+Consequently \(f\) is continuous if and only if it is sequentially
+continuous.
+#+end_theorem
+
+#+begin_proof
+(i) and (ii) are the same statement, since the balls are a
+neighbourhood basis: a neighbourhood of \(f(a)\) contains some
+\(B(f(a),\eps)\), and a neighbourhood of \(a\) can be taken to be
+\(B(a,\delta)\).
+
+(ii) implies (iii): given \(\eps\), take \(\delta\) as in (i); all but
+finitely many \(x_{n}\) lie in \(B(a,\delta)\), so all but finitely many
+\(f(x_{n})\) lie in \(B(f(a),\eps)\).
+
+(iii) implies (i): if (i) fails for some \(\eps\), then for each \(n\)
+there is \(x_{n}\) with \(d(x_{n},a) < 1/n\) and
+\(d(f(x_{n}), f(a)) \ge \eps\). Then \(x_{n}\to a\) while
+\(f(x_{n}) \not\to f(a)\), contradicting (iii).
+#+end_proof
+
+#+DEPENDS: thm-balls-are-a-basis, thm-closure-by-neighbourhoods, prop-closed-iff-sequentially-closed
+#+NAME: prop-closure-by-sequences-in-a-metric-space
+#+begin_proposition
+In a metric space, \(x \in \overline{A}\) if and only if some sequence
+of points of \(A\) converges to \(x\); and \(A\) is closed if and only
+if it contains the limit of every convergent sequence of its points.
+#+end_proposition
+
+#+begin_proof
+If \(a_{n} \to x\) with \(a_{n} \in A\), every neighbourhood of \(x\)
+contains some \(a_{n}\), so \(x \in \overline{A}\). Conversely, if
+\(x \in \overline{A}\) then each \(B(x,1/n)\) meets \(A\); choosing
+\(a_{n}\) in the intersection gives \(a_{n} \to x\). The statement about
+closed sets follows, \(A\) being closed exactly when
+\(A = \overline{A}\).
+#+end_proof
+
+#+begin_remark
+The choice of one point from each \(B(x,1/n)\cap A\) is a countable
+sequence of choices, so this proposition -- and with it "sequences
+suffice in a metric space" -- rests on a weak form of the axiom of
+choice. The general-topology statement, in terms of neighbourhoods, does
+not; that is one reason it is the one taken as the definition of the
+closure.
+#+end_remark

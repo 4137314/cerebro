@@ -1,0 +1,127 @@
+:PROPERTIES:
+:ID:       b3043ad1-2aac-4361-8f17-605013e7a12a
+:END:
+#+TITLE: Propositional logic: formulas, assignments and compactness
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:foundations:logic:
+#+MSC: 03B05
+#+HASH: 6f4f5bf3fad9
+
+Logic becomes mathematics at the point where formulas stop being
+notation for arguments and become objects that a proof can quantify
+over. The whole of propositional logic is then two inductive
+definitions -- one building formulas, one evaluating them -- and the
+theorem that makes the subject infinite rather than merely finitary:
+satisfiability is decided by finite subsets.
+
+#+NAME: def-propositional-formula
+#+begin_definition
+Fix a set \(V\) of /propositional variables/. The set \(\mathrm{Form}\)
+of /formulas/ over \(V\) is the smallest set of finite strings such that
+every \(p \in V\) belongs to it and, whenever \(\varphi, \psi\) belong
+to it, so do \(\neg \varphi\) and \((\varphi \wedge \psi)\). One writes
+\((\varphi \vee \psi)\) for \(\neg(\neg \varphi \wedge \neg \psi)\) and
+\((\varphi \to \psi)\) for \(\neg(\varphi \wedge \neg \psi)\).
+#+end_definition
+
+#+DEPENDS: def-propositional-formula
+#+NAME: prop-induction-on-formulas
+#+begin_proposition
+Let \(S \subseteq \mathrm{Form}\) contain every variable and satisfy:
+\(\varphi, \psi \in S\) implies \(\neg \varphi \in S\) and
+\((\varphi \wedge \psi) \in S\). Then \(S = \mathrm{Form}\).
+#+end_proposition
+
+#+begin_proof
+"Smallest" in the definition means the intersection of all sets of
+strings with the two closure properties, which is itself such a set.
+\(S\) is one of the sets being intersected, so
+\(\mathrm{Form} \subseteq S\); the reverse inclusion is the hypothesis
+\(S \subseteq \mathrm{Form}\).
+#+end_proof
+
+#+DEPENDS: def-propositional-formula, prop-induction-on-formulas
+#+NAME: def-truth-assignment
+#+begin_definition
+A /truth assignment/ is a map \(v \colon V \to \set{0,1}\). It extends
+to \(\hat{v} \colon \mathrm{Form} \to \set{0,1}\) by
+\(\hat{v}(p) = v(p)\), \(\hat{v}(\neg \varphi) = 1 - \hat{v}(\varphi)\)
+and
+\(\hat{v}((\varphi \wedge \psi)) = \min(\hat{v}(\varphi), \hat{v}(\psi))\).
+One writes \(v \models \varphi\) for \(\hat{v}(\varphi) = 1\) and says
+\(v\) /satisfies/ \(\varphi\).
+#+end_definition
+
+#+DEPENDS: def-truth-assignment
+#+NAME: def-satisfiable
+#+begin_definition
+A set \(\Sigma \subseteq \mathrm{Form}\) is /satisfiable/ if some
+assignment satisfies every member of it, and /finitely satisfiable/ if
+every finite subset of it is satisfiable. A formula satisfied by every
+assignment is a /tautology/.
+#+end_definition
+
+#+DEPENDS: def-satisfiable, thm-zorn
+#+NAME: lem-lindenbaum
+#+begin_lemma
+Every finitely satisfiable \(\Sigma\) is contained in a set \(M\) that
+is finitely satisfiable and maximal with that property, and such an
+\(M\) contains exactly one of \(\varphi\), \(\neg \varphi\) for every
+formula \(\varphi\).
+#+end_lemma
+
+#+begin_proof
+Order the finitely satisfiable supersets of \(\Sigma\) by inclusion.
+The union of a chain of them is finitely satisfiable, since a finite
+subset of the union already lies in one member of the chain; and the
+family is non-empty. Zorn's lemma gives a maximal element \(M\).
+
+Not both \(\varphi\) and \(\neg \varphi\) lie in \(M\), since the finite
+set \(\set{\varphi, \neg \varphi}\) is unsatisfiable. Suppose neither
+does. By maximality \(M \cup \set{\varphi}\) and
+\(M \cup \set{\neg \varphi}\) fail to be finitely satisfiable, so there
+are finite \(A, B \subseteq M\) with \(A \cup \set{\varphi}\) and
+\(B \cup \set{\neg \varphi}\) unsatisfiable. But \(A \cup B\) is a
+finite subset of \(M\), hence satisfied by some \(v\); and \(v\)
+satisfies \(\varphi\) or \(\neg \varphi\), contradicting one of the two.
+#+end_proof
+
+#+DEPENDS: lem-lindenbaum, prop-induction-on-formulas
+#+NAME: thm-propositional-compactness
+#+begin_theorem
+A set of propositional formulas is satisfiable if and only if it is
+finitely satisfiable.
+#+end_theorem
+
+#+begin_proof
+One direction is trivial. Let \(\Sigma\) be finitely satisfiable and
+let \(M \supseteq \Sigma\) be maximal finitely satisfiable, as in the
+lemma. Define \(v(p) = 1\) exactly when \(p \in M\). We show by
+induction on formulas that \(v \models \varphi\) if and only if
+\(\varphi \in M\).
+
+For a variable this is the definition of \(v\). For a negation:
+\(v \models \neg \varphi\) means \(v \not\models \varphi\), which by
+induction means \(\varphi \notin M\), which by the lemma means
+\(\neg \varphi \in M\). For a conjunction, suppose first
+\((\varphi \wedge \psi) \in M\); if \(\varphi \notin M\) then
+\(\neg \varphi \in M\), and \(\set{(\varphi \wedge \psi), \neg \varphi}\)
+is an unsatisfiable finite subset of \(M\) -- so \(\varphi \in M\), and
+likewise \(\psi \in M\), whence \(v \models \varphi \wedge \psi\) by
+induction. Conversely if \(\varphi, \psi \in M\) but
+\((\varphi \wedge \psi) \notin M\), then
+\(\neg(\varphi \wedge \psi) \in M\) and
+\(\set{\varphi, \psi, \neg(\varphi \wedge \psi)}\) is an unsatisfiable
+finite subset. By the induction principle the equivalence holds for
+every formula, so \(v\) satisfies every member of \(M\), in particular
+every member of \(\Sigma\).
+#+end_proof
+
+#+begin_remark
+The theorem is where the axiom of choice enters logic: for an
+uncountable set of variables the proof above is Zorn's lemma, and the
+statement is in fact equivalent to a weak form of choice (the ultrafilter
+lemma). Its consequences are the ones that make model theory possible --
+a property of arbitrary structures that holds in all finite
+approximations holds outright.
+#+end_remark

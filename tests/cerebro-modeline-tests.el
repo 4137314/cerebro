@@ -21,6 +21,8 @@
 (require 'ert)
 (require 'cl-lib)
 (require 'cerebro-modeline)
+(require 'cerebro-mode) ;; the `work' segment reads it (defensively, so it
+                        ;; is not required *by* cerebro-modeline.el)
 
 ;; -- The data holds together -------------------------------------------
 
@@ -180,6 +182,108 @@ Timewarrior."
   (with-temp-buffer
     (fundamental-mode)
     (should (stringp (cerebro-modeline-segment-mode)))))
+
+;; -- What you are inside ------------------------------------------------
+
+(defconst cerebro-modeline-tests--note
+  "#+TITLE: t
+#+FILETAGS: :growing:analysis:real_analysis:
+
+Prose before anything is named.
+
+#+NAME: thm-first
+#+begin_theorem
+A.
+#+end_theorem
+
+#+begin_proof
+Because.
+#+end_proof
+"
+  "A note with front matter and one named result.")
+
+(ert-deftest cerebro-modeline-test-result-segment-names-what-you-are-in ()
+  "Inside a proof, the segment names the statement it belongs to.
+That is the question with no other cheap answer while reading: a proof
+three screens below its statement looks exactly like a proof of whatever
+is above it."
+  (with-temp-buffer
+    (insert cerebro-modeline-tests--note)
+    (org-mode)
+    (goto-char (point-min))
+    (search-forward "Because.")
+    (should (equal (substring-no-properties (cerebro-modeline-segment-result))
+                   "thm-first"))
+    ;; Above every name there is nothing to say, rather than the first one.
+    (goto-char (point-min))
+    (search-forward "Prose before")
+    (should-not (cerebro-modeline-segment-result))))
+
+(ert-deftest cerebro-modeline-test-result-segment-is-org-only ()
+  "The status line renders in buffers of every kind and must not guess."
+  (with-temp-buffer
+    (fundamental-mode)
+    (insert "#+NAME: thm-x\n")
+    (should-not (cerebro-modeline-segment-result))))
+
+(ert-deftest cerebro-modeline-test-maturity-segment-reads-the-filetags ()
+  "The rung is shown so it can be reconsidered.
+A state nobody can see is a state nobody updates -- the same argument the
+ladder makes for `C-c m +'."
+  (with-temp-buffer
+    (insert cerebro-modeline-tests--note)
+    (org-mode)
+    (should (equal (substring-no-properties (cerebro-modeline-segment-maturity))
+                   "growing")))
+  ;; A note with no maturity tag says nothing, rather than guessing one.
+  (with-temp-buffer
+    (insert "#+TITLE: t\n#+FILETAGS: :analysis:\n")
+    (org-mode)
+    (should-not (cerebro-modeline-segment-maturity))))
+
+(ert-deftest cerebro-modeline-test-note-segments-are-bounded ()
+  "Both searches stop after `cerebro-modeline-search-limit' characters.
+
+Not a micro-optimisation: a segment runs on every redisplay, which under
+`pixel-scroll-precision-mode' is ~100 times a second while scrolling. An
+unbounded backward search in a long note is the exact shape of the bug
+that made scrolling unusable before (cerebro-study.el). Here: a name far
+above the bound is deliberately *not* found."
+  (with-temp-buffer
+    (insert "#+NAME: thm-far-away\n#+begin_theorem\nA.\n#+end_theorem\n")
+    (insert (make-string (* 3 cerebro-modeline-search-limit) ?x))
+    (insert "\nprose\n")
+    (org-mode)
+    (goto-char (point-max))
+    (should-not (cerebro-modeline-segment-result))))
+
+(ert-deftest cerebro-modeline-test-new-segments-are-registered ()
+  "All three are in the table and on the left group, or they draw nothing."
+  (dolist (segment '(result maturity work))
+    (should (assq segment cerebro-modeline-segment-alist))
+    (should (memq segment cerebro-modeline-left))))
+
+(ert-deftest cerebro-modeline-test-work-segment-follows-the-mode ()
+  "The macro-mode is shown, and shown *differently* in dev.
+
+Silence before a mode is applied is deliberate: a batch Emacs or a
+buffer that existed before cerebro-mode.el loaded has no answer, and an
+indicator that guesses is worse than one that waits. The face matters
+because it is the whole point of the segment -- in dev every file in the
+repository is writable, and that is the state you must not forget you
+are in."
+  (let ((cerebro-mode-current nil) (cerebro-mode-lighter nil))
+    (should-not (cerebro-modeline-segment-work)))
+  (dolist (mode '(math dev))
+    (let ((cerebro-mode-current mode)
+          (cerebro-mode-lighter (cerebro-mode-label mode)))
+      (let ((shown (cerebro-modeline-segment-work)))
+        (should (equal (substring-no-properties shown)
+                       (cerebro-mode-label mode)))
+        (should (eq (get-text-property 0 'face shown)
+                    (if (eq mode 'dev)
+                        'cerebro-modeline-alert
+                      'cerebro-modeline-dim)))))))
 
 ;; -- The mode itself ----------------------------------------------------
 

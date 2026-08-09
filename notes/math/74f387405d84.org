@@ -1,0 +1,72 @@
+:PROPERTIES:
+:ID:       7b0a151b-1022-4b96-91c9-f76751ffd3f5
+:END:
+#+TITLE: Hamilton's equations
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:mathematical_physics:classical_mechanics:
+#+MSC: 70H05, 37J05
+#+HASH: 74f387405d84
+
+The Euler-Lagrange equations are \(n\) equations of second order on
+configuration space. Legendre-transforming in the velocities replaces
+them by \(2n\) equations of *first* order on phase space, and the gain is
+structural rather than notational: a first-order system is a vector
+field, its solutions are its flow, and the geometry of that flow is what
+the rest of the subject is about.
+
+#+DEPENDS: def-legendre-transform, thm-legendre-stationary-point, def-conjugate-momentum
+#+NAME: def-hamiltonian
+#+begin_definition
+Let \(L(q, \dot q, t)\) be strictly convex in \(\dot q\). The
+/Hamiltonian/ is the Legendre transform of \(L\) in the velocities,
+\[ H(q, p, t) = \sup_{\dot q} \bigl( p \cdot \dot q - L(q, \dot q, t) \bigr) = p \cdot \dot q - L(q, \dot q, t), \]
+the last expression evaluated at the unique \(\dot q\) with
+\(p = \partial L / \partial \dot q\). The pair \((q,p)\) ranges over
+/phase space/.
+#+end_definition
+
+#+DEPENDS: def-hamiltonian, thm-euler-lagrange, thm-legendre-stationary-point, thm-derivative-algebra
+#+NAME: thm-hamilton-equations
+#+begin_theorem
+A path satisfies the Euler-Lagrange equations for \(L\) if and only if
+the corresponding path in phase space satisfies
+\[ \dot q_{i} = \frac{\partial H}{\partial p_{i}}, \qquad \dot p_{i} = -\frac{\partial H}{\partial q_{i}}, \qquad \frac{\partial H}{\partial t} = -\frac{\partial L}{\partial t}. \]
+#+end_theorem
+
+#+begin_proof
+Differentiate \(H = p \cdot \dot q - L\) treating \(\dot q\) as the
+function of \((q,p,t)\) determined by \(p = \partial L/\partial \dot q\).
+In the \(p_{i}\) direction,
+\[ \frac{\partial H}{\partial p_{i}} = \dot q_{i} + p \cdot \frac{\partial \dot q}{\partial p_{i}} - \frac{\partial L}{\partial \dot q} \cdot \frac{\partial \dot q}{\partial p_{i}} = \dot q_{i}, \]
+the last two terms cancelling by the defining relation -- this is the
+Legendre transform's derivative identity. In the \(q_{i}\) direction the
+same cancellation leaves
+\(\partial H/\partial q_{i} = -\partial L/\partial q_{i}\), and the
+Euler-Lagrange equation says \(\partial L / \partial q_{i} = \dot p_{i}\).
+The \(t\) statement is the same computation in the remaining variable.
+Every step is reversible, since the Legendre transform is invertible
+under strict convexity.
+#+end_proof
+
+#+DEPENDS: thm-hamilton-equations, cor-vanishing-derivative
+#+NAME: prop-hamiltonian-conserved-when-time-independent
+#+begin_proposition
+If \(H\) does not depend explicitly on \(t\), it is constant along every
+solution.
+#+end_proposition
+
+#+begin_proof
+Along a solution, the chain rule and Hamilton's equations give
+\[ \frac{\dd H}{\dd t} = \frac{\partial H}{\partial q_{i}} \dot q_{i} + \frac{\partial H}{\partial p_{i}} \dot p_{i} + \frac{\partial H}{\partial t} = \frac{\partial H}{\partial q_{i}} \frac{\partial H}{\partial p_{i}} - \frac{\partial H}{\partial p_{i}} \frac{\partial H}{\partial q_{i}} + \frac{\partial H}{\partial t}, \]
+summed over \(i\); the first two terms cancel identically. If
+\(\partial H/\partial t = 0\) the derivative vanishes, so \(H\) is
+constant.
+#+end_proof
+
+#+begin_remark
+The cancellation above is not an accident of the coordinates: it is the
+antisymmetry of the bracket that Hamilton's equations define, and it is
+why the flow preserves \(H\) whatever \(H\) is. Conservation of energy
+is the special case where the conserved quantity is the generator of the
+flow itself.
+#+end_remark

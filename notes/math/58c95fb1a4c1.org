@@ -1,0 +1,153 @@
+:PROPERTIES:
+:ID:       96852adb-c98e-432d-abf1-7333c8e954a3
+:END:
+#+TITLE: Connectedness, components and path-connectedness
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:topology:general_topology:
+#+MSC: 54D05
+#+HASH: 58c95fb1a4c1
+
+The [[id:f0cf6f7b-7984-4e52-9ef1-6fb39bf8058b][intermediate value theorem]] was proved from the completeness of
+\(\R\), but its statement mentions no supremum: a continuous function
+cannot skip a value because an interval cannot be cut in two. Isolating
+that as a property of spaces turns one theorem about \(\R\) into the
+first topological invariant, and gives the standard way of proving two
+spaces are not homeomorphic.
+
+#+DEPENDS: def-topological-space
+#+NAME: def-connected
+#+begin_definition
+A topological space \(X\) is /connected/ if it is not the union of two
+disjoint non-empty open sets. A subset is connected if it is so in the
+subspace topology. A subset that is both open and closed is /clopen/.
+#+end_definition
+
+#+DEPENDS: def-connected, prop-interior-and-closure-are-extremal
+#+NAME: prop-connected-iff-no-proper-clopen
+#+begin_proposition
+\(X\) is connected if and only if its only clopen subsets are
+\(\emptyset\) and \(X\); equivalently, if and only if every continuous
+map \(X \to \set{0,1}\), the latter discrete, is constant.
+#+end_proposition
+
+#+begin_proof
+A clopen \(A\) with \(\emptyset \ne A \ne X\) gives the disconnection
+\(X = A \cup (X \setminus A)\) into non-empty open sets, and conversely
+each piece of a disconnection is clopen, being the complement of the
+other. A continuous \(f \colon X \to \set{0,1}\) has
+\(f^{-1}(0)\) clopen, and a non-constant \(f\) makes it a proper
+non-empty clopen set; conversely a proper clopen \(A\) yields the
+continuous non-constant indicator of \(A\).
+#+end_proof
+
+#+DEPENDS: def-connected, prop-connected-iff-no-proper-clopen, def-continuous-map
+#+NAME: thm-continuous-image-of-a-connected-space
+#+begin_theorem
+The continuous image of a connected space is connected. Connectedness is
+therefore a topological invariant.
+#+end_theorem
+
+#+begin_proof
+Let \(f \colon X \to Y\) be continuous and surjective with \(X\)
+connected, and let \(g \colon Y \to \set{0,1}\) be continuous. Then
+\(g \circ f\) is continuous, hence constant, and \(f\) is surjective, so
+\(g\) is constant. By the previous proposition \(Y\) is connected. A
+homeomorphism is in particular a continuous surjection in both
+directions.
+#+end_proof
+
+#+DEPENDS: def-connected, prop-connected-iff-no-proper-clopen
+#+NAME: prop-union-of-connected-sets
+#+begin_proposition
+If \((A_{i})\) are connected subsets of \(X\) with a common point \(p\),
+then \(\bigcup_{i}A_{i}\) is connected. If \(A\) is connected and
+\(A \subseteq B \subseteq \overline{A}\), then \(B\) is connected.
+#+end_proposition
+
+#+begin_proof
+Let \(f\) be a continuous map from the union to \(\set{0,1}\). Its
+restriction to each \(A_{i}\) is continuous, hence constant, with value
+\(f(p)\); so \(f\) is constant.
+
+For the second claim, let \(f \colon B \to \set{0,1}\) be continuous;
+it is constant on \(A\), say with value \(0\), so
+\(A \subseteq f^{-1}(0)\), which is closed in \(B\). Hence
+\(f^{-1}(0)\) contains the closure of \(A\) in \(B\), which is
+\(\overline{A}\cap B = B\).
+#+end_proof
+
+#+DEPENDS: def-connected, def-supremum, ax-completeness
+#+NAME: thm-connected-subsets-of-the-line
+#+begin_theorem
+A subset of \(\R\) is connected if and only if it is an interval, that
+is, if \(x < z < y\) with \(x, y \in A\) implies \(z \in A\).
+#+end_theorem
+
+#+begin_proof
+If \(A\) is not an interval, pick such an \(x < z < y\) with
+\(z \notin A\); then
+\(A = (A \cap (-\infty, z)) \cup (A \cap (z, \infty))\) is a
+disconnection into non-empty relatively open sets.
+
+Conversely let \(A\) be an interval and suppose
+\(A = U \cup V\) with \(U, V\) non-empty, disjoint and open in \(A\).
+Pick \(x \in U\), \(y \in V\), say \(x < y\); then
+\([x,y] \subseteq A\). Let \(s = \sup (U \cap [x,y])\), which exists by
+completeness. If \(s \in U\) then \(s < y\), and since \(U\) is open in
+\(A\) a whole interval \([s, s+\delta] \subseteq U \cap [x,y]\) would
+exceed the supremum. If \(s \in V\) then \(s > x\), and openness of
+\(V\) puts \((s-\delta, s] \subseteq V\), so no point of
+\(U\cap[x,y]\) exceeds \(s - \delta\), again contradicting the
+supremum. But \(s \in [x,y] \subseteq A = U \cup V\) -- a contradiction.
+#+end_proof
+
+#+DEPENDS: thm-connected-subsets-of-the-line, thm-continuous-image-of-a-connected-space, def-continuous-map
+#+NAME: def-path-connected
+#+begin_definition
+A /path/ in \(X\) from \(x\) to \(y\) is a continuous
+\(\gamma \colon [0,1] \to X\) with \(\gamma(0) = x\) and
+\(\gamma(1) = y\). The space is /path-connected/ if any two of its
+points are joined by a path.
+#+end_definition
+
+#+DEPENDS: def-path-connected, prop-union-of-connected-sets, thm-connected-subsets-of-the-line, thm-continuous-image-of-a-connected-space
+#+NAME: prop-path-connected-implies-connected
+#+begin_proposition
+Every path-connected space is connected.
+#+end_proposition
+
+#+begin_proof
+If \(X\) is empty the claim is vacuous. Otherwise fix \(p \in X\). For
+each \(x\) choose a path from \(p\) to \(x\); its image is the
+continuous image of \([0,1]\), which is connected as an interval, and
+contains \(p\). So \(X\) is a union of connected sets with the common
+point \(p\), hence connected.
+#+end_proof
+
+#+DEPENDS: prop-union-of-connected-sets, thm-equivalence-partition
+#+NAME: prop-connected-components
+#+begin_proposition
+The relation "\(x\) and \(y\) lie in a common connected subset" is an
+equivalence relation; its classes, the /connected components/, are the
+maximal connected subsets of \(X\), and they are closed and partition
+\(X\).
+#+end_proposition
+
+#+begin_proof
+Reflexivity uses the connected set \(\set{x}\); symmetry is clear; and
+if \(x, y \in A\) and \(y, z \in B\) with \(A, B\) connected, then
+\(A \cup B\) is connected by the previous proposition, having the point
+\(y\) in common. The class of \(x\) is the union of all connected sets
+containing \(x\), connected for the same reason, hence the largest such
+set. Classes partition \(X\), and each is closed because its closure is
+connected and contains it, so equals it by maximality.
+#+end_proof
+
+#+begin_remark
+Components are closed but need not be open: in \(\Q\) every component is
+a single point, and no point is open. That example is also the reason
+connectedness is not the same as path-connectedness -- the standard
+counterexample being the closure of the graph of \(\sin(1/x)\), which is
+connected by the second half of the union proposition and admits no path
+to the segment it accumulates on.
+#+end_remark

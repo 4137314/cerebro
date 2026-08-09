@@ -1,0 +1,126 @@
+:PROPERTIES:
+:ID:       d1a61e90-f2ac-4e62-9cd8-8c742d43fdf2
+:END:
+#+TITLE: Group actions, orbits and the orbit-stabiliser theorem
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:algebra:group_theory:
+#+MSC: 20B05, 20A05
+#+HASH: 84a2fe3c49ae
+
+A group was defined by axioms, but groups arise as symmetries: the
+axioms are what the invertible transformations of a set satisfy. An
+action is the bridge back -- a homomorphism into a symmetric group -- and
+it converts counting problems about a set into arithmetic in the group,
+because an orbit is a quotient by a subgroup.
+
+#+DEPENDS: def-group, def-group-homomorphism
+#+NAME: def-group-action
+#+begin_definition
+An /action/ of a group \(G\) on a set \(X\) is a map
+\(G \times X \to X\), \((g,x) \mapsto g \cdot x\), such that
+\(e \cdot x = x\) and \(g \cdot (h \cdot x) = (gh) \cdot x\) for all
+\(g, h \in G\), \(x \in X\). Equivalently, it is a homomorphism
+\(G \to \Sym(X)\), the group of bijections of \(X\) under composition.
+#+end_definition
+
+#+DEPENDS: def-group-action, prop-bijective-iff-invertible
+#+NAME: prop-action-is-a-homomorphism
+#+begin_proposition
+The two descriptions in the definition agree: for an action, each map
+\(\sigma_{g} \colon x \mapsto g \cdot x\) is a bijection of \(X\), and
+\(g \mapsto \sigma_{g}\) is a homomorphism \(G \to \Sym(X)\);
+conversely every such homomorphism defines an action.
+#+end_proposition
+
+#+begin_proof
+From the axioms, \(\sigma_{g} \circ \sigma_{h} = \sigma_{gh}\) and
+\(\sigma_{e} = \id_{X}\). Hence
+\(\sigma_{g} \circ \sigma_{g^{-1}} = \sigma_{e} = \id_{X}\) and
+likewise in the other order, so \(\sigma_{g}\) is a bijection with
+inverse \(\sigma_{g^{-1}}\), and \(g \mapsto \sigma_{g}\) is a
+homomorphism. Conversely, given a homomorphism \(\rho\), setting
+\(g \cdot x = \rho(g)(x)\) satisfies both axioms.
+#+end_proof
+
+#+DEPENDS: def-group-action, def-subgroup
+#+NAME: def-orbit-and-stabiliser
+#+begin_definition
+For an action of \(G\) on \(X\) and \(x \in X\), the /orbit/ is
+\(G \cdot x = \setst{g \cdot x}{g \in G}\) and the /stabiliser/ is
+\(G_{x} = \setst{g \in G}{g \cdot x = x}\). The action is /transitive/
+if there is only one orbit.
+#+end_definition
+
+#+DEPENDS: def-orbit-and-stabiliser, thm-equivalence-partition, prop-subgroup-criterion
+#+NAME: prop-orbits-partition
+#+begin_proposition
+The orbits partition \(X\), and each stabiliser \(G_{x}\) is a subgroup
+of \(G\).
+#+end_proposition
+
+#+begin_proof
+Let \(x \approx y\) mean \(y = g \cdot x\) for some \(g\). This is
+reflexive (\(e\)), symmetric (apply \(g^{-1}\)) and transitive
+(compose), so it is an equivalence relation whose classes are the
+orbits; classes partition \(X\). For the stabiliser, \(e \in G_{x}\),
+and if \(g, h\) fix \(x\) then \(gh^{-1} \cdot x = g \cdot (h^{-1}\cdot x) = g \cdot x = x\).
+#+end_proof
+
+#+DEPENDS: def-orbit-and-stabiliser, prop-cosets-partition, def-index
+#+NAME: thm-orbit-stabiliser
+#+begin_theorem
+For every \(x \in X\) the map \(g G_{x} \mapsto g \cdot x\) is a
+bijection from \(G/G_{x}\) onto the orbit \(G \cdot x\). In particular,
+for finite \(G\), \(\abs{G \cdot x} = [G : G_{x}] = \abs{G}/\abs{G_{x}}\).
+#+end_theorem
+
+#+begin_proof
+The map is well defined and injective at once:
+\(g \cdot x = h \cdot x\) if and only if \(h^{-1}g \cdot x = x\), that
+is \(h^{-1}g \in G_{x}\), that is \(gG_{x} = hG_{x}\). It is surjective
+onto the orbit by definition. The count follows from Lagrange's theorem.
+#+end_proof
+
+#+DEPENDS: thm-orbit-stabiliser, prop-orbits-partition
+#+NAME: cor-class-equation
+#+begin_corollary
+Let \(G\) be a finite group acting on itself by conjugation,
+\(g \cdot a = gag^{-1}\). Then
+\[ \abs{G} = \abs{Z(G)} + \sum_{i} [G : C_{G}(a_{i})], \]
+where \(Z(G)\) is the set of elements whose orbit is a single point,
+\(C_{G}(a) = \setst{g}{ga = ag}\), and the \(a_{i}\) are
+representatives of the orbits with more than one element.
+#+end_corollary
+
+#+begin_proof
+Conjugation is an action: \(e a e^{-1} = a\) and
+\(g(hah^{-1})g^{-1} = (gh)a(gh)^{-1}\). Its orbits partition \(G\), so
+\(\abs{G}\) is the sum of the orbit sizes. An orbit is a single point
+exactly when \(gag^{-1} = a\) for all \(g\), that is when
+\(a \in Z(G)\); every other orbit has size \([G : G_{a}]\) by the
+orbit-stabiliser theorem, and the stabiliser of \(a\) under conjugation
+is \(C_{G}(a)\).
+#+end_proof
+
+#+DEPENDS: def-group-action, prop-injective-iff-trivial-kernel, prop-action-is-a-homomorphism
+#+NAME: thm-cayley
+#+begin_theorem
+Every group \(G\) is isomorphic to a subgroup of \(\Sym(G)\).
+#+end_theorem
+
+#+begin_proof
+Let \(G\) act on itself by left multiplication, \(g \cdot a = ga\); the
+axioms hold by associativity and the identity law. The associated
+homomorphism \(\rho \colon G \to \Sym(G)\) has kernel
+\(\setst{g}{ga = a \text{ for all } a}\), which is \(\set{e}\) on taking
+\(a = e\). So \(\rho\) is injective, and \(G \iso \rho(G) \le \Sym(G)\).
+#+end_proof
+
+#+begin_remark
+Cayley's theorem is not a tool for computation -- the symmetric group it
+produces is far too large -- but a statement about what the axioms
+capture: nothing is lost by defining a group abstractly, since every
+abstract group is a group of symmetries of something. The useful actions
+are the small ones, on cosets and on conjugacy classes, and the class
+equation is the first result to extract arithmetic from them.
+#+end_remark

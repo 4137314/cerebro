@@ -1,0 +1,106 @@
+:PROPERTIES:
+:ID:       3e82efb4-ba0e-4511-a478-92ed8f4ccbb7
+:END:
+#+TITLE: Interior, closure, boundary and density
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:topology:general_topology:
+#+MSC: 54A05
+#+HASH: 750cf3176aff
+
+Every subset of a topological space has a largest open set inside it and
+a smallest closed set around it. The two operations are dual, they are
+defined by intersections rather than by construction, and the local
+characterisation below -- a point is in the closure when every
+neighbourhood meets the set -- is what makes them usable in proofs.
+
+#+DEPENDS: def-topological-space, prop-closed-sets-of-a-topology
+#+NAME: def-interior-closure-boundary
+#+begin_definition
+Let \(A \subseteq X\). The /interior/ \(A^{\circ}\) is the union of all
+open sets contained in \(A\), the /closure/ \(\overline{A}\) is the
+intersection of all closed sets containing \(A\), and the /boundary/ is
+\(\partial A = \overline{A} \setminus A^{\circ}\). The set \(A\) is
+/dense/ if \(\overline{A} = X\).
+#+end_definition
+
+#+DEPENDS: def-interior-closure-boundary
+#+NAME: prop-interior-and-closure-are-extremal
+#+begin_proposition
+\(A^{\circ}\) is the largest open set contained in \(A\) and
+\(\overline{A}\) the smallest closed set containing \(A\); \(A\) is open
+if and only if \(A = A^{\circ}\), and closed if and only if
+\(A = \overline{A}\). Moreover
+\(X \setminus \overline{A} = (X\setminus A)^{\circ}\).
+#+end_proposition
+
+#+begin_proof
+A union of open sets is open and an intersection of closed sets is
+closed, so \(A^{\circ}\) and \(\overline{A}\) are open and closed
+respectively, and by construction each is extremal among the sets in its
+definition. If \(A\) is open it is one of the sets united to form
+\(A^{\circ}\), so \(A \subseteq A^{\circ} \subseteq A\); the converse is
+immediate, and dually for closures. For the last identity, complements
+turn the closed sets containing \(A\) into the open sets contained in
+\(X \setminus A\), and intersection into union.
+#+end_proof
+
+#+DEPENDS: prop-interior-and-closure-are-extremal
+#+NAME: thm-closure-by-neighbourhoods
+#+begin_theorem
+\(x \in \overline{A}\) if and only if every neighbourhood of \(x\) meets
+\(A\); and \(x \in A^{\circ}\) if and only if some neighbourhood of
+\(x\) is contained in \(A\).
+#+end_theorem
+
+#+begin_proof
+Suppose some open \(U \ni x\) misses \(A\). Then \(X \setminus U\) is a
+closed set containing \(A\), so \(\overline{A} \subseteq X\setminus U\)
+and \(x \notin \overline{A}\). Conversely if \(x \notin \overline{A}\)
+then \(U = X \setminus \overline{A}\) is an open neighbourhood of \(x\)
+missing \(A\). The statement about the interior is the definition of
+\(A^{\circ}\) as a union of open sets.
+#+end_proof
+
+#+DEPENDS: thm-closure-by-neighbourhoods
+#+NAME: cor-dense-meets-every-open-set
+#+begin_corollary
+\(A\) is dense in \(X\) if and only if every non-empty open set meets
+\(A\).
+#+end_corollary
+
+#+begin_proof
+Density says every point lies in \(\overline{A}\), which by the theorem
+says every neighbourhood of every point meets \(A\); and a non-empty
+open set is a neighbourhood of each of its points.
+#+end_proof
+
+#+DEPENDS: def-interior-closure-boundary, prop-interior-and-closure-are-extremal
+#+NAME: prop-boundary-properties
+#+begin_proposition
+\(\partial A\) is closed, \(\partial A = \overline{A} \cap \overline{X \setminus A}\),
+and \(X\) is the disjoint union of \(A^{\circ}\), \(\partial A\) and
+\((X\setminus A)^{\circ}\). A set is closed exactly when it contains its
+boundary, and open exactly when it is disjoint from it.
+#+end_proposition
+
+#+begin_proof
+Using \(X \setminus \overline{X\setminus A} = A^{\circ}\), we get
+\(\overline{A}\cap\overline{X\setminus A} = \overline{A}\setminus A^{\circ} = \partial A\),
+an intersection of closed sets, hence closed. The three sets are
+pairwise disjoint by construction and cover \(X\), since a point outside
+\(A^{\circ} \cup (X\setminus A)^{\circ}\) lies in
+\(\overline{A}\cap\overline{X\setminus A}\).
+
+If \(A\) is closed then \(\overline{A} = A\), so
+\(\partial A \subseteq A\); conversely \(\partial A \subseteq A\) gives
+\(\overline{A} = A^{\circ}\cup\partial A \subseteq A\). Applying this to
+the complement gives the statement for open sets.
+#+end_proof
+
+#+begin_remark
+The closure is not "\(A\) together with its limit points of sequences":
+that description is correct in a metric space and false in general,
+because a sequence is indexed by \(\N\) and a neighbourhood basis need
+not be countable. Nets and filters exist to repair exactly this, and the
+theorem above is the statement that survives without them.
+#+end_remark

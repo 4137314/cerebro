@@ -1,0 +1,65 @@
+:PROPERTIES:
+:ID:       ad33e63f-36eb-4887-a6b5-28103dda6212
+:END:
+#+TITLE: The action functional and the first variation
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:mathematical_physics:calculus_of_variations:
+#+MSC: 49S05, 70H03
+#+HASH: 4619c3224a7c
+
+Mechanics can be stated as a differential law -- a second-order equation
+for each coordinate -- or as a *variational* one: among all paths joining
+two configurations, the physical one makes a certain integral
+stationary. The second formulation is the one that generalises, because
+it is coordinate-free: the integral does not know which chart it is
+written in, so the equations it produces transform correctly by
+construction.
+
+#+DEPENDS: def-derivative, thm-continuous-is-integrable
+#+NAME: def-action-functional
+#+begin_definition
+Let \(L \colon \R^{n} \times \R^{n} \times \R \to \R\) be twice
+continuously differentiable -- the /Lagrangian/, written
+\(L(q, \dot q, t)\). For a continuously differentiable path
+\(q \colon [t_{0}, t_{1}] \to \R^{n}\), the /action/ is
+\[ S[q] = \int_{t_{0}}^{t_{1}} L\bigl( q(t), \dot q(t), t \bigr) \dd t. \]
+#+end_definition
+
+#+DEPENDS: def-action-functional
+#+NAME: def-variation
+#+begin_definition
+A /variation/ of \(q\) with fixed endpoints is a family
+\(q_{\eps} = q + \eps \eta\), where
+\(\eta \colon [t_{0}, t_{1}] \to \R^{n}\) is continuously
+differentiable with \(\eta(t_{0}) = \eta(t_{1}) = 0\). The path \(q\) is
+/stationary/ for \(S\) if
+\[ \left. \frac{\dd}{\dd \eps} S[q + \eps \eta] \right|_{\eps = 0} = 0 \]
+for every such \(\eta\).
+#+end_definition
+
+#+DEPENDS: def-variation, thm-continuous-is-integrable
+#+NAME: lem-fundamental-lemma-of-the-calculus-of-variations
+#+begin_lemma
+Let \(g \colon [t_{0}, t_{1}] \to \R^{n}\) be continuous and satisfy
+\(\int_{t_{0}}^{t_{1}} g(t) \cdot \eta(t) \dd t = 0\) for every
+continuously differentiable \(\eta\) vanishing at both endpoints. Then
+\(g \equiv 0\).
+#+end_lemma
+
+#+begin_proof
+Suppose some component satisfies \(g_{i}(\tau) \ne 0\), say
+\(g_{i}(\tau) > 0\), at an interior \(\tau\). By continuity there is
+\([\alpha, \beta] \subseteq (t_{0}, t_{1})\) containing \(\tau\) on
+which \(g_{i} > g_{i}(\tau)/2\). Take \(\eta\) with \(i\)-th component
+\((t - \alpha)^{2}(\beta - t)^{2}\) on \([\alpha, \beta]\) and \(0\)
+elsewhere, other components zero; it is continuously differentiable and
+vanishes at the endpoints. The integral is then strictly positive,
+contradicting the hypothesis. By continuity the conclusion extends to
+the endpoints.
+#+end_proof
+
+#+begin_remark
+The lemma is what converts a statement quantified over *all* variations
+into a pointwise equation, and it is the only place the arbitrariness of
+\(\eta\) is spent. Everything after this is calculus.
+#+end_remark

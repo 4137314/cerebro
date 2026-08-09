@@ -1,0 +1,55 @@
+:PROPERTIES:
+:ID:       40e468eb-db21-4321-8a3d-8ef0ec032875
+:END:
+#+TITLE: The fundamental theorem of calculus
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A42
+#+HASH: 2eb2f2028155
+
+Differentiation and integration were defined independently, by limits of
+difference quotients and by limits of sums. The two theorems below say
+they undo each other -- which is what makes the integral computable at
+all.
+
+#+DEPENDS: def-riemann-integral, def-derivative, thm-continuous-is-integrable, thm-integral-additivity, prop-integral-monotonicity
+#+NAME: thm-ftc-first
+#+begin_theorem
+Let \(f \colon [a,b] \to \R\) be continuous and define
+\(F(x) = \int_{a}^{x} f(t) \dd t\). Then \(F\) is differentiable on
+\((a,b)\) and \(F' = f\).
+#+end_theorem
+
+#+begin_proof
+Fix \(c \in (a,b)\) and \(\eps > 0\). By continuity at \(c\) there is
+\(\delta > 0\) with \(\abs{f(t) - f(c)} < \eps\) for
+\(\abs{t - c} < \delta\). For \(0 < \abs{h} < \delta\), additivity of
+the integral gives \(F(c + h) - F(c) = \int_{c}^{c+h} f(t) \dd t\),
+hence
+\[ \Bigl| \frac{F(c+h) - F(c)}{h} - f(c) \Bigr| = \Bigl| \frac{1}{h} \int_{c}^{c+h} (f(t) - f(c)) \dd t \Bigr| \le \eps, \]
+since the integrand is bounded by \(\eps\) on an interval of length
+\(\abs{h}\). As \(\eps\) was arbitrary, \(F'(c) = f(c)\).
+#+end_proof
+
+#+DEPENDS: thm-ftc-first, cor-vanishing-derivative
+#+NAME: thm-ftc-second
+#+begin_theorem
+Let \(f \colon [a,b] \to \R\) be continuous and let \(G\) be any
+antiderivative of \(f\) on \([a,b]\). Then
+\[ \int_{a}^{b} f(x) \dd x = G(b) - G(a). \]
+#+end_theorem
+
+#+begin_proof
+Let \(F(x) = \int_{a}^{x} f\). By the first part \(F' = f = G'\) on
+\((a,b)\), so \(F - G\) is constant, say \(F - G \equiv k\), by the
+corollary to the mean value theorem. Since \(F(a) = 0\) we get
+\(k = -G(a)\), and evaluating at \(b\) gives
+\(\int_{a}^{b} f = F(b) = G(b) - G(a)\).
+#+end_proof
+
+#+begin_remark
+The second statement is what one computes with, and it needs an
+antiderivative to exist; the first statement is what guarantees one
+does, for every continuous integrand. Neither is a definition: the
+integral was already defined, by Darboux sums, before either was proved.
+#+end_remark

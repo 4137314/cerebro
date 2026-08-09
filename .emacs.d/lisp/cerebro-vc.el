@@ -20,7 +20,7 @@
 ;; Loaded soft, like every other guix.scm package: without magit this
 ;; module is a no-op and `C-x v ...' (built-in VC) still works.
 
-(require 'cerebro-org)  ;; cerebro-root
+(require 'cerebro-base)  ;; cerebro-root -- a git config needs no Org
 (require 'cerebro-guix) ;; cerebro-guix-soft-require
 
 (when (cerebro-guix-soft-require 'magit)

@@ -1,0 +1,72 @@
+:PROPERTIES:
+:ID:       5c4f48b7-803d-473b-b6f6-52e566f545f4
+:END:
+#+TITLE: The alternating series test
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 40A05
+#+HASH: 00f3cfd55c94
+
+Every test so far decides convergence by comparing absolute values, and
+so can only ever prove absolute convergence. This is the one test in a
+first course that uses cancellation, and it is therefore the source of
+every example of a series that converges but not absolutely.
+
+#+DEPENDS: def-series-convergence, thm-monotone-convergence, thm-limit-algebra
+#+NAME: thm-leibniz
+#+begin_theorem
+Let \(b_{1} \ge b_{2} \ge \cdots \ge 0\) with \(b_{n} \to 0\). Then
+the alternating series \(\sum_{n \ge 1} (-1)^{n+1} b_{n}\) converges.
+#+end_theorem
+
+#+begin_proof
+Let \(s_{N}\) be the partial sums. Grouping in pairs,
+\[ s_{2k+2} - s_{2k} = b_{2k+1} - b_{2k+2} \ge 0, \qquad s_{2k+1} - s_{2k-1} = -b_{2k} + b_{2k+1} \le 0, \]
+so the even partial sums increase and the odd ones decrease. Moreover
+\(s_{2k+1} - s_{2k} = b_{2k+1} \ge 0\), so every even partial sum is at
+most every odd one: \((s_{2k})\) is increasing and bounded above by
+\(s_{1}\), and \((s_{2k+1})\) is decreasing and bounded below by
+\(s_{2}\). By the monotone convergence theorem both converge, say to
+\(E\) and \(O\). Since \(s_{2k+1} - s_{2k} = b_{2k+1} \to 0\), the
+algebra of limits gives \(O - E = 0\). The two subsequences exhaust the
+partial sums and share a limit, so \(s_{N}\) converges to it.
+#+end_proof
+
+#+DEPENDS: thm-leibniz, prop-limits-preserve-order
+#+NAME: cor-leibniz-remainder
+#+begin_corollary
+Under the hypotheses above, the sum \(s\) satisfies
+\(\abs{s - s_{N}} \le b_{N+1}\) for every \(N\): the error of a partial
+sum is at most the first omitted term.
+#+end_corollary
+
+#+begin_proof
+The proof above shows \(s\) lies between any two consecutive partial
+sums: \(s_{2k} \le s \le s_{2k+1}\) for every \(k\), by passing the
+inequalities \(s_{2k} \le s_{2j+1}\) to the limit. Hence \(s - s_{N}\)
+lies between \(0\) and \(s_{N+1} - s_{N} = \pm b_{N+1}\), so
+\(\abs{s - s_{N}} \le b_{N+1}\).
+#+end_proof
+
+#+DEPENDS: thm-leibniz, prop-harmonic-diverges, def-absolute-convergence
+#+NAME: prop-conditional-convergence-exists
+#+begin_proposition
+There is a convergent series that does not converge absolutely: the
+class of conditionally convergent series is non-empty.
+#+end_proposition
+
+#+begin_proof
+Take \(b_{n} = 1/n\), which decreases to \(0\), so
+\(\sum_{n \ge 1} (-1)^{n+1}/n\) converges by the alternating series
+test. The series of absolute values is \(\sum 1/n\), which diverges.
+Hence the series converges and does not converge absolutely.
+#+end_proof
+
+#+begin_remark
+Conditional convergence is fragile in a way absolute convergence is
+not: a conditionally convergent series can be rearranged to converge to
+any prescribed real number, or to diverge. That is why every later
+theorem that manipulates the order of summation assumes absolute
+convergence, and why the distinction is worth a definition rather than
+a remark.
+#+end_remark

@@ -1,0 +1,76 @@
+:PROPERTIES:
+:ID:       9c3c5513-7bb1-4ee1-b4b4-c04f875772f4
+:END:
+#+TITLE: Extrema in several variables and the second differential
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26B10, 26B12
+#+HASH: 988fbdd36176
+
+The one-variable story -- a vanishing derivative at an interior extremum,
+a sign condition on the second derivative to decide which -- survives
+verbatim, with the second derivative replaced by a *quadratic form*. The
+new phenomenon is that a form can be neither positive nor negative
+definite, and the point is then neither a maximum nor a minimum: a
+possibility with no one-dimensional analogue.
+
+#+DEPENDS: def-differentiable-multivariable, lem-interior-extremum
+#+NAME: prop-stationary-at-an-interior-extremum
+#+begin_proposition
+If \(f \colon U \to \R\) is differentiable at an interior point \(c\) at
+which it has a local extremum, then \(Df(c) = 0\).
+#+end_proposition
+
+#+begin_proof
+For each direction \(v\) the function \(t \mapsto f(c + tv)\) is
+defined near \(0\), differentiable there with derivative
+\(Df(c)v\), and has a local extremum at \(t = 0\). By the interior
+extremum lemma in one variable its derivative vanishes, so
+\(Df(c)v = 0\) for every \(v\).
+#+end_proof
+
+#+DEPENDS: def-differentiable-multivariable
+#+NAME: def-second-differential
+#+begin_definition
+Let \(f \colon U \to \R\) have continuous second partial derivatives.
+Its /second differential/ at \(c\) is the quadratic form
+\[ D^{2}f(c)[h] = \sum_{i,j} \partial_{i}\partial_{j} f(c) \, h_{i} h_{j}, \]
+which is symmetric in \(i\) and \(j\). The form is /positive definite/
+if \(D^{2}f(c)[h] > 0\) for every \(h \ne 0\), /negative definite/ if
+the reverse, and /indefinite/ if it takes both signs.
+#+end_definition
+
+#+DEPENDS: def-second-differential, prop-stationary-at-an-interior-extremum, thm-taylor-peano, thm-extreme-value
+#+NAME: thm-second-derivative-test-multivariable
+#+begin_theorem
+Let \(f\) have continuous second partials near a stationary point
+\(c\). If \(D^{2}f(c)\) is positive definite then \(c\) is a strict
+local minimum; if negative definite, a strict local maximum; if
+indefinite, neither.
+#+end_theorem
+
+#+begin_proof
+Suppose \(D^{2}f(c)\) is positive definite. The unit sphere is closed
+and bounded, and \(h \mapsto D^{2}f(c)[h]\) is continuous, so by the
+extreme value theorem the form attains a minimum \(\mu > 0\) on it;
+by homogeneity \(D^{2}f(c)[h] \ge \mu \norm{h}^{2}\) for all \(h\).
+Taylor's theorem with the Peano remainder, applied to
+\(t \mapsto f(c + th)\) and using \(Df(c) = 0\), gives
+\[ f(c + h) - f(c) = \tfrac{1}{2} D^{2}f(c)[h] + \eta(h) \norm{h}^{2}, \qquad \eta(h) \to 0. \]
+Choosing \(\norm{h}\) small enough that \(\abs{\eta(h)} < \mu/4\) makes
+the right-hand side at least \((\mu/4)\norm{h}^{2} > 0\). The negative
+definite case is this applied to \(-f\).
+
+If the form is indefinite, pick \(u\) with \(D^{2}f(c)[u] > 0\) and
+\(w\) with \(D^{2}f(c)[w] < 0\). The same expansion along \(tu\) makes
+\(f\) exceed \(f(c)\) for small \(t\), and along \(tw\) fall below it,
+so \(c\) is neither.
+#+end_proof
+
+#+begin_remark
+The test says nothing when the form is positive *semi*-definite and
+singular, and cannot: the behaviour is then decided by higher-order
+terms, exactly as \(f'' (c) = 0\) leaves the one-variable test silent.
+What is genuinely new in several variables is the indefinite case --
+a saddle -- which is not a failure of the test but a verdict.
+#+end_remark

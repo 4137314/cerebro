@@ -12,7 +12,7 @@
 ;; bin/guix-run (time, task, lint, query) run asynchronously, so Emacs
 ;; never blocks while the pinned environment materialises.
 
-(require 'cerebro-org) ;; cerebro-root
+(require 'cerebro-base) ;; cerebro-root -- and nothing else, so no Org
 
 (defvar cerebro-cli-program
   (expand-file-name "bin/cerebro" cerebro-root)
@@ -55,18 +55,38 @@ asynchronously (safe for both fast and slow subcommands)."
   (let ((buf (find-buffer-visiting (expand-file-name "issues/issues.org" cerebro-root))))
     (when buf (with-current-buffer buf (revert-buffer t t t)))))
 
+(defconst cerebro-cli-issue-id-regexp
+  "\\([0-9]\\{8\\}T[0-9]\\{6\\}\\|[0-9a-f]\\{8\\}-[0-9a-f-]\\{27\\}\\)"
+  "How an issue ID is recognised inside a line of `cerebro issue list'.
+Two shapes, because the tracker has had two: an Org timestamp id
+\(20260807T120000) and a uuid. Matching by *shape* rather than by column
+is what lets the listing format change without breaking the picker.")
+
+(defun cerebro-cli-issue-id (line)
+  "The issue ID in LINE, or nil. Pure.
+
+Split out from the picker so the one piece of parsing in this module is
+testable without a CLI, a database or a minibuffer -- the module is
+otherwise deliberately all I/O (invariant 4)."
+  (when (and (stringp line) (string-match cerebro-cli-issue-id-regexp line))
+    (match-string 1 line)))
+
 (defun cerebro-cli--read-issue (prompt)
   "Completing-read an issue, returning its :ID:. Candidates come from
-`cerebro issue list all'; the ID is extracted by shape (a timestamp id or
-a uuid)."
+`cerebro issue list all'; the ID is extracted by shape.
+
+`--all-modes' on purpose: the macro-mode filters what you are *shown to
+work on* (`C-c d i', the start page), never what you may act on. These
+commands close, start, reopen and annotate a *named* issue, and an issue
+you can name is one you can close whichever mode you are in."
   (let* ((lines (with-temp-buffer
                   (let ((default-directory cerebro-root))
-                    (call-process cerebro-cli-program nil t nil "issue" "list" "all"))
+                    (call-process cerebro-cli-program nil t nil
+                                  "issue" "list" "all" "--all-modes"))
                   (split-string (buffer-string) "\n" t)))
          (choice (completing-read prompt lines nil t)))
-    (if (string-match "\\([0-9]\\{8\\}T[0-9]\\{6\\}\\|[0-9a-f]\\{8\\}-[0-9a-f-]\\{27\\}\\)" choice)
-        (match-string 1 choice)
-      (user-error "could not find an id in `%s'" choice))))
+    (or (cerebro-cli-issue-id choice)
+        (user-error "could not find an id in `%s'" choice))))
 
 ;;;###autoload
 (defun cerebro-issue-list () "List open issues." (interactive) (cerebro-cli--run '("issue" "list")))

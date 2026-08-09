@@ -11,6 +11,30 @@ repo_root=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
 channels="$repo_root/guix/channels.scm"
 guix_scm="$repo_root/guix.scm"
 
+# Already inside the pinned environment? Then run straight away.
+#
+# `guix time-machine -C ... -- shell -f guix.scm' costs ~90 seconds here
+# even when every package it would produce is already on PATH: it
+# re-resolves the channel and re-checks the profile every single time.
+# That is the whole reason `make test' took a minute and a half for three
+# seconds of tests, and why the git hooks felt like a punishment.
+#
+# GUIX_ENVIRONMENT is set by `guix shell' to the profile it built, so
+# inside `make shell', the `cerebro' launcher or a direnv-activated
+# directory the work has already been done. Re-doing it buys nothing:
+# the profile in this shell IS the pinned one.
+#
+# Set CEREBRO_GUIX_FORCE=1 to take the long path anyway -- for the one
+# case where it matters, checking that guix.scm still resolves after
+# editing it.
+if [ -n "${GUIX_ENVIRONMENT:-}" ] && [ -z "${CEREBRO_GUIX_FORCE:-}" ]; then
+    if [ "$#" -eq 0 ]; then
+        exec "${SHELL:-/bin/sh}"
+    else
+        exec "$@"
+    fi
+fi
+
 # `guix` is only on PATH in shells that source /etc/profile.d/guix.sh (or
 # equivalent) -- e.g. an interactive login shell, but not necessarily a
 # git hook or non-login script. Fall back to the two well-known install

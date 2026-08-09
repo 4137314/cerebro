@@ -1,5 +1,5 @@
 #!/bin/sh
-# cerebro-banner -- (re)draw the start page's banner: .emacs.d/banner.png
+# cerebro-banner -- draw a generated start-page banner into .emacs.d/banner.png
 #
 # The image is committed, so this script is not needed to *use* cerebro --
 # it is here so the banner is not a mystery binary in the tree: it is
@@ -12,13 +12,23 @@
 # of each other: stars, the halo, the half of the rings that passes
 # BEHIND, the planet, the half that passes in FRONT, a moon.
 #
-# Usage: bin/cerebro-banner [OUTPUT.png]   (needs ImageMagick, not pinned:
-#        this is a design-time tool, not part of the environment)
+# Usage: bin/cerebro-banner [OUTPUT.png] [BACKGROUND]
+#        (needs ImageMagick, not pinned: this is a design-time tool, not
+#        part of the environment)
+#
+# The image is *opaque*, and that is deliberate. A transparent PNG in an
+# Emacs buffer is composited over the background twice -- measured: the
+# buffer is #232025 and the transparent area of the image came out
+# #46404A, exactly double -- which draws a visible lighter rectangle
+# around the art. An opaque image has no such seam, and a picture of
+# space is dark anyway: on the light theme it reads as a framed
+# photograph rather than as a bug.
 set -eu
 
 out=${1:-"$(git rev-parse --show-toplevel)/.emacs.d/banner.png"}
+background=${2:-#161320}
 command -v magick >/dev/null 2>&1 || {
-    echo "cerebro-banner: needs ImageMagick (magick) -- the committed banner.png is still there" >&2
+    echo "cerebro-banner: needs ImageMagick (magick) -- the start page keeps using cerebro-dashboard-banner" >&2
     exit 2
 }
 
@@ -81,13 +91,14 @@ magick -size 200x200 radial-gradient:'#fdf0e0'-'#5a4a6a' -crop 46x46+70+70 +repa
 magick -size 46x46 xc:none -fill white -draw "circle 23,23 23,0" "$tmp/mm.png"
 magick "$tmp/mg.png" "$tmp/mm.png" -alpha off -compose CopyOpacity -composite "$tmp/moon.png"
 
-magick -size ${W}x${H} xc:none \
+magick -size ${W}x${H} "xc:$background" \
   "$tmp/stars.png" -composite \
   "$tmp/halo.png" -composite \
   "$tmp/ring-back.png" -geometry +0+0 -composite \
   "$tmp/planet-f.png" -geometry +$((CX-148))+$((CY-148)) -composite \
   "$tmp/ring-front.png" -geometry +0+$CY -composite \
   "$tmp/moon.png" -geometry +742+108 -composite \
+  -alpha remove -alpha off \
   "$out"
 
 echo "wrote ${out}"

@@ -1,0 +1,89 @@
+:PROPERTIES:
+:ID:       d6339989-3988-4376-a81c-e2381e5e62b2
+:END:
+#+TITLE: The rules of differentiation
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A24
+#+HASH: 6b86d96fdd90
+
+Differentiating from the definition is done exactly once per elementary
+function; everything after that is these three rules. The chain rule is
+the one whose obvious proof -- multiply and divide by \(f(x) - f(c)\)
+-- is wrong, because that quantity can vanish arbitrarily close to
+\(c\). The repair is to make the offending quotient into a function
+that is continuous at the point, which is the argument below.
+
+#+DEPENDS: def-derivative, thm-function-limit-algebra, prop-differentiable-implies-continuous
+#+NAME: thm-derivative-algebra
+#+begin_theorem
+Let \(f, g\) be differentiable at \(c\). Then \(f + g\) and \(fg\) are,
+with \((f+g)'(c) = f'(c) + g'(c)\) and
+\[ (fg)'(c) = f'(c) g(c) + f(c) g'(c), \]
+and if \(g(c) \ne 0\) then \(f/g\) is differentiable at \(c\) with
+\[ \Bigl( \frac{f}{g} \Bigr)'(c) = \frac{f'(c) g(c) - f(c) g'(c)}{g(c)^{2}}. \]
+#+end_theorem
+
+#+begin_proof
+The sum is immediate from the algebra of limits. For the product, add
+and subtract \(f(c + h) g(c)\):
+\[ \frac{f(c+h)g(c+h) - f(c)g(c)}{h} = f(c+h) \frac{g(c+h) - g(c)}{h} + g(c) \frac{f(c+h) - f(c)}{h}. \]
+As \(h \to 0\) the factor \(f(c+h) \to f(c)\), because \(f\) is
+continuous at \(c\), and the two quotients tend to \(g'(c)\) and
+\(f'(c)\); the algebra of limits gives the formula.
+
+For the quotient it suffices, by the product rule, to differentiate
+\(1/g\). Since \(g\) is continuous at \(c\) with \(g(c) \ne 0\), it is
+non-zero near \(c\), and there
+\[ \frac{1}{h} \Bigl( \frac{1}{g(c+h)} - \frac{1}{g(c)} \Bigr) = -\frac{1}{g(c+h) g(c)} \cdot \frac{g(c+h) - g(c)}{h}, \]
+which tends to \(-g'(c)/g(c)^{2}\).
+#+end_proof
+
+#+DEPENDS: def-derivative, thm-composition-continuous, prop-differentiable-implies-continuous
+#+NAME: thm-chain-rule
+#+begin_theorem
+Let \(f\) be differentiable at \(c\) and \(g\) differentiable at
+\(f(c)\). Then \(g \circ f\) is differentiable at \(c\) and
+\[ (g \circ f)'(c) = g'(f(c)) \, f'(c). \]
+#+end_theorem
+
+#+begin_proof
+Write \(d = f(c)\) and define, for \(y\) in the domain of \(g\),
+\[ \varphi(y) = \frac{g(y) - g(d)}{y - d} \ \ (y \ne d), \qquad \varphi(d) = g'(d). \]
+Differentiability of \(g\) at \(d\) says precisely that \(\varphi\) is
+continuous at \(d\), and by construction
+\(g(y) - g(d) = \varphi(y)(y - d)\) for /every/ \(y\), including
+\(y = d\), where both sides vanish. Substituting \(y = f(c+h)\),
+\[ \frac{g(f(c+h)) - g(f(c))}{h} = \varphi(f(c+h)) \cdot \frac{f(c+h) - f(c)}{h}. \]
+As \(h \to 0\) the second factor tends to \(f'(c)\), while
+\(f(c+h) \to d\) by continuity of \(f\) and hence
+\(\varphi(f(c+h)) \to \varphi(d) = g'(d)\) by continuity of \(\varphi\)
+at \(d\). The identity holds for all small \(h \ne 0\) whether or not
+\(f(c+h) = f(c)\), which is the point of introducing \(\varphi\).
+#+end_proof
+
+#+DEPENDS: thm-chain-rule, thm-continuous-inverse
+#+NAME: thm-inverse-derivative
+#+begin_theorem
+Let \(f\) be continuous and injective on an interval \(I\),
+differentiable at \(c \in I\) with \(f'(c) \ne 0\). Then \(f^{-1}\) is
+differentiable at \(d = f(c)\) and
+\[ (f^{-1})'(d) = \frac{1}{f'(c)}. \]
+#+end_theorem
+
+#+begin_proof
+Write \(g = f^{-1}\), continuous at \(d\) by the inverse function
+theorem for continuity. For \(y \ne d\) put \(x = g(y)\), so
+\(x \ne c\) by injectivity and
+\[ \frac{g(y) - g(d)}{y - d} = \frac{x - c}{f(x) - f(c)}. \]
+As \(y \to d\), continuity of \(g\) gives \(x \to c\), so the quotient
+\((f(x) - f(c))/(x - c)\) tends to \(f'(c) \ne 0\). The displayed
+expression is its reciprocal, and therefore tends to \(1/f'(c)\).
+#+end_proof
+
+#+begin_remark
+The hypothesis \(f'(c) \ne 0\) is not removable: \(f(x) = x^{3}\) is a
+continuous bijection of \(\R\) with \(f'(0) = 0\), and its inverse
+\(y^{1/3}\) has a vertical tangent at the origin -- continuous, as the
+previous note guarantees, and not differentiable.
+#+end_remark

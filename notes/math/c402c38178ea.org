@@ -1,0 +1,127 @@
+:PROPERTIES:
+:ID:       c2edf7f5-d5ac-4e50-8734-a00b2da22cf4
+:END:
+#+TITLE: Orthogonality, Gram-Schmidt and orthogonal decomposition
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:geometry:linear_algebra:
+#+MSC: 15A63, 51N20
+#+HASH: c402c38178ea
+
+The [[id:3bcfce93-cefa-48a2-b2e8-8f64d2b680cc][Cauchy-Schwarz inequality]] says an [[id:c35a8f01-cbd2-433b-b9b5-a037bae4e91d][inner product]] defines angles;
+orthogonality is the case where the angle is right, and it is worth
+isolating because it turns a subspace into a direction and a complement
+at once. Gram-Schmidt is the statement that the orthogonal viewpoint
+costs nothing: every finite-dimensional inner product space already has
+an orthonormal basis.
+
+#+DEPENDS: def-inner-product-space, def-span-and-independence
+#+NAME: def-orthogonal-family
+#+begin_definition
+In an inner product space \(V\), vectors \(u, v\) are /orthogonal/ if
+\(\inner{u}{v} = 0\). A family is /orthogonal/ if its members are
+pairwise orthogonal and non-zero, and /orthonormal/ if in addition
+\(\norm{v} = 1\) for each member. For \(S \subseteq V\), the
+/orthogonal complement/ is
+\(S^{\perp} = \setst{v \in V}{\inner{v}{s} = 0 \text{ for all } s \in S}\).
+#+end_definition
+
+#+DEPENDS: def-orthogonal-family
+#+NAME: prop-pythagoras
+#+begin_proposition
+If \(v_{1}, \dots, v_{k}\) are pairwise orthogonal then
+\(\norm{v_{1}+\cdots+v_{k}}^{2} = \norm{v_{1}}^{2}+\cdots+\norm{v_{k}}^{2}\);
+and an orthogonal family is linearly independent.
+#+end_proposition
+
+#+begin_proof
+Expanding \(\inner{\sum_{i}v_{i}}{\sum_{j}v_{j}}\) by bilinearity leaves
+only the diagonal terms, the others vanishing by orthogonality. For
+independence, apply \(\inner{\cdot}{v_{j}}\) to a relation
+\(\sum_{i}\lambda_{i}v_{i} = 0\): every term but the \(j\)-th vanishes,
+leaving \(\lambda_{j}\norm{v_{j}}^{2} = 0\), and \(v_{j} \ne 0\).
+#+end_proof
+
+#+DEPENDS: def-inner-product-space
+#+NAME: prop-parallelogram-identity
+#+begin_proposition
+In an inner product space,
+\[ \norm{u - v}^{2} = 2\norm{u}^{2} + 2\norm{v}^{2} - 4\Bigl\lVert \frac{u+v}{2} \Bigr\rVert^{2} \]
+for all \(u, v\); equivalently
+\(\norm{u+v}^{2} + \norm{u-v}^{2} = 2\norm{u}^{2}+2\norm{v}^{2}\).
+#+end_proposition
+
+#+begin_proof
+Bilinearity gives
+\(\norm{u \pm v}^{2} = \norm{u}^{2} \pm 2\inner{u}{v} + \norm{v}^{2}\);
+adding the two identities cancels the cross terms and yields the second
+form, and the first is that form with
+\(4\norm{(u+v)/2}^{2} = \norm{u+v}^{2}\).
+#+end_proof
+
+#+DEPENDS: def-orthogonal-family, prop-pythagoras
+#+NAME: thm-gram-schmidt
+#+begin_theorem
+Let \(v_{1}, v_{2}, \dots\) be a finite or countable linearly
+independent family in an inner product space. Then there is an
+orthonormal family \(e_{1}, e_{2}, \dots\) with
+\(\Span\set{e_{1},\dots,e_{k}} = \Span\set{v_{1},\dots,v_{k}}\) for
+every \(k\). In particular every finite-dimensional inner product space
+has an orthonormal basis.
+#+end_theorem
+
+#+begin_proof
+Define recursively
+\[ w_{k} = v_{k} - \sum_{i<k} \inner{v_{k}}{e_{i}} e_{i}, \qquad e_{k} = w_{k}/\norm{w_{k}}. \]
+The vector \(w_{k}\) is non-zero: otherwise \(v_{k}\) would lie in
+\(\Span\set{e_{1},\dots,e_{k-1}} = \Span\set{v_{1},\dots,v_{k-1}}\),
+contradicting independence. For \(j < k\),
+\(\inner{w_{k}}{e_{j}} = \inner{v_{k}}{e_{j}} - \inner{v_{k}}{e_{j}} = 0\)
+because the \(e_{i}\) are orthonormal by induction; so \(e_{k}\) is a
+unit vector orthogonal to its predecessors. The spans agree at each
+stage because \(e_{k}\) is \(v_{k}\) plus a combination of earlier
+\(e_{i}\), and conversely. Applied to a basis, this yields an
+orthonormal basis.
+#+end_proof
+
+#+DEPENDS: thm-gram-schmidt, prop-pythagoras, cor-extension-to-a-basis
+#+NAME: thm-orthogonal-decomposition
+#+begin_theorem
+Let \(U\) be a finite-dimensional subspace of an inner product space
+\(V\). Then \(V = U \oplus U^{\perp}\): every \(v \in V\) is uniquely
+\(v = u + u'\) with \(u \in U\) and \(u' \in U^{\perp}\), and
+\(u = \sum_{i}\inner{v}{e_{i}}e_{i}\) for any orthonormal basis
+\(e_{1},\dots,e_{k}\) of \(U\).
+#+end_theorem
+
+#+begin_proof
+Take an orthonormal basis of \(U\) by Gram-Schmidt and put
+\(u = \sum_{i}\inner{v}{e_{i}}e_{i}\), \(u' = v - u\). For each \(j\),
+\(\inner{u'}{e_{j}} = \inner{v}{e_{j}} - \inner{v}{e_{j}} = 0\), so
+\(u'\) is orthogonal to every element of \(U\), that is
+\(u' \in U^{\perp}\). Uniqueness: if \(u_{1}+u_{1}' = u_{2}+u_{2}'\)
+then \(u_{1}-u_{2} = u_{2}'-u_{1}'\) lies in \(U \cap U^{\perp}\), and a
+vector orthogonal to itself has \(\norm{v}^{2} = 0\), hence is \(0\).
+#+end_proof
+
+#+DEPENDS: thm-orthogonal-decomposition
+#+NAME: cor-orthogonal-projection-is-nearest
+#+begin_corollary
+With the notation above, \(u\) is the unique point of \(U\) nearest to
+\(v\): \(\norm{v - u} < \norm{v - x}\) for every \(x \in U\) with
+\(x \ne u\).
+#+end_corollary
+
+#+begin_proof
+For \(x \in U\), \(v - x = (v-u) + (u-x)\) with \(v - u \in U^{\perp}\)
+and \(u - x \in U\), so by Pythagoras
+\(\norm{v-x}^{2} = \norm{v-u}^{2} + \norm{u-x}^{2}\), which strictly
+exceeds \(\norm{v-u}^{2}\) unless \(x = u\).
+#+end_proof
+
+#+begin_remark
+The corollary is the whole of least-squares approximation and of Fourier
+series, stated before either: "best approximation in a subspace" always
+means "orthogonal projection onto it", and the coefficients
+\(\inner{v}{e_{i}}\) are computed one at a time precisely because the
+basis is orthonormal.
+#+end_remark

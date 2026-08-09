@@ -1,30 +1,75 @@
 #+TITLE: Courses
 
-One subdirectory per course. A course here owns *no mathematics*: it is
-an ordered index into =notes/math/=.
+One *file* per course: =<slug>.org=. Not a directory, and not two files
+-- a course owns no mathematics of its own, so there is nothing for a
+second file to hold.
 
-Each directory holds exactly two files:
+The file is metadata, the course's own prose, and a =* Programme=
+section that lists, in teaching order, =id:= links to notes that already
+exist in =notes/math/=:
 
-- =course.org= -- the syllabus: metadata (=#+COURSE_TITLE:=, =#+TERM:=,
-  =#+MSC:=, ...), the course prose, and a =* Programme= section that
-  lists, in teaching order, =id:= links to notes that already exist.
-  This is the file you write; it is also what the =syllabus= profile
-  exports.
-- =book.org= -- *generated* from that programme (=bin/cerebro-new-book=,
-  or =C-c e b= from inside the course): the programme's sub-headings
-  become the book's chapters, and every link becomes an Org =#+INCLUDE=
-  of the note it points at. Never edit it by hand. It is what the
-  =dispensa= and =manual= profiles export.
+: * Programme
+: ** Continuity
+: - [[id:...][Limits and continuity]]
+: ** Inner product spaces
+: - [[id:...][Inner product space]]
+: - [[id:...][Cauchy--Schwarz inequality]]
 
-The point of the split: you write a book only once the atomic notes
-exist, and the book never contains a second copy of anything. Correct a
-proof in =notes/math/= and every course that teaches it is corrected --
-including the one you taught last year. A note can appear in several
-courses; moving or renaming it breaks nothing, because the programme
-refers to it by =:ID:=.
+From that, four documents -- one per audience:
 
-: bin/cerebro-course notes/courses/analysis-1 "Analysis I"   # scaffold
-: bin/cerebro-new-book notes/courses/analysis-1              # (re)build the book
+| Profile     | For                       | Composed from                        |
+|-------------+---------------------------+--------------------------------------|
+| =syllabus=  | whoever is choosing       | the file itself                      |
+| =lecture=   | me, at the board          | + the notes, statements and proofs   |
+| =slides=    | the room                  | + the notes, statements only         |
+| =handbook=  | the student, afterwards   | + the notes, appendices, index       |
 
-See =analysis-1/= for a worked example, and
-=.emacs.d/lisp/cerebro-course.el= for the generator.
+: bin/cerebro-course-export notes/courses/analysis-A.org          # all four, zipped
+: bin/cerebro-course-export notes/courses/analysis-A.org slides   # just one
+: bin/cerebro-course analysis-B "Mathematical Analysis B"         # scaffold a new one
+
+* Where the book went
+
+There used to be a second, committed file -- =book.org=, generated from
+the programme, which you had to remember to regenerate before compiling.
+It is gone. The composition (course + one =#+INCLUDE= per note) now
+happens at *export time*, into =.build/= beside the course, which is
+gitignored like every other build product. That removes three things at
+once: a generated file in git, a step to remember, and the failure mode
+where you compile a book that no longer matches its programme.
+
+Nothing is copied, ever: correcting a proof in =notes/math/= corrects
+every course that teaches it, including the one you taught last year. A
+note can appear in several courses. Moving or renaming one breaks
+nothing, because the programme refers to it by =:ID:=. A link to a note
+that no longer exists is *reported* and left visible as
+=# MISSING NOTE:= -- a chapter cannot vanish silently.
+
+* What a syllabus is, and is not
+
+A syllabus here is a *programme of topics to study*. Examination format,
+marking schemes and deadlines are deliberately not in it: they are the
+half of a course that goes out of date first, and they belong wherever
+your institution keeps them.
+
+* Appendices and the index
+
+Both are parametric, and neither is written twice:
+
+- an optional =* Appendices= section, written exactly like the
+  programme, is composed after =\appendix= -- lettered rather than
+  numbered;
+- the handbook ends with an analytical index built from the notes' own
+  =#+NAME='d results (=def-supremum= indexes "supremum"), plus any
+  =#+INDEX:= a note adds by hand.
+
+=analysis-A.org= (Mathematical Analysis A, first-year real analysis) is
+the worked one and the model in full: 22 notes, eight chapters, two
+appendices, all four documents compiling end to end. It is what
+=make export-matrix= builds, so the model cannot rot unnoticed.
+
+Everything here is written in academic English, the notes included: the
+archive has one language, and a course that mixed two would make half of
+it uncitable in the other.
+
+See =.emacs.d/lisp/cerebro-course.el= for the composer.

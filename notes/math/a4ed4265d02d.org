@@ -1,0 +1,115 @@
+:PROPERTIES:
+:ID:       203494e0-5225-4540-9a81-f61cab21d41b
+:END:
+#+TITLE: Nearest points and the separating hyperplane theorem
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:geometry:convex_geometry:
+#+MSC: 52A20, 52A35
+#+HASH: a4ed4265d02d
+
+A [[id:29371f24-12c6-4151-80ae-3f459e7c83f6][convex set]] is one that contains the segment between any two of its
+points, which is a statement about lines. The theorem below turns it
+into a statement about linear functionals: a closed convex set is the
+intersection of the half-spaces containing it, so convexity can always be
+certified by inequalities. Every duality argument in optimisation is
+this theorem.
+
+#+DEPENDS: def-convex-set, def-inner-product-space
+#+NAME: def-hyperplane-and-half-space
+#+begin_definition
+For \(u \in \R^{n}\) non-zero and \(\alpha \in \R\), the /hyperplane/ is
+\(H = \setst{y}{\inner{u}{y} = \alpha}\) and the two closed
+/half-spaces/ it bounds are \(\setst{y}{\inner{u}{y} \le \alpha}\) and
+\(\setst{y}{\inner{u}{y} \ge \alpha}\). The hyperplane /separates/ two
+sets if they lie in opposite half-spaces, and /strictly separates/ them
+if the inequalities are strict.
+#+end_definition
+
+#+DEPENDS: def-convex-set, thm-euclidean-space-complete, prop-closed-iff-sequentially-closed, prop-parallelogram-identity
+#+NAME: thm-nearest-point-in-a-closed-convex-set
+#+begin_theorem
+Let \(C \subseteq \R^{n}\) be non-empty, closed and convex, and let
+\(x \in \R^{n}\). Then there is exactly one \(p \in C\) with
+\(\norm{x - p} = \inf_{c \in C}\norm{x - c}\).
+#+end_theorem
+
+#+begin_proof
+Let \(d\) be that infimum and pick \(c_{k} \in C\) with
+\(\norm{x - c_{k}} \to d\). The parallelogram identity, applied to
+\(x - c_{k}\) and \(x - c_{l}\), gives
+\[ \norm{c_{k}-c_{l}}^{2} = 2\norm{x-c_{k}}^{2} + 2\norm{x-c_{l}}^{2} - 4\norm{x - \tfrac{c_{k}+c_{l}}{2}}^{2}. \]
+The midpoint lies in \(C\) by convexity, so the last term is at least
+\(4d^{2}\), and the right-hand side tends to
+\(2d^{2}+2d^{2}-4d^{2} = 0\). Hence \((c_{k})\) is Cauchy, so it
+converges to some \(p\), which lies in \(C\) because \(C\) is closed;
+and \(\norm{x-p} = d\) by continuity of the norm.
+
+Uniqueness: if \(p, p'\) both attain \(d\), the same identity with
+\(c_{k} = p\), \(c_{l} = p'\) gives
+\(\norm{p-p'}^{2} \le 4d^{2}-4d^{2} = 0\).
+#+end_proof
+
+#+DEPENDS: thm-nearest-point-in-a-closed-convex-set, def-hyperplane-and-half-space
+#+NAME: prop-obtuse-angle-criterion
+#+begin_proposition
+With the notation above, \(p\) is the nearest point of \(C\) to \(x\) if
+and only if \(\inner{x - p}{c - p} \le 0\) for every \(c \in C\).
+#+end_proposition
+
+#+begin_proof
+Assume \(p\) is nearest and let \(c \in C\), \(t \in (0,1]\). Convexity
+puts \(p + t(c-p)\) in \(C\), so
+\(\norm{x-p-t(c-p)}^{2} \ge \norm{x-p}^{2}\); expanding,
+\(-2t\inner{x-p}{c-p} + t^{2}\norm{c-p}^{2} \ge 0\), so
+\(\inner{x-p}{c-p} \le \tfrac{t}{2}\norm{c-p}^{2}\) for every
+\(t \in (0,1]\), and letting \(t \to 0\) gives the inequality.
+Conversely, if it holds then for \(c \in C\),
+\(\norm{x-c}^{2} = \norm{(x-p) - (c-p)}^{2} = \norm{x-p}^{2} - 2\inner{x-p}{c-p} + \norm{c-p}^{2} \ge \norm{x-p}^{2}\).
+#+end_proof
+
+#+DEPENDS: prop-obtuse-angle-criterion, def-hyperplane-and-half-space
+#+NAME: thm-separating-hyperplane
+#+begin_theorem
+Let \(C \subseteq \R^{n}\) be non-empty, closed and convex, and
+\(x \notin C\). Then there are \(u \ne 0\) and \(\alpha \in \R\) with
+\(\inner{u}{c} < \alpha < \inner{u}{x}\) for every \(c \in C\).
+#+end_theorem
+
+#+begin_proof
+Let \(p\) be the nearest point of \(C\) to \(x\) and put \(u = x - p\),
+non-zero since \(x \notin C\). By the previous proposition
+\(\inner{u}{c - p} \le 0\), that is \(\inner{u}{c} \le \inner{u}{p}\),
+for every \(c \in C\), while
+\(\inner{u}{x} = \inner{u}{p} + \norm{u}^{2} > \inner{u}{p}\). Any
+\(\alpha\) strictly between \(\inner{u}{p}\) and \(\inner{u}{x}\) works.
+#+end_proof
+
+#+DEPENDS: thm-separating-hyperplane, thm-bolzano-weierstrass, prop-closed-iff-sequentially-closed
+#+NAME: cor-supporting-hyperplane
+#+begin_corollary
+Let \(C\) be closed and convex and let \(p\) be a boundary point of
+\(C\). Then there is \(u \ne 0\) with
+\(\inner{u}{c} \le \inner{u}{p}\) for every \(c \in C\).
+#+end_corollary
+
+#+begin_proof
+Since \(p\) is on the boundary there are \(x_{k} \notin C\) with
+\(x_{k} \to p\). For each \(k\) the theorem gives a unit vector
+\(u_{k}\) with \(\inner{u_{k}}{c} \le \inner{u_{k}}{x_{k}}\) for all
+\(c \in C\) (normalise the separating vector). The unit sphere is
+bounded, so by Bolzano-Weierstrass a subsequence \(u_{k_{j}}\) converges
+to some \(u\), which has \(\norm{u} = 1\) and hence is non-zero.
+Passing to the limit in
+\(\inner{u_{k_{j}}}{c} \le \inner{u_{k_{j}}}{x_{k_{j}}}\), using
+continuity of the inner product and \(x_{k_{j}} \to p\), gives
+\(\inner{u}{c} \le \inner{u}{p}\).
+#+end_proof
+
+#+begin_remark
+Closedness is what the nearest point needs and convexity is what turns
+the nearest point into a separating direction; drop either and the
+conclusion fails. The corollary is the geometric content of a Lagrange
+multiplier: at a boundary point there is a direction in which the set
+does not extend, and it is normal to a hyperplane touching the set
+there.
+#+end_remark

@@ -1,0 +1,86 @@
+:PROPERTIES:
+:ID:       e22b9c51-2503-4228-8e3e-0e669e374fa4
+:END:
+#+TITLE: The continuous image of an interval and the continuous inverse
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A15, 26A48
+#+HASH: b0bec65e29b2
+
+The intermediate value theorem and the extreme value theorem are
+usually stated as facts about individual values. Put together they say
+something structural -- a continuous function maps intervals to
+intervals, and compact intervals to compact intervals -- and that is
+the form needed to invert one. The existence of \(\log\), of the
+inverse trigonometric functions and of every \(n\)-th root as a
+/continuous/ function is this theorem, not a construction.
+
+#+DEPENDS: thm-intermediate-value, thm-extreme-value
+#+NAME: cor-continuous-image-interval
+#+begin_corollary
+The image of an interval under a continuous function is an interval,
+and the image of a closed bounded interval \([a,b]\) is a closed
+bounded interval \([m, M]\).
+#+end_corollary
+
+#+begin_proof
+Let \(I\) be an interval and \(f\) continuous on it. If \(u < y < v\)
+with \(u, v \in f(I)\), say \(u = f(p)\) and \(v = f(q)\), then the
+intermediate value theorem applied on the interval with endpoints
+\(p, q\) -- contained in \(I\) -- produces \(c\) with \(f(c) = y\), so
+\(y \in f(I)\). A set containing every point between any two of its
+points is an interval. For \(I = [a,b]\), the extreme value theorem
+gives \(p, q\) with \(m = f(p)\) the minimum and \(M = f(q)\) the
+maximum, so \(f([a,b]) \subseteq [m, M]\), and the first part gives the
+reverse inclusion.
+#+end_proof
+
+#+DEPENDS: thm-intermediate-value
+#+NAME: prop-injective-is-strictly-monotone
+#+begin_proposition
+A continuous injective function on an interval \(I\) is strictly
+monotone.
+#+end_proposition
+
+#+begin_proof
+Suppose \(f\) is neither strictly increasing nor strictly decreasing.
+Then there are \(x < y < z\) in \(I\) for which \(f(y)\) is not strictly
+between \(f(x)\) and \(f(z)\); since \(f\) is injective the three values
+are distinct, so \(f(y)\) is either larger than both or smaller than
+both. Say \(f(y) > f(x)\) and \(f(y) > f(z)\), and pick \(w\) with
+\(\max(f(x), f(z)) < w < f(y)\). The intermediate value theorem gives
+\(c_{1} \in (x,y)\) and \(c_{2} \in (y,z)\) with
+\(f(c_{1}) = f(c_{2}) = w\), and \(c_{1} \ne c_{2}\) -- contradicting
+injectivity. The other case is the same argument applied to \(-f\).
+#+end_proof
+
+#+DEPENDS: prop-injective-is-strictly-monotone, cor-continuous-image-interval, thm-monotone-one-sided
+#+NAME: thm-continuous-inverse
+#+begin_theorem
+Let \(f\) be continuous and injective on an interval \(I\), and let
+\(J = f(I)\). Then \(f^{-1} \colon J \to I\) exists, is strictly
+monotone in the same sense as \(f\), and is continuous.
+#+end_theorem
+
+#+begin_proof
+By the proposition \(f\) is strictly monotone, so it is a bijection
+onto \(J\), which is an interval by the corollary; the inverse is
+strictly monotone in the same sense, since \(f\) preserves the order.
+Let \(g = f^{-1}\) and suppose \(g\) were discontinuous at some
+\(y_{0} \in J\). Being monotone, \(g\) has both one-sided limits there,
+and by the jump description they cannot both equal \(g(y_{0})\): some
+one-sided limit differs, say
+\(\lim_{y \to y_{0}^{-}} g(y) = u < g(y_{0})\).
+Then \(g\) omits every value strictly between \(u\) and
+\(g(y_{0})\), so \(g(J) = I\) misses an interval of points lying
+between two of its own -- impossible, since \(I\) is an interval.
+#+end_proof
+
+#+begin_remark
+Continuity of the inverse is exactly what fails without the interval
+hypothesis. Restrict a continuous bijection to a domain that is a union
+of two pieces -- \([0,1) \cup [2,3]\) mapped onto \([0,2]\) in the
+obvious order-preserving way -- and the inverse jumps at the seam. The
+theorem is therefore a statement about the /domain/ as much as about
+the function.
+#+end_remark

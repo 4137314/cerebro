@@ -1,6 +1,6 @@
 ;;; cerebro-results.el --- batch entry point for the results layer -*- lexical-binding: t; -*-
 
-;; Usage: emacs --batch -l bin/cerebro-results.el -- [index|check|deps|dependents] [NAME]
+;; Usage: emacs --batch -l bin/cerebro-results.el -- [index|check|open|deps|dependents] [NAME]
 ;; Prints, to stdout, the same *cerebro-results* report the interactive
 ;; `cerebro-results-*' commands (.emacs.d/lisp/cerebro-results.el) build.
 ;; No org-roam-db-sync step (unlike bin/cerebro-query.el): the results
@@ -19,13 +19,16 @@
         (pcase cmd
           ("index" (cerebro-results-index))
           ("check" (cerebro-results-check))
+          ;; What still owes a proof: `open' plus the `assumed' ones,
+          ;; which are the debts you forget you took on.
+          ((or "open" "unproved") (cerebro-results-open))
           ((or "deps" "dependencies")
            (cerebro-results-dependencies
             (or (car rest) (error "deps needs a result NAME (make results CMD=deps NAME=...)"))))
           ((or "dependents" "impact")
            (cerebro-results-dependents
             (or (car rest) (error "dependents needs a result NAME (make results CMD=dependents NAME=...)"))))
-          (_ (error "unknown results command `%s' (know: index check deps dependents)" cmd)))
+          (_ (error "unknown results command `%s' (know: index check open deps dependents)" cmd)))
         (princ (with-current-buffer "*cerebro-results*" (buffer-string)))
         (kill-emacs 0))
     (error

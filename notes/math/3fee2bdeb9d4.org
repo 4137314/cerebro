@@ -1,0 +1,102 @@
+:PROPERTIES:
+:ID:       e806603a-321a-499a-96cb-860e41617a87
+:END:
+#+TITLE: Partial orders, lattices and the Knaster-Tarski theorem
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:foundations:set_theory:
+#+MSC: 06A06, 06B23
+#+HASH: 3fee2bdeb9d4
+
+The supremum was introduced for subsets of \(\R\), where the order is
+total and the completeness axiom is an assumption about that particular
+field. Nothing in the *definition* of a supremum uses either. Stating it
+for a partial order isolates what the argument needs, and reveals that
+"every subset has a supremum" -- false in \(\R\), true in a power set --
+is by itself strong enough to produce fixed points, with no continuity
+and no metric anywhere in sight.
+
+#+DEPENDS: def-relation
+#+NAME: def-partial-order
+#+begin_definition
+A /partial order/ on a set \(P\) is a relation \(\le\) that is
+reflexive, /antisymmetric/ (\(x \le y\) and \(y \le x\) imply \(x = y\))
+and transitive. The pair \((P, \le)\) is a /partially ordered set/. It
+is /totally ordered/ if any two elements are comparable, and a subset
+of \(P\) that is totally ordered by \(\le\) is a /chain/.
+#+end_definition
+
+#+DEPENDS: def-partial-order
+#+NAME: def-poset-bounds
+#+begin_definition
+Let \(S \subseteq P\). An /upper bound/ of \(S\) is \(b \in P\) with
+\(s \le b\) for all \(s \in S\); the /supremum/ \(\sup S\) is an upper
+bound below every upper bound. /Lower bound/ and /infimum/ are defined
+by reversing the order. An element \(m \in P\) is /maximal/ if
+\(m \le x\) implies \(x = m\), and a /greatest element/ if \(x \le m\)
+for all \(x \in P\).
+#+end_definition
+
+#+DEPENDS: def-poset-bounds
+#+NAME: prop-suprema-are-unique
+#+begin_proposition
+A subset of a partially ordered set has at most one supremum.
+#+end_proposition
+
+#+begin_proof
+If \(b\) and \(b'\) are both suprema of \(S\), each is an upper bound
+and each lies below every upper bound, so \(b \le b'\) and
+\(b' \le b\); antisymmetry gives \(b = b'\).
+#+end_proof
+
+#+DEPENDS: def-poset-bounds
+#+NAME: def-complete-lattice
+#+begin_definition
+A /lattice/ is a partially ordered set in which every pair of elements
+has a supremum and an infimum; it is a /complete lattice/ if every
+subset has a supremum and an infimum.
+#+end_definition
+
+#+DEPENDS: def-complete-lattice
+#+NAME: prop-suprema-suffice
+#+begin_proposition
+If every subset of a partially ordered set \(P\) has a supremum, then
+every subset has an infimum, so \(P\) is a complete lattice.
+#+end_proposition
+
+#+begin_proof
+Let \(S \subseteq P\) and let \(L\) be the set of lower bounds of
+\(S\), with \(b = \sup L\). Every \(s \in S\) is an upper bound of
+\(L\), so \(b \le s\) by definition of the supremum: \(b\) is a lower
+bound of \(S\). Any lower bound of \(S\) lies in \(L\) and hence below
+\(b\), so \(b = \inf S\).
+#+end_proof
+
+#+DEPENDS: def-complete-lattice
+#+NAME: thm-knaster-tarski
+#+begin_theorem
+Let \(P\) be a complete lattice and \(f \colon P \to P\) /monotone/,
+that is \(x \le y\) implies \(f(x) \le f(y)\). Then \(f\) has a fixed
+point; indeed \(a = \sup \setst{x \in P}{x \le f(x)}\) is the greatest
+one, and \(\inf \setst{x \in P}{f(x) \le x}\) is the least.
+#+end_theorem
+
+#+begin_proof
+Let \(A = \setst{x}{x \le f(x)}\) and \(a = \sup A\). For \(x \in A\)
+we have \(x \le a\), so \(x \le f(x) \le f(a)\) by monotonicity; thus
+\(f(a)\) is an upper bound of \(A\) and \(a \le f(a)\). Applying \(f\)
+to this inequality gives \(f(a) \le f(f(a))\), so \(f(a) \in A\) and
+therefore \(f(a) \le a\). Antisymmetry gives \(f(a) = a\). Any fixed
+point \(x\) lies in \(A\), hence \(x \le a\): the fixed point \(a\) is
+the greatest. The statement about the least fixed point is the same
+argument in the order-reversed lattice, which is again complete by the
+previous proposition.
+#+end_proof
+
+#+begin_remark
+No hypothesis here is analytic: the theorem holds in the power set of
+any set, ordered by inclusion, where suprema are unions. That is the
+form in which it is used -- to construct a set defined by a
+self-referential closure condition as the least fixed point of a
+monotone operator -- and it is also the shortest route to the
+Cantor-Schroder-Bernstein theorem.
+#+end_remark

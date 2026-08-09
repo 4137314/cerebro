@@ -1,0 +1,109 @@
+:PROPERTIES:
+:ID:       f830b644-837d-4fda-8384-8dad0d143c2f
+:END:
+#+TITLE: Isometries of Euclidean space and the orthogonal group
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:geometry:group_theory:
+#+MSC: 51F25, 20H15
+#+HASH: 55069ec656e9
+
+Euclidean geometry can be defined as the study of what is preserved by
+distance-preserving maps, which presupposes knowing what those maps are.
+The answer is as rigid as possible: a map that only preserves distances,
+with no linearity assumed anywhere, is automatically a linear orthogonal
+map followed by a translation. Nothing else can happen, and the proof is
+the polarisation identity.
+
+#+DEPENDS: def-inner-product-space, def-metric-space
+#+NAME: def-euclidean-isometry
+#+begin_definition
+Let \(E = \R^{n}\) with the standard inner product and the metric
+\(d(x,y) = \norm{x-y}\). An /isometry/ of \(E\) is a map
+\(f \colon E \to E\) with \(d(f(x), f(y)) = d(x,y)\) for all \(x, y\).
+#+end_definition
+
+#+DEPENDS: def-euclidean-isometry, prop-polarisation
+#+NAME: prop-isometry-preserves-the-inner-product
+#+begin_proposition
+If \(f\) is an isometry with \(f(0) = 0\), then
+\(\inner{f(x)}{f(y)} = \inner{x}{y}\) for all \(x,y\).
+#+end_proposition
+
+#+begin_proof
+Taking \(y = 0\) gives \(\norm{f(x)} = \norm{x}\). Expanding
+\(\norm{f(x)-f(y)}^{2} = \norm{x-y}^{2}\) by bilinearity,
+\[ \norm{f(x)}^{2} - 2\inner{f(x)}{f(y)} + \norm{f(y)}^{2} = \norm{x}^{2} - 2\inner{x}{y} + \norm{y}^{2}, \]
+and the norm terms cancel in pairs, leaving
+\(\inner{f(x)}{f(y)} = \inner{x}{y}\).
+#+end_proof
+
+#+DEPENDS: prop-isometry-preserves-the-inner-product, thm-gram-schmidt, prop-pythagoras
+#+NAME: thm-isometry-fixing-the-origin-is-linear
+#+begin_theorem
+An isometry of \(\R^{n}\) fixing the origin is linear.
+#+end_theorem
+
+#+begin_proof
+Let \(e_{1},\dots,e_{n}\) be the standard orthonormal basis. By the
+previous proposition the vectors \(f(e_{i})\) are orthonormal, hence
+independent, hence a basis of \(\R^{n}\). For any \(x\) and each \(i\),
+\(\inner{f(x)}{f(e_{i})} = \inner{x}{e_{i}}\), so expanding \(f(x)\) in
+the orthonormal basis \((f(e_{i}))\) gives
+\[ f(x) = \sum_{i} \inner{f(x)}{f(e_{i})}\, f(e_{i}) = \sum_{i} \inner{x}{e_{i}}\, f(e_{i}). \]
+The right-hand side is linear in \(x\).
+#+end_proof
+
+#+DEPENDS: thm-isometry-fixing-the-origin-is-linear, def-group, prop-subgroup-criterion
+#+NAME: def-orthogonal-group
+#+begin_definition
+The /orthogonal group/ \(\Orth(n)\) is the set of linear maps
+\(A \colon \R^{n}\to\R^{n}\) with \(\inner{Ax}{Ay} = \inner{x}{y}\) for
+all \(x,y\), equivalently those whose matrix satisfies
+\(A^{\mathsf{T}}A = I\).
+#+end_definition
+
+#+DEPENDS: def-orthogonal-group, prop-subgroup-criterion, cor-injective-iff-surjective-in-finite-dimension
+#+NAME: prop-orthogonal-group-is-a-group
+#+begin_proposition
+\(\Orth(n)\) is a group under composition.
+#+end_proposition
+
+#+begin_proof
+The identity preserves the inner product. A composition of two such
+maps does. Each \(A \in \Orth(n)\) is injective, since \(Ax = 0\) gives
+\(\norm{x}^{2} = \inner{Ax}{Ax} = 0\), hence bijective in finite
+dimension, and its inverse preserves the inner product because
+\(\inner{A^{-1}u}{A^{-1}v} = \inner{A A^{-1}u}{A A^{-1}v} = \inner{u}{v}\).
+#+end_proof
+
+#+DEPENDS: thm-isometry-fixing-the-origin-is-linear, prop-orthogonal-group-is-a-group, def-affine-map
+#+NAME: thm-classification-of-euclidean-isometries
+#+begin_theorem
+Every isometry of \(\R^{n}\) has the form \(f(x) = Ax + b\) with
+\(A \in \Orth(n)\) and \(b \in \R^{n}\); conversely every such map is an
+isometry. The isometries form a group, and \(f \mapsto A\) is a
+surjective homomorphism onto \(\Orth(n)\) whose kernel is the group of
+translations.
+#+end_theorem
+
+#+begin_proof
+Given an isometry \(f\), put \(b = f(0)\) and \(g(x) = f(x) - b\). Then
+\(g\) is an isometry fixing the origin, hence linear by the theorem
+above, and it preserves the inner product, so \(g = A \in \Orth(n)\) and
+\(f(x) = Ax + b\). Conversely
+\(\norm{(Ax+b)-(Ay+b)} = \norm{A(x-y)} = \norm{x-y}\).
+
+Composition gives \((A,b)(A',b') = (AA', Ab'+b)\), so the isometries are
+closed under composition and inverses -- the inverse of \((A,b)\) being
+\((A^{-1}, -A^{-1}b)\) -- and \(f \mapsto A\) is a homomorphism, clearly
+surjective, whose kernel consists of the maps \(x \mapsto x + b\).
+#+end_proof
+
+#+begin_remark
+So an isometry is an affine map whose linear part is orthogonal, and the
+group is a semidirect product of translations by \(\Orth(n)\). The
+subgroup \(\SO(n)\) of orthogonal maps of determinant \(1\) is what
+separates the isometries that can be reached continuously from the
+identity -- rotations -- from the reflections, and it is the first place
+where a geometric question is answered by a connectedness argument.
+#+end_remark

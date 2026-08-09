@@ -1,0 +1,136 @@
+:PROPERTIES:
+:ID:       ab4b4058-e25f-4704-a651-098c53f66aea
+:END:
+#+TITLE: Continuous maps, homeomorphisms and topological invariants
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:topology:general_topology:
+#+MSC: 54C05
+#+HASH: b63830dd97b3
+
+Continuity was defined with \(\eps\) and \(\delta\), then shown to mean
+that preimages of open sets are open. Only the second formulation
+survives the loss of the metric, so it becomes the definition -- and it
+is a better one, because it makes continuity manifestly about the two
+topologies and nothing else. A homeomorphism is then the notion of
+sameness the subject is organised around.
+
+#+DEPENDS: def-topological-space, def-continuity-at-point
+#+NAME: def-continuous-map
+#+begin_definition
+A map \(f \colon X \to Y\) between topological spaces is /continuous/ if
+\(f^{-1}(V)\) is open in \(X\) for every open \(V \subseteq Y\), and
+/continuous at/ \(x \in X\) if for every neighbourhood \(V\) of
+\(f(x)\) there is a neighbourhood \(U\) of \(x\) with
+\(f(U) \subseteq V\).
+#+end_definition
+
+#+DEPENDS: def-continuous-map, thm-closure-by-neighbourhoods
+#+NAME: thm-characterisations-of-continuity
+#+begin_theorem
+For \(f \colon X \to Y\) the following are equivalent: (i) \(f\) is
+continuous; (ii) \(f\) is continuous at every point; (iii) the preimage
+of every closed set is closed; (iv)
+\(f(\overline{A}) \subseteq \overline{f(A)}\) for every
+\(A \subseteq X\).
+#+end_theorem
+
+#+begin_proof
+(i) implies (ii): given \(V\) a neighbourhood of \(f(x)\), take an open
+\(V_{0}\) with \(f(x) \in V_{0} \subseteq V\); then
+\(U = f^{-1}(V_{0})\) is open, contains \(x\), and
+\(f(U) \subseteq V\). (ii) implies (i): let \(V\) be open and
+\(x \in f^{-1}(V)\); continuity at \(x\) gives a neighbourhood \(U_{x}\)
+of \(x\) with \(f(U_{x}) \subseteq V\), so \(f^{-1}(V)\) contains an
+open set around each of its points and is therefore open.
+
+(i) is equivalent to (iii) because \(f^{-1}(Y\setminus C) = X \setminus f^{-1}(C)\).
+
+(iii) implies (iv): \(f^{-1}(\overline{f(A)})\) is closed and contains
+\(A\), hence contains \(\overline{A}\), which is (iv). (iv) implies
+(iii): let \(C \subseteq Y\) be closed and \(A = f^{-1}(C)\). Then
+\(f(\overline{A}) \subseteq \overline{f(A)} \subseteq \overline{C} = C\),
+so \(\overline{A} \subseteq f^{-1}(C) = A\) and \(A\) is closed.
+#+end_proof
+
+#+DEPENDS: def-continuous-map, def-basis-of-a-topology, prop-intersection-of-topologies
+#+NAME: prop-continuity-tested-on-a-subbasis
+#+begin_proposition
+If \(\mathcal{S}\) is a subbasis of the topology of \(Y\), then \(f\) is
+continuous as soon as \(f^{-1}(S)\) is open for every
+\(S \in \mathcal{S}\).
+#+end_proposition
+
+#+begin_proof
+Preimage commutes with unions and intersections:
+\(f^{-1}(\bigcup_{i}V_{i}) = \bigcup_{i}f^{-1}(V_{i})\) and likewise for
+intersections. Every open set of \(Y\) is a union of finite
+intersections of members of \(\mathcal{S}\), so its preimage is a union
+of finite intersections of open sets, hence open.
+#+end_proof
+
+#+DEPENDS: def-continuous-map
+#+NAME: prop-composition-of-continuous-maps
+#+begin_proposition
+A composition of continuous maps is continuous, and every constant map
+and every identity map is continuous.
+#+end_proposition
+
+#+begin_proof
+\((g\circ f)^{-1}(W) = f^{-1}(g^{-1}(W))\), open as the preimage under
+\(f\) of an open set. For a constant map the preimage of any set is
+\(\emptyset\) or \(X\); for the identity it is the set itself.
+#+end_proof
+
+#+DEPENDS: thm-characterisations-of-continuity, prop-closed-sets-of-a-topology
+#+NAME: prop-pasting-lemma
+#+begin_proposition
+Let \(X = C_{1}\cup C_{2}\) with \(C_{1}, C_{2}\) closed, and let
+\(f_{i} \colon C_{i} \to Y\) be continuous and agree on
+\(C_{1}\cap C_{2}\). Then the map \(f\) they define on \(X\) is
+continuous.
+#+end_proposition
+
+#+begin_proof
+The two restrictions agree on the overlap, so \(f\) is well defined. For
+\(C \subseteq Y\) closed,
+\(f^{-1}(C) = f_{1}^{-1}(C) \cup f_{2}^{-1}(C)\). Each \(f_{i}^{-1}(C)\)
+is closed in \(C_{i}\), hence closed in \(X\) because \(C_{i}\) is; so
+\(f^{-1}(C)\) is closed as a union of two closed sets, and \(f\) is
+continuous.
+#+end_proof
+
+#+DEPENDS: prop-composition-of-continuous-maps, prop-bijective-iff-invertible
+#+NAME: def-homeomorphism
+#+begin_definition
+A /homeomorphism/ is a continuous bijection whose inverse is
+continuous; two spaces are /homeomorphic/ if one exists between them. A
+property of spaces preserved by homeomorphism is a /topological
+invariant/.
+#+end_definition
+
+#+DEPENDS: def-homeomorphism, thm-characterisations-of-continuity
+#+NAME: prop-homeomorphism-criteria
+#+begin_proposition
+A continuous bijection \(f \colon X \to Y\) is a homeomorphism if and
+only if it is /open/ (images of open sets are open), if and only if it
+is /closed/ (images of closed sets are closed). Being homeomorphic is an
+equivalence relation on any set of spaces.
+#+end_proposition
+
+#+begin_proof
+For a bijection, the image under \(f\) of a set equals its preimage
+under \(f^{-1}\); so continuity of \(f^{-1}\) is exactly the statement
+that \(f\) maps open sets to open sets, and by complementation that it
+maps closed sets to closed sets. The identity is a homeomorphism, the
+inverse of one is one, and a composition of two is one by the previous
+proposition -- reflexivity, symmetry and transitivity.
+#+end_proof
+
+#+begin_remark
+A continuous bijection need not be a homeomorphism, and the failure is
+not pathological: the identity from a set with the discrete topology to
+the same set with any coarser one is continuous and bijective in one
+direction only. Compactness plus the Hausdorff property is the standard
+hypothesis that rules this out, which is why so many theorems end
+"...hence a homeomorphism" after checking those two.
+#+end_remark

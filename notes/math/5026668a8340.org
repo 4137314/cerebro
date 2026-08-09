@@ -1,0 +1,160 @@
+:PROPERTIES:
+:ID:       75bbba6c-ad62-4369-9a49-17beefdde80f
+:END:
+#+TITLE: Span, linear independence, bases and dimension
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:algebra:linear_algebra:
+#+MSC: 15A03
+#+HASH: 5026668a8340
+
+A [[id:7c54b427-4d7a-4511-b374-58c7bb44fb84][vector space]] has no distinguished elements, so everything one can say
+about it must be said through the subsets that generate it. That a
+number can be attached to the space at all -- the same for every basis
+-- is the one substantive theorem here, and it rests on a single
+exchange argument. Everything later that "counts dimensions" is spending
+it.
+
+#+DEPENDS: def-vector-space
+#+NAME: def-span-and-independence
+#+begin_definition
+Let \(V\) be a vector space over a field \(K\) and \(S \subseteq V\).
+The /span/ \(\Span S\) is the set of finite linear combinations
+\(\lambda_{1}v_{1} + \cdots + \lambda_{k}v_{k}\) with
+\(v_{i} \in S\), \(\lambda_{i} \in K\) (the empty combination being
+\(0\)); \(S\) /spans/ \(V\) if \(\Span S = V\). The set \(S\) is
+/linearly independent/ if the only finite combination of distinct
+elements of \(S\) equal to \(0\) is the one with all coefficients
+\(0\), and /dependent/ otherwise. A /basis/ is a linearly independent
+spanning set.
+#+end_definition
+
+#+DEPENDS: def-span-and-independence
+#+NAME: prop-basis-gives-unique-coordinates
+#+begin_proposition
+\(B \subseteq V\) is a basis if and only if every \(v \in V\) is a
+finite linear combination of elements of \(B\) in exactly one way (up to
+zero coefficients).
+#+end_proposition
+
+#+begin_proof
+Let \(B\) be a basis. Existence of a representation is spanning; if
+\(\sum \lambda_{i}b_{i} = \sum \mu_{i}b_{i}\) over a common finite set
+of distinct \(b_{i}\), subtracting gives
+\(\sum (\lambda_{i} - \mu_{i}) b_{i} = 0\), so all coefficients agree by
+independence. Conversely, uniqueness applied to \(v = 0\) says the only
+combination giving \(0\) is trivial, which is independence, and
+existence is spanning.
+#+end_proof
+
+#+DEPENDS: def-span-and-independence
+#+NAME: lem-steinitz-exchange
+#+begin_lemma
+Let \(v_{1}, \dots, v_{m}\) be linearly independent in \(V\) and let
+\(w_{1}, \dots, w_{n}\) span \(V\). Then \(m \le n\), and after
+renumbering the \(w_{j}\) the set
+\(\set{v_{1}, \dots, v_{m}, w_{m+1}, \dots, w_{n}}\) spans \(V\).
+#+end_lemma
+
+#+begin_proof
+Induct on \(m\). For \(m = 0\) there is nothing to prove. Assume the
+statement for \(m-1\): so \(m - 1 \le n\) and, after renumbering,
+\(\set{v_{1}, \dots, v_{m-1}, w_{m}, \dots, w_{n}}\) spans \(V\). Write
+\[ v_{m} = \lambda_{1}v_{1} + \cdots + \lambda_{m-1}v_{m-1} + \mu_{m}w_{m} + \cdots + \mu_{n}w_{n}. \]
+Not every \(\mu_{j}\) is zero: otherwise \(v_{m}\) would be a
+combination of \(v_{1}, \dots, v_{m-1}\), contradicting independence. In
+particular the list \(w_{m}, \dots, w_{n}\) is not empty, so
+\(m \le n\). Renumber so that \(\mu_{m} \ne 0\); solving for \(w_{m}\)
+expresses it as a combination of \(v_{1}, \dots, v_{m}\) and
+\(w_{m+1}, \dots, w_{n}\). Hence every vector spanned by the old list is
+spanned by \(\set{v_{1}, \dots, v_{m}, w_{m+1}, \dots, w_{n}}\), which
+therefore spans \(V\).
+#+end_proof
+
+#+DEPENDS: lem-steinitz-exchange, prop-basis-gives-unique-coordinates
+#+NAME: thm-dimension-is-well-defined
+#+begin_theorem
+If \(V\) has a finite basis, then any two bases of \(V\) are finite with
+the same number of elements. That number is the /dimension/
+\(\dim V\).
+#+end_theorem
+
+#+begin_proof
+Let \(B\) be a basis with \(n\) elements and \(C\) any other basis. Any
+\(m\) distinct elements of \(C\) are independent and \(B\) spans, so
+\(m \le n\) by the exchange lemma; hence \(C\) is finite with
+\(\abs{C} \le n\). Exchanging the roles of \(B\) and \(C\) gives
+\(n \le \abs{C}\).
+#+end_proof
+
+#+DEPENDS: def-span-and-independence, thm-zorn
+#+NAME: thm-every-vector-space-has-a-basis
+#+begin_theorem
+Every vector space has a basis; more precisely, every linearly
+independent subset is contained in one.
+#+end_theorem
+
+#+begin_proof
+Let \(S\) be independent and order by inclusion the family of
+independent subsets containing \(S\); it contains \(S\), so it is
+non-empty. The union \(U\) of a chain of independent sets is
+independent: a dependence involves finitely many vectors, which all lie
+in one member of the chain. Zorn's lemma gives a maximal independent
+\(B \supseteq S\). If some \(v \notin \Span B\), then
+\(B \cup \set{v}\) would be independent -- a dependence involving \(v\)
+could be solved for \(v\), putting it in \(\Span B\) -- contradicting
+maximality. So \(\Span B = V\) and \(B\) is a basis.
+#+end_proof
+
+#+DEPENDS: lem-steinitz-exchange, thm-dimension-is-well-defined
+#+NAME: cor-extension-to-a-basis
+#+begin_corollary
+Let \(\dim V = n\) and let \(v_{1}, \dots, v_{m}\) be independent. Then
+\(m \le n\), the list extends to a basis of \(V\), and it is already a
+basis if \(m = n\). Every subspace \(W \subseteq V\) satisfies
+\(\dim W \le n\), with equality only for \(W = V\).
+#+end_corollary
+
+#+begin_proof
+Apply the exchange lemma with a basis \(w_{1}, \dots, w_{n}\) of \(V\):
+\(m \le n\) and \(\set{v_{1},\dots,v_{m},w_{m+1},\dots,w_{n}}\) spans
+\(V\). This spanning set has at most \(n\) elements and contains an
+independent spanning subset -- discard, one at a time, any vector lying
+in the span of the others -- which is then a basis, of exactly \(n\)
+elements by the previous theorem; so nothing was discarded and the list
+itself is a basis containing the \(v_{i}\). If \(m = n\) the extension
+adds nothing. For a subspace, an independent subset of \(W\) is
+independent in \(V\), so a basis of \(W\) has at most \(n\) elements;
+if it has \(n\), it is a basis of \(V\) by what precedes, so
+\(W = V\).
+#+end_proof
+
+#+DEPENDS: cor-extension-to-a-basis
+#+NAME: prop-grassmann-formula
+#+begin_proposition
+For subspaces \(U, W\) of a finite-dimensional \(V\),
+\[ \dim(U + W) + \dim(U \cap W) = \dim U + \dim W, \]
+where \(U + W = \setst{u + w}{u \in U, w \in W}\).
+#+end_proposition
+
+#+begin_proof
+Take a basis \(z_{1}, \dots, z_{k}\) of \(U \cap W\) and extend it to a
+basis \(z_{1},\dots,z_{k},u_{1},\dots,u_{p}\) of \(U\) and to a basis
+\(z_{1},\dots,z_{k},w_{1},\dots,w_{q}\) of \(W\). The union
+\(z_{i}, u_{j}, w_{l}\) spans \(U + W\). It is independent: from
+\(\sum \alpha_{i}z_{i} + \sum \beta_{j}u_{j} + \sum \gamma_{l}w_{l} = 0\),
+the vector \(y = \sum \gamma_{l}w_{l}\) equals
+\(-\sum \alpha_{i}z_{i} - \sum \beta_{j}u_{j} \in U\) and lies in \(W\),
+so \(y \in U \cap W\); writing \(y\) in the basis \(z_{i}\) and
+comparing with \(\sum \gamma_{l}w_{l}\) forces all \(\gamma_{l} = 0\) by
+independence in \(W\), and then all \(\alpha_{i}, \beta_{j}\) vanish by
+independence in \(U\). Counting, \(\dim(U+W) = k + p + q\) while
+\(\dim U + \dim W = (k+p) + (k+q)\).
+#+end_proof
+
+#+begin_remark
+That a basis exists at all in the infinite-dimensional case is a Zorn
+argument and nothing less: there is no way to write down a basis of
+\(\R\) as a vector space over \(\Q\), yet one exists. Dimension in that
+generality is the cardinality of a basis, and its independence of the
+basis chosen is proved by the same exchange argument transfinitely.
+#+end_remark

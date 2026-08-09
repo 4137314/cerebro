@@ -40,24 +40,29 @@
 
 ;; -- File names ---------------------------------------------------------
 
-(ert-deftest cerebro-math-test-file-name-from-title ()
-  "A titled note gets the timestamp-slug name used everywhere else."
-  (let ((time (encode-time 0 30 9 6 8 2026)))
-    (should (equal (cerebro-math-file-name "Uniqueness of limits"
-                                           "6EDB4C0A-1111-2222-3333-444455556666" time)
-                   "20260806093000-uniqueness-of-limits.org"))))
+(ert-deftest cerebro-math-test-file-name-is-the-digest ()
+  "A note is named by its metadata, and by nothing else.
+The name is `cerebro-hash-of-text' of the note, so it is a pure function
+of the file's own front matter -- which is what makes it recomputable,
+and therefore checkable by the linter."
+  (let* ((text (cerebro-math-note-string 'theorem "Uniqueness of limits" "abc-123"))
+         (name (cerebro-math-file-name text)))
+    (should (string-match-p "\\`[0-9a-f]\\{12\\}\\.org\\'" name))
+    (should (equal name (concat (cerebro-hash-of-text text) ".org")))))
 
-(ert-deftest cerebro-math-test-file-name-falls-back-to-the-id ()
-  "An untitled note is named from its own ID, and is still unique.
+(ert-deftest cerebro-math-test-untitled-notes-are-still-distinct ()
+  "Two untitled notes made in the same second get different names.
 This is what lets you capture an idea before you know what it is called:
-the note exists, is linkable by :ID:, and can be renamed -- or never
-renamed, since nothing resolves a note by file name."
-  (let* ((time (encode-time 0 30 9 6 8 2026))
-         (name (cerebro-math-file-name "" "6EDB4C0A-1111-2222-3333-444455556666" time)))
-    (should (equal name "20260806093000-6edb4c0a.org"))
-    ;; Different notes made in the same second still differ.
-    (should-not (equal name (cerebro-math-file-name
-                             "" "99999999-1111-2222-3333-444455556666" time)))))
+the ID is part of the digest, so `untitled' is not a collision."
+  (let ((a (cerebro-math-note-string 'theorem "" "6EDB4C0A-1111-2222-3333-444455556666"))
+        (b (cerebro-math-note-string 'theorem "" "99999999-1111-2222-3333-444455556666")))
+    (should-not (equal (cerebro-math-file-name a) (cerebro-math-file-name b)))))
+
+(ert-deftest cerebro-math-test-a-new-note-records-its-own-name ()
+  "The `#+HASH:' line is written at birth, so a note is never on disk
+under a name that is not its own."
+  (let ((text (cerebro-math-note-string 'definition "Convex set" "id-1")))
+    (should (string-match-p (format "#\\+HASH: %s" (cerebro-hash-of-text text)) text))))
 
 ;; -- Result names -------------------------------------------------------
 

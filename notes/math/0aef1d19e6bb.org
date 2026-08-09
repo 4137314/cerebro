@@ -1,0 +1,123 @@
+:PROPERTIES:
+:ID:       e2341c10-784e-4f50-9fce-429f9f8e9e89
+:END:
+#+TITLE: Regular curves, arc length and curvature
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:geometry:differential_geometry:
+#+MSC: 53A04
+#+HASH: 0aef1d19e6bb
+
+A curve is given by a parametrisation, and a parametrisation is a
+choice. Differential geometry begins where one separates what belongs to
+the curve from what belongs to the choice: arc length is the
+parametrisation nothing else can prefer, and curvature is what is left
+once it is used -- a function of the point, not of the description.
+
+#+DEPENDS: def-differentiable-multivariable, def-riemann-integral
+#+NAME: def-regular-curve
+#+begin_definition
+A /parametrised curve/ is a map \(\gamma \colon I \to \R^{n}\) on an
+interval, of class \(C^{k}\) with \(k\) as large as needed; it is
+/regular/ if \(\gamma'(t) \ne 0\) for every \(t\). Its /arc length/
+between \(a\) and \(b\) in \(I\) is
+\(L(a,b) = \int_{a}^{b}\norm{\gamma'(t)}\dd t\), and \(\gamma\) has
+/unit speed/ if \(\norm{\gamma'} \equiv 1\).
+#+end_definition
+
+#+DEPENDS: def-regular-curve, thm-ftc-first, thm-continuous-inverse, thm-chain-rule, thm-substitution
+#+NAME: thm-arc-length-parametrisation
+#+begin_theorem
+Every regular curve admits a reparametrisation by arc length: there is
+a \(C^{1}\) bijection \(\varphi\) with \(C^{1}\) inverse such that
+\(\gamma \circ \varphi\) has unit speed, and the arc length between two
+points is unchanged by any such reparametrisation.
+#+end_theorem
+
+#+begin_proof
+Fix \(t_{0} \in I\) and put \(s(t) = \int_{t_{0}}^{t}\norm{\gamma'(u)}\dd u\).
+The integrand is continuous and strictly positive by regularity, so by
+the fundamental theorem of calculus \(s\) is \(C^{1}\) with
+\(s'(t) = \norm{\gamma'(t)} > 0\); hence \(s\) is strictly increasing,
+and its image is an interval on which it has a continuous, indeed
+\(C^{1}\), inverse \(\varphi\) with
+\(\varphi'(s) = 1/\norm{\gamma'(\varphi(s))}\). By the chain rule
+\((\gamma\circ\varphi)'(s) = \gamma'(\varphi(s))\varphi'(s)\), a vector
+of norm \(1\).
+
+For invariance, let \(\psi\) be any \(C^{1}\) change of parameter with
+\(\psi' > 0\). The substitution rule gives
+\(\int \norm{(\gamma\circ\psi)'(u)}\dd u = \int \norm{\gamma'(\psi(u))}\psi'(u)\dd u = \int\norm{\gamma'(t)}\dd t\)
+over the corresponding intervals.
+#+end_proof
+
+#+DEPENDS: thm-arc-length-parametrisation
+#+NAME: def-curvature
+#+begin_definition
+Let \(\gamma\) have unit speed. Its /unit tangent/ is
+\(T = \gamma'\), its /curvature/ is \(\kappa = \norm{T'}\), and where
+\(\kappa > 0\) its /principal normal/ is \(N = T'/\kappa\). In
+\(\R^{3}\) the /binormal/ is \(B = T \times N\) and the /torsion/
+\(\tau\) is defined by \(B' = -\tau N\).
+#+end_definition
+
+#+DEPENDS: def-curvature, prop-pythagoras
+#+NAME: prop-tangent-and-normal-are-orthogonal
+#+begin_proposition
+For a unit-speed curve, \(T'\) is orthogonal to \(T\); so \(N\) is a
+unit vector orthogonal to \(T\) wherever it is defined.
+#+end_proposition
+
+#+begin_proof
+Differentiating the constant function \(\inner{T}{T} = 1\) gives
+\(2\inner{T'}{T} = 0\). Where \(\kappa > 0\), \(N = T'/\kappa\) has norm
+\(1\) by construction and inherits the orthogonality.
+#+end_proof
+
+#+DEPENDS: def-curvature, prop-tangent-and-normal-are-orthogonal
+#+NAME: thm-frenet-serret
+#+begin_theorem
+Let \(\gamma\) be a unit-speed curve in \(\R^{3}\) with \(\kappa > 0\).
+Then \((T, N, B)\) is an orthonormal basis at each point and
+\[ T' = \kappa N, \qquad N' = -\kappa T + \tau B, \qquad B' = -\tau N. \]
+#+end_theorem
+
+#+begin_proof
+\(T\) and \(N\) are orthonormal by the previous proposition, and
+\(B = T\times N\) is a unit vector orthogonal to both, so the triple is
+an orthonormal basis. The first equation is the definition of \(\kappa\)
+and \(N\), and the third is the definition of \(\tau\) once it is known
+that \(B'\) is a multiple of \(N\): differentiating
+\(\inner{B}{B} = 1\) gives \(\inner{B'}{B} = 0\), and differentiating
+\(\inner{B}{T} = 0\) gives
+\(\inner{B'}{T} = -\inner{B}{T'} = -\kappa\inner{B}{N} = 0\).
+
+For the middle equation, expand \(N'\) in the basis. Its \(T\)- and
+\(B\)-components are obtained by differentiating \(\inner{N}{T} = 0\)
+and \(\inner{N}{B} = 0\):
+\(\inner{N'}{T} = -\inner{N}{T'} = -\kappa\) and
+\(\inner{N'}{B} = -\inner{N}{B'} = \tau\); the \(N\)-component vanishes
+because \(\inner{N}{N} = 1\).
+#+end_proof
+
+#+DEPENDS: thm-frenet-serret, cor-vanishing-derivative
+#+NAME: cor-zero-curvature-is-a-straight-line
+#+begin_corollary
+A unit-speed curve with \(\kappa \equiv 0\) on an interval is a segment
+of a straight line.
+#+end_corollary
+
+#+begin_proof
+\(\kappa = \norm{T'} = 0\) means \(\gamma'' \equiv 0\), so each
+coordinate of \(\gamma'\) has vanishing derivative and is therefore
+constant, say \(\gamma' \equiv v\) with \(\norm{v} = 1\). Integrating,
+\(\gamma(s) = \gamma(s_{0}) + (s - s_{0})v\).
+#+end_proof
+
+#+begin_remark
+Curvature and torsion determine the curve up to a Euclidean isometry --
+the Frenet system is a linear differential equation whose solution is
+fixed by its initial frame, and the existence and uniqueness theorem
+does the rest. That is the pattern of the whole subject: a geometric
+object is reconstructed from invariants by solving an equation the
+invariants define.
+#+end_remark

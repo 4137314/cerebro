@@ -2,9 +2,12 @@
 # Versioned post-commit hook for cerebro: the FAST local check on every
 # commit -- the ERT + shell test suite (see the `test' target). The slow
 # part of local "CI/CD", the full LaTeX profile matrix, deliberately
-# does NOT run here: it is `make export-matrix', run from pre-push, so a
-# multi-minute TeX compile never sits on the path of every commit (the
-# project's own principle -- see README.org "Principles" / "Hooks").
+# does NOT run here -- nor from pre-push, which runs `make check' (tests
+# + lint) and nothing slower. `make export-matrix' is on no hook at all:
+# it is run by hand after touching latex/, the export profiles or the
+# course generator, so a multi-minute TeX compile never sits on the path
+# of a commit or a push (the project's own principle -- see README.org
+# "Principles" / "Hooks").
 # Installed via `make install-hooks`. No server, no forge dependency.
 set -eu
 cd "$(git rev-parse --show-toplevel)"

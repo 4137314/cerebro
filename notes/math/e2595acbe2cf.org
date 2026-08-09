@@ -1,0 +1,94 @@
+:PROPERTIES:
+:ID:       87a33b59-f21b-476c-9716-29b02b4981d3
+:END:
+#+TITLE: Relations, equivalence and the quotient of a set
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:foundations:set_theory:
+#+MSC: 03E20, 08A02
+#+HASH: e2595acbe2cf
+
+Every construction in this archive that /identifies/ things -- the
+integers modulo \(n\), a quotient group, a quotient vector space, a
+quotient topology, the completion of a metric space -- is the same
+construction applied to different data: an equivalence relation, its set
+of classes, and a check that the structure survives the identification.
+Writing the set-theoretic half once means each later quotient has only
+the check left to do.
+
+#+NAME: def-relation
+#+begin_definition
+A /binary relation/ on a set \(X\) is a subset \(R \subseteq X \times X\);
+one writes \(x \sim y\) for \((x,y) \in R\). The relation is
+/reflexive/ if \(x \sim x\) for all \(x\), /symmetric/ if \(x \sim y\)
+implies \(y \sim x\), and /transitive/ if \(x \sim y\) and \(y \sim z\)
+imply \(x \sim z\).
+#+end_definition
+
+#+DEPENDS: def-relation
+#+NAME: def-equivalence-relation
+#+begin_definition
+An /equivalence relation/ on \(X\) is a relation that is reflexive,
+symmetric and transitive. For \(x \in X\) its /equivalence class/ is
+\([x] = \setst{y \in X}{y \sim x}\), the /quotient set/ is
+\(X/{\sim} = \setst{[x]}{x \in X}\), and the /canonical projection/ is
+\(\pi \colon X \to X/{\sim}\), \(\pi(x) = [x]\).
+#+end_definition
+
+#+NAME: def-set-partition
+#+begin_definition
+A /partition/ of \(X\) is a set \(\mathcal{P}\) of non-empty subsets of
+\(X\), pairwise disjoint, whose union is \(X\).
+#+end_definition
+
+#+DEPENDS: def-equivalence-relation, def-set-partition
+#+NAME: thm-equivalence-partition
+#+begin_theorem
+Let \(X\) be a set. The map sending an equivalence relation to its set
+of classes is a bijection from the equivalence relations on \(X\) to the
+partitions of \(X\); its inverse sends a partition \(\mathcal{P}\) to
+the relation "\(x\) and \(y\) lie in the same member of
+\(\mathcal{P}\)".
+#+end_theorem
+
+#+begin_proof
+Let \(\sim\) be an equivalence relation. Each class is non-empty
+(\(x \in [x]\) by reflexivity) and their union is \(X\), so it remains
+to show two classes are equal or disjoint. Suppose \(z \in [x] \cap [y]\).
+If \(w \in [x]\) then \(w \sim x\), and \(x \sim z\) and \(z \sim y\) by
+symmetry and membership, so \(w \sim y\) by transitivity: \([x] \subseteq [y]\),
+and by symmetry of the argument \([x] = [y]\). Hence the classes form a
+partition.
+
+Conversely let \(\mathcal{P}\) be a partition and let \(x \approx y\)
+mean that some \(P \in \mathcal{P}\) contains both. Every \(x\) lies in
+some member, giving reflexivity; symmetry is immediate; and if
+\(x, y \in P\) and \(y, z \in Q\) then \(P\) and \(Q\) both contain
+\(y\), so \(P = Q\) by disjointness and \(x \approx z\). The class of
+\(x\) under \(\approx\) is the unique member of \(\mathcal{P}\)
+containing \(x\), so the two constructions are mutually inverse.
+#+end_proof
+
+#+DEPENDS: def-equivalence-relation
+#+NAME: thm-universal-property-of-a-quotient-set
+#+begin_theorem
+Let \(\sim\) be an equivalence relation on \(X\) and \(f \colon X \to Y\)
+a map that is constant on classes, that is \(x \sim x'\) implies
+\(f(x) = f(x')\). Then there is exactly one map
+\(\bar{f} \colon X/{\sim} \to Y\) with \(\bar{f} \circ \pi = f\).
+#+end_theorem
+
+#+begin_proof
+Uniqueness is forced: \(\pi\) is surjective, so \(\bar{f}\) is
+determined on every class by \(\bar{f}([x]) = f(x)\). For existence,
+that formula is a well-defined map: if \([x] = [x']\) then \(x \sim x'\),
+hence \(f(x) = f(x')\), so the assigned value does not depend on the
+representative chosen. By construction \(\bar{f}(\pi(x)) = f(x)\).
+#+end_proof
+
+#+begin_remark
+"Well defined" is not a courtesy phrase: it is the hypothesis of this
+theorem, checked. Every later quotient -- of a group by a normal
+subgroup, of a ring by an ideal, of a space by a relation -- consists of
+this theorem plus the verification that the structure maps are constant
+on classes, which is why those verifications look identical each time.
+#+end_remark

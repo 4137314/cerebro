@@ -2,9 +2,10 @@
 # Scriptable entry point for the results layer in
 # .emacs.d/lisp/cerebro-results.el -- the #+NAME/#+DEPENDS
 # logical-dependency graph over theorems/definitions.
-# Usage: bin/cerebro-results [index|check|deps|dependents] [NAME]
+# Usage: bin/cerebro-results [index|check|open|deps|dependents] [NAME]
 #   index        every named result across the notes (default)
 #   check        cycles, dangling #+DEPENDS, duplicate names
+#   open         what still owes a proof (open + assumed)
 #   deps NAME    what result NAME rests on (transitively)
 #   dependents NAME   what rests on NAME (impact of changing it)
 #

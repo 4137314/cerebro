@@ -1,0 +1,104 @@
+:PROPERTIES:
+:ID:       ab5041dc-f782-4348-8303-01facc0b23d1
+:END:
+#+TITLE: Metric spaces and completeness
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:general_topology:
+#+MSC: 54E35, 54E45
+#+HASH: 43f879a5940c
+
+Every convergence argument of the first course used one thing about
+\(\R\): a distance, and the triangle inequality that lets an estimate be
+split through an intermediate point. Nothing in those arguments needed
+the order, the field structure or the dimension. Abstracting the
+distance is therefore not a generalisation for its own sake -- it is the
+statement of what was actually used, and it is what makes the same
+proofs serve sequences of functions, of matrices, and of points of
+\(\R^{n}\).
+
+#+NAME: def-metric-space
+#+begin_definition
+A /metric space/ is a set \(X\) with a function
+\(d \colon X \times X \to \R\) such that for all \(x, y, z \in X\):
+\(d(x,y) \ge 0\) with equality exactly when \(x = y\);
+\(d(x,y) = d(y,x)\); and
+\(d(x,z) \le d(x,y) + d(y,z)\).
+#+end_definition
+
+#+DEPENDS: def-metric-space, def-sequence-limit
+#+NAME: def-metric-convergence
+#+begin_definition
+A sequence \((x_{n})\) in a metric space \(X\) /converges/ to
+\(x \in X\) if \(d(x_{n}, x) \to 0\) in \(\R\); it is a /Cauchy
+sequence/ if for every \(\eps > 0\) there is \(N\) with
+\(d(x_{n}, x_{m}) < \eps\) for all \(n, m \ge N\). The space is
+/complete/ if every Cauchy sequence in it converges in it.
+#+end_definition
+
+#+DEPENDS: def-metric-convergence, thm-triangle-inequality
+#+NAME: prop-metric-limits-unique
+#+begin_proposition
+A sequence in a metric space has at most one limit, and a convergent
+sequence is Cauchy.
+#+end_proposition
+
+#+begin_proof
+If \(x_{n} \to x\) and \(x_{n} \to y\) then
+\(d(x,y) \le d(x, x_{n}) + d(x_{n}, y) \to 0\), so \(d(x,y) = 0\) and
+\(x = y\). If \(x_{n} \to x\) and \(\eps > 0\), choose \(N\) with
+\(d(x_{n}, x) < \eps/2\) for \(n \ge N\); then
+\(d(x_{n}, x_{m}) \le d(x_{n}, x) + d(x, x_{m}) < \eps\) for
+\(n, m \ge N\).
+#+end_proof
+
+#+DEPENDS: def-metric-space
+#+NAME: def-open-set
+#+begin_definition
+In a metric space \(X\), the /open ball/ of radius \(r > 0\) about
+\(x\) is \(B(x,r) = \setst{y \in X}{d(x,y) < r}\). A set
+\(U \subseteq X\) is /open/ if every point of \(U\) has an open ball
+about it contained in \(U\); a set is /closed/ if its complement is
+open.
+#+end_definition
+
+#+DEPENDS: def-open-set, def-metric-convergence
+#+NAME: prop-closed-iff-sequentially-closed
+#+begin_proposition
+A set \(C\) in a metric space is closed if and only if the limit of
+every convergent sequence of points of \(C\) lies in \(C\).
+#+end_proposition
+
+#+begin_proof
+Let \(C\) be closed, \(x_{n} \in C\) with \(x_{n} \to x\), and suppose
+\(x \notin C\). Then \(x\) lies in the open complement, so some
+\(B(x,r)\) misses \(C\) entirely -- contradicting
+\(d(x_{n}, x) \to 0\). Conversely, if \(C\) is not closed its
+complement is not open, so some \(x \notin C\) has every \(B(x, 1/n)\)
+meeting \(C\); picking \(x_{n} \in C \cap B(x, 1/n)\) gives a sequence
+in \(C\) converging to \(x \notin C\).
+#+end_proof
+
+#+DEPENDS: def-metric-convergence, thm-cauchy-criterion
+#+NAME: thm-euclidean-space-complete
+#+begin_theorem
+With \(d(x,y) = \norm{x - y}\), the space \(\R^{n}\) is complete.
+#+end_theorem
+
+#+begin_proof
+Write \(x^{(k)}\) for a Cauchy sequence in \(\R^{n}\) and
+\(x^{(k)}_{i}\) for its \(i\)-th coordinate. Since
+\(\abs{x^{(k)}_{i} - x^{(m)}_{i}} \le \norm{x^{(k)} - x^{(m)}}\), each
+coordinate sequence is Cauchy in \(\R\), hence converges to some
+\(x_{i}\) by the Cauchy criterion. Put \(x = (x_{1}, \dots, x_{n})\).
+Given \(\eps > 0\), choosing \(K\) so that each coordinate is within
+\(\eps/\sqrt{n}\) of its limit for \(k \ge K\) gives
+\(\norm{x^{(k)} - x} < \eps\).
+#+end_proof
+
+#+begin_remark
+Completeness is a property of the *metric*, not of the set: \(\Q\) and
+\(\R\) carry the same formula for \(d\) and only one of them is
+complete. That is the whole reason the Cauchy criterion was worth
+isolating in the first course -- it is the hypothesis under which "the
+terms bunch together" is allowed to mean "the terms converge".
+#+end_remark

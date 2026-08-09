@@ -1,0 +1,111 @@
+:PROPERTIES:
+:ID:       e6304fc0-553a-402f-93d0-8ab1de72983d
+:END:
+#+TITLE: The symmetric group and the sign of a permutation
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:algebra:group_theory:
+#+MSC: 20B30, 20B05
+#+HASH: fc57a9a59156
+
+Every finite group embeds in a symmetric group, so \(S_{n}\) is where
+finite group theory happens. It carries one invariant that costs nothing
+and decides a surprising amount: a homomorphism onto a group of two
+elements. Its existence is the only non-formal step -- a permutation can
+be written as a product of transpositions in many ways, and the claim is
+that the parity of their number does not depend on the way.
+
+#+DEPENDS: def-group, def-group-action
+#+NAME: def-symmetric-group
+#+begin_definition
+The /symmetric group/ \(S_{n}\) is the group of bijections of
+\(\set{1, \dots, n}\) under composition. A /transposition/ is an element
+exchanging two points and fixing the rest.
+#+end_definition
+
+#+DEPENDS: def-symmetric-group
+#+NAME: prop-transpositions-generate
+#+begin_proposition
+Every element of \(S_{n}\) is a product of transpositions (the identity
+being the empty product).
+#+end_proposition
+
+#+begin_proof
+Induct on \(m(\sigma) = \abs{\setst{i}{\sigma(i) \ne i}}\), the number
+of points moved. If \(m(\sigma) = 0\) then \(\sigma = \id\). Otherwise
+pick \(i\) with \(\sigma(i) = j \ne i\) and let \(\tau\) be the
+transposition of \(i\) and \(j\). Every point fixed by \(\sigma\) is
+fixed by \(\tau\sigma\): such a \(k\) is neither \(i\) (which \(\sigma\)
+moves) nor \(j\) (for \(\sigma(j) = j\) together with \(\sigma(i) = j\)
+would contradict injectivity), so \(\tau\) fixes \(\sigma(k) = k\). And
+\(\tau\sigma(i) = \tau(j) = i\), so \(\tau\sigma\) fixes \(i\) as well.
+Hence \(m(\tau\sigma) \le m(\sigma) - 1\), and by induction
+\(\tau\sigma\) is a product of transpositions; so
+\(\sigma = \tau(\tau\sigma)\) is one too.
+#+end_proof
+
+#+DEPENDS: def-symmetric-group, def-group-action
+#+NAME: thm-sign-is-a-homomorphism
+#+begin_theorem
+There is a unique homomorphism
+\(\sgn \colon S_{n} \to \set{1, -1}\) (the latter a group under
+multiplication) taking the value \(-1\) on every transposition, for
+\(n \ge 2\). Explicitly
+\(\sgn(\sigma) = \prod_{i < j} \frac{\sigma(j) - \sigma(i)}{j - i}\).
+#+end_theorem
+
+#+begin_proof
+Work in the polynomial ring \(\Z[x_{1}, \dots, x_{n}]\) and let
+\(\sigma\) act on it by the substitution \(x_{m} \mapsto x_{\sigma(m)}\),
+so that \(\sigma \cdot Q\) is a polynomial and
+\(\sigma \cdot (\tau \cdot Q) = (\sigma\tau) \cdot Q\). Put
+\(P = \prod_{i<j}(x_{j} - x_{i})\), so
+\(\sigma \cdot P = \prod_{i<j}(x_{\sigma(j)} - x_{\sigma(i)})\). Since
+\(\set{i,j} \mapsto \set{\sigma(i), \sigma(j)}\) is a bijection of the
+two-element subsets, the factors of \(\sigma \cdot P\) are those of
+\(P\) up to sign: \(\sigma \cdot P = \eps(\sigma) P\) with
+\(\eps(\sigma) = (-1)^{k}\), where \(k\) is the number of pairs
+\(i < j\) with \(\sigma(i) > \sigma(j)\).
+
+The assignment is a homomorphism, because the action is one:
+\(\eps(\sigma\tau) P = (\sigma\tau) \cdot P = \sigma \cdot (\eps(\tau) P) = \eps(\sigma)\eps(\tau) P\).
+
+A transposition \(\tau\) of \(a < b\) has \(\eps(\tau) = -1\): the pairs
+\(i<j\) it inverts are \(\set{a,b}\) itself and, for each \(c\) with
+\(a < c < b\), the two pairs \(\set{a,c}\) and \(\set{c,b}\) -- an odd
+number in total. Dividing the displayed product by \(P\) gives the
+stated formula. Uniqueness holds because the transpositions generate
+\(S_{n}\).
+#+end_proof
+
+#+DEPENDS: thm-sign-is-a-homomorphism, prop-transpositions-generate
+#+NAME: cor-parity-is-well-defined
+#+begin_corollary
+If \(\sigma\) is a product of \(k\) transpositions and also of \(l\)
+transpositions, then \(k \equiv l \pmod 2\).
+#+end_corollary
+
+#+begin_proof
+Applying \(\sgn\) gives \((-1)^{k} = \sgn(\sigma) = (-1)^{l}\).
+#+end_proof
+
+#+DEPENDS: thm-sign-is-a-homomorphism, prop-kernel-is-normal, thm-first-isomorphism-groups, thm-lagrange
+#+NAME: cor-alternating-group
+#+begin_corollary
+For \(n \ge 2\) the set \(A_{n} = \ker(\sgn)\) of /even/ permutations is
+a normal subgroup of \(S_{n}\) of index \(2\), so
+\(\abs{A_{n}} = n!/2\).
+#+end_corollary
+
+#+begin_proof
+A kernel is a normal subgroup. Since \(n \ge 2\) there is a
+transposition, so \(\sgn\) is surjective onto \(\set{1,-1}\), and the
+first isomorphism theorem gives \(S_{n}/A_{n} \iso \set{1,-1}\), a group
+of order \(2\). By Lagrange, \(\abs{A_{n}} = \abs{S_{n}}/2 = n!/2\).
+#+end_proof
+
+#+begin_remark
+The sign is the determinant of the corresponding permutation matrix, and
+that is not a coincidence but the same computation: both are the action
+on the top exterior power, which for a permutation of coordinates is the
+alternating polynomial \(P\) above.
+#+end_remark

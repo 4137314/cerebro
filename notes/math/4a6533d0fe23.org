@@ -1,0 +1,81 @@
+:PROPERTIES:
+:ID:       29d7ea7b-5f6b-48e4-949b-553595dfa9a3
+:END:
+#+TITLE: The Riemann integral
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A42
+#+HASH: 4a6533d0fe23
+
+The integral is defined by squeezing: approximate the area from below
+and from above, and call the function integrable when the two
+approximations meet. Nothing about the definition presumes continuity;
+that hypothesis enters only to prove that they do meet.
+
+#+NAME: def-partition
+#+begin_definition
+A /partition/ of \([a,b]\) is a finite set
+\(P = \set{x_{0}, \dots, x_{n}}\) with
+\(a = x_{0} < x_{1} < \cdots < x_{n} = b\). A partition \(P'\) /refines/
+\(P\) if \(P \subseteq P'\).
+#+end_definition
+
+#+DEPENDS: def-partition, def-supremum
+#+NAME: def-darboux-sums
+#+begin_definition
+Let \(f \colon [a,b] \to \R\) be bounded and \(P\) a partition. Writing
+\(m_{i} = \inf_{[x_{i-1}, x_{i}]} f\) and
+\(M_{i} = \sup_{[x_{i-1}, x_{i}]} f\), the /lower/ and /upper Darboux
+sums/ of \(f\) over \(P\) are
+\[ L(f, P) = \sum_{i=1}^{n} m_{i}(x_{i} - x_{i-1}), \qquad U(f, P) = \sum_{i=1}^{n} M_{i}(x_{i} - x_{i-1}). \]
+Refining a partition increases \(L\) and decreases \(U\), so every lower
+sum is at most every upper sum.
+#+end_definition
+
+#+DEPENDS: def-darboux-sums
+#+NAME: def-riemann-integral
+#+begin_definition
+The /lower/ and /upper integrals/ of a bounded
+\(f \colon [a,b] \to \R\) are \(\underline{I}(f) = \sup_{P} L(f,P)\) and
+\(\overline{I}(f) = \inf_{P} U(f,P)\); they satisfy
+\(\underline{I}(f) \le \overline{I}(f)\). The function is
+/Riemann integrable/ if they are equal, and their common value is
+\(\int_{a}^{b} f(x) \dd x\).
+#+end_definition
+
+#+DEPENDS: def-riemann-integral
+#+NAME: thm-riemann-criterion
+#+begin_theorem
+A bounded \(f \colon [a,b] \to \R\) is Riemann integrable if and only if
+for every \(\eps > 0\) there is a partition \(P\) with
+\(U(f,P) - L(f,P) < \eps\).
+#+end_theorem
+
+#+begin_proof
+Suppose the condition holds and let \(\eps > 0\), with \(P\) as given.
+Since \(L(f,P) \le \underline{I}(f) \le \overline{I}(f) \le U(f,P)\),
+the two integrals differ by less than \(\eps\); as \(\eps\) was
+arbitrary they are equal. Conversely, if \(f\) is integrable with
+integral \(I\), choose by the characterisation of the supremum and the
+infimum partitions \(P_{1}, P_{2}\) with \(L(f,P_{1}) > I - \eps/2\) and
+\(U(f,P_{2}) < I + \eps/2\). Their common refinement \(P\) satisfies
+both inequalities, hence \(U(f,P) - L(f,P) < \eps\).
+#+end_proof
+
+#+DEPENDS: thm-riemann-criterion, thm-heine-cantor
+#+NAME: thm-continuous-is-integrable
+#+begin_theorem
+Every continuous function on \([a,b]\) is Riemann integrable.
+#+end_theorem
+
+#+begin_proof
+Let \(\eps > 0\). By the Heine--Cantor theorem \(f\) is uniformly
+continuous, so there is \(\delta > 0\) with
+\(\abs{f(x) - f(y)} < \eps/(b-a)\) whenever \(\abs{x - y} < \delta\).
+Take any partition \(P\) with all subintervals shorter than \(\delta\).
+On each subinterval \(f\) attains its supremum and infimum (extreme
+value theorem), at points less than \(\delta\) apart, so
+\(M_{i} - m_{i} \le \eps/(b-a)\) and
+\[ U(f,P) - L(f,P) = \sum_{i=1}^{n} (M_{i} - m_{i})(x_{i} - x_{i-1}) \le \frac{\eps}{b-a} (b - a) = \eps. \]
+The criterion above gives integrability.
+#+end_proof

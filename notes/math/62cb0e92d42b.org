@@ -1,0 +1,40 @@
+:PROPERTIES:
+:ID:       6b357bea-f9ad-4f0d-8fd8-013365fcee38
+:END:
+#+TITLE: Convex functions and the second derivative
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A51
+#+HASH: 62cb0e92d42b
+
+Convexity is defined without any derivative at all, which is why it
+survives where differentiability does not; when the derivatives exist,
+the mean value theorem identifies it with a sign condition.
+
+#+NAME: def-convex-function
+#+begin_definition
+A function \(f \colon I \to \R\) on an interval is /convex/ if
+\[ f(\lambda x + (1 - \lambda) y) \le \lambda f(x) + (1 - \lambda) f(y) \]
+for all \(x, y \in I\) and \(\lambda \in [0,1]\).
+#+end_definition
+
+#+DEPENDS: def-convex-function, thm-mean-value
+#+NAME: prop-convexity-from-second-derivative
+#+begin_proposition
+Let \(f\) be twice differentiable on an open interval \(I\) with
+\(f'' \ge 0\). Then \(f\) is convex on \(I\).
+#+end_proposition
+
+#+begin_proof
+Since \(f'' \ge 0\), the mean value theorem applied to \(f'\) shows
+\(f'\) is increasing on \(I\). Let \(x < y\) in \(I\),
+\(\lambda \in (0,1)\), and put \(z = \lambda x + (1 - \lambda) y\), so
+\(x < z < y\). By the mean value theorem there are \(s \in (x, z)\) and
+\(t \in (z, y)\) with
+\[ f(z) - f(x) = f'(s)(z - x), \qquad f(y) - f(z) = f'(t)(y - z). \]
+As \(s < t\) we have \(f'(s) \le f'(t)\), hence
+\[ \frac{f(z) - f(x)}{z - x} \le \frac{f(y) - f(z)}{y - z}. \]
+Substituting \(z - x = (1-\lambda)(y - x)\) and
+\(y - z = \lambda (y - x)\) and clearing denominators gives
+\(f(z) \le \lambda f(x) + (1 - \lambda) f(y)\).
+#+end_proof

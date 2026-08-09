@@ -1,0 +1,103 @@
+:PROPERTIES:
+:ID:       3cb0cea8-d46a-44cf-ad4f-39b88f22d50e
+:END:
+#+TITLE: The axiom of choice and Zorn's lemma
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:foundations:set_theory:
+#+MSC: 03E25
+#+HASH: da9c8b88b9c3
+
+Three theorems in this archive are proved by producing an object no
+construction reaches: a basis of an arbitrary vector space, a maximal
+ideal of an arbitrary ring, a satisfying assignment for an infinite set
+of formulas. Each is Zorn's lemma applied to a partial order chosen so
+that "maximal" means what is wanted. Zorn's lemma is not more than the
+axiom of choice -- they are equivalent -- but it is the form in which
+choice is usable without transfinite recursion.
+
+#+STATUS: assumed
+#+NAME: ax-choice
+#+begin_axiom
+For every family \((X_{i})_{i \in I}\) of non-empty sets there is a
+function \(c\) on \(I\) with \(c(i) \in X_{i}\) for every \(i\).
+#+end_axiom
+
+#+begin_remark
+Stated for a family of sets rather than for one set of sets because
+that is the form every use below takes. It is an /axiom/ and marked so:
+it is independent of the other axioms of set theory, and a proof that
+uses it is a proof of a weaker kind than one that does not, which is
+worth being able to see.
+#+end_remark
+
+#+DEPENDS: def-partial-order, def-poset-bounds
+#+NAME: def-inductive-poset
+#+begin_definition
+A partially ordered set is /inductive/ if it is non-empty and every
+chain in it has an upper bound.
+#+end_definition
+
+#+DEPENDS: def-inductive-poset, ax-choice, def-well-order
+#+NAME: lem-tower-comparison
+#+begin_lemma
+Let \(P\) be a partially ordered set, \(a_{0} \in P\), and let \(f\)
+assign to every chain \(C \subseteq P\) an element \(f(C) \in P\) that
+is a strict upper bound of \(C\). Call \(A \subseteq P\) a /tower/ if
+\(A\) is a chain, is well ordered by \(\le\), and every \(x \in A\)
+satisfies \(x = f(\setst{y \in A}{y < x})\). Then of any two towers,
+one is an initial segment of the other.
+#+end_lemma
+
+#+begin_proof
+Let \(A, B\) be towers and let \(D\) be the union of those initial
+segments of \(A\) that are also initial segments of \(B\). Then \(D\)
+is an initial segment of both (a union of initial segments is one), and
+it is a tower, being an initial segment of a tower.
+
+Suppose \(D \ne A\) and \(D \ne B\). Since \(A\) is well ordered and
+\(A \setminus D\) is non-empty it has a least element \(x\), and
+\(D = \setst{y \in A}{y < x}\), so \(x = f(D)\); likewise the least
+element \(x'\) of \(B \setminus D\) satisfies \(x' = f(D)\). Hence
+\(x = x'\) and \(D \cup \set{x}\) is an initial segment of both \(A\)
+and \(B\), strictly larger than \(D\) -- contradicting the definition of
+\(D\). So \(D = A\) or \(D = B\), which is the claim.
+#+end_proof
+
+#+DEPENDS: lem-tower-comparison, def-inductive-poset
+#+NAME: thm-zorn
+#+begin_theorem
+Every inductive partially ordered set has a maximal element.
+#+end_theorem
+
+#+begin_proof
+Let \(P\) be inductive and suppose it has no maximal element. For every
+chain \(C \subseteq P\) choose, by the axiom of choice, an element
+\(f(C)\) as follows: \(C\) has an upper bound \(b\), and \(b\) is not
+maximal, so the set of strict upper bounds of \(C\) is non-empty; let
+\(f(C)\) be a chosen member of it. (For \(C\) empty this uses that
+\(P\) is non-empty.)
+
+Let \(U\) be the union of all towers, in the sense of the lemma. By the
+lemma the towers are totally ordered by "is an initial segment of", so
+\(U\) is a chain, is well ordered -- a non-empty subset \(S\) of \(U\)
+meets some tower \(A\), and the least element of \(S \cap A\) is least
+in \(S\), because everything in \(U\) below a point of \(A\) already
+lies in \(A\) -- and each \(x \in U\) lies in a tower \(A\) with
+\(\setst{y \in U}{y < x} = \setst{y \in A}{y < x}\), whence
+\(x = f(\setst{y \in U}{y < x})\). So \(U\) is a tower.
+
+But then \(U \cup \set{f(U)}\) is a tower as well: \(f(U)\) is a strict
+upper bound of \(U\), so the set is a well-ordered chain, and its
+largest element satisfies the required equation by construction. This
+tower is not contained in \(U\), contradicting the definition of \(U\).
+Hence \(P\) has a maximal element.
+#+end_proof
+
+#+begin_remark
+The converse implication also holds -- Zorn's lemma applied to the
+partial functions choosing from a family, ordered by extension, yields a
+choice function -- so the two are equivalent, and so is the well-ordering
+theorem. Which of the three is called the axiom is a matter of
+presentation; that all later uses in this archive go through the maximal
+element is not.
+#+end_remark

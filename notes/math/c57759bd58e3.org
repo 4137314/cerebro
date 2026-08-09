@@ -1,0 +1,176 @@
+:PROPERTIES:
+:ID:       e1b6a239-2261-4132-9261-3152bd0c001f
+:END:
+#+TITLE: Path homotopy and the fundamental group
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:topology:algebraic_topology:
+#+MSC: 55Q05, 55P10
+#+HASH: c57759bd58e3
+
+Connectedness distinguishes spaces by whether they can be cut; it cannot
+distinguish a disc from an annulus. The first invariant that can is
+built by asking which loops can be contracted, and the answer is not a
+set but a group -- concatenation of loops is associative and invertible
+only after loops that deform into one another are identified, which is
+precisely what makes the construction work.
+
+#+DEPENDS: def-path-connected, def-continuous-map, def-product-topology
+#+NAME: def-path-homotopy
+#+begin_definition
+Let \(\alpha, \beta \colon [0,1] \to X\) be paths with the same
+endpoints, \(\alpha(0)=\beta(0)=x\) and \(\alpha(1)=\beta(1)=y\). A
+/path homotopy/ from \(\alpha\) to \(\beta\) is a continuous
+\(H \colon [0,1]\times[0,1] \to X\) with \(H(s,0) = \alpha(s)\),
+\(H(s,1) = \beta(s)\), \(H(0,t) = x\) and \(H(1,t) = y\) for all
+\(s,t\). One writes \(\alpha \simeq \beta\).
+#+end_definition
+
+#+DEPENDS: def-path-homotopy, prop-pasting-lemma, thm-equivalence-partition
+#+NAME: prop-path-homotopy-is-an-equivalence-relation
+#+begin_proposition
+Path homotopy is an equivalence relation on the set of paths from \(x\)
+to \(y\). The class of \(\alpha\) is written \([\alpha]\).
+#+end_proposition
+
+#+begin_proof
+Reflexivity: \(H(s,t) = \alpha(s)\). Symmetry: replace \(H(s,t)\) by
+\(H(s,1-t)\). Transitivity: given \(H\) from \(\alpha\) to \(\beta\) and
+\(K\) from \(\beta\) to \(\gamma\), set \(L(s,t) = H(s,2t)\) for
+\(t \le 1/2\) and \(L(s,t) = K(s,2t-1)\) for \(t \ge 1/2\); the two
+definitions agree on the closed set \(t = 1/2\), both giving
+\(\beta(s)\), so \(L\) is continuous by the pasting lemma and is a path
+homotopy from \(\alpha\) to \(\gamma\).
+#+end_proof
+
+#+DEPENDS: def-path-homotopy, prop-pasting-lemma
+#+NAME: def-concatenation
+#+begin_definition
+For paths \(\alpha\) from \(x\) to \(y\) and \(\beta\) from \(y\) to
+\(z\), the /concatenation/ \(\alpha \cdot \beta\) is the path
+\((\alpha\cdot\beta)(s) = \alpha(2s)\) for \(s \le 1/2\) and
+\(\beta(2s-1)\) for \(s \ge 1/2\); the /reverse/ is
+\(\overline{\alpha}(s) = \alpha(1-s)\), and \(c_{x}\) denotes the
+constant path at \(x\).
+#+end_definition
+
+#+DEPENDS: def-concatenation, def-path-homotopy, prop-pasting-lemma
+#+NAME: lem-reparametrisation
+#+begin_lemma
+Let \(\alpha\) be a path and \(\varphi \colon [0,1]\to[0,1]\) continuous
+with \(\varphi(0) = 0\) and \(\varphi(1) = 1\). Then
+\(\alpha \circ \varphi \simeq \alpha\). Moreover, if
+\(\alpha\simeq\alpha'\) and \(\beta\simeq\beta'\) with matching
+endpoints, then \(\alpha\cdot\beta \simeq \alpha'\cdot\beta'\).
+#+end_lemma
+
+#+begin_proof
+For the first claim put \(H(s,t) = \alpha\bigl((1-t)\varphi(s) + t s\bigr)\).
+It is continuous as a composition, equals \(\alpha\circ\varphi\) at
+\(t=0\) and \(\alpha\) at \(t=1\), and at \(s = 0, 1\) the argument is
+constantly \(0\), respectively \(1\), because \(\varphi\) fixes both.
+
+For the second, let \(F\) and \(G\) be path homotopies and set
+\(H(s,t) = F(2s,t)\) for \(s \le 1/2\), \(H(s,t) = G(2s-1,t)\) for
+\(s \ge 1/2\). At \(s = 1/2\) both give the common endpoint, so \(H\) is
+continuous by the pasting lemma; it restricts to
+\(\alpha\cdot\beta\) and \(\alpha'\cdot\beta'\) at \(t = 0, 1\) and is
+constant at \(s = 0,1\).
+#+end_proof
+
+#+DEPENDS: lem-reparametrisation, prop-path-homotopy-is-an-equivalence-relation, def-group
+#+NAME: thm-fundamental-group
+#+begin_theorem
+Let \(x_{0} \in X\). The set \(\pi_{1}(X, x_{0})\) of path-homotopy
+classes of loops at \(x_{0}\) is a group under
+\([\alpha][\beta] = [\alpha\cdot\beta]\), with identity \([c_{x_{0}}]\)
+and \([\alpha]^{-1} = [\overline{\alpha}]\).
+#+end_theorem
+
+#+begin_proof
+The product is well defined by the second part of the lemma.
+
+*Associativity.* A direct check gives
+\((\alpha\cdot\beta)\cdot\gamma = \bigl(\alpha\cdot(\beta\cdot\gamma)\bigr)\circ\varphi\)
+for the piecewise-linear \(\varphi\) taking \(0, 1/4, 1/2, 1\) to
+\(0, 1/2, 3/4, 1\); since \(\varphi\) is continuous and fixes the
+endpoints, the reparametrisation lemma makes the two sides homotopic.
+
+*Identity.* \(c_{x_{0}}\cdot\alpha = \alpha\circ\varphi\) with
+\(\varphi(s) = 0\) for \(s \le 1/2\) and \(2s-1\) for \(s \ge 1/2\),
+again continuous and fixing the endpoints; so
+\(c_{x_{0}}\cdot\alpha\simeq\alpha\), and symmetrically
+\(\alpha\cdot c_{x_{0}}\simeq\alpha\).
+
+*Inverses.* Define \(H(s,t) = \alpha(2s(1-t))\) for \(s \le 1/2\) and
+\(H(s,t) = \alpha(2(1-s)(1-t))\) for \(s \ge 1/2\). Both formulas give
+\(\alpha(1-t)\) at \(s = 1/2\), so \(H\) is continuous; at \(t = 0\) it
+is \(\alpha\cdot\overline{\alpha}\), at \(t = 1\) it is constantly
+\(\alpha(0) = x_{0}\), and at \(s = 0, 1\) it is \(x_{0}\). Hence
+\([\alpha][\overline{\alpha}] = [c_{x_{0}}]\), and the same argument
+applied to \(\overline{\alpha}\) gives the other side.
+#+end_proof
+
+#+DEPENDS: thm-fundamental-group, lem-reparametrisation
+#+NAME: prop-change-of-basepoint
+#+begin_proposition
+If \(\gamma\) is a path from \(x_{0}\) to \(x_{1}\), then
+\([\alpha] \mapsto [\overline{\gamma}\cdot\alpha\cdot\gamma]\) is an
+isomorphism \(\pi_{1}(X,x_{0}) \to \pi_{1}(X,x_{1})\). So in a
+path-connected space the fundamental group does not depend on the
+basepoint, up to isomorphism.
+#+end_proposition
+
+#+begin_proof
+The map is well defined by the lemma and is a homomorphism, since
+\(\overline{\gamma}\cdot\alpha\cdot\gamma\cdot\overline{\gamma}\cdot\beta\cdot\gamma
+\simeq \overline{\gamma}\cdot\alpha\cdot\beta\cdot\gamma\) using
+\(\gamma\cdot\overline{\gamma}\simeq c\) and the group laws just
+proved. The map induced by \(\overline{\gamma}\) is a two-sided inverse
+for the same reason.
+#+end_proof
+
+#+DEPENDS: thm-fundamental-group, prop-composition-of-continuous-maps
+#+NAME: prop-functoriality-of-the-fundamental-group
+#+begin_proposition
+A continuous \(f \colon X \to Y\) with \(f(x_{0}) = y_{0}\) induces a
+homomorphism
+\(f_{*} \colon \pi_{1}(X,x_{0}) \to \pi_{1}(Y,y_{0})\),
+\(f_{*}[\alpha] = [f\circ\alpha]\); moreover
+\((g\circ f)_{*} = g_{*}\circ f_{*}\) and \((\id_{X})_{*} = \id\).
+#+end_proposition
+
+#+begin_proof
+If \(H\) is a path homotopy from \(\alpha\) to \(\beta\), then
+\(f \circ H\) is one from \(f\circ\alpha\) to \(f\circ\beta\), so
+\(f_{*}\) is well defined; and
+\(f\circ(\alpha\cdot\beta) = (f\circ\alpha)\cdot(f\circ\beta)\)
+directly from the definition of concatenation, so \(f_{*}\) is a
+homomorphism. The two functoriality identities hold before passing to
+classes.
+#+end_proof
+
+#+DEPENDS: prop-functoriality-of-the-fundamental-group, def-homeomorphism
+#+NAME: cor-fundamental-group-is-a-topological-invariant
+#+begin_corollary
+A homeomorphism \(f \colon X \to Y\) induces an isomorphism
+\(\pi_{1}(X,x_{0}) \iso \pi_{1}(Y, f(x_{0}))\). Two path-connected
+spaces with non-isomorphic fundamental groups are not homeomorphic.
+#+end_corollary
+
+#+begin_proof
+Functoriality applied to \(f^{-1}\circ f = \id_{X}\) and
+\(f\circ f^{-1} = \id_{Y}\) gives
+\((f^{-1})_{*}\circ f_{*} = \id\) and \(f_{*}\circ (f^{-1})_{*} = \id\),
+so \(f_{*}\) is an isomorphism of groups. The second statement is its
+contrapositive, the basepoint being immaterial by the change-of-basepoint
+proposition.
+#+end_proof
+
+#+begin_remark
+The group is defined for every space and computed for almost none of
+them by this construction alone: even \(\pi_{1}\) of the circle requires
+a covering-space argument. What the corollary gives immediately is the
+form of every later application -- an invariant that is a group, so that
+two spaces can be told apart by an algebraic computation rather than a
+geometric one.
+#+end_remark

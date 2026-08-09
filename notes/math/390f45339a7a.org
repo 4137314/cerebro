@@ -1,0 +1,111 @@
+:PROPERTIES:
+:ID:       c46a4920-d788-459b-a3ff-c8d736c6a605
+:END:
+#+TITLE: Linearity, additivity and monotonicity of the integral
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A42
+#+HASH: 390f45339a7a
+
+These are the properties the integral is used through, and none of them
+is visible in the definition: the definition is about suprema of lower
+sums, and a supremum of a sum is not the sum of the suprema. Each one
+therefore has to be proved, and the Riemann criterion is what makes
+each proof short -- work with the gap \(U - L\), never with the
+integral itself.
+
+#+DEPENDS: def-riemann-integral, thm-riemann-criterion, def-darboux-sums
+#+NAME: thm-integral-linearity
+#+begin_theorem
+Let \(f, g \colon [a,b] \to \R\) be Riemann integrable and
+\(\lambda \in \R\). Then \(f + g\) and \(\lambda f\) are integrable, and
+\[ \int_{a}^{b} (f + g) = \int_{a}^{b} f + \int_{a}^{b} g, \qquad \int_{a}^{b} \lambda f = \lambda \int_{a}^{b} f. \]
+#+end_theorem
+
+#+begin_proof
+On any subinterval, \(\sup (f + g) \le \sup f + \sup g\) and
+\(\inf (f+g) \ge \inf f + \inf g\), so for every partition \(P\)
+\[ L(f,P) + L(g,P) \le L(f+g,P) \le U(f+g,P) \le U(f,P) + U(g,P). \]
+Given \(\eps > 0\), take partitions with
+\(U(f,P_{1}) - L(f,P_{1}) < \eps/2\) and
+\(U(g,P_{2}) - L(g,P_{2}) < \eps/2\), and let \(P\) refine
+both; the displayed inequalities give
+\(U(f+g,P) - L(f+g,P) < \eps\), so \(f + g\) is integrable by the
+criterion. Both integrals are then squeezed between the same two
+quantities, which differ by less than \(\eps\) for every \(\eps\),
+hence they are equal.
+
+For \(\lambda \ge 0\), \(L(\lambda f, P) = \lambda L(f,P)\) and
+\(U(\lambda f, P) = \lambda U(f,P)\), and the claim is immediate. For
+\(\lambda = -1\) the suprema and infima exchange roles:
+\(L(-f,P) = -U(f,P)\) and \(U(-f,P) = -L(f,P)\), so the gap is
+unchanged and the upper and lower integrals swap sign. The general
+\(\lambda\) is a composition of the two cases.
+#+end_proof
+
+#+DEPENDS: thm-riemann-criterion, def-riemann-integral
+#+NAME: thm-integral-additivity
+#+begin_theorem
+Let \(a < c < b\). Then \(f\) is integrable on \([a,b]\) if and only if
+it is integrable on \([a,c]\) and on \([c,b]\), and then
+\[ \int_{a}^{b} f = \int_{a}^{c} f + \int_{c}^{b} f. \]
+#+end_theorem
+
+#+begin_proof
+A partition of \([a,b]\) containing \(c\) splits into partitions
+\(P_{1}, P_{2}\) of the two halves, with
+\(U(f,P) = U(f,P_{1}) + U(f,P_{2})\) and likewise for \(L\); adding
+\(c\) to a partition only refines it, so nothing is lost by assuming
+\(c \in P\).
+
+If \(f\) is integrable on both halves, choose \(P_{1}, P_{2}\) with gap
+less than \(\eps/2\) each; their union has gap less than \(\eps\).
+Conversely, if \(f\) is integrable on \([a,b]\), take \(P\) with gap
+less than \(\eps\) and refine it by \(c\); since both
+\(U(f,P_{i}) - L(f,P_{i})\) are non-negative and they sum to less than
+\(\eps\), each is less than \(\eps\). The identity of the three
+integrals is the identity \(U(f,P) = U(f,P_{1}) + U(f,P_{2})\) passed
+to the infimum over such partitions.
+#+end_proof
+
+#+DEPENDS: def-riemann-integral, def-darboux-sums
+#+NAME: prop-integral-monotonicity
+#+begin_proposition
+If \(f \le g\) are integrable on \([a,b]\), then
+\(\int_{a}^{b} f \le \int_{a}^{b} g\). In particular, if
+\(m \le f \le M\) then
+\(m(b-a) \le \int_{a}^{b} f \le M(b-a)\).
+#+end_proposition
+
+#+begin_proof
+On every subinterval \(\sup f \le \sup g\), so
+\(U(f,P) \le U(g,P)\) for every partition \(P\), and taking the infimum
+over \(P\) gives the inequality between the upper integrals, which are
+the integrals. The second claim is the first applied to the constant
+functions \(m\) and \(M\), whose integrals are \(m(b-a)\) and
+\(M(b-a)\) directly from the definition.
+#+end_proof
+
+#+DEPENDS: prop-integral-monotonicity, thm-integral-linearity, cor-reverse-triangle-inequality
+#+NAME: cor-integral-triangle-inequality
+#+begin_corollary
+If \(f\) is integrable on \([a,b]\), then so is \(\abs{f}\), and
+\[ \Bigl| \int_{a}^{b} f \Bigr| \le \int_{a}^{b} \abs{f}. \]
+#+end_corollary
+
+#+begin_proof
+On any subinterval the oscillation of \(\abs{f}\) is at most that of
+\(f\), by the reverse triangle inequality, so
+\(U(\abs{f},P) - L(\abs{f},P) \le U(f,P) - L(f,P)\) and the Riemann
+criterion transfers. Since \(-\abs{f} \le f \le \abs{f}\), monotonicity
+and linearity give
+\(-\int \abs{f} \le \int f \le \int \abs{f}\), which is the claim.
+#+end_proof
+
+#+begin_remark
+Additivity is what the first fundamental theorem uses when it writes
+\(F(c+h) - F(c)\) as an integral over \([c, c+h]\), and the estimate it
+follows with is monotonicity. Neither was available before this note,
+which is a fair statement of how much of the theory of the integral is
+spent making the notation behave.
+#+end_remark

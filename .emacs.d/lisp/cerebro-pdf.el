@@ -38,9 +38,12 @@
   "Reading the compiled PDF inside Emacs."
   :group 'cerebro)
 
-(defcustom cerebro-pdf-default-profile "full"
+(defcustom cerebro-pdf-default-profile "lecture"
   "Export profile `C-c e e' offers first.
-`full' is the whole note as an article: what you want while writing it."
+`lecture' is the note as an article -- statements and their proofs, with
+the asides dropped -- which is how you read one while writing it. `C-u
+C-c e e' picks another: `handbook' is the same note with everything in
+it, and `single' (`C-c e r') is one result on its own page."
   :type 'string
   :group 'cerebro-pdf)
 
@@ -147,11 +150,14 @@ when checking the actual page, and why this is one keystroke away
 ;; -- Which file -----------------------------------------------------
 
 (defun cerebro-pdf-file-for (note)
-  "The PDF the exporter produces for NOTE: same name, same directory.
-Org writes the output next to the source; nothing here chooses a
-different place, so `make export', `cerebro export' and this module all
-mean the same file."
-  (concat (file-name-sans-extension (expand-file-name note)) ".pdf"))
+  "The PDF the exporter produces for NOTE.
+
+Not next to the note: builds go to `.build/' beside the source
+(`cerebro-latex-output-file'), so a directory of mathematics contains
+mathematics and nothing else. One function decides that for the whole
+config -- this module, `make export' and bin/cerebro-course-export all
+ask it."
+  (cerebro-latex-output-file note))
 
 (defun cerebro-pdf-stale-p (note pdf)
   "Non-nil when PDF is missing or older than NOTE.
@@ -232,6 +238,26 @@ than one that first materialises several gigabytes."
           (if target (concat " --target=" (shell-quote-argument target)) "")
           (shell-quote-argument note)))
 
+(defun cerebro-pdf-log-file (note)
+  "The LaTeX log of NOTE's last build."
+  (cerebro-latex-output-file note "log"))
+
+(defun cerebro-pdf-first-error (log-file)
+  "The first real LaTeX error in LOG-FILE, as one line, or nil.
+TeX logs are thousands of lines and the message that matters starts with
+`!'. Finding it is what turns \"the export failed\" into something you
+can act on without opening a log."
+  (when (file-readable-p log-file)
+    (with-temp-buffer
+      (insert-file-contents log-file)
+      (goto-char (point-min))
+      (when (re-search-forward "^! \\(.*\\)$" nil t)
+        (let ((message (match-string 1))
+              (line (when (re-search-forward "^l\\.\\([0-9]+\\)" nil t)
+                      (match-string 1))))
+          (if line (format "%s (line %s of the generated .tex)" message line)
+            message))))))
+
 (defun cerebro-pdf--compile (note profile &optional target)
   "Compile NOTE asynchronously, then show the PDF when it succeeds."
   (let* ((default-directory cerebro-root)
@@ -245,10 +271,13 @@ than one that first materialises several gigabytes."
                       (progn (cerebro-pdf-view note)
                              (message "cerebro: %s (%s)"
                                       (file-name-nondirectory pdf) profile))
-                    ;; Leave the compilation buffer on screen: with
-                    ;; `-halt-on-error' the first `^!' line in it is the
-                    ;; actual LaTeX error.
-                    (message "cerebro: export failed -- read *cerebro-export*")))
+                    ;; Leave the compilation buffer on screen, but say
+                    ;; what went wrong in the echo area: with
+                    ;; `-halt-on-error' there is exactly one error, and
+                    ;; reading it should not require scrolling a log.
+                    (let ((first (cerebro-pdf-first-error (cerebro-pdf-log-file note))))
+                      (message "cerebro: export failed -- %s"
+                               (or first "see *cerebro-export*")))))
                 nil t))
     buffer))
 
@@ -268,9 +297,61 @@ With a prefix argument, ask for the profile; otherwise use
 `cerebro-pdf-default-profile' -- while writing, the profile you want is
 almost always the same one."
   (interactive (list (when current-prefix-arg (cerebro-pdf--read-profile))))
-  (let ((note (cerebro-pdf--note)))
+  (let* ((note (cerebro-pdf--note))
+         (pdf (cerebro-pdf-file-for note)))
     (when (buffer-modified-p) (save-buffer))
-    (cerebro-pdf--compile note (or profile cerebro-pdf-default-profile))))
+    ;; A LaTeX run is ten seconds. Doing it again for a note that has not
+    ;; changed since the PDF was written is ten seconds of nothing, and
+    ;; the habit it teaches is to stop pressing the key.
+    (if (and (not current-prefix-arg)
+             (not (cerebro-pdf-stale-p note pdf)))
+        (progn (cerebro-pdf-show-file pdf)
+               (message "cerebro: %s is already current (C-u C-c e e to rebuild)"
+                        (file-name-nondirectory pdf)))
+      (cerebro-pdf--compile note (or profile cerebro-pdf-default-profile)))))
+
+;; -- Rebuild as you write -----------------------------------------------
+
+(defcustom cerebro-pdf-watch-idle 2.0
+  "Seconds of quiet after a save before a watched note is recompiled."
+  :type 'number
+  :group 'cerebro-pdf)
+
+(defvar-local cerebro-pdf--watch-timer nil)
+
+;;;###autoload
+(define-minor-mode cerebro-pdf-watch-mode
+  "Recompile this note, and refresh the PDF window, on every save (`C-c e w').
+
+The loop this closes: write, save, look right. The compile is the same
+asynchronous one as `C-c e e' and the window already auto-reverts, so
+turning this on makes the PDF a live view of the note -- at the cost of
+a LaTeX run per save, which is why it is a mode and not the default."
+  :lighter " pdf-watch"
+  :group 'cerebro-pdf
+  (if cerebro-pdf-watch-mode
+      (add-hook 'after-save-hook #'cerebro-pdf--watch-rebuild nil t)
+    (remove-hook 'after-save-hook #'cerebro-pdf--watch-rebuild t)
+    (when cerebro-pdf--watch-timer
+      (cancel-timer cerebro-pdf--watch-timer)
+      (setq cerebro-pdf--watch-timer nil))))
+
+(defun cerebro-pdf--watch-rebuild ()
+  "Queue a rebuild of this note after `cerebro-pdf-watch-idle' seconds.
+Debounced: saving three times while thinking should compile once, not
+three times, and the third compile is the only one whose output anyone
+will look at."
+  (let ((buffer (current-buffer)))
+    (when cerebro-pdf--watch-timer (cancel-timer cerebro-pdf--watch-timer))
+    (setq cerebro-pdf--watch-timer
+          (run-with-idle-timer
+           cerebro-pdf-watch-idle nil
+           (lambda ()
+             (when (buffer-live-p buffer)
+               (with-current-buffer buffer
+                 (setq cerebro-pdf--watch-timer nil)
+                 (cerebro-pdf--compile (buffer-file-name)
+                                       cerebro-pdf-default-profile))))))))
 
 ;;;###autoload
 (defun cerebro-pdf-export-result ()

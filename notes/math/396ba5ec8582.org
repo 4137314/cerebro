@@ -1,0 +1,98 @@
+:PROPERTIES:
+:ID:       ee85e495-a9cc-40e1-a273-076fbde3d8c0
+:END:
+#+TITLE: Normed spaces and the equivalence of norms in finite dimension
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:analysis:functional_analysis:
+#+MSC: 46B20, 15A60
+#+HASH: 396ba5ec8582
+
+A norm is a metric compatible with the linear structure, and there are
+many of them on the same space. In finite dimension the choice turns out
+not to matter for anything topological -- all norms are equivalent, so
+convergence, continuity and compactness are properties of the vector
+space alone. In infinite dimension the statement is false, and its
+failure is the beginning of functional analysis.
+
+#+DEPENDS: def-vector-space, def-metric-space
+#+NAME: def-norm
+#+begin_definition
+A /norm/ on a real or complex vector space \(V\) is a map
+\(\norm{\cdot} \colon V \to \R\) with \(\norm{v} \ge 0\) and
+\(\norm{v} = 0\) only for \(v = 0\), \(\norm{\lambda v} = \abs{\lambda}\norm{v}\),
+and \(\norm{u+v} \le \norm{u}+\norm{v}\). Two norms are /equivalent/ if
+there are constants \(0 < m \le M\) with
+\(m\norm{v}_{1} \le \norm{v}_{2} \le M \norm{v}_{1}\) for all \(v\).
+#+end_definition
+
+#+DEPENDS: def-norm, def-metric-space, def-metric-convergence
+#+NAME: prop-a-norm-induces-a-metric
+#+begin_proposition
+\(d(u,v) = \norm{u-v}\) is a metric on \(V\), invariant under
+translation and homogeneous of degree one. Equivalent norms induce the
+same open sets, hence the same convergent sequences and the same
+continuous maps. A /Banach space/ is a normed space complete for this
+metric.
+#+end_proposition
+
+#+begin_proof
+Positivity and symmetry are immediate, the latter from
+\(\norm{-w} = \norm{w}\), and the triangle inequality for \(d\) is that
+of the norm applied to \((u-w)+(w-v)\). If
+\(m\norm{\cdot}_{1}\le\norm{\cdot}_{2}\le M\norm{\cdot}_{1}\), then
+every ball for one norm contains a ball of proportional radius for the
+other, so the two collections of open sets coincide, and with them
+everything defined from them.
+#+end_proof
+
+#+DEPENDS: def-norm, cor-heine-borel-in-euclidean-space, cor-extreme-value-on-a-compact-space, prop-basis-gives-unique-coordinates
+#+NAME: thm-equivalence-of-norms-in-finite-dimension
+#+begin_theorem
+On a finite-dimensional real vector space any two norms are equivalent.
+#+end_theorem
+
+#+begin_proof
+Fix a basis \(e_{1},\dots,e_{n}\) and let
+\(\norm{x}_{1} = \sum_{i}\abs{x_{i}}\) in the corresponding coordinates,
+a norm. It suffices to compare an arbitrary norm \(N\) with this one.
+
+First, \(N(x) \le \sum_{i}\abs{x_{i}}N(e_{i}) \le C\norm{x}_{1}\) with
+\(C = \max_{i}N(e_{i})\), by the triangle inequality and homogeneity.
+Hence \(N\) is continuous for \(\norm{\cdot}_{1}\), since
+\(\abs{N(x)-N(y)} \le N(x-y) \le C\norm{x-y}_{1}\).
+
+The set \(S = \setst{x}{\norm{x}_{1} = 1}\) is closed and bounded in the
+coordinates, hence compact by Heine-Borel, and non-empty for
+\(n \ge 1\). So the continuous function \(N\) attains a minimum \(m\) on
+\(S\), at some \(x_{0}\) with \(\norm{x_{0}}_{1} = 1\), so
+\(x_{0} \ne 0\) and \(m = N(x_{0}) > 0\). For arbitrary \(x \ne 0\),
+applying this to \(x/\norm{x}_{1}\) and using homogeneity gives
+\(m\norm{x}_{1} \le N(x) \le C\norm{x}_{1}\).
+#+end_proof
+
+#+DEPENDS: thm-equivalence-of-norms-in-finite-dimension, thm-euclidean-space-complete, prop-a-norm-induces-a-metric
+#+NAME: cor-finite-dimensional-normed-spaces-are-complete
+#+begin_corollary
+Every finite-dimensional normed space is a Banach space, and every
+finite-dimensional subspace of a normed space is closed.
+#+end_corollary
+
+#+begin_proof
+Let \(\dim V = n\) and identify \(V\) with \(\R^{n}\) through a basis.
+By the theorem the given norm is equivalent to the Euclidean one, so the
+two metrics have the same Cauchy sequences and the same limits;
+\(\R^{n}\) is complete, hence so is \(V\). If \(W \subseteq Z\) is a
+finite-dimensional subspace of a normed space, then \(W\) is complete
+for the restricted norm, and a complete subspace is closed, since the
+limit in \(Z\) of a convergent sequence of points of \(W\) is also its
+limit in \(W\).
+#+end_proof
+
+#+begin_remark
+Every hypothesis is used exactly once, and dimension is used twice: to
+get a basis, and to get compactness of the unit sphere. Both fail in
+infinite dimension -- the sphere of an infinite-dimensional normed space
+is never compact -- and so does the conclusion: on the space of
+polynomials, the supremum norm on \([0,1]\) and the sum of the absolute
+values of the coefficients are not equivalent.
+#+end_remark

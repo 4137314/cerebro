@@ -1,0 +1,80 @@
+:PROPERTIES:
+:ID:       ffb603ac-6356-4b5a-8177-e24740c166b3
+:END:
+#+TITLE: Power series and the radius of convergence
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 30B10, 40A30
+#+HASH: c564164e6206
+
+A power series converges on an interval and diverges outside it, and the
+radius that separates the two is not an extra hypothesis: it is
+determined by the coefficients, through the same \(\limsup\) the root
+test already used. Everything else -- that the sum is continuous, that
+it may be integrated and differentiated term by term -- follows because
+the convergence is uniform on every closed subinterval.
+
+#+DEPENDS: def-series-convergence, def-limsup-liminf, thm-root-test
+#+NAME: def-radius-of-convergence
+#+begin_definition
+For a power series \(\sum_{n \ge 0} a_{n} (x - c)^{n}\), the /radius of
+convergence/ is
+\[ R = \frac{1}{\limsup_{n \to \infty} \abs{a_{n}}^{1/n}}, \]
+read as \(R = \infty\) when the \(\limsup\) is \(0\) and \(R = 0\) when
+it is \(\infty\).
+#+end_definition
+
+#+DEPENDS: def-radius-of-convergence, thm-root-test, thm-geometric-series
+#+NAME: thm-power-series-converges-inside
+#+begin_theorem
+The series converges absolutely for \(\abs{x - c} < R\) and diverges
+for \(\abs{x - c} > R\).
+#+end_theorem
+
+#+begin_proof
+Apply the root test to \(u_{n} = a_{n}(x-c)^{n}\):
+\(\limsup \abs{u_{n}}^{1/n} = \abs{x - c} \limsup \abs{a_{n}}^{1/n} = \abs{x-c}/R\).
+This is \(< 1\) exactly when \(\abs{x - c} < R\), giving absolute
+convergence, and \(> 1\) exactly when \(\abs{x - c} > R\), in which case
+\(\abs{u_{n}} \ge 1\) infinitely often and the terms do not tend to
+\(0\).
+#+end_proof
+
+#+begin_remark
+Nothing is claimed at \(\abs{x - c} = R\), and nothing can be: the
+radius is defined by a \(\limsup\) of \(n\)-th roots, which is blind to
+the boundary. The three series \(\sum x^{n}\), \(\sum x^{n}/n\) and
+\(\sum x^{n}/n^{2}\) all have \(R = 1\) and differ there, so the
+boundary is a separate question for each series and never a corollary.
+#+end_remark
+
+#+DEPENDS: thm-power-series-converges-inside, thm-weierstrass-m-test
+#+NAME: thm-power-series-uniform-on-compacts
+#+begin_theorem
+For every \(r < R\) the series converges uniformly on
+\(\setst{x}{\abs{x - c} \le r}\).
+#+end_theorem
+
+#+begin_proof
+Pick \(\rho\) with \(r < \rho < R\). By the previous theorem
+\(\sum \abs{a_{n}} \rho^{n}\) converges, so
+\(\abs{a_{n}} \rho^{n} \to 0\) and in particular
+\(\abs{a_{n}} \le C \rho^{-n}\) for some \(C\) and all \(n\). On the
+closed ball, \(\abs{a_{n}(x-c)^{n}} \le C (r/\rho)^{n} = M_{n}\), and
+\(\sum M_{n}\) is a convergent geometric series. The Weierstrass
+\(M\)-test gives uniform convergence.
+#+end_proof
+
+#+DEPENDS: thm-power-series-uniform-on-compacts, thm-uniform-limit-continuous
+#+NAME: cor-power-series-continuous
+#+begin_corollary
+The sum of a power series is continuous on \(\abs{x - c} < R\).
+#+end_corollary
+
+#+begin_proof
+Continuity is local: a point with \(\abs{x_{0} - c} < R\) lies in the
+closed ball of some radius \(r < R\), on which the partial sums --
+polynomials, hence continuous -- converge uniformly. A uniform limit of
+continuous functions is continuous, so the sum is continuous at
+\(x_{0}\).
+#+end_proof

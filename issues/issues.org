@@ -79,7 +79,7 @@ lint pass flagging a symbol used with two different meanings, or a macro
 defined but never used. For a lifelong archive, notation drift is a real
 problem; making it visible is high value and fits the data-driven style.
 
-* TODO [#B] Graph visualization: cerebro graph -> static SVG         :graph:viz:
+* CANCELLED Graph visualization: cerebro graph -> static SVG         :graph:viz:
 :PROPERTIES:
 :ID: 20260729T120400
 :CREATED: [2026-07-29 Tue 12:04]
@@ -90,6 +90,13 @@ The queries (cerebro-query.el, cerebro-results.el) are text-only. Add a
 results dependency DAG via Graphviz -- local, static output, no browser or
 websocket, consistent with the no-cloud principle (org-roam-ui is
 deliberately not used).
+
+- [2026-08-06] Dropped on the owner's decision: graph *pictures* are not
+  wanted here, neither org-roam-ui nor a static SVG. An in-Emacs DOT ->
+  SVG view was built and then removed; the textual queries stay, and they
+  are what actually gets used (=C-c q h= hubs, =C-c q o= orphans,
+  =C-c q c= co-citation, plus the results layer =C-c r=). Reopen only if
+  a real question turns up that a list cannot answer.
 
 * TODO [#B] Global theorem/definition index with cross-note numbering :results:latex:
 :PROPERTIES:
@@ -151,3 +158,9 @@ interactive passphrase flow, and the Taskwarrior hook tag policy are wired
 up and unit/smoke-tested, but not yet exercised by real coursework. They
 are standard mechanisms, so this is "tune once there is real content," not
 "might not work." Revisit when the first real course notes land.
+
+* TODO slides profile fails on any * Appendices section (beamer \unskip in vertical mode)   :-p:B:latex:export:
+:PROPERTIES:
+:ID: 20260807T170952
+:CREATED: [2026-08-07 Fri 19:09]
+:END:

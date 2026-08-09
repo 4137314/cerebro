@@ -1,0 +1,80 @@
+:PROPERTIES:
+:ID:       4d0d08b6-52bf-48b5-90c3-8b075bae3dcf
+:END:
+#+TITLE: The absolute value and the triangle inequality
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A03, 26D15
+#+HASH: ad5fdb166a48
+
+Every convergence proof in the course is an estimate on
+\(\abs{a - b}\), and every one of them splits that estimate through an
+intermediate point. The two lines below are the whole reason that move
+is legal, so they belong before the first \(\eps\), not in a footnote to
+it.
+
+#+NAME: def-absolute-value
+#+begin_definition
+The /absolute value/ of \(x \in \R\) is \(\abs{x} = x\) if \(x \ge 0\)
+and \(\abs{x} = -x\) if \(x < 0\). Equivalently
+\(\abs{x} = \max(x, -x)\), so \(\abs{x} \ge 0\), \(\abs{x} \ge x\) and
+\(\abs{x} \ge -x\), with \(\abs{x} = 0\) only for \(x = 0\).
+#+end_definition
+
+#+DEPENDS: def-absolute-value
+#+NAME: prop-absolute-value-bound
+#+begin_proposition
+For \(x, c \in \R\) and \(c \ge 0\): \(\abs{x} \le c\) if and only if
+\(-c \le x \le c\).
+#+end_proposition
+
+#+begin_proof
+If \(\abs{x} \le c\) then \(x \le \abs{x} \le c\) and
+\(-x \le \abs{x} \le c\), the latter giving \(x \ge -c\). Conversely, if
+\(-c \le x \le c\) then both \(x \le c\) and \(-x \le c\), and
+\(\abs{x}\) is one of the two.
+#+end_proof
+
+#+DEPENDS: prop-absolute-value-bound
+#+NAME: thm-triangle-inequality
+#+begin_theorem
+For all \(x, y \in \R\),
+\[ \abs{x + y} \le \abs{x} + \abs{y}. \]
+Consequently \(\abs{x - z} \le \abs{x - y} + \abs{y - z}\) for all
+\(x, y, z \in \R\).
+#+end_theorem
+
+#+begin_proof
+By the proposition, \(-\abs{x} \le x \le \abs{x}\) and
+\(-\abs{y} \le y \le \abs{y}\). Adding,
+\(-(\abs{x} + \abs{y}) \le x + y \le \abs{x} + \abs{y}\), and the
+proposition read the other way gives
+\(\abs{x + y} \le \abs{x} + \abs{y}\). For the second form apply the
+first to \(x - z = (x - y) + (y - z)\).
+#+end_proof
+
+#+DEPENDS: thm-triangle-inequality
+#+NAME: cor-reverse-triangle-inequality
+#+begin_corollary
+For all \(x, y \in \R\),
+\[ \bigl| \abs{x} - \abs{y} \bigr| \le \abs{x - y}. \]
+#+end_corollary
+
+#+begin_proof
+From \(x = (x - y) + y\) the triangle inequality gives
+\(\abs{x} \le \abs{x - y} + \abs{y}\), that is
+\(\abs{x} - \abs{y} \le \abs{x - y}\). Exchanging \(x\) and \(y\) gives
+\(\abs{y} - \abs{x} \le \abs{y - x} = \abs{x - y}\). The left-hand side
+of the claim is one of these two quantities.
+#+end_proof
+
+#+begin_remark
+The second form of the triangle inequality is the one that gets used:
+it says the distance from \(x\) to \(z\) is at most the distance
+through any waypoint \(y\), and choosing that waypoint well -- the
+limit, a partial sum, a point of a subsequence -- is what nearly every
+proof in this course does. The corollary is its usual companion: it
+makes \(x \mapsto \abs{x}\) continuous with \(\delta = \eps\), and it
+is what lets an estimate on \(\abs{x - y}\) be spent directly on
+\(\abs{x}\).
+#+end_remark

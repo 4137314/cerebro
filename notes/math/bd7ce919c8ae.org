@@ -1,0 +1,74 @@
+:PROPERTIES:
+:ID:       26cf8966-f610-4802-b854-ee7810173459
+:END:
+#+TITLE: The mean value theorem
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A24
+#+HASH: bd7ce919c8ae
+
+Everything a first course deduces from the derivative -- monotonicity,
+constancy, Taylor's remainder, the sign tests -- goes through the mean
+value theorem, and the mean value theorem goes through Rolle. Three
+short proofs, in order of dependence.
+
+#+DEPENDS: def-derivative
+#+NAME: lem-interior-extremum
+#+begin_lemma
+Let \(f \colon (a,b) \to \R\) be differentiable at an interior point
+\(c\) at which \(f\) attains a local maximum or minimum. Then
+\(f'(c) = 0\).
+#+end_lemma
+
+#+begin_proof
+Say \(c\) is a local maximum, so \(f(c + h) \le f(c)\) for all small
+\(\abs{h}\). For \(h > 0\) the quotient
+\((f(c+h) - f(c))/h\) is \(\le 0\), so its limit \(f'(c) \le 0\); for
+\(h < 0\) the quotient is \(\ge 0\), so \(f'(c) \ge 0\). Hence
+\(f'(c) = 0\). For a local minimum, apply this to \(-f\).
+#+end_proof
+
+#+DEPENDS: lem-interior-extremum, thm-extreme-value
+#+NAME: thm-rolle
+#+begin_theorem
+Let \(f\) be continuous on \([a,b]\), differentiable on \((a,b)\), with
+\(f(a) = f(b)\). Then \(f'(c) = 0\) for some \(c \in (a,b)\).
+#+end_theorem
+
+#+begin_proof
+By the extreme value theorem \(f\) attains a maximum and a minimum on
+\([a,b]\). If both are attained at the endpoints then, since
+\(f(a) = f(b)\), the maximum equals the minimum and \(f\) is constant,
+so \(f'\) vanishes throughout \((a,b)\). Otherwise one of them is
+attained at an interior point \(c\), and the lemma gives \(f'(c) = 0\).
+#+end_proof
+
+#+DEPENDS: thm-rolle
+#+NAME: thm-mean-value
+#+begin_theorem
+Let \(f\) be continuous on \([a,b]\) and differentiable on \((a,b)\).
+Then there is \(c \in (a,b)\) with
+\[ f'(c) = \frac{f(b) - f(a)}{b - a}. \]
+#+end_theorem
+
+#+begin_proof
+Apply Rolle's theorem to
+\(g(x) = f(x) - f(a) - \frac{f(b) - f(a)}{b - a}(x - a)\), which is
+continuous on \([a,b]\), differentiable on \((a,b)\), and satisfies
+\(g(a) = g(b) = 0\). A point \(c\) with \(g'(c) = 0\) is a point with
+\(f'(c) = (f(b) - f(a))/(b-a)\).
+#+end_proof
+
+#+DEPENDS: thm-mean-value
+#+NAME: cor-vanishing-derivative
+#+begin_corollary
+If \(f\) is differentiable on an interval \(I\) with \(f' \equiv 0\),
+then \(f\) is constant. Consequently two functions with the same
+derivative on \(I\) differ by a constant.
+#+end_corollary
+
+#+begin_proof
+Let \(x < y\) in \(I\). By the mean value theorem on \([x,y]\) there is
+\(c\) with \(f(y) - f(x) = f'(c)(y - x) = 0\), so \(f(y) = f(x)\). For
+the consequence, apply this to the difference of the two functions.
+#+end_proof

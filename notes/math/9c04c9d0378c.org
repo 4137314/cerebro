@@ -1,0 +1,112 @@
+:PROPERTIES:
+:ID:       0e79d289-c68d-4e86-824e-4dfa51bcad21
+:END:
+#+TITLE: Pointwise and uniform convergence
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 40A30, 26A15
+#+HASH: 9c04c9d0378c
+
+A sequence of functions has two obvious notions of convergence, and the
+whole point of separating them is that the naive one preserves nothing.
+Pointwise convergence is a statement about each point separately, made
+with a different \(N\) at each; uniform convergence asks for one \(N\)
+that works everywhere, and that single quantifier change is exactly what
+carries continuity, integrability and the exchange of limits across the
+limit.
+
+#+DEPENDS: def-sequence-limit
+#+NAME: def-pointwise-convergence
+#+begin_definition
+Functions \(f_{n} \colon D \to \R\) /converge pointwise/ to
+\(f \colon D \to \R\) if \(f_{n}(x) \to f(x)\) for every \(x \in D\):
+for each \(x\) and each \(\eps > 0\) there is \(N\), possibly depending
+on \(x\), with \(\abs{f_{n}(x) - f(x)} < \eps\) for \(n \ge N\).
+#+end_definition
+
+#+DEPENDS: def-pointwise-convergence
+#+NAME: def-uniform-convergence
+#+begin_definition
+The convergence is /uniform/ if the same \(N\) serves every point: for
+every \(\eps > 0\) there is \(N\) such that
+\(\abs{f_{n}(x) - f(x)} < \eps\) for all \(n \ge N\) and all
+\(x \in D\). Equivalently
+\(\sup_{x \in D} \abs{f_{n}(x) - f(x)} \to 0\).
+#+end_definition
+
+#+DEPENDS: def-uniform-convergence, def-continuity-at-point, thm-triangle-inequality
+#+NAME: thm-uniform-limit-continuous
+#+begin_theorem
+A uniform limit of continuous functions is continuous.
+#+end_theorem
+
+#+begin_proof
+Let \(f_{n} \to f\) uniformly with each \(f_{n}\) continuous, fix
+\(x_{0} \in D\) and \(\eps > 0\). Choose \(n\) with
+\(\abs{f_{n}(y) - f(y)} < \eps/3\) for every \(y \in D\), and then
+\(\delta > 0\) from continuity of that one \(f_{n}\) at \(x_{0}\), so
+that \(\abs{f_{n}(x) - f_{n}(x_{0})} < \eps/3\) for
+\(\abs{x - x_{0}} < \delta\). For such \(x\),
+\[ \abs{f(x) - f(x_{0})} \le \abs{f(x) - f_{n}(x)} + \abs{f_{n}(x) - f_{n}(x_{0})} + \abs{f_{n}(x_{0}) - f(x_{0})} < \eps. \]
+#+end_proof
+
+#+begin_remark
+The three thirds are where uniformity is spent: the outer two need one
+\(n\) that is simultaneously good at \(x\) and at \(x_{0}\), and
+pointwise convergence supplies no such \(n\). This is the entire
+difference between the two definitions, and every failure of pointwise
+convergence to preserve anything is a failure to close this argument.
+#+end_remark
+
+#+DEPENDS: def-uniform-convergence, thm-cauchy-criterion
+#+NAME: thm-uniform-cauchy-criterion
+#+begin_theorem
+Functions \(f_{n} \colon D \to \R\) converge uniformly to some limit if
+and only if for every \(\eps > 0\) there is \(N\) with
+\(\sup_{x \in D} \abs{f_{n}(x) - f_{m}(x)} < \eps\) for all
+\(n, m \ge N\).
+#+end_theorem
+
+#+begin_proof
+If \(f_{n} \to f\) uniformly, take \(N\) beyond which the sup distance
+to \(f\) is below \(\eps/2\); the triangle inequality gives the
+condition. Conversely, the condition makes \((f_{n}(x))\) a Cauchy
+sequence in \(\R\) for each fixed \(x\), so it converges to some
+\(f(x)\) by the Cauchy criterion. Given \(\eps > 0\) take \(N\) from the
+hypothesis; for \(n \ge N\) and any \(x\), letting \(m \to \infty\) in
+\(\abs{f_{n}(x) - f_{m}(x)} < \eps\) gives
+\(\abs{f_{n}(x) - f(x)} \le \eps\), uniformly in \(x\).
+#+end_proof
+
+#+DEPENDS: thm-uniform-cauchy-criterion, thm-comparison-test
+#+NAME: thm-weierstrass-m-test
+#+begin_theorem
+Let \(u_{n} \colon D \to \R\) satisfy \(\sup_{D} \abs{u_{n}} \le M_{n}\)
+with \(\sum M_{n}\) convergent. Then \(\sum u_{n}\) converges uniformly
+on \(D\).
+#+end_theorem
+
+#+begin_proof
+Let \(s_{N} = \sum_{n \le N} u_{n}\). For \(m > n\) and every
+\(x \in D\),
+\(\abs{s_{m}(x) - s_{n}(x)} \le \sum_{k=n+1}^{m} \abs{u_{k}(x)} \le \sum_{k=n+1}^{m} M_{k}\),
+and the right-hand side is below \(\eps\) for \(m > n \ge N\) because
+\(\sum M_{n}\) converges and is therefore Cauchy. The bound does not
+involve \(x\), so the uniform Cauchy criterion applies.
+#+end_proof
+
+#+DEPENDS: thm-uniform-limit-continuous, thm-continuous-is-integrable, prop-integral-monotonicity
+#+NAME: thm-uniform-limit-integral
+#+begin_theorem
+Let \(f_{n} \to f\) uniformly on \([a,b]\) with every \(f_{n}\)
+continuous. Then \(f\) is integrable and
+\(\int_{a}^{b} f_{n} \to \int_{a}^{b} f\).
+#+end_theorem
+
+#+begin_proof
+The limit is continuous, hence integrable. Writing
+\(\eps_{n} = \sup_{[a,b]} \abs{f_{n} - f}\), monotonicity and the
+triangle inequality for the integral give
+\[ \Bigl| \int_{a}^{b} f_{n} - \int_{a}^{b} f \Bigr| \le \int_{a}^{b} \abs{f_{n} - f} \le \eps_{n} (b - a), \]
+and \(\eps_{n} \to 0\) by uniform convergence.
+#+end_proof

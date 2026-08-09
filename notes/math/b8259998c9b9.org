@@ -1,0 +1,98 @@
+:PROPERTIES:
+:ID:       369b032a-ef2e-4959-b8aa-412b6c807220
+:END:
+#+TITLE: Differentiability in several variables
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26B05, 26B10
+#+HASH: b8259998c9b9
+
+In one variable the derivative can be defined as a limit of quotients
+because dividing by \(h\) is available. In several it is not, and the
+definition that survives is the one that was really meant all along:
+\(f\) is differentiable at \(c\) when it is approximated near \(c\) by a
+*linear map*, with an error small compared to the displacement. Partial
+derivatives are then a consequence, not the definition -- and the gap
+between the two is where every counterexample in the subject lives.
+
+#+DEPENDS: def-derivative, def-metric-space
+#+NAME: def-differentiable-multivariable
+#+begin_definition
+Let \(U \subseteq \R^{n}\) be open, \(f \colon U \to \R^{m}\) and
+\(c \in U\). Then \(f\) is /differentiable at/ \(c\) if there is a
+linear map \(A \colon \R^{n} \to \R^{m}\) with
+\[ \lim_{h \to 0} \frac{\norm{f(c + h) - f(c) - A h}}{\norm{h}} = 0. \]
+The map \(A\) is the /differential/ \(Df(c)\).
+#+end_definition
+
+#+DEPENDS: def-differentiable-multivariable
+#+NAME: prop-differential-is-unique
+#+begin_proposition
+There is at most one such \(A\).
+#+end_proposition
+
+#+begin_proof
+Suppose \(A\) and \(B\) both work and put \(C = A - B\). For fixed
+\(v \ne 0\) and \(t > 0\), taking \(h = tv\) in the difference of the
+two limits gives \(\norm{C(tv)}/\norm{tv} \to 0\) as \(t \to 0\); but
+by linearity that quotient equals \(\norm{Cv}/\norm{v}\), a constant.
+Hence \(Cv = 0\) for every \(v\), so \(C = 0\).
+#+end_proof
+
+#+DEPENDS: def-differentiable-multivariable, prop-differentiable-implies-continuous
+#+NAME: prop-differentiable-implies-partials
+#+begin_proposition
+If \(f\) is differentiable at \(c\) then it is continuous at \(c\), and
+every directional derivative exists, with
+\(\partial_{v} f(c) = Df(c) v\).
+#+end_proposition
+
+#+begin_proof
+Write \(f(c+h) - f(c) = Df(c)h + r(h)\) with
+\(\norm{r(h)}/\norm{h} \to 0\). Both terms tend to \(0\) as
+\(h \to 0\), giving continuity. For a direction \(v \ne 0\), take
+\(h = tv\): dividing by \(t\) gives
+\((f(c + tv) - f(c))/t = Df(c)v + r(tv)/t\), and
+\(\norm{r(tv)/t} = \norm{v} \norm{r(tv)}/\norm{tv} \to 0\).
+#+end_proof
+
+#+begin_remark
+The converse fails, and that is the content of the definition rather
+than a defect of it. Every directional derivative of a function can
+exist at a point while the function is not even continuous there:
+existence of directional derivatives is a family of *one-dimensional*
+statements, each blind to what happens off its own line, and
+differentiability is a statement about the whole neighbourhood at once.
+#+end_remark
+
+#+DEPENDS: prop-differentiable-implies-partials, thm-mean-value
+#+NAME: thm-continuous-partials-implies-differentiable
+#+begin_theorem
+If all partial derivatives of \(f \colon U \to \R\) exist on a
+neighbourhood of \(c\) and are continuous at \(c\), then \(f\) is
+differentiable at \(c\).
+#+end_theorem
+
+#+begin_proof
+Take \(n = 2\); the general case is the same argument with more terms.
+Write \(h = (h_{1}, h_{2})\) and split the increment through a corner:
+\[ f(c + h) - f(c) = \bigl( f(c_{1}+h_{1}, c_{2}+h_{2}) - f(c_{1}, c_{2}+h_{2}) \bigr) + \bigl( f(c_{1}, c_{2}+h_{2}) - f(c_{1}, c_{2}) \bigr). \]
+Each bracket varies one coordinate only, so the mean value theorem in
+one variable applies: the first equals
+\(\partial_{1} f(\xi_{1}, c_{2}+h_{2}) h_{1}\) and the second
+\(\partial_{2} f(c_{1}, \xi_{2}) h_{2}\), with \(\xi_{i}\) between the
+endpoints. Subtracting
+\(\partial_{1}f(c) h_{1} + \partial_{2}f(c) h_{2}\) and using continuity
+of the partials at \(c\), each coefficient differs from its value at
+\(c\) by a quantity tending to \(0\) as \(h \to 0\); since
+\(\abs{h_{i}} \le \norm{h}\), the whole error divided by \(\norm{h}\)
+tends to \(0\).
+#+end_proof
+
+#+begin_remark
+So continuity of the partials is *sufficient* and not necessary, and
+differentiability is strictly between "the partials exist" and "the
+partials are continuous". Naming the middle condition is the reason the
+linear-map definition is the right one: it is the weakest hypothesis
+under which the chain rule holds.
+#+end_remark

@@ -1,0 +1,68 @@
+:PROPERTIES:
+:ID:       00d208c3-0224-421a-a882-f9ad1627121f
+:END:
+#+TITLE: Cauchy's mean value theorem and de l'Hopital's rule
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A24
+#+HASH: 2bf288a8abef
+
+The mean value theorem compares a function with the identity. Cauchy's
+version compares two functions with each other, and that single change
+of viewpoint is what makes an indeterminate quotient tractable: the
+ratio of the increments becomes the ratio of the derivatives at one
+common point. De l'Hopital's rule is that observation with a limit
+taken.
+
+#+DEPENDS: thm-rolle
+#+NAME: thm-cauchy-mean-value
+#+begin_theorem
+Let \(f, g\) be continuous on \([a,b]\) and differentiable on
+\((a,b)\). Then there is \(c \in (a,b)\) with
+\[ \bigl( f(b) - f(a) \bigr) g'(c) = \bigl( g(b) - g(a) \bigr) f'(c). \]
+If moreover \(g'\) never vanishes on \((a,b)\), then \(g(b) \ne g(a)\)
+and the conclusion may be written as a ratio.
+#+end_theorem
+
+#+begin_proof
+Put \(h(x) = (f(b) - f(a)) g(x) - (g(b) - g(a)) f(x)\). It is
+continuous on \([a,b]\), differentiable on \((a,b)\), and
+\[ h(a) = f(b) g(a) - f(a) g(b) = h(b), \]
+as a direct expansion of both sides shows. Rolle's theorem gives
+\(c \in (a,b)\) with \(h'(c) = 0\), which is the claim. If \(g'\) never
+vanishes then \(g(b) = g(a)\) would give, by Rolle applied to \(g\), a
+zero of \(g'\); so \(g(b) \ne g(a)\) and one may divide.
+#+end_proof
+
+#+DEPENDS: thm-cauchy-mean-value, def-function-limit
+#+NAME: thm-lhopital
+#+begin_theorem
+Let \(f, g\) be differentiable on \((a, b)\) with \(g'\) nowhere zero
+there, and suppose \(f(x) \to 0\) and \(g(x) \to 0\) as
+\(x \to a^{+}\). If \(f'(x)/g'(x) \to L\) as \(x \to a^{+}\), then
+\[ \lim_{x \to a^{+}} \frac{f(x)}{g(x)} = L. \]
+#+end_theorem
+
+#+begin_proof
+Extend \(f\) and \(g\) to \([a,b)\) by setting \(f(a) = g(a) = 0\);
+the hypothesis on the limits makes both extensions continuous at
+\(a\). Let \(\eps > 0\) and choose \(\delta > 0\) with
+\(\abs{f'(t)/g'(t) - L} < \eps\) for \(a < t < a + \delta\). Fix \(x\)
+with \(a < x < a + \delta\). On \([a, x]\) the Cauchy mean value
+theorem applies and produces \(c \in (a, x)\) with
+\[ \frac{f(x)}{g(x)} = \frac{f(x) - f(a)}{g(x) - g(a)} = \frac{f'(c)}{g'(c)}, \]
+the denominators being non-zero because \(g'\) does not vanish. Since
+\(c \in (a, a + \delta)\), the right-hand side is within \(\eps\) of
+\(L\), hence so is \(f(x)/g(x)\).
+#+end_proof
+
+#+begin_remark
+Two hypotheses are load-bearing and routinely dropped. First, the rule
+concludes /from/ the limit of \(f'/g'\), so its failing to exist says
+nothing: with \(f(x) = x^{2} \sin(1/x)\) and \(g(x) = x\) at the
+origin, \(f/g \to 0\) while \(f'/g'\) oscillates. Second, \(g'\) must
+not vanish, which is what lets a single \(c\) serve both increments.
+The rule is a consequence of Cauchy's theorem, not a definition of the
+quotient, and treating it as an algorithm is what produces the circular
+proof that \(\sin(x)/x \to 1\).
+#+end_remark

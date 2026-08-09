@@ -1,115 +1,91 @@
 #!/bin/sh
-# cerebro-course-export -- every document of a course, from course.org.
+# cerebro-course-export -- every document of a course, from its one file.
 #
-# A course is one hand-written file (course.org: metadata, prose, and the
-# `* Programme' list of id: links) plus the book generated from it. From
-# those two, this produces the whole family of course documents, each a
-# profile of the parametric pipeline:
+# A course is ONE file: notes/courses/<slug>.org -- metadata, prose, and
+# the `* Programme' list of id: links into notes/math/. From it, the four
+# documents a course has, one per audience, each a profile of the
+# parametric pipeline:
 #
-#   syllabus   the 2-page course description        <- course.org
-#   dispensa   the bound handbook, with proofs      <- book.org
-#   manual     the same, in the manual doctype      <- book.org
-#   slides     a minimal presentation deck          <- book.org
-#   handout    those slides, printable              <- book.org
-#   problems   problem sheet, no solutions          <- book.org
-#   exercises  problem sheet, with solutions        <- book.org
+#   syllabus   what the course is, in two pages     <- the file itself
+#   lecture    what I say at the board              <- + the notes
+#   slides     what the room sees                   <- + the notes
+#   handbook   what the student keeps               <- + notes, appendices, index
 #
-# Two things it does that `make export' cannot:
+# The composition (course + its notes, as #+INCLUDEs) happens inside the
+# exporter, into .build/ beside the course -- nothing is generated into
+# the repository, and there is no step to remember before compiling. See
+# `cerebro-course-source' in .emacs.d/lisp/cerebro-course.el.
 #
-#   - it regenerates book.org first, so "compile the course" never means
-#     "compile a book that no longer matches the programme";
-#   - it gives every output its own name. The exporter writes its PDF
-#     next to the source, so `dispensa' and `slides' -- both compiled
-#     from book.org -- would otherwise be the same book.pdf, each
-#     overwriting the last. Here they land in out/ as
-#     <course>-<output>.pdf, and out/ is gitignored: these are derived
-#     files, and this repo commits sources.
+# What this adds over a bare `make export' is naming: the exporter writes
+# its PDF beside the source it compiled, so `handbook' and `slides' --
+# both composed from the same course -- would otherwise be the same file,
+# each overwriting the last. Here they are collected into
+# notes/courses/out/ as <course>-<output>.pdf, gitignored: these are
+# derived files, and this repo commits sources.
 #
 # Usage:
-#   cerebro-course-export DIR                 every output, then zip them
-#   cerebro-course-export DIR slides          just one
-#   cerebro-course-export DIR all --no-zip    everything, no archive
+#   cerebro-course-export FILE                 every output, then zip them
+#   cerebro-course-export FILE slides          just one
+#   cerebro-course-export FILE all --no-zip    everything, no archive
 #
 # The zip is for handing the course to someone: one file with the
-# syllabus, the handbook and the slides in it.
+# syllabus, the lecture notes, the slides and the handbook in it.
 set -eu
 
 repo_root=$(git rev-parse --show-toplevel)
-dir=${1:?"usage: cerebro-course-export DIR [OUTPUT|all] [--no-zip]"}
+course=${1:?"usage: cerebro-course-export FILE [OUTPUT|all] [--no-zip]"}
 want=${2:-all}
 zip_flag=${3:-}
 
-[ -d "$dir" ] || { echo "cerebro-course-export: no such directory: $dir" >&2; exit 2; }
-[ -f "$dir/course.org" ] || {
-    echo "cerebro-course-export: $dir has no course.org (see bin/cerebro-course)" >&2
+[ -f "$course" ] || {
+    echo "cerebro-course-export: no such course file: $course" >&2
+    exit 2
+}
+grep -q '^\*\+[[:space:]]\+Programme[[:space:]]*$' "$course" || {
+    echo "cerebro-course-export: $course has no '* Programme' section" >&2
+    echo "  (a course is one file that indexes notes -- see bin/cerebro-course)" >&2
     exit 2
 }
 
-slug=$(basename "$(cd "$dir" && pwd)")
-out="$dir/out"
+slug=$(basename "$course" .org)
+out="$repo_root/notes/courses/out"
 
-# What each output is made of: NAME:SOURCE:PROFILE. Data, so adding a
-# document to the family is one line here (and one line in
-# `cerebro-course-outputs', which is what Emacs completes over).
-outputs='syllabus:course:syllabus
-dispensa:book:dispensa
-manual:book:manual
-slides:book:slides
-handout:book:handout
-problems:book:problems
-exercises:book:exercises'
-
-# The book is a *view* of notes/math/; regenerate before compiling so a
-# note added to the programme five minutes ago is in the document.
-if grep -q '^\*\+ ' "$dir/course.org" && [ "$want" != "syllabus" ]; then
-    "$repo_root/bin/cerebro-new-book" "$dir" >/dev/null 2>&1 || {
-        echo "cerebro-course-export: the programme lists no notes yet --"
-        echo "  only the syllabus can be built. See '* Programme' in $dir/course.org"
-        want=syllabus
-    }
-fi
+# The four documents, as data: adding one is a line here and a line in
+# `cerebro-course-outputs' (which is what Emacs completes over).
+outputs='syllabus
+lecture
+slides
+handbook'
 
 mkdir -p "$out"
 
-# A `for' over the table rather than a pipe into `while': a pipeline runs
-# its loop in a subshell, where anything counted is lost at the end of it.
-IFS='
-'
-for entry in $outputs; do
-    name=${entry%%:*}; rest=${entry#*:}
-    source=${rest%%:*}; profile=${rest#*:}
-    unset IFS
+built=0
+for name in $outputs; do
     [ "$want" = "all" ] || [ "$want" = "$name" ] || continue
-    case "$source" in
-        course) file="$dir/course.org" ;;
-        book)   file="$dir/book.org" ;;
-    esac
-    if [ ! -f "$file" ]; then
-        echo "cerebro-course-export: skipping $name ($file is missing)"
-        continue
-    fi
-    echo "cerebro-course-export: $name ($profile)"
+    echo "cerebro-course-export: $name"
     ( cd "$repo_root" && emacs --batch -l bin/org-export-latex.el -- \
-        --profile="$profile" "${file#"$repo_root"/}" >/dev/null )
-    produced="${file%.org}.pdf"
-    mv "$produced" "$out/$slug-$name.pdf"
+        --profile="$name" "${course#"$repo_root"/}" >/dev/null )
+    # Composed sources and every LaTeX product land in .build/ beside the
+    # course (see `cerebro-latex-build-directory'); out/ is where the
+    # finished documents are collected, one per output name.
+    if [ "$name" = "syllabus" ]; then
+        produced="$repo_root/notes/courses/.build/$slug.pdf"
+    else
+        produced="$repo_root/notes/courses/.build/$slug-$name.pdf"
+    fi
+    [ -f "$produced" ] || {
+        echo "cerebro-course-export: $name produced no PDF" >&2
+        exit 1
+    }
+    cp "$produced" "$out/$slug-$name.pdf"
     echo "  -> ${out#"$repo_root"/}/$slug-$name.pdf"
-    IFS='
-'
+    built=$((built + 1))
 done
-unset IFS
 
-# LaTeX leaves .tex/.aux/... next to the sources. Clean only the course
-# directory itself, never `make clean-latex\': that deletes every PDF
-# under notes/, which is where these outputs live -- it would remove the
-# documents this script just built.
-find "$dir" -maxdepth 1 -type f \( -name '*.tex' -o -name '*.aux' -o -name '*.log' \
-    -o -name '*.out' -o -name '*.toc' -o -name '*.fls' -o -name '*.fdb_latexmk' \
-    -o -name '*.nav' -o -name '*.snm' -o -name '*.vrb' -o -name '*.bbl' \
-    -o -name '*.bcf' -o -name '*.blg' -o -name '*.run.xml' -o -name '*.synctex.gz' \) -delete
-
-built=$(ls "$out"/*.pdf 2>/dev/null | wc -l)
-[ "$built" -gt 0 ] || { echo "cerebro-course-export: nothing was built" >&2; exit 1; }
+[ "$built" -gt 0 ] || {
+    echo "cerebro-course-export: '$want' is not one of: $(echo $outputs | tr '\n' ' ')" >&2
+    exit 1
+}
 
 if [ "$want" = "all" ] && [ "$zip_flag" != "--no-zip" ]; then
     if command -v zip >/dev/null 2>&1; then
@@ -117,7 +93,7 @@ if [ "$want" = "all" ] && [ "$zip_flag" != "--no-zip" ]; then
         rm -f "$archive"
         # -j: a flat archive. Whoever opens it wants the documents, not
         # a reconstruction of this repository's directory layout.
-        ( cd "$out" && zip -j -q "$slug.zip" ./*.pdf )
+        ( cd "$out" && zip -j -q "$slug.zip" "$slug"-*.pdf )
         echo "cerebro-course-export: ${archive#"$repo_root"/} ($built documents)"
     else
         echo "cerebro-course-export: zip is not on PATH -- PDFs are in ${out#"$repo_root"/}"

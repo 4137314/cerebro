@@ -1,0 +1,50 @@
+:PROPERTIES:
+:ID:       db92d316-8a78-4116-8efb-89274901fdcd
+:END:
+#+TITLE: Bolzano--Weierstrass theorem
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 40A05
+#+HASH: 1dc0e2b343c4
+
+Boundedness alone gives no limit: \((-1)^{n}\) is bounded and does not
+converge. What it does give is a /subsequence/ that converges, and that
+is enough for almost every compactness argument in a first course.
+
+#+NAME: def-subsequence
+#+begin_definition
+Let \((a_{n})_{n \in \N}\) be a sequence and let
+\(n_{1} < n_{2} < n_{3} < \cdots\) be a strictly increasing sequence of
+indices. The sequence \((a_{n_{k}})_{k \in \N}\) is a /subsequence/ of
+\((a_{n})\).
+#+end_definition
+
+#+DEPENDS: def-subsequence
+#+NAME: lem-monotone-subsequence
+#+begin_lemma
+Every sequence of real numbers has a monotone subsequence.
+#+end_lemma
+
+#+begin_proof
+Call an index \(n\) a /peak/ of \((a_{n})\) if \(a_{m} \le a_{n}\) for
+every \(m > n\). If there are infinitely many peaks
+\(n_{1} < n_{2} < \cdots\), then \((a_{n_{k}})\) is decreasing by the
+definition of a peak. If there are only finitely many, let \(N\) exceed
+them all. Since \(N\) is not a peak there is \(n_{1} > N\) with
+\(a_{n_{1}} > a_{N}\); since \(n_{1}\) is not a peak either there is
+\(n_{2} > n_{1}\) with \(a_{n_{2}} > a_{n_{1}}\), and inductively one
+obtains a strictly increasing subsequence.
+#+end_proof
+
+#+DEPENDS: lem-monotone-subsequence, thm-monotone-convergence, def-bounded-sequence
+#+NAME: thm-bolzano-weierstrass
+#+begin_theorem
+Every bounded sequence of real numbers has a convergent subsequence.
+#+end_theorem
+
+#+begin_proof
+Let \((a_{n})\) be bounded. By the lemma it has a monotone subsequence
+\((a_{n_{k}})\), which is bounded because \((a_{n})\) is. A bounded
+monotone sequence converges, by the monotone convergence theorem, so
+\((a_{n_{k}})\) converges.
+#+end_proof

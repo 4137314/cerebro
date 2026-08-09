@@ -7,8 +7,9 @@
 ;; spans the whole of the field (logic and foundations through quantum
 ;; theory and relativity), and is what journals require on a submission
 ;; -- so the same `#+MSC:' keyword that files a note into the lifelong
-;; database also fills in \subjclass[2020]{...} on a publishable paper
-;; (see the `paper'/`preprint' doctypes in cerebro-latex.el).
+;; database is also what a submission would need. It is read back by the
+;; linter (an invalid code is an error), by `cerebro query by-msc' and by
+;; `cerebro stats'.
 ;;
 ;; Only the 63 top-level (two-digit) classes are hard-coded here: that
 ;; list is small, fixed, and complete, and validating the two-digit

@@ -1,28 +1,18 @@
-;;; cerebro-ui.el --- file tree, window discipline, key discovery -*- lexical-binding: t; -*-
+;;; cerebro-ui.el --- window discipline -*- lexical-binding: t; -*-
 
-;; The notes tree is a real, browsable filesystem (notes/, notes/courses/,
-;; notes/daily/, issues/, latex/) and reading it as a *tree* is often the
-;; fastest way to find your bearings -- especially for a course, where the
-;; directory layout carries meaning the org-roam graph doesn't.
+;; There is no file tree, and that is a decision rather than an omission.
+;; A tree answers "what is in this directory?", which is not a question
+;; anyone has here: the questions are "which note was that", "which
+;; course", "which conjecture" -- about *kinds of writing*, not about
+;; paths. The archive already knows the kinds, so they are reached by key
+;; (`C-c f', cerebro-find.el) and the sidebar it replaced is gone,
+;; together with the two packages that drew it.
 ;;
-;; The sidebar here is `dired-sidebar', which is not a new file manager:
-;; it is ordinary `dired' pinned in a side window, plus `dired-subtree' to
-;; expand a directory *in place* instead of replacing the listing. That
-;; choice is deliberate over a heavier tree package (treemacs & co.):
-;; every key you already know in dired works in it, it needs no icon
-;; fonts (see the `ascii' theme below -- it renders identically in a
-;; terminal), and if the package ever disappears the fallback is `C-x d',
-;; which will still exist in twenty years.
-;;
-;; The second half of this file is window discipline: cerebro produces a
-;; lot of transient report buffers (`cerebro-report' in cerebro-org.el,
-;; the CLI wrappers, the guix compile buffers). Left to Emacs' default
-;; they split the frame wherever they like and push the note you were
-;; reading off screen. Here they get one predictable bottom side window.
-;;
-;; Loaded through `cerebro-guix-soft-require': outside the pinned
-;; environment the window rules and the dired settings still apply, only
-;; the sidebar command reports that its package is missing.
+;; What is left is window discipline: cerebro produces a lot of transient
+;; report buffers (`cerebro-report' in cerebro-base.el, the CLI wrappers,
+;; the guix compile buffers). Left to Emacs' default they split the frame
+;; wherever they like and push the note you were reading off screen. Here
+;; they get one predictable bottom side window.
 
 (require 'cerebro-org)  ;; cerebro-root, org-directory
 (require 'cerebro-guix)  ;; cerebro-guix-soft-require
@@ -39,54 +29,6 @@
       dired-kill-when-opening-new-dired-buffer t ; no pile of stale dired buffers
       dired-auto-revert-buffer t)                ; a note created by the CLI shows up
 
-(when (cerebro-guix-soft-require 'dired-subtree)
-  ;; TAB expands/collapses a directory inline -- this is what turns dired
-  ;; into a tree, in the sidebar *and* in any ordinary dired buffer.
-  (define-key dired-mode-map (kbd "TAB") #'dired-subtree-toggle)
-  (define-key dired-mode-map (kbd "<backtab>") #'dired-subtree-cycle))
-
-;; -- the sidebar -------------------------------------------------------
-;; File-type icons in the tree and in any dired buffer, from the Nerd
-;; Font (glyphs, not images -- so this works in a terminal frame too).
-(when (and (cerebro-guix-soft-require 'nerd-icons-dired)
-           (cerebro-theme-nerd-icons-p))
-  (add-hook 'dired-mode-hook #'nerd-icons-dired-mode))
-
-(when (cerebro-guix-soft-require 'dired-sidebar)
-  (setq dired-sidebar-theme 'ascii ; +/- markers: no icon font, works in -nw
-        dired-sidebar-width 32
-        dired-sidebar-use-custom-font nil
-        ;; NOT `dired-sidebar-should-follow-file': it re-roots the sidebar
-        ;; on a timer to `dired-sidebar-get-dir-to-show', which for a file
-        ;; buffer is the *project* root -- i.e. always this repository. It
-        ;; therefore silently undoes the `notes/' rooting a second after
-        ;; the toggle, and makes the `C-u' prefix below (whole repo) mean
-        ;; nothing, since both end up at the repo. Verified on screen:
-        ;; `C-c t' came up showing bin/, guix.scm, README.org. A tree
-        ;; whose root is what you asked for is worth more than one that
-        ;; scrolls itself; `g' in the sidebar refreshes it.
-        dired-sidebar-should-follow-file nil
-        dired-sidebar-refresh-on-special-commands t
-        ;; Keep the sidebar out of `delete-other-windows' (C-x 1): losing
-        ;; the tree every time you maximise a note is pure friction.
-        dired-sidebar-no-delete-other-windows t)
-  (add-hook 'dired-sidebar-mode-hook
-            (lambda ()
-              ;; Permissions/owner/size are noise in a navigation pane.
-              (dired-hide-details-mode 1)
-              (setq-local truncate-lines t))))
-
-;;;###autoload
-(defun cerebro-ui-toggle-tree (&optional whole-repo)
-  "Toggle the file-tree sidebar, rooted at the notes tree.
-With a prefix argument (WHOLE-REPO), root it at the repository instead --
-notes/ is where you live day to day, but latex/, bin/ and issues/ are
-sometimes what you actually want to browse."
-  (interactive "P")
-  (unless (fboundp 'dired-sidebar-toggle-sidebar)
-    (user-error "dired-sidebar is missing -- see M-x cerebro-guix-status"))
-  (dired-sidebar-toggle-sidebar (if whole-repo cerebro-root org-directory)))
-
 ;; -- where transient buffers go ----------------------------------------
 ;; One rule, matched by buffer name, for everything cerebro pops up
 ;; (*cerebro*, *cerebro-cli*, *cerebro-guix*, plus *Help*): a bottom side
@@ -99,9 +41,52 @@ sometimes what you actually want to browse."
 ;; is a place you start from and must get a full window, and the Org
 ;; agenda is likewise a place you work, not a report you glance at (it
 ;; also manages its own windows via `org-agenda-window-setup').
+;;
+;; Exactly is right and hand-writing the alternation was not: the list
+;; said it covered "everything cerebro pops up" and left out
+;; *cerebro-results* -- which is `C-c r o', `C-c r i', and both dependency
+;; views, i.e. the reports actually looked at most. They opened by
+;; splitting whatever window was in front, which is the behaviour the rule
+;; exists to prevent. One datum per buffer now, and the regexp is built
+;; from it.
+(defconst cerebro-ui-side-window-buffers
+  '("*cerebro*"             ; the shared report buffer (cerebro-base.el)
+    "*cerebro-results*"     ; the index, dependencies, what still owes a proof
+    "*cerebro-query*"       ; the org-roam graph queries
+    "*cerebro-help*"        ; the documentation surface (C-c H)
+    "*cerebro-mode*"        ; which of the two jobs this session is doing
+    "*cerebro-preview*"     ; why is nothing rendering (C-c u P)
+    "*cerebro-scroll*"      ; the scroll trace (C-c u W)
+    "*cerebro-backup*"        ; a backup running
+    "*cerebro-backup-status*" ; what last backed up, and when
+    "*cerebro-cli*"         ; output of a `cerebro ...' subcommand
+    "*cerebro-guix*"        ; the environment report
+    "*cerebro-guix-build*"  ; guix materialising the profile
+    "*cerebro-guix-run*"    ; a guix command's transcript
+    "*cerebro-export*"      ; a note or course compiling
+    "*Help*")
+  "Buffers that open in the bottom side window rather than splitting.
+
+Reports and transcripts: things you glance at and dismiss with `q'. The
+alternation this replaced named four of them, so the other eight -- the
+results index, the queries, the help surface, every guix transcript --
+each split whichever window happened to be in front.
+
+Two deliberate absences, and they are not oversights:
+
+  *cerebro-dashboard*  a place you start from, not a report. Full frame.
+  *cerebro-pdf*        cerebro-pdf.el displays it itself, as a side
+                       window on the RIGHT, beside the note it was
+                       compiled from. Listing it here would not add a
+                       rule, it would *override* that one:
+                       `display-buffer-alist' takes precedence over the
+                       ACTION argument passed to `display-buffer', so
+                       the PDF would be yanked into a third of the frame
+                       at the bottom.")
+
 (add-to-list
  'display-buffer-alist
- '("\\`\\*\\(cerebro\\|cerebro-cli\\|cerebro-guix\\|Help\\)\\*\\'"
+ `(,(concat "\\`" (regexp-opt cerebro-ui-side-window-buffers) "\\'")
    (display-buffer-in-side-window)
    (side . bottom)
    (slot . 0)
@@ -127,11 +112,22 @@ sometimes what you actually want to browse."
   ;; Data: the commands worth a pulse are the ones that move point a long
   ;; way -- cerebro's own jumps included, since they land in a file you
   ;; were not looking at.
+  ;;
+  ;; This list had it precisely backwards. `cerebro-results-dependencies'
+  ;; and `-dependents' were in it and move point nowhere: they render a
+  ;; report with `cerebro-report' and leave you where you were, so the
+  ;; pulse lit the line you were already looking at. The commands that
+  ;; *do* land you in another file -- the whole of cerebro-nav.el, which
+  ;; exists to be "the results graph as movement" -- were absent, so the
+  ;; one case the feature was bought for got nothing.
   (dolist (command '(other-window
                      winner-undo winner-redo
                      org-next-visible-heading org-previous-visible-heading
                      org-agenda-goto org-agenda-switch-to
-                     cerebro-results-dependencies cerebro-results-dependents
+                     ;; cerebro-nav.el: these jump, often across files.
+                     cerebro-nav-result
+                     cerebro-nav-next-result cerebro-nav-previous-result
+                     cerebro-nav-next-unproved
                      recenter-top-bottom))
     (add-to-list 'pulsar-pulse-functions command))
   (pulsar-global-mode 1))

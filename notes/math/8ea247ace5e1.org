@@ -1,0 +1,109 @@
+:PROPERTIES:
+:ID:       44de8493-8687-4cfd-8c39-65561e38033c
+:END:
+#+TITLE: The Baire category theorem
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:topology:general_topology:
+#+MSC: 54E52
+#+HASH: 8ea247ace5e1
+
+Completeness has so far produced limits of specific sequences. The Baire
+theorem extracts something else from it: a complete space cannot be
+exhausted by countably many negligible pieces. That is an existence
+principle with no construction attached -- the standard way to prove that
+an object with some property exists is to show its complement is a
+countable union of nowhere dense sets.
+
+#+DEPENDS: def-interior-closure-boundary, def-metric-space
+#+NAME: def-nowhere-dense
+#+begin_definition
+A subset \(A\) of a topological space is /nowhere dense/ if
+\((\overline{A})^{\circ} = \emptyset\), and /meagre/ if it is a
+countable union of nowhere dense sets.
+#+end_definition
+
+#+DEPENDS: def-nowhere-dense, cor-dense-meets-every-open-set
+#+NAME: prop-nowhere-dense-criterion
+#+begin_proposition
+\(A\) is nowhere dense if and only if \(X \setminus \overline{A}\) is
+dense; and a closed set is nowhere dense exactly when it has empty
+interior.
+#+end_proposition
+
+#+begin_proof
+\((\overline{A})^{\circ} = \emptyset\) says no non-empty open set is
+contained in \(\overline{A}\), that is every non-empty open set meets
+the complement of \(\overline{A}\) -- which is density of that
+complement. For closed \(A\), \(\overline{A} = A\).
+#+end_proof
+
+#+DEPENDS: def-nowhere-dense, def-metric-convergence, thm-balls-are-a-basis, cor-dense-meets-every-open-set
+#+NAME: thm-baire
+#+begin_theorem
+In a complete metric space, the intersection of countably many dense
+open sets is dense.
+#+end_theorem
+
+#+begin_proof
+Let \((U_{n})_{n\ge1}\) be dense open sets and \(W\) a non-empty open
+set; we find a point of \(W \cap \bigcap_{n}U_{n}\).
+
+Since \(U_{1}\) is dense, \(W \cap U_{1}\) is non-empty and open, so it
+contains a ball; choose \(x_{1}\) and \(0 < r_{1} \le 1\) with the
+closed ball \(\overline{B}(x_{1},r_{1}) \subseteq W\cap U_{1}\)
+(shrinking the radius by half makes the closed ball fit). Recursively,
+given \(x_{n}, r_{n}\), density of \(U_{n+1}\) makes
+\(B(x_{n},r_{n})\cap U_{n+1}\) non-empty and open, so choose
+\(x_{n+1}\) and \(0 < r_{n+1} \le r_{n}/2\) with
+\(\overline{B}(x_{n+1},r_{n+1}) \subseteq B(x_{n},r_{n})\cap U_{n+1}\).
+
+The balls are nested and \(r_{n} \le 2^{1-n}\), so for \(m \ge n\) we
+have \(x_{m} \in B(x_{n},r_{n})\) and hence
+\(d(x_{m},x_{n}) < 2^{1-n}\): the sequence is Cauchy and converges to
+some \(x\) by completeness. For each \(n\), all terms from index \(n\)
+on lie in the closed set \(\overline{B}(x_{n},r_{n})\), so
+\(x \in \overline{B}(x_{n},r_{n}) \subseteq U_{n}\), and also
+\(x \in W\). Hence \(W\) meets the intersection, which is therefore
+dense.
+#+end_proof
+
+#+DEPENDS: thm-baire, prop-nowhere-dense-criterion
+#+NAME: cor-complete-spaces-are-not-meagre
+#+begin_corollary
+A non-empty complete metric space is not a countable union of nowhere
+dense sets. Consequently, if it is a countable union of closed sets,
+one of them has non-empty interior.
+#+end_corollary
+
+#+begin_proof
+Let \(X = \bigcup_{n}A_{n}\) with each \(A_{n}\) nowhere dense. The sets
+\(U_{n} = X\setminus\overline{A_{n}}\) are open and dense, so
+\(\bigcap_{n}U_{n}\) is dense, in particular non-empty since \(X\) is.
+But a point of it lies in no \(\overline{A_{n}}\), hence in no
+\(A_{n}\) -- contradicting the covering. If the \(A_{n}\) are closed and
+cover \(X\), one of them is therefore not nowhere dense, that is, has
+non-empty interior.
+#+end_proof
+
+#+DEPENDS: cor-complete-spaces-are-not-meagre, def-equinumerous
+#+NAME: cor-a-perfect-complete-space-is-uncountable
+#+begin_corollary
+A non-empty complete metric space with no isolated points is
+uncountable. In particular \(\R\) is uncountable.
+#+end_corollary
+
+#+begin_proof
+Suppose \(X = \set{x_{1}, x_{2}, \dots}\) is countable. Each singleton
+\(\set{x_{n}}\) is closed, and it has empty interior because \(x_{n}\)
+is not isolated: every ball around it contains another point. So \(X\)
+is a countable union of nowhere dense sets, contradicting the previous
+corollary.
+#+end_proof
+
+#+begin_remark
+The recursive choice of the balls is a sequence of dependent choices,
+and the theorem is in fact equivalent to the axiom of dependent choice
+over the other axioms of set theory. It is worth knowing which existence
+results in analysis are of this kind: they produce a point that is
+generic rather than constructed, and no algorithm is implied.
+#+end_remark

@@ -1,0 +1,49 @@
+:PROPERTIES:
+:ID:       f0cf6f7b-7984-4e52-9ef1-6fb39bf8058b
+:END:
+#+TITLE: The intermediate value theorem
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A15
+#+HASH: 4ab6ddef1fac
+
+The first theorem of the course whose content is genuinely topological:
+it says that a continuous function on an interval skips no value, and it
+is false over \(\Q\) for the same reason everything else in analysis is.
+
+#+DEPENDS: def-continuity-at-point, ax-completeness, prop-supremum-characterisation
+#+NAME: thm-intermediate-value
+#+begin_theorem
+Let \(f \colon [a,b] \to \R\) be continuous and let \(y\) lie between
+\(f(a)\) and \(f(b)\). Then \(f(c) = y\) for some \(c \in [a,b]\).
+#+end_theorem
+
+#+begin_proof
+Assume \(f(a) < y < f(b)\) (otherwise replace \(f\) by \(-f\) and \(y\)
+by \(-y\)). The set \(S = \setst{x \in [a,b]}{f(x) < y}\) is non-empty,
+since \(a \in S\), and bounded above by \(b\), so \(c = \sup S\) exists
+by completeness and lies in \([a,b]\).
+
+If \(f(c) < y\), continuity at \(c\) with \(\eps = y - f(c) > 0\) gives
+\(\delta > 0\) such that \(f(x) < y\) for \(x \in [a,b]\) with
+\(\abs{x - c} < \delta\); since \(f(b) > y\) we have \(c < b\), so some
+point to the right of \(c\) lies in \(S\), contradicting that \(c\) is an
+upper bound. If \(f(c) > y\), continuity with \(\eps = f(c) - y\) gives
+\(\delta > 0\) with \(f(x) > y\) on \((c - \delta, c] \cap [a,b]\), so
+\(c - \delta\) is an upper bound of \(S\) smaller than \(c\),
+contradicting leastness. Hence \(f(c) = y\).
+#+end_proof
+
+#+DEPENDS: thm-intermediate-value
+#+NAME: cor-square-roots
+#+begin_corollary
+Every \(y > 0\) has a positive square root: there is \(c > 0\) with
+\(c^{2} = y\).
+#+end_corollary
+
+#+begin_proof
+Apply the theorem to the continuous function \(f(x) = x^{2}\) on
+\([0, 1 + y]\). Since \(f(0) = 0 \le y\) and
+\(f(1 + y) = (1+y)^{2} > y\), there is \(c\) in the interval with
+\(c^{2} = y\), and \(c > 0\) because \(y > 0\).
+#+end_proof

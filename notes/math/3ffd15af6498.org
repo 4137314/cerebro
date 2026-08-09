@@ -1,0 +1,91 @@
+:PROPERTIES:
+:ID:       6e7af92b-7edd-4621-82f5-251a54793e81
+:END:
+#+TITLE: Limit superior and limit inferior
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 40A05
+#+HASH: 3ffd15af6498
+
+A bounded sequence need not converge, but two numbers are always
+attached to it, and they exist without any hypothesis at all. That is
+their point: \(\limsup\) and \(\liminf\) turn "does this converge?"
+into an equation between two quantities that are already there, which
+is what the root test and every later oscillation argument need.
+
+#+DEPENDS: def-subsequence, def-sequence-limit
+#+NAME: prop-subsequence-limit
+#+begin_proposition
+If \(a_{n} \to L\), then every subsequence of \((a_{n})\) converges to
+\(L\).
+#+end_proposition
+
+#+begin_proof
+Let \((a_{n_{k}})\) be a subsequence and \(\eps > 0\). Choose \(N\) with
+\(\abs{a_{n} - L} < \eps\) for \(n \ge N\). Since the indices are
+strictly increasing, \(n_{k} \ge k\) for every \(k\), so \(k \ge N\)
+gives \(n_{k} \ge N\) and hence \(\abs{a_{n_{k}} - L} < \eps\).
+#+end_proof
+
+#+DEPENDS: def-bounded-sequence, ax-completeness, def-supremum
+#+NAME: def-limsup-liminf
+#+begin_definition
+Let \((a_{n})\) be a bounded sequence. The sequences
+\(s_{N} = \sup_{n \ge N} a_{n}\) and \(t_{N} = \inf_{n \ge N} a_{n}\)
+are well defined by completeness, decreasing and increasing
+respectively, and bounded. Their limits
+\[ \limsup_{n \to \infty} a_{n} = \lim_{N \to \infty} s_{N} = \inf_{N} \sup_{n \ge N} a_{n}, \qquad \liminf_{n \to \infty} a_{n} = \lim_{N \to \infty} t_{N} = \sup_{N} \inf_{n \ge N} a_{n} \]
+are the /limit superior/ and /limit inferior/ of \((a_{n})\). Always
+\(\liminf a_{n} \le \limsup a_{n}\).
+#+end_definition
+
+#+DEPENDS: def-limsup-liminf, prop-supremum-characterisation
+#+NAME: prop-limsup-characterisation
+#+begin_proposition
+Let \((a_{n})\) be bounded and \(L = \limsup a_{n}\). Then for every
+\(\eps > 0\) we have \(a_{n} < L + \eps\) for all but finitely many
+\(n\), and \(a_{n} > L - \eps\) for infinitely many \(n\).
+#+end_proposition
+
+#+begin_proof
+Fix \(\eps > 0\). Since \(s_{N} \to L\) and \((s_{N})\) is decreasing,
+there is \(N\) with \(s_{N} < L + \eps\), that is \(a_{n} < L + \eps\)
+for every \(n \ge N\); only the finitely many terms before \(N\) can
+fail it. For the second claim, note \(s_{N} \ge L\) for every \(N\)
+because \((s_{N})\) decreases to \(L\). Given \(N\), the
+characterisation of the supremum applied to
+\(s_{N} = \sup_{n \ge N} a_{n}\) produces \(n \ge N\) with
+\(a_{n} > s_{N} - \eps \ge L - \eps\). As \(N\) was arbitrary, such
+\(n\) occur arbitrarily late.
+#+end_proof
+
+#+DEPENDS: prop-limsup-characterisation, thm-squeeze, prop-subsequence-limit
+#+NAME: thm-limsup-criterion
+#+begin_theorem
+A bounded sequence \((a_{n})\) converges if and only if
+\(\liminf a_{n} = \limsup a_{n}\), and then the common value is the
+limit.
+#+end_theorem
+
+#+begin_proof
+Write \(t_{N} = \inf_{n \ge N} a_{n}\) and
+\(s_{N} = \sup_{n \ge N} a_{n}\), so that
+\(t_{N} \le a_{N} \le s_{N}\) for every \(N\). If the
+two limits agree, the squeeze theorem gives \(a_{N} \to\) that common
+value.
+
+Conversely let \(a_{n} \to L\) and \(\eps > 0\). Choose \(N\) with
+\(L - \eps < a_{n} < L + \eps\) for \(n \ge N\). Then
+\(L - \eps \le t_{N}\) and \(s_{N} \le L + \eps\), so both
+\(\liminf a_{n}\) and \(\limsup a_{n}\) lie in
+\([L - \eps, L + \eps]\). As \(\eps\) was arbitrary they both equal
+\(L\).
+#+end_proof
+
+#+begin_remark
+The first half of the characterisation is the form used in practice:
+\(\limsup a_{n} < 1\) means the terms are eventually below some
+\(r < 1\), which is exactly the hypothesis the root test wants. Stating
+the root test with \(\limsup \abs{a_{n}}^{1/n}\) instead of a limit
+therefore costs nothing and drops the assumption that the limit exists.
+#+end_remark

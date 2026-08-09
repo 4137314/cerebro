@@ -1,0 +1,61 @@
+:PROPERTIES:
+:ID:       7a318571-63c2-4816-a1ff-f05dce63deab
+:END:
+#+TITLE: Uniform bounds on the Taylor remainder
+#+DATE: [2026-08-06 Thu]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A24
+#+HASH: 6dd5f7f725b4
+
+Taylor's theorem gives the remainder at an unproved point \(\xi\), which
+is not a number anyone can produce. What turns it into an estimate is a
+bound on the derivatives, and if that bound is uniform in the order the
+Taylor polynomials converge to the function outright. Stated for a
+hypothesis on the derivatives rather than for any particular function:
+the sine and the exponential are the cases one meets, and neither is the
+content.
+
+#+DEPENDS: thm-taylor-lagrange, def-taylor-polynomial
+#+NAME: thm-taylor-remainder-bound
+#+begin_theorem
+Let \(I\) be an interval containing \(a\), let \(f\) be \(n+1\) times
+differentiable on \(I\), and suppose \(\abs{f^{(n+1)}} \le M\) on
+\(I\). Then for every \(x \in I\),
+\[ \abs{f(x) - T_{n}(x)} \le \frac{M}{(n+1)!} \abs{x - a}^{n+1}. \]
+#+end_theorem
+
+#+begin_proof
+By Taylor's theorem with the Lagrange remainder there is \(\xi\)
+strictly between \(a\) and \(x\) with
+\(f(x) - T_{n}(x) = f^{(n+1)}(\xi) (x - a)^{n+1} / (n+1)!\). Since
+\(\xi \in I\) we have \(\abs{f^{(n+1)}(\xi)} \le M\), and taking
+absolute values gives the bound.
+#+end_proof
+
+#+DEPENDS: thm-taylor-remainder-bound, thm-squeeze
+#+NAME: cor-taylor-converges-under-a-uniform-bound
+#+begin_corollary
+Suppose \(f\) is infinitely differentiable on \(I\) and there is one
+\(M\) with \(\abs{f^{(k)}} \le M\) on \(I\) for *every* \(k\). Then
+\(T_{n}(x) \to f(x)\) for each \(x \in I\).
+#+end_corollary
+
+#+begin_proof
+Fix \(x \in I\) and put \(r = \abs{x - a}\). The theorem gives
+\(\abs{f(x) - T_{n}(x)} \le M r^{n+1}/(n+1)!\). For fixed \(r\) the
+sequence \(r^{n+1}/(n+1)!\) tends to \(0\): from the index \(n_{0} > 2r\)
+onwards each factor multiplies the previous term by
+\(r/(n+1) < 1/2\), so the terms are eventually dominated by a geometric
+sequence with ratio \(1/2\). Squeezing between \(0\) and that bound
+gives \(\abs{f(x) - T_{n}(x)} \to 0\).
+#+end_proof
+
+#+begin_remark
+The hypothesis is what does the work, and it is strong: one bound for
+*all* derivatives. Without it a function can be infinitely
+differentiable and have every Taylor coefficient at a point vanish
+while the function does not -- so the polynomials converge, to something
+that is not the function. Taylor's theorem is a statement about
+approximation of finite order; convergence of the whole series is a
+separate hypothesis, never a consequence of smoothness alone.
+#+end_remark

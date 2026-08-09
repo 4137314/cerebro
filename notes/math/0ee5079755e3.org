@@ -1,0 +1,118 @@
+:PROPERTIES:
+:ID:       e6d31716-fa9d-4905-8121-db4cb589bbea
+:END:
+#+TITLE: Hausdorff spaces and separation
+#+DATE: [2026-08-09 Sun]
+#+FILETAGS: :growing:topology:general_topology:
+#+MSC: 54D10
+#+HASH: 0ee5079755e3
+
+The axioms of a topological space allow a topology so coarse that two
+points cannot be told apart by open sets, and then a sequence can
+converge to everything at once. Nothing in the general theory forbids
+it; a separation axiom is the extra hypothesis under which the
+statements one expects -- limits are unique, compact sets are closed --
+become true again.
+
+#+DEPENDS: def-topological-space
+#+NAME: def-hausdorff
+#+begin_definition
+A topological space \(X\) is /Hausdorff/ if for any two distinct points
+\(x \ne y\) there are disjoint open sets \(U \ni x\) and \(V \ni y\).
+#+end_definition
+
+#+DEPENDS: def-hausdorff, def-metric-space, def-open-set
+#+NAME: prop-metric-spaces-are-hausdorff
+#+begin_proposition
+Every metric space, with the topology of its open sets, is Hausdorff.
+#+end_proposition
+
+#+begin_proof
+For \(x \ne y\) put \(r = d(x,y)/2 > 0\). The balls \(B(x,r)\) and
+\(B(y,r)\) are open and disjoint: a common point \(z\) would give
+\(d(x,y) \le d(x,z)+d(z,y) < 2r = d(x,y)\).
+#+end_proof
+
+#+DEPENDS: def-hausdorff, def-sequence-limit
+#+NAME: prop-hausdorff-limits-are-unique
+#+begin_proposition
+In a Hausdorff space a sequence has at most one limit, where
+\(x_{n} \to x\) means that every neighbourhood of \(x\) contains all but
+finitely many \(x_{n}\).
+#+end_proposition
+
+#+begin_proof
+Suppose \(x_{n} \to x\) and \(x_{n} \to y\) with \(x \ne y\), and take
+disjoint open \(U \ni x\), \(V \ni y\). All but finitely many terms lie
+in \(U\), and all but finitely many lie in \(V\); as the sequence has
+infinitely many indices, some term lies in both, contradicting
+disjointness.
+#+end_proof
+
+#+DEPENDS: def-hausdorff, prop-interior-and-closure-are-extremal
+#+NAME: prop-points-are-closed-in-a-hausdorff-space
+#+begin_proposition
+In a Hausdorff space every finite subset is closed.
+#+end_proposition
+
+#+begin_proof
+It suffices to treat a single point \(x\), finite unions of closed sets
+being closed. For each \(y \ne x\) choose disjoint open
+\(U_{y} \ni y\) and \(V_{y} \ni x\); then \(U_{y}\) misses \(x\), so
+\(X \setminus \set{x} = \bigcup_{y \ne x}U_{y}\) is open.
+#+end_proof
+
+#+DEPENDS: def-hausdorff, def-compact, prop-points-are-closed-in-a-hausdorff-space
+#+NAME: prop-compact-subset-of-a-hausdorff-space-is-closed
+#+begin_proposition
+A compact subset \(K\) of a Hausdorff space \(X\) is closed. More
+precisely, a point \(x \notin K\) and \(K\) have disjoint open
+neighbourhoods.
+#+end_proposition
+
+#+begin_proof
+Fix \(x \notin K\). For each \(y \in K\) choose disjoint open
+\(U_{y} \ni y\) and \(V_{y} \ni x\). The \(U_{y}\) cover \(K\), so
+finitely many \(U_{y_{1}}, \dots, U_{y_{m}}\) do; then
+\(V = V_{y_{1}}\cap\cdots\cap V_{y_{m}}\) is an open neighbourhood of
+\(x\) disjoint from \(U = U_{y_{1}}\cup\cdots\cup U_{y_{m}} \supseteq K\).
+In particular every \(x \notin K\) has a neighbourhood missing \(K\), so
+the complement of \(K\) is open.
+#+end_proof
+
+#+DEPENDS: prop-compact-subset-of-a-hausdorff-space-is-closed, thm-continuous-image-of-a-compact-space, prop-homeomorphism-criteria, prop-closed-subspace-of-a-compact-space
+#+NAME: thm-continuous-bijection-from-compact-to-hausdorff
+#+begin_theorem
+A continuous bijection from a compact space to a Hausdorff space is a
+homeomorphism.
+#+end_theorem
+
+#+begin_proof
+Let \(f \colon X \to Y\) be such a map and \(C \subseteq X\) closed.
+Then \(C\) is compact, so \(f(C)\) is compact, hence closed in the
+Hausdorff space \(Y\). So \(f\) is a closed bijection, therefore a
+homeomorphism.
+#+end_proof
+
+#+DEPENDS: def-hausdorff, def-subspace-topology, def-product-topology
+#+NAME: prop-hausdorff-is-inherited
+#+begin_proposition
+A subspace of a Hausdorff space is Hausdorff, and any product of
+Hausdorff spaces is Hausdorff.
+#+end_proposition
+
+#+begin_proof
+For a subspace \(A\), intersect the separating open sets with \(A\).
+For a product, let \(x \ne y\) in \(\prod_{i}X_{i}\); they differ in some
+coordinate \(j\), so there are disjoint open \(U, V \subseteq X_{j}\)
+around \(x_{j}\) and \(y_{j}\), and \(\pi_{j}^{-1}(U)\),
+\(\pi_{j}^{-1}(V)\) are disjoint open sets separating \(x\) and \(y\).
+#+end_proof
+
+#+begin_remark
+A quotient is missing from that list, and deliberately: the quotient of
+a Hausdorff space need not be Hausdorff, since the quotient topology is
+defined by mapping out and separation is a statement about mapping in.
+That is where the axiom stops being automatic and becomes something to
+check.
+#+end_remark

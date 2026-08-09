@@ -1,0 +1,98 @@
+:PROPERTIES:
+:ID:       827fb337-7e3b-4d0d-b912-8bf5bcc121bb
+:END:
+#+TITLE: The algebra of continuous functions and composition
+#+DATE: [2026-08-07 Fri]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26A15
+#+HASH: 37de6b35023e
+
+The sequential characterisation of the limit was proved so that the
+theorems about sequences could be spent on functions without being
+proved twice. This note spends them: the algebra of limits becomes the
+algebra of continuous functions, and with it every polynomial and
+rational function is continuous for free. Composition is the one rule
+that does not come from a sequence argument in the same way, and it is
+the one that needs care.
+
+#+DEPENDS: prop-sequential-limit, thm-limit-algebra
+#+NAME: thm-function-limit-algebra
+#+begin_theorem
+Let \(c\) be an accumulation point of \(D\), and let
+\(\lim_{x \to c} f(x) = L\) and \(\lim_{x \to c} g(x) = M\). Then
+\(f + g \to L + M\) and \(fg \to LM\) as \(x \to c\), and
+\(f/g \to L/M\) provided \(M \ne 0\) and \(g\) does not vanish on
+\(D\).
+#+end_theorem
+
+#+begin_proof
+Let \((x_{n})\) be any sequence in \(D \setminus \set{c}\) with
+\(x_{n} \to c\). By the sequential characterisation
+\(f(x_{n}) \to L\) and \(g(x_{n}) \to M\), so by the algebra of limits
+\((f+g)(x_{n}) \to L + M\), \((fg)(x_{n}) \to LM\), and
+\((f/g)(x_{n}) \to L/M\) when \(M \ne 0\). Since this holds for every
+such sequence, the sequential characterisation read backwards gives the
+three limits.
+#+end_proof
+
+#+DEPENDS: thm-function-limit-algebra, def-continuity-at-point
+#+NAME: thm-continuous-algebra
+#+begin_theorem
+If \(f, g \colon D \to \R\) are continuous at \(x_{0}\), then so are
+\(f + g\), \(fg\) and, when \(g(x_{0}) \ne 0\), \(f/g\) on the set
+where \(g\) does not vanish.
+#+end_theorem
+
+#+begin_proof
+Continuity at \(x_{0}\) says \(\lim_{x \to x_{0}} f(x) = f(x_{0})\)
+when \(x_{0}\) is an accumulation point of \(D\), so the previous
+theorem gives the three limits as \(f(x_{0}) + g(x_{0})\),
+\(f(x_{0}) g(x_{0})\) and \(f(x_{0})/g(x_{0})\), which are exactly the
+values of the three functions at \(x_{0}\). If \(x_{0}\) is an isolated
+point of \(D\) every function is continuous there and there is nothing
+to prove.
+#+end_proof
+
+#+DEPENDS: thm-continuous-algebra
+#+NAME: cor-polynomials-continuous
+#+begin_corollary
+Every polynomial is continuous on \(\R\), and every rational function
+is continuous at every point where its denominator does not vanish.
+#+end_corollary
+
+#+begin_proof
+The constant functions and the identity \(x \mapsto x\) are continuous
+directly from the definition (take \(\delta = \eps\) for the identity,
+any \(\delta\) for a constant). Products and sums of continuous
+functions are continuous, so by induction every monomial and hence
+every polynomial is; the quotient rule gives the rational case.
+#+end_proof
+
+#+DEPENDS: def-continuity-at-point
+#+NAME: thm-composition-continuous
+#+begin_theorem
+Let \(f \colon D \to \R\) be continuous at \(x_{0}\), with
+\(f(D) \subseteq E\), and let \(g \colon E \to \R\) be continuous at
+\(f(x_{0})\). Then \(g \circ f\) is continuous at \(x_{0}\).
+#+end_theorem
+
+#+begin_proof
+Let \(\eps > 0\). By continuity of \(g\) at \(y_{0} = f(x_{0})\) there
+is \(\eta > 0\) with \(\abs{g(y) - g(y_{0})} < \eps\) for every
+\(y \in E\) with \(\abs{y - y_{0}} < \eta\). By continuity of \(f\) at
+\(x_{0}\), applied with \(\eta\) in the role of the tolerance, there is
+\(\delta > 0\) with \(\abs{f(x) - y_{0}} < \eta\) for every \(x \in D\)
+with \(\abs{x - x_{0}} < \delta\). Combining the two, every \(x \in D\)
+with \(\abs{x - x_{0}} < \delta\) satisfies
+\(\abs{g(f(x)) - g(f(x_{0}))} < \eps\).
+#+end_proof
+
+#+begin_remark
+Composition is stated for /continuity/ and not for limits, and that is
+not laziness: the corresponding statement about limits is false as
+usually written. With \(f\) constantly \(0\) and \(g\) equal to \(0\)
+away from the origin and \(1\) at it, \(\lim_{x \to 0} f(x) = 0\) and
+\(\lim_{y \to 0} g(y) = 0\), but \(g(f(x))\) is constantly \(1\). What
+repairs it is exactly the hypothesis continuity supplies: that the
+outer limit is the value at the point.
+#+end_remark
