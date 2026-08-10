@@ -1,0 +1,58 @@
+:PROPERTIES:
+:ID:       bc698008-d192-4f92-9822-8e4b05bab125
+:END:
+#+TITLE: Rings and commutative algebra
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:algebra:commutative_algebra:ring_theory:
+#+MSC: 13-XX, 16-XX
+#+HASH: a89b0d5299eb
+
+A ring has two operations, and the whole subject is about their
+interaction -- which is why the substructure one may divide by is not a
+subring but an ideal, absorption rather than closure being what the
+quotient needs. After that the questions are arithmetic: does
+factorisation exist, is it unique, and is every ideal finitely
+generated.
+
+Part of [[id:504cda55-cfbf-42c2-b481-8d90660ec02a][Algebra]].
+
+* The basic constructions
+
+[[id:f32dae57-e863-4228-b002-ca6db443f05f][Rings, ideals and the quotient ring]]; then [[id:c9c12e48-ddd2-4359-917d-138e90df9416][integral domains, fields,
+prime and maximal ideals]], where a property of an ideal is read off
+from its quotient -- prime means the quotient is a domain, maximal means
+it is a field. That dictionary is what makes the subject geometric, and
+[[id:be042679-a939-4f2e-a061-ebd148ed1692][the Chinese remainder theorem]] is its first pay-off: comaximal ideals
+split a ring into a product.
+
+[[id:cb8c1dfe-ab80-4c47-bcda-ce71f8601866][Modules, quotients and exact sequences]] repeat the vector-space theory
+over a ring, and record what is lost: without inverses a spanning set
+need not contain a basis, so dimension disappears and exact sequences
+take its place as the bookkeeping.
+
+* Factorisation
+
+[[id:950b13df-a19e-4dee-9050-7f4a5e546cd1][Polynomial rings, division and roots]] gives the division algorithm, and
+with it the two facts everything else uses: the degree is additive over
+a domain, and a polynomial of degree \(n\) has at most \(n\) roots.
+[[id:94026fa9-c00a-4e36-845c-cadacd4d94ee][Euclidean domains, principal ideals and unique factorisation]] then
+separates the three hypotheses that are usually run together --
+Euclidean gives principal, principal makes irreducible elements prime,
+primality gives uniqueness -- and the chain is strict at every step.
+
+* Finiteness
+
+[[id:e423d662-1f19-48be-a1f8-8bdfba79235b][Noetherian rings and the Hilbert basis theorem]] isolate the ascending
+chain condition, which was already doing the work in the existence half
+of unique factorisation, and prove that adjoining a variable preserves
+it. The consequence -- any system of polynomial equations is equivalent
+to a finite subsystem -- is what makes the objects of algebraic geometry
+finite data.
+
+* What is missing
+
+Localisation, which is the other half of the dictionary between rings
+and spaces; the Nullstellensatz; primary decomposition; integral
+extensions and the going-up theorem; Dedekind domains, which is where
+this subject meets number theory; and the structure theorem for
+modules over a principal ideal domain.

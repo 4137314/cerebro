@@ -1,0 +1,124 @@
+:PROPERTIES:
+:ID:       87690e8a-d61d-4412-b811-169706579af9
+:END:
+#+TITLE: Eigenvalues, the characteristic polynomial and Cayley-Hamilton
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:algebra:linear_algebra:
+#+MSC: 15A18
+#+HASH: 4ac5ee2ab58e
+
+A linear map is understood when a basis is found in which it acts
+independently on each coordinate. Eigenvectors are the candidates for
+such a basis, and the determinant turns the search for them into a
+question about the roots of one polynomial -- after which everything
+depends on whether the field contains those roots and whether they are
+distinct.
+
+#+DEPENDS: def-linear-map, thm-determinant-detects-invertibility, def-polynomial-ring
+#+NAME: def-eigenvalue
+#+begin_definition
+Let \(f \colon V \to V\) be linear, \(V\) a vector space over \(K\). A
+scalar \(\lambda \in K\) is an /eigenvalue/ of \(f\) if
+\(f(v) = \lambda v\) for some \(v \ne 0\), which is then an
+/eigenvector/; the /eigenspace/ is
+\(V_{\lambda} = \ker(f - \lambda\,\id)\). For \(\dim V = n\) and a
+matrix \(A\) of \(f\), the /characteristic polynomial/ is
+\(\chi_{A}(x) = \det(x I - A) \in K[x]\).
+#+end_definition
+
+#+DEPENDS: def-eigenvalue, thm-determinant-is-multiplicative
+#+NAME: prop-eigenvalues-are-the-roots
+#+begin_proposition
+\(\lambda\) is an eigenvalue of \(f\) if and only if
+\(\chi_{A}(\lambda) = 0\); and \(\chi_{A}\) is monic of degree \(n\) and
+does not depend on the basis chosen.
+#+end_proposition
+
+#+begin_proof
+\(\lambda\) is an eigenvalue exactly when \(f - \lambda\id\) has
+non-trivial kernel, that is is not invertible, that is
+\(\det(\lambda I - A) = 0\). Expanding the defining sum of
+\(\det(xI - A)\), the term of \(\sigma = \id\) is
+\(\prod_{i}(x - a_{ii})\), of degree \(n\) and monic, and every other
+term omits at least two diagonal entries, hence has degree at most
+\(n-2\).
+
+A change of basis replaces \(A\) by \(P^{-1}AP\), and
+\(\det(xI - P^{-1}AP) = \det(P^{-1}(xI-A)P) = \det(xI-A)\) by
+multiplicativity.
+#+end_proof
+
+#+DEPENDS: def-eigenvalue, def-span-and-independence, cor-extension-to-a-basis
+#+NAME: prop-eigenvectors-for-distinct-eigenvalues
+#+begin_proposition
+Eigenvectors for pairwise distinct eigenvalues are linearly
+independent. Hence a map on an \(n\)-dimensional space with \(n\)
+distinct eigenvalues has a basis of eigenvectors.
+#+end_proposition
+
+#+begin_proof
+Suppose not, and take a dependence
+\(\sum_{i=1}^{k}\alpha_{i}v_{i} = 0\) with all \(\alpha_{i}\ne 0\) and
+\(k\) minimal, the \(v_{i}\) eigenvectors for distinct
+\(\lambda_{i}\). Applying \(f\) gives
+\(\sum_{i}\alpha_{i}\lambda_{i}v_{i} = 0\); subtracting
+\(\lambda_{k}\) times the original relation leaves
+\(\sum_{i<k}\alpha_{i}(\lambda_{i}-\lambda_{k})v_{i} = 0\), a shorter
+dependence with non-zero coefficients -- contradicting minimality
+(for \(k = 1\) the relation reads \(\alpha_{1}v_{1} = 0\) with
+\(v_{1}\ne0\), already impossible).
+
+With \(n\) distinct eigenvalues, the corresponding eigenvectors are
+\(n\) independent vectors, hence a basis.
+#+end_proof
+
+#+DEPENDS: prop-eigenvectors-for-distinct-eigenvalues, def-eigenvalue
+#+NAME: thm-diagonalisability-criterion
+#+begin_theorem
+\(f\) has a basis of eigenvectors if and only if
+\(V = \bigoplus_{\lambda}V_{\lambda}\), the sum over the eigenvalues; and
+then the matrix of \(f\) in that basis is diagonal.
+#+end_theorem
+
+#+begin_proof
+A basis of eigenvectors partitions into the eigenspaces, so \(V\) is
+their sum, and the sum is direct because a non-trivial relation between
+vectors from distinct eigenspaces would contradict the previous
+proposition. Conversely, taking a basis of each \(V_{\lambda}\) and
+concatenating gives a basis of the direct sum, consisting of
+eigenvectors. In such a basis the \(j\)-th column of the matrix is
+\(\lambda_{j}e_{j}\).
+#+end_proof
+
+#+DEPENDS: def-eigenvalue, thm-laplace-expansion-and-adjugate, def-polynomial-ring
+#+NAME: thm-cayley-hamilton
+#+begin_theorem
+\(\chi_{A}(A) = 0\) for every square matrix \(A\) over a commutative
+ring.
+#+end_theorem
+
+#+begin_proof
+Work in the matrices over \(K[x]\) and put
+\(B(x) = \operatorname{adj}(xI - A)\). Its entries are determinants of
+\((n-1)\times(n-1)\) matrices whose entries are of degree at most \(1\),
+so \(B(x) = \sum_{i=0}^{n-1}B_{i}x^{i}\) with \(B_{i}\) matrices over
+the base ring. The adjugate identity gives
+\[ (xI - A)\Bigl(\sum_{i=0}^{n-1}B_{i}x^{i}\Bigr) = \chi_{A}(x) I = \Bigl(\sum_{j=0}^{n}c_{j}x^{j}\Bigr) I. \]
+Comparing coefficients of \(x^{j}\): \(B_{j-1} - AB_{j} = c_{j}I\), with
+the conventions \(B_{-1} = B_{n} = 0\).
+
+Multiply the equation for \(x^{j}\) on the left by \(A^{j}\) and sum
+over \(j\). The left-hand side telescopes to \(0\), each term
+\(A^{j}B_{j-1}\) cancelling against \(-A^{j-1}\cdot AB_{j-1}\) from the
+next equation; the right-hand side is \(\sum_{j}c_{j}A^{j} = \chi_{A}(A)\).
+#+end_proof
+
+#+begin_remark
+The proof cannot be shortened to "substitute \(x = A\) in
+\(\det(xI-A)\)": the entries of \(xI - A\) are scalars-plus-\(x\), and
+substituting a matrix for \(x\) is not a ring homomorphism when the
+matrices involved do not commute. Comparing coefficients first, and only
+then multiplying by powers of \(A\) on a fixed side, is exactly what
+repairs that gap -- and it is why the theorem holds over any commutative
+ring, with no eigenvalues in sight.
+#+end_remark

@@ -1,0 +1,103 @@
+:PROPERTIES:
+:ID:       ce3922ea-3a0a-45c0-9555-6afa89068c6a
+:END:
+#+TITLE: The Weierstrass approximation theorem
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:analysis:approximation_theory:
+#+MSC: 41A10
+#+HASH: 3a2b57d560ca
+
+Taylor's theorem approximates a smooth function near a point and says
+nothing away from it. Weierstrass' theorem is the opposite statement:
+/every/ continuous function on a compact interval, with no
+differentiability whatever, is a uniform limit of polynomials. The proof
+below is constructive -- the polynomials are written down -- and the
+computation that makes it work is an identity about a binomial sum.
+
+#+DEPENDS: def-polynomial-ring, def-uniform-convergence, def-continuity-at-point
+#+NAME: def-bernstein-polynomial
+#+begin_definition
+For \(f \colon [0,1]\to\R\) the /Bernstein polynomial/ of degree \(n\)
+is
+\[ B_{n}f(x) = \sum_{k=0}^{n}f\Bigl(\frac{k}{n}\Bigr)\binom{n}{k}x^{k}(1-x)^{n-k}. \]
+#+end_definition
+
+#+DEPENDS: def-bernstein-polynomial
+#+NAME: lem-bernstein-identities
+#+begin_lemma
+Write \(r_{k}(x) = \binom{n}{k}x^{k}(1-x)^{n-k}\). Then for every
+\(x \in [0,1]\),
+\[ \sum_{k}r_{k}(x) = 1, \qquad \sum_{k}\Bigl(x - \frac{k}{n}\Bigr)^{2}r_{k}(x) = \frac{x(1-x)}{n} \le \frac{1}{4n}. \]
+#+end_lemma
+
+#+begin_proof
+The first is the binomial theorem for \((x + (1-x))^{n}\).
+Differentiating the binomial identity
+\(\sum_{k}\binom{n}{k}x^{k}y^{n-k} = (x+y)^{n}\) with respect to \(x\)
+and multiplying by \(x\) gives
+\(\sum_{k}k\binom{n}{k}x^{k}y^{n-k} = nx(x+y)^{n-1}\); repeating the
+operation gives
+\(\sum_{k}k^{2}\binom{n}{k}x^{k}y^{n-k} = nx(x+y)^{n-1} + n(n-1)x^{2}(x+y)^{n-2}\).
+Setting \(y = 1-x\), so that \(x+y=1\), yields
+\(\sum_{k}k\,r_{k} = nx\) and \(\sum_{k}k^{2}r_{k} = nx + n(n-1)x^{2}\).
+Hence
+\(\sum_{k}(x-k/n)^{2}r_{k} = x^{2} - 2x\cdot x + \frac{nx+n(n-1)x^{2}}{n^{2}} = \frac{x - x^{2}}{n}\),
+and \(x(1-x)\le1/4\) on \([0,1]\).
+#+end_proof
+
+#+DEPENDS: lem-bernstein-identities, thm-heine-cantor, thm-extreme-value, def-uniform-convergence
+#+NAME: thm-weierstrass-approximation
+#+begin_theorem
+Let \(f\) be continuous on \([0,1]\). Then \(B_{n}f \to f\) uniformly on
+\([0,1]\). Consequently every continuous function on a compact interval
+is a uniform limit of polynomials.
+#+end_theorem
+
+#+begin_proof
+Let \(\eps>0\). By the Heine-Cantor theorem \(f\) is uniformly
+continuous, so there is \(\delta>0\) with \(\abs{f(s)-f(t)}<\eps/2\)
+whenever \(\abs{s-t}<\delta\); and \(f\) is bounded, say by \(M\), being
+continuous on a compact interval.
+
+Using \(\sum_{k}r_{k} = 1\),
+\[ \abs{B_{n}f(x)-f(x)} \le \sum_{k}\Bigl| f\Bigl(\frac{k}{n}\Bigr)-f(x)\Bigr| r_{k}(x). \]
+Split the sum. Where \(\abs{x - k/n}<\delta\) the difference is less
+than \(\eps/2\), and those terms contribute at most \(\eps/2\). Where
+\(\abs{x-k/n}\ge\delta\) the difference is at most \(2M\), and
+\(1 \le (x-k/n)^{2}/\delta^{2}\), so by the second identity those terms
+contribute at most
+\(\frac{2M}{\delta^{2}}\sum_{k}(x-k/n)^{2}r_{k}(x) \le \frac{M}{2n\delta^{2}}\).
+Choosing \(n > M/(\eps\delta^{2})\) makes the total less than \(\eps\),
+uniformly in \(x\).
+
+For a general interval \([a,b]\), the affine change of variable
+\(t \mapsto a + t(b-a)\) carries polynomials to polynomials and uniform
+convergence to uniform convergence.
+#+end_proof
+
+#+DEPENDS: thm-weierstrass-approximation, def-uniform-convergence, thm-uniform-limit-integral
+#+NAME: cor-polynomials-are-dense-and-moments-determine
+#+begin_corollary
+If \(f\) is continuous on \([a,b]\) and \(\int_{a}^{b}f(x)x^{n}\dd x = 0\)
+for every \(n \ge 0\), then \(f \equiv 0\).
+#+end_corollary
+
+#+begin_proof
+By linearity the hypothesis gives \(\int_{a}^{b}fP = 0\) for every
+polynomial \(P\). Choose polynomials \(P_{n}\to f\) uniformly; then
+\(fP_{n}\to f^{2}\) uniformly, since \(f\) is bounded, so
+\(\int f^{2} = \lim \int fP_{n} = 0\) by the theorem on integrating a
+uniform limit. A non-negative continuous function with zero integral is
+identically zero -- otherwise it exceeds some \(c>0\) on an interval,
+whose contribution to the integral is positive.
+#+end_proof
+
+#+begin_remark
+The theorem is the reason the trigonometric and polynomial expansions of
+analysis are not two unrelated tricks: both are instances of a
+subalgebra of continuous functions that separates points being dense,
+which is the Stone-Weierstrass theorem. The Bernstein proof also gives a
+rate, and it is famously bad -- the error is of order \(1/\sqrt{n}\) for
+a Lipschitz function -- which is why approximation theory did not stop
+here.
+#+end_remark

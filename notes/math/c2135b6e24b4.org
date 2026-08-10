@@ -1,0 +1,66 @@
+:PROPERTIES:
+:ID:       504cda55-cfbf-42c2-b481-8d90660ec02a
+:END:
+#+TITLE: Algebra
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:algebra:
+#+MSC: 20-XX, 13-XX, 15-XX
+#+HASH: c2135b6e24b4
+
+Algebra studies sets with operations, and it studies them through the
+maps that respect the operations rather than through the elements. That
+choice is what makes the subject repeat itself: the same three theorems
+-- a quotient exists, a homomorphism factors through it, the pieces
+reassemble -- are proved once for groups, once for rings, once for
+vector spaces, once for modules, with the proofs differing only in what
+has to be checked to be well defined.
+
+Part of [[id:c2fcb100-fc5a-4670-9b5d-c068c0c325ff][Mathematics]].
+
+* The subjects
+
+- [[id:8362ccd4-d076-4645-abc2-abb2b4c4fc4d][Group theory]] -- one operation, invertible. The smallest structure
+  in which anything can be undone, and the language of symmetry.
+- [[id:bc698008-d192-4f92-9822-8e4b05bab125][Rings and commutative algebra]] -- two operations, with the
+  interaction between them; ideals, factorisation, and the chain
+  conditions.
+- [[id:c264ae7e-28f0-4718-8b7f-0ad668d4d719][Field theory]] -- rings in which division is always possible, and the
+  extensions that adjoin the roots a polynomial lacks.
+- [[id:264810a5-aa5e-4f9b-934b-8e9d286eae4d][Linear algebra]] -- a field acting on an abelian group. The one case
+  that is completely understood, and therefore the model for the rest.
+
+* The one theorem, four times
+
+The [[id:da2475a4-40d1-48a3-8f06-cef2ef4ad52a][canonical factorisation of a map]] says every function is a quotient
+followed by an injection. Adding structure to the map turns it into the
+first isomorphism theorem: [[id:e0e0ff63-6493-4efb-9eab-b96ff4d568ea][for groups]], [[id:f32dae57-e863-4228-b002-ca6db443f05f][for rings]], [[id:63a183cf-d837-4b64-9987-ea0bacf0c0b1][for vector spaces]]
+(where it acquires a dimension count) and [[id:cb8c1dfe-ab80-4c47-bcda-ce71f8601866][for modules]]. In each case
+the work is not the theorem but the identification of which
+substructures can be divided out -- [[id:65032090-bc6b-4a06-a74a-ef155052a6df][normal subgroups]], [[id:f32dae57-e863-4228-b002-ca6db443f05f][two-sided
+ideals]], subspaces, submodules -- and that identification is where the
+four subjects genuinely differ.
+
+* What the structure buys
+
+- *Counting.* [[id:27ec50b5-1e22-4d41-8edb-d13292004a0f][Lagrange's theorem]] and the [[id:d1a61e90-f2ac-4e62-9cd8-8c742d43fdf2][orbit-stabiliser theorem]] turn
+  questions about a finite group into arithmetic, and the [[id:bbbee435-e5f4-4473-8ac8-ab88186ba01b][Sylow
+  theorems]] into a classification tool.
+- *Factorisation.* [[id:94026fa9-c00a-4e36-845c-cadacd4d94ee][Euclidean domain, principal ideal domain, unique
+  factorisation domain]] is a chain of strictly weakening hypotheses, and
+  it explains why \(\Z\) and \(K[x]\) behave alike.
+- *Finiteness.* The [[id:e423d662-1f19-48be-a1f8-8bdfba79235b][Hilbert basis theorem]] says that adjoining a variable
+  preserves the ascending chain condition, so a system of polynomial
+  equations is always a finite one.
+- *Non-existence.* [[id:06b49b70-2706-41e5-b4e0-612723e3adcf][The tower law]] is a multiplicative constraint on
+  degrees, and the classical impossibility proofs are that constraint
+  and nothing else.
+
+* What is missing
+
+Galois theory, which is the point at which [[id:68aecb66-5e63-4fa6-bfad-5629a7a343d2][solvable groups]] and
+[[id:d61e9b83-1185-46ed-9977-48c786495d24][splitting fields]] -- both present -- become one subject; representation
+theory; homological algebra beyond [[id:cb8c1dfe-ab80-4c47-bcda-ce71f8601866][exact sequences]]; the structure
+theorem for finitely generated modules over a principal ideal domain,
+which would subsume both the classification of finite abelian groups and
+the Jordan normal form; tensor products; and category theory, which the
+repetitions above are asking for.

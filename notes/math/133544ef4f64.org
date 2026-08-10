@@ -1,0 +1,124 @@
+:PROPERTIES:
+:ID:       72fb730d-5aaf-4b0a-b963-d3f467a0f6f8
+:END:
+#+TITLE: Constraints, virtual work and the Lagrange equations
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:mathematical_physics:classical_mechanics:
+#+MSC: 70H03, 70F20
+#+HASH: 133544ef4f64
+
+Newton's equations describe a free particle; a mechanical system is
+almost never free. The forces that enforce a constraint are unknown, and
+the device that removes them is a hypothesis about what they do rather
+than what they are: they do no work on motions compatible with the
+constraint. Everything else -- generalised coordinates, the
+[[id:2d28bca1-3909-4862-8c64-da1d91d4f27a][Euler-Lagrange equations]] as equations of motion -- follows from that
+one sentence.
+
+#+DEPENDS: def-differentiable-multivariable, thm-implicit-function, def-constraint-set
+#+NAME: def-holonomic-constraint
+#+begin_definition
+A system of \(N\) particles has positions \(x \in \R^{3N}\). A
+/holonomic constraint/ is a regular constraint
+\(g(x,t) = 0\) with \(g\) of class \(C^{2}\) into \(\R^{m}\); the
+/configuration space/ at time \(t\) is the set \(Q_{t}\) it defines, of
+dimension \(n = 3N-m\), and a choice of local coordinates
+\(q = (q_{1},\dots,q_{n})\) on it, so that \(x = x(q,t)\), is a system of
+/generalised coordinates/. A /virtual displacement/ at \((x,t)\) is a
+vector \(\delta x\) tangent to \(Q_{t}\), that is with
+\(D_{x}g(x,t)\,\delta x = 0\).
+#+end_definition
+
+#+STATUS: assumed
+#+DEPENDS: def-holonomic-constraint, prop-tangent-directions-are-the-kernel
+#+NAME: ax-dalembert-principle
+#+begin_axiom
+/The principle of virtual work/: the constraint forces \(R\) satisfy
+\(\inner{R}{\delta x} = 0\) for every virtual displacement
+\(\delta x\). Equivalently, \(R\) is normal to the configuration space.
+#+end_axiom
+
+#+begin_remark
+This is a modelling hypothesis, not a theorem, and it is marked as an
+axiom for that reason: it is what "ideal constraint" means, and it is
+false for a constraint with friction. Every conclusion below is
+conditional on it, which is the honest accounting.
+#+end_remark
+
+#+DEPENDS: ax-dalembert-principle, def-holonomic-constraint, thm-chain-rule
+#+NAME: thm-lagrange-equations-from-dalembert
+#+begin_theorem
+Let a system of particles with masses \(m_{i}\) be subject to ideal
+holonomic constraints and applied forces \(F\), and let \(q\) be
+generalised coordinates. Then the motion satisfies
+\[ \frac{\dd}{\dd t}\frac{\partial T}{\partial \dot{q}_{k}} - \frac{\partial T}{\partial q_{k}} = Q_{k}, \qquad k = 1,\dots,n, \]
+where \(T = \tfrac{1}{2}\sum_{i}m_{i}\abs{\dot{x}_{i}}^{2}\) is the
+kinetic energy expressed in \((q,\dot{q},t)\) and
+\(Q_{k} = \sum_{i}\inner{F_{i}}{\partial x_{i}/\partial q_{k}}\) are the
+/generalised forces/.
+#+end_theorem
+
+#+begin_proof
+Newton's law reads \(m_{i}\ddot{x}_{i} = F_{i}+R_{i}\). Pairing with the
+virtual displacement \(\partial x/\partial q_{k}\), which is tangent to
+\(Q_{t}\), the principle of virtual work kills the constraint forces:
+\[ \sum_{i}m_{i}\inner{\ddot{x}_{i}}{\frac{\partial x_{i}}{\partial q_{k}}} = Q_{k}. \]
+For the left-hand side, differentiate \(x_{i}(q(t),t)\) twice by the
+chain rule. Two identities follow from it: first,
+\(\partial \dot{x}_{i}/\partial \dot{q}_{k} = \partial x_{i}/\partial q_{k}\),
+since \(\dot{x}_{i} = \sum_{k}(\partial x_{i}/\partial q_{k})\dot{q}_{k} + \partial x_{i}/\partial t\)
+is affine in \(\dot{q}\); second,
+\(\frac{\dd}{\dd t}\bigl(\partial x_{i}/\partial q_{k}\bigr) = \partial\dot{x}_{i}/\partial q_{k}\),
+by equality of mixed partial derivatives. Hence
+\[ \sum_{i}m_{i}\inner{\ddot{x}_{i}}{\frac{\partial x_{i}}{\partial q_{k}}} = \frac{\dd}{\dd t}\sum_{i}m_{i}\inner{\dot{x}_{i}}{\frac{\partial\dot{x}_{i}}{\partial\dot{q}_{k}}} - \sum_{i}m_{i}\inner{\dot{x}_{i}}{\frac{\partial\dot{x}_{i}}{\partial q_{k}}} = \frac{\dd}{\dd t}\frac{\partial T}{\partial\dot{q}_{k}} - \frac{\partial T}{\partial q_{k}}, \]
+recognising both terms as derivatives of
+\(T = \tfrac{1}{2}\sum_{i}m_{i}\abs{\dot{x}_{i}}^{2}\).
+#+end_proof
+
+#+DEPENDS: thm-lagrange-equations-from-dalembert, thm-euler-lagrange, def-action-functional
+#+NAME: cor-conservative-forces-give-a-variational-principle
+#+begin_corollary
+If the applied forces derive from a potential, \(F_{i} = -\nabla_{x_{i}}V\)
+with \(V = V(x,t)\), then \(Q_{k} = -\partial V/\partial q_{k}\) and the
+equations of motion are the Euler-Lagrange equations of
+\(L = T - V\); the motion is therefore a stationary point of the action.
+#+end_corollary
+
+#+begin_proof
+By the chain rule
+\(Q_{k} = \sum_{i}\inner{-\nabla_{x_{i}}V}{\partial x_{i}/\partial q_{k}} = -\partial V/\partial q_{k}\).
+Since \(V\) does not depend on \(\dot{q}\), substituting into the
+previous theorem and moving the term to the left gives
+\(\frac{\dd}{\dd t}\frac{\partial L}{\partial\dot{q}_{k}} - \frac{\partial L}{\partial q_{k}} = 0\)
+with \(L = T-V\). Those are exactly the Euler-Lagrange equations of the
+action of \(L\).
+#+end_proof
+
+#+DEPENDS: cor-conservative-forces-give-a-variational-principle, thm-noether, def-conjugate-momentum
+#+NAME: prop-energy-and-cyclic-coordinates
+#+begin_proposition
+If \(L\) does not depend explicitly on \(t\), the /energy/
+\(E = \sum_{k}\dot{q}_{k}\partial L/\partial\dot{q}_{k} - L\) is
+conserved; and if a coordinate \(q_{j}\) does not appear in \(L\), its
+conjugate momentum \(p_{j} = \partial L/\partial\dot{q}_{j}\) is
+conserved.
+#+end_proposition
+
+#+begin_proof
+Differentiate \(E\) along a solution: by the chain rule and the
+Lagrange equations,
+\(\dot{E} = \sum_{k}\bigl(\ddot{q}_{k}\frac{\partial L}{\partial\dot{q}_{k}} + \dot{q}_{k}\frac{\dd}{\dd t}\frac{\partial L}{\partial\dot{q}_{k}}\bigr) - \frac{\dd L}{\dd t}\),
+and \(\frac{\dd L}{\dd t} = \sum_{k}\bigl(\frac{\partial L}{\partial q_{k}}\dot{q}_{k} + \frac{\partial L}{\partial\dot{q}_{k}}\ddot{q}_{k}\bigr) + \frac{\partial L}{\partial t}\);
+substituting the Lagrange equations, everything cancels except
+\(-\partial L/\partial t\), which vanishes by hypothesis. The second
+claim is the Lagrange equation for \(q_{j}\) with the first term absent.
+#+end_proof
+
+#+begin_remark
+The two conservation laws are the [[id:a7b50bb3-2a00-4d1c-a808-a6fcc1c43f78][Noether]] statement for the two most
+common symmetries, time translation and translation along a coordinate,
+and they are the working reason for choosing good generalised
+coordinates: each ignorable coordinate removes one equation, and the
+energy removes another. That reduction, not elegance, is why the
+Lagrangian formulation is used to solve problems.
+#+end_remark

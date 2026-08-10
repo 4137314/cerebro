@@ -1,0 +1,93 @@
+:PROPERTIES:
+:ID:       8cf8a109-5256-46f2-9553-c27e2de0a34e
+:END:
+#+TITLE: Fisher information and the Cramer-Rao bound
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:probability:statistics:
+#+MSC: 62B10, 62F12
+#+HASH: 36f4f46bd0a3
+
+[[id:2cbd79ad-4938-4b5b-a6ca-85d300cc1f79][Rao-Blackwell]] improves an estimator; the question it leaves open is how
+far improvement can go. The answer is a bound depending only on the
+model: the variance of any unbiased estimator is at least the reciprocal
+of a quantity measuring how sharply the density responds to the
+parameter. The proof is the Cauchy-Schwarz inequality applied to that
+response.
+
+#+DEPENDS: def-statistical-model, def-expectation, def-variance-and-covariance
+#+NAME: def-regular-model
+#+begin_definition
+A dominated model with densities \(f(x;\theta)\), \(\theta\) ranging
+over an open interval, is /regular/ if \(f(x;\theta)>0\) for all
+\(x,\theta\), the map \(\theta \mapsto f(x;\theta)\) is differentiable,
+and differentiation under the integral sign is valid in the two
+identities used below -- for \(\int f(x;\theta)\dd\mu(x)\) and for
+\(\int T(x)f(x;\theta)\dd\mu(x)\) with \(T\) the estimator considered.
+The /score/ is
+\(s(x;\theta) = \partial_{\theta}\log f(x;\theta)\) and the /Fisher
+information/ is \(I(\theta) = \E_{\theta}[s(X;\theta)^{2}]\), assumed
+finite and non-zero.
+#+end_definition
+
+#+DEPENDS: def-regular-model
+#+NAME: prop-the-score-has-mean-zero
+#+begin_proposition
+In a regular model, \(\E_{\theta}[s(X;\theta)] = 0\), so
+\(I(\theta) = \Var_{\theta}(s(X;\theta))\).
+#+end_proposition
+
+#+begin_proof
+Since \(\partial_{\theta}\log f = (\partial_{\theta}f)/f\),
+\[ \E_{\theta}[s(X;\theta)] = \int \frac{\partial_{\theta}f(x;\theta)}{f(x;\theta)}\,f(x;\theta)\dd\mu(x) = \partial_{\theta}\int f(x;\theta)\dd\mu(x) = \partial_{\theta} 1 = 0, \]
+the middle equality being the differentiation under the integral sign
+that regularity assumes. The variance of a centred variable is its
+second moment.
+#+end_proof
+
+#+DEPENDS: prop-the-score-has-mean-zero, prop-correlation-bound, def-estimator
+#+NAME: thm-cramer-rao
+#+begin_theorem
+Let the model be regular and \(T\) an unbiased estimator of
+\(g(\theta)\) with finite variance, \(g\) differentiable. Then
+\[ \Var_{\theta}(T) \ge \frac{g'(\theta)^{2}}{I(\theta)}. \]
+In particular an unbiased estimator of \(\theta\) itself has variance at
+least \(1/I(\theta)\).
+#+end_theorem
+
+#+begin_proof
+Differentiating \(\E_{\theta}[T] = g(\theta)\) under the integral sign,
+\[ g'(\theta) = \partial_{\theta}\int T(x)f(x;\theta)\dd\mu(x) = \int T(x)\,s(x;\theta)f(x;\theta)\dd\mu(x) = \E_{\theta}[T\,s(X;\theta)], \]
+again writing \(\partial_{\theta}f = s f\). Since the score has mean
+zero, this expectation is the covariance:
+\(g'(\theta) = \Cov_{\theta}(T, s(X;\theta))\).
+
+The Cauchy-Schwarz bound for covariance gives
+\(g'(\theta)^{2} \le \Var_{\theta}(T)\,\Var_{\theta}(s(X;\theta)) = \Var_{\theta}(T) I(\theta)\),
+and dividing by \(I(\theta)>0\) gives the claim.
+#+end_proof
+
+#+DEPENDS: thm-cramer-rao, def-independence-of-random-variables, cor-variance-of-a-sum-of-independent-variables
+#+NAME: prop-information-of-a-sample
+#+begin_proposition
+For a sample of size \(n\) from a regular model, the Fisher information
+is \(nI(\theta)\); hence an unbiased estimator of \(\theta\) from such a
+sample has variance at least \(1/(nI(\theta))\).
+#+end_proposition
+
+#+begin_proof
+The joint density is \(\prod_{i}f(x_{i};\theta)\) by independence, so
+the score of the sample is \(\sum_{i}s(x_{i};\theta)\), a sum of \(n\)
+independent variables each of mean zero and variance \(I(\theta)\). Its
+variance is \(nI(\theta)\), and the bound is Cramer-Rao applied to the
+sample model.
+#+end_proof
+
+#+begin_remark
+The regularity conditions are hypotheses here rather than facts, and
+they are exactly where the theorem can fail: for a model whose support
+moves with the parameter, differentiation under the integral sign is
+invalid and the bound is false -- there are unbiased estimators with
+variance of order \(n^{-2}\). Stating the conditions as part of the
+definition rather than as a footnote is the honest form, since nothing
+in this archive proves them for any particular family.
+#+end_remark

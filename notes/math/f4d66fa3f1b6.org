@@ -1,0 +1,135 @@
+:PROPERTIES:
+:ID:       68aecb66-5e63-4fa6-bfad-5629a7a343d2
+:END:
+#+TITLE: Composition series, Jordan-Holder and solvable groups
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:algebra:group_theory:
+#+MSC: 20E15, 20F16
+#+HASH: f4d66fa3f1b6
+
+Taking a normal subgroup and its quotient splits a group into two
+smaller ones. Iterating gives a list of pieces that admit no further
+splitting -- and the theorem is that the list does not depend on how the
+splitting was carried out. Finite groups therefore have well-defined
+prime factors, with the caveat that, unlike for integers, the factors do
+not determine the group.
+
+#+DEPENDS: def-normal-subgroup, thm-quotient-group
+#+NAME: def-simple-group
+#+begin_definition
+A group \(G \ne \set{e}\) is /simple/ if its only normal subgroups are
+\(\set{e}\) and \(G\). A /composition series/ of \(G\) is a chain
+\(\set{e} = G_{0} \normalin G_{1} \normalin \cdots \normalin G_{n} = G\)
+in which each \(G_{i} \normalin G_{i+1}\) and each /factor/
+\(G_{i+1}/G_{i}\) is simple.
+#+end_definition
+
+#+DEPENDS: def-simple-group, thm-lagrange
+#+NAME: prop-finite-groups-have-composition-series
+#+begin_proposition
+Every finite group other than the trivial one has a composition series.
+#+end_proposition
+
+#+begin_proof
+Induct on \(\abs{G}\). If \(G\) is simple, \(\set{e}\normalin G\) is a
+composition series. Otherwise take \(N\) a normal subgroup maximal among
+the proper ones, which exists since there are finitely many. Then
+\(G/N\) is simple: a normal subgroup of it is \(H/N\) for a normal
+\(H\) with \(N \subseteq H \subseteq G\) -- take the preimage under the
+projection -- and maximality forces \(H = N\) or \(H = G\). By induction
+\(N\) has a composition series, and appending \(G\) gives one for \(G\).
+#+end_proof
+
+#+DEPENDS: def-simple-group, thm-second-isomorphism-groups, thm-third-isomorphism-groups
+#+NAME: lem-zassenhaus
+#+begin_lemma
+Let \(A' \normalin A\) and \(B' \normalin B\) be subgroups of a group.
+Then \(A'(A\cap B') \normalin A'(A\cap B)\), \(B'(B\cap A')\normalin B'(B\cap A)\),
+and
+\[ \frac{A'(A\cap B)}{A'(A\cap B')} \iso \frac{B'(B\cap A)}{B'(B\cap A')}. \]
+#+end_lemma
+
+#+begin_proof
+Put \(D = (A\cap B')(A'\cap B)\), a subgroup of \(A \cap B\) since both
+factors are normalised by \(A\cap B\): for \(x \in A\cap B\), conjugation
+preserves \(A\) and \(B\) and, by normality of \(A'\) and \(B'\),
+preserves \(A'\) and \(B'\). It is normal in \(A\cap B\) for the same
+reason.
+
+Consider \(\psi \colon A'(A\cap B) \to (A\cap B)/D\) sending
+\(a'x\) with \(a'\in A'\), \(x \in A\cap B\) to \(xD\). It is well
+defined: if \(a'_{1}x_{1} = a'_{2}x_{2}\) then
+\(x_{2}x_{1}^{-1} \in A' \cap (A\cap B) = A'\cap B \subseteq D\). It is
+a surjective homomorphism, using normality of \(A'\) in \(A\) to move
+\(A'\)-factors to the left, and its kernel is the set of \(a'x\) with
+\(x \in D\), that is \(A'D = A'(A\cap B')\) -- so that subgroup is
+normal in \(A'(A\cap B)\) and the quotient is \((A\cap B)/D\). The
+expression for \(D\) is symmetric in the two pairs, so the same argument
+on the other side gives the stated isomorphism.
+#+end_proof
+
+#+DEPENDS: lem-zassenhaus, def-simple-group, prop-finite-groups-have-composition-series
+#+NAME: thm-jordan-holder
+#+begin_theorem
+Any two composition series of a group have the same length, and their
+factors agree up to reordering and isomorphism.
+#+end_theorem
+
+#+begin_proof
+Let \((G_{i})_{i\le n}\) and \((H_{j})_{j \le m}\) be composition
+series. Refine each by inserting, between \(G_{i}\) and \(G_{i+1}\), the
+subgroups \(G_{i}(G_{i+1}\cap H_{j})\) for \(j = 0,\dots,m\), and
+symmetrically for the other series. By Zassenhaus' lemma each of these
+chains is a chain of normal inclusions, and the two refinements have,
+term by term, isomorphic successive quotients.
+
+Now each factor \(G_{i+1}/G_{i}\) is simple, so among the inserted
+quotients between \(G_{i}\) and \(G_{i+1}\) exactly one is non-trivial
+and isomorphic to \(G_{i+1}/G_{i}\), the others being trivial: a chain
+of normal subgroups between \(G_{i}\) and \(G_{i+1}\) with all quotients
+proper would contradict simplicity. Deleting the trivial quotients from
+both refinements therefore recovers the two original lists of factors,
+which are in bijection by the term-by-term isomorphism.
+#+end_proof
+
+#+DEPENDS: def-simple-group, thm-jordan-holder, cor-groups-of-prime-order
+#+NAME: def-solvable-group
+#+begin_definition
+A group is /solvable/ if it has a chain
+\(\set{e} = G_{0}\normalin\cdots\normalin G_{n} = G\) with every
+quotient \(G_{i+1}/G_{i}\) abelian.
+#+end_definition
+
+#+DEPENDS: def-solvable-group, thm-second-isomorphism-groups, thm-third-isomorphism-groups
+#+NAME: prop-solvability-is-inherited
+#+begin_proposition
+Subgroups and quotients of a solvable group are solvable; and if
+\(N \normalin G\) with \(N\) and \(G/N\) solvable, then \(G\) is
+solvable.
+#+end_proposition
+
+#+begin_proof
+Let \((G_{i})\) witness solvability of \(G\) and \(H \le G\). Then
+\(H_{i} = H \cap G_{i}\) is a chain with
+\(H_{i}\normalin H_{i+1}\), and
+\(H_{i+1}/H_{i} = H_{i+1}/(H_{i+1}\cap G_{i}) \iso H_{i+1}G_{i}/G_{i}\)
+by the second isomorphism theorem, a subgroup of the abelian
+\(G_{i+1}/G_{i}\), hence abelian.
+
+For a quotient \(G/N\), the images \(G_{i}N/N\) form a chain of normal
+inclusions whose successive quotients are quotients of
+\(G_{i+1}/G_{i}\), by the third isomorphism theorem, hence abelian.
+
+For the converse, concatenate a chain for \(N\) with the preimages in
+\(G\) of a chain for \(G/N\); the quotients of the second part are
+unchanged by the third isomorphism theorem.
+#+end_proof
+
+#+begin_remark
+Jordan-Holder makes "solvable" equivalent to "every composition factor
+is cyclic of prime order", which is why the word survives from the
+theory of equations: a polynomial is solvable by radicals exactly when
+its Galois group is solvable, and the tower of radical extensions is the
+chain above read in fields. The insolubility of the general quintic is
+then the statement that \(A_{5}\) is simple and not abelian.
+#+end_remark

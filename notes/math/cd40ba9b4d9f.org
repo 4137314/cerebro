@@ -1,0 +1,126 @@
+:PROPERTIES:
+:ID:       6f3bed75-1321-4c80-b0bd-c8932e0c2837
+:END:
+#+TITLE: Dual spaces, annihilators and the transpose
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:algebra:linear_algebra:
+#+MSC: 15A03, 15A04
+#+HASH: cd40ba9b4d9f
+
+Every subspace can be described in two ways: by generators, or by the
+linear equations it satisfies. The dual space is the home of those
+equations, and the dictionary between the two descriptions -- subspace
+against annihilator, map against transpose -- reverses inclusions and
+exchanges kernels with images. In finite dimension the dictionary is
+perfect, and the failure of that perfection in infinite dimension is
+what makes functional analysis a subject.
+
+#+DEPENDS: def-vector-space, def-linear-map
+#+NAME: def-dual-space
+#+begin_definition
+The /dual space/ of a vector space \(V\) over \(K\) is
+\(V^{*} = \Hom(V,K)\), the set of linear maps \(V \to K\) -- the
+/linear functionals/ -- with pointwise operations.
+#+end_definition
+
+#+DEPENDS: def-dual-space, prop-basis-gives-unique-coordinates, thm-dimension-is-well-defined
+#+NAME: thm-dual-basis
+#+begin_theorem
+Let \(e_{1},\dots,e_{n}\) be a basis of \(V\). The functionals
+\(e^{i}\) defined by \(e^{i}(e_{j}) = \delta_{ij}\) form a basis of
+\(V^{*}\); in particular \(\dim V^{*} = \dim V\) in finite dimension.
+#+end_theorem
+
+#+begin_proof
+Each \(e^{i}\) is well defined by prescribing its values on a basis.
+They span: for \(\varphi \in V^{*}\) and \(v = \sum_{j}x_{j}e_{j}\),
+linearity gives \(\varphi(v) = \sum_{j}x_{j}\varphi(e_{j})\), so
+\(\varphi = \sum_{i}\varphi(e_{i})e^{i}\). They are independent:
+applying \(\sum_{i}\alpha_{i}e^{i} = 0\) to \(e_{j}\) gives
+\(\alpha_{j} = 0\).
+#+end_proof
+
+#+DEPENDS: def-dual-space, thm-dual-basis, cor-extension-to-a-basis
+#+NAME: def-annihilator
+#+begin_definition
+For \(U \subseteq V\) a subspace, the /annihilator/ is
+\(U^{\circ} = \setst{\varphi \in V^{*}}{\varphi(u) = 0 \text{ for all } u \in U}\),
+a subspace of \(V^{*}\).
+#+end_definition
+
+#+DEPENDS: def-annihilator, cor-extension-to-a-basis, thm-rank-nullity
+#+NAME: thm-annihilator-dimension
+#+begin_theorem
+Let \(\dim V = n\) and \(U \subseteq V\) a subspace of dimension \(k\).
+Then \(\dim U^{\circ} = n - k\), and \(U\) is exactly the set of vectors
+annihilated by \(U^{\circ}\). Hence a \(k\)-dimensional subspace is the
+solution set of \(n-k\) independent linear equations.
+#+end_theorem
+
+#+begin_proof
+Extend a basis \(e_{1},\dots,e_{k}\) of \(U\) to a basis of \(V\). A
+functional \(\varphi = \sum_{i}\alpha_{i}e^{i}\) annihilates \(U\)
+exactly when \(\alpha_{1} = \cdots = \alpha_{k} = 0\), so \(U^{\circ}\)
+is spanned by \(e^{k+1},\dots,e^{n}\) and has dimension \(n-k\).
+
+If \(v \notin U\), write \(v\) in the basis: some coordinate
+\(x_{j}\) with \(j > k\) is non-zero, and \(e^{j} \in U^{\circ}\) does
+not annihilate \(v\). So the vectors annihilated by all of
+\(U^{\circ}\) are exactly those of \(U\).
+#+end_proof
+
+#+DEPENDS: def-dual-space, def-linear-map
+#+NAME: def-transpose
+#+begin_definition
+For a linear \(f \colon V \to W\), the /transpose/
+\(f^{*} \colon W^{*} \to V^{*}\) is \(f^{*}(\varphi) = \varphi \circ f\).
+#+end_definition
+
+#+DEPENDS: def-transpose, thm-annihilator-dimension, thm-rank-nullity
+#+NAME: thm-transpose-kernel-and-image
+#+begin_theorem
+For linear \(f \colon V \to W\) between finite-dimensional spaces,
+\(f^{*}\) is linear, \(\ker f^{*} = (\im f)^{\circ}\),
+\(\im f^{*} = (\ker f)^{\circ}\), and \(f\) and \(f^{*}\) have the same
+rank. Moreover \((g\circ f)^{*} = f^{*}\circ g^{*}\).
+#+end_theorem
+
+#+begin_proof
+Linearity and the composition rule are immediate from the definition.
+
+\(f^{*}(\varphi) = 0\) says \(\varphi(f(v)) = 0\) for all \(v\), that is
+\(\varphi \in (\im f)^{\circ}\). For the image: every
+\(\varphi\circ f\) kills \(\ker f\), so
+\(\im f^{*}\subseteq(\ker f)^{\circ}\); and by rank-nullity applied
+twice,
+\(\dim \im f^{*} = \dim W^{*} - \dim\ker f^{*} = \dim W - \dim(\im f)^{\circ} = \dim\im f\),
+while \(\dim(\ker f)^{\circ} = \dim V - \dim\ker f = \dim \im f\) as
+well. Equal dimensions and an inclusion give equality, and the same
+computation shows the two ranks agree.
+#+end_proof
+
+#+DEPENDS: def-dual-space, thm-dual-basis, prop-kernel-and-image-are-subspaces
+#+NAME: thm-double-dual
+#+begin_theorem
+The map \(\eta \colon V \to V^{**}\) with
+\(\eta(v)(\varphi) = \varphi(v)\) is linear and injective, and it is an
+isomorphism when \(V\) is finite-dimensional. It is defined without
+reference to a basis.
+#+end_theorem
+
+#+begin_proof
+Linearity in \(v\) is immediate. Injectivity: if \(v \ne 0\), extend
+\(\set{v}\) to a basis and take the coordinate functional dual to
+\(v\); it does not vanish at \(v\), so \(\eta(v)\ne0\). In finite
+dimension \(\dim V^{**} = \dim V^{*} = \dim V\), so an injective linear
+map between them is an isomorphism.
+#+end_proof
+
+#+begin_remark
+That \(\eta\) needs no basis, while the isomorphism \(V \iso V^{*}\)
+does, is the substance of the distinction between a vector and a
+functional -- the reason physics writes indices up and down. In infinite
+dimension \(\eta\) is still injective and no longer surjective, and the
+spaces for which it happens to be surjective are called reflexive; the
+Hahn-Banach theorem is what keeps the injectivity true there.
+#+end_remark

@@ -1,0 +1,95 @@
+:PROPERTIES:
+:ID:       7d097c5d-3c07-404e-8874-b356f6a43cec
+:END:
+#+TITLE: The Tietze extension theorem
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:topology:general_topology:
+#+MSC: 54C20
+#+HASH: 1d37257631dd
+
+A continuous function on a subspace can rarely be extended: \(1/x\) on
+\((0,1]\) cannot reach \(0\). Tietze's theorem says the only obstruction
+is the one that example shows -- if the subspace is closed and the
+function bounded, an extension always exists in a normal space. The
+proof is an infinite series of Urysohn functions, each correcting a
+third of the remaining error.
+
+#+DEPENDS: thm-urysohn-lemma, def-regular-and-normal, def-subspace-topology
+#+NAME: lem-one-third-approximation
+#+begin_lemma
+Let \(X\) be normal, \(A \subseteq X\) closed, and
+\(f \colon A \to [-c,c]\) continuous. Then there is a continuous
+\(g \colon X \to [-c/3,c/3]\) with
+\(\abs{f(a)-g(a)} \le 2c/3\) for every \(a \in A\).
+#+end_lemma
+
+#+begin_proof
+The sets \(C = f^{-1}([-c,-c/3])\) and \(D = f^{-1}([c/3,c])\) are
+closed in \(A\), hence closed in \(X\) since \(A\) is, and they are
+disjoint. Urysohn's lemma gives a continuous
+\(h \colon X \to [0,1]\) with \(h\equiv0\) on \(C\) and \(h\equiv1\) on
+\(D\); put \(g = \tfrac{2c}{3}h - \tfrac{c}{3}\), which takes values in
+\([-c/3,c/3]\).
+
+For \(a \in C\), \(g(a) = -c/3\) and \(f(a)\in[-c,-c/3]\), so the
+difference is at most \(2c/3\); for \(a \in D\) symmetrically; and for
+the remaining \(a\), both \(f(a)\) and \(g(a)\) lie in
+\([-c/3,c/3]\), so they differ by at most \(2c/3\).
+#+end_proof
+
+#+DEPENDS: lem-one-third-approximation, thm-weierstrass-m-test, thm-uniform-limit-continuous
+#+NAME: thm-tietze-bounded
+#+begin_theorem
+Let \(X\) be normal, \(A \subseteq X\) closed, and
+\(f \colon A \to [-c,c]\) continuous. Then \(f\) extends to a continuous
+\(F \colon X \to [-c,c]\).
+#+end_theorem
+
+#+begin_proof
+Build \(g_{n}\) recursively. Let \(g_{1}\) be given by the lemma for
+\(f\), so \(\norm{g_{1}}_{\infty}\le c/3\) and
+\(\abs{f-g_{1}}\le 2c/3\) on \(A\). Given \(g_{1},\dots,g_{n}\), apply
+the lemma to \(f - \sum_{k\le n}g_{k}\), which is continuous on \(A\)
+and bounded by \((2/3)^{n}c\); this gives \(g_{n+1}\) with
+\(\norm{g_{n+1}}_{\infty}\le\tfrac{1}{3}(2/3)^{n}c\) and
+\(\abs{f-\sum_{k\le n+1}g_{k}}\le(2/3)^{n+1}c\) on \(A\).
+
+The series \(\sum_{n}g_{n}\) converges uniformly on \(X\) by the
+Weierstrass test, being dominated by
+\(\sum_{n}\tfrac{c}{3}(2/3)^{n-1} = c\); so its sum \(F\) is continuous
+as a uniform limit of continuous functions, and \(\abs{F}\le c\). On
+\(A\) the partial sums converge to \(f\), by the error bound, so
+\(F\) extends \(f\).
+#+end_proof
+
+#+DEPENDS: thm-tietze-bounded, thm-urysohn-lemma, thm-continuous-inverse
+#+NAME: thm-tietze-unbounded
+#+begin_theorem
+Let \(X\) be normal, \(A\subseteq X\) closed, and
+\(f \colon A \to \R\) continuous. Then \(f\) extends continuously to
+\(X\).
+#+end_theorem
+
+#+begin_proof
+Let \(\varphi \colon \R \to (-1,1)\) be a homeomorphism, for instance
+\(\varphi(t) = t/(1+\abs{t})\), whose inverse is continuous. By the
+bounded case, \(\varphi\circ f\) extends to a continuous
+\(G \colon X \to [-1,1]\). The set \(B = G^{-1}(\set{-1,1})\) is closed
+and disjoint from \(A\), since \(\varphi\circ f\) does not take the
+values \(\pm1\). Urysohn's lemma gives a continuous
+\(h \colon X \to [0,1]\) with \(h\equiv0\) on \(B\) and \(h\equiv1\) on
+\(A\). Then \(hG\) is continuous, takes values in \((-1,1)\) -- it is
+\(0\) where \(\abs{G}=1\) -- and agrees with \(\varphi\circ f\) on
+\(A\). So \(F = \varphi^{-1}\circ(hG)\) is a continuous extension of
+\(f\).
+#+end_proof
+
+#+begin_remark
+Closedness of \(A\) is used twice and cannot be dropped: on
+\(A = (0,1]\) inside \(X = [0,1]\), the function \(1/x\) has no
+extension, and \(A\) is not closed. The theorem is also a converse: a
+space with closed points in which every such extension exists is normal,
+since the function extending \(0\) on \(C\) and \(1\) on \(D\)
+separates them. So Tietze and Urysohn are two statements of one
+property.
+#+end_remark

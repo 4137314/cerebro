@@ -1,0 +1,106 @@
+:PROPERTIES:
+:ID:       4876cdf3-ca6f-4bd7-a056-0501b3add1ea
+:END:
+#+TITLE: Euler's equations and the stability of free rotation
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:mathematical_physics:classical_mechanics:
+#+MSC: 70E17, 70E50
+#+HASH: ce6d42acbb1b
+
+Angular momentum is conserved in space; the [[id:7ee7ed76-454a-4874-89ce-b66b97c2a7ab][inertia tensor]] is constant
+in the body. Writing the first fact in the second frame produces Euler's
+equations, a closed nonlinear system in three unknowns, and their two
+conserved quantities are enough to decide the stability of rotation
+about each principal axis -- with the famous conclusion that the middle
+one is unstable.
+
+#+DEPENDS: def-inertia-tensor, cor-principal-axes-of-inertia, prop-angular-velocity-is-well-defined
+#+NAME: thm-euler-equations
+#+begin_theorem
+Let a rigid body rotate freely about a fixed origin, with no applied
+torque, and let \(\Omega = (\Omega_{1},\Omega_{2},\Omega_{3})\) be the
+angular velocity in principal body coordinates. Then
+\[ I_{1}\dot{\Omega}_{1} = (I_{2}-I_{3})\Omega_{2}\Omega_{3}, \quad I_{2}\dot{\Omega}_{2} = (I_{3}-I_{1})\Omega_{3}\Omega_{1}, \quad I_{3}\dot{\Omega}_{3} = (I_{1}-I_{2})\Omega_{1}\Omega_{2}. \]
+#+end_theorem
+
+#+begin_proof
+The angular momentum in space, \(\ell = RL\) with \(L = I\Omega\) in
+body coordinates, is constant, so \(0 = \dot{R}L + R\dot{L}\).
+Multiplying by \(R^{\mathsf{T}}\) and using
+\(R^{\mathsf{T}}\dot{R}\,v = \Omega\times v\) -- the body-frame form of
+the previous note's identity -- gives
+\(\dot{L} + \Omega \times L = 0\).
+
+In principal coordinates \(L = (I_{1}\Omega_{1},I_{2}\Omega_{2},I_{3}\Omega_{3})\)
+with the \(I_{k}\) constant, so \(\dot{L} = (I_{k}\dot{\Omega}_{k})_{k}\);
+computing the cross product componentwise gives the three displayed
+equations.
+#+end_proof
+
+#+DEPENDS: thm-euler-equations, thm-kinetic-energy-of-a-rigid-body
+#+NAME: prop-two-conserved-quantities
+#+begin_proposition
+Along a solution of Euler's equations both
+\(2T = \sum_{k}I_{k}\Omega_{k}^{2}\) and
+\(\abs{L}^{2} = \sum_{k}I_{k}^{2}\Omega_{k}^{2}\) are constant.
+#+end_proposition
+
+#+begin_proof
+Differentiate and substitute. For the energy,
+\(\frac{\dd}{\dd t}\sum_{k}I_{k}\Omega_{k}^{2} = 2\sum_{k}\Omega_{k}I_{k}\dot{\Omega}_{k} = 2\bigl[(I_{2}-I_{3})+(I_{3}-I_{1})+(I_{1}-I_{2})\bigr]\Omega_{1}\Omega_{2}\Omega_{3} = 0\).
+For the momentum,
+\(\frac{\dd}{\dd t}\sum_{k}I_{k}^{2}\Omega_{k}^{2} = 2\sum_{k}I_{k}\Omega_{k}\,I_{k}\dot{\Omega}_{k}\), and the
+same cancellation occurs with the factors \(I_{k}\) redistributed.
+Alternatively, \(\abs{L}\) is constant because \(\ell = RL\) is constant
+and \(R\) is an isometry.
+#+end_proof
+
+#+DEPENDS: prop-two-conserved-quantities, thm-euler-equations, def-equilibrium-and-stability, thm-lagrange-dirichlet
+#+NAME: thm-tennis-racket
+#+begin_theorem
+Suppose \(I_{1}<I_{2}<I_{3}\). Steady rotation about the axis of least
+or greatest moment -- the equilibria \(\Omega = (\Omega_{1},0,0)\) and
+\((0,0,\Omega_{3})\) of Euler's equations -- is stable; steady rotation
+about the intermediate axis is unstable.
+#+end_theorem
+
+#+begin_proof
+The three coordinate axes are equilibria: on each, two of the three
+right-hand sides vanish because two components are zero, and the third
+vanishes because it carries the product of those two.
+
+/Stability of the extreme axes./ Consider the function
+\(F = \abs{L}^{2} - 2 I_{1}T = \sum_{k}I_{k}(I_{k}-I_{1})\Omega_{k}^{2}\),
+a combination of two conserved quantities, hence conserved. Its
+coefficients are \(0, I_{2}(I_{2}-I_{1}), I_{3}(I_{3}-I_{1})\), all
+non-negative and the last two positive, so \(F\) is a positive definite
+function of \((\Omega_{2},\Omega_{3})\) vanishing on the first axis.
+Being conserved, it confines a motion starting with \(F\) small to the
+set where \(\Omega_{2},\Omega_{3}\) stay small, which together with
+conservation of \(T\) keeps \(\Omega_{1}\) near its initial value: this
+is stability, by the same trapping argument as in Lagrange-Dirichlet.
+The third axis is symmetric, using \(2I_{3}T - \abs{L}^{2}\).
+
+/Instability of the middle axis./ Linearise about
+\((0,\Omega_{2}^{0},0)\) with \(\Omega_{2}^{0}\ne0\): writing
+\(\Omega = (u_{1},\Omega_{2}^{0}+u_{2},u_{3})\) and dropping quadratic
+terms,
+\(I_{1}\dot{u}_{1} = (I_{2}-I_{3})\Omega_{2}^{0}u_{3}\),
+\(I_{3}\dot{u}_{3} = (I_{1}-I_{2})\Omega_{2}^{0}u_{1}\), and
+\(\dot{u}_{2} = 0\). Differentiating the first and substituting the
+second gives \(\ddot{u}_{1} = \kappa u_{1}\) with
+\(\kappa = \frac{(I_{2}-I_{3})(I_{1}-I_{2})}{I_{1}I_{3}}(\Omega_{2}^{0})^{2}>0\),
+since both factors in the numerator are negative. So the linearisation
+has a solution growing like \(e^{\sqrt{\kappa}t}\), and initial
+conditions arbitrarily close to the equilibrium leave any fixed
+neighbourhood.
+#+end_proof
+
+#+begin_remark
+The instability is genuinely nonlinear in its consequences but linear in
+its cause -- one positive eigenvalue -- and it is the standard
+demonstration that conservation laws alone do not decide stability:
+energy and angular momentum are conserved on all three axes, and what
+separates them is which combination of the two happens to be definite.
+The intermediate axis is the one for which no combination is.
+#+end_remark

@@ -1,0 +1,109 @@
+:PROPERTIES:
+:ID:       e57a531d-6f95-4eff-9ad8-7ae4b983f912
+:END:
+#+TITLE: Sturm-Liouville problems and eigenfunction expansions
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:analysis:ordinary_differential_equations:
+#+MSC: 34B24, 34L10
+#+HASH: d9b8b6fdecf4
+
+Separating variables in a partial differential equation always produces
+the same kind of ordinary problem: a second-order operator on an
+interval with boundary conditions, whose eigenfunctions are then used as
+a basis. Sturm-Liouville theory is the statement that this is not luck
+-- the operator is symmetric for a suitable inner product, so the
+[[id:dde5958e-70f1-4680-9e80-06de5649c142][spectral theorem]] applies in spirit, giving real eigenvalues and
+orthogonal eigenfunctions.
+
+#+DEPENDS: def-derivative, def-l2, def-inner-product-space, thm-picard-lindelof
+#+NAME: def-sturm-liouville-problem
+#+begin_definition
+A /regular Sturm-Liouville problem/ on \([a,b]\) is
+\[ -\bigl(p(x)y'\bigr)' + q(x)y = \lambda\, w(x)\, y, \]
+with \(p \in C^{1}\), \(q, w\) continuous, \(p>0\) and \(w>0\) on
+\([a,b]\), together with /separated/ boundary conditions
+\(\alpha_{1}y(a)+\alpha_{2}y'(a) = 0\) and
+\(\beta_{1}y(b)+\beta_{2}y'(b) = 0\), the pairs not both zero. A
+\(\lambda\) for which a non-zero solution exists is an /eigenvalue/ and
+the solution an /eigenfunction/. The relevant inner product is
+\(\inner{u}{v}_{w} = \int_{a}^{b}u\overline{v}\,w\,\dd x\).
+#+end_definition
+
+#+DEPENDS: def-sturm-liouville-problem, thm-integration-by-parts
+#+NAME: lem-lagrange-identity
+#+begin_lemma
+Write \(Lu = -(pu')'+qu\). For \(u, v\) of class \(C^{2}\) satisfying
+the boundary conditions,
+\(\inner{Lu}{v}_{1} = \inner{u}{Lv}_{1}\), where
+\(\inner{\cdot}{\cdot}_{1}\) is the unweighted inner product; that is,
+\(L\) is symmetric.
+#+end_lemma
+
+#+begin_proof
+Integrating by parts twice,
+\[ \int_{a}^{b}\bigl(-(pu')'\overline{v} + (p\overline{v}')'u\bigr)\dd x = \bigl[\,p\,(u\overline{v}' - u'\overline{v})\,\bigr]_{a}^{b}. \]
+At \(x = a\) the boundary conditions say that the vectors
+\((u(a),u'(a))\) and \((v(a),v'(a))\) both lie in the line annihilated by
+\((\alpha_{1},\alpha_{2})\ne0\), hence are proportional, so the
+determinant \(u(a)\overline{v}'(a)-u'(a)\overline{v}(a)\) vanishes;
+likewise at \(b\). The \(q\) terms cancel, being symmetric.
+#+end_proof
+
+#+DEPENDS: lem-lagrange-identity, def-sturm-liouville-problem
+#+NAME: thm-eigenvalues-are-real-and-eigenfunctions-orthogonal
+#+begin_theorem
+The eigenvalues of a regular Sturm-Liouville problem are real,
+eigenfunctions for distinct eigenvalues are orthogonal for
+\(\inner{\cdot}{\cdot}_{w}\), and each eigenvalue has a one-dimensional
+eigenspace.
+#+end_theorem
+
+#+begin_proof
+Let \(Lu = \lambda w u\) with \(u \ne 0\). By the lemma,
+\(\inner{Lu}{u}_{1} = \inner{u}{Lu}_{1}\), that is
+\(\lambda\inner{wu}{u}_{1} = \overline{\lambda}\inner{u}{wu}_{1}\);
+since \(w>0\) the common factor \(\int\abs{u}^{2}w\) is positive, so
+\(\lambda = \overline{\lambda}\).
+
+For \(Lu = \lambda wu\) and \(Lv = \mu wv\) with \(\lambda\ne\mu\), the
+same identity gives
+\((\lambda-\mu)\int u\overline{v}\,w = 0\), hence
+\(\inner{u}{v}_{w} = 0\).
+
+For the multiplicity, two eigenfunctions for the same \(\lambda\) both
+satisfy the same second-order linear equation and the boundary condition
+at \(a\), which fixes \((y(a),y'(a))\) up to a scalar; by uniqueness for
+the initial value problem they are proportional.
+#+end_proof
+
+#+DEPENDS: thm-eigenvalues-are-real-and-eigenfunctions-orthogonal, thm-parseval-for-fourier-series, def-orthogonal-family
+#+NAME: prop-fourier-series-as-a-sturm-liouville-problem
+#+begin_proposition
+The problem \(-y'' = \lambda y\) on \([0,\pi]\) with
+\(y(0) = y(\pi) = 0\) is regular, its eigenvalues are \(n^{2}\) for
+\(n \ge 1\), and its eigenfunctions \(\sin(nx)\) form an orthogonal
+system in \(L^{2}([0,\pi])\).
+#+end_proposition
+
+#+begin_proof
+Take \(p = w = 1\) and \(q = 0\), all admissible. For \(\lambda<0\) or
+\(\lambda = 0\) the general solution is a combination of real
+exponentials or an affine function, and the two boundary conditions
+force it to vanish. For \(\lambda = k^{2}>0\) the general solution is
+\(A\cos(kx)+B\sin(kx)\); \(y(0) = 0\) gives \(A = 0\), and
+\(y(\pi) = 0\) gives \(\sin(k\pi) = 0\), that is \(k \in \N\).
+Orthogonality is the previous theorem, and it also follows from the
+computation for the trigonometric system.
+#+end_proof
+
+#+begin_remark
+What is proved here is the algebraic half: symmetry gives real
+eigenvalues, orthogonality and simplicity. The analytic half -- that the
+eigenvalues form an increasing sequence tending to infinity and that the
+eigenfunctions are /complete/ in \(L^{2}\) -- is the substantial theorem
+and is not proved in this archive; it follows from compactness of the
+inverse operator and the spectral theorem for compact self-adjoint
+operators, neither of which is written yet. Completeness is what a
+separation-of-variables argument silently uses when it claims the
+resulting series solves the problem.
+#+end_remark

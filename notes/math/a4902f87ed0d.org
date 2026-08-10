@@ -1,0 +1,107 @@
+:PROPERTIES:
+:ID:       ac600204-166d-4fc0-a452-3c3799428283
+:END:
+#+TITLE: The heat equation: separation of variables and the maximum principle
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:analysis:partial_differential_equations:
+#+MSC: 35K05
+#+HASH: a4902f87ed0d
+
+The heat equation is the model parabolic equation, and it behaves in
+ways the wave equation does not: it smooths data instantly, it cannot be
+run backwards, and its solutions attain their extremes at the initial or
+boundary data. The last of those is a maximum principle, it is proved in
+half a page, and it gives uniqueness and stability at once.
+
+#+DEPENDS: def-differentiable-multivariable, def-sturm-liouville-problem, def-fourier-coefficients
+#+NAME: def-heat-equation
+#+begin_definition
+The /heat equation/ on \((0,L)\) is
+\(\partial_{t}u = k\,\partial_{x}^{2}u\) with \(k>0\), and the /Dirichlet
+problem/ on the rectangle \(Q_{T} = (0,L)\times(0,T]\) asks for
+\(u\) continuous on \(\overline{Q_{T}}\), \(C^{2}\) in \(x\) and
+\(C^{1}\) in \(t\) inside, with \(u(x,0) = f(x)\) and
+\(u(0,t) = u(L,t) = 0\). The /parabolic boundary/ is
+\(\Gamma = \bigl(\set{t=0}\cup\set{x=0}\cup\set{x=L}\bigr)\cap\overline{Q_{T}}\).
+#+end_definition
+
+#+DEPENDS: def-heat-equation, cor-extreme-value-on-a-compact-space, lem-interior-extremum
+#+NAME: thm-parabolic-maximum-principle
+#+begin_theorem
+Let \(u\) be as above and solve the heat equation in \(Q_{T}\). Then
+\(\max_{\overline{Q_{T}}}u = \max_{\Gamma}u\), and likewise for the
+minimum.
+#+end_theorem
+
+#+begin_proof
+Fix \(\eps>0\) and put \(v = u - \eps t\), so that
+\(\partial_{t}v - k\partial_{x}^{2}v = -\eps<0\). The function \(v\) is
+continuous on the compact \(\overline{Q_{T}}\), hence attains a maximum.
+Suppose it is attained at a point \((x_{0},t_{0})\) not on \(\Gamma\),
+so \(0<x_{0}<L\) and \(0<t_{0}\le T\). At such a point \(v\) has an
+interior maximum in \(x\), so \(\partial_{x}^{2}v \le 0\); and in
+\(t\) the maximum is at the right endpoint or interior, so
+\(\partial_{t}v \ge 0\). Then
+\(\partial_{t}v - k\partial_{x}^{2}v \ge 0\), contradicting the strict
+inequality. Hence \(\max v = \max_{\Gamma}v\), and
+\(\max u \le \max_{\Gamma}u + \eps T\); letting \(\eps \to 0\) gives the
+claim. The statement for the minimum is this applied to \(-u\).
+#+end_proof
+
+#+DEPENDS: thm-parabolic-maximum-principle, def-heat-equation
+#+NAME: cor-uniqueness-and-stability
+#+begin_corollary
+The Dirichlet problem has at most one solution, and it depends
+continuously on the data: two solutions with data \(f_{1}, f_{2}\)
+satisfy \(\sup\abs{u_{1}-u_{2}} \le \sup\abs{f_{1}-f_{2}}\).
+#+end_corollary
+
+#+begin_proof
+The difference solves the heat equation with zero boundary values on the
+lateral sides and initial datum \(f_{1}-f_{2}\); the maximum principle
+bounds it, above and below, by the extremes of its parabolic boundary
+values, which are \(0\) on the sides and \(f_{1}-f_{2}\) at \(t = 0\).
+Taking \(f_{1} = f_{2}\) gives uniqueness.
+#+end_proof
+
+#+DEPENDS: def-heat-equation, thm-parseval-for-fourier-series, prop-fourier-series-as-a-sturm-liouville-problem, thm-weierstrass-m-test
+#+NAME: thm-solution-by-separation-of-variables
+#+begin_theorem
+Let \(f\) be continuous on \([0,L]\) with \(f(0) = f(L) = 0\) and
+Fourier sine coefficients
+\(b_{n} = \frac{2}{L}\int_{0}^{L}f(x)\sin\frac{n\pi x}{L}\dd x\). Then
+\[ u(x,t) = \sum_{n\ge1} b_{n}\,e^{-k n^{2}\pi^{2}t/L^{2}}\sin\frac{n\pi x}{L} \]
+converges for \(t>0\), is smooth there, and solves the Dirichlet
+problem.
+#+end_theorem
+
+#+begin_proof
+Each term solves the equation and the boundary conditions, by direct
+differentiation -- this is what separation of variables produces, the
+spatial factors being the eigenfunctions of the Sturm-Liouville problem
+\(-y'' = \lambda y\) with Dirichlet conditions.
+
+The coefficients are bounded, \(\abs{b_{n}}\le\frac{2}{L}\int\abs{f}\).
+For \(t \ge t_{0}>0\) the terms and all their term-by-term derivatives
+are dominated by \(Cn^{p}e^{-kn^{2}\pi^{2}t_{0}/L^{2}}\), summable; by
+the Weierstrass test the series and each differentiated series converge
+uniformly on \([0,L]\times[t_{0},\infty)\), so the sum is smooth there
+and may be differentiated term by term, hence solves the equation.
+
+Continuity down to \(t = 0\) with value \(f\): the partial sums are the
+Fourier partial sums of \(f\) multiplied by factors in \([0,1]\)
+decreasing in \(n\), and the Cesaro means of the sine series of a
+continuous \(f\) vanishing at the endpoints converge uniformly to it, so
+the same splitting argument as for Fejer's kernel gives
+\(u(\cdot,t)\to f\) uniformly as \(t\to0\).
+#+end_proof
+
+#+begin_remark
+The factors \(e^{-kn^{2}\pi^{2}t/L^{2}}\) do the smoothing and the
+damage: for \(t>0\) they kill high frequencies so fast that \(u\) is
+smooth however rough \(f\) was, and for \(t<0\) they amplify them so
+fast that the backward problem is ill posed -- arbitrarily small changes
+in the data produce arbitrarily large changes in the solution. That
+asymmetry, visible in one line of the series, is the mathematical form
+of irreversibility.
+#+end_remark

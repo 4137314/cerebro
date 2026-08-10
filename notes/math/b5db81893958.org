@@ -1,0 +1,113 @@
+:PROPERTIES:
+:ID:       04e72b4c-3643-4e61-8b6f-7c4b7513d753
+:END:
+#+TITLE: Modes of convergence and the Borel-Cantelli lemmas
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:probability:probability_theory:
+#+MSC: 60F15
+#+HASH: b5db81893958
+
+A sequence of random variables can converge in four inequivalent ways,
+and every limit theorem in probability is a statement that one of them
+holds. The implications between them are one-way, and the tool that
+upgrades a statement about probabilities into a statement about almost
+every outcome is the first Borel-Cantelli lemma -- three lines, and the
+reason the strong law is provable at all.
+
+#+DEPENDS: def-random-variable, def-almost-everywhere, def-l2
+#+NAME: def-modes-of-convergence
+#+begin_definition
+Let \(X_{n}, X\) be random variables. Then \(X_{n}\to X\)
+- /almost surely/ if \(\Prob(X_{n}\to X) = 1\);
+- /in probability/ if \(\Prob(\abs{X_{n}-X}>\eps)\to0\) for every \(\eps>0\);
+- /in \(L^{2}\)/ if \(\E[(X_{n}-X)^{2}]\to0\);
+- /in distribution/ if \(F_{X_{n}}(t)\to F_{X}(t)\) at every \(t\) where
+  \(F_{X}\) is continuous.
+#+end_definition
+
+#+DEPENDS: def-modes-of-convergence, thm-markov-inequality, thm-basic-properties-of-a-measure
+#+NAME: thm-implications-between-modes
+#+begin_theorem
+Convergence in \(L^{2}\) implies convergence in probability, and so does
+almost sure convergence; convergence in probability implies convergence
+in distribution. None of the implications reverses.
+#+end_theorem
+
+#+begin_proof
+From \(L^{2}\): by Markov's inequality applied to
+\((X_{n}-X)^{2}\),
+\(\Prob(\abs{X_{n}-X}>\eps) \le \E[(X_{n}-X)^{2}]/\eps^{2}\to0\).
+
+From almost sure convergence: fix \(\eps>0\) and put
+\(A_{N} = \bigcup_{n\ge N}\set{\abs{X_{n}-X}>\eps}\). The \(A_{N}\)
+decrease, and their intersection is contained in the event that
+\(X_{n}\not\to X\), which is null; by continuity from above
+\(\Prob(A_{N})\to0\), and \(\Prob(\abs{X_{N}-X}>\eps)\le\Prob(A_{N})\).
+
+To distribution: let \(t\) be a continuity point of \(F_{X}\) and
+\(\eps>0\). Then
+\(\set{X_{n}\le t} \subseteq \set{X \le t+\eps}\cup\set{\abs{X_{n}-X}>\eps}\),
+so \(F_{X_{n}}(t) \le F_{X}(t+\eps)+\Prob(\abs{X_{n}-X}>\eps)\), and
+symmetrically
+\(F_{X}(t-\eps) \le F_{X_{n}}(t)+\Prob(\abs{X_{n}-X}>\eps)\). Letting
+\(n\to\infty\) and then \(\eps\to0\), continuity of \(F_{X}\) at \(t\)
+squeezes \(F_{X_{n}}(t)\) to \(F_{X}(t)\).
+#+end_proof
+
+#+DEPENDS: def-probability-space, thm-basic-properties-of-a-measure, def-series-convergence
+#+NAME: lem-borel-cantelli-first
+#+begin_lemma
+Let \((A_{n})\) be events with \(\sum_{n}\Prob(A_{n})<\infty\), and let
+\(\limsup_{n}A_{n} = \bigcap_{N}\bigcup_{n\ge N}A_{n}\) be the event
+that infinitely many occur. Then \(\Prob(\limsup_{n}A_{n}) = 0\).
+#+end_lemma
+
+#+begin_proof
+For every \(N\), subadditivity gives
+\(\Prob(\bigcup_{n\ge N}A_{n}) \le \sum_{n\ge N}\Prob(A_{n})\), which is
+the tail of a convergent series and so tends to \(0\). Since
+\(\limsup_{n}A_{n}\) is contained in each of those unions, its
+probability is at most every tail, hence \(0\).
+#+end_proof
+
+#+DEPENDS: lem-borel-cantelli-first, def-independence-of-events, prop-elementary-rules
+#+NAME: lem-borel-cantelli-second
+#+begin_lemma
+If the events \((A_{n})\) are independent and
+\(\sum_{n}\Prob(A_{n}) = \infty\), then \(\Prob(\limsup_{n}A_{n}) = 1\).
+#+end_lemma
+
+#+begin_proof
+Fix \(N \le M\). By independence of the complements,
+\[ \Prob\Bigl(\bigcap_{n=N}^{M}A_{n}^{c}\Bigr) = \prod_{n=N}^{M}(1-\Prob(A_{n})) \le \exp\Bigl(-\sum_{n=N}^{M}\Prob(A_{n})\Bigr), \]
+using \(1-x\le e^{-x}\). The exponent tends to \(-\infty\) as
+\(M\to\infty\) because the series diverges, so
+\(\Prob(\bigcap_{n\ge N}A_{n}^{c}) = 0\) by continuity from above. Hence
+the union over \(N\) of those events is null, and its complement --
+which is \(\limsup_{n}A_{n}\) -- has probability \(1\).
+#+end_proof
+
+#+DEPENDS: lem-borel-cantelli-first, def-modes-of-convergence
+#+NAME: cor-fast-convergence-in-probability-is-almost-sure
+#+begin_corollary
+If \(\sum_{n}\Prob(\abs{X_{n}-X}>\eps)<\infty\) for every \(\eps>0\),
+then \(X_{n}\to X\) almost surely.
+#+end_corollary
+
+#+begin_proof
+Fix \(\eps = 1/k\). By the first Borel-Cantelli lemma, almost surely
+only finitely many of the events \(\abs{X_{n}-X}>1/k\) occur, so
+\(\limsup_{n}\abs{X_{n}-X}\le 1/k\) almost surely. Intersecting the
+countably many full-measure events over \(k\) -- a countable
+intersection of complements of null sets -- gives
+\(X_{n}\to X\) almost surely.
+#+end_proof
+
+#+begin_remark
+The two lemmas together are a zero-one law: for independent events the
+probability that infinitely many occur is \(0\) or \(1\), decided by
+whether a series converges. Independence is needed only for the second,
+and it cannot be dropped there -- repeating one event of probability
+\(1/2\) gives a divergent sum and a limit superior of probability
+\(1/2\).
+#+end_remark

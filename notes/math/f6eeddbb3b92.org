@@ -1,0 +1,57 @@
+:PROPERTIES:
+:ID:       aa69bc51-db4c-4ffb-b7a7-875f9261af23
+:END:
+#+TITLE: Functional analysis
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:analysis:functional_analysis:
+#+MSC: 46-XX, 47-XX
+#+HASH: f6eeddbb3b92
+
+Functional analysis is linear algebra on spaces where the unit ball is
+not compact. Every difference from the finite-dimensional theory traces
+back to that one fact, and every theorem below is a substitute for
+something compactness used to provide: a basis, a limit, a bound, a
+separating functional.
+
+Part of [[id:e023b747-878b-4a37-a097-35552d95cb66][Analysis]].
+
+* The dividing line
+
+[[id:ee85e495-a9cc-40e1-a273-076fbde3d8c0][Normed spaces and the equivalence of norms in finite dimension]] is the
+note that draws it: in finite dimension all norms are equivalent, the
+sphere is compact, subspaces are closed, and linear maps are
+automatically continuous. Each of those four statements fails in
+infinite dimension, and the subject is the list of what replaces them.
+
+* The replacements
+
+- For a *separating functional*: [[id:22ffdad0-babd-4070-bfce-78778aa1fb8b][the Hahn-Banach theorem]], which
+  extends a dominated functional off a subspace by Zorn's lemma. It is
+  the reason the [[id:6f3bed75-1321-4c80-b0bd-c8932e0c2837][dual space]] is large enough to be useful.
+- For a *bound*: [[id:6e6d4450-92e9-4e21-ab0b-ac8950b9d2f0][uniform boundedness, open mapping and closed graph]] --
+  three theorems, one proof scheme, all resting on [[id:44de8493-8687-4cfd-8c39-65561e38033c][Baire's theorem]] and
+  therefore on completeness.
+- For a *convergent subsequence*: [[id:e0a22a46-03da-4e30-a730-64bf076da027][the Arzela-Ascoli theorem]], which
+  says what has to be added to boundedness -- equicontinuity -- to
+  recover it in a space of functions.
+- For *coordinates*: [[id:642c93ab-d004-4829-b5fa-899759923d63][Hilbert spaces]], where an inner product survives
+  and with it orthogonal projection, the representation of every
+  functional, and orthonormal bases.
+
+* Why Hilbert space is the easy case
+
+The [[id:c2edf7f5-d5ac-4e50-8734-a00b2da22cf4][orthogonal decomposition]] of a finite-dimensional inner product
+space carries over verbatim once the subspace is closed, because the
+[[id:203494e0-5225-4540-9a81-f61cab21d41b][nearest point in a closed convex set]] still exists -- and that argument
+uses the parallelogram identity, which is exactly what a norm coming
+from an inner product has and a general norm does not. Everything
+special about Hilbert spaces is downstream of that identity.
+
+* What is missing
+
+\(L^{p}\) spaces, which are the examples the general theory was built
+for and which need [[id:9910fd2f-5f5e-4be0-8785-c2b9904dc001][measure theory]] to define; weak topologies and the
+Banach-Alaoglu theorem, which is where [[id:dcebacce-9383-47a7-a556-580d2ee38e5b][Tychonoff]] pays off; spectral
+theory for operators, of which only [[id:dde5958e-70f1-4680-9e80-06de5649c142][the finite-dimensional symmetric
+case]] is present; compact operators; and Fourier analysis, which would
+be the first serious use of [[id:642c93ab-d004-4829-b5fa-899759923d63][orthonormal bases]].

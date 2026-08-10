@@ -1,0 +1,125 @@
+:PROPERTIES:
+:ID:       b9de97b3-9d38-43ee-9037-395e86c390c1
+:END:
+#+TITLE: Extreme points and Minkowski's theorem on convex bodies
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:geometry:convex_geometry:
+#+MSC: 52A20, 52A05
+#+HASH: 53349862d750
+
+A compact convex set is determined by very few of its points: the ones
+that lie on no segment inside it. Minkowski's theorem says those points
+suffice to rebuild the whole set by taking convex combinations, which is
+why a linear function on a polytope is optimised at a vertex -- the
+statement linear programming is built on.
+
+#+DEPENDS: def-convex-set, def-convex-hull
+#+NAME: def-extreme-point
+#+begin_definition
+Let \(C\) be a convex subset of \(\R^{n}\). A point \(x \in C\) is
+/extreme/ if \(x = (1-t)u + tv\) with \(u,v \in C\) and \(t\in(0,1)\)
+forces \(u = v = x\). The set of extreme points is written
+\(\operatorname{ext} C\).
+#+end_definition
+
+#+DEPENDS: def-extreme-point, cor-supporting-hyperplane, cor-extreme-value-on-a-compact-space
+#+NAME: prop-a-supporting-face-contains-an-extreme-point
+#+begin_proposition
+Let \(C \subseteq \R^{n}\) be compact, convex and non-empty, and
+\(u \ne 0\). Then the /face/
+\(F = \setst{x\in C}{\inner{u}{x} = \max_{y\in C}\inner{u}{y}}\) is
+non-empty, compact and convex, and every extreme point of \(F\) is an
+extreme point of \(C\).
+#+end_proposition
+
+#+begin_proof
+The linear function \(x \mapsto \inner{u}{x}\) is continuous on the
+compact \(C\), so it attains its maximum \(\mu\); hence \(F\) is
+non-empty, and it is closed in \(C\), hence compact, and convex as the
+intersection of \(C\) with a hyperplane.
+
+Let \(x\) be extreme in \(F\) and suppose \(x = (1-t)y+tz\) with
+\(y,z\in C\), \(t\in(0,1)\). Then
+\(\mu = \inner{u}{x} = (1-t)\inner{u}{y}+t\inner{u}{z}\) with both terms
+at most \(\mu\), which forces \(\inner{u}{y} = \inner{u}{z} = \mu\), so
+\(y,z \in F\); extremality in \(F\) gives \(y = z = x\).
+#+end_proof
+
+#+DEPENDS: prop-a-supporting-face-contains-an-extreme-point, def-extreme-point, thm-separating-hyperplane
+#+NAME: thm-minkowski
+#+begin_theorem
+Every non-empty compact convex \(C \subseteq \R^{n}\) is the convex hull
+of its extreme points; in particular it has some.
+#+end_theorem
+
+#+begin_proof
+Induct on \(n\), the case \(n = 0\) being a point. Let \(K\) be the
+closed convex hull of \(\operatorname{ext} C\); it is contained in
+\(C\), and we show the reverse inclusion.
+
+First, \(\operatorname{ext} C \ne \emptyset\): if \(C\) is a single
+point that point is extreme; otherwise take \(u \ne 0\), and by the
+previous proposition the face \(F\) in direction \(u\) is a non-empty
+compact convex set lying in a hyperplane, hence -- after an affine
+identification of that hyperplane with \(\R^{n-1}\) -- it has an extreme
+point by induction, which is extreme in \(C\).
+
+Now suppose some \(x \in C\) is not in \(K\). Since \(K\) is compact and
+convex, the separating hyperplane theorem gives \(u\) and \(\alpha\)
+with \(\inner{u}{y} < \alpha < \inner{u}{x}\) for every \(y \in K\).
+The face \(F\) of \(C\) in direction \(u\) then satisfies
+\(\inner{u}{z} \ge \inner{u}{x} > \alpha\) for \(z \in F\), so \(F\)
+misses \(K\); but \(F\) contains an extreme point of \(C\) by the
+argument above applied to \(F\), and every extreme point of \(C\) lies
+in \(K\) -- a contradiction. Hence \(C = K\), and \(K\) is already the
+convex hull of \(\operatorname{ext} C\), which is compact.
+#+end_proof
+
+#+DEPENDS: def-convex-set, thm-caratheodory, cor-heine-borel-in-euclidean-space
+#+NAME: def-lattice
+#+begin_definition
+A /lattice/ in \(\R^{n}\) is \(\Lambda = A\Z^{n}\) for an invertible
+linear \(A\); its /covolume/ is \(\abs{\det A}\). A set
+\(C \subseteq \R^{n}\) is /symmetric/ if \(-C = C\).
+#+end_definition
+
+#+DEPENDS: def-lattice, def-convex-set, cor-heine-borel-in-euclidean-space, def-measure, thm-basic-properties-of-a-measure
+#+NAME: thm-minkowski-convex-body
+#+begin_theorem
+Let \(\Lambda\) be a lattice of covolume \(d\) and \(C\) a convex,
+symmetric, compact subset of \(\R^{n}\) of volume greater than
+\(2^{n}d\). Then \(C\) contains a point of \(\Lambda\) other than the
+origin.
+#+end_theorem
+
+#+begin_proof
+Volume here is Lebesgue measure, and the two properties used are the
+ones a measure has by definition together with translation invariance:
+countable additivity and \(\vol(A + v) = \vol(A)\).
+
+Consider \(C' = \tfrac{1}{2}C\), of volume greater than \(d\). If the
+translates \(C' + \lambda\), \(\lambda\in\Lambda\), were pairwise
+disjoint, then a fundamental domain \(P\) for \(\Lambda\) -- the image
+of \([0,1)^{n}\) under \(A\), of volume \(d\), which tiles \(\R^{n}\)
+under translation by \(\Lambda\) -- would receive the pieces
+\((C'+\lambda)\cap P\) whose total volume is that of \(C'\), by
+translating each back; that exceeds \(d\), which is impossible inside
+\(P\).
+
+So some two translates meet: there are \(u,v\in C'\) and
+\(\lambda \ne \mu\) in \(\Lambda\) with \(u+\lambda = v+\mu\), hence
+\(0 \ne \mu - \lambda = u - v\). Now \(u = \tfrac{1}{2}c_{1}\) and
+\(v = \tfrac{1}{2}c_{2}\) with \(c_{i}\in C\), so
+\(u - v = \tfrac{1}{2}c_{1} + \tfrac{1}{2}(-c_{2})\) is a midpoint of
+two points of \(C\), using symmetry, hence lies in \(C\) by convexity.
+#+end_proof
+
+#+begin_remark
+The volume bound \(2^{n}d\) cannot be improved: the open cube of side
+\(2\) about the origin has volume exactly \(2^{n}\) for
+\(\Lambda = \Z^{n}\) and contains no non-zero lattice point.
+Compactness in the statement is what allows the closed cube instead,
+and the theorem is the standard route from geometry to number theory --
+Lagrange's four-square theorem and the finiteness of the class number
+are both proved by choosing the right lattice and the right body.
+#+end_remark

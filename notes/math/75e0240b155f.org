@@ -1,0 +1,105 @@
+:PROPERTIES:
+:ID:       4ec94690-f4ea-47e3-9fcb-1ec55f3e358e
+:END:
+#+TITLE: Complex integration and Cauchy's theorem
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:analysis:complex_analysis:
+#+MSC: 30E20
+#+HASH: 75e0240b155f
+
+The integral of a holomorphic function around a closed curve vanishes.
+Everything else in complex analysis is a corollary of that sentence, and
+the sentence is a triangle inequality plus a bisection argument -- no
+hypothesis on the derivative beyond its existence, which is what makes
+Goursat's version of the proof the right one.
+
+#+DEPENDS: def-holomorphic, def-line-integral, def-riemann-integral
+#+NAME: def-contour-integral
+#+begin_definition
+For a piecewise \(C^{1}\) curve \(\gamma \colon [a,b]\to\C\) and a
+continuous \(f\) on its image,
+\(\int_{\gamma}f(z)\dd z = \int_{a}^{b}f(\gamma(t))\gamma'(t)\dd t\),
+the right-hand side being the integral of a complex-valued function of a
+real variable, taken componentwise. The /length/ of \(\gamma\) is
+\(L(\gamma) = \int_{a}^{b}\abs{\gamma'(t)}\dd t\).
+#+end_definition
+
+#+DEPENDS: def-contour-integral, thm-integral-linearity, cor-integral-triangle-inequality
+#+NAME: prop-standard-estimate
+#+begin_proposition
+The contour integral is linear in \(f\), reverses sign with the
+orientation, is unchanged by reparametrisation, and satisfies
+\(\bigl|\int_{\gamma}f(z)\dd z\bigr| \le L(\gamma)\sup_{\gamma}\abs{f}\).
+If \(f = F'\) with \(F\) holomorphic, then
+\(\int_{\gamma}f = F(\gamma(b))-F(\gamma(a))\); in particular the
+integral vanishes on closed curves.
+#+end_proposition
+
+#+begin_proof
+Linearity and the behaviour under reparametrisation are those of the
+real integral, by the substitution rule. The estimate is the triangle
+inequality for integrals applied to
+\(\abs{f(\gamma(t))\gamma'(t)} \le \sup\abs{f}\cdot\abs{\gamma'(t)}\).
+For a primitive, the chain rule gives
+\(\frac{\dd}{\dd t}F(\gamma(t)) = f(\gamma(t))\gamma'(t)\), and the
+fundamental theorem of calculus applies on each \(C^{1}\) piece.
+#+end_proof
+
+#+DEPENDS: def-contour-integral, prop-standard-estimate, def-holomorphic, cor-heine-borel-in-euclidean-space, thm-compactness-by-nets
+#+NAME: thm-goursat
+#+begin_theorem
+Let \(f\) be holomorphic on an open \(U\) and let \(T \subseteq U\) be a
+closed triangle. Then \(\int_{\partial T}f(z)\dd z = 0\).
+#+end_theorem
+
+#+begin_proof
+Let \(I(T) = \int_{\partial T}f\). Bisect \(T\) by the midpoints of its
+sides into four triangles \(T^{(1)},\dots,T^{(4)}\), coherently
+oriented; the interior edges are traversed twice in opposite directions,
+so \(I(T) = \sum_{k}I(T^{(k)})\) and some \(T^{(k)}\) has
+\(\abs{I(T^{(k)})} \ge \abs{I(T)}/4\). Iterating gives nested triangles
+\(T \supseteq T_{1}\supseteq T_{2}\supseteq\cdots\) with
+\(\abs{I(T_{n})} \ge 4^{-n}\abs{I(T)}\), diameter
+\(d_{n} = 2^{-n}d\) and perimeter \(\ell_{n} = 2^{-n}\ell\).
+
+The intersection of the nested compact sets is non-empty; let \(z_{0}\)
+be a point of it. Given \(\eps>0\), holomorphy at \(z_{0}\) gives
+\(\delta>0\) with
+\(\abs{f(z)-f(z_{0})-f'(z_{0})(z-z_{0})} \le \eps\abs{z-z_{0}}\) for
+\(\abs{z-z_{0}}<\delta\). The affine function
+\(z \mapsto f(z_{0})+f'(z_{0})(z-z_{0})\) has a primitive, so its
+integral over \(\partial T_{n}\) vanishes; hence for \(n\) large enough
+that \(T_{n}\subseteq B(z_{0},\delta)\), the standard estimate gives
+\(\abs{I(T_{n})} \le \ell_{n}\cdot\eps d_{n} = \eps\,4^{-n}\ell d\).
+Combining, \(\abs{I(T)} \le \eps\,\ell d\) for every \(\eps>0\), so
+\(I(T) = 0\).
+#+end_proof
+
+#+DEPENDS: thm-goursat, def-convex-set, thm-line-integral-of-a-gradient
+#+NAME: thm-primitive-on-a-convex-set
+#+begin_theorem
+Let \(f\) be holomorphic on a convex open \(U\). Then \(f\) has a
+primitive on \(U\), and consequently \(\int_{\gamma}f(z)\dd z = 0\) for
+every closed piecewise \(C^{1}\) curve \(\gamma\) in \(U\).
+#+end_theorem
+
+#+begin_proof
+Fix \(z_{0}\in U\) and set \(F(z) = \int_{[z_{0},z]}f\), the integral
+along the segment, which lies in \(U\) by convexity. For \(z, z+h \in U\)
+the triangle with vertices \(z_{0}, z, z+h\) lies in \(U\), so Goursat's
+theorem gives
+\(F(z+h)-F(z) = \int_{[z,z+h]}f\). Hence
+\[ \Bigl|\frac{F(z+h)-F(z)}{h} - f(z)\Bigr| = \Bigl|\frac{1}{h}\int_{[z,z+h]}\bigl(f(w)-f(z)\bigr)\dd w\Bigr| \le \sup_{w \in [z,z+h]}\abs{f(w)-f(z)}, \]
+which tends to \(0\) as \(h\to0\) by continuity of \(f\). So
+\(F' = f\), and the vanishing on closed curves is the previous
+proposition.
+#+end_proof
+
+#+begin_remark
+Convexity is doing no essential work -- star-shaped is enough, and the
+correct hypothesis is again simple connectivity. What matters is that
+Goursat assumes only differentiability, not continuity of the
+derivative: had the proof needed \(f'\) continuous, the theorem could
+not be used to /prove/ that \(f'\) is continuous, which is exactly what
+the [[id:b9814e2f-633e-49eb-afaa-cc4092244461][integral formula]] does next.
+#+end_remark

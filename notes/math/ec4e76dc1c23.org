@@ -1,0 +1,140 @@
+:PROPERTIES:
+:ID:       77484172-ce88-4a74-8fcf-b70251b5034f
+:END:
+#+TITLE: Completeness of propositional logic
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:foundations:logic:
+#+MSC: 03B05
+#+HASH: ec4e76dc1c23
+
+Soundness says a derivation cannot lie. Completeness says the converse:
+if a formula is true under every assignment satisfying the hypotheses,
+some finite derivation of it exists. The proof is not an algorithm --
+nothing constructs the derivation -- but a contrapositive: a set from
+which nothing false is derivable can be given a model, built out of the
+syntax itself.
+
+#+DEPENDS: def-hilbert-system, def-satisfiable
+#+NAME: def-consistent
+#+begin_definition
+A set \(\Sigma\) of formulas is /inconsistent/ if
+\(\Sigma \vdash \varphi\) for every formula \(\varphi\), and
+/consistent/ otherwise. It is /maximal consistent/ if it is consistent
+and no proper superset is.
+#+end_definition
+
+#+DEPENDS: def-consistent, thm-deduction-theorem, lem-self-implication
+#+NAME: prop-consistency-and-negation
+#+begin_proposition
+\(\Sigma\) is inconsistent if and only if \(\Sigma \vdash \varphi\) and
+\(\Sigma \vdash \neg\varphi\) for some \(\varphi\). Moreover
+\(\Sigma \vdash \varphi\) if and only if
+\(\Sigma\cup\set{\neg\varphi}\) is inconsistent.
+#+end_proposition
+
+#+begin_proof
+If \(\Sigma\) is inconsistent it derives everything, in particular such
+a pair. Conversely, suppose \(\Sigma\vdash\varphi\) and
+\(\Sigma\vdash\neg\varphi\), and let \(\psi\) be arbitrary. Scheme 1
+gives \(\neg\varphi \to (\neg\psi\to\neg\varphi)\), so
+\(\Sigma\vdash\neg\psi\to\neg\varphi\); scheme 3 turns this into
+\(\Sigma\vdash\varphi\to\psi\), and modus ponens with \(\varphi\) gives
+\(\Sigma\vdash\psi\).
+
+For the second claim: if \(\Sigma\vdash\varphi\) then
+\(\Sigma\cup\set{\neg\varphi}\) derives \(\varphi\) and
+\(\neg\varphi\), hence is inconsistent by the first part. Conversely,
+suppose \(\Sigma\cup\set{\neg\varphi}\) is inconsistent. It then derives
+every formula, in particular \(\neg(\varphi\to\varphi)\), so the
+deduction theorem gives
+\(\Sigma\vdash\neg\varphi\to\neg(\varphi\to\varphi)\). Scheme 3 turns
+this into \(\Sigma\vdash(\varphi\to\varphi)\to\varphi\), and
+\(\vdash\varphi\to\varphi\) with modus ponens gives
+\(\Sigma\vdash\varphi\).
+#+end_proof
+
+#+DEPENDS: def-consistent, prop-derivations-are-finitary, thm-zorn
+#+NAME: lem-lindenbaum-syntactic
+#+begin_lemma
+Every consistent \(\Sigma\) is contained in a maximal consistent set
+\(M\), and such an \(M\) satisfies: \(M \vdash \varphi\) if and only if
+\(\varphi \in M\); and exactly one of \(\varphi\), \(\neg\varphi\) lies
+in \(M\).
+#+end_lemma
+
+#+begin_proof
+Order the consistent supersets of \(\Sigma\) by inclusion. The union of
+a chain of them is consistent: a derivation of a contradiction uses
+finitely many hypotheses, which all lie in one member of the chain. Zorn
+gives a maximal element \(M\).
+
+If \(M \vdash \varphi\) then \(M\cup\set{\varphi}\) is consistent -- a
+derivation from it can be turned into one from \(M\) by splicing in a
+derivation of \(\varphi\) -- so \(\varphi\in M\) by maximality; the
+converse is trivial. Not both \(\varphi\) and \(\neg\varphi\) lie in
+\(M\), by consistency. If neither did, then by maximality both
+\(M\cup\set{\varphi}\) and \(M\cup\set{\neg\varphi}\) would be
+inconsistent, so \(M\vdash\neg\varphi\) and \(M\vdash\varphi\) by the
+previous proposition -- contradicting consistency.
+#+end_proof
+
+#+DEPENDS: lem-lindenbaum-syntactic, prop-induction-on-formulas, def-truth-assignment
+#+NAME: thm-model-existence
+#+begin_theorem
+Every consistent set of propositional formulas is satisfiable.
+#+end_theorem
+
+#+begin_proof
+Let \(M \supseteq \Sigma\) be maximal consistent and define
+\(v(p) = 1\) exactly when \(p \in M\). We show by induction on formulas
+that \(v \models \varphi\) if and only if \(\varphi \in M\).
+
+Variables: the definition of \(v\). Negation: \(v\models\neg\varphi\)
+means \(v\not\models\varphi\), that is \(\varphi\notin M\) by induction,
+that is \(\neg\varphi \in M\) by the lemma. Conjunction: if
+\(\varphi\wedge\psi\in M\), then schemes 4 and 5 with modus ponens give
+\(M\vdash\varphi\) and \(M\vdash\psi\), so both lie in \(M\) by the
+lemma and \(v\) satisfies both by induction. Conversely if
+\(\varphi,\psi\in M\), then scheme 6 with two applications of modus
+ponens gives \(M\vdash\varphi\wedge\psi\), so \(\varphi\wedge\psi\in M\).
+Hence \(v\models\varphi\wedge\psi\) if and only if
+\(\varphi\wedge\psi\in M\).
+
+So \(v\) satisfies every member of \(M\), in particular of \(\Sigma\).
+#+end_proof
+
+#+DEPENDS: thm-model-existence, prop-consistency-and-negation, thm-soundness
+#+NAME: thm-completeness-propositional
+#+begin_theorem
+\(\Sigma \models \varphi\) if and only if \(\Sigma \vdash \varphi\).
+#+end_theorem
+
+#+begin_proof
+Soundness is one direction. For the other, suppose
+\(\Sigma\not\vdash\varphi\). Then \(\Sigma\cup\set{\neg\varphi}\) is
+consistent, hence satisfiable by the model existence theorem: some
+\(v\) satisfies \(\Sigma\) and \(\neg\varphi\), so
+\(v\not\models\varphi\) and \(\Sigma\not\models\varphi\).
+#+end_proof
+
+#+DEPENDS: thm-completeness-propositional, prop-derivations-are-finitary, thm-propositional-compactness
+#+NAME: cor-compactness-from-completeness
+#+begin_corollary
+If \(\Sigma\models\varphi\) then \(\Sigma_{0}\models\varphi\) for some
+finite \(\Sigma_{0}\subseteq\Sigma\).
+#+end_corollary
+
+#+begin_proof
+By completeness \(\Sigma\vdash\varphi\); a derivation is finite, so
+\(\Sigma_{0}\vdash\varphi\) for a finite \(\Sigma_{0}\), and soundness
+gives \(\Sigma_{0}\models\varphi\).
+#+end_proof
+
+#+begin_remark
+The corollary is the compactness theorem again, and this is the honest
+way to see what compactness is about: derivations are finite objects,
+so any semantic consequence that a proof system can capture is already a
+consequence of finitely many hypotheses. The purely semantic proof by
+Zorn and the syntactic one here are the same argument seen from two
+sides.
+#+end_remark

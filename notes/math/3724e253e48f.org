@@ -1,0 +1,134 @@
+:PROPERTIES:
+:ID:       6e6d4450-92e9-4e21-ab0b-ac8950b9d2f0
+:END:
+#+TITLE: Uniform boundedness, open mapping and closed graph
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:analysis:functional_analysis:
+#+MSC: 46A30, 47A05
+#+HASH: 3724e253e48f
+
+Three theorems of Banach space theory have the same one-line proof
+scheme: cover the space by countably many closed sets, invoke the
+[[id:44de8493-8687-4cfd-8c39-65561e38033c][Baire category theorem]] to find one with interior, and translate that
+interior back to the origin by linearity. Completeness enters only
+through Baire, and each conclusion is a statement that pointwise
+information forces uniform information.
+
+#+DEPENDS: def-norm, def-linear-map, prop-a-norm-induces-a-metric
+#+NAME: def-bounded-operator
+#+begin_definition
+A linear map \(T\) between normed spaces is /bounded/ if
+\(\norm{T} = \sup_{\norm{x}\le1}\norm{Tx}\) is finite; then
+\(\norm{Tx}\le\norm{T}\norm{x}\).
+#+end_definition
+
+#+DEPENDS: def-bounded-operator, thm-continuity-in-metric-spaces
+#+NAME: prop-bounded-iff-continuous
+#+begin_proposition
+A linear map between normed spaces is continuous if and only if it is
+bounded, if and only if it is continuous at \(0\).
+#+end_proposition
+
+#+begin_proof
+If \(T\) is bounded then \(\norm{Tx-Ty}\le\norm{T}\norm{x-y}\), so
+\(T\) is continuous. Continuity implies continuity at \(0\). If \(T\) is
+continuous at \(0\), there is \(\delta>0\) with \(\norm{Tx}\le1\) for
+\(\norm{x}\le\delta\); then for \(\norm{x}\le1\),
+\(\norm{Tx} = \delta^{-1}\norm{T(\delta x)}\le\delta^{-1}\), so \(T\) is
+bounded.
+#+end_proof
+
+#+DEPENDS: def-bounded-operator, cor-complete-spaces-are-not-meagre, prop-a-norm-induces-a-metric
+#+NAME: thm-uniform-boundedness
+#+begin_theorem
+Let \(V\) be a Banach space, \(W\) a normed space and \(\mathcal{T}\) a
+family of bounded operators \(V \to W\) with
+\(\sup_{T\in\mathcal{T}}\norm{Tx}<\infty\) for every \(x\). Then
+\(\sup_{T\in\mathcal{T}}\norm{T}<\infty\).
+#+end_theorem
+
+#+begin_proof
+Let \(A_{n} = \setst{x \in V}{\norm{Tx}\le n \text{ for all } T\in\mathcal{T}}\).
+Each is closed, being an intersection of preimages of closed sets under
+continuous maps, and by the pointwise hypothesis
+\(V = \bigcup_{n}A_{n}\). By Baire some \(A_{N}\) has interior: it
+contains a ball \(B(x_{0},r)\).
+
+For \(\norm{y}\le r\) and every \(T\),
+\(\norm{Ty} \le \norm{T(x_{0}+y)} + \norm{Tx_{0}} \le 2N\), since both
+\(x_{0}+y\) and \(x_{0}\) lie in \(A_{N}\). Hence
+\(\norm{T}\le 2N/r\) for every \(T \in \mathcal{T}\).
+#+end_proof
+
+#+DEPENDS: thm-uniform-boundedness, def-bounded-operator, prop-closure-by-sequences-in-a-metric-space
+#+NAME: cor-pointwise-limits-of-operators
+#+begin_corollary
+If bounded operators \(T_{n} \colon V \to W\) on a Banach space
+converge pointwise to \(T\), then \(T\) is bounded and
+\(\norm{T} \le \liminf_{n}\norm{T_{n}}\).
+#+end_corollary
+
+#+begin_proof
+Each orbit \((T_{n}x)\) converges, hence is bounded, so the family is
+pointwise bounded and \(\sup_{n}\norm{T_{n}} = M<\infty\) by the
+theorem. \(T\) is linear as a pointwise limit of linear maps, and
+\(\norm{Tx} = \lim\norm{T_{n}x}\le M\norm{x}\). The sharper bound
+follows by taking the limit inferior in \(\norm{T_{n}x}\le\norm{T_{n}}\norm{x}\).
+#+end_proof
+
+#+DEPENDS: cor-complete-spaces-are-not-meagre, def-bounded-operator, def-cauchy-sequence, prop-a-norm-induces-a-metric
+#+NAME: thm-open-mapping
+#+begin_theorem
+A surjective bounded operator \(T\) between Banach spaces is /open/: it
+maps open sets to open sets. Consequently a bijective bounded operator
+has a bounded inverse.
+#+end_theorem
+
+#+begin_proof
+Write \(B_{r}\) for the open ball of radius \(r\) about \(0\). Since
+\(T\) is surjective, \(W = \bigcup_{n}\overline{T(B_{n})}\), so by Baire
+some \(\overline{T(B_{n})}\) has interior; scaling, \(\overline{T(B_{1})}\)
+contains a ball \(B(y_{0},\rho)\). By symmetry it also contains
+\(B(-y_{0},\rho)\), and by convexity of \(\overline{T(B_{1})}\) -- the
+closure of a convex set is convex -- it contains \(B_{\rho}\).
+
+Now remove the closure. Let \(\norm{y}<\rho/2\). By the above,
+\(y \in \overline{T(B_{1/2})}\), so there is \(x_{1}\in B_{1/2}\) with
+\(\norm{y - Tx_{1}}<\rho/4\); repeating with \(y - Tx_{1}\) in place of
+\(y\), there is \(x_{2}\in B_{1/4}\) with
+\(\norm{y-Tx_{1}-Tx_{2}}<\rho/8\), and so on. The series
+\(\sum_{k}x_{k}\) converges absolutely, hence converges in the Banach
+space \(V\) to some \(x\) with \(\norm{x}<1\), and \(Tx = y\) by
+continuity. So \(T(B_{1}) \supseteq B_{\rho/2}\).
+
+Openness follows: for \(U\) open and \(Tx \in T(U)\), a ball
+\(x + B_{r}\subseteq U\) gives \(Tx + T(B_{r})\supseteq Tx + B_{r\rho/2}\).
+A bijective \(T\) is then open, which is exactly continuity of
+\(T^{-1}\), and continuity of a linear map is boundedness.
+#+end_proof
+
+#+DEPENDS: thm-open-mapping, prop-bounded-iff-continuous, def-product-topology
+#+NAME: thm-closed-graph
+#+begin_theorem
+Let \(T \colon V \to W\) be linear between Banach spaces. If the graph
+\(\Gamma = \setst{(x,Tx)}{x\in V}\) is closed in \(V\times W\), then
+\(T\) is bounded.
+#+end_theorem
+
+#+begin_proof
+\(V \times W\) with the norm \(\norm{(x,y)} = \norm{x}+\norm{y}\) is a
+Banach space, and \(\Gamma\) is a closed subspace of it, hence complete.
+The projection \(\pi_{1}\colon\Gamma\to V\) is linear, bounded and
+bijective -- injective because \(Tx\) is determined by \(x\), surjective
+by definition. By the open mapping theorem its inverse
+\(x \mapsto (x,Tx)\) is bounded, so
+\(\norm{x}+\norm{Tx}\le C\norm{x}\), giving \(\norm{Tx}\le C\norm{x}\).
+#+end_proof
+
+#+begin_remark
+The closed graph theorem replaces the two conditions "\(x_{n}\to x\) and
+\(Tx_{n}\to y\) imply \(y = Tx\)" by the single condition of continuity
+-- it says one may assume the limit \(Tx_{n}\) exists. That is a
+genuine simplification in practice, and it is false without
+completeness of both spaces, which is where Baire was used.
+#+end_remark

@@ -1,0 +1,128 @@
+:PROPERTIES:
+:ID:       3318172b-8246-4968-a640-d47e6decbf0c
+:END:
+#+TITLE: Direct and semidirect products
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:algebra:group_theory:
+#+MSC: 20E22, 20K01
+#+HASH: 433b261f5566
+
+A normal subgroup and its quotient do not determine a group: the two
+pieces can be assembled in several ways, and which one occurred is
+extra data. The recognition theorems below say when a group /is/ an
+assembly of two of its subgroups, and the semidirect product is the
+first construction in which the assembly is genuinely non-trivial -- the
+action of one factor on the other.
+
+#+DEPENDS: def-group, def-group-homomorphism
+#+NAME: def-direct-product
+#+begin_definition
+The /direct product/ of groups \(H\) and \(K\) is \(H \times K\) with
+componentwise multiplication. It contains \(H \times \set{e}\) and
+\(\set{e}\times K\) as normal subgroups intersecting trivially and
+generating it.
+#+end_definition
+
+#+DEPENDS: def-direct-product, def-normal-subgroup, thm-first-isomorphism-groups
+#+NAME: thm-internal-direct-product
+#+begin_theorem
+Let \(H, K \normalin G\) with \(H \cap K = \set{e}\) and \(HK = G\).
+Then \(hk = kh\) for all \(h \in H\), \(k \in K\), and
+\((h,k)\mapsto hk\) is an isomorphism \(H\times K \to G\).
+#+end_theorem
+
+#+begin_proof
+For \(h \in H\), \(k \in K\), the commutator
+\(hkh^{-1}k^{-1}\) lies in \(K\) -- as \((hkh^{-1})k^{-1}\), using
+normality of \(K\) -- and in \(H\) -- as \(h(kh^{-1}k^{-1})\), using
+normality of \(H\); so it is \(e\) and the elements commute.
+
+The map is then a homomorphism:
+\((h_{1}k_{1})(h_{2}k_{2}) = h_{1}h_{2}k_{1}k_{2}\). It is surjective
+because \(HK = G\), and injective because \(hk = e\) forces
+\(h = k^{-1} \in H \cap K = \set{e}\).
+#+end_proof
+
+#+DEPENDS: def-group-action, def-group-homomorphism, def-direct-product
+#+NAME: def-semidirect-product
+#+begin_definition
+Let \(N\) and \(H\) be groups and \(\theta \colon H \to \Aut(N)\) a
+homomorphism into the group of automorphisms of \(N\). The /semidirect
+product/ \(N \rtimes_{\theta} H\) is the set \(N \times H\) with
+\[ (n_{1},h_{1})(n_{2},h_{2}) = \bigl(n_{1}\,\theta(h_{1})(n_{2}),\; h_{1}h_{2}\bigr). \]
+#+end_definition
+
+#+DEPENDS: def-semidirect-product, def-normal-subgroup, thm-quotient-group
+#+NAME: prop-semidirect-product-is-a-group
+#+begin_proposition
+\(N\rtimes_{\theta}H\) is a group, in which \(N\times\set{e}\) is normal
+with quotient isomorphic to \(H\), and \(\set{e}\times H\) is a subgroup
+meeting it trivially. It is the direct product exactly when \(\theta\)
+is trivial.
+#+end_proposition
+
+#+begin_proof
+Associativity is a computation in which \(\theta\) being a homomorphism
+into automorphisms is used twice:
+\(\bigl((n_{1},h_{1})(n_{2},h_{2})\bigr)(n_{3},h_{3})\) and
+\((n_{1},h_{1})\bigl((n_{2},h_{2})(n_{3},h_{3})\bigr)\) both have first
+component
+\(n_{1}\,\theta(h_{1})(n_{2})\,\theta(h_{1}h_{2})(n_{3})\). The
+identity is \((e,e)\) and \((n,h)^{-1} = (\theta(h^{-1})(n^{-1}), h^{-1})\).
+
+The projection \((n,h)\mapsto h\) is a surjective homomorphism with
+kernel \(N \times \set{e}\), which is therefore normal with quotient
+\(H\); and \(\set{e}\times H\) is closed under the operation. The
+product is componentwise exactly when \(\theta(h) = \id\) for all \(h\).
+#+end_proof
+
+#+DEPENDS: prop-semidirect-product-is-a-group, thm-internal-direct-product
+#+NAME: thm-recognition-of-semidirect-products
+#+begin_theorem
+Let \(N \normalin G\) and \(H \le G\) with \(N \cap H = \set{e}\) and
+\(NH = G\). Then \(G \iso N \rtimes_{\theta} H\), where
+\(\theta(h)(n) = hnh^{-1}\).
+#+end_theorem
+
+#+begin_proof
+Conjugation by \(h\) maps \(N\) to itself by normality and is an
+automorphism of it, and \(\theta\) is a homomorphism because
+\((h_{1}h_{2})n(h_{1}h_{2})^{-1} = h_{1}(h_{2}nh_{2}^{-1})h_{1}^{-1}\).
+
+Define \(\Phi(n,h) = nh\). It is surjective since \(NH = G\), and
+injective since \(n_{1}h_{1} = n_{2}h_{2}\) gives
+\(n_{2}^{-1}n_{1} = h_{2}h_{1}^{-1} \in N \cap H = \set{e}\). It is a
+homomorphism:
+\(\Phi(n_{1},h_{1})\Phi(n_{2},h_{2}) = n_{1}h_{1}n_{2}h_{2} = n_{1}(h_{1}n_{2}h_{1}^{-1})h_{1}h_{2} = \Phi\bigl((n_{1},h_{1})(n_{2},h_{2})\bigr)\).
+#+end_proof
+
+#+DEPENDS: thm-recognition-of-semidirect-products, thm-cauchy, cor-groups-of-prime-order
+#+NAME: cor-groups-of-order-2p
+#+begin_corollary
+Let \(p\) be an odd prime. A group of order \(2p\) is either cyclic or
+isomorphic to the semidirect product \(\Z/p\Z \rtimes \Z/2\Z\) in which
+the generator of order \(2\) inverts the generator of order \(p\) -- the
+dihedral group.
+#+end_corollary
+
+#+begin_proof
+By Cauchy's theorem there are elements \(a\) of order \(p\) and \(b\) of
+order \(2\). The subgroup \(N = \langle a\rangle\) has index \(2\),
+hence is normal: its two left cosets are \(N\) and \(G\setminus N\), and
+the same holds for right cosets, so \(gN = Ng\) for all \(g\). Also
+\(H = \langle b\rangle\) meets \(N\) trivially, by orders, and
+\(NH\) has \(2p\) elements, so \(NH = G\). The recognition theorem gives
+\(G \iso N \rtimes_{\theta} H\), and \(\theta(b)\) is an automorphism of
+\(\Z/p\Z\) of order dividing \(2\), so \(a \mapsto a\) or
+\(a \mapsto a^{-1}\). The first case makes the product direct, and then
+\(ab\) has order \(2p\), so \(G\) is cyclic; the second is the dihedral
+group.
+#+end_proof
+
+#+begin_remark
+The two cases are genuinely different groups with the same normal
+subgroup and the same quotient, which is the point: an extension is not
+determined by its ends. Classifying all the ways of assembling \(N\) and
+\(H\) -- including those with no complementary subgroup at all, so not
+semidirect -- is the subject of group cohomology.
+#+end_remark

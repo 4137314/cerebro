@@ -1,0 +1,99 @@
+:PROPERTIES:
+:ID:       b0adbfc8-96a2-49be-9d03-4e4b419845e4
+:END:
+#+TITLE: Least squares and the Gauss-Markov theorem
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:probability:statistics:
+#+MSC: 62J05, 15A06
+#+HASH: d1ee932d70a0
+
+Fitting a linear model to data is not a statistical idea but a
+geometric one: the fitted values are the [[id:c2edf7f5-d5ac-4e50-8734-a00b2da22cf4][orthogonal projection]] of the
+observations onto the space the model can produce, and the normal
+equations are that projection written in coordinates. Statistics enters
+only afterwards, to say in what sense the resulting estimator is best.
+
+#+DEPENDS: def-random-variable, def-variance-and-covariance, def-linear-map
+#+NAME: def-linear-model
+#+begin_definition
+A /linear model/ is \(Y = A\beta + \eps\), where \(A\) is a known
+\(n \times p\) matrix of rank \(p\), \(\beta \in \R^{p}\) is unknown,
+and the error \(\eps\) is a random vector with \(\E[\eps] = 0\) and
+covariance matrix \(\sigma^{2}I\) -- the components uncorrelated with
+common variance. The observation is the random vector \(Y \in \R^{n}\).
+#+end_definition
+
+#+DEPENDS: def-linear-model, thm-orthogonal-decomposition, cor-orthogonal-projection-is-nearest
+#+NAME: thm-normal-equations
+#+begin_theorem
+The function \(b \mapsto \norm{Y - Ab}^{2}\) has a unique minimiser,
+\(\hat{\beta} = (A^{\mathsf{T}}A)^{-1}A^{\mathsf{T}}Y\), characterised
+by the /normal equations/
+\(A^{\mathsf{T}}A\hat{\beta} = A^{\mathsf{T}}Y\); and
+\(A\hat{\beta}\) is the orthogonal projection of \(Y\) onto the column
+space of \(A\).
+#+end_theorem
+
+#+begin_proof
+The column space \(V = \im A\) is a subspace of \(\R^{n}\), so
+\(\R^{n} = V \oplus V^{\perp}\) and the nearest point of \(V\) to \(Y\)
+is its orthogonal projection \(PY\), unique. A vector \(Ab\) equals
+\(PY\) exactly when \(Y - Ab \perp V\), that is
+\(A^{\mathsf{T}}(Y-Ab) = 0\), which is the normal equations. Since
+\(A\) has rank \(p\), \(A^{\mathsf{T}}A\) is invertible -- if
+\(A^{\mathsf{T}}Ab = 0\) then \(\norm{Ab}^{2} = b^{\mathsf{T}}A^{\mathsf{T}}Ab = 0\),
+so \(Ab = 0\) and \(b = 0\) by injectivity of \(A\) -- and the solution
+is the displayed formula, unique because \(b \mapsto Ab\) is injective.
+#+end_proof
+
+#+DEPENDS: thm-normal-equations, def-linear-model, prop-properties-of-expectation
+#+NAME: prop-least-squares-is-unbiased
+#+begin_proposition
+\(\E[\hat{\beta}] = \beta\), and the covariance matrix of
+\(\hat{\beta}\) is \(\sigma^{2}(A^{\mathsf{T}}A)^{-1}\).
+#+end_proposition
+
+#+begin_proof
+Write \(M = (A^{\mathsf{T}}A)^{-1}A^{\mathsf{T}}\), so
+\(\hat{\beta} = MY = M(A\beta+\eps) = \beta + M\eps\), using
+\(MA = I\). Taking expectations componentwise and using
+\(\E[\eps] = 0\) gives unbiasedness. The covariance of \(M\eps\) is
+\(M(\sigma^{2}I)M^{\mathsf{T}} = \sigma^{2}MM^{\mathsf{T}} = \sigma^{2}(A^{\mathsf{T}}A)^{-1}\),
+by bilinearity of covariance and the identity
+\(MM^{\mathsf{T}} = (A^{\mathsf{T}}A)^{-1}A^{\mathsf{T}}A(A^{\mathsf{T}}A)^{-1}\).
+#+end_proof
+
+#+DEPENDS: prop-least-squares-is-unbiased, def-linear-model, prop-variance-identities
+#+NAME: thm-gauss-markov
+#+begin_theorem
+Let \(c \in \R^{p}\). Among all estimators of \(c^{\mathsf{T}}\beta\)
+that are linear in \(Y\) and unbiased for every \(\beta\), the estimator
+\(c^{\mathsf{T}}\hat{\beta}\) has the smallest variance.
+#+end_theorem
+
+#+begin_proof
+A linear estimator is \(a^{\mathsf{T}}Y\) for some \(a \in \R^{n}\), and
+unbiasedness for every \(\beta\) says
+\(a^{\mathsf{T}}A\beta = c^{\mathsf{T}}\beta\) for all \(\beta\), that
+is \(A^{\mathsf{T}}a = c\). Write \(a = a_{0} + d\) with
+\(a_{0} = AM^{\mathsf{T}}c\) the vector giving
+\(c^{\mathsf{T}}\hat{\beta} = a_{0}^{\mathsf{T}}Y\); then
+\(A^{\mathsf{T}}a_{0} = A^{\mathsf{T}}A(A^{\mathsf{T}}A)^{-1}c = c\), so
+\(A^{\mathsf{T}}d = 0\), that is \(d \perp \im A\), and in particular
+\(a_{0}^{\mathsf{T}}d = c^{\mathsf{T}}M d = 0\) since \(a_{0} \in \im A\).
+
+The variance of \(a^{\mathsf{T}}Y\) is
+\(\sigma^{2}\norm{a}^{2} = \sigma^{2}(\norm{a_{0}}^{2}+\norm{d}^{2})\)
+by Pythagoras, which exceeds
+\(\sigma^{2}\norm{a_{0}}^{2} = \Var(c^{\mathsf{T}}\hat{\beta})\) unless
+\(d = 0\).
+#+end_proof
+
+#+begin_remark
+No distributional assumption appears anywhere above: the errors are not
+assumed normal, only uncorrelated with equal variances, and the
+conclusion is optimality within the /linear/ unbiased estimators. Both
+restrictions matter. Drop equal variances and the optimal estimator is
+the weighted one; assume normality and the conclusion strengthens to
+optimality among all unbiased estimators, by the [[id:8cf8a109-5256-46f2-9553-c27e2de0a34e][Cramer-Rao]] bound.
+#+end_remark

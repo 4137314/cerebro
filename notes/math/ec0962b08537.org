@@ -1,0 +1,66 @@
+:PROPERTIES:
+:ID:       38b76068-6f2f-4d67-8a78-655549f487ac
+:END:
+#+TITLE: Geometry
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:geometry:
+#+MSC: 51-XX, 52-XX, 53-XX
+#+HASH: ec0962b08537
+
+A geometry is fixed by choosing which transformations are allowed; its
+theorems are the statements invariant under them. That is the organising
+principle of everything below, and it is why the same object appears
+several times with different content: a conic is one thing projectively,
+three affinely, and infinitely many metrically.
+
+Part of [[id:c2fcb100-fc5a-4670-9b5d-c068c0c325ff][Mathematics]].
+
+* The geometries, by the group allowed
+
+- *Affine* -- [[id:734ca2fe-0727-4155-992a-7b46244de19e][affine spaces and affine maps]]: a vector space with the
+  origin forgotten. Invariants: parallelism, ratios along a line,
+  barycentres.
+- *Euclidean* -- [[id:c2edf7f5-d5ac-4e50-8734-a00b2da22cf4][orthogonality and Gram-Schmidt]] and [[id:f830b644-837d-4fda-8384-8dad0d143c2f][the isometries of
+  \(\R^{n}\)]], which are exactly the affine maps with orthogonal linear
+  part. Invariants: length and angle.
+- *Projective* -- [[id:844044ec-e5a0-41e4-9a47-639bb67e36b2][projective space and its charts]] and [[id:a0c5f254-0252-4136-85e7-c5436092ee67][the
+  cross-ratio]]. Adding one point per direction removes the exception
+  from "two lines meet"; four points on a line have exactly one
+  invariant, and that is the whole of the metric content that survives.
+- *Convex* -- [[id:29371f24-12c6-4151-80ae-3f459e7c83f6][convex sets]], [[id:203494e0-5225-4540-9a81-f61cab21d41b][the separating hyperplane theorem]],
+  [[id:3b9421b3-cb06-43d8-bd6a-aae10da6fd6f][Caratheodory's theorem]] and [[id:b9de97b3-9d38-43ee-9037-395e86c390c1][extreme points]]. Not invariance under a
+  group but a condition on a set, and the one part of geometry that is
+  also optimisation.
+- *Differential* -- [[id:e2341c10-784e-4f50-9fce-429f9f8e9e89][curves]], [[id:bcd05411-fa96-4d39-b18a-1d2d65669fff][surfaces]] and [[id:e8ee2fda-0c4d-43f2-9fe8-f18e423a8010][smooth manifolds]]. Here the
+  allowed transformations are the diffeomorphisms, and the invariants
+  are found by differentiating.
+
+* Classification is linear algebra
+
+Twice in this area a geometric classification is settled by a normal
+form for a symmetric bilinear form. [[id:63688469-ed04-4016-a5ce-54cb91443094][Sylvester's law of inertia]]
+classifies [[id:ba1be74f-3a05-45ce-a429-7fe14ad45170][conics and quadrics]] by signature, and the [[id:dde5958e-70f1-4680-9e80-06de5649c142][spectral
+theorem]] diagonalises [[id:bcd05411-fa96-4d39-b18a-1d2d65669fff][the shape operator of a surface]], producing the
+principal curvatures. The two are different theorems on purpose:
+Sylvester allows any change of basis and can preserve only signs, the
+spectral theorem allows only orthonormal ones and preserves the
+eigenvalues. Which one applies is exactly the question of which group
+the geometry is over.
+
+* Where geometry meets the rest
+
+[[id:b9de97b3-9d38-43ee-9037-395e86c390c1][Minkowski's convex body theorem]] proves statements about integers by
+choosing a lattice and a symmetric body -- geometry used as number
+theory. [[id:e8ee2fda-0c4d-43f2-9fe8-f18e423a8010][The tangent space]] is defined algebraically, as derivations of
+the ring of smooth functions, so that it needs no coordinates. And
+[[id:c1d8ebd6-723e-4272-9cce-66ef33bdea2e][canonical transformations]] are the symplectic geometry of
+[[id:b8b253f2-97fc-4461-8ee4-281c7a8202d2][mechanics]].
+
+* What is missing
+
+Riemannian metrics and geodesics; the Theorema Egregium, which is stated
+as a remark and not proved; differential forms and Stokes' theorem;
+curvature of manifolds rather than of surfaces in \(\R^{3}\); algebraic
+geometry beyond the projective linear case -- there are no varieties and
+no Nullstellensatz, although the [[id:e423d662-1f19-48be-a1f8-8bdfba79235b][Hilbert basis theorem]] is in place; and
+hyperbolic geometry.

@@ -1,0 +1,102 @@
+:PROPERTIES:
+:ID:       97451c87-2d3d-4584-ad50-af7d219ae2a7
+:END:
+#+TITLE: The wave equation: d'Alembert's formula and energy
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:analysis:partial_differential_equations:
+#+MSC: 35L05
+#+HASH: e3eeb9489f0c
+
+The wave equation is the model hyperbolic equation and is the opposite
+of the [[id:ac600204-166d-4fc0-a452-3c3799428283][heat equation]] in every respect: it does not smooth, it runs
+equally well in both time directions, and it propagates at finite speed.
+All three are visible in the explicit solution on the line, and the
+statement that survives in higher dimension is the energy identity,
+which gives uniqueness without any formula at all.
+
+#+DEPENDS: def-differentiable-multivariable, cor-transport-equation, thm-chain-rule
+#+NAME: def-wave-equation
+#+begin_definition
+The /wave equation/ with speed \(c>0\) is
+\(\partial_{t}^{2}u = c^{2}\partial_{x}^{2}u\). The /Cauchy problem/ on
+the line prescribes \(u(x,0) = f(x)\) and \(\partial_{t}u(x,0) = g(x)\).
+#+end_definition
+
+#+DEPENDS: def-wave-equation, thm-chain-rule, thm-ftc-first
+#+NAME: thm-dalembert
+#+begin_theorem
+Let \(f\) be \(C^{2}\) and \(g\) be \(C^{1}\) on \(\R\). Then the Cauchy
+problem has exactly one \(C^{2}\) solution, namely
+\[ u(x,t) = \frac{f(x-ct)+f(x+ct)}{2} + \frac{1}{2c}\int_{x-ct}^{x+ct} g(s)\dd s. \]
+#+end_theorem
+
+#+begin_proof
+Change coordinates to \(\xi = x-ct\), \(\eta = x+ct\). By the chain
+rule the operator factorises:
+\(\partial_{t}^{2}-c^{2}\partial_{x}^{2} = -4c^{2}\partial_{\xi}\partial_{\eta}\).
+So \(u\) solves the equation exactly when
+\(\partial_{\xi}\partial_{\eta}u = 0\), and that holds exactly when
+\(u = F(\xi)+G(\eta)\) for \(C^{2}\) functions \(F, G\): integrating
+\(\partial_{\xi}(\partial_{\eta}u) = 0\) in \(\xi\) shows
+\(\partial_{\eta}u\) is a function \(h(\eta)\) alone, and integrating
+that in \(\eta\) gives the stated form.
+
+Imposing the data: \(F(x)+G(x) = f(x)\) and
+\(-cF'(x)+cG'(x) = g(x)\). Differentiating the first and solving the
+resulting linear system for \(F', G'\), then integrating,
+\(F(x) = \frac{f(x)}{2}-\frac{1}{2c}\int_{0}^{x}g + A\) and
+\(G(x) = \frac{f(x)}{2}+\frac{1}{2c}\int_{0}^{x}g - A\). Substituting
+gives the displayed formula, and the determination of \(F, G\) up to the
+cancelling constant is the uniqueness.
+#+end_proof
+
+#+DEPENDS: thm-dalembert, def-wave-equation
+#+NAME: cor-finite-propagation-speed
+#+begin_corollary
+The value \(u(x_{0},t_{0})\) depends only on \(f\) at the two points
+\(x_{0}\pm ct_{0}\) and on \(g\) on the interval between them -- the
+/domain of dependence/. Consequently, if the data vanish on an interval
+\(I\), the solution vanishes on the /domain of determinacy/
+\(\setst{(x,t)}{[x-ct,x+ct]\subseteq I}\), and a disturbance travels at
+speed at most \(c\).
+#+end_corollary
+
+#+begin_proof
+Both statements are read off d'Alembert's formula, which involves the
+data only at those points; and if \(f\) and \(g\) vanish on
+\([x-ct,x+ct]\subseteq I\) then every term vanishes.
+#+end_proof
+
+#+DEPENDS: def-wave-equation, thm-ftc-first, thm-integration-by-parts, thm-fubini
+#+NAME: thm-energy-and-uniqueness
+#+begin_theorem
+Let \(u\) be a \(C^{2}\) solution on \([0,L]\times[0,\infty)\) with
+\(u(0,t) = u(L,t) = 0\), and put
+\[ E(t) = \frac{1}{2}\int_{0}^{L}\bigl((\partial_{t}u)^{2} + c^{2}(\partial_{x}u)^{2}\bigr)\dd x. \]
+Then \(E\) is constant. Consequently the initial-boundary value problem
+has at most one solution.
+#+end_theorem
+
+#+begin_proof
+Differentiating under the integral sign, legitimate since the integrand
+is \(C^{1}\) on a compact interval,
+\[ E'(t) = \int_{0}^{L}\bigl(\partial_{t}u\,\partial_{t}^{2}u + c^{2}\partial_{x}u\,\partial_{x}\partial_{t}u\bigr)\dd x. \]
+Integrating the second term by parts and using the boundary conditions,
+which give \(\partial_{t}u = 0\) at \(x = 0, L\), it becomes
+\(-c^{2}\int \partial_{t}u\,\partial_{x}^{2}u\). Hence
+\(E'(t) = \int\partial_{t}u\,(\partial_{t}^{2}u - c^{2}\partial_{x}^{2}u) = 0\).
+
+For uniqueness, the difference of two solutions has zero data, hence
+\(E(0) = 0\), hence \(E \equiv 0\); the integrand being a sum of squares,
+both derivatives vanish identically, so the difference is constant, and
+it is \(0\) at \(t = 0\).
+#+end_proof
+
+#+begin_remark
+The energy argument is the one that generalises: it needs no formula, no
+dimension one and no explicit characteristics, only an integration by
+parts, and it is the standard route to uniqueness and to a priori bounds
+for hyperbolic problems. Conservation of \(E\) is also Noether's theorem
+for the invariance of the wave equation under time translation, which is
+the same statement seen from [[id:a7b50bb3-2a00-4d1c-a808-a6fcc1c43f78][the variational side]].
+#+end_remark

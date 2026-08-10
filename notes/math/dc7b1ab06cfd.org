@@ -1,0 +1,104 @@
+:PROPERTIES:
+:ID:       1d882fb6-374f-46a5-9ae3-b2c59f446adf
+:END:
+#+TITLE: Variance, covariance and the Markov and Chebyshev inequalities
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:probability:probability_theory:
+#+MSC: 60E15
+#+HASH: dc7b1ab06cfd
+
+Two numbers summarise a law: where it sits and how far it spreads. The
+second is useful because of one inequality -- a bound on the probability
+of a large deviation in terms of a moment -- which is crude, universal
+and, applied to an average, already proves the law of large numbers.
+
+#+DEPENDS: def-expectation, def-l2, thm-l2-is-an-inner-product-space
+#+NAME: def-variance-and-covariance
+#+begin_definition
+For square-integrable \(X, Y\), the /variance/ is
+\(\Var(X) = \E[(X-\E[X])^{2}]\), the /standard deviation/ is
+\(\sqrt{\Var(X)}\), and the /covariance/ is
+\(\Cov(X,Y) = \E[(X-\E[X])(Y-\E[Y])]\). They are /uncorrelated/ if the
+covariance vanishes.
+#+end_definition
+
+#+DEPENDS: def-variance-and-covariance, prop-properties-of-expectation
+#+NAME: prop-variance-identities
+#+begin_proposition
+\(\Var(X) = \E[X^{2}]-\E[X]^{2}\) and
+\(\Cov(X,Y) = \E[XY]-\E[X]\E[Y]\); \(\Cov\) is symmetric and bilinear;
+\(\Var(aX+b) = a^{2}\Var(X)\); and
+\(\Var(X_{1}+\cdots+X_{n}) = \sum_{i}\Var(X_{i}) + 2\sum_{i<j}\Cov(X_{i},X_{j})\).
+#+end_proposition
+
+#+begin_proof
+Expanding \((X-\E[X])^{2}\) and using linearity gives the first
+identity, and the same expansion gives the second. Bilinearity and
+symmetry follow from those of the product and linearity of expectation.
+For an affine change, \(aX+b-\E[aX+b] = a(X-\E[X])\), and squaring pulls
+out \(a^{2}\). The last identity is the expansion of the square of a
+sum, with the diagonal terms giving variances.
+#+end_proof
+
+#+DEPENDS: prop-variance-identities, thm-expectation-of-a-product
+#+NAME: cor-variance-of-a-sum-of-independent-variables
+#+begin_corollary
+Independent square-integrable random variables are uncorrelated, so
+\(\Var(X_{1}+\cdots+X_{n}) = \sum_{i}\Var(X_{i})\). The converse fails.
+#+end_corollary
+
+#+begin_proof
+Independence gives \(\E[X_{i}X_{j}] = \E[X_{i}]\E[X_{j}]\) for
+\(i \ne j\), hence \(\Cov(X_{i},X_{j}) = 0\), and the cross terms in the
+previous identity vanish.
+#+end_proof
+
+#+DEPENDS: def-expectation, prop-properties-of-expectation
+#+NAME: thm-markov-inequality
+#+begin_theorem
+Let \(X \ge 0\) and \(a>0\). Then \(\Prob(X \ge a) \le \E[X]/a\).
+#+end_theorem
+
+#+begin_proof
+Pointwise \(a\,\indicator_{\set{X\ge a}} \le X\): where the indicator is
+\(1\) this says \(a \le X\), and where it is \(0\) it says
+\(0 \le X\). Taking expectations and using monotonicity and linearity,
+\(a\,\Prob(X\ge a) \le \E[X]\).
+#+end_proof
+
+#+DEPENDS: thm-markov-inequality, def-variance-and-covariance
+#+NAME: cor-chebyshev-inequality
+#+begin_corollary
+For square-integrable \(X\) and \(\eps>0\),
+\(\Prob(\abs{X-\E[X]}\ge\eps) \le \Var(X)/\eps^{2}\).
+#+end_corollary
+
+#+begin_proof
+Apply Markov's inequality to the non-negative variable
+\((X-\E[X])^{2}\) and the level \(\eps^{2}\): the event
+\(\abs{X-\E[X]}\ge\eps\) is exactly \((X-\E[X])^{2}\ge\eps^{2}\).
+#+end_proof
+
+#+DEPENDS: def-variance-and-covariance, thm-l2-is-an-inner-product-space, thm-cauchy-schwarz
+#+NAME: prop-correlation-bound
+#+begin_proposition
+\(\abs{\Cov(X,Y)} \le \sqrt{\Var(X)\Var(Y)}\), with equality only if
+\(X\) and \(Y\) are almost surely affinely related.
+#+end_proposition
+
+#+begin_proof
+Covariance is the inner product of \(L^{2}\) applied to the centred
+variables \(X-\E[X]\) and \(Y-\E[Y]\), and variance is the square of the
+corresponding norm; the inequality is Cauchy-Schwarz, and its equality
+case is that the two centred variables are proportional as elements of
+\(L^{2}\), that is almost surely.
+#+end_proof
+
+#+begin_remark
+Markov's inequality is the whole of elementary concentration, and its
+crudeness is the point: it assumes nothing about the law, so the bound
+it gives is the one available before any modelling. Sharper bounds come
+from applying it to a better function -- to \(X^{2}\) it is Chebyshev,
+to \(e^{\lambda X}\) it is the exponential bound underlying the theory
+of large deviations.
+#+end_remark

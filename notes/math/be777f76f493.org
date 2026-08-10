@@ -1,0 +1,104 @@
+:PROPERTIES:
+:ID:       5bd80b77-add7-48ce-9967-0a71a33bfc00
+:END:
+#+TITLE: Lyapunov functions and invariant sets
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:dynamics:dynamical_systems:
+#+MSC: 34D20, 37B25
+#+HASH: be777f76f493
+
+The energy argument that proved [[id:8b7c0d78-6337-4e7c-b510-0a1462f85a66][Lagrange-Dirichlet]] used two properties
+of the energy and no others: it is positive away from the equilibrium,
+and it does not increase along motions. Abstracting exactly those gives
+a method that applies to systems with no energy, no Lagrangian and no
+symmetry -- and, with a strict decrease, gives asymptotic stability
+where linearisation says nothing.
+
+#+DEPENDS: def-flow, def-equilibrium-and-stability, thm-chain-rule
+#+NAME: def-lyapunov-function
+#+begin_definition
+Let \(x_{0}\) be an equilibrium of \(\dot{x} = f(x)\) and \(W\) a
+neighbourhood of it. A /Lyapunov function/ is a continuous
+\(V \colon W \to \R\), \(C^{1}\) on \(W\setminus\set{x_{0}}\), with
+\(V(x_{0}) = 0\), \(V>0\) on \(W\setminus\set{x_{0}}\), and
+\(\dot{V}(x) = \inner{\nabla V(x)}{f(x)} \le 0\) there. It is /strict/
+if \(\dot{V}<0\) on \(W\setminus\set{x_{0}}\).
+#+end_definition
+
+#+DEPENDS: def-lyapunov-function, cor-extreme-value-on-a-compact-space, cor-heine-borel-in-euclidean-space
+#+NAME: thm-lyapunov-stability
+#+begin_theorem
+If an equilibrium admits a Lyapunov function, it is stable; if it
+admits a strict one, it is asymptotically stable.
+#+end_theorem
+
+#+begin_proof
+Along a solution, \(\frac{\dd}{\dd t}V(x(t)) = \dot{V}(x(t)) \le 0\) by
+the chain rule, so \(V\) is non-increasing.
+
+/Stability./ Given \(\eps>0\) with
+\(\overline{B}(x_{0},\eps)\subseteq W\), let
+\(m = \min_{\abs{x-x_{0}}=\eps}V>0\), attained since the sphere is
+compact and \(V\) is positive there. By continuity of \(V\) at
+\(x_{0}\), where it vanishes, choose \(\delta>0\) with \(V<m\) on
+\(B(x_{0},\delta)\). A solution starting there keeps \(V<m\), so it can
+never reach the sphere of radius \(\eps\); being continuous, it stays
+inside.
+
+/Asymptotic stability./ Let \(x(t)\) start in \(B(x_{0},\delta)\); it
+stays in the compact \(\overline{B}(x_{0},\eps)\), so \(V(x(t))\)
+decreases to a limit \(c \ge 0\). Suppose \(c>0\). Then \(x(t)\) remains
+in the compact annulus \(K = \setst{x}{c \le V(x),\ \abs{x-x_{0}}\le\eps}\),
+which excludes \(x_{0}\); on \(K\) the continuous \(\dot{V}\) attains a
+maximum \(-\alpha<0\). Then \(V(x(t)) \le V(x(0))-\alpha t\), which is
+negative for large \(t\) -- impossible. So \(c = 0\), and since \(V\) is
+positive off \(x_{0}\) and continuous, \(x(t)\to x_{0}\).
+#+end_proof
+
+#+DEPENDS: thm-lyapunov-stability, def-flow, prop-the-flow-is-a-group
+#+NAME: def-invariant-set-and-omega-limit
+#+begin_definition
+A set \(S\) is /invariant/ if \(\Phi_{t}(S) \subseteq S\) for all \(t\)
+for which the flow is defined. The /omega-limit set/ of a point \(x\) is
+\(\omega(x) = \setst{y}{\Phi_{t_{n}}(x)\to y \text{ for some } t_{n}\to+\infty}\).
+#+end_definition
+
+#+DEPENDS: def-invariant-set-and-omega-limit, thm-compactness-in-metric-spaces, prop-the-flow-is-a-group
+#+NAME: prop-omega-limit-sets
+#+begin_proposition
+If the forward orbit of \(x\) is contained in a compact set, then
+\(\omega(x)\) is non-empty, compact, invariant and connected, and
+\(\Phi_{t}(x)\) approaches it.
+#+end_proposition
+
+#+begin_proof
+Non-emptiness and compactness: the points \(\Phi_{n}(x)\) lie in a
+compact set, so a subsequence converges, giving a point of
+\(\omega(x)\); and \(\omega(x)\) is an intersection of the closed sets
+\(\overline{\setst{\Phi_{s}(x)}{s\ge t}}\), hence closed in a compact
+set.
+
+Invariance: if \(\Phi_{t_{n}}(x)\to y\) then, by continuity of the flow
+in the initial condition,
+\(\Phi_{t_{n}+s}(x) = \Phi_{s}(\Phi_{t_{n}}(x)) \to \Phi_{s}(y)\), so
+\(\Phi_{s}(y)\in\omega(x)\).
+
+Approach: otherwise there are \(\eps>0\) and \(t_{n}\to\infty\) with
+\(\Phi_{t_{n}}(x)\) at distance at least \(\eps\) from \(\omega(x)\);
+a convergent subsequence of those points has its limit in
+\(\omega(x)\), a contradiction. Connectedness follows because the
+decreasing intersection defining \(\omega(x)\) is one of compact
+connected sets, each being the closure of a continuous image of a
+half-line.
+#+end_proof
+
+#+begin_remark
+Finding a Lyapunov function is an art with no algorithm, which is the
+standing objection to the method; its answer is that for a mechanical
+system the energy is one, for a gradient system \(\dot{x} = -\nabla V\)
+the potential is one, and for a linear sink a quadratic form built from
+the spectral decomposition is one -- so the three cases that matter come
+with a candidate. The refinement that handles the non-strict case,
+LaSalle's invariance principle, replaces convergence to the equilibrium
+by convergence to the largest invariant set where \(\dot{V} = 0\).
+#+end_remark

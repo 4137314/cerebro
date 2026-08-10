@@ -1,0 +1,116 @@
+:PROPERTIES:
+:ID:       7854238d-a399-44d6-8636-512105380539
+:END:
+#+TITLE: The residue theorem and the argument principle
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:analysis:complex_analysis:
+#+MSC: 30E20, 30C15
+#+HASH: 1a6c0b615eb1
+
+Cauchy's theorem says a contour integral vanishes when there is nothing
+inside. The residue theorem says what it is when there is: one number
+per singularity, read off the Laurent expansion. That turns contour
+integration into arithmetic, and it is the reason complex analysis is a
+computational tool in [[id:b8b253f2-97fc-4461-8ee4-281c7a8202d2][mathematical physics]] rather than only a
+structural theory.
+
+#+DEPENDS: def-isolated-singularity, thm-laurent-expansion, thm-primitive-on-a-convex-set
+#+NAME: thm-residue
+#+begin_theorem
+Let \(f\) be holomorphic on an open set containing a closed disc
+\(\overline{B}\) except for finitely many points
+\(z_{1},\dots,z_{k}\) in its interior, and let \(C = \partial B\) be
+traversed once anticlockwise. Then
+\[ \int_{C} f(z)\dd z = 2\pi i \sum_{j=1}^{k}\Res(f,z_{j}). \]
+#+end_theorem
+
+#+begin_proof
+Choose disjoint small circles \(C_{j}\) around the \(z_{j}\), inside
+\(B\). Cutting the region between \(C\) and the \(C_{j}\) into finitely
+many pieces each lying in a convex open subset of the domain of
+holomorphy, and cancelling the cuts, gives
+\(\int_{C}f = \sum_{j}\int_{C_{j}}f\).
+
+On a small circle about \(z_{j}\), expand \(f\) in its Laurent series,
+which converges uniformly there, and integrate term by term. For
+\(n \ne -1\) the function \((z-z_{j})^{n}\) has the primitive
+\((z-z_{j})^{n+1}/(n+1)\) on the punctured plane, so its integral over
+the closed curve vanishes; for \(n = -1\) the parametrisation
+\(z = z_{j}+\rho e^{i\theta}\) gives \(2\pi i\). Hence
+\(\int_{C_{j}}f = 2\pi i\,c_{-1} = 2\pi i \Res(f,z_{j})\).
+#+end_proof
+
+#+DEPENDS: thm-residue, def-isolated-singularity, thm-riemann-removability
+#+NAME: prop-computing-residues
+#+begin_proposition
+If \(f\) has a simple pole at \(z_{0}\), then
+\(\Res(f,z_{0}) = \lim_{z\to z_{0}}(z-z_{0})f(z)\); if it has a pole of
+order \(m\), then
+\(\Res(f,z_{0}) = \frac{1}{(m-1)!}\lim_{z\to z_{0}}\frac{\dd^{m-1}}{\dd z^{m-1}}\bigl[(z-z_{0})^{m}f(z)\bigr]\).
+If \(f = g/h\) with \(g,h\) holomorphic, \(h(z_{0}) = 0\),
+\(h'(z_{0})\ne0\) and \(g(z_{0})\ne0\), then
+\(\Res(f,z_{0}) = g(z_{0})/h'(z_{0})\).
+#+end_proposition
+
+#+begin_proof
+Write \(f(z) = \sum_{n\ge-m}c_{n}(z-z_{0})^{n}\). Then
+\((z-z_{0})^{m}f(z)\) is holomorphic with power series
+\(\sum_{k\ge0}c_{k-m}(z-z_{0})^{k}\), whose \((m-1)\)-st derivative at
+\(z_{0}\) is \((m-1)!\,c_{-1}\); that is the displayed formula, and
+\(m = 1\) is the first case.
+
+For the quotient, \(h\) has a simple zero, so \(h(z) = (z-z_{0})h_{1}(z)\)
+with \(h_{1}(z_{0}) = h'(z_{0})\ne0\); then
+\((z-z_{0})f(z) = g(z)/h_{1}(z) \to g(z_{0})/h'(z_{0})\).
+#+end_proof
+
+#+DEPENDS: thm-residue, thm-zeros-are-isolated, prop-computing-residues
+#+NAME: thm-argument-principle
+#+begin_theorem
+Let \(f\) be holomorphic on an open set containing \(\overline{B}\)
+except for finitely many poles inside, with no zeros or poles on
+\(C = \partial B\). Then
+\[ \frac{1}{2\pi i}\int_{C}\frac{f'(z)}{f(z)}\dd z = Z - P, \]
+where \(Z\) and \(P\) count the zeros and the poles inside \(B\) with
+multiplicity.
+#+end_theorem
+
+#+begin_proof
+The function \(f'/f\) is holomorphic except at the zeros and poles of
+\(f\). Near a zero of order \(m\), \(f(z) = (z-z_{0})^{m}g(z)\) with
+\(g(z_{0})\ne0\), so
+\(f'/f = \frac{m}{z-z_{0}} + \frac{g'}{g}\), whose second term is
+holomorphic: the residue is \(m\). Near a pole of order \(m\) the same
+computation with \(f = (z-z_{0})^{-m}g\) gives residue \(-m\). Summing
+by the residue theorem gives \(Z-P\).
+#+end_proof
+
+#+DEPENDS: thm-argument-principle, prop-standard-estimate
+#+NAME: thm-rouche
+#+begin_theorem
+Let \(f, g\) be holomorphic on an open set containing
+\(\overline{B}\), with \(\abs{g(z)}<\abs{f(z)}\) for every \(z\) on
+\(C = \partial B\). Then \(f\) and \(f+g\) have the same number of
+zeros in \(B\), counted with multiplicity.
+#+end_theorem
+
+#+begin_proof
+Neither \(f\) nor \(f+g\) vanishes on \(C\), by the strict inequality.
+For \(t \in [0,1]\) put \(h_{t} = f+tg\), which also does not vanish on
+\(C\), and let
+\(N(t) = \frac{1}{2\pi i}\int_{C}\frac{h_{t}'}{h_{t}}\dd z\), the number
+of zeros of \(h_{t}\) in \(B\) by the argument principle. The
+integrand depends continuously on \(t\), uniformly in \(z\) on the
+compact \(C\), since \(\abs{h_{t}}\ge\abs{f}-\abs{g}>0\) there; hence
+\(N\) is continuous. It takes integer values, and a continuous
+integer-valued function on the connected \([0,1]\) is constant, so
+\(N(0) = N(1)\).
+#+end_proof
+
+#+begin_remark
+Rouche's theorem is how one locates roots without solving: perturbing a
+polynomial by something smaller on a circle does not change how many
+roots are inside, which gives the fundamental theorem of algebra again
+in one line and is the standard tool for stability questions, where the
+zeros of a characteristic function decide whether a solution grows.
+#+end_remark

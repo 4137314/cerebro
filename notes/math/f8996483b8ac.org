@@ -1,0 +1,133 @@
+:PROPERTIES:
+:ID:       f667edb9-9594-4469-a3cf-1dd0c497ae9e
+:END:
+#+TITLE: The Fourier transform, inversion and Plancherel
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:analysis:harmonic_analysis:
+#+MSC: 42A38
+#+HASH: f8996483b8ac
+
+On a bounded interval the frequencies are discrete and the expansion is
+a series; on the line they form a continuum and the sum becomes an
+integral. What survives is what matters for [[id:b8b253f2-97fc-4461-8ee4-281c7a8202d2][mathematical physics]]:
+differentiation becomes multiplication, convolution becomes
+multiplication, and the transform preserves the \(L^{2}\) norm -- so a
+differential equation becomes an algebraic one.
+
+#+DEPENDS: def-measure, thm-dominated-convergence, def-expectation
+#+NAME: def-fourier-transform
+#+begin_definition
+For \(f\) integrable on \(\R\), the /Fourier transform/ is
+\[ \hat{f}(\xi) = \int_{\R} f(x) e^{-i\xi x}\dd x, \qquad \xi \in \R, \]
+and the /convolution/ of integrable \(f, g\) is
+\((f*g)(x) = \int_{\R}f(x-y)g(y)\dd y\).
+#+end_definition
+
+#+DEPENDS: def-fourier-transform, thm-dominated-convergence, thm-fubini
+#+NAME: prop-elementary-properties-of-the-transform
+#+begin_proposition
+For integrable \(f\): \(\hat{f}\) is bounded by
+\(\int\abs{f}\) and uniformly continuous; \(\widehat{f*g} = \hat{f}\hat{g}\);
+if \(f\) is \(C^{1}\) with \(f, f'\) integrable then
+\(\widehat{f'}(\xi) = i\xi\hat{f}(\xi)\); and if \(xf(x)\) is integrable
+then \(\hat{f}\) is differentiable with
+\(\hat{f}'(\xi) = \widehat{-ixf}(\xi)\).
+#+end_proposition
+
+#+begin_proof
+The bound is the triangle inequality, the modulus of the exponential
+being \(1\). Uniform continuity: \(\abs{\hat{f}(\xi+h)-\hat{f}(\xi)} \le \int\abs{f(x)}\abs{e^{-ihx}-1}\dd x\),
+independent of \(\xi\), and the integrand is dominated by
+\(2\abs{f}\) and tends to \(0\) pointwise, so dominated convergence
+applies.
+
+For the convolution, \(\abs{f(x-y)g(y)}\) is integrable on the plane by
+Tonelli, so Fubini permits exchanging the order in
+\(\int\!\!\int f(x-y)g(y)e^{-i\xi x}\dd y\dd x\); substituting
+\(x = u+y\) factorises the exponential and gives the product.
+
+Integrating by parts on \([-R,R]\) and letting \(R\to\infty\) -- the
+boundary terms tend to \(0\) because \(f\) is integrable with integrable
+derivative, hence has limit \(0\) at \(\pm\infty\) -- gives the rule for
+\(f'\). Differentiation under the integral sign, justified by the
+dominating function \(\abs{xf(x)}\), gives the last rule.
+#+end_proof
+
+#+DEPENDS: def-fourier-transform, prop-elementary-properties-of-the-transform
+#+NAME: prop-the-gaussian-is-its-own-transform
+#+begin_proposition
+For \(g(x) = e^{-x^{2}/2}\) one has \(\hat{g}(\xi) = \sqrt{2\pi}\,e^{-\xi^{2}/2}\).
+#+end_proposition
+
+#+begin_proof
+Both rules of the previous proposition apply to \(g\), which decays
+faster than any polynomial. Differentiating under the integral and then
+integrating by parts,
+\(\hat{g}'(\xi) = \int (-ix)e^{-x^{2}/2}e^{-i\xi x}\dd x = i\int \frac{\dd}{\dd x}\bigl(e^{-x^{2}/2}\bigr)e^{-i\xi x}\dd x = -\xi\hat{g}(\xi)\).
+So \((\hat{g}(\xi)e^{\xi^{2}/2})' = 0\), whence
+\(\hat{g}(\xi) = \hat{g}(0)e^{-\xi^{2}/2}\), and
+\(\hat{g}(0) = \int e^{-x^{2}/2}\dd x = \sqrt{2\pi}\) is the Gaussian
+integral, computed by squaring it and passing to polar coordinates.
+#+end_proof
+
+#+DEPENDS: prop-the-gaussian-is-its-own-transform, thm-fubini, thm-dominated-convergence
+#+NAME: thm-fourier-inversion
+#+begin_theorem
+Let \(f\) be integrable and continuous with \(\hat{f}\) integrable.
+Then
+\[ f(x) = \frac{1}{2\pi}\int_{\R}\hat{f}(\xi)e^{i\xi x}\dd\xi \qquad \text{for every } x. \]
+#+end_theorem
+
+#+begin_proof
+For \(\eps>0\) consider
+\(I_{\eps}(x) = \frac{1}{2\pi}\int \hat{f}(\xi)e^{-\eps^{2}\xi^{2}/2}e^{i\xi x}\dd\xi\).
+Substituting the definition of \(\hat{f}\) and applying Fubini --
+legitimate because \(\abs{f(y)}e^{-\eps^{2}\xi^{2}/2}\) is integrable on
+the plane -- gives
+\(I_{\eps}(x) = \int f(y)\,\Phi_{\eps}(x-y)\dd y\), where
+\(\Phi_{\eps}(u) = \frac{1}{2\pi}\int e^{-\eps^{2}\xi^{2}/2}e^{i\xi u}\dd\xi\).
+By the Gaussian computation and a change of scale,
+\(\Phi_{\eps}(u) = \frac{1}{\eps\sqrt{2\pi}}e^{-u^{2}/(2\eps^{2})}\),
+which is non-negative with total integral \(1\) and concentrates at
+\(0\).
+
+Hence \(I_{\eps}(x) \to f(x)\) as \(\eps\to0\), by the same splitting
+argument as for Fejer's kernel, using continuity of \(f\) at \(x\) and
+integrability to control the tail. On the other hand \(I_{\eps}(x)\)
+tends to the right-hand side of the statement by dominated convergence,
+the integrand being dominated by \(\abs{\hat{f}}\). The two limits agree.
+#+end_proof
+
+#+DEPENDS: thm-fourier-inversion, def-l2, thm-riesz-fischer, thm-parseval-for-fourier-series
+#+NAME: thm-plancherel
+#+begin_theorem
+For \(f\) integrable and square-integrable with \(\hat{f}\) integrable,
+\[ \int_{\R}\abs{f(x)}^{2}\dd x = \frac{1}{2\pi}\int_{\R}\abs{\hat{f}(\xi)}^{2}\dd\xi. \]
+Consequently the transform extends to a bijective linear map of
+\(L^{2}(\R)\) onto itself preserving the norm up to the factor
+\(2\pi\).
+#+end_theorem
+
+#+begin_proof
+Put \(g(x) = \overline{f(-x)}\), so that
+\(\hat{g} = \overline{\hat{f}}\) and \((f*g)(0) = \int\abs{f}^{2}\). The
+convolution \(f*g\) is continuous and its transform
+\(\hat{f}\hat{g} = \abs{\hat{f}}^{2}\) is integrable, so the inversion
+formula applies at \(0\):
+\((f*g)(0) = \frac{1}{2\pi}\int\abs{\hat{f}(\xi)}^{2}\dd\xi\), which is
+the identity.
+
+The set of such \(f\) is dense in \(L^{2}\), and an isometry defined on
+a dense subspace of a complete space extends uniquely to the whole; the
+extension is onto because the inverse transform extends likewise and the
+two compositions are the identity on the dense subspace.
+#+end_proof
+
+#+begin_remark
+The three rules -- derivative to multiplication, convolution to product,
+norm preserved -- are exactly what makes the transform the standard tool
+for linear constant-coefficient equations: applying it turns the heat
+and wave equations into ordinary differential equations in \(\xi\),
+solvable by inspection, and Plancherel guarantees that the answer
+obtained by inverting has the same energy as the data.
+#+end_remark

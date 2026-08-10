@@ -1,0 +1,138 @@
+:PROPERTIES:
+:ID:       8cbdd35a-bbc4-44cf-9b1d-0b9623e3dc25
+:END:
+#+TITLE: The Lebesgue integral and the convergence theorems
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:analysis:measure_theory:
+#+MSC: 28A25
+#+HASH: 44618aaf3f95
+
+The integral is built in three steps -- indicator functions, then finite
+non-negative combinations of them, then suprema -- and each step is
+forced by the one before. What the construction buys is the exchange of
+limit and integral under hypotheses that are about the functions rather
+than about the convergence being uniform, and those three theorems are
+the reason the Lebesgue integral replaced the Riemann one.
+
+#+DEPENDS: def-measure, def-measurable-function, def-supremum
+#+NAME: def-simple-function
+#+begin_definition
+A /simple function/ on a measure space is a measurable
+\(s \colon X \to [0,\infty)\) taking finitely many values; writing
+\(s = \sum_{k=1}^{n}c_{k}\indicator_{A_{k}}\) with the \(A_{k}\)
+disjoint measurable and \(c_{k}\) its distinct values, its integral is
+\(\int s \dd\mu = \sum_{k}c_{k}\mu(A_{k})\), with the convention
+\(0\cdot\infty = 0\). For measurable \(f \ge 0\),
+\[ \int f \dd\mu = \sup\Bigl\{\int s\dd\mu \;\Big\vert\; s \text{ simple}, \ 0 \le s \le f\Bigr\}. \]
+For a measurable \(E\) one writes
+\(\int_{E}f\dd\mu = \int f\,\indicator_{E}\dd\mu\), and \(f\) is
+/integrable/ when \(\int\abs{f}\dd\mu<\infty\), in which case
+\(\int f = \int f^{+} - \int f^{-}\) with
+\(f^{\pm} = \max(\pm f, 0)\).
+#+end_definition
+
+#+DEPENDS: def-simple-function, def-measurable-function, prop-measurability-tested-on-rays
+#+NAME: thm-approximation-by-simple-functions
+#+begin_theorem
+For every measurable \(f \ge 0\) there are simple functions
+\(s_{1}\le s_{2}\le\cdots\) with \(s_{n}\to f\) pointwise; the
+convergence is uniform where \(f\) is bounded.
+#+end_theorem
+
+#+begin_proof
+Put \(s_{n} = \sum_{k=0}^{n2^{n}-1}\frac{k}{2^{n}}\indicator_{A_{n,k}} + n\,\indicator_{\setst{x}{f(x)\ge n}}\),
+where \(A_{n,k} = \setst{x}{k2^{-n}\le f(x)<(k+1)2^{-n}}\), a measurable
+set. Each \(s_{n}\) is simple, and \(s_{n}\le s_{n+1}\) because
+refining the dyadic grid can only raise the approximation from below.
+If \(f(x)<\infty\) then for \(n>f(x)\) we have
+\(0 \le f(x)-s_{n}(x)<2^{-n}\), and if \(f(x)=\infty\) then
+\(s_{n}(x) = n\to\infty\). Where \(f\le M\), the bound \(2^{-n}\) is
+uniform for \(n>M\).
+#+end_proof
+
+#+DEPENDS: def-simple-function, thm-basic-properties-of-a-measure, thm-approximation-by-simple-functions
+#+NAME: thm-monotone-convergence-of-integrals
+#+begin_theorem
+Let \(0 \le f_{1}\le f_{2}\le\cdots\) be measurable with
+\(f_{n}\to f\) pointwise. Then \(\int f_{n}\dd\mu \to \int f\dd\mu\).
+#+end_theorem
+
+#+begin_proof
+The integrals increase and are bounded by \(\int f\), since
+\(f_{n}\le f\); let \(L\) be their limit, so \(L \le \int f\).
+
+For the converse, fix a simple \(0 \le s \le f\) and \(c \in (0,1)\),
+and put \(E_{n} = \setst{x}{f_{n}(x)\ge c\,s(x)}\), a measurable set.
+The \(E_{n}\) increase, and their union is \(X\): where \(s(x)=0\) this
+is clear, and where \(s(x)>0\) we have \(f(x)\ge s(x)>c\,s(x)\), so
+\(f_{n}(x)\) eventually exceeds \(c\,s(x)\). Now
+\(\int f_{n} \ge \int_{E_{n}} f_{n} \ge c\int_{E_{n}}s = c\sum_{k}c_{k}\mu(A_{k}\cap E_{n})\),
+and by continuity from below each \(\mu(A_{k}\cap E_{n})\to\mu(A_{k})\).
+Letting \(n\to\infty\) gives \(L \ge c\int s\dd\mu\), and then
+\(c \to 1\) and the supremum over \(s\) give \(L \ge \int f\).
+#+end_proof
+
+#+DEPENDS: thm-monotone-convergence-of-integrals, thm-approximation-by-simple-functions
+#+NAME: cor-additivity-of-the-integral
+#+begin_corollary
+For measurable \(f,g\ge0\) and \(\lambda \ge 0\),
+\(\int(f+g) = \int f + \int g\) and \(\int \lambda f = \lambda\int f\);
+and \(f \le g\) implies \(\int f \le \int g\).
+#+end_corollary
+
+#+begin_proof
+For simple functions both identities are finite sums over the common
+refinement of the two partitions, using additivity of \(\mu\) on
+disjoint sets. In general take increasing simple \(s_{n}\to f\) and
+\(t_{n}\to g\); then \(s_{n}+t_{n}\) is simple, increases and converges
+to \(f+g\), so monotone convergence applied three times gives the
+additivity. Monotonicity is immediate from the definition as a
+supremum, every simple function below \(f\) being below \(g\).
+#+end_proof
+
+#+DEPENDS: thm-monotone-convergence-of-integrals, def-limsup-liminf
+#+NAME: lem-fatou
+#+begin_lemma
+For measurable \(f_{n}\ge0\),
+\(\int \liminf_{n} f_{n}\dd\mu \le \liminf_{n}\int f_{n}\dd\mu\).
+#+end_lemma
+
+#+begin_proof
+Put \(g_{N} = \inf_{n\ge N}f_{n}\), measurable and increasing with
+\(g_{N}\to\liminf_{n}f_{n}\). By monotone convergence
+\(\int g_{N}\to\int\liminf_{n}f_{n}\). And \(g_{N}\le f_{n}\) for every
+\(n \ge N\), so \(\int g_{N}\le\inf_{n\ge N}\int f_{n}\); taking
+\(N\to\infty\) on both sides gives the claim.
+#+end_proof
+
+#+DEPENDS: lem-fatou, cor-additivity-of-the-integral, def-absolute-value
+#+NAME: thm-dominated-convergence
+#+begin_theorem
+Let \(f_{n}\) be measurable with \(f_{n}\to f\) pointwise and
+\(\abs{f_{n}}\le g\) for a measurable \(g\) with
+\(\int g\dd\mu<\infty\). Then \(f\) is integrable and
+\(\int f_{n}\dd\mu\to\int f\dd\mu\); indeed
+\(\int\abs{f_{n}-f}\dd\mu\to0\).
+#+end_theorem
+
+#+begin_proof
+\(f\) is measurable as a pointwise limit and \(\abs{f}\le g\), so
+\(\int\abs{f}\le\int g<\infty\). The functions
+\(h_{n} = 2g - \abs{f_{n}-f}\) are non-negative, since
+\(\abs{f_{n}-f}\le\abs{f_{n}}+\abs{f}\le2g\), and converge pointwise to
+\(2g\). Fatou's lemma gives
+\(\int 2g \le \liminf_{n}\int(2g-\abs{f_{n}-f}) = \int 2g - \limsup_{n}\int\abs{f_{n}-f}\),
+using additivity and the finiteness of \(\int 2g\) to split the
+integral. Hence \(\limsup_{n}\int\abs{f_{n}-f}\le0\), so that integral
+tends to \(0\), and
+\(\abs{\int f_{n}-\int f}\le\int\abs{f_{n}-f}\to0\).
+#+end_proof
+
+#+begin_remark
+Domination is what fails in the standard counterexample -- the moving
+spikes \(n\,\indicator_{(0,1/n)}\) converge pointwise to \(0\) with
+integral \(1\) throughout -- and Fatou's inequality is exactly what
+survives without it. Note also which hypothesis has disappeared compared
+with the theorem on integrating a uniform limit: nothing here is
+uniform, which is the entire gain.
+#+end_remark

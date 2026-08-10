@@ -1,0 +1,104 @@
+:PROPERTIES:
+:ID:       3c87078b-b0e3-4c8a-80dd-a2417c2ca3bf
+:END:
+#+TITLE: Small oscillations and normal modes
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:mathematical_physics:classical_mechanics:
+#+MSC: 70J10, 15A22
+#+HASH: 7a2beed3f3de
+
+Near a stable equilibrium a mechanical system is, to first order, a
+collection of independent harmonic oscillators. Producing them is a
+purely algebraic statement -- two quadratic forms, one of them positive
+definite, can be diagonalised simultaneously -- and it is the
+[[id:dde5958e-70f1-4680-9e80-06de5649c142][spectral theorem]] applied after a change of variables that makes the
+kinetic form the identity.
+
+#+DEPENDS: def-bilinear-form, thm-spectral-theorem, thm-diagonalisation-of-symmetric-forms
+#+NAME: thm-simultaneous-diagonalisation
+#+begin_theorem
+Let \(A, B\) be real symmetric \(n\times n\) matrices with \(A\)
+positive definite. Then there is an invertible \(S\) with
+\(S^{\mathsf{T}}AS = I\) and \(S^{\mathsf{T}}BS\) diagonal, with
+diagonal entries the roots \(\lambda\) of \(\det(B-\lambda A) = 0\).
+#+end_theorem
+
+#+begin_proof
+Since \(A\) is symmetric positive definite, the spectral theorem gives
+\(A = Q\Lambda Q^{\mathsf{T}}\) with \(Q\) orthogonal and \(\Lambda\)
+diagonal with positive entries; put
+\(A^{-1/2} = Q\Lambda^{-1/2}Q^{\mathsf{T}}\), symmetric with
+\(A^{-1/2}AA^{-1/2} = I\). The matrix \(C = A^{-1/2}BA^{-1/2}\) is
+symmetric, so \(C = R D R^{\mathsf{T}}\) with \(R\) orthogonal and
+\(D\) diagonal. Put \(S = A^{-1/2}R\): then
+\(S^{\mathsf{T}}AS = R^{\mathsf{T}}R = I\) and
+\(S^{\mathsf{T}}BS = D\).
+
+The diagonal entries are the eigenvalues of \(C\), and
+\(\det(B-\lambda A) = \det(A^{1/2})^{2}\det(C-\lambda I)\), so they are
+exactly the roots of that polynomial.
+#+end_proof
+
+#+DEPENDS: thm-simultaneous-diagonalisation, def-equilibrium-and-stability, thm-lagrange-dirichlet, thm-taylor-peano
+#+NAME: thm-normal-modes
+#+begin_theorem
+Let \(q_{0}\) be an equilibrium of a natural system with \(V\) of class
+\(C^{2}\), and set \(A = A(q_{0})\) and \(B = D^{2}V(q_{0})\). The
+linearisation of the equations of motion at \(q_{0}\) is
+\(A\ddot{u} = -Bu\), and in the coordinates \(u = S\eta\) of the
+previous theorem it decouples into
+\(\ddot{\eta}_{k} = -\lambda_{k}\eta_{k}\). If all \(\lambda_{k}>0\) the
+solutions are superpositions of /normal modes/
+\(\eta_{k}(t) = c_{k}\cos(\omega_{k}t+\varphi_{k})\) with frequencies
+\(\omega_{k} = \sqrt{\lambda_{k}}\).
+#+end_theorem
+
+#+begin_proof
+Write \(q = q_{0}+u\). Expanding the Lagrangian to second order in
+\((u,\dot{u})\) by Taylor's theorem, the kinetic term is
+\(\tfrac{1}{2}\inner{A\dot{u}}{\dot{u}}\) up to terms of higher order --
+\(A(q)\) is continuous and \(\dot{u}\) already appears quadratically --
+and the potential is
+\(V(q_{0})+\tfrac{1}{2}\inner{Bu}{u}+o(\abs{u}^{2})\), the linear term
+vanishing because \(q_{0}\) is a critical point. The Lagrange equations
+of the quadratic Lagrangian are \(A\ddot{u} = -Bu\).
+
+Substituting \(u = S\eta\) and multiplying by \(S^{\mathsf{T}}\) gives
+\(S^{\mathsf{T}}AS\ddot{\eta} = -S^{\mathsf{T}}BS\eta\), that is
+\(\ddot{\eta} = -D\eta\), one scalar equation per coordinate. For
+\(\lambda_{k}>0\) the general solution of
+\(\ddot{\eta}_{k}=-\lambda_{k}\eta_{k}\) is the displayed sinusoid, and
+the general solution of the system is their superposition through
+\(u = S\eta\).
+#+end_proof
+
+#+DEPENDS: thm-normal-modes, thm-lagrange-dirichlet, prop-instability-from-a-maximum
+#+NAME: cor-frequencies-and-stability
+#+begin_corollary
+All \(\lambda_{k}\) are positive exactly when \(D^{2}V(q_{0})\) is
+positive definite, in which case \(q_{0}\) is a stable equilibrium of
+the full nonlinear system; a negative \(\lambda_{k}\) makes it unstable.
+#+end_corollary
+
+#+begin_proof
+By the theorem the \(\lambda_{k}\) are the roots of
+\(\det(B-\lambda A) = 0\), which are the eigenvalues of
+\(A^{-1/2}BA^{-1/2}\); that matrix is positive definite exactly when
+\(B\) is, since \(\inner{A^{-1/2}BA^{-1/2}x}{x} = \inner{B y}{y}\) with
+\(y = A^{-1/2}x\) ranging over everything. A positive definite Hessian
+makes \(q_{0}\) a strict local minimum of \(V\), by Taylor's theorem, so
+Lagrange-Dirichlet gives stability; a negative eigenvalue gives
+instability by the earlier proposition.
+#+end_proof
+
+#+begin_remark
+The normal modes are the physically meaningful objects and the
+coordinates \(\eta\) are not orthonormal for anything except the kinetic
+energy -- which is exactly the point of the simultaneous
+diagonalisation: the two forms cannot in general be brought to the
+identity together, and privileging the positive definite one is what
+makes the frequencies, rather than the eigenvalues of \(B\) alone,
+the invariants. The same algebra reappears whenever a quadratic energy
+is minimised subject to a quadratic normalisation, from the generalised
+eigenvalue problems of numerical analysis to the [[id:642c93ab-d004-4829-b5fa-899759923d63][Rayleigh quotient]].
+#+end_remark

@@ -1,0 +1,124 @@
+:PROPERTIES:
+:ID:       836aa316-f3a7-4261-9cfc-96235daef781
+:END:
+#+TITLE: Central forces, the two-body problem and Kepler's laws
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:mathematical_physics:classical_mechanics:
+#+MSC: 70F05, 70F15
+#+HASH: a3b7490fefcd
+
+The two-body problem is the one non-trivial mechanical system that is
+solved completely, and it is solved by symmetry rather than by
+integration: rotational invariance reduces two bodies in space to one
+coordinate, and the reduction is what turns the orbit equation into a
+conic. Kepler's three laws are the three conserved quantities, read off
+in order.
+
+#+DEPENDS: cor-conservative-forces-give-a-variational-principle, thm-noether, def-differentiable-multivariable
+#+NAME: def-central-force-system
+#+begin_definition
+A /central force/ system is a single particle of mass \(m\) in
+\(\R^{3}\) with potential \(V(r)\) depending only on
+\(r = \abs{x}\); the Lagrangian is
+\(L = \tfrac{1}{2}m\abs{\dot{x}}^{2}-V(r)\). The /angular momentum/ is
+\(\ell = m\,x \times \dot{x}\).
+#+end_definition
+
+#+DEPENDS: def-central-force-system, thm-noether, prop-energy-and-cyclic-coordinates
+#+NAME: prop-angular-momentum-is-conserved
+#+begin_proposition
+Along any motion, \(\ell\) is constant; the motion is therefore planar,
+and in polar coordinates \((r,\theta)\) in that plane
+\(\ell = mr^{2}\dot{\theta}\) is constant -- which is Kepler's second
+law, equal areas in equal times.
+#+end_proposition
+
+#+begin_proof
+Differentiating, \(\dot{\ell} = m\,\dot{x}\times\dot{x} + m\,x\times\ddot{x} = x \times (-V'(r)x/r) = 0\),
+the force being parallel to \(x\). If \(\ell \ne 0\) then \(x\) stays in
+the plane through the origin orthogonal to \(\ell\), since
+\(\inner{x}{\ell} = 0\) identically; if \(\ell = 0\) the motion is along
+a fixed line. In polar coordinates in that plane,
+\(\abs{x\times\dot{x}} = r^{2}\dot{\theta}\), and the swept area has
+derivative \(\tfrac{1}{2}r^{2}\dot{\theta}\), constant.
+#+end_proof
+
+#+DEPENDS: prop-angular-momentum-is-conserved, prop-energy-and-cyclic-coordinates, def-central-force-system
+#+NAME: thm-reduction-to-one-degree-of-freedom
+#+begin_theorem
+In the plane of motion the Lagrangian is
+\(L = \tfrac{1}{2}m(\dot{r}^{2}+r^{2}\dot{\theta}^{2})-V(r)\); the
+coordinate \(\theta\) is cyclic with momentum \(\ell\), and the radial
+motion satisfies
+\[ m\ddot{r} = -V_{\mathrm{eff}}'(r), \qquad V_{\mathrm{eff}}(r) = V(r)+\frac{\ell^{2}}{2mr^{2}}, \]
+with conserved energy
+\(E = \tfrac{1}{2}m\dot{r}^{2}+V_{\mathrm{eff}}(r)\).
+#+end_theorem
+
+#+begin_proof
+The expression for \(L\) is the kinetic energy in polar coordinates.
+Since \(\theta\) does not appear, \(p_{\theta} = mr^{2}\dot{\theta} = \ell\)
+is conserved. The Lagrange equation for \(r\) reads
+\(m\ddot{r} = mr\dot{\theta}^{2}-V'(r)\); substituting
+\(\dot{\theta} = \ell/(mr^{2})\) gives
+\(m\ddot{r} = \ell^{2}/(mr^{3}) - V'(r) = -V_{\mathrm{eff}}'(r)\).
+Multiplying by \(\dot{r}\) and integrating gives the conserved \(E\),
+which is also the energy of the previous note with
+\(\dot{\theta}\) eliminated.
+#+end_proof
+
+#+DEPENDS: thm-reduction-to-one-degree-of-freedom, thm-chain-rule, thm-projective-classification-of-quadrics
+#+NAME: thm-kepler-orbits
+#+begin_theorem
+For the Newtonian potential \(V(r) = -k/r\) with \(k>0\) and
+\(\ell \ne 0\), the orbit in polar coordinates is
+\[ r(\theta) = \frac{p}{1+e\cos(\theta-\theta_{0})}, \qquad p = \frac{\ell^{2}}{mk}, \quad e = \sqrt{1+\frac{2E\ell^{2}}{mk^{2}}}, \]
+a conic with the centre of force at a focus: an ellipse for \(E<0\), a
+parabola for \(E = 0\), a hyperbola for \(E>0\).
+#+end_theorem
+
+#+begin_proof
+Substitute \(u = 1/r\) and use \(\theta\) as the independent variable.
+From \(\dot{\theta} = \ell u^{2}/m\) and the chain rule,
+\(\dot{r} = -\frac{\ell}{m}\frac{\dd u}{\dd\theta}\) and
+\(\ddot{r} = -\frac{\ell^{2}u^{2}}{m^{2}}\frac{\dd^{2}u}{\dd\theta^{2}}\).
+Substituting into the radial equation with \(V' = k/r^{2} = ku^{2}\)
+gives the linear equation
+\(\frac{\dd^{2}u}{\dd\theta^{2}} + u = \frac{mk}{\ell^{2}}\),
+whose general solution is \(u = \frac{mk}{\ell^{2}}(1+e\cos(\theta-\theta_{0}))\)
+with constants \(e, \theta_{0}\). Inverting gives the displayed \(r\).
+
+To identify \(e\), evaluate the conserved energy on this solution: a
+direct computation with
+\(\dot{r} = \frac{\ell}{m}\frac{mk}{\ell^{2}}e\sin(\theta-\theta_{0})\)
+gives \(E = \frac{mk^{2}}{2\ell^{2}}(e^{2}-1)\), which is the stated
+expression. The trichotomy in \(e\) against \(1\) is the trichotomy in
+\(E\) against \(0\), and it is the classification of the conic by
+eccentricity.
+#+end_proof
+
+#+DEPENDS: thm-kepler-orbits, prop-angular-momentum-is-conserved
+#+NAME: cor-kepler-third-law
+#+begin_corollary
+For a bounded orbit with semi-major axis \(a\), the period satisfies
+\(T^{2} = \frac{4\pi^{2}m}{k}a^{3}\).
+#+end_corollary
+
+#+begin_proof
+By the second law the areal velocity is \(\ell/(2m)\), so the period is
+the area of the ellipse divided by it: \(T = 2m\pi ab/\ell\), where
+\(b = a\sqrt{1-e^{2}}\) is the semi-minor axis. From the orbit,
+\(p = a(1-e^{2})\), so \(b^{2} = ap = a\ell^{2}/(mk)\). Substituting,
+\(T^{2} = \frac{4m^{2}\pi^{2}a^{2}b^{2}}{\ell^{2}} = \frac{4\pi^{2}m}{k}a^{3}\).
+#+end_proof
+
+#+begin_remark
+Two features of the Newtonian potential are accidental and worth
+naming. The radial equation became /linear/ after the substitution
+\(u = 1/r\), which is why the orbit is a conic and closes; for a general
+central force the orbit precesses, and Bertrand's theorem says the only
+potentials with all bounded orbits closed are \(-k/r\) and the harmonic
+one. The extra conservation behind that -- the Laplace-Runge-Lenz vector
+-- is a symmetry not visible in the rotation group, and it is the
+classical shadow of the degeneracy of the hydrogen spectrum.
+#+end_remark

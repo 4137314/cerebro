@@ -1,0 +1,118 @@
+:PROPERTIES:
+:ID:       3c9568ab-072c-4973-9f6b-7506e431be22
+:END:
+#+TITLE: Conditional expectation as an orthogonal projection
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:probability:probability_theory:
+#+MSC: 60A10, 46C05
+#+HASH: 5ab1a81ae1fc
+
+Conditioning on an event of positive probability is a definition;
+conditioning on a random variable, whose every value may have
+probability zero, is not. The construction that works is geometric: the
+conditional expectation is the best square-integrable approximation to
+\(X\) among the variables that depend only on the given information, and
+the [[id:642c93ab-d004-4829-b5fa-899759923d63][Hilbert space]] projection theorem is what makes it exist.
+
+#+DEPENDS: def-sigma-algebra, def-random-variable, def-l2, thm-riesz-fischer
+#+NAME: def-sub-sigma-algebra-and-l2
+#+begin_definition
+Let \((\Omega,\mathcal{F},\Prob)\) be a probability space and
+\(\mathcal{G}\subseteq\mathcal{F}\) a sub-\(\sigma\)-algebra -- the
+/information/. Write \(L^{2}(\mathcal{G})\) for the square-integrable
+random variables that are \(\mathcal{G}\)-measurable, taken modulo
+equality almost surely.
+#+end_definition
+
+#+DEPENDS: def-sub-sigma-algebra-and-l2, thm-riesz-fischer, thm-measurability-is-preserved-by-limits
+#+NAME: prop-l2-of-a-sub-sigma-algebra-is-closed
+#+begin_proposition
+\(L^{2}(\mathcal{G})\) is a closed subspace of \(L^{2}(\mathcal{F})\).
+#+end_proposition
+
+#+begin_proof
+It is a subspace: sums and scalar multiples of \(\mathcal{G}\)-measurable
+functions are \(\mathcal{G}\)-measurable. It is closed: if
+\(Y_{n} \in L^{2}(\mathcal{G})\) converges in \(L^{2}\) to \(Y\), then
+by the Riesz-Fischer theorem some subsequence converges to \(Y\) almost
+surely; a pointwise limit of \(\mathcal{G}\)-measurable functions is
+\(\mathcal{G}\)-measurable, and changing \(Y\) on a null set does not
+change its class.
+#+end_proof
+
+#+DEPENDS: prop-l2-of-a-sub-sigma-algebra-is-closed, thm-orthogonal-projection-in-a-hilbert-space
+#+NAME: thm-conditional-expectation-exists
+#+begin_theorem
+For every \(X \in L^{2}(\mathcal{F})\) there is a unique
+\(\E[X\mid\mathcal{G}] \in L^{2}(\mathcal{G})\), the /conditional
+expectation/, such that
+\[ \E\bigl[(X - \E[X\mid\mathcal{G}])\,Y\bigr] = 0 \qquad \text{for every } Y \in L^{2}(\mathcal{G}); \]
+equivalently, it is the element of \(L^{2}(\mathcal{G})\) nearest to
+\(X\). It is linear in \(X\) and satisfies
+\(\E[\E[X\mid\mathcal{G}]] = \E[X]\).
+#+end_theorem
+
+#+begin_proof
+\(L^{2}(\mathcal{F})\) is a Hilbert space and \(L^{2}(\mathcal{G})\) a
+closed subspace, so the projection theorem gives a unique nearest point
+\(P X\), characterised by \(X - PX \perp L^{2}(\mathcal{G})\) -- which
+is the displayed identity, the inner product being
+\(\inner{U}{V} = \E[UV]\). The projection is linear. Taking
+\(Y = 1\), which lies in \(L^{2}(\mathcal{G})\) because the space has
+finite measure, gives \(\E[X - PX] = 0\).
+#+end_proof
+
+#+DEPENDS: thm-conditional-expectation-exists
+#+NAME: prop-tower-property
+#+begin_proposition
+Let \(\mathcal{H}\subseteq\mathcal{G}\subseteq\mathcal{F}\). Then
+\(\E[\E[X\mid\mathcal{G}]\mid\mathcal{H}] = \E[X\mid\mathcal{H}]\)
+almost surely. If \(X\) is itself \(\mathcal{G}\)-measurable then
+\(\E[X\mid\mathcal{G}] = X\); and if \(X\) is independent of
+\(\mathcal{G}\), in the sense that \(\E[XY] = \E[X]\E[Y]\) for every
+\(Y \in L^{2}(\mathcal{G})\), then \(\E[X\mid\mathcal{G}] = \E[X]\).
+#+end_proposition
+
+#+begin_proof
+For \(Y \in L^{2}(\mathcal{H})\subseteq L^{2}(\mathcal{G})\), the
+defining identity for \(\mathcal{G}\) gives
+\(\E[(X-\E[X\mid\mathcal{G}])Y] = 0\), so \(\E[XY] = \E[\E[X\mid\mathcal{G}]Y]\).
+Hence \(X\) and \(\E[X\mid\mathcal{G}]\) have the same inner products
+against \(L^{2}(\mathcal{H})\) and therefore the same projection onto
+it, which is the tower property.
+
+If \(X \in L^{2}(\mathcal{G})\) it is its own nearest point. If \(X\) is
+independent of \(\mathcal{G}\), then for every
+\(Y \in L^{2}(\mathcal{G})\),
+\(\E[(X-\E[X])Y] = \E[X]\E[Y]-\E[X]\E[Y] = 0\), and the constant
+\(\E[X]\) lies in \(L^{2}(\mathcal{G})\); uniqueness identifies it as
+the projection.
+#+end_proof
+
+#+DEPENDS: thm-conditional-expectation-exists, prop-pythagoras, def-variance-and-covariance
+#+NAME: thm-variance-decomposition
+#+begin_theorem
+For \(X \in L^{2}\) and a sub-\(\sigma\)-algebra \(\mathcal{G}\),
+\[ \Var(X) = \Var\bigl(\E[X\mid\mathcal{G}]\bigr) + \E\bigl[(X - \E[X\mid\mathcal{G}])^{2}\bigr], \]
+so \(\Var(\E[X\mid\mathcal{G}]) \le \Var(X)\): conditioning cannot
+increase the variance.
+#+end_theorem
+
+#+begin_proof
+Assume \(\E[X] = 0\), which changes neither side. Write
+\(X = \E[X\mid\mathcal{G}] + (X - \E[X\mid\mathcal{G}])\), an orthogonal
+decomposition in \(L^{2}\) by the defining identity. Pythagoras gives
+\(\E[X^{2}] = \E[\E[X\mid\mathcal{G}]^{2}] + \E[(X-\E[X\mid\mathcal{G}])^{2}]\),
+and both squared terms are variances because
+\(\E[\E[X\mid\mathcal{G}]] = \E[X] = 0\). The inequality follows since
+the second summand is non-negative.
+#+end_proof
+
+#+begin_remark
+Restricting to square-integrable \(X\) is what allows the geometric
+construction, and it is a genuine restriction: the general definition,
+for integrable \(X\), is the Radon-Nikodym derivative of
+\(A \mapsto \E[X\indicator_{A}]\) on \(\mathcal{G}\), and it agrees with
+this one where both apply. The variance decomposition above is the
+identity that makes the [[id:2cbd79ad-4938-4b5b-a6ca-85d300cc1f79][Rao-Blackwell theorem]] a one-line consequence.
+#+end_remark

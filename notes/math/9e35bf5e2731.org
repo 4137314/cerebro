@@ -1,0 +1,123 @@
+:PROPERTIES:
+:ID:       c49a94ad-eb5c-40fd-b01c-ac36d269087f
+:END:
+#+TITLE: Probability spaces, conditioning and independence
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:probability:probability_theory:
+#+MSC: 60A05
+#+HASH: 9e35bf5e2731
+
+A probability is a [[id:9910fd2f-5f5e-4be0-8785-c2b9904dc001][measure]] of total mass one, and everything formal
+about it -- monotonicity, continuity along increasing sequences,
+countable subadditivity -- is inherited from that and needs no separate
+proof. What is genuinely probabilistic begins with the two notions this
+note adds, conditioning and independence, neither of which is a
+measure-theoretic idea at all: they are hypotheses about how information
+is distributed.
+
+#+DEPENDS: def-measure, def-sigma-algebra, thm-basic-properties-of-a-measure
+#+NAME: def-probability-space
+#+begin_definition
+A /probability space/ is a measure space \((\Omega,\mathcal{F},\Prob)\)
+with \(\Prob(\Omega) = 1\). Elements of \(\Omega\) are /outcomes/,
+measurable sets are /events/, and \(\Prob(A)\) is the /probability/ of
+\(A\).
+#+end_definition
+
+#+DEPENDS: def-probability-space, thm-basic-properties-of-a-measure
+#+NAME: prop-elementary-rules
+#+begin_proposition
+For events \(A, B\): \(\Prob(A^{c}) = 1-\Prob(A)\);
+\(\Prob(A\cup B) = \Prob(A)+\Prob(B)-\Prob(A\cap B)\); and
+\(\Prob(\bigcup_{n}A_{n}) \le \sum_{n}\Prob(A_{n})\) for any sequence of
+events. If \(A_{n}\uparrow A\) or \(A_{n}\downarrow A\), then
+\(\Prob(A_{n})\to\Prob(A)\).
+#+end_proposition
+
+#+begin_proof
+Additivity on the disjoint pair \(A, A^{c}\) with total mass \(1\) gives
+the first. For the second, \(A \cup B\) is the disjoint union of
+\(A \setminus B\), \(A\cap B\) and \(B \setminus A\), and
+\(\Prob(A) = \Prob(A\setminus B)+\Prob(A\cap B)\); substituting gives
+the identity. Subadditivity and continuity from below are properties of
+any measure; continuity from above needs \(\Prob(A_{1})<\infty\), which
+here is automatic.
+#+end_proof
+
+#+DEPENDS: def-probability-space
+#+NAME: def-conditional-probability
+#+begin_definition
+For events \(A, B\) with \(\Prob(B)>0\), the /conditional probability/
+of \(A\) given \(B\) is
+\(\Prob(A \mid B) = \Prob(A\cap B)/\Prob(B)\).
+#+end_definition
+
+#+DEPENDS: def-conditional-probability, def-probability-space
+#+NAME: prop-conditioning-is-a-probability
+#+begin_proposition
+For fixed \(B\) with \(\Prob(B)>0\), the map
+\(A \mapsto \Prob(A\mid B)\) is a probability measure on
+\((\Omega,\mathcal{F})\), concentrated on \(B\).
+#+end_proposition
+
+#+begin_proof
+It is non-negative, assigns \(\Prob(B\cap\Omega)/\Prob(B) = 1\) to
+\(\Omega\), and is countably additive because
+\(A \mapsto \Prob(A \cap B)\) is, division by the constant
+\(\Prob(B)\) preserving the sums. It assigns \(0\) to any event disjoint
+from \(B\).
+#+end_proof
+
+#+DEPENDS: def-conditional-probability, def-set-partition, prop-elementary-rules
+#+NAME: thm-total-probability-and-bayes
+#+begin_theorem
+Let \((B_{n})\) be a countable partition of \(\Omega\) into events of
+positive probability, and \(A\) an event. Then
+\[ \Prob(A) = \sum_{n}\Prob(A\mid B_{n})\,\Prob(B_{n}), \]
+and if \(\Prob(A)>0\),
+\(\Prob(B_{k}\mid A) = \Prob(A\mid B_{k})\Prob(B_{k}) / \sum_{n}\Prob(A\mid B_{n})\Prob(B_{n})\).
+#+end_theorem
+
+#+begin_proof
+The events \(A \cap B_{n}\) are pairwise disjoint with union \(A\), so
+countable additivity gives
+\(\Prob(A) = \sum_{n}\Prob(A\cap B_{n})\), and each term is
+\(\Prob(A\mid B_{n})\Prob(B_{n})\) by the definition. For the second
+identity,
+\(\Prob(B_{k}\mid A) = \Prob(A\cap B_{k})/\Prob(A)\); rewrite the
+numerator as \(\Prob(A\mid B_{k})\Prob(B_{k})\) and the denominator by
+the first identity.
+#+end_proof
+
+#+DEPENDS: def-probability-space, def-conditional-probability
+#+NAME: def-independence-of-events
+#+begin_definition
+Events \(A\) and \(B\) are /independent/ if
+\(\Prob(A\cap B) = \Prob(A)\Prob(B)\). A family \((A_{i})_{i\in I}\) is
+/independent/ if
+\(\Prob(A_{i_{1}}\cap\cdots\cap A_{i_{k}}) = \Prob(A_{i_{1}})\cdots\Prob(A_{i_{k}})\)
+for every finite set of distinct indices.
+#+end_definition
+
+#+DEPENDS: def-independence-of-events, prop-elementary-rules
+#+NAME: prop-independence-and-complements
+#+begin_proposition
+If \(A\) and \(B\) are independent, so are \(A\) and \(B^{c}\); and if
+\(\Prob(B)>0\), independence is equivalent to
+\(\Prob(A\mid B) = \Prob(A)\).
+#+end_proposition
+
+#+begin_proof
+\(\Prob(A\cap B^{c}) = \Prob(A)-\Prob(A\cap B) = \Prob(A)(1-\Prob(B)) = \Prob(A)\Prob(B^{c})\).
+The second claim is the definition of conditional probability with the
+factorisation substituted, in either direction.
+#+end_proof
+
+#+begin_remark
+Independence of a family is /not/ pairwise independence: three events
+can be pairwise independent while the intersection of all three
+factorises wrongly, which is why the definition quantifies over every
+finite subfamily. The distinction is what makes the second
+Borel-Cantelli lemma and the strong law true statements rather than
+plausible ones.
+#+end_remark

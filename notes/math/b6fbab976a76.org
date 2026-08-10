@@ -1,0 +1,152 @@
+:PROPERTIES:
+:ID:       e8ee2fda-0c4d-43f2-9fe8-f18e423a8010
+:END:
+#+TITLE: Smooth manifolds, smooth maps and the tangent space
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:geometry:differential_topology:
+#+MSC: 58A05, 57R05
+#+HASH: b6fbab976a76
+
+Calculus needs coordinates and geometry must not depend on them. A
+manifold resolves that by carrying coordinates only locally, with the
+requirement that any two systems differ by a diffeomorphism -- so a
+notion defined in coordinates is legitimate exactly when it is invariant
+under those changes. The tangent space is the first such notion, and
+defining it without coordinates is what makes the definition honest.
+
+#+DEPENDS: def-topological-space, def-hausdorff, def-homeomorphism, def-differentiable-multivariable
+#+NAME: def-smooth-manifold
+#+begin_definition
+A /chart/ on a topological space \(M\) is a homeomorphism
+\(\varphi \colon U \to \varphi(U) \subseteq \R^{n}\) from an open
+\(U \subseteq M\) onto an open subset. Two charts are /compatible/ if
+the transition map \(\psi\circ\varphi^{-1}\), defined on
+\(\varphi(U\cap V)\), is smooth with smooth inverse. A /smooth
+\(n\)-manifold/ is a Hausdorff space with a countable basis, together
+with a family of pairwise compatible charts whose domains cover it and
+which is maximal with those properties.
+#+end_definition
+
+#+DEPENDS: def-smooth-manifold
+#+NAME: def-smooth-map
+#+begin_definition
+A map \(f \colon M \to N\) between smooth manifolds is /smooth/ if for
+every \(p \in M\) there are charts \(\varphi\) about \(p\) and \(\psi\)
+about \(f(p)\) with \(\psi\circ f\circ\varphi^{-1}\) smooth where
+defined. A /diffeomorphism/ is a smooth bijection with smooth inverse.
+The smooth functions \(M \to \R\) form a ring \(C^{\infty}(M)\) under
+pointwise operations.
+#+end_definition
+
+#+DEPENDS: def-smooth-map, def-smooth-manifold
+#+NAME: prop-smoothness-is-chart-independent
+#+begin_proposition
+If \(f\) is smooth in one pair of charts about \(p\) and \(f(p)\), it is
+smooth in every such pair; and a composition of smooth maps is smooth.
+#+end_proposition
+
+#+begin_proof
+Let \(\varphi',\psi'\) be other charts. Where all four are defined,
+\(\psi'\circ f\circ\varphi'^{-1} = (\psi'\circ\psi^{-1})\circ(\psi\circ f\circ\varphi^{-1})\circ(\varphi\circ\varphi'^{-1})\),
+a composition of smooth maps between open subsets of Euclidean spaces --
+the outer two being transition maps, smooth by compatibility. The chain
+rule in \(\R^{n}\) makes the composite smooth. The same computation
+proves the statement about compositions of maps of manifolds.
+#+end_proof
+
+#+DEPENDS: def-smooth-map, thm-ftc-first, thm-chain-rule
+#+NAME: lem-hadamard
+#+begin_lemma
+Let \(f\) be smooth on a convex open \(V \subseteq \R^{n}\) and
+\(a \in V\). Then there are smooth \(g_{1},\dots,g_{n}\) on \(V\) with
+\[ f(x) = f(a) + \sum_{i=1}^{n}(x_{i}-a_{i})\,g_{i}(x), \qquad g_{i}(a) = \frac{\partial f}{\partial x_{i}}(a). \]
+#+end_lemma
+
+#+begin_proof
+For \(x \in V\) the segment from \(a\) to \(x\) lies in \(V\), and
+\(t \mapsto f(a + t(x-a))\) is smooth on \([0,1]\) with derivative
+\(\sum_{i}(x_{i}-a_{i})\,\partial_{i}f(a+t(x-a))\) by the chain rule. By
+the fundamental theorem of calculus,
+\(f(x)-f(a) = \int_{0}^{1}\sum_{i}(x_{i}-a_{i})\partial_{i}f(a+t(x-a))\dd t\).
+Put \(g_{i}(x) = \int_{0}^{1}\partial_{i}f(a+t(x-a))\dd t\), smooth in
+\(x\) because the integrand is smooth in \((t,x)\), and evaluate at
+\(x = a\).
+#+end_proof
+
+#+DEPENDS: def-smooth-map, lem-hadamard, def-vector-space
+#+NAME: def-tangent-space
+#+begin_definition
+A /derivation at \(p \in M\)/ is a linear map
+\(X \colon C^{\infty}(M)\to\R\) with
+\(X(fg) = X(f)\,g(p) + f(p)\,X(g)\). The /tangent space/ \(T_{p}M\) is
+the vector space of derivations at \(p\), under pointwise operations.
+#+end_definition
+
+#+DEPENDS: def-tangent-space, lem-hadamard, thm-dimension-is-well-defined
+#+NAME: thm-tangent-space-dimension
+#+begin_theorem
+Let \(M\) be a smooth \(n\)-manifold and \(\varphi\) a chart about
+\(p\) with coordinates \(x_{1},\dots,x_{n}\). Then the derivations
+\(\partial/\partial x_{i}\vert_{p}\), sending \(f\) to
+\(\partial_{i}(f\circ\varphi^{-1})(\varphi(p))\), form a basis of
+\(T_{p}M\); in particular \(\dim T_{p}M = n\).
+#+end_theorem
+
+#+begin_proof
+First, a derivation kills constants: \(X(1) = X(1\cdot1) = 2X(1)\), so
+\(X(1) = 0\), and linearity extends this to all constants. Second, \(X\)
+is local: if \(f\) vanishes on a neighbourhood of \(p\), pick a smooth
+bump \(h\) that is \(1\) at \(p\) and supported where \(f = 0\); then
+\(hf = 0\), so \(0 = X(hf) = X(h)f(p) + h(p)X(f) = X(f)\). Hence \(X\)
+depends only on the germ of \(f\) at \(p\), and we may compute in a
+chart, taking \(V = \varphi(U)\) convex without loss of generality.
+
+Given \(X\), apply Hadamard's lemma to \(f\circ\varphi^{-1}\) at
+\(a = \varphi(p)\) and pull back: \(f = f(p) + \sum_{i}(x_{i}-a_{i})g_{i}\)
+near \(p\), where \(x_{i}\) denotes the \(i\)-th coordinate function.
+Applying \(X\) and using that the constants die and that
+\(x_{i}-a_{i}\) vanishes at \(p\),
+\(X(f) = \sum_{i}X(x_{i})\,g_{i}(p) = \sum_{i}X(x_{i})\,\partial_{i}(f\circ\varphi^{-1})(a)\).
+So the coordinate derivations span. They are independent: applying a
+combination \(\sum_{i}\alpha_{i}\partial/\partial x_{i}\vert_{p}\) to
+the coordinate function \(x_{j}\) gives \(\alpha_{j}\).
+#+end_proof
+
+#+DEPENDS: thm-tangent-space-dimension, def-linear-map, prop-smoothness-is-chart-independent
+#+NAME: def-differential-of-a-smooth-map
+#+begin_definition
+For \(f \colon M \to N\) smooth and \(p \in M\), the /differential/
+\(\dd f_{p}\colon T_{p}M \to T_{f(p)}N\) sends a derivation \(X\) to the
+derivation \(h \mapsto X(h \circ f)\).
+#+end_definition
+
+#+DEPENDS: def-differential-of-a-smooth-map, thm-tangent-space-dimension
+#+NAME: prop-chain-rule-on-manifolds
+#+begin_proposition
+\(\dd f_{p}\) is linear, \(\dd(\id_{M})_{p} = \id\), and
+\(\dd(g\circ f)_{p} = \dd g_{f(p)}\circ \dd f_{p}\). In charts, its
+matrix is the Jacobian of the coordinate representation of \(f\).
+Consequently the differential of a diffeomorphism is an isomorphism, and
+diffeomorphic manifolds have the same dimension.
+#+end_proposition
+
+#+begin_proof
+That \(X \mapsto X(\cdot\circ f)\) lands in derivations at \(f(p)\) is
+the Leibniz rule for \(X\) applied to \((hk)\circ f = (h\circ f)(k\circ f)\);
+linearity and the two functoriality identities are immediate from the
+definition. Applying \(\dd f_{p}(\partial/\partial x_{i})\) to a
+coordinate function \(y_{j}\) of \(N\) gives
+\(\partial_{i}(y_{j}\circ f\circ\varphi^{-1})\), the Jacobian entry.
+Applying functoriality to \(f^{-1}\circ f = \id\) shows
+\(\dd f_{p}\) is invertible, so the two tangent spaces have equal
+dimension.
+#+end_proof
+
+#+begin_remark
+The derivation definition buys coordinate-independence at the cost of
+needing Hadamard's lemma, which is where smoothness genuinely enters: for
+\(C^{k}\) functions with \(k\) finite the same space of derivations is
+infinite-dimensional, and the theorem above fails. That is a good
+illustration of a definition being correct only in the category it was
+written for.
+#+end_remark

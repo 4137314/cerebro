@@ -1,0 +1,138 @@
+:PROPERTIES:
+:ID:       ef0a7e9f-5957-4e21-8f97-59e80b04aa33
+:END:
+#+TITLE: Surface integrals, the divergence theorem and Stokes' theorem
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26B20, 58C35
+#+HASH: 72914fac5f68
+
+The two theorems of this note are what make the differential form of a
+physical law equivalent to its integral form: the flux of a field out of
+a region is the integral of its divergence, and the circulation around a
+loop is the flux of its curl. Every conservation law in [[id:b8b253f2-97fc-4461-8ee4-281c7a8202d2][mathematical
+physics]] is written twice for this reason, and the translation is these
+identities.
+
+#+DEPENDS: def-regular-surface, def-riemann-integral, def-differentiable-multivariable
+#+NAME: def-surface-integral
+#+begin_definition
+Let \(\sigma \colon K \to \R^{3}\) be a regular parametrised surface on
+a compact \(K \subseteq \R^{2}\) with piecewise smooth boundary. The
+/area element/ is \(\dd S = \norm{\sigma_{u}\times\sigma_{v}}\dd u\,\dd v\),
+and for a continuous \(f\) on the image,
+\(\iint_{S}f\dd S = \iint_{K}f(\sigma(u,v))\norm{\sigma_{u}\times\sigma_{v}}\dd u\,\dd v\).
+For a vector field \(F\), the /flux/ through \(S\) oriented by the unit
+normal \(N\) is \(\iint_{S}\inner{F}{N}\dd S = \iint_{K}\inner{F\circ\sigma}{\sigma_{u}\times\sigma_{v}}\dd u\,\dd v\).
+#+end_definition
+
+#+DEPENDS: def-surface-integral, def-differentiable-multivariable
+#+NAME: def-divergence-and-curl
+#+begin_definition
+For a \(C^{1}\) field \(F = (F_{1},F_{2},F_{3})\) on an open subset of
+\(\R^{3}\),
+\(\Div F = \partial_{1}F_{1}+\partial_{2}F_{2}+\partial_{3}F_{3}\) and
+\(\curl F = (\partial_{2}F_{3}-\partial_{3}F_{2},\, \partial_{3}F_{1}-\partial_{1}F_{3},\, \partial_{1}F_{2}-\partial_{2}F_{1})\).
+#+end_definition
+
+#+DEPENDS: def-divergence-and-curl, thm-continuous-partials-implies-differentiable
+#+NAME: prop-div-curl-identities
+#+begin_proposition
+For \(C^{2}\) fields and functions, \(\Div(\curl F) = 0\) and
+\(\curl(\nabla f) = 0\).
+#+end_proposition
+
+#+begin_proof
+Both are the equality of mixed second partial derivatives, which holds
+for a \(C^{2}\) function. In the first, each term of the divergence
+contributes a pair of mixed derivatives with opposite signs, and the six
+terms cancel in pairs; in the second, each component of the curl is a
+difference of two equal mixed derivatives.
+#+end_proof
+
+#+DEPENDS: thm-fubini, thm-ftc-second, def-surface-integral, def-divergence-and-curl
+#+NAME: thm-divergence
+#+begin_theorem
+Let \(V \subseteq \R^{3}\) be a normal domain with respect to each
+coordinate direction -- for the third, \(V = \setst{(x,y,z)}{(x,y)\in D,\ \alpha(x,y)\le z\le\beta(x,y)}\)
+with \(\alpha\le\beta\) of class \(C^{1}\) on a normal domain
+\(D \subseteq \R^{2}\) -- and let \(F\) be \(C^{1}\) on a neighbourhood
+of \(V\). Then, with \(N\) the outward unit normal on
+\(\partial V\),
+\[ \iiint_{V}\Div F \dd x\,\dd y\,\dd z = \iint_{\partial V}\inner{F}{N}\dd S. \]
+#+end_theorem
+
+#+begin_proof
+By linearity it suffices to treat \(F = (0,0,F_{3})\), the other two
+components being the same argument in the corresponding description of
+\(V\).
+
+By Fubini and the fundamental theorem of calculus,
+\[ \iiint_{V}\partial_{3}F_{3} = \iint_{D}\bigl(F_{3}(x,y,\beta(x,y)) - F_{3}(x,y,\alpha(x,y))\bigr)\dd x\,\dd y. \]
+The boundary consists of the upper graph, the lower graph and a lateral
+part on which the normal is horizontal, so
+\(\inner{F}{N} = 0\) there. Parametrising the upper graph by
+\((x,y)\mapsto(x,y,\beta(x,y))\), the cross product of the partial
+derivatives is \((-\beta_{x},-\beta_{y},1)\), which is the upward
+normal times the area element; hence its flux contribution is
+\(\iint_{D}F_{3}(x,y,\beta(x,y))\dd x\,\dd y\). The lower graph carries
+the downward normal and contributes the same integral with
+\(\alpha\) and a minus sign. Adding gives the displayed identity.
+#+end_proof
+
+#+DEPENDS: thm-green, def-surface-integral, def-divergence-and-curl, thm-chain-rule
+#+NAME: thm-stokes
+#+begin_theorem
+Let \(\sigma \colon K \to \R^{3}\) be a \(C^{2}\) regular surface over a
+normal domain \(K \subseteq \R^{2}\), oriented by
+\(\sigma_{u}\times\sigma_{v}\), and let \(\partial S\) be the image of
+\(\partial K\) with the induced orientation. Then for \(F\) of class
+\(C^{1}\) near the image,
+\[ \iint_{S}\inner{\curl F}{N}\dd S = \oint_{\partial S}F\cdot\dd s. \]
+#+end_theorem
+
+#+begin_proof
+Pull the line integral back to \(K\): with \(\gamma\) parametrising
+\(\partial K\) and \(\Gamma = \sigma\circ\gamma\), the chain rule gives
+\(\Gamma' = \sigma_{u}u' + \sigma_{v}v'\), so
+\[ \oint_{\partial S}F\cdot\dd s = \oint_{\partial K}\bigl(\tilde{P}\dd u + \tilde{Q}\dd v\bigr), \qquad \tilde{P} = \inner{F\circ\sigma}{\sigma_{u}}, \quad \tilde{Q} = \inner{F\circ\sigma}{\sigma_{v}}. \]
+Green's theorem on \(K\) turns this into
+\(\iint_{K}(\partial_{u}\tilde{Q}-\partial_{v}\tilde{P})\dd u\,\dd v\).
+
+Differentiating and using the chain rule,
+\(\partial_{u}\tilde{Q} = \inner{DF\,\sigma_{u}}{\sigma_{v}} + \inner{F}{\sigma_{vu}}\)
+and symmetrically for \(\partial_{v}\tilde{P}\); the second-derivative
+terms cancel because \(\sigma\) is \(C^{2}\). What remains,
+\(\inner{DF\,\sigma_{u}}{\sigma_{v}} - \inner{DF\,\sigma_{v}}{\sigma_{u}}\),
+is the antisymmetric part of \(DF\) evaluated on the pair, and a direct
+computation identifies it with
+\(\inner{\curl F}{\sigma_{u}\times\sigma_{v}}\). Integrating over \(K\)
+gives the flux of the curl.
+#+end_proof
+
+#+DEPENDS: thm-divergence, thm-stokes, prop-div-curl-identities, cor-closed-implies-exact-on-a-convex-set
+#+NAME: cor-consistency-of-the-two-theorems
+#+begin_corollary
+For a \(C^{2}\) field \(F\) and a closed surface bounding a normal
+domain, the flux of \(\curl F\) vanishes; and on a convex open set a
+field with vanishing curl is a gradient.
+#+end_corollary
+
+#+begin_proof
+The first is the divergence theorem applied to \(\curl F\), whose
+divergence vanishes identically. The second is the two-dimensional
+statement applied componentwise: vanishing curl is exactly the equality
+of the mixed partials of the components, which is the hypothesis of the
+Poincare construction of a potential on a convex set.
+#+end_proof
+
+#+begin_remark
+Both theorems are stated for domains one can describe by graphs, which
+is what makes the proofs Fubini plus the fundamental theorem of
+calculus. That restriction is not the natural generality: the honest
+setting is a manifold with boundary and a differential form, where both
+statements and Green's theorem are one identity,
+\(\int_{M}\dd\omega = \int_{\partial M}\omega\). This archive has
+[[id:e8ee2fda-0c4d-43f2-9fe8-f18e423a8010][manifolds]] and no differential forms, so the special cases are what can
+be proved here.
+#+end_remark

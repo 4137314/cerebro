@@ -1,0 +1,102 @@
+:PROPERTIES:
+:ID:       74f4a968-e34c-46de-a7f6-77c26d988326
+:END:
+#+TITLE: First-order equations and the method of characteristics
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:analysis:partial_differential_equations:
+#+MSC: 35F05, 35A30
+#+HASH: d951b1e145c8
+
+A first-order partial differential equation constrains the derivative of
+the unknown along one direction at each point. Following that direction
+turns the equation into an ordinary one, so the whole theory is the
+[[id:8cd15fbc-3e1f-41a6-8fde-31963a195e78][existence theorem for ordinary equations]] transported along a family of
+curves -- and the failures of the method, where characteristics cross or
+run along the data, are the failures of the problem itself.
+
+#+DEPENDS: def-differentiable-multivariable, thm-picard-lindelof, def-regular-curve
+#+NAME: def-linear-first-order-equation
+#+begin_definition
+A /linear first-order equation/ on an open \(U\subseteq\R^{n}\) is
+\[ \sum_{i=1}^{n} a_{i}(x)\,\partial_{i}u(x) = c(x)\,u(x) + d(x), \]
+with \(a = (a_{i})\), \(c\), \(d\) of class \(C^{1}\). The
+/characteristic curves/ are the solutions of the ordinary system
+\(\dot{x}(s) = a(x(s))\).
+#+end_definition
+
+#+DEPENDS: def-linear-first-order-equation, thm-chain-rule, thm-picard-lindelof
+#+NAME: prop-the-equation-along-a-characteristic
+#+begin_proposition
+Let \(u\) be a \(C^{1}\) solution and \(x(s)\) a characteristic. Then
+\(z(s) = u(x(s))\) satisfies the ordinary differential equation
+\(\dot{z} = c(x(s))z + d(x(s))\); conversely, if \(u\) is \(C^{1}\) and
+this holds along every characteristic, \(u\) solves the equation.
+#+end_proposition
+
+#+begin_proof
+By the chain rule
+\(\dot{z}(s) = \inner{\nabla u(x(s))}{\dot{x}(s)} = \sum_{i}a_{i}(x(s))\partial_{i}u(x(s))\),
+which the equation identifies with \(c u + d\) at that point. Since
+through every point there passes a characteristic -- the ordinary system
+has a solution with that initial condition, its right-hand side being
+\(C^{1}\) hence locally Lipschitz -- the converse holds pointwise.
+#+end_proof
+
+#+DEPENDS: prop-the-equation-along-a-characteristic, thm-picard-lindelof, thm-implicit-function
+#+NAME: thm-cauchy-problem-for-a-first-order-equation
+#+begin_theorem
+Let \(S \subseteq U\) be a \(C^{1}\) hypersurface and \(u_{0}\) a
+\(C^{1}\) function on \(S\). If \(a\) is nowhere tangent to \(S\) --
+\(\inner{a(x)}{\nu(x)}\ne0\) for the normal \(\nu\) at each \(x \in S\)
+-- then the Cauchy problem "\(u\) solves the equation and \(u = u_{0}\)
+on \(S\)" has exactly one \(C^{1}\) solution on a neighbourhood of
+\(S\).
+#+end_theorem
+
+#+begin_proof
+Parametrise \(S\) locally by \(y \mapsto \gamma(y)\), \(y\) in an open
+subset of \(\R^{n-1}\). Solve the characteristic system with initial
+value \(\gamma(y)\), obtaining \(X(s,y)\), and solve the ordinary
+equation of the previous proposition with initial value \(u_{0}(\gamma(y))\),
+obtaining \(Z(s,y)\); both depend smoothly on the data by the existence
+and uniqueness theorem.
+
+The map \((s,y)\mapsto X(s,y)\) has differential at \(s = 0\) with
+columns \(a(\gamma(y))\) and the tangent vectors to \(S\); by the
+transversality hypothesis these are independent, so the map is a local
+diffeomorphism by the inverse function theorem. Define
+\(u(X(s,y)) = Z(s,y)\), which is therefore a well-defined \(C^{1}\)
+function near \(S\); by the proposition it solves the equation and it
+restricts to \(u_{0}\) at \(s = 0\).
+
+Uniqueness: any solution must satisfy the ordinary equation along each
+characteristic with the prescribed initial value, and the solution of
+that ordinary problem is unique.
+#+end_proof
+
+#+DEPENDS: thm-cauchy-problem-for-a-first-order-equation, def-linear-first-order-equation
+#+NAME: cor-transport-equation
+#+begin_corollary
+The equation \(\partial_{t}u + b\cdot\nabla_{x}u = 0\) with constant
+\(b \in \R^{n}\) and data \(u(0,x) = u_{0}(x)\) has the unique solution
+\(u(t,x) = u_{0}(x-tb)\): the data are transported at velocity \(b\)
+without change of shape.
+#+end_corollary
+
+#+begin_proof
+The coefficient vector is \((1,b)\) in the variables \((t,x)\), nowhere
+tangent to the hypersurface \(\set{t=0}\), whose normal is
+\((1,0)\). The characteristics are \((t, x_{0}+tb)\), along which the
+equation reads \(\dot{z} = 0\), so \(u\) is constant along them; its
+value is \(u_{0}(x_{0})\) with \(x_{0} = x - tb\).
+#+end_proof
+
+#+begin_remark
+Transversality is not a technical convenience: where the data surface is
+characteristic, the equation prescribes the derivative of \(u\) /along/
+\(S\), so the problem is either overdetermined or has infinitely many
+solutions. That is the first instance of the theme running through the
+next three notes -- a partial differential equation is not solvable in
+the abstract, only relative to data placed where the equation lets
+information flow.
+#+end_remark

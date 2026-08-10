@@ -1,0 +1,102 @@
+:PROPERTIES:
+:ID:       e0a22a46-03da-4e30-a730-64bf076da027
+:END:
+#+TITLE: Equicontinuity and the Arzela-Ascoli theorem
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:analysis:functional_analysis:
+#+MSC: 46E15, 54C35
+#+HASH: 193d63a5e767
+
+In a space of functions, closed and bounded is not enough for
+compactness: the unit ball of a space of functions is never compact in
+infinite dimension. Arzela-Ascoli identifies what has to be added --
+uniform control of the modulus of continuity across the whole family --
+and it is the compactness criterion that every existence proof by
+approximation ultimately uses.
+
+#+DEPENDS: def-uniform-continuity-in-metric-spaces, def-metric-space, def-uniform-convergence
+#+NAME: def-equicontinuous
+#+begin_definition
+Let \(X\) be a metric space and \(\mathcal{F}\) a family of functions
+\(X \to \R\). It is /equicontinuous at \(x\)/ if for every \(\eps>0\)
+there is \(\delta>0\) with \(\abs{f(y)-f(x)}<\eps\) for all
+\(f\in\mathcal{F}\) and all \(y\) with \(d(y,x)<\delta\), and
+/uniformly equicontinuous/ if \(\delta\) may be chosen independently of
+\(x\). It is /pointwise bounded/ if
+\(\setst{f(x)}{f\in\mathcal{F}}\) is bounded for each \(x\), and
+/uniformly bounded/ if bounded by one constant.
+#+end_definition
+
+#+DEPENDS: def-equicontinuous, def-totally-bounded, def-metric-convergence
+#+NAME: lem-a-compact-metric-space-is-separable
+#+begin_lemma
+A compact metric space has a countable dense subset.
+#+end_lemma
+
+#+begin_proof
+For each \(n\), compactness gives a finite set \(D_{n}\) whose
+\(1/n\)-balls cover \(X\). The union \(D = \bigcup_{n}D_{n}\) is
+countable, and every ball \(B(x,\eps)\) contains a point of
+\(D_{n}\) for \(1/n<\eps\), so \(D\) is dense.
+#+end_proof
+
+#+DEPENDS: lem-a-compact-metric-space-is-separable, def-equicontinuous, thm-uniform-cauchy-criterion, thm-compactness-in-metric-spaces
+#+NAME: thm-arzela-ascoli
+#+begin_theorem
+Let \(K\) be a compact metric space and \((f_{n})\) a sequence of
+functions \(K \to \R\) that is pointwise bounded and equicontinuous at
+every point. Then some subsequence converges uniformly on \(K\).
+#+end_theorem
+
+#+begin_proof
+Let \(D = \set{x_{1},x_{2},\dots}\) be countable and dense in \(K\). The
+sequence \((f_{n}(x_{1}))\) is bounded, so it has a convergent
+subsequence; from that subsequence extract another along which
+\((f_{n}(x_{2}))\) converges, and so on. The diagonal sequence
+\(g_{n} = f_{n_{n}}\) converges at every point of \(D\), being
+eventually a subsequence of each extracted sequence.
+
+Now \((g_{n})\) is uniformly Cauchy. Given \(\eps>0\), equicontinuity
+gives for each \(x\) a \(\delta_{x}>0\) with
+\(\abs{f(y)-f(x)}<\eps/4\) for all \(f\) in the family and
+\(d(y,x)<\delta_{x}\). The balls \(B(x,\delta_{x}/2)\) cover \(K\); take
+a finite subcover with centres \(y_{1},\dots,y_{m}\), and pick
+\(z_{k}\in D\cap B(y_{k},\delta_{y_{k}}/2)\), possible by density.
+Choose \(N\) with \(\abs{g_{n}(z_{k})-g_{p}(z_{k})}<\eps/4\) for all
+\(k\le m\) and \(n,p\ge N\).
+
+For any \(x\in K\), pick \(k\) with \(x \in B(y_{k},\delta_{y_{k}}/2)\);
+then \(d(x,z_{k})<\delta_{y_{k}}\) as both are within
+\(\delta_{y_{k}}/2\) of \(y_{k}\), so for \(n,p\ge N\),
+\(\abs{g_{n}(x)-g_{p}(x)} \le \abs{g_{n}(x)-g_{n}(z_{k})} + \abs{g_{n}(z_{k})-g_{p}(z_{k})} + \abs{g_{p}(z_{k})-g_{p}(x)} < \eps\),
+using equicontinuity at \(y_{k}\) twice, with \(x\) and \(z_{k}\) both
+in \(B(y_{k},\delta_{y_{k}})\). By the uniform Cauchy criterion
+\((g_{n})\) converges uniformly.
+#+end_proof
+
+#+DEPENDS: thm-arzela-ascoli, thm-heine-cantor, cor-heine-borel-in-euclidean-space
+#+NAME: cor-bounded-derivatives-give-a-convergent-subsequence
+#+begin_corollary
+Let \((f_{n})\) be differentiable on \([a,b]\) with
+\(\abs{f_{n}} \le M\) and \(\abs{f_{n}'}\le L\) for all \(n\). Then some
+subsequence converges uniformly.
+#+end_corollary
+
+#+begin_proof
+The bound on the derivatives gives
+\(\abs{f_{n}(y)-f_{n}(x)}\le L\abs{y-x}\) by the mean value theorem, so
+the family is uniformly equicontinuous, with \(\delta = \eps/L\); it is
+uniformly bounded by \(M\). Arzela-Ascoli applies, \([a,b]\) being
+compact.
+#+end_proof
+
+#+begin_remark
+Equicontinuity is exactly what fails for the sequence
+\(f_{n}(x) = \sin(nx)\), which is uniformly bounded with no uniformly
+convergent subsequence. Read in reverse, the theorem says that the
+compact subsets of the space of continuous functions on a compact space
+are the closed, bounded, equicontinuous ones -- the correct
+Heine-Borel statement in that setting, and the reason Peano's existence
+theorem for differential equations works without any Lipschitz
+hypothesis.
+#+end_remark

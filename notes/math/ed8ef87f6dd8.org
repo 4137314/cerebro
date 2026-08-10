@@ -1,0 +1,120 @@
+:PROPERTIES:
+:ID:       642c93ab-d004-4829-b5fa-899759923d63
+:END:
+#+TITLE: Hilbert spaces: projection, Riesz representation and orthonormal bases
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:analysis:functional_analysis:
+#+MSC: 46C05
+#+HASH: ed8ef87f6dd8
+
+A Banach space has a norm; a Hilbert space has an [[id:c35a8f01-cbd2-433b-b9b5-a037bae4e91d][inner product]], and
+with it the whole geometry of orthogonality survives into infinite
+dimension. Two theorems carry that geometry across: the nearest point in
+a closed convex set exists, and every continuous functional is an inner
+product. After them, a separable Hilbert space is coordinates again.
+
+#+DEPENDS: def-inner-product-space, def-norm, def-metric-space, def-cauchy-sequence
+#+NAME: def-hilbert-space
+#+begin_definition
+A /Hilbert space/ is a real or complex inner product space that is
+complete for the metric \(d(u,v) = \norm{u-v}\) induced by
+\(\norm{v} = \sqrt{\inner{v}{v}}\).
+#+end_definition
+
+#+DEPENDS: def-hilbert-space, thm-nearest-point-in-a-closed-convex-set, prop-parallelogram-identity, def-convex-set
+#+NAME: thm-nearest-point-in-a-hilbert-space
+#+begin_theorem
+Let \(C\) be a non-empty closed convex subset of a Hilbert space \(H\)
+and \(x \in H\). Then there is exactly one \(p \in C\) with
+\(\norm{x-p} = \inf_{c\in C}\norm{x-c}\), and it is characterised by
+\(\inner{x-p}{c-p}\le0\) for all \(c \in C\).
+#+end_theorem
+
+#+begin_proof
+Let \(d\) be the infimum and \(c_{k}\in C\) with
+\(\norm{x-c_{k}}\to d\). The parallelogram identity gives
+\(\norm{c_{k}-c_{l}}^{2} = 2\norm{x-c_{k}}^{2}+2\norm{x-c_{l}}^{2}-4\norm{x-\tfrac{c_{k}+c_{l}}{2}}^{2}\),
+and the midpoint lies in \(C\) by convexity, so the last term is at
+least \(4d^{2}\) and the right side tends to \(0\). Hence \((c_{k})\) is
+Cauchy and converges, by completeness, to some \(p\), which lies in the
+closed set \(C\) and attains \(d\). Uniqueness and the variational
+characterisation are the same computations as in \(\R^{n}\), using only
+the inner product and convexity.
+#+end_proof
+
+#+DEPENDS: thm-nearest-point-in-a-hilbert-space, def-orthogonal-family, thm-orthogonal-decomposition
+#+NAME: thm-orthogonal-projection-in-a-hilbert-space
+#+begin_theorem
+Let \(M\) be a closed subspace of a Hilbert space \(H\). Then
+\(H = M \oplus M^{\perp}\), and the map sending \(x\) to its nearest
+point in \(M\) is the linear /orthogonal projection/ onto \(M\), of norm
+at most \(1\).
+#+end_theorem
+
+#+begin_proof
+Let \(P x\) be the nearest point of \(M\) to \(x\), which exists since
+\(M\) is closed and convex. For \(m \in M\) and \(t \in \R\), the
+characterisation applied to \(c = Px \pm t m\) gives
+\(\mp t\inner{x-Px}{m}\le0\) for all \(t>0\), so
+\(\inner{x-Px}{m} = 0\): thus \(x - Px \in M^{\perp}\) and
+\(x = Px + (x - Px)\). The sum is direct, since a vector in
+\(M\cap M^{\perp}\) is orthogonal to itself. Linearity of \(P\) follows
+from uniqueness of the decomposition, and
+\(\norm{x}^{2} = \norm{Px}^{2}+\norm{x-Px}^{2}\) gives
+\(\norm{Px}\le\norm{x}\).
+#+end_proof
+
+#+DEPENDS: thm-orthogonal-projection-in-a-hilbert-space, def-dual-space, def-bounded-operator
+#+NAME: thm-riesz-representation
+#+begin_theorem
+Let \(\varphi\) be a bounded linear functional on a real Hilbert space
+\(H\). Then there is exactly one \(y \in H\) with
+\(\varphi(x) = \inner{x}{y}\) for all \(x\), and \(\norm{\varphi} = \norm{y}\).
+#+end_theorem
+
+#+begin_proof
+If \(\varphi = 0\) take \(y = 0\). Otherwise \(M = \ker\varphi\) is a
+closed proper subspace, so \(M^{\perp}\ne\set{0}\); pick a unit
+\(z \in M^{\perp}\). For any \(x\), the vector
+\(\varphi(x)z - \varphi(z)x\) lies in \(M\), hence is orthogonal to
+\(z\), which gives \(\varphi(x) = \varphi(z)\inner{x}{z}\). So
+\(y = \varphi(z)z\) works.
+
+Uniqueness: if \(\inner{x}{y} = \inner{x}{y'}\) for all \(x\), take
+\(x = y - y'\). For the norms,
+\(\abs{\varphi(x)} \le \norm{x}\norm{y}\) by Cauchy-Schwarz, with
+equality at \(x = y\).
+#+end_proof
+
+#+DEPENDS: def-hilbert-space, thm-gram-schmidt, prop-pythagoras, thm-uniform-cauchy-criterion
+#+NAME: thm-orthonormal-basis-and-parseval
+#+begin_theorem
+Let \((e_{n})_{n\in\N}\) be an orthonormal sequence in a Hilbert space
+\(H\) whose span is dense. Then every \(x \in H\) satisfies
+\(x = \sum_{n}\inner{x}{e_{n}}e_{n}\), with convergence in norm, and
+\(\norm{x}^{2} = \sum_{n}\abs{\inner{x}{e_{n}}}^{2}\).
+#+end_theorem
+
+#+begin_proof
+Let \(c_{n} = \inner{x}{e_{n}}\) and \(s_{N} = \sum_{n\le N}c_{n}e_{n}\).
+Then \(x - s_{N}\) is orthogonal to each \(e_{n}\), \(n \le N\), so by
+Pythagoras \(\norm{x}^{2} = \norm{s_{N}}^{2} + \norm{x-s_{N}}^{2}\) and
+\(\sum_{n\le N}\abs{c_{n}}^{2} = \norm{s_{N}}^{2} \le \norm{x}^{2}\):
+Bessel's inequality. Hence the series of squares converges, so
+\(\norm{s_{M}-s_{N}}^{2} = \sum_{N<n\le M}\abs{c_{n}}^{2}\to0\) and
+\((s_{N})\) is Cauchy, converging to some \(s \in H\).
+
+The difference \(x - s\) is orthogonal to every \(e_{n}\), hence to
+their span and, by continuity of the inner product, to its closure,
+which is \(H\); so \(x = s\). Then
+\(\norm{x}^{2} = \lim\norm{s_{N}}^{2} = \sum_{n}\abs{c_{n}}^{2}\).
+#+end_proof
+
+#+begin_remark
+Density of the span is the hypothesis that turns Bessel's inequality
+into Parseval's identity, and it is what "basis" means here: not a
+Hamel basis, which for an infinite-dimensional Banach space is
+uncountable and useless, but a set whose /closed/ span is everything.
+The theorem says every separable Hilbert space is the sequence space
+\(\ell^{2}\), which is why there is essentially one of them.
+#+end_remark

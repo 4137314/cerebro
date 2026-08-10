@@ -1,0 +1,125 @@
+:PROPERTIES:
+:ID:       644e9cbe-c9b1-4e89-ad6d-4dfcdba05ec4
+:END:
+#+TITLE: Expectation, the transfer theorem and Jensen's inequality
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:probability:probability_theory:
+#+MSC: 60A10, 60E15
+#+HASH: b85ee8ddbc69
+
+The expectation of a random variable is its integral, so linearity and
+the convergence theorems come for nothing. Two statements do not: that
+the expectation of \(g(X)\) can be computed on the line, knowing only
+the law of \(X\), and that expectation commutes with a product when the
+factors are independent. Both are proved by the same device -- check it
+for indicators, extend by linearity and monotone limits -- which is the
+standard machine of the subject.
+
+#+DEPENDS: def-simple-function, def-random-variable, def-probability-space
+#+NAME: def-expectation
+#+begin_definition
+The /expectation/ of a random variable \(X\) with
+\(\E\abs{X}<\infty\) is \(\E[X] = \int_{\Omega}X \dd\Prob\); such an
+\(X\) is /integrable/. For \(X \ge 0\) the expectation is defined in
+\([0,\infty]\) with no integrability assumed.
+#+end_definition
+
+#+DEPENDS: def-expectation, thm-the-law-of-a-random-variable, thm-monotone-convergence-of-integrals, thm-approximation-by-simple-functions
+#+NAME: thm-transfer
+#+begin_theorem
+Let \(X\) be a random variable with law \(\Prob_{X}\) and
+\(g \colon \R\to\R\) Borel measurable with \(g \ge 0\), or with
+\(g(X)\) integrable. Then
+\[ \E[g(X)] = \int_{\R} g \dd\Prob_{X}. \]
+#+end_theorem
+
+#+begin_proof
+For \(g = \indicator_{B}\) with \(B\) Borel, the left side is
+\(\Prob(X\in B)\) and the right side is \(\Prob_{X}(B)\), equal by
+definition of the law. By linearity of both integrals the identity holds
+for every non-negative simple \(g\). For general \(g \ge 0\), take
+simple \(s_{n}\uparrow g\); then \(s_{n}(X)\uparrow g(X)\), and monotone
+convergence applied on each side gives the identity in the limit.
+
+For integrable \(g(X)\), apply the non-negative case to
+\(g^{+} = \max(g,0)\) and \(g^{-} = \max(-g,0)\), both finite, and
+subtract.
+#+end_proof
+
+#+DEPENDS: def-expectation, cor-additivity-of-the-integral, thm-dominated-convergence
+#+NAME: prop-properties-of-expectation
+#+begin_proposition
+Expectation is linear and monotone on integrable random variables,
+\(\abs{\E[X]}\le\E\abs{X}\), and a constant has itself as expectation.
+If \(X_{n}\to X\) almost surely with \(\abs{X_{n}}\le Y\) integrable,
+then \(\E[X_{n}]\to\E[X]\).
+#+end_proposition
+
+#+begin_proof
+Each statement is the corresponding property of the integral, applied on
+the measure space \((\Omega,\mathcal{F},\Prob)\); the last is dominated
+convergence, and \(\abs{\E[X]}\le\E\abs{X}\) follows from monotonicity
+applied to \(\pm X \le \abs{X}\). A constant \(c\) has
+\(\int c \dd\Prob = c\,\Prob(\Omega) = c\).
+#+end_proof
+
+#+DEPENDS: def-independence-of-random-variables, thm-transfer, thm-monotone-convergence-of-integrals, def-simple-function
+#+NAME: thm-expectation-of-a-product
+#+begin_theorem
+If \(X\) and \(Y\) are independent and both integrable, then \(XY\) is
+integrable and \(\E[XY] = \E[X]\,\E[Y]\).
+#+end_theorem
+
+#+begin_proof
+Assume first \(X, Y\ge0\). For the pair
+\(\indicator_{\set{X\in B_{1}}}\) and \(\indicator_{\set{Y\in B_{2}}}\)
+with \(B_{1},B_{2}\) Borel, the claim is
+\(\Prob(X\in B_{1}, Y\in B_{2}) = \Prob(X\in B_{1})\Prob(Y\in B_{2})\),
+which is the definition of independence. By bilinearity it holds for
+any pair of non-negative simple functions of \(X\) and of \(Y\), each
+being a finite combination of such indicators. Take simple \(s_{n}\uparrow X\) and
+\(t_{n}\uparrow Y\) of the form \(s_{n} = \varphi_{n}(X)\),
+\(t_{n} = \psi_{n}(Y)\) -- the approximation theorem produces exactly
+such functions, being built from the level sets of \(X\) and \(Y\). Then
+\(s_{n}t_{n}\uparrow XY\), and monotone convergence on both sides gives
+\(\E[XY] = \E[X]\E[Y]\) in \([0,\infty]\).
+
+In general apply this to \(\abs{X}\) and \(\abs{Y}\), which are
+independent by the proposition on functions of independent variables;
+the product of their finite expectations bounds \(\E\abs{XY}\), so
+\(XY\) is integrable. Splitting \(X = X^{+}-X^{-}\) and
+\(Y = Y^{+}-Y^{-}\) into four independent non-negative pairs and
+expanding by linearity gives the identity.
+#+end_proof
+
+#+DEPENDS: def-expectation, def-convex-function, prop-properties-of-expectation
+#+NAME: thm-jensen-inequality
+#+begin_theorem
+Let \(\varphi \colon \R\to\R\) be convex and \(X\) integrable with
+\(\varphi(X)\) integrable. Then \(\varphi(\E[X]) \le \E[\varphi(X)]\).
+#+end_theorem
+
+#+begin_proof
+Put \(m = \E[X]\). Convexity makes the difference quotient
+\(t \mapsto (\varphi(t)-\varphi(m))/(t-m)\) non-decreasing on each side
+of \(m\), so
+\(a = \sup_{t<m}(\varphi(t)-\varphi(m))/(t-m)\) is finite and is at most
+every quotient with \(t>m\). Hence the line
+\(\ell(t) = \varphi(m)+a(t-m)\) satisfies \(\ell \le \varphi\)
+everywhere -- for \(t>m\) because \(a\) is below the quotient, for
+\(t<m\) because \(a\) is above it and the denominator is negative, and
+at \(t = m\) with equality.
+
+Applying monotonicity of expectation to \(\ell(X)\le\varphi(X)\) and
+linearity gives
+\(\varphi(m) + a(\E[X]-m) = \varphi(m) \le \E[\varphi(X)]\).
+#+end_proof
+
+#+begin_remark
+The transfer theorem is what makes the underlying probability space
+disappear from every computation: after it, an expectation is an
+integral against a measure on \(\R\), and two random variables with the
+same law are interchangeable in every formula. Jensen's inequality is
+the reason variance, entropy and the moment inequalities all point the
+same way.
+#+end_remark

@@ -1,0 +1,113 @@
+:PROPERTIES:
+:ID:       25af7de9-f4e9-4e76-ba34-5571aa837871
+:END:
+#+TITLE: Laurent series and isolated singularities
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:analysis:complex_analysis:
+#+MSC: 30B10, 30D30
+#+HASH: 4fbcc4f37e70
+
+Away from the points where it misbehaves, a function is still
+holomorphic, and the expansion adapted to an annulus rather than a disc
+allows negative powers. How many of them appear classifies the
+singularity completely into three cases -- removable, pole, essential --
+and the classification is what makes the residue calculus mechanical.
+
+#+DEPENDS: thm-holomorphic-implies-analytic, thm-cauchy-integral-formula, thm-weierstrass-m-test
+#+NAME: thm-laurent-expansion
+#+begin_theorem
+Let \(f\) be holomorphic on the annulus
+\(A = \setst{z}{\rho<\abs{z-z_{0}}<R}\). Then
+\[ f(z) = \sum_{n \in \Z} c_{n}(z-z_{0})^{n}, \qquad c_{n} = \frac{1}{2\pi i}\int_{C_{r}}\frac{f(w)}{(w-z_{0})^{n+1}}\dd w, \]
+converging locally uniformly on \(A\), where \(C_{r}\) is any circle
+\(\abs{w-z_{0}} = r\) with \(\rho<r<R\); the coefficients do not depend
+on \(r\) and are uniquely determined by \(f\).
+#+end_theorem
+
+#+begin_proof
+Fix \(z \in A\) and choose \(\rho<r_{1}<\abs{z-z_{0}}<r_{2}<R\). As in
+the proof of the integral formula, cutting the region between the two
+circles into pieces contained in convex subsets of \(A\) and cancelling
+the cuts gives
+\[ f(z) = \frac{1}{2\pi i}\int_{C_{r_{2}}}\frac{f(w)}{w-z}\dd w - \frac{1}{2\pi i}\int_{C_{r_{1}}}\frac{f(w)}{w-z}\dd w. \]
+On \(C_{r_{2}}\) expand \(1/(w-z)\) in powers of \((z-z_{0})/(w-z_{0})\),
+of modulus less than \(1\), as before; on \(C_{r_{1}}\) expand instead
+in powers of \((w-z_{0})/(z-z_{0})\), again of modulus less than \(1\),
+giving
+\(-\frac{1}{w-z} = \sum_{k\ge0}\frac{(w-z_{0})^{k}}{(z-z_{0})^{k+1}}\).
+Both series converge uniformly in \(w\) on the respective circles, by
+the Weierstrass test, so may be integrated term by term; the first gives
+the coefficients with \(n\ge0\) and the second those with \(n\le-1\).
+
+Independence of \(r\) follows because the integrand is holomorphic in
+the annulus, so the same cutting argument equates the integrals over two
+circles. Uniqueness: given any such expansion converging locally
+uniformly, multiply by \((z-z_{0})^{-m-1}\) and integrate over
+\(C_{r}\); all terms vanish except \(n = m\), which contributes
+\(2\pi i c_{m}\).
+#+end_proof
+
+#+DEPENDS: thm-laurent-expansion, thm-zeros-are-isolated
+#+NAME: def-isolated-singularity
+#+begin_definition
+Let \(f\) be holomorphic on a punctured disc
+\(B(z_{0},R)\setminus\set{z_{0}}\), with Laurent coefficients
+\(c_{n}\). The singularity at \(z_{0}\) is /removable/ if \(c_{n} = 0\)
+for all \(n<0\); a /pole of order \(m\)/ if \(c_{-m}\ne0\) and
+\(c_{n} = 0\) for \(n<-m\); and /essential/ otherwise. The /residue/ is
+\(\Res(f,z_{0}) = c_{-1}\).
+#+end_definition
+
+#+DEPENDS: def-isolated-singularity, thm-laurent-expansion, cor-cauchy-estimates
+#+NAME: thm-riemann-removability
+#+begin_theorem
+The singularity at \(z_{0}\) is removable if and only if \(f\) is
+bounded near \(z_{0}\), and then \(f\) extends holomorphically across
+\(z_{0}\). It is a pole of order \(m\) if and only if
+\((z-z_{0})^{m}f(z)\) has a removable singularity with non-zero limit,
+and then \(\abs{f(z)}\to\infty\) as \(z\to z_{0}\).
+#+end_theorem
+
+#+begin_proof
+If the singularity is removable the series defines a holomorphic
+function on the whole disc, which is bounded near \(z_{0}\). Conversely
+suppose \(\abs{f}\le M\) on \(0<\abs{z-z_{0}}<\delta\). For \(n<0\) and
+\(r<\delta\) the standard estimate gives
+\(\abs{c_{n}} \le \frac{1}{2\pi}\cdot 2\pi r\cdot M r^{-n-1} = M r^{-n}\),
+and \(-n>0\), so letting \(r\to0\) forces \(c_{n} = 0\).
+
+For a pole of order \(m\), the Laurent series of
+\(g(z) = (z-z_{0})^{m}f(z)\) is that of \(f\) shifted by \(m\), so it has
+no negative powers and constant term \(c_{-m}\ne0\); conversely such a
+\(g\) gives back the stated coefficients. Then near \(z_{0}\),
+\(\abs{f(z)} = \abs{g(z)}\abs{z-z_{0}}^{-m}\) with \(\abs{g}\) bounded
+below, so it tends to infinity.
+#+end_proof
+
+#+DEPENDS: thm-riemann-removability, def-isolated-singularity, thm-identity
+#+NAME: thm-casorati-weierstrass
+#+begin_theorem
+If \(z_{0}\) is an essential singularity, then for every
+\(\delta>0\) the image of the punctured disc
+\(0<\abs{z-z_{0}}<\delta\) is dense in \(\C\).
+#+end_theorem
+
+#+begin_proof
+Suppose not: there are \(w_{0}\) and \(\eps>0\) with
+\(\abs{f(z)-w_{0}}\ge\eps\) on the punctured disc. Then
+\(g(z) = 1/(f(z)-w_{0})\) is holomorphic there and bounded by
+\(1/\eps\), so by Riemann's theorem it extends holomorphically across
+\(z_{0}\). If \(g(z_{0})\ne0\) then \(f = w_{0}+1/g\) is bounded near
+\(z_{0}\) and the singularity is removable; if \(g\) has a zero of order
+\(m\) at \(z_{0}\), then \(f - w_{0}\) has a pole of order \(m\). Either
+way the singularity is not essential.
+#+end_proof
+
+#+begin_remark
+The three cases are exhaustive and the trichotomy is sharp: a
+singularity is removable, or the function blows up, or it comes
+arbitrarily close to every complex value in every neighbourhood.
+Picard's theorem strengthens the last to "takes every value, with at
+most one exception, infinitely often" -- which is not proved here and
+is the natural next step.
+#+end_remark

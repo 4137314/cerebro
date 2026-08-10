@@ -1,0 +1,122 @@
+:PROPERTIES:
+:ID:       d61e9b83-1185-46ed-9977-48c786495d24
+:END:
+#+TITLE: Splitting fields and their uniqueness
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:algebra:field_theory:
+#+MSC: 12F05
+#+HASH: 083ef2f33403
+
+A polynomial with no root can be given one, by a construction that costs
+nothing: quotient the polynomial ring by an irreducible factor. Iterating
+produces a field in which the polynomial factors completely, and the
+substance of this note is that the field so produced does not depend on
+the choices made -- which is what makes "the" splitting field, and with
+it the Galois group, well defined.
+
+#+DEPENDS: def-field-extension, thm-minimal-polynomial, thm-maximal-iff-quotient-is-a-field
+#+NAME: thm-kronecker
+#+begin_theorem
+Let \(K\) be a field and \(f \in K[x]\) non-constant. Then there is an
+extension \(L/K\) with \([L:K] \le \deg f\) in which \(f\) has a root.
+#+end_theorem
+
+#+begin_proof
+Let \(p\) be an irreducible factor of \(f\), which exists because
+\(K[x]\) is a unique factorisation domain. The ideal \((p)\) is maximal,
+so \(L = K[x]/(p)\) is a field; the composite \(K \to K[x] \to L\) is a
+ring homomorphism between fields, hence injective, so \(L\) is an
+extension of \(K\). The class \(\alpha\) of \(x\) satisfies
+\(p(\alpha) = 0\), hence \(f(\alpha) = 0\), and
+\([L:K] = \deg p \le \deg f\) by the description of a simple algebraic
+extension.
+#+end_proof
+
+#+DEPENDS: thm-kronecker, thm-tower-law
+#+NAME: def-splitting-field
+#+begin_definition
+Let \(f \in K[x]\) be non-constant. An extension \(L/K\) is a
+/splitting field/ of \(f\) over \(K\) if \(f\) factors into linear
+factors in \(L[x]\) and \(L\) is generated over \(K\) by the roots of
+\(f\).
+#+end_definition
+
+#+DEPENDS: def-splitting-field, thm-kronecker, thm-tower-law
+#+NAME: thm-splitting-field-exists
+#+begin_theorem
+Every non-constant \(f \in K[x]\) has a splitting field \(L\), with
+\([L:K] \le (\deg f)!\).
+#+end_theorem
+
+#+begin_proof
+Induct on \(n = \deg f\). For \(n = 1\), \(K\) itself works. Otherwise
+Kronecker's theorem gives \(K_{1} = K(\alpha)\) with \(f(\alpha) = 0\)
+and \([K_{1}:K]\le n\); in \(K_{1}[x]\) we may write
+\(f = (x-\alpha)g\) with \(\deg g = n - 1\), by the factor theorem. By
+induction \(g\) has a splitting field \(L\) over \(K_{1}\) with
+\([L:K_{1}] \le (n-1)!\). Then \(f\) splits in \(L\), and \(L\) is
+generated over \(K\) by \(\alpha\) and the roots of \(g\), which are the
+roots of \(f\). The tower law gives \([L:K] \le n \cdot (n-1)! = n!\).
+#+end_proof
+
+#+DEPENDS: thm-minimal-polynomial, thm-first-isomorphism-rings
+#+NAME: lem-extension-of-an-isomorphism
+#+begin_lemma
+Let \(\sigma \colon K \to K'\) be a field isomorphism, extended to
+\(K[x]\to K'[x]\) coefficientwise, let \(p \in K[x]\) be irreducible and
+\(p' = \sigma(p)\). If \(\alpha\) is a root of \(p\) in some extension
+of \(K\) and \(\alpha'\) a root of \(p'\) in some extension of \(K'\),
+then \(\sigma\) extends to an isomorphism
+\(K(\alpha)\to K'(\alpha')\) sending \(\alpha\) to \(\alpha'\).
+#+end_lemma
+
+#+begin_proof
+The coefficientwise map is a ring isomorphism \(K[x]\to K'[x]\) carrying
+\((p)\) onto \((p')\), so it induces an isomorphism
+\(K[x]/(p) \to K'[x]/(p')\) of the quotients. By the description of a
+simple algebraic extension, \(K[x]/(p) \iso K(\alpha)\) by sending the
+class of \(x\) to \(\alpha\), and likewise on the other side. Composing
+the three isomorphisms gives the claim; it restricts to \(\sigma\) on
+\(K\) and sends \(\alpha\) to \(\alpha'\).
+#+end_proof
+
+#+DEPENDS: lem-extension-of-an-isomorphism, thm-splitting-field-exists, def-splitting-field
+#+NAME: thm-splitting-field-is-unique
+#+begin_theorem
+Let \(\sigma \colon K\to K'\) be an isomorphism, \(f \in K[x]\)
+non-constant and \(f' = \sigma(f)\). Any splitting field \(L\) of \(f\)
+over \(K\) and any splitting field \(L'\) of \(f'\) over \(K'\) are
+isomorphic by an isomorphism extending \(\sigma\). In particular the
+splitting field of \(f\) over \(K\) is unique up to a \(K\)-isomorphism.
+#+end_theorem
+
+#+begin_proof
+Induct on \([L:K]\). If \([L:K] = 1\) then \(f\) already splits in
+\(K\), so \(f'\) splits in \(K'\) and \(L' = K'\); \(\sigma\) itself
+serves.
+
+Otherwise some irreducible factor \(p\) of \(f\) in \(K[x]\) has degree
+at least \(2\). Let \(\alpha \in L\) be a root of \(p\) and
+\(\alpha'\in L'\) a root of \(p' = \sigma(p)\), which exists because
+\(p'\) divides \(f'\) and \(f'\) splits in \(L'\). By the lemma
+\(\sigma\) extends to \(\tau \colon K(\alpha)\to K'(\alpha')\). Now
+\(L\) is a splitting field of \(f\) over \(K(\alpha)\) and \(L'\) one of
+\(f'\) over \(K'(\alpha')\), while
+\([L : K(\alpha)] = [L:K]/\deg p < [L:K]\) by the tower law. The
+induction hypothesis extends \(\tau\) to an isomorphism
+\(L \to L'\).
+#+end_proof
+
+#+begin_remark
+The same induction, run with \(K = K'\) and \(\sigma = \id\), counts the
+\(K\)-automorphisms of \(L\): at each step the extension can send
+\(\alpha\) to any root of its minimal polynomial, so the number of
+automorphisms is \([L:K]\) exactly when every such polynomial has
+distinct roots. That condition is separability, and the count is the
+first half of the Galois correspondence.
+
+Iterating the construction over all polynomials at once produces an
+algebraically closed extension -- an algebraic closure -- but the
+iteration is transfinite and needs Zorn's lemma, since there is no
+bound on the degrees involved.
+#+end_remark

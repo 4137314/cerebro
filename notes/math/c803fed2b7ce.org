@@ -1,0 +1,107 @@
+:PROPERTIES:
+:ID:       0c13c1ea-dc7e-4d50-a727-ef836c2f764c
+:END:
+#+TITLE: Random variables, laws and distribution functions
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:probability:probability_theory:
+#+MSC: 60A10
+#+HASH: c803fed2b7ce
+
+A random variable is a measurable function, and nothing in the
+definition is random. What the word marks is a change of viewpoint: the
+underlying space is never described, and every statement is made about
+the measure the function pushes onto the line. That measure is the
+object of the subject, and the distribution function is the one-variable
+handle on it.
+
+#+DEPENDS: def-measurable-function, def-probability-space, def-borel-sigma-algebra
+#+NAME: def-random-variable
+#+begin_definition
+A /random variable/ on \((\Omega,\mathcal{F},\Prob)\) is a measurable
+map \(X \colon \Omega \to \R\). One writes \(\set{X \in B}\) for
+\(X^{-1}(B)\) and \(\Prob(X \in B)\) for its probability.
+#+end_definition
+
+#+DEPENDS: def-random-variable, def-measure, prop-measurability-tested-on-rays
+#+NAME: thm-the-law-of-a-random-variable
+#+begin_theorem
+For a random variable \(X\), the /law/
+\(\Prob_{X}(B) = \Prob(X \in B)\), defined for Borel \(B\), is a
+probability measure on \(\R\).
+#+end_theorem
+
+#+begin_proof
+\(\Prob_{X}\) is defined because \(X\) is measurable, and
+\(\Prob_{X}(\R) = \Prob(\Omega) = 1\), \(\Prob_{X}(\emptyset) = 0\). If
+\((B_{n})\) are disjoint Borel sets, their preimages are disjoint
+events with union \(X^{-1}(\bigcup_{n}B_{n})\), so countable additivity
+of \(\Prob\) gives countable additivity of \(\Prob_{X}\).
+#+end_proof
+
+#+DEPENDS: thm-the-law-of-a-random-variable, thm-basic-properties-of-a-measure
+#+NAME: def-distribution-function
+#+begin_definition
+The /distribution function/ of \(X\) is
+\(F_{X}(t) = \Prob(X \le t)\), \(t \in \R\).
+#+end_definition
+
+#+DEPENDS: def-distribution-function, thm-basic-properties-of-a-measure
+#+NAME: thm-properties-of-the-distribution-function
+#+begin_theorem
+\(F_{X}\) is non-decreasing, right-continuous, and satisfies
+\(\lim_{t\to-\infty}F_{X}(t) = 0\) and \(\lim_{t\to+\infty}F_{X}(t) = 1\).
+Moreover \(\Prob(X = t) = F_{X}(t) - \lim_{s\uparrow t}F_{X}(s)\), so
+\(F_{X}\) is continuous at \(t\) exactly when \(\Prob(X = t) = 0\).
+#+end_theorem
+
+#+begin_proof
+Monotonicity: \(s \le t\) gives \(\set{X\le s}\subseteq\set{X\le t}\).
+
+Right-continuity: for \(t_{n}\downarrow t\) the events
+\(\set{X\le t_{n}}\) decrease to \(\set{X\le t}\), so continuity from
+above of the measure gives \(F_{X}(t_{n})\to F_{X}(t)\); since
+\(F_{X}\) is monotone, convergence along one such sequence gives the
+one-sided limit.
+
+The limits at \(\pm\infty\) are continuity along
+\(\set{X\le -n}\downarrow\emptyset\) and
+\(\set{X\le n}\uparrow\Omega\).
+
+For the jump, \(\set{X\le s}\uparrow\set{X<t}\) as \(s\uparrow t\), so
+the left limit is \(\Prob(X<t)\), and
+\(\Prob(X\le t)-\Prob(X<t) = \Prob(X=t)\).
+#+end_proof
+
+#+DEPENDS: def-random-variable, def-independence-of-events
+#+NAME: def-independence-of-random-variables
+#+begin_definition
+Random variables \(X_{1},\dots,X_{n}\) are /independent/ if for all
+Borel sets \(B_{1},\dots,B_{n}\),
+\(\Prob(X_{1}\in B_{1},\dots,X_{n}\in B_{n}) = \prod_{i}\Prob(X_{i}\in B_{i})\).
+An infinite family is independent if every finite subfamily is. A
+sequence is /independent and identically distributed/ if it is
+independent and all its members have the same law.
+#+end_definition
+
+#+DEPENDS: def-independence-of-random-variables, prop-measurability-tested-on-rays
+#+NAME: prop-functions-of-independent-variables
+#+begin_proposition
+If \(X_{1},\dots,X_{n}\) are independent and
+\(g_{1},\dots,g_{n} \colon \R \to \R\) are Borel measurable, then
+\(g_{1}(X_{1}),\dots,g_{n}(X_{n})\) are independent.
+#+end_proposition
+
+#+begin_proof
+For Borel sets \(B_{i}\), the events \(\set{g_{i}(X_{i})\in B_{i}}\) are
+\(\set{X_{i}\in g_{i}^{-1}(B_{i})}\), and \(g_{i}^{-1}(B_{i})\) is
+Borel; apply the definition of independence to those sets.
+#+end_proof
+
+#+begin_remark
+Two random variables with the same law need not be equal, or even
+defined on the same space, and every theorem below is insensitive to the
+difference -- which is why the underlying \(\Omega\) can be left
+unspecified. The converse question, whether the law is determined by
+\(F_{X}\), is true and is not proved here: it requires the uniqueness of
+measures agreeing on the intervals, which is Dynkin's lemma.
+#+end_remark

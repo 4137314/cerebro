@@ -1,0 +1,133 @@
+:PROPERTIES:
+:ID:       b9814e2f-633e-49eb-afaa-cc4092244461
+:END:
+#+TITLE: The Cauchy integral formula and analyticity
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:analysis:complex_analysis:
+#+MSC: 30E20, 30B10
+#+HASH: 12a35a860551
+
+A holomorphic function is determined inside a disc by its values on the
+boundary circle, by an explicit formula. Expanding the kernel of that
+formula in a geometric series turns the function into a power series,
+and with that one step complex differentiability -- a hypothesis about
+one derivative -- becomes analyticity, a statement about all of them.
+Nothing in real analysis behaves like this.
+
+#+DEPENDS: thm-primitive-on-a-convex-set, def-contour-integral, prop-standard-estimate
+#+NAME: thm-cauchy-integral-formula
+#+begin_theorem
+Let \(f\) be holomorphic on an open set containing the closed disc
+\(\overline{B}(z_{0},r)\), and let \(C\) be the boundary circle,
+traversed once anticlockwise. Then for every \(z\) with
+\(\abs{z-z_{0}}<r\),
+\[ f(z) = \frac{1}{2\pi i}\int_{C}\frac{f(w)}{w-z}\dd w. \]
+#+end_theorem
+
+#+begin_proof
+Fix \(z\) inside. For small \(\rho>0\) let \(C_{\rho}\) be the circle of
+radius \(\rho\) about \(z\). The function \(w \mapsto f(w)/(w-z)\) is
+holomorphic on the region between \(C\) and \(C_{\rho}\); cutting that
+region into finitely many pieces each contained in a convex open subset
+of the domain, and applying the vanishing of the integral on closed
+curves in each piece, the contributions along the cuts cancel and
+\(\int_{C}\frac{f(w)}{w-z}\dd w = \int_{C_{\rho}}\frac{f(w)}{w-z}\dd w\).
+
+On \(C_{\rho}\), parametrised as \(w = z+\rho e^{i\theta}\), one has
+\(\dd w = i\rho e^{i\theta}\dd\theta\) and
+\(\int_{C_{\rho}}\frac{\dd w}{w-z} = \int_{0}^{2\pi}i\dd\theta = 2\pi i\).
+Hence
+\[ \Bigl|\int_{C_{\rho}}\frac{f(w)}{w-z}\dd w - 2\pi i f(z)\Bigr| = \Bigl|\int_{C_{\rho}}\frac{f(w)-f(z)}{w-z}\dd w\Bigr| \le 2\pi\rho\cdot\frac{\sup_{C_{\rho}}\abs{f(w)-f(z)}}{\rho}, \]
+which tends to \(0\) as \(\rho\to0\) by continuity of \(f\) at \(z\).
+Since the left-hand integral does not depend on \(\rho\), it equals
+\(2\pi i f(z)\).
+#+end_proof
+
+#+DEPENDS: thm-cauchy-integral-formula, thm-geometric-series, thm-weierstrass-m-test, def-radius-of-convergence
+#+NAME: thm-holomorphic-implies-analytic
+#+begin_theorem
+A holomorphic \(f\) on an open \(U\) is /analytic/: about every
+\(z_{0}\in U\) it is the sum of a power series
+\(\sum_{n\ge0}a_{n}(z-z_{0})^{n}\) converging on every disc
+\(B(z_{0},r)\) with \(\overline{B}(z_{0},r)\subseteq U\), and
+\[ a_{n} = \frac{1}{2\pi i}\int_{C}\frac{f(w)}{(w-z_{0})^{n+1}}\dd w = \frac{f^{(n)}(z_{0})}{n!}. \]
+In particular \(f\) has derivatives of every order, and they are
+holomorphic.
+#+end_theorem
+
+#+begin_proof
+For \(w\) on \(C\) and \(\abs{z-z_{0}}<r = \abs{w-z_{0}}\), expand the
+kernel as a geometric series,
+\[ \frac{1}{w-z} = \frac{1}{(w-z_{0})\bigl(1-\frac{z-z_{0}}{w-z_{0}}\bigr)} = \sum_{n\ge0}\frac{(z-z_{0})^{n}}{(w-z_{0})^{n+1}}, \]
+which converges uniformly in \(w\) on \(C\) for fixed \(z\), the ratio
+having modulus \(\abs{z-z_{0}}/r<1\); the Weierstrass test applies with
+the terms dominated by \(r^{-1}(\abs{z-z_{0}}/r)^{n}\). Multiplying by
+the bounded \(f(w)\) preserves uniform convergence, so the series may be
+integrated term by term in the Cauchy formula, giving the power series
+with the stated coefficients. A power series is infinitely
+differentiable inside its disc of convergence with
+\(a_{n} = f^{(n)}(z_{0})/n!\), and each derivative is again given by a
+power series, hence holomorphic.
+#+end_proof
+
+#+DEPENDS: thm-holomorphic-implies-analytic, prop-standard-estimate
+#+NAME: cor-cauchy-estimates
+#+begin_corollary
+With the notation above, \(\abs{f^{(n)}(z_{0})} \le n!\,M/r^{n}\), where
+\(M = \sup_{C}\abs{f}\).
+#+end_corollary
+
+#+begin_proof
+Apply the standard estimate to the integral formula for \(a_{n}\): the
+length of \(C\) is \(2\pi r\) and the integrand has modulus at most
+\(M/r^{n+1}\), so \(\abs{a_{n}} \le M/r^{n}\); multiply by \(n!\).
+#+end_proof
+
+#+DEPENDS: cor-cauchy-estimates, prop-vanishing-derivative-on-a-domain, cor-number-of-roots
+#+NAME: thm-liouville-and-the-fundamental-theorem-of-algebra
+#+begin_theorem
+A bounded entire function is constant; and every non-constant
+polynomial over \(\C\) has a root, hence splits into linear factors.
+#+end_theorem
+
+#+begin_proof
+Let \(\abs{f}\le M\) on \(\C\). For any \(z_{0}\) and any \(r>0\) the
+Cauchy estimate with \(n = 1\) gives \(\abs{f'(z_{0})}\le M/r\); letting
+\(r\to\infty\) gives \(f'(z_{0}) = 0\). So \(f' \equiv 0\) on the
+connected set \(\C\) and \(f\) is constant.
+
+Let \(p\) be a polynomial of degree \(n\ge1\) with no root. Then
+\(1/p\) is entire. Writing \(p(z) = a_{n}z^{n}(1+o(1))\) as
+\(\abs{z}\to\infty\), we get \(\abs{p(z)}\to\infty\), so \(1/p\) tends to
+\(0\) at infinity and is therefore bounded -- it is continuous, hence
+bounded on any large closed disc, and small outside it. By the first
+part \(1/p\) is constant, contradicting \(n\ge1\). So \(p\) has a root
+\(\alpha\), and the factor theorem splits off \(z-\alpha\); induction
+finishes.
+#+end_proof
+
+#+DEPENDS: thm-holomorphic-implies-analytic, thm-goursat, thm-primitive-on-a-convex-set
+#+NAME: thm-morera
+#+begin_theorem
+Let \(f\) be continuous on an open \(U\) with
+\(\int_{\partial T}f = 0\) for every closed triangle \(T \subseteq U\).
+Then \(f\) is holomorphic.
+#+end_theorem
+
+#+begin_proof
+The question is local, so work on a disc \(B \subseteq U\), which is
+convex. The construction of a primitive used only Goursat's conclusion
+on triangles and the continuity of \(f\), both assumed here, so there is
+a holomorphic \(F\) on \(B\) with \(F' = f\). By the previous theorem
+\(F\) is analytic, hence infinitely differentiable, so \(f = F'\) is
+holomorphic.
+#+end_proof
+
+#+begin_remark
+Morera's theorem is the converse of Cauchy's and it is what makes limits
+usable: a locally uniform limit of holomorphic functions is holomorphic,
+because the integral over each triangle passes to the limit. In real
+analysis a uniform limit of smooth functions need not be
+differentiable anywhere, and the contrast is the sharpest available
+statement of how strong complex differentiability is.
+#+end_remark

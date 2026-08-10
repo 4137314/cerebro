@@ -1,0 +1,84 @@
+:PROPERTIES:
+:ID:       9980a57d-f360-46ea-bba4-3e1ec57cbbe8
+:END:
+#+TITLE: Sufficiency and the factorisation theorem
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:probability:statistics:
+#+MSC: 62B05
+#+HASH: 4013ab6a4c6c
+
+A sample of size \(n\) is a great deal of data and almost all of it is
+usually irrelevant to the parameter. A sufficient statistic is one that
+retains everything relevant, in the precise sense that the sample
+conditioned on it no longer mentions the parameter at all -- and the
+factorisation theorem turns that condition, which quantifies over
+conditional laws, into an identity one can check by inspection.
+
+#+DEPENDS: def-statistical-model, def-conditional-probability, def-estimator
+#+NAME: def-sufficient-statistic
+#+begin_definition
+Let \((\Prob_{\theta})\) be a statistical model on a countable sample
+space \(\mathcal{X}\). A statistic \(T\) is /sufficient/ for \(\theta\)
+if for every \(t\) with \(\Prob_{\theta}(T = t)>0\) the conditional
+probabilities \(\Prob_{\theta}(X = x \mid T = t)\) do not depend on
+\(\theta\).
+#+end_definition
+
+#+DEPENDS: def-sufficient-statistic, thm-total-probability-and-bayes
+#+NAME: thm-factorisation
+#+begin_theorem
+On a countable sample space, write \(p_{\theta}(x) = \Prob_{\theta}(X=x)\).
+A statistic \(T\) is sufficient if and only if there are functions
+\(g_{\theta}\) and \(h\), with \(h\) not depending on \(\theta\), such
+that
+\[ p_{\theta}(x) = g_{\theta}(T(x))\, h(x) \qquad \text{for all } x, \theta. \]
+#+end_theorem
+
+#+begin_proof
+Suppose \(T\) is sufficient and put \(t = T(x)\). Since
+\(\set{X = x}\subseteq\set{T=t}\),
+\(p_{\theta}(x) = \Prob_{\theta}(T=t)\,\Prob_{\theta}(X=x\mid T=t)\)
+whenever \(\Prob_{\theta}(T=t)>0\). The second factor does not depend on
+\(\theta\) by sufficiency; call it \(h(x)\), and put
+\(g_{\theta}(t) = \Prob_{\theta}(T=t)\). Where
+\(\Prob_{\theta}(T=t) = 0\) both sides vanish for every such \(x\).
+
+Conversely, assume the factorisation. For \(t\) with
+\(\Prob_{\theta}(T=t)>0\),
+\[ \Prob_{\theta}(T=t) = \sum_{y \colon T(y)=t} g_{\theta}(t)h(y) = g_{\theta}(t)H(t), \qquad H(t) = \sum_{y \colon T(y)=t}h(y), \]
+so for \(x\) with \(T(x)=t\),
+\(\Prob_{\theta}(X=x\mid T=t) = g_{\theta}(t)h(x)/(g_{\theta}(t)H(t)) = h(x)/H(t)\),
+which does not involve \(\theta\); and for \(T(x)\ne t\) the
+conditional probability is \(0\). Hence \(T\) is sufficient.
+#+end_proof
+
+#+DEPENDS: thm-factorisation, def-sufficient-statistic
+#+NAME: cor-functions-of-a-sufficient-statistic
+#+begin_corollary
+If \(T\) is sufficient and \(U = \psi(T)\) with \(\psi\) injective, then
+\(U\) is sufficient; the whole sample is always sufficient; and a
+sufficient statistic remains sufficient after adjoining any further
+statistic to it.
+#+end_corollary
+
+#+begin_proof
+Each claim is a factorisation. For an injective \(\psi\),
+\(g_{\theta}(T(x)) = g_{\theta}(\psi^{-1}(U(x)))\), a function of
+\(U(x)\). The identity statistic factors with \(g_{\theta} = p_{\theta}\)
+and \(h = 1\). Adjoining a further statistic \(V\) gives
+\(p_{\theta}(x) = g_{\theta}(T(x))h(x)\) with the first factor read as a
+function of the pair \((T(x),V(x))\).
+#+end_proof
+
+#+begin_remark
+The theorem is stated for a countable sample space because that is where
+it can be proved with the tools here: the general version replaces
+probabilities by densities against a dominating measure, and its proof
+needs the Radon-Nikodym theorem. The statement is the same, and so is
+the use -- read off the dependence of the density on \(\theta\), and
+whatever it comes packaged with is sufficient.
+
+Sufficiency is what makes [[id:2cbd79ad-4938-4b5b-a6ca-85d300cc1f79][Rao-Blackwell]] work: conditioning an
+estimator on a sufficient statistic yields something that is still an
+estimator, because the conditional law is free of the parameter.
+#+end_remark

@@ -1,0 +1,149 @@
+:PROPERTIES:
+:ID:       bbbee435-e5f4-4473-8ac8-ab88186ba01b
+:END:
+#+TITLE: Cauchy's theorem and the Sylow theorems
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:algebra:group_theory:
+#+MSC: 20D20, 20E07
+#+HASH: 06bcb6a9fe78
+
+Lagrange's theorem forbids subgroups of the wrong size and promises
+none. The Sylow theorems are the partial converse: for each prime power
+dividing the order exactly, subgroups of that size exist, they are all
+conjugate, and their number is constrained modulo the prime. All three
+proofs are the same technique -- let the group act on a set built for the
+purpose and count the orbits.
+
+#+DEPENDS: def-group-action, thm-orbit-stabiliser, prop-orbits-partition
+#+NAME: lem-fixed-points-modulo-p
+#+begin_lemma
+Let a group \(P\) of order \(p^{k}\), \(p\) prime, act on a finite set
+\(X\), and let \(X^{P}\) be the set of points fixed by every element of
+\(P\). Then \(\abs{X} \equiv \abs{X^{P}} \pmod p\).
+#+end_lemma
+
+#+begin_proof
+The orbits partition \(X\), and each has size \([P : P_{x}]\), a divisor
+of \(p^{k}\). An orbit of size \(1\) is exactly a fixed point; every
+other orbit has size a positive power of \(p\), hence divisible by
+\(p\). Summing the orbit sizes gives the congruence.
+#+end_proof
+
+#+DEPENDS: lem-fixed-points-modulo-p, def-order-of-an-element, def-group-action
+#+NAME: thm-cauchy
+#+begin_theorem
+If a prime \(p\) divides the order of a finite group \(G\), then \(G\)
+has an element of order \(p\).
+#+end_theorem
+
+#+begin_proof
+Let \(X = \setst{(g_{1},\dots,g_{p}) \in G^{p}}{g_{1}\cdots g_{p} = e}\).
+A tuple is determined by its first \(p-1\) entries, the last being
+forced, so \(\abs{X} = \abs{G}^{p-1}\), divisible by \(p\).
+
+The cyclic group \(C\) of order \(p\) acts on \(X\) by cyclic shift:
+if \(g_{1}\cdots g_{p} = e\) then \(g_{2}\cdots g_{p}g_{1} = g_{1}^{-1}(g_{1}\cdots g_{p})g_{1} = e\),
+so the shift maps \(X\) to itself, and shifting \(p\) times is the
+identity. By the lemma \(\abs{X^{C}} \equiv \abs{X} \equiv 0 \pmod p\).
+A fixed point is a constant tuple \((g,\dots,g)\) with \(g^{p} = e\);
+one of them is \((e,\dots,e)\), so there are at least \(p\) of them, and
+any other gives an element \(g \ne e\) with \(g^{p} = e\), of order
+\(p\) since \(p\) is prime.
+#+end_proof
+
+#+DEPENDS: thm-cauchy, def-subgroup, thm-lagrange
+#+NAME: def-sylow-subgroup
+#+begin_definition
+Let \(\abs{G} = p^{k}m\) with \(p\) prime and \(p \nmid m\). A
+/Sylow \(p\)-subgroup/ of \(G\) is a subgroup of order \(p^{k}\). A
+group whose order is a power of \(p\) is a /\(p\)-group/.
+#+end_definition
+
+#+DEPENDS: def-sylow-subgroup, thm-cauchy, cor-class-equation, thm-quotient-group, prop-image-is-a-subgroup
+#+NAME: thm-sylow-existence
+#+begin_theorem
+Every finite group has a Sylow \(p\)-subgroup, for every prime \(p\)
+dividing its order.
+#+end_theorem
+
+#+begin_proof
+Induct on \(\abs{G}\), with \(\abs{G} = p^{k}m\) and \(k \ge 1\).
+
+If some proper subgroup \(H < G\) has index prime to \(p\), then
+\(p^{k}\) divides \(\abs{H}\), and by induction \(H\) has a subgroup of
+order \(p^{k}\), which serves for \(G\).
+
+Otherwise every proper subgroup has index divisible by \(p\). Let \(G\)
+act on itself by conjugation; the class equation reads
+\(\abs{G} = \abs{Z(G)} + \sum_{i}[G : C_{G}(a_{i})]\), where each
+centraliser \(C_{G}(a_{i})\) is a proper subgroup, so every term of the
+sum is divisible by \(p\). Hence \(p\) divides \(\abs{Z(G)}\), and by
+Cauchy's theorem \(Z(G)\) contains an element \(z\) of order \(p\). The
+subgroup \(N = \langle z\rangle\) is normal, being central, so
+\(G/N\) has order \(p^{k-1}m\); by induction it has a subgroup \(S\) of
+order \(p^{k-1}\). Its preimage \(H = \pi^{-1}(S)\) under the projection
+\(\pi \colon G \to G/N\) is a subgroup, and \(\pi\) restricted to \(H\)
+is surjective onto \(S\) with kernel \(N\), so \(H\) is partitioned into
+\(\abs{S}\) cosets of \(N\) and \(\abs{H} = p^{k-1}\cdot p = p^{k}\).
+#+end_proof
+
+#+DEPENDS: thm-sylow-existence, lem-fixed-points-modulo-p, thm-orbit-stabiliser, def-coset
+#+NAME: thm-sylow-conjugacy-and-count
+#+begin_theorem
+Let \(\abs{G} = p^{k}m\) with \(p \nmid m\). Then every \(p\)-subgroup
+of \(G\) is contained in a Sylow \(p\)-subgroup, any two Sylow
+\(p\)-subgroups are conjugate, and their number \(n_{p}\) satisfies
+\(n_{p} \equiv 1 \pmod p\) and \(n_{p} \mid m\).
+#+end_theorem
+
+#+begin_proof
+Fix a Sylow \(p\)-subgroup \(P\) and let \(Q\) be any \(p\)-subgroup.
+Let \(Q\) act by left multiplication on the set \(G/P\) of left cosets,
+of size \(m\), which is prime to \(p\). By the fixed-point lemma the
+number of fixed cosets is \(\equiv m \not\equiv 0 \pmod p\), so some
+\(gP\) is fixed: \(QgP = gP\), that is \(g^{-1}Qg \subseteq P\). Hence
+\(Q\) lies in the Sylow subgroup \(gPg^{-1}\). Taking \(Q\) itself
+Sylow forces \(Q = gPg^{-1}\) by equality of orders, which proves
+conjugacy and the first claim.
+
+So the Sylow \(p\)-subgroups form one orbit under conjugation, and by
+the orbit-stabiliser theorem \(n_{p} = [G : N]\) where \(N\) is the
+stabiliser of \(P\), a subgroup containing \(P\); hence \(n_{p}\)
+divides \([G:P] = m\). Now let \(P\) act by conjugation on the set of
+all Sylow \(p\)-subgroups. A fixed point is a \(Q\) normalised by
+\(P\); then \(P\) and \(Q\) are both Sylow subgroups of the group
+\(QP\), in which \(Q\) is normal, so they are conjugate there and
+\(P = Q\). Thus there is exactly one fixed point, and the lemma gives
+\(n_{p}\equiv 1 \pmod p\).
+#+end_proof
+
+#+DEPENDS: thm-sylow-conjugacy-and-count, prop-normality-criteria
+#+NAME: cor-unique-sylow-is-normal
+#+begin_corollary
+A Sylow \(p\)-subgroup is normal if and only if it is the only one; and
+a group of order \(pq\) with primes \(p < q\) and \(p \nmid q-1\) is
+cyclic.
+#+end_corollary
+
+#+begin_proof
+Conjugates of a Sylow subgroup are Sylow subgroups and all of them arise
+this way, so there is one orbit; it is a single point exactly when the
+subgroup is normal.
+
+For the second claim, \(n_{q}\) divides \(p\) and is \(\equiv 1 \pmod q\);
+as \(p < q\) this forces \(n_{q} = 1\). Likewise \(n_{p}\) divides
+\(q\) and is \(\equiv 1 \pmod p\), and \(n_{p} = q\) would give
+\(p \mid q - 1\), excluded; so \(n_{p} = 1\). Both Sylow subgroups are
+then normal, of coprime prime orders, so they intersect trivially and
+their elements commute -- the commutator of \(a \in P\) and \(b \in Q\)
+lies in \(P \cap Q\). Hence \(ab\) has order \(pq\) and generates the
+group.
+#+end_proof
+
+#+begin_remark
+The counting constraints are what make the theorems a classification
+tool rather than an existence statement: for a group of order \(pq\),
+or \(p^{2}q\), the possibilities for \(n_{p}\) are so few that normality
+is forced, and a normal subgroup splits the group into smaller pieces --
+which is the programme the Jordan-Holder theorem organises.
+#+end_remark

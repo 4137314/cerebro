@@ -1,0 +1,115 @@
+:PROPERTIES:
+:ID:       330e7293-f5ef-4b8c-8a3e-9ac6fd9f5f8d
+:END:
+#+TITLE: Square-integrable functions and the completeness of L2
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:analysis:measure_theory:
+#+MSC: 46E30, 28A20
+#+HASH: b5af0099f988
+
+The [[id:642c93ab-d004-4829-b5fa-899759923d63][Hilbert space]] theory was developed abstractly, with no example that
+was not finite-dimensional. This note supplies the one that matters: the
+square-integrable functions on a measure space, which are complete
+because the [[id:8cbdd35a-bbc4-44cf-9b1d-0b9623e3dc25][convergence theorems]] are strong enough to turn a Cauchy
+sequence in norm into a pointwise limit almost everywhere.
+
+#+DEPENDS: def-measure, def-measurable-function
+#+NAME: def-almost-everywhere
+#+begin_definition
+A set \(N\) is /null/ if \(\mu(N) = 0\). A statement holds /almost
+everywhere/ if the set where it fails is contained in a null set. Two
+measurable functions are /equivalent/ if they agree almost everywhere.
+#+end_definition
+
+#+DEPENDS: def-almost-everywhere, cor-additivity-of-the-integral, thm-basic-properties-of-a-measure
+#+NAME: prop-null-sets-and-the-integral
+#+begin_proposition
+For measurable \(f \ge 0\), \(\int f \dd\mu = 0\) if and only if
+\(f = 0\) almost everywhere; consequently equivalent integrable
+functions have the same integral, and a countable union of null sets is
+null.
+#+end_proposition
+
+#+begin_proof
+If \(f = 0\) off a null set \(N\), every simple \(0\le s\le f\) is
+supported in \(N\), so \(\int s\dd\mu = 0\) and the supremum is \(0\).
+Conversely let \(A_{n} = \setst{x}{f(x)>1/n}\); then
+\(\tfrac{1}{n}\indicator_{A_{n}} \le f\), so
+\(\mu(A_{n})/n \le \int f\dd\mu = 0\) and each \(A_{n}\) is null. Their
+union is \(\setst{x}{f(x)>0}\), null by countable subadditivity -- which
+is also the last claim. If \(f = g\) almost everywhere then
+\(\int\abs{f-g}\dd\mu = 0\), and additivity gives
+\(\int f = \int g\).
+#+end_proof
+
+#+DEPENDS: prop-null-sets-and-the-integral, def-inner-product-space, def-norm
+#+NAME: def-l2
+#+begin_definition
+Let \((X,\mathcal{A},\mu)\) be a measure space. Write
+\(\mathcal{L}^{2}\) for the measurable \(f \colon X \to \R\) with
+\(\int f^{2}\dd\mu<\infty\), and \(L^{2}(\mu)\) for the set of
+equivalence classes of such functions modulo equality almost everywhere,
+with
+\(\inner{f}{g} = \int fg \dd\mu\) and \(\norm{f} = (\int f^{2}\dd\mu)^{1/2}\).
+#+end_definition
+
+#+DEPENDS: def-l2, cor-additivity-of-the-integral, thm-cauchy-schwarz
+#+NAME: thm-l2-is-an-inner-product-space
+#+begin_theorem
+\(L^{2}(\mu)\) is a real vector space and \(\inner{\cdot}{\cdot}\) is a
+well-defined inner product on it; in particular
+\(\abs{\int fg\dd\mu} \le \norm{f}\norm{g}\).
+#+end_theorem
+
+#+begin_proof
+For \(f,g \in \mathcal{L}^{2}\) the inequality
+\(2\abs{fg} \le f^{2}+g^{2}\) shows \(fg\) is integrable, so the pairing
+is defined and finite; and
+\((f+g)^{2}\le 2f^{2}+2g^{2}\) shows \(\mathcal{L}^{2}\) is closed under
+sums, hence a vector space. The pairing does not depend on the
+representatives, by the previous proposition. It is bilinear and
+symmetric by linearity of the integral, and \(\inner{f}{f} = 0\) forces
+\(f^{2} = 0\) almost everywhere, that is \(f = 0\) in \(L^{2}\) -- which
+is exactly why the quotient by null functions is taken. The
+Cauchy-Schwarz inequality holds in any inner product space.
+#+end_proof
+
+#+DEPENDS: def-l2, thm-monotone-convergence-of-integrals, lem-fatou, thm-dominated-convergence, def-hilbert-space
+#+NAME: thm-riesz-fischer
+#+begin_theorem
+\(L^{2}(\mu)\) is complete, hence a Hilbert space; and every sequence
+converging in \(L^{2}\) has a subsequence converging almost everywhere.
+#+end_theorem
+
+#+begin_proof
+Let \((f_{n})\) be Cauchy. Choose \(n_{1}<n_{2}<\cdots\) with
+\(\norm{f_{m}-f_{n_{k}}}\le 2^{-k}\) for all \(m \ge n_{k}\), and put
+\(g_{k} = f_{n_{k+1}}-f_{n_{k}}\), so \(\norm{g_{k}}\le2^{-k}\).
+
+Let \(G_{K} = \sum_{k\le K}\abs{g_{k}}\). By the triangle inequality in
+\(L^{2}\), \(\norm{G_{K}}\le\sum_{k}2^{-k}\le1\), so
+\(\int G_{K}^{2}\dd\mu\le1\) for every \(K\). The \(G_{K}\) increase to
+\(G = \sum_{k}\abs{g_{k}}\), so by monotone convergence
+\(\int G^{2}\dd\mu \le 1\); hence \(G\) is finite almost everywhere, and
+therefore the series \(\sum_{k}g_{k}\) converges absolutely at almost
+every point. Define \(f\) as its sum where it converges and \(0\)
+elsewhere, so \(f_{n_{k}} \to f\) almost everywhere and \(f\) is
+measurable as an almost-everywhere limit of measurable functions.
+
+Finally \(f \in L^{2}\) and \(f_{n}\to f\): given \(\eps>0\), take
+\(N\) with \(\norm{f_{m}-f_{n}}\le\eps\) for \(m,n\ge N\). For
+\(n \ge N\), Fatou's lemma applied to
+\((f_{n_{k}}-f_{n})^{2}\to(f-f_{n})^{2}\) gives
+\(\int(f-f_{n})^{2}\dd\mu \le \liminf_{k}\int(f_{n_{k}}-f_{n})^{2}\dd\mu \le \eps^{2}\).
+Hence \(f - f_{n}\in L^{2}\), so \(f \in L^{2}\), and
+\(\norm{f-f_{n}}\le\eps\).
+#+end_proof
+
+#+begin_remark
+The quotient by null functions is not fastidiousness: without it
+\(\norm{f} = 0\) would not imply \(f = 0\) and the norm would not be a
+norm. The price is that an element of \(L^{2}\) has no value at a point,
+which is why every later statement about it is "almost everywhere" --
+and the subsequence clause above is the standard repair when a pointwise
+statement is genuinely needed.
+#+end_remark

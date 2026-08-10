@@ -1,0 +1,83 @@
+:PROPERTIES:
+:ID:       c2fcb100-fc5a-4670-9b5d-c068c0c325ff
+:END:
+#+TITLE: Mathematics
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:
+#+MSC: 00-XX
+#+HASH: 519ee14e7cf8
+
+This is the root of the archive: one note per subject, each linking to
+the notes below it, down to the results themselves. It exists because
+the two navigations this repository already has answer different
+questions. =cerebro note list= and =cerebro query by-tag= say what is
+/there/; the results graph says what /rests on what/. Neither says what
+the subject is about, which is the only question a person actually asks
+before opening anything.
+
+So a hub note carries no mathematics. It states what its area is, which
+threads run through it, which results are load-bearing, and -- as
+honestly as possible -- what is missing. Nothing here may be depended on
+by a =#+DEPENDS:=, and nothing here is generated: a list that a script
+could produce belongs to the script.
+
+* The areas
+
+- [[id:e023b747-878b-4a37-a097-35552d95cb66][Analysis]] -- limits, and everything that is a limit in disguise:
+  the real line, sequences and series, differentiation and integration,
+  measure, and the geometry of infinite-dimensional spaces.
+- [[id:504cda55-cfbf-42c2-b481-8d90660ec02a][Algebra]] -- sets with operations, studied through the maps that
+  respect them: groups, rings, fields, vector spaces and modules.
+- [[id:38b76068-6f2f-4d67-8a78-655549f487ac][Geometry]] -- what survives a change of coordinates, once one has
+  chosen which changes are allowed: affine, Euclidean, projective,
+  convex and differential.
+- [[id:830a0aed-a379-4350-bd58-f776af9b87d7][Topology]] -- nearness with no distance: what continuity,
+  connectedness and compactness mean when only the open sets remain.
+- [[id:1ba699a0-80ee-42e3-ae2b-bfbbc0a2c6a8][Foundations]] -- what the rest is written in: sets, order, choice,
+  and the logic that makes "provable" a mathematical notion.
+- [[id:79a8bba8-94c4-44b9-9020-df8e30d12480][Probability]] -- measure theory with total mass one, plus the two
+  ideas that are not measure-theoretic at all: independence and
+  conditioning. Its applied half is [[id:3a02fb56-30dc-48fe-a0d6-75ff1e209e66][Statistics]].
+- [[id:b8b253f2-97fc-4461-8ee4-281c7a8202d2][Mathematical physics]] -- classical mechanics as geometry, from the
+  variational principle to the symplectic structure and the rigid body,
+  and the Hilbert space formalism of quantum mechanics.
+- [[id:717a23ff-b8a3-401d-87c5-f9cf2d9ba685][Dynamical systems]] -- a differential equation read as a flow, and the
+  two ways of deciding where it goes without solving it.
+
+* How the areas are wired to each other
+
+The division above is a shelving convention, not a claim about the
+mathematics, and the interesting notes are the ones that cross it.
+Three crossings carry most of the traffic here:
+
+- *Order and choice into everything.* [[id:3cb0cea8-d46a-44cf-ad4f-39b88f22d50e][Zorn's lemma]] is used to produce a
+  [[id:75bbba6c-ad62-4369-9a49-17beefdde80f][basis of an arbitrary vector space]], a [[id:c9c12e48-ddd2-4359-917d-138e90df9416][maximal ideal of any ring]], a
+  [[id:22ffdad0-babd-4070-bfce-78778aa1fb8b][functional extending one on a subspace]] and a [[id:e3c053e0-2462-4692-8b0d-ee81002ec63c][maximal
+  finitely satisfiable set of formulas]] -- four theorems, one argument.
+- *Completeness into fixed points.* Completeness of a metric space gives
+  the [[id:1baff983-b527-4d87-b1e6-1ec701dc12c0][contraction principle]], hence [[id:8cd15fbc-3e1f-41a6-8fde-31963a195e78][existence for differential
+  equations]]; and it gives the [[id:44de8493-8687-4cfd-8c39-65561e38033c][Baire category theorem]], hence the
+  [[id:6e6d4450-92e9-4e21-ab0b-ac8950b9d2f0][three theorems of Banach space theory]].
+- *Linear algebra into geometry and analysis.* The [[id:dde5958e-70f1-4680-9e80-06de5649c142][spectral theorem]] is
+  what diagonalises the [[id:bcd05411-fa96-4d39-b18a-1d2d65669fff][shape operator of a surface]], and
+  [[id:63688469-ed04-4016-a5ce-54cb91443094][Sylvester's law]] is what classifies the [[id:ba1be74f-3a05-45ce-a429-7fe14ad45170][quadrics]].
+
+* What this archive is not, yet
+
+Named so that the gaps are visible rather than implied: there is no
+number theory, no combinatorics, no representation theory, no
+homological algebra, and no Galois theory -- though
+[[id:d61e9b83-1185-46ed-9977-48c786495d24][splitting fields]] and [[id:68aecb66-5e63-4fa6-bfad-5629a7a343d2][solvable groups]] are both in place, so the two
+halves of it exist without the correspondence between them. Measure
+theory stops at the [[id:8cbdd35a-bbc4-44cf-9b1d-0b9623e3dc25][convergence theorems]]: Lebesgue measure itself is
+used and never constructed, and the absence of Fubini's theorem is what
+leaves two results in [[id:79a8bba8-94c4-44b9-9020-df8e30d12480][probability]] assumed rather than proved.
+
+#+begin_remark
+A hub is maintained by hand and will therefore go stale, which is the
+usual argument against writing one. It earns its place only by saying
+what cannot be derived -- why a subject is one subject, and which of its
+results the others lean on. The moment a section here becomes a list of
+titles, the list belongs to =cerebro note list= and the section should
+be deleted.
+#+end_remark

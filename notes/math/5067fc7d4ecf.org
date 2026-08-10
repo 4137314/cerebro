@@ -1,0 +1,115 @@
+:PROPERTIES:
+:ID:       fe42fdf4-dd3b-4112-a197-9e3fadbacad6
+:END:
+#+TITLE: Harmonic functions, the mean value property and the Dirichlet problem
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:analysis:partial_differential_equations:
+#+MSC: 35J05, 31A05
+#+HASH: 5067fc7d4ecf
+
+Laplace's equation is the model elliptic equation and the stationary
+case of both the heat and the wave equations. Its solutions are as rigid
+as [[id:dab1d339-e7a9-41e2-8593-910a11938ad2][holomorphic functions]], for the same reason -- in the plane they are
+exactly the real parts of holomorphic functions -- and the mean value
+property is the statement from which all the rigidity follows.
+
+#+DEPENDS: def-differentiable-multivariable, def-divergence-and-curl, cor-real-and-imaginary-parts-are-harmonic
+#+NAME: def-harmonic
+#+begin_definition
+A \(C^{2}\) function \(u\) on an open \(U \subseteq \R^{n}\) is
+/harmonic/ if \(\Delta u = \sum_{i}\partial_{i}^{2}u = 0\); it is
+/subharmonic/ if \(\Delta u \ge 0\). The /Dirichlet problem/ on a
+bounded open \(U\) asks for \(u\) harmonic in \(U\), continuous on
+\(\overline{U}\), with prescribed continuous boundary values.
+#+end_definition
+
+#+DEPENDS: def-harmonic, thm-divergence, def-surface-integral
+#+NAME: thm-mean-value-property-for-harmonic-functions
+#+begin_theorem
+Let \(u\) be harmonic on \(U\) and \(\overline{B}(x_{0},r)\subseteq U\).
+Then \(u(x_{0})\) is the average of \(u\) over the sphere
+\(\partial B(x_{0},r)\), and also over the ball.
+#+end_theorem
+
+#+begin_proof
+Let \(\phi(r)\) be the average of \(u\) over the sphere of radius
+\(r\), that is
+\(\phi(r) = \frac{1}{\abs{\partial B_{r}}}\int_{\partial B(x_{0},r)}u\dd S\).
+Rescaling to the unit sphere and differentiating under the integral,
+\[ \phi'(r) = \frac{1}{\abs{\partial B_{1}}}\int_{\partial B(0,1)}\inner{\nabla u(x_{0}+r\omega)}{\omega}\dd S(\omega) = \frac{1}{\abs{\partial B_{r}}}\int_{\partial B(x_{0},r)}\inner{\nabla u}{N}\dd S, \]
+which by the divergence theorem equals
+\(\frac{1}{\abs{\partial B_{r}}}\int_{B(x_{0},r)}\Delta u = 0\). So
+\(\phi\) is constant, and its limit as \(r\to0\) is \(u(x_{0})\) by
+continuity. The average over the ball is an average of the spherical
+averages, hence also \(u(x_{0})\).
+#+end_proof
+
+#+DEPENDS: thm-mean-value-property-for-harmonic-functions, cor-extreme-value-on-a-compact-space, prop-connected-components
+#+NAME: thm-maximum-principle-for-harmonic-functions
+#+begin_theorem
+Let \(u\) be harmonic on a connected open \(U\). If \(u\) attains an
+interior maximum, it is constant. If \(U\) is bounded and \(u\) is
+continuous on \(\overline{U}\), then
+\(\max_{\overline{U}}u = \max_{\partial U}u\).
+#+end_theorem
+
+#+begin_proof
+Let \(M = \max u\) be attained at \(x_{0}\in U\) and let
+\(A = \setst{x\in U}{u(x) = M}\), non-empty and closed in \(U\). It is
+open: for \(\overline{B}(x,r)\subseteq U\) with \(u(x) = M\), the ball
+average of \(u\) equals \(M\) while \(u \le M\), so the continuous
+function \(M - u \ge 0\) has zero average and hence vanishes on the
+ball. By connectedness \(A = U\).
+
+For the second statement, \(u\) attains its maximum on the compact
+\(\overline{U}\); if at an interior point then \(u\) is constant on the
+connected component and the value is also attained on the boundary.
+#+end_proof
+
+#+DEPENDS: thm-maximum-principle-for-harmonic-functions, def-harmonic
+#+NAME: cor-uniqueness-for-the-dirichlet-problem
+#+begin_corollary
+The Dirichlet problem on a bounded open set has at most one solution,
+and the solution depends monotonically and continuously on the boundary
+data.
+#+end_corollary
+
+#+begin_proof
+The difference of two solutions is harmonic with zero boundary values,
+so by the maximum principle applied to it and to its negative it
+vanishes. If \(u_{1}, u_{2}\) solve the problem with data
+\(f_{1} \le f_{2}\), then \(u_{1}-u_{2}\) is harmonic with non-positive
+boundary values, hence non-positive; and
+\(\sup\abs{u_{1}-u_{2}} \le \sup_{\partial U}\abs{f_{1}-f_{2}}\) by the
+same argument.
+#+end_proof
+
+#+DEPENDS: thm-mean-value-property-for-harmonic-functions, thm-holomorphic-implies-analytic, cor-real-and-imaginary-parts-are-harmonic
+#+NAME: prop-harmonic-functions-are-smooth
+#+begin_proposition
+In the plane, a harmonic function on a disc is the real part of a
+holomorphic function, and is therefore infinitely differentiable and
+analytic.
+#+end_proposition
+
+#+begin_proof
+Let \(u\) be harmonic on a disc and put
+\(F = \partial_{x}u - i\,\partial_{y}u\). Its real and imaginary parts
+have continuous partial derivatives satisfying the Cauchy-Riemann
+equations -- the first equation is \(\partial_{x}^{2}u = -\partial_{y}^{2}u\),
+which is harmonicity, and the second is equality of mixed partials -- so
+\(F\) is holomorphic. On a disc, which is convex, \(F\) has a primitive
+\(G\), and \(G' = F\) gives \(\partial_{x}\Re G = \partial_{x}u\) and
+\(\partial_{y}\Re G = \partial_{y}u\), so \(u\) and \(\Re G\) differ by
+a constant. Holomorphic functions are analytic, hence so is \(u\).
+#+end_proof
+
+#+begin_remark
+Existence for the Dirichlet problem is the half not proved here, and it
+is genuinely harder than uniqueness: it needs either an explicit kernel
+on a special domain -- the Poisson kernel on a disc, which is the
+harmonic analogue of the Cauchy formula -- or Perron's method of
+subharmonic functions on a general one. Uniqueness, by contrast, is two
+lines from the maximum principle, which is the usual asymmetry for
+elliptic problems.
+#+end_remark

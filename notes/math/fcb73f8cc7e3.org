@@ -1,0 +1,118 @@
+:PROPERTIES:
+:ID:       22ffdad0-babd-4070-bfce-78778aa1fb8b
+:END:
+#+TITLE: The Hahn-Banach theorem
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:analysis:functional_analysis:
+#+MSC: 46A22
+#+HASH: fcb73f8cc7e3
+
+In finite dimension the [[id:6f3bed75-1321-4c80-b0bd-c8932e0c2837][dual space]] is as large as the space, because a
+basis produces functionals. In infinite dimension no basis is available
+and the dual could conceivably be trivial. Hahn-Banach rules that out:
+a functional defined on a subspace and dominated by a convex gauge
+extends to the whole space with the same bound, so there are always
+enough functionals to separate points.
+
+#+DEPENDS: def-vector-space, def-norm, def-dual-space
+#+NAME: def-sublinear-functional
+#+begin_definition
+A /sublinear functional/ on a real vector space \(V\) is
+\(q \colon V \to \R\) with \(q(v+w)\le q(v)+q(w)\) and
+\(q(\lambda v) = \lambda q(v)\) for \(\lambda \ge 0\). Every norm is
+one.
+#+end_definition
+
+#+DEPENDS: def-sublinear-functional, thm-zorn, def-linear-map
+#+NAME: lem-one-step-extension
+#+begin_lemma
+Let \(q\) be sublinear on \(V\), \(U \subseteq V\) a subspace and
+\(\varphi \colon U \to \R\) linear with \(\varphi \le q\) on \(U\). Let
+\(z \notin U\). Then \(\varphi\) extends to \(U + \R z\) with the same
+domination.
+#+end_lemma
+
+#+begin_proof
+An extension is determined by the value \(c = \varphi(z)\), and the
+requirement is \(\varphi(u) + tc \le q(u+tz)\) for all \(u \in U\),
+\(t \in \R\). For \(t>0\), dividing by \(t\) and using homogeneity this
+says \(c \le q(u'+z)-\varphi(u')\) for all \(u'\in U\); for \(t<0\), it
+says \(c \ge \varphi(u'')-q(u''-z)\); and \(t = 0\) is the hypothesis.
+
+Such a \(c\) exists provided
+\(\varphi(u'')-q(u''-z) \le q(u'+z)-\varphi(u')\) for all
+\(u',u''\in U\), that is
+\(\varphi(u'+u'') \le q(u'+z) + q(u''-z)\). This holds because
+\(\varphi(u'+u'')\le q(u'+u'') = q\bigl((u'+z)+(u''-z)\bigr) \le q(u'+z)+q(u''-z)\).
+#+end_proof
+
+#+DEPENDS: lem-one-step-extension, thm-zorn
+#+NAME: thm-hahn-banach
+#+begin_theorem
+Let \(q\) be sublinear on a real vector space \(V\), \(U\) a subspace
+and \(\varphi \colon U \to \R\) linear with \(\varphi \le q\) on \(U\).
+Then \(\varphi\) extends to a linear \(\Phi \colon V \to \R\) with
+\(\Phi \le q\) on \(V\).
+#+end_theorem
+
+#+begin_proof
+Order by extension the pairs \((W,\psi)\) with \(U \subseteq W\) a
+subspace and \(\psi\) linear on \(W\), dominated by \(q\) and extending
+\(\varphi\): \((W,\psi)\preceq(W',\psi')\) when \(W \subseteq W'\) and
+\(\psi'\) restricts to \(\psi\). The family is non-empty, containing
+\((U,\varphi)\), and a chain has an upper bound -- the union of the
+subspaces, which is a subspace since the chain is totally ordered, with
+the common extension of the functionals, still dominated by \(q\)
+because domination is a pointwise condition.
+
+Zorn's lemma gives a maximal \((W,\psi)\). If \(W \ne V\), the lemma
+extends \(\psi\) to \(W + \R z\) for any \(z \notin W\), contradicting
+maximality. So \(W = V\).
+#+end_proof
+
+#+DEPENDS: thm-hahn-banach, def-norm, prop-a-norm-induces-a-metric
+#+NAME: cor-norm-preserving-extension
+#+begin_corollary
+Let \(V\) be a normed space, \(U\) a subspace and \(\varphi\) a linear
+functional on \(U\) with \(\abs{\varphi(u)}\le C\norm{u}\). Then
+\(\varphi\) extends to \(V\) with the same bound.
+#+end_corollary
+
+#+begin_proof
+Apply the theorem with \(q(v) = C\norm{v}\), which is sublinear, to get
+\(\Phi \le q\). Then also \(-\Phi(v) = \Phi(-v)\le C\norm{v}\), so
+\(\abs{\Phi(v)}\le C\norm{v}\).
+#+end_proof
+
+#+DEPENDS: cor-norm-preserving-extension, def-norm, thm-double-dual
+#+NAME: thm-enough-functionals
+#+begin_theorem
+Let \(V\) be a normed space. For every \(v \ne 0\) there is a linear
+functional \(\Phi\) with \(\Phi(v) = \norm{v}\) and
+\(\abs{\Phi(w)}\le\norm{w}\) for all \(w\). Hence the functionals
+separate points, and the canonical map \(V \to V^{**}\) is injective and
+norm-preserving.
+#+end_theorem
+
+#+begin_proof
+On the line \(U = \R v\) define \(\varphi(tv) = t\norm{v}\), so that
+\(\abs{\varphi(u)} = \norm{u}\) on \(U\). By the corollary it extends to
+\(\Phi\) with \(\abs{\Phi(w)}\le\norm{w}\), and \(\Phi(v) = \norm{v}\).
+If \(v \ne w\), applying this to \(v - w\) gives a functional taking
+different values at \(v\) and \(w\).
+
+For the last claim, \(\eta(v)\) has norm at most \(\norm{v}\) since
+\(\abs{\varphi(v)}\le\norm{\varphi}\norm{v}\), and at least
+\(\norm{v}\) by the \(\Phi\) just constructed; injectivity follows from
+\(\norm{\eta(v)} = \norm{v}\).
+#+end_proof
+
+#+begin_remark
+The theorem is pure Zorn: the extension is never constructed and, for a
+general Banach space, cannot be. That is the same status as the
+existence of a basis of an arbitrary vector space and of a maximal ideal
+in a ring -- three theorems that make their subjects possible and give
+nothing to compute with. The geometric form, separating a point from a
+closed convex set by a hyperplane, is the infinite-dimensional statement
+of the separation theorem proved in \(\R^{n}\) with a nearest point.
+#+end_remark

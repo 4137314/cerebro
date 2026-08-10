@@ -1,0 +1,146 @@
+:PROPERTIES:
+:ID:       6264edf2-9cd7-4236-9d29-31f35613f8ec
+:END:
+#+TITLE: Covering spaces and the fundamental group of the circle
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:topology:algebraic_topology:
+#+MSC: 55Q05, 57M10
+#+HASH: 8ec154cb8699
+
+The fundamental group was defined for every space and computed for none.
+The first computation is the circle, and it is not an accident that it
+needs a new idea: loops are compared by lifting them to the line, where
+every loop unwinds into a path and the only invariant left is where that
+path ends. The winding number is that endpoint.
+
+#+DEPENDS: def-continuous-map, def-homeomorphism, def-subspace-topology
+#+NAME: def-covering-map
+#+begin_definition
+A continuous surjection \(p \colon E \to B\) is a /covering map/ if
+every \(b \in B\) has an open neighbourhood \(U\) such that
+\(p^{-1}(U)\) is a disjoint union of open sets, each mapped
+homeomorphically onto \(U\) by \(p\). Such a \(U\) is /evenly covered/,
+and the pieces are its /sheets/.
+#+end_definition
+
+#+DEPENDS: def-covering-map, prop-pasting-lemma, thm-closed-interval-is-compact, lem-lebesgue-number
+#+NAME: thm-path-lifting
+#+begin_theorem
+Let \(p \colon E \to B\) be a covering map, \(\gamma \colon [0,1]\to B\)
+a path and \(e_{0}\in p^{-1}(\gamma(0))\). Then there is exactly one
+path \(\tilde{\gamma}\colon[0,1]\to E\) with \(p\tilde{\gamma} = \gamma\)
+and \(\tilde{\gamma}(0) = e_{0}\).
+#+end_theorem
+
+#+begin_proof
+Cover \(B\) by evenly covered open sets; their preimages under
+\(\gamma\) form an open cover of the compact metric space \([0,1]\), so
+it has a Lebesgue number, and there is a partition
+\(0 = t_{0}<\cdots<t_{n} = 1\) with each
+\(\gamma([t_{k},t_{k+1}])\) inside an evenly covered \(U_{k}\).
+
+Construct \(\tilde{\gamma}\) on \([0,t_{k}]\) by induction. Given
+\(\tilde{\gamma}(t_{k})\), let \(S\) be the unique sheet over
+\(U_{k}\) containing it; define \(\tilde{\gamma}\) on
+\([t_{k},t_{k+1}]\) as \((p\vert_{S})^{-1}\circ\gamma\), which is
+continuous and agrees with the previous piece at \(t_{k}\). The pasting
+lemma over the closed intervals makes the result continuous.
+
+Uniqueness: let \(\tilde{\gamma}\) and \(\tilde{\delta}\) be two lifts
+agreeing at \(0\), and let \(A\) be the set where they agree. \(A\) is
+non-empty. It is open and closed: near any \(t\), both lifts stay in
+sheets over an evenly covered neighbourhood of \(\gamma(t)\); if they
+agree at \(t\) they are in the same sheet and hence equal near \(t\)
+since \(p\) is injective there, and if they differ at \(t\) they are in
+different, disjoint sheets and hence differ near \(t\). As \([0,1]\) is
+connected, \(A = [0,1]\).
+#+end_proof
+
+#+DEPENDS: thm-path-lifting, def-path-homotopy, lem-lebesgue-number, prop-pasting-lemma
+#+NAME: thm-homotopy-lifting
+#+begin_theorem
+With \(p\) as above, let \(H \colon [0,1]^{2}\to B\) be continuous and
+\(e_{0}\in p^{-1}(H(0,0))\). Then there is exactly one continuous
+\(\tilde{H}\) with \(p\tilde{H} = H\) and \(\tilde{H}(0,0) = e_{0}\). In
+particular, path-homotopic paths lift to path-homotopic paths with the
+same endpoints.
+#+end_theorem
+
+#+begin_proof
+As before, a Lebesgue number for the cover of \([0,1]^{2}\) by the
+preimages of evenly covered sets gives a grid of closed squares each
+mapped by \(H\) into an evenly covered set. Lift the squares one at a
+time, in the order of a path through the grid that always meets the
+already-lifted region in a connected set: on each square, choose the
+sheet containing the already-defined values, which is forced because
+that region is connected and its image is in one sheet. Continuity
+follows from the pasting lemma, and uniqueness by the connectedness
+argument of the previous theorem applied to \([0,1]^{2}\).
+
+If \(H\) is a path homotopy, \(H(0,\cdot)\) and \(H(1,\cdot)\) are
+constant, so their lifts are paths lying in the discrete fibres over
+those points, hence constant; therefore \(\tilde{H}\) is a path
+homotopy between the lifts of the two paths, which in particular have
+common endpoints.
+#+end_proof
+
+#+DEPENDS: thm-path-lifting, thm-homotopy-lifting, thm-fundamental-group, thm-classification-of-cyclic-groups
+#+NAME: thm-fundamental-group-of-the-circle
+#+begin_theorem
+\(\pi_{1}(S^{1},1) \iso \Z\), the isomorphism sending the class of a
+loop to the endpoint of its lift starting at \(0\) under
+\(p(t) = (\cos 2\pi t, \sin 2\pi t)\).
+#+end_theorem
+
+#+begin_proof
+The map \(p \colon \R \to S^{1}\) is a covering: each of the four open
+half-circles is evenly covered, its preimage being a disjoint union of
+open intervals each mapped homeomorphically.
+
+Define \(\deg[\alpha] = \tilde{\alpha}(1)\), where \(\tilde{\alpha}\) is
+the lift of \(\alpha\) starting at \(0\). It lands in
+\(p^{-1}(1) = \Z\), it is well defined by the homotopy lifting theorem,
+and it is a homomorphism: the lift of \(\alpha\cdot\beta\) starting at
+\(0\) is \(\tilde{\alpha}\) followed by \(\tilde{\beta}\) translated by
+\(\tilde{\alpha}(1)\), which is a lift of \(\beta\) starting there, so
+the endpoint is \(\deg[\alpha]+\deg[\beta]\).
+
+Surjective: the path \(t\mapsto nt\) in \(\R\) projects to a loop of
+degree \(n\). Injective: if \(\deg[\alpha] = 0\) then
+\(\tilde{\alpha}\) is a loop in \(\R\), which is convex, so
+\(\tilde{\alpha}\) is path-homotopic to the constant by the
+straight-line homotopy; composing that homotopy with \(p\) shows
+\(\alpha\) is null-homotopic.
+#+end_proof
+
+#+DEPENDS: thm-fundamental-group-of-the-circle, thm-homotopy-invariance-of-the-fundamental-group, prop-convex-sets-are-contractible
+#+NAME: cor-no-retraction-of-the-disc
+#+begin_corollary
+There is no retraction of the closed disc \(D^{2}\) onto its boundary
+circle; consequently every continuous \(f \colon D^{2}\to D^{2}\) has a
+fixed point.
+#+end_corollary
+
+#+begin_proof
+Suppose \(r \colon D^{2}\to S^{1}\) were a retraction and let
+\(\iota\) be the inclusion. Then \(r\circ\iota = \id_{S^{1}}\), so
+\(r_{*}\circ\iota_{*} = \id\) on \(\pi_{1}(S^{1}) \iso \Z\); but
+\(\iota_{*}\) factors through \(\pi_{1}(D^{2})\), which is trivial since
+\(D^{2}\) is convex and hence contractible. So the identity of \(\Z\)
+factors through the trivial group -- impossible.
+
+If \(f\) had no fixed point, the map sending \(x\) to the point where
+the ray from \(f(x)\) through \(x\) meets \(S^{1}\) would be
+continuous -- the intersection point depends continuously on the two
+distinct points -- and would fix \(S^{1}\) pointwise, giving a
+retraction.
+#+end_proof
+
+#+begin_remark
+Brouwer's theorem in dimension two costs exactly one computation of a
+fundamental group, and the pattern is the whole method of algebraic
+topology: a geometric impossibility becomes an algebraic one under a
+functor. In higher dimensions \(\pi_{1}\) is useless -- spheres of
+dimension at least two are simply connected -- and homology is what
+replaces it.
+#+end_remark

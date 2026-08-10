@@ -1,0 +1,74 @@
+:PROPERTIES:
+:ID:       79a8bba8-94c4-44b9-9020-df8e30d12480
+:END:
+#+TITLE: Probability
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:probability:probability_theory:
+#+MSC: 60-XX
+#+HASH: 1541ec082d29
+
+Probability is [[id:9910fd2f-5f5e-4be0-8785-c2b9904dc001][measure theory]] with a normalisation and two extra ideas.
+The normalisation -- total mass one -- buys the finiteness that makes
+every measure continuous from above and every bounded function
+integrable. The two ideas are independence and conditioning, and neither
+is measure-theoretic: they are hypotheses about how information is
+distributed, and every theorem below is one of them applied to a
+sequence.
+
+Part of [[id:c2fcb100-fc5a-4670-9b5d-c068c0c325ff][Mathematics]].
+
+* Setting up
+
+[[id:c49a94ad-eb5c-40fd-b01c-ac36d269087f][Probability spaces, conditioning and independence]] and
+[[id:0c13c1ea-dc7e-4d50-a727-ef836c2f764c][random variables, laws and distribution functions]]. The move that
+defines the subject's style is in the second: the underlying space is
+never described again, and everything is said about the measure a random
+variable pushes onto the line.
+
+[[id:644e9cbe-c9b1-4e89-ad6d-4dfcdba05ec4][Expectation, the transfer theorem and Jensen's inequality]] makes that
+precise -- an expectation is an integral on \(\R\) against the law --
+and [[id:1d882fb6-374f-46a5-9ae3-b2c59f446adf][variance, covariance and the Markov and Chebyshev inequalities]]
+supplies the one bound the rest of the subject spends.
+
+* The limit theorems
+
+Three notes, in increasing strength, all about the same sum:
+
+1. [[id:04e72b4c-3643-4e61-8b6f-7c4b7513d753][Modes of convergence and the Borel-Cantelli lemmas]] -- four
+   inequivalent notions of convergence, and the lemma that upgrades a
+   summable bound on probabilities into a statement about almost every
+   outcome.
+2. [[id:dc80cb7b-694a-414b-9847-a1bdf4bef452][The weak and strong laws of large numbers]] -- the average converges
+   to the mean, in probability by one application of Chebyshev, almost
+   surely by Borel-Cantelli.
+3. [[id:3ebbe260-1cdd-4b64-baa6-47d1f769c216][The central limit theorem]] -- the error of that convergence,
+   rescaled, has a limit that forgets everything except the first two
+   moments. It is proved through
+   [[id:9e6f4d6a-c97a-4078-ba14-9d2bb8ba53c0][characteristic functions]], which turn convolution into
+   multiplication.
+
+* Conditioning done properly
+
+[[id:3c9568ab-072c-4973-9f6b-7506e431be22][Conditional expectation as an orthogonal projection]] is where the
+subject needs [[id:642c93ab-d004-4829-b5fa-899759923d63][Hilbert space]] theory: conditioning on an event of
+probability zero has no elementary meaning, and the construction that
+works is the projection onto the square-integrable variables measurable
+with respect to the given information. [[id:330e7293-f5ef-4b8c-8a3e-9ac6fd9f5f8d][The completeness of \(L^{2}\)]] is
+what makes that projection exist.
+
+* What is assumed and not proved
+
+Two theorems are used and marked =assumed=: the uniqueness of a law
+given its [[id:9e6f4d6a-c97a-4078-ba14-9d2bb8ba53c0][characteristic function]], and Levy's continuity theorem. Both
+need Fubini's theorem, which this archive does not have. That is the
+only debt in the area, and =cerebro results open= reports it.
+
+* What is missing
+
+[[id:3a02fb56-30dc-48fe-a0d6-75ff1e209e66][Statistics]] is the applied half and has its own hub. Absent from the
+theory: product measures and Fubini, hence any construction of an
+infinite sequence of independent variables; conditional expectation for
+merely integrable variables, which needs Radon-Nikodym; martingales and
+their convergence theorem; stochastic processes of any kind, Brownian
+motion in particular; and large deviations, of which only the
+elementary [[id:1d882fb6-374f-46a5-9ae3-b2c59f446adf][Markov bound]] is present.

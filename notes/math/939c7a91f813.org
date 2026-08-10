@@ -1,0 +1,109 @@
+:PROPERTIES:
+:ID:       9881653c-b669-4380-85d7-815b643c02a2
+:END:
+#+TITLE: Statistical models, estimators and consistency
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:probability:statistics:
+#+MSC: 62A01, 62F10
+#+HASH: 939c7a91f813
+
+Probability starts from a law and computes; statistics starts from data
+and asks which law produced it. The formal difference is one word in the
+definition: the probability measure is not given but ranges over a
+family, and everything the subject does is choose among the members of
+that family or bound the error of having chosen.
+
+#+DEPENDS: def-probability-space, def-random-variable, def-independence-of-random-variables
+#+NAME: def-statistical-model
+#+begin_definition
+A /statistical model/ is a measurable space \((\mathcal{X},\mathcal{A})\)
+together with a family \((\Prob_{\theta})_{\theta\in\Theta}\) of
+probability measures on it, indexed by a /parameter/ \(\theta\). The
+model is /dominated/ by a measure \(\mu\) if each \(\Prob_{\theta}\) has
+a density \(f(\cdot\,;\theta)\) with respect to \(\mu\), and
+/identifiable/ if \(\theta\ne\theta'\) implies
+\(\Prob_{\theta}\ne\Prob_{\theta'}\). A /sample/ of size \(n\) is a
+vector \(X = (X_{1},\dots,X_{n})\) of independent random variables with
+common law \(\Prob_{\theta}\).
+#+end_definition
+
+#+DEPENDS: def-statistical-model, def-expectation
+#+NAME: def-estimator
+#+begin_definition
+A /statistic/ is a measurable function of the sample alone, carrying no
+\(\theta\). An /estimator/ of a quantity \(g(\theta)\) is a statistic
+\(T\); its /bias/ is \(b_{\theta}(T) = \E_{\theta}[T]-g(\theta)\), and
+it is /unbiased/ if the bias vanishes for every \(\theta\). Its /mean
+squared error/ is
+\(\mathrm{MSE}_{\theta}(T) = \E_{\theta}[(T-g(\theta))^{2}]\).
+#+end_definition
+
+#+DEPENDS: def-estimator, prop-variance-identities
+#+NAME: prop-bias-variance-decomposition
+#+begin_proposition
+For a square-integrable estimator,
+\(\mathrm{MSE}_{\theta}(T) = \Var_{\theta}(T) + b_{\theta}(T)^{2}\).
+In particular an unbiased estimator has mean squared error equal to its
+variance, and a biased one can beat it.
+#+end_proposition
+
+#+begin_proof
+Write \(T - g(\theta) = (T-\E_{\theta}[T]) + b_{\theta}(T)\). Squaring
+and taking expectations, the cross term is
+\(2b_{\theta}(T)\,\E_{\theta}[T-\E_{\theta}[T]] = 0\), leaving the
+variance and the squared bias.
+#+end_proof
+
+#+DEPENDS: def-estimator, def-modes-of-convergence
+#+NAME: def-consistency
+#+begin_definition
+A sequence of estimators \(T_{n}\), with \(T_{n}\) a function of a
+sample of size \(n\), is /consistent/ for \(g(\theta)\) if
+\(T_{n} \to g(\theta)\) in probability under \(\Prob_{\theta}\), for
+every \(\theta\).
+#+end_definition
+
+#+DEPENDS: def-consistency, thm-weak-law-of-large-numbers, thm-strong-law-under-a-fourth-moment
+#+NAME: thm-the-sample-mean-is-consistent
+#+begin_theorem
+Let the model have finite variance \(\sigma^{2}(\theta)\) and mean
+\(\mu(\theta)\), and let
+\(\bar{X}_{n} = (X_{1}+\cdots+X_{n})/n\). Then \(\bar{X}_{n}\) is an
+unbiased and consistent estimator of \(\mu(\theta)\), with
+\(\mathrm{MSE}_{\theta}(\bar{X}_{n}) = \sigma^{2}(\theta)/n\); and it is
+strongly consistent -- convergence holds almost surely -- when the
+fourth moment is finite.
+#+end_theorem
+
+#+begin_proof
+Unbiasedness is linearity of expectation. The mean squared error equals
+the variance, which is \(\sigma^{2}(\theta)/n\) since the sample is
+independent. Consistency is the weak law of large numbers applied under
+\(\Prob_{\theta}\), and the almost sure statement is the strong law
+under the fourth-moment hypothesis.
+#+end_proof
+
+#+DEPENDS: def-estimator, prop-bias-variance-decomposition, def-statistical-model
+#+NAME: prop-the-sample-variance-is-unbiased
+#+begin_proposition
+With \(S_{n}^{2} = \frac{1}{n-1}\sum_{i=1}^{n}(X_{i}-\bar{X}_{n})^{2}\)
+and \(n \ge 2\), \(\E_{\theta}[S_{n}^{2}] = \sigma^{2}(\theta)\).
+#+end_proposition
+
+#+begin_proof
+Assume \(\mu(\theta) = 0\), which changes neither side. Expanding,
+\(\sum_{i}(X_{i}-\bar{X}_{n})^{2} = \sum_{i}X_{i}^{2} - n\bar{X}_{n}^{2}\).
+Taking expectations, \(\E[\sum_{i}X_{i}^{2}] = n\sigma^{2}\) and
+\(\E[\bar{X}_{n}^{2}] = \Var(\bar{X}_{n}) = \sigma^{2}/n\) by
+independence, so the total is \(n\sigma^{2}-\sigma^{2} = (n-1)\sigma^{2}\).
+Dividing by \(n-1\) gives the claim.
+#+end_proof
+
+#+begin_remark
+The divisor \(n-1\) is exactly the correction for having estimated the
+mean from the same data, and the proposition is the whole justification
+of it; with \(n\) in the denominator the estimator is biased downwards
+by a factor \((n-1)/n\). Unbiasedness is a weaker virtue than it looks,
+though -- the bias-variance decomposition shows an estimator may trade a
+little bias for a large reduction in variance and win.
+#+end_remark

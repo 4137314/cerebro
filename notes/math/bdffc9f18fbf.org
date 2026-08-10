@@ -1,0 +1,121 @@
+:PROPERTIES:
+:ID:       22a8386a-16ba-435b-a71d-26d9886886d0
+:END:
+#+TITLE: Boolean algebras and Stone's representation theorem
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:foundations:logic:
+#+MSC: 06E15, 03G05
+#+HASH: bdffc9f18fbf
+
+The algebra of propositions and the algebra of subsets obey the same
+laws, and Stone's theorem says this is not an analogy: every Boolean
+algebra /is/ an algebra of sets. The proof is the ultrafilter lemma, and
+the sets in question are the ultrafilters -- so the points of the
+representing space are exactly the consistent complete assignments of
+truth values.
+
+#+DEPENDS: def-partial-order, def-complete-lattice, def-ring
+#+NAME: def-boolean-algebra
+#+begin_definition
+A /Boolean algebra/ is a set \(B\) with operations \(\wedge, \vee\),
+a unary \(\neg\), and elements \(0 \ne 1\), such that \(\wedge\) and
+\(\vee\) are commutative and associative, each distributes over the
+other, \(a \wedge (a \vee b) = a = a \vee (a \wedge b)\),
+\(a \wedge \neg a = 0\) and \(a \vee \neg a = 1\). One writes
+\(a \le b\) for \(a \wedge b = a\).
+#+end_definition
+
+#+DEPENDS: def-boolean-algebra, def-partial-order
+#+NAME: prop-boolean-order
+#+begin_proposition
+In a Boolean algebra, \(\le\) is a partial order with least element
+\(0\) and greatest element \(1\), in which \(a \wedge b\) is the
+infimum and \(a \vee b\) the supremum of \(\set{a,b}\); moreover
+\(\neg\) is an order-reversing involution.
+#+end_proposition
+
+#+begin_proof
+Reflexivity is \(a \wedge a = a\), which follows from the absorption
+laws: \(a \wedge a = a \wedge (a \vee (a\wedge a)) = a\).
+Antisymmetry: \(a \wedge b = a\) and \(b \wedge a = b\) give
+\(a = b\) by commutativity. Transitivity: from \(a\wedge b = a\) and
+\(b \wedge c = b\), \(a \wedge c = (a\wedge b)\wedge c = a \wedge b = a\).
+
+\(a\wedge b \le a\) and \(a \wedge b \le b\) by associativity and
+idempotence, and any \(c\) below both satisfies
+\(c \wedge (a\wedge b) = c\); so \(a \wedge b\) is the infimum, and
+dually for \(\vee\). Absorption gives \(0 \le a \le 1\). Finally
+\(\neg\) is an involution because \(\neg\neg a\) and \(a\) have the same
+meet and join with \(\neg a\), and it reverses the order since
+\(a \le b\) implies \(\neg b \wedge \neg a = \neg(a \vee b) = \neg b\).
+#+end_proof
+
+#+DEPENDS: def-boolean-algebra, def-filter, thm-ultrafilter-lemma
+#+NAME: def-boolean-ultrafilter
+#+begin_definition
+A /filter/ of a Boolean algebra \(B\) is a non-empty
+\(F \subseteq B\) with \(0 \notin F\), closed under \(\wedge\) and
+upward closed for \(\le\); an /ultrafilter/ is a maximal one.
+#+end_definition
+
+#+DEPENDS: def-boolean-ultrafilter, prop-ultrafilter-criterion, thm-zorn
+#+NAME: thm-boolean-ultrafilter-lemma
+#+begin_theorem
+A filter \(U\) of \(B\) is an ultrafilter if and only if for every
+\(a \in B\) exactly one of \(a\), \(\neg a\) lies in \(U\); and every
+filter extends to an ultrafilter. Consequently, for \(a \ne 0\) there is
+an ultrafilter containing \(a\).
+#+end_theorem
+
+#+begin_proof
+Not both \(a\) and \(\neg a\) can lie in a filter, their meet being
+\(0\). If \(U\) is maximal and \(a \notin U\), then some \(b \in U\) has
+\(b \wedge a = 0\) -- otherwise the upward closure of
+\(\setst{b\wedge a}{b \in U}\) would be a strictly larger filter -- and
+then \(b \le \neg a\), so \(\neg a \in U\). Conversely the dichotomy
+forbids any proper extension, exactly as for filters of sets.
+
+Zorn's lemma applies to the filters containing a given one, the union of
+a chain of filters being a filter. For \(a \ne 0\), the upward closure
+of \(\set{a}\) is a filter.
+#+end_proof
+
+#+DEPENDS: thm-boolean-ultrafilter-lemma, def-topological-space, thm-basis-criterion, def-hausdorff, def-compact
+#+NAME: thm-stone-representation
+#+begin_theorem
+Let \(S(B)\) be the set of ultrafilters of a Boolean algebra \(B\), and
+for \(a \in B\) put \(\hat{a} = \setst{U \in S(B)}{a \in U}\). Then the
+family \(\setst{\hat{a}}{a \in B}\) is a basis of a topology on
+\(S(B)\), and \(a \mapsto \hat{a}\) is an injective map of \(B\) onto a
+family of subsets closed under intersection, union and complement, with
+\(\widehat{a\wedge b} = \hat{a}\cap\hat{b}\),
+\(\widehat{a\vee b} = \hat{a}\cup\hat{b}\) and
+\(\widehat{\neg a} = S(B)\setminus\hat{a}\). Every Boolean algebra is
+therefore isomorphic to an algebra of sets.
+#+end_theorem
+
+#+begin_proof
+The three displayed identities are the ultrafilter criterion: an
+ultrafilter contains \(a\wedge b\) exactly when it contains both (it is
+closed under \(\wedge\) and upward closed), it contains \(\neg a\)
+exactly when it does not contain \(a\), and the identity for \(\vee\)
+follows from the other two by \(a \vee b = \neg(\neg a\wedge\neg b)\).
+In particular the family is closed under finite intersections, so it is
+a basis, and \(\hat{1} = S(B)\) covers.
+
+Injectivity: if \(a \ne b\), then \(a \wedge \neg b \ne 0\) or
+\(\neg a \wedge b \ne 0\) -- otherwise \(a \le b\) and \(b \le a\). Say
+the first; by the previous theorem some ultrafilter contains
+\(a\wedge\neg b\), hence lies in \(\hat{a}\) and not in \(\hat{b}\).
+Being a bijection onto its image preserving the operations, the map is
+an isomorphism of Boolean algebras.
+#+end_proof
+
+#+begin_remark
+The topology makes \(S(B)\) compact and Hausdorff with a basis of clopen
+sets, and the correspondence is a duality: continuous maps of such
+spaces correspond to homomorphisms of Boolean algebras, backwards. Read
+in logic, \(S(B)\) for the algebra of formulas modulo equivalence is the
+space of complete consistent theories, and its compactness is the
+compactness theorem.
+#+end_remark

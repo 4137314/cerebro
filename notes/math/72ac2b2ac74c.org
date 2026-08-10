@@ -1,0 +1,82 @@
+:PROPERTIES:
+:ID:       dcebacce-9383-47a7-a556-580d2ee38e5b
+:END:
+#+TITLE: Tychonoff's theorem
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:topology:general_topology:
+#+MSC: 54D30, 54B10
+#+HASH: 72ac2b2ac74c
+
+A product of compact spaces is compact -- for arbitrarily many factors,
+with no countability and no metric. The statement is strong enough to be
+equivalent to the axiom of choice, and the shortest honest proof is the
+one that says what compactness /is/ in terms of ultrafilters: a product
+is compact because an ultrafilter can be pushed into every coordinate at
+once, and reassembled.
+
+#+DEPENDS: def-product-topology, def-compact, thm-compactness-by-ultrafilters
+#+NAME: lem-pushforward-of-an-ultrafilter
+#+begin_lemma
+Let \(\mathcal{U}\) be an ultrafilter on a set \(I\) and
+\(f \colon I \to Y\) any map. Then
+\(f_{*}\mathcal{U} = \setst{B \subseteq Y}{f^{-1}(B)\in\mathcal{U}}\) is
+an ultrafilter on \(Y\).
+#+end_lemma
+
+#+begin_proof
+Preimage commutes with intersection and complement and preserves
+inclusion, so \(f_{*}\mathcal{U}\) is closed under finite intersections
+and upward closed, contains \(Y\), and omits \(\emptyset\). For any
+\(B\), either \(f^{-1}(B)\in\mathcal{U}\) or its complement
+\(f^{-1}(Y\setminus B)\) is, by the ultrafilter criterion; so
+\(f_{*}\mathcal{U}\) satisfies that criterion too.
+#+end_proof
+
+#+DEPENDS: lem-pushforward-of-an-ultrafilter, thm-compactness-by-ultrafilters, thm-product-universal-property, def-filter-convergence
+#+NAME: thm-tychonoff
+#+begin_theorem
+An arbitrary product \(X = \prod_{i\in I}X_{i}\) of compact spaces is
+compact in the product topology.
+#+end_theorem
+
+#+begin_proof
+By the ultrafilter characterisation of compactness it suffices to show
+that every ultrafilter \(\mathcal{U}\) on \(X\) converges.
+
+For each \(i\), the pushforward \((\pi_{i})_{*}\mathcal{U}\) is an
+ultrafilter on \(X_{i}\), which is compact, so it converges to some
+point; choose one and call it \(x_{i}\). Let \(x = (x_{i})_{i}\).
+
+We claim \(\mathcal{U}\to x\). A basic neighbourhood of \(x\) is a
+finite intersection \(\bigcap_{k\le n}\pi_{i_{k}}^{-1}(V_{k})\) with
+\(V_{k}\) an open neighbourhood of \(x_{i_{k}}\). Since
+\((\pi_{i_{k}})_{*}\mathcal{U}\to x_{i_{k}}\), we have
+\(V_{k}\in(\pi_{i_{k}})_{*}\mathcal{U}\), that is
+\(\pi_{i_{k}}^{-1}(V_{k})\in\mathcal{U}\); a filter is closed under
+finite intersections, so the basic neighbourhood lies in
+\(\mathcal{U}\), and hence so does every neighbourhood of \(x\) by
+upward closure.
+#+end_proof
+
+#+DEPENDS: thm-tychonoff, prop-hausdorff-is-inherited, cor-heine-borel-in-euclidean-space
+#+NAME: cor-cubes-are-compact
+#+begin_corollary
+For any set \(I\), the cube \([0,1]^{I}\) is compact Hausdorff.
+#+end_corollary
+
+#+begin_proof
+\([0,1]\) is closed and bounded in \(\R\), hence compact, and it is
+Hausdorff as a metric space. Tychonoff's theorem gives compactness of
+the product, and a product of Hausdorff spaces is Hausdorff.
+#+end_proof
+
+#+begin_remark
+The proof used a choice of limit in each coordinate, and that use is not
+an artefact: Tychonoff's theorem implies the axiom of choice. Given
+non-empty sets \(X_{i}\), topologise \(X_{i}\cup\set{\infty_{i}}\) so
+that it is compact, apply the theorem to the product, and a point of a
+suitable closed subset of it is a choice function. For /Hausdorff/
+factors the theorem is strictly weaker -- it is equivalent to the
+ultrafilter lemma -- which is a rare case where the exact strength of a
+standard theorem is known.
+#+end_remark

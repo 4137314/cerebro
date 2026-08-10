@@ -1,0 +1,101 @@
+:PROPERTIES:
+:ID:       be7f8732-a492-4657-ae3b-f17b9bf70259
+:END:
+#+TITLE: Hypothesis tests and the Neyman-Pearson lemma
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:probability:statistics:
+#+MSC: 62F03
+#+HASH: 0abac08adeb5
+
+A test is a decision rule, and it can be wrong in two ways that cannot
+be made small at once. Fixing the tolerable rate of one and minimising
+the other turns a vague question into a well-posed optimisation, and for
+two simple hypotheses that optimisation has a complete answer: reject
+where the likelihood ratio is large, and nothing else can do better.
+
+#+DEPENDS: def-statistical-model, def-estimator, def-probability-space
+#+NAME: def-test
+#+begin_definition
+Let \((\Prob_{\theta})_{\theta\in\Theta}\) be a model and
+\(\Theta = \Theta_{0}\cup\Theta_{1}\) a partition into a /null/ and an
+/alternative/ hypothesis. A /test/ is a measurable
+\(\phi \colon \mathcal{X}\to[0,1]\), interpreted as the probability of
+rejecting the null on observing \(x\); it is /non-randomised/ if it
+takes only the values \(0\) and \(1\), and its /rejection region/ is
+then \(\setst{x}{\phi(x)=1}\). Its /power function/ is
+\(\beta_{\phi}(\theta) = \E_{\theta}[\phi(X)]\), its /size/ is
+\(\sup_{\theta\in\Theta_{0}}\beta_{\phi}(\theta)\), and it has /level/
+\(\alpha\) if its size is at most \(\alpha\).
+#+end_definition
+
+#+DEPENDS: def-test
+#+NAME: prop-the-two-errors
+#+begin_proposition
+For \(\theta\in\Theta_{0}\), \(\beta_{\phi}(\theta)\) is the probability
+of rejecting a true null -- the /first kind/ of error; for
+\(\theta\in\Theta_{1}\), \(1-\beta_{\phi}(\theta)\) is the probability
+of failing to reject a false one, the /second kind/. The test
+\(\phi\equiv0\) has size \(0\) and power \(0\), and \(\phi\equiv1\) has
+size \(1\) and power \(1\); so neither error can be made small without
+reference to the other.
+#+end_proposition
+
+#+begin_proof
+Both statements are the definition of \(\beta_{\phi}\) read under a
+\(\theta\) on each side of the partition. For the two constant tests,
+\(\E_{\theta}[0] = 0\) and \(\E_{\theta}[1] = 1\) for every \(\theta\),
+which gives the stated sizes and powers.
+#+end_proof
+
+#+DEPENDS: def-test, def-statistical-model
+#+NAME: thm-neyman-pearson
+#+begin_theorem
+Let \(\Theta = \set{\theta_{0},\theta_{1}}\) with densities
+\(f_{0}, f_{1}\) against a dominating measure \(\mu\), and let
+\(\alpha \in [0,1]\). Suppose \(\phi^{*}\) satisfies, for some \(k \ge 0\),
+\[ \phi^{*}(x) = 1 \text{ where } f_{1}(x) > k f_{0}(x), \qquad \phi^{*}(x) = 0 \text{ where } f_{1}(x) < k f_{0}(x), \]
+and has size \(\E_{\theta_{0}}[\phi^{*}] = \alpha\). Then \(\phi^{*}\)
+maximises \(\E_{\theta_{1}}[\phi]\) among all tests of level
+\(\alpha\).
+#+end_theorem
+
+#+begin_proof
+Let \(\phi\) be any test with \(\E_{\theta_{0}}[\phi]\le\alpha\).
+Consider the function
+\(D = (\phi^{*}-\phi)(f_{1}-kf_{0})\). At every \(x\) it is
+non-negative: where \(f_{1}>kf_{0}\) the first factor is
+\(1-\phi(x)\ge0\) and the second is positive; where \(f_{1}<kf_{0}\) the
+first is \(-\phi(x)\le0\) and the second is negative; where they are
+equal the second factor vanishes.
+
+Integrating against \(\mu\),
+\[ 0 \le \int D \dd\mu = \bigl(\E_{\theta_{1}}[\phi^{*}]-\E_{\theta_{1}}[\phi]\bigr) - k\bigl(\E_{\theta_{0}}[\phi^{*}]-\E_{\theta_{0}}[\phi]\bigr). \]
+The second bracket is \(\alpha - \E_{\theta_{0}}[\phi] \ge 0\), so
+\(\E_{\theta_{1}}[\phi^{*}]-\E_{\theta_{1}}[\phi] \ge k(\alpha-\E_{\theta_{0}}[\phi]) \ge 0\).
+#+end_proof
+
+#+DEPENDS: thm-neyman-pearson, def-test
+#+NAME: cor-most-powerful-tests-are-likelihood-ratio-tests
+#+begin_corollary
+Any test that is most powerful at level \(\alpha\) and has size exactly
+\(\alpha\) agrees with a test of the displayed form, except possibly on
+the set where \(f_{1} = kf_{0}\).
+#+end_corollary
+
+#+begin_proof
+Let \(\phi\) be most powerful of size \(\alpha\) and \(\phi^{*}\) as in
+the theorem. Both have size \(\alpha\) and, by maximality of each, the
+same power, so the displayed inequality is an equality and
+\(\int D\dd\mu = 0\). Since \(D \ge 0\), it vanishes almost everywhere,
+which forces \(\phi = \phi^{*}\) wherever \(f_{1}\ne kf_{0}\).
+#+end_proof
+
+#+begin_remark
+The randomisation allowed by letting \(\phi\) take intermediate values
+is not a mathematical nicety: with a discrete statistic there may be no
+rejection region of size exactly \(\alpha\), and without randomising,
+the exact-size hypothesis of the theorem would be unsatisfiable. Beyond
+two simple hypotheses the clean statement fails, and what survives is
+the theory of uniformly most powerful tests for families with a
+monotone likelihood ratio.
+#+end_remark

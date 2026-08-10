@@ -1,0 +1,103 @@
+:PROPERTIES:
+:ID:       9e6f4d6a-c97a-4078-ba14-9d2bb8ba53c0
+:END:
+#+TITLE: Characteristic functions
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:probability:probability_theory:
+#+MSC: 60E10
+#+HASH: a9bac540f64f
+
+Convolving two laws to find the law of a sum is unpleasant; multiplying
+two functions is not. The characteristic function turns the first
+operation into the second, and it does so without any integrability
+hypothesis, because the integrand has modulus one. Everything after that
+is the price: recovering the law from the transform, and recognising
+convergence of laws in convergence of transforms.
+
+#+DEPENDS: def-expectation, def-random-variable, thm-transfer
+#+NAME: def-characteristic-function
+#+begin_definition
+The /characteristic function/ of a random variable \(X\) is
+\[ \varphi_{X}(t) = \E[e^{itX}] = \E[\cos(tX)] + i\,\E[\sin(tX)], \qquad t \in \R, \]
+which is defined for every \(t\) because the integrand is bounded.
+#+end_definition
+
+#+DEPENDS: def-characteristic-function, thm-dominated-convergence, thm-expectation-of-a-product
+#+NAME: prop-properties-of-the-characteristic-function
+#+begin_proposition
+\(\varphi_{X}(0)=1\), \(\abs{\varphi_{X}(t)}\le1\), \(\varphi_{X}\) is
+uniformly continuous, \(\varphi_{aX+b}(t) = e^{itb}\varphi_{X}(at)\),
+and if \(X\) and \(Y\) are independent then
+\(\varphi_{X+Y} = \varphi_{X}\varphi_{Y}\).
+#+end_proposition
+
+#+begin_proof
+The first two are immediate from \(\abs{e^{itX}} = 1\) and
+monotonicity. For continuity,
+\(\abs{\varphi_{X}(t+h)-\varphi_{X}(t)} \le \E\abs{e^{ihX}-1}\), a bound
+independent of \(t\); the integrand is bounded by \(2\) and tends to
+\(0\) pointwise as \(h \to 0\), so dominated convergence makes it tend
+to \(0\), which is uniform continuity. The affine rule is
+\(e^{it(aX+b)} = e^{itb}e^{i(ta)X}\). For a sum,
+\(e^{it(X+Y)} = e^{itX}e^{itY}\) and the two factors are independent
+bounded variables, so the expectation of the product is the product of
+the expectations, applied to real and imaginary parts.
+#+end_proof
+
+#+DEPENDS: prop-properties-of-the-characteristic-function, thm-dominated-convergence, thm-taylor-peano
+#+NAME: thm-moments-and-the-expansion-at-zero
+#+begin_theorem
+If \(\E[X^{2}]<\infty\), then \(\varphi_{X}\) is twice differentiable
+with \(\varphi_{X}'(0) = i\E[X]\) and
+\(\varphi_{X}''(0) = -\E[X^{2}]\); consequently
+\[ \varphi_{X}(t) = 1 + it\E[X] - \tfrac{1}{2}t^{2}\E[X^{2}] + o(t^{2}) \qquad (t \to 0). \]
+#+end_theorem
+
+#+begin_proof
+For the first derivative, the difference quotient of \(e^{itX}\) in
+\(t\) is bounded in modulus by \(\abs{X}\), which is integrable since
+\(\E[X^{2}]<\infty\) implies \(\E\abs{X}<\infty\); dominated convergence
+allows differentiation under the expectation, giving
+\(\varphi_{X}'(t) = \E[iXe^{itX}]\). The same argument with the bound
+\(X^{2}\) gives \(\varphi_{X}''(t) = \E[-X^{2}e^{itX}]\). Evaluating at
+\(t = 0\) gives the two values.
+
+The expansion is Taylor's theorem with the Peano remainder applied to
+the real and imaginary parts of \(\varphi_{X}\), both twice
+differentiable at \(0\) with the stated derivatives.
+#+end_proof
+
+* Recovering the law                                            :folklore:
+
+The two facts below are what make characteristic functions a tool rather
+than a curiosity, and both are quoted here rather than proved: the
+inversion formula is a computation with Fubini's theorem and a Dirichlet
+integral, and Levy's theorem rests on it. They are standard, long, and
+independent of everything else in this archive.
+
+#+STATUS: assumed
+#+DEPENDS: def-characteristic-function
+#+NAME: thm-uniqueness-of-the-characteristic-function
+#+begin_theorem
+Two random variables with the same characteristic function have the same
+law.
+#+end_theorem
+
+#+STATUS: assumed
+#+DEPENDS: thm-uniqueness-of-the-characteristic-function, def-modes-of-convergence
+#+NAME: thm-levy-continuity
+#+begin_theorem
+Let \((X_{n})\) be random variables and suppose
+\(\varphi_{X_{n}}(t) \to \psi(t)\) for every \(t\), with \(\psi\)
+continuous at \(0\). Then \(\psi\) is the characteristic function of a
+random variable \(X\), and \(X_{n} \to X\) in distribution.
+#+end_theorem
+
+#+begin_remark
+Marking the two theorems as assumed rather than proving them is a
+deliberate entry in the archive's ledger: they are used below, they are
+not established here, and =cerebro results open= lists them among what
+the archive owes for as long as that is true.
+The alternative -- proving them -- is a note on Fubini's theorem and
+another on tightness, neither of which exists yet.
+#+end_remark

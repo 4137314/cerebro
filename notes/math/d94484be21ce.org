@@ -1,0 +1,142 @@
+:PROPERTIES:
+:ID:       f068fc75-7495-420e-8778-f63995b1d1f2
+:END:
+#+TITLE: Line integrals, exact forms and Green's theorem
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26B20, 58A10
+#+HASH: d94484be21ce
+
+The fundamental theorem of calculus says the integral of a derivative
+over an interval is determined by the boundary. Everything in this note
+and the next is that sentence in higher dimension, and the pattern is
+always the same: an integral of a derivative over a region equals an
+integral of the function over the boundary. Green's theorem is the first
+case, and the case in which the hypotheses can still be checked by hand.
+
+#+DEPENDS: def-regular-curve, def-riemann-integral, def-differentiable-multivariable
+#+NAME: def-line-integral
+#+begin_definition
+Let \(F = (P,Q)\) be a continuous vector field on an open
+\(U \subseteq \R^{2}\) and \(\gamma \colon [a,b]\to U\) a piecewise
+\(C^{1}\) curve. The /line integral/ is
+\[ \int_{\gamma} F \cdot \dd s = \int_{a}^{b} \inner{F(\gamma(t))}{\gamma'(t)} \dd t = \int_{a}^{b}\bigl(P\gamma_{1}' + Q\gamma_{2}'\bigr)\dd t. \]
+The field is /conservative/ on \(U\) if \(F = \nabla f\) for some
+\(C^{1}\) function \(f\), the /potential/.
+#+end_definition
+
+#+DEPENDS: def-line-integral, thm-substitution, thm-chain-rule
+#+NAME: prop-line-integrals-are-parametrisation-independent
+#+begin_proposition
+The line integral is unchanged by a \(C^{1}\) reparametrisation with
+positive derivative, and changes sign under one with negative
+derivative.
+#+end_proposition
+
+#+begin_proof
+Let \(\varphi \colon [c,d]\to[a,b]\) be \(C^{1}\) with
+\(\varphi'>0\), \(\varphi(c) = a\), \(\varphi(d) = b\). By the chain
+rule \((\gamma\circ\varphi)'(u) = \gamma'(\varphi(u))\varphi'(u)\), so
+the integrand for \(\gamma\circ\varphi\) is
+\(\inner{F(\gamma(\varphi(u)))}{\gamma'(\varphi(u))}\varphi'(u)\), and
+the substitution rule turns its integral over \([c,d]\) into the
+original one. With \(\varphi'<0\) the endpoints are exchanged, which
+reverses the sign.
+#+end_proof
+
+#+DEPENDS: def-line-integral, thm-ftc-second, thm-chain-rule
+#+NAME: thm-line-integral-of-a-gradient
+#+begin_theorem
+If \(F = \nabla f\) on \(U\), then for every piecewise \(C^{1}\) curve
+\(\gamma\) from \(p\) to \(q\) in \(U\),
+\(\int_{\gamma}F\cdot\dd s = f(q)-f(p)\); in particular the integral
+depends only on the endpoints and vanishes on closed curves. Conversely,
+if the integral of a continuous \(F\) vanishes on every closed curve in
+a connected open \(U\), then \(F\) is conservative.
+#+end_theorem
+
+#+begin_proof
+By the chain rule \(\frac{\dd}{\dd t}f(\gamma(t)) = \inner{\nabla f(\gamma(t))}{\gamma'(t)}\),
+so the second fundamental theorem of calculus integrates it to
+\(f(\gamma(b))-f(\gamma(a))\), summing over the pieces.
+
+Conversely, fix \(p_{0}\in U\) and set \(f(x) = \int_{\gamma}F\cdot\dd s\)
+along any curve from \(p_{0}\) to \(x\) inside \(U\); the value does not
+depend on the curve, since the difference of two such curves is a closed
+one. For a coordinate direction \(e_{i}\) and small \(h\), joining
+\(x\) to \(x+he_{i}\) by a segment gives
+\(f(x+he_{i})-f(x) = \int_{0}^{h}F_{i}(x+se_{i})\dd s\), whose derivative
+at \(h = 0\) is \(F_{i}(x)\) by the first fundamental theorem, \(F\)
+being continuous. Hence \(\nabla f = F\).
+#+end_proof
+
+#+DEPENDS: thm-line-integral-of-a-gradient, thm-continuous-partials-implies-differentiable
+#+NAME: cor-closedness-is-necessary
+#+begin_corollary
+If \(F = (P,Q)\) is \(C^{1}\) and conservative on \(U\), then
+\(\partial_{y}P = \partial_{x}Q\) on \(U\).
+#+end_corollary
+
+#+begin_proof
+With \(F = \nabla f\), \(P = \partial_{x}f\) and \(Q = \partial_{y}f\)
+are \(C^{1}\), so \(f\) is twice continuously differentiable and its
+mixed partial derivatives agree; that equality is the claim.
+#+end_proof
+
+#+DEPENDS: thm-tonelli, thm-ftc-second, def-line-integral, thm-fubini
+#+NAME: thm-green
+#+begin_theorem
+Let \(D \subseteq \R^{2}\) be a /normal domain/ in both directions:
+\(D = \setst{(x,y)}{a\le x\le b,\ \alpha(x)\le y\le\beta(x)}\) with
+\(\alpha\le\beta\) of class \(C^{1}\), and also
+\(D = \setst{(x,y)}{c\le y\le d,\ \sigma(y)\le x\le\tau(y)}\)
+similarly. Let \(\partial D\) be its boundary, traversed
+anticlockwise. Then for \(P, Q\) of class \(C^{1}\) on a neighbourhood
+of \(D\),
+\[ \oint_{\partial D}\bigl(P\dd x + Q\dd y\bigr) = \iint_{D}\Bigl(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\Bigr)\dd x\,\dd y. \]
+#+end_theorem
+
+#+begin_proof
+It suffices to prove
+\(\oint_{\partial D}P\dd x = -\iint_{D}\partial_{y}P\), the other half
+being the same computation in the other description of \(D\), and to add
+the two.
+
+By Fubini's theorem and the second fundamental theorem of calculus,
+\[ \iint_{D}\frac{\partial P}{\partial y}\dd x\,\dd y = \int_{a}^{b}\Bigl(\int_{\alpha(x)}^{\beta(x)}\partial_{y}P(x,y)\dd y\Bigr)\dd x = \int_{a}^{b}\bigl(P(x,\beta(x)) - P(x,\alpha(x))\bigr)\dd x. \]
+The boundary consists of the lower graph traversed from \(x=a\) to
+\(x=b\), the upper graph traversed backwards, and two vertical segments
+on which \(\dd x = 0\), so they contribute nothing to
+\(\oint P \dd x\). Parametrising the graphs by \(x\),
+\(\oint_{\partial D}P\dd x = \int_{a}^{b}P(x,\alpha(x))\dd x - \int_{a}^{b}P(x,\beta(x))\dd x\),
+which is minus the displayed double integral.
+#+end_proof
+
+#+DEPENDS: thm-green, cor-closedness-is-necessary, def-convex-set
+#+NAME: cor-closed-implies-exact-on-a-convex-set
+#+begin_corollary
+On a convex open \(U\), a \(C^{1}\) field with
+\(\partial_{y}P = \partial_{x}Q\) is conservative.
+#+end_corollary
+
+#+begin_proof
+Fix \(x_{0}\in U\) and define, using convexity to keep the segment in
+\(U\),
+\[ f(x) = \int_{0}^{1}\inner{F\bigl(x_{0}+t(x-x_{0})\bigr)}{x-x_{0}}\dd t. \]
+The integrand is \(C^{1}\) in \(x\) with derivatives continuous in
+\((t,x)\), hence uniformly continuous on the compact segment, so one may
+differentiate under the integral sign. Writing
+\(y(t) = x_{0}+t(x-x_{0})\) and using \(\partial_{j}F_{i} = \partial_{i}F_{j}\),
+\[ \partial_{j}f(x) = \int_{0}^{1}\Bigl(F_{j}(y(t)) + t\sum_{i}\partial_{i}F_{j}(y(t))\,(x_{i}-x_{0i})\Bigr)\dd t = \int_{0}^{1}\frac{\dd}{\dd t}\bigl(t\,F_{j}(y(t))\bigr)\dd t = F_{j}(x), \]
+the last step being the second fundamental theorem of calculus. Hence
+\(\nabla f = F\).
+#+end_proof
+
+#+begin_remark
+The corollary is where topology enters analysis: on the punctured plane
+the field \((-y, x)/(x^{2}+y^{2})\) is closed and not conservative, its
+integral around the origin being \(2\pi\). Convexity is used only to
+guarantee that curves bound, and the correct hypothesis is that \(U\) be
+simply connected -- so the obstruction is exactly the [[id:6264edf2-9cd7-4236-9d29-31f35613f8ec][fundamental group]],
+and the winding number computed there is the same \(2\pi\).
+#+end_remark

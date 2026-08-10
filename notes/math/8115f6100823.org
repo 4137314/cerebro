@@ -1,0 +1,114 @@
+:PROPERTIES:
+:ID:       b6f64ed6-db0e-41c8-a093-0df725e22ecf
+:END:
+#+TITLE: The inverse and implicit function theorems
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26B10, 58C15
+#+HASH: 8115f6100823
+
+Differentiability says a map is approximated by a linear one; these two
+theorems say that where the linear approximation is invertible, so is
+the map, locally. They are the licence for every coordinate change in
+analysis and geometry -- a chart on a manifold, a change of variables in
+an integral, a constraint solved for one variable -- and both are the
+[[id:1baff983-b527-4d87-b1e6-1ec701dc12c0][contraction principle]] with the derivative used to build the
+contraction.
+
+#+DEPENDS: def-differentiable-multivariable, def-linear-map, thm-equivalence-of-norms-in-finite-dimension
+#+NAME: def-c1-and-diffeomorphism
+#+begin_definition
+A map \(f\) on an open \(U \subseteq \R^{n}\) is of class \(C^{1}\) if
+it is differentiable with \(x \mapsto Df(x)\) continuous into the
+linear maps, normed by the operator norm. It is a /diffeomorphism/ of
+\(U\) onto \(V\) if it is a bijection and both it and its inverse are
+\(C^{1}\).
+#+end_definition
+
+#+DEPENDS: def-c1-and-diffeomorphism, thm-banach-fixed-point, thm-euclidean-space-complete, thm-mean-value, thm-cauchy-schwarz
+#+NAME: thm-inverse-function
+#+begin_theorem
+Let \(f \colon U \to \R^{n}\) be \(C^{1}\) on an open
+\(U \subseteq \R^{n}\), and let \(a \in U\) with \(Df(a)\) invertible.
+Then there are open sets \(A \ni a\) and \(B \ni f(a)\) such that \(f\)
+is a diffeomorphism of \(A\) onto \(B\), and
+\(D(f^{-1})(f(x)) = Df(x)^{-1}\) for \(x \in A\).
+#+end_theorem
+
+#+begin_proof
+Write \(T = Df(a)\). Replacing \(f\) by \(T^{-1}\circ f\), which changes
+neither the hypothesis nor the conclusion, assume \(T = I\).
+
+By continuity of \(Df\) choose a closed ball \(\overline{B}(a,r)
+\subseteq U\) on which \(\norm{Df(x)-I}\le\tfrac{1}{2}\). For
+\(y \in \R^{n}\) define \(\varphi_{y}(x) = x - f(x) + y\); then
+\(D\varphi_{y}(x) = I - Df(x)\) has norm at most \(\tfrac{1}{2}\) there.
+Hence \(\norm{\varphi_{y}(x)-\varphi_{y}(x')} \le \tfrac{1}{2}\norm{x-x'}\)
+on the ball: for a unit vector \(u\), the real function
+\(t \mapsto \inner{\varphi_{y}(x'+t(x-x'))}{u}\) on \([0,1]\) has
+derivative \(\inner{D\varphi_{y}(\cdot)(x-x')}{u}\), bounded in modulus
+by \(\tfrac{1}{2}\norm{x-x'}\) by Cauchy-Schwarz, so the mean value
+theorem bounds its increment; taking \(u\) along
+\(\varphi_{y}(x)-\varphi_{y}(x')\) gives the claim, the ball being
+convex so that the segment stays in it. A fixed point of \(\varphi_{y}\) is exactly a solution of
+\(f(x) = y\).
+
+If \(\norm{y - f(a)} < r/2\) then \(\varphi_{y}\) maps
+\(\overline{B}(a,r)\) into itself:
+\(\norm{\varphi_{y}(x)-a} \le \norm{\varphi_{y}(x)-\varphi_{y}(a)} + \norm{y-f(a)} \le \tfrac{1}{2}\norm{x-a}+r/2 \le r\).
+The ball is a closed subset of the complete \(\R^{n}\), hence complete,
+so the contraction principle gives a unique fixed point. Therefore
+\(f\) is injective on \(\overline{B}(a,r)\) and its image contains
+\(B(f(a),r/2)\). Put \(B = B(f(a),r/2)\) and
+\(A = B(a,r)\cap f^{-1}(B)\), both open.
+
+The inverse \(g\) is continuous: from
+\(\norm{x-x'} \le \norm{f(x)-f(x')} + \norm{\varphi_{0}(x)-\varphi_{0}(x')} \le \norm{f(x)-f(x')}+\tfrac{1}{2}\norm{x-x'}\)
+we get \(\norm{g(y)-g(y')} \le 2\norm{y-y'}\). It is differentiable:
+with \(S = Df(x)^{-1}\), which exists for \(x\) near \(a\) since the
+invertible maps form an open set, write
+\(g(y+k)-g(y) = h\) so that \(k = f(x+h)-f(x) = Df(x)h + o(\norm{h})\);
+applying \(S\) gives \(h - Sk = -S\,o(\norm{h})\), and
+\(\norm{h}\le2\norm{k}\) converts \(o(\norm{h})\) into \(o(\norm{k})\).
+Hence \(Dg(y) = Df(g(y))^{-1}\), which is continuous in \(y\) because
+matrix inversion is.
+#+end_proof
+
+#+DEPENDS: thm-inverse-function, def-differentiable-multivariable
+#+NAME: thm-implicit-function
+#+begin_theorem
+Let \(F \colon U \to \R^{m}\) be \(C^{1}\) on an open
+\(U \subseteq \R^{n}\times\R^{m}\), let \(F(a,b) = 0\), and suppose the
+partial differential \(D_{y}F(a,b)\), the block acting on the second
+group of variables, is invertible. Then there are open \(A \ni a\),
+\(B \ni b\) and a unique \(C^{1}\) map \(g \colon A \to B\) with
+\(g(a) = b\) and \(F(x,g(x)) = 0\) for all \(x \in A\); moreover
+\(Dg(x) = -D_{y}F(x,g(x))^{-1}D_{x}F(x,g(x))\).
+#+end_theorem
+
+#+begin_proof
+Let \(\Phi(x,y) = (x, F(x,y))\), a \(C^{1}\) map into
+\(\R^{n}\times\R^{m}\). Its differential at \((a,b)\) sends
+\((u,v)\) to \((u, D_{x}F u + D_{y}F v)\), which is invertible: given
+\((p,q)\), take \(u = p\) and \(v = D_{y}F^{-1}(q - D_{x}F p)\),
+uniquely.
+
+By the inverse function theorem \(\Phi\) is a diffeomorphism of a
+neighbourhood of \((a,b)\) onto a neighbourhood of \((a,0)\). Its
+inverse has the form \(\Psi(x,z) = (x, \psi(x,z))\), since \(\Phi\)
+preserves the first coordinate; put \(g(x) = \psi(x,0)\), which is
+\(C^{1}\) and satisfies \(F(x,g(x)) = 0\) and \(g(a) = b\). Uniqueness
+is the injectivity of \(\Phi\) on that neighbourhood.
+
+Differentiating \(F(x,g(x)) = 0\) by the chain rule gives
+\(D_{x}F + D_{y}F\,Dg = 0\), which is the stated formula.
+#+end_proof
+
+#+begin_remark
+Both theorems are local and cannot be made global: the map
+\(z \mapsto z^{2}\) on the punctured plane has everywhere invertible
+differential and is not injective. What the proof actually produces is
+quantitative -- the neighbourhood is where \(\norm{Df(x)-Df(a)}\) stays
+below half -- and that is the form used when a bound on the size of the
+chart matters.
+#+end_remark

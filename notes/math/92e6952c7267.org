@@ -1,0 +1,106 @@
+:PROPERTIES:
+:ID:       3ebbe260-1cdd-4b64-baa6-47d1f769c216
+:END:
+#+TITLE: The central limit theorem
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:probability:probability_theory:
+#+MSC: 60F05
+#+HASH: 92e6952c7267
+
+The [[id:dc80cb7b-694a-414b-9847-a1bdf4bef452][law of large numbers]] says the average converges to the mean and
+says nothing about how. The central limit theorem answers that: the
+error, rescaled by \(\sqrt{n}\), converges to one law, the same law
+whatever the summands were. Only the first two moments survive, which is
+why the normal distribution is the one that keeps appearing in
+statements that mention no normal distribution.
+
+#+DEPENDS: def-characteristic-function, def-random-variable
+#+NAME: def-standard-normal
+#+begin_definition
+The /standard normal/ law is the probability measure on \(\R\) with
+density \(t \mapsto (2\pi)^{-1/2}e^{-t^{2}/2}\) with respect to Lebesgue
+measure; a random variable with that law is written \(Z\), and its
+characteristic function is \(\varphi_{Z}(t) = e^{-t^{2}/2}\).
+#+end_definition
+
+#+DEPENDS: def-standard-normal, thm-moments-and-the-expansion-at-zero
+#+NAME: prop-normalisation-of-a-sum
+#+begin_proposition
+Let \(X_{1},\dots,X_{n}\) be independent, identically distributed and
+square-integrable, with mean \(\mu\), variance \(\sigma^{2}>0\), and
+\(S_{n} = X_{1}+\cdots+X_{n}\). Put
+\(Z_{n} = (S_{n}-n\mu)/(\sigma\sqrt{n})\). Then \(\E[Z_{n}] = 0\),
+\(\Var(Z_{n}) = 1\), and
+\(\varphi_{Z_{n}}(t) = \varphi_{Y}(t/(\sigma\sqrt{n}))^{n}\), where
+\(Y = X_{1}-\mu\).
+#+end_proposition
+
+#+begin_proof
+Centring and scaling give the mean and the variance by linearity and by
+\(\Var(aX) = a^{2}\Var(X)\), the variance of \(S_{n}\) being
+\(n\sigma^{2}\) by independence. For the characteristic function,
+\(Z_{n} = \sum_{i}(X_{i}-\mu)/(\sigma\sqrt{n})\) is a sum of \(n\)
+independent variables each distributed as
+\(Y/(\sigma\sqrt{n})\), so its characteristic function is the product
+of the \(n\) equal factors \(\varphi_{Y}(t/(\sigma\sqrt{n}))\).
+#+end_proof
+
+#+DEPENDS: prop-normalisation-of-a-sum, thm-moments-and-the-expansion-at-zero, thm-levy-continuity, def-standard-normal
+#+NAME: thm-central-limit-theorem
+#+begin_theorem
+With the notation above, \(Z_{n} \to Z\) in distribution: for every
+\(t \in \R\),
+\[ \Prob\Bigl(\frac{S_{n}-n\mu}{\sigma\sqrt{n}} \le t\Bigr) \longrightarrow \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{t}e^{-s^{2}/2}\dd s. \]
+#+end_theorem
+
+#+begin_proof
+Let \(Y = X_{1}-\mu\), so \(\E[Y] = 0\) and \(\E[Y^{2}] = \sigma^{2}\).
+By the expansion at zero,
+\(\varphi_{Y}(u) = 1 - \tfrac{1}{2}\sigma^{2}u^{2} + r(u)\) with
+\(r(u)/u^{2}\to0\) as \(u \to 0\).
+
+Fix \(t\) and put \(u_{n} = t/(\sigma\sqrt{n})\), so \(u_{n}\to0\). By
+the previous proposition,
+\[ \varphi_{Z_{n}}(t) = \Bigl(1 - \frac{t^{2}}{2n} + r(u_{n})\Bigr)^{n}. \]
+Write \(c_{n} = -t^{2}/2 + n\,r(u_{n})\), so that the bracket is
+\(1 + c_{n}/n\); then \(n\,r(u_{n}) = (t^{2}/\sigma^{2})\,r(u_{n})/u_{n}^{2} \to 0\),
+so \(c_{n}\to -t^{2}/2\). For complex \(c_{n}\to c\) one has
+\((1+c_{n}/n)^{n}\to e^{c}\) -- taking logarithms of the principal
+branch, which is legitimate for large \(n\) since \(c_{n}/n \to 0\), and
+using \(\log(1+z) = z + O(\abs{z}^{2})\). Hence
+\(\varphi_{Z_{n}}(t) \to e^{-t^{2}/2} = \varphi_{Z}(t)\) for every
+\(t\).
+
+The limit is continuous at \(0\), so Levy's continuity theorem gives
+\(Z_{n}\to Z\) in distribution, which is the displayed convergence at
+every \(t\) -- the distribution function of \(Z\) being continuous
+everywhere.
+#+end_proof
+
+#+DEPENDS: thm-central-limit-theorem, cor-chebyshev-inequality
+#+NAME: cor-clt-refines-chebyshev
+#+begin_corollary
+Under the hypotheses above, for every \(a>0\),
+\(\Prob(\abs{S_{n}-n\mu} \ge a\sigma\sqrt{n}) \to \Prob(\abs{Z}\ge a)\),
+whereas Chebyshev's inequality gives only the bound \(1/a^{2}\) for
+every \(n\).
+#+end_corollary
+
+#+begin_proof
+The event is \(\abs{Z_{n}}\ge a\), and its probability is
+\(1 - F_{Z_{n}}(a) + F_{Z_{n}}(-a)\) up to the boundary points, which
+have probability \(0\) in the limit because \(F_{Z}\) is continuous;
+convergence in distribution at the continuity points \(\pm a\) gives the
+limit. The Chebyshev bound is the previous note's inequality applied to
+\(S_{n}/n\) with \(\eps = a\sigma/\sqrt{n}\).
+#+end_proof
+
+#+begin_remark
+Two hypotheses are doing all the work and neither is decorative. Finite
+variance is necessary -- with heavier tails the correct scaling is not
+\(\sqrt{n}\) and the limit is not normal -- and identical distribution
+can be weakened but not dropped, the honest condition being Lindeberg's.
+What is /not/ needed is any assumption on the shape of the law of
+\(X_{1}\), and that is the content of the theorem: the limit forgets
+everything except the first two moments.
+#+end_remark

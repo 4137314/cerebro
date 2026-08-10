@@ -1,0 +1,108 @@
+:PROPERTIES:
+:ID:       dde5958e-70f1-4680-9e80-06de5649c142
+:END:
+#+TITLE: The spectral theorem for symmetric operators
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:algebra:linear_algebra:
+#+MSC: 15A18, 47B15
+#+HASH: 34e28874e413
+
+Not every operator is diagonalisable, and over \(\R\) a rotation has no
+eigenvector at all. Symmetry with respect to an [[id:c35a8f01-cbd2-433b-b9b5-a037bae4e91d][inner product]] rules that
+out completely: a symmetric operator has an orthonormal basis of
+eigenvectors, so it is not merely diagonalisable but diagonal in
+coordinates that preserve the geometry. The proof needs no algebraically
+closed field -- only compactness.
+
+#+DEPENDS: def-inner-product-space, def-linear-map, def-orthogonal-family
+#+NAME: def-self-adjoint
+#+begin_definition
+Let \(V\) be a finite-dimensional real inner product space. A linear
+\(f \colon V\to V\) is /symmetric/ (or self-adjoint) if
+\(\inner{f(u)}{v} = \inner{u}{f(v)}\) for all \(u,v \in V\). In an
+orthonormal basis this says the matrix satisfies
+\(A = A^{\mathsf{T}}\).
+#+end_definition
+
+#+DEPENDS: def-self-adjoint, cor-extreme-value-on-a-compact-space, cor-heine-borel-in-euclidean-space, thm-orthogonal-decomposition, thm-derivative-algebra
+#+NAME: lem-a-symmetric-operator-has-an-eigenvector
+#+begin_lemma
+Every symmetric operator on a real inner product space of dimension
+\(n \ge 1\) has an eigenvector.
+#+end_lemma
+
+#+begin_proof
+Identify \(V\) with \(\R^{n}\) by an orthonormal basis, and let
+\(q(x) = \inner{f(x)}{x}\) on the unit sphere \(S\), which is closed and
+bounded, hence compact, and non-empty. The function \(q\) is continuous,
+so it attains a maximum at some \(v \in S\).
+
+Let \(w \perp v\) with \(w \ne 0\). For \(t \in \R\),
+\(\norm{v+tw}^{2} = 1 + t^{2}\norm{w}^{2}\), and by symmetry
+\(\inner{f(v+tw)}{v+tw} = q(v) + 2t\inner{f(v)}{w} + t^{2}q(w)\). Hence
+\[ g(t) = \frac{q(v) + 2t\inner{f(v)}{w} + t^{2}q(w)}{1 + t^{2}\norm{w}^{2}} \]
+is the value of \(q\) at the unit vector \((v+tw)/\norm{v+tw}\), so it
+has a maximum at \(t = 0\). It is differentiable, with
+\(g'(0) = 2\inner{f(v)}{w}\), and an interior maximum forces
+\(g'(0) = 0\).
+
+So \(f(v)\) is orthogonal to every \(w \perp v\), that is
+\(f(v) \in (v^{\perp})^{\perp} = \Span\set{v}\) by the orthogonal
+decomposition. Thus \(f(v) = \lambda v\) with \(v \ne 0\).
+#+end_proof
+
+#+DEPENDS: lem-a-symmetric-operator-has-an-eigenvector, thm-orthogonal-decomposition, thm-gram-schmidt
+#+NAME: thm-spectral-theorem
+#+begin_theorem
+Let \(f\) be a symmetric operator on a finite-dimensional real inner
+product space \(V\). Then \(V\) has an orthonormal basis of eigenvectors
+of \(f\), all eigenvalues being real; equivalently, a real symmetric
+matrix \(A\) satisfies \(A = Q \Lambda Q^{\mathsf{T}}\) with \(Q\)
+orthogonal and \(\Lambda\) diagonal.
+#+end_theorem
+
+#+begin_proof
+Induct on \(\dim V\), the case \(0\) being vacuous. By the lemma there
+is a unit eigenvector \(e_{1}\), say \(f(e_{1}) = \lambda_{1}e_{1}\)
+with \(\lambda_{1}\in\R\). Let \(W = e_{1}^{\perp}\), of dimension
+\(\dim V - 1\) by the orthogonal decomposition.
+
+\(W\) is invariant: for \(w \in W\),
+\(\inner{f(w)}{e_{1}} = \inner{w}{f(e_{1})} = \lambda_{1}\inner{w}{e_{1}} = 0\).
+The restriction of \(f\) to \(W\) is symmetric, so by induction \(W\)
+has an orthonormal basis of eigenvectors; adjoining \(e_{1}\), which is
+orthogonal to all of them, gives one for \(V\). Writing the change of
+basis matrix \(Q\), whose columns are those orthonormal eigenvectors,
+gives \(Q^{\mathsf{T}}AQ = \Lambda\) and \(Q^{\mathsf{T}} = Q^{-1}\).
+#+end_proof
+
+#+DEPENDS: thm-spectral-theorem, thm-sylvester-law-of-inertia, def-bilinear-form
+#+NAME: cor-principal-axes
+#+begin_corollary
+Every symmetric bilinear form \(b\) on \(\R^{n}\) is
+\(b(x,y) = \inner{Ax}{y}\) for a unique symmetric \(A\), and there is an
+/orthonormal/ basis in which \(b\) is diagonal, with the eigenvalues of
+\(A\) as coefficients. The signature of \(b\) counts the positive and
+negative eigenvalues.
+#+end_corollary
+
+#+begin_proof
+Fixing the standard inner product, \(y \mapsto b(x,y)\) is a linear
+functional, so it is \(\inner{Ax}{\cdot}\) for a unique \(Ax\); the map
+\(x\mapsto Ax\) is linear, and symmetry of \(b\) says \(A\) is
+symmetric. Diagonalising \(A\) by the spectral theorem gives an
+orthonormal basis in which \(b(e_{i},e_{j}) = \lambda_{i}\delta_{ij}\).
+Sylvester's law then identifies the signature with the number of
+positive and negative \(\lambda_{i}\), the basis being one of the
+diagonalising bases it applies to.
+#+end_proof
+
+#+begin_remark
+Two theorems now diagonalise a symmetric matrix and they are not the
+same. Sylvester's allows an arbitrary change of basis and can only
+preserve signs; the spectral theorem restricts to orthonormal changes
+and preserves the actual eigenvalues, which are then invariants of the
+pair (form, inner product). The distinction is the difference between
+classifying a quadratic form and finding the principal axes of the
+ellipsoid it defines.
+#+end_remark

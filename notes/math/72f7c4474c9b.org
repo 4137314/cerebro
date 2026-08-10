@@ -1,0 +1,113 @@
+:PROPERTIES:
+:ID:       0dd163c1-c3d9-4ba2-8136-acec9c0ec99f
+:END:
+#+TITLE: Regular and normal spaces, and Urysohn's lemma
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:topology:general_topology:
+#+MSC: 54D15
+#+HASH: 72f7c4474c9b
+
+A topology may have far too few continuous real functions: on an
+indiscrete space the only ones are the constants. Urysohn's lemma is the
+theorem that separation by open sets is enough to produce them -- in a
+normal space, any two disjoint closed sets are separated by a function.
+That is what makes a topological space accessible to analysis at all.
+
+#+DEPENDS: def-hausdorff, def-topological-space, prop-points-are-closed-in-a-hausdorff-space
+#+NAME: def-regular-and-normal
+#+begin_definition
+A topological space in which points are closed is /regular/ if a point
+and a closed set not containing it have disjoint open neighbourhoods,
+and /normal/ if any two disjoint closed sets do.
+#+end_definition
+
+#+DEPENDS: def-regular-and-normal, prop-interior-and-closure-are-extremal
+#+NAME: prop-normality-by-shrinking
+#+begin_proposition
+A space with closed points is normal if and only if for every closed
+\(C\) and open \(U \supseteq C\) there is an open \(V\) with
+\(C \subseteq V \subseteq \overline{V}\subseteq U\).
+#+end_proposition
+
+#+begin_proof
+Assume normality and let \(C \subseteq U\). Then \(C\) and
+\(X \setminus U\) are disjoint closed sets, so they have disjoint open
+neighbourhoods \(V \supseteq C\) and \(W \supseteq X\setminus U\). Since
+\(V \cap W = \emptyset\), \(V\) is contained in the closed set
+\(X\setminus W\), hence so is \(\overline{V}\), and
+\(X \setminus W \subseteq U\).
+
+Conversely, given disjoint closed \(C, D\), apply the hypothesis to
+\(C \subseteq X \setminus D\) to get \(V\) with
+\(\overline{V}\subseteq X\setminus D\); then \(V\) and
+\(X\setminus\overline{V}\) are disjoint open sets containing \(C\) and
+\(D\).
+#+end_proof
+
+#+DEPENDS: def-regular-and-normal, prop-metric-spaces-are-hausdorff, def-metric-space, prop-compact-subset-of-a-hausdorff-space-is-closed
+#+NAME: prop-metric-and-compact-spaces-are-normal
+#+begin_proposition
+Every metric space is normal, and every compact Hausdorff space is
+normal.
+#+end_proposition
+
+#+begin_proof
+In a metric space, let \(C, D\) be disjoint and closed and put
+\(f(x) = \dist(x,C) - \dist(x,D)\), where
+\(\dist(x,A) = \inf_{a\in A}d(x,a)\) satisfies
+\(\abs{\dist(x,A)-\dist(y,A)}\le d(x,y)\) and vanishes exactly on
+\(\overline{A}\). Then \(f\) is continuous, negative on \(C\) and
+positive on \(D\), so \(\setst{x}{f(x)<0}\) and \(\setst{x}{f(x)>0}\)
+separate them.
+
+In a compact Hausdorff space, the argument separating a point from a
+compact set gives, for each \(x \in C\), disjoint open \(U_{x}\ni x\)
+and \(W_{x}\supseteq D\), since \(D\) is compact as a closed subset.
+The \(U_{x}\) cover the compact \(C\); take a finite subcover and
+intersect the corresponding \(W_{x}\).
+#+end_proof
+
+#+DEPENDS: prop-normality-by-shrinking, def-continuous-map, thm-characterisations-of-continuity, thm-density-of-rationals
+#+NAME: thm-urysohn-lemma
+#+begin_theorem
+Let \(X\) be normal and \(C, D\) disjoint closed subsets. Then there is
+a continuous \(f \colon X \to [0,1]\) with \(f \equiv 0\) on \(C\) and
+\(f\equiv1\) on \(D\).
+#+end_theorem
+
+#+begin_proof
+Enumerate the rationals of \([0,1]\) as \(q_{0}=0\), \(q_{1}=1\),
+\(q_{2},\dots\). We construct open sets \(U_{q}\) with
+\(\overline{U_{p}}\subseteq U_{q}\) whenever \(p<q\). Put
+\(U_{1} = X\setminus D\) and, by the shrinking criterion applied to
+\(C \subseteq U_{1}\), choose \(U_{0}\) open with
+\(C \subseteq U_{0}\subseteq\overline{U_{0}}\subseteq U_{1}\).
+Recursively, given \(U_{q}\) for \(q\) among \(q_{0},\dots,q_{n}\), let
+\(p\) and \(r\) be the largest and smallest of those below and above
+\(q_{n+1}\); since \(\overline{U_{p}}\subseteq U_{r}\), the criterion
+gives \(U_{q_{n+1}}\) with
+\(\overline{U_{p}}\subseteq U_{q_{n+1}}\subseteq\overline{U_{q_{n+1}}}\subseteq U_{r}\).
+
+Define \(f(x) = \inf\setst{q}{x \in U_{q}}\), with \(f(x)=1\) when the
+set is empty. Then \(f = 0\) on \(C\) and \(f = 1\) on \(D\).
+
+Continuity: it suffices to check that the preimages of \([0,a)\) and of
+\((a,1]\) are open, these forming a subbasis of \([0,1]\). Now
+\(f(x)<a\) exactly when \(x \in U_{q}\) for some \(q<a\), so
+\(f^{-1}([0,a)) = \bigcup_{q<a}U_{q}\) is open. And \(f(x)>a\) exactly
+when there is \(q>a\) with \(x \notin \overline{U_{q}}\): if
+\(f(x)>a\), pick rationals \(a<q<r<f(x)\), so \(x\notin U_{r}\) and
+hence \(x \notin\overline{U_{q}}\); conversely
+\(x\notin\overline{U_{q}}\) gives \(x \notin U_{p}\) for all \(p<q\),
+so \(f(x)\ge q>a\). Hence
+\(f^{-1}((a,1]) = \bigcup_{q>a}(X\setminus\overline{U_{q}})\) is open.
+#+end_proof
+
+#+begin_remark
+The lemma is the reason normality, rather than the Hausdorff property,
+is the hypothesis of the metrisation and extension theorems: it is
+exactly the amount of separation that produces functions. Note also what
+it does /not/ give -- the function need not be non-zero only on \(C\),
+and strengthening it to that ("perfect normality") is a genuinely
+stronger axiom.
+#+end_remark

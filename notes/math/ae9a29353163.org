@@ -1,0 +1,136 @@
+:PROPERTIES:
+:ID:       cb8c1dfe-ab80-4c47-bcda-ce71f8601866
+:END:
+#+TITLE: Modules, quotients and exact sequences
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:algebra:ring_theory:
+#+MSC: 16D10, 13C05
+#+HASH: ae9a29353163
+
+A module is a vector space over a ring, and dropping the field is not a
+small change: without inverses one cannot divide, so a spanning set need
+not contain a basis and dimension does not exist. What survives is
+everything formal -- submodules, quotients, homomorphism theorems -- and
+what replaces dimension is the language of exact sequences, which
+measures how far a module is from being free by recording the maps
+around it.
+
+#+DEPENDS: def-ring, def-abelian-group, def-vector-space
+#+NAME: def-module
+#+begin_definition
+Let \(R\) be a ring. A /left \(R\)-module/ is an abelian group
+\((M,+)\) with a map \(R \times M \to M\) satisfying
+\(r(m+n) = rm+rn\), \((r+s)m = rm+sm\), \((rs)m = r(sm)\) and
+\(1m = m\). A /submodule/ is a subgroup closed under the action; a
+/homomorphism/ is an additive map with \(f(rm) = rf(m)\).
+#+end_definition
+
+#+DEPENDS: def-module, thm-quotient-group, thm-universal-property-of-a-quotient-set
+#+NAME: thm-quotient-module
+#+begin_theorem
+Let \(N \subseteq M\) be a submodule. The quotient group \(M/N\) is an
+\(R\)-module under \(r(m+N) = rm + N\), the projection is a
+homomorphism with kernel \(N\), and every homomorphism
+\(f \colon M \to P\) vanishing on \(N\) factors uniquely through it.
+Consequently \(M/\ker f \iso \im f\) for every homomorphism \(f\).
+#+end_theorem
+
+#+begin_proof
+The action is well defined: \(m - m' \in N\) gives
+\(rm - rm' = r(m-m') \in N\). The axioms are inherited coset by coset.
+The kernel and image of a homomorphism are submodules, by the same
+computation as for subgroups plus closure under the action. The
+factorisation is the universal property of the quotient set, and the
+induced map is a homomorphism because the operations are defined
+representative-wise; applied to \(N = \ker f\) it is bijective onto
+\(\im f\), exactly as in the group case.
+#+end_proof
+
+#+DEPENDS: def-module, def-span-and-independence, thm-every-vector-space-has-a-basis
+#+NAME: def-free-module
+#+begin_definition
+An \(R\)-module \(M\) is /free on a set \(S \subseteq M\)/ if every
+element of \(M\) is uniquely a finite combination \(\sum_{i}r_{i}s_{i}\)
+with \(s_{i}\in S\) distinct. The module \(R^{(S)}\) of finitely
+supported families \((r_{s})_{s\in S}\) is free on the standard family.
+#+end_definition
+
+#+DEPENDS: def-free-module
+#+NAME: thm-universal-property-of-free-modules
+#+begin_theorem
+Let \(M\) be free on \(S\). For every \(R\)-module \(P\) and every map
+\(f \colon S \to P\) there is exactly one homomorphism
+\(\bar{f}\colon M \to P\) extending \(f\). Consequently every module is
+a quotient of a free module.
+#+end_theorem
+
+#+begin_proof
+Uniqueness is forced: a homomorphism is determined on
+\(\sum r_{i}s_{i}\) by \(\sum r_{i}f(s_{i})\). That formula is well
+defined precisely because the representation is unique, and it is
+additive and \(R\)-linear by collecting coefficients.
+
+For the last claim take \(S = M\) and the free module \(R^{(M)}\); the
+homomorphism extending the identity is surjective, so \(M\) is
+isomorphic to \(R^{(M)}\) modulo its kernel.
+#+end_proof
+
+#+DEPENDS: def-module, thm-quotient-module
+#+NAME: def-exact-sequence
+#+begin_definition
+A sequence of module homomorphisms
+\(\cdots \to M_{i-1}\xrightarrow{f_{i}} M_{i}\xrightarrow{f_{i+1}}M_{i+1}\to\cdots\)
+is /exact at \(M_{i}\)/ if \(\im f_{i} = \ker f_{i+1}\), and /exact/ if
+it is exact everywhere. A /short exact sequence/ is an exact
+\(0 \to A \xrightarrow{f} B \xrightarrow{g} C \to 0\).
+#+end_definition
+
+#+DEPENDS: def-exact-sequence, prop-kernel-and-image-are-subspaces, thm-quotient-module
+#+NAME: prop-short-exact-sequences
+#+begin_proposition
+\(0\to A\xrightarrow{f}B\xrightarrow{g}C\to0\) is exact if and only if
+\(f\) is injective, \(g\) is surjective and \(\im f = \ker g\); and then
+\(C \iso B/f(A)\).
+#+end_proposition
+
+#+begin_proof
+Exactness at \(A\) says \(\ker f\) is the image of the zero map, that is
+\(\ker f = 0\), which is injectivity; at \(C\) it says
+\(\im g = \ker(C \to 0) = C\), which is surjectivity; at \(B\) it is the
+stated equality. The isomorphism is the homomorphism theorem applied to
+\(g\), whose kernel is \(f(A)\).
+#+end_proof
+
+#+DEPENDS: prop-short-exact-sequences, thm-universal-property-of-free-modules, thm-internal-direct-product
+#+NAME: thm-splitting-lemma
+#+begin_theorem
+For a short exact sequence as above, the following are equivalent:
+there is \(s \colon C \to B\) with \(g \circ s = \id_{C}\); there is
+\(p \colon B \to A\) with \(p \circ f = \id_{A}\); and
+\(B \iso A \oplus C\) by an isomorphism carrying \(f\) and \(g\) to the
+inclusion and the projection.
+#+end_theorem
+
+#+begin_proof
+Given \(s\): every \(b \in B\) is \(\bigl(b - s(g(b))\bigr) + s(g(b))\),
+where the first summand lies in \(\ker g = \im f\); and
+\(\im f \cap \im s = 0\), since \(f(a) = s(c)\) gives
+\(0 = g(f(a)) = c\). So \(B = \im f \oplus \im s\), and \(f\), \(s\) are
+injective, giving \(B \iso A \oplus C\) with the stated compatibility;
+the projection onto \(\im f\) followed by \(f^{-1}\) is a \(p\).
+
+Given \(p\): put \(B' = \ker p\). For \(b \in B\),
+\(b - f(p(b)) \in \ker p\), and \(\im f \cap \ker p = 0\) because
+\(p(f(a)) = a\). So \(B = \im f \oplus \ker p\), and \(g\) restricted to
+\(\ker p\) is injective -- its kernel is \(\ker g \cap \ker p = \im f \cap \ker p = 0\)
+-- and surjective, since \(g(b) = g(b - f(p(b)))\). Its inverse is an
+\(s\). The third statement gives both maps directly.
+#+end_proof
+
+#+begin_remark
+Over a field every short exact sequence splits, which is why linear
+algebra never mentions them: a subspace always has a complement. Over
+\(\Z\) the sequence \(0\to\Z\xrightarrow{2}\Z\to\Z/2\Z\to0\) does not
+split, because \(\Z\) has no element of order \(2\) -- and the
+obstruction is exactly what \(\Ext\) measures.
+#+end_remark

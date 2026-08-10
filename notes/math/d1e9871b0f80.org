@@ -1,0 +1,96 @@
+:PROPERTIES:
+:ID:       07b82d71-2c7c-4ddd-84ce-185047ee07e5
+:END:
+#+TITLE: Constrained extrema and Lagrange multipliers
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:analysis:real_analysis:
+#+MSC: 26B10, 49K05
+#+HASH: d1e9871b0f80
+
+An unconstrained extremum has vanishing gradient; a constrained one has
+a gradient that need not vanish but must be normal to the constraint,
+because only the directions along the constraint are available to move
+in. The multiplier is the coefficient of that normality, and it is
+produced -- not postulated -- by the [[id:b6f64ed6-db0e-41c8-a093-0df725e22ecf][implicit function theorem]].
+
+#+DEPENDS: def-differentiable-multivariable, thm-implicit-function, def-linear-map
+#+NAME: def-constraint-set
+#+begin_definition
+Let \(g \colon U \to \R^{m}\) be \(C^{1}\) on an open
+\(U \subseteq \R^{n}\), \(m<n\). The set
+\(M = \setst{x \in U}{g(x) = 0}\) is a /regular constraint/ at
+\(a \in M\) if \(Dg(a)\) has rank \(m\). A point \(a\) is a /local
+constrained extremum/ of \(f\) if it is a local extremum of the
+restriction \(f\vert_{M}\).
+#+end_definition
+
+#+DEPENDS: def-constraint-set, thm-implicit-function, thm-chain-rule
+#+NAME: prop-tangent-directions-are-the-kernel
+#+begin_proposition
+Let \(M\) be a regular constraint at \(a\). Then for every
+\(v \in \ker Dg(a)\) there is a \(C^{1}\) curve \(\gamma\) in \(M\) with
+\(\gamma(0) = a\) and \(\gamma'(0) = v\); conversely every such curve
+has \(\gamma'(0)\in\ker Dg(a)\).
+#+end_proposition
+
+#+begin_proof
+The converse is the chain rule: differentiating \(g(\gamma(t)) = 0\) at
+\(t = 0\) gives \(Dg(a)\gamma'(0) = 0\).
+
+For the direct statement, reorder the coordinates so that the last
+\(m\) columns of \(Dg(a)\) are independent, and write
+\(x = (u,w)\in\R^{n-m}\times\R^{m}\). The implicit function theorem
+gives a \(C^{1}\) map \(h\) with \(g(u,h(u)) = 0\) near \(a = (u_{0},w_{0})\)
+and \(Dh(u_{0}) = -D_{w}g^{-1}D_{u}g\). Write \(v = (v_{1},v_{2})\); the
+condition \(Dg(a)v = 0\) says exactly \(v_{2} = Dh(u_{0})v_{1}\). Then
+\(\gamma(t) = (u_{0}+tv_{1},\, h(u_{0}+tv_{1}))\) lies in \(M\), starts
+at \(a\), and has \(\gamma'(0) = (v_{1}, Dh(u_{0})v_{1}) = v\).
+#+end_proof
+
+#+DEPENDS: prop-tangent-directions-are-the-kernel, lem-interior-extremum, thm-annihilator-dimension
+#+NAME: thm-lagrange-multipliers
+#+begin_theorem
+Let \(f, g\) be \(C^{1}\), \(M = \set{g=0}\) regular at \(a\), and let
+\(a\) be a local constrained extremum of \(f\). Then there is a unique
+\(\lambda \in \R^{m}\) with
+\[ Df(a) = \lambda^{\mathsf{T}} Dg(a), \qquad \text{that is} \quad \nabla f(a) = \sum_{j=1}^{m}\lambda_{j}\nabla g_{j}(a). \]
+#+end_theorem
+
+#+begin_proof
+Let \(v \in \ker Dg(a)\) and take a curve \(\gamma\) in \(M\) with
+\(\gamma'(0) = v\). Then \(t \mapsto f(\gamma(t))\) has a local
+extremum at the interior point \(t = 0\), so its derivative vanishes
+there; by the chain rule \(Df(a)v = 0\). Hence
+\(\ker Dg(a) \subseteq \ker Df(a)\).
+
+Read in the [[id:6f3bed75-1321-4c80-b0bd-c8932e0c2837][dual space]]: \(Df(a)\) annihilates \(\ker Dg(a)\), whose
+annihilator is spanned by the rows \(Dg_{1}(a),\dots,Dg_{m}(a)\) -- the
+annihilator of the kernel of a linear map is the image of its transpose,
+and those rows are independent by regularity, so they span a space of
+dimension \(m = n - \dim\ker Dg(a)\). Therefore \(Df(a)\) is a
+combination of them, with coefficients unique by independence.
+#+end_proof
+
+#+DEPENDS: thm-lagrange-multipliers, cor-extreme-value-on-a-compact-space, cor-heine-borel-in-euclidean-space
+#+NAME: cor-extrema-on-a-compact-constraint
+#+begin_corollary
+If \(M\) is compact, non-empty and regular at each of its points, and
+\(f\) is \(C^{1}\) on a neighbourhood of \(M\), then \(f\) attains a
+maximum and a minimum on \(M\), and each is attained at a point
+satisfying the multiplier equations.
+#+end_corollary
+
+#+begin_proof
+A continuous function on a non-empty compact set attains its bounds, and
+a point where a bound is attained is in particular a local constrained
+extremum, so the theorem applies there.
+#+end_proof
+
+#+begin_remark
+Regularity is a hypothesis about the /description/ of the constraint,
+not about the set: the same circle described by \(g = x^{2}+y^{2}-1\) is
+regular everywhere, and described by \(g^{2}\) is regular nowhere, while
+the geometry is unchanged. When it fails the conclusion can fail, and
+the multiplier rule silently returns nothing -- which is why checking the
+rank is part of the method and not a formality.
+#+end_remark

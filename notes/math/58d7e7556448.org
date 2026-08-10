@@ -1,0 +1,124 @@
+:PROPERTIES:
+:ID:       a0c5f254-0252-4136-85e7-c5436092ee67
+:END:
+#+TITLE: Projective transformations and the cross-ratio
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:geometry:algebraic_geometry:
+#+MSC: 51N15
+#+HASH: 58d7e7556448
+
+A projective transformation can move any three points of a line to any
+other three, so no function of three points is invariant. Four points
+have exactly one invariant, the cross-ratio, and it is therefore the
+only quantity projective geometry can measure -- which is precisely why
+it is the quantity that perspective drawings preserve.
+
+#+DEPENDS: def-projective-space, def-linear-map, cor-injective-iff-surjective-in-finite-dimension
+#+NAME: def-projective-transformation
+#+begin_definition
+Let \(V\) be a vector space over \(K\). An invertible linear
+\(A \colon V \to V\) induces a map \(\PP(A)\colon \PP(V)\to\PP(V)\),
+\([v]\mapsto[Av]\); such maps are the /projective transformations/, and
+they form a group \(\PGL(V)\).
+#+end_definition
+
+#+DEPENDS: def-projective-transformation, prop-projective-space-is-a-quotient
+#+NAME: prop-when-two-matrices-agree
+#+begin_proposition
+\(\PP(A)\) is well defined and bijective, \(\PP(AB) = \PP(A)\PP(B)\),
+and \(\PP(A) = \PP(B)\) if and only if \(B = \lambda A\) for some
+\(\lambda \ne 0\). Hence \(\PGL(V) \iso \GL(V)/K^{\times}\).
+#+end_proposition
+
+#+begin_proof
+Well-definedness: \(A(\lambda v) = \lambda Av\), and \(Av \ne 0\) for
+\(v \ne 0\) by invertibility. Functoriality is immediate, and
+\(\PP(A^{-1})\) inverts \(\PP(A)\).
+
+If \(B = \lambda A\) the induced maps agree. Conversely, suppose they
+agree: for every \(v \ne 0\) there is \(\mu(v)\) with
+\(Bv = \mu(v)Av\). For independent \(v, w\),
+\(\mu(v+w)(Av+Aw) = B(v+w) = \mu(v)Av+\mu(w)Aw\), and \(Av, Aw\) are
+independent, so \(\mu(v) = \mu(v+w) = \mu(w)\). For dependent non-zero
+\(v,w\) the values agree because \(\mu(\lambda v) = \mu(v)\). So
+\(\mu\) is a constant \(\lambda\), and \(B = \lambda A\). The last
+statement is the homomorphism \(\GL(V)\to\PGL(V)\), surjective by
+definition with kernel the non-zero scalars.
+#+end_proof
+
+#+DEPENDS: def-projective-transformation, cor-extension-to-a-basis, prop-basis-gives-unique-coordinates
+#+NAME: thm-three-transitivity-on-a-line
+#+begin_theorem
+Given two triples of pairwise distinct points of \(\PP^{1}(K)\), there
+is exactly one projective transformation carrying the first to the
+second, in order.
+#+end_theorem
+
+#+begin_proof
+It suffices to send an arbitrary triple \((P_{0},P_{1},P_{2})\) to
+\(([1:0],[0:1],[1:1])\), uniquely. Choose representatives
+\(v_{0},v_{1}\) of \(P_{0},P_{1}\); they are independent, since the
+points differ, hence a basis of \(K^{2}\). A representative \(v_{2}\) of
+\(P_{2}\) is \(\alpha v_{0}+\beta v_{1}\) with \(\alpha,\beta\ne0\),
+because \(P_{2}\) differs from the first two. The linear map sending
+\(\alpha v_{0}\mapsto e_{0}\) and \(\beta v_{1}\mapsto e_{1}\) is
+invertible and carries the triple to the required one.
+
+Uniqueness: if \(\PP(A)\) fixes the three standard points, then
+\(Ae_{0} = \lambda e_{0}\), \(Ae_{1} = \mu e_{1}\) and
+\(A(e_{0}+e_{1}) = \nu(e_{0}+e_{1})\), so \(\lambda = \nu = \mu\) and
+\(A\) is a scalar, that is \(\PP(A) = \id\).
+#+end_proof
+
+#+DEPENDS: thm-three-transitivity-on-a-line, prop-affine-charts
+#+NAME: def-cross-ratio
+#+begin_definition
+For four pairwise distinct points \(P_{1},P_{2},P_{3},P_{4}\) of
+\(\PP^{1}(K)\), the /cross-ratio/ \((P_{1},P_{2};P_{3},P_{4})\) is the
+image of \(P_{4}\) under the unique projective transformation sending
+\(P_{1},P_{2},P_{3}\) to \([0:1],[1:0],[1:1]\), read in the affine
+coordinate \(z = x_{0}/x_{1}\) -- so that the three reference points
+become \(0\), \(\infty\) and \(1\).
+#+end_definition
+
+#+DEPENDS: def-cross-ratio, thm-three-transitivity-on-a-line
+#+NAME: thm-cross-ratio-is-the-invariant
+#+begin_theorem
+The cross-ratio is invariant under every projective transformation, and
+in the affine coordinate it is
+\[ (z_{1},z_{2};z_{3},z_{4}) = \frac{(z_{4}-z_{1})(z_{3}-z_{2})}{(z_{4}-z_{2})(z_{3}-z_{1})}. \]
+Two quadruples of distinct points are related by a projective
+transformation if and only if they have the same cross-ratio.
+#+end_theorem
+
+#+begin_proof
+Let \(g\) be a projective transformation and \(h\) the unique one
+sending \(P_{1},P_{2},P_{3}\) to the standard triple. Then
+\(h g^{-1}\) sends \(gP_{1},gP_{2},gP_{3}\) to the standard triple, so
+it is the transformation defining the cross-ratio of the image
+quadruple, whose value is \(hg^{-1}(gP_{4}) = h(P_{4})\) -- the same as
+before. This is invariance.
+
+For the formula, the map
+\(z \mapsto \frac{(z-z_{1})(z_{3}-z_{2})}{(z-z_{2})(z_{3}-z_{1})}\) is
+induced by an invertible matrix -- its determinant is a non-zero
+multiple of \((z_{1}-z_{2})(z_{3}-z_{1})(z_{3}-z_{2})\) -- and it sends
+\(z_{1},z_{2},z_{3}\) to \(0,\infty,1\), that is to
+\([0:1],[1:0],[1:1]\); by uniqueness it is the transformation of the
+definition, and evaluating it at \(z_{4}\) gives the displayed
+expression.
+
+Finally, if two quadruples have the same cross-ratio, composing the two
+normalising transformations carries one to the other; the converse is
+invariance.
+#+end_proof
+
+#+begin_remark
+Over \(K = \R\) the cross-ratio explains why a photograph of a railway
+distorts every length and yet determines the geometry: lengths and
+ratios of lengths are not projective invariants, but the ratio of ratios
+is. Over \(K = \C\) the same formula, applied to points of the Riemann
+sphere, is what makes the cross-ratio real exactly for concyclic
+quadruples -- the projective statement of a classical theorem in
+circles.
+#+end_remark

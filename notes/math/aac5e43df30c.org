@@ -1,0 +1,131 @@
+:PROPERTIES:
+:ID:       eb14cc58-7808-4c04-a956-042143f30664
+:END:
+#+TITLE: Computability, the halting problem and Rice's theorem
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:foundations:computability:
+#+MSC: 03D10, 68Q05
+#+HASH: aac5e43df30c
+
+The undecidability results do not depend on which machine model is
+chosen; they depend on two properties any reasonable model has -- a
+program can be simulated by another program, and a program with a
+parameter frozen is again a program. Taking those two properties as the
+definition isolates what the diagonal argument actually uses, and makes
+the theorems below independent of any coding.
+
+#+DEPENDS: def-equinumerous, def-injective-surjective
+#+NAME: def-acceptable-numbering
+#+begin_definition
+Write \(\varphi(n)\!\downarrow\) when a partial function \(\varphi\) is
+defined at \(n\). An /acceptable numbering/ is a family
+\((\varphi_{e})_{e\in\N}\) of partial functions
+\(\N \rightharpoonup \N\), whose members are by definition the
+/computable/ partial functions -- so that every computable partial
+function is \(\varphi_{e}\) for at least one index \(e\), never
+required to be unique -- such that
+1. (universality) the partial function \((e,n)\mapsto\varphi_{e}(n)\) is
+   computable;
+2. (parametrisation) there is a total computable \(s\) with
+   \(\varphi_{s(e,m)}(n) = \varphi_{e}(\langle m,n\rangle)\) for all
+   \(e,m,n\), where \(\langle\cdot,\cdot\rangle\) is a computable
+   pairing bijection \(\N^{2}\to\N\).
+A set \(A \subseteq \N\) is /decidable/ if its indicator function is
+computable and total, and /semidecidable/ if \(A\) is the domain of some
+\(\varphi_{e}\).
+#+end_definition
+
+#+DEPENDS: def-acceptable-numbering, thm-cantor, prop-countable-union
+#+NAME: prop-most-functions-are-not-computable
+#+begin_proposition
+There are functions \(\N \to \N\) that are not computable; indeed the
+computable ones are countable and the others are not.
+#+end_proposition
+
+#+begin_proof
+The computable partial functions are indexed by \(\N\), hence countable.
+If every function \(\N\to\N\) were computable, the set of such functions
+would be countable, so there would be a surjection
+\(\N \to \N^{\N}\); restricting values to \(\set{0,1}\) this would give
+a surjection onto the subsets of \(\N\), contradicting Cantor's theorem.
+#+end_proof
+
+#+DEPENDS: def-acceptable-numbering
+#+NAME: thm-halting-problem
+#+begin_theorem
+The set \(K = \setst{e \in \N}{\varphi_{e}(e)\!\downarrow}\) is
+semidecidable and not decidable.
+#+end_theorem
+
+#+begin_proof
+Semidecidable: by universality, \(e \mapsto \varphi_{e}(e)\) is a
+computable partial function, so it is some \(\varphi_{k}\), and its
+domain is \(K\).
+
+Suppose \(K\) were decidable. Then the partial function \(\psi\) given
+by \(\psi(e) = 0\) for \(e \notin K\) and undefined for \(e \in K\) is
+computable: run the decision procedure for \(K\) and, if the answer is
+"no", output \(0\), otherwise loop for ever. So \(\psi = \varphi_{a}\)
+for some \(a\). Now \(a \in K\) means \(\varphi_{a}(a)\!\downarrow\),
+which means \(\psi(a)\!\downarrow\), which by definition of \(\psi\)
+means \(a \notin K\) -- and the converse implication likewise. This is a
+contradiction, so \(K\) is not decidable.
+#+end_proof
+
+#+DEPENDS: thm-halting-problem, def-acceptable-numbering
+#+NAME: prop-decidable-iff-both-semidecidable
+#+begin_proposition
+\(A\) is decidable if and only if \(A\) and \(\N\setminus A\) are both
+semidecidable. Hence \(\N \setminus K\) is not semidecidable.
+#+end_proposition
+
+#+begin_proof
+If \(A\) is decidable, its indicator function decides membership, and
+the partial functions "output \(0\) if \(n \in A\), else diverge" and
+its complement witness semidecidability of both sides. Conversely, if
+\(A\) is the domain of \(\varphi_{a}\) and \(\N\setminus A\) that of
+\(\varphi_{b}\), then simulating both computations in alternation --
+possible by universality -- terminates for every \(n\), since \(n\) lies
+in one of the two sets, and which of the two halts first decides
+membership.
+
+If \(\N\setminus K\) were semidecidable, \(K\) would be decidable by the
+above, contradicting the previous theorem.
+#+end_proof
+
+#+DEPENDS: def-acceptable-numbering, thm-halting-problem
+#+NAME: thm-rice
+#+begin_theorem
+Let \(\mathcal{P}\) be a set of partial computable functions that is
+neither empty nor all of them, and let
+\(I = \setst{e}{\varphi_{e} \in \mathcal{P}}\). Then \(I\) is not
+decidable.
+#+end_theorem
+
+#+begin_proof
+Let \(\emptyset\) denote the nowhere defined function; replacing
+\(\mathcal{P}\) by its complement if necessary -- which changes \(I\)
+into its complement, decidable exactly when \(I\) is -- assume
+\(\emptyset \notin \mathcal{P}\). Pick \(\chi \in \mathcal{P}\), say
+\(\chi = \varphi_{c}\).
+
+Define a partial function of two arguments by: on \((m,n)\), first run
+\(\varphi_{m}(m)\); if it halts, output \(\chi(n)\). This is computable
+by universality, so it is \(u(\langle m,n\rangle)\) for a computable
+\(u = \varphi_{d}\), and by parametrisation there is a total computable
+\(g(m) = s(d,m)\) with \(\varphi_{g(m)}(n) = u(\langle m,n\rangle)\).
+
+If \(m \in K\) then \(\varphi_{g(m)} = \chi \in \mathcal{P}\), so
+\(g(m) \in I\); if \(m \notin K\) then \(\varphi_{g(m)}\) is nowhere
+defined, so \(g(m)\notin I\). A decision procedure for \(I\) composed
+with \(g\) would therefore decide \(K\), which is impossible.
+#+end_proof
+
+#+begin_remark
+Rice's theorem says every non-trivial property /of the function computed/
+is undecidable: whether a program halts on all inputs, whether it
+computes the constant zero, whether two programs agree. Properties of
+the /text/ of the program -- its length, whether it contains a loop --
+are of course decidable, and the distinction between the two is the
+whole content of the statement.
+#+end_remark

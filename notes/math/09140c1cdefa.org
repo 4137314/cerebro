@@ -1,0 +1,136 @@
+:PROPERTIES:
+:ID:       b79e44e5-70dd-48a2-a1b2-9f635e55ba6b
+:END:
+#+TITLE: Ordinals and definition by transfinite recursion
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:foundations:set_theory:
+#+MSC: 03E10
+#+HASH: 09140c1cdefa
+
+Transfinite induction proves statements along a well order; it does not
+build anything. Recursion does, and it is a separate theorem: a
+construction that at each stage may consult everything built before it
+is well defined. Ordinals are then the canonical well orders -- one for
+each order type -- so that "the length" of a construction becomes an
+object rather than a manner of speaking.
+
+#+DEPENDS: def-well-order
+#+NAME: def-ordinal
+#+begin_definition
+A set \(\alpha\) is /transitive/ if every element of an element of
+\(\alpha\) is an element of \(\alpha\). An /ordinal/ is a transitive set
+strictly well ordered by the membership relation \(\in\). One writes
+\(\beta < \alpha\) for \(\beta \in \alpha\).
+#+end_definition
+
+#+DEPENDS: def-ordinal, prop-initial-segments-of-a-well-order
+#+NAME: prop-ordinal-basics
+#+begin_proposition
+Let \(\alpha\) be an ordinal. Then every element of \(\alpha\) is an
+ordinal, and \(\alpha = \setst{\beta}{\beta < \alpha}\) is the set of
+its own predecessors. If \(\beta\) is an ordinal with
+\(\beta \subseteq \alpha\) and \(\beta \ne \alpha\), then
+\(\beta \in \alpha\). Any two ordinals are comparable, and
+\(\alpha^{+} = \alpha \cup \set{\alpha}\) is the least ordinal greater
+than \(\alpha\).
+#+end_proposition
+
+#+begin_proof
+Let \(\beta \in \alpha\). It is transitive: if \(\delta\in\gamma\in\beta\),
+then all three lie in \(\alpha\) by transitivity of \(\alpha\), and the
+order \(\in\) on \(\alpha\) is transitive, so \(\delta\in\beta\). It is
+well ordered by \(\in\), being a subset of \(\alpha\). Hence \(\beta\)
+is an ordinal, and the displayed identity for \(\alpha\) is the
+definition of \(<\).
+
+If \(\beta \subsetneq \alpha\), then \(\alpha \setminus \beta\) has a
+least element \(\gamma\), and \(\beta\) is an initial segment of
+\(\alpha\) -- for \(\delta \in \beta\) and \(\eps \in \delta\) we get
+\(\eps \in \beta\) by transitivity of \(\beta\). By the description of
+initial segments, \(\beta = \setst{\delta \in \alpha}{\delta < \gamma} = \gamma\),
+so \(\beta \in \alpha\).
+
+Comparability: \(\alpha\cap\beta\) is transitive and well ordered, hence
+an ordinal, and it is a subset of both. If it were a proper subset of
+each it would belong to each, hence to \(\alpha\cap\beta\), giving
+\(\gamma \in \gamma\) and contradicting strictness. So
+\(\alpha\cap\beta\) equals \(\alpha\) or \(\beta\), that is
+\(\alpha \subseteq \beta\) or \(\beta\subseteq\alpha\), and the previous
+paragraph turns inclusion into membership or equality.
+
+Finally \(\alpha^{+}\) is transitive and well ordered by \(\in\), with
+\(\alpha\) as its greatest element; any ordinal \(\gamma > \alpha\)
+contains \(\alpha\) and hence contains \(\alpha^{+}\) or equals it.
+#+end_proof
+
+#+DEPENDS: def-well-order, thm-transfinite-induction
+#+NAME: thm-transfinite-recursion
+#+begin_theorem
+Let \(W\) be a well-ordered set, \(A\) a set, and \(G\) a map assigning
+to every function \(p\) from an initial segment of \(W\) into \(A\) a
+value \(G(p) \in A\). Then there is exactly one \(f \colon W \to A\)
+with \(f(x) = G(f\restrict{W_{<x}})\) for every \(x \in W\).
+#+end_theorem
+
+#+begin_proof
+Call \(p\) an /attempt/ if its domain is an initial segment of \(W\),
+its values lie in \(A\), and \(p(y) = G(p\restrict{W_{<y}})\) for every
+\(y\) in its domain. Any two attempts agree on the intersection of their
+domains: otherwise, that intersection being an initial segment, there is
+a least \(y\) at which \(p\) and \(q\) differ, and then
+\(p\restrict{W_{<y}} = q\restrict{W_{<y}}\), so
+\(p(y) = G(p\restrict{W_{<y}}) = q(y)\) -- a contradiction.
+
+The attempts form a set, being certain subsets of \(W \times A\), so
+their union \(f\) is a function, and it is an attempt. Its domain is all
+of \(W\): by transfinite induction, if \(W_{<x}\) is contained in the
+domain then \(f\restrict{W_{<x}}\) is an attempt and extending it by the
+value \(G(f\restrict{W_{<x}})\) at \(x\) is again an attempt, so \(x\)
+lies in the domain of the union. Uniqueness is the agreement of attempts
+applied to two total solutions.
+#+end_proof
+
+#+DEPENDS: thm-transfinite-recursion, def-ordinal, prop-ordinal-basics
+#+NAME: thm-every-well-order-is-an-ordinal
+#+begin_theorem
+Every well-ordered set is order-isomorphic to exactly one ordinal, by
+exactly one isomorphism.
+#+end_theorem
+
+#+begin_proof
+Let \(W\) be well ordered. Define \(f\) on \(W\) by recursion:
+\(f(x) = \setst{f(y)}{y < x}\), the value being the image of the
+previously defined part. Each \(f(x)\) is an ordinal by induction on
+\(x\): its elements are ordinals \(f(y)\), it is transitive because
+\(f\) is order preserving on \(W_{<x}\), and it is well ordered since
+\(f\) is injective and order preserving there -- \(y < y'\) gives
+\(f(y) \in f(y')\), and \(f(y) = f(y')\) with \(y<y'\) would put
+\(f(y)\) in itself.
+
+So \(f\) is an order isomorphism of \(W\) onto its image, which is a
+transitive set of ordinals, hence an ordinal. Uniqueness: an order
+isomorphism between ordinals is the identity, since a least point of
+disagreement would have to be sent to the set of images of its
+predecessors, that is to itself.
+#+end_proof
+
+#+DEPENDS: def-ordinal, prop-ordinal-basics
+#+NAME: cor-no-set-of-all-ordinals
+#+begin_corollary
+There is no set containing every ordinal.
+#+end_corollary
+
+#+begin_proof
+Such a set would have as a subset the class of all ordinals, which is
+transitive and well ordered by \(\in\), hence an ordinal \(\Omega\);
+then \(\Omega \in \Omega\), contradicting the strictness of the order.
+#+end_proof
+
+#+begin_remark
+The corollary is Burali-Forti's paradox, and in the modern axioms it is
+not a paradox but a theorem: the ordinals form a proper class. Its
+practical content is that a construction indexed by the ordinals must
+stop -- if it produced a new element at every stage it would inject the
+ordinals into a set -- which is the standard argument for closing off a
+transfinite process, Hartogs' theorem being the sharp form of it.
+#+end_remark

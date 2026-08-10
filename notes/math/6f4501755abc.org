@@ -1,0 +1,114 @@
+:PROPERTIES:
+:ID:       08325554-01e4-4aff-93a2-e3543e4ee8ce
+:END:
+#+TITLE: Local compactness and the one-point compactification
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:topology:general_topology:
+#+MSC: 54D45
+#+HASH: 6f4501755abc
+
+Compactness is the hypothesis that makes theorems work and \(\R^{n}\)
+does not have it. The cheapest repair is to add a single point and
+declare the neighbourhoods of it to be the complements of compact sets
+-- which is exactly the convention "\(x_{n}\to\infty\) means \(x_{n}\)
+eventually leaves every compact set", made into a topology.
+
+#+DEPENDS: def-compact, def-hausdorff, prop-compact-subset-of-a-hausdorff-space-is-closed
+#+NAME: def-locally-compact
+#+begin_definition
+A Hausdorff space \(X\) is /locally compact/ if every point has a
+compact neighbourhood.
+#+end_definition
+
+#+DEPENDS: def-locally-compact, prop-compact-subset-of-a-hausdorff-space-is-closed, prop-closed-subspace-of-a-compact-space
+#+NAME: prop-locally-compact-neighbourhood-basis
+#+begin_proposition
+In a locally compact Hausdorff space, every point has a neighbourhood
+basis of compact sets: for every open \(U \ni x\) there is an open
+\(V\) with \(x \in V \subseteq \overline{V}\subseteq U\) and
+\(\overline{V}\) compact.
+#+end_proposition
+
+#+begin_proof
+Let \(K\) be a compact neighbourhood of \(x\) and \(U\) open with
+\(x \in U\). The set \(C = K \setminus U\) is compact -- closed in the
+compact \(K\), being the intersection of \(K\) with the closed
+\(X\setminus U\) -- and does not contain \(x\). By the separation of a
+point from a compact set in a Hausdorff space there are disjoint open
+\(V_{0}\ni x\) and \(W \supseteq C\). Put \(V = V_{0}\cap K^{\circ}\),
+an open neighbourhood of \(x\). Its closure is contained in the compact
+\(K\), hence compact, and it misses \(W \supseteq C\), so
+\(\overline{V}\subseteq K \setminus C \subseteq U\).
+#+end_proof
+
+#+DEPENDS: def-locally-compact, def-topological-space, def-compact
+#+NAME: thm-one-point-compactification
+#+begin_theorem
+Let \(X\) be locally compact Hausdorff and put
+\(X^{+} = X \cup \set{\infty}\), declaring open the open subsets of
+\(X\) together with the sets \(\set{\infty}\cup(X\setminus K)\) for
+\(K \subseteq X\) compact. Then \(X^{+}\) is a compact Hausdorff space
+containing \(X\) as an open dense subspace, unless \(X\) is already
+compact.
+#+end_theorem
+
+#+begin_proof
+Write the sets of the second kind as \(X^{+}\setminus K\). The family is
+a topology, and it is worth checking because both kinds occur. It
+contains \(\emptyset\) and \(X^{+} = X^{+}\setminus\emptyset\).
+
+Unions: a union of sets of the first kind is open in \(X\). A union
+involving second-kind sets is
+\(\bigl(\bigcup_{i}U_{i}\bigr)\cup\bigl(X^{+}\setminus\bigcap_{j}K_{j}\bigr) = X^{+}\setminus\Bigl(\bigcap_{j}K_{j}\setminus\bigcup_{i}U_{i}\Bigr)\);
+here \(\bigcap_{j}K_{j}\) is compact, being closed in any one of the
+\(K_{j}\) -- compact subsets of a Hausdorff space are closed -- and
+removing the open \(\bigcup_{i}U_{i}\) leaves a closed subset of it,
+again compact.
+
+Intersections of two members: two of the first kind give an open subset
+of \(X\); \(U \cap (X^{+}\setminus K) = U \cap (X\setminus K)\) is open
+in \(X\) because \(K\) is closed; and
+\((X^{+}\setminus K_{1})\cap(X^{+}\setminus K_{2}) = X^{+}\setminus(K_{1}\cup K_{2})\),
+a union of two compact sets being compact.
+
+Compactness: let \(\mathcal{U}\) cover \(X^{+}\). Some member contains
+\(\infty\), so it is \(\set{\infty}\cup(X\setminus K)\) with \(K\)
+compact; finitely many members of \(\mathcal{U}\) cover \(K\), and
+together with that one they cover \(X^{+}\).
+
+Hausdorff: two points of \(X\) are separated inside \(X\), which is
+open. For \(x \in X\) and \(\infty\), local compactness gives a compact
+neighbourhood \(K\) of \(x\); then \(K^{\circ}\) and
+\(\set{\infty}\cup(X\setminus K)\) are disjoint open sets. \(X\) is open
+in \(X^{+}\) by construction, and dense unless \(\set{\infty}\) is
+itself open, which happens exactly when \(X\) is compact.
+#+end_proof
+
+#+DEPENDS: thm-one-point-compactification, cor-heine-borel-in-euclidean-space, thm-continuous-bijection-from-compact-to-hausdorff
+#+NAME: cor-sphere-is-a-compactification-of-the-plane
+#+begin_corollary
+\(\R^{n}\) is locally compact, and \((\R^{n})^{+}\) is homeomorphic to
+the sphere \(S^{n}\).
+#+end_corollary
+
+#+begin_proof
+A closed ball is a compact neighbourhood of each point, by Heine-Borel,
+so \(\R^{n}\) is locally compact Hausdorff. Stereographic projection
+from the north pole \(N\) is a homeomorphism \(S^{n}\setminus\set{N}\to\R^{n}\);
+extend it to \(S^{n}\to(\R^{n})^{+}\) by sending \(N\) to \(\infty\).
+This is a bijection, and it is continuous: at points other than \(N\)
+this is the projection, and a neighbourhood
+\(\set{\infty}\cup(\R^{n}\setminus K)\) of \(\infty\) pulls back to the
+complement of the compact preimage of \(K\), a neighbourhood of \(N\).
+A continuous bijection from a compact space to a Hausdorff space is a
+homeomorphism.
+#+end_proof
+
+#+begin_remark
+The construction explains the two conventions that look like abuses of
+notation. "\(1/x \to \infty\) as \(x \to 0\)" is continuity of a map
+into \(\R^{+}\), and the Riemann sphere of complex analysis is
+\(\C^{+}\), on which a rational function is genuinely continuous
+everywhere -- the poles are not exceptions but ordinary points mapping
+to \(\infty\).
+#+end_remark

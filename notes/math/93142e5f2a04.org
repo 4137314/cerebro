@@ -1,0 +1,141 @@
+:PROPERTIES:
+:ID:       7acc920f-8318-484c-8362-7551babde634
+:END:
+#+TITLE: Nets and convergence in topological spaces
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:topology:general_topology:
+#+MSC: 54A20
+#+HASH: 93142e5f2a04
+
+Sequences describe the closure in a metric space and fail in general,
+because \(\N\) is the wrong index set: what a limit argument needs is not
+countability but the ability to go further in every direction at once. A
+net is a family indexed by a directed set, and with that single change
+every sequential characterisation of the metric theory becomes true
+again, word for word.
+
+#+DEPENDS: def-partial-order, def-topological-space
+#+NAME: def-directed-set
+#+begin_definition
+A /directed set/ is a non-empty set \(D\) with a reflexive, transitive
+relation \(\le\) such that any two elements have a common upper bound. A
+/net/ in a space \(X\) is a map \(x \colon D \to X\), written
+\((x_{d})_{d\in D}\); it is /eventually/ in \(A \subseteq X\) if
+\(x_{d}\in A\) for all \(d \ge d_{0}\), for some \(d_{0}\), and
+/frequently/ in \(A\) if for every \(d\) there is \(e \ge d\) with
+\(x_{e}\in A\).
+#+end_definition
+
+#+DEPENDS: def-directed-set
+#+NAME: def-net-convergence
+#+begin_definition
+A net \((x_{d})\) /converges/ to \(x\), written \(x_{d}\to x\), if it is
+eventually in every neighbourhood of \(x\); it /clusters/ at \(x\) if it
+is frequently in every neighbourhood of \(x\). A /subnet/ of
+\((x_{d})_{d\in D}\) is a net \((x_{h(e)})_{e\in E}\) with \(E\) directed
+and \(h \colon E \to D\) such that for every \(d\in D\) there is
+\(e_{0}\) with \(h(e)\ge d\) for all \(e \ge e_{0}\).
+#+end_definition
+
+#+DEPENDS: def-net-convergence, thm-closure-by-neighbourhoods
+#+NAME: thm-closure-by-nets
+#+begin_theorem
+For \(A \subseteq X\), \(x \in \overline{A}\) if and only if some net in
+\(A\) converges to \(x\). Hence \(A\) is closed exactly when it contains
+the limit of every convergent net of its points.
+#+end_theorem
+
+#+begin_proof
+If \(x_{d}\to x\) with all \(x_{d}\in A\), every neighbourhood of \(x\)
+eventually contains some \(x_{d} \in A\), so it meets \(A\) and
+\(x \in \overline{A}\).
+
+Conversely let \(x \in \overline{A}\) and let \(D\) be the set of
+neighbourhoods of \(x\), directed by reverse inclusion -- two
+neighbourhoods have their intersection as a common upper bound. Each
+\(N \in D\) meets \(A\); choose \(x_{N} \in N \cap A\). Given a
+neighbourhood \(N_{0}\), every \(N \ge N_{0}\) satisfies
+\(N \subseteq N_{0}\), so \(x_{N}\in N_{0}\): the net converges to
+\(x\).
+#+end_proof
+
+#+DEPENDS: def-net-convergence, thm-characterisations-of-continuity, thm-closure-by-nets
+#+NAME: thm-continuity-by-nets
+#+begin_theorem
+\(f \colon X \to Y\) is continuous at \(x\) if and only if
+\(x_{d}\to x\) implies \(f(x_{d})\to f(x)\) for every net.
+#+end_theorem
+
+#+begin_proof
+Suppose \(f\) is continuous at \(x\) and \(x_{d}\to x\). Given a
+neighbourhood \(V\) of \(f(x)\), some neighbourhood \(U\) of \(x\) has
+\(f(U)\subseteq V\), and \((x_{d})\) is eventually in \(U\), hence
+\((f(x_{d}))\) is eventually in \(V\).
+
+Conversely, suppose \(f\) is not continuous at \(x\): some neighbourhood
+\(V\) of \(f(x)\) contains no \(f(U)\). Directing the neighbourhoods of
+\(x\) by reverse inclusion, choose for each \(U\) a point
+\(x_{U}\in U\) with \(f(x_{U})\notin V\). Then \(x_{U}\to x\) as above,
+while \((f(x_{U}))\) is never in \(V\), so it does not converge to
+\(f(x)\).
+#+end_proof
+
+#+DEPENDS: def-net-convergence, def-hausdorff, prop-hausdorff-limits-are-unique
+#+NAME: prop-hausdorff-by-nets
+#+begin_proposition
+\(X\) is Hausdorff if and only if every net in \(X\) has at most one
+limit.
+#+end_proposition
+
+#+begin_proof
+In a Hausdorff space, a net converging to \(x \ne y\) would be
+eventually in each of two disjoint neighbourhoods, which is impossible
+since a directed set has upper bounds.
+
+Conversely, suppose \(x \ne y\) cannot be separated. Direct the pairs
+\((U,V)\) of neighbourhoods of \(x\) and of \(y\) by reverse inclusion
+in both entries, and choose \(z_{(U,V)} \in U \cap V\), non-empty by
+assumption. This net converges to \(x\) and to \(y\).
+#+end_proof
+
+#+DEPENDS: def-net-convergence, def-compact, thm-compactness-by-ultrafilters
+#+NAME: thm-compactness-by-nets
+#+begin_theorem
+A space is compact if and only if every net in it has a cluster point,
+if and only if every net has a convergent subnet.
+#+end_theorem
+
+#+begin_proof
+Let \(X\) be compact and \((x_{d})_{d \in D}\) a net with no cluster
+point. Then each \(x\) has an open \(U_{x}\) that the net is not
+frequently in, so it is eventually outside \(U_{x}\): there is
+\(d_{x}\) with \(x_{e}\notin U_{x}\) for \(e \ge d_{x}\). Finitely many
+\(U_{x_{1}},\dots,U_{x_{k}}\) cover \(X\); taking \(e\) above all the
+\(d_{x_{i}}\), which is possible by directedness, puts \(x_{e}\) outside
+every \(U_{x_{i}}\) -- absurd.
+
+Conversely, suppose every net clusters and let \(\mathcal{C}\) be a
+family of closed sets with the finite intersection property. Direct the
+finite subfamilies by inclusion and choose a point \(x_{F}\) in the
+intersection of each; a cluster point \(x\) of this net lies in every
+\(C \in \mathcal{C}\), because the net is frequently in every
+neighbourhood of \(x\) and eventually inside \(C\) once \(F \ni C\), so
+every neighbourhood of \(x\) meets \(C\), which is closed. Hence
+\(\bigcap\mathcal{C}\ne\emptyset\), which is compactness.
+
+Finally, \(x\) is a cluster point of \((x_{d})\) exactly when some
+subnet converges to \(x\): given such an \(x\), let \(E\) be the set of
+pairs \((d,N)\) with \(x_{d}\in N\) a neighbourhood of \(x\), directed
+by \(\ge\) in \(d\) and reverse inclusion in \(N\), and
+\(h(d,N) = d\); this is a subnet converging to \(x\). Conversely a
+subnet converging to \(x\) is frequently in every neighbourhood.
+#+end_proof
+
+#+begin_remark
+Sequences are the nets indexed by \(\N\), and the metric theory is the
+case in which they suffice, because the neighbourhoods of a point are
+directed by a countable subfamily. Nets and filters are two languages
+for the same content -- the net constructed above from the
+neighbourhoods is the filter of neighbourhoods in disguise -- and which
+to use is a matter of whether one prefers to index or to collect.
+#+end_remark

@@ -1,0 +1,57 @@
+:PROPERTIES:
+:ID:       1ba699a0-80ee-42e3-ae2b-bfbbc0a2c6a8
+:END:
+#+TITLE: Foundations
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:foundations:
+#+MSC: 03-XX
+#+HASH: 7415e965544d
+
+The rest of the archive uses sets, functions, quotients and proofs
+without comment. This area is where those become objects of study rather
+than instruments: what a set can be, what a proof is, and what follows
+about the limits of both. It is also, in practice, where the tools live
+-- Zorn's lemma and the ultrafilter lemma are used far more often here
+than they are discussed.
+
+Part of [[id:c2fcb100-fc5a-4670-9b5d-c068c0c325ff][Mathematics]].
+
+* The subjects
+
+- [[id:2601b3b5-f2ba-444f-a80d-7cdef30c5065][Set theory]] -- relations and quotients, order, choice, transfinite
+  induction and recursion, cardinality, filters.
+- [[id:483f9ad5-72a5-4e63-9623-51a677395e27][Logic]] -- formulas as objects: satisfaction, derivation, the
+  relation between the two, and what no derivation can decide.
+
+* The two theorems everything else uses
+
+[[id:3cb0cea8-d46a-44cf-ad4f-39b88f22d50e][Zorn's lemma]] and [[id:e3c053e0-2462-4692-8b0d-ee81002ec63c][the ultrafilter lemma]] are the export products of
+this area. Between them they produce a [[id:75bbba6c-ad62-4369-9a49-17beefdde80f][basis of any vector space]], a
+[[id:c9c12e48-ddd2-4359-917d-138e90df9416][maximal ideal of any ring]], a [[id:22ffdad0-babd-4070-bfce-78778aa1fb8b][Hahn-Banach extension]], [[id:dcebacce-9383-47a7-a556-580d2ee38e5b][Tychonoff's
+theorem]], the [[id:97912891-a007-42a1-8b9f-410b0c47e802][compactness theorem for first-order logic]] and the [[id:22a8386a-16ba-435b-a71d-26d9886886d0][Stone
+representation]] of a Boolean algebra. Every one of those proofs produces
+an object that no construction reaches, and it is worth knowing which
+results in a subject are of that kind.
+
+* Syntax against semantics
+
+The characteristic move of logic is to define two relations and then
+compare them: \(\Sigma \models \varphi\), which quantifies over all
+assignments, and \(\Sigma\vdash\varphi\), which asks for a finite
+object. [[id:36cd1905-a97d-4a57-8df6-c624798c4eb9][Soundness]] is the easy direction and [[id:77484172-ce88-4a74-8fcf-b70251b5034f][completeness]] the
+substantial one; [[id:b3043ad1-2aac-4361-8f17-605013e7a12a][compactness]] is what the finiteness of derivations
+forces, and it can also be proved semantically, by Zorn or by
+[[id:97912891-a007-42a1-8b9f-410b0c47e802][ultraproducts]], which is the same argument seen from the other side.
+Then [[id:4400af63-8a49-4b93-a45a-6dc1505f616c][Lowenheim-Skolem]] says how little a first-order theory controls,
+and [[id:eb14cc58-7808-4c04-a956-042143f30664][the halting problem]] says that some questions have no decision
+procedure at all.
+
+* What is missing
+
+The axioms of set theory are used and never written down -- there is no
+note stating ZF. Godel's completeness theorem for first-order logic is
+absent, its consequence (compactness) having been obtained by
+ultraproducts instead; the incompleteness theorems are absent, and with
+them arithmetic as an object of study; and category theory, which is
+where the repeated constructions of [[id:504cda55-cfbf-42c2-b481-8d90660ec02a][algebra]] and [[id:830a0aed-a379-4350-bd58-f776af9b87d7][topology]] are properly
+stated, does not exist here at all.

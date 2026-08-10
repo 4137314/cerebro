@@ -1,0 +1,123 @@
+:PROPERTIES:
+:ID:       58054969-7179-42fd-9754-f55d009d7cc6
+:END:
+#+TITLE: Fourier series, Fejer's theorem and Parseval's identity
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:analysis:harmonic_analysis:
+#+MSC: 42A16, 42A20
+#+HASH: 653fb9850673
+
+Expanding a periodic function in exponentials is an orthogonal
+projection in [[id:642c93ab-d004-4829-b5fa-899759923d63][Hilbert space]], so convergence in \(L^{2}\) and Parseval's
+identity are free -- provided the exponentials are complete. That
+completeness is the one thing the abstract theory cannot supply, and it
+is proved here by an approximation argument: the Cesaro means of the
+series converge uniformly for a continuous function, which is Fejer's
+theorem.
+
+#+DEPENDS: def-l2, def-orthogonal-family, thm-orthonormal-basis-and-parseval
+#+NAME: def-fourier-coefficients
+#+begin_definition
+For \(f\) integrable on \([-\pi,\pi]\), the /Fourier coefficients/ are
+\(\hat{f}(n) = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(t)e^{-int}\dd t\),
+\(n \in \Z\), and the /partial sums/ are
+\(S_{N}f(x) = \sum_{\abs{n}\le N}\hat{f}(n)e^{inx}\). The system
+\(e_{n}(t) = e^{int}\) is orthonormal in \(L^{2}([-\pi,\pi])\) for the
+inner product
+\(\inner{f}{g} = \frac{1}{2\pi}\int_{-\pi}^{\pi}f\overline{g}\).
+#+end_definition
+
+#+DEPENDS: def-fourier-coefficients, def-orthogonal-family
+#+NAME: prop-the-exponentials-are-orthonormal
+#+begin_proposition
+\(\inner{e_{n}}{e_{m}} = 1\) if \(n = m\) and \(0\) otherwise; and
+\(S_{N}f\) is the orthogonal projection of \(f\) onto the span of
+\(e_{-N},\dots,e_{N}\), so it minimises
+\(\norm{f - p}\) over trigonometric polynomials \(p\) of degree at most
+\(N\).
+#+end_proposition
+
+#+begin_proof
+For \(n \ne m\),
+\(\frac{1}{2\pi}\int_{-\pi}^{\pi}e^{i(n-m)t}\dd t = \frac{1}{2\pi}\bigl[\frac{e^{i(n-m)t}}{i(n-m)}\bigr]_{-\pi}^{\pi} = 0\)
+by periodicity, and for \(n = m\) the integrand is \(1\). The
+coefficients \(\hat{f}(n) = \inner{f}{e_{n}}\) are those of the
+orthogonal projection onto the span, which is the nearest point of that
+subspace.
+#+end_proof
+
+#+DEPENDS: def-fourier-coefficients, thm-fubini, def-uniform-convergence
+#+NAME: lem-fejer-kernel
+#+begin_lemma
+Let \(\sigma_{N}f = \frac{1}{N+1}\sum_{k=0}^{N}S_{k}f\) be the Cesaro
+means. Then \(\sigma_{N}f(x) = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(x-t)K_{N}(t)\dd t\)
+with
+\[ K_{N}(t) = \frac{1}{N+1}\Bigl(\frac{\sin\frac{(N+1)t}{2}}{\sin\frac{t}{2}}\Bigr)^{2}, \]
+and \(K_{N}\ge0\),
+\(\frac{1}{2\pi}\int_{-\pi}^{\pi}K_{N} = 1\), and for every
+\(\delta>0\), \(\sup_{\delta\le\abs{t}\le\pi}K_{N}(t)\to0\).
+#+end_lemma
+
+#+begin_proof
+Substituting the definition of \(\hat{f}\) and exchanging the finite sum
+with the integral, \(S_{k}f(x) = \frac{1}{2\pi}\int f(x-t)D_{k}(t)\dd t\)
+with \(D_{k}(t) = \sum_{\abs{n}\le k}e^{int}\), a geometric sum equal to
+\(\sin((k+\frac{1}{2})t)/\sin(t/2)\). Averaging over \(k \le N\) and
+summing the resulting trigonometric identity gives the displayed
+\(K_{N}\), which is manifestly non-negative.
+
+Its integral is \(1\) because each \(D_{k}\) integrates to \(2\pi\), only
+the constant term surviving. For \(\delta\le\abs{t}\le\pi\) the
+denominator \(\sin^{2}(t/2)\) is bounded below by \(\sin^{2}(\delta/2)\),
+so \(K_{N}(t) \le \frac{1}{(N+1)\sin^{2}(\delta/2)} \to 0\), uniformly.
+#+end_proof
+
+#+DEPENDS: lem-fejer-kernel, thm-heine-cantor, def-uniform-convergence
+#+NAME: thm-fejer
+#+begin_theorem
+If \(f\) is continuous and \(2\pi\)-periodic, then
+\(\sigma_{N}f \to f\) uniformly on \(\R\).
+#+end_theorem
+
+#+begin_proof
+Using \(\frac{1}{2\pi}\int K_{N} = 1\),
+\[ \abs{\sigma_{N}f(x)-f(x)} \le \frac{1}{2\pi}\int_{-\pi}^{\pi}\abs{f(x-t)-f(x)}K_{N}(t)\dd t. \]
+Let \(\eps>0\). By uniform continuity of \(f\) -- it is continuous and
+periodic, hence uniformly continuous -- choose \(\delta>0\) with
+\(\abs{f(x-t)-f(x)}<\eps/2\) for \(\abs{t}<\delta\), uniformly in
+\(x\). Split the integral: the part over \(\abs{t}<\delta\) is at most
+\(\eps/2\) since \(K_{N}\ge0\) has total mass \(1\), and the part over
+\(\delta\le\abs{t}\le\pi\) is at most
+\(2\sup\abs{f}\cdot\sup_{\abs{t}\ge\delta}K_{N}\), which is below
+\(\eps/2\) for \(N\) large, independently of \(x\).
+#+end_proof
+
+#+DEPENDS: thm-fejer, thm-orthonormal-basis-and-parseval, thm-riesz-fischer
+#+NAME: thm-parseval-for-fourier-series
+#+begin_theorem
+The system \((e_{n})_{n\in\Z}\) is an orthonormal basis of
+\(L^{2}([-\pi,\pi])\): for every \(f\) in that space,
+\(S_{N}f \to f\) in \(L^{2}\) and
+\(\frac{1}{2\pi}\int_{-\pi}^{\pi}\abs{f}^{2} = \sum_{n\in\Z}\abs{\hat{f}(n)}^{2}\).
+#+end_theorem
+
+#+begin_proof
+By the abstract theorem on orthonormal systems it suffices that the
+span of the \(e_{n}\) -- the trigonometric polynomials -- be dense in
+\(L^{2}\). Continuous periodic functions are dense in \(L^{2}\): a
+square-integrable function is approximated in norm by simple functions,
+each of which is approximated by continuous ones. And a continuous
+periodic \(f\) is approximated uniformly, hence in \(L^{2}\), by the
+trigonometric polynomials \(\sigma_{N}f\) by Fejer's theorem. Density
+follows, and with it the expansion and Parseval's identity.
+#+end_proof
+
+#+begin_remark
+Fejer's theorem is stronger than it looks precisely because it averages:
+the partial sums themselves need not converge at a point even for a
+continuous function, and there is a continuous function whose Fourier
+series diverges somewhere. Averaging repairs this, and the same trick --
+replace a kernel by a non-negative one of unit mass concentrating at the
+origin -- is the standard device of approximate identities throughout
+harmonic analysis.
+#+end_remark

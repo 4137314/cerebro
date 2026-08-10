@@ -1,0 +1,100 @@
+:PROPERTIES:
+:ID:       8b7c0d78-6337-4e7c-b510-0a1462f85a66
+:END:
+#+TITLE: Equilibria, stability and the Lagrange-Dirichlet theorem
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:mathematical_physics:classical_mechanics:
+#+MSC: 70H14, 34D20
+#+HASH: 7b31a99b859f
+
+An equilibrium is a constant solution; the question is whether motions
+starting nearby stay nearby. For a conservative system the answer is
+read off the potential alone: a strict minimum is stable, because energy
+conservation traps the motion in a level set of the energy. That
+argument is the prototype of every Lyapunov function.
+
+#+DEPENDS: cor-conservative-forces-give-a-variational-principle, prop-energy-and-cyclic-coordinates, def-metric-space
+#+NAME: def-equilibrium-and-stability
+#+begin_definition
+Consider a natural mechanical system with Lagrangian
+\(L = \tfrac{1}{2}\inner{A(q)\dot{q}}{\dot{q}} - V(q)\), where
+\(A(q)\) is symmetric positive definite and depends continuously on
+\(q\). A point \(q_{0}\) is an /equilibrium/ if \(q(t)\equiv q_{0}\)
+solves the equations of motion. It is /stable/ (in the sense of
+Lyapunov) if for every neighbourhood \(U\) of \((q_{0},0)\) in phase
+space there is a neighbourhood \(W\) such that every motion starting in
+\(W\) stays in \(U\) for all \(t \ge 0\), and /unstable/ otherwise.
+#+end_definition
+
+#+DEPENDS: def-equilibrium-and-stability, thm-lagrange-equations-from-dalembert, lem-interior-extremum
+#+NAME: prop-equilibria-are-critical-points
+#+begin_proposition
+\(q_{0}\) is an equilibrium if and only if \(\nabla V(q_{0}) = 0\).
+#+end_proposition
+
+#+begin_proof
+For the constant curve \(q \equiv q_{0}\) all velocities and
+accelerations vanish, so the Lagrange equations reduce to
+\(\partial L/\partial q_{k} = 0\); the kinetic term is quadratic in
+\(\dot{q}\) and hence contributes nothing at \(\dot{q} = 0\), leaving
+\(-\partial V/\partial q_{k}(q_{0}) = 0\). Conversely, if
+\(\nabla V(q_{0}) = 0\) the constant curve satisfies the equations.
+#+end_proof
+
+#+DEPENDS: prop-equilibria-are-critical-points, prop-energy-and-cyclic-coordinates, cor-extreme-value-on-a-compact-space, cor-heine-borel-in-euclidean-space
+#+NAME: thm-lagrange-dirichlet
+#+begin_theorem
+If \(V\) has a strict local minimum at \(q_{0}\), then \(q_{0}\) is a
+stable equilibrium.
+#+end_theorem
+
+#+begin_proof
+Normalise \(V(q_{0}) = 0\), so \(V>0\) on a punctured neighbourhood, and
+let \(E(q,\dot{q}) = \tfrac{1}{2}\inner{A(q)\dot{q}}{\dot{q}} + V(q)\),
+which is conserved and vanishes exactly at \((q_{0},0)\) near it, both
+terms being non-negative and the kinetic one positive definite.
+
+Let \(U\) be a neighbourhood of \((q_{0},0)\); shrink it to a product
+\(\overline{B}(q_{0},r)\times\overline{B}(0,\rho)\) contained in \(U\)
+and inside the region where \(V>0\) off \(q_{0}\). The boundary
+\(\Sigma\) of that product is compact and misses \((q_{0},0)\), so the
+continuous \(E\) attains on it a minimum \(\eta>0\). Let
+\(W = \setst{(q,\dot{q}) \in U}{E(q,\dot{q})<\eta}\), an open set
+containing \((q_{0},0)\) since \(E\) is continuous and vanishes there.
+
+A motion starting in \(W\) keeps \(E<\eta\) for all time by
+conservation, so it can never reach \(\Sigma\); being continuous and
+starting inside, it remains in the product, hence in \(U\).
+#+end_proof
+
+#+DEPENDS: thm-lagrange-dirichlet, prop-equilibria-are-critical-points, thm-spectral-theorem
+#+NAME: prop-instability-from-a-maximum
+#+begin_proposition
+If \(V\) is \(C^{2}\) and its Hessian at a critical point \(q_{0}\) has
+a negative eigenvalue, then \(q_{0}\) is unstable.
+#+end_proposition
+
+#+begin_proof
+Diagonalise the Hessian by the spectral theorem and let \(v\) be a unit
+eigenvector with eigenvalue \(-\mu<0\). Along the line
+\(q_{0}+sv\), Taylor's theorem gives
+\(V(q_{0}+sv) = -\tfrac{1}{2}\mu s^{2}+o(s^{2})\), so \(V<0\) on a
+punctured segment. Take an initial condition on that segment with zero
+velocity and energy \(E = V(q(0))<0\). Since the kinetic term is
+non-negative, \(V(q(t)) \le E<0\) for all time, so the motion can never
+return to any neighbourhood of \(q_{0}\) on which \(V \ge E/2\) -- and
+such a neighbourhood exists by continuity of \(V\) at \(q_{0}\), where
+\(V = 0\). Hence motions starting arbitrarily close to the equilibrium
+leave a fixed neighbourhood.
+#+end_proof
+
+#+begin_remark
+The converse of Lagrange-Dirichlet is false in general -- an equilibrium
+can be stable at a non-strict minimum, and the question of whether a
+critical point that is not a minimum is always unstable was open for a
+century and is settled only under regularity hypotheses. What the proof
+does show is the mechanism: the conserved energy is a function
+positive away from the equilibrium and non-increasing along motions, and
+abstracting exactly that gives [[id:5bd80b77-add7-48ce-9967-0a71a33bfc00][Lyapunov's method]] for systems with no
+energy at all.
+#+end_remark

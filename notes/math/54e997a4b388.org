@@ -1,0 +1,91 @@
+:PROPERTIES:
+:ID:       e023b747-878b-4a37-a097-35552d95cb66
+:END:
+#+TITLE: Analysis
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:analysis:
+#+MSC: 26-XX, 28-XX, 46-XX
+#+HASH: 54e997a4b388
+
+Analysis is one subject because it has one hypothesis: completeness.
+Every existence theorem below -- a limit, a supremum, a root, a fixed
+point, an integral, a solution of a differential equation -- is
+completeness of some space, applied to a sequence built for the purpose.
+Everything else is an estimate.
+
+Part of [[id:c2fcb100-fc5a-4670-9b5d-c068c0c325ff][Mathematics]].
+
+* The subjects
+
+- [[id:49738d4c-dd4b-4acf-a61b-440121b35d24][Real analysis]] -- the line, sequences and series, continuity,
+  differentiation, the Riemann integral, uniform convergence. The bulk
+  of the archive, and what everything later abstracts.
+- [[id:a61fbcc2-37e7-4599-9e1a-89524a75c335][Complex analysis]] -- the same definition of the derivative in the
+  plane, and a subject that behaves nothing like the real one.
+- [[id:aa69bc51-db4c-4ffb-b7a7-875f9261af23][Functional analysis]] -- the same arguments with the points replaced
+  by functions, where the unit ball is no longer compact.
+- [[id:24714815-1fd5-4557-b9c6-a29939957dbb][Partial differential equations]] -- the three model equations, each
+  met through the statement that decides uniqueness for it.
+
+Two smaller threads have no hub of their own yet, and are listed here so
+they are not lost:
+
+- *Measure and integration*: [[id:9910fd2f-5f5e-4be0-8785-c2b9904dc001][sigma-algebras and measures]], [[id:8cbdd35a-bbc4-44cf-9b1d-0b9623e3dc25][the
+  Lebesgue integral]] up to the convergence theorems, and
+  [[id:330e7293-f5ef-4b8c-8a3e-9ac6fd9f5f8d][the completeness of \(L^{2}\)]] -- which is where this thread meets
+  [[id:aa69bc51-db4c-4ffb-b7a7-875f9261af23][functional analysis]] and [[id:79a8bba8-94c4-44b9-9020-df8e30d12480][probability]].
+- *Differential equations and variations*: [[id:8cd15fbc-3e1f-41a6-8fde-31963a195e78][existence and uniqueness for
+  ordinary differential equations]], and [[id:ad33e63f-36eb-4887-a6b5-28103dda6212][the action functional and the
+  first variation]]; also [[id:ce3922ea-3a0a-45c0-9555-6afa89068c6a][Weierstrass approximation]].
+
+* Where completeness enters, in order
+
+1. [[id:a8f6ea88-2ae8-479a-bbbd-729e7e40ae78][As an axiom about \(\R\)]], from which the [[id:3df902f9-c527-40c3-994a-78fa87ef1063][supremum]] exists at all.
+2. [[id:902b2920-a465-45dc-91a9-01af8e7b7c2d][As monotone convergence]] and [[id:db92d316-8a78-4116-8efb-89274901fdcd][Bolzano-Weierstrass]], the two ways of
+   producing a limit from a bound.
+3. [[id:03e16e45-1d12-46e1-af18-9f149478b146][As the Cauchy criterion]], which is the form that survives the loss of
+   the order and hence generalises to [[id:ab5041dc-f782-4348-8303-01facc0b23d1][metric spaces]].
+4. [[id:2f070853-c1c0-4018-9a23-d2caac15f2b4][As compactness]], once "complete and totally bounded" is recognised
+   as the same hypothesis; and [[id:44de8493-8687-4cfd-8c39-65561e38033c][as Baire's theorem]], which is what makes
+   completeness pay in infinite dimension.
+
+Read that list backwards and it is the history of the subject: the
+theorems came first, the hypothesis was isolated afterwards.
+
+* The two integrals
+
+The [[id:29d7ea7b-5f6b-48e4-949b-553595dfa9a3][Riemann integral]] partitions the domain and integrates what is
+nearly continuous; the [[id:8cbdd35a-bbc4-44cf-9b1d-0b9623e3dc25][Lebesgue integral]] partitions the range and
+integrates what is measurable. The whole difference is visible in the
+convergence theorems: Riemann needs [[id:0e79d289-c68d-4e86-824e-4dfa51bcad21][uniform convergence]] to exchange
+limit and integral, Lebesgue needs only a dominating function. Neither
+subsumes the other in this archive -- the Riemann theory is where
+[[id:40e468eb-db21-4321-8a3d-8ef0ec032875][the fundamental theorem of calculus]] lives, and the Lebesgue theory has
+no construction of its measure yet.
+
+* Calculus in several variables
+
+The second-year material, which is where analysis stops being about one
+variable: [[id:b6f64ed6-db0e-41c8-a093-0df725e22ecf][the inverse and implicit function theorems]] -- the contraction
+principle in disguise, and the licence for every coordinate change --
+[[id:07b82d71-2c7c-4ddd-84ce-185047ee07e5][constrained extrema and Lagrange multipliers]],
+[[id:b9ad54df-4188-44c8-bc78-494d9a6728c8][product measures, Tonelli and Fubini]], and the two theorems that turn a
+derivative over a region into data on its boundary:
+[[id:f068fc75-7495-420e-8778-f63995b1d1f2][line integrals and Green's theorem]] and
+[[id:ef0a7e9f-5957-4e21-8f97-59e80b04aa33][the divergence and Stokes theorems]].
+
+* Harmonic analysis
+
+[[id:58054969-7179-42fd-9754-f55d009d7cc6][Fourier series]] are an orthonormal expansion in \(L^{2}\), so
+Parseval's identity is free once Fejer's theorem supplies completeness;
+[[id:f667edb9-9594-4469-a3cf-1dd0c497ae9e][the Fourier transform]] does the same on the line, with inversion and
+Plancherel; and [[id:e57a531d-6f95-4eff-9ad8-7ae4b983f912][Sturm-Liouville problems]] are what separation of
+variables produces.
+
+* What is missing
+
+\(L^{p}\) spaces for \(p \ne 2\) and the duality that goes with them;
+the construction of Lebesgue measure, which is used throughout and built
+nowhere; distributions; the spectral theorem for unbounded or compact
+operators, which is what the eigenfunction expansions here are quietly
+assuming.

@@ -1,0 +1,117 @@
+:PROPERTIES:
+:ID:       dab1d339-e7a9-41e2-8593-910a11938ad2
+:END:
+#+TITLE: Holomorphic functions and the Cauchy-Riemann equations
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:analysis:complex_analysis:
+#+MSC: 30A99, 30E20
+#+HASH: f14f74118fea
+
+Complex differentiability is written like the real definition and is a
+far stronger hypothesis, because the limit is required along every
+direction in a plane rather than along a line. The Cauchy-Riemann
+equations are that extra content made explicit, and everything
+surprising in the subject -- that one derivative forces infinitely many,
+that local values determine global ones -- descends from them.
+
+#+DEPENDS: def-derivative, def-differentiable-multivariable, def-metric-space
+#+NAME: def-holomorphic
+#+begin_definition
+Let \(U \subseteq \C\) be open. A function \(f \colon U \to \C\) is
+/complex differentiable/ at \(z_{0}\) if
+\[ f'(z_{0}) = \lim_{h \to 0}\frac{f(z_{0}+h)-f(z_{0})}{h} \]
+exists in \(\C\), the limit taken over complex \(h \ne 0\); it is
+/holomorphic/ on \(U\) if it is complex differentiable at every point of
+\(U\), and /entire/ if \(U = \C\).
+#+end_definition
+
+#+DEPENDS: def-holomorphic, thm-derivative-algebra, thm-chain-rule
+#+NAME: prop-algebra-of-holomorphic-functions
+#+begin_proposition
+Sums, products and quotients with non-vanishing denominator of
+holomorphic functions are holomorphic, with the same formulas as in the
+real case, and so are compositions. Polynomials are entire.
+#+end_proposition
+
+#+begin_proof
+Each proof is the real one verbatim: the algebraic identities used --
+factoring a difference of products, the quotient identity, the chain
+rule computation -- involve only the field operations and the
+continuity of the operations, all available in \(\C\). Constants and
+the identity are holomorphic, so polynomials are entire by induction.
+#+end_proof
+
+#+DEPENDS: def-holomorphic, def-differentiable-multivariable, thm-continuous-partials-implies-differentiable
+#+NAME: thm-cauchy-riemann
+#+begin_theorem
+Write \(f = u + iv\) with \(u, v\) real and identify \(\C\) with
+\(\R^{2}\). If \(f\) is complex differentiable at \(z_{0} = x_{0}+iy_{0}\),
+then \(u, v\) are differentiable there and
+\[ \frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}, \qquad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x} \quad \text{at } z_{0}, \]
+with \(f'(z_{0}) = \partial_{x}u + i\,\partial_{x}v\). Conversely, if
+\(u,v\) have continuous partial derivatives on \(U\) satisfying these
+equations, then \(f\) is holomorphic.
+#+end_theorem
+
+#+begin_proof
+Complex differentiability says
+\(f(z_{0}+h) = f(z_{0}) + f'(z_{0})h + o(\abs{h})\), which as a
+statement about \(\R^{2}\) says \(f\) is differentiable with
+differential the /real-linear/ map \(h \mapsto f'(z_{0})h\). Writing
+\(f'(z_{0}) = a+ib\) and \(h = h_{1}+ih_{2}\), that map sends
+\((h_{1},h_{2})\) to \((ah_{1}-bh_{2},\, bh_{1}+ah_{2})\), whose matrix
+has rows \((a,-b)\) and \((b,a)\). Comparing with the Jacobian of
+\((u,v)\) gives \(\partial_{x}u = a = \partial_{y}v\) and
+\(\partial_{y}u = -b = -\partial_{x}v\), and \(f'(z_{0}) = a+ib\).
+
+Conversely, continuous partials make \((u,v)\) differentiable in the
+real sense, and the equations say its differential has the displayed
+matrix form, that is, is multiplication by the complex number
+\(\partial_{x}u+i\partial_{x}v\). Then the real first-order expansion is
+the complex one, so the difference quotient converges.
+#+end_proof
+
+#+DEPENDS: thm-cauchy-riemann, thm-continuous-partials-implies-differentiable, prop-div-curl-identities
+#+NAME: cor-real-and-imaginary-parts-are-harmonic
+#+begin_corollary
+If \(f = u+iv\) is holomorphic with \(u,v\) of class \(C^{2}\), then
+\(\Delta u = \Delta v = 0\), where
+\(\Delta = \partial_{x}^{2}+\partial_{y}^{2}\).
+#+end_corollary
+
+#+begin_proof
+Differentiating \(\partial_{x}u = \partial_{y}v\) in \(x\) and
+\(\partial_{y}u = -\partial_{x}v\) in \(y\) and adding,
+\(\partial_{x}^{2}u + \partial_{y}^{2}u = \partial_{x}\partial_{y}v - \partial_{y}\partial_{x}v = 0\)
+by equality of mixed partials. The computation for \(v\) is symmetric.
+#+end_proof
+
+#+DEPENDS: thm-cauchy-riemann, thm-connected-subsets-of-the-line, prop-connected-components
+#+NAME: prop-vanishing-derivative-on-a-domain
+#+begin_proposition
+A holomorphic function with \(f' \equiv 0\) on a connected open \(U\) is
+constant; and a holomorphic function with real values on a connected
+open set is constant.
+#+end_proposition
+
+#+begin_proof
+If \(f' = 0\) then all four partial derivatives of \(u\) and \(v\)
+vanish, so along any segment inside \(U\) each is constant by the mean
+value theorem; a connected open subset of \(\R^{2}\) is polygonally
+connected -- the set of points reachable from a fixed one by a polygonal
+path is open and closed in \(U\) -- so \(f\) is constant.
+
+If \(v \equiv 0\), the Cauchy-Riemann equations give
+\(\partial_{x}u = \partial_{y}u = 0\), so \(f' = 0\) and the previous
+case applies.
+#+end_proof
+
+#+begin_remark
+The last proposition is the first sign of the rigidity of the subject:
+no non-constant holomorphic function takes only real values, so a
+holomorphic function cannot be built by prescribing its modulus, its
+real part or its values on a curve independently. The Cauchy-Riemann
+equations are two constraints on two functions, which is exactly why the
+solution space is so small -- and why \(u\) determines \(v\) up to a
+constant on a simply connected domain.
+#+end_remark

@@ -1,0 +1,132 @@
+:PROPERTIES:
+:ID:       bcd05411-fa96-4d39-b18a-1d2d65669fff
+:END:
+#+TITLE: Surfaces: the two fundamental forms and Gauss curvature
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:geometry:differential_geometry:
+#+MSC: 53A05
+#+HASH: 488889eb9b2e
+
+For a curve, curvature measured how fast the tangent turned. A surface
+has a tangent /plane/, and how fast it turns is not a number but a
+symmetric operator on that plane. The whole local theory follows from
+that operator being self-adjoint: the [[id:dde5958e-70f1-4680-9e80-06de5649c142][spectral theorem]] then supplies
+principal directions and two principal curvatures, and every other
+curvature at the point is a function of those two.
+
+#+DEPENDS: def-differentiable-multivariable, def-regular-curve, def-inner-product-space
+#+NAME: def-regular-surface
+#+begin_definition
+A /parametrised surface/ is a smooth map
+\(\sigma \colon U \to \R^{3}\) on an open \(U \subseteq \R^{2}\); it is
+/regular/ at \(p\) if the partial derivatives \(\sigma_{u},\sigma_{v}\)
+are linearly independent there. The /tangent plane/ \(T_{p}\) is their
+span, and the /unit normal/ is
+\(N = (\sigma_{u}\times\sigma_{v})/\norm{\sigma_{u}\times\sigma_{v}}\).
+#+end_definition
+
+#+DEPENDS: def-regular-surface, def-bilinear-form, def-inner-product-space
+#+NAME: def-first-fundamental-form
+#+begin_definition
+The /first fundamental form/ at \(p\) is the restriction of the
+Euclidean inner product to \(T_{p}\); in the basis
+\(\sigma_{u},\sigma_{v}\) its matrix has rows \((E, F)\) and
+\((F, G)\), where
+\(E = \inner{\sigma_{u}}{\sigma_{u}}\),
+\(F = \inner{\sigma_{u}}{\sigma_{v}}\),
+\(G = \inner{\sigma_{v}}{\sigma_{v}}\). It computes lengths of curves on
+the surface and angles between them.
+#+end_definition
+
+#+DEPENDS: def-regular-surface, def-differentiable-multivariable
+#+NAME: def-shape-operator
+#+begin_definition
+The /Gauss map/ sends \(p\) to the unit normal \(N(p)\), a point of the
+unit sphere. Its differential, viewed as a map \(T_{p}\to T_{p}\), is
+minus the /shape operator/ \(S = -\dd N\); the /second fundamental
+form/ is \(\mathrm{II}(X,Y) = \inner{S X}{Y}\).
+#+end_definition
+
+#+DEPENDS: def-shape-operator, thm-continuous-partials-implies-differentiable, def-self-adjoint
+#+NAME: prop-shape-operator-is-self-adjoint
+#+begin_proposition
+The differential of the Gauss map takes values in \(T_{p}\), and the
+shape operator is self-adjoint: \(\inner{SX}{Y} = \inner{X}{SY}\) for
+all \(X,Y \in T_{p}\). In the basis \(\sigma_{u},\sigma_{v}\),
+\(\mathrm{II}\) has matrix with rows \((e,f)\) and \((f,g)\), where
+\(e = \inner{\sigma_{uu}}{N}\), \(f = \inner{\sigma_{uv}}{N}\),
+\(g = \inner{\sigma_{vv}}{N}\).
+#+end_proposition
+
+#+begin_proof
+Differentiating \(\inner{N}{N} = 1\) gives \(\inner{\dd N(X)}{N} = 0\),
+so \(\dd N(X) \in T_{p}\).
+
+Differentiating \(\inner{N}{\sigma_{u}} = 0\) with respect to \(v\)
+gives \(\inner{N_{v}}{\sigma_{u}} + \inner{N}{\sigma_{uv}} = 0\), and
+differentiating \(\inner{N}{\sigma_{v}} = 0\) with respect to \(u\)
+gives \(\inner{N_{u}}{\sigma_{v}} + \inner{N}{\sigma_{vu}} = 0\). Since
+mixed partials of a smooth map agree, subtracting yields
+\(\inner{N_{v}}{\sigma_{u}} = \inner{N_{u}}{\sigma_{v}}\), that is
+\(\inner{S\sigma_{v}}{\sigma_{u}} = \inner{S\sigma_{u}}{\sigma_{v}}\).
+Bilinearity extends this from the basis to all of \(T_{p}\). The two
+displayed identities also give
+\(\inner{S\sigma_{u}}{\sigma_{u}} = -\inner{N_{u}}{\sigma_{u}} = \inner{N}{\sigma_{uu}}\)
+and similarly for the other entries.
+#+end_proof
+
+#+DEPENDS: prop-shape-operator-is-self-adjoint, thm-spectral-theorem, thm-determinant-is-multiplicative
+#+NAME: def-principal-and-gauss-curvature
+#+begin_definition
+By the spectral theorem \(S\) has an orthonormal basis of eigenvectors
+of \(T_{p}\); the eigenvalues \(k_{1} \ge k_{2}\) are the /principal
+curvatures/ and their eigenvectors the /principal directions/. The
+/Gauss curvature/ is \(K = \det S = k_{1}k_{2}\) and the /mean
+curvature/ is \(H = \tfrac{1}{2}\tr S = \tfrac{1}{2}(k_{1}+k_{2})\).
+#+end_definition
+
+#+DEPENDS: def-principal-and-gauss-curvature, def-curvature, prop-shape-operator-is-self-adjoint
+#+NAME: thm-euler-normal-curvature
+#+begin_theorem
+Let \(X \in T_{p}\) be a unit vector and \(\gamma\) a unit-speed curve
+on the surface with \(\gamma'(0) = X\). Then the component of
+\(\gamma''(0)\) along \(N\) -- the /normal curvature/ in the direction
+\(X\) -- equals \(\mathrm{II}(X,X)\), so it depends on \(X\) alone and
+not on \(\gamma\); and writing \(X = \cos\theta\, X_{1} + \sin\theta\, X_{2}\)
+in principal directions,
+\(\mathrm{II}(X,X) = k_{1}\cos^{2}\theta + k_{2}\sin^{2}\theta\).
+#+end_theorem
+
+#+begin_proof
+Along \(\gamma\) we have \(\inner{\gamma'}{N} = 0\); differentiating,
+\(\inner{\gamma''}{N} + \inner{\gamma'}{\dd N(\gamma')} = 0\), so
+\(\inner{\gamma''(0)}{N} = \inner{X}{S X} = \mathrm{II}(X,X)\), which
+involves \(\gamma\) only through \(X\).
+
+For the second formula, expand in the orthonormal eigenbasis: since
+\(SX_{i} = k_{i}X_{i}\) and the \(X_{i}\) are orthonormal,
+\(\inner{SX}{X} = k_{1}\cos^{2}\theta + k_{2}\sin^{2}\theta\).
+#+end_proof
+
+#+DEPENDS: thm-euler-normal-curvature, def-principal-and-gauss-curvature
+#+NAME: cor-principal-curvatures-are-extremal
+#+begin_corollary
+The principal curvatures are the maximum and the minimum of the normal
+curvature over unit tangent directions.
+#+end_corollary
+
+#+begin_proof
+By Euler's formula the normal curvature is
+\(k_{2} + (k_{1}-k_{2})\cos^{2}\theta\), which ranges over
+\([k_{2},k_{1}]\) as \(\theta\) varies, attaining the endpoints at the
+principal directions.
+#+end_proof
+
+#+begin_remark
+Both fundamental forms are defined through the embedding in \(\R^{3}\),
+so both would be expected to change if the surface were bent. Gauss'
+Theorema Egregium says that \(K\), unlike \(H\), is computable from the
+first form alone -- it survives any bending that preserves lengths. That
+is why a sphere cannot be flattened onto a plane, and why every map of
+the earth distorts something.
+#+end_remark

@@ -1,0 +1,146 @@
+:PROPERTIES:
+:ID:       97912891-a007-42a1-8b9f-410b0c47e802
+:END:
+#+TITLE: Ultraproducts and the theorem of Los
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:foundations:model_theory:
+#+MSC: 03C20, 03C07
+#+HASH: 6c44ffb90940
+
+Compactness in propositional logic came from a maximal finitely
+satisfiable set. In first-order logic the same statement needs an actual
+/structure/, and the ultraproduct builds one: a single model assembled
+from a family of models by declaring a statement true when it holds on a
+set of indices large in the sense of an ultrafilter. What makes it work
+is that "large" is closed under complement -- the only property of
+ultrafilters used, and exactly the one negation needs.
+
+#+DEPENDS: def-structure, def-filter, def-equivalence-relation
+#+NAME: def-ultraproduct
+#+begin_definition
+Let \((\mathcal{A}_{i})_{i\in I}\) be \(L\)-structures with domains
+\(A_{i}\), and \(U\) an ultrafilter on \(I\). On \(\prod_{i}A_{i}\)
+declare \(f \sim g\) when \(\setst{i}{f(i) = g(i)} \in U\). The
+/ultraproduct/ \(\prod_{i}\mathcal{A}_{i}/U\) has domain the set of
+classes \([f]\), with
+\(F^{\mathcal{A}}([f_{1}],\dots,[f_{n}]) = [i \mapsto F^{\mathcal{A}_{i}}(f_{1}(i),\dots,f_{n}(i))]\),
+\(c^{\mathcal{A}} = [i\mapsto c^{\mathcal{A}_{i}}]\), and
+\(([f_{1}],\dots,[f_{n}]) \in R^{\mathcal{A}}\) exactly when
+\(\setst{i}{(f_{1}(i),\dots,f_{n}(i)) \in R^{\mathcal{A}_{i}}} \in U\).
+When all \(\mathcal{A}_{i}\) are equal to \(\mathcal{A}\) this is the
+/ultrapower/ \(\mathcal{A}^{I}/U\).
+#+end_definition
+
+#+DEPENDS: def-ultraproduct, def-filter
+#+NAME: prop-ultraproduct-is-well-defined
+#+begin_proposition
+The relation \(\sim\) is an equivalence relation, and the operations and
+relations above do not depend on the representatives chosen; so the
+ultraproduct is an \(L\)-structure.
+#+end_proposition
+
+#+begin_proof
+Reflexivity uses \(I \in U\); symmetry is clear; transitivity holds
+because \(\setst{i}{f(i)=g(i)}\cap\setst{i}{g(i)=h(i)}\) is in \(U\) and
+is contained in \(\setst{i}{f(i)=h(i)}\), which is therefore in \(U\) by
+upward closure.
+
+If \(f_{k}\sim g_{k}\) for \(k \le n\), the intersection
+\(E = \bigcap_{k}\setst{i}{f_{k}(i)=g_{k}(i)}\) lies in \(U\). On \(E\)
+the two tuples agree, so the values of \(F^{\mathcal{A}_{i}}\) agree
+there, giving \(\sim\)-equivalent representatives; and the sets defining
+membership in \(R^{\mathcal{A}}\) for the two tuples have the same
+intersection with \(E\), so one lies in \(U\) exactly when the other
+does. The domain is non-empty because each \(A_{i}\) is.
+#+end_proof
+
+#+DEPENDS: def-ultraproduct, prop-ultraproduct-is-well-defined, prop-ultrafilter-criterion, def-satisfaction, ax-choice
+#+NAME: thm-los
+#+begin_theorem
+Let \(\mathcal{A} = \prod_{i}\mathcal{A}_{i}/U\) and let \(\beta\) be an
+assignment into \(\mathcal{A}\), say \(\beta(x) = [f_{x}]\), with
+\(\beta_{i}(x) = f_{x}(i)\) the induced assignments. Then for every
+formula \(\varphi\),
+\[ \mathcal{A} \models \varphi[\beta] \iff \setst{i \in I}{\mathcal{A}_{i}\models\varphi[\beta_{i}]} \in U. \]
+#+end_theorem
+
+#+begin_proof
+Write \(\lVert\varphi\rVert\) for the index set on the right. For a term
+\(t\), induction on terms gives \(\beta(t) = [i \mapsto \beta_{i}(t)]\),
+directly from the definition of the operations. Atomic formulas are then
+the definition of \(R^{\mathcal{A}}\) and of \(\sim\).
+
+Negation: \(\mathcal{A}\models\neg\varphi[\beta]\) means
+\(\mathcal{A}\not\models\varphi[\beta]\), which by induction means
+\(\lVert\varphi\rVert \notin U\), which by the ultrafilter criterion
+means \(I \setminus \lVert\varphi\rVert = \lVert\neg\varphi\rVert \in U\).
+
+Conjunction: \(\lVert\varphi\wedge\psi\rVert = \lVert\varphi\rVert\cap\lVert\psi\rVert\),
+and a filter contains an intersection exactly when it contains both
+sets.
+
+Existential quantifier. Suppose
+\(\mathcal{A}\models\exists x\,\varphi[\beta]\), witnessed by
+\([g]\). By induction the set of \(i\) at which \(\varphi\) holds under
+\(\beta_{i}\) modified at \(x\) by \(g(i)\) lies in \(U\), and that set
+is contained in \(\lVert\exists x\,\varphi\rVert\), which is therefore
+in \(U\). Conversely, suppose
+\(J = \lVert\exists x\,\varphi\rVert \in U\). For each \(i \in J\)
+choose a witness \(g(i) \in A_{i}\), and define \(g\) arbitrarily off
+\(J\); this is a choice from a family of non-empty sets. Then the set
+of indices at which \(\varphi\) holds with \(x\) interpreted as \(g(i)\)
+contains \(J\), hence lies in \(U\), so by induction
+\(\mathcal{A}\models\varphi\) under \(\beta\) modified at \(x\) by
+\([g]\), and therefore \(\mathcal{A}\models\exists x\,\varphi[\beta]\).
+#+end_proof
+
+#+DEPENDS: thm-los, thm-ultrafilter-lemma, def-theory-and-model
+#+NAME: thm-compactness-first-order
+#+begin_theorem
+An \(L\)-theory every finite subset of which has a model has a model.
+#+end_theorem
+
+#+begin_proof
+Let \(T\) be such a theory and let \(I\) be the set of finite subsets of
+\(T\). For each \(i \in I\) choose a model \(\mathcal{A}_{i} \models i\).
+For \(\sigma \in T\) put \(X_{\sigma} = \setst{i \in I}{\sigma \in i}\).
+The family \(\setst{X_{\sigma}}{\sigma\in T}\) has the finite
+intersection property, since
+\(\set{\sigma_{1},\dots,\sigma_{n}}\) belongs to
+\(X_{\sigma_{1}}\cap\cdots\cap X_{\sigma_{n}}\); extend it to an
+ultrafilter \(U\) on \(I\).
+
+Let \(\mathcal{A} = \prod_{i}\mathcal{A}_{i}/U\). For \(\sigma \in T\),
+every \(i \in X_{\sigma}\) satisfies \(\mathcal{A}_{i}\models\sigma\),
+so \(\lVert\sigma\rVert \supseteq X_{\sigma}\) lies in \(U\); by the
+theorem of Los, \(\mathcal{A}\models\sigma\). Hence
+\(\mathcal{A}\models T\).
+#+end_proof
+
+#+DEPENDS: thm-compactness-first-order, def-theory-and-model
+#+NAME: cor-no-first-order-definition-of-finiteness
+#+begin_corollary
+No set of first-order sentences has exactly the finite structures as its
+models; and any theory with arbitrarily large finite models has an
+infinite one.
+#+end_corollary
+
+#+begin_proof
+Let \(T\) have arbitrarily large finite models and let \(\lambda_{n}\)
+say "there are at least \(n\) distinct elements", a first-order
+sentence. Every finite subset of \(T \cup \setst{\lambda_{n}}{n\in\N}\)
+mentions finitely many \(\lambda_{n}\) and so has a model, namely a
+sufficiently large finite model of \(T\). By compactness the whole set
+has a model, which satisfies every \(\lambda_{n}\) and is therefore
+infinite. Applying this to a would-be axiomatisation of finiteness gives
+the first statement.
+#+end_proof
+
+#+begin_remark
+The ultrapower of \(\R\) by a non-principal ultrafilter on \(\N\) is an
+ordered field satisfying exactly the first-order sentences true in
+\(\R\) and containing an element larger than every real -- the class
+of a sequence tending to infinity. That is the standard construction of
+the hyperreals, and it shows the price of compactness: no first-order
+theory can pin down the archimedean property.
+#+end_remark

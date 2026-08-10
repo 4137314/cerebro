@@ -1,0 +1,123 @@
+:PROPERTIES:
+:ID:       4400af63-8a49-4b93-a45a-6dc1505f616c
+:END:
+#+TITLE: Elementary substructures and the Lowenheim-Skolem theorems
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:foundations:model_theory:
+#+MSC: 03C07, 03C15
+#+HASH: 15b19f7b0178
+
+A substructure inherits the quantifier-free statements and nothing more.
+Asking that it inherit /all/ of them defines an elementary substructure,
+and the two theorems below say such things are plentiful in both
+directions: a structure always has a small elementary substructure and
+always has large elementary extensions. Together they say that
+first-order theories cannot control the size of their models -- which is
+why "the" model of a theory is almost never a well-formed phrase.
+
+#+DEPENDS: def-substructure, def-satisfaction, prop-quantifier-free-is-absolute
+#+NAME: def-elementary-substructure
+#+begin_definition
+Let \(\mathcal{B}\) be a substructure of \(\mathcal{A}\). It is an
+/elementary substructure/, written \(\mathcal{B}\preceq\mathcal{A}\), if
+for every formula \(\varphi\) and every assignment \(\beta\) with values
+in \(B\),
+\(\mathcal{B}\models\varphi[\beta]\) if and only if
+\(\mathcal{A}\models\varphi[\beta]\). Two structures are /elementarily
+equivalent/ if they satisfy the same sentences.
+#+end_definition
+
+#+DEPENDS: def-elementary-substructure
+#+NAME: thm-tarski-vaught-test
+#+begin_theorem
+Let \(\mathcal{B}\) be a substructure of \(\mathcal{A}\). Then
+\(\mathcal{B}\preceq\mathcal{A}\) if and only if: for every formula
+\(\varphi\), every assignment \(\beta\) into \(B\) and every variable
+\(x\), if \(\mathcal{A}\models\exists x\,\varphi[\beta]\) then some
+\(b \in B\) witnesses it in \(\mathcal{A}\).
+#+end_theorem
+
+#+begin_proof
+Necessity: if \(\mathcal{B}\preceq\mathcal{A}\) and
+\(\mathcal{A}\models\exists x\,\varphi[\beta]\), then
+\(\mathcal{B}\models\exists x\,\varphi[\beta]\), so some \(b \in B\)
+satisfies \(\varphi\) in \(\mathcal{B}\), hence in \(\mathcal{A}\) by
+elementarity.
+
+Sufficiency: induct on \(\varphi\). Atomic formulas agree because
+\(\mathcal{B}\) is a substructure, and the cases of \(\neg\) and
+\(\wedge\) are immediate from the induction hypothesis. For
+\(\exists x\,\varphi\): if \(\mathcal{B}\models\exists x\,\varphi[\beta]\)
+then a witness in \(B\) satisfies \(\varphi\) in \(\mathcal{B}\), hence
+in \(\mathcal{A}\) by induction, so
+\(\mathcal{A}\models\exists x\,\varphi[\beta]\). Conversely, if
+\(\mathcal{A}\models\exists x\,\varphi[\beta]\), the hypothesis provides
+a witness \(b \in B\) with \(\mathcal{A}\models\varphi\) at \(b\), and
+by induction \(\mathcal{B}\models\varphi\) at \(b\); hence
+\(\mathcal{B}\models\exists x\,\varphi[\beta]\).
+#+end_proof
+
+#+DEPENDS: thm-tarski-vaught-test, ax-choice, prop-countable-union, def-equinumerous
+#+NAME: thm-downward-lowenheim-skolem
+#+begin_theorem
+Let \(L\) be a countable language, \(\mathcal{A}\) an \(L\)-structure
+and \(S \subseteq A\) countable. Then \(\mathcal{A}\) has a countable
+elementary substructure containing \(S\).
+#+end_theorem
+
+#+begin_proof
+There are countably many formulas, since each is a finite string over a
+countable alphabet and the finite strings over a countable alphabet form
+a countable union of countable sets. Fix a choice function on the
+non-empty subsets of \(A\).
+
+Define \(B_{0} = S \cup \set{c^{\mathcal{A}}}\), a countable set (take
+any point of \(A\) if \(S\) is empty and there are no constants), and
+recursively let \(B_{n+1}\) be \(B_{n}\) together with: the values of
+every function symbol on tuples from \(B_{n}\); and, for every formula
+\(\varphi\), every variable \(x\) and every assignment \(\beta\) taking
+values in \(B_{n}\) and differing from a fixed default at finitely many
+variables, a chosen witness in \(A\) for
+\(\mathcal{A}\models\exists x\,\varphi[\beta]\) whenever that holds.
+Each stage adds countably many elements -- countably many formulas,
+countably many function symbols, countably many relevant assignments,
+each contributing at most one element -- so \(B_{n+1}\) is countable by
+the countable union theorem.
+
+Let \(B = \bigcup_{n}B_{n}\), countable for the same reason. It is
+closed under the function symbols and contains the constants, so it is
+the domain of a substructure; and it satisfies the Tarski-Vaught
+condition, because a formula with parameters in \(B\) has them in some
+\(B_{n}\), where a witness was added at stage \(n+1\). Hence
+\(\mathcal{B}\preceq\mathcal{A}\), and \(S \subseteq B\).
+#+end_proof
+
+#+DEPENDS: thm-compactness-first-order, def-elementary-substructure, def-theory-and-model
+#+NAME: thm-upward-lowenheim-skolem
+#+begin_theorem
+Let \(\mathcal{A}\) be an infinite \(L\)-structure and \(X\) any set.
+Then there is a structure elementarily equivalent to \(\mathcal{A}\)
+whose domain has a subset in bijection with \(X\).
+#+end_theorem
+
+#+begin_proof
+Let \(L'\) be \(L\) with a new constant \(c_{x}\) for each \(x \in X\),
+and let \(T\) be the set of \(L\)-sentences true in \(\mathcal{A}\)
+together with all sentences \(\neg (c_{x} = c_{y})\) for \(x \ne y\). A
+finite subset of \(T\) mentions finitely many new constants; since
+\(\mathcal{A}\) is infinite, distinct elements can be assigned to them,
+so \(\mathcal{A}\) with those interpretations is a model of that finite
+subset. By compactness \(T\) has a model \(\mathcal{C}\); its reduct to
+\(L\) satisfies exactly the sentences true in \(\mathcal{A}\), and
+\(x \mapsto c_{x}^{\mathcal{C}}\) is injective.
+#+end_proof
+
+#+begin_remark
+Applied to a countable axiomatisation of set theory, the downward
+theorem produces a countable model of it -- inside which some set is
+provably uncountable. That is Skolem's paradox, and it is not a
+contradiction: "uncountable" means the model contains no bijection with
+its own natural numbers, and the missing bijection exists outside it.
+The lesson is exactly the one both theorems teach: a first-order theory
+constrains its models only up to what finitely many symbols can say.
+#+end_remark

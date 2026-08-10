@@ -1,0 +1,122 @@
+:PROPERTIES:
+:ID:       a5a339a4-6ca9-4440-9072-8751f2f69c66
+:END:
+#+TITLE: Homotopy equivalence, retracts and contractible spaces
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:topology:algebraic_topology:
+#+MSC: 55P10
+#+HASH: 02e2bfb6cb86
+
+Homeomorphism is too fine an equivalence for the invariants of algebraic
+topology: a disc and a point are not homeomorphic and no functor built
+from loops can tell them apart. Homotopy equivalence is the coarser
+relation those invariants actually see, and recognising it is usually a
+matter of contracting a space onto a subspace without tearing it.
+
+#+DEPENDS: def-path-homotopy, def-continuous-map, def-product-topology
+#+NAME: def-homotopy-of-maps
+#+begin_definition
+Two continuous maps \(f, g \colon X \to Y\) are /homotopic/, written
+\(f \simeq g\), if there is a continuous
+\(H \colon X\times[0,1]\to Y\) with \(H(\cdot,0) = f\) and
+\(H(\cdot,1) = g\). A map \(f \colon X \to Y\) is a /homotopy
+equivalence/ if there is \(g \colon Y \to X\) with
+\(g\circ f \simeq \id_{X}\) and \(f \circ g \simeq \id_{Y}\); the
+spaces are then /homotopy equivalent/. A space homotopy equivalent to a
+point is /contractible/.
+#+end_definition
+
+#+DEPENDS: def-homotopy-of-maps, prop-pasting-lemma, thm-equivalence-partition
+#+NAME: prop-homotopy-is-an-equivalence-relation
+#+begin_proposition
+Homotopy is an equivalence relation on the continuous maps \(X \to Y\),
+and it is compatible with composition: \(f\simeq f'\) and
+\(g \simeq g'\) imply \(g\circ f \simeq g'\circ f'\).
+#+end_proposition
+
+#+begin_proof
+Reflexivity uses \(H(x,t) = f(x)\); symmetry, \(H(x,1-t)\);
+transitivity, the concatenation \(H(x,2t)\) for \(t\le1/2\) and
+\(K(x,2t-1)\) for \(t\ge1/2\), continuous by the pasting lemma since
+both formulas give \(g(x)\) at \(t = 1/2\).
+
+For compatibility, if \(H\) is a homotopy from \(f\) to \(f'\) then
+\(g\circ H\) is one from \(g f\) to \(g f'\); and if \(K\) is one from
+\(g\) to \(g'\) then \((x,t)\mapsto K(f'(x),t)\) is one from \(gf'\) to
+\(g'f'\). Composing the two homotopies by transitivity gives the claim.
+#+end_proof
+
+#+DEPENDS: def-homotopy-of-maps, prop-homotopy-is-an-equivalence-relation
+#+NAME: def-deformation-retract
+#+begin_definition
+Let \(A \subseteq X\). A /retraction/ is a continuous
+\(r \colon X \to A\) with \(r\vert_{A} = \id_{A}\); it is a
+/deformation retraction/ if moreover \(\iota\circ r \simeq \id_{X}\),
+where \(\iota\) is the inclusion. \(A\) is then a /deformation
+retract/ of \(X\).
+#+end_definition
+
+#+DEPENDS: def-deformation-retract, def-homotopy-of-maps
+#+NAME: prop-deformation-retract-is-a-homotopy-equivalence
+#+begin_proposition
+If \(A\) is a deformation retract of \(X\) then the inclusion
+\(\iota \colon A \to X\) is a homotopy equivalence.
+#+end_proposition
+
+#+begin_proof
+Take \(g = r\). Then \(r\circ\iota = \id_{A}\) exactly, and
+\(\iota\circ r\simeq\id_{X}\) by hypothesis.
+#+end_proof
+
+#+DEPENDS: def-homotopy-of-maps, def-convex-set, prop-deformation-retract-is-a-homotopy-equivalence
+#+NAME: prop-convex-sets-are-contractible
+#+begin_proposition
+A convex subset \(C\) of \(\R^{n}\) is contractible; more generally any
+two maps into \(C\) are homotopic.
+#+end_proposition
+
+#+begin_proof
+For continuous \(f, g \colon X \to C\), the straight-line homotopy
+\(H(x,t) = (1-t)f(x)+tg(x)\) takes values in \(C\) by convexity and is
+continuous, being built from continuous operations. Taking \(g\)
+constant and \(X = C\), \(f = \id\), shows the identity of \(C\) is
+homotopic to a constant, which together with the maps to and from a
+point gives the homotopy equivalence.
+#+end_proof
+
+#+DEPENDS: prop-homotopy-is-an-equivalence-relation, prop-functoriality-of-the-fundamental-group, def-homotopy-of-maps
+#+NAME: thm-homotopy-invariance-of-the-fundamental-group
+#+begin_theorem
+If \(f \colon X \to Y\) is a homotopy equivalence and \(x_{0}\in X\),
+then \(f_{*}\colon\pi_{1}(X,x_{0})\to\pi_{1}(Y,f(x_{0}))\) is an
+isomorphism. In particular a contractible space has trivial fundamental
+group, and homotopy equivalent path-connected spaces have isomorphic
+fundamental groups.
+#+end_theorem
+
+#+begin_proof
+First, homotopic maps induce the same homomorphism up to the change of
+basepoint: if \(H\) is a homotopy from \(u\) to \(v\) and \(\alpha\) is
+a loop at \(x_{0}\), then \((s,t)\mapsto H(\alpha(s),t)\) is a homotopy
+of loops except that the basepoint traces the path
+\(\gamma(t) = H(x_{0},t)\); composing with \(\gamma\) at both ends shows
+\(v_{*}[\alpha] = [\overline{\gamma}]\,u_{*}[\alpha]\,[\gamma]\), so
+\(v_{*}\) is \(u_{*}\) followed by the change-of-basepoint isomorphism.
+
+Now let \(g\) be a homotopy inverse of \(f\). Then
+\(g_{*}f_{*} = (g f)_{*}\) equals \((\id_{X})_{*} = \id\) composed with
+an isomorphism, hence is an isomorphism; so \(f_{*}\) is injective and
+\(g_{*}\) surjective. Applying the same to \(f_{*}g_{*}\) shows
+\(g_{*}\) is injective too, hence bijective, and then
+\(f_{*} = g_{*}^{-1}\circ(g_{*}f_{*})\) is bijective.
+#+end_proof
+
+#+begin_remark
+The theorem is what makes the fundamental group computable: one replaces
+a space by any homotopy equivalent one, and a punctured plane, an
+annulus and a circle become the same problem. It also fixes the limits
+of the invariant -- it cannot distinguish spaces that are homotopy
+equivalent, so \(\R^{n}\) and a point have the same \(\pi_{1}\) for
+every \(n\), and separating those requires the higher homotopy or
+homology groups.
+#+end_remark

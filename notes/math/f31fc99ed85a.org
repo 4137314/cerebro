@@ -1,0 +1,57 @@
+:PROPERTIES:
+:ID:       a61fbcc2-37e7-4599-9e1a-89524a75c335
+:END:
+#+TITLE: Complex analysis
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:analysis:complex_analysis:
+#+MSC: 30-XX
+#+HASH: f31fc99ed85a
+
+One hypothesis -- that a difference quotient converges along every
+direction of the plane rather than along a line -- and the subject
+becomes rigid in a way real analysis never is. A function differentiable
+once is differentiable infinitely often; its values on a small arc
+determine it everywhere; it cannot have an interior maximum of modulus;
+and a single number per singularity computes an integral. Each of those
+is a corollary of the same integral formula.
+
+Part of [[id:e023b747-878b-4a37-a097-35552d95cb66][Analysis]].
+
+* The chain
+
+1. [[id:dab1d339-e7a9-41e2-8593-910a11938ad2][Holomorphic functions and the Cauchy-Riemann equations]] -- what
+   complex differentiability asks for, as two equations on the real and
+   imaginary parts.
+2. [[id:4ec94690-f4ea-47e3-9fcb-1ec55f3e358e][Complex integration and Cauchy's theorem]] -- the integral over a
+   closed curve vanishes. Goursat's proof assumes only differentiability,
+   which is what lets the next step prove more than it assumes.
+3. [[id:b9814e2f-633e-49eb-afaa-cc4092244461][The Cauchy integral formula and analyticity]] -- values inside a disc
+   from values on the circle, hence power series, hence Liouville's
+   theorem and the fundamental theorem of algebra.
+4. [[id:2113a291-a90e-4ed9-87ee-40abdd73759e][Zeros, the identity theorem and the maximum principle]] -- the two
+   rigidity statements.
+5. [[id:25af7de9-f4e9-4e76-ba34-5571aa837871][Laurent series and isolated singularities]] -- the expansion adapted
+   to an annulus, and the trichotomy removable / pole / essential.
+6. [[id:7854238d-a399-44d6-8636-512105380539][The residue theorem and the argument principle]] -- what the integral
+   is when there /is/ something inside, and how to count zeros.
+
+* Why the subject is a tool
+
+The residue theorem turns contour integration into arithmetic, which is
+why complex analysis is the working language of
+[[id:b8b253f2-97fc-4461-8ee4-281c7a8202d2][mathematical physics]]: real integrals with no elementary primitive are
+evaluated by closing a contour, and the poles of a transfer function
+decide whether a system is stable, by [[id:7854238d-a399-44d6-8636-512105380539][Rouche's theorem]]. In the other
+direction, harmonic functions in the plane are exactly the real parts of
+holomorphic ones, so the [[id:fe42fdf4-dd3b-4112-a197-9e3fadbacad6][Dirichlet problem]] in two dimensions is complex
+analysis.
+
+* What is missing
+
+Conformal mapping and the Riemann mapping theorem, which is the
+geometric half of the subject and the reason it solves plane boundary
+value problems; analytic continuation and Riemann surfaces; the Poisson
+kernel; infinite products and the elementary special functions -- the
+gamma and zeta functions in particular, with which this would begin to
+touch number theory; and Picard's theorems, of which only the
+Casorati-Weierstrass shadow is here.

@@ -1,0 +1,102 @@
+:PROPERTIES:
+:ID:       8e53ae13-5f53-4c98-9134-9c3c592d88ab
+:END:
+#+TITLE: The harmonic oscillator by ladder operators
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:mathematical_physics:quantum_theory:
+#+MSC: 81Q05, 81Q10
+#+HASH: cba404f58a4b
+
+The quantum harmonic oscillator is solved without solving a differential
+equation: factorising the Hamiltonian into two mutually adjoint pieces
+turns the spectrum into a consequence of one commutation relation. The
+computation is entirely algebraic, and it is the model for every later
+use of raising and lowering operators -- angular momentum, and the
+occupation numbers of a field.
+
+#+DEPENDS: def-quantum-state-and-observable, cor-position-and-momentum, def-hilbert-space
+#+NAME: def-ladder-operators
+#+begin_definition
+On \(L^{2}(\R)\) with \(Q, P\) as before, let \(m,\omega>0\) and put
+\[ H = \frac{P^{2}}{2m} + \frac{m\omega^{2}}{2}Q^{2}, \qquad a = \sqrt{\frac{m\omega}{2\hbar}}\Bigl(Q + \frac{i}{m\omega}P\Bigr), \]
+with \(a\dg\) the formal adjoint, on the domain of smooth rapidly
+decreasing functions. The /number operator/ is \(N = a\dg a\).
+#+end_definition
+
+#+DEPENDS: def-ladder-operators, cor-position-and-momentum
+#+NAME: prop-commutation-relations
+#+begin_proposition
+On that domain, \(\comm{a}{a\dg} = \id\), \(H = \hbar\omega(N+\tfrac{1}{2})\),
+\(\comm{N}{a} = -a\) and \(\comm{N}{a\dg} = a\dg\).
+#+end_proposition
+
+#+begin_proof
+Expanding the products and keeping the order,
+\[ a a\dg = \frac{m\omega}{2\hbar}\Bigl(Q^{2}+\frac{P^{2}}{m^{2}\omega^{2}} - \frac{i}{m\omega}\comm{Q}{P}\Bigr), \qquad a\dg a = \frac{m\omega}{2\hbar}\Bigl(Q^{2}+\frac{P^{2}}{m^{2}\omega^{2}} + \frac{i}{m\omega}\comm{Q}{P}\Bigr). \]
+Substituting \(\comm{Q}{P} = i\hbar\), the two differ by
+\(\frac{m\omega}{2\hbar}\cdot\frac{2\hbar}{m\omega} = 1\), which is the
+first identity. The second expression also gives
+\(a\dg a = \frac{1}{\hbar\omega}\Bigl(\frac{P^{2}}{2m}+\frac{m\omega^{2}}{2}Q^{2}\Bigr) - \frac{1}{2} = \frac{H}{\hbar\omega}-\frac{1}{2}\),
+which is the second identity. Then
+\(\comm{N}{a} = a\dg a a - a a\dg a = (a\dg a - a a\dg)a = -a\), and the
+adjoint computation gives \(\comm{N}{a\dg} = a\dg\).
+#+end_proof
+
+#+DEPENDS: prop-commutation-relations, def-quantum-state-and-observable, prop-expectations-are-real
+#+NAME: thm-spectrum-of-the-oscillator
+#+begin_theorem
+Every eigenvalue of \(N\) on a state in the domain is a non-negative
+integer, and if \(N\psi_{n} = n\psi_{n}\) with \(\norm{\psi_{n}}=1\)
+then \(a\dg\psi_{n}\) and \(a\psi_{n}\) are eigenvectors for \(n+1\) and
+\(n-1\), with
+\(\norm{a\dg\psi_{n}} = \sqrt{n+1}\) and \(\norm{a\psi_{n}} = \sqrt{n}\).
+Consequently the eigenvalues of \(H\) are
+\(E_{n} = \hbar\omega(n+\tfrac{1}{2})\), \(n \ge 0\).
+#+end_theorem
+
+#+begin_proof
+If \(N\psi = n\psi\) with \(\norm{\psi}=1\), then
+\(n = \inner{a\dg a\psi}{\psi} = \norm{a\psi}^{2}\ge0\), so eigenvalues
+are non-negative, and \(n = 0\) forces \(a\psi = 0\).
+
+From \(\comm{N}{a\dg} = a\dg\),
+\(N(a\dg\psi) = a\dg N\psi + a\dg\psi = (n+1)a\dg\psi\), and similarly
+\(N(a\psi) = (n-1)a\psi\). The norms are
+\(\norm{a\dg\psi}^{2} = \inner{aa\dg\psi}{\psi} = \inner{(N+1)\psi}{\psi} = n+1\)
+and \(\norm{a\psi}^{2} = n\).
+
+Now suppose \(n\) were not an integer. Applying \(a\) repeatedly gives
+eigenvectors for \(n-1, n-2, \dots\), each non-zero because the norm
+\(\sqrt{n-k}\) is non-zero as long as \(n-k>0\); since \(n\) is not an
+integer the sequence passes below zero without vanishing, producing an
+eigenvector with negative eigenvalue -- contradicting non-negativity.
+Hence \(n \in \N\), and \(H = \hbar\omega(N+\tfrac{1}{2})\) gives the
+energies.
+#+end_proof
+
+#+DEPENDS: thm-spectrum-of-the-oscillator, def-ladder-operators, thm-fourier-inversion
+#+NAME: prop-the-ground-state
+#+begin_proposition
+The equation \(a\psi = 0\) has, up to a constant, the unique solution
+\(\psi_{0}(x) = \bigl(\frac{m\omega}{\pi\hbar}\bigr)^{1/4}e^{-m\omega x^{2}/(2\hbar)}\),
+a unit vector of \(L^{2}(\R)\); and \(\psi_{n} = (a\dg)^{n}\psi_{0}/\sqrt{n!}\)
+are unit eigenvectors of \(H\) with energies \(E_{n}\).
+#+end_proposition
+
+#+begin_proof
+Written out, \(a\psi = 0\) is the first-order equation
+\(\psi' = -\frac{m\omega}{\hbar}x\psi\), whose solutions are the
+multiples of the displayed Gaussian; the normalising constant is the
+Gaussian integral. The states \(\psi_{n}\) are eigenvectors by induction
+from the previous theorem, and the normalisation follows from
+\(\norm{a\dg\psi_{n}} = \sqrt{n+1}\).
+#+end_proof
+
+#+begin_remark
+The argument never solves the eigenvalue equation for \(H\); it derives
+the spectrum from one commutator and a positivity, which is why the same
+computation gives the spectrum of angular momentum with
+\(\comm{J_{3}}{J_{\pm}} = \pm\hbar J_{\pm}\). What it does not give is
+completeness -- that the \(\psi_{n}\) span \(L^{2}(\R)\) -- which is a
+genuine analytic theorem about Hermite functions and is not proved here.
+#+end_remark

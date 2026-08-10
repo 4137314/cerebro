@@ -1,0 +1,86 @@
+:PROPERTIES:
+:ID:       dc80cb7b-694a-414b-9847-a1bdf4bef452
+:END:
+#+TITLE: The weak and strong laws of large numbers
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:probability:probability_theory:
+#+MSC: 60F05, 60F15
+#+HASH: 8465ea9dd0d3
+
+The statement that an average of independent measurements approaches the
+mean is what makes probability a description of anything, and it comes
+in two strengths that are genuinely different: the average is eventually
+close /with high probability/, or it converges /for almost every
+outcome/. The first is Chebyshev's inequality applied once; the second
+needs the Borel-Cantelli lemma and a summable bound.
+
+#+DEPENDS: def-independence-of-random-variables, cor-chebyshev-inequality, cor-variance-of-a-sum-of-independent-variables, def-modes-of-convergence
+#+NAME: thm-weak-law-of-large-numbers
+#+begin_theorem
+Let \(X_{1},X_{2},\dots\) be independent, identically distributed and
+square-integrable, with mean \(\mu\) and variance \(\sigma^{2}\), and
+let \(S_{n} = X_{1}+\cdots+X_{n}\). Then \(S_{n}/n \to \mu\) in
+probability: for every \(\eps>0\),
+\(\Prob(\abs{S_{n}/n-\mu}\ge\eps) \le \sigma^{2}/(n\eps^{2}) \to 0\).
+#+end_theorem
+
+#+begin_proof
+By linearity \(\E[S_{n}/n] = \mu\), and by independence
+\(\Var(S_{n}) = n\sigma^{2}\), so \(\Var(S_{n}/n) = \sigma^{2}/n\).
+Chebyshev's inequality applied to \(S_{n}/n\) gives the displayed bound,
+which tends to \(0\).
+#+end_proof
+
+#+DEPENDS: thm-weak-law-of-large-numbers, lem-borel-cantelli-first, thm-expectation-of-a-product, cor-fast-convergence-in-probability-is-almost-sure
+#+NAME: thm-strong-law-under-a-fourth-moment
+#+begin_theorem
+Let \(X_{1},X_{2},\dots\) be independent, identically distributed with
+\(\E[X_{1}^{4}]<\infty\) and mean \(\mu\). Then \(S_{n}/n\to\mu\)
+almost surely.
+#+end_theorem
+
+#+begin_proof
+Replacing \(X_{i}\) by \(X_{i}-\mu\), which preserves independence and
+the fourth-moment hypothesis, assume \(\mu = 0\).
+
+Expand \(\E[S_{n}^{4}] = \sum \E[X_{i}X_{j}X_{k}X_{l}]\) over all
+quadruples of indices. If some index occurs exactly once, the
+corresponding factor is independent of the rest, so the expectation
+factors and vanishes because \(\E[X_{i}] = 0\). The surviving terms are
+those with all four indices equal -- there are \(n\) of them, each
+\(\E[X_{1}^{4}]\) -- and those splitting into two pairs, of which there
+are \(3n(n-1)\), each equal to \(\E[X_{1}^{2}]^{2}\) by independence.
+Hence \(\E[S_{n}^{4}] \le Cn^{2}\) for a constant \(C\) depending only
+on the law.
+
+By Markov's inequality applied to \(S_{n}^{4}\), for every \(\eps>0\)
+\[ \Prob\Bigl(\Bigl|\frac{S_{n}}{n}\Bigr|>\eps\Bigr) = \Prob(S_{n}^{4}>\eps^{4}n^{4}) \le \frac{Cn^{2}}{\eps^{4}n^{4}} = \frac{C}{\eps^{4}n^{2}}, \]
+and \(\sum_{n}n^{-2}<\infty\). The corollary to the first
+Borel-Cantelli lemma then gives \(S_{n}/n\to0\) almost surely.
+#+end_proof
+
+#+DEPENDS: thm-strong-law-under-a-fourth-moment, def-modes-of-convergence
+#+NAME: cor-frequencies-converge
+#+begin_corollary
+Let \((A_{n})\) be independent events all of the same probability
+\(p\), and let \(N_{n}\) be the number of the first \(n\) that occur.
+Then \(N_{n}/n \to p\) almost surely.
+#+end_corollary
+
+#+begin_proof
+The indicators \(\indicator_{A_{n}}\) are independent by the
+proposition on functions of independent variables, identically
+distributed, bounded and hence with finite fourth moment, and their
+common mean is \(p\). Their partial sums are \(N_{n}\), so the strong
+law applies.
+#+end_proof
+
+#+begin_remark
+The fourth moment is a convenience, not a necessity: Kolmogorov's strong
+law needs only integrability, and Etemadi's proof needs only pairwise
+independence. What is not a convenience is the distinction between the
+two laws. The weak law says nothing about any single sequence of
+outcomes; the strong law says that the set of outcomes along which the
+averages fail to converge is null, which is the statement that justifies
+reading a long run of measurements as an estimate.
+#+end_remark

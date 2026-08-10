@@ -1,0 +1,107 @@
+:PROPERTIES:
+:ID:       7ee7ed76-454a-4874-89ce-b66b97c2a7ab
+:END:
+#+TITLE: Rigid body kinematics and the inertia tensor
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:mathematical_physics:classical_mechanics:
+#+MSC: 70E15, 70E17
+#+HASH: b8791cfeea49
+
+A rigid body is a constraint so strong that the configuration space is a
+group: the position of every point is determined by a rotation and a
+translation. Its kinetic energy is then a quadratic form in the angular
+velocity, and diagonalising that form by the [[id:dde5958e-70f1-4680-9e80-06de5649c142][spectral theorem]] produces
+the principal axes -- the frame in which the dynamics is written.
+
+#+DEPENDS: def-orthogonal-group, thm-classification-of-euclidean-isometries, def-holonomic-constraint
+#+NAME: def-rigid-motion
+#+begin_definition
+A /rigid motion/ of a body is a curve \(t \mapsto (R(t), b(t))\) with
+\(R(t)\in\SO(3)\) and \(b(t)\in\R^{3}\), the position of the material
+point \(X\) being \(x(t) = R(t)X + b(t)\). The /angular velocity/ is the
+vector \(\omega(t)\) representing the antisymmetric matrix
+\(\Omega = \dot{R}R^{\mathsf{T}}\) through
+\(\Omega v = \omega \times v\).
+#+end_definition
+
+#+DEPENDS: def-rigid-motion, def-orthogonal-group
+#+NAME: prop-angular-velocity-is-well-defined
+#+begin_proposition
+\(\Omega = \dot{R}R^{\mathsf{T}}\) is antisymmetric, hence of the form
+\(v \mapsto \omega\times v\) for a unique \(\omega\); and the velocity
+of the material point \(X\) is
+\(\dot{x} = \omega\times(x-b)+\dot{b}\).
+#+end_proposition
+
+#+begin_proof
+Differentiating \(RR^{\mathsf{T}} = I\) gives
+\(\dot{R}R^{\mathsf{T}} + R\dot{R}^{\mathsf{T}} = 0\), that is
+\(\Omega + \Omega^{\mathsf{T}} = 0\). The antisymmetric \(3\times3\)
+matrices form a three-dimensional space, and
+\(\omega \mapsto (v\mapsto\omega\times v)\) is a linear bijection onto
+it, by comparing entries. Finally
+\(\dot{x} = \dot{R}X+\dot{b} = \Omega R X + \dot{b} = \Omega(x-b)+\dot{b}\).
+#+end_proof
+
+#+DEPENDS: prop-angular-velocity-is-well-defined, def-bilinear-form, def-measure
+#+NAME: def-inertia-tensor
+#+begin_definition
+Let the body have mass distribution \(\mu\) in body coordinates and let
+the origin be fixed, \(b \equiv 0\). The /inertia tensor/ is the
+symmetric matrix
+\[ I_{jk} = \int \bigl(\abs{X}^{2}\delta_{jk} - X_{j}X_{k}\bigr)\dd\mu(X), \]
+and the /angular momentum/ in body coordinates is \(L = I\Omega_{b}\)
+where \(\Omega_{b} = R^{\mathsf{T}}\omega\) is the angular velocity in
+those coordinates.
+#+end_definition
+
+#+DEPENDS: def-inertia-tensor, prop-angular-velocity-is-well-defined, thm-tonelli
+#+NAME: thm-kinetic-energy-of-a-rigid-body
+#+begin_theorem
+For a body rotating about a fixed origin,
+\(T = \tfrac{1}{2}\inner{I\Omega_{b}}{\Omega_{b}}\); the inertia tensor
+is symmetric and positive semi-definite, and positive definite unless
+the mass is concentrated on a line through the origin.
+#+end_theorem
+
+#+begin_proof
+With \(x = RX\), \(\dot{x} = \omega\times x\), so
+\(\abs{\dot{x}}^{2} = \abs{\omega}^{2}\abs{x}^{2}-\inner{\omega}{x}^{2}\)
+by the identity for the cross product. Integrating against the mass
+distribution and passing to body coordinates, where \(R\) is an isometry
+so \(\abs{x} = \abs{X}\) and \(\inner{\omega}{x} = \inner{\Omega_{b}}{X}\),
+gives
+\(2T = \int(\abs{\Omega_{b}}^{2}\abs{X}^{2}-\inner{\Omega_{b}}{X}^{2})\dd\mu = \inner{I\Omega_{b}}{\Omega_{b}}\).
+
+Symmetry is visible in the formula. The integrand
+\(\abs{X}^{2}\abs{u}^{2}-\inner{u}{X}^{2}\) is non-negative by
+Cauchy-Schwarz, giving semi-definiteness; it vanishes for a given
+\(u \ne 0\) exactly where \(X\) is parallel to \(u\), so
+\(\inner{Iu}{u} = 0\) forces the mass to sit on that line.
+#+end_proof
+
+#+DEPENDS: thm-kinetic-energy-of-a-rigid-body, thm-spectral-theorem, cor-principal-axes
+#+NAME: cor-principal-axes-of-inertia
+#+begin_corollary
+There is an orthonormal basis of body coordinates in which \(I\) is
+diagonal, with entries \(I_{1},I_{2},I_{3}\ge0\) the /principal
+moments/; in that basis
+\(T = \tfrac{1}{2}(I_{1}\Omega_{1}^{2}+I_{2}\Omega_{2}^{2}+I_{3}\Omega_{3}^{2})\)
+and \(L = (I_{1}\Omega_{1}, I_{2}\Omega_{2}, I_{3}\Omega_{3})\).
+#+end_corollary
+
+#+begin_proof
+\(I\) is real symmetric, so the spectral theorem provides an orthonormal
+eigenbasis with real eigenvalues, non-negative by semi-definiteness.
+Rewriting the quadratic form and the linear map \(L = I\Omega_{b}\) in
+that basis gives the displayed expressions.
+#+end_proof
+
+#+begin_remark
+The angular momentum is not parallel to the angular velocity unless the
+body spins about a principal axis, and that single fact is the whole
+difficulty of rigid-body dynamics: a freely rotating body about a
+non-principal axis has \(L\) constant in space while \(\omega\) moves,
+which is why an object thrown spinning about its intermediate axis
+tumbles. [[id:4876cdf3-ca6f-4bd7-a056-0501b3add1ea][Euler's equations]] are that statement made quantitative.
+#+end_remark

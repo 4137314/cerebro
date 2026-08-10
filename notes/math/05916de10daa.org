@@ -1,0 +1,150 @@
+:PROPERTIES:
+:ID:       3618465d-d9db-497b-a389-782e812f266f
+:END:
+#+TITLE: The determinant as the alternating multilinear form
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:algebra:linear_algebra:
+#+MSC: 15A15
+#+HASH: 05916de10daa
+
+The determinant is usually met as a formula and then shown to have
+properties. Reversing that -- asking for a function of the columns that
+is linear in each and vanishes when two agree -- turns out to determine
+it up to a constant, so the formula becomes a consequence and every
+identity about determinants becomes an application of uniqueness rather
+than a computation.
+
+#+DEPENDS: def-vector-space, def-linear-map, def-symmetric-group
+#+NAME: def-alternating-form
+#+begin_definition
+Let \(K\) be a field. A map \(D \colon (K^{n})^{n} \to K\) is
+/multilinear/ if it is linear in each argument with the others fixed,
+and /alternating/ if \(D(v_{1},\dots,v_{n}) = 0\) whenever
+\(v_{i} = v_{j}\) for some \(i \ne j\). The /determinant/ of a matrix is
+\(D\) applied to its columns.
+#+end_definition
+
+#+DEPENDS: def-alternating-form
+#+NAME: prop-alternating-is-antisymmetric
+#+begin_proposition
+An alternating multilinear \(D\) changes sign when two arguments are
+exchanged, and satisfies
+\(D(v_{\sigma(1)},\dots,v_{\sigma(n)}) = \sgn(\sigma)D(v_{1},\dots,v_{n})\)
+for every permutation \(\sigma\). It is unchanged by adding a multiple
+of one argument to another.
+#+end_proposition
+
+#+begin_proof
+Expanding \(D(\dots,v_{i}+v_{j},\dots,v_{i}+v_{j},\dots) = 0\) by
+multilinearity leaves \(D(\dots,v_{i},\dots,v_{j},\dots) + D(\dots,v_{j},\dots,v_{i},\dots) = 0\),
+the two repeated-argument terms vanishing; this is antisymmetry in a
+transposition, and the general case follows since transpositions
+generate and \(\sgn\) is the unique homomorphism sending each to \(-1\).
+Adding \(\lambda v_{j}\) to the \(i\)-th argument adds
+\(\lambda D(\dots,v_{j},\dots,v_{j},\dots) = 0\).
+#+end_proof
+
+#+DEPENDS: def-alternating-form, prop-alternating-is-antisymmetric, thm-sign-is-a-homomorphism
+#+NAME: thm-determinant-exists-and-is-unique
+#+begin_theorem
+There is exactly one alternating multilinear \(\det\) on \((K^{n})^{n}\)
+with \(\det(e_{1},\dots,e_{n}) = 1\), namely
+\[ \det A = \sum_{\sigma \in S_{n}} \sgn(\sigma)\, a_{\sigma(1)1}\cdots a_{\sigma(n)n}, \]
+and every alternating multilinear \(D\) equals
+\(D(e_{1},\dots,e_{n})\det\).
+#+end_theorem
+
+#+begin_proof
+Uniqueness first. Write the \(j\)-th argument as
+\(v_{j} = \sum_{i}a_{ij}e_{i}\) and expand by multilinearity:
+\(D(v_{1},\dots,v_{n}) = \sum a_{i_{1}1}\cdots a_{i_{n}n} D(e_{i_{1}},\dots,e_{i_{n}})\),
+summed over all functions \(j \mapsto i_{j}\). A term with a repeated
+index vanishes, so only the bijections \(\sigma\) survive, and
+\(D(e_{\sigma(1)},\dots,e_{\sigma(n)}) = \sgn(\sigma)D(e_{1},\dots,e_{n})\)
+by the previous proposition. This gives the displayed formula times
+\(D(e_{1},\dots,e_{n})\), proving both uniqueness and the last claim.
+
+Existence: the displayed formula is multilinear, each term containing
+exactly one factor from each column. It is alternating: if columns
+\(p \ne q\) are equal, pair each \(\sigma\) with \(\sigma\tau\), where
+\(\tau\) transposes \(p\) and \(q\). The two terms have the same
+product of entries -- the equal columns make the swap invisible -- and
+opposite signs, so they cancel; the pairing is a fixed-point-free
+involution of \(S_{n}\), so the whole sum is \(0\). Finally the identity
+matrix leaves only \(\sigma = \id\), giving \(1\).
+#+end_proof
+
+#+DEPENDS: thm-determinant-exists-and-is-unique
+#+NAME: thm-determinant-is-multiplicative
+#+begin_theorem
+\(\det(AB) = \det(A)\det(B)\) for all \(A, B\); and
+\(\det(A^{\mathsf{T}}) = \det(A)\).
+#+end_theorem
+
+#+begin_proof
+Fix \(A\) and let \(D(v_{1},\dots,v_{n}) = \det(Av_{1},\dots,Av_{n})\).
+It is multilinear and alternating, since \(v \mapsto Av\) is linear and
+equal arguments stay equal. By the theorem
+\(D = D(e_{1},\dots,e_{n})\det = \det(A)\det\); applied to the columns
+of \(B\), whose images are the columns of \(AB\), this is the claim.
+
+For the transpose, reindex the defining sum by \(\sigma^{-1}\):
+each term \(a_{\sigma(1)1}\cdots a_{\sigma(n)n}\) equals
+\(a_{1\sigma^{-1}(1)}\cdots a_{n\sigma^{-1}(n)}\), and
+\(\sgn(\sigma) = \sgn(\sigma^{-1})\), so the sum for \(A\) is the sum
+for \(A^{\mathsf{T}}\).
+#+end_proof
+
+#+DEPENDS: thm-determinant-exists-and-is-unique, cor-extension-to-a-basis, cor-injective-iff-surjective-in-finite-dimension
+#+NAME: thm-determinant-detects-invertibility
+#+begin_theorem
+A square matrix \(A\) over a field is invertible if and only if
+\(\det A \ne 0\), if and only if its columns are linearly independent.
+#+end_theorem
+
+#+begin_proof
+If the columns are dependent, one is a combination of the others;
+subtracting that combination from it -- which does not change the
+determinant -- produces a zero column, so \(\det A = 0\) by
+multilinearity. If the columns are independent they form a basis, so
+\(A\) is invertible as a linear map, and
+\(\det(A)\det(A^{-1}) = \det(I) = 1\) forces \(\det A \ne 0\).
+#+end_proof
+
+#+DEPENDS: thm-determinant-exists-and-is-unique, prop-alternating-is-antisymmetric
+#+NAME: thm-laplace-expansion-and-adjugate
+#+begin_theorem
+Let \(A_{ij}\) be \(A\) with row \(i\) and column \(j\) deleted, and
+\(C_{ij} = (-1)^{i+j}\det A_{ij}\) the /cofactors/. Then for every
+\(j\), \(\det A = \sum_{i} a_{ij}C_{ij}\); and, writing
+\(\operatorname{adj}(A)_{ij} = C_{ji}\),
+\(A \operatorname{adj}(A) = \operatorname{adj}(A) A = (\det A) I\).
+#+end_theorem
+
+#+begin_proof
+Write the \(j\)-th column as \(\sum_{i}a_{ij}e_{i}\) and expand
+\(\det\) in that argument by linearity: \(\det A = \sum_{i}a_{ij}\det M_{i}\),
+where \(M_{i}\) is \(A\) with its \(j\)-th column replaced by
+\(e_{i}\). Moving that column to position \(1\) and its \(i\)-th row to
+position \(1\) by \(j-1\) and \(i-1\) transpositions multiplies the
+determinant by \((-1)^{i+j}\), and the resulting matrix has first column
+\(e_{1}\), so its defining sum reduces to that of \(A_{ij}\). Hence
+\(\det M_{i} = C_{ij}\), which is the expansion.
+
+For the adjugate, the \((i,k)\) entry of \(A\operatorname{adj}(A)\) is
+\(\sum_{j}a_{ij}C_{kj}\). For \(i = k\) this is the expansion along row
+\(i\) -- the same argument applied to \(A^{\mathsf{T}}\) -- giving
+\(\det A\). For \(i \ne k\) it is the expansion along row \(k\) of the
+matrix obtained from \(A\) by replacing row \(k\) with row \(i\), a
+matrix with two equal rows, hence of determinant \(0\).
+#+end_proof
+
+#+begin_remark
+The adjugate identity is a polynomial identity in the entries, so it
+holds over any commutative ring, not only over a field -- and that is
+exactly what the proof of the Cayley-Hamilton theorem needs, where the
+entries live in \(K[x]\). It also gives Cramer's rule, which is a
+formula rather than an algorithm: computing a determinant by the
+defining sum costs \(n!\) products, and Gaussian elimination is what one
+actually runs.
+#+end_remark

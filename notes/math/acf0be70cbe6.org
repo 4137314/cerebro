@@ -1,0 +1,104 @@
+:PROPERTIES:
+:ID:       ba1be74f-3a05-45ce-a429-7fe14ad45170
+:END:
+#+TITLE: Conics and quadrics: classification by signature
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:geometry:linear_algebra:
+#+MSC: 51N20, 15A63
+#+HASH: acf0be70cbe6
+
+An ellipse, a hyperbola and a pair of lines are given by equations of
+the same shape and are told apart by no property of the equation that
+survives a change of coordinates -- except one. Sylvester's law supplies
+it: the signature of the associated symmetric form is a complete
+invariant, so the classification of quadrics is linear algebra with a
+homogenisation in front of it.
+
+#+DEPENDS: def-bilinear-form, def-affine-space, def-projective-space
+#+NAME: def-quadric
+#+begin_definition
+Let \(K\) be a field of characteristic \(\ne 2\). A /quadric/ in
+\(\PP^{n}(K)\) is the zero set
+\(Q = \setst{[x] \in \PP^{n}(K)}{q(x) = 0}\) of a non-zero quadratic
+form \(q\) on \(K^{n+1}\); an /affine quadric/ in \(K^{n}\) is the zero
+set of a polynomial of degree \(2\). The quadric is /non-degenerate/ if
+the associated symmetric bilinear form is.
+#+end_definition
+
+#+DEPENDS: def-quadric, prop-projective-space-is-a-quotient
+#+NAME: prop-quadrics-are-well-defined
+#+begin_proposition
+The condition \(q(x) = 0\) does not depend on the representative of
+\([x]\), so a quadric is a well-defined subset of projective space; and
+two proportional forms define the same quadric.
+#+end_proposition
+
+#+begin_proof
+\(q(\lambda x) = \lambda^{2}q(x)\) by bilinearity of the associated
+form, and \(\lambda \ne 0\), so \(q(\lambda x) = 0\) exactly when
+\(q(x) = 0\). Multiplying \(q\) by a non-zero scalar does not change its
+zero set.
+#+end_proof
+
+#+DEPENDS: def-quadric, thm-diagonalisation-of-symmetric-forms, thm-sylvester-law-of-inertia
+#+NAME: thm-projective-classification-of-quadrics
+#+begin_theorem
+Over \(\R\), every quadric in \(\PP^{n}(\R)\) is, in suitable
+homogeneous coordinates,
+\(x_{0}^{2}+\cdots+x_{p-1}^{2} - x_{p}^{2}-\cdots-x_{p+m-1}^{2} = 0\)
+with \(p \ge m\) and \(p + m \le n+1\); and the pair \((p,m)\), up to
+exchanging the two entries, is determined by the quadric together with
+its defining form. Over an algebraically closed field the normal form is
+\(x_{0}^{2}+\cdots+x_{r-1}^{2} = 0\), with \(r\) the rank.
+#+end_theorem
+
+#+begin_proof
+A change of homogeneous coordinates is an invertible linear change on
+\(K^{n+1}\), so by the diagonalisation theorem \(q\) becomes a sum of
+squares with coefficients, and over \(\R\) rescaling brings those to
+\(\pm1\); Sylvester's law says \((p,m)\) does not depend on the
+diagonalising basis. Replacing \(q\) by \(-q\), which defines the same
+quadric, exchanges \(p\) and \(m\), and one may then assume
+\(p \ge m\). Over an algebraically closed field every non-zero
+coefficient has a square root, so all of them can be scaled to \(1\),
+and only the rank \(r = p+m\) remains.
+#+end_proof
+
+#+DEPENDS: thm-projective-classification-of-quadrics, def-affine-subspace, prop-affine-charts
+#+NAME: thm-affine-conics
+#+begin_theorem
+Every affine conic in \(\R^{2}\) is, after an affine change of
+coordinates, one of: \(x^{2}+y^{2}=1\), \(x^{2}-y^{2}=1\),
+\(y = x^{2}\), \(x^{2}+y^{2}=0\), \(x^{2}-y^{2}=0\), \(x^{2}=1\),
+\(x^{2}=0\), or the empty set \(x^{2}+y^{2}=-1\).
+#+end_theorem
+
+#+begin_proof
+Write the equation as \(q(v) + \ell(v) + c\) with \(q\) a quadratic
+form, \(\ell\) linear and \(c\) constant. By the diagonalisation
+theorem, a linear change of coordinates makes \(q\) diagonal with
+entries in \(\set{1,-1,0}\). In each coordinate where the coefficient of
+the square is non-zero, completing the square absorbs the corresponding
+linear term into a translation; this leaves an equation in which the
+linear part involves only the coordinates absent from \(q\).
+
+If \(q\) has rank \(2\) the linear part is gone and, rescaling, the
+equation is \(\pm x^{2}\pm y^{2} = c\) with \(c \in \set{1,0,-1}\) after
+dividing by \(\abs{c}\) when \(c \ne 0\); the listed cases are what
+remains after exchanging the roles of \(x\) and \(y\) and multiplying by
+\(-1\). If \(q\) has rank \(1\), say \(q = x^{2}\), the surviving linear
+term is \(\beta y\): for \(\beta \ne 0\) a translation and a rescaling
+of \(y\) give \(y = x^{2}\), and for \(\beta = 0\) the equation is
+\(x^{2} = c\), giving \(x^{2}=1\) or \(x^{2}=0\) after rescaling (the
+case \(c<0\) being empty and already listed). The form \(q\) is non-zero
+by hypothesis, so its rank is not \(0\).
+#+end_proof
+
+#+begin_remark
+Projectively the list collapses: ellipse, parabola and hyperbola are the
+same non-degenerate conic, and they differ only in how the line at
+infinity meets it -- not at all, tangentially, or in two points. That is
+the standard demonstration that a classification depends on which group
+of transformations is allowed, and the affine list above is the
+projective one refined by the choice of a line to call infinite.
+#+end_remark

@@ -1,0 +1,92 @@
+:PROPERTIES:
+:ID:       b8b253f2-97fc-4461-8ee4-281c7a8202d2
+:END:
+#+TITLE: Mathematical physics
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:mathematical_physics:classical_mechanics:
+#+MSC: 70-XX, 37-XX
+#+HASH: 73051a432993
+
+Classical mechanics is in this archive as geometry, not as physics: the
+notes below contain no experiments and no units, and what they study is
+a structure -- first a variational principle on a space of paths, then a
+symplectic form on the space of states -- that turns out to determine the
+motion. The physical content is the choice of Lagrangian; everything
+after it is a theorem.
+
+Part of [[id:c2fcb100-fc5a-4670-9b5d-c068c0c325ff][Mathematics]].
+
+* The chain, in order
+
+1. [[id:ad33e63f-36eb-4887-a6b5-28103dda6212][The action functional and the first variation]] -- motion is a
+   stationary point of a functional on paths, which is a statement about
+   the whole trajectory rather than about an instant.
+2. [[id:2d28bca1-3909-4862-8c64-da1d91d4f27a][The Euler-Lagrange equations]] -- stationarity, made local. This is
+   the point at which a variational principle becomes a differential
+   equation.
+3. [[id:9df53a2d-7920-4887-96c2-72a1271929c8][The Legendre transform]] -- the change of variables from velocities to
+   momenta, and the reason it is invertible is convexity, not physics.
+4. [[id:7b0a151b-1022-4b96-91c9-f76751ffd3f5][Hamilton's equations]] -- the same motion as a first-order flow on
+   phase space, symmetric in the two halves of the coordinates.
+5. [[id:0d794fd8-b77f-4412-b6e1-8cbfedb7131b][Poisson brackets]] -- the algebraic structure that flow induces on
+   observables, under which the equations of motion read
+   \(\dot{f} = \set{f,H}\).
+6. [[id:c1d8ebd6-723e-4272-9cce-66ef33bdea2e][Canonical transformations and Liouville's theorem]] -- the changes of
+   coordinates that preserve the structure, and the volume they
+   preserve.
+
+* Mechanics of constrained and extended systems
+
+The chain above starts from a Lagrangian and does not say where one
+comes from. [[id:72fb730d-5aaf-4b0a-b963-d3f467a0f6f8][Constraints, virtual work and the Lagrange equations]]
+supplies the derivation from Newton's law, with the one modelling
+hypothesis -- ideal constraints do no virtual work -- marked as an
+axiom. After it:
+
+- [[id:836aa316-f3a7-4261-9cfc-96235daef781][Central forces, the two-body problem and Kepler's laws]] -- the one
+  system solved completely, and solved by symmetry rather than by
+  integration.
+- [[id:8b7c0d78-6337-4e7c-b510-0a1462f85a66][Equilibria, stability and the Lagrange-Dirichlet theorem]] -- a strict
+  minimum of the potential is stable, because energy traps the motion.
+- [[id:3c87078b-b0e3-4c8a-80dd-a2417c2ca3bf][Small oscillations and normal modes]] -- near such an equilibrium the
+  system is a set of independent oscillators, by simultaneous
+  diagonalisation of two quadratic forms.
+- [[id:7ee7ed76-454a-4874-89ce-b66b97c2a7ab][Rigid body kinematics and the inertia tensor]] and
+  [[id:4876cdf3-ca6f-4bd7-a056-0501b3add1ea][Euler's equations]] -- the configuration space is a group, the kinetic
+  energy a quadratic form, and the stability of free rotation is decided
+  by which combination of the two conserved quantities is definite.
+
+* Quantum mechanics
+
+The same structure with the algebra of observables changed:
+[[id:354832fd-6b52-45a5-8735-d1242f4e605d][the Hilbert space formalism]] -- states as unit vectors, observables as
+symmetric operators, the Poisson bracket replaced by a commutator, and
+the uncertainty relation as a Cauchy-Schwarz inequality -- and
+[[id:8e53ae13-5f53-4c98-9134-9c3c592d88ab][the harmonic oscillator by ladder operators]], whose spectrum follows
+from one commutation relation with no differential equation solved.
+
+* Symmetry and conservation
+
+[[id:a7b50bb3-2a00-4d1c-a808-a6fcc1c43f78][Noether's theorem]] is the reason this chain is worth building rather
+than solving the equations directly: a one-parameter symmetry of the
+action yields a conserved quantity, so translation invariance /is/
+conservation of momentum. In the Hamiltonian formulation the statement
+becomes an identity about the [[id:0d794fd8-b77f-4412-b6e1-8cbfedb7131b][Poisson bracket]] -- an observable is
+conserved exactly when it commutes with the Hamiltonian -- which is the
+form that survives into quantum mechanics with the bracket replaced by a
+commutator.
+
+* What is missing
+
+Symplectic geometry as geometry -- there is no manifold here, only
+coordinates, so [[id:c1d8ebd6-723e-4272-9cce-66ef33bdea2e][Liouville's theorem]] is stated as a computation rather
+than as a statement about a form; integrable systems and action-angle
+variables; the spectral theory that quantum mechanics needs beyond
+[[id:354832fd-6b52-45a5-8735-d1242f4e605d][the formalism]] -- self-adjointness as opposed to symmetry, and the
+spectral theorem for unbounded operators; scattering; statistical
+mechanics; and relativity.
+
+Continuum mechanics is absent as a subject, but the equations it
+produces are not: they are the [[id:24714815-1fd5-4557-b9c6-a29939957dbb][partial differential equations]] of the
+analysis area, and the [[id:ef0a7e9f-5957-4e21-8f97-59e80b04aa33][divergence theorem]] is what turns a local
+conservation law into a global one.

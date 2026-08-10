@@ -1,0 +1,110 @@
+:PROPERTIES:
+:ID:       2113a291-a90e-4ed9-87ee-40abdd73759e
+:END:
+#+TITLE: Zeros, the identity theorem and the maximum principle
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:analysis:complex_analysis:
+#+MSC: 30C80, 30B10
+#+HASH: 70c21f80fafd
+
+Analyticity makes a holomorphic function rigid in two ways that have no
+real analogue: its values on any set with an accumulation point
+determine it everywhere, and its modulus can have no interior maximum.
+Both are the local power series expansion, read once for the zeros and
+once for the boundary.
+
+#+DEPENDS: thm-holomorphic-implies-analytic, def-accumulation-point
+#+NAME: thm-zeros-are-isolated
+#+begin_theorem
+Let \(f\) be holomorphic on a connected open \(U\), not identically
+zero, and \(f(z_{0}) = 0\). Then there are a unique \(m \ge 1\), the
+/order/ of the zero, and a holomorphic \(g\) with \(g(z_{0})\ne0\) and
+\(f(z) = (z-z_{0})^{m}g(z)\) near \(z_{0}\). In particular the zeros of
+\(f\) are isolated.
+#+end_theorem
+
+#+begin_proof
+Expand \(f(z) = \sum_{n}a_{n}(z-z_{0})^{n}\) near \(z_{0}\). Not all
+\(a_{n}\) vanish: the set where every derivative of \(f\) vanishes is
+open -- there \(f\) is identically zero on a disc -- and closed, being
+an intersection of zero sets of continuous functions, so by connectedness
+it is empty or all of \(U\), and the latter is excluded.
+
+Let \(m\) be least with \(a_{m}\ne0\), which is at least \(1\) since
+\(a_{0} = f(z_{0}) = 0\). Then
+\(f(z) = (z-z_{0})^{m}\sum_{k\ge0}a_{m+k}(z-z_{0})^{k}\), and the second
+factor is a convergent power series, hence holomorphic, with value
+\(a_{m}\ne0\) at \(z_{0}\). By continuity it is non-zero on a
+neighbourhood, on which \(z_{0}\) is the only zero of \(f\).
+#+end_proof
+
+#+DEPENDS: thm-zeros-are-isolated, def-accumulation-point, prop-connected-components
+#+NAME: thm-identity
+#+begin_theorem
+Let \(f, g\) be holomorphic on a connected open \(U\) and suppose they
+agree on a set having an accumulation point in \(U\). Then \(f = g\) on
+\(U\).
+#+end_theorem
+
+#+begin_proof
+Apply the previous theorem to \(h = f-g\). If \(h\) is not identically
+zero its zeros are isolated, contradicting the existence of an
+accumulation point of zeros inside \(U\). Hence \(h \equiv 0\).
+#+end_proof
+
+#+DEPENDS: thm-cauchy-integral-formula, def-contour-integral
+#+NAME: prop-mean-value-property
+#+begin_proposition
+If \(f\) is holomorphic on a neighbourhood of \(\overline{B}(z_{0},r)\)
+then
+\(f(z_{0}) = \frac{1}{2\pi}\int_{0}^{2\pi}f(z_{0}+re^{i\theta})\dd\theta\):
+the value at the centre is the average over the circle.
+#+end_proposition
+
+#+begin_proof
+Put \(z = z_{0}\) in the Cauchy integral formula and parametrise the
+circle by \(w = z_{0}+re^{i\theta}\), so \(\dd w = ire^{i\theta}\dd\theta\)
+and \(w - z_{0} = re^{i\theta}\); the factors cancel, leaving
+\(\frac{1}{2\pi i}\int_{0}^{2\pi}f(z_{0}+re^{i\theta})\,i\dd\theta\).
+#+end_proof
+
+#+DEPENDS: prop-mean-value-property, thm-identity, cor-extreme-value-on-a-compact-space
+#+NAME: thm-maximum-modulus
+#+begin_theorem
+Let \(f\) be holomorphic on a connected open \(U\). If \(\abs{f}\)
+attains a local maximum at a point of \(U\), then \(f\) is constant.
+Consequently, if \(U\) is bounded and \(f\) extends continuously to
+\(\overline{U}\), then \(\abs{f}\) attains its maximum on the boundary.
+#+end_theorem
+
+#+begin_proof
+Suppose \(\abs{f}\le\abs{f(z_{0})}\) on \(B(z_{0},r)\). By the mean
+value property, for \(\rho<r\),
+\(\abs{f(z_{0})} \le \frac{1}{2\pi}\int_{0}^{2\pi}\abs{f(z_{0}+\rho e^{i\theta})}\dd\theta \le \abs{f(z_{0})}\).
+So the continuous non-negative function
+\(\theta\mapsto\abs{f(z_{0})}-\abs{f(z_{0}+\rho e^{i\theta})}\) has zero
+integral and therefore vanishes identically: \(\abs{f}\) is constant on
+every such circle, hence on the disc.
+
+A holomorphic function of constant modulus on a disc is constant: if the
+constant is \(0\) this is clear; otherwise \(f\overline{f}\) is
+constant, so \(\overline{f} = c/f\) is holomorphic, and a function whose
+conjugate is also holomorphic has vanishing derivative by the
+Cauchy-Riemann equations, hence is constant. By the identity theorem
+\(f\) is constant on all of \(U\).
+
+For the last claim, \(\abs{f}\) is continuous on the compact
+\(\overline{U}\), so it attains a maximum; if the maximum were at an
+interior point, \(f\) would be constant and the maximum would also be
+attained on the boundary.
+#+end_proof
+
+#+begin_remark
+The identity theorem is what makes analytic continuation well posed:
+there is at most one holomorphic extension of a function to a larger
+connected set, so "the" continuation of a series beyond its disc of
+convergence is a legitimate phrase. It also forbids bump functions --
+a holomorphic function vanishing on an open subset of a connected domain
+vanishes identically -- which is why the constructions of real analysis
+that rely on cutting off have no complex analogue.
+#+end_remark

@@ -1,0 +1,98 @@
+:PROPERTIES:
+:ID:       354832fd-6b52-45a5-8735-d1242f4e605d
+:END:
+#+TITLE: The Hilbert space formalism of quantum mechanics
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:mathematical_physics:quantum_theory:
+#+MSC: 81P05, 81Q10
+#+HASH: 39d8e1495b40
+
+Classical mechanics puts states in a phase space and observables in the
+algebra of functions on it, with the [[id:0d794fd8-b77f-4412-b6e1-8cbfedb7131b][Poisson bracket]] generating the
+dynamics. Quantum mechanics keeps the structure and changes the algebra:
+states become unit vectors of a [[id:642c93ab-d004-4829-b5fa-899759923d63][Hilbert space]], observables become
+symmetric operators, and the bracket becomes a commutator. The
+uncertainty relation is then a theorem about that commutator, not a
+statement about measurement.
+
+#+DEPENDS: def-hilbert-space, def-self-adjoint, def-bounded-operator
+#+NAME: def-quantum-state-and-observable
+#+begin_definition
+Let \(\Hilb\) be a complex Hilbert space. A /state/ is a vector
+\(\psi \in \Hilb\) with \(\norm{\psi} = 1\), two states differing by a
+factor of modulus one being identified. An /observable/ is a linear
+operator \(A\) on \(\Hilb\), defined on a dense domain, that is
+/symmetric/: \(\inner{A\varphi}{\psi} = \inner{\varphi}{A\psi}\) for
+\(\varphi,\psi\) in the domain. The /expectation/ of \(A\) in the state
+\(\psi\) is \(\expval{A}_{\psi} = \inner{A\psi}{\psi}\) and its
+/dispersion/ is
+\(\Delta_{\psi}A = \norm{(A-\expval{A}_{\psi})\psi}\).
+#+end_definition
+
+#+DEPENDS: def-quantum-state-and-observable, thm-cauchy-schwarz
+#+NAME: prop-expectations-are-real
+#+begin_proposition
+For a symmetric \(A\) and a state \(\psi\) in its domain,
+\(\expval{A}_{\psi}\) is real, and
+\(\Delta_{\psi}A^{2} = \expval{A^{2}}_{\psi}-\expval{A}_{\psi}^{2}\)
+when \(\psi\) is in the domain of \(A^{2}\).
+#+end_proposition
+
+#+begin_proof
+\(\inner{A\psi}{\psi} = \inner{\psi}{A\psi} = \overline{\inner{A\psi}{\psi}}\)
+by symmetry and the conjugate symmetry of the inner product, so the
+value equals its own conjugate. Expanding
+\(\norm{(A-a)\psi}^{2}\) with \(a = \expval{A}_{\psi}\) real gives
+\(\expval{A^{2}}_{\psi} - 2a\expval{A}_{\psi}+a^{2}\), which is the
+stated identity.
+#+end_proof
+
+#+DEPENDS: prop-expectations-are-real, thm-cauchy-schwarz, def-quantum-state-and-observable
+#+NAME: thm-robertson-uncertainty
+#+begin_theorem
+Let \(A, B\) be symmetric and \(\psi\) a state in the domain of all the
+products involved. Then
+\[ \Delta_{\psi}A \cdot \Delta_{\psi}B \ \ge\ \tfrac{1}{2}\,\bigl|\expval{\comm{A}{B}}_{\psi}\bigr|, \qquad \comm{A}{B} = AB-BA. \]
+#+end_theorem
+
+#+begin_proof
+Put \(A_{0} = A - \expval{A}_{\psi}\) and \(B_{0} = B-\expval{B}_{\psi}\),
+again symmetric, with \(\comm{A_{0}}{B_{0}} = \comm{A}{B}\) and
+\(\Delta_{\psi}A = \norm{A_{0}\psi}\). By Cauchy-Schwarz,
+\[ \norm{A_{0}\psi}\,\norm{B_{0}\psi} \ge \abs{\inner{A_{0}\psi}{B_{0}\psi}} \ge \abs{\Im \inner{A_{0}\psi}{B_{0}\psi}}. \]
+Using symmetry, \(\inner{A_{0}\psi}{B_{0}\psi} = \inner{B_{0}A_{0}\psi}{\psi}\)
+and its conjugate is \(\inner{A_{0}B_{0}\psi}{\psi}\), so twice the
+imaginary part is
+\(\frac{1}{i}\inner{(B_{0}A_{0}-A_{0}B_{0})\psi}{\psi} = -\frac{1}{i}\expval{\comm{A}{B}}_{\psi}\).
+Taking moduli gives the claim.
+#+end_proof
+
+#+DEPENDS: thm-robertson-uncertainty, def-l2, def-fourier-transform
+#+NAME: cor-position-and-momentum
+#+begin_corollary
+On \(L^{2}(\R)\), let \(Q\psi(x) = x\psi(x)\) and
+\(P\psi = -i\hbar\,\psi'\) on the dense domain of smooth compactly
+supported functions. Then \(\comm{Q}{P} = i\hbar\,\id\) and therefore
+\(\Delta_{\psi}Q\cdot\Delta_{\psi}P \ge \hbar/2\) for every state in
+the domain.
+#+end_corollary
+
+#+begin_proof
+For such \(\psi\),
+\((QP-PQ)\psi(x) = -i\hbar x\psi'(x) + i\hbar (x\psi)'(x) = i\hbar\psi(x)\).
+Both operators are symmetric on that domain: \(Q\) because \(x\) is
+real, and \(P\) by integration by parts, the boundary terms vanishing
+for compactly supported functions. Substituting into the theorem gives
+\(\Delta Q\,\Delta P \ge \tfrac{1}{2}\abs{i\hbar} = \hbar/2\).
+#+end_proof
+
+#+begin_remark
+The corollary also shows why "operator" cannot be weakened to "bounded
+operator": if \(QP-PQ = i\hbar\) with both bounded, taking traces in
+finite dimension gives \(0 = i\hbar n\), and in infinite dimension a
+short argument with the norm of \(QP^{n}-P^{n}Q\) gives the same
+contradiction. The canonical commutation relation forces unbounded
+operators, hence domains, hence the analytical care that distinguishes
+this subject from linear algebra -- and the [[id:e57a531d-6f95-4eff-9ad8-7ae4b983f912][Sturm-Liouville]] problems are
+where those domains are met concretely.
+#+end_remark

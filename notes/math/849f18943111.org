@@ -1,0 +1,107 @@
+:PROPERTIES:
+:ID:       9b965797-1b43-4e3b-b244-48c5e47d83fd
+:END:
+#+TITLE: Flows, equilibria and linearisation
+#+DATE: [2026-08-11 Tue]
+#+FILETAGS: :growing:dynamics:dynamical_systems:
+#+MSC: 37C10, 34D20
+#+HASH: 849f18943111
+
+An autonomous differential equation is better read as a flow: a family
+of maps moving the whole space, rather than one solution at a time. The
+questions then become qualitative -- where are the fixed points, what
+happens near them, what happens for all time -- and the first answer is
+that near a hyperbolic equilibrium the nonlinear system behaves like its
+linearisation.
+
+#+DEPENDS: thm-picard-lindelof, def-lipschitz-in-y, def-differentiable-multivariable
+#+NAME: def-flow
+#+begin_definition
+Let \(f\) be \(C^{1}\) on an open \(U \subseteq \R^{n}\). The
+/autonomous system/ is \(\dot{x} = f(x)\); its /flow/ is the map
+\(\Phi_{t}(x_{0})\) giving the value at time \(t\) of the solution with
+\(\Phi_{0}(x_{0}) = x_{0}\), defined for \(t\) in a maximal interval. A
+point with \(f(x_{0}) = 0\) is an /equilibrium/, and an /orbit/ is the
+image of a maximal solution.
+#+end_definition
+
+#+DEPENDS: def-flow, thm-picard-lindelof
+#+NAME: prop-the-flow-is-a-group
+#+begin_proposition
+Where both sides are defined, \(\Phi_{t+s} = \Phi_{t}\circ\Phi_{s}\) and
+\(\Phi_{0} = \id\); each \(\Phi_{t}\) is injective, and two distinct
+orbits are disjoint.
+#+end_proposition
+
+#+begin_proof
+Fix \(s\) and \(x_{0}\), and let \(u(t) = \Phi_{t+s}(x_{0})\) and
+\(v(t) = \Phi_{t}(\Phi_{s}(x_{0}))\). Both solve \(\dot{y} = f(y)\) --
+the first because the system is autonomous, so a time shift of a
+solution is a solution -- with the same value at \(t = 0\); by
+uniqueness in the existence theorem they coincide. Injectivity follows
+from \(\Phi_{-t}\circ\Phi_{t} = \id\). If two orbits meet at a point,
+the solutions through it agree by uniqueness, so the orbits coincide.
+#+end_proof
+
+#+DEPENDS: def-flow, def-equilibrium-and-stability, thm-taylor-peano
+#+NAME: def-hyperbolic-equilibrium
+#+begin_definition
+Let \(x_{0}\) be an equilibrium and \(A = Df(x_{0})\). It is
+/hyperbolic/ if no eigenvalue of \(A\) has zero real part, /a sink/ if
+all real parts are negative, /a source/ if all are positive. The
+equilibrium is /asymptotically stable/ if it is stable and every motion
+starting near it converges to it.
+#+end_definition
+
+#+DEPENDS: def-hyperbolic-equilibrium, thm-spectral-theorem, thm-picard-lindelof, cor-chebyshev-inequality
+#+NAME: thm-linearised-stability
+#+begin_theorem
+If every eigenvalue of \(A = Df(x_{0})\) has real part at most
+\(-\mu<0\), then \(x_{0}\) is asymptotically stable, and the convergence
+is exponential: \(\abs{\Phi_{t}(x)-x_{0}} \le C e^{-\mu' t}\abs{x-x_{0}}\)
+for some \(0<\mu'<\mu\) and \(x\) near \(x_{0}\).
+#+end_theorem
+
+#+begin_proof
+Take \(x_{0} = 0\). There is an inner product on \(\R^{n}\) for which
+\(\inner{Ay}{y} \le -\mu'\abs{y}^{2}\) with \(\mu'<\mu\): in a basis
+bringing \(A\) to a form with the eigenvalues on the diagonal and
+arbitrarily small off-diagonal entries, the symmetric part of \(A\) is
+negative definite with the stated bound. Use the associated norm.
+
+Write \(f(y) = Ay + r(y)\) with \(\abs{r(y)} \le \eps\abs{y}\) for
+\(\abs{y}\le\delta\), by differentiability at \(0\); choose \(\eps\)
+with \(\mu'' = \mu'-\eps>0\). Along a solution with \(\abs{y(t)}\le\delta\),
+\[ \frac{\dd}{\dd t}\tfrac{1}{2}\abs{y}^{2} = \inner{f(y)}{y} \le -\mu'\abs{y}^{2}+\eps\abs{y}^{2} = -\mu''\abs{y}^{2}. \]
+Hence \(\frac{\dd}{\dd t}\bigl(e^{2\mu'' t}\abs{y}^{2}\bigr)\le0\), so
+\(\abs{y(t)} \le e^{-\mu'' t}\abs{y(0)}\). In particular the solution
+never leaves the ball of radius \(\delta\) if it starts inside, so it is
+defined for all \(t \ge 0\), and it converges to \(0\) exponentially.
+Equivalence of the two norms turns this into the stated estimate.
+#+end_proof
+
+#+DEPENDS: thm-linearised-stability, def-hyperbolic-equilibrium
+#+NAME: cor-a-source-is-unstable
+#+begin_corollary
+If every eigenvalue of \(A\) has positive real part, then \(x_{0}\) is
+unstable: motions starting arbitrarily close leave a fixed
+neighbourhood.
+#+end_corollary
+
+#+begin_proof
+Apply the theorem to the reversed system \(\dot{x} = -f(x)\), whose
+linearisation is \(-A\) with all eigenvalues of negative real part. Its
+solutions converge to \(x_{0}\) exponentially, so the solutions of the
+original system, which are those run backwards, leave every ball on
+which the estimate holds.
+#+end_proof
+
+#+begin_remark
+Linearisation decides the hyperbolic cases and only those: with an
+eigenvalue on the imaginary axis the linear system is neutral and the
+nonlinear terms take over, which is why a conservative mechanical system
+-- whose linearisation at a stable equilibrium has purely imaginary
+eigenvalues -- needs [[id:8b7c0d78-6337-4e7c-b510-0a1462f85a66][Lagrange-Dirichlet]] rather than this theorem. The
+sharp statement in the hyperbolic case is the Hartman-Grobman theorem: the
+flow is locally conjugate to its linearisation by a homeomorphism.
+#+end_remark

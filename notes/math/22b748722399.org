@@ -1,0 +1,128 @@
+:PROPERTIES:
+:ID:       36cd1905-a97d-4a57-8df6-c624798c4eb9
+:END:
+#+TITLE: A proof system for propositional logic: soundness and the deduction theorem
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:foundations:proof_theory:
+#+MSC: 03B05, 03F03
+#+HASH: 22b748722399
+
+Truth assignments say which formulas /are/ true; they say nothing about
+what can be /derived/. Proof theory begins by writing down a derivation
+relation as a finite combinatorial object and then comparing the two
+notions. Soundness is the easy direction and is proved by induction on
+derivations; that induction is the reason the axioms are chosen as
+schemes rather than as a list.
+
+#+DEPENDS: def-propositional-formula, def-truth-assignment
+#+NAME: def-hilbert-system
+#+begin_definition
+Write \(\varphi \to \psi\) for \(\neg(\varphi\wedge\neg\psi)\). The
+/axioms/ are all formulas of the six shapes
+1. \(\varphi \to (\psi \to \varphi)\);
+2. \(\bigl(\varphi\to(\psi\to\chi)\bigr) \to \bigl((\varphi\to\psi)\to(\varphi\to\chi)\bigr)\);
+3. \((\neg\psi\to\neg\varphi)\to(\varphi\to\psi)\);
+4. \((\varphi\wedge\psi)\to\varphi\);
+5. \((\varphi\wedge\psi)\to\psi\);
+6. \(\varphi\to\bigl(\psi\to(\varphi\wedge\psi)\bigr)\).
+A /derivation/ of \(\varphi\) from a set \(\Sigma\) is a finite sequence
+of formulas ending in \(\varphi\), each of which is an axiom, a member
+of \(\Sigma\), or follows from two earlier ones by /modus ponens/ -- from
+\(\chi\) and \(\chi\to\theta\), infer \(\theta\). One writes
+\(\Sigma \vdash \varphi\).
+#+end_definition
+
+#+DEPENDS: def-hilbert-system
+#+NAME: prop-derivations-are-finitary
+#+begin_proposition
+If \(\Sigma \vdash \varphi\) then \(\Sigma_{0} \vdash \varphi\) for some
+finite \(\Sigma_{0}\subseteq\Sigma\); and \(\vdash\) is monotone:
+\(\Sigma\subseteq\Sigma'\) and \(\Sigma\vdash\varphi\) imply
+\(\Sigma'\vdash\varphi\).
+#+end_proposition
+
+#+begin_proof
+A derivation is a finite sequence, so it mentions finitely many members
+of \(\Sigma\); those form the required \(\Sigma_{0}\), and the same
+sequence is a derivation from it. Monotonicity holds because every
+derivation from \(\Sigma\) is literally a derivation from \(\Sigma'\).
+#+end_proof
+
+#+DEPENDS: def-hilbert-system, def-satisfiable, prop-induction-on-formulas
+#+NAME: thm-soundness
+#+begin_theorem
+If \(\Sigma \vdash \varphi\) then \(\Sigma \models \varphi\): every
+truth assignment satisfying all of \(\Sigma\) satisfies \(\varphi\).
+#+end_theorem
+
+#+begin_proof
+Unfolding the abbreviation, \(v \models \varphi\to\psi\) holds exactly
+when \(v \not\models \varphi\) or \(v \models \psi\); this is the only
+semantic fact used below.
+
+Each axiom is satisfied by every assignment. Scheme 1: if
+\(v\models\varphi\) then \(v \models \psi\to\varphi\), so the
+implication holds in either case. Scheme 2: assume \(v\) satisfies
+\(\varphi\to(\psi\to\chi)\), \(\varphi\to\psi\) and \(\varphi\); then
+\(v\models\psi\to\chi\) and \(v\models\psi\), hence \(v\models\chi\).
+Scheme 3: assume \(v\models\neg\psi\to\neg\varphi\) and
+\(v\models\varphi\); if \(v\not\models\psi\) then \(v\models\neg\psi\),
+so \(v\models\neg\varphi\), contradicting \(v\models\varphi\); hence
+\(v\models\psi\). Schemes 4 to 6 are the clause
+\(\hat{v}(\varphi\wedge\psi) = \min(\hat{v}(\varphi),\hat{v}(\psi))\)
+read three times.
+
+Now let \(v\) satisfy \(\Sigma\) and induct along a derivation
+\(\chi_{1},\dots,\chi_{n}\). If \(\chi_{i}\) is an axiom it is satisfied
+by the previous paragraph; if \(\chi_{i}\in\Sigma\), by hypothesis; and
+if \(\chi_{i}\) follows by modus ponens from \(\chi_{j}\) and
+\(\chi_{j}\to\chi_{i}\) with \(j < i\), then \(v\) satisfies both by
+induction, hence satisfies \(\chi_{i}\).
+#+end_proof
+
+#+DEPENDS: def-hilbert-system
+#+NAME: lem-self-implication
+#+begin_lemma
+\(\vdash \varphi\to\varphi\) for every formula \(\varphi\).
+#+end_lemma
+
+#+begin_proof
+Take the instance of scheme 2 with \(\psi = (\varphi\to\varphi)\) and
+\(\chi = \varphi\):
+\(\bigl(\varphi\to((\varphi\to\varphi)\to\varphi)\bigr)\to\bigl((\varphi\to(\varphi\to\varphi))\to(\varphi\to\varphi)\bigr)\).
+Its antecedent is an instance of scheme 1, so modus ponens gives
+\((\varphi\to(\varphi\to\varphi))\to(\varphi\to\varphi)\); the
+antecedent of /that/ is again an instance of scheme 1, and a second
+modus ponens yields \(\varphi\to\varphi\).
+#+end_proof
+
+#+DEPENDS: def-hilbert-system, lem-self-implication
+#+NAME: thm-deduction-theorem
+#+begin_theorem
+\(\Sigma \cup \set{\varphi} \vdash \psi\) if and only if
+\(\Sigma \vdash \varphi \to \psi\).
+#+end_theorem
+
+#+begin_proof
+For the direction that is not immediate, induct along a derivation \(\chi_{1},\dots,\chi_{n} = \psi\) from
+\(\Sigma\cup\set{\varphi}\), showing \(\Sigma\vdash\varphi\to\chi_{i}\).
+If \(\chi_{i}\) is an axiom or lies in \(\Sigma\), then scheme 1 gives
+\(\chi_{i}\to(\varphi\to\chi_{i})\), and modus ponens yields the claim.
+If \(\chi_{i} = \varphi\), this is the lemma. If
+\(\chi_{i}\) comes by modus ponens from \(\chi_{j}\) and
+\(\chi_{j}\to\chi_{i}\), then by induction \(\Sigma\) derives
+\(\varphi\to\chi_{j}\) and \(\varphi\to(\chi_{j}\to\chi_{i})\); scheme 2
+and two applications of modus ponens give \(\varphi\to\chi_{i}\).
+
+The converse is one application of modus ponens: from
+\(\Sigma\vdash\varphi\to\psi\) and \(\varphi\), infer \(\psi\).
+#+end_proof
+
+#+begin_remark
+The deduction theorem is what makes a Hilbert system usable at all --
+without it, proving an implication means guessing an axiom instance.
+Note that it is a theorem /about/ the system, proved by induction on
+derivations in the ambient mathematics, and not a rule of the system:
+that separation between the object language and the language reasoning
+about it is the whole methodological point of proof theory.
+#+end_remark

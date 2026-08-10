@@ -1,0 +1,63 @@
+:PROPERTIES:
+:ID:       483f9ad5-72a5-4e63-9623-51a677395e27
+:END:
+#+TITLE: Logic
+#+DATE: [2026-08-10 Mon]
+#+FILETAGS: :growing:foundations:logic:model_theory:
+#+MSC: 03Bxx, 03Cxx, 03Dxx
+#+HASH: e9c8177a6e6d
+
+Logic begins when a formula stops being notation for an argument and
+becomes an object a theorem can quantify over. From that point the
+subject has a fixed shape: define what it means for a formula to be
+/true/ in a structure, define separately what it means to be
+/derivable/, and then compare the two. Everything below is that
+comparison, or a consequence of it.
+
+Part of [[id:1ba699a0-80ee-42e3-ae2b-bfbbc0a2c6a8][Foundations]].
+
+* Propositional logic
+
+[[id:b3043ad1-2aac-4361-8f17-605013e7a12a][Propositional logic: formulas, assignments and compactness]] gives the
+semantics -- two inductive definitions, one building formulas and one
+evaluating them -- and the theorem that makes the subject infinite
+rather than finitary: satisfiability is decided by finite subsets.
+
+[[id:36cd1905-a97d-4a57-8df6-c624798c4eb9][A proof system: soundness and the deduction theorem]] gives the syntax,
+as a finite combinatorial object, and the easy half of the comparison.
+[[id:77484172-ce88-4a74-8fcf-b70251b5034f][Completeness of propositional logic]] gives the hard half, by building a
+model out of the syntax itself -- after which compactness reappears as a
+corollary, for the reason that a derivation is finite.
+
+* First-order logic
+
+[[id:49031e90-dddd-4b31-b30c-bff152d81526][First-order languages, structures and satisfaction]] makes "\(G\)
+satisfies the group axioms" a mathematical statement, and with it
+statements about /all/ structures satisfying a theory.
+[[id:97912891-a007-42a1-8b9f-410b0c47e802][Ultraproducts and the theorem of Los]] then prove compactness at this
+level without a proof system at all, by assembling a model out of a
+family of models along an [[id:e3c053e0-2462-4692-8b0d-ee81002ec63c][ultrafilter]] -- the only property used being
+that "large" is closed under complement, which is exactly what negation
+needs.
+
+[[id:4400af63-8a49-4b93-a45a-6dc1505f616c][Elementary substructures and the Lowenheim-Skolem theorems]] say how
+little a first-order theory controls: every infinite structure has a
+countable elementary substructure and arbitrarily large elementary
+extensions, so no such theory pins down the size of its models.
+
+* The limits
+
+[[id:eb14cc58-7808-4c04-a956-042143f30664][Computability, the halting problem and Rice's theorem]] is the other kind
+of limitative result: not "the theory has too many models" but "no
+procedure decides this". The two undecidability proofs there use only
+two properties of any reasonable model of computation -- a program can
+simulate a program, and a parameter can be frozen -- which is why the
+conclusions do not depend on the machine chosen.
+
+* What is missing
+
+Godel's completeness theorem for first-order logic, whose consequence
+was obtained here by [[id:97912891-a007-42a1-8b9f-410b0c47e802][ultraproducts]] instead; the incompleteness theorems,
+and with them arithmetic as an object of study; quantifier elimination
+and the model theory of specific theories; intuitionistic and modal
+logic; and the connection between [[id:eb14cc58-7808-4c04-a956-042143f30664][computability]] and definability.

@@ -1,0 +1,90 @@
+#+TITLE: Statistics
+#+COURSE_TITLE: Mathematical Statistics
+#+MSC: 62-01
+#+KEYWORDS: statistical model, estimator, sufficiency, Rao-Blackwell, Cramer-Rao, hypothesis test, linear model
+#+DATE: [2026-08-10 Mon]
+
+#+begin_comment
+Mathematical statistics, not data analysis: every result here is a
+theorem about a family of measures, and no dataset appears. The course
+follows the probability one and reuses its notes rather than restating
+them -- conditional expectation in particular, which is what makes the
+Rao-Blackwell theorem one line.
+
+Deliberately absent, and named in the hub note as gaps rather than
+hidden: maximum likelihood and its asymptotics, the Lehmann-Scheffe
+theorem, confidence intervals, and the sampling distributions.
+#+end_comment
+
+* Description
+
+A first rigorous course in mathematical statistics: the statistical
+model as a family of probability measures, estimation and its two error
+criteria, sufficiency and the reduction of data, the two theorems that
+bound how good an estimator can be, the Neyman-Pearson theory of
+testing, and the linear model. The recurring theme is that every
+optimality statement in the subject is a geometric one in \(L^{2}\):
+Rao-Blackwell, Cramer-Rao and Gauss-Markov are Pythagoras, Cauchy-Schwarz
+and Pythagoras again.
+
+* Objectives
+
+Having read it, one can:
+- set up a statistical model and distinguish a statistic from an
+  estimator;
+- decompose a mean squared error into variance and bias, and argue about
+  the trade-off between them;
+- recognise a sufficient statistic by the factorisation theorem, and
+  prove sufficiency from the definition;
+- state and prove the Rao-Blackwell theorem, and explain why
+  sufficiency is exactly the hypothesis it needs;
+- derive the Cramer-Rao bound and say which regularity conditions it
+  rests on and what happens without them;
+- construct a most powerful test for two simple hypotheses and prove its
+  optimality;
+- fit a linear model by least squares and prove the Gauss-Markov theorem.
+
+* Schedule
+
+1. Statistical models, samples, statistics and estimators; bias,
+   variance and mean squared error; consistency.
+2. Sufficiency; the factorisation theorem.
+3. Improving an estimator: the Rao-Blackwell theorem.
+4. Fisher information; the Cramer-Rao lower bound.
+5. Hypothesis testing: the two errors, size and power; the
+   Neyman-Pearson lemma.
+6. The linear model: least squares, the normal equations, the
+   Gauss-Markov theorem.
+
+* Programme
+
+** Models and estimators
+- [[id:9881653c-b669-4380-85d7-815b643c02a2][Statistical models, estimators and consistency]]
+
+** Sufficiency
+- [[id:9980a57d-f360-46ea-bba4-3e1ec57cbbe8][Sufficiency and the factorisation theorem]]
+- [[id:2cbd79ad-4938-4b5b-a6ca-85d300cc1f79][The Rao-Blackwell theorem]]
+
+** How good an estimator can be
+- [[id:8cf8a109-5256-46f2-9553-c27e2de0a34e][Fisher information and the Cramer-Rao bound]]
+
+** Testing
+- [[id:be7f8732-a492-4657-ae3b-f17b9bf70259][Hypothesis tests and the Neyman-Pearson lemma]]
+
+** The linear model
+- [[id:b0adbfc8-96a2-49be-9d03-4e4b419845e4][Least squares and the Gauss-Markov theorem]]
+
+* Appendices
+
+The probability the course uses without reproving it:
+
+- [[id:644e9cbe-c9b1-4e89-ad6d-4dfcdba05ec4][Expectation, the transfer theorem and Jensen's inequality]]
+- [[id:1d882fb6-374f-46a5-9ae3-b2c59f446adf][Variance, covariance and the Markov and Chebyshev inequalities]]
+- [[id:dc80cb7b-694a-414b-9847-a1bdf4bef452][The weak and strong laws of large numbers]]
+- [[id:3c9568ab-072c-4973-9f6b-7506e431be22][Conditional expectation as an orthogonal projection]]
+- [[id:c2edf7f5-d5ac-4e50-8734-a00b2da22cf4][Orthogonality, Gram-Schmidt and orthogonal decomposition]]
+
+* Bibliography
+
+Primary text: [cite:@rudin1976principles] for the analysis the estimates
+rest on.
