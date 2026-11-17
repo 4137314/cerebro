@@ -1,0 +1,27 @@
+:PROPERTIES:
+:ID:       vector-space
+:DOMAIN:   algebra
+:AREA:     linear-algebra
+:KIND:     definition
+:REQUIRES: abelian-group
+:MSC:      15A03
+:END:
+#+title: Vector space
+#+summary: A /vector space/ endows an [[id:abelian-group][abelian group]] with a compatible action of a field of scalars -- the arena of linear algebra and the local model of every geometry considered here.
+#+date: [2026-07-29 Wed 13:55]
+
+#+DEPENDS: def-abelian-group
+#+NAME: def-vector-space
+#+begin_definition
+Let \(K\) be a field. A *vector space* over \(K\) is an [[id:abelian-group][abelian group]]
+\((V, +)\) together with a *scalar multiplication* \(K \times V \to V\),
+\((\lambda, v) \mapsto \lambda v\), such that for all \(\lambda, \mu \in K\)
+and \(u, v \in V\):
+1. \(\lambda (u + v) = \lambda u + \lambda v\);
+2. \((\lambda + \mu) v = \lambda v + \mu v\);
+3. \((\lambda \mu) v = \lambda (\mu v)\);
+4. \(1\, v = v\), where \(1\) is the multiplicative identity of \(K\).
+#+end_definition
+
+Elements of \(V\) are /vectors/, elements of \(K\) /scalars/. The running
+example is \(K = \R\) and \(V = \R^{n}\).

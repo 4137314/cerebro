@@ -1,0 +1,24 @@
+:PROPERTIES:
+:ID:       inner-product-space
+:DOMAIN:   algebra
+:AREA:     linear-algebra
+:KIND:     definition
+:REQUIRES: vector-space
+:MSC:      15A63
+:END:
+#+title: Inner product space
+#+summary: An /inner product/ equips a real [[id:vector-space][vector space]] with lengths and angles, turning linear algebra into geometry.
+#+date: [2026-07-29 Wed 13:55]
+
+#+DEPENDS: def-vector-space
+#+NAME: def-inner-product-space
+#+begin_definition
+A *(real) inner product space* is a [[id:vector-space][vector space]] \(V\) over \(\R\)
+together with a map \(\inner{\cdot}{\cdot} \colon V \times V \to \R\) that
+is /symmetric/ (\(\inner{u}{v} = \inner{v}{u}\)), /bilinear/ (linear in
+each argument), and /positive definite/ (\(\inner{v}{v} \ge 0\), with
+equality iff \(v = 0\)).
+#+end_definition
+
+The associated *norm* is \(\norm{v} = \sqrt{\inner{v}{v}}\), and \(u, v\)
+are /orthogonal/ when \(\inner{u}{v} = 0\).

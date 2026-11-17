@@ -1,0 +1,52 @@
+:PROPERTIES:
+:ID:       foundations
+:DOMAIN:   foundations
+:AREA:     foundations
+:KIND:     overview
+:MSC:      03-XX
+:END:
+#+title: Foundations
+#+summary: The rest of the archive uses sets, functions, quotients and proofs without comment. This area is where those become objects of study rather than instruments: what a set can be, what a proof is, and what follows about the limits of both. It is also, in practice, where the tools live -- Zorn's lemma and the ultrafilter lemma are used far more often here than they are discussed.
+#+date: [2026-08-10 Mon]
+
+Part of [[id:mathematics][Mathematics]].
+
+* The subjects
+
+- [[id:set-theory][Set theory]] -- relations and quotients, order, choice, transfinite
+  induction and recursion, cardinality, filters.
+- [[id:logic][Logic]] -- formulas as objects: satisfaction, derivation, the
+  relation between the two, and what no derivation can decide.
+
+* The two theorems everything else uses
+
+[[id:the-axiom-of-choice-and-zorns-lemma][Zorn's lemma]] and [[id:filters-ultrafilters-and-the-ultrafilter-lemma][the ultrafilter lemma]] are the export products of
+this area. Between them they produce a [[id:span-linear-independence-bases-and-dimension][basis of any vector space]], a
+[[id:integral-domains-fields-prime-and-maximal-ideals][maximal ideal of any ring]], a [[id:the-hahn-banach-theorem][Hahn-Banach extension]], [[id:tychonoffs-theorem][Tychonoff's
+theorem]], the [[id:ultraproducts-and-the-theorem-of-los][compactness theorem for first-order logic]] and the [[id:boolean-algebras-and-stones-representation-theorem][Stone
+representation]] of a Boolean algebra. Every one of those proofs produces
+an object that no construction reaches, and it is worth knowing which
+results in a subject are of that kind.
+
+* Syntax against semantics
+
+The characteristic move of logic is to define two relations and then
+compare them: \(\Sigma \models \varphi\), which quantifies over all
+assignments, and \(\Sigma\vdash\varphi\), which asks for a finite
+object. [[id:a-proof-system-for-propositional-logic-soundness-and-the-deduction-theorem][Soundness]] is the easy direction and [[id:completeness-of-propositional-logic][completeness]] the
+substantial one; [[id:propositional-logic-formulas-assignments-and-compactness][compactness]] is what the finiteness of derivations
+forces, and it can also be proved semantically, by Zorn or by
+[[id:ultraproducts-and-the-theorem-of-los][ultraproducts]], which is the same argument seen from the other side.
+Then [[id:elementary-substructures-and-the-lowenheim-skolem-theorems][Lowenheim-Skolem]] says how little a first-order theory controls,
+and [[id:computability-the-halting-problem-and-rices-theorem][the halting problem]] says that some questions have no decision
+procedure at all.
+
+* What is missing
+
+The axioms of set theory are used and never written down -- there is no
+note stating ZF. Godel's completeness theorem for first-order logic is
+absent, its consequence (compactness) having been obtained by
+ultraproducts instead; the incompleteness theorems are absent, and with
+them arithmetic as an object of study; and category theory, which is
+where the repeated constructions of [[id:algebra][algebra]] and [[id:topology][topology]] are properly
+stated, does not exist here at all.

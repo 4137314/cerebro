@@ -1,0 +1,62 @@
+:PROPERTIES:
+:ID:       geometry
+:DOMAIN:   geometry
+:AREA:     geometry
+:KIND:     overview
+:MSC:      51-XX, 52-XX, 53-XX
+:END:
+#+title: Geometry
+#+summary: A geometry is fixed by choosing which transformations are allowed; its theorems are the statements invariant under them. That is the organising principle of everything below, and it is why the same object appears several times with different content: a conic is one thing projectively, three affinely, and infinitely many metrically.
+#+date: [2026-08-10 Mon]
+
+Part of [[id:mathematics][Mathematics]].
+
+* The geometries, by the group allowed
+
+- *Affine* -- [[id:affine-spaces-affine-subspaces-and-affine-maps][affine spaces and affine maps]]: a vector space with the
+  origin forgotten. Invariants: parallelism, ratios along a line,
+  barycentres.
+- *Euclidean* -- [[id:orthogonality-gram-schmidt-and-orthogonal-decomposition][orthogonality and Gram-Schmidt]] and [[id:isometries-of-euclidean-space-and-the-orthogonal-group][the isometries of
+  \(\R^{n}\)]], which are exactly the affine maps with orthogonal linear
+  part. Invariants: length and angle.
+- *Projective* -- [[id:projective-space-affine-charts-and-the-dimension-formula][projective space and its charts]] and [[id:projective-transformations-and-the-cross-ratio][the
+  cross-ratio]]. Adding one point per direction removes the exception
+  from "two lines meet"; four points on a line have exactly one
+  invariant, and that is the whole of the metric content that survives.
+- *Convex* -- [[id:convex-set][convex sets]], [[id:nearest-points-and-the-separating-hyperplane-theorem][the separating hyperplane theorem]],
+  [[id:convex-hulls-and-caratheodorys-theorem][Caratheodory's theorem]] and [[id:extreme-points-and-minkowskis-theorem-on-convex-bodies][extreme points]]. Not invariance under a
+  group but a condition on a set, and the one part of geometry that is
+  also optimisation.
+- *Differential* -- [[id:regular-curves-arc-length-and-curvature][curves]], [[id:surfaces-the-two-fundamental-forms-and-gauss-curvature][surfaces]] and [[id:smooth-manifolds-smooth-maps-and-the-tangent-space][smooth manifolds]]. Here the
+  allowed transformations are the diffeomorphisms, and the invariants
+  are found by differentiating.
+
+* Classification is linear algebra
+
+Twice in this area a geometric classification is settled by a normal
+form for a symmetric bilinear form. [[id:bilinear-forms-quadratic-forms-and-sylvesters-law-of-inertia][Sylvester's law of inertia]]
+classifies [[id:conics-and-quadrics-classification-by-signature][conics and quadrics]] by signature, and the [[id:the-spectral-theorem-for-symmetric-operators][spectral
+theorem]] diagonalises [[id:surfaces-the-two-fundamental-forms-and-gauss-curvature][the shape operator of a surface]], producing the
+principal curvatures. The two are different theorems on purpose:
+Sylvester allows any change of basis and can preserve only signs, the
+spectral theorem allows only orthonormal ones and preserves the
+eigenvalues. Which one applies is exactly the question of which group
+the geometry is over.
+
+* Where geometry meets the rest
+
+[[id:extreme-points-and-minkowskis-theorem-on-convex-bodies][Minkowski's convex body theorem]] proves statements about integers by
+choosing a lattice and a symmetric body -- geometry used as number
+theory. [[id:smooth-manifolds-smooth-maps-and-the-tangent-space][The tangent space]] is defined algebraically, as derivations of
+the ring of smooth functions, so that it needs no coordinates. And
+[[id:canonical-transformations-and-liouvilles-theorem][canonical transformations]] are the symplectic geometry of
+[[id:mathematical-physics][mechanics]].
+
+* What is missing
+
+Riemannian metrics and geodesics; the Theorema Egregium, which is stated
+as a remark and not proved; differential forms and Stokes' theorem;
+curvature of manifolds rather than of surfaces in \(\R^{3}\); algebraic
+geometry beyond the projective linear case -- there are no varieties and
+no Nullstellensatz, although the [[id:noetherian-rings-and-the-hilbert-basis-theorem][Hilbert basis theorem]] is in place; and
+hyperbolic geometry.

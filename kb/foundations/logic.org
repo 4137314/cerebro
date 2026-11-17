@@ -1,0 +1,58 @@
+:PROPERTIES:
+:ID:       logic
+:DOMAIN:   foundations
+:AREA:     model-theory
+:KIND:     overview
+:MSC:      03Bxx, 03Cxx, 03Dxx
+:END:
+#+title: Logic
+#+summary: Logic begins when a formula stops being notation for an argument and becomes an object a theorem can quantify over. From that point the subject has a fixed shape: define what it means for a formula to be /true/ in a structure, define separately what it means to be /derivable/, and then compare the two. Everything below is that comparison, or a consequence of it.
+#+date: [2026-08-10 Mon]
+
+Part of [[id:foundations][Foundations]].
+
+* Propositional logic
+
+[[id:propositional-logic-formulas-assignments-and-compactness][Propositional logic: formulas, assignments and compactness]] gives the
+semantics -- two inductive definitions, one building formulas and one
+evaluating them -- and the theorem that makes the subject infinite
+rather than finitary: satisfiability is decided by finite subsets.
+
+[[id:a-proof-system-for-propositional-logic-soundness-and-the-deduction-theorem][A proof system: soundness and the deduction theorem]] gives the syntax,
+as a finite combinatorial object, and the easy half of the comparison.
+[[id:completeness-of-propositional-logic][Completeness of propositional logic]] gives the hard half, by building a
+model out of the syntax itself -- after which compactness reappears as a
+corollary, for the reason that a derivation is finite.
+
+* First-order logic
+
+[[id:first-order-languages-structures-and-satisfaction][First-order languages, structures and satisfaction]] makes "\(G\)
+satisfies the group axioms" a mathematical statement, and with it
+statements about /all/ structures satisfying a theory.
+[[id:ultraproducts-and-the-theorem-of-los][Ultraproducts and the theorem of Los]] then prove compactness at this
+level without a proof system at all, by assembling a model out of a
+family of models along an [[id:filters-ultrafilters-and-the-ultrafilter-lemma][ultrafilter]] -- the only property used being
+that "large" is closed under complement, which is exactly what negation
+needs.
+
+[[id:elementary-substructures-and-the-lowenheim-skolem-theorems][Elementary substructures and the Lowenheim-Skolem theorems]] say how
+little a first-order theory controls: every infinite structure has a
+countable elementary substructure and arbitrarily large elementary
+extensions, so no such theory pins down the size of its models.
+
+* The limits
+
+[[id:computability-the-halting-problem-and-rices-theorem][Computability, the halting problem and Rice's theorem]] is the other kind
+of limitative result: not "the theory has too many models" but "no
+procedure decides this". The two undecidability proofs there use only
+two properties of any reasonable model of computation -- a program can
+simulate a program, and a parameter can be frozen -- which is why the
+conclusions do not depend on the machine chosen.
+
+* What is missing
+
+Godel's completeness theorem for first-order logic, whose consequence
+was obtained here by [[id:ultraproducts-and-the-theorem-of-los][ultraproducts]] instead; the incompleteness theorems,
+and with them arithmetic as an object of study; quantifier elimination
+and the model theory of specific theories; intuitionistic and modal
+logic; and the connection between [[id:computability-the-halting-problem-and-rices-theorem][computability]] and definability.

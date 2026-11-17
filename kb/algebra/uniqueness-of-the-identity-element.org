@@ -1,0 +1,26 @@
+:PROPERTIES:
+:ID:       uniqueness-of-the-identity-element
+:DOMAIN:   algebra
+:AREA:     group-theory
+:KIND:     theorem
+:REQUIRES: group
+:MSC:      20A05
+:END:
+#+title: Uniqueness of the identity element
+#+summary: In a [[id:group][group]] the identity is not merely assumed to exist -- it is forced to be unique, which is what licenses the article in "/the/ identity".
+#+date: [2026-07-29 Wed 13:55]
+
+#+DEPENDS: def-group
+#+NAME: thm-uniqueness-of-identity
+#+begin_theorem
+Let \((G, \ast)\) be a [[id:group][group]]. If \(e\) and \(e'\) are both identity
+elements of \(G\), then \(e = e'\).
+#+end_theorem
+
+#+begin_proof
+Because \(e'\) is an identity, \(e \ast e' = e\). Because \(e\) is an
+identity, \(e \ast e' = e'\). Therefore \(e = e \ast e' = e'\).
+#+end_proof
+
+The identical argument, applied to one element and two candidate
+inverses, shows that inverses are unique as well.

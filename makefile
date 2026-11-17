@@ -1,108 +1,43 @@
-PROJECT_DIR := $(shell pwd)
-GUIX_RUN     := ./bin/guix-run
+# cerebro: read-only hub of the knowledge bases.  `make` lists the targets.
 
-.PHONY: install install-hooks bootstrap-check shell ci test export lint query stats garden clean-latex
+.DEFAULT_GOAL := help
+ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+# Instance name: command, Emacs server and state (~/.local/state/$(NAME)-emacs).
+NAME ?= cerebro
+# The reader: the sibling checkout when present (~/dev/personal/knowledge-base), else
+# the version in flake.lock.
+KB ?= $(abspath $(ROOT)/../knowledge-base)
+OVERRIDE := $(if $(wildcard $(KB)/flake.nix),--override-input knowledge-base path:$(KB))
+NIX := nix --no-warn-dirty
+STATE := $(or $(XDG_STATE_HOME),$(HOME)/.local/state)/$(NAME)-emacs
+APPS := $(or $(XDG_DATA_HOME),$(HOME)/.local/share)/applications
+DESKTOP := $(APPS)/$(NAME).desktop
+BIN := $(STATE)/profile/bin/cerebro
+ENV := KB_NAME=$(NAME) CEREBRO_ROOT=$(ROOT)
 
-## One-time setup: installs the 'cerbero' launcher and wires up the
-## versioned git hooks in githooks/ (see githooks/pre-commit,
-## post-commit, pre-push) and the Taskwarrior hooks in taskwarrior/hooks/.
-install: install-hooks
-	@mkdir -p $(HOME)/.local/bin
-	@echo '#!/bin/sh' > $(HOME)/.local/bin/cerbero
-	@echo 'cd "$(PROJECT_DIR)"' >> $(HOME)/.local/bin/cerbero
-	@echo 'if [ -n "$$DISPLAY" ] || [ -n "$$WAYLAND_DISPLAY" ]; then' >> $(HOME)/.local/bin/cerbero
-	@echo '    $(GUIX_RUN) emacsclient -c --alternate-editor="emacs --init-directory=.emacs.d --daemon"' >> $(HOME)/.local/bin/cerbero
-	@echo 'else' >> $(HOME)/.local/bin/cerbero
-	@echo '    $(GUIX_RUN) emacs -nw --init-directory=.emacs.d' >> $(HOME)/.local/bin/cerbero
-	@echo 'fi' >> $(HOME)/.local/bin/cerbero
-	@chmod +x $(HOME)/.local/bin/cerbero
-	@echo "Installed 'cerbero' launcher in ~/.local/bin/cerbero"
+help: ## list the targets
+	@awk 'BEGIN{FS=":.*## "} /^[a-zA-Z0-9_-]+:.*## /{printf "  \033[1m%-12s\033[0m %s\n",$$1,$$2}' \
+	  $(MAKEFILE_LIST)
 
-## Hooks are tracked files in githooks/ and taskwarrior/hooks/, not the
-## untracked ~/.git/hooks/ or ~/.task/hooks/ -- this is what makes them
-## "versioned" (the canonical copy lives in the repo; the ones Git/Task
-## actually read are a config pointer and a symlink respectively).
-install-hooks:
-	@chmod +x githooks/* bin/bootstrap-check bin/cerebro-issue bin/guix-run bin/emacs \
-		bin/cerebro-lint bin/cerebro-query bin/task-to-org bin/cerebro-new-book \
-		bin/cerebro-stats bin/cerebro-publish-garden \
-		taskwarrior/hooks/*
-	@git config core.hooksPath githooks
-	@echo "git core.hooksPath -> githooks/"
-	@mkdir -p $(HOME)/.task/hooks
-	@for h in taskwarrior/hooks/*; do \
-		ln -sf "$(PROJECT_DIR)/$$h" "$(HOME)/.task/hooks/$$(basename $$h)"; \
-	done
-	@echo "taskwarrior hooks symlinked into ~/.task/hooks/"
+run: ## open the hub (the page of the bases)
+	$(ENV) $(NIX) run $(ROOT) $(OVERRIDE) --no-write-lock-file
 
-## Reports which prerequisites are actually present on this machine.
-bootstrap-check:
-	@./bin/bootstrap-check
+check: ## every base: metadata, links, prerequisites, formulas and figures
+	$(NIX) build $(ROOT) $(OVERRIDE) --no-write-lock-file --no-link
+	$(ENV) systemd-run --user --scope -q -p MemoryMax=2G nice timeout 1800 \
+	  $(NIX) run $(ROOT) $(OVERRIDE) --no-write-lock-file -- --check
 
-## Drop into the pinned, isolated environment interactively.
-shell:
-	@$(GUIX_RUN)
+install: ## build the hub and add "Cerebro" to the launcher
+	mkdir -p $(STATE) $(APPS)
+	$(NIX) build $(ROOT) $(OVERRIDE) --no-write-lock-file -o $(STATE)/profile
+	sed -e 's|@ROOT@|$(ROOT)|g' -e 's|@BIN@|$(BIN)|g' cerebro.desktop.in > $(DESKTOP)
+	-update-desktop-database $(APPS) 2>/dev/null
+	@echo "installed: $(DESKTOP) (search \"cerebro\" in the launcher)"
 
-## Parametric export: one .org source, several LaTeX/PDF variants.
-## Usage: make export FILE=notes/example.org PROFILE=full
-##        make export FILE=notes/example.org PROFILE=single TARGET=some-name
-## Known profiles: full statements lecture report manual slides single
-## (see cerebro-latex-profiles in .emacs.d/lisp/cerebro-latex.el).
-PROFILE ?= full
-export:
-	@test -n "$(FILE)" || (echo "usage: make export FILE=path/to/note.org PROFILE=full|statements|lecture|report|manual|slides|single [TARGET=name]"; exit 1)
-	@$(GUIX_RUN) emacs --batch -l bin/org-export-latex.el -- --profile=$(PROFILE) $(if $(TARGET),--target=$(TARGET)) $(FILE)
+uninstall: ## remove the launcher entry and the profile (notes and caches stay)
+	rm -f $(DESKTOP) $(STATE)/profile
 
-## Thorough note consistency checks (see githooks/pre-push).
-lint:
-	@./bin/cerebro-lint
+test: ## tests of the conversion script
+	python3 -m unittest tools.test_convert_roam
 
-## Graph queries over the Org-roam database (see cerebro-query.el).
-## Usage: make query Q=hubs   /   make query Q=by-tag ARGS=evergreen
-query:
-	@test -n "$(Q)" || (echo "usage: make query Q=orphans|hubs|stale-hubs|co-citation|by-tag [ARGS=...]"; exit 1)
-	@./bin/cerebro-query $(Q) $(ARGS)
-
-## Refresh the generated Taskwarrior -> Org agenda file.
-agenda/taskwarrior.org:
-	@$(GUIX_RUN) ./bin/task-to-org
-
-## Notes/rigor/task/time dashboard (see bin/cerebro-stats).
-stats:
-	@$(GUIX_RUN) ./bin/cerebro-stats
-
-## Publish evergreen notes as a static HTML "digital garden" (see
-## bin/cerebro-publish-garden). Output in public/ (gitignored).
-garden:
-	@$(GUIX_RUN) ./bin/cerebro-publish-garden
-
-## ERT (Elisp) tests + POSIX-sh tests for the bin/ scripts.
-test:
-	@$(GUIX_RUN) emacs --batch -L .emacs.d/lisp -l tests/cerebro-latex-tests.el -f ert-run-tests-batch-and-exit
-	@sh tests/run-shell-tests.sh
-
-## Local "CI/CD": no server, no forge dependency -- this is what
-## githooks/post-commit calls. bootstrap-check's exit status is only a
-## warning here (not a hard prerequisite): a missing tool shouldn't turn
-## an informational post-commit step into a scary failure on every
-## commit before Guix is even installed -- see bin/guix-run.
-ci:
-	@./bin/bootstrap-check || echo "ci: bootstrap-check found gaps (see above) -- continuing anyway"
-	@$(MAKE) test
-	@for p in full statements lecture report manual slides; do \
-		echo "ci: export profile=$$p"; \
-		$(GUIX_RUN) emacs --batch -l bin/org-export-latex.el -- --profile=$$p notes/example.org || exit 1; \
-	done
-	@echo "ci: export profile=single target=thm-uniqueness-of-limits"
-	@$(GUIX_RUN) emacs --batch -l bin/org-export-latex.el -- --profile=single --target=thm-uniqueness-of-limits notes/example.org
-	@$(MAKE) clean-latex
-	@echo "ci: ok (test suite + full profile matrix export succeeded)"
-
-## Generated build output only -- never touches latex/cerebro.cls itself.
-clean-latex:
-	@find notes latex -type f \( -name '*.aux' -o -name '*.log' -o -name '*.out' \
-		-o -name '*.toc' -o -name '*.fls' -o -name '*.fdb_latexmk' -o -name '*.synctex.gz' \
-		-o -name '*.nav' -o -name '*.snm' -o -name '*.vrb' \
-		-o -name '*.bbl' -o -name '*.bcf' -o -name '*.blg' -o -name '*.run.xml' \) -delete
-	@find notes -type f -name '*.tex' -delete
-	@find notes -type f -name '*.pdf' -delete
+.PHONY: help run check install uninstall test

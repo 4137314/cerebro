@@ -1,0 +1,66 @@
+:PROPERTIES:
+:ID:       general-topology
+:DOMAIN:   topology
+:AREA:     general-topology
+:KIND:     overview
+:MSC:      54-XX
+:END:
+#+title: General topology
+#+summary: The axioms of a topological space are three closure conditions on a family of sets, and they are deliberately far too weak: almost every theorem here needs an extra hypothesis, and the subject is largely the study of which hypothesis buys what. The two that recur are compactness and separation.
+#+date: [2026-08-10 Mon]
+
+Part of [[id:topology][Topology]].
+
+* The language
+
+[[id:topological-spaces-bases-and-generated-topologies][Topological spaces, bases and generated topologies]], then
+[[id:interior-closure-boundary-and-density][interior, closure, boundary and density]] -- all defined by
+intersections, so that they exist before anything is constructed.
+[[id:continuous-maps-homeomorphisms-and-topological-invariants][Continuous maps, homeomorphisms and topological invariants]] fixes what
+the subject is about, and [[id:subspace-product-and-quotient-topologies][subspace, product and quotient topologies]]
+defines the three constructions by the maps they must make continuous
+rather than by a formula -- which is why their proofs are three lines
+each.
+
+* Convergence without sequences
+
+In a general space sequences are too few to detect the closure.
+[[id:nets-and-convergence-in-topological-spaces][Nets]] repair this by replacing \(\N\) with an arbitrary directed set,
+and [[id:filters-ultrafilters-and-the-ultrafilter-lemma][filters]] by dropping the index set altogether; the two are the same
+content in two notations, and the ultrafilter version is what makes
+[[id:tychonoffs-theorem][Tychonoff's theorem]] a short proof.
+
+* The two big hypotheses
+
+- *Compactness*: [[id:compactness-and-the-heine-borel-theorem][compactness and the Heine-Borel theorem]], and its
+  arbitrary products in [[id:tychonoffs-theorem][Tychonoff's theorem]]. [[id:local-compactness-and-the-one-point-compactification][Local compactness and the
+  one-point compactification]] is how a space that lacks it is given it
+  for the price of a single point.
+- *Separation*: [[id:hausdorff-spaces-and-separation][Hausdorff spaces]] make limits unique and compact sets
+  closed; [[id:regular-and-normal-spaces-and-urysohns-lemma][regular and normal spaces, and Urysohn's lemma]] go further and
+  produce continuous functions, which a topology otherwise need not
+  have; [[id:the-tietze-extension-theorem][the Tietze extension theorem]] extends them off a closed
+  subspace.
+
+[[id:connectedness-components-and-path-connectedness][Connectedness, components and path-connectedness]] is the third
+invariant, and the one that generalises the intermediate value theorem.
+
+* Metric spaces
+
+The special case where a distance generates the topology, and the reason
+the general theory looks the way it does. [[id:metric-spaces-and-completeness][Metric spaces and
+completeness]] and [[id:the-metric-topology-and-continuity-in-metric-spaces][the metric topology]] set up the translation;
+[[id:total-boundedness-and-compactness-in-metric-spaces][total boundedness and compactness in metric spaces]] proves that the
+three notions of compactness agree here and nowhere else;
+[[id:uniform-continuity-extension-and-the-completion-of-a-metric-space][uniform continuity, extension and completion]] shows that every metric
+space embeds densely in a complete one. The two theorems that make
+completeness pay are [[id:the-contraction-mapping-principle][the contraction mapping principle]] and [[id:the-baire-category-theorem][the Baire
+category theorem]].
+
+* What is missing
+
+Metrisation theorems -- the conditions under which a topology comes from
+a metric -- which is the natural endpoint of the separation and
+countability axioms; the countability axioms themselves; uniform spaces;
+paracompactness and partitions of unity, which is what [[id:geometry][geometry]] needs
+from this subject; and function spaces with the compact-open topology.

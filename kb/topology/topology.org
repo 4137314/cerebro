@@ -1,0 +1,55 @@
+:PROPERTIES:
+:ID:       topology
+:DOMAIN:   topology
+:AREA:     topology
+:KIND:     overview
+:MSC:      54-XX, 55-XX
+:END:
+#+title: Topology
+#+summary: Every convergence argument in the first analysis course used the distance only to say which sets are open. Topology is what remains after that observation is taken seriously: the open sets are kept, the distance is discarded, and the theorems that still hold are exactly the ones that never needed it.
+#+date: [2026-08-10 Mon]
+
+Part of [[id:mathematics][Mathematics]].
+
+* The subjects
+
+- [[id:general-topology][General topology]] -- spaces, continuity, the three constructions,
+  connectedness, compactness, separation, and metric spaces as the
+  special case where sequences suffice.
+- [[id:algebraic-topology][Algebraic topology]] -- invariants that are groups, so that a
+  geometric impossibility becomes an algebraic one.
+
+* What the metric was doing, and what replaces it
+
+| the metric gave | the topological replacement |
+|-----------------+-----------------------------|
+| \(\eps\)-\(\delta\) continuity | [[id:continuous-maps-homeomorphisms-and-topological-invariants][preimages of open sets are open]] |
+| sequential closure | [[id:interior-closure-boundary-and-density][every neighbourhood meets the set]] |
+| sequences | [[id:nets-and-convergence-in-topological-spaces][nets]], or [[id:filters-ultrafilters-and-the-ultrafilter-lemma][filters]] |
+| Bolzano-Weierstrass | [[id:compactness-and-the-heine-borel-theorem][every open cover has a finite subcover]] |
+| unique limits | [[id:hausdorff-spaces-and-separation][the Hausdorff axiom]] |
+| continuous bump functions | [[id:regular-and-normal-spaces-and-urysohns-lemma][normality, via Urysohn's lemma]] |
+
+The right column is strictly weaker, and the point of the subject is
+what each weakening costs. [[id:the-metric-topology-and-continuity-in-metric-spaces][The metric topology]] and [[id:total-boundedness-and-compactness-in-metric-spaces][the equivalence of
+the three compactness notions in a metric space]] are where the two
+columns are compared directly.
+
+* The two theorems that pay for the generality
+
+[[id:tychonoffs-theorem][Tychonoff's theorem]] -- an arbitrary product of compact spaces is
+compact -- is false for the box topology, false for sequential
+compactness, and equivalent to the axiom of choice. [[id:regular-and-normal-spaces-and-urysohns-lemma][Urysohn's lemma]]
+produces continuous real functions on a space that was given none, and
+[[id:the-tietze-extension-theorem][Tietze's theorem]] extends them off a closed subspace. Neither has a
+metric-space analogue worth stating, because in a metric space both are
+one line.
+
+* What is missing
+
+Homology, which is what replaces the [[id:path-homotopy-and-the-fundamental-group][fundamental group]] in dimensions
+above one; the classification of covering spaces and the Galois
+correspondence with subgroups of \(\pi_{1}\); Seifert-van Kampen, which
+is how a fundamental group is actually computed; metrisation theorems;
+and manifolds as a topological subject -- [[id:smooth-manifolds-smooth-maps-and-the-tangent-space][smooth manifolds]] are filed
+under [[id:geometry][geometry]] here, which is a choice and not a fact.

@@ -1,0 +1,59 @@
+:PROPERTIES:
+:ID:       statistics
+:DOMAIN:   probability
+:AREA:     statistics
+:KIND:     overview
+:MSC:      62-XX
+:END:
+#+title: Statistics
+#+summary: Probability computes forwards, from a law to the behaviour of a sample; statistics computes backwards, from a sample to the law. The formal difference is a single quantifier -- the measure is not given but ranges over a family -- and it changes what a theorem can say: no procedure is right, so every result is a bound on how wrong one can be, or a proof that no procedure does better.
+#+date: [2026-08-10 Mon]
+
+Part of [[id:probability][Probability]].
+
+* Estimation
+
+[[id:statistical-models-estimators-and-consistency][Statistical models, estimators and consistency]] sets up the vocabulary
+and proves the two things one can say about an estimator with no further
+hypotheses: the mean squared error splits into variance and squared
+bias, and the sample mean is consistent by the [[id:the-weak-and-strong-laws-of-large-numbers][law of large numbers]].
+
+Then two theorems that say where the good estimators are and how good
+they can be:
+
+- [[id:sufficiency-and-the-factorisation-theorem][Sufficiency and the factorisation theorem]] -- a statistic that keeps
+  everything relevant to the parameter, recognised by inspecting how the
+  density depends on it.
+- [[id:the-rao-blackwell-theorem][The Rao-Blackwell theorem]] -- conditioning any unbiased estimator on a
+  sufficient statistic never makes it worse. The proof is Pythagoras in
+  \(L^{2}\), which is why [[id:conditional-expectation-as-an-orthogonal-projection][conditional expectation]] had to be built
+  geometrically first.
+- [[id:fisher-information-and-the-cramer-rao-bound][Fisher information and the Cramer-Rao bound]] -- a floor on the
+  variance of every unbiased estimator, depending on the model alone.
+
+Read together they are one argument: improve towards a sufficient
+statistic, and stop when the Cramer-Rao floor is reached.
+
+* Decisions
+
+[[id:hypothesis-tests-and-the-neyman-pearson-lemma][Hypothesis tests and the Neyman-Pearson lemma]] is the other half of the
+subject: two kinds of error that cannot both be made small, a
+convention that fixes one and minimises the other, and a complete answer
+for two simple hypotheses -- reject where the likelihood ratio is large.
+
+* Linear models
+
+[[id:least-squares-and-the-gauss-markov-theorem][Least squares and the Gauss-Markov theorem]] is where statistics is
+[[id:linear-algebra][linear algebra]]: the fitted values are an orthogonal projection, the
+normal equations are that projection in coordinates, and optimality
+among linear unbiased estimators follows from Pythagoras again. Notably
+no distributional assumption is used.
+
+* What is missing
+
+Maximum likelihood, its equivariance and its asymptotic normality -- the
+single largest gap, and the method most used in practice; the
+Lehmann-Scheffe theorem, which turns [[id:the-rao-blackwell-theorem][Rao-Blackwell]] into a uniqueness
+statement; confidence intervals and their duality with tests; the
+chi-squared, \(t\) and \(F\) distributions, which need the normal theory
+of quadratic forms; Bayesian inference; and nonparametric methods.

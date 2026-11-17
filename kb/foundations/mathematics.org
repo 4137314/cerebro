@@ -1,0 +1,77 @@
+:PROPERTIES:
+:ID:       mathematics
+:DOMAIN:   foundations
+:AREA:     overview
+:KIND:     overview
+:MSC:      00-XX
+:END:
+#+title: Mathematics
+#+summary: This is the root of the archive: one note per subject, each linking to the notes below it, down to the results themselves. It exists because the two navigations this repository already has answer different questions. =cerebro note list= and =cerebro query by-tag= say what is /there/; the results graph says what /rests on what/. Neither says what the subject is about, which is the only question a person actually asks before opening anything.
+#+date: [2026-08-10 Mon]
+
+So a hub note carries no mathematics. It states what its area is, which
+threads run through it, which results are load-bearing, and -- as
+honestly as possible -- what is missing. Nothing here may be depended on
+by a =#+DEPENDS:=, and nothing here is generated: a list that a script
+could produce belongs to the script.
+
+* The areas
+
+- [[id:analysis][Analysis]] -- limits, and everything that is a limit in disguise:
+  the real line, sequences and series, differentiation and integration,
+  measure, and the geometry of infinite-dimensional spaces.
+- [[id:algebra][Algebra]] -- sets with operations, studied through the maps that
+  respect them: groups, rings, fields, vector spaces and modules.
+- [[id:geometry][Geometry]] -- what survives a change of coordinates, once one has
+  chosen which changes are allowed: affine, Euclidean, projective,
+  convex and differential.
+- [[id:topology][Topology]] -- nearness with no distance: what continuity,
+  connectedness and compactness mean when only the open sets remain.
+- [[id:foundations][Foundations]] -- what the rest is written in: sets, order, choice,
+  and the logic that makes "provable" a mathematical notion.
+- [[id:probability][Probability]] -- measure theory with total mass one, plus the two
+  ideas that are not measure-theoretic at all: independence and
+  conditioning. Its applied half is [[id:statistics][Statistics]].
+- [[id:mathematical-physics][Mathematical physics]] -- classical mechanics as geometry, from the
+  variational principle to the symplectic structure and the rigid body,
+  and the Hilbert space formalism of quantum mechanics.
+- [[id:dynamical-systems][Dynamical systems]] -- a differential equation read as a flow, and the
+  two ways of deciding where it goes without solving it.
+
+* How the areas are wired to each other
+
+The division above is a shelving convention, not a claim about the
+mathematics, and the interesting notes are the ones that cross it.
+Three crossings carry most of the traffic here:
+
+- *Order and choice into everything.* [[id:the-axiom-of-choice-and-zorns-lemma][Zorn's lemma]] is used to produce a
+  [[id:span-linear-independence-bases-and-dimension][basis of an arbitrary vector space]], a [[id:integral-domains-fields-prime-and-maximal-ideals][maximal ideal of any ring]], a
+  [[id:the-hahn-banach-theorem][functional extending one on a subspace]] and a [[id:filters-ultrafilters-and-the-ultrafilter-lemma][maximal
+  finitely satisfiable set of formulas]] -- four theorems, one argument.
+- *Completeness into fixed points.* Completeness of a metric space gives
+  the [[id:the-contraction-mapping-principle][contraction principle]], hence [[id:existence-and-uniqueness-for-ordinary-differential-equations][existence for differential
+  equations]]; and it gives the [[id:the-baire-category-theorem][Baire category theorem]], hence the
+  [[id:uniform-boundedness-open-mapping-and-closed-graph][three theorems of Banach space theory]].
+- *Linear algebra into geometry and analysis.* The [[id:the-spectral-theorem-for-symmetric-operators][spectral theorem]] is
+  what diagonalises the [[id:surfaces-the-two-fundamental-forms-and-gauss-curvature][shape operator of a surface]], and
+  [[id:bilinear-forms-quadratic-forms-and-sylvesters-law-of-inertia][Sylvester's law]] is what classifies the [[id:conics-and-quadrics-classification-by-signature][quadrics]].
+
+* What this archive is not, yet
+
+Named so that the gaps are visible rather than implied: there is no
+number theory, no combinatorics, no representation theory, no
+homological algebra, and no Galois theory -- though
+[[id:splitting-fields-and-their-uniqueness][splitting fields]] and [[id:composition-series-jordan-holder-and-solvable-groups][solvable groups]] are both in place, so the two
+halves of it exist without the correspondence between them. Measure
+theory stops at the [[id:the-lebesgue-integral-and-the-convergence-theorems][convergence theorems]]: Lebesgue measure itself is
+used and never constructed, and the absence of Fubini's theorem is what
+leaves two results in [[id:probability][probability]] assumed rather than proved.
+
+#+begin_remark
+A hub is maintained by hand and will therefore go stale, which is the
+usual argument against writing one. It earns its place only by saying
+what cannot be derived -- why a subject is one subject, and which of its
+results the others lean on. The moment a section here becomes a list of
+titles, the list belongs to =cerebro note list= and the section should
+be deleted.
+#+end_remark
