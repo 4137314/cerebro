@@ -6,8 +6,8 @@ the page of the bases; `RET` enters one, `H` comes back from anywhere, `?` shows
 
 | base | notes | where |
 |---|---|---|
-| Matematica | `kb/` (this repo) | 209 notes: foundations, algebra, analysis, topology, geometry, probability, physics |
-| Tesi | `uni/bachelor-thesis/study/kb` | |
+| Mathematics | `kb/` (this repo) | 209 notes: foundations, algebra, analysis, topology, geometry, probability, physics |
+| Bachelor Thesis | `uni/bachelor-thesis/study/kb` | |
 | Remote Sensing | `uni/remote-sensing/study/kb` | |
 | Computer Science | `uni/computer-science/study/kb` | |
 
