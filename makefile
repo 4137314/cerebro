@@ -13,6 +13,9 @@ STATE := $(or $(XDG_STATE_HOME),$(HOME)/.local/state)/$(NAME)-emacs
 APPS := $(or $(XDG_DATA_HOME),$(HOME)/.local/share)/applications
 DESKTOP := $(APPS)/$(NAME).desktop
 BIN := $(STATE)/profile/bin/cerebro
+# Bases roots in bases.el are relative to the superproject (~/dev); SITE is the output.
+HUB ?= $(or $(shell git -C $(ROOT) rev-parse --show-superproject-working-tree 2>/dev/null),$(ROOT))
+SITE ?= $(ROOT)/_site
 ENV := KB_NAME=$(NAME) CEREBRO_ROOT=$(ROOT)
 
 help: ## list the targets
@@ -37,7 +40,11 @@ install: ## build the hub and add "Cerebro" to the launcher
 uninstall: ## remove the launcher entry and the profile (notes and caches stay)
 	rm -f $(DESKTOP) $(STATE)/profile
 
-test: ## tests of the conversion script
-	python3 -m unittest tools.test_convert_roam
+site: ## the public site of the bases marked :publish t, in _site/
+	$(NIX) run $(ROOT)#site $(OVERRIDE) --no-write-lock-file -- $(ROOT)/bases.el $(HUB) $(SITE)
 
-.PHONY: help run check install uninstall test
+test: ## tests of the conversion script and of the site exporter
+	python3 -m unittest tools.test_convert_roam
+	$(NIX) run $(ROOT)#site $(OVERRIDE) --no-write-lock-file -- --test
+
+.PHONY: help run check install uninstall site test
