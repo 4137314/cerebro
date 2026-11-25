@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Supremum and infimum · Mathematics</title>
+<meta name="description" content="The least upper bound is the notion that makes \R different from \Q: a bounded set of rationals need not have a rational least upper bound, and the whole of analysis rests on the fact that a bounded set of reals always has a real one.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/supremum-and-infimum.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Supremum and infimum · Mathematics">
+<meta property="og:description" content="The least upper bound is the notion that makes \R different from \Q: a bounded set of rationals need not have a rational least upper bound, and the whole of analysis rests on the fact that a bounded set of reals always has a real one.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/supremum-and-infimum.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Real Analysis</p>
+<h1>Supremum and infimum</h1>
+<p class="summary">The least upper bound is the notion that makes <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em"> different from <img class="m" src="m/83349875d2551503beeb2426480fe7a04427bf34.svg" alt="\(\Q\)" style="height:0.938em;vertical-align:-0.178em">: a bounded set of rationals need not have a rational least upper bound, and the whole of analysis rests on the fact that a bounded set of reals always has a real one.</p>
+<p class="rel"><span>unlocks</span> <a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a>, <a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a>, <a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a>, <a href="monotone-convergence-theorem.html">Monotone convergence theorem</a>, <a href="one-sided-limits-and-the-discontinuities-of-a-monotone-function.html">One-sided limits and the discontinuities of a monotone function</a>, <a href="the-intermediate-value-theorem.html">The intermediate value theorem</a>, <a href="the-riemann-integral.html">The Riemann integral</a>, <a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a>, <a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a>, <a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a>, <a href="connectedness-components-and-path-connectedness.html">Connectedness, components and path-connectedness</a>, <a href="the-legendre-transform.html">The Legendre transform</a></p>
+<p class="rel"><span>mentioned in</span> <a href="analysis.html">Analysis</a>, <a href="real-analysis.html">Real analysis</a></p>
+</header>
+<main class="note">
+<div class="definition" id="org45d918b">
+<p>
+Let <img class="m" src="m/df9bb37d6a21343ccc756f3e994e8c1b2caa69f2.svg" alt="\(A \subseteq \R\)" style="height:0.904em;vertical-align:-0.145em"> be non-empty. A number <img class="m" src="m/ae102957f08655471b1819d0cfd6d1edf420a197.svg" alt="\(M \in \R\)" style="height:0.798em;vertical-align:-0.040em"> is an <i>upper
+bound</i> of <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> if <img class="m" src="m/801486ccede913ded77949e74057e2bfc40f4c79.svg" alt="\(a \le M\)" style="height:0.898em;vertical-align:-0.153em"> for every <img class="m" src="m/c87c219b81bf71de0ecdf598c94e1b11082467b2.svg" alt="\(a \in A\)" style="height:0.792em;vertical-align:-0.040em">. The set <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is
+<i>bounded above</i> if it has an upper bound.
+</p>
+
+</div>
+
+<div class="definition" id="org223a2a7">
+<p>
+An upper bound <img class="m" src="m/42d2c35f20f2c22043ef0eb42920ada193d61639.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> of <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is the <i>supremum</i> of <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, written
+<img class="m" src="m/2615088399e0f71101edf7097c8097f5faa651f4.svg" alt="\(s = \sup A\)" style="height:0.962em;vertical-align:-0.212em">, if <img class="m" src="m/949598a0808f16d306b011c144a4a889df21113e.svg" alt="\(s \le M\)" style="height:0.898em;vertical-align:-0.153em"> for every upper bound <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> of <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">:
+the least upper bound. The <i>infimum</i> <img class="m" src="m/d9aebc52ee742e059e7463210a003b8ac6062765.svg" alt="\(\inf A\)" style="height:0.761em;vertical-align:-0.000em"> is defined dually, as the
+greatest lower bound.
+</p>
+
+</div>
+
+<div class="proposition" id="org5241a0c">
+<p>
+Let <img class="m" src="m/df9bb37d6a21343ccc756f3e994e8c1b2caa69f2.svg" alt="\(A \subseteq \R\)" style="height:0.904em;vertical-align:-0.145em"> be non-empty and bounded above, and let <img class="m" src="m/42d2c35f20f2c22043ef0eb42920ada193d61639.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> be an
+upper bound of <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">. Then <img class="m" src="m/2615088399e0f71101edf7097c8097f5faa651f4.svg" alt="\(s = \sup A\)" style="height:0.962em;vertical-align:-0.212em"> if and only if for every
+<img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> there is <img class="m" src="m/c87c219b81bf71de0ecdf598c94e1b11082467b2.svg" alt="\(a \in A\)" style="height:0.792em;vertical-align:-0.040em"> with <img class="m" src="m/d89d5d6e17a46accac21852dc3cb15125a8e3add.svg" alt="\(a &gt; s - \eps\)" style="height:0.731em;vertical-align:-0.088em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgcbfc4d3">
+<p>
+Suppose <img class="m" src="m/2615088399e0f71101edf7097c8097f5faa651f4.svg" alt="\(s = \sup A\)" style="height:0.962em;vertical-align:-0.212em"> and let <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em">. If no <img class="m" src="m/c87c219b81bf71de0ecdf598c94e1b11082467b2.svg" alt="\(a \in A\)" style="height:0.792em;vertical-align:-0.040em"> satisfied
+<img class="m" src="m/d89d5d6e17a46accac21852dc3cb15125a8e3add.svg" alt="\(a &gt; s - \eps\)" style="height:0.731em;vertical-align:-0.088em">, then <img class="m" src="m/3af124e0bd679b312f20d30f44ef1162c77120d0.svg" alt="\(s - \eps\)" style="height:0.731em;vertical-align:-0.088em"> would be an upper bound of <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">
+smaller than <img class="m" src="m/42d2c35f20f2c22043ef0eb42920ada193d61639.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em">, contradicting leastness. Conversely, suppose the
+condition holds and let <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> be any upper bound of <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">. If <img class="m" src="m/54447dc928444444987f7f5df7ef36cb9ee7eadb.svg" alt="\(M &lt; s\)" style="height:0.792em;vertical-align:-0.040em">,
+take <img class="m" src="m/fd2d40e486af8213583a320e7c869d08044e36fc.svg" alt="\(\eps = s - M &gt; 0\)" style="height:0.840em;vertical-align:-0.092em">: there is <img class="m" src="m/c87c219b81bf71de0ecdf598c94e1b11082467b2.svg" alt="\(a \in A\)" style="height:0.792em;vertical-align:-0.040em"> with <img class="m" src="m/c907d7da7d3d54b9706a60309f79d6e23bb17a73.svg" alt="\(a &gt; s - \eps = M\)" style="height:0.840em;vertical-align:-0.092em">,
+contradicting that <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> is an upper bound. Hence <img class="m" src="m/949598a0808f16d306b011c144a4a889df21113e.svg" alt="\(s \le M\)" style="height:0.898em;vertical-align:-0.153em">, so <img class="m" src="m/42d2c35f20f2c22043ef0eb42920ada193d61639.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> is
+least.
+</p>
+
+</div>
+
+<p>
+This characterisation is what one actually uses: it turns "least upper
+bound" into a statement about approximating <img class="m" src="m/42d2c35f20f2c22043ef0eb42920ada193d61639.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> from inside <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, which
+is the form every <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em">--<img class="m" src="m/ae9908b1dd9140d114827a466a957908d1672568.svg" alt="\(\delta\)" style="height:0.761em;vertical-align:-0.000em"> argument needs.
+</p>
+</main>
+<nav class="pn"><a rel="prev" href="analysis.html"><span>← previous</span>Analysis</a><a rel="next" href="completeness-of-the-real-numbers.html"><span>next →</span>Completeness of the real numbers</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minimum-distance classifier · Remote Sensing</title>
+<meta name="description" content="Each class is represented by the mean \boldsymbol\mu_i of its training pixels and every pixel goes to the nearest mean; with Euclidean distance the discriminants g_i=\boldsymbol\mu_i^\top\mathbf x-\tfrac12\|\boldsymbol\mu_i\|^2 are linear and the boundaries are perpendicular bisectors, with Mahalan…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/minimum-distance-classifier.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Minimum-distance classifier · Remote Sensing">
+<meta property="og:description" content="Each class is represented by the mean \boldsymbol\mu_i of its training pixels and every pixel goes to the nearest mean; with Euclidean distance the discriminants g_i=\boldsymbol\mu_i^\top\mathbf x-\tfrac12\|\boldsymbol\mu_i\|^2 are linear and the boundaries are perpendicular bisectors, with Mahalan…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/minimum-distance-classifier.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-recognition">Recognition</a> / <a rel="up" href="index.html#a-recognition--classification">Classification</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Recognition · Classification</p>
+<h1>Minimum-distance classifier</h1>
+<p class="summary">Each class is represented by the mean <img class="m" src="m/b5b725aa8e7ea85d28ada70e5a622ef988f53c94.svg" alt="\(\boldsymbol\mu_i\)" style="height:0.700em;vertical-align:-0.210em"> of its training pixels and every pixel goes to the nearest mean; with Euclidean distance the discriminants <img class="m" src="m/e5de830602fcc19e72aef1dbc28b6bc30d94e8af.svg" alt="\(g_i=\boldsymbol\mu_i^\top\mathbf x-\tfrac12\|\boldsymbol\mu_i\|^2\)" style="height:1.308em;vertical-align:-0.379em"> are linear and the boundaries are perpendicular bisectors, with Mahalanobis distance the class covariances are taken into account.</p>
+<p class="rel"><span>needs</span> <a href="discriminant-functions.html">Discriminant functions and decision regions</a></p>
+<p class="rel"><span>unlocks</span> <a href="kmeans-clustering.html">k-means clustering</a></p>
+<p class="rel"><span>see also</span> <a href="kmeans-clustering.html">k-means clustering</a>, <a href="gaussian-maximum-likelihood.html">Gaussian maximum-likelihood classifier</a></p>
+<p class="rel"><span>mentioned in</span> <a href="gaussian-maximum-likelihood.html">Gaussian maximum-likelihood classifier</a></p>
+<details class="path"><summary>Learning path: 20 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="spectral-signature.html">Spectral signature</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li><li><a href="image-statistics.html">Image statistics: moments, mode, median</a></li><li><a href="homogeneous-area-statistics.html">Statistics of homogeneous areas in optical images</a></li><li><a href="recognition-system.html">Recognition systems</a></li><li><a href="feature-extraction.html">Feature extraction</a></li><li><a href="feature-space.html">Feature space and spectral classes</a></li><li><a href="discriminant-functions.html">Discriminant functions and decision regions</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orga4e476d" class="outline-2">
+<h2 id="orga4e476d">Method</h2>
+<div class="outline-text-2" id="text-orga4e476d">
+<p>
+Training: <img class="m" src="m/d348c9ff8a8a5acd6047c774145b5dcc10d7927c.svg" alt="\(\boldsymbol\mu_i=\frac{1}{n_i}\sum_{\mathbf x\in\omega_i}\mathbf x\)" style="height:1.413em;vertical-align:-0.481em">. Classification: <img class="m" src="m/30c6e39b44a226657d4a06c228ebce8cf1ec9b21.svg" alt="\(\omega^\ast=\arg\min_i\|\mathbf x-\boldsymbol\mu_i\|\)" style="height:1.096em;vertical-align:-0.274em">. Expanding the square and dropping <img class="m" src="m/a9673a70884dd4f68f435f8c3e5fa8492d289d98.svg" alt="\(\|\mathbf x\|^2\)" style="height:1.166em;vertical-align:-0.268em">, common to all classes:
+<div class="mb"><img class="m" src="m/948b2b029055337f64bc0f6146f78dd07a4c7b50.svg" alt="\[ g_i(\mathbf x)=\boldsymbol\mu_i^\top\mathbf x-\tfrac12\boldsymbol\mu_i^\top\boldsymbol\mu_i. \]" style="width:11.047em"></div>
+Variants: <b>Mahalanobis</b> <img class="m" src="m/63535336fc34294810db54b14f5a29d40038205f.svg" alt="\((\mathbf x-\boldsymbol\mu_i)^\top\Sigma^{-1}(\mathbf x-\boldsymbol\mu_i)\)" style="height:1.204em;vertical-align:-0.277em"> with a common covariance; <b>parallelepiped</b>: a box <img class="m" src="m/ee67cc844d8a24488678042cf726f48a7fd557cc.svg" alt="\(\boldsymbol\mu_i\pm k\boldsymbol\sigma_i\)" style="height:0.974em;vertical-align:-0.214em"> per class, pixels outside every box left unclassified. A distance threshold can reject outliers ("unknown").
+</p>
+</div>
+</div>
+<div id="outline-container-orgbebea66" class="outline-2">
+<h2 id="orgbebea66">Example</h2>
+<div class="outline-text-2" id="text-orgbebea66">
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="v">mu</span> = np.stack([F_train[y_train == c].mean(0) <span class="k">for</span> c <span class="k">in</span> classes])
+<span class="v">d</span> = ((F[:, <span class="n">None</span>, :] - mu[<span class="n">None</span>]) ** 2).<span class="b">sum</span>(-1)
+<span class="v">labels</span> = classes[d.argmin(1)]</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org0899c15" class="outline-2">
+<h2 id="org0899c15">Intuition</h2>
+<div class="outline-text-2" id="text-org0899c15">
+<p>
+Each class is summarised by its centre of gravity, and every pixel joins the closest centre.
+</p>
+</div>
+</div>
+<div id="outline-container-org9400f73" class="outline-2">
+<h2 id="org9400f73">Pitfall</h2>
+<div class="outline-text-2" id="text-org9400f73">
+<p>
+Euclidean distance ignores spread: a wide class (urban) loses pixels to a compact neighbour (water) whose mean happens to be closer, which the <a href="gaussian-maximum-likelihood.html">maximum-likelihood</a> classifier corrects.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="hughes-phenomenon.html"><span>← previous</span>Hughes phenomenon (curse of dimensionality)</a><a rel="next" href="kmeans-clustering.html"><span>next →</span>k-means clustering</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/recognition--classification.pdf" title="PDF manual">Classification</a> · <a class="pdf" href="pdf/recognition.pdf" title="PDF manual">Recognition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metastability and synchronizers · Computer Science</title>
+<meta name="description" content="When a flip-flop samples an input that changes inside its setup–hold window it may hang between 0 and 1 for an unbounded time, resolving with probability that decays exponentially, P(t_r)\propto e^{-t_r/\tau}; a chain of two flip-flops gives the first one a whole clock period to resolve, raising th…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/metastability.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Metastability and synchronizers · Computer Science">
+<meta property="og:description" content="When a flip-flop samples an input that changes inside its setup–hold window it may hang between 0 and 1 for an unbounded time, resolving with probability that decays exponentially, P(t_r)\propto e^{-t_r/\tau}; a chain of two flip-flops gives the first one a whole clock period to resolve, raising th…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/metastability.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--timing">Timing</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Hardware · Timing</p>
+<h1>Metastability and synchronizers</h1>
+<p class="summary">When a flip-flop samples an input that changes inside its setup–hold window it may hang between 0 and 1 for an unbounded time, resolving with probability that decays exponentially, <img class="m" src="m/024902609b01b16149dc9a638213fa6778f3efd2.svg" alt="\(P(t_r)\propto e^{-t_r/\tau}\)" style="height:1.247em;vertical-align:-0.274em">; a chain of two flip-flops gives the first one a whole clock period to resolve, raising the mean time between failures to years.</p>
+<p class="rel"><span>needs</span> <a href="setup-hold-time.html">Setup and hold constraints</a></p>
+<p class="rel"><span>see also</span> <a href="uart.html">UART (RS-232)</a>, <a href="clock-skew-jitter.html">Clock skew and jitter</a>, <a href="serial-communication.html">Serial communication</a>, <a href="critical-races.html">Critical races</a></p>
+<p class="rel"><span>mentioned in</span> <a href="critical-races.html">Critical races</a>, <a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a>, <a href="sr-latch.html">SR latch and D latch</a></p>
+<details class="path"><summary>Learning path: 13 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li><li><a href="sr-latch.html">SR latch and D latch</a></li><li><a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></li><li><a href="digital-design-flow.html">Digital design flow and abstraction levels</a></li><li><a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a></li><li><a href="std-logic.html">std_logic: nine-valued logic and resolution</a></li><li><a href="vhdl-concurrent-assignments.html">Concurrent assignments: when–else and with–select</a></li><li><a href="vhdl-process.html">Processes and sequential statements</a></li><li><a href="sequential-logic.html">Flip-flops and registers in VHDL</a></li><li><a href="setup-hold-time.html">Setup and hold constraints</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgc28d3f6" class="outline-2">
+<h2 id="orgc28d3f6">Statement</h2>
+<div class="outline-text-2" id="text-orgc28d3f6">
+<p>
+For data changing at rate <img class="m" src="m/6df6ab36817276b31ad4f9e786e630a1503d05d6.svg" alt="\(f_d\)" style="height:0.974em;vertical-align:-0.214em">, clock <img class="m" src="m/7f1f92970c889da3a0e6fed339cce8a937ba6175.svg" alt="\(f_c\)" style="height:0.974em;vertical-align:-0.214em">, <a href="lambda-expressions.html">capture</a> window <img class="m" src="m/0b4f0a98d304789c7132fbe01e56d83ed1da33c8.svg" alt="\(T_0\)" style="height:0.913em;vertical-align:-0.164em"> and regeneration time constant <img class="m" src="m/aec66e4f31a0ac511440f5c12cb00e660fd76553.svg" alt="\(\tau\)" style="height:0.472em;vertical-align:-0.000em"> of the latch, the rate of failures (still unresolved after <img class="m" src="m/7e1e8c38b9be6f8e6658b32be070f49202e256db.svg" alt="\(t_r\)" style="height:0.838em;vertical-align:-0.168em">) is
+<div class="mb"><img class="m" src="m/ce76d34234297af19fae78d348fa36e059181151.svg" alt="\[ \frac{1}{\mathrm{MTBF}}=T_0\,f_c\,f_d\,e^{-t_r/\tau}. \]" style="width:11.991em"></div>
+</p>
+</div>
+</div>
+<div id="outline-container-orgf114995" class="outline-2">
+<h2 id="orgf114995">Derivation</h2>
+<div class="outline-text-2" id="text-orgf114995">
+<p>
+The probability that a data edge falls in the window of a given clock edge is <img class="m" src="m/65267bd030659ac9f1f3f96e8de3fc2168ee08b7.svg" alt="\(T_0f_c\)" style="height:0.974em;vertical-align:-0.214em">; there are <img class="m" src="m/6df6ab36817276b31ad4f9e786e630a1503d05d6.svg" alt="\(f_d\)" style="height:0.974em;vertical-align:-0.214em"> data edges per second. A <a href="sequential-logic.html">flip-flop</a> caught in the window starts near its balance point, and its bistable feedback amplifies the difference exponentially, <img class="m" src="m/3db173ef67a044ae9f74504426daf29cb9a78124.svg" alt="\(v(t)=v_0e^{t/\tau}\)" style="height:1.247em;vertical-align:-0.274em">: it is still undecided after <img class="m" src="m/7e1e8c38b9be6f8e6658b32be070f49202e256db.svg" alt="\(t_r\)" style="height:0.838em;vertical-align:-0.168em"> only if <img class="m" src="m/eb9bdd339a59183d1f9b211ab16e4776a3e7ccad.svg" alt="\(|v_0|&lt;V e^{-t_r/\tau}\)" style="height:1.247em;vertical-align:-0.274em">, a probability proportional to <img class="m" src="m/c42b6c8e55a177e0795326e0700949f6bc76a644.svg" alt="\(e^{-t_r/\tau}\)" style="height:0.973em;vertical-align:-0.000em">. In a two-flip-flop synchronizer <img class="m" src="m/5fb282c6fbe00c4b53c3bbbe7282a5e0f4367a10.svg" alt="\(t_r\approx T_c-t_{cq}-t_{su}\)" style="height:1.062em;vertical-align:-0.319em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org524419c" class="outline-2">
+<h2 id="org524419c">Example</h2>
+<div class="outline-text-2" id="text-org524419c">
+<p>
+<img class="m" src="m/c5f5de64010443ca07f61d847f7c123752a58ec4.svg" alt="\(T_0=20\)" style="height:0.913em;vertical-align:-0.164em"> ps, <img class="m" src="m/2e5bf24ef62def67447cb59ad4b97a744d2f2668.svg" alt="\(\tau=10\)" style="height:0.706em;vertical-align:-0.000em"> ps, <img class="m" src="m/4921467a1fc8625566aefcbf6febde812a15c38d.svg" alt="\(f_c=100\)" style="height:0.974em;vertical-align:-0.214em"> MHz, <img class="m" src="m/402265948dccbd53de5ca99c479b3dd87699613a.svg" alt="\(f_d=1\)" style="height:0.974em;vertical-align:-0.214em"> MHz, so <img class="m" src="m/37afbcc4660875ad9eb97e146e962efda00fcc21.svg" alt="\(T_0f_cf_d=2000\)" style="height:0.974em;vertical-align:-0.214em"> s<img class="m" src="m/0b79fff96f38df475cc71887591d102e8340cde5.svg" alt="\(^{-1}\)" style="height:0.892em;vertical-align:-0.000em">.
+</p>
+<ul class="org-ul">
+<li><img class="m" src="m/7120520c78ae86185e88a27af68e4287b0a29b4d.svg" alt="\(t_r=0.2\)" style="height:0.871em;vertical-align:-0.165em"> ns (a single flip-flop whose output feeds logic): <img class="m" src="m/3d983c897c6fbebb5f160e7a8925cb09bfe6de38.svg" alt="\(e^{-20}\approx2\times10^{-9}\)" style="height:0.983em;vertical-align:-0.089em">, <img class="m" src="m/7b8b5d26b1eb1522a3611ba94ca3bf15fe5e4878.svg" alt="\(1/\mathrm{MTBF}\approx4\times10^{-6}\)" style="height:1.166em;vertical-align:-0.268em"> s<img class="m" src="m/0b79fff96f38df475cc71887591d102e8340cde5.svg" alt="\(^{-1}\)" style="height:0.892em;vertical-align:-0.000em">: MTBF <img class="m" src="m/8ee02cdcde29e5f6d7d5d15976d3156f43673f68.svg" alt="\(\approx 2.4\times10^5\)" style="height:0.983em;vertical-align:-0.089em"> s, about three days — a certain failure in the field.</li>
+<li><img class="m" src="m/3d55ba35b1f740ebf8f6c0135d60e348dccaff99.svg" alt="\(t_r=8\)" style="height:0.871em;vertical-align:-0.165em"> ns (a second flip-flop, almost a full period to resolve): <img class="m" src="m/cf92a3c3f8694136749ab3d7f1fa799fa49593a3.svg" alt="\(e^{-800}\)" style="height:0.892em;vertical-align:-0.000em">: MTBF beyond the age of the universe.</li>
+</ul>
+<p>
+Every extra 100 ps of resolution time multiplies the MTBF by <img class="m" src="m/31d438edad567a3cca4b274d321073cbb2b3a661.svg" alt="\(e^{10}\approx2\times10^4\)" style="height:0.983em;vertical-align:-0.089em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc1c32c6" class="outline-2">
+<h2 id="orgc1c32c6">Construction</h2>
+<div class="outline-text-2" id="text-orgc1c32c6">
+<figure class="listing lang-vhdl"><figcaption><span class="lang">VHDL</span></figcaption><pre class="src"><code><span class="f">sync</span> : <span class="k">process</span> (clk) <span class="k">begin</span>
+  <span class="k">if</span> rising_edge(clk) <span class="k">then</span>
+    rx_meta &lt;= rx_async;   <span class="c">-- may go metastable
+</span>    rx_sync &lt;= rx_meta;    <span class="c">-- has a full period to settle
+</span>  <span class="k">end</span> <span class="k">if</span>;
+<span class="k">end</span> <span class="k">process</span>;</code></pre></figure>
+<p>
+Multi-bit values cannot be synchronised bit by bit (bits may resolve in different cycles): use a handshake, Gray-coded counters or an asynchronous FIFO.
+</p>
+</div>
+</div>
+<div id="outline-container-org3b0dcf3" class="outline-2">
+<h2 id="org3b0dcf3">Intuition</h2>
+<div class="outline-text-2" id="text-org3b0dcf3">
+<p>
+A ball balanced on a hill eventually rolls to one side; the longer you wait before looking, the less likely it is still on top.
+</p>
+</div>
+</div>
+<div id="outline-container-org6a68d1a" class="outline-2">
+<h2 id="org6a68d1a">Pitfall</h2>
+<div class="outline-text-2" id="text-org6a68d1a">
+<p>
+<a href="setup-hold-time.html">Metastability</a> cannot be eliminated, only made improbable; and the synchronised signal is valid one or two cycles late, which protocols must accept.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="false-path.html"><span>← previous</span>False paths</a><a rel="next" href="retiming.html"><span>next →</span>Retiming</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--timing.pdf" title="PDF manual">Timing</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VHDL: entity and architecture · Computer Science</title>
+<meta name="description" content="A VHDL design unit has an entity, the external view (name, generics and ports with mode and type), and one or more architectures, the implementation, written in structural, data-flow or behavioural style; a hardware description language describes concurrent hardware, not a sequence of instructions.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/vhdl-entity-architecture.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="VHDL: entity and architecture · Computer Science">
+<meta property="og:description" content="A VHDL design unit has an entity, the external view (name, generics and ports with mode and type), and one or more architectures, the implementation, written in structural, data-flow or behavioural style; a hardware description language describes concurrent hardware, not a sequence of instructions.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/vhdl-entity-architecture.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--vhdl">Vhdl</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Hardware · Vhdl</p>
+<h1>VHDL: entity and architecture</h1>
+<p class="summary">A VHDL design unit has an entity, the external view (name, generics and ports with mode and type), and one or more architectures, the implementation, written in structural, data-flow or behavioural style; a hardware description language describes concurrent hardware, not a sequence of instructions.</p>
+<p class="rel"><span>needs</span> <a href="digital-design-flow.html">Digital design flow and abstraction levels</a></p>
+<p class="rel"><span>unlocks</span> <a href="vhdl-concurrent-assignments.html">Concurrent assignments: when–else and with–select</a>, <a href="std-logic.html">std_logic: nine-valued logic and resolution</a>, <a href="vhdl-structural.html">Structural VHDL: components, port maps, generics</a></p>
+<p class="rel"><span>see also</span> <a href="vhdl-structural.html">Structural VHDL: components, port maps, generics</a>, <a href="std-logic.html">std_logic: nine-valued logic and resolution</a>, <a href="vhdl-concurrent-assignments.html">Concurrent assignments: when–else and with–select</a>, <a href="vhdl-process.html">Processes and sequential statements</a>, <a href="vhdl-testbench.html">Testbenches</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="digital-design-flow.html">Digital design flow and abstraction levels</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org7bbc1f4" class="outline-2">
+<h2 id="org7bbc1f4">Definition</h2>
+<div class="outline-text-2" id="text-org7bbc1f4">
+<figure class="listing lang-vhdl"><figcaption><span class="lang">VHDL</span></figcaption><pre class="src"><code><span class="k">library</span> ieee;
+<span class="k">use</span> ieee.std_logic_1164.<span class="k">all</span>;
+
+<span class="k">entity</span> <span class="f">and2</span> <span class="k">is</span>
+  <span class="k">port</span> ( <span class="v">a</span>, <span class="v">b</span> : <span class="k">in</span>  <span class="t">std_logic</span>;
+         <span class="v">y</span>    : <span class="k">out</span> <span class="t">std_logic</span> );
+<span class="k">end</span> <span class="k">entity</span> <span class="f">and2</span>;
+
+<span class="k">architecture</span> <span class="f">dataflow</span> <span class="k">of</span> <span class="f">and2</span> <span class="k">is</span>
+<span class="k">begin</span>
+  y &lt;= a <span class="k">and</span> b;          <span class="c">-- a concurrent assignment: always active
+</span><span class="k">end</span> <span class="k">architecture</span> <span class="f">dataflow</span>;</code></pre></figure>
+<ul class="org-ul">
+<li><b>Entity</b>: interface. Port modes: <code>in</code>, <code>out</code>, <code>inout</code> (bidirectional, tri-state), <code>buffer</code>. Optional <code>generic</code> parameters.</li>
+<li><b>Architecture</b>: body; between <code>architecture</code> and <code>begin</code> go declarations (signals, constants, types, components), after <code>begin</code> concurrent statements.</li>
+<li><b>Description styles</b>: <b>structural</b> (instances of components connected by signals), <b>data-flow</b> (concurrent signal assignments, equations), <b>behavioural</b> (processes with <a href="vhdl-process.html">sequential statements</a>). They can be mixed.</li>
+<li>VHDL is case-insensitive, strongly typed; comments start with <code>--</code>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7f7dcbe" class="outline-2">
+<h2 id="org7f7dcbe">Uses</h2>
+<div class="outline-text-2" id="text-org7f7dcbe">
+<p>
+VHDL serves two purposes with one language: <b>simulation</b> (any construct, including time delays and file I/O) and <b>synthesis</b> (a subset that maps to gates and flip-flops). A <a href="vhdl-testbench.html">testbench</a> is simulation only.
+</p>
+</div>
+</div>
+<div id="outline-container-orgadff9b7" class="outline-2">
+<h2 id="orgadff9b7">Intuition</h2>
+<div class="outline-text-2" id="text-orgadff9b7">
+<p>
+An entity is the chip's pinout; the architecture is what is soldered inside. Every statement in the architecture is a piece of hardware working at the same time as the others.
+</p>
+</div>
+</div>
+<div id="outline-container-org8fd924d" class="outline-2">
+<h2 id="org8fd924d">Pitfall</h2>
+<div class="outline-text-2" id="text-org8fd924d">
+<p>
+Reading VHDL as a program in sequence is the classic mistake: the order of concurrent statements in an architecture does not matter, exactly as the order in which components are drawn on a schematic.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="fpga-architecture.html"><span>← previous</span>FPGA architecture</a><a rel="next" href="std-logic.html"><span>next →</span>std_logic: nine-valued logic and resolution</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--vhdl.pdf" title="PDF manual">Vhdl</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hilbert spaces: projection, Riesz representation and orthonormal bases · Mathematics</title>
+<meta name="description" content="A Banach space has a norm; a Hilbert space has an inner product, and with it the whole geometry of orthogonality survives into infinite dimension. Two theorems carry that geometry across: the nearest point in a closed convex set exists, and every continuous functional is an inner product. After the…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Hilbert spaces: projection, Riesz representation and orthonormal bases · Mathematics">
+<meta property="og:description" content="A Banach space has a norm; a Hilbert space has an inner product, and with it the whole geometry of orthogonality survives into infinite dimension. Two theorems carry that geometry across: the nearest point in a closed convex set exists, and every continuous functional is an inner product. After the…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--functional-analysis">Functional Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Functional Analysis</p>
+<h1>Hilbert spaces: projection, Riesz representation and orthonormal bases</h1>
+<p class="summary">A Banach space has a norm; a Hilbert space has an <a href="inner-product-space.html">inner product</a>, and with it the whole geometry of orthogonality survives into infinite dimension. Two theorems carry that geometry across: the nearest point in a closed convex set exists, and every continuous functional is an inner product. After them, a separable Hilbert space is coordinates again.</p>
+<p class="rel"><span>needs</span> <a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a>, <a href="convex-set.html">Convex set</a>, <a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a>, <a href="inner-product-space.html">Inner product space</a>, <a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a>, <a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a>, <a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a>, <a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a>, <a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a>, <a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></p>
+<p class="rel"><span>unlocks</span> <a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a>, <a href="fourier-series-fejers-theorem-and-parsevals-identity.html">Fourier series, Fejer's theorem and Parseval's identity</a>, <a href="conditional-expectation-as-an-orthogonal-projection.html">Conditional expectation as an orthogonal projection</a>, <a href="the-harmonic-oscillator-by-ladder-operators.html">The harmonic oscillator by ladder operators</a>, <a href="the-hilbert-space-formalism-of-quantum-mechanics.html">The Hilbert space formalism of quantum mechanics</a></p>
+<p class="rel"><span>mentioned in</span> <a href="functional-analysis.html">Functional analysis</a>, <a href="probability.html">Probability</a>, <a href="small-oscillations-and-normal-modes.html">Small oscillations and normal modes</a></p>
+<details class="path"><summary>Learning path: 45 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="the-baire-category-theorem.html">The Baire category theorem</a></li><li><a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></li><li><a href="convex-set.html">Convex set</a></li><li><a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org80f29fd">
+<p>
+A <i>Hilbert space</i> is a real or complex inner product space that is
+complete for the metric <img class="m" src="m/da71e766f765145ff64151fcc3fd6d16a2bd314a.svg" alt="\(d(u,v) = \norm{u-v}\)" style="height:1.096em;vertical-align:-0.274em"> induced by
+<img class="m" src="m/1a924af873d9aa250c21de79465051189b28f46c.svg" alt="\(\norm{v} = \sqrt{\inner{v}{v}}\)" style="height:1.359em;vertical-align:-0.340em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org58cd90b">
+<p>
+Let <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> be a non-empty closed convex subset of a Hilbert space <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em">
+and <img class="m" src="m/d212d40505bb29eaa7b9f10e1d949c020960c1aa.svg" alt="\(x \in H\)" style="height:0.792em;vertical-align:-0.040em">. Then there is exactly one <img class="m" src="m/25863219ecef0406ce384cafa4d8791b4d2096f8.svg" alt="\(p \in C\)" style="height:0.962em;vertical-align:-0.212em"> with
+<img class="m" src="m/6e2f5f487faccccfbf8af24b4d6263f01cc8fbed.svg" alt="\(\norm{x-p} = \inf_{c\in C}\norm{x-c}\)" style="height:1.096em;vertical-align:-0.274em">, and it is characterised by
+<img class="m" src="m/2bc907846986d6860d91e2ffec2fc4737ad0d32f.svg" alt="\(\inner{x-p}{c-p}\le0\)" style="height:1.096em;vertical-align:-0.274em"> for all <img class="m" src="m/bb871a339f407acc1daa1b77e46265e142d4f9da.svg" alt="\(c \in C\)" style="height:0.792em;vertical-align:-0.040em">.
+</p>
+
+</div>
+
+<div class="proof" id="org45bb89a">
+<p>
+Let <img class="m" src="m/ad855e27454841e8ad2eca7f08dfc4eb67657f15.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em"> be the infimum and <img class="m" src="m/fc8d6123eb180390fd94f9edfe8aee800046f83a.svg" alt="\(c_{k}\in C\)" style="height:0.913em;vertical-align:-0.164em"> with
+<img class="m" src="m/b16142062f45b9a8aafe5ced9f9383b0230785df.svg" alt="\(\norm{x-c_{k}}\to d\)" style="height:1.096em;vertical-align:-0.274em">. The parallelogram identity gives
+<img class="m" src="m/b71e27d88e9a71a47fb8de8824667e347b143301.svg" alt="\(\norm{c_{k}-c_{l}}^{2} = 2\norm{x-c_{k}}^{2}+2\norm{x-c_{l}}^{2}-4\norm{x-\tfrac{c_{k}+c_{l}}{2}}^{2}\)" style="height:1.309em;vertical-align:-0.380em">,
+and the midpoint lies in <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> by convexity, so the last term is at
+least <img class="m" src="m/64a1d845a63ad61abcb670a216d7f36acffcdc76.svg" alt="\(4d^{2}\)" style="height:0.892em;vertical-align:-0.000em"> and the right side tends to <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">. Hence <img class="m" src="m/9411eb65b4db16e5e7f8d35d67881d3a6d4617eb.svg" alt="\((c_{k})\)" style="height:1.096em;vertical-align:-0.274em"> is
+Cauchy and converges, by completeness, to some <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">, which lies in the
+closed set <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> and attains <img class="m" src="m/ad855e27454841e8ad2eca7f08dfc4eb67657f15.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em">. Uniqueness and the variational
+characterisation are the same computations as in <img class="m" src="m/b33f2adf960aeb722adafbfc0479a5f92fd75b05.svg" alt="\(\R^{n}\)" style="height:0.755em;vertical-align:-0.000em">, using only
+the inner product and convexity.
+</p>
+
+</div>
+
+<div class="theorem" id="org707d140">
+<p>
+Let <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> be a closed subspace of a Hilbert space <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em">. Then
+<img class="m" src="m/9e17111e6a95f9e7a8176427713e8c2c74e4420f.svg" alt="\(H = M \oplus M^{\perp}\)" style="height:1.022em;vertical-align:-0.092em">, and the map sending <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> to its nearest
+point in <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> is the linear <i>orthogonal projection</i> onto <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">, of norm
+at most <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org14accd1">
+<p>
+Let <img class="m" src="m/5045da28d7c84bc0304161430eed238ee0434f8e.svg" alt="\(P x\)" style="height:0.749em;vertical-align:-0.000em"> be the nearest point of <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> to <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, which exists since
+<img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> is closed and convex. For <img class="m" src="m/44b3330098ffa10b164f23600896b8f7ca682e66.svg" alt="\(m \in M\)" style="height:0.792em;vertical-align:-0.040em"> and <img class="m" src="m/276f9d8e23083b442e81017db4ae8963a55538d2.svg" alt="\(t \in \R\)" style="height:0.798em;vertical-align:-0.040em">, the
+characterisation applied to <img class="m" src="m/3ffbd4967c58d7e1503b8c9da2294fe47b109cf5.svg" alt="\(c = Px \pm t m\)" style="height:0.840em;vertical-align:-0.092em"> gives
+<img class="m" src="m/366c871a084dcf9c86a00df4053edc0662dc5bbb.svg" alt="\(\mp t\inner{x-Px}{m}\le0\)" style="height:1.096em;vertical-align:-0.274em"> for all <img class="m" src="m/2e6322aafbff97406b8e32e9956aa367da976a5d.svg" alt="\(t&gt;0\)" style="height:0.749em;vertical-align:-0.045em">, so
+<img class="m" src="m/5ea32bede2217da1bc287e0e9fdc069bfa701bef.svg" alt="\(\inner{x-Px}{m} = 0\)" style="height:1.096em;vertical-align:-0.274em">: thus <img class="m" src="m/54ba40f9d7d3cbd291df3c6ee10998a504752c99.svg" alt="\(x - Px \in M^{\perp}\)" style="height:1.022em;vertical-align:-0.092em"> and
+<img class="m" src="m/a33656c0a71bd343747ba8b5d415cf5163e5a9d4.svg" alt="\(x = Px + (x - Px)\)" style="height:1.096em;vertical-align:-0.274em">. The sum is direct, since a vector in
+<img class="m" src="m/85b41a314dd2108d4a4b69383a0381813bf5000d.svg" alt="\(M\cap M^{\perp}\)" style="height:0.930em;vertical-align:-0.000em"> is orthogonal to itself. Linearity of <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> follows
+from uniqueness of the decomposition, and
+<img class="m" src="m/9ad85d9753a37365dbfeda87e6c80dc067b3884a.svg" alt="\(\norm{x}^{2} = \norm{Px}^{2}+\norm{x-Px}^{2}\)" style="height:1.166em;vertical-align:-0.268em"> gives
+<img class="m" src="m/0020eb875c3b2f7df8f88afa43d3a44030b08cdd.svg" alt="\(\norm{Px}\le\norm{x}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org1418758">
+<p>
+Let <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> be a bounded linear functional on a real Hilbert space
+<img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em">. Then there is exactly one <img class="m" src="m/ce6c48ec004a94f87caf88d0265c6c96be8ed56c.svg" alt="\(y \in H\)" style="height:0.962em;vertical-align:-0.212em"> with
+<img class="m" src="m/331281244aaf2d784a3e868f9bd876598e1282fb.svg" alt="\(\varphi(x) = \inner{x}{y}\)" style="height:1.096em;vertical-align:-0.274em"> for all <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, and <img class="m" src="m/b500c835e8b09c8e6de30e0ec9732855344e0c44.svg" alt="\(\norm{\varphi} = \norm{y}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org0cbbca6">
+<p>
+If <img class="m" src="m/c99fefd4a8ac83dff9322a6d49bf501ec0563861.svg" alt="\(\varphi = 0\)" style="height:0.919em;vertical-align:-0.211em"> take <img class="m" src="m/b880af58fc05d51225fc829b08597c4dcedf1dcf.svg" alt="\(y = 0\)" style="height:0.919em;vertical-align:-0.211em">. Otherwise <img class="m" src="m/20477590d77f9f3f2c8fab676e4b8fd6f9b8ecef.svg" alt="\(M = \ker\varphi\)" style="height:0.974em;vertical-align:-0.214em"> is a
+closed proper subspace, so <img class="m" src="m/78d85f183fa5b14a85862d1356d12e972fb2e996.svg" alt="\(M^{\perp}\ne\set{0}\)" style="height:1.204em;vertical-align:-0.277em">; pick a unit
+<img class="m" src="m/7d46fbc8385093c03582342f0cd948bd0634f211.svg" alt="\(z \in M^{\perp}\)" style="height:0.973em;vertical-align:-0.039em">. For any <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, the vector
+<img class="m" src="m/7161295f130710a0fe1990de94f7549e5bdc2b4b.svg" alt="\(\varphi(x)z - \varphi(z)x\)" style="height:1.096em;vertical-align:-0.274em"> lies in <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">, hence is orthogonal to
+<img class="m" src="m/a3dcfa6c97b29682527f7556e1c40cc9580c366a.svg" alt="\(z\)" style="height:0.472em;vertical-align:-0.000em">, which gives <img class="m" src="m/7818f747ae99de02efefed461c4bbc674806b541.svg" alt="\(\varphi(x) = \varphi(z)\inner{x}{z}\)" style="height:1.096em;vertical-align:-0.274em">. So
+<img class="m" src="m/759c2bd8ec93286729c09f38a279cb9d176dd7ff.svg" alt="\(y = \varphi(z)z\)" style="height:1.096em;vertical-align:-0.274em"> works.
+</p>
+
+<p>
+Uniqueness: if <img class="m" src="m/b41a07b1f626e40d5558df3d3b4697a263c1efb4.svg" alt="\(\inner{x}{y} = \inner{x}{y'}\)" style="height:1.098em;vertical-align:-0.274em"> for all <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, take
+<img class="m" src="m/4a4825f47700d64f7f17b10528733e91856b4edc.svg" alt="\(x = y - y'\)" style="height:1.037em;vertical-align:-0.218em">. For the norms,
+<img class="m" src="m/73b8c5a1e5f55e22d42c90f25355d0ce9450d903.svg" alt="\(\abs{\varphi(x)} \le \norm{x}\norm{y}\)" style="height:1.096em;vertical-align:-0.274em"> by Cauchy-Schwarz, with
+equality at <img class="m" src="m/b166a59ca53644d0d6f1d624a0065569398239d2.svg" alt="\(x = y\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgfab4a04">
+<p>
+Let <img class="m" src="m/d377baa051d90b9f91503a9bc63856a9fbf898fa.svg" alt="\((e_{n})_{n\in\N}\)" style="height:1.096em;vertical-align:-0.274em"> be an orthonormal sequence in a Hilbert space
+<img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> whose span is dense. Then every <img class="m" src="m/d212d40505bb29eaa7b9f10e1d949c020960c1aa.svg" alt="\(x \in H\)" style="height:0.792em;vertical-align:-0.040em"> satisfies
+<img class="m" src="m/0bbda5f5520e9fc569a17b05cb2a43bf905d9d2a.svg" alt="\(x = \sum_{n}\inner{x}{e_{n}}e_{n}\)" style="height:1.151em;vertical-align:-0.334em">, with convergence in norm, and
+<img class="m" src="m/87743ce1a7ed134b3945703ef1be47959bbc3798.svg" alt="\(\norm{x}^{2} = \sum_{n}\abs{\inner{x}{e_{n}}}^{2}\)" style="height:1.221em;vertical-align:-0.330em">.
+</p>
+
+</div>
+
+<div class="proof" id="org3a920e0">
+<p>
+Let <img class="m" src="m/3c851c5917c3a40840439cc418e635998995662a.svg" alt="\(c_{n} = \inner{x}{e_{n}}\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/666602a6fbbef894ac8ac18d8dac71b4ba6f9099.svg" alt="\(s_{N} = \sum_{n\le N}c_{n}e_{n}\)" style="height:1.293em;vertical-align:-0.465em">.
+Then <img class="m" src="m/1e189224775aa236393026f8b3adb0f33c78d068.svg" alt="\(x - s_{N}\)" style="height:0.804em;vertical-align:-0.161em"> is orthogonal to each <img class="m" src="m/319b1206caa9ea0616178088a35b4655142335b3.svg" alt="\(e_{n}\)" style="height:0.636em;vertical-align:-0.165em">, <img class="m" src="m/23d325658d4581c9cce12b1a085dd1f79b87f99e.svg" alt="\(n \le N\)" style="height:0.898em;vertical-align:-0.153em">, so by
+Pythagoras <img class="m" src="m/45f28545fef8b94b43e7b7d9f146a67ab63f2cf3.svg" alt="\(\norm{x}^{2} = \norm{s_{N}}^{2} + \norm{x-s_{N}}^{2}\)" style="height:1.166em;vertical-align:-0.268em"> and
+<img class="m" src="m/f73cdc0097bfc58cbfb60991d88e220532b6aa50.svg" alt="\(\sum_{n\le N}\abs{c_{n}}^{2} = \norm{s_{N}}^{2} \le \norm{x}^{2}\)" style="height:1.363em;vertical-align:-0.477em">:
+Bessel's inequality. Hence the series of squares converges, so
+<img class="m" src="m/2ad0b4f45bf72360e94de3064cfb6ba6cead91c2.svg" alt="\(\norm{s_{M}-s_{N}}^{2} = \sum_{N&lt;n\le M}\abs{c_{n}}^{2}\to0\)" style="height:1.363em;vertical-align:-0.477em"> and
+<img class="m" src="m/04ae89a2276ee5e86bf57e57df6b0f1360a5ae74.svg" alt="\((s_{N})\)" style="height:1.096em;vertical-align:-0.274em"> is Cauchy, converging to some <img class="m" src="m/74830bff5652add58d25f25848cb46a258aacc3a.svg" alt="\(s \in H\)" style="height:0.792em;vertical-align:-0.040em">.
+</p>
+
+<p>
+The difference <img class="m" src="m/a796a5c8eb013d321903994c66e9b1548e261b2d.svg" alt="\(x - s\)" style="height:0.731em;vertical-align:-0.088em"> is orthogonal to every <img class="m" src="m/319b1206caa9ea0616178088a35b4655142335b3.svg" alt="\(e_{n}\)" style="height:0.636em;vertical-align:-0.165em">, hence to
+their span and, by continuity of the inner product, to its closure,
+which is <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em">; so <img class="m" src="m/869223ac79e9e05af8f5863bfc9e71344014732b.svg" alt="\(x = s\)" style="height:0.472em;vertical-align:-0.000em">. Then
+<img class="m" src="m/1ec50d41bdebf500edb578ba5be7f261b9c7f4b9.svg" alt="\(\norm{x}^{2} = \lim\norm{s_{N}}^{2} = \sum_{n}\abs{c_{n}}^{2}\)" style="height:1.221em;vertical-align:-0.330em">.
+</p>
+
+</div>
+
+<div class="remark" id="org46d1d46">
+<p>
+Density of the span is the hypothesis that turns Bessel's inequality
+into Parseval's identity, and it is what "basis" means here: not a
+Hamel basis, which for an infinite-dimensional Banach space is
+uncountable and useless, but a set whose <i>closed</i> span is everything.
+The theorem says every separable Hilbert space is the sequence space
+<img class="m" src="m/c7b48355d6eceb25b47d49f48314e59cd6ef3686.svg" alt="\(\ell^{2}\)" style="height:0.892em;vertical-align:-0.000em">, which is why there is essentially one of them.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="uniform-boundedness-open-mapping-and-closed-graph.html"><span>← previous</span>Uniform boundedness, open mapping and closed graph</a><a rel="next" href="equicontinuity-and-the-arzela-ascoli-theorem.html"><span>next →</span>Equicontinuity and the Arzela-Ascoli theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--functional-analysis.pdf" title="PDF manual">Functional Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

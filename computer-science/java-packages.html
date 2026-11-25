@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Packages · Computer Science</title>
+<meta name="description" content="Every Java class belongs to a package, a named group that is both a namespace (java.util.List) and a unit of information hiding (members without modifier are visible only inside it); import lets a file use short names, and package names mirror directories.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/java-packages.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Packages · Computer Science">
+<meta property="og:description" content="Every Java class belongs to a package, a named group that is both a namespace (java.util.List) and a unit of information hiding (members without modifier are visible only inside it); import lets a file use short names, and package names mirror directories.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/java-packages.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--java">Java</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Java</p>
+<h1>Packages</h1>
+<p class="summary">Every Java class belongs to a package, a named group that is both a namespace (<code>java.util.List</code>) and a unit of information hiding (members without modifier are visible only inside it); <code>import</code> lets a file use short names, and package names mirror directories.</p>
+<p class="rel"><span>needs</span> <a href="java-references.html">Objects, references and garbage collection in Java</a>, <a href="information-hiding.html">Information hiding and visibility</a></p>
+<p class="rel"><span>see also</span> <a href="java-platform.html">The Java platform</a></p>
+<p class="rel"><span>mentioned in</span> <a href="uml-class-diagram.html">UML class diagram</a>, <a href="java-platform.html">The Java platform</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="information-hiding.html">Information hiding and visibility</a></li><li><a href="java-platform.html">The Java platform</a></li><li><a href="java-references.html">Objects, references and garbage collection in Java</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org419ac4e" class="outline-2">
+<h2 id="org419ac4e">Definition</h2>
+<div class="outline-text-2" id="text-org419ac4e">
+<ul class="org-ul">
+<li>A file (compilation unit) starts with <code>package it.unitn.shapes;</code> and may contain several classes, at most one <code>public</code> (named like the file).</li>
+<li>A class without a package declaration belongs to the unnamed default package.</li>
+<li>The fully qualified name is <code>package.Class</code>; <code>import java.util.List;</code> or <code>import java.util.*;</code> allows <code>List</code>. <code>java.lang</code> is imported automatically (<code>String</code>, <code>Math</code>, <code>System</code>, <code>Object</code>).</li>
+<li>Packages correspond to directories: <code>it/unitn/shapes/Circle.java</code>.</li>
+<li><a href="information-hiding.html">Package-private</a> visibility (no modifier) makes classes and members usable only within the package: the package is a module whose public classes are its interface.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9e550e0" class="outline-2">
+<h2 id="org9e550e0">Example</h2>
+<div class="outline-text-2" id="text-org9e550e0">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">package</span> it.unitn.<span class="n">shapes</span>;
+<span class="k">import</span> <span class="n">java</span>.<span class="n">util</span>.<span class="t">ArrayList</span>;
+<span class="k">public</span> <span class="k">class</span> <span class="t">Drawing</span> {                 <span class="c">// usable from other packages
+</span>    <span class="t">ArrayList</span>&lt;<span class="t">Shape</span>&gt; <span class="v">shapes</span> = <span class="k">new</span> <span class="t">ArrayList</span>&lt;&gt;();   <span class="c">// package-private field
+</span>}
+<span class="k">class</span> <span class="t">Helper</span> { }                       <span class="c">// invisible outside it.unitn.shapes</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orgd4cad71" class="outline-2">
+<h2 id="orgd4cad71">Intuition</h2>
+<div class="outline-text-2" id="text-orgd4cad71">
+<p>
+Classes hide fields from other classes; packages hide classes from other packages.
+</p>
+</div>
+</div>
+<div id="outline-container-orga62e6ff" class="outline-2">
+<h2 id="orga62e6ff">Pitfall</h2>
+<div class="outline-text-2" id="text-orga62e6ff">
+<p>
+Subpackages are not nested for visibility: <code>it.unitn</code> and <code>it.unitn.shapes</code> are unrelated packages, and package-private members of one are not visible in the other.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="java-inner-classes.html"><span>← previous</span>Nested, inner and anonymous classes</a><a rel="next" href="user-input.html"><span>next →</span>Reading and validating user input</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--java.pdf" title="PDF manual">Java</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

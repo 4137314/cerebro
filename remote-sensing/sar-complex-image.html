@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAR complex, amplitude and intensity images · Remote Sensing</title>
+<meta name="description" content="The SAR receiver measures in-phase and quadrature components of the echo, so each pixel is a complex number z=A\cos\phi+jA\sin\phi=Ae^{j\phi}; from it one derives the amplitude image A=|z|, the intensity image I=A^2 (proportional to \sigma^0) and the phase image, which alone looks random but carrie…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/sar-complex-image.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="SAR complex, amplitude and intensity images · Remote Sensing">
+<meta property="og:description" content="The SAR receiver measures in-phase and quadrature components of the echo, so each pixel is a complex number z=A\cos\phi+jA\sin\phi=Ae^{j\phi}; from it one derives the amplitude image A=|z|, the intensity image I=A^2 (proportional to \sigma^0) and the phase image, which alone looks random but carrie…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/sar-complex-image.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-acquisition">Acquisition</a> / <a rel="up" href="index.html#a-acquisition--radar">Radar</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Acquisition · Radar</p>
+<h1>SAR complex, amplitude and intensity images</h1>
+<p class="summary">The SAR receiver measures in-phase and quadrature components of the echo, so each pixel is a complex number <img class="m" src="m/86267fc6272a34555d40ba576ae73b1561100ff3.svg" alt="\(z=A\cos\phi+jA\sin\phi=Ae^{j\phi}\)" style="height:1.144em;vertical-align:-0.217em">; from it one derives the amplitude image <img class="m" src="m/ed4237f73dc1b77cd53e2427cb6f8923a1f75ea1.svg" alt="\(A=|z|\)" style="height:1.096em;vertical-align:-0.274em">, the intensity image <img class="m" src="m/e840e6cac62128cb11ebd516c5795788d134dd04.svg" alt="\(I=A^2\)" style="height:0.892em;vertical-align:-0.000em"> (proportional to <img class="m" src="m/88aacec02e6ea8f67e4c3001bce15a12392bb702.svg" alt="\(\sigma^0\)" style="height:0.892em;vertical-align:-0.000em">) and the phase image, which alone looks random but carries range information exploited by interferometry.</p>
+<p class="rel"><span>needs</span> <a href="synthetic-aperture-radar.html">Synthetic aperture radar (SAR)</a>, <a href="backscattering-coefficient.html">Backscattering coefficient</a></p>
+<p class="rel"><span>unlocks</span> <a href="sar-interferometry.html">SAR interferometry (InSAR and DInSAR)</a>, <a href="sar-polarimetry.html">SAR polarimetry</a>, <a href="speckle-statistics.html">Speckle and its statistics</a></p>
+<p class="rel"><span>see also</span> <a href="speckle-statistics.html">Speckle and its statistics</a>, <a href="speckle-filtering.html">Speckle reduction</a>, <a href="sar-interferometry.html">SAR interferometry (InSAR and DInSAR)</a>, <a href="sar-polarimetry.html">SAR polarimetry</a></p>
+<p class="rel"><span>mentioned in</span> <a href="speckle-filtering.html">Speckle reduction</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="radar-equation.html">Radar principle and radar equation</a></li><li><a href="side-looking-radar.html">Side-looking radar geometry</a></li><li><a href="azimuth-resolution.html">Azimuth resolution of a real-aperture radar</a></li><li><a href="backscattering-coefficient.html">Backscattering coefficient</a></li><li><a href="range-resolution.html">Range resolution</a></li><li><a href="chirp-pulse-compression.html">Chirp and pulse compression</a></li><li><a href="synthetic-aperture-radar.html">Synthetic aperture radar (SAR)</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orga317c1e" class="outline-2">
+<h2 id="orga317c1e">Definition</h2>
+<div class="outline-text-2" id="text-orga317c1e">
+<p>
+The transmitted sinusoid <img class="m" src="m/ad8a89db238dd4c9e33d0dcbda4fc57996398024.svg" alt="\(\cos(2\pi f_0t)\)" style="height:1.096em;vertical-align:-0.274em"> comes back as <img class="m" src="m/276c43833a29fd242cd2e6c88271d4910ac349b9.svg" alt="\(A(x,y)\cos(2\pi f_0t+\phi(x,y))\)" style="height:1.096em;vertical-align:-0.274em">, with <img class="m" src="m/354f32ba775592a734c6aac69e3c36f9ad710587.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/dada4b67a98c73f5841e25f4a9ed6ab59aee0bc7.svg" alt="\(\phi\)" style="height:0.974em;vertical-align:-0.214em"> shaped by the target. Coherent demodulation yields
+<div class="mb"><img class="m" src="m/cb99ed6ad3ef36755f4ff2c8fcc56affc0a43030.svg" alt="\[ z(x,y)=\underbrace{A\cos\phi}_{\text{in phase}}+j\,\underbrace{A\sin\phi}_{\text{quadrature}}=A\,e^{j\phi}. \]" style="width:18.255em"></div>
+Products: <b>single look complex</b> (SLC) <img class="m" src="m/9605974776d2b304dbb485b2cac4276f47959f02.svg" alt="\(z\)" style="height:0.472em;vertical-align:-0.000em">; <b>amplitude</b> <img class="m" src="m/60dff96894c30dddafcd67c2aad8c7aebedb0a04.svg" alt="\(A=\sqrt{\mathrm{Re}^2+\mathrm{Im}^2}\)" style="height:1.359em;vertical-align:-0.163em">; <b>intensity</b> <img class="m" src="m/e840e6cac62128cb11ebd516c5795788d134dd04.svg" alt="\(I=A^2\)" style="height:0.892em;vertical-align:-0.000em">, whose mean over a <a href="homogeneous-area-statistics.html">homogeneous area</a> is proportional to <img class="m" src="m/88aacec02e6ea8f67e4c3001bce15a12392bb702.svg" alt="\(\sigma^0\)" style="height:0.892em;vertical-align:-0.000em">; <b>phase</b> <img class="m" src="m/dada4b67a98c73f5841e25f4a9ed6ab59aee0bc7.svg" alt="\(\phi\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbb75754" class="outline-2">
+<h2 id="orgbb75754">Uses of the phase</h2>
+<div class="outline-text-2" id="text-orgbb75754">
+<p>
+In one image the phase of a pixel is the sum of many random scatterer phases and is uniform noise. The <b>difference</b> of phases between two acquisitions from slightly different positions (<a href="sar-interferometry.html">interferometry</a>, InSAR) measures topography; between two dates from the same position (differential InSAR) it measures ground displacement with millimetre precision.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf4363ec" class="outline-2">
+<h2 id="orgf4363ec">Worked example</h2>
+<div class="outline-text-2" id="text-orgf4363ec">
+<p>
+A pixel with <img class="m" src="m/9eb21bcc251f29d78d253c8c33d4ccc67343f25c.svg" alt="\(\mathrm{Re}=3\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/9022d37e4f23b9266e882ca8be73d94654d6f5e0.svg" alt="\(\mathrm{Im}=-4\)" style="height:0.840em;vertical-align:-0.092em">: amplitude <img class="m" src="m/2fa1fa460bd92f8f06e6e5c5d39476b2fc216827.svg" alt="\(A=5\)" style="height:0.749em;vertical-align:-0.000em">, intensity <img class="m" src="m/8035959bbd30eb3fbc3b920daeaea5117f96abec.svg" alt="\(I=25\)" style="height:0.749em;vertical-align:-0.000em">, phase <img class="m" src="m/de22053842349b762817b6f3f7fd7d3c65037e33.svg" alt="\(\phi=\operatorname{atan2}(-4,3)=-53.1^\circ\)" style="height:1.096em;vertical-align:-0.274em">. Averaging the intensities of a <img class="m" src="m/c411439156da22705d972c30dc8ef23831e1b76e.svg" alt="\(4\times4\)" style="height:0.798em;vertical-align:-0.088em"> homogeneous window gives a 16-look estimate of the mean backscatter, <img class="m" src="m/8e22168237d489082908be5b2bc3163e51960b8a.svg" alt="\(\sigma^0\propto\bar I\)" style="height:0.899em;vertical-align:-0.000em">, with relative standard deviation <img class="m" src="m/99084dc0b4cc80a8adc4793a4d7123ae2e9d3c02.svg" alt="\(1/\sqrt{16}=25\%\)" style="height:1.268em;vertical-align:-0.279em"> instead of 100% for a single pixel.
+</p>
+</div>
+</div>
+<div id="outline-container-org24caf10" class="outline-2">
+<h2 id="org24caf10">Intuition</h2>
+<div class="outline-text-2" id="text-org24caf10">
+<p>
+A SAR pixel is a phasor: its length says how strongly the cell backscatters, its angle where, within a wavelength, the echo came from.
+</p>
+</div>
+</div>
+<div id="outline-container-org6a09ed6" class="outline-2">
+<h2 id="org6a09ed6">Pitfall</h2>
+<div class="outline-text-2" id="text-org6a09ed6">
+<p>
+Amplitude and intensity have different statistics (Rayleigh vs exponential, see <a href="speckle-statistics.html">speckle</a>): filters and thresholds designed for one are wrong for the other.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="synthetic-aperture-radar.html"><span>← previous</span>Synthetic aperture radar (SAR)</a><a rel="next" href="sar-interferometry.html"><span>next →</span>SAR interferometry (InSAR and DInSAR)</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/acquisition--radar.pdf" title="PDF manual">Radar</a> · <a class="pdf" href="pdf/acquisition.pdf" title="PDF manual">Acquisition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

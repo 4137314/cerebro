@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connectedness, components and path-connectedness · Mathematics</title>
+<meta name="description" content="The intermediate value theorem was proved from the completeness of \R, but its statement mentions no supremum: a continuous function cannot skip a value because an interval cannot be cut in two. Isolating that as a property of spaces turns one theorem about \R into the first topological invariant, …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/connectedness-components-and-path-connectedness.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Connectedness, components and path-connectedness · Mathematics">
+<meta property="og:description" content="The intermediate value theorem was proved from the completeness of \R, but its statement mentions no supremum: a continuous function cannot skip a value because an interval cannot be cut in two. Isolating that as a property of spaces turns one theorem about \R into the first topological invariant, …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/connectedness-components-and-path-connectedness.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-topology">Topology</a> / <a rel="up" href="index.html#a-topology--general-topology">General Topology</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Topology · General Topology</p>
+<h1>Connectedness, components and path-connectedness</h1>
+<p class="summary">The <a href="the-intermediate-value-theorem.html">intermediate value theorem</a> was proved from the completeness of <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em">, but its statement mentions no supremum: a continuous function cannot skip a value because an interval cannot be cut in two. Isolating that as a property of spaces turns one theorem about <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em"> into the first topological invariant, and gives the standard way of proving two spaces are not homeomorphic.</p>
+<p class="rel"><span>needs</span> <a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a>, <a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a>, <a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a>, <a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a>, <a href="supremum-and-infimum.html">Supremum and infimum</a>, <a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></p>
+<p class="rel"><span>unlocks</span> <a href="holomorphic-functions-and-the-cauchy-riemann-equations.html">Holomorphic functions and the Cauchy-Riemann equations</a>, <a href="zeros-the-identity-theorem-and-the-maximum-principle.html">Zeros, the identity theorem and the maximum principle</a>, <a href="harmonic-functions-the-mean-value-property-and-the-dirichlet-problem.html">Harmonic functions, the mean value property and the Dirichlet problem</a>, <a href="path-homotopy-and-the-fundamental-group.html">Path homotopy and the fundamental group</a></p>
+<p class="rel"><span>mentioned in</span> <a href="general-topology.html">General topology</a></p>
+<details class="path"><summary>Learning path: 14 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org9521f79">
+<p>
+A topological space <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is <i>connected</i> if it is not the union of two
+disjoint non-empty open sets. A subset is connected if it is so in the
+subspace topology. A subset that is both open and closed is <i>clopen</i>.
+</p>
+
+</div>
+
+<div class="proposition" id="org5059e57">
+<p>
+<img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is connected if and only if its only clopen subsets are
+<img class="m" src="m/b9fcf2ccae8d3515975b71b2e2ab3c4479b2d3d5.svg" alt="\(\emptyset\)" style="height:0.883em;vertical-align:-0.062em"> and <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">; equivalently, if and only if every continuous
+map <img class="m" src="m/3ffbe04dd58456cf3a006eb934491d966e3401b6.svg" alt="\(X \to \set{0,1}\)" style="height:1.096em;vertical-align:-0.274em">, the latter discrete, is constant.
+</p>
+
+</div>
+
+<div class="proof" id="orge388bad">
+<p>
+A clopen <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/4c0b220538663a48d7519de34bca8c387ca93e67.svg" alt="\(\emptyset \ne A \ne X\)" style="height:1.035em;vertical-align:-0.217em"> gives the disconnection
+<img class="m" src="m/38b254bc093a18f6052750a75d16fa24365ba9ec.svg" alt="\(X = A \cup (X \setminus A)\)" style="height:1.096em;vertical-align:-0.274em"> into non-empty open sets, and conversely
+each piece of a disconnection is clopen, being the complement of the
+other. A continuous <img class="m" src="m/040f79caca4b125d71757d3f091cc3d0c166936c.svg" alt="\(f \colon X \to \set{0,1}\)" style="height:1.096em;vertical-align:-0.274em"> has
+<img class="m" src="m/62633671056f1abd0836f1cdc3290d1057e6cc18.svg" alt="\(f^{-1}(0)\)" style="height:1.166em;vertical-align:-0.268em"> clopen, and a non-constant <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> makes it a proper
+non-empty clopen set; conversely a proper clopen <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> yields the
+continuous non-constant indicator of <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org27d17c9">
+<p>
+The continuous image of a connected space is connected. Connectedness is
+therefore a topological invariant.
+</p>
+
+</div>
+
+<div class="proof" id="org16158ef">
+<p>
+Let <img class="m" src="m/d7c0c93f2d459ca20e4f53c81d24a704a65c7b84.svg" alt="\(f \colon X \to Y\)" style="height:0.974em;vertical-align:-0.214em"> be continuous and surjective with <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">
+connected, and let <img class="m" src="m/90cce2c06453eb08fbd80e206c9c14b6348da3c5.svg" alt="\(g \colon Y \to \set{0,1}\)" style="height:1.096em;vertical-align:-0.274em"> be continuous. Then
+<img class="m" src="m/8ad73b65ef7f72b970b0013a23830f3cc9ab2be0.svg" alt="\(g \circ f\)" style="height:0.974em;vertical-align:-0.214em"> is continuous, hence constant, and <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is surjective, so
+<img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> is constant. By the previous proposition <img class="m" src="m/82d9b7c5c94f297586981fdbe7ca67b30095b73a.svg" alt="\(Y\)" style="height:0.749em;vertical-align:-0.000em"> is connected. A
+homeomorphism is in particular a continuous surjection in both
+directions.
+</p>
+
+</div>
+
+<div class="proposition" id="orge5b3ff1">
+<p>
+If <img class="m" src="m/304f40abee2df09a77acaef362f7c80239cf68be.svg" alt="\((A_{i})\)" style="height:1.096em;vertical-align:-0.274em"> are connected subsets of <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> with a common point <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">,
+then <img class="m" src="m/1a297d2b1d5127561cf4d110f5cd60e7831dde67.svg" alt="\(\bigcup_{i}A_{i}\)" style="height:1.151em;vertical-align:-0.334em"> is connected. If <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is connected and
+<img class="m" src="m/cb91507c6798d7700e24af28d12dbaa164bdea25.svg" alt="\(A \subseteq B \subseteq \overline{A}\)" style="height:1.117em;vertical-align:-0.145em">, then <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> is connected.
+</p>
+
+</div>
+
+<div class="proof" id="org0950381">
+<p>
+Let <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> be a continuous map from the union to <img class="m" src="m/d32140fbcca0f033995b1ff46b0a63fe0f218725.svg" alt="\(\set{0,1}\)" style="height:1.096em;vertical-align:-0.274em">. Its
+restriction to each <img class="m" src="m/b1e3680d2248d80f9a665ce65aca627daae3eaca.svg" alt="\(A_{i}\)" style="height:0.913em;vertical-align:-0.164em"> is continuous, hence constant, with value
+<img class="m" src="m/9dd4c68b461c00cf8397ee9412b4f88367fdf39c.svg" alt="\(f(p)\)" style="height:1.096em;vertical-align:-0.274em">; so <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is constant.
+</p>
+
+<p>
+For the second claim, let <img class="m" src="m/cb9ffaf6e627adac3a483b21a478c2dd5d225b6e.svg" alt="\(f \colon B \to \set{0,1}\)" style="height:1.096em;vertical-align:-0.274em"> be continuous;
+it is constant on <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, say with value <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">, so
+<img class="m" src="m/c084198ff0b709bebbb794dc22206b0116bf8d98.svg" alt="\(A \subseteq f^{-1}(0)\)" style="height:1.166em;vertical-align:-0.268em">, which is closed in <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">. Hence
+<img class="m" src="m/62633671056f1abd0836f1cdc3290d1057e6cc18.svg" alt="\(f^{-1}(0)\)" style="height:1.166em;vertical-align:-0.268em"> contains the closure of <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> in <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">, which is
+<img class="m" src="m/4db2d87112004e22f4388df903dcf177c2fc4000.svg" alt="\(\overline{A}\cap B = B\)" style="height:0.968em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgafdde79">
+<p>
+A subset of <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em"> is connected if and only if it is an interval, that
+is, if <img class="m" src="m/10815cf42e8a1ce0e66324299b2e4a0dae3f1c3c.svg" alt="\(x &lt; z &lt; y\)" style="height:0.804em;vertical-align:-0.217em"> with <img class="m" src="m/31949a821961ed02f84d6b5c822d31fd20b54d66.svg" alt="\(x, y \in A\)" style="height:0.962em;vertical-align:-0.212em"> implies <img class="m" src="m/0a374efbd8242f779d98b1edea5b4633111c4308.svg" alt="\(z \in A\)" style="height:0.792em;vertical-align:-0.040em">.
+</p>
+
+</div>
+
+<div class="proof" id="orge0a85d4">
+<p>
+If <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is not an interval, pick such an <img class="m" src="m/10815cf42e8a1ce0e66324299b2e4a0dae3f1c3c.svg" alt="\(x &lt; z &lt; y\)" style="height:0.804em;vertical-align:-0.217em"> with
+<img class="m" src="m/9897ab36835eb412ac60e26edaf388aba9763287.svg" alt="\(z \notin A\)" style="height:0.865em;vertical-align:-0.043em">; then
+<img class="m" src="m/0f8fa1c516fab0c1094ba42bf293c60454524087.svg" alt="\(A = (A \cap (-\infty, z)) \cup (A \cap (z, \infty))\)" style="height:1.096em;vertical-align:-0.274em"> is a
+disconnection into non-empty relatively open sets.
+</p>
+
+<p>
+Conversely let <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> be an interval and suppose
+<img class="m" src="m/554204b71bbe5b7adffc586ffd6b51c9cabaf5fd.svg" alt="\(A = U \cup V\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/0eb553427c3e625dd96ffaf04421b72d5566a0b4.svg" alt="\(U, V\)" style="height:0.962em;vertical-align:-0.212em"> non-empty, disjoint and open in <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">.
+Pick <img class="m" src="m/2573d1748830236ec01b770825fd743b9341425a.svg" alt="\(x \in U\)" style="height:0.792em;vertical-align:-0.040em">, <img class="m" src="m/21fab266e23fe60f42edecbd9a8eb9988db13abd.svg" alt="\(y \in V\)" style="height:0.962em;vertical-align:-0.212em">, say <img class="m" src="m/cd381fb892d8b86197abf6604b87376f8fee3a18.svg" alt="\(x &lt; y\)" style="height:0.804em;vertical-align:-0.217em">; then
+<img class="m" src="m/bd1fef2b510e5278fcacbe73194d5c0be27f5ce8.svg" alt="\([x,y] \subseteq A\)" style="height:1.096em;vertical-align:-0.274em">. Let <img class="m" src="m/dc54f2570550cf509e51b918ef4b35a59f61eef9.svg" alt="\(s = \sup (U \cap [x,y])\)" style="height:1.096em;vertical-align:-0.274em">, which exists by
+completeness. If <img class="m" src="m/3af60510175c29a58ed7158e0d6e31ac32be60b3.svg" alt="\(s \in U\)" style="height:0.792em;vertical-align:-0.040em"> then <img class="m" src="m/24169a728ad5088311e68547948bb82e2b8d5819.svg" alt="\(s &lt; y\)" style="height:0.804em;vertical-align:-0.217em">, and since <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> is open in
+<img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> a whole interval <img class="m" src="m/7ce2a8679f3e5c7443f79d56d7a67cf5807195da.svg" alt="\([s, s+\delta] \subseteq U \cap [x,y]\)" style="height:1.096em;vertical-align:-0.274em"> would
+exceed the supremum. If <img class="m" src="m/fc4eb3c43256eba6bc9ff0ab4ad1e7a5c054217d.svg" alt="\(s \in V\)" style="height:0.792em;vertical-align:-0.040em"> then <img class="m" src="m/60b829ffe41ea4c9d1e13ffdb2f9e1654c6bf77a.svg" alt="\(s &gt; x\)" style="height:0.634em;vertical-align:-0.044em">, and openness of
+<img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> puts <img class="m" src="m/6a586abbec4507ff026271d6a799fb1e503a966e.svg" alt="\((s-\delta, s] \subseteq V\)" style="height:1.096em;vertical-align:-0.274em">, so no point of
+<img class="m" src="m/cb3dfe3197a6c584ba79fc11b956cf0161895940.svg" alt="\(U\cap[x,y]\)" style="height:1.096em;vertical-align:-0.274em"> exceeds <img class="m" src="m/fedcb1372ea22759737334a1b073bbeb817157ec.svg" alt="\(s - \delta\)" style="height:0.852em;vertical-align:-0.094em">, again contradicting the
+supremum. But <img class="m" src="m/e5245fc56c49a4acb5dc0ea0d8fb69018ed9d7dc.svg" alt="\(s \in [x,y] \subseteq A = U \cup V\)" style="height:1.096em;vertical-align:-0.274em"> &#x2013; a contradiction.
+</p>
+
+</div>
+
+<div class="definition" id="orgbe42c97">
+<p>
+A <i>path</i> in <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> from <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> to <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> is a continuous
+<img class="m" src="m/7e4be6c0b396886babfb95b4f83c69a052fbea55.svg" alt="\(\gamma \colon [0,1] \to X\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/59457a4b73587a8dba60238e7ab91562141c2651.svg" alt="\(\gamma(0) = x\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/63275364240457c2b4109e595ad6b6b333f1b411.svg" alt="\(\gamma(1) = y\)" style="height:1.096em;vertical-align:-0.274em">. The space is <i>path-connected</i> if any two of its
+points are joined by a path.
+</p>
+
+</div>
+
+<div class="proposition" id="org81f8ac5">
+<p>
+Every path-connected space is connected.
+</p>
+
+</div>
+
+<div class="proof" id="org741f6dc">
+<p>
+If <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is empty the claim is vacuous. Otherwise fix <img class="m" src="m/6e29e5c1b763507ef92466b7886c2a56f6633699.svg" alt="\(p \in X\)" style="height:0.962em;vertical-align:-0.212em">. For
+each <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> choose a path from <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> to <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">; its image is the
+continuous image of <img class="m" src="m/b40f419d16d54b95652910807100bb67f190c2b6.svg" alt="\([0,1]\)" style="height:1.096em;vertical-align:-0.274em">, which is connected as an interval, and
+contains <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">. So <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is a union of connected sets with the common
+point <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">, hence connected.
+</p>
+
+</div>
+
+<div class="proposition" id="org0bcbe6f">
+<p>
+The relation "<img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> lie in a common connected subset" is an
+equivalence relation; its classes, the <i>connected components</i>, are the
+maximal connected subsets of <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">, and they are closed and partition
+<img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org9970737">
+<p>
+Reflexivity uses the connected set <img class="m" src="m/173deeed5f4f0d932101b756011d0da71018a4a2.svg" alt="\(\set{x}\)" style="height:1.096em;vertical-align:-0.274em">; symmetry is clear; and
+if <img class="m" src="m/31949a821961ed02f84d6b5c822d31fd20b54d66.svg" alt="\(x, y \in A\)" style="height:0.962em;vertical-align:-0.212em"> and <img class="m" src="m/2cad93dc71726e73a60f552917b467efc2ffeb3f.svg" alt="\(y, z \in B\)" style="height:0.962em;vertical-align:-0.212em"> with <img class="m" src="m/058b3407c8e36c3c9af16bdda79c11cf34511b63.svg" alt="\(A, B\)" style="height:0.962em;vertical-align:-0.212em"> connected, then
+<img class="m" src="m/408bc8ad4dbec21d3938589739ec0aa07ccb881d.svg" alt="\(A \cup B\)" style="height:0.749em;vertical-align:-0.000em"> is connected by the previous proposition, having the point
+<img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> in common. The class of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> is the union of all connected sets
+containing <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, connected for the same reason, hence the largest such
+set. Classes partition <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">, and each is closed because its closure is
+connected and contains it, so equals it by maximality.
+</p>
+
+</div>
+
+<div class="remark" id="org403d8d0">
+<p>
+Components are closed but need not be open: in <img class="m" src="m/83349875d2551503beeb2426480fe7a04427bf34.svg" alt="\(\Q\)" style="height:0.938em;vertical-align:-0.178em"> every component is
+a single point, and no point is open. That example is also the reason
+connectedness is not the same as path-connectedness &#x2013; the standard
+counterexample being the closure of the graph of <img class="m" src="m/162da1e514f8a3051e86b5277ccfa8dad167a04b.svg" alt="\(\sin(1/x)\)" style="height:1.096em;vertical-align:-0.274em">, which is
+connected by the second half of the union proposition and admits no path
+to the segment it accumulates on.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-baire-category-theorem.html"><span>← previous</span>The Baire category theorem</a><a rel="next" href="nets-and-convergence-in-topological-spaces.html"><span>next →</span>Nets and convergence in topological spaces</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/topology--general-topology.pdf" title="PDF manual">General Topology</a> · <a class="pdf" href="pdf/topology.pdf" title="PDF manual">Topology</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The absolute value and the triangle inequality · Mathematics</title>
+<meta name="description" content="Every convergence proof in the course is an estimate on \abs{a - b}, and every one of them splits that estimate through an intermediate point. The two lines below are the whole reason that move is legal, so they belong before the first \eps, not in a footnote to it.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-absolute-value-and-the-triangle-inequality.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The absolute value and the triangle inequality · Mathematics">
+<meta property="og:description" content="Every convergence proof in the course is an estimate on \abs{a - b}, and every one of them splits that estimate through an intermediate point. The two lines below are the whole reason that move is legal, so they belong before the first \eps, not in a footnote to it.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-absolute-value-and-the-triangle-inequality.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Real Analysis</p>
+<h1>The absolute value and the triangle inequality</h1>
+<p class="summary">Every convergence proof in the course is an estimate on <img class="m" src="m/7a0a352148d348b16e4acfaccdd53ff11ed74961.svg" alt="\(\abs{a - b}\)" style="height:1.096em;vertical-align:-0.274em">, and every one of them splits that estimate through an intermediate point. The two lines below are the whole reason that move is legal, so they belong before the first <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em">, not in a footnote to it.</p>
+<p class="rel"><span>unlocks</span> <a href="limits-and-continuity.html">Limits and continuity</a>, <a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a>, <a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a>, <a href="the-algebra-of-limits.html">The algebra of limits</a>, <a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a>, <a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+</header>
+<main class="note">
+<div class="definition" id="orgdc8040e">
+<p>
+The <i>absolute value</i> of <img class="m" src="m/890016787d2a340064af4ce431b55b34a9dd3628.svg" alt="\(x \in \R\)" style="height:0.798em;vertical-align:-0.040em"> is <img class="m" src="m/1a35ec4c526b15995be80a3bf73c189cefcbd63a.svg" alt="\(\abs{x} = x\)" style="height:1.096em;vertical-align:-0.274em"> if <img class="m" src="m/3cd39b21536d67ad0aea51a0b3a0d39bfb08c629.svg" alt="\(x \ge 0\)" style="height:0.855em;vertical-align:-0.145em">
+and <img class="m" src="m/48bb917adc2fd26f15b1cfc26c60e20b35261147.svg" alt="\(\abs{x} = -x\)" style="height:1.096em;vertical-align:-0.274em"> if <img class="m" src="m/50ea404ea074b3fd436a18cbb17593273bf74ab1.svg" alt="\(x &lt; 0\)" style="height:0.749em;vertical-align:-0.045em">. Equivalently
+<img class="m" src="m/59b2f46b9e1a6754abf1bb68cbcb9d42fa2782f9.svg" alt="\(\abs{x} = \max(x, -x)\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/419d33fc1669de098911f3f174521fd1f0d0dc42.svg" alt="\(\abs{x} \ge 0\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/7ccc747f326343a6107e56edc3ca1a9d7442b404.svg" alt="\(\abs{x} \ge x\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/efb40e28c7585436be020c66565e152dac73f054.svg" alt="\(\abs{x} \ge -x\)" style="height:1.096em;vertical-align:-0.274em">, with <img class="m" src="m/90c3da86b9598d26c14e515804f18e4c769ac642.svg" alt="\(\abs{x} = 0\)" style="height:1.096em;vertical-align:-0.274em"> only for <img class="m" src="m/b0be6817cd06658e866b0d25ea70ff815440c375.svg" alt="\(x = 0\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org0de3e00">
+<p>
+For <img class="m" src="m/fba9e0fe3dcac8443e23e3f793125041b39baaaf.svg" alt="\(x, c \in \R\)" style="height:0.968em;vertical-align:-0.213em"> and <img class="m" src="m/d54f077e5ccc13d5052cca1167e6207d625bd6fe.svg" alt="\(c \ge 0\)" style="height:0.855em;vertical-align:-0.145em">: <img class="m" src="m/825621d8bab826bfca4aaf620556ec6676c74ba3.svg" alt="\(\abs{x} \le c\)" style="height:1.096em;vertical-align:-0.274em"> if and only if
+<img class="m" src="m/7b9491cf7cce066eb16a1a883a0fd5a4f150ed62.svg" alt="\(-c \le x \le c\)" style="height:0.846em;vertical-align:-0.152em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgbcd2d1d">
+<p>
+If <img class="m" src="m/825621d8bab826bfca4aaf620556ec6676c74ba3.svg" alt="\(\abs{x} \le c\)" style="height:1.096em;vertical-align:-0.274em"> then <img class="m" src="m/f73ef81662478e7d247bb77bd1e4f9011cd52d11.svg" alt="\(x \le \abs{x} \le c\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/c894385268e8de1fbe744d0cc35faf144af8c1f2.svg" alt="\(-x \le \abs{x} \le c\)" style="height:1.096em;vertical-align:-0.274em">, the latter giving <img class="m" src="m/51de93b2d337725dc94d9214e758dda1a80c1690.svg" alt="\(x \ge -c\)" style="height:0.846em;vertical-align:-0.152em">. Conversely, if
+<img class="m" src="m/7b9491cf7cce066eb16a1a883a0fd5a4f150ed62.svg" alt="\(-c \le x \le c\)" style="height:0.846em;vertical-align:-0.152em"> then both <img class="m" src="m/b437886b5e174a4ab89fe5113e0675e4f7b9f600.svg" alt="\(x \le c\)" style="height:0.846em;vertical-align:-0.152em"> and <img class="m" src="m/da29965c4032a9e25344c85baae703777d4e250b.svg" alt="\(-x \le c\)" style="height:0.846em;vertical-align:-0.152em">, and
+<img class="m" src="m/650b73cf45e3caaed3014dca186ad98829919387.svg" alt="\(\abs{x}\)" style="height:1.096em;vertical-align:-0.274em"> is one of the two.
+</p>
+
+</div>
+
+<div class="theorem" id="orgac9a96e">
+<p>
+For all <img class="m" src="m/7fc42db852820c9f93f227f8c9a9c4a2907e2622.svg" alt="\(x, y \in \R\)" style="height:0.968em;vertical-align:-0.213em">,
+<div class="mb"><img class="m" src="m/3f40ea893ab0316aa7902a91fdaf6a9f9423e4da.svg" alt="\[ \abs{x + y} \le \abs{x} + \abs{y}. \]" style="width:8.677em"></div>
+Consequently <img class="m" src="m/d271e7a2d462e734023c21de2db67a377f6aab12.svg" alt="\(\abs{x - z} \le \abs{x - y} + \abs{y - z}\)" style="height:1.096em;vertical-align:-0.274em"> for all
+<img class="m" src="m/cf4393c5dde6f5a6279d4bd5f760f7295b16d915.svg" alt="\(x, y, z \in \R\)" style="height:0.968em;vertical-align:-0.213em">.
+</p>
+
+</div>
+
+<div class="proof" id="org27119c0">
+<p>
+By the proposition, <img class="m" src="m/df010e78eeaaa61fd0e7d6e5bb1cfcb4b49fe2c3.svg" alt="\(-\abs{x} \le x \le \abs{x}\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/291d485558e52ae6be200abc2aec780daf21b6e1.svg" alt="\(-\abs{y} \le y \le \abs{y}\)" style="height:1.096em;vertical-align:-0.274em">. Adding,
+<img class="m" src="m/fb0983f3ba8b8961c81210ef7c40b78543bf5a4d.svg" alt="\(-(\abs{x} + \abs{y}) \le x + y \le \abs{x} + \abs{y}\)" style="height:1.096em;vertical-align:-0.274em">, and the
+proposition read the other way gives
+<img class="m" src="m/21274512749545e7ddca16223fbdaaec85bb02ca.svg" alt="\(\abs{x + y} \le \abs{x} + \abs{y}\)" style="height:1.096em;vertical-align:-0.274em">. For the second form apply the
+first to <img class="m" src="m/627188b8f63ba109ccb3c0a67dce3fd47abe6727.svg" alt="\(x - z = (x - y) + (y - z)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="corollary" id="orgbd34fa1">
+<p>
+For all <img class="m" src="m/7fc42db852820c9f93f227f8c9a9c4a2907e2622.svg" alt="\(x, y \in \R\)" style="height:0.968em;vertical-align:-0.213em">,
+<div class="mb"><img class="m" src="m/4611778ece132ee95fc9d1087f9e30364187f4e3.svg" alt="\[ \bigl| \abs{x} - \abs{y} \bigr| \le \abs{x - y}. \]" style="width:9.407em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="org5991b75">
+<p>
+From <img class="m" src="m/2691d95fb5c97a74e0c9b7db570c70a7515523ef.svg" alt="\(x = (x - y) + y\)" style="height:1.096em;vertical-align:-0.274em"> the triangle inequality gives
+<img class="m" src="m/a5f6a29b3d12b3400c34f56d2d239dbd05ade70c.svg" alt="\(\abs{x} \le \abs{x - y} + \abs{y}\)" style="height:1.096em;vertical-align:-0.274em">, that is
+<img class="m" src="m/84702db59d6673459a3cc9bda6f081becaa5ebd9.svg" alt="\(\abs{x} - \abs{y} \le \abs{x - y}\)" style="height:1.096em;vertical-align:-0.274em">. Exchanging <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> gives
+<img class="m" src="m/708e907a90444ece19daf60610ce1e4c701c0b5e.svg" alt="\(\abs{y} - \abs{x} \le \abs{y - x} = \abs{x - y}\)" style="height:1.096em;vertical-align:-0.274em">. The left-hand side
+of the claim is one of these two quantities.
+</p>
+
+</div>
+
+<div class="remark" id="org1ad447d">
+<p>
+The second form of the triangle inequality is the one that gets used:
+it says the distance from <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> to <img class="m" src="m/a3dcfa6c97b29682527f7556e1c40cc9580c366a.svg" alt="\(z\)" style="height:0.472em;vertical-align:-0.000em"> is at most the distance
+through any waypoint <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em">, and choosing that waypoint well &#x2013; the
+limit, a partial sum, a point of a subsequence &#x2013; is what nearly every
+proof in this course does. The corollary is its usual companion: it
+makes <img class="m" src="m/00a4a852796563bd86ec1a2f478cddb9c787a895.svg" alt="\(x \mapsto \abs{x}\)" style="height:1.096em;vertical-align:-0.274em"> continuous with <img class="m" src="m/de4b7497712791e7fe220f7939a5deace90ace44.svg" alt="\(\delta = \eps\)" style="height:0.761em;vertical-align:-0.000em">, and it
+is what lets an estimate on <img class="m" src="m/06d4e12faec7fc14b09b34b35a30ef5161448bd2.svg" alt="\(\abs{x - y}\)" style="height:1.096em;vertical-align:-0.274em"> be spent directly on
+<img class="m" src="m/650b73cf45e3caaed3014dca186ad98829919387.svg" alt="\(\abs{x}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="bolzano-weierstrass-theorem.html"><span>← previous</span>Bolzano&#x2013;Weierstrass theorem</a><a rel="next" href="limits-and-continuity.html"><span>next →</span>Limits and continuity</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

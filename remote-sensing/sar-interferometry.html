@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAR interferometry (InSAR and DInSAR) · Remote Sensing</title>
+<meta name="description" content="Multiplying one SLC image by the conjugate of another, z_1z_2^*, gives an interferogram whose phase \Delta\phi=\frac{4\pi}{\lambda}\Delta R measures path differences to a fraction of the wavelength: across-track baselines turn it into topography, repeat passes from the same orbit into ground displa…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/sar-interferometry.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="SAR interferometry (InSAR and DInSAR) · Remote Sensing">
+<meta property="og:description" content="Multiplying one SLC image by the conjugate of another, z_1z_2^*, gives an interferogram whose phase \Delta\phi=\frac{4\pi}{\lambda}\Delta R measures path differences to a fraction of the wavelength: across-track baselines turn it into topography, repeat passes from the same orbit into ground displa…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/sar-interferometry.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-acquisition">Acquisition</a> / <a rel="up" href="index.html#a-acquisition--radar">Radar</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Acquisition · Radar</p>
+<h1>SAR interferometry (InSAR and DInSAR)</h1>
+<p class="summary">Multiplying one SLC image by the conjugate of another, <img class="m" src="m/09d5000d4778dbe722d4d49435d14534eaa291fc.svg" alt="\(z_1z_2^*\)" style="height:1.027em;vertical-align:-0.267em">, gives an interferogram whose phase <img class="m" src="m/1f18373c839f1b26541231347749d46d8a37eef1.svg" alt="\(\Delta\phi=\frac{4\pi}{\lambda}\Delta R\)" style="height:1.304em;vertical-align:-0.378em"> measures path differences to a fraction of the wavelength: across-track baselines turn it into topography, repeat passes from the same orbit into ground displacement with millimetre sensitivity; coherence says how reliable it is.</p>
+<p class="rel"><span>needs</span> <a href="sar-complex-image.html">SAR complex, amplitude and intensity images</a></p>
+<p class="rel"><span>see also</span> <a href="synthetic-aperture-radar.html">Synthetic aperture radar (SAR)</a>, <a href="earth-observation-missions.html">Main Earth-observation missions</a>, <a href="remote-sensing-applications.html">Applications of remote sensing</a></p>
+<p class="rel"><span>mentioned in</span> <a href="radar-bands.html">Radar frequency bands</a></p>
+<details class="path"><summary>Learning path: 10 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="radar-equation.html">Radar principle and radar equation</a></li><li><a href="side-looking-radar.html">Side-looking radar geometry</a></li><li><a href="azimuth-resolution.html">Azimuth resolution of a real-aperture radar</a></li><li><a href="backscattering-coefficient.html">Backscattering coefficient</a></li><li><a href="range-resolution.html">Range resolution</a></li><li><a href="chirp-pulse-compression.html">Chirp and pulse compression</a></li><li><a href="synthetic-aperture-radar.html">Synthetic aperture radar (SAR)</a></li><li><a href="sar-complex-image.html">SAR complex, amplitude and intensity images</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org135461b" class="outline-2">
+<h2 id="org135461b">Method</h2>
+<div class="outline-text-2" id="text-org135461b">
+<ul class="org-ul">
+<li><b>Interferogram</b>: <img class="m" src="m/3706f02d610ecf5a5474bb9c285dd9fecf318448.svg" alt="\(z_1z_2^*=A_1A_2e^{j(\phi_1-\phi_2)}\)" style="height:1.245em;vertical-align:-0.274em">. The random scatterer phase cancels if the two acquisitions see the same scatterers; what remains is the geometric phase.</li>
+<li><b>Topography</b>: with perpendicular baseline <img class="m" src="m/fff05b3cfa5d772b61b29450399aad0d138416b8.svg" alt="\(B_\perp\)" style="height:0.913em;vertical-align:-0.164em">, a height change <img class="m" src="m/8b3da72536db2dfc56f146266fdfd48802e5907f.svg" alt="\(h\)" style="height:0.761em;vertical-align:-0.000em"> changes the phase by <img class="m" src="m/32957dfd61b3517208566d4fa3229295d0f06f70.svg" alt="\(\Delta\phi=\frac{4\pi B_\perp h}{\lambda R\sin\theta}\)" style="height:1.367em;vertical-align:-0.383em">; the <b>height of ambiguity</b> <img class="m" src="m/bfcf8bab6d2d00ab6176723a3d2019630e2665d7.svg" alt="\(h_{2\pi}=\frac{\lambda R\sin\theta}{2B_\perp}\)" style="height:1.458em;vertical-align:-0.496em"> is the height giving one fringe (<a href="earth-observation-missions.html">TanDEM-X</a>: single pass, no temporal change).</li>
+<li><b>Displacement (DInSAR)</b>: after removing topography with a DEM, a motion <img class="m" src="m/588903fb08fcda4c95b5c78df0c31fb690799e67.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em"> along the line of sight gives <img class="m" src="m/b08e149094afea1ec99b8c9287e48a4c420f759f.svg" alt="\(\Delta\phi=\frac{4\pi}{\lambda}d\)" style="height:1.304em;vertical-align:-0.378em">: one fringe is <img class="m" src="m/f36776d264082fd045ad89d86905911aeb08cef3.svg" alt="\(\lambda/2\)" style="height:1.096em;vertical-align:-0.274em"> of motion (2.8 cm in <a href="radar-bands.html">C band</a>).</li>
+<li><b>Coherence</b> <img class="m" src="m/c679f413249cd6e0a65efae316a46b930b9eb799.svg" alt="\(\gamma=\dfrac{|E[z_1z_2^*]|}{\sqrt{E|z_1|^2E|z_2|^2}}\in[0,1]\)" style="height:2.802em;vertical-align:-1.233em">: drops with vegetation growth, water, long time intervals (temporal <a href="principal-component-analysis.html">decorrelation</a>) and large baselines.</li>
+<li><b>Phase unwrapping</b>: the phase is known modulo <img class="m" src="m/cc86b0524c62d87bc99078d758effadeca5411a5.svg" alt="\(2\pi\)" style="height:0.706em;vertical-align:-0.000em">; integrating it spatially recovers the absolute value, the hardest step.</li>
+<li><b>Time series</b> (persistent scatterers, SBAS): many acquisitions separate deformation from atmospheric delay: mm/year precision.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org882e167" class="outline-2">
+<h2 id="org882e167">Example</h2>
+<div class="outline-text-2" id="text-org882e167">
+<p>
+<a href="copernicus-sentinel.html">Sentinel-1</a>, <img class="m" src="m/5f7319fcc0172ad0ba2bdf307a2f95b44a42784c.svg" alt="\(\lambda=5.6\)" style="height:0.761em;vertical-align:-0.000em"> cm: a fringe cycle in a differential interferogram is 2.8 cm of line-of-sight motion; earthquakes show tens of concentric fringes, subsiding cities a few per year.
+</p>
+</div>
+</div>
+<div id="outline-container-orgde9733c" class="outline-2">
+<h2 id="orgde9733c">Intuition</h2>
+<div class="outline-text-2" id="text-orgde9733c">
+<p>
+The phase is a ruler graduated in half-wavelengths; comparing two readings of the same ruler shows how much the ground moved.
+</p>
+</div>
+</div>
+<div id="outline-container-org3337d5a" class="outline-2">
+<h2 id="org3337d5a">Pitfall</h2>
+<div class="outline-text-2" id="text-org3337d5a">
+<p>
+Atmospheric water vapour delays the signal by centimetres and looks exactly like deformation in a single interferogram; only stacks of many dates separate the two.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="sar-complex-image.html"><span>← previous</span>SAR complex, amplitude and intensity images</a><a rel="next" href="sar-polarimetry.html"><span>next →</span>SAR polarimetry</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/acquisition--radar.pdf" title="PDF manual">Radar</a> · <a class="pdf" href="pdf/acquisition.pdf" title="PDF manual">Acquisition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

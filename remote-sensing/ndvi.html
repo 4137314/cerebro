@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NDVI and normalised difference indices · Remote Sensing</title>
+<meta name="description" content="\mathrm{NDVI}=\dfrac{\rho_{NIR}-\rho_{red}}{\rho_{NIR}+\rho_{red}}\in[-1,1] exploits the contrast between red absorption by chlorophyll and high NIR reflectance of leaves: dense green vegetation gives 0.6–0.9, soil 0.1–0.2, water negative; the normalisation cancels much of the illumination variatio…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/ndvi.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="NDVI and normalised difference indices · Remote Sensing">
+<meta property="og:description" content="\mathrm{NDVI}=\dfrac{\rho_{NIR}-\rho_{red}}{\rho_{NIR}+\rho_{red}}\in[-1,1] exploits the contrast between red absorption by chlorophyll and high NIR reflectance of leaves: dense green vegetation gives 0.6–0.9, soil 0.1–0.2, water negative; the normalisation cancels much of the illumination variatio…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/ndvi.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-recognition">Recognition</a> / <a rel="up" href="index.html#a-recognition--features">Features</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Recognition · Features</p>
+<h1>NDVI and normalised difference indices</h1>
+<p class="summary"><img class="m" src="m/e03d0d00fc9c51c89db87222e69a7378a2e44ccf.svg" alt="\(\mathrm{NDVI}=\dfrac{\rho_{NIR}-\rho_{red}}{\rho_{NIR}+\rho_{red}}\in[-1,1]\)" style="height:2.345em;vertical-align:-0.962em"> exploits the contrast between red absorption by chlorophyll and high NIR reflectance of leaves: dense green vegetation gives 0.6–0.9, soil 0.1–0.2, water negative; the normalisation cancels much of the illumination variation.</p>
+<p class="rel"><span>needs</span> <a href="spectral-signature.html">Spectral signature</a>, <a href="feature-extraction.html">Feature extraction</a></p>
+<p class="rel"><span>see also</span> <a href="change-detection.html">Change detection</a>, <a href="remote-sensing-applications.html">Applications of remote sensing</a>, <a href="false-color-composite.html">True and false colour composites</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="spectral-signature.html">Spectral signature</a></li><li><a href="recognition-system.html">Recognition systems</a></li><li><a href="feature-extraction.html">Feature extraction</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org44fd9ec" class="outline-2">
+<h2 id="org44fd9ec">Definition</h2>
+<div class="outline-text-2" id="text-org44fd9ec">
+<p>
+<div class="mb"><img class="m" src="m/d854732a80c2dcd504486032017cef3956b05bf5.svg" alt="\[ \mathrm{NDVI}=\frac{\rho_{NIR}-\rho_{red}}{\rho_{NIR}+\rho_{red}}. \]" style="width:10.648em"></div>
+Same pattern for other surfaces: NDWI <img class="m" src="m/e08a9d79c3a4779ba6f6b5816d7b0457dc1267de.svg" alt="\(=(\rho_{green}-\rho_{NIR})/(\rho_{green}+\rho_{NIR})\)" style="height:1.135em;vertical-align:-0.318em"> for open water, NDSI <img class="m" src="m/40a1adf3e24e7588a4aeaf4aa1824a99a9285c9b.svg" alt="\(=(\rho_{green}-\rho_{SWIR})/(\rho_{green}+\rho_{SWIR})\)" style="height:1.135em;vertical-align:-0.318em"> for snow, NBR (NIR, SWIR2) for burn severity.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbfc1d0e" class="outline-2">
+<h2 id="orgbfc1d0e">Derivation</h2>
+<div class="outline-text-2" id="text-orgbfc1d0e">
+<p>
+A shadow or a slope multiplies both bands by the same factor <img class="m" src="m/ffba2bd3deca9ae12b2f58d5d12739b5efaff0ec.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em">: <img class="m" src="m/c186a6effaaee1a2c7216e739874acd06c961119.svg" alt="\((k\rho_N-k\rho_R)/(k\rho_N+k\rho_R)\)" style="height:1.096em;vertical-align:-0.274em"> is unchanged. A ratio-based index is therefore robust to illumination, unlike the simple difference <img class="m" src="m/8764980068665a1ffdbcada7967b096ad568bbf6.svg" alt="\(\rho_N-\rho_R\)" style="height:0.852em;vertical-align:-0.213em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org909fea9" class="outline-2">
+<h2 id="org909fea9">Picture</h2>
+<div class="outline-text-2" id="text-org909fea9">
+<figure class="fig"><img class="m" src="m/4e49ef20b5761606f466536a509a4ba6f3eb88a8.svg" alt="figure" style="width:16.534em"><figcaption><span class="fl">Figure 1.</span> Typical NDVI ranges: water negative, bare soil near zero and vegetation strongly positive.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org2c68c16" class="outline-2">
+<h2 id="org2c68c16">Example</h2>
+<div class="outline-text-2" id="text-org2c68c16">
+<p>
+<a href="copernicus-sentinel.html">Sentinel-2</a>: <img class="m" src="m/916fe3aee5a8d96c4a1cb177b986cac3a217f0bf.svg" alt="\(\mathrm{NDVI}=(B8-B4)/(B8+B4)\)" style="height:1.096em;vertical-align:-0.274em">, on reflectances. NDVI time series track crop phenology: green-up, peak, senescence, harvest.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbf2eb55" class="outline-2">
+<h2 id="orgbf2eb55">Intuition</h2>
+<div class="outline-text-2" id="text-orgbf2eb55">
+<p>
+Vegetation is the only common surface that is dark red and bright infrared at the same time; NDVI measures exactly that contrast.
+</p>
+</div>
+</div>
+<div id="outline-container-orgce239a9" class="outline-2">
+<h2 id="orgce239a9">Pitfall</h2>
+<div class="outline-text-2" id="text-orgce239a9">
+<p>
+NDVI saturates over dense canopies (it stops increasing beyond leaf area index ~3) and is sensitive to soil background in sparse vegetation; indices such as EVI and SAVI correct partially.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="spectral-unmixing.html"><span>← previous</span>Linear spectral unmixing</a><a rel="next" href="photointerpretation.html"><span>next →</span>Photointerpretation</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/recognition--features.pdf" title="PDF manual">Features</a> · <a class="pdf" href="pdf/recognition.pdf" title="PDF manual">Recognition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

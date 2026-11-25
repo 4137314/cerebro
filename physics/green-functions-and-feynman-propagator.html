@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Green's functions and the Feynman propagator · Physics</title>
+<meta name="description" content="The Feynman propagator solves (i\slashed\partial-m)S_F(x-y)=\delta^4(x-y) with the boundary condition that positive energies propagate forward and negative energies backward in time: S_F(p)=\frac{\slashed p+m}{p^2-m^2+i\epsilon}; for photons D_F^{\mu\nu}(q)=\frac{-g^{\mu\nu}}{q^2+i\epsilon} in Feyn…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/green-functions-and-feynman-propagator.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Green's functions and the Feynman propagator · Physics">
+<meta property="og:description" content="The Feynman propagator solves (i\slashed\partial-m)S_F(x-y)=\delta^4(x-y) with the boundary condition that positive energies propagate forward and negative energies backward in time: S_F(p)=\frac{\slashed p+m}{p^2-m^2+i\epsilon}; for photons D_F^{\mu\nu}(q)=\frac{-g^{\mu\nu}}{q^2+i\epsilon} in Feyn…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/green-functions-and-feynman-propagator.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-electrodynamics">Quantum Electrodynamics</a> / <a rel="up" href="index.html#a-quantum-electrodynamics--scattering-theory">Scattering Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Quantum Electrodynamics · Scattering Theory</p>
+<h1>Green's functions and the Feynman propagator</h1>
+<p class="summary">The Feynman propagator solves <img class="m" src="m/8558f030a541c500bed6bb497b5def0b3f583b68.svg" alt="\((i\slashed\partial-m)S_F(x-y)=\delta^4(x-y)\)" style="height:1.202em;vertical-align:-0.277em"> with the boundary condition that positive energies propagate forward and negative energies backward in time: <img class="m" src="m/9c852655247e4e4a35458f1831a6ad64d19b6701.svg" alt="\(S_F(p)=\frac{\slashed p+m}{p^2-m^2+i\epsilon}\)" style="height:1.635em;vertical-align:-0.523em">; for photons <img class="m" src="m/33ba92c4b15f670404ae2dfd7b2268990e764b73.svg" alt="\(D_F^{\mu\nu}(q)=\frac{-g^{\mu\nu}}{q^2+i\epsilon}\)" style="height:1.583em;vertical-align:-0.522em"> in Feynman gauge.</p>
+<p class="rel"><span>needs</span> <a href="propagator-and-path-integral.html">The propagator and Feynman's path integral</a>, <a href="free-dirac-solutions-and-antiparticles.html">Free Dirac solutions, completeness relations and antiparticles</a></p>
+<p class="rel"><span>unlocks</span> <a href="s-matrix-and-cross-sections.html">The S matrix, cross sections and decay rates</a></p>
+<p class="rel"><span>see also</span> <a href="s-matrix-and-cross-sections.html">The S matrix, cross sections and decay rates</a>, <a href="feynman-rules-of-qed.html">Feynman rules of QED in momentum space</a></p>
+<p class="rel"><span>mentioned in</span> <a href="exam-practice-qed.html">Exam practice: quantum electrodynamics (solved)</a>, <a href="laplace-transform-and-transients.html">The Laplace transform and circuit transients</a></p>
+<details class="path"><summary>Learning path: 18 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></li><li><a href="spin-precession-and-rabi-oscillations.html">Spin precession and Rabi oscillations</a></li><li><a href="angular-momentum-algebra.html">Angular momentum: algebra and spectrum</a></li><li><a href="quantum-electrodynamics.html">Quantum electrodynamics: the map of the subject</a></li><li><a href="four-vectors-and-lorentz-transformations.html">Four-vectors, natural units and Mandelstam variables</a></li><li><a href="klein-gordon-equation.html">The Klein–Gordon equation</a></li><li><a href="dirac-equation.html">The Dirac equation</a></li><li><a href="free-dirac-solutions-and-antiparticles.html">Free Dirac solutions, completeness relations and antiparticles</a></li><li><a href="propagator-and-path-integral.html">The propagator and Feynman's path integral</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org3cd86e3" class="outline-2">
+<h2 id="org3cd86e3">Non-relativistic warm-up</h2>
+<div class="outline-text-2" id="text-org3cd86e3">
+<p>
+<img class="m" src="m/2c6c0cef34d433ff5c436dd4a5eeaef9b4f4ac9d.svg" alt="\(G^+(x,t;x',t')=-i\theta(t-t')\bra xe^{-iH(t-t')}\ket{x'}\)" style="height:1.307em;vertical-align:-0.274em"> satisfies <img class="m" src="m/2a3aa8717b3b72423cb90563020b2bd682b4aede.svg" alt="\((i\partial_t-H)G^+=\delta\delta\)" style="height:1.147em;vertical-align:-0.275em"> and propagates the wave forward (Huygens). In energy space <img class="m" src="m/b46d74b4532fdeb83941a90cfb95ffb26427fff7.svg" alt="\(G^+(E)=\frac{1}{E-H+i\epsilon}\)" style="height:1.395em;vertical-align:-0.474em">: the <img class="m" src="m/2ac3b5897b40a4fa088129fac3a093eda954e315.svg" alt="\(+i\epsilon\)" style="height:0.814em;vertical-align:-0.090em"> picks retarded (causal) behaviour. Iterating <img class="m" src="m/562c53ea564b344d3c293256eb3a43d8e5355ed3.svg" alt="\(\psi=\phi+\int G^+V\psi\)" style="height:1.218em;vertical-align:-0.341em"> gives the Born series of <a href="scattering-and-born-approximation.html">scattering theory</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org704df1b" class="outline-2">
+<h2 id="org704df1b">Relativistic propagator (derivation)</h2>
+<div class="outline-text-2" id="text-org704df1b">
+<p>
+Fourier transform: <img class="m" src="m/c7ffda51c3b9d6923fdd83c6d1f209ec5f2f5a26.svg" alt="\(S_F(x)=\int\frac{\dd^4p}{(2\pi)^4}e^{-ip\cdot x}\frac{\slashed p+m}{p^2-m^2+i\epsilon}\)" style="height:1.742em;vertical-align:-0.575em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1103/physrev.76.749" data-full="R. P. Feynman, “The theory of positrons”, Physical Review 76, 749–759 (1949)." aria-label="R. P. Feynman, “The theory of positrons”, Physical Review 76, 749–759 (1949).">Feynman 1949</a>)</span>. Poles at <img class="m" src="m/363dad7f558fb979b68361c7b7e20be867852c68.svg" alt="\(p^0=\pm(E_p-i\epsilon)\)" style="height:1.206em;vertical-align:-0.313em">. For <img class="m" src="m/b53885af8536893c6d009599f192b3897eda334c.svg" alt="\(t&gt;0\)" style="height:0.749em;vertical-align:-0.045em"> close the <img class="m" src="m/d0dc5dc76d435347eddddfdbacb8ecea0cfad941.svg" alt="\(p^0\)" style="height:1.105em;vertical-align:-0.210em"> contour below: only the positive-energy pole, giving <img class="m" src="m/1d42622c7a8de24a299cb69dd96206482090a86f.svg" alt="\(-i\sum_s u\bar u\,e^{-ip\cdot x}/2E\)" style="height:1.234em;vertical-align:-0.333em">; for <img class="m" src="m/35c5d03c080cf453f6224fa01b028368d61cf4b7.svg" alt="\(t&lt;0\)" style="height:0.749em;vertical-align:-0.045em"> close above: negative energies, <img class="m" src="m/aa64254a2a0b3608fa04e926fdf5f5b8c2b281d5.svg" alt="\(+i\sum v\bar v\,e^{+ip\cdot x}/2E\)" style="height:1.179em;vertical-align:-0.271em">. Hence
+<div class="mb"><img class="m" src="m/eb9c141b09e7b1e271bc39d2ec2a076c3f78f296.svg" alt="\[ S_F(x'-x)=-i\theta(t'-t)\sum_{E&gt;0}\psi_E(x')\bar\psi_E(x)+i\theta(t-t')\sum_{E&lt;0}\psi_E(x')\bar\psi_E(x): \]" style="width:34.532em"></div>
+electrons forward, positrons (negative energy backward) — Feynman's boundary conditions.
+</p>
+</div>
+</div>
+<div id="outline-container-org6c53580" class="outline-2">
+<h2 id="org6c53580">Photon propagator</h2>
+<div class="outline-text-2" id="text-org6c53580">
+<p>
+<img class="m" src="m/4c3dcb625cc9495e454045e900f2b68e49b5dc71.svg" alt="\(\Box A^\mu=j^\mu\)" style="height:0.962em;vertical-align:-0.212em"> in Lorenz gauge: <img class="m" src="m/33ba92c4b15f670404ae2dfd7b2268990e764b73.svg" alt="\(D_F^{\mu\nu}(q)=\frac{-g^{\mu\nu}}{q^2+i\epsilon}\)" style="height:1.583em;vertical-align:-0.522em">. Other gauges add terms <img class="m" src="m/bb7eb7a81fe22c58f63cd2836863119797022efd.svg" alt="\(\propto q^\mu q^\nu\)" style="height:0.941em;vertical-align:-0.216em"> that drop out of physical amplitudes by current conservation (<img class="m" src="m/7ce47572c898d44efb1703ab5949cbcf717fb434.svg" alt="\(q_\mu j^\mu=0\)" style="height:1.042em;vertical-align:-0.312em">).
+</p>
+</div>
+</div>
+<div id="outline-container-org463aaf6" class="outline-2">
+<h2 id="org463aaf6">Worked example</h2>
+<div class="outline-text-2" id="text-org463aaf6">
+<p>
+Static limit: exchange of a photon between two charges, <img class="m" src="m/6e162bcebcb74a9f0907caeed577f6b495da08be.svg" alt="\(q^0=0\)" style="height:1.105em;vertical-align:-0.210em">: <img class="m" src="m/e4cc3d9491774dedc676f9523cb7d0faafcf970c.svg" alt="\(\frac{e^2}{\mathbf q^2}\)" style="height:1.642em;vertical-align:-0.526em">. Its 3D Fourier transform is <img class="m" src="m/b9cde17d4a4b6b4e13938f3c826cdf63d88ab958.svg" alt="\(\frac{e^2}{4\pi r}\)" style="height:1.493em;vertical-align:-0.373em"> — the Coulomb potential emerges from the propagator. A massive exchange <img class="m" src="m/1a7e434c396d9f2b27858cfc2462e409d45114bb.svg" alt="\(\frac{1}{\mathbf q^2+\mu^2}\)" style="height:1.453em;vertical-align:-0.523em"> gives the Yukawa potential <img class="m" src="m/e0a86e877287bc36fd10e7d4f9ec13a1238d81fc.svg" alt="\(e^{-\mu r}/r\)" style="height:1.147em;vertical-align:-0.275em"> (range <img class="m" src="m/a49036aec45d979fb9c73a0ac2032dcbb1fc6c6f.svg" alt="\(1/\mu\)" style="height:1.096em;vertical-align:-0.274em">).
+</p>
+</div>
+</div>
+<div id="outline-container-org116f0b2" class="outline-2">
+<h2 id="org116f0b2">Engineering applications</h2>
+<div class="outline-text-2" id="text-org116f0b2">
+<p>
+Green's functions are the universal tool of linear response: impedance and transfer functions in <a href="laplace-transform-and-transients.html">circuits</a>, the dyadic Green's function of antennas, non-equilibrium Green's functions (NEGF) for nanoscale transistor simulation.
+</p>
+</div>
+</div>
+<div id="outline-container-org023ea4e" class="outline-2">
+<h2 id="org023ea4e">Pitfall</h2>
+<div class="outline-text-2" id="text-org023ea4e">
+<p>
+The <img class="m" src="m/1e8efad9cebfd64f619be55c87a55e52a46dff31.svg" alt="\(i\epsilon\)" style="height:0.723em;vertical-align:-0.000em"> is not a technicality: choosing <img class="m" src="m/6e27b27f238df86cc0cfabaa49b381bdd48dadd5.svg" alt="\(-i\epsilon\)" style="height:0.814em;vertical-align:-0.090em"> gives the advanced propagator and violates causality; choosing the retarded one for both poles loses antiparticles.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="gamma-matrix-traces.html"><span>← previous</span>Trace theorems for gamma matrices</a><a rel="next" href="s-matrix-and-cross-sections.html"><span>next →</span>The S matrix, cross sections and decay rates</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-electrodynamics--scattering-theory.pdf" title="PDF manual">Scattering Theory</a> · <a class="pdf" href="pdf/quantum-electrodynamics.pdf" title="PDF manual">Quantum Electrodynamics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

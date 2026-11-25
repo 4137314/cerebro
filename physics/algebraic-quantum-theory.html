@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Algebraic quantum theory: C*-algebras, GNS and Gleason · Physics</title>
+<meta name="description" content="Abstractly, observables form a C*-algebra \mathfrak A and states are positive normalised linear functionals \omega; the GNS construction rebuilds a Hilbert space with \omega(A)=\braket{\Omega|\pi(A)\Omega}; Gleason's theorem shows that in dimension \ge3 Born's rule \Tr(\rho P) is the only consisten…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/algebraic-quantum-theory.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Algebraic quantum theory: C*-algebras, GNS and Gleason · Physics">
+<meta property="og:description" content="Abstractly, observables form a C*-algebra \mathfrak A and states are positive normalised linear functionals \omega; the GNS construction rebuilds a Hilbert space with \omega(A)=\braket{\Omega|\pi(A)\Omega}; Gleason's theorem shows that in dimension \ge3 Born's rule \Tr(\rho P) is the only consisten…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/algebraic-quantum-theory.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-mechanics">Quantum Mechanics</a> / <a rel="up" href="index.html#a-quantum-mechanics--mathematical-foundations">Mathematical Foundations</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Quantum Mechanics · Mathematical Foundations</p>
+<h1>Algebraic quantum theory: C*-algebras, GNS and Gleason</h1>
+<p class="summary">Abstractly, observables form a C*-algebra <img class="m" src="m/dded8f704f3c0131d32c548e3f6b2f0b45dcd7e1.svg" alt="\(\mathfrak A\)" style="height:0.758em;vertical-align:-0.000em"> and states are positive normalised linear functionals <img class="m" src="m/6f82683b85c04ff62db49f40d5190a83749239dd.svg" alt="\(\omega\)" style="height:0.472em;vertical-align:-0.000em">; the GNS construction rebuilds a Hilbert space with <img class="m" src="m/958c7ba5dbb0bf67a24a1e32d85317565c1029b2.svg" alt="\(\omega(A)=\braket{\Omega|\pi(A)\Omega}\)" style="height:1.096em;vertical-align:-0.274em">; Gleason's theorem shows that in dimension <img class="m" src="m/2ee5d61d6ff5d10e633e40fd111d2896fcbe056e.svg" alt="\(\ge3\)" style="height:0.855em;vertical-align:-0.145em"> Born's rule <img class="m" src="m/2d4a02ced8d094983f3c9d748ebb895ba780505c.svg" alt="\(\Tr(\rho P)\)" style="height:1.096em;vertical-align:-0.274em"> is the only consistent probability on projections.</p>
+<p class="rel"><span>needs</span> <a href="stone-and-stone-von-neumann-theorems.html">Stone's theorem and the Stone–von Neumann theorem</a>, <a href="density-operator.html">The density operator: pure and mixed states</a></p>
+<p class="rel"><span>see also</span> <a href="quantum-electrodynamics.html">Quantum electrodynamics: the map of the subject</a></p>
+<details class="path"><summary>Learning path: 12 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="density-operator.html">The density operator: pure and mixed states</a></li><li><a href="self-adjoint-operators-and-spectral-theorem.html">Self-adjoint operators and the spectral theorem</a></li><li><a href="stone-and-stone-von-neumann-theorems.html">Stone's theorem and the Stone–von Neumann theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orga8eacf7" class="outline-2">
+<h2 id="orga8eacf7">Definitions</h2>
+<div class="outline-text-2" id="text-orga8eacf7">
+<ul class="org-ul">
+<li><b>C</b>-algebra*: Banach <b>-algebra with <img class="m" src="m/f817e8bc944d879437fe3577c9123f484e3e70da.svg" alt="\(\|A^*A\|=\|A\|^2\)" style="height:1.166em;vertical-align:-0.268em"> <span class="cite">(<a class="ref" href="references.html#ref-gelfand1943" data-full="I. Gelfand and M. Neumark, “On the imbedding of normed rings into the ring of operators in Hilbert space”, Matematicheskii Sbornik 12, 197–213 (1943)." aria-label="I. Gelfand and M. Neumark, “On the imbedding of normed rings into the ring of operators in Hilbert space”, Matematicheskii Sbornik 12, 197–213 (1943).">Gelfand and Neumark 1943</a>)</span>. Commutative examples: <img class="m" src="m/64f8c3cfb1c99f582d27074669144d00c844cb27.svg" alt="\(C_0(X)\)" style="height:1.096em;vertical-align:-0.274em">, the classical observables on phase space <img class="m" src="m/30d07b2b05df49f912c12593fcc3d3ba2384c795.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> (Gelfand: every commutative C</b>-algebra is of this form). Non-commutative: <img class="m" src="m/89314c1774c2efda825faaa694adb62753ab786e.svg" alt="\(B(\mathcal H)\)" style="height:1.096em;vertical-align:-0.274em">, the compact operators, the Weyl algebra.</li>
+<li><b>State</b>: linear <img class="m" src="m/e2cac69b0d0e19fdc617a1593615084b5319d463.svg" alt="\(\omega:\mathfrak A\to\mathbb C\)" style="height:0.758em;vertical-align:-0.000em"> with <img class="m" src="m/8c6d4ef980a3bc9d315f65b7e709d5db10007da5.svg" alt="\(\omega(A^*A)\ge0\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/128f3c370db53e4483f69dc63913b014d3d868ca.svg" alt="\(\omega(1)=1\)" style="height:1.096em;vertical-align:-0.274em">. Pure states are extreme points of the convex set of states.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org73932c8" class="outline-2">
+<h2 id="org73932c8">GNS construction</h2>
+<div class="outline-text-2" id="text-org73932c8">
+<p>
+Given <img class="m" src="m/6f82683b85c04ff62db49f40d5190a83749239dd.svg" alt="\(\omega\)" style="height:0.472em;vertical-align:-0.000em">, define <img class="m" src="m/e61d1210852d3f1f7df3c3ebfd1b8ce56e7b339d.svg" alt="\(\braket{A|B}=\omega(A^*B)\)" style="height:1.096em;vertical-align:-0.274em"> on <img class="m" src="m/dded8f704f3c0131d32c548e3f6b2f0b45dcd7e1.svg" alt="\(\mathfrak A\)" style="height:0.758em;vertical-align:-0.000em">; quotient by null vectors <img class="m" src="m/b157200db89105527c301b35804de8bdb1e99e84.svg" alt="\(N=\{A:\omega(A^*A)=0\}\)" style="height:1.096em;vertical-align:-0.274em"> and complete: <img class="m" src="m/92dddb35884fe8a6732f0f34bcfa8c57f83acaac.svg" alt="\(\mathcal H_\omega\)" style="height:0.913em;vertical-align:-0.164em">. <img class="m" src="m/dded8f704f3c0131d32c548e3f6b2f0b45dcd7e1.svg" alt="\(\mathfrak A\)" style="height:0.758em;vertical-align:-0.000em"> acts by left multiplication <img class="m" src="m/12cabc007664eef34c063bfa2cd45df16a87b079.svg" alt="\(\pi_\omega(A)[B]=[AB]\)" style="height:1.096em;vertical-align:-0.274em">, and <img class="m" src="m/81eca789ee91e7a31122d4bdb7ed6a3eed82af4e.svg" alt="\(\Omega=[1]\)" style="height:1.096em;vertical-align:-0.274em"> is cyclic with <img class="m" src="m/4f1dd29c8ec8adb58bb0bb71dd0d3cf4d7b67cfe.svg" alt="\(\omega(A)=\braket{\Omega|\pi_\omega(A)\Omega}\)" style="height:1.096em;vertical-align:-0.274em">. <img class="m" src="m/4a896e96c47978ee77bb3f69b9916f2bc4898182.svg" alt="\(\pi_\omega\)" style="height:0.636em;vertical-align:-0.165em"> is irreducible iff <img class="m" src="m/6f82683b85c04ff62db49f40d5190a83749239dd.svg" alt="\(\omega\)" style="height:0.472em;vertical-align:-0.000em"> is pure. Density matrices are the normal states of <img class="m" src="m/89314c1774c2efda825faaa694adb62753ab786e.svg" alt="\(B(\mathcal H)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orge662afc" class="outline-2">
+<h2 id="orge662afc">Gleason's theorem</h2>
+<div class="outline-text-2" id="text-orge662afc">
+<p>
+If <img class="m" src="m/b78c2519c9b5787de03956ecd2d03094cbd1d931.svg" alt="\(\dim\mathcal H\ge3\)" style="height:0.910em;vertical-align:-0.146em"> and <img class="m" src="m/a79d9cc1fa125d82ec4f8b0ce16f0e40b22f9d6d.svg" alt="\(\mu\)" style="height:0.685em;vertical-align:-0.212em"> assigns to each projection a number in <img class="m" src="m/c7b0db2ddfcc3215cb95bf557bf025e08257d8c5.svg" alt="\([0,1]\)" style="height:1.096em;vertical-align:-0.274em">, additive on orthogonal families with <img class="m" src="m/3558a5a85bb256353713fb96229d04878e486300.svg" alt="\(\mu(1)=1\)" style="height:1.096em;vertical-align:-0.274em">, then <img class="m" src="m/fb96de2c45f244f5ad7ac21ca77d08179be75112.svg" alt="\(\mu(P)=\Tr(\rho P)\)" style="height:1.096em;vertical-align:-0.274em"> for a unique density operator <img class="m" src="m/779d1be5c66415989d53bcdef24e23c6d8decb2e.svg" alt="\(\rho\)" style="height:0.685em;vertical-align:-0.212em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1090/s0002-9904-1947-08742-5" data-full="I. E. Segal, “Irreducible representations of operator algebras”, Bulletin of the American Mathematical Society 53, 73–88 (1947)." aria-label="I. E. Segal, “Irreducible representations of operator algebras”, Bulletin of the American Mathematical Society 53, 73–88 (1947).">Segal 1947</a>; <a class="ref" href="https://doi.org/10.1512/iumj.1957.6.56050" data-full="A. M. Gleason, “Measures on the closed subspaces of a Hilbert space”, Journal of Mathematics and Mechanics 6, 885–893 (1957)." aria-label="A. M. Gleason, “Measures on the closed subspaces of a Hilbert space”, Journal of Mathematics and Mechanics 6, 885–893 (1957).">Gleason 1957</a>)</span>. Consequence (Kochen–Specker): no assignment of definite values <img class="m" src="m/bdda1bc1f9523ffb30a24130fdcc5a9e054f2206.svg" alt="\(\{0,1\}\)" style="height:1.096em;vertical-align:-0.274em"> to all projections is possible — non-contextual hidden variables are excluded.
+</p>
+</div>
+</div>
+<div id="outline-container-org9d3fad9" class="outline-2">
+<h2 id="org9d3fad9">Local quantum physics (Haag–Kastler)</h2>
+<div class="outline-text-2" id="text-org9d3fad9">
+<p>
+To each bounded spacetime region <img class="m" src="m/86ae7992883b3caecafd6c9386c85f1dfbf37b15.svg" alt="\(\mathcal O\)" style="height:0.749em;vertical-align:-0.000em"> a C*-algebra <img class="m" src="m/63c36f3264221627d32cd625983808621cf861b1.svg" alt="\(\mathfrak A(\mathcal O)\)" style="height:1.096em;vertical-align:-0.274em">: isotony <img class="m" src="m/7d3279f824918b0ab58c0139e4c1b87180b98a23.svg" alt="\(\mathcal O_1\subset\mathcal O_2\Rightarrow\mathfrak A(\mathcal O_1)\subset\mathfrak A(\mathcal O_2)\)" style="height:1.096em;vertical-align:-0.274em">, <b>Einstein causality</b> (spacelike-separated algebras commute), covariance under Poincaré <span class="cite">(<a class="ref" href="https://doi.org/10.1063/1.1704187" data-full="R. Haag and D. Kastler, “An algebraic approach to quantum field theory”, Journal of Mathematical Physics 5, 848–861 (1964)." aria-label="R. Haag and D. Kastler, “An algebraic approach to quantum field theory”, Journal of Mathematical Physics 5, 848–861 (1964).">Haag and Kastler 1964</a>)</span>. Different vacua are inequivalent GNS representations of the same algebra (<a href="stone-and-stone-von-neumann-theorems.html">Stone–von Neumann fails</a> for fields).
+</p>
+</div>
+</div>
+<div id="outline-container-org3f7a3e6" class="outline-2">
+<h2 id="org3f7a3e6">Worked example</h2>
+<div class="outline-text-2" id="text-org3f7a3e6">
+<p>
+Qubit: <img class="m" src="m/1ba9f86fb70191a022373c336e5a5992bfc42bf4.svg" alt="\(\mathfrak A=M_2(\mathbb C)\)" style="height:1.096em;vertical-align:-0.274em">, state <img class="m" src="m/4f9718d6ea6d2cf2512a316a72bb8a4763e206c5.svg" alt="\(\omega(A)=\Tr(\rho A)\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/12ae6e060ba277f4414b35effa736400e0cb41e6.svg" alt="\(\rho=\tfrac12(1+\mathbf r\cdot\boldsymbol\sigma)\)" style="height:1.304em;vertical-align:-0.378em">. For <img class="m" src="m/8bceecc1d78d0d7ed97e751e117a457bd775d490.svg" alt="\(|\mathbf r|&lt;1\)" style="height:1.096em;vertical-align:-0.274em"> the GNS space is <img class="m" src="m/4473b436e535afa999df3ecd05a8a5596cebc9ad.svg" alt="\(\mathbb C^4\)" style="height:0.892em;vertical-align:-0.000em"> (two copies of <img class="m" src="m/756d3e7634f3b2b081dc9746fd3f0e37eb4c1a54.svg" alt="\(\mathbb C^2\)" style="height:0.892em;vertical-align:-0.000em">, a purification); for <img class="m" src="m/ac000b7cdb5bba6ed6e8821f39d200942a6c1443.svg" alt="\(|\mathbf r|=1\)" style="height:1.096em;vertical-align:-0.274em"> it is <img class="m" src="m/756d3e7634f3b2b081dc9746fd3f0e37eb4c1a54.svg" alt="\(\mathbb C^2\)" style="height:0.892em;vertical-align:-0.000em"> and irreducible.
+</p>
+</div>
+</div>
+<div id="outline-container-org004063f" class="outline-2">
+<h2 id="org004063f">Engineering applications</h2>
+<div class="outline-text-2" id="text-org004063f">
+<p>
+Thermal states of infinite systems (KMS states) underpin quantum statistical mechanics of solids and lasers; Gleason/Kochen–Specker contextuality is a resource certified in quantum-computing benchmarks; the classical limit <img class="m" src="m/0b24b485c831a3d816fd2571e84f7f21c23d5753.svg" alt="\(\hbar\to0\)" style="height:0.755em;vertical-align:-0.000em"> as a deformation of algebras (Landsman) justifies semiclassical device models.
+</p>
+</div>
+</div>
+<div id="outline-container-org553e7d9" class="outline-2">
+<h2 id="org553e7d9">Pitfall</h2>
+<div class="outline-text-2" id="text-org553e7d9">
+<p>
+Gleason fails in dimension 2 (a qubit admits non-Born measures on projections); Bell/CHSH arguments are needed there.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="stone-and-stone-von-neumann-theorems.html"><span>← previous</span>Stone's theorem and the Stone–von Neumann theorem</a><a rel="next" href="group-representations-and-spin.html"><span>next →</span>Group representations, Wigner's theorem and spin</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-mechanics--mathematical-foundations.pdf" title="PDF manual">Mathematical Foundations</a> · <a class="pdf" href="pdf/quantum-mechanics.pdf" title="PDF manual">Quantum Mechanics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edge detection and directional filters · Remote Sensing</title>
+<meta name="description" content="Edges are places of large local change, detected by derivative filters: Sobel or Prewitt kernels estimate the gradient components G_x, G_y, whose magnitude \sqrt{G_x^2+G_y^2} marks edges and whose angle gives their orientation; directional filters respond to one orientation only, the Laplacian to a…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/edge-detection.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Edge detection and directional filters · Remote Sensing">
+<meta property="og:description" content="Edges are places of large local change, detected by derivative filters: Sobel or Prewitt kernels estimate the gradient components G_x, G_y, whose magnitude \sqrt{G_x^2+G_y^2} marks edges and whose angle gives their orientation; directional filters respond to one orientation only, the Laplacian to a…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/edge-detection.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--filtering">Filtering</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Processing · Filtering</p>
+<h1>Edge detection and directional filters</h1>
+<p class="summary">Edges are places of large local change, detected by derivative filters: Sobel or Prewitt kernels estimate the gradient components <img class="m" src="m/a7e719bb64e9c3b9538b60b81ea0db270e69fa65.svg" alt="\(G_x\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/a7e45f888d8082c6c3bfd9792eeb6392bf48df6b.svg" alt="\(G_y\)" style="height:1.062em;vertical-align:-0.319em">, whose magnitude <img class="m" src="m/e6b5f0947a02f34b7604383419a6476c3551bcd6.svg" alt="\(\sqrt{G_x^2+G_y^2}\)" style="height:2.016em;vertical-align:-0.746em"> marks edges and whose angle gives their orientation; directional filters respond to one orientation only, the Laplacian to all, at zero crossings.</p>
+<p class="rel"><span>needs</span> <a href="moving-window-filters.html">Moving-window (convolution) filters</a></p>
+<p class="rel"><span>see also</span> <a href="image-thresholding.html">Histogram thresholding</a>, <a href="frequency-domain-filtering.html">Filtering in the frequency domain</a></p>
+<p class="rel"><span>mentioned in</span> <a href="image-segmentation.html">Image segmentation</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="moving-window-filters.html">Moving-window (convolution) filters</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgacfd62c" class="outline-2">
+<h2 id="orgacfd62c">Method</h2>
+<div class="outline-text-2" id="text-orgacfd62c">
+<p>
+Sobel kernels:
+<div class="mb"><img class="m" src="m/d9b8627ca7121517f46bc3372f760622643ee0a6.svg" alt="\[ w_x=\begin{pmatrix}-1&amp;0&amp;1\\-2&amp;0&amp;2\\-1&amp;0&amp;1\end{pmatrix},\quad w_y=\begin{pmatrix}-1&amp;-2&amp;-1\\0&amp;0&amp;0\\1&amp;2&amp;1\end{pmatrix}, \]" style="width:22.739em"></div>
+<img class="m" src="m/d2a66d26a26e2fc75900a84ca1b5080684a434a3.svg" alt="\(|\nabla I|=\sqrt{G_x^2+G_y^2}\)" style="height:2.016em;vertical-align:-0.746em">, <img class="m" src="m/d5949e4ee33d433527dc0edc600eddf4100b1ec8.svg" alt="\(\theta=\operatorname{atan2}(G_y,G_x)\)" style="height:1.135em;vertical-align:-0.318em">. Prewitt uses 1 instead of 2 (less smoothing). Laplacian <img class="m" src="m/8af51f0a3329d6dbf881d3159a7569177f412cc6.svg" alt="\(\begin{pmatrix}0&amp;1&amp;0\\1&amp;-4&amp;1\\0&amp;1&amp;0\end{pmatrix}\)" style="height:3.945em;vertical-align:-1.696em">: second derivative, edges at zero crossings, very noise sensitive (often after Gaussian smoothing). <b>Directional</b> filters (e.g. <img class="m" src="m/f74896dd43d5b2690910de73370e1b0f29b8fc92.svg" alt="\(w_x\)" style="height:0.636em;vertical-align:-0.165em"> alone, or kernels rotated by 45°) highlight linear features of a given orientation: faults, field boundaries. Thresholding the gradient magnitude gives an edge map.
+</p>
+</div>
+</div>
+<div id="outline-container-org7d9f1c5" class="outline-2">
+<h2 id="org7d9f1c5">Example</h2>
+<div class="outline-text-2" id="text-org7d9f1c5">
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="v">gx</span> = ndimage.sobel(band.astype(<span class="b">float</span>), axis=1)
+<span class="v">gy</span> = ndimage.sobel(band.astype(<span class="b">float</span>), axis=0)
+<span class="v">mag</span> = np.hypot(gx, gy); <span class="v">edges</span> = mag &gt; np.percentile(mag, 95)</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org463ae42" class="outline-2">
+<h2 id="org463ae42">Intuition</h2>
+<div class="outline-text-2" id="text-org463ae42">
+<p>
+Edge detectors are discrete derivatives: flat regions give zero, steps give large responses, and the direction of steepest change is perpendicular to the edge.
+</p>
+</div>
+</div>
+<div id="outline-container-org52ac543" class="outline-2">
+<h2 id="org52ac543">Pitfall</h2>
+<div class="outline-text-2" id="text-org52ac543">
+<p>
+Derivatives amplify noise; on SAR images, with multiplicative speckle, difference-based detectors fail and ratio-based detectors are used instead.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="moving-window-filters.html"><span>← previous</span>Moving-window (convolution) filters</a><a rel="next" href="discrete-fourier-transform.html"><span>next →</span>Two-dimensional discrete Fourier transform</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--filtering.pdf" title="PDF manual">Filtering</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

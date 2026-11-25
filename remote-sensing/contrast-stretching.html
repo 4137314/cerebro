@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contrast stretching · Remote Sensing</title>
+<meta name="description" content="Radiometric enhancement maps the occupied DN range onto the full display range: linear stretching \mathrm{GL}=255(\mathrm{DN}-\mathrm{DN}_{min})/(\mathrm{DN}_{max}-\mathrm{DN}_{min}), linear with saturation at percentiles to ignore outliers, piecewise linear, or nonlinear (logarithmic, exponential)…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/contrast-stretching.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Contrast stretching · Remote Sensing">
+<meta property="og:description" content="Radiometric enhancement maps the occupied DN range onto the full display range: linear stretching \mathrm{GL}=255(\mathrm{DN}-\mathrm{DN}_{min})/(\mathrm{DN}_{max}-\mathrm{DN}_{min}), linear with saturation at percentiles to ignore outliers, piecewise linear, or nonlinear (logarithmic, exponential)…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/contrast-stretching.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--enhancement">Enhancement</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Processing · Enhancement</p>
+<h1>Contrast stretching</h1>
+<p class="summary">Radiometric enhancement maps the occupied DN range onto the full display range: linear stretching <img class="m" src="m/9452538cdeacb6ccc2c4042dd4b58703ea155b56.svg" alt="\(\mathrm{GL}=255(\mathrm{DN}-\mathrm{DN}_{min})/(\mathrm{DN}_{max}-\mathrm{DN}_{min})\)" style="height:1.096em;vertical-align:-0.274em">, linear with saturation at percentiles to ignore outliers, piecewise linear, or nonlinear (logarithmic, exponential) to expand dark or bright tones.</p>
+<p class="rel"><span>needs</span> <a href="look-up-table.html">Look-up tables and visualization</a>, <a href="image-histogram.html">Image histogram</a></p>
+<p class="rel"><span>unlocks</span> <a href="histogram-equalization.html">Histogram equalization</a>, <a href="false-color-composite.html">True and false colour composites</a></p>
+<p class="rel"><span>see also</span> <a href="histogram-equalization.html">Histogram equalization</a>, <a href="false-color-composite.html">True and false colour composites</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li><li><a href="look-up-table.html">Look-up tables and visualization</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgb8a6b3b" class="outline-2">
+<h2 id="orgb8a6b3b">Method</h2>
+<div class="outline-text-2" id="text-orgb8a6b3b">
+<ul class="org-ul">
+<li><b>Linear</b>: <img class="m" src="m/b17de8325cd1e4e007df559b09253113bf9f138d.svg" alt="\(\mathrm{GL}=a\,\mathrm{DN}+b\)" style="height:0.852em;vertical-align:-0.094em">, with <img class="m" src="m/9cfcf84b3df03a1ae802d0434fc0451db2acd3c5.svg" alt="\(a=255/(\mathrm{DN}_{max}-\mathrm{DN}_{min})\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/59a6ff778f617e2ee35265c08f62ab8f610017d5.svg" alt="\(b=-a\,\mathrm{DN}_{min}\)" style="height:0.925em;vertical-align:-0.167em">: a translation and a scaling of the histogram.</li>
+<li><b>Linear with saturation</b>: <img class="m" src="m/5326dfa8bb8709edfd3746f3e8ddd684678d73e8.svg" alt="\(\mathrm{DN}_{min},\mathrm{DN}_{max}\)" style="height:0.962em;vertical-align:-0.212em"> taken at percentiles (e.g. 2% and 98%); values outside are clipped to 0 or 255. A few very bright pixels (clouds, metal roofs) no longer waste the range.</li>
+<li><b>Piecewise linear</b>: different slopes for different DN intervals, to favour the interval of interest (water vs land).</li>
+<li><b>Nonlinear</b>: <img class="m" src="m/cf3db2d299df091b77b68655fd1cd5210fe6c114.svg" alt="\(\mathrm{GL}=c\log(1+\mathrm{DN})\)" style="height:1.096em;vertical-align:-0.274em"> expands dark tones (useful for SAR amplitude); power laws (gamma) or exponentials expand bright tones; <a href="histogram-equalization.html">equalisation</a> is the data-driven nonlinear case.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org31a1fa9" class="outline-2">
+<h2 id="org31a1fa9">Picture</h2>
+<div class="outline-text-2" id="text-org31a1fa9">
+<figure class="fig"><img class="m" src="m/c9f17d89baa9828a4976def1fb93c71e336b8271.svg" alt="figure" style="width:19.088em"><figcaption><span class="fl">Figure 1.</span> Contrast-stretching functions mapping digital numbers (DN) to grey levels (GL): identity, linear stretch with saturation, and logarithmic.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org38bba86" class="outline-2">
+<h2 id="org38bba86">Example</h2>
+<div class="outline-text-2" id="text-org38bba86">
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="v">lo</span>, <span class="v">hi</span> = np.percentile(band, [2, 98])
+<span class="v">gl</span> = np.clip(255 * (band - lo) / (hi - lo), 0, 255).astype(np.uint8)</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org65dcde7" class="outline-2">
+<h2 id="org65dcde7">Intuition</h2>
+<div class="outline-text-2" id="text-org65dcde7">
+<p>
+Stretching spends the display's gray levels where the data are, instead of on empty parts of the range.
+</p>
+</div>
+</div>
+<div id="outline-container-org1d1a52d" class="outline-2">
+<h2 id="org1d1a52d">Pitfall</h2>
+<div class="outline-text-2" id="text-org1d1a52d">
+<p>
+Stretching each band separately for a colour composite changes colour balance between images: two composites stretched independently cannot be compared by colour.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="look-up-table.html"><span>← previous</span>Look-up tables and visualization</a><a rel="next" href="histogram-equalization.html"><span>next →</span>Histogram equalization</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--enhancement.pdf" title="PDF manual">Enhancement</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAR polarimetry · Remote Sensing</title>
+<meta name="description" content="A fully polarimetric radar measures the complex scattering matrix S=\begin{pmatrix}S_{HH}&amp;S_{HV}\\S_{VH}&amp;S_{VV}\end{pmatrix} of each cell; decompositions such as Pauli separate surface (single-bounce), double-bounce and volume scattering, which map naturally onto bare soil and water, buildings and …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/sar-polarimetry.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="SAR polarimetry · Remote Sensing">
+<meta property="og:description" content="A fully polarimetric radar measures the complex scattering matrix S=\begin{pmatrix}S_{HH}&amp;S_{HV}\\S_{VH}&amp;S_{VV}\end{pmatrix} of each cell; decompositions such as Pauli separate surface (single-bounce), double-bounce and volume scattering, which map naturally onto bare soil and water, buildings and …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/sar-polarimetry.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-acquisition">Acquisition</a> / <a rel="up" href="index.html#a-acquisition--radar">Radar</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Acquisition · Radar</p>
+<h1>SAR polarimetry</h1>
+<p class="summary">A fully polarimetric radar measures the complex scattering matrix <img class="m" src="m/c1f1a39e16fefbd850c3f28fd7f6f9bfca099eef.svg" alt="\(S=\begin{pmatrix}S_{HH}&amp;S_{HV}\\S_{VH}&amp;S_{VV}\end{pmatrix}\)" style="height:2.630em;vertical-align:-1.052em"> of each cell; decompositions such as Pauli separate surface (single-bounce), double-bounce and volume scattering, which map naturally onto bare soil and water, buildings and tree trunks, and vegetation canopies.</p>
+<p class="rel"><span>needs</span> <a href="backscattering-coefficient.html">Backscattering coefficient</a>, <a href="sar-complex-image.html">SAR complex, amplitude and intensity images</a></p>
+<p class="rel"><span>see also</span> <a href="radar-bands.html">Radar frequency bands</a>, <a href="earth-observation-missions.html">Main Earth-observation missions</a></p>
+<details class="path"><summary>Learning path: 10 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="radar-equation.html">Radar principle and radar equation</a></li><li><a href="side-looking-radar.html">Side-looking radar geometry</a></li><li><a href="azimuth-resolution.html">Azimuth resolution of a real-aperture radar</a></li><li><a href="backscattering-coefficient.html">Backscattering coefficient</a></li><li><a href="range-resolution.html">Range resolution</a></li><li><a href="chirp-pulse-compression.html">Chirp and pulse compression</a></li><li><a href="synthetic-aperture-radar.html">Synthetic aperture radar (SAR)</a></li><li><a href="sar-complex-image.html">SAR complex, amplitude and intensity images</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgf4af9b9" class="outline-2">
+<h2 id="orgf4af9b9">Definition</h2>
+<div class="outline-text-2" id="text-orgf4af9b9">
+<p>
+The scattering matrix relates transmitted and received fields in the H/V basis; in the monostatic case <img class="m" src="m/a7e158ad43d81f8746a1aa8da7aba73b192cb6df.svg" alt="\(S_{HV}=S_{VH}\)" style="height:0.913em;vertical-align:-0.164em">. Acquisition modes: single-pol (one channel), dual-pol (e.g. VV+VH, <a href="copernicus-sentinel.html">Sentinel-1</a>), quad-pol (all four, RADARSAT-2, <a href="earth-observation-missions.html">Biomass</a>).
+</p>
+
+<p>
+<b>Pauli decomposition</b>:
+<div class="mb"><img class="m" src="m/ba65981140b79252c37432c7db77610a2687feda.svg" alt="\[ \mathbf k=\frac{1}{\sqrt2}\big(S_{HH}+S_{VV},\ S_{HH}-S_{VV},\ 2S_{HV}\big). \]" style="width:21.138em"></div>
+</p>
+<ul class="org-ul">
+<li><img class="m" src="m/93fe6e19a31941069365641b3e55abced607b91e.svg" alt="\(|S_{HH}+S_{VV}|^2\)" style="height:1.166em;vertical-align:-0.268em">: odd-bounce (surface) scattering — blue;</li>
+<li><img class="m" src="m/980e3c7882c33dd8b90dc2cbbfa321c848a2fe36.svg" alt="\(|S_{HH}-S_{VV}|^2\)" style="height:1.166em;vertical-align:-0.268em">: even-bounce (dihedral) scattering — red;</li>
+<li><img class="m" src="m/4120a1205c8acfc3ce45d55059697470c94d1532.svg" alt="\(|2S_{HV}|^2\)" style="height:1.166em;vertical-align:-0.268em">: <a href="backscattering-coefficient.html">volume scattering</a> (random orientations) — green.</li>
+</ul>
+<p>
+The <a href="false-color-composite.html">RGB composite</a> reads directly as soil/water, buildings, vegetation.
+</p>
+</div>
+</div>
+<div id="outline-container-org9ff6718" class="outline-2">
+<h2 id="org9ff6718">Intuition</h2>
+<div class="outline-text-2" id="text-org9ff6718">
+<p>
+A wave hitting a flat surface keeps its polarization; bouncing twice in a corner flips the sign between H and V; a tangle of branches scrambles it. Measuring all combinations tells the mechanisms apart.
+</p>
+</div>
+</div>
+<div id="outline-container-orge8b4d0a" class="outline-2">
+<h2 id="orge8b4d0a">Pitfall</h2>
+<div class="outline-text-2" id="text-orge8b4d0a">
+<p>
+A building rotated with respect to the radar's look direction no longer acts as a clean dihedral and shows up as "volume" scattering; orientation-angle compensation is needed before interpreting decompositions.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="sar-interferometry.html"><span>← previous</span>SAR interferometry (InSAR and DInSAR)</a><a rel="next" href="earth-observation-missions.html"><span>next →</span>Main Earth-observation missions</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/acquisition--radar.pdf" title="PDF manual">Radar</a> · <a class="pdf" href="pdf/acquisition.pdf" title="PDF manual">Acquisition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

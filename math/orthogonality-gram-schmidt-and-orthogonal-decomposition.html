@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orthogonality, Gram-Schmidt and orthogonal decomposition · Mathematics</title>
+<meta name="description" content="The Cauchy-Schwarz inequality says an inner product defines angles; orthogonality is the case where the angle is right, and it is worth isolating because it turns a subspace into a direction and a complement at once. Gram-Schmidt is the statement that the orthogonal viewpoint costs nothing: every f…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/orthogonality-gram-schmidt-and-orthogonal-decomposition.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Orthogonality, Gram-Schmidt and orthogonal decomposition · Mathematics">
+<meta property="og:description" content="The Cauchy-Schwarz inequality says an inner product defines angles; orthogonality is the case where the angle is right, and it is worth isolating because it turns a subspace into a direction and a complement at once. Gram-Schmidt is the statement that the orthogonal viewpoint costs nothing: every f…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/orthogonality-gram-schmidt-and-orthogonal-decomposition.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-geometry">Geometry</a> / <a rel="up" href="index.html#a-geometry--linear-algebra">Linear Algebra</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Geometry · Linear Algebra</p>
+<h1>Orthogonality, Gram-Schmidt and orthogonal decomposition</h1>
+<p class="summary">The <a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a> says an <a href="inner-product-space.html">inner product</a> defines angles; orthogonality is the case where the angle is right, and it is worth isolating because it turns a subspace into a direction and a complement at once. Gram-Schmidt is the statement that the orthogonal viewpoint costs nothing: every finite-dimensional inner product space already has an orthonormal basis.</p>
+<p class="rel"><span>needs</span> <a href="inner-product-space.html">Inner product space</a>, <a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></p>
+<p class="rel"><span>unlocks</span> <a href="the-spectral-theorem-for-symmetric-operators.html">The spectral theorem for symmetric operators</a>, <a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a>, <a href="fourier-series-fejers-theorem-and-parsevals-identity.html">Fourier series, Fejer's theorem and Parseval's identity</a>, <a href="sturm-liouville-problems-and-eigenfunction-expansions.html">Sturm-Liouville problems and eigenfunction expansions</a>, <a href="isometries-of-euclidean-space-and-the-orthogonal-group.html">Isometries of Euclidean space and the orthogonal group</a>, <a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a>, <a href="regular-curves-arc-length-and-curvature.html">Regular curves, arc length and curvature</a>, <a href="conditional-expectation-as-an-orthogonal-projection.html">Conditional expectation as an orthogonal projection</a>, <a href="least-squares-and-the-gauss-markov-theorem.html">Least squares and the Gauss-Markov theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="linear-algebra.html">Linear algebra</a>, <a href="functional-analysis.html">Functional analysis</a>, <a href="geometry.html">Geometry</a></p>
+<details class="path"><summary>Learning path: 10 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="inner-product-space.html">Inner product space</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org4e5bf54">
+<p>
+In an inner product space <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">, vectors <img class="m" src="m/07d17ee7f989338466656d950783e64199a255cc.svg" alt="\(u, v\)" style="height:0.685em;vertical-align:-0.212em"> are <i>orthogonal</i> if
+<img class="m" src="m/b3a7468f1d4b7b5d6d66f52713d7e0537c70294d.svg" alt="\(\inner{u}{v} = 0\)" style="height:1.096em;vertical-align:-0.274em">. A family is <i>orthogonal</i> if its members are
+pairwise orthogonal and non-zero, and <i>orthonormal</i> if in addition
+<img class="m" src="m/95fc0eb2f0c02fb0926607928880c20d717f79b2.svg" alt="\(\norm{v} = 1\)" style="height:1.096em;vertical-align:-0.274em"> for each member. For <img class="m" src="m/658317256797398b56607720fc3ac740376d798c.svg" alt="\(S \subseteq V\)" style="height:0.898em;vertical-align:-0.153em">, the
+<i>orthogonal complement</i> is
+<img class="m" src="m/282dfbc762d9cd7e6a1f9e73699c7751f02152b5.svg" alt="\(S^{\perp} = \setst{v \in V}{\inner{v}{s} = 0 \text{ for all } s \in S}\)" style="height:1.204em;vertical-align:-0.277em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org4b46063">
+<p>
+If <img class="m" src="m/2bb2bbbc2b0acaef00e695cc5e35e2ca6623c804.svg" alt="\(v_{1}, \dots, v_{k}\)" style="height:0.685em;vertical-align:-0.212em"> are pairwise orthogonal then
+<img class="m" src="m/d68d843b1b4d0bacb1c4248c46469cfa9013bf1b.svg" alt="\(\norm{v_{1}+\cdots+v_{k}}^{2} = \norm{v_{1}}^{2}+\cdots+\norm{v_{k}}^{2}\)" style="height:1.166em;vertical-align:-0.268em">;
+and an orthogonal family is linearly independent.
+</p>
+
+</div>
+
+<div class="proof" id="org90b5316">
+<p>
+Expanding <img class="m" src="m/5bf1abbf34b8b959969f5c63b3dad4ba863d905f.svg" alt="\(\inner{\sum_{i}v_{i}}{\sum_{j}v_{j}}\)" style="height:1.300em;vertical-align:-0.481em"> by bilinearity leaves
+only the diagonal terms, the others vanishing by orthogonality. For
+independence, apply <img class="m" src="m/835a971209e419a3b373ea71f131d0534a405f13.svg" alt="\(\inner{\cdot}{v_{j}}\)" style="height:1.135em;vertical-align:-0.318em"> to a relation
+<img class="m" src="m/783e211fce9d4d57457a2a4b9a81a2a223e3d175.svg" alt="\(\sum_{i}\lambda_{i}v_{i} = 0\)" style="height:1.151em;vertical-align:-0.334em">: every term but the <img class="m" src="m/3368b211f5038907d6dc36c5bec32916d1755948.svg" alt="\(j\)" style="height:0.936em;vertical-align:-0.215em">-th vanishes,
+leaving <img class="m" src="m/fdda077ef2cf299433755e02f9157eb7c5b9f95f.svg" alt="\(\lambda_{j}\norm{v_{j}}^{2} = 0\)" style="height:1.206em;vertical-align:-0.313em">, and <img class="m" src="m/cfb5e0d076331969f202e1aa217c740dddc0c75a.svg" alt="\(v_{j} \ne 0\)" style="height:1.075em;vertical-align:-0.312em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgeed28ef">
+<p>
+In an inner product space,
+<div class="mb"><img class="m" src="m/a814d9cc28a059b950086601b64fd00f1c9deb50.svg" alt="\[ \norm{u - v}^{2} = 2\norm{u}^{2} + 2\norm{v}^{2} - 4\Bigl\lVert \frac{u+v}{2} \Bigr\rVert^{2} \]" style="width:18.791em"></div>
+for all <img class="m" src="m/07d17ee7f989338466656d950783e64199a255cc.svg" alt="\(u, v\)" style="height:0.685em;vertical-align:-0.212em">; equivalently
+<img class="m" src="m/87c4005a50ea6bc7f18e36817ed87514fa77c093.svg" alt="\(\norm{u+v}^{2} + \norm{u-v}^{2} = 2\norm{u}^{2}+2\norm{v}^{2}\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgc7fda27">
+<p>
+Bilinearity gives
+<img class="m" src="m/ad489ce056fa50e64f205d2d93d5fb854caf8af1.svg" alt="\(\norm{u \pm v}^{2} = \norm{u}^{2} \pm 2\inner{u}{v} + \norm{v}^{2}\)" style="height:1.166em;vertical-align:-0.268em">;
+adding the two identities cancels the cross terms and yields the second
+form, and the first is that form with
+<img class="m" src="m/8f9512d8ae4d032259de18a501638d4fc3446e6c.svg" alt="\(4\norm{(u+v)/2}^{2} = \norm{u+v}^{2}\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgecb670b">
+<p>
+Let <img class="m" src="m/f745a3aaeb26a3960287e4a40bfa6666e0718991.svg" alt="\(v_{1}, v_{2}, \dots\)" style="height:0.685em;vertical-align:-0.212em"> be a finite or countable linearly
+independent family in an inner product space. Then there is an
+orthonormal family <img class="m" src="m/82c218c88b43d8cdbd6d0a0af5aca347cc535751.svg" alt="\(e_{1}, e_{2}, \dots\)" style="height:0.685em;vertical-align:-0.212em"> with
+<img class="m" src="m/7a1e00e1e18385d762e066d107477a8db1271429.svg" alt="\(\Span\set{e_{1},\dots,e_{k}} = \Span\set{v_{1},\dots,v_{k}}\)" style="height:1.096em;vertical-align:-0.274em"> for
+every <img class="m" src="m/5ec5e3b2fda230219e6719c59682076f93242498.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em">. In particular every finite-dimensional inner product space
+has an orthonormal basis.
+</p>
+
+</div>
+
+<div class="proof" id="orgae449cf">
+<p>
+Define recursively
+<div class="mb"><img class="m" src="m/859387b5d3cfba5ef3109cf3813aba40fbc1b621.svg" alt="\[ w_{k} = v_{k} - \sum_{i&lt;k} \inner{v_{k}}{e_{i}} e_{i}, \qquad e_{k} = w_{k}/\norm{w_{k}}. \]" style="width:20.723em"></div>
+The vector <img class="m" src="m/ea02cc06f26baa38a5a5258c2098aca67db66214.svg" alt="\(w_{k}\)" style="height:0.636em;vertical-align:-0.165em"> is non-zero: otherwise <img class="m" src="m/1512e1986e7dac80a63e099188680858b3e7cb99.svg" alt="\(v_{k}\)" style="height:0.636em;vertical-align:-0.165em"> would lie in
+<img class="m" src="m/4b3be10c2ca15fd3299cbb14bd0b5fd75bc537e9.svg" alt="\(\Span\set{e_{1},\dots,e_{k-1}} = \Span\set{v_{1},\dots,v_{k-1}}\)" style="height:1.096em;vertical-align:-0.274em">,
+contradicting independence. For <img class="m" src="m/f534c6af13357c5b1bf566bc2bb1e4b3a90e38cf.svg" alt="\(j &lt; k\)" style="height:0.974em;vertical-align:-0.214em">,
+<img class="m" src="m/5c8d327873ad6c339138f76599f99b53053090d0.svg" alt="\(\inner{w_{k}}{e_{j}} = \inner{v_{k}}{e_{j}} - \inner{v_{k}}{e_{j}} = 0\)" style="height:1.135em;vertical-align:-0.318em">
+because the <img class="m" src="m/18dfcd04160230486aa94a4b83a96336b24d42b5.svg" alt="\(e_{i}\)" style="height:0.636em;vertical-align:-0.165em"> are orthonormal by induction; so <img class="m" src="m/d278fd18d2fcce88abaf137923f0e98f7fa659e6.svg" alt="\(e_{k}\)" style="height:0.636em;vertical-align:-0.165em"> is a
+unit vector orthogonal to its predecessors. The spans agree at each
+stage because <img class="m" src="m/d278fd18d2fcce88abaf137923f0e98f7fa659e6.svg" alt="\(e_{k}\)" style="height:0.636em;vertical-align:-0.165em"> is <img class="m" src="m/1512e1986e7dac80a63e099188680858b3e7cb99.svg" alt="\(v_{k}\)" style="height:0.636em;vertical-align:-0.165em"> plus a combination of earlier
+<img class="m" src="m/18dfcd04160230486aa94a4b83a96336b24d42b5.svg" alt="\(e_{i}\)" style="height:0.636em;vertical-align:-0.165em">, and conversely. Applied to a basis, this yields an
+orthonormal basis.
+</p>
+
+</div>
+
+<div class="theorem" id="org9991bcc">
+<p>
+Let <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> be a finite-dimensional subspace of an inner product space
+<img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">. Then <img class="m" src="m/7acfba215ebb7b206c2923f4084193d5e38a3077.svg" alt="\(V = U \oplus U^{\perp}\)" style="height:1.022em;vertical-align:-0.092em">: every <img class="m" src="m/ba2e9b5e96dc17618ab910ebb475abda08f82d6a.svg" alt="\(v \in V\)" style="height:0.792em;vertical-align:-0.040em"> is uniquely
+<img class="m" src="m/7bdf8f9f4af3d16b67d9e02e4d63d28a1622b82a.svg" alt="\(v = u + u'\)" style="height:0.915em;vertical-align:-0.092em"> with <img class="m" src="m/8860addae40dfc02249286780b032c9b329d1bb9.svg" alt="\(u \in U\)" style="height:0.792em;vertical-align:-0.040em"> and <img class="m" src="m/ba6e5880077a3302e3f9b4d8155589af69750d06.svg" alt="\(u' \in U^{\perp}\)" style="height:0.973em;vertical-align:-0.039em">, and
+<img class="m" src="m/9b709de4e32f7b32cab742e63f8226dc3e8554a3.svg" alt="\(u = \sum_{i}\inner{v}{e_{i}}e_{i}\)" style="height:1.151em;vertical-align:-0.334em"> for any orthonormal basis
+<img class="m" src="m/ed28f8dfc95fef61398fd49118218fff8fb47f40.svg" alt="\(e_{1},\dots,e_{k}\)" style="height:0.685em;vertical-align:-0.212em"> of <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org493e480">
+<p>
+Take an orthonormal basis of <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> by Gram-Schmidt and put
+<img class="m" src="m/9b709de4e32f7b32cab742e63f8226dc3e8554a3.svg" alt="\(u = \sum_{i}\inner{v}{e_{i}}e_{i}\)" style="height:1.151em;vertical-align:-0.334em">, <img class="m" src="m/3693c90c689e8bc3397877fb166905eb1ce907af.svg" alt="\(u' = v - u\)" style="height:0.915em;vertical-align:-0.092em">. For each <img class="m" src="m/3368b211f5038907d6dc36c5bec32916d1755948.svg" alt="\(j\)" style="height:0.936em;vertical-align:-0.215em">,
+<img class="m" src="m/32a7247963fdb95f19d1150beab3deb46f72dd25.svg" alt="\(\inner{u'}{e_{j}} = \inner{v}{e_{j}} - \inner{v}{e_{j}} = 0\)" style="height:1.137em;vertical-align:-0.318em">, so
+<img class="m" src="m/a10441b4250df3c72fa080559920f9e23b37243d.svg" alt="\(u'\)" style="height:0.824em;vertical-align:-0.000em"> is orthogonal to every element of <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">, that is
+<img class="m" src="m/ba6e5880077a3302e3f9b4d8155589af69750d06.svg" alt="\(u' \in U^{\perp}\)" style="height:0.973em;vertical-align:-0.039em">. Uniqueness: if <img class="m" src="m/fb36f761b4dcd80d814b6b28332894771f1317a1.svg" alt="\(u_{1}+u_{1}' = u_{2}+u_{2}'\)" style="height:1.096em;vertical-align:-0.274em">
+then <img class="m" src="m/8e2a8da5da5860630e8d8cb5a83aba8795a59df9.svg" alt="\(u_{1}-u_{2} = u_{2}'-u_{1}'\)" style="height:1.096em;vertical-align:-0.274em"> lies in <img class="m" src="m/2b24376982bcae803a9c50e36425d9f1eca3156d.svg" alt="\(U \cap U^{\perp}\)" style="height:0.930em;vertical-align:-0.000em">, and a
+vector orthogonal to itself has <img class="m" src="m/7cd0719c218c40ab831ed7e508e0c145d0f43ab7.svg" alt="\(\norm{v}^{2} = 0\)" style="height:1.166em;vertical-align:-0.268em">, hence is <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="corollary" id="orge625fae">
+<p>
+With the notation above, <img class="m" src="m/43f1d6c46cc02af73d5390471e1c8c127d40b707.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em"> is the unique point of <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> nearest to
+<img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em">: <img class="m" src="m/178329ff9065f51b04156cf3f38499e6fb90f609.svg" alt="\(\norm{v - u} &lt; \norm{v - x}\)" style="height:1.096em;vertical-align:-0.274em"> for every <img class="m" src="m/2573d1748830236ec01b770825fd743b9341425a.svg" alt="\(x \in U\)" style="height:0.792em;vertical-align:-0.040em"> with
+<img class="m" src="m/23bb369a3901eac8fd0f26e6de225ab462887424.svg" alt="\(x \ne u\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="proof" id="org73ff8df">
+<p>
+For <img class="m" src="m/2573d1748830236ec01b770825fd743b9341425a.svg" alt="\(x \in U\)" style="height:0.792em;vertical-align:-0.040em">, <img class="m" src="m/34f24b977cea5dbfc0ce3b7c6c617a5e51dee44c.svg" alt="\(v - x = (v-u) + (u-x)\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/f0a39a7deed2595ffc3f4cb590d5f7a44c1e11cb.svg" alt="\(v - u \in U^{\perp}\)" style="height:1.022em;vertical-align:-0.092em">
+and <img class="m" src="m/0ce0e9928e1b087cc08fc8e7b1e7e20e4f8471e6.svg" alt="\(u - x \in U\)" style="height:0.840em;vertical-align:-0.092em">, so by Pythagoras
+<img class="m" src="m/973d744ae05a289be849470641edcd462fcff94c.svg" alt="\(\norm{v-x}^{2} = \norm{v-u}^{2} + \norm{u-x}^{2}\)" style="height:1.166em;vertical-align:-0.268em">, which strictly
+exceeds <img class="m" src="m/dc01de5384f27712be6f21d5b06a06cd79010d11.svg" alt="\(\norm{v-u}^{2}\)" style="height:1.166em;vertical-align:-0.268em"> unless <img class="m" src="m/f50571d1ad6ae6efee746080f44c3aa6c1886df6.svg" alt="\(x = u\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="remark" id="orgca8d549">
+<p>
+The corollary is the whole of least-squares approximation and of Fourier
+series, stated before either: "best approximation in a subspace" always
+means "orthogonal projection onto it", and the coefficients
+<img class="m" src="m/388bc13e0a325840aec7015078c6569f45592526.svg" alt="\(\inner{v}{e_{i}}\)" style="height:1.096em;vertical-align:-0.274em"> are computed one at a time precisely because the
+basis is orthonormal.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="geometry.html"><span>← previous</span>Geometry</a><a rel="next" href="affine-spaces-affine-subspaces-and-affine-maps.html"><span>next →</span>Affine spaces, affine subspaces and affine maps</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/geometry--linear-algebra.pdf" title="PDF manual">Linear Algebra</a> · <a class="pdf" href="pdf/geometry.pdf" title="PDF manual">Geometry</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

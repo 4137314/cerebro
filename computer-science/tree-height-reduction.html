@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tree height reduction · Computer Science</title>
+<meta name="description" content="Associativity and commutativity rebalance a chain of n identical operations into a tree of depth \lceil\log_2 n\rceil, and late-arriving inputs are moved close to the output; distributivity can reduce height further at the cost of more operators.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/tree-height-reduction.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Tree height reduction · Computer Science">
+<meta property="og:description" content="Associativity and commutativity rebalance a chain of n identical operations into a tree of depth \lceil\log_2 n\rceil, and late-arriving inputs are moved close to the output; distributivity can reduce height further at the cost of more operators.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/tree-height-reduction.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--logic-synthesis">Logic Synthesis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Hardware · Logic Synthesis</p>
+<h1>Tree height reduction</h1>
+<p class="summary">Associativity and commutativity rebalance a chain of <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> identical operations into a tree of depth <img class="m" src="m/9b9c2e0c716f62cd67b7e698bd7702a5035dbede.svg" alt="\(\lceil\log_2 n\rceil\)" style="height:1.096em;vertical-align:-0.274em">, and late-arriving inputs are moved close to the output; distributivity can reduce height further at the cost of more operators.</p>
+<p class="rel"><span>needs</span> <a href="static-timing-analysis.html">Static timing analysis</a>, <a href="multilevel-logic-optimization.html">Multi-level logic optimization</a></p>
+<p class="rel"><span>unlocks</span> <a href="generalized-bypass.html">Generalized bypass and select transforms</a>, <a href="carry-lookahead-adder.html">Carry-lookahead and prefix adders</a></p>
+<p class="rel"><span>see also</span> <a href="generalized-bypass.html">Generalized bypass and select transforms</a>, <a href="carry-save-adder.html">Carry-save adders and adder trees</a>, <a href="carry-lookahead-adder.html">Carry-lookahead and prefix adders</a>, <a href="timing-driven-mapping.html">Technology mapping for delay</a></p>
+<p class="rel"><span>mentioned in</span> <a href="glitches.html">Glitches</a>, <a href="data-flow-graph.html">Data-flow graphs and architectural synthesis</a></p>
+<details class="path"><summary>Learning path: 19 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li><li><a href="sr-latch.html">SR latch and D latch</a></li><li><a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></li><li><a href="big-o-complexity.html">Computational complexity and big-O</a></li><li><a href="digital-design-flow.html">Digital design flow and abstraction levels</a></li><li><a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a></li><li><a href="std-logic.html">std_logic: nine-valued logic and resolution</a></li><li><a href="vhdl-concurrent-assignments.html">Concurrent assignments: when–else and with–select</a></li><li><a href="vhdl-process.html">Processes and sequential statements</a></li><li><a href="sequential-logic.html">Flip-flops and registers in VHDL</a></li><li><a href="setup-hold-time.html">Setup and hold constraints</a></li><li><a href="gate-delay-model.html">Gate and wire delay models</a></li><li><a href="static-timing-analysis.html">Static timing analysis</a></li><li><a href="algebraic-division.html">Algebraic (weak) division</a></li><li><a href="boolean-difference.html">Shannon cofactors and the Boolean difference</a></li><li><a href="multilevel-logic-optimization.html">Multi-level logic optimization</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org24a5c43" class="outline-2">
+<h2 id="org24a5c43">Method</h2>
+<div class="outline-text-2" id="text-org24a5c43">
+<ul class="org-ul">
+<li><b>Associativity + commutativity</b>: <img class="m" src="m/1e47867aab9a472f1a36eff80c8fe5de5c2ee2cc.svg" alt="\(((a+b)+c)+d\)" style="height:1.096em;vertical-align:-0.274em">, height 3, becomes <img class="m" src="m/db7580142f933fba8a243e238ffd534bb53f97f5.svg" alt="\((a+b)+(c+d)\)" style="height:1.096em;vertical-align:-0.274em">, height 2. In general a chain of <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> operands becomes a balanced tree of height <img class="m" src="m/9b9c2e0c716f62cd67b7e698bd7702a5035dbede.svg" alt="\(\lceil\log_2 n\rceil\)" style="height:1.096em;vertical-align:-0.274em">.</li>
+<li><b>Arrival-time aware</b>: with different arrival times, combine the earliest operands first (Huffman-like); the latest signal enters the last operator, nearest to the output.</li>
+<li><b>Distributivity</b>: <img class="m" src="m/08b478f1d839e3d88cd34947f4e538fca9852e76.svg" alt="\(a(bcd+e)\)" style="height:1.096em;vertical-align:-0.274em">, height 4 with 2-input operators, becomes <img class="m" src="m/94faca4b0d7d92bd23a6f3635ef619eaebc3af28.svg" alt="\(abcd+ae\)" style="height:0.852em;vertical-align:-0.094em">, height 3, with one more multiplication. It trades area for height; general rule: expand when the critical input is buried inside a factor.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3de086c" class="outline-2">
+<h2 id="org3de086c">Derivation</h2>
+<div class="outline-text-2" id="text-org3de086c">
+<p>
+A binary operator tree of height <img class="m" src="m/a92a5c5e62e015265461429f71ae40f98b2f7857.svg" alt="\(h\)" style="height:0.761em;vertical-align:-0.000em"> has at most <img class="m" src="m/e7c706c2075aa7f87329c5c640a05bc14da9b22a.svg" alt="\(2^h\)" style="height:0.930em;vertical-align:-0.000em"> leaves, so <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> operands need <img class="m" src="m/5a360489b579d538efcff532b6e1c15b825315f4.svg" alt="\(h\ge\lceil\log_2 n\rceil\)" style="height:1.096em;vertical-align:-0.274em">, and the balanced tree reaches the bound. With delay <img class="m" src="m/9ebc774c2af2128831b85f4a54f6ceb82b3ea827.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em"> per operator, the chain costs <img class="m" src="m/662d4e2a86f28ccb8198d8607f96d8e12a7d3b8b.svg" alt="\((n-1)d\)" style="height:1.096em;vertical-align:-0.274em">, the tree <img class="m" src="m/bc4a795f3a68fb0784a515b5e0273b3d03325884.svg" alt="\(\lceil\log_2 n\rceil d\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfc54834" class="outline-2">
+<h2 id="orgfc54834">Picture</h2>
+<div class="outline-text-2" id="text-orgfc54834">
+<figure class="fig"><img class="m" src="m/5d702c21f25c154d45e8519bcfbf179a5341dd1e.svg" alt="figure" style="width:17.717em"><figcaption><span class="fl">Figure 1.</span> Tree height reduction: the chain <img class="m" src="m/1e47867aab9a472f1a36eff80c8fe5de5c2ee2cc.svg" alt="\(((a+b)+c)+d\)" style="height:1.096em;vertical-align:-0.274em"> of depth 3 is rebalanced into <img class="m" src="m/db7580142f933fba8a243e238ffd534bb53f97f5.svg" alt="\((a+b)+(c+d)\)" style="height:1.096em;vertical-align:-0.274em"> of depth 2, using associativity.</figcaption></figure>
+<p>
+Height 3 versus height 2 with the same three adders.
+</p>
+</div>
+</div>
+<div id="outline-container-org2f2e688" class="outline-2">
+<h2 id="org2f2e688">Intuition</h2>
+<div class="outline-text-2" id="text-org2f2e688">
+<p>
+Do independent work in parallel; if you have to wait for a late signal, prepare everything else meanwhile.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb94f067" class="outline-2">
+<h2 id="orgb94f067">Pitfall</h2>
+<div class="outline-text-2" id="text-orgb94f067">
+<p>
+For floating-point arithmetic associativity does not hold exactly: rebalancing changes <a href="fixed-point-arithmetic.html">rounding</a>. Hardware tools apply it only to integer and Boolean operators.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="multilevel-logic-optimization.html"><span>← previous</span>Multi-level logic optimization</a><a rel="next" href="generalized-bypass.html"><span>next →</span>Generalized bypass and select transforms</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--logic-synthesis.pdf" title="PDF manual">Logic Synthesis</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

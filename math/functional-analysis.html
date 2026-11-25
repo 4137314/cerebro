@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Functional analysis · Mathematics</title>
+<meta name="description" content="Functional analysis is linear algebra on spaces where the unit ball is not compact. Every difference from the finite-dimensional theory traces back to that one fact, and every theorem below is a substitute for something compactness used to provide: a basis, a limit, a bound, a separating functional.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/functional-analysis.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Functional analysis · Mathematics">
+<meta property="og:description" content="Functional analysis is linear algebra on spaces where the unit ball is not compact. Every difference from the finite-dimensional theory traces back to that one fact, and every theorem below is a substitute for something compactness used to provide: a basis, a limit, a bound, a separating functional.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/functional-analysis.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--functional-analysis">Functional Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">overview · Analysis · Functional Analysis</p>
+<h1>Functional analysis</h1>
+<p class="summary">Functional analysis is linear algebra on spaces where the unit ball is not compact. Every difference from the finite-dimensional theory traces back to that one fact, and every theorem below is a substitute for something compactness used to provide: a basis, a limit, a bound, a separating functional.</p>
+<p class="rel"><span>mentioned in</span> <a href="analysis.html">Analysis</a></p>
+</header>
+<main class="note">
+<p>
+Part of <a href="analysis.html">Analysis</a>.
+</p>
+<div id="outline-container-org5540fc3" class="outline-2">
+<h2 id="org5540fc3">The dividing line</h2>
+<div class="outline-text-2" id="text-org5540fc3">
+<p>
+<a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a> is the
+note that draws it: in finite dimension all norms are equivalent, the
+sphere is compact, subspaces are closed, and linear maps are
+automatically continuous. Each of those four statements fails in
+infinite dimension, and the subject is the list of what replaces them.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb271f92" class="outline-2">
+<h2 id="orgb271f92">The replacements</h2>
+<div class="outline-text-2" id="text-orgb271f92">
+<ul class="org-ul">
+<li>For a <b>separating functional</b>: <a href="the-hahn-banach-theorem.html">the Hahn-Banach theorem</a>, which
+extends a dominated functional off a subspace by Zorn's lemma. It is
+the reason the <a href="dual-spaces-annihilators-and-the-transpose.html">dual space</a> is large enough to be useful.</li>
+<li>For a <b>bound</b>: <a href="uniform-boundedness-open-mapping-and-closed-graph.html">uniform boundedness, open mapping and closed graph</a> &#x2013;
+three theorems, one proof scheme, all resting on <a href="the-baire-category-theorem.html">Baire's theorem</a> and
+therefore on completeness.</li>
+<li>For a <b>convergent subsequence</b>: <a href="equicontinuity-and-the-arzela-ascoli-theorem.html">the Arzela-Ascoli theorem</a>, which
+says what has to be added to boundedness &#x2013; equicontinuity &#x2013; to
+recover it in a space of functions.</li>
+<li>For <b>coordinates</b>: <a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces</a>, where an inner product survives
+and with it orthogonal projection, the representation of every
+functional, and orthonormal bases.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgeabdc52" class="outline-2">
+<h2 id="orgeabdc52">Why Hilbert space is the easy case</h2>
+<div class="outline-text-2" id="text-orgeabdc52">
+<p>
+The <a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">orthogonal decomposition</a> of a finite-dimensional inner product
+space carries over verbatim once the subspace is closed, because the
+<a href="nearest-points-and-the-separating-hyperplane-theorem.html">nearest point in a closed convex set</a> still exists &#x2013; and that argument
+uses the parallelogram identity, which is exactly what a norm coming
+from an inner product has and a general norm does not. Everything
+special about Hilbert spaces is downstream of that identity.
+</p>
+</div>
+</div>
+<div id="outline-container-org3ada97a" class="outline-2">
+<h2 id="org3ada97a">What is missing</h2>
+<div class="outline-text-2" id="text-org3ada97a">
+<p>
+<img class="m" src="m/00a14447d7e124e0f053bdc97735aa2dab64a2c1.svg" alt="\(L^{p}\)" style="height:0.749em;vertical-align:-0.000em"> spaces, which are the examples the general theory was built
+for and which need <a href="sigma-algebras-measures-and-measurable-functions.html">measure theory</a> to define; weak topologies and the
+Banach-Alaoglu theorem, which is where <a href="tychonoffs-theorem.html">Tychonoff</a> pays off; spectral
+theory for operators, of which only <a href="the-spectral-theorem-for-symmetric-operators.html">the finite-dimensional symmetric
+case</a> is present; compact operators; and Fourier analysis, which would
+be the first serious use of <a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">orthonormal bases</a>.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="equicontinuity-and-the-arzela-ascoli-theorem.html"><span>← previous</span>Equicontinuity and the Arzela-Ascoli theorem</a><a rel="next" href="the-hahn-banach-theorem.html"><span>next →</span>The Hahn-Banach theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--functional-analysis.pdf" title="PDF manual">Functional Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

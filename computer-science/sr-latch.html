@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SR latch and D latch · Computer Science</title>
+<meta name="description" content="Two cross-coupled NOR gates store one bit: S=1 sets Q=1, R=1 resets it, S=R=0 holds; S=R=1 forces Q=\bar Q=0 and, if both are released together, a race decides the final value, so it is forbidden; the NAND version has active-low inputs; gating with an enable C and driving S=D, R=\bar D gives the D …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/sr-latch.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="SR latch and D latch · Computer Science">
+<meta property="og:description" content="Two cross-coupled NOR gates store one bit: S=1 sets Q=1, R=1 resets it, S=R=0 holds; S=R=1 forces Q=\bar Q=0 and, if both are released together, a race decides the final value, so it is forbidden; the NAND version has active-low inputs; gating with an enable C and driving S=D, R=\bar D gives the D …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/sr-latch.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--sequential">Sequential</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Hardware · Sequential</p>
+<h1>SR latch and D latch</h1>
+<p class="summary">Two cross-coupled NOR gates store one bit: <img class="m" src="m/82015a3f3bf193fd6aa1ef859a5229bdedb36b78.svg" alt="\(S=1\)" style="height:0.749em;vertical-align:-0.000em"> sets <img class="m" src="m/93e1419cfea5b8ce6fb48032cf08421865574fe7.svg" alt="\(Q=1\)" style="height:0.962em;vertical-align:-0.212em">, <img class="m" src="m/73b5902b47276d4990f1ea1290a77c6d054f0ef9.svg" alt="\(R=1\)" style="height:0.749em;vertical-align:-0.000em"> resets it, <img class="m" src="m/bb0580c067f91fd8b4851b02680a7b7ab8efaeb1.svg" alt="\(S=R=0\)" style="height:0.749em;vertical-align:-0.000em"> holds; <img class="m" src="m/2210a28d78e478fc3f4f790f6cf50daa77525686.svg" alt="\(S=R=1\)" style="height:0.749em;vertical-align:-0.000em"> forces <img class="m" src="m/66941f43ef4cabae51ab2c3ea291802646d35b40.svg" alt="\(Q=\bar Q=0\)" style="height:1.112em;vertical-align:-0.211em"> and, if both are released together, a race decides the final value, so it is forbidden; the NAND version has active-low inputs; gating with an enable <img class="m" src="m/52138c1336de78ec97ddf99f4365ef7a94e63f4d.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> and driving <img class="m" src="m/f64a2c8486c77a537a21b971b33f5b199db5ec73.svg" alt="\(S=D\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/fb3f70517045318c399546a974804e618fd144f0.svg" alt="\(R=\bar D\)" style="height:0.899em;vertical-align:-0.000em"> gives the D latch, transparent while <img class="m" src="m/21b84aa0b26f8098b681177bd1291757d7146232.svg" alt="\(C=1\)" style="height:0.749em;vertical-align:-0.000em"> and holding while <img class="m" src="m/71c7f4692b1a3c9af44a1c717b69ae73af48013b.svg" alt="\(C=0\)" style="height:0.749em;vertical-align:-0.000em">.</p>
+<p class="rel"><span>needs</span> <a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></p>
+<p class="rel"><span>unlocks</span> <a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></p>
+<p class="rel"><span>see also</span> <a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a>, <a href="flip-flop-types.html">D, T, JK and SR flip-flops: characteristic and excitation tables</a>, <a href="metastability.html">Metastability and synchronizers</a>, <a href="critical-races.html">Critical races</a></p>
+<details class="path"><summary>Learning path: 4 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org2f413ee" class="outline-2">
+<h2 id="org2f413ee">Construction</h2>
+<div class="outline-text-2" id="text-org2f413ee">
+<p>
+NOR latch: <img class="m" src="m/175e23cd655ce556ba9b61951ddfa0842a124f1b.svg" alt="\(Q=\overline{R+\bar Q}\)" style="height:1.331em;vertical-align:-0.213em">, <img class="m" src="m/7e947c21f43c8727b0f7dd69ea4f7532683404f3.svg" alt="\(\bar Q=\overline{S+Q}\)" style="height:1.181em;vertical-align:-0.213em">.
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">S</th>
+<th scope="col" class="org-right">R</th>
+<th scope="col" class="org-left">Q⁺</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-left">Q (hold)</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-left">1 (set)</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">0 (reset)</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">Q = Q̄ = 0 (no!)</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+How it holds: with <img class="m" src="m/bb0580c067f91fd8b4851b02680a7b7ab8efaeb1.svg" alt="\(S=R=0\)" style="height:0.749em;vertical-align:-0.000em"> each NOR is an inverter of the other's output — two inverters in a ring, which has exactly two stable states. <b>Set</b>: <img class="m" src="m/82015a3f3bf193fd6aa1ef859a5229bdedb36b78.svg" alt="\(S=1\)" style="height:0.749em;vertical-align:-0.000em"> forces <img class="m" src="m/4a6d198285271abc3cfb6ac97f2e6c5b5d123ef7.svg" alt="\(\bar Q=0\)" style="height:1.112em;vertical-align:-0.211em">, then <img class="m" src="m/cd0a716244ab12869c8ff24fa17f310cf576759c.svg" alt="\(Q=\overline{0+0}=1\)" style="height:1.138em;vertical-align:-0.216em">, and the loop keeps it after <img class="m" src="m/ef6d40f3cd5b8650803ccfcfb2c1556494e74417.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> returns to 0. Characteristic equation <img class="m" src="m/7e2ac7f3b57dc222f1e9812fb44408b1cfa191b6.svg" alt="\(Q^+=S+\bar RQ\)" style="height:1.112em;vertical-align:-0.211em"> with constraint <img class="m" src="m/bfa0ffd3bb0eda7e3f6882c2a165896fa0b9c4ce.svg" alt="\(SR=0\)" style="height:0.749em;vertical-align:-0.000em">.
+<img class="m" src="m/2210a28d78e478fc3f4f790f6cf50daa77525686.svg" alt="\(S=R=1\)" style="height:0.749em;vertical-align:-0.000em"> is <b>critical</b>: the outputs are no longer complementary, and if <img class="m" src="m/ef6d40f3cd5b8650803ccfcfb2c1556494e74417.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/c8c9ef4f06e8240ded30a4ef2720d4a0f3ff8a72.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> fall at the same time both NORs see <img class="m" src="m/a32649a7fdc53e6d8e2762888539f08f5006781d.svg" alt="\(0,0\)" style="height:0.919em;vertical-align:-0.211em">, both outputs rise, both fall… the final state depends on which gate is faster (a race, possibly <a href="metastability.html">metastability</a> or oscillation).
+NAND latch (<img class="m" src="m/cdd4c984fdfedacd54566a15665973ba73cbe02c.svg" alt="\(\bar S\bar R\)" style="height:0.899em;vertical-align:-0.000em">): inputs active low, <img class="m" src="m/f3eb039022f01fbeac035b1ca7b3ab7bb309d2bd.svg" alt="\(\bar S=\bar R=1\)" style="height:0.899em;vertical-align:-0.000em"> holds, <img class="m" src="m/a57af51e466f0a62649d0f8d92b6776ef7a9cb03.svg" alt="\(\bar S=\bar R=0\)" style="height:0.899em;vertical-align:-0.000em"> is forbidden.
+<b>Gated SR</b>: <img class="m" src="m/ef6d40f3cd5b8650803ccfcfb2c1556494e74417.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/c8c9ef4f06e8240ded30a4ef2720d4a0f3ff8a72.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> pass through ANDs with an enable <img class="m" src="m/52138c1336de78ec97ddf99f4365ef7a94e63f4d.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">; with <img class="m" src="m/71c7f4692b1a3c9af44a1c717b69ae73af48013b.svg" alt="\(C=0\)" style="height:0.749em;vertical-align:-0.000em"> the latch holds whatever the inputs do.
+<b>D latch</b>: gated SR with <img class="m" src="m/f64a2c8486c77a537a21b971b33f5b199db5ec73.svg" alt="\(S=D\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/fb3f70517045318c399546a974804e618fd144f0.svg" alt="\(R=\bar D\)" style="height:0.899em;vertical-align:-0.000em"> (the forbidden combination can no longer occur). <img class="m" src="m/21b84aa0b26f8098b681177bd1291757d7146232.svg" alt="\(C=1\)" style="height:0.749em;vertical-align:-0.000em">: <b>transparent</b>, <img class="m" src="m/c9e87f8dd2ee4dc7ef26ee24f811110f661e9c84.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> follows <img class="m" src="m/9bc9fac98a58f67aa2a9c76ad1bb70f716743fac.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em">. <img class="m" src="m/71c7f4692b1a3c9af44a1c717b69ae73af48013b.svg" alt="\(C=0\)" style="height:0.749em;vertical-align:-0.000em">: <img class="m" src="m/c9e87f8dd2ee4dc7ef26ee24f811110f661e9c84.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> keeps the last value <img class="m" src="m/9bc9fac98a58f67aa2a9c76ad1bb70f716743fac.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> had before <img class="m" src="m/52138c1336de78ec97ddf99f4365ef7a94e63f4d.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> fell.
+</p>
+</div>
+</div>
+<div id="outline-container-orge873d1a" class="outline-2">
+<h2 id="orge873d1a">Picture</h2>
+<div class="outline-text-2" id="text-orge873d1a">
+<figure class="fig"><img class="m" src="m/852e1e18282555955fa15a1744a623bae57bf595.svg" alt="figure" style="width:11.878em"><figcaption><span class="fl">Figure 1.</span> An SR latch built from two cross-coupled NOR gates: <img class="m" src="m/ef6d40f3cd5b8650803ccfcfb2c1556494e74417.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> sets <img class="m" src="m/c9e87f8dd2ee4dc7ef26ee24f811110f661e9c84.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em">, <img class="m" src="m/c8c9ef4f06e8240ded30a4ef2720d4a0f3ff8a72.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> resets it, and the feedback holds the state.</figcaption></figure>
+<p>
+Cross-coupled NORs: each output feeds the other gate.
+</p>
+</div>
+</div>
+<div id="outline-container-org29e9839" class="outline-2">
+<h2 id="org29e9839">Example</h2>
+<div class="outline-text-2" id="text-org29e9839">
+<p>
+D latch, <img class="m" src="m/52138c1336de78ec97ddf99f4365ef7a94e63f4d.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> high from 0 to 4, low after; <img class="m" src="m/9bc9fac98a58f67aa2a9c76ad1bb70f716743fac.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> goes 0→1 at 1, 1→0 at 3, 0→1 at 5. <img class="m" src="m/c9e87f8dd2ee4dc7ef26ee24f811110f661e9c84.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> follows: 1 at 1, 0 at 3, and stays 0 at 5 because <img class="m" src="m/71c7f4692b1a3c9af44a1c717b69ae73af48013b.svg" alt="\(C=0\)" style="height:0.749em;vertical-align:-0.000em">. A latch reacts to the <b>level</b> of <img class="m" src="m/52138c1336de78ec97ddf99f4365ef7a94e63f4d.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">, not to its edges.
+</p>
+</div>
+</div>
+<div id="outline-container-org6fbae3b" class="outline-2">
+<h2 id="org6fbae3b">Intuition</h2>
+<div class="outline-text-2" id="text-org6fbae3b">
+<p>
+A latch is a door: open (<img class="m" src="m/21b84aa0b26f8098b681177bd1291757d7146232.svg" alt="\(C=1\)" style="height:0.749em;vertical-align:-0.000em">) the output sees the input, closed it shows the last thing that walked through.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfaebd62" class="outline-2">
+<h2 id="orgfaebd62">Pitfall</h2>
+<div class="outline-text-2" id="text-orgfaebd62">
+<p>
+Being transparent for the whole active phase, a latch cannot be the only memory in a loop: the new state runs around the loop and changes again before <img class="m" src="m/52138c1336de78ec97ddf99f4365ef7a94e63f4d.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> closes (see <a href="edge-triggered-flip-flop.html">edge-triggered flip-flops</a>).
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="sequential-circuits.html"><span>← previous</span>Sequential circuits: memory through feedback</a><a rel="next" href="edge-triggered-flip-flop.html"><span>next →</span>Edge-triggered flip-flops: master–slave</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--sequential.pdf" title="PDF manual">Sequential</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

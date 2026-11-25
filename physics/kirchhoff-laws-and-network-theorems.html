@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kirchhoff's laws and network theorems · Physics</title>
+<meta name="description" content="In lumped circuits \sum i=0 at every node (KCL, charge conservation) and \sum v=0 around every loop (KVL, negligible linked flux); for linear networks superposition holds, and any two-terminal network is equivalent to V_{th} in series with Z_{th} (Thévenin) or I_N=V_{th}/Z_{th} in parallel (Norton)…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/kirchhoff-laws-and-network-theorems.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Kirchhoff's laws and network theorems · Physics">
+<meta property="og:description" content="In lumped circuits \sum i=0 at every node (KCL, charge conservation) and \sum v=0 around every loop (KVL, negligible linked flux); for linear networks superposition holds, and any two-terminal network is equivalent to V_{th} in series with Z_{th} (Thévenin) or I_N=V_{th}/Z_{th} in parallel (Norton)…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/kirchhoff-laws-and-network-theorems.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-circuits">Circuits</a> / <a rel="up" href="index.html#a-circuits--lti-systems">Lti Systems</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Circuits · Lti Systems</p>
+<h1>Kirchhoff's laws and network theorems</h1>
+<p class="summary">In lumped circuits <img class="m" src="m/4c0f59db716ce6974e0a5e3edabb19e902609a90.svg" alt="\(\sum i=0\)" style="height:1.096em;vertical-align:-0.274em"> at every node (KCL, charge conservation) and <img class="m" src="m/957c4f0e2b4008bc52ee0f2bfe7d45f4a1711cde.svg" alt="\(\sum v=0\)" style="height:1.096em;vertical-align:-0.274em"> around every loop (KVL, negligible linked flux); for linear networks superposition holds, and any two-terminal network is equivalent to <img class="m" src="m/ba25ac344aaea81ded328d532f608530266b7da7.svg" alt="\(V_{th}\)" style="height:0.913em;vertical-align:-0.164em"> in series with <img class="m" src="m/202ed450c155d5ba72b99ece799d2a5ef6823d85.svg" alt="\(Z_{th}\)" style="height:0.913em;vertical-align:-0.164em"> (Thévenin) or <img class="m" src="m/0b8a8f6492fc32d617818b850df2321c40e69fa1.svg" alt="\(I_N=V_{th}/Z_{th}\)" style="height:1.096em;vertical-align:-0.274em"> in parallel (Norton); maximum power reaches a load <img class="m" src="m/b9e8ce9895450489646f832234a3fd62f3f25621.svg" alt="\(Z_L=Z_{th}^*\)" style="height:1.065em;vertical-align:-0.309em">.</p>
+<p class="rel"><span>needs</span> <a href="circuits.html">Circuit theory: the map of the subject</a>, <a href="maxwell-equations.html">Maxwell's equations</a></p>
+<p class="rel"><span>unlocks</span> <a href="lti-systems-and-convolution.html">LTI systems, impulse response and first/second-order circuits</a></p>
+<p class="rel"><span>see also</span> <a href="lti-systems-and-convolution.html">LTI systems, impulse response and first/second-order circuits</a>, <a href="impedance-and-ac-circuit-analysis.html">Impedance and the symbolic method</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="circuits.html">Circuit theory: the map of the subject</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgffe98cf" class="outline-2">
+<h2 id="orgffe98cf">Statement and origin</h2>
+<div class="outline-text-2" id="text-orgffe98cf">
+<ul class="org-ul">
+<li>KCL: <img class="m" src="m/80f91a93d1338b44b7c761c6f672a49917318c62.svg" alt="\(\nabla\cdot\mathbf J=-\partial_t\rho\)" style="height:0.974em;vertical-align:-0.214em"> with no charge accumulating in nodes <span class="cite">(<a class="ref" href="https://doi.org/10.1002/andp.18451400402" data-full="G. Kirchhoff, “Ueber den Durchgang eines elektrischen Stromes durch eine Ebene, insbesondere durch eine kreisförmige”, Annalen der Physik 140, 497–514 (1845)." aria-label="G. Kirchhoff, “Ueber den Durchgang eines elektrischen Stromes durch eine Ebene, insbesondere durch eine kreisförmige”, Annalen der Physik 140, 497–514 (1845).">Kirchhoff 1845</a>)</span>.</li>
+<li>KVL: <img class="m" src="m/a47aab5646c97adeacd2d35c6007f9e50549cc80.svg" alt="\(\oint\mathbf E\cdot\dd\mathbf l=-\dd\Phi/\dd t\approx0\)" style="height:1.218em;vertical-align:-0.341em"> outside the elements (all magnetic flux inside inductors) — valid when dimensions <img class="m" src="m/306adc68115eebbbf57cd591fb087bb64161b2b7.svg" alt="\(\ll\lambda\)" style="height:0.804em;vertical-align:-0.040em">.</li>
+<li>Element laws: <img class="m" src="m/3bbb9a885f42a4886fe36d61e4eb431c4ed79dcd.svg" alt="\(v=Ri\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/e412b1afc75dcd16f7962a7bcd127453eef06cfd.svg" alt="\(i=C\,\dd v/\dd t\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/55270697d7739f59d00e843ff133005083321122.svg" alt="\(v=L\,\dd i/\dd t\)" style="height:1.096em;vertical-align:-0.274em">, ideal sources.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4c641ff" class="outline-2">
+<h2 id="org4c641ff">Systematic analysis</h2>
+<div class="outline-text-2" id="text-org4c641ff">
+<p>
+<b>Nodal</b>: choose a reference, write KCL at the other <img class="m" src="m/941843e87a775e8df3b87e411582a4c441649df3.svg" alt="\(n-1\)" style="height:0.798em;vertical-align:-0.088em"> nodes in terms of node voltages: <img class="m" src="m/482a9f33c08548fc6c5e71b2ca9bba5301798a98.svg" alt="\(\mathbf G\mathbf v=\mathbf i_s\)" style="height:0.925em;vertical-align:-0.167em">. <b>Mesh</b>: KVL around independent loops: <img class="m" src="m/40c36b8a410b4e10d66253f4c3d9dc3308cae479.svg" alt="\(\mathbf R\mathbf i=\mathbf v_s\)" style="height:0.925em;vertical-align:-0.167em">. Number of independent equations: <img class="m" src="m/c101e1556bea3e361ccd38329e18086ba5e7e0c7.svg" alt="\(b-n+1\)" style="height:0.852em;vertical-align:-0.094em"> loops, <img class="m" src="m/941843e87a775e8df3b87e411582a4c441649df3.svg" alt="\(n-1\)" style="height:0.798em;vertical-align:-0.088em"> nodes.
+</p>
+</div>
+</div>
+<div id="outline-container-org069372a" class="outline-2">
+<h2 id="org069372a">Thévenin (proof sketch)</h2>
+<div class="outline-text-2" id="text-org069372a">
+<p>
+By linearity, the port voltage is an affine function of the port current: <img class="m" src="m/839c35b3a010d16a4d834c92f5a55c0a03827f37.svg" alt="\(v=V_{th}-Z_{th}i\)" style="height:0.913em;vertical-align:-0.164em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1051/jphystap:018830020041801" data-full="L. Thévenin, “Théorème relatif aux circuits linéaires ramifiés”, Journal de Physique Théorique et Appliquée 2, 418–419 (1883)." aria-label="L. Thévenin, “Théorème relatif aux circuits linéaires ramifiés”, Journal de Physique Théorique et Appliquée 2, 418–419 (1883).">Thévenin 1883</a>)</span>. <img class="m" src="m/ba25ac344aaea81ded328d532f608530266b7da7.svg" alt="\(V_{th}\)" style="height:0.913em;vertical-align:-0.164em"> = open-circuit voltage; <img class="m" src="m/202ed450c155d5ba72b99ece799d2a5ef6823d85.svg" alt="\(Z_{th}\)" style="height:0.913em;vertical-align:-0.164em"> = impedance seen with independent sources zeroed (or <img class="m" src="m/dd6faaf3e5d1e9fa1f6c5f0d72e5c18010d2bd77.svg" alt="\(V_{oc}/I_{sc}\)" style="height:1.096em;vertical-align:-0.274em">). Maximum power: <img class="m" src="m/d9093110c49fa6ab9b7708262c3a2c79613555e9.svg" alt="\(P=\frac{|V_{th}|^2R_L}{2|Z_{th}+Z_L|^2}\)" style="height:1.785em;vertical-align:-0.571em"> is maximal at <img class="m" src="m/b9e8ce9895450489646f832234a3fd62f3f25621.svg" alt="\(Z_L=Z_{th}^*\)" style="height:1.065em;vertical-align:-0.309em">, giving <img class="m" src="m/3d305cffeae7dc68c88ef78da197edbbe1d3fe63.svg" alt="\(P_{max}=\frac{|V_{th}|^2}{8R_{th}}\)" style="height:1.710em;vertical-align:-0.496em"> (peak phasors).
+</p>
+</div>
+</div>
+<div id="outline-container-orgdf40b93" class="outline-2">
+<h2 id="orgdf40b93">Worked example</h2>
+<div class="outline-text-2" id="text-orgdf40b93">
+<p>
+Wheatstone bridge: 10 V across <img class="m" src="m/44f3bf08321c6eca57aafce42dc3d64989da5a12.svg" alt="\(R_1=R_2=1\)" style="height:0.913em;vertical-align:-0.164em"> kΩ (left divider) and <img class="m" src="m/a4ee18175024e1d8b125c3ab4b3b3f54270bc8c3.svg" alt="\(R_3=1\)" style="height:0.913em;vertical-align:-0.164em"> kΩ, <img class="m" src="m/67d13494604ed6537ce04ffb033446a258c8b047.svg" alt="\(R_4=1.1\)" style="height:0.913em;vertical-align:-0.164em"> kΩ (right divider); galvanometer 500 Ω between midpoints. Left node 5 V; right node <img class="m" src="m/56c899893801dce175188f0c3eeb4b2f33b46583.svg" alt="\(10\cdot\frac{1.1}{2.1}=5.238\)" style="height:1.304em;vertical-align:-0.378em"> V: <img class="m" src="m/c25755ebe1f06dfb98d053fc964f0b976508c836.svg" alt="\(V_{th}=0.238\)" style="height:0.913em;vertical-align:-0.164em"> V; <img class="m" src="m/ec800143563af39ce5ac6648dc8f5b3e8d40ae78.svg" alt="\(R_{th}=0.5+\frac{1\cdot1.1}{2.1}=1.024\)" style="height:1.304em;vertical-align:-0.378em"> kΩ; galvanometer current <img class="m" src="m/df8360c624e8cc34404ff99e9872e38a726a528d.svg" alt="\(\frac{0.238}{1.524\text{ k}}=156\)" style="height:1.304em;vertical-align:-0.378em"> µA. Strain gauges and RTDs are read this way.
+</p>
+</div>
+</div>
+<div id="outline-container-org734a19b" class="outline-2">
+<h2 id="org734a19b">Engineering applications</h2>
+<div class="outline-text-2" id="text-org734a19b">
+<p>
+SPICE solves modified nodal analysis; Thévenin models of sensors, batteries and amplifier outputs; source/load matching; the small-signal analysis of transistor circuits.
+</p>
+</div>
+</div>
+<div id="outline-container-org8862537" class="outline-2">
+<h2 id="org8862537">Pitfall</h2>
+<div class="outline-text-2" id="text-org8862537">
+<p>
+Superposition applies to voltages and currents, never to power (<img class="m" src="m/0bd021c435fd4f41fb34c2b2b12489378ab8cafb.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> is quadratic). And dependent sources must not be zeroed when computing <img class="m" src="m/202ed450c155d5ba72b99ece799d2a5ef6823d85.svg" alt="\(Z_{th}\)" style="height:0.913em;vertical-align:-0.164em">.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="circuits.html"><span>← previous</span>Circuit theory: the map of the subject</a><a rel="next" href="lti-systems-and-convolution.html"><span>next →</span>LTI systems, impulse response and first/second-order circuits</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/circuits--lti-systems.pdf" title="PDF manual">Lti Systems</a> · <a class="pdf" href="pdf/circuits.pdf" title="PDF manual">Circuits</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

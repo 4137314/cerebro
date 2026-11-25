@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The metric topology and continuity in metric spaces · Mathematics</title>
+<meta name="description" content="A metric determines a topology, and two different metrics can determine the same one – so a topological statement about a metric space is a statement about less than the metric. This note fixes the translation in both directions and records the one thing metric spaces have that general spaces do no…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-metric-topology-and-continuity-in-metric-spaces.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The metric topology and continuity in metric spaces · Mathematics">
+<meta property="og:description" content="A metric determines a topology, and two different metrics can determine the same one – so a topological statement about a metric space is a statement about less than the metric. This note fixes the translation in both directions and records the one thing metric spaces have that general spaces do no…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-metric-topology-and-continuity-in-metric-spaces.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-topology">Topology</a> / <a rel="up" href="index.html#a-topology--general-topology">General Topology</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Topology · General Topology</p>
+<h1>The metric topology and continuity in metric spaces</h1>
+<p class="summary">A <a href="metric-spaces-and-completeness.html">metric</a> determines a topology, and two different metrics can determine the same one &#x2013; so a topological statement about a metric space is a statement about less than the metric. This note fixes the translation in both directions and records the one thing metric spaces have that general spaces do not: the countable basis of balls at each point, which is what makes sequences sufficient.</p>
+<p class="rel"><span>needs</span> <a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a>, <a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a>, <a href="limits-and-continuity.html">Limits and continuity</a>, <a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a>, <a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a>, <a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></p>
+<p class="rel"><span>unlocks</span> <a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a>, <a href="the-baire-category-theorem.html">The Baire category theorem</a>, <a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a>, <a href="uniform-continuity-extension-and-the-completion-of-a-metric-space.html">Uniform continuity, extension and the completion of a metric space</a></p>
+<p class="rel"><span>mentioned in</span> <a href="topology.html">Topology</a>, <a href="general-topology.html">General topology</a></p>
+<details class="path"><summary>Learning path: 15 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li></ol></details>
+</header>
+<main class="note">
+<div class="theorem" id="org5453c8c">
+<p>
+In a metric space <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> the open balls form a basis of a topology, whose
+open sets are exactly the sets open in the metric sense. Every point has
+the countable neighbourhood basis <img class="m" src="m/e7a79b9af9cbda857d34b3468b1ab3fda9e3f329.svg" alt="\(\set{B(x,1/n)}_{n \ge 1}\)" style="height:1.129em;vertical-align:-0.305em">.
+</p>
+
+</div>
+
+<div class="proof" id="org00eea94">
+<p>
+The balls cover <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">, and if <img class="m" src="m/9c0bee9d572cfa904fda9406653a6c96ac87c5e6.svg" alt="\(z \in B(x,r)\cap B(y,s)\)" style="height:1.096em;vertical-align:-0.274em"> then with
+<img class="m" src="m/b7dcbb815957565f90418bd3e2f822b8606ad0db.svg" alt="\(\rho = \min(r - d(x,z), s - d(y,z)) &gt; 0\)" style="height:1.096em;vertical-align:-0.274em"> the triangle inequality
+gives <img class="m" src="m/dad5b9a6a9891621a183103288bb6399de99eaad.svg" alt="\(B(z,\rho) \subseteq B(x,r)\cap B(y,s)\)" style="height:1.096em;vertical-align:-0.274em">; so the basis criterion
+applies. A set is a union of balls exactly when each of its points has a
+ball about it inside the set, which is the metric definition of open.
+For the last claim, any ball <img class="m" src="m/16d1754b2ec5e2a2620a1ad6444530b243c43182.svg" alt="\(B(x,r)\)" style="height:1.096em;vertical-align:-0.274em"> contains <img class="m" src="m/eb03aac896c96101fa7186e61d154189ad3f3420.svg" alt="\(B(x,1/n)\)" style="height:1.096em;vertical-align:-0.274em"> as soon as
+<img class="m" src="m/85e8d2f7474c6ff9402662f5beb259165cb65fb6.svg" alt="\(1/n &lt; r\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org2c33f0e">
+<p>
+For <img class="m" src="m/d7c0c93f2d459ca20e4f53c81d24a704a65c7b84.svg" alt="\(f \colon X \to Y\)" style="height:0.974em;vertical-align:-0.214em"> between metric spaces and <img class="m" src="m/ef1adc50041594e716c6320b6627f6be97419e16.svg" alt="\(a \in X\)" style="height:0.792em;vertical-align:-0.040em"> the
+following are equivalent: (i) for every <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> there is
+<img class="m" src="m/2834db4da57323bf6f47d0a640028cc90f572412.svg" alt="\(\delta &gt; 0\)" style="height:0.804em;vertical-align:-0.040em"> with <img class="m" src="m/eea654f94be1c1516fea8cfa6ada33c86c79ea51.svg" alt="\(d(f(x), f(a)) &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em"> whenever
+<img class="m" src="m/cdb78819c680bc31471cf24bd7a6a7c99b7a647d.svg" alt="\(d(x,a) &lt; \delta\)" style="height:1.096em;vertical-align:-0.274em">; (ii) <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is continuous at <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> for the metric
+topologies; (iii) <img class="m" src="m/09cd5942881efd6bbc63c8b48f1f2716e789a13a.svg" alt="\(x_{n} \to a\)" style="height:0.636em;vertical-align:-0.165em"> implies <img class="m" src="m/5534797651cb0e1a516cd5257f9f6ecdea70914e.svg" alt="\(f(x_{n}) \to f(a)\)" style="height:1.096em;vertical-align:-0.274em">.
+Consequently <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is continuous if and only if it is sequentially
+continuous.
+</p>
+
+</div>
+
+<div class="proof" id="org04132e7">
+<p>
+(i) and (ii) are the same statement, since the balls are a
+neighbourhood basis: a neighbourhood of <img class="m" src="m/c1b5d0555357931046ec6e26eb22e2d93d82a1e2.svg" alt="\(f(a)\)" style="height:1.096em;vertical-align:-0.274em"> contains some
+<img class="m" src="m/07ca8333abb8d6f18942a6ba1514af0e89b6c21e.svg" alt="\(B(f(a),\eps)\)" style="height:1.096em;vertical-align:-0.274em">, and a neighbourhood of <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> can be taken to be
+<img class="m" src="m/cbfa0722a44da4ddcb5796a7c662a92dfb386246.svg" alt="\(B(a,\delta)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+(ii) implies (iii): given <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em">, take <img class="m" src="m/ae9908b1dd9140d114827a466a957908d1672568.svg" alt="\(\delta\)" style="height:0.761em;vertical-align:-0.000em"> as in (i); all but
+finitely many <img class="m" src="m/4036872f3d3328901352967ce2c9418a85378974.svg" alt="\(x_{n}\)" style="height:0.636em;vertical-align:-0.165em"> lie in <img class="m" src="m/cbfa0722a44da4ddcb5796a7c662a92dfb386246.svg" alt="\(B(a,\delta)\)" style="height:1.096em;vertical-align:-0.274em">, so all but finitely many
+<img class="m" src="m/a87b85116871b3f8bcee5da57022164296bbcb59.svg" alt="\(f(x_{n})\)" style="height:1.096em;vertical-align:-0.274em"> lie in <img class="m" src="m/07ca8333abb8d6f18942a6ba1514af0e89b6c21e.svg" alt="\(B(f(a),\eps)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+(iii) implies (i): if (i) fails for some <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em">, then for each <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">
+there is <img class="m" src="m/4036872f3d3328901352967ce2c9418a85378974.svg" alt="\(x_{n}\)" style="height:0.636em;vertical-align:-0.165em"> with <img class="m" src="m/b9ec83307772acc010ccd1877ecb2d26a558cf73.svg" alt="\(d(x_{n},a) &lt; 1/n\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/eeadcccac3ce46dfb6b4c58f345abe4b75fc2aa1.svg" alt="\(d(f(x_{n}), f(a)) \ge \eps\)" style="height:1.096em;vertical-align:-0.274em">. Then <img class="m" src="m/e3c81f90b833509aabe70b63b2afb780a87e6d4c.svg" alt="\(x_{n}\to a\)" style="height:0.636em;vertical-align:-0.165em"> while
+<img class="m" src="m/452d65adf7b8b58cdf981c22ebe07cb29e4bc72a.svg" alt="\(f(x_{n}) \not\to f(a)\)" style="height:1.096em;vertical-align:-0.274em">, contradicting (iii).
+</p>
+
+</div>
+
+<div class="proposition" id="org7cccc5b">
+<p>
+In a metric space, <img class="m" src="m/f082329d7cf44a97a473d3af4fe4675892dd9a5f.svg" alt="\(x \in \overline{A}\)" style="height:1.011em;vertical-align:-0.040em"> if and only if some sequence
+of points of <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> converges to <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">; and <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is closed if and only
+if it contains the limit of every convergent sequence of its points.
+</p>
+
+</div>
+
+<div class="proof" id="org96eaaaa">
+<p>
+If <img class="m" src="m/03c8bce09a4dd97b2b62c9b292f942aca32422f0.svg" alt="\(a_{n} \to x\)" style="height:0.636em;vertical-align:-0.165em"> with <img class="m" src="m/a9173e0e5831622a39652b6e4f1f82de2cb2df5c.svg" alt="\(a_{n} \in A\)" style="height:0.913em;vertical-align:-0.164em">, every neighbourhood of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">
+contains some <img class="m" src="m/7cd6225f0780ba391c867a6d5f286da9a0c098a1.svg" alt="\(a_{n}\)" style="height:0.636em;vertical-align:-0.165em">, so <img class="m" src="m/f082329d7cf44a97a473d3af4fe4675892dd9a5f.svg" alt="\(x \in \overline{A}\)" style="height:1.011em;vertical-align:-0.040em">. Conversely, if
+<img class="m" src="m/f082329d7cf44a97a473d3af4fe4675892dd9a5f.svg" alt="\(x \in \overline{A}\)" style="height:1.011em;vertical-align:-0.040em"> then each <img class="m" src="m/eb03aac896c96101fa7186e61d154189ad3f3420.svg" alt="\(B(x,1/n)\)" style="height:1.096em;vertical-align:-0.274em"> meets <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">; choosing
+<img class="m" src="m/7cd6225f0780ba391c867a6d5f286da9a0c098a1.svg" alt="\(a_{n}\)" style="height:0.636em;vertical-align:-0.165em"> in the intersection gives <img class="m" src="m/03c8bce09a4dd97b2b62c9b292f942aca32422f0.svg" alt="\(a_{n} \to x\)" style="height:0.636em;vertical-align:-0.165em">. The statement about
+closed sets follows, <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> being closed exactly when
+<img class="m" src="m/a1d84639d821baad24c6a62790ee11d1c0eab57a.svg" alt="\(A = \overline{A}\)" style="height:0.968em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="remark" id="orgceeb254">
+<p>
+The choice of one point from each <img class="m" src="m/aabba58e6ea8733f04133a0004f903edd34f17ba.svg" alt="\(B(x,1/n)\cap A\)" style="height:1.096em;vertical-align:-0.274em"> is a countable
+sequence of choices, so this proposition &#x2013; and with it "sequences
+suffice in a metric space" &#x2013; rests on a weak form of the axiom of
+choice. The general-topology statement, in terms of neighbourhoods, does
+not; that is one reason it is the one taken as the definition of the
+closure.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="compactness-and-the-heine-borel-theorem.html"><span>← previous</span>Compactness and the Heine-Borel theorem</a><a rel="next" href="total-boundedness-and-compactness-in-metric-spaces.html"><span>next →</span>Total boundedness and compactness in metric spaces</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/topology--general-topology.pdf" title="PDF manual">General Topology</a> · <a class="pdf" href="pdf/topology.pdf" title="PDF manual">Topology</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

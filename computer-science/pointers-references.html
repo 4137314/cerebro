@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pointers, references and dynamic memory in C++ · Computer Science</title>
+<meta name="description" content="A pointer is a variable holding an address, which can be null and re-seated; a reference is an alias bound once to an existing object; new allocates on the heap and returns a pointer, and every new needs exactly one delete.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/pointers-references.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Pointers, references and dynamic memory in C++ · Computer Science">
+<meta property="og:description" content="A pointer is a variable holding an address, which can be null and re-seated; a reference is an alias bound once to an existing object; new allocates on the heap and returns a pointer, and every new needs exactly one delete.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/pointers-references.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--cpp">Cpp</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Cpp</p>
+<h1>Pointers, references and dynamic memory in C++</h1>
+<p class="summary">A pointer is a variable holding an address, which can be null and re-seated; a reference is an alias bound once to an existing object; <code>new</code> allocates on the heap and returns a pointer, and every <code>new</code> needs exactly one <code>delete</code>.</p>
+<p class="rel"><span>needs</span> <a href="call-stack.html">Memory model: static area, stack and heap</a></p>
+<p class="rel"><span>unlocks</span> <a href="cpp-special-members.html">Special member functions and RAII</a>, <a href="value-categories.html">Value categories and rvalue references</a></p>
+<p class="rel"><span>see also</span> <a href="parameter-passing.html">Parameter passing</a>, <a href="smart-pointers.html">Smart pointers: unique_ptr, shared_ptr, weak_ptr</a>, <a href="value-categories.html">Value categories and rvalue references</a>, <a href="java-references.html">Objects, references and garbage collection in Java</a>, <a href="cpp-special-members.html">Special member functions and RAII</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org5a1507d" class="outline-2">
+<h2 id="org5a1507d">Definition</h2>
+<div class="outline-text-2" id="text-org5a1507d">
+<ul class="org-ul">
+<li><code>T* p = &amp;x;</code> stores the address of <code>x</code>; <code>*p</code> is the object, <code>p-&gt;m</code> is <code>(*p).m</code>. A pointer can be <code>nullptr</code>, can be changed to point elsewhere, and supports arithmetic inside arrays.</li>
+<li><code>T&amp; r = x;</code> makes <code>r</code> another name for <code>x</code>. It must be initialised, cannot be null, cannot be re-bound.</li>
+<li><code>new T(args)</code> builds a <code>T</code> on the heap and returns its address; <code>delete p</code> runs the <a href="cpp-special-members.html">destructor</a> and frees the memory. Arrays use <code>new T[n]</code> and <code>delete[] p</code>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb36d561" class="outline-2">
+<h2 id="orgb36d561">Example</h2>
+<div class="outline-text-2" id="text-orgb36d561">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="t">int</span> <span class="v">x</span> = 3;
+<span class="t">int</span>* <span class="v">p</span> = &amp;x;  *p = 4;          <span class="c">// x == 4
+</span><span class="t">int</span>&amp; <span class="v">r</span> = x;   r = 5;           <span class="c">// x == 5
+</span><span class="t">B</span>* <span class="v">pb</span> = <span class="k">new</span> <span class="t">B</span>(<span class="s">"s"</span>);            <span class="c">// heap object, owned by whoever holds pb
+</span><span class="k">delete</span> pb;  pb = <span class="n">nullptr</span>;      <span class="c">// free once, then forget the address</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org4bf4e51" class="outline-2">
+<h2 id="org4bf4e51">Errors of manual memory</h2>
+<div class="outline-text-2" id="text-org4bf4e51">
+<ul class="org-ul">
+<li><b>leak</b>: losing the last pointer to a heap object without <code>delete</code>;</li>
+<li><b>dangling pointer</b>: using a pointer after <code>delete</code>, or after the frame of the pointed local died;</li>
+<li><b>double delete</b>: deleting the same object twice, typically after a <a href="shallow-deep-copy.html">shallow copy</a>.</li>
+</ul>
+<p>
+The remedy of modern C++ is to let objects own resources: RAII, <a href="smart-pointers.html">smart pointers</a>, containers.
+</p>
+</div>
+</div>
+<div id="outline-container-org46b774a" class="outline-2">
+<h2 id="org46b774a">Intuition</h2>
+<div class="outline-text-2" id="text-org46b774a">
+<p>
+A pointer is a note with an address on it; a reference is a second name on the same door. <code>new</code> rents a room; <code>delete</code> returns the key, and nobody tells you if you keep using it.
+</p>
+</div>
+</div>
+<div id="outline-container-org2cbaeca" class="outline-2">
+<h2 id="org2cbaeca">Pitfall</h2>
+<div class="outline-text-2" id="text-org2cbaeca">
+<p>
+<code>int&amp; x = 6;</code> does not compile (a non-const lvalue reference cannot bind a temporary), but <code>const int&amp; x = 6;</code> does: the temporary's lifetime is extended to that of the reference (see <a href="value-categories.html">value categories</a>).
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="casts-rtti.html"><span>← previous</span>C++ named casts and RTTI</a><a rel="next" href="cpp-special-members.html"><span>next →</span>Special member functions and RAII</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--cpp.pdf" title="PDF manual">Cpp</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

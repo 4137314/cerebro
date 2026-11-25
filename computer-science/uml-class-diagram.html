@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UML class diagram · Computer Science</title>
+<meta name="description" content="A class models a set of homogeneous objects through a name, typed attributes and operations; objects are its instances, linked to it by instance-of: classes form the intensional level, objects the extensional one.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/uml-class-diagram.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="UML class diagram · Computer Science">
+<meta property="og:description" content="A class models a set of homogeneous objects through a name, typed attributes and operations; objects are its instances, linked to it by instance-of: classes form the intensional level, objects the extensional one.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/uml-class-diagram.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--uml">Uml</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Uml</p>
+<h1>UML class diagram</h1>
+<p class="summary">A class models a set of homogeneous objects through a name, typed attributes and operations; objects are its instances, linked to it by instance-of: classes form the intensional level, objects the extensional one.</p>
+<p class="rel"><span>unlocks</span> <a href="uml-association.html">Association, links and multiplicity</a>, <a href="uml-generalization.html">Generalization (is-a)</a></p>
+<p class="rel"><span>see also</span> <a href="object-oriented-programming.html">Object-oriented programming</a>, <a href="uml-association.html">Association, links and multiplicity</a>, <a href="uml-generalization.html">Generalization (is-a)</a></p>
+<p class="rel"><span>mentioned in</span> <a href="object-oriented-programming.html">Object-oriented programming</a></p>
+</header>
+<main class="note">
+<div id="outline-container-org6f4c6aa" class="outline-2">
+<h2 id="org6f4c6aa">Definition</h2>
+<div class="outline-text-2" id="text-org6f4c6aa">
+<p>
+The Unified Modelling Language (Booch, Rumbaugh, Jacobson) collects diagrams of three kinds: structural (class and object diagrams), behavioural (use case, state/transition, sequence, collaboration, activity) and architectural (component, deployment).
+</p>
+
+<p>
+A <b>class</b> is a box with three compartments: the name, the attributes <code>name: type</code>, the operations <code>name(params): type</code>, each prefixed by its <a href="information-hiding.html">visibility</a> (<code>+</code> public, <code>-</code> private, <code>#</code> protected, <code>~</code> <a href="java-packages.html">package</a>). An <b>object</b> is a box whose title <code>id : Class</code> is underlined; it carries a value for every attribute of its class.
+</p>
+
+<ul class="org-ul">
+<li>An object has its own life and an identity of its own, independent of the values of its attributes.</li>
+<li>An object can be an instance of several classes (a class and its superclasses), but there is always one most specific class.</li>
+<li>An attribute is a local property: its value does not depend on other objects. The class fixes which attributes the instances have, not their values.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2f1c0fb" class="outline-2">
+<h2 id="org2f1c0fb">Picture</h2>
+<div class="outline-text-2" id="text-org2f1c0fb">
+<figure class="fig"><img class="m" src="m/c0a5f1a140cd9ec4a89e76c3218eeb98abbcfacc.svg" alt="figure" style="width:33.916em"><figcaption><span class="fl">Figure 1.</span> A UML class and its instances: the class Book and the objects DivComm and Iliad, linked by instance-of.</figcaption></figure>
+<p>
+One class, two objects: every object has a value for each attribute and no other attribute.
+</p>
+</div>
+</div>
+<div id="outline-container-org31e77ab" class="outline-2">
+<h2 id="org31e77ab">Typical errors</h2>
+<div class="outline-text-2" id="text-org31e77ab">
+<p>
+In an object diagram an object must name its class, carry a value for every attribute of the class, and carry no attribute that the class does not declare. An object without a class, or with an extra attribute (<code>Language = "greek"</code> on a <code>Book</code> without <code>Language</code>), is a wrong diagram.
+</p>
+</div>
+</div>
+<div id="outline-container-orgcd87fe6" class="outline-2">
+<h2 id="orgcd87fe6">Worked example</h2>
+<div class="outline-text-2" id="text-orgcd87fe6">
+<p>
+Exercise: students (name, surname, number, age) enrolled in one degree programme (code, name), who passed exams in courses (name, subject). Solution: classes <code>Student</code>, <code>Programme</code>, <code>Course</code>; association <code>enrolled</code> Student–Programme with multiplicities <img class="m" src="m/299030f3a4f41978d2837a1d772a0a9a65499a9f.svg" alt="\(1..*\)" style="height:0.706em;vertical-align:-0.000em"> to <img class="m" src="m/6849cbaca004a88624fdfea7fc45ef9a9e3b63a3.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">; association <code>exam</code> Student–Course <img class="m" src="m/3a4157417623f86431269cbc0075bd9c4549e220.svg" alt="\(0..*\)" style="height:0.706em;vertical-align:-0.000em"> to <img class="m" src="m/3a4157417623f86431269cbc0075bd9c4549e220.svg" alt="\(0..*\)" style="height:0.706em;vertical-align:-0.000em"> with association attribute <code>grade: int</code> (see <a href="uml-association.html">associations</a>). The grade is neither a property of the student nor of the course.
+</p>
+</div>
+</div>
+<div id="outline-container-org506d4b4" class="outline-2">
+<h2 id="org506d4b4">Intuition</h2>
+<div class="outline-text-2" id="text-org506d4b4">
+<p>
+The class diagram is the vocabulary of the program: which things exist, what they know, and how they are related. Code that follows a good class diagram has one class per box and one field or method per line in the box.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd3d2b0d" class="outline-2">
+<h2 id="orgd3d2b0d">Pitfall</h2>
+<div class="outline-text-2" id="text-orgd3d2b0d">
+<p>
+A class is not a table: two objects with the same attribute values are still two objects. Identity, not value, distinguishes them.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><span></span><a rel="next" href="uml-association.html"><span>next →</span>Association, links and multiplicity</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--uml.pdf" title="PDF manual">Uml</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

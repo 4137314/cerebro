@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Integrated photonics: the map of the subject · Physics</title>
+<meta name="description" content="Silicon-on-insulator (Si core n\approx3.48, SiO_2 cladding n\approx1.44) confines light in sub-micron waveguides; from them one builds couplers, interferometers, rings, Bragg gratings, grating couplers, carrier-based modulators and Ge detectors — photonic integrated circuits fabricated in CMOS foun…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/photonics.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Integrated photonics: the map of the subject · Physics">
+<meta property="og:description" content="Silicon-on-insulator (Si core n\approx3.48, SiO_2 cladding n\approx1.44) confines light in sub-micron waveguides; from them one builds couplers, interferometers, rings, Bragg gratings, grating couplers, carrier-based modulators and Ge detectors — photonic integrated circuits fabricated in CMOS foun…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/photonics.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-photonics">Photonics</a> / <a rel="up" href="index.html#a-photonics--photonics">Photonics</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">overview · Photonics · Photonics</p>
+<h1>Integrated photonics: the map of the subject</h1>
+<p class="summary">Silicon-on-insulator (Si core <img class="m" src="m/d538b0d5e419c46524dec504cf5a4a81083f2a46.svg" alt="\(n\approx3.48\)" style="height:0.706em;vertical-align:-0.000em">, SiO<img class="m" src="m/c9902f14814473fee6466a89ce3a2722ca89432d.svg" alt="\(_2\)" style="height:0.494em;vertical-align:-0.163em"> cladding <img class="m" src="m/d6ad891bfb32941dbf576633ad589e59ba022250.svg" alt="\(n\approx1.44\)" style="height:0.706em;vertical-align:-0.000em">) confines light in sub-micron waveguides; from them one builds couplers, interferometers, rings, Bragg gratings, grating couplers, carrier-based modulators and Ge detectors — photonic integrated circuits fabricated in CMOS foundries.</p>
+<p class="rel"><span>needs</span> <a href="optoelectronics.html">Optoelectronics: the map of the subject</a></p>
+<p class="rel"><span>unlocks</span> <a href="effective-index-method.html">The effective index method</a></p>
+<p class="rel"><span>see also</span> <a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a>, <a href="quantum-optics.html">Quantum optics: the map of the subject</a></p>
+<p class="rel"><span>mentioned in</span> <a href="physics-study-map.html">Physics: study map</a></p>
+<details class="path"><summary>Learning path: 2 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="optoelectronics.html">Optoelectronics: the map of the subject</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgc80b0d5" class="outline-2">
+<h2 id="orgc80b0d5">Overview</h2>
+<div class="outline-text-2" id="text-orgc80b0d5">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">block</th>
+<th scope="col" class="org-left">notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">waveguides</td>
+<td class="org-left">effective index method, strip/rib waveguides, group index</td>
+</tr>
+
+<tr>
+<td class="org-left">passive</td>
+<td class="org-left">directional couplers, MZI, ring resonators, Bragg gratings</td>
+</tr>
+
+<tr>
+<td class="org-left">I/O</td>
+<td class="org-left">grating couplers (and edge couplers)</td>
+</tr>
+
+<tr>
+<td class="org-left">active</td>
+<td class="org-left">silicon modulators, Ge photodetectors</td>
+</tr>
+
+<tr>
+<td class="org-left">structures</td>
+<td class="org-left">photonic crystals</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org738260d" class="outline-2">
+<h2 id="org738260d">Design flow</h2>
+<div class="outline-text-2" id="text-org738260d">
+<p>
+Mode solver (FDE) → propagation (FDTD/EME) → compact models (S-parameters, <a href="scattering-parameters.html">same formalism as microwaves</a>) → circuit simulation → layout (GDS) → fabrication tolerance analysis (±10 nm width changes <img class="m" src="m/dc33acf7f86fdcdde14f3273093563f7f68f3063.svg" alt="\(n_{eff}\)" style="height:0.785em;vertical-align:-0.314em"> noticeably).
+</p>
+</div>
+</div>
+<div id="outline-container-org6af1fad" class="outline-2">
+<h2 id="org6af1fad">Picture</h2>
+<div class="outline-text-2" id="text-org6af1fad">
+<figure class="fig"><img class="m" src="m/35719dba7d89acb487aa16cbb5bbf7ea1d9bae5e.svg" alt="figure" style="width:19.584em"><figcaption><span class="fl">Figure 1.</span> Cross-section of a silicon-on-insulator strip waveguide: a 500×220 nm silicon core on 2 µm of buried oxide, under a silica cladding.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org33caa6b" class="outline-2">
+<h2 id="org33caa6b">Engineering applications</h2>
+<div class="outline-text-2" id="text-org33caa6b">
+<p>
+Datacenter transceivers (400G/800G), coherent transceivers, LiDAR (optical phased arrays), biosensors (ring resonance shift), quantum photonic chips, optical interconnects for AI accelerators.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="polarization-and-birefringence.html"><span>← previous</span>Polarisation, birefringence and wave plates</a><a rel="next" href="effective-index-method.html"><span>next →</span>The effective index method</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/photonics--photonics.pdf" title="PDF manual">Photonics</a> · <a class="pdf" href="pdf/photonics.pdf" title="PDF manual">Photonics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

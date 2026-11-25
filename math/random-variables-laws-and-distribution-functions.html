@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Random variables, laws and distribution functions · Mathematics</title>
+<meta name="description" content="A random variable is a measurable function, and nothing in the definition is random. What the word marks is a change of viewpoint: the underlying space is never described, and every statement is made about the measure the function pushes onto the line. That measure is the object of the subject, and…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/random-variables-laws-and-distribution-functions.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Random variables, laws and distribution functions · Mathematics">
+<meta property="og:description" content="A random variable is a measurable function, and nothing in the definition is random. What the word marks is a change of viewpoint: the underlying space is never described, and every statement is made about the measure the function pushes onto the line. That measure is the object of the subject, and…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/random-variables-laws-and-distribution-functions.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-probability">Probability</a> / <a rel="up" href="index.html#a-probability--probability-theory">Probability Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Probability · Probability Theory</p>
+<h1>Random variables, laws and distribution functions</h1>
+<p class="summary">A random variable is a measurable function, and nothing in the definition is random. What the word marks is a change of viewpoint: the underlying space is never described, and every statement is made about the measure the function pushes onto the line. That measure is the object of the subject, and the distribution function is the one-variable handle on it.</p>
+<p class="rel"><span>needs</span> <a href="probability-spaces-conditioning-and-independence.html">Probability spaces, conditioning and independence</a>, <a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></p>
+<p class="rel"><span>unlocks</span> <a href="characteristic-functions.html">Characteristic functions</a>, <a href="conditional-expectation-as-an-orthogonal-projection.html">Conditional expectation as an orthogonal projection</a>, <a href="expectation-the-transfer-theorem-and-jensens-inequality.html">Expectation, the transfer theorem and Jensen's inequality</a>, <a href="modes-of-convergence-and-the-borel-cantelli-lemmas.html">Modes of convergence and the Borel-Cantelli lemmas</a>, <a href="the-central-limit-theorem.html">The central limit theorem</a>, <a href="the-weak-and-strong-laws-of-large-numbers.html">The weak and strong laws of large numbers</a>, <a href="fisher-information-and-the-cramer-rao-bound.html">Fisher information and the Cramer-Rao bound</a>, <a href="least-squares-and-the-gauss-markov-theorem.html">Least squares and the Gauss-Markov theorem</a>, <a href="statistical-models-estimators-and-consistency.html">Statistical models, estimators and consistency</a></p>
+<p class="rel"><span>mentioned in</span> <a href="probability.html">Probability</a></p>
+<details class="path"><summary>Learning path: 19 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li><li><a href="probability-spaces-conditioning-and-independence.html">Probability spaces, conditioning and independence</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orge31bb3e">
+<p>
+A <i>random variable</i> on <img class="m" src="m/68e4695a374bc8fea1198d77be986a3d133a301d.svg" alt="\((\Omega,\mathcal{F},\Prob)\)" style="height:1.096em;vertical-align:-0.274em"> is a measurable
+map <img class="m" src="m/abb6f48889088409c41aeb06a1d0400288ba509c.svg" alt="\(X \colon \Omega \to \R\)" style="height:0.755em;vertical-align:-0.000em">. One writes <img class="m" src="m/de31361ef07ddda36143f07591e87c88b802be6c.svg" alt="\(\set{X \in B}\)" style="height:1.096em;vertical-align:-0.274em"> for
+<img class="m" src="m/0dadd2cf538f1bb3521cb67f100885cffb0fb86a.svg" alt="\(X^{-1}(B)\)" style="height:1.166em;vertical-align:-0.268em"> and <img class="m" src="m/8abc11fe9a88f0c5c9f2a62a3f4a8a7efb25c696.svg" alt="\(\Prob(X \in B)\)" style="height:1.096em;vertical-align:-0.274em"> for its probability.
+</p>
+
+</div>
+
+<div class="theorem" id="orge72cf1b">
+<p>
+For a random variable <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">, the <i>law</i>
+<img class="m" src="m/87714807b561b8d099c3906915d86df1077f5b02.svg" alt="\(\Prob_{X}(B) = \Prob(X \in B)\)" style="height:1.096em;vertical-align:-0.274em">, defined for Borel <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">, is a
+probability measure on <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org102a0b1">
+<p>
+<img class="m" src="m/271baffb13bab27c921628e5afd7063b9dffbbde.svg" alt="\(\Prob_{X}\)" style="height:0.919em;vertical-align:-0.165em"> is defined because <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is measurable, and
+<img class="m" src="m/49e40106488b29e289ad1c452b85df95f7b19051.svg" alt="\(\Prob_{X}(\R) = \Prob(\Omega) = 1\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/f192464c721f322922755d2ce76fad169bfabe0e.svg" alt="\(\Prob_{X}(\emptyset) = 0\)" style="height:1.096em;vertical-align:-0.274em">. If
+<img class="m" src="m/197c5d7acbccf7af3b545da99e9e864d309e3b66.svg" alt="\((B_{n})\)" style="height:1.096em;vertical-align:-0.274em"> are disjoint Borel sets, their preimages are disjoint
+events with union <img class="m" src="m/c51ed9e3a983f10b072edc3a08953994a2423074.svg" alt="\(X^{-1}(\bigcup_{n}B_{n})\)" style="height:1.221em;vertical-align:-0.330em">, so countable additivity
+of <img class="m" src="m/76f8602a7f56ed5c2f6ae4bd8ad81c4a1f52ad3d.svg" alt="\(\Prob\)" style="height:0.755em;vertical-align:-0.000em"> gives countable additivity of <img class="m" src="m/271baffb13bab27c921628e5afd7063b9dffbbde.svg" alt="\(\Prob_{X}\)" style="height:0.919em;vertical-align:-0.165em">.
+</p>
+
+</div>
+
+<div class="definition" id="orgacd4e0d">
+<p>
+The <i>distribution function</i> of <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is
+<img class="m" src="m/2adcba34a91474ea17915c0da4717bc5c7dcb910.svg" alt="\(F_{X}(t) = \Prob(X \le t)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/276f9d8e23083b442e81017db4ae8963a55538d2.svg" alt="\(t \in \R\)" style="height:0.798em;vertical-align:-0.040em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org970d5b8">
+<p>
+<img class="m" src="m/c1cec988a34a4f85b06249781860880d644e9d47.svg" alt="\(F_{X}\)" style="height:0.913em;vertical-align:-0.164em"> is non-decreasing, right-continuous, and satisfies
+<img class="m" src="m/a92bbc6d39ad6b70efb5f7cb65b640ca6488b859.svg" alt="\(\lim_{t\to-\infty}F_{X}(t) = 0\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/33775a06b6e9b8665a825035606f076ec5f519fb.svg" alt="\(\lim_{t\to+\infty}F_{X}(t) = 1\)" style="height:1.096em;vertical-align:-0.274em">.
+Moreover <img class="m" src="m/e1b5fae7031101e553a519ea74b5d90ba4c52ef5.svg" alt="\(\Prob(X = t) = F_{X}(t) - \lim_{s\uparrow t}F_{X}(s)\)" style="height:1.135em;vertical-align:-0.318em">, so
+<img class="m" src="m/c1cec988a34a4f85b06249781860880d644e9d47.svg" alt="\(F_{X}\)" style="height:0.913em;vertical-align:-0.164em"> is continuous at <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> exactly when <img class="m" src="m/35e6446720521834dd770fd7adb5590022fdaf10.svg" alt="\(\Prob(X = t) = 0\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgcc2b51d">
+<p>
+Monotonicity: <img class="m" src="m/e1daf43b3b2fd747fabb6b282ce3123e89355d47.svg" alt="\(s \le t\)" style="height:0.846em;vertical-align:-0.152em"> gives <img class="m" src="m/e88084ea9e8d17556bdf5b2cd6927ecd4b9603ba.svg" alt="\(\set{X\le s}\subseteq\set{X\le t}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+Right-continuity: for <img class="m" src="m/46deeef3e110d1bed280c7fb5952d8d82279a556.svg" alt="\(t_{n}\downarrow t\)" style="height:0.974em;vertical-align:-0.214em"> the events
+<img class="m" src="m/e3a65f166974a5b2e01aec9c409a5e8ee084b130.svg" alt="\(\set{X\le t_{n}}\)" style="height:1.096em;vertical-align:-0.274em"> decrease to <img class="m" src="m/3aa09cc651adebb5e0ab81cff18652c87e43c2f2.svg" alt="\(\set{X\le t}\)" style="height:1.096em;vertical-align:-0.274em">, so continuity from
+above of the measure gives <img class="m" src="m/b8571194b6251d1a28a06207911f46a93d61f22e.svg" alt="\(F_{X}(t_{n})\to F_{X}(t)\)" style="height:1.096em;vertical-align:-0.274em">; since
+<img class="m" src="m/c1cec988a34a4f85b06249781860880d644e9d47.svg" alt="\(F_{X}\)" style="height:0.913em;vertical-align:-0.164em"> is monotone, convergence along one such sequence gives the
+one-sided limit.
+</p>
+
+<p>
+The limits at <img class="m" src="m/11da4967deab16e9dbd550bc9725da149ae02d75.svg" alt="\(\pm\infty\)" style="height:0.731em;vertical-align:-0.088em"> are continuity along
+<img class="m" src="m/58bf5edd8b7b34f06befbf6744dea2489c8347ec.svg" alt="\(\set{X\le -n}\downarrow\emptyset\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/7dc004ac33e3fc054a7abcffaff4b22dd4efa84a.svg" alt="\(\set{X\le n}\uparrow\Omega\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+For the jump, <img class="m" src="m/b43bc877e962f8d56a45b2407ddb8b5bc666fbf8.svg" alt="\(\set{X\le s}\uparrow\set{X&lt;t}\)" style="height:1.096em;vertical-align:-0.274em"> as <img class="m" src="m/ceedf93b5556df5d4485689b57470e571600342c.svg" alt="\(s\uparrow t\)" style="height:0.974em;vertical-align:-0.214em">, so
+the left limit is <img class="m" src="m/13f2af69970db4e4c3b51ef6db8fe1a2555386dc.svg" alt="\(\Prob(X&lt;t)\)" style="height:1.096em;vertical-align:-0.274em">, and
+<img class="m" src="m/d8319d7703cb513ad11d7c9d3fa86fd3c4e8c6ec.svg" alt="\(\Prob(X\le t)-\Prob(X&lt;t) = \Prob(X=t)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="definition" id="org4da2991">
+<p>
+Random variables <img class="m" src="m/507ed3dbca6b010d0bdadcbae50578d44a3e7efd.svg" alt="\(X_{1},\dots,X_{n}\)" style="height:0.962em;vertical-align:-0.212em"> are <i>independent</i> if for all
+Borel sets <img class="m" src="m/eee8db47e35ba53ca99ef77bfe35a877b07b21f1.svg" alt="\(B_{1},\dots,B_{n}\)" style="height:0.962em;vertical-align:-0.212em">,
+<img class="m" src="m/cc17a59bcd6a386eec02da04374dda48cc3cf5ec.svg" alt="\(\Prob(X_{1}\in B_{1},\dots,X_{n}\in B_{n}) = \prod_{i}\Prob(X_{i}\in B_{i})\)" style="height:1.151em;vertical-align:-0.334em">.
+An infinite family is independent if every finite subfamily is. A
+sequence is <i>independent and identically distributed</i> if it is
+independent and all its members have the same law.
+</p>
+
+</div>
+
+<div class="proposition" id="org527a7e9">
+<p>
+If <img class="m" src="m/507ed3dbca6b010d0bdadcbae50578d44a3e7efd.svg" alt="\(X_{1},\dots,X_{n}\)" style="height:0.962em;vertical-align:-0.212em"> are independent and
+<img class="m" src="m/ff80289a75ef913a420fc3f8b5a284257394bf18.svg" alt="\(g_{1},\dots,g_{n} \colon \R \to \R\)" style="height:0.968em;vertical-align:-0.213em"> are Borel measurable, then
+<img class="m" src="m/dcddb50d4390d3cf3d906e8e6e6c5847ea3a51fa.svg" alt="\(g_{1}(X_{1}),\dots,g_{n}(X_{n})\)" style="height:1.096em;vertical-align:-0.274em"> are independent.
+</p>
+
+</div>
+
+<div class="proof" id="org395dcfa">
+<p>
+For Borel sets <img class="m" src="m/8bab848ce9e1e909d4c2fbc4b98e8abc7efb12ac.svg" alt="\(B_{i}\)" style="height:0.913em;vertical-align:-0.164em">, the events <img class="m" src="m/897d47af409499fad73cfad49a339db16f51ee8e.svg" alt="\(\set{g_{i}(X_{i})\in B_{i}}\)" style="height:1.096em;vertical-align:-0.274em"> are
+<img class="m" src="m/b2678b504b117d8bb7c23c6552d3744aac1bb124.svg" alt="\(\set{X_{i}\in g_{i}^{-1}(B_{i})}\)" style="height:1.269em;vertical-align:-0.304em">, and <img class="m" src="m/83d42f0eb6f214968c0c109cb61abfecd0c572fd.svg" alt="\(g_{i}^{-1}(B_{i})\)" style="height:1.269em;vertical-align:-0.304em"> is
+Borel; apply the definition of independence to those sets.
+</p>
+
+</div>
+
+<div class="remark" id="org759f53c">
+<p>
+Two random variables with the same law need not be equal, or even
+defined on the same space, and every theorem below is insensitive to the
+difference &#x2013; which is why the underlying <img class="m" src="m/b41edcfbc96f3fa34e8d58b21086b5659a2f0420.svg" alt="\(\Omega\)" style="height:0.749em;vertical-align:-0.000em"> can be left
+unspecified. The converse question, whether the law is determined by
+<img class="m" src="m/c1cec988a34a4f85b06249781860880d644e9d47.svg" alt="\(F_{X}\)" style="height:0.913em;vertical-align:-0.164em">, is true and is not proved here: it requires the uniqueness of
+measures agreeing on the intervals, which is Dynkin's lemma.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="probability-spaces-conditioning-and-independence.html"><span>← previous</span>Probability spaces, conditioning and independence</a><a rel="next" href="expectation-the-transfer-theorem-and-jensens-inequality.html"><span>next →</span>Expectation, the transfer theorem and Jensen's inequality</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/probability--probability-theory.pdf" title="PDF manual">Probability Theory</a> · <a class="pdf" href="pdf/probability.pdf" title="PDF manual">Probability</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

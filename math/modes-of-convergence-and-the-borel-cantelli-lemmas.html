@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modes of convergence and the Borel-Cantelli lemmas · Mathematics</title>
+<meta name="description" content="A sequence of random variables can converge in four inequivalent ways, and every limit theorem in probability is a statement that one of them holds. The implications between them are one-way, and the tool that upgrades a statement about probabilities into a statement about almost every outcome is t…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/modes-of-convergence-and-the-borel-cantelli-lemmas.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Modes of convergence and the Borel-Cantelli lemmas · Mathematics">
+<meta property="og:description" content="A sequence of random variables can converge in four inequivalent ways, and every limit theorem in probability is a statement that one of them holds. The implications between them are one-way, and the tool that upgrades a statement about probabilities into a statement about almost every outcome is t…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/modes-of-convergence-and-the-borel-cantelli-lemmas.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-probability">Probability</a> / <a rel="up" href="index.html#a-probability--probability-theory">Probability Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Probability · Probability Theory</p>
+<h1>Modes of convergence and the Borel-Cantelli lemmas</h1>
+<p class="summary">A sequence of random variables can converge in four inequivalent ways, and every limit theorem in probability is a statement that one of them holds. The implications between them are one-way, and the tool that upgrades a statement about probabilities into a statement about almost every outcome is the first Borel-Cantelli lemma &#x2013; three lines, and the reason the strong law is provable at all.</p>
+<p class="rel"><span>needs</span> <a href="probability-spaces-conditioning-and-independence.html">Probability spaces, conditioning and independence</a>, <a href="random-variables-laws-and-distribution-functions.html">Random variables, laws and distribution functions</a>, <a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a>, <a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a>, <a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a>, <a href="variance-covariance-and-the-markov-and-chebyshev-inequalities.html">Variance, covariance and the Markov and Chebyshev inequalities</a></p>
+<p class="rel"><span>unlocks</span> <a href="characteristic-functions.html">Characteristic functions</a>, <a href="the-weak-and-strong-laws-of-large-numbers.html">The weak and strong laws of large numbers</a>, <a href="statistical-models-estimators-and-consistency.html">Statistical models, estimators and consistency</a></p>
+<p class="rel"><span>mentioned in</span> <a href="probability.html">Probability</a></p>
+<details class="path"><summary>Learning path: 59 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="convex-functions-and-the-second-derivative.html">Convex functions and the second derivative</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li><li><a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="the-baire-category-theorem.html">The Baire category theorem</a></li><li><a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></li><li><a href="convex-set.html">Convex set</a></li><li><a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a></li><li><a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a></li><li><a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a></li><li><a href="probability-spaces-conditioning-and-independence.html">Probability spaces, conditioning and independence</a></li><li><a href="random-variables-laws-and-distribution-functions.html">Random variables, laws and distribution functions</a></li><li><a href="expectation-the-transfer-theorem-and-jensens-inequality.html">Expectation, the transfer theorem and Jensen's inequality</a></li><li><a href="variance-covariance-and-the-markov-and-chebyshev-inequalities.html">Variance, covariance and the Markov and Chebyshev inequalities</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orga3d839d">
+<p>
+Let <img class="m" src="m/865baea09308895dc4a4a9766bdde1b64007e679.svg" alt="\(X_{n}, X\)" style="height:0.962em;vertical-align:-0.212em"> be random variables. Then <img class="m" src="m/d6d3ba2c2e6ed80afc3585516ef553a0c8441dae.svg" alt="\(X_{n}\to X\)" style="height:0.913em;vertical-align:-0.164em">
+</p>
+<ul class="org-ul">
+<li><i>almost surely</i> if <img class="m" src="m/704793671a64b0cf87666a2c6cc2700e100b6307.svg" alt="\(\Prob(X_{n}\to X) = 1\)" style="height:1.096em;vertical-align:-0.274em">;</li>
+<li><i>in probability</i> if <img class="m" src="m/2f393b3630da82e7187b252f8b710ec3308f634f.svg" alt="\(\Prob(\abs{X_{n}-X}&gt;\eps)\to0\)" style="height:1.096em;vertical-align:-0.274em"> for every <img class="m" src="m/2cffdc597a54fae183dedb83e6fbd3d870b664ce.svg" alt="\(\eps&gt;0\)" style="height:0.749em;vertical-align:-0.045em">;</li>
+<li><i>in <img class="m" src="m/f3b131d6a772188adab030e30e89617ec918342f.svg" alt="\(L^{2}\)" style="height:0.892em;vertical-align:-0.000em"></i> if <img class="m" src="m/415fb51b9852f5e6804b2c4b2e34af9be6aab46f.svg" alt="\(\E[(X_{n}-X)^{2}]\to0\)" style="height:1.166em;vertical-align:-0.268em">;</li>
+<li><i>in distribution</i> if <img class="m" src="m/bf2d9713892f6ce3b377e8ddca18dce51413f749.svg" alt="\(F_{X_{n}}(t)\to F_{X}(t)\)" style="height:1.096em;vertical-align:-0.274em"> at every <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> where
+<img class="m" src="m/c1cec988a34a4f85b06249781860880d644e9d47.svg" alt="\(F_{X}\)" style="height:0.913em;vertical-align:-0.164em"> is continuous.</li>
+</ul>
+
+</div>
+
+<div class="theorem" id="orgc288e0f">
+<p>
+Convergence in <img class="m" src="m/f3b131d6a772188adab030e30e89617ec918342f.svg" alt="\(L^{2}\)" style="height:0.892em;vertical-align:-0.000em"> implies convergence in probability, and so does
+almost sure convergence; convergence in probability implies convergence
+in distribution. None of the implications reverses.
+</p>
+
+</div>
+
+<div class="proof" id="org86fbc03">
+<p>
+From <img class="m" src="m/f3b131d6a772188adab030e30e89617ec918342f.svg" alt="\(L^{2}\)" style="height:0.892em;vertical-align:-0.000em">: by Markov's inequality applied to
+<img class="m" src="m/455b31a68f2c5ec1cfdfb591528633ec8490f091.svg" alt="\((X_{n}-X)^{2}\)" style="height:1.166em;vertical-align:-0.268em">,
+<img class="m" src="m/81329a28280ee1d9162f8ac2caffff41798b6ff2.svg" alt="\(\Prob(\abs{X_{n}-X}&gt;\eps) \le \E[(X_{n}-X)^{2}]/\eps^{2}\to0\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+<p>
+From almost sure convergence: fix <img class="m" src="m/2cffdc597a54fae183dedb83e6fbd3d870b664ce.svg" alt="\(\eps&gt;0\)" style="height:0.749em;vertical-align:-0.045em"> and put
+<img class="m" src="m/4d704df90820dc7eab9199239e4c53a539ef55dc.svg" alt="\(A_{N} = \bigcup_{n\ge N}\set{\abs{X_{n}-X}&gt;\eps}\)" style="height:1.293em;vertical-align:-0.465em">. The <img class="m" src="m/d0be415808466ac1360cf9274ab4337027491b49.svg" alt="\(A_{N}\)" style="height:0.913em;vertical-align:-0.164em">
+decrease, and their intersection is contained in the event that
+<img class="m" src="m/03c36c5a1e1a4515448793b5a2e3a5b992bfc36d.svg" alt="\(X_{n}\not\to X\)" style="height:0.974em;vertical-align:-0.214em">, which is null; by continuity from above
+<img class="m" src="m/8e4f5398bbef77f56f5fc47c362051aef27b00db.svg" alt="\(\Prob(A_{N})\to0\)" style="height:1.096em;vertical-align:-0.274em">, and <img class="m" src="m/f9c17d0b7ee79cb1ff4e632e999c968373cea933.svg" alt="\(\Prob(\abs{X_{N}-X}&gt;\eps)\le\Prob(A_{N})\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+To distribution: let <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> be a continuity point of <img class="m" src="m/c1cec988a34a4f85b06249781860880d644e9d47.svg" alt="\(F_{X}\)" style="height:0.913em;vertical-align:-0.164em"> and
+<img class="m" src="m/2cffdc597a54fae183dedb83e6fbd3d870b664ce.svg" alt="\(\eps&gt;0\)" style="height:0.749em;vertical-align:-0.045em">. Then
+<img class="m" src="m/793065299a8f97456a344b4f0fa12303e1a61688.svg" alt="\(\set{X_{n}\le t} \subseteq \set{X \le t+\eps}\cup\set{\abs{X_{n}-X}&gt;\eps}\)" style="height:1.096em;vertical-align:-0.274em">,
+so <img class="m" src="m/029bd64af6c4f119f3a9925165fb70a031a62303.svg" alt="\(F_{X_{n}}(t) \le F_{X}(t+\eps)+\Prob(\abs{X_{n}-X}&gt;\eps)\)" style="height:1.096em;vertical-align:-0.274em">, and
+symmetrically
+<img class="m" src="m/ce6de632db36fe4dd76faf520e322bb43ae0cc80.svg" alt="\(F_{X}(t-\eps) \le F_{X_{n}}(t)+\Prob(\abs{X_{n}-X}&gt;\eps)\)" style="height:1.096em;vertical-align:-0.274em">. Letting
+<img class="m" src="m/b7678314609aa8e59a817d9e879e68c76d6b30be.svg" alt="\(n\to\infty\)" style="height:0.472em;vertical-align:-0.000em"> and then <img class="m" src="m/6d307a417231e98c040fe6cd14b0d68b0cfcdf13.svg" alt="\(\eps\to0\)" style="height:0.706em;vertical-align:-0.000em">, continuity of <img class="m" src="m/c1cec988a34a4f85b06249781860880d644e9d47.svg" alt="\(F_{X}\)" style="height:0.913em;vertical-align:-0.164em"> at <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em">
+squeezes <img class="m" src="m/ec4d3ac257849bcf33bd8786d2a1de9668231007.svg" alt="\(F_{X_{n}}(t)\)" style="height:1.096em;vertical-align:-0.274em"> to <img class="m" src="m/2143e47cc325522ea271f603514e81d817b92de3.svg" alt="\(F_{X}(t)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="lemma" id="org5406a3d">
+<p>
+Let <img class="m" src="m/12e15084b553359dd474017633f52fd0fa2258bb.svg" alt="\((A_{n})\)" style="height:1.096em;vertical-align:-0.274em"> be events with <img class="m" src="m/79e0d2271369a5faa4914a899d51949c0e8af28f.svg" alt="\(\sum_{n}\Prob(A_{n})&lt;\infty\)" style="height:1.151em;vertical-align:-0.334em">, and let
+<img class="m" src="m/99bd4a55d3ce81c6953e47156202e5a16b0beffe.svg" alt="\(\limsup_{n}A_{n} = \bigcap_{N}\bigcup_{n\ge N}A_{n}\)" style="height:1.293em;vertical-align:-0.465em"> be the event
+that infinitely many occur. Then <img class="m" src="m/54f08ffa182399f0486dd644fa5a1ffcef4b6a06.svg" alt="\(\Prob(\limsup_{n}A_{n}) = 0\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org1c1d581">
+<p>
+For every <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">, subadditivity gives
+<img class="m" src="m/fc942cc42531c0a19e2c830239fd6a47f2d59e37.svg" alt="\(\Prob(\bigcup_{n\ge N}A_{n}) \le \sum_{n\ge N}\Prob(A_{n})\)" style="height:1.293em;vertical-align:-0.465em">, which is
+the tail of a convergent series and so tends to <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">. Since
+<img class="m" src="m/34a907113b610a55948f65ec2bf934e377dc0fd4.svg" alt="\(\limsup_{n}A_{n}\)" style="height:1.029em;vertical-align:-0.268em"> is contained in each of those unions, its
+probability is at most every tail, hence <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="lemma" id="org41f3811">
+<p>
+If the events <img class="m" src="m/12e15084b553359dd474017633f52fd0fa2258bb.svg" alt="\((A_{n})\)" style="height:1.096em;vertical-align:-0.274em"> are independent and
+<img class="m" src="m/cdb4706f59eead66b40ea7de1388edae61780d0e.svg" alt="\(\sum_{n}\Prob(A_{n}) = \infty\)" style="height:1.151em;vertical-align:-0.334em">, then <img class="m" src="m/2db1fd4a072cc7cd587fd9de75b0f1d77920537a.svg" alt="\(\Prob(\limsup_{n}A_{n}) = 1\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orga0cb9c0">
+<p>
+Fix <img class="m" src="m/f7c5b1701c3c7f6c839489801d98b144ab8c39ab.svg" alt="\(N \le M\)" style="height:0.898em;vertical-align:-0.153em">. By independence of the complements,
+<div class="mb"><img class="m" src="m/68413a2e9b18b29fd5bb52a7cd6f0f55b73879d8.svg" alt="\[ \Prob\Bigl(\bigcap_{n=N}^{M}A_{n}^{c}\Bigr) = \prod_{n=N}^{M}(1-\Prob(A_{n})) \le \exp\Bigl(-\sum_{n=N}^{M}\Prob(A_{n})\Bigr), \]" style="width:25.601em"></div>
+using <img class="m" src="m/1669b960695bd04df660b6b48e6dc2a4d388308b.svg" alt="\(1-x\le e^{-x}\)" style="height:1.022em;vertical-align:-0.153em">. The exponent tends to <img class="m" src="m/475f7195ed13d4122f38886897764f0f66fd611d.svg" alt="\(-\infty\)" style="height:0.731em;vertical-align:-0.088em"> as
+<img class="m" src="m/77552725d36ef9ec2fae45021572041a537d771a.svg" alt="\(M\to\infty\)" style="height:0.749em;vertical-align:-0.000em"> because the series diverges, so
+<img class="m" src="m/2e2c60fa76f6df22bf6f4f9ca376254c8c9830c3.svg" alt="\(\Prob(\bigcap_{n\ge N}A_{n}^{c}) = 0\)" style="height:1.293em;vertical-align:-0.465em"> by continuity from above. Hence
+the union over <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> of those events is null, and its complement &#x2013;
+which is <img class="m" src="m/34a907113b610a55948f65ec2bf934e377dc0fd4.svg" alt="\(\limsup_{n}A_{n}\)" style="height:1.029em;vertical-align:-0.268em"> &#x2013; has probability <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="corollary" id="orgaf04b00">
+<p>
+If <img class="m" src="m/50d0bc02c1e8a821f054b87fc0df45cc13f67193.svg" alt="\(\sum_{n}\Prob(\abs{X_{n}-X}&gt;\eps)&lt;\infty\)" style="height:1.151em;vertical-align:-0.334em"> for every <img class="m" src="m/2cffdc597a54fae183dedb83e6fbd3d870b664ce.svg" alt="\(\eps&gt;0\)" style="height:0.749em;vertical-align:-0.045em">,
+then <img class="m" src="m/d6d3ba2c2e6ed80afc3585516ef553a0c8441dae.svg" alt="\(X_{n}\to X\)" style="height:0.913em;vertical-align:-0.164em"> almost surely.
+</p>
+
+</div>
+
+<div class="proof" id="org35f13c2">
+<p>
+Fix <img class="m" src="m/450da30e42a6093e4435c9ab971a6d3ff69aba8c.svg" alt="\(\eps = 1/k\)" style="height:1.096em;vertical-align:-0.274em">. By the first Borel-Cantelli lemma, almost surely
+only finitely many of the events <img class="m" src="m/e916c6d7cad715fdc4ce99b1cb6fadc49d32cdea.svg" alt="\(\abs{X_{n}-X}&gt;1/k\)" style="height:1.096em;vertical-align:-0.274em"> occur, so
+<img class="m" src="m/f5498a3c526ad34a53c37a4b69051f6d78928c3b.svg" alt="\(\limsup_{n}\abs{X_{n}-X}\le 1/k\)" style="height:1.096em;vertical-align:-0.274em"> almost surely. Intersecting the
+countably many full-measure events over <img class="m" src="m/5ec5e3b2fda230219e6719c59682076f93242498.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> &#x2013; a countable
+intersection of complements of null sets &#x2013; gives
+<img class="m" src="m/d6d3ba2c2e6ed80afc3585516ef553a0c8441dae.svg" alt="\(X_{n}\to X\)" style="height:0.913em;vertical-align:-0.164em"> almost surely.
+</p>
+
+</div>
+
+<div class="remark" id="org4b14d89">
+<p>
+The two lemmas together are a zero-one law: for independent events the
+probability that infinitely many occur is <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> or <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">, decided by
+whether a series converges. Independence is needed only for the second,
+and it cannot be dropped there &#x2013; repeating one event of probability
+<img class="m" src="m/3be9272810f6a519d17fe44e220a7f2d0f0e4dda.svg" alt="\(1/2\)" style="height:1.096em;vertical-align:-0.274em"> gives a divergent sum and a limit superior of probability
+<img class="m" src="m/3be9272810f6a519d17fe44e220a7f2d0f0e4dda.svg" alt="\(1/2\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="variance-covariance-and-the-markov-and-chebyshev-inequalities.html"><span>← previous</span>Variance, covariance and the Markov and Chebyshev inequalities</a><a rel="next" href="characteristic-functions.html"><span>next →</span>Characteristic functions</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/probability--probability-theory.pdf" title="PDF manual">Probability Theory</a> · <a class="pdf" href="pdf/probability.pdf" title="PDF manual">Probability</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

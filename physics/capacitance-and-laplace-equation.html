@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poisson, Laplace and capacitance · Physics</title>
+<meta name="description" content="The potential obeys \nabla^2V=-\rho/\epsilon (Poisson), \nabla^2V=0 in charge-free regions (Laplace); by uniqueness any solution meeting the boundary conditions is the solution, so images and separation of variables are legitimate; capacitance C=Q/V follows: \epsilon A/d, 2\pi\epsilon/\ln(b/a) per …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/capacitance-and-laplace-equation.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Poisson, Laplace and capacitance · Physics">
+<meta property="og:description" content="The potential obeys \nabla^2V=-\rho/\epsilon (Poisson), \nabla^2V=0 in charge-free regions (Laplace); by uniqueness any solution meeting the boundary conditions is the solution, so images and separation of variables are legitimate; capacitance C=Q/V follows: \epsilon A/d, 2\pi\epsilon/\ln(b/a) per …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/capacitance-and-laplace-equation.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-electromagnetic-fields">Electromagnetic Fields</a> / <a rel="up" href="index.html#a-electromagnetic-fields--static-fields">Static Fields</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Electromagnetic Fields · Static Fields</p>
+<h1>Poisson, Laplace and capacitance</h1>
+<p class="summary">The potential obeys <img class="m" src="m/3113df1b466ea3ab505948db2879168c438d818e.svg" alt="\(\nabla^2V=-\rho/\epsilon\)" style="height:1.166em;vertical-align:-0.268em"> (Poisson), <img class="m" src="m/2a32e5d0e85cb9f8aec17334366265e2744afb50.svg" alt="\(\nabla^2V=0\)" style="height:0.892em;vertical-align:-0.000em"> in charge-free regions (Laplace); by uniqueness any solution meeting the boundary conditions is the solution, so images and separation of variables are legitimate; capacitance <img class="m" src="m/7aa5eb3a7ded7bec1af91d140e348532a4dfdfae.svg" alt="\(C=Q/V\)" style="height:1.096em;vertical-align:-0.274em"> follows: <img class="m" src="m/fb3a864f6c0ef26534109179ebdbad5a0b55abfd.svg" alt="\(\epsilon A/d\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/beda9ba949ced798838446c677ff297fa1735de5.svg" alt="\(2\pi\epsilon/\ln(b/a)\)" style="height:1.096em;vertical-align:-0.274em"> per metre, <img class="m" src="m/fe44e89f9cae87622a8f3f67668229af7ac8d052.svg" alt="\(4\pi\epsilon ab/(b-a)\)" style="height:1.096em;vertical-align:-0.274em">.</p>
+<p class="rel"><span>needs</span> <a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></p>
+<p class="rel"><span>unlocks</span> <a href="transmission-lines.html">Transmission lines</a>, <a href="mosfet-capacitances-and-scaling.html">MOSFET capacitances and scaling</a></p>
+<p class="rel"><span>see also</span> <a href="transmission-lines.html">Transmission lines</a>, <a href="mosfet-capacitances-and-scaling.html">MOSFET capacitances and scaling</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org5fd5ab2" class="outline-2">
+<h2 id="org5fd5ab2">Method</h2>
+<div class="outline-text-2" id="text-org5fd5ab2">
+<ol class="org-ol">
+<li>Write <img class="m" src="m/3113df1b466ea3ab505948db2879168c438d818e.svg" alt="\(\nabla^2V=-\rho/\epsilon\)" style="height:1.166em;vertical-align:-0.268em"> and the boundary values (conductors at fixed <img class="m" src="m/b1823c2844011c3351ca12a680a0432837e249b6.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">, or <img class="m" src="m/f978c488c3c5085b6564dde8fb1e3d807e2b0339.svg" alt="\(\partial V/\partial n\)" style="height:1.096em;vertical-align:-0.274em"> given).</li>
+<li><b>Uniqueness</b>: if <img class="m" src="m/0260814c793817f8cb42855c66b1abc885e4d51e.svg" alt="\(V_1,V_2\)" style="height:0.962em;vertical-align:-0.212em"> satisfy both, <img class="m" src="m/569fdfabc9331f8c6b06f82b60b2b60df35e7d72.svg" alt="\(W=V_1-V_2\)" style="height:0.913em;vertical-align:-0.164em"> is harmonic with zero boundary data; <img class="m" src="m/76443b94a3dd7ea456f8ead36ec1cb5c009a7135.svg" alt="\(\int|\nabla W|^2=\oint W\partial_nW=0\)" style="height:1.227em;vertical-align:-0.331em">, so <img class="m" src="m/a9cad1cd523a1de91577ac2bcff9cd104d5b09b9.svg" alt="\(W=0\)" style="height:0.749em;vertical-align:-0.000em">.</li>
+<li>Solve: direct integration (1D), images, separation of variables, conformal maps, or numerics (finite differences: <img class="m" src="m/ee01a55393eeb432da09e6066139b15b2ed3cbca.svg" alt="\(V_{i,j}=\tfrac14(V_{i\pm1,j}+V_{i,j\pm1})\)" style="height:1.304em;vertical-align:-0.378em">).</li>
+<li><img class="m" src="m/7aa5eb3a7ded7bec1af91d140e348532a4dfdfae.svg" alt="\(C=Q/V\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/7c00d21dcd38b5bf2da22895a95bb3e1c0cbb413.svg" alt="\(Q=\oint\rho_s\dd S\)" style="height:1.218em;vertical-align:-0.341em">, or from energy <img class="m" src="m/81d16e2c185a0fef5d2dce9855f7c2683790d89a.svg" alt="\(W=\tfrac12CV^2\)" style="height:1.304em;vertical-align:-0.378em">.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org7a52be1" class="outline-2">
+<h2 id="org7a52be1">Standard capacitances</h2>
+<div class="outline-text-2" id="text-org7a52be1">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">geometry</th>
+<th scope="col" class="org-left">C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">parallel plates</td>
+<td class="org-left">εA/d</td>
+</tr>
+
+<tr>
+<td class="org-left">coaxial, per length</td>
+<td class="org-left">2πε/ln(b/a)</td>
+</tr>
+
+<tr>
+<td class="org-left">concentric spheres</td>
+<td class="org-left">4πε ab/(b − a)</td>
+</tr>
+
+<tr>
+<td class="org-left">two wires d apart, radius a</td>
+<td class="org-left">πε/arccosh(d/2a) per m</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org59b65bf" class="outline-2">
+<h2 id="org59b65bf">Method of images</h2>
+<div class="outline-text-2" id="text-org59b65bf">
+<p>
+Charge <img class="m" src="m/0bc4ebd4dc2685290c3a40bc8402a066e478a56a.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> at height <img class="m" src="m/0d5a54c1585e2d15108524aceea77a2748759c03.svg" alt="\(h\)" style="height:0.761em;vertical-align:-0.000em"> over a grounded plane: replace the plane by <img class="m" src="m/60cbd0a8b4b238bedea664c1a8d4e0805e24c47f.svg" alt="\(-q\)" style="height:0.852em;vertical-align:-0.213em"> at <img class="m" src="m/037959fbc6be0c5f15a75c312934238272ae7888.svg" alt="\(-h\)" style="height:0.852em;vertical-align:-0.094em">; the plane is then at <img class="m" src="m/5fc1b354a94accb86e170a2568409143298c2521.svg" alt="\(V=0\)" style="height:0.749em;vertical-align:-0.000em">, uniqueness does the rest. Force <img class="m" src="m/fddfa88bf88784bed0d337313b580f9b8be809e8.svg" alt="\(F=\frac{q^2}{4\pi\epsilon(2h)^2}\)" style="height:1.742em;vertical-align:-0.575em"> (attractive), induced surface charge <img class="m" src="m/307b9c5109a1918692e9fa694c015ab702613de6.svg" alt="\(\rho_s=-\frac{qh}{2\pi(x^2+h^2)^{3/2}}\)" style="height:1.636em;vertical-align:-0.622em">, total <img class="m" src="m/60cbd0a8b4b238bedea664c1a8d4e0805e24c47f.svg" alt="\(-q\)" style="height:0.852em;vertical-align:-0.213em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org5ea7b1e" class="outline-2">
+<h2 id="org5ea7b1e">Worked example</h2>
+<div class="outline-text-2" id="text-org5ea7b1e">
+<p>
+Coax RG-58: <img class="m" src="m/ea21923ece9301f7e41e609b9ef0cf7f8cc393bc.svg" alt="\(a=0.45\)" style="height:0.706em;vertical-align:-0.000em"> mm, <img class="m" src="m/bf173f2c016a1cc33db1d131fd1a0ed42087399d.svg" alt="\(b=1.47\)" style="height:0.761em;vertical-align:-0.000em"> mm, polyethylene <img class="m" src="m/e2e0e652bbd821e2d0a81fee8a53d173a50ca9f0.svg" alt="\(\epsilon_r=2.3\)" style="height:0.871em;vertical-align:-0.165em">: <img class="m" src="m/2259a70a9b0c11458ebc002378a869c74a1f3d25.svg" alt="\(C=\frac{2\pi\cdot2.3\cdot8.85\times10^{-12}}{\ln3.27}=108\)" style="height:1.505em;vertical-align:-0.376em"> pF/m; with <img class="m" src="m/310f43851de007fecdc2a238335fcfc10288627e.svg" alt="\(L=\frac{\mu_0}{2\pi}\ln\frac ba=0.24\)" style="height:1.342em;vertical-align:-0.376em"> µH/m, <img class="m" src="m/91ba0022ffb6b4b909dca6c4a07b7a4ca24e7ffe.svg" alt="\(Z_0=\sqrt{L/C}=47\)" style="height:1.359em;vertical-align:-0.340em"> Ω ≈ 50 Ω (<a href="transmission-lines.html">transmission lines</a>).
+</p>
+</div>
+</div>
+<div id="outline-container-orgfdd3870" class="outline-2">
+<h2 id="orgfdd3870">Engineering applications</h2>
+<div class="outline-text-2" id="text-orgfdd3870">
+<p>
+Interconnect capacitance in ICs (dominant load for <a href="cmos-propagation-delay.html">gate delay</a>), MOS gate capacitance, capacitive sensors, field solvers for PCB stack-ups, Poisson solvers in device simulation (TCAD).
+</p>
+</div>
+</div>
+<div id="outline-container-orgb7e4ff8" class="outline-2">
+<h2 id="orgb7e4ff8">Pitfall</h2>
+<div class="outline-text-2" id="text-orgb7e4ff8">
+<p>
+Fringing fields make <img class="m" src="m/fb3a864f6c0ef26534109179ebdbad5a0b55abfd.svg" alt="\(\epsilon A/d\)" style="height:1.096em;vertical-align:-0.274em"> an underestimate when plate dimensions are not <img class="m" src="m/703b3221c02da0fe9b89776f240d2056ece8aca5.svg" alt="\(\gg d\)" style="height:0.804em;vertical-align:-0.040em"> — important for narrow IC wires, where fringe capacitance can exceed the plate term.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="magnetostatics-and-ampere-law.html"><span>← previous</span>Magnetostatics: Biot–Savart, Ampère and inductance</a><a rel="next" href="faraday-law-and-induction.html"><span>next →</span>Faraday's law and electromagnetic induction</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/electromagnetic-fields--static-fields.pdf" title="PDF manual">Static Fields</a> · <a class="pdf" href="pdf/electromagnetic-fields.pdf" title="PDF manual">Electromagnetic Fields</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

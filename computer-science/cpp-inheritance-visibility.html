@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Public, protected and private inheritance in C++ · Computer Science</title>
+<meta name="description" content="C++ derives with public, protected or private; the mode caps the visibility of the inherited members in the derived class, and only public inheritance makes the derived class a subtype usable through base pointers and references.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/cpp-inheritance-visibility.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Public, protected and private inheritance in C++ · Computer Science">
+<meta property="og:description" content="C++ derives with public, protected or private; the mode caps the visibility of the inherited members in the derived class, and only public inheritance makes the derived class a subtype usable through base pointers and references.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/cpp-inheritance-visibility.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--cpp">Cpp</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Cpp</p>
+<h1>Public, protected and private inheritance in C++</h1>
+<p class="summary">C++ derives with <code>public</code>, <code>protected</code> or <code>private</code>; the mode caps the visibility of the inherited members in the derived class, and only public inheritance makes the derived class a subtype usable through base pointers and references.</p>
+<p class="rel"><span>needs</span> <a href="inheritance.html">Inheritance and overriding</a>, <a href="information-hiding.html">Information hiding and visibility</a></p>
+<p class="rel"><span>unlocks</span> <a href="multiple-inheritance.html">Multiple inheritance and the diamond</a>, <a href="virtual-functions.html">Virtual functions and the virtual table</a></p>
+<p class="rel"><span>see also</span> <a href="virtual-functions.html">Virtual functions and the virtual table</a>, <a href="multiple-inheritance.html">Multiple inheritance and the diamond</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="information-hiding.html">Information hiding and visibility</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org33e75d0" class="outline-2">
+<h2 id="org33e75d0">Definition</h2>
+<div class="outline-text-2" id="text-org33e75d0">
+<p>
+In <code>class D : mode B</code>, a member of <code>B</code> with <a href="information-hiding.html">visibility</a> <img class="m" src="m/f19d00b567f03ea93981f37f632ec605b342d3f5.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> is seen in <code>D</code> with visibility <img class="m" src="m/45455539e35e7b8a597f00642a5f3fe5e9196d19.svg" alt="\(\min(v,\text{mode})\)" style="height:1.096em;vertical-align:-0.274em">, where private <img class="m" src="m/993b11c5cdda3bad655125ec9c411b517d383aab.svg" alt="\(&lt;\)" style="height:0.634em;vertical-align:-0.044em"> protected <img class="m" src="m/993b11c5cdda3bad655125ec9c411b517d383aab.svg" alt="\(&lt;\)" style="height:0.634em;vertical-align:-0.044em"> public; private members of <code>B</code> are never accessible in <code>D</code>.
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">member of B</th>
+<th scope="col" class="org-left">public inheritance</th>
+<th scope="col" class="org-left">protected inheritance</th>
+<th scope="col" class="org-left">private inheritance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">public</td>
+<td class="org-left">public</td>
+<td class="org-left">protected</td>
+<td class="org-left">private</td>
+</tr>
+
+<tr>
+<td class="org-left">protected</td>
+<td class="org-left">protected</td>
+<td class="org-left">protected</td>
+<td class="org-left">private</td>
+</tr>
+
+<tr>
+<td class="org-left">private</td>
+<td class="org-left">not accessible</td>
+<td class="org-left">not accessible</td>
+<td class="org-left">not accessible</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Only with <b>public</b> inheritance is "D is-a B" visible outside: a <code>D*</code> converts to <code>B*</code>, a <code>D&amp;</code> to <code>B&amp;</code>, and <code>D</code> objects can be used wherever <code>B</code> is expected. Private inheritance means "implemented in terms of", like a private member.
+</p>
+</div>
+</div>
+<div id="outline-container-org63edf89" class="outline-2">
+<h2 id="org63edf89">Example</h2>
+<div class="outline-text-2" id="text-org63edf89">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="k">class</span> <span class="t">Character</span> { <span class="k">public</span>: <span class="k">virtual</span> <span class="t">void</span> <span class="f">act</span>() = 0; <span class="k">virtual</span> ~<span class="f">Character</span>() = <span class="k">default</span>; };
+<span class="k">class</span> <span class="t">Wizard</span> : <span class="k">public</span> <span class="t">Character</span> { <span class="k">public</span>: <span class="t">void</span> <span class="f">act</span>() <span class="k">override</span> { <span class="c">/* cast */</span> } };
+<span class="t">Character</span>* <span class="v">c</span> = <span class="k">new</span> <span class="t">Wizard</span>;   <span class="c">// fine: public inheritance
+</span>c-&gt;act();                    <span class="c">// Wizard::act through the virtual call
+</span><span class="k">delete</span> c;</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orgf7d272e" class="outline-2">
+<h2 id="orgf7d272e">Slicing</h2>
+<div class="outline-text-2" id="text-orgf7d272e">
+<p>
+Assigning a derived object to a base <b>object</b> (not pointer or reference) copies only the base part: <code>Character c2 = *w;</code> would keep no wizard. Polymorphism in C++ needs pointers or references.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd4eb3af" class="outline-2">
+<h2 id="orgd4eb3af">Intuition</h2>
+<div class="outline-text-2" id="text-orgd4eb3af">
+<p>
+The inheritance mode is a filter on the way down; public is the only one that lets the outside world see the family relation.
+</p>
+</div>
+</div>
+<div id="outline-container-org4773934" class="outline-2">
+<h2 id="org4773934">Pitfall</h2>
+<div class="outline-text-2" id="text-org4773934">
+<p>
+<code>class</code> defaults to private inheritance, <code>struct</code> to public: <code>class D : B {}</code> silently makes <code>D</code> not a subtype of <code>B</code>.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="parnas-principles.html"><span>← previous</span>Parnas principles and contracts</a><a rel="next" href="virtual-functions.html"><span>next →</span>Virtual functions and the virtual table</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--cpp.pdf" title="PDF manual">Cpp</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

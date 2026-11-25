@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Affine spaces, affine subspaces and affine maps · Mathematics</title>
+<meta name="description" content="A vector space has a distinguished point, and geometry does not: no point of the plane is the origin until one is chosen. An affine space is what remains of a vector space when the origin is forgotten – points, and differences of points which are vectors – and it is the right home for everything st…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/affine-spaces-affine-subspaces-and-affine-maps.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Affine spaces, affine subspaces and affine maps · Mathematics">
+<meta property="og:description" content="A vector space has a distinguished point, and geometry does not: no point of the plane is the origin until one is chosen. An affine space is what remains of a vector space when the origin is forgotten – points, and differences of points which are vectors – and it is the right home for everything st…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/affine-spaces-affine-subspaces-and-affine-maps.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-geometry">Geometry</a> / <a rel="up" href="index.html#a-geometry--linear-algebra">Linear Algebra</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Geometry · Linear Algebra</p>
+<h1>Affine spaces, affine subspaces and affine maps</h1>
+<p class="summary">A <a href="vector-space.html">vector space</a> has a distinguished point, and geometry does not: no point of the plane is the origin until one is chosen. An affine space is what remains of a vector space when the origin is forgotten &#x2013; points, and differences of points which are vectors &#x2013; and it is the right home for everything stated in terms of lines, parallelism and barycentres.</p>
+<p class="rel"><span>needs</span> <a href="group-actions-orbits-and-the-orbit-stabiliser-theorem.html">Group actions, orbits and the orbit-stabiliser theorem</a>, <a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a>, <a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a>, <a href="vector-space.html">Vector space</a></p>
+<p class="rel"><span>unlocks</span> <a href="conics-and-quadrics-classification-by-signature.html">Conics and quadrics: classification by signature</a>, <a href="isometries-of-euclidean-space-and-the-orthogonal-group.html">Isometries of Euclidean space and the orthogonal group</a></p>
+<p class="rel"><span>mentioned in</span> <a href="linear-algebra.html">Linear algebra</a>, <a href="geometry.html">Geometry</a></p>
+<details class="path"><summary>Learning path: 19 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="the-order-of-an-element-and-cyclic-groups.html">The order of an element and cyclic groups</a></li><li><a href="cosets-the-index-and-lagranges-theorem.html">Cosets, the index and Lagrange's theorem</a></li><li><a href="group-actions-orbits-and-the-orbit-stabiliser-theorem.html">Group actions, orbits and the orbit-stabiliser theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org00ebc66">
+<p>
+An <i>affine space</i> over a field <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> is a non-empty set <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> together
+with a vector space <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> over <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> and a map
+<img class="m" src="m/31a27bbabfe5556901e5735ad691534e2fe8b962.svg" alt="\(A \times A \to V\)" style="height:0.840em;vertical-align:-0.092em">, <img class="m" src="m/2e0cab032dc9104a081dbbebbaa54fc422fe6a98.svg" alt="\((P,Q) \mapsto \vec{PQ}\)" style="height:1.334em;vertical-align:-0.280em">, such that
+<img class="m" src="m/91a91fe112136f3efc5d7e347f00ee6bb4ac419c.svg" alt="\(\vec{PQ} + \vec{QR} = \vec{PR}\)" style="height:1.273em;vertical-align:-0.216em"> for all <img class="m" src="m/e45e747924e6cfe3783557eef2353579a5083b4f.svg" alt="\(P,Q,R\)" style="height:0.962em;vertical-align:-0.212em">, and for each
+<img class="m" src="m/5e5e88a016c21953b888d0a79379d3378acd05b0.svg" alt="\(P \in A\)" style="height:0.792em;vertical-align:-0.040em"> the map <img class="m" src="m/49548306553f72a5f07a2108072ce669d9614fe2.svg" alt="\(Q \mapsto \vec{PQ}\)" style="height:1.273em;vertical-align:-0.216em"> is a bijection <img class="m" src="m/a7a103dda6e09984a3d44d5242582823cb736f7d.svg" alt="\(A \to V\)" style="height:0.749em;vertical-align:-0.000em">.
+One writes <img class="m" src="m/2b68b90cd7ea0644694bab54acbd16cd6bc0629f.svg" alt="\(Q = P + v\)" style="height:0.962em;vertical-align:-0.212em"> for the inverse of that bijection, and
+<img class="m" src="m/86fcd58a184223d960480fc492a138418a5b6056.svg" alt="\(\dim A = \dim V\)" style="height:0.761em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org68165c7">
+<p>
+In an affine space <img class="m" src="m/8343827cbe77ff4a2630ec8254cd96659b81ca3a.svg" alt="\(\vec{PP} = 0\)" style="height:1.060em;vertical-align:-0.000em"> and <img class="m" src="m/f386f10d022bbf7c12a8a1b81b8f9f873e6877d0.svg" alt="\(\vec{QP} = -\vec{PQ}\)" style="height:1.273em;vertical-align:-0.216em">; the
+map <img class="m" src="m/d6f30ed859ac960a20225e08c36703258b488c65.svg" alt="\((P, v) \mapsto P + v\)" style="height:1.096em;vertical-align:-0.274em"> is an action of the additive group of
+<img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> on <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, and it is transitive with trivial stabilisers.
+</p>
+
+</div>
+
+<div class="proof" id="org03085ec">
+<p>
+Taking <img class="m" src="m/95b73ac592ffa424a9108a387edf8d976b5bbf9d.svg" alt="\(P = Q = R\)" style="height:0.962em;vertical-align:-0.212em"> in the identity gives
+<img class="m" src="m/ea7bf0f9dee58118408dd71d4ec753cc137842d0.svg" alt="\(\vec{PP} + \vec{PP} = \vec{PP}\)" style="height:1.151em;vertical-align:-0.092em">, so <img class="m" src="m/8343827cbe77ff4a2630ec8254cd96659b81ca3a.svg" alt="\(\vec{PP} = 0\)" style="height:1.060em;vertical-align:-0.000em">; then
+<img class="m" src="m/497122cc47d6fadff5dfb29062b8fe17fd9dbe56.svg" alt="\(\vec{PQ} + \vec{QP} = \vec{PP} = 0\)" style="height:1.273em;vertical-align:-0.216em">. For the action,
+<img class="m" src="m/ae395b2be1af0bf8e736c57fad04d7ebbf2534cd.svg" alt="\(P + 0 = P\)" style="height:0.840em;vertical-align:-0.092em"> because <img class="m" src="m/8343827cbe77ff4a2630ec8254cd96659b81ca3a.svg" alt="\(\vec{PP} = 0\)" style="height:1.060em;vertical-align:-0.000em">, and
+<img class="m" src="m/cca9b7c14a58809f89e73d3e74c241f3a6dbb849.svg" alt="\((P + v) + w = P + (v+w)\)" style="height:1.096em;vertical-align:-0.274em"> because
+<img class="m" src="m/39076ab5302effed759c66b9fd54ac71aa8f898d.svg" alt="\(\vec{P(P+v)} + \vec{(P+v)((P+v)+w)} = v + w\)" style="height:1.407em;vertical-align:-0.267em">. Transitivity and
+triviality of the stabilisers are the statement that
+<img class="m" src="m/49548306553f72a5f07a2108072ce669d9614fe2.svg" alt="\(Q \mapsto \vec{PQ}\)" style="height:1.273em;vertical-align:-0.216em"> is a bijection.
+</p>
+
+</div>
+
+<div class="definition" id="orge72ca5d">
+<p>
+A subset <img class="m" src="m/7d67a64e0ffe9fb5761a6a00bfac4a6946a2fdbd.svg" alt="\(S \subseteq A\)" style="height:0.898em;vertical-align:-0.153em"> is an <i>affine subspace</i> if it is non-empty
+and <img class="m" src="m/0c864cf42d01288b81d6100f9612fb7b497a9f9c.svg" alt="\(\vec{S} = \setst{\vec{PQ}}{P,Q \in S}\)" style="height:1.334em;vertical-align:-0.280em"> is a linear subspace of
+<img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/0264a7b568d5089319042f477f7994dfa1550ea1.svg" alt="\(S = P_{0} + \vec{S}\)" style="height:1.224em;vertical-align:-0.159em"> for some (hence any)
+<img class="m" src="m/2bab9d8fdc0546fb4495e0bd6cc9b969ca07c7e7.svg" alt="\(P_{0} \in S\)" style="height:0.913em;vertical-align:-0.164em">. Its <i>direction</i> is <img class="m" src="m/c1ec63fdf8dacba890de19545dc892f36189dd62.svg" alt="\(\vec{S}\)" style="height:1.060em;vertical-align:-0.000em">, and two affine
+subspaces are <i>parallel</i> if one direction contains the other.
+</p>
+
+</div>
+
+<div class="proposition" id="org6dccbab">
+<p>
+A non-empty <img class="m" src="m/7d67a64e0ffe9fb5761a6a00bfac4a6946a2fdbd.svg" alt="\(S \subseteq A\)" style="height:0.898em;vertical-align:-0.153em"> is an affine subspace if and only if
+<img class="m" src="m/26bac8af5b8b1d9227a4ef730ae1ced4e6637748.svg" alt="\(S = P_{0} + W\)" style="height:0.913em;vertical-align:-0.164em"> for some <img class="m" src="m/805c8b9923bded1f4b41cfa4c9fdc678f122c8ec.svg" alt="\(P_{0} \in A\)" style="height:0.913em;vertical-align:-0.164em"> and some linear subspace
+<img class="m" src="m/a940c012608e1a3f073a1738a046d24187c153d9.svg" alt="\(W \subseteq V\)" style="height:0.898em;vertical-align:-0.153em">, and then <img class="m" src="m/083283457a37fd62dfcce85200f12640be49150b.svg" alt="\(W = \vec{S}\)" style="height:1.060em;vertical-align:-0.000em"> is determined by <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgc310245">
+<p>
+One direction is the definition. Conversely let <img class="m" src="m/26bac8af5b8b1d9227a4ef730ae1ced4e6637748.svg" alt="\(S = P_{0} + W\)" style="height:0.913em;vertical-align:-0.164em">. For
+<img class="m" src="m/86c5854372694ee4c17c074e24b3560ee1d67761.svg" alt="\(P = P_{0}+w\)" style="height:0.913em;vertical-align:-0.164em"> and <img class="m" src="m/be36492c04ec4bbc935d3ae6ca8889cce992f0f8.svg" alt="\(Q = P_{0}+w'\)" style="height:1.037em;vertical-align:-0.218em"> in <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> we get
+<img class="m" src="m/5336f9d2dcb93608082399d915fc8e6907504893.svg" alt="\(\vec{PQ} = w' - w \in W\)" style="height:1.273em;vertical-align:-0.216em">, and every <img class="m" src="m/55751fbf6f569c9e82065272003262ce6a8e7123.svg" alt="\(w \in W\)" style="height:0.792em;vertical-align:-0.040em"> arises as
+<img class="m" src="m/ac9127977c39bd8a52f831d0090f40b9b390ea82.svg" alt="\(\vec{P_{0}(P_{0}+w)}\)" style="height:1.407em;vertical-align:-0.267em">; hence <img class="m" src="m/71750bed950ec9d23115e6d4aa3348bd7644dfd7.svg" alt="\(\vec{S} = W\)" style="height:1.060em;vertical-align:-0.000em">, a subspace, and
+<img class="m" src="m/0264a7b568d5089319042f477f7994dfa1550ea1.svg" alt="\(S = P_{0} + \vec{S}\)" style="height:1.224em;vertical-align:-0.159em">. Since <img class="m" src="m/c1ec63fdf8dacba890de19545dc892f36189dd62.svg" alt="\(\vec{S}\)" style="height:1.060em;vertical-align:-0.000em"> is defined from <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> alone,
+<img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em"> is determined.
+</p>
+
+</div>
+
+<div class="definition" id="orgf64d88d">
+<p>
+A map <img class="m" src="m/c889e34224e70c0123f28d056753f5762249df70.svg" alt="\(f \colon A \to B\)" style="height:0.974em;vertical-align:-0.214em"> between affine spaces over <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">, with
+directions <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em">, is <i>affine</i> if there is a linear
+<img class="m" src="m/4e30023b80ece4412c3d3df2af5d2f64d74f3097.svg" alt="\(\vec{f} \colon V \to W\)" style="height:1.285em;vertical-align:-0.218em"> with
+<img class="m" src="m/85d22145255d97bf91791de21b1e13e423067d93.svg" alt="\(\vec{f(P)f(Q)} = \vec{f}(\vec{PQ})\)" style="height:1.407em;vertical-align:-0.267em"> for all <img class="m" src="m/af3afec8021c8f8d4d60f64d0fc98b523ba3f52e.svg" alt="\(P, Q \in A\)" style="height:0.962em;vertical-align:-0.212em">. The map
+<img class="m" src="m/2f1891ba2fd7dfe40bcda3b69547a36eed274ba3.svg" alt="\(\vec{f}\)" style="height:1.285em;vertical-align:-0.218em"> is the <i>linear part</i> of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org42aa849">
+<p>
+The linear part of an affine map is unique; the composition of affine
+maps is affine with linear part the composition of the linear parts; and
+an affine map preserves barycentres:
+<img class="m" src="m/b7c0487edfbd8abf7b70a750edb2abfa021f1ae5.svg" alt="\(f\bigl(P_{0} + \sum_{i} \lambda_{i} \vec{P_{0}P_{i}}\bigr) = f(P_{0}) + \sum_{i} \lambda_{i}\vec{f(P_{0})f(P_{i})}\)" style="height:1.517em;vertical-align:-0.379em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgbf0ef67">
+<p>
+Uniqueness: fixing <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em">, every <img class="m" src="m/ba2e9b5e96dc17618ab910ebb475abda08f82d6a.svg" alt="\(v \in V\)" style="height:0.792em;vertical-align:-0.040em"> is <img class="m" src="m/c00c8c7b68304539df60e08d5eb32158e57131c9.svg" alt="\(\vec{PQ}\)" style="height:1.273em;vertical-align:-0.216em"> for exactly
+one <img class="m" src="m/f5b2fd106192be88a5de7a139a6fee4d755cdf09.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em">, and <img class="m" src="m/f0680dc2c6883384ca5e2f1c110eb9f332dc4ba9.svg" alt="\(\vec{f}(v)\)" style="height:1.346em;vertical-align:-0.269em"> is then forced. Composition: if
+<img class="m" src="m/2f1891ba2fd7dfe40bcda3b69547a36eed274ba3.svg" alt="\(\vec{f}\)" style="height:1.285em;vertical-align:-0.218em"> and <img class="m" src="m/267a631b318df6524d6a175af9c59b7817510e47.svg" alt="\(\vec{g}\)" style="height:0.996em;vertical-align:-0.209em"> are the linear parts of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em">,
+then <img class="m" src="m/1d3a37cffd908e848e60dd7710f6a56eff23c447.svg" alt="\(\vec{g(f(P))g(f(Q))} = \vec{g}(\vec{f}(\vec{PQ}))\)" style="height:1.407em;vertical-align:-0.267em">. For
+barycentres, put <img class="m" src="m/4441d212e1432487c413ffe6fc88fb372b49a169.svg" alt="\(v = \sum_{i}\lambda_{i}\vec{P_{0}P_{i}}\)" style="height:1.389em;vertical-align:-0.333em">; then
+<img class="m" src="m/56692eafbe96ccbff7374020923e83ed7d52d207.svg" alt="\(f(P_{0}+v) = f(P_{0}) + \vec{f}(v)\)" style="height:1.346em;vertical-align:-0.269em"> by definition of the linear part,
+and <img class="m" src="m/9ad0da2ee0563fc98f811f3b741611eb96f7bd14.svg" alt="\(\vec{f}(v) = \sum_{i}\lambda_{i}\vec{f}(\vec{P_{0}P_{i}})\)" style="height:1.401em;vertical-align:-0.322em"> by
+linearity.
+</p>
+
+</div>
+
+<div class="remark" id="org8ff0ae4">
+<p>
+Choosing a point <img class="m" src="m/af771b11a332519f820a5d01a0b29e159a3e79d0.svg" alt="\(O \in A\)" style="height:0.792em;vertical-align:-0.040em"> identifies <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> and every
+affine map with <img class="m" src="m/ef6df033ecfed8bba25e7356855cb380c2351294.svg" alt="\(x \mapsto \vec{f}(x) + b\)" style="height:1.346em;vertical-align:-0.269em">. That is why affine
+geometry can always be computed in coordinates &#x2013; and why one should
+not: the statements that survive are exactly those, like the
+preservation of barycentres, that never mention <img class="m" src="m/ce77df72a5dcaefc796fadc202ce35cc945df430.svg" alt="\(O\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html"><span>← previous</span>Orthogonality, Gram-Schmidt and orthogonal decomposition</a><a rel="next" href="conics-and-quadrics-classification-by-signature.html"><span>next →</span>Conics and quadrics: classification by signature</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/geometry--linear-algebra.pdf" title="PDF manual">Linear Algebra</a> · <a class="pdf" href="pdf/geometry.pdf" title="PDF manual">Geometry</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Topological spaces, bases and generated topologies · Mathematics</title>
+<meta name="description" content="In a metric space the open sets were defined from the distance, and then every argument about continuity and convergence was rewritten in terms of them. A topology is what is left when the distance is discarded and only the family of open sets is kept – which is exactly as much as those arguments u…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/topological-spaces-bases-and-generated-topologies.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Topological spaces, bases and generated topologies · Mathematics">
+<meta property="og:description" content="In a metric space the open sets were defined from the distance, and then every argument about continuity and convergence was rewritten in terms of them. A topology is what is left when the distance is discarded and only the family of open sets is kept – which is exactly as much as those arguments u…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/topological-spaces-bases-and-generated-topologies.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-topology">Topology</a> / <a rel="up" href="index.html#a-topology--general-topology">General Topology</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Topology · General Topology</p>
+<h1>Topological spaces, bases and generated topologies</h1>
+<p class="summary">In a <a href="metric-spaces-and-completeness.html">metric space</a> the open sets were defined from the distance, and then every argument about continuity and convergence was rewritten in terms of them. A topology is what is left when the distance is discarded and only the family of open sets is kept &#x2013; which is exactly as much as those arguments used, and strictly less than a metric, since some useful families of open sets come from no metric at all.</p>
+<p class="rel"><span>needs</span> <a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></p>
+<p class="rel"><span>unlocks</span> <a href="boolean-algebras-and-stones-representation-theorem.html">Boolean algebras and Stone's representation theorem</a>, <a href="filters-ultrafilters-and-the-ultrafilter-lemma.html">Filters, ultrafilters and the ultrafilter lemma</a>, <a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a>, <a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a>, <a href="connectedness-components-and-path-connectedness.html">Connectedness, components and path-connectedness</a>, <a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a>, <a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a>, <a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a>, <a href="local-compactness-and-the-one-point-compactification.html">Local compactness and the one-point compactification</a>, <a href="nets-and-convergence-in-topological-spaces.html">Nets and convergence in topological spaces</a>, <a href="regular-and-normal-spaces-and-urysohns-lemma.html">Regular and normal spaces, and Urysohn's lemma</a>, <a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a>, <a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a>, <a href="smooth-manifolds-smooth-maps-and-the-tangent-space.html">Smooth manifolds, smooth maps and the tangent space</a></p>
+<p class="rel"><span>mentioned in</span> <a href="general-topology.html">General topology</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org36ad70c">
+<p>
+A <i>topology</i> on a set <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is a family <img class="m" src="m/d4978a0459c9e7c40623ca4491ab4ede1803f6f7.svg" alt="\(\mathcal{T}\)" style="height:0.749em;vertical-align:-0.000em"> of subsets &#x2013;
+the <i>open</i> sets &#x2013; such that <img class="m" src="m/b9fcf2ccae8d3515975b71b2e2ab3c4479b2d3d5.svg" alt="\(\emptyset\)" style="height:0.883em;vertical-align:-0.062em"> and <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> belong to
+<img class="m" src="m/d4978a0459c9e7c40623ca4491ab4ede1803f6f7.svg" alt="\(\mathcal{T}\)" style="height:0.749em;vertical-align:-0.000em">, any union of members of <img class="m" src="m/d4978a0459c9e7c40623ca4491ab4ede1803f6f7.svg" alt="\(\mathcal{T}\)" style="height:0.749em;vertical-align:-0.000em"> belongs to
+<img class="m" src="m/d4978a0459c9e7c40623ca4491ab4ede1803f6f7.svg" alt="\(\mathcal{T}\)" style="height:0.749em;vertical-align:-0.000em">, and the intersection of any two members does. The pair
+<img class="m" src="m/2854915ee47ee13cf5d4d45d360093788d8ce0a7.svg" alt="\((X,\mathcal{T})\)" style="height:1.096em;vertical-align:-0.274em"> is a <i>topological space</i>; a set is <i>closed</i> if its
+complement is open, and a <i>neighbourhood</i> of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> is any set
+containing an open set containing <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org5671222">
+<p>
+In a topological space, <img class="m" src="m/b9fcf2ccae8d3515975b71b2e2ab3c4479b2d3d5.svg" alt="\(\emptyset\)" style="height:0.883em;vertical-align:-0.062em"> and <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> are closed, any
+intersection of closed sets is closed, and the union of two closed sets
+is closed.
+</p>
+
+</div>
+
+<div class="proof" id="org802e65c">
+<p>
+Complements exchange unions with intersections: the complement of
+<img class="m" src="m/6cb7b71a29c1442d2a79ad70895605c45f365570.svg" alt="\(\bigcap_{i} C_{i}\)" style="height:1.151em;vertical-align:-0.334em"> is <img class="m" src="m/bb6f8b7d064c0ee8d825a3d1f9b9c07fa5214560.svg" alt="\(\bigcup_{i}(X \setminus C_{i})\)" style="height:1.151em;vertical-align:-0.334em">, a union of
+open sets, hence open; and the complement of <img class="m" src="m/867ff1676d49b01603ff39f752a68f4b1e8ecc16.svg" alt="\(C_{1}\cup C_{2}\)" style="height:0.913em;vertical-align:-0.164em"> is
+<img class="m" src="m/add5fc13008e51e3d15471bf822b6747084a9cb3.svg" alt="\((X\setminus C_{1})\cap(X\setminus C_{2})\)" style="height:1.096em;vertical-align:-0.274em">, open as a finite
+intersection. The two extreme cases are the complements of <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> and
+<img class="m" src="m/b9fcf2ccae8d3515975b71b2e2ab3c4479b2d3d5.svg" alt="\(\emptyset\)" style="height:0.883em;vertical-align:-0.062em">.
+</p>
+
+</div>
+
+<div class="definition" id="org8dc5717">
+<p>
+A <i>basis</i> of a topology <img class="m" src="m/d4978a0459c9e7c40623ca4491ab4ede1803f6f7.svg" alt="\(\mathcal{T}\)" style="height:0.749em;vertical-align:-0.000em"> is a subfamily
+<img class="m" src="m/3fe3efe4dff0dca2d1e893eaf795fd747548b366.svg" alt="\(\mathcal{B} \subseteq \mathcal{T}\)" style="height:0.898em;vertical-align:-0.153em"> such that every open set is a
+union of members of <img class="m" src="m/6d40145d26458af58776ea3bb7d3688a443c67b2.svg" alt="\(\mathcal{B}\)" style="height:0.749em;vertical-align:-0.000em">. A <i>subbasis</i> is a family whose
+finite intersections form a basis.
+</p>
+
+</div>
+
+<div class="theorem" id="orgb9466d2">
+<p>
+A family <img class="m" src="m/6d40145d26458af58776ea3bb7d3688a443c67b2.svg" alt="\(\mathcal{B}\)" style="height:0.749em;vertical-align:-0.000em"> of subsets of <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is a basis of some topology
+on <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> if and only if it covers <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> and, for all
+<img class="m" src="m/1e19450cbe1c7e07c932c58d7604f86463955f0f.svg" alt="\(B_{1}, B_{2} \in \mathcal{B}\)" style="height:0.962em;vertical-align:-0.212em"> and <img class="m" src="m/6dac0a6218ceb043a5373fe2583174f97e8d1248.svg" alt="\(x \in B_{1}\cap B_{2}\)" style="height:0.913em;vertical-align:-0.164em">, there is
+<img class="m" src="m/36f9b1305dc79dbde3b2c20aca187c8a94383cfc.svg" alt="\(B_{3} \in \mathcal{B}\)" style="height:0.913em;vertical-align:-0.164em"> with <img class="m" src="m/d91a7bf8fa2d857853eb00757f0dc193b0b74614.svg" alt="\(x \in B_{3} \subseteq B_{1}\cap B_{2}\)" style="height:0.913em;vertical-align:-0.164em">.
+The topology is then unique: its open sets are the unions of members of
+<img class="m" src="m/6d40145d26458af58776ea3bb7d3688a443c67b2.svg" alt="\(\mathcal{B}\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="orga97a6cd">
+<p>
+Necessity: <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is open, hence a union of basis members, so
+<img class="m" src="m/6d40145d26458af58776ea3bb7d3688a443c67b2.svg" alt="\(\mathcal{B}\)" style="height:0.749em;vertical-align:-0.000em"> covers; and <img class="m" src="m/c6872deb5fca2b67a646a820f36bf0a76638bb0c.svg" alt="\(B_{1}\cap B_{2}\)" style="height:0.913em;vertical-align:-0.164em"> is open, hence such a
+union, so any of its points lies in one of the pieces.
+</p>
+
+<p>
+Sufficiency: let <img class="m" src="m/d4978a0459c9e7c40623ca4491ab4ede1803f6f7.svg" alt="\(\mathcal{T}\)" style="height:0.749em;vertical-align:-0.000em"> be the family of unions of members of
+<img class="m" src="m/6d40145d26458af58776ea3bb7d3688a443c67b2.svg" alt="\(\mathcal{B}\)" style="height:0.749em;vertical-align:-0.000em">. It contains <img class="m" src="m/b9fcf2ccae8d3515975b71b2e2ab3c4479b2d3d5.svg" alt="\(\emptyset\)" style="height:0.883em;vertical-align:-0.062em"> (the empty union) and <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">
+(by covering), and is closed under arbitrary unions, a union of unions
+being a union. For two members <img class="m" src="m/3ce95ed0e08ba57b5130d0043145397f701e9739.svg" alt="\(U = \bigcup_{i}B_{i}\)" style="height:1.151em;vertical-align:-0.334em"> and
+<img class="m" src="m/4c09ffc8268d1816f2883a4f7f480df7a6f821d9.svg" alt="\(V = \bigcup_{j}B_{j}'\)" style="height:1.302em;vertical-align:-0.482em">, a point <img class="m" src="m/c2031eebd2d67e060f2360a7c27d42dd10020f1b.svg" alt="\(x \in U\cap V\)" style="height:0.792em;vertical-align:-0.040em"> lies in some
+<img class="m" src="m/6aaffcc247d6d0a1f4e9ab4a5eb883bbc511a377.svg" alt="\(B_{i}\cap B_{j}'\)" style="height:1.258em;vertical-align:-0.440em">, hence in some <img class="m" src="m/605bfd37e46a359772cfd0da52d061e6059f06ec.svg" alt="\(B_{3} \subseteq B_{i}\cap B_{j}' \subseteq U \cap V\)" style="height:1.258em;vertical-align:-0.440em">;
+so <img class="m" src="m/35958e8e35cbd0cd728666b293b5a0fc896cf685.svg" alt="\(U \cap V\)" style="height:0.749em;vertical-align:-0.000em"> is the union of such <img class="m" src="m/85b52f4691e57882ad8f6abffc3e53c0e1e6bca9.svg" alt="\(B_{3}\)" style="height:0.913em;vertical-align:-0.164em"> and lies in
+<img class="m" src="m/d4978a0459c9e7c40623ca4491ab4ede1803f6f7.svg" alt="\(\mathcal{T}\)" style="height:0.749em;vertical-align:-0.000em">. Uniqueness is the definition of a basis.
+</p>
+
+</div>
+
+<div class="proposition" id="orga5603e2">
+<p>
+The intersection of any non-empty family of topologies on <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is a
+topology. Consequently, for any family <img class="m" src="m/823d458118978517887306921d56d285d07cc9d5.svg" alt="\(\mathcal{S}\)" style="height:0.749em;vertical-align:-0.000em"> of subsets there
+is a smallest topology containing it, the topology <i>generated by</i>
+<img class="m" src="m/823d458118978517887306921d56d285d07cc9d5.svg" alt="\(\mathcal{S}\)" style="height:0.749em;vertical-align:-0.000em">, and <img class="m" src="m/823d458118978517887306921d56d285d07cc9d5.svg" alt="\(\mathcal{S}\)" style="height:0.749em;vertical-align:-0.000em"> is a subbasis of it.
+</p>
+
+</div>
+
+<div class="proof" id="org9763ecd">
+<p>
+Each of the three closure conditions holds in every member of the
+family, hence in the intersection. The topologies containing
+<img class="m" src="m/823d458118978517887306921d56d285d07cc9d5.svg" alt="\(\mathcal{S}\)" style="height:0.749em;vertical-align:-0.000em"> form a non-empty family &#x2013; the discrete topology, all
+subsets, is one &#x2013; so their intersection is the smallest such topology.
+It contains all finite intersections of members of <img class="m" src="m/823d458118978517887306921d56d285d07cc9d5.svg" alt="\(\mathcal{S}\)" style="height:0.749em;vertical-align:-0.000em"> and
+all unions of those; that family is already a topology by the basis
+criterion, the finite intersections being closed under pairwise
+intersection, so it is the whole of the generated topology.
+</p>
+
+</div>
+
+<div class="remark" id="orgf33b320">
+<p>
+Two topologies are worth naming immediately because they bound all
+others: the <i>discrete</i> one, in which every set is open, and the
+<i>indiscrete</i> one, with only <img class="m" src="m/b9fcf2ccae8d3515975b71b2e2ab3c4479b2d3d5.svg" alt="\(\emptyset\)" style="height:0.883em;vertical-align:-0.062em"> and <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">. Every statement
+below that separates points holds vacuously in the first and fails in
+the second, which makes them the standard test of whether a hypothesis
+is really being used.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="topology.html"><span>← previous</span>Topology</a><a rel="next" href="interior-closure-boundary-and-density.html"><span>next →</span>Interior, closure, boundary and density</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/topology--general-topology.pdf" title="PDF manual">General Topology</a> · <a class="pdf" href="pdf/topology.pdf" title="PDF manual">Topology</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

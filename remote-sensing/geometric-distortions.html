@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geometric distortions · Remote Sensing</title>
+<meta name="description" content="An image is not a map: Earth rotation during acquisition skews it, Earth curvature and wide fields of view stretch pixels off nadir (panoramic distortion), platform attitude and altitude variations (roll, pitch, yaw) warp lines, and relief displaces elevated points away from nadir.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/geometric-distortions.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Geometric distortions · Remote Sensing">
+<meta property="og:description" content="An image is not a map: Earth rotation during acquisition skews it, Earth curvature and wide fields of view stretch pixels off nadir (panoramic distortion), platform attitude and altitude variations (roll, pitch, yaw) warp lines, and relief displaces elevated points away from nadir.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/geometric-distortions.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--corrections">Corrections</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Processing · Corrections</p>
+<h1>Geometric distortions</h1>
+<p class="summary">An image is not a map: Earth rotation during acquisition skews it, Earth curvature and wide fields of view stretch pixels off nadir (panoramic distortion), platform attitude and altitude variations (roll, pitch, yaw) warp lines, and relief displaces elevated points away from nadir.</p>
+<p class="rel"><span>needs</span> <a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></p>
+<p class="rel"><span>unlocks</span> <a href="geometric-correction.html">Geometric correction, geocoding and registration</a></p>
+<p class="rel"><span>see also</span> <a href="geometric-correction.html">Geometric correction, geocoding and registration</a>, <a href="radar-geometric-distortions.html">Foreshortening, layover and shadow</a>, <a href="radiometric-correction.html">Radiometric errors and corrections</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org8844599" class="outline-2">
+<h2 id="org8844599">Definition</h2>
+<div class="outline-text-2" id="text-org8844599">
+<p>
+<b>Systematic</b> (predictable from orbit and sensor models):
+</p>
+<ul class="org-ul">
+<li><b>Earth rotation</b>: while successive lines are acquired the ground moves east: the image is skewed (strongest at the equator);</li>
+<li><b>panoramic distortion</b> and <b>Earth curvature</b>: pixel size grows as <img class="m" src="m/a4de56eefa609717ac12445fbc6301c4dc36d22b.svg" alt="\(1/\cos^2\)" style="height:1.166em;vertical-align:-0.268em"> of the scan angle for a scanner, plus curvature for wide swaths;</li>
+<li><b>scan non-linearity</b>, mirror velocity variations.</li>
+</ul>
+<p>
+<b>Random</b> (need ground control):
+</p>
+<ul class="org-ul">
+<li><b>attitude</b>: roll shifts lines across track, pitch along track, yaw rotates them; altitude changes alter scale;</li>
+<li><b>relief displacement</b>: a point at height <img class="m" src="m/8b3da72536db2dfc56f146266fdfd48802e5907f.svg" alt="\(h\)" style="height:0.761em;vertical-align:-0.000em"> seen at off-nadir angle <img class="m" src="m/26a79d102cb1ce06fd629f701c75ae2cb8c4fd84.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> is displaced by about <img class="m" src="m/65790ffe3435ba0c1380511f560b20a9cb05d1b4.svg" alt="\(h\tan\alpha\)" style="height:0.761em;vertical-align:-0.000em"> away from nadir (towards the sensor for radar).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5830b20" class="outline-2">
+<h2 id="org5830b20">Picture</h2>
+<div class="outline-text-2" id="text-org5830b20">
+<figure class="fig"><img class="m" src="m/583782e552d17f332a81f25a5e8e712b82c6666c.svg" alt="figure" style="width:21.247em"><figcaption><span class="fl">Figure 1.</span> Systematic geometric distortions of a scanned image: the ideal grid, the skew from the Earth's rotation, and the warping from attitude variations.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-orgb0c5def" class="outline-2">
+<h2 id="orgb0c5def">Intuition</h2>
+<div class="outline-text-2" id="text-orgb0c5def">
+<p>
+A scanner paints the image line by line from a moving, slightly wobbling platform over a rotating, curved, bumpy Earth; every one of those motions bends the picture.
+</p>
+</div>
+</div>
+<div id="outline-container-org892db2c" class="outline-2">
+<h2 id="org892db2c">Pitfall</h2>
+<div class="outline-text-2" id="text-org892db2c">
+<p>
+Relief displacement cannot be removed by a polynomial: it needs a digital elevation model (<a href="geometric-correction.html">orthorectification</a>).
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="false-color-composite.html"><span>← previous</span>True and false colour composites</a><a rel="next" href="geometric-correction.html"><span>next →</span>Geometric correction, geocoding and registration</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--corrections.pdf" title="PDF manual">Corrections</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

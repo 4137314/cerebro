@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pipeline hazards · Computer Science</title>
+<meta name="description" content="In a five-stage pipeline (IF, ID, EX, MEM, WB) consecutive instructions overlap, so an instruction may need a result not yet written (data hazard), the next PC may be unknown (control hazard) or two stages may need the same unit (structural hazard); forwarding, stalls (bubbles) and branch predictio…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/pipeline-hazards.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Pipeline hazards · Computer Science">
+<meta property="og:description" content="In a five-stage pipeline (IF, ID, EX, MEM, WB) consecutive instructions overlap, so an instruction may need a result not yet written (data hazard), the next PC may be unknown (control hazard) or two stages may need the same unit (structural hazard); forwarding, stalls (bubbles) and branch predictio…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/pipeline-hazards.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--processors">Processors</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Hardware · Processors</p>
+<h1>Pipeline hazards</h1>
+<p class="summary">In a five-stage pipeline (IF, ID, EX, MEM, WB) consecutive instructions overlap, so an instruction may need a result not yet written (data hazard), the next PC may be unknown (control hazard) or two stages may need the same unit (structural hazard); forwarding, stalls (bubbles) and branch prediction with flushing resolve them at some cost in CPI.</p>
+<p class="rel"><span>needs</span> <a href="risc-v-datapath.html">A non-pipelined RISC-V processor</a>, <a href="pipelining.html">Pipelining</a></p>
+<p class="rel"><span>see also</span> <a href="datapath-control.html">Datapath and control unit</a>, <a href="risc-v-isa.html">The RISC-V base instruction set (RV32I)</a></p>
+<p class="rel"><span>mentioned in</span> <a href="perfect-forwarding.html">Forwarding references and perfect forwarding</a>, <a href="glitches.html">Glitches</a></p>
+<details class="path"><summary>Learning path: 27 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li><li><a href="sr-latch.html">SR latch and D latch</a></li><li><a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></li><li><a href="fsm-analysis.html">Analysis of synchronous sequential circuits</a></li><li><a href="fsm-synthesis.html">Synthesis of finite-state machines</a></li><li><a href="big-o-complexity.html">Computational complexity and big-O</a></li><li><a href="digital-design-flow.html">Digital design flow and abstraction levels</a></li><li><a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a></li><li><a href="std-logic.html">std_logic: nine-valued logic and resolution</a></li><li><a href="vhdl-concurrent-assignments.html">Concurrent assignments: when–else and with–select</a></li><li><a href="vhdl-process.html">Processes and sequential statements</a></li><li><a href="sequential-logic.html">Flip-flops and registers in VHDL</a></li><li><a href="finite-state-machine.html">Finite-state machines</a></li><li><a href="setup-hold-time.html">Setup and hold constraints</a></li><li><a href="gate-delay-model.html">Gate and wire delay models</a></li><li><a href="static-timing-analysis.html">Static timing analysis</a></li><li><a href="retiming.html">Retiming</a></li><li><a href="pipelining.html">Pipelining</a></li><li><a href="ripple-carry-adder.html">Full adder and ripple-carry adder</a></li><li><a href="datapath-subsystems.html">Datapath subsystems: detectors, shifters, counters</a></li><li><a href="datapath-control.html">Datapath and control unit</a></li><li><a href="alu-design.html">Arithmetic logic unit</a></li><li><a href="risc-v-isa.html">The RISC-V base instruction set (RV32I)</a></li><li><a href="risc-v-datapath.html">A non-pipelined RISC-V processor</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org861d81d" class="outline-2">
+<h2 id="org861d81d">Definition</h2>
+<div class="outline-text-2" id="text-org861d81d">
+<ul class="org-ul">
+<li><b>Structural</b>: two instructions need one resource in the same cycle (a single memory for instructions and data). Fix: separate instruction and data memories, more ports.</li>
+<li><b>Data (RAW)</b>: <code>add x1,x2,x3</code> then <code>sub x4,x1,x5</code>: <code>sub</code> reads <code>x1</code> in ID while <code>add</code> writes it in WB three cycles later. <b>Forwarding</b> sends the ALU result from the EX/MEM or MEM/WB register straight to the ALU input; a <b>load-use</b> hazard (<code>lw x1</code> followed by use of <code>x1</code>) still needs one stall cycle, because the data appears only after MEM.</li>
+<li><b>Control</b>: the branch outcome is known in EX: the two instructions fetched after it may be wrong. Options: stall, predict not taken and flush on misprediction, dynamic prediction (branch history tables), compute the branch earlier in ID.</li>
+</ul>
+<p>
+Performance: <img class="m" src="m/6852633dd193b9fc8bc4e3447f22f099b1fe60e6.svg" alt="\(\mathrm{CPI}=1+\)" style="height:0.840em;vertical-align:-0.092em"> stall cycles per instruction; time <img class="m" src="m/f210ab0b9c5b28a83f1a28129d086c3e2b4739cf.svg" alt="\(=N\cdot\mathrm{CPI}\cdot T\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org0815faf" class="outline-2">
+<h2 id="org0815faf">Picture</h2>
+<div class="outline-text-2" id="text-org0815faf">
+<figure class="fig"><img class="m" src="m/84ce396bd6237df38c85e3b2b92b359e4844ede2.svg" alt="figure" style="width:31.643em"><figcaption><span class="fl">Figure 1.</span> A load-use data hazard in a five-stage RISC-V pipeline: add needs x1 one cycle after lw loads it, so it stalls once and then receives the value forwarded from MEM to EX.</figcaption></figure>
+<p>
+Load-use: one bubble, then the loaded value is forwarded from the end of MEM to the start of EX.
+</p>
+</div>
+</div>
+<div id="outline-container-orgaae2885" class="outline-2">
+<h2 id="orgaae2885">Worked example</h2>
+<div class="outline-text-2" id="text-orgaae2885">
+<p>
+Program mix: 25% loads, of which 40% are followed by a dependent instruction; 15% branches, taken 60% of the time, predicted not taken with a 2-cycle penalty when taken. With forwarding:
+<div class="mb"><img class="m" src="m/c77730212e8a31505653f9454fe0a584fc1a5337.svg" alt="\[ \mathrm{CPI}=1+0.25\cdot0.4\cdot1+0.15\cdot0.6\cdot2=1+0.10+0.18=1.28. \]" style="width:29.878em"></div>
+A non-pipelined design with the same logic takes 5 cycles of a period about 5 times longer per instruction; the pipeline speed-up is <img class="m" src="m/7880f2b49c4b0bd99f05809078c732e014a73ae9.svg" alt="\(5/1.28\approx3.9\)" style="height:1.096em;vertical-align:-0.274em">, not 5.
+</p>
+</div>
+</div>
+<div id="outline-container-orgaa24ee8" class="outline-2">
+<h2 id="orgaa24ee8">Intuition</h2>
+<div class="outline-text-2" id="text-orgaa24ee8">
+<p>
+Overlapping instructions is an assembly line; hazards are the moments when a worker needs a part the previous worker has not finished.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdbe5a92" class="outline-2">
+<h2 id="orgdbe5a92">Pitfall</h2>
+<div class="outline-text-2" id="text-orgdbe5a92">
+<p>
+Forwarding paths add multiplexers to the ALU inputs, lengthening the <a href="static-timing-analysis.html">critical path</a>; deeper pipelines make branch mispredictions more expensive, so more stages are not always faster.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="risc-v-datapath.html"><span>← previous</span>A non-pipelined RISC-V processor</a><a rel="next" href="serial-communication.html"><span>next →</span>Serial communication</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--processors.pdf" title="PDF manual">Processors</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

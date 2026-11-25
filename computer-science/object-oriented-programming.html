@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Object-oriented programming · Computer Science</title>
+<meta name="description" content="A program is a set of objects, each joining data (state) and the functions that act on it (behaviour) behind an interface; classes describe objects, inheritance and polymorphism let new classes extend old code without changing it.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/object-oriented-programming.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Object-oriented programming · Computer Science">
+<meta property="og:description" content="A program is a set of objects, each joining data (state) and the functions that act on it (behaviour) behind an interface; classes describe objects, inheritance and polymorphism let new classes extend old code without changing it.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/object-oriented-programming.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--oop">Oop</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Oop</p>
+<h1>Object-oriented programming</h1>
+<p class="summary">A program is a set of objects, each joining data (state) and the functions that act on it (behaviour) behind an interface; classes describe objects, inheritance and polymorphism let new classes extend old code without changing it.</p>
+<p class="rel"><span>unlocks</span> <a href="information-hiding.html">Information hiding and visibility</a>, <a href="inheritance.html">Inheritance and overriding</a>, <a href="method-overloading.html">Overloading</a></p>
+<p class="rel"><span>see also</span> <a href="uml-class-diagram.html">UML class diagram</a>, <a href="information-hiding.html">Information hiding and visibility</a>, <a href="inheritance.html">Inheritance and overriding</a>, <a href="polymorphism.html">Polymorphism and dynamic binding</a>, <a href="generic-programming.html">Generic programming</a>, <a href="method-overloading.html">Overloading</a></p>
+<p class="rel"><span>mentioned in</span> <a href="stack-and-queue.html">Stack and queue as classes</a></p>
+</header>
+<main class="note">
+<div id="outline-container-org1668657" class="outline-2">
+<h2 id="org1668657">Definition</h2>
+<div class="outline-text-2" id="text-org1668657">
+<p>
+Object-oriented programming organises a program around <b>objects</b>: values with an identity, a state (attributes, fields) and a behaviour (methods). A <b>class</b> describes a family of objects and is at the same time a module and a type. Its defining traits:
+</p>
+<ul class="org-ul">
+<li>explicit connection between functions and data;</li>
+<li>encapsulation (see <a href="information-hiding.html">information hiding</a>): the state is reached only through the methods;</li>
+<li><a href="inheritance.html">inheritance</a>: a class defined as an extension of another;</li>
+<li><a href="polymorphism.html">polymorphism</a> with dynamic binding: code written for a base type runs on every subtype;</li>
+<li>emphasis on the representation of the domain rather than on the sequence of operations.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3c58f65" class="outline-2">
+<h2 id="org3c58f65">Why: programming in the large</h2>
+<div class="outline-text-2" id="text-org3c58f65">
+<p>
+Programming in the small is about functions and algorithms. Programming in the large is about many people and long lives: division of the work, maintainability, robustness. The software quality factors that object orientation acts on are
+</p>
+<ul class="org-ul">
+<li>external: extensibility (adding behaviour with local changes) and reusability;</li>
+<li>internal: structure, modularity, readability.</li>
+</ul>
+<p>
+Function-oriented design methods (functional, control-flow, data-flow diagrams) gave way to object-oriented ones (Booch, OOSE, OMT), merged into <a href="uml-class-diagram.html">UML</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc547d25" class="outline-2">
+<h2 id="orgc547d25">Picture</h2>
+<div class="outline-text-2" id="text-orgc547d25">
+<figure class="fig"><img class="m" src="m/e400973a1f3fa67ac120ea7d0abf25de8db91e07.svg" alt="figure" style="width:19.390em"><figcaption><span class="fl">Figure 1.</span> An object: its state is reached only through its methods, which clients call by sending messages.</figcaption></figure>
+<p>
+The state sits inside, reachable only through the methods on the boundary.
+</p>
+</div>
+</div>
+<div id="outline-container-org127fe55" class="outline-2">
+<h2 id="org127fe55">C++ and Java</h2>
+<div class="outline-text-2" id="text-org127fe55">
+<p>
+C++ adds classes to C and keeps value semantics, pointers, manual memory and <a href="uml-generalization.html">multiple inheritance</a>; its design rules are zero-overhead abstraction, a direct map to hardware and stability. Java removes pointers and manual memory, adds a <a href="java-references.html">garbage collector</a> and a single-rooted class hierarchy (<code>Object</code>), and replaces <a href="multiple-inheritance.html">multiple inheritance</a> of classes with interfaces.
+</p>
+</div>
+</div>
+<div id="outline-container-orge266e65" class="outline-2">
+<h2 id="orge266e65">Intuition</h2>
+<div class="outline-text-2" id="text-orge266e65">
+<p>
+An object is a small machine with buttons. Users press buttons; only the machine knows what is inside. Changing the inside without changing the buttons breaks nobody.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb3823d5" class="outline-2">
+<h2 id="orgb3823d5">Pitfall</h2>
+<div class="outline-text-2" id="text-orgb3823d5">
+<p>
+Classes are not automatically objects-oriented design: a class with public fields and getters/setters for everything is a C struct with extra steps.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="parameter-passing.html"><span>← previous</span>Parameter passing</a><a rel="next" href="inheritance.html"><span>next →</span>Inheritance and overriding</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--oop.pdf" title="PDF manual">Oop</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

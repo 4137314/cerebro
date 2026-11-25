@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hypothesis tests and the Neyman-Pearson lemma · Mathematics</title>
+<meta name="description" content="A test is a decision rule, and it can be wrong in two ways that cannot be made small at once. Fixing the tolerable rate of one and minimising the other turns a vague question into a well-posed optimisation, and for two simple hypotheses that optimisation has a complete answer: reject where the like…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/hypothesis-tests-and-the-neyman-pearson-lemma.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Hypothesis tests and the Neyman-Pearson lemma · Mathematics">
+<meta property="og:description" content="A test is a decision rule, and it can be wrong in two ways that cannot be made small at once. Fixing the tolerable rate of one and minimising the other turns a vague question into a well-posed optimisation, and for two simple hypotheses that optimisation has a complete answer: reject where the like…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/hypothesis-tests-and-the-neyman-pearson-lemma.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-probability">Probability</a> / <a rel="up" href="index.html#a-probability--statistics">Statistics</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Probability · Statistics</p>
+<h1>Hypothesis tests and the Neyman-Pearson lemma</h1>
+<p class="summary">A test is a decision rule, and it can be wrong in two ways that cannot be made small at once. Fixing the tolerable rate of one and minimising the other turns a vague question into a well-posed optimisation, and for two simple hypotheses that optimisation has a complete answer: reject where the likelihood ratio is large, and nothing else can do better.</p>
+<p class="rel"><span>needs</span> <a href="probability-spaces-conditioning-and-independence.html">Probability spaces, conditioning and independence</a>, <a href="statistical-models-estimators-and-consistency.html">Statistical models, estimators and consistency</a></p>
+<p class="rel"><span>mentioned in</span> <a href="statistics.html">Statistics</a></p>
+<details class="path"><summary>Learning path: 62 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="convex-functions-and-the-second-derivative.html">Convex functions and the second derivative</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li><li><a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="the-baire-category-theorem.html">The Baire category theorem</a></li><li><a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></li><li><a href="convex-set.html">Convex set</a></li><li><a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a></li><li><a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a></li><li><a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a></li><li><a href="probability-spaces-conditioning-and-independence.html">Probability spaces, conditioning and independence</a></li><li><a href="random-variables-laws-and-distribution-functions.html">Random variables, laws and distribution functions</a></li><li><a href="expectation-the-transfer-theorem-and-jensens-inequality.html">Expectation, the transfer theorem and Jensen's inequality</a></li><li><a href="variance-covariance-and-the-markov-and-chebyshev-inequalities.html">Variance, covariance and the Markov and Chebyshev inequalities</a></li><li><a href="modes-of-convergence-and-the-borel-cantelli-lemmas.html">Modes of convergence and the Borel-Cantelli lemmas</a></li><li><a href="the-weak-and-strong-laws-of-large-numbers.html">The weak and strong laws of large numbers</a></li><li><a href="statistical-models-estimators-and-consistency.html">Statistical models, estimators and consistency</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org0eb2e8e">
+<p>
+Let <img class="m" src="m/ced1ffd780e5cded747a4e8fc2e2570a4e46be9c.svg" alt="\((\Prob_{\theta})_{\theta\in\Theta}\)" style="height:1.096em;vertical-align:-0.274em"> be a model and
+<img class="m" src="m/5172b647c5289c6f91a214fd5f1e00f4b1d2fd95.svg" alt="\(\Theta = \Theta_{0}\cup\Theta_{1}\)" style="height:0.913em;vertical-align:-0.164em"> a partition into a <i>null</i> and an
+<i>alternative</i> hypothesis. A <i>test</i> is a measurable
+<img class="m" src="m/515a4303d97f8656b32a9a57dca368cc2bbff07b.svg" alt="\(\phi \colon \mathcal{X}\to[0,1]\)" style="height:1.096em;vertical-align:-0.274em">, interpreted as the probability of
+rejecting the null on observing <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">; it is <i>non-randomised</i> if it
+takes only the values <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> and <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">, and its <i>rejection region</i> is
+then <img class="m" src="m/9432d1cca21046bb724d84b0290047576d98a9bc.svg" alt="\(\setst{x}{\phi(x)=1}\)" style="height:1.096em;vertical-align:-0.274em">. Its <i>power function</i> is
+<img class="m" src="m/6a7b25101b931bdcb6dd00eb080fc7f6511057a4.svg" alt="\(\beta_{\phi}(\theta) = \E_{\theta}[\phi(X)]\)" style="height:1.135em;vertical-align:-0.318em">, its <i>size</i> is
+<img class="m" src="m/8e9ea0edea9495f8a9618cfaa39e508ed3aa1b1e.svg" alt="\(\sup_{\theta\in\Theta_{0}}\beta_{\phi}(\theta)\)" style="height:1.199em;vertical-align:-0.372em">, and it has <i>level</i>
+<img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> if its size is at most <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orge810ed5">
+<p>
+For <img class="m" src="m/8ad58470633234f8bf505312198d8b1f8d3d2112.svg" alt="\(\theta\in\Theta_{0}\)" style="height:0.925em;vertical-align:-0.167em">, <img class="m" src="m/8a3c91c9728fc65a34f8d6fde2ba3427851fafc6.svg" alt="\(\beta_{\phi}(\theta)\)" style="height:1.135em;vertical-align:-0.318em"> is the probability
+of rejecting a true null &#x2013; the <i>first kind</i> of error; for
+<img class="m" src="m/457e2901e678a413a70a214f37b2613b13cbecb7.svg" alt="\(\theta\in\Theta_{1}\)" style="height:0.925em;vertical-align:-0.167em">, <img class="m" src="m/3d77fadc89714acb65b115b80117df33cdb79d9f.svg" alt="\(1-\beta_{\phi}(\theta)\)" style="height:1.135em;vertical-align:-0.318em"> is the probability
+of failing to reject a false one, the <i>second kind</i>. The test
+<img class="m" src="m/dba4a72bc87cfd385cf215518021c4babd289b00.svg" alt="\(\phi\equiv0\)" style="height:0.974em;vertical-align:-0.214em"> has size <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> and power <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">, and <img class="m" src="m/ff9b4e9fa9107d13b5d8bca97abe4e3579ee24f7.svg" alt="\(\phi\equiv1\)" style="height:0.974em;vertical-align:-0.214em"> has
+size <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em"> and power <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">; so neither error can be made small without
+reference to the other.
+</p>
+
+</div>
+
+<div class="proof" id="org9ba7fe1">
+<p>
+Both statements are the definition of <img class="m" src="m/4cf3751963b4f166a58fb0c4bffd1d84fe12d361.svg" alt="\(\beta_{\phi}\)" style="height:1.075em;vertical-align:-0.312em"> read under a
+<img class="m" src="m/346f66be96cb38ba0680cfd40867d9bf1796163d.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em"> on each side of the partition. For the two constant tests,
+<img class="m" src="m/98ffc0843315861ca0b2b9ca43a8c904c4b044d4.svg" alt="\(\E_{\theta}[0] = 0\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/f239347726953cb54e78702db95bdbf815ff0bc6.svg" alt="\(\E_{\theta}[1] = 1\)" style="height:1.096em;vertical-align:-0.274em"> for every <img class="m" src="m/346f66be96cb38ba0680cfd40867d9bf1796163d.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em">,
+which gives the stated sizes and powers.
+</p>
+
+</div>
+
+<div class="theorem" id="orge170abb">
+<p>
+Let <img class="m" src="m/e9ea0e155036dbafcf817e2782c6ca3d66a86b2a.svg" alt="\(\Theta = \set{\theta_{0},\theta_{1}}\)" style="height:1.096em;vertical-align:-0.274em"> with densities
+<img class="m" src="m/f384263ea6848d38a968f5db131833581c854cb7.svg" alt="\(f_{0}, f_{1}\)" style="height:0.974em;vertical-align:-0.214em"> against a dominating measure <img class="m" src="m/5602b42c49566a683e5183a144a93b453d1accef.svg" alt="\(\mu\)" style="height:0.685em;vertical-align:-0.212em">, and let
+<img class="m" src="m/c99265eceef8872dbce5b00ef5df77da8760c74f.svg" alt="\(\alpha \in [0,1]\)" style="height:1.096em;vertical-align:-0.274em">. Suppose <img class="m" src="m/47538c8f22141c09fd74dcacbb8d599b8e5fa278.svg" alt="\(\phi^{*}\)" style="height:0.974em;vertical-align:-0.214em"> satisfies, for some <img class="m" src="m/9bb310d08fa4ec8d76450df0fb40c05c9831d5ae.svg" alt="\(k \ge 0\)" style="height:0.910em;vertical-align:-0.146em">,
+<div class="mb"><img class="m" src="m/6271023ca50dd224e5f560af98cbeb661b2168ed.svg" alt="\[ \phi^{*}(x) = 1 \text{ where } f_{1}(x) &gt; k f_{0}(x), \qquad \phi^{*}(x) = 0 \text{ where } f_{1}(x) &lt; k f_{0}(x), \]" style="width:33.501em"></div>
+and has size <img class="m" src="m/d638d43981d2cd2b05e5e7256517fe5193636c17.svg" alt="\(\E_{\theta_{0}}[\phi^{*}] = \alpha\)" style="height:1.096em;vertical-align:-0.274em">. Then <img class="m" src="m/47538c8f22141c09fd74dcacbb8d599b8e5fa278.svg" alt="\(\phi^{*}\)" style="height:0.974em;vertical-align:-0.214em">
+maximises <img class="m" src="m/312e9f71317563725904fcf4a5e27da63bb03c6c.svg" alt="\(\E_{\theta_{1}}[\phi]\)" style="height:1.096em;vertical-align:-0.274em"> among all tests of level
+<img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgf23a79e">
+<p>
+Let <img class="m" src="m/2cdcce95eed1c7d0dc110877d33f0bc004e53acc.svg" alt="\(\phi\)" style="height:0.974em;vertical-align:-0.214em"> be any test with <img class="m" src="m/57d9fd7742b24165c1b096a4605998f8f947eef9.svg" alt="\(\E_{\theta_{0}}[\phi]\le\alpha\)" style="height:1.096em;vertical-align:-0.274em">.
+Consider the function
+<img class="m" src="m/37a8c109cb03ef62467beca9a9501fcd6a518ff7.svg" alt="\(D = (\phi^{*}-\phi)(f_{1}-kf_{0})\)" style="height:1.096em;vertical-align:-0.274em">. At every <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> it is
+non-negative: where <img class="m" src="m/a5823a37b7304af4bec8668a34d8198eb129fba8.svg" alt="\(f_{1}&gt;kf_{0}\)" style="height:0.974em;vertical-align:-0.214em"> the first factor is
+<img class="m" src="m/768a8b68b3be5a9db238d1f278a166a03b6d45ee.svg" alt="\(1-\phi(x)\ge0\)" style="height:1.096em;vertical-align:-0.274em"> and the second is positive; where <img class="m" src="m/5183f01dfebe4cb2a95714cfb36ba9db4fe284da.svg" alt="\(f_{1}&lt;kf_{0}\)" style="height:0.974em;vertical-align:-0.214em"> the
+first is <img class="m" src="m/1ab5181abb018e24d783750dbe1348b60cc9c773.svg" alt="\(-\phi(x)\le0\)" style="height:1.096em;vertical-align:-0.274em"> and the second is negative; where they are
+equal the second factor vanishes.
+</p>
+
+<p>
+Integrating against <img class="m" src="m/5602b42c49566a683e5183a144a93b453d1accef.svg" alt="\(\mu\)" style="height:0.685em;vertical-align:-0.212em">,
+<div class="mb"><img class="m" src="m/3d09c19d8ece21c5db2d017d5f4ec0254b98319d.svg" alt="\[ 0 \le \int D \dd\mu = \bigl(\E_{\theta_{1}}[\phi^{*}]-\E_{\theta_{1}}[\phi]\bigr) - k\bigl(\E_{\theta_{0}}[\phi^{*}]-\E_{\theta_{0}}[\phi]\bigr). \]" style="width:26.469em"></div>
+The second bracket is <img class="m" src="m/850d97b73d92565af967219b2f142822377d3941.svg" alt="\(\alpha - \E_{\theta_{0}}[\phi] \ge 0\)" style="height:1.096em;vertical-align:-0.274em">, so
+<img class="m" src="m/94fccbad7ecde16494e8d9d07cb9f879ee591ee2.svg" alt="\(\E_{\theta_{1}}[\phi^{*}]-\E_{\theta_{1}}[\phi] \ge k(\alpha-\E_{\theta_{0}}[\phi]) \ge 0\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="corollary" id="org5659ab6">
+<p>
+Any test that is most powerful at level <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> and has size exactly
+<img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> agrees with a test of the displayed form, except possibly on
+the set where <img class="m" src="m/6bdd182463fbb4077c6766b59bcdd9edb1dd0fe7.svg" alt="\(f_{1} = kf_{0}\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="proof" id="org78ac00a">
+<p>
+Let <img class="m" src="m/2cdcce95eed1c7d0dc110877d33f0bc004e53acc.svg" alt="\(\phi\)" style="height:0.974em;vertical-align:-0.214em"> be most powerful of size <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/47538c8f22141c09fd74dcacbb8d599b8e5fa278.svg" alt="\(\phi^{*}\)" style="height:0.974em;vertical-align:-0.214em"> as in
+the theorem. Both have size <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> and, by maximality of each, the
+same power, so the displayed inequality is an equality and
+<img class="m" src="m/59ab3bc3b1499f9e497138362ac6dadf850ce5bb.svg" alt="\(\int D\dd\mu = 0\)" style="height:1.218em;vertical-align:-0.341em">. Since <img class="m" src="m/e1f38aabc894dc13bacc863fbd6251cfee35a4ad.svg" alt="\(D \ge 0\)" style="height:0.898em;vertical-align:-0.153em">, it vanishes almost everywhere,
+which forces <img class="m" src="m/341c37318f6b24747a314e82d2851208484e5ca1.svg" alt="\(\phi = \phi^{*}\)" style="height:0.974em;vertical-align:-0.214em"> wherever <img class="m" src="m/e1bfd4729027bf52891858023580f8f293e9579f.svg" alt="\(f_{1}\ne kf_{0}\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="remark" id="org9bc8bad">
+<p>
+The randomisation allowed by letting <img class="m" src="m/2cdcce95eed1c7d0dc110877d33f0bc004e53acc.svg" alt="\(\phi\)" style="height:0.974em;vertical-align:-0.214em"> take intermediate values
+is not a mathematical nicety: with a discrete statistic there may be no
+rejection region of size exactly <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em">, and without randomising,
+the exact-size hypothesis of the theorem would be unsatisfiable. Beyond
+two simple hypotheses the clean statement fails, and what survives is
+the theory of uniformly most powerful tests for families with a
+monotone likelihood ratio.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="fisher-information-and-the-cramer-rao-bound.html"><span>← previous</span>Fisher information and the Cramer-Rao bound</a><a rel="next" href="least-squares-and-the-gauss-markov-theorem.html"><span>next →</span>Least squares and the Gauss-Markov theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/probability--statistics.pdf" title="PDF manual">Statistics</a> · <a class="pdf" href="pdf/probability.pdf" title="PDF manual">Probability</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

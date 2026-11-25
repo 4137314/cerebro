@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The alternating series test · Mathematics</title>
+<meta name="description" content="Every test so far decides convergence by comparing absolute values, and so can only ever prove absolute convergence. This is the one test in a first course that uses cancellation, and it is therefore the source of every example of a series that converges but not absolutely.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-alternating-series-test.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The alternating series test · Mathematics">
+<meta property="og:description" content="Every test so far decides convergence by comparing absolute values, and so can only ever prove absolute convergence. This is the one test in a first course that uses cancellation, and it is therefore the source of every example of a series that converges but not absolutely.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-alternating-series-test.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Analysis · Real Analysis</p>
+<h1>The alternating series test</h1>
+<p class="summary">Every test so far decides convergence by comparing absolute values, and so can only ever prove absolute convergence. This is the one test in a first course that uses cancellation, and it is therefore the source of every example of a series that converges but not absolutely.</p>
+<p class="rel"><span>needs</span> <a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a>, <a href="monotone-convergence-theorem.html">Monotone convergence theorem</a>, <a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a>, <a href="the-algebra-of-limits.html">The algebra of limits</a>, <a href="the-cauchy-criterion-for-series-the-harmonic-series-and-condensation.html">The Cauchy criterion for series, the harmonic series and condensation</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 11 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="the-cauchy-criterion-for-series-the-harmonic-series-and-condensation.html">The Cauchy criterion for series, the harmonic series and condensation</a></li></ol></details>
+</header>
+<main class="note">
+<div class="theorem" id="orgd1b3c2a">
+<p>
+Let <img class="m" src="m/e9fc71e4d846d5d83fa0e68d24ff0c9159406dad.svg" alt="\(b_{1} \ge b_{2} \ge \cdots \ge 0\)" style="height:0.925em;vertical-align:-0.167em"> with <img class="m" src="m/8f689fd55cdbcf3c94f67e6e3b4facf6f7992210.svg" alt="\(b_{n} \to 0\)" style="height:0.925em;vertical-align:-0.167em">. Then
+the alternating series <img class="m" src="m/38a95e9dec1888316089f75811c0ec11a9dd7955.svg" alt="\(\sum_{n \ge 1} (-1)^{n+1} b_{n}\)" style="height:1.363em;vertical-align:-0.477em"> converges.
+</p>
+
+</div>
+
+<div class="proof" id="org2d04ab8">
+<p>
+Let <img class="m" src="m/98d245ee45cc79d619aefcb768e9c37f341dcf08.svg" alt="\(s_{N}\)" style="height:0.636em;vertical-align:-0.165em"> be the partial sums. Grouping in pairs,
+<div class="mb"><img class="m" src="m/8d33c3fbff5a7a1135d0dd6652aeba3809061e63.svg" alt="\[ s_{2k+2} - s_{2k} = b_{2k+1} - b_{2k+2} \ge 0, \qquad s_{2k+1} - s_{2k-1} = -b_{2k} + b_{2k+1} \le 0, \]" style="width:34.548em"></div>
+so the even partial sums increase and the odd ones decrease. Moreover
+<img class="m" src="m/245bc71d265b80c5217c36d769b52c3d9e90eb6a.svg" alt="\(s_{2k+1} - s_{2k} = b_{2k+1} \ge 0\)" style="height:1.017em;vertical-align:-0.254em">, so every even partial sum is at
+most every odd one: <img class="m" src="m/0a870467f8a4a7109fb413cdf0811203949be387.svg" alt="\((s_{2k})\)" style="height:1.096em;vertical-align:-0.274em"> is increasing and bounded above by
+<img class="m" src="m/e6fdc2dead5a5a9d0c4007e75f65e1e6f130b4ab.svg" alt="\(s_{1}\)" style="height:0.636em;vertical-align:-0.165em">, and <img class="m" src="m/d5450b6562bb49946e206541a1b34af9aec1c762.svg" alt="\((s_{2k+1})\)" style="height:1.096em;vertical-align:-0.274em"> is decreasing and bounded below by
+<img class="m" src="m/b7dcc5c0941eb8bd58d8e67491582b75c8cd18e3.svg" alt="\(s_{2}\)" style="height:0.636em;vertical-align:-0.165em">. By the monotone convergence theorem both converge, say to
+<img class="m" src="m/af428b55ddf829e9044704887ce1bde83bdc2a14.svg" alt="\(E\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/ce77df72a5dcaefc796fadc202ce35cc945df430.svg" alt="\(O\)" style="height:0.749em;vertical-align:-0.000em">. Since <img class="m" src="m/11ac49b4afd604d9070f16083c5dc3daafd0fec6.svg" alt="\(s_{2k+1} - s_{2k} = b_{2k+1} \to 0\)" style="height:1.017em;vertical-align:-0.254em">, the
+algebra of limits gives <img class="m" src="m/f71110035835b66119ff27659c0c243e131c67b8.svg" alt="\(O - E = 0\)" style="height:0.840em;vertical-align:-0.092em">. The two subsequences exhaust the
+partial sums and share a limit, so <img class="m" src="m/98d245ee45cc79d619aefcb768e9c37f341dcf08.svg" alt="\(s_{N}\)" style="height:0.636em;vertical-align:-0.165em"> converges to it.
+</p>
+
+</div>
+
+<div class="corollary" id="orgb6b0b40">
+<p>
+Under the hypotheses above, the sum <img class="m" src="m/42d2c35f20f2c22043ef0eb42920ada193d61639.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> satisfies
+<img class="m" src="m/595da62d7692b6038d858f8a28c59dd1809330ec.svg" alt="\(\abs{s - s_{N}} \le b_{N+1}\)" style="height:1.096em;vertical-align:-0.274em"> for every <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">: the error of a partial
+sum is at most the first omitted term.
+</p>
+
+</div>
+
+<div class="proof" id="orge3e5ddd">
+<p>
+The proof above shows <img class="m" src="m/42d2c35f20f2c22043ef0eb42920ada193d61639.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> lies between any two consecutive partial
+sums: <img class="m" src="m/cf27f14c1edc8e59c84e48b7c7acc2c58725f093.svg" alt="\(s_{2k} \le s \le s_{2k+1}\)" style="height:0.953em;vertical-align:-0.257em"> for every <img class="m" src="m/5ec5e3b2fda230219e6719c59682076f93242498.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em">, by passing the
+inequalities <img class="m" src="m/6b3299415c35abb6c062554ec2a39b508fb49cf3.svg" alt="\(s_{2k} \le s_{2j+1}\)" style="height:1.010em;vertical-align:-0.313em"> to the limit. Hence <img class="m" src="m/628c5ab2337f13ca63c47424e59f955cb3b40209.svg" alt="\(s - s_{N}\)" style="height:0.804em;vertical-align:-0.161em">
+lies between <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> and <img class="m" src="m/39e8faf7e632661e6c6230f1c3854d66ddabeade.svg" alt="\(s_{N+1} - s_{N} = \pm b_{N+1}\)" style="height:1.017em;vertical-align:-0.254em">, so
+<img class="m" src="m/595da62d7692b6038d858f8a28c59dd1809330ec.svg" alt="\(\abs{s - s_{N}} \le b_{N+1}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org6c6f711">
+<p>
+There is a convergent series that does not converge absolutely: the
+class of conditionally convergent series is non-empty.
+</p>
+
+</div>
+
+<div class="proof" id="org94e3ca1">
+<p>
+Take <img class="m" src="m/bb5db9bc9bb1904141aee444608fc3844a72ac54.svg" alt="\(b_{n} = 1/n\)" style="height:1.096em;vertical-align:-0.274em">, which decreases to <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">, so
+<img class="m" src="m/a7bce1ce325079cd13709d59d2bc4f06de41f48a.svg" alt="\(\sum_{n \ge 1} (-1)^{n+1}/n\)" style="height:1.363em;vertical-align:-0.477em"> converges by the alternating series
+test. The series of absolute values is <img class="m" src="m/63e0a1bc66a8125628a6c06482b51599fcf89a4c.svg" alt="\(\sum 1/n\)" style="height:1.096em;vertical-align:-0.274em">, which diverges.
+Hence the series converges and does not converge absolutely.
+</p>
+
+</div>
+
+<div class="remark" id="orgf70a053">
+<p>
+Conditional convergence is fragile in a way absolute convergence is
+not: a conditionally convergent series can be rearranged to converge to
+any prescribed real number, or to diverge. That is why every later
+theorem that manipulates the order of summation assumes absolute
+convergence, and why the distinction is worth a definition rather than
+a remark.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-cauchy-criterion-for-series-the-harmonic-series-and-condensation.html"><span>← previous</span>The Cauchy criterion for series, the harmonic series and condensation</a><a rel="next" href="uniform-bounds-on-the-taylor-remainder.html"><span>next →</span>Uniform bounds on the Taylor remainder</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

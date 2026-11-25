@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Technology mapping by tree covering · Computer Science</title>
+<meta name="description" content="The optimised network is decomposed into a subject graph of NAND2 and inverters, every library cell is described by pattern graphs in the same base, and the subject graph is covered by patterns at minimum cost; on trees, dynamic programming from the leaves gives the optimal cover in linear time.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/technology-mapping.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Technology mapping by tree covering · Computer Science">
+<meta property="og:description" content="The optimised network is decomposed into a subject graph of NAND2 and inverters, every library cell is described by pattern graphs in the same base, and the subject graph is covered by patterns at minimum cost; on trees, dynamic programming from the leaves gives the optimal cover in linear time.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/technology-mapping.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--logic-synthesis">Logic Synthesis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Hardware · Logic Synthesis</p>
+<h1>Technology mapping by tree covering</h1>
+<p class="summary">The optimised network is decomposed into a subject graph of NAND2 and inverters, every library cell is described by pattern graphs in the same base, and the subject graph is covered by patterns at minimum cost; on trees, dynamic programming from the leaves gives the optimal cover in linear time.</p>
+<p class="rel"><span>needs</span> <a href="multilevel-logic-optimization.html">Multi-level logic optimization</a>, <a href="big-o-complexity.html">Computational complexity and big-O</a></p>
+<p class="rel"><span>unlocks</span> <a href="timing-driven-mapping.html">Technology mapping for delay</a></p>
+<p class="rel"><span>see also</span> <a href="timing-driven-mapping.html">Technology mapping for delay</a>, <a href="np-hard-optimization.html">Hard optimization problems and heuristics</a>, <a href="fpga-architecture.html">FPGA architecture</a>, <a href="gate-delay-model.html">Gate and wire delay models</a></p>
+<p class="rel"><span>mentioned in</span> <a href="np-hard-optimization.html">Hard optimization problems and heuristics</a></p>
+<details class="path"><summary>Learning path: 4 notes lead here, in study order</summary><ol><li><a href="big-o-complexity.html">Computational complexity and big-O</a></li><li><a href="algebraic-division.html">Algebraic (weak) division</a></li><li><a href="boolean-difference.html">Shannon cofactors and the Boolean difference</a></li><li><a href="multilevel-logic-optimization.html">Multi-level logic optimization</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org538ad5d" class="outline-2">
+<h2 id="org538ad5d">Method</h2>
+<div class="outline-text-2" id="text-org538ad5d">
+<ol class="org-ol">
+<li><b>Subject graph</b>: decompose every node into 2-input NANDs and inverters (a canonical but not unique base).</li>
+<li><b>Pattern graphs</b>: each library gate (INV, NAND2, NAND3, AND2, AOI21, …) with its area, expressed as one or more NAND2/INV trees.</li>
+<li><b>Partition</b>: split the subject DAG into trees at multi-fanout nodes.</li>
+<li><b>Cover</b> each tree: every node must be the output of exactly one chosen match, whose inputs are outputs of other matches or leaves.</li>
+</ol>
+
+<p>
+Dynamic programming on a tree: for each node <img class="m" src="m/f19d00b567f03ea93981f37f632ec605b342d3f5.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> in post-order,
+<div class="mb"><img class="m" src="m/332a22659cf7cb9636f215ac8ae3aadc8fb6809f.svg" alt="\[ \mathrm{cost}(v)=\min_{\text{match } m \text{ at } v}\Big(\mathrm{area}(m)+\sum_{u\in\mathrm{inputs}(m)}\mathrm{cost}(u)\Big), \]" style="width:25.515em"></div>
+with <img class="m" src="m/016a4de5af6ecd894795f48fa806a583cd4713db.svg" alt="\(\mathrm{cost}=0\)" style="height:0.706em;vertical-align:-0.000em"> at the leaves. Optimal cover of the tree; <img class="m" src="m/ac33ce497079dd2072ca1b588252d0eba2208b98.svg" alt="\(O(n\cdot p)\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> nodes and <img class="m" src="m/f36675eba15aea6660e2d7dd51b0ebbeb8285769.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> pattern nodes.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfcc5904" class="outline-2">
+<h2 id="orgfcc5904">Algorithm</h2>
+<div class="outline-text-2" id="text-orgfcc5904">
+<figure class="fig"><img class="m" src="m/f50a4856d956c590b654a400e38c4c9024b18e81.svg" alt="figure" style="width:23.379em"><figcaption><span class="fl">Algorithm 1.</span> Tree covering by dynamic programming: visit the nodes in post-order and keep, for each, the cheapest library pattern matching there plus the best covers of its inputs.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org0f941b1" class="outline-2">
+<h2 id="org0f941b1">Picture</h2>
+<div class="outline-text-2" id="text-org0f941b1">
+<figure class="fig"><img class="m" src="m/2e914df6feb74c48aed89dcaa571d6f4f6fcc9c1.svg" alt="figure" style="width:18.002em"><figcaption><span class="fl">Figure 1.</span> Covering a NAND–inverter subject tree with library cells: one AND2 and two NAND2 cover the tree at the minimum area.</figcaption></figure>
+<p>
+Each candidate cover is a set of patterns tiling the tree; dynamic programming keeps the cheapest per node.
+</p>
+</div>
+</div>
+<div id="outline-container-orga67e423" class="outline-2">
+<h2 id="orga67e423">Intuition</h2>
+<div class="outline-text-2" id="text-orga67e423">
+<p>
+Mapping is tiling a floor with the tiles the library sells, paying for each tile, and computing the cheapest tiling bottom-up.
+</p>
+</div>
+</div>
+<div id="outline-container-org36e51a5" class="outline-2">
+<h2 id="org36e51a5">Pitfall</h2>
+<div class="outline-text-2" id="text-org36e51a5">
+<p>
+Cutting the DAG into trees loses optimality at the cuts (patterns cannot span a multi-fanout point), and the result depends on the NAND2 <a href="multilevel-logic-optimization.html">decomposition</a> chosen in step 1.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="generalized-bypass.html"><span>← previous</span>Generalized bypass and select transforms</a><a rel="next" href="timing-driven-mapping.html"><span>next →</span>Technology mapping for delay</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--logic-synthesis.pdf" title="PDF manual">Logic Synthesis</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

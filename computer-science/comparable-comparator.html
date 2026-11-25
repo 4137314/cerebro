@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comparable and Comparator · Computer Science</title>
+<meta name="description" content="A class implements Comparable&lt;T&gt; to give its natural order (a.compareTo(b) negative, zero or positive); a separate Comparator&lt;T&gt; object gives any other order; both must define a total order, ideally consistent with equals.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/comparable-comparator.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Comparable and Comparator · Computer Science">
+<meta property="og:description" content="A class implements Comparable&lt;T&gt; to give its natural order (a.compareTo(b) negative, zero or positive); a separate Comparator&lt;T&gt; object gives any other order; both must define a total order, ideally consistent with equals.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/comparable-comparator.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--java">Java</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Java</p>
+<h1>Comparable and Comparator</h1>
+<p class="summary">A class implements <code>Comparable&lt;T&gt;</code> to give its natural order (<code>a.compareTo(b)</code> negative, zero or positive); a separate <code>Comparator&lt;T&gt;</code> object gives any other order; both must define a total order, ideally consistent with <code>equals</code>.</p>
+<p class="rel"><span>needs</span> <a href="equals-hashcode.html">The equals–hashCode contract</a>, <a href="java-generics.html">Java generics and type erasure</a></p>
+<p class="rel"><span>see also</span> <a href="stl-algorithms.html">STL algorithms</a>, <a href="function-objects.html">Function pointers and function objects</a>, <a href="abstract-class-interface.html">Abstract classes and interfaces</a></p>
+<p class="rel"><span>mentioned in</span> <a href="generic-programming.html">Generic programming</a>, <a href="hashmap-internals.html">How a hash table works (HashMap)</a>, <a href="java-collections.html">The Java Collections Framework</a></p>
+<details class="path"><summary>Learning path: 13 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li><li><a href="generic-programming.html">Generic programming</a></li><li><a href="casting-instanceof.html">Casts, instanceof and array covariance</a></li><li><a href="java-generics.html">Java generics and type erasure</a></li><li><a href="java-platform.html">The Java platform</a></li><li><a href="java-references.html">Objects, references and garbage collection in Java</a></li><li><a href="java-object-class.html">The class Object and final</a></li><li><a href="equals-hashcode.html">The equals–hashCode contract</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org06f3fa2" class="outline-2">
+<h2 id="org06f3fa2">Definition</h2>
+<div class="outline-text-2" id="text-org06f3fa2">
+<ul class="org-ul">
+<li><code>interface Comparable&lt;T&gt; { int compareTo(T o); }</code>: implemented by the class itself (<code>String</code>, <code>Integer</code>, dates). Sorting, <code>TreeSet</code> and <code>TreeMap</code> use it by default; sorting objects that do not implement it <a href="java-exceptions.html">throws</a> <code>ClassCastException</code> at run time.</li>
+<li><code>interface Comparator&lt;T&gt; { int compare(T a, T b); }</code>: a separate object, so a class can have several orders, and classes one cannot modify can be ordered. Passed to <code>Collections.sort(list, c)</code>, <code>list.sort(c)</code>, <code>new TreeSet&lt;&gt;(c)</code>.</li>
+</ul>
+<p>
+Requirements: <code>sgn(a.compareTo(b)) =</code> -sgn(b.compareTo(a))=, transitivity, and preferably <code>a.compareTo(b) =</code> 0= iff <code>a.equals(b)</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org3dedda6" class="outline-2">
+<h2 id="org3dedda6">Example</h2>
+<div class="outline-text-2" id="text-org3dedda6">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">public</span> <span class="k">class</span> <span class="t">Student</span> <span class="k">implements</span> <span class="t">Comparable</span>&lt;<span class="t">Student</span>&gt; {
+    <span class="t">String</span> <span class="v">name</span>; <span class="t">int</span> <span class="v">grade</span>;
+    <span class="c">// natural: by name
+</span>    <span class="k">public</span> <span class="t">int</span> <span class="f">compareTo</span>(<span class="t">Student</span> <span class="v">o</span>) { <span class="k">return</span> name.compareTo(o.name); }
+}
+students.sort(Comparator.comparingInt((Student s) -&gt; s.grade).reversed()
+                        <span class="c">// by grade, then name
+</span>                        .thenComparing(s -&gt; s.name));</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org432e5ca" class="outline-2">
+<h2 id="org432e5ca">Intuition</h2>
+<div class="outline-text-2" id="text-org432e5ca">
+<p>
+<code>Comparable</code> is how an object compares itself; a <code>Comparator</code> is a referee brought from outside.
+</p>
+</div>
+</div>
+<div id="outline-container-org1b8ce6e" class="outline-2">
+<h2 id="org1b8ce6e">Pitfall</h2>
+<div class="outline-text-2" id="text-org1b8ce6e">
+<p>
+<code>return a.grade - b.grade;</code> overflows for large values of opposite sign; <code>Integer.compare(a.grade, b.grade)</code> is safe. A <code>TreeSet</code> with an order inconsistent with <code>equals</code> drops elements that compare as zero.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="equals-hashcode.html"><span>← previous</span>The equals–hashCode contract</a><a rel="next" href="java-enum.html"><span>next →</span>Enumerated types</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--java.pdf" title="PDF manual">Java</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

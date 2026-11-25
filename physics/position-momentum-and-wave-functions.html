@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Position, momentum and wave functions · Physics</title>
+<meta name="description" content="Momentum is the generator of translations, \mathcal T(a)=e^{-ipa/\hbar}; this forces [x,p]=i\hbar, \bra{x}p\ket\psi=-i\hbar\,\partial_x\psi(x) and \braket{x|p}=e^{ipx/\hbar}/\sqrt{2\pi\hbar}, so position and momentum wave functions are Fourier transforms of each other.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/position-momentum-and-wave-functions.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Position, momentum and wave functions · Physics">
+<meta property="og:description" content="Momentum is the generator of translations, \mathcal T(a)=e^{-ipa/\hbar}; this forces [x,p]=i\hbar, \bra{x}p\ket\psi=-i\hbar\,\partial_x\psi(x) and \braket{x|p}=e^{ipx/\hbar}/\sqrt{2\pi\hbar}, so position and momentum wave functions are Fourier transforms of each other.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/position-momentum-and-wave-functions.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-mechanics">Quantum Mechanics</a> / <a rel="up" href="index.html#a-quantum-mechanics--postulates">Postulates</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Quantum Mechanics · Postulates</p>
+<h1>Position, momentum and wave functions</h1>
+<p class="summary">Momentum is the generator of translations, <img class="m" src="m/37d93b9c86eeda0312b72e779618508f619241b4.svg" alt="\(\mathcal T(a)=e^{-ipa/\hbar}\)" style="height:1.247em;vertical-align:-0.274em">; this forces <img class="m" src="m/aac29b6f6725bd6ad211015ca463c62d09cdd19b.svg" alt="\([x,p]=i\hbar\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/ab1c83dca797973f75f8c72548e447a511974f08.svg" alt="\(\bra{x}p\ket\psi=-i\hbar\,\partial_x\psi(x)\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/4eeb222623bec9cfedecd642e117cd48af8a4593.svg" alt="\(\braket{x|p}=e^{ipx/\hbar}/\sqrt{2\pi\hbar}\)" style="height:1.293em;vertical-align:-0.271em">, so position and momentum wave functions are Fourier transforms of each other.</p>
+<p class="rel"><span>needs</span> <a href="uncertainty-relation.html">The uncertainty relation</a></p>
+<p class="rel"><span>unlocks</span> <a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a>, <a href="orbital-angular-momentum.html">Orbital angular momentum and spherical harmonics</a>, <a href="self-adjoint-operators-and-spectral-theorem.html">Self-adjoint operators and the spectral theorem</a></p>
+<p class="rel"><span>see also</span> <a href="stone-and-stone-von-neumann-theorems.html">Stone's theorem and the Stone–von Neumann theorem</a>, <a href="self-adjoint-operators-and-spectral-theorem.html">Self-adjoint operators and the spectral theorem</a>, <a href="fourier-series-and-transform.html">Fourier series and Fourier transform</a></p>
+<p class="rel"><span>mentioned in</span> <a href="diffraction-and-gratings.html">Diffraction and diffraction gratings</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org5269203" class="outline-2">
+<h2 id="org5269203">Continuous spectra</h2>
+<div class="outline-text-2" id="text-org5269203">
+<p>
+For <img class="m" src="m/8a73af524913e6eed7973001c35b833c7bbd58da.svg" alt="\(x\ket{x'}=x'\ket{x'}\)" style="height:1.098em;vertical-align:-0.274em"> normalisation is <img class="m" src="m/7b9ef605f3b8411f1441e04a861d4dba42537fa3.svg" alt="\(\braket{x''|x'}=\delta(x''-x')\)" style="height:1.098em;vertical-align:-0.274em"> and completeness <img class="m" src="m/b838de56d8b7c4239bf9abcfd95d54a1ffbdce3c.svg" alt="\(\int\dd x'\ket{x'}\bra{x'}=1\)" style="height:1.218em;vertical-align:-0.341em">. The wave function is <img class="m" src="m/61e1daca0c4daa66e100f08f3bead51fe12da909.svg" alt="\(\psi(x')=\braket{x'|\psi}\)" style="height:1.098em;vertical-align:-0.274em">; <img class="m" src="m/1aab188dafd678a67a7e3642ae8e5cad5eec780d.svg" alt="\(|\psi(x')|^2\dd x'\)" style="height:1.166em;vertical-align:-0.268em"> is the probability of finding the particle in <img class="m" src="m/5225897a10b3165cd42f682bd0d768c3edbd82ac.svg" alt="\(\dd x'\)" style="height:0.824em;vertical-align:-0.000em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orge912cc8" class="outline-2">
+<h2 id="orge912cc8">Derivation</h2>
+<div class="outline-text-2" id="text-orge912cc8">
+<ol class="org-ol">
+<li><b>Translation</b>: <img class="m" src="m/fcae5f3a017971580c158d771c5eab4c3619bb96.svg" alt="\(\mathcal T(\dd x')\ket{x'}=\ket{x'+\dd x'}\)" style="height:1.098em;vertical-align:-0.274em">. Unitarity, composition and continuity force <img class="m" src="m/c8ba73661188293e1afa7faf1bbad812da79e99a.svg" alt="\(\mathcal T(\dd x')=1-iK\dd x'\)" style="height:1.098em;vertical-align:-0.274em"> with <img class="m" src="m/26e72310fb70009ecf2c4e960e8fe4d95b383749.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> Hermitian.</li>
+<li><img class="m" src="m/6f913daba100b9cd9e3decba58bb03e080c8e52d.svg" alt="\(x\mathcal T\ket{x'}-\mathcal Tx\ket{x'}=\dd x'\ket{x'}\)" style="height:1.098em;vertical-align:-0.274em"> gives <img class="m" src="m/6c5469dba546e5f2158649c929d2e2534eec801c.svg" alt="\([x,K]=i\)" style="height:1.096em;vertical-align:-0.274em">. Identify <img class="m" src="m/954f564942a948929b7da0279ea1ce30b62f7c62.svg" alt="\(K=p/\hbar\)" style="height:1.096em;vertical-align:-0.274em"> (de Broglie): <img class="m" src="m/aac29b6f6725bd6ad211015ca463c62d09cdd19b.svg" alt="\([x,p]=i\hbar\)" style="height:1.096em;vertical-align:-0.274em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1051/anphys/192510030022" data-full="L. de Broglie, “Recherches sur la théorie des quanta”, Annales de Physique 10, 22–128 (1925)." aria-label="L. de Broglie, “Recherches sur la théorie des quanta”, Annales de Physique 10, 22–128 (1925).">de Broglie 1925</a>)</span>.</li>
+<li>Acting on a wave function: <img class="m" src="m/905857bd131a039b944f567f79f85d4144caa46d.svg" alt="\(\bra{x'}\mathcal T(\Delta x')\ket\psi=\psi(x'-\Delta x')\)" style="height:1.098em;vertical-align:-0.274em">; expanding, <img class="m" src="m/dbbb518507fedfb5698ea715c5543d6b31439d42.svg" alt="\(\bra{x'}p\ket\psi=-i\hbar\,\partial_{x'}\psi(x')\)" style="height:1.098em;vertical-align:-0.274em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1002/andp.19263840404" data-full="E. Schrödinger, “Quantisierung als Eigenwertproblem”, Annalen der Physik 384, 361–376 (1926)." aria-label="E. Schrödinger, “Quantisierung als Eigenwertproblem”, Annalen der Physik 384, 361–376 (1926).">Schrödinger 1926</a>)</span>.</li>
+<li>Eigenfunctions of <img class="m" src="m/b6d7ad69879c68e00b20371d2b8069a669f8fbd1.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">: <img class="m" src="m/4b688ebc191592ca2d8eb335fc4f29331d094203.svg" alt="\(-i\hbar\,\partial_x\braket{x|p'}=p'\braket{x|p'}\)" style="height:1.098em;vertical-align:-0.274em"> gives <img class="m" src="m/2da2016392d16205f2520f0caede19921686d45c.svg" alt="\(\braket{x|p'}=\frac{1}{\sqrt{2\pi\hbar}}e^{ip'x/\hbar}\)" style="height:1.629em;vertical-align:-0.603em">, the factor fixed by <img class="m" src="m/c6429196f4b1e572983c06453c9f97937dd5498c.svg" alt="\(\braket{p''|p'}=\delta(p''-p')\)" style="height:1.098em;vertical-align:-0.274em">.</li>
+<li>Therefore</li>
+</ol>
+<p>
+<div class="mb"><img class="m" src="m/7ddda774c3939791ff7b5b3156417ac02bb61c9c.svg" alt="\[ \phi(p')=\frac{1}{\sqrt{2\pi\hbar}}\int\dd x'\,e^{-ip'x'/\hbar}\psi(x'),\qquad \psi(x')=\frac{1}{\sqrt{2\pi\hbar}}\int\dd p'\,e^{ip'x'/\hbar}\phi(p'). \]" style="width:35.359em"></div>
+Finite translations: <img class="m" src="m/37d93b9c86eeda0312b72e779618508f619241b4.svg" alt="\(\mathcal T(a)=e^{-ipa/\hbar}\)" style="height:1.247em;vertical-align:-0.274em">. In 3D, <img class="m" src="m/0bb8760478c449ea077dfd9a043a0c832238b45d.svg" alt="\([x_i,p_j]=i\hbar\delta_{ij}\)" style="height:1.135em;vertical-align:-0.318em">, <img class="m" src="m/424f804ea0207548d7af25d5f478f2b9e06b48d2.svg" alt="\([p_i,p_j]=0\)" style="height:1.135em;vertical-align:-0.318em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orga0eb5b3" class="outline-2">
+<h2 id="orga0eb5b3">Worked example</h2>
+<div class="outline-text-2" id="text-orga0eb5b3">
+<p>
+Gaussian packet <img class="m" src="m/adca00d99013dda852e8fefbbff903090ad323dc.svg" alt="\(\psi(x)=(\pi d^2)^{-1/4}e^{ikx-x^2/2d^2}\)" style="height:1.355em;vertical-align:-0.271em">. Then <img class="m" src="m/f3c52aa0e746dc4a8895d79d9704b38b4fe293fd.svg" alt="\(\braket x=0\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/29dc7c4a79449aef3ac1d70fb4a241802c7b46e0.svg" alt="\(\Delta x^2=d^2/2\)" style="height:1.166em;vertical-align:-0.268em">, <img class="m" src="m/2354e8f49fca34aaef6e71433b098a83cc577562.svg" alt="\(\braket p=\hbar k\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/30d047c7736ec546dcec251d2cc30c23974cb1a2.svg" alt="\(\Delta p^2=\hbar^2/2d^2\)" style="height:1.166em;vertical-align:-0.268em">: <img class="m" src="m/3c508343ba0d9218d0b287266d5d344da4f62734.svg" alt="\(\Delta x\Delta p=\hbar/2\)" style="height:1.096em;vertical-align:-0.274em">, the minimum. Its transform is again a Gaussian centred at <img class="m" src="m/a7edb30fa8a2980effef99ec8f6a20fe9755fa53.svg" alt="\(\hbar k\)" style="height:0.761em;vertical-align:-0.000em"> with width <img class="m" src="m/c5a4fe5f9c163efc642f06ee031e8ff9ff05e800.svg" alt="\(\hbar/d\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org6de1c82" class="outline-2">
+<h2 id="org6de1c82">Engineering applications</h2>
+<div class="outline-text-2" id="text-org6de1c82">
+<p>
+Fourier duality between position and momentum is the same mathematics as time–frequency in signals (<a href="fourier-series-and-transform.html">Fourier transform</a>) and as near-field/far-field in optics: a narrow slit (or a short pulse) means a broad angular (or spectral) spread. Electron-beam lithography resolution and the diffraction limit both follow from it.
+</p>
+</div>
+</div>
+<div id="outline-container-org8b7cf32" class="outline-2">
+<h2 id="org8b7cf32">Pitfall</h2>
+<div class="outline-text-2" id="text-org8b7cf32">
+<p>
+Plane waves <img class="m" src="m/9b3f281c73fa3e72e7c5556e8e6929e4c7d2755d.svg" alt="\(\ket{p'}\)" style="height:1.098em;vertical-align:-0.274em"> and <img class="m" src="m/0b466a231cb91d14e235ce5727ad3b7749e9aa7c.svg" alt="\(\ket{x'}\)" style="height:1.098em;vertical-align:-0.274em"> are not normalisable states: they are generalised eigenvectors. Physical states are wave packets.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="uncertainty-relation.html"><span>← previous</span>The uncertainty relation</a><a rel="next" href="schrodinger-equation-and-time-evolution.html"><span>next →</span>The Schrödinger equation and time evolution</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-mechanics--postulates.pdf" title="PDF manual">Postulates</a> · <a class="pdf" href="pdf/quantum-mechanics.pdf" title="PDF manual">Quantum Mechanics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

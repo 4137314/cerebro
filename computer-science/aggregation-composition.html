@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aggregation and composition · Computer Science</title>
+<meta name="description" content="Both are whole–part associations; in composition (filled diamond) the whole owns the part, which lives and dies with it and belongs to one whole only, while in aggregation (hollow diamond) the part has a life of its own and can be shared.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/aggregation-composition.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Aggregation and composition · Computer Science">
+<meta property="og:description" content="Both are whole–part associations; in composition (filled diamond) the whole owns the part, which lives and dies with it and belongs to one whole only, while in aggregation (hollow diamond) the part has a life of its own and can be shared.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/aggregation-composition.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--uml">Uml</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Uml</p>
+<h1>Aggregation and composition</h1>
+<p class="summary">Both are whole–part associations; in composition (filled diamond) the whole owns the part, which lives and dies with it and belongs to one whole only, while in aggregation (hollow diamond) the part has a life of its own and can be shared.</p>
+<p class="rel"><span>needs</span> <a href="uml-association.html">Association, links and multiplicity</a></p>
+<p class="rel"><span>unlocks</span> <a href="shallow-deep-copy.html">Shallow and deep copy, rule of three</a></p>
+<p class="rel"><span>see also</span> <a href="shallow-deep-copy.html">Shallow and deep copy, rule of three</a>, <a href="smart-pointers.html">Smart pointers: unique_ptr, shared_ptr, weak_ptr</a>, <a href="cpp-special-members.html">Special member functions and RAII</a></p>
+<p class="rel"><span>mentioned in</span> <a href="smart-pointers.html">Smart pointers: unique_ptr, shared_ptr, weak_ptr</a>, <a href="stack-and-queue.html">Stack and queue as classes</a></p>
+<details class="path"><summary>Learning path: 2 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-association.html">Association, links and multiplicity</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org7c797e2" class="outline-2">
+<h2 id="org7c797e2">Definition</h2>
+<div class="outline-text-2" id="text-org7c797e2">
+<ul class="org-ul">
+<li><b>Aggregation</b> (hollow diamond on the whole): a car and its tyres. The part exists before and after the whole and can move to another whole.</li>
+<li><b>Composition</b> (filled diamond): an engine and its pistons. A part belongs to exactly one whole at a time, and destroying the whole destroys its parts.</li>
+<li><b>Optional composition</b> <code>A 0..1 ◆ B</code>: an <code>A</code> owns zero or one <code>B</code>.</li>
+</ul>
+
+<p>
+In C++ the difference decides who calls <code>delete</code>: in composition the whole is responsible for the memory of its parts; in aggregation it only points to them.
+</p>
+</div>
+</div>
+<div id="outline-container-org5f52a59" class="outline-2">
+<h2 id="org5f52a59">Picture</h2>
+<div class="outline-text-2" id="text-org5f52a59">
+<figure class="fig"><img class="m" src="m/593f73bdbabfc5c16fd66e9814feb0e9578936b2.svg" alt="figure" style="width:18.752em"><figcaption><span class="fl">Figure 1.</span> Composition and aggregation in UML: a Car is composed of its Engine (filled diamond, same lifetime), while it only aggregates its Tyres (hollow diamond).</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org2307bb7" class="outline-2">
+<h2 id="org2307bb7">Implementing optional composition in C++</h2>
+<div class="outline-text-2" id="text-org2307bb7">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="k">class</span> <span class="t">A</span> {
+  <span class="t">int</span> <span class="v">i</span>;
+  <span class="t">B</span>* <span class="v">pb</span>;               <span class="c">// owned: A must new it, copy it and delete it
+</span><span class="k">public</span>:
+  <span class="f">A</span>() : i(0), pb(<span class="n">nullptr</span>) {}
+  <span class="f">A</span>(<span class="t">int</span> <span class="v">i_</span>, <span class="n">std</span>::<span class="t">string</span> <span class="v">s</span>) : i(i_), pb(<span class="k">new</span> <span class="t">B</span>(s)) {}
+  <span class="f">A</span>(<span class="k">const</span> <span class="t">A</span>&amp; <span class="v">a</span>);       <span class="c">// deep copy (see below)
+</span>  <span class="t">A</span>&amp; <span class="k">operator</span><span class="f">=</span>(<span class="k">const</span> <span class="t">A</span>&amp; <span class="v">a</span>);
+  ~<span class="f">A</span>() { <span class="k">delete</span> pb; }
+};</code></pre></figure>
+<p>
+A plain member <code>B b;</code> would force <a href="uml-association.html">cardinality</a> exactly one; the pointer allows zero. The pointer makes <code>A</code> responsible for the <a href="shallow-deep-copy.html">copy semantics</a>, or, better, a <code>std::unique_ptr&lt;B&gt;</code> (see <a href="smart-pointers.html">smart pointers</a>) makes the ownership explicit.
+</p>
+</div>
+</div>
+<div id="outline-container-org1e0dd58" class="outline-2">
+<h2 id="org1e0dd58">Intuition</h2>
+<div class="outline-text-2" id="text-org1e0dd58">
+<p>
+Ask "who destroys it?". If the answer is "the whole, and nobody else", it is composition.
+</p>
+</div>
+</div>
+<div id="outline-container-orgea47a43" class="outline-2">
+<h2 id="orgea47a43">Pitfall</h2>
+<div class="outline-text-2" id="text-orgea47a43">
+<p>
+With an aggregation the whole must not delete its parts; with a composition it must not share them. Mixing the two produces double deletes or leaks.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="uml-association.html"><span>← previous</span>Association, links and multiplicity</a><a rel="next" href="uml-generalization.html"><span>next →</span>Generalization (is-a)</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--uml.pdf" title="PDF manual">Uml</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

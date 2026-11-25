@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Euclidean domains, principal ideals and unique factorisation · Mathematics</title>
+<meta name="description" content="Unique factorisation in \Z is usually proved from Euclid's lemma, and Euclid's lemma from the division algorithm. Each of those steps is a separate property of the ring, and separating them shows what the theorem costs: division gives principal ideals, principal ideals make irreducible elements pri…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/euclidean-domains-principal-ideals-and-unique-factorisation.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Euclidean domains, principal ideals and unique factorisation · Mathematics">
+<meta property="og:description" content="Unique factorisation in \Z is usually proved from Euclid's lemma, and Euclid's lemma from the division algorithm. Each of those steps is a separate property of the ring, and separating them shows what the theorem costs: division gives principal ideals, principal ideals make irreducible elements pri…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/euclidean-domains-principal-ideals-and-unique-factorisation.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--commutative-algebra">Commutative Algebra</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Algebra · Commutative Algebra</p>
+<h1>Euclidean domains, principal ideals and unique factorisation</h1>
+<p class="summary">Unique factorisation in <img class="m" src="m/7dabe02ee97dbd1f64356da323fa6ec62fd0b242.svg" alt="\(\Z\)" style="height:0.755em;vertical-align:-0.000em"> is usually proved from Euclid's lemma, and Euclid's lemma from the division algorithm. Each of those steps is a separate property of the ring, and separating them shows what the theorem costs: division gives principal ideals, principal ideals make irreducible elements prime, and primality gives uniqueness. The same chain applies verbatim to polynomials over a field.</p>
+<p class="rel"><span>needs</span> <a href="integral-domains-fields-prime-and-maximal-ideals.html">Integral domains, fields, prime and maximal ideals</a>, <a href="rings-ideals-and-the-quotient-ring.html">Rings, ideals and the quotient ring</a></p>
+<p class="rel"><span>unlocks</span> <a href="field-extensions-the-tower-law-and-minimal-polynomials.html">Field extensions, the tower law and minimal polynomials</a>, <a href="noetherian-rings-and-the-hilbert-basis-theorem.html">Noetherian rings and the Hilbert basis theorem</a>, <a href="the-chinese-remainder-theorem.html">The Chinese remainder theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="algebra.html">Algebra</a>, <a href="rings-and-commutative-algebra.html">Rings and commutative algebra</a></p>
+<details class="path"><summary>Learning path: 15 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li><li><a href="rings-ideals-and-the-quotient-ring.html">Rings, ideals and the quotient ring</a></li><li><a href="integral-domains-fields-prime-and-maximal-ideals.html">Integral domains, fields, prime and maximal ideals</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgb2f5246">
+<p>
+An integral domain <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> is a <i>Euclidean domain</i> if there is a function
+<img class="m" src="m/ae9908b1dd9140d114827a466a957908d1672568.svg" alt="\(\delta\)" style="height:0.761em;vertical-align:-0.000em"> from <img class="m" src="m/e9981aa0dd883f8c40c920ab30453b0cc8f29936.svg" alt="\(R \setminus \set{0}\)" style="height:1.096em;vertical-align:-0.274em"> to <img class="m" src="m/d36edebe5171c584e95c5e3966023a2f078fce29.svg" alt="\(\N\)" style="height:0.755em;vertical-align:-0.000em"> such that for all
+<img class="m" src="m/5dc5e156fd7ededd3b4145087e9fbac84c9dc0a6.svg" alt="\(a, b \in R\)" style="height:0.974em;vertical-align:-0.214em"> with <img class="m" src="m/fa530583ad43821e3c63a863ade49e6fdd98fe0b.svg" alt="\(b \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> there are <img class="m" src="m/6d9222d8363741405b42940d7c30795b3b8fc4d3.svg" alt="\(q, r\)" style="height:0.685em;vertical-align:-0.212em"> with <img class="m" src="m/15d228a79116ae2c11f8d33b59cb77081a7d00b5.svg" alt="\(a = qb + r\)" style="height:0.974em;vertical-align:-0.214em">
+and either <img class="m" src="m/519e929e8ac669d7074f43b54c40ab5e740827c3.svg" alt="\(r = 0\)" style="height:0.706em;vertical-align:-0.000em"> or <img class="m" src="m/fab9d00d44502e7cf9b2c077fa566389d70cb502.svg" alt="\(\delta(r) &lt; \delta(b)\)" style="height:1.096em;vertical-align:-0.274em">. It is a <i>principal
+ideal domain</i> (PID) if every ideal is principal.
+</p>
+
+</div>
+
+<div class="theorem" id="org1482957">
+<p>
+Every Euclidean domain is a principal ideal domain. In particular
+<img class="m" src="m/7dabe02ee97dbd1f64356da323fa6ec62fd0b242.svg" alt="\(\Z\)" style="height:0.755em;vertical-align:-0.000em"> is one, and so is <img class="m" src="m/af650f35ded7a794d389ff310327aaedc266a5d4.svg" alt="\(K[x]\)" style="height:1.096em;vertical-align:-0.274em"> for a field <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org406643c">
+<p>
+Let <img class="m" src="m/1940710ee2f8f53b4ed18d56f9966bd16858f4c8.svg" alt="\(I \ne \set{0}\)" style="height:1.096em;vertical-align:-0.274em"> be an ideal and choose <img class="m" src="m/7eecd533035f8a176441c40d36b808e5d45a8bb0.svg" alt="\(b \in I \setminus \set{0}\)" style="height:1.096em;vertical-align:-0.274em">
+with <img class="m" src="m/6de434a4e8404de4cb960ebdc4d45bda1712ee60.svg" alt="\(\delta(b)\)" style="height:1.096em;vertical-align:-0.274em"> least. For <img class="m" src="m/14c2759c749ffc674b11fd098d402a78d9d17ac0.svg" alt="\(a \in I\)" style="height:0.792em;vertical-align:-0.040em"> write <img class="m" src="m/15d228a79116ae2c11f8d33b59cb77081a7d00b5.svg" alt="\(a = qb + r\)" style="height:0.974em;vertical-align:-0.214em">; then
+<img class="m" src="m/fbf13750c10d69a6a754883eed2006eca31448c9.svg" alt="\(r = a - qb \in I\)" style="height:0.974em;vertical-align:-0.214em">, and <img class="m" src="m/57da3a2d97e983cdc518a17698f5e6ee39292d45.svg" alt="\(r \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> would contradict minimality since
+<img class="m" src="m/fab9d00d44502e7cf9b2c077fa566389d70cb502.svg" alt="\(\delta(r) &lt; \delta(b)\)" style="height:1.096em;vertical-align:-0.274em">. So <img class="m" src="m/ebb7382a3fe935a74f48250d52eefd07eeb414bc.svg" alt="\(a \in (b)\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/48e0787851c6499636f5b4e66bb73339b8cb853d.svg" alt="\(I = (b)\)" style="height:1.096em;vertical-align:-0.274em">; the zero
+ideal is <img class="m" src="m/5beb65100a1cd61f7c233e685e4b29d7d1132747.svg" alt="\((0)\)" style="height:1.096em;vertical-align:-0.274em">. For <img class="m" src="m/7dabe02ee97dbd1f64356da323fa6ec62fd0b242.svg" alt="\(\Z\)" style="height:0.755em;vertical-align:-0.000em"> take <img class="m" src="m/9b5323affa29fb52cc46644e0dc8429202aa772f.svg" alt="\(\delta(n) = \abs{n}\)" style="height:1.096em;vertical-align:-0.274em">, and for
+<img class="m" src="m/af650f35ded7a794d389ff310327aaedc266a5d4.svg" alt="\(K[x]\)" style="height:1.096em;vertical-align:-0.274em"> take <img class="m" src="m/2ab9b1cec242c8629fb62b7ec9991c45897495c1.svg" alt="\(\delta = \deg\)" style="height:0.974em;vertical-align:-0.214em">, the division theorem applying to every
+non-zero divisor because a field allows scaling to a monic polynomial.
+</p>
+
+</div>
+
+<div class="definition" id="org8956d37">
+<p>
+Let <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> be a domain and <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> a non-zero non-unit. Then <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> is
+<i>irreducible</i> if <img class="m" src="m/12ccdc936523056f39ad4873caf7aae4626bf1cb.svg" alt="\(p = ab\)" style="height:0.974em;vertical-align:-0.214em"> forces <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> or <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em"> to be a unit, and
+<i>prime</i> if <img class="m" src="m/d193dbc0c84da398acd74d707dd6fc98ffb62ee0.svg" alt="\(p \mid ab\)" style="height:1.096em;vertical-align:-0.274em"> implies <img class="m" src="m/77fbed08ab21e80e41d398fcd0c501eacfd7403a.svg" alt="\(p \mid a\)" style="height:1.096em;vertical-align:-0.274em"> or <img class="m" src="m/df88bcedcd87c0a4fc859557ff64db53ca660c03.svg" alt="\(p \mid b\)" style="height:1.096em;vertical-align:-0.274em"> &#x2013;
+equivalently, if the ideal <img class="m" src="m/d0e3bd81ddbe4d46425ac01817ca93096f315d9f.svg" alt="\((p)\)" style="height:1.096em;vertical-align:-0.274em"> is prime.
+</p>
+
+</div>
+
+<div class="proposition" id="org6e3479f">
+<p>
+In an integral domain every prime element is irreducible.
+</p>
+
+</div>
+
+<div class="proof" id="org5ee21d7">
+<p>
+Let <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> be prime and <img class="m" src="m/12ccdc936523056f39ad4873caf7aae4626bf1cb.svg" alt="\(p = ab\)" style="height:0.974em;vertical-align:-0.214em">. Then <img class="m" src="m/d193dbc0c84da398acd74d707dd6fc98ffb62ee0.svg" alt="\(p \mid ab\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> divides
+one factor, say <img class="m" src="m/b939a2050fecd78b0f4c3c12934d70475c30bebd.svg" alt="\(a = pc\)" style="height:0.685em;vertical-align:-0.212em">. Then <img class="m" src="m/63fe550e592e3f03a5cadc611e3966dca951d480.svg" alt="\(p = pcb\)" style="height:0.974em;vertical-align:-0.214em">, and cancelling <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> in
+the domain gives <img class="m" src="m/9791b1f4c954aa41ed2541aa80b6f393d32ae0eb.svg" alt="\(1 = cb\)" style="height:0.761em;vertical-align:-0.000em">, so <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em"> is a unit.
+</p>
+
+</div>
+
+<div class="proposition" id="orga76c7fe">
+<p>
+In a principal ideal domain every irreducible element is prime.
+</p>
+
+</div>
+
+<div class="proof" id="org38de12e">
+<p>
+Let <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> be irreducible; <img class="m" src="m/d0e3bd81ddbe4d46425ac01817ca93096f315d9f.svg" alt="\((p)\)" style="height:1.096em;vertical-align:-0.274em"> is proper because <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> is not a unit.
+If <img class="m" src="m/83a33caef8d323a99353e6cca9bffe8f0ea2d9fb.svg" alt="\((p) \subseteq J = (c) \subseteq R\)" style="height:1.096em;vertical-align:-0.274em">, then <img class="m" src="m/700ff4bdc1c375162ab20725a1a442fd618df576.svg" alt="\(p = cd\)" style="height:0.974em;vertical-align:-0.214em">, so by
+irreducibility either <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> is a unit, giving <img class="m" src="m/512764e410a2889ecc4a5acfea1a073ec5498b86.svg" alt="\(J = R\)" style="height:0.749em;vertical-align:-0.000em">, or <img class="m" src="m/ad855e27454841e8ad2eca7f08dfc4eb67657f15.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em"> is a
+unit, giving <img class="m" src="m/4f560dbdd5575c4ecdd5a2915641d0f17324a751.svg" alt="\(J = (p)\)" style="height:1.096em;vertical-align:-0.274em">. Hence <img class="m" src="m/d0e3bd81ddbe4d46425ac01817ca93096f315d9f.svg" alt="\((p)\)" style="height:1.096em;vertical-align:-0.274em"> is maximal, therefore prime, and
+<img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> is a prime element.
+</p>
+
+</div>
+
+<div class="lemma" id="org3c6fc9f">
+<p>
+In a principal ideal domain there is no strictly increasing infinite
+chain of ideals <img class="m" src="m/3e639f4fb3e6a6c59d67bb4a36a9be56d203bb6d.svg" alt="\(I_{1} \subsetneq I_{2} \subsetneq \cdots\)" style="height:0.913em;vertical-align:-0.164em">.
+</p>
+
+</div>
+
+<div class="proof" id="org9a9ed55">
+<p>
+Let <img class="m" src="m/5b974b950fc3de4a415db6949f13fc5e520ee570.svg" alt="\(U = \bigcup_{n} I_{n}\)" style="height:1.151em;vertical-align:-0.334em">. It is an ideal: two of its elements lie
+in a common <img class="m" src="m/6a91aceddce31c5e2e7efbfefc888feaa9b2e456.svg" alt="\(I_{n}\)" style="height:0.913em;vertical-align:-0.164em">, so their difference does, and absorption is
+inherited. Being a PID, <img class="m" src="m/5d1586767e5166f8f831ff540e9c4644ed88a4fd.svg" alt="\(U = (c)\)" style="height:1.096em;vertical-align:-0.274em"> for some <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em">, and <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> lies in
+some <img class="m" src="m/90e155f3c816563620514f1c1cabc55dd4e816a2.svg" alt="\(I_{N}\)" style="height:0.913em;vertical-align:-0.164em">; then <img class="m" src="m/5627f18c2a89205ab346f259b58457892521889f.svg" alt="\(U = (c) \subseteq I_{N} \subseteq U\)" style="height:1.096em;vertical-align:-0.274em">, so the
+chain is constant from <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> on.
+</p>
+
+</div>
+
+<div class="theorem" id="org23bef8d">
+<p>
+In a principal ideal domain every non-zero non-unit is a product of
+irreducible elements, and the factorisation is unique up to the order of
+the factors and multiplication by units.
+</p>
+
+</div>
+
+<div class="proof" id="orgbd07901">
+<p>
+<b>Existence.</b> Suppose some non-zero non-unit <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> admits no such
+factorisation. Then <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> is not irreducible, so <img class="m" src="m/3dca4af001858c7ddf1ff2603c6fef924c54906f.svg" alt="\(a = a_{1}b_{1}\)" style="height:0.925em;vertical-align:-0.167em"> with
+both factors non-units, and at least one of them &#x2013; call it <img class="m" src="m/ea763e7e0e6b9aeb39e70d483e36c5a152827f44.svg" alt="\(a_{1}\)" style="height:0.636em;vertical-align:-0.165em"> &#x2013;
+again admits no factorisation. Since <img class="m" src="m/d8ea7287c52c1c411626544d28fc622a18334037.svg" alt="\(b_{1}\)" style="height:0.925em;vertical-align:-0.167em"> is not a unit,
+<img class="m" src="m/1853eb798e6ed9d8427fb80aa03f20d21235980b.svg" alt="\((a) \subsetneq (a_{1})\)" style="height:1.096em;vertical-align:-0.274em">. Iterating produces a strictly increasing
+chain <img class="m" src="m/791c8eee045248d9f0c4fb313eec4cce68c98a1a.svg" alt="\((a) \subsetneq (a_{1}) \subsetneq (a_{2}) \subsetneq \cdots\)" style="height:1.096em;vertical-align:-0.274em">,
+contradicting the lemma.
+</p>
+
+<p>
+<b>Uniqueness.</b> Let <img class="m" src="m/197489e3805a958f9d5c8fa8ab8b09402d34c49b.svg" alt="\(p_{1}\cdots p_{m} = q_{1} \cdots q_{n}\)" style="height:0.700em;vertical-align:-0.210em"> with all
+factors irreducible, and induct on <img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em">. Then <img class="m" src="m/a465d2a69b58b0a8c35c3f265ffcaabf4a12fff0.svg" alt="\(p_{1}\)" style="height:0.685em;vertical-align:-0.212em"> is prime and
+divides the right-hand product, so it divides some <img class="m" src="m/e2ac494f92756ab6e0bfada7fd9250855f897c10.svg" alt="\(q_{j}\)" style="height:0.785em;vertical-align:-0.314em">; after
+reordering, <img class="m" src="m/e4e6ffb7acb2767a28d50d20e24a026c0d4fc69b.svg" alt="\(q_{1} = up_{1}\)" style="height:0.685em;vertical-align:-0.212em">, and <img class="m" src="m/43f1d6c46cc02af73d5390471e1c8c127d40b707.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em"> is a unit because <img class="m" src="m/780bd726973b1e686343789f7c40aac42fd8f54f.svg" alt="\(q_{1}\)" style="height:0.685em;vertical-align:-0.212em"> is
+irreducible and <img class="m" src="m/a465d2a69b58b0a8c35c3f265ffcaabf4a12fff0.svg" alt="\(p_{1}\)" style="height:0.685em;vertical-align:-0.212em"> is not a unit. Cancelling <img class="m" src="m/a465d2a69b58b0a8c35c3f265ffcaabf4a12fff0.svg" alt="\(p_{1}\)" style="height:0.685em;vertical-align:-0.212em"> leaves
+<img class="m" src="m/4876318200e769506814caebdad991b1d346e5c3.svg" alt="\(p_{2}\cdots p_{m} = (u q_{2}) q_{3} \cdots q_{n}\)" style="height:1.096em;vertical-align:-0.274em">, where <img class="m" src="m/dffbdea22905dff82ba8bcaa5a6222ebf7faccd4.svg" alt="\(uq_{2}\)" style="height:0.685em;vertical-align:-0.212em">
+is again irreducible. By induction <img class="m" src="m/42ac30f222f898a75796f4ac4cc80cef6dc33090.svg" alt="\(m - 1 = n - 1\)" style="height:0.798em;vertical-align:-0.088em"> and the remaining
+factors match up to order and units.
+</p>
+
+</div>
+
+<div class="remark" id="org83d2fec">
+<p>
+Each implication in the chain is strict. There are principal ideal
+domains that are not Euclidean, and unique factorisation domains that
+are not principal &#x2013; <img class="m" src="m/626e94e9eb781b8012c20c45984c6ce5e08b95ee.svg" alt="\(\Z[x]\)" style="height:1.096em;vertical-align:-0.274em"> is one, since the ideal generated by
+<img class="m" src="m/682209d80cc07f86795f987ad28681d443268af8.svg" alt="\(2\)" style="height:0.706em;vertical-align:-0.000em"> and <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> is not principal. So the theorem is a sufficient
+condition, and the reason <img class="m" src="m/7dabe02ee97dbd1f64356da323fa6ec62fd0b242.svg" alt="\(\Z\)" style="height:0.755em;vertical-align:-0.000em"> and <img class="m" src="m/af650f35ded7a794d389ff310327aaedc266a5d4.svg" alt="\(K[x]\)" style="height:1.096em;vertical-align:-0.274em"> behave alike is that both
+sit at the top of the chain rather than that unique factorisation is
+common.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="polynomial-rings-division-and-roots.html"><span>← previous</span>Polynomial rings, division and roots</a><a rel="next" href="noetherian-rings-and-the-hilbert-basis-theorem.html"><span>next →</span>Noetherian rings and the Hilbert basis theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--commutative-algebra.pdf" title="PDF manual">Commutative Algebra</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

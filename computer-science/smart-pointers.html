@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smart pointers: unique_ptr, shared_ptr, weak_ptr · Computer Science</title>
+<meta name="description" content="Class templates that own a heap object and delete it automatically: unique_ptr is the single owner (movable, not copyable), shared_ptr counts its owners and frees on the last, weak_ptr observes a shared object without owning it and must lock() to use it.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/smart-pointers.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Smart pointers: unique_ptr, shared_ptr, weak_ptr · Computer Science">
+<meta property="og:description" content="Class templates that own a heap object and delete it automatically: unique_ptr is the single owner (movable, not copyable), shared_ptr counts its owners and frees on the last, weak_ptr observes a shared object without owning it and must lock() to use it.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/smart-pointers.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--cpp">Cpp</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Programming · Cpp</p>
+<h1>Smart pointers: unique_ptr, shared_ptr, weak_ptr</h1>
+<p class="summary">Class templates that own a heap object and delete it automatically: <code>unique_ptr</code> is the single owner (movable, not copyable), <code>shared_ptr</code> counts its owners and frees on the last, <code>weak_ptr</code> observes a shared object without owning it and must <code>lock()</code> to use it.</p>
+<p class="rel"><span>needs</span> <a href="move-semantics.html">Move semantics and the rule of five</a></p>
+<p class="rel"><span>see also</span> <a href="aggregation-composition.html">Aggregation and composition</a>, <a href="cpp-special-members.html">Special member functions and RAII</a>, <a href="stl-containers.html">STL containers</a></p>
+<p class="rel"><span>mentioned in</span> <a href="aggregation-composition.html">Aggregation and composition</a>, <a href="pointers-references.html">Pointers, references and dynamic memory in C++</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-association.html">Association, links and multiplicity</a></li><li><a href="aggregation-composition.html">Aggregation and composition</a></li><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="pointers-references.html">Pointers, references and dynamic memory in C++</a></li><li><a href="cpp-special-members.html">Special member functions and RAII</a></li><li><a href="shallow-deep-copy.html">Shallow and deep copy, rule of three</a></li><li><a href="value-categories.html">Value categories and rvalue references</a></li><li><a href="move-semantics.html">Move semantics and the rule of five</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org3a59b65" class="outline-2">
+<h2 id="org3a59b65">Construction</h2>
+<div class="outline-text-2" id="text-org3a59b65">
+<ul class="org-ul">
+<li><code>std::unique_ptr&lt;T&gt;</code>: exclusive <a href="aggregation-composition.html">ownership</a>. Copy is deleted, move transfers ownership: <code>p1 = std::move(p);</code> leaves <code>p</code> empty. <code>reset(new T)</code> replaces the object, <code>reset()</code> frees it. Zero overhead over a raw pointer.</li>
+<li><code>std::shared_ptr&lt;T&gt;</code>: shared ownership. A control block keeps the count of owners (<code>use_count()</code>); copying increments it, destroying decrements it, the object is deleted when it reaches zero.</li>
+<li><code>std::weak_ptr&lt;T&gt;</code>: points to an object managed by <code>shared_ptr</code> without incrementing the count. <code>wp.lock()</code> returns a <code>shared_ptr</code> (empty if the object is gone).</li>
+</ul>
+<p>
+Prefer <code>std::make_unique&lt;T&gt;(args)</code> and <code>std::make_shared&lt;T&gt;(args)</code> to <code>new</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org418a2af" class="outline-2">
+<h2 id="org418a2af">Example: optional composition</h2>
+<div class="outline-text-2" id="text-org418a2af">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="k">class</span> <span class="t">A</span> {
+  <span class="t">int</span> <span class="v">i</span> = 0;
+  <span class="n">std</span>::<span class="t">unique_ptr</span>&lt;B&gt; <span class="v">upb</span>;                     <span class="c">// 0..1 owned B
+</span><span class="k">public</span>:
+  <span class="f">A</span>(<span class="t">int</span> <span class="v">i_</span>, <span class="n">std</span>::<span class="t">string</span> <span class="v">s</span>) : i(i_), upb(<span class="n">std</span>::make_unique&lt;B&gt;(s)) {}
+  <span class="f">A</span>(<span class="k">const</span> <span class="t">A</span>&amp; <span class="v">a</span>) : i(a.i), upb(a.upb ? <span class="n">std</span>::make_unique&lt;B&gt;(*a.upb) : <span class="n">nullptr</span>) {}
+  <span class="t">A</span>&amp; <span class="k">operator</span><span class="f">=</span>(<span class="k">const</span> <span class="t">A</span>&amp; <span class="v">a</span>) {
+    i = a.i;
+    upb = a.upb ? <span class="n">std</span>::make_unique&lt;B&gt;(*a.upb) : <span class="n">nullptr</span>;
+    <span class="k">return</span> *<span class="k">this</span>;
+  }
+  <span class="f">A</span>(<span class="t">A</span>&amp;&amp;) = <span class="k">default</span>;                            <span class="c">// moves the unique_ptr
+</span>  <span class="t">A</span>&amp; <span class="k">operator</span><span class="f">=</span>(<span class="t">A</span>&amp;&amp;) = <span class="k">default</span>;
+  ~<span class="f">A</span>() = <span class="k">default</span>;                              <span class="c">// unique_ptr deletes B
+</span>};</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orga2ba850" class="outline-2">
+<h2 id="orga2ba850">Picture</h2>
+<div class="outline-text-2" id="text-orga2ba850">
+<figure class="fig"><img class="m" src="m/4635c3a0f05a68c1d41d2a2399a933f41aec0d5b.svg" alt="figure" style="width:17.466em"><figcaption><span class="fl">Figure 1.</span> shared_ptr and weak_ptr: sp1 and sp2 share the object T through a control block counting two owners; the weak_ptr wp observes it without owning.</figcaption></figure>
+<p>
+Two owners and one observer: the weak pointer does not count.
+</p>
+</div>
+</div>
+<div id="outline-container-org59e5ec9" class="outline-2">
+<h2 id="org59e5ec9">Intuition</h2>
+<div class="outline-text-2" id="text-org59e5ec9">
+<p>
+Ownership becomes part of the type: reading <code>unique_ptr&lt;B&gt;</code> in a class tells you it is a composition, <code>shared_ptr&lt;B&gt;</code> that the part is shared.
+</p>
+</div>
+</div>
+<div id="outline-container-org8493e03" class="outline-2">
+<h2 id="org8493e03">Pitfall</h2>
+<div class="outline-text-2" id="text-org8493e03">
+<p>
+Two <code>shared_ptr</code> pointing at each other never reach count zero: a cycle leaks. Break it by making one direction a <code>weak_ptr</code>.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="multiple-inheritance.html"><span>← previous</span>Multiple inheritance and the diamond</a><a rel="next" href="bitset.html"><span>next →</span>std::bitset</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--cpp.pdf" title="PDF manual">Cpp</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

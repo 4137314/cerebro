@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pointwise and uniform convergence · Mathematics</title>
+<meta name="description" content="A sequence of functions has two obvious notions of convergence, and the whole point of separating them is that the naive one preserves nothing. Pointwise convergence is a statement about each point separately, made with a different N at each; uniform convergence asks for one N that works everywhere…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/pointwise-and-uniform-convergence.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Pointwise and uniform convergence · Mathematics">
+<meta property="og:description" content="A sequence of functions has two obvious notions of convergence, and the whole point of separating them is that the naive one preserves nothing. Pointwise convergence is a statement about each point separately, made with a different N at each; uniform convergence asks for one N that works everywhere…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/pointwise-and-uniform-convergence.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Real Analysis</p>
+<h1>Pointwise and uniform convergence</h1>
+<p class="summary">A sequence of functions has two obvious notions of convergence, and the whole point of separating them is that the naive one preserves nothing. Pointwise convergence is a statement about each point separately, made with a different <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> at each; uniform convergence asks for one <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> that works everywhere, and that single quantifier change is exactly what carries continuity, integrability and the exchange of limits across the limit.</p>
+<p class="rel"><span>needs</span> <a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a>, <a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a>, <a href="limit-of-a-sequence.html">Limit of a sequence</a>, <a href="limits-and-continuity.html">Limits and continuity</a>, <a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a>, <a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a>, <a href="the-riemann-integral.html">The Riemann integral</a></p>
+<p class="rel"><span>unlocks</span> <a href="power-series-and-the-radius-of-convergence.html">Power series and the radius of convergence</a>, <a href="laurent-series-and-isolated-singularities.html">Laurent series and isolated singularities</a>, <a href="the-cauchy-integral-formula-and-analyticity.html">The Cauchy integral formula and analyticity</a>, <a href="equicontinuity-and-the-arzela-ascoli-theorem.html">Equicontinuity and the Arzela-Ascoli theorem</a>, <a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a>, <a href="fourier-series-fejers-theorem-and-parsevals-identity.html">Fourier series, Fejer's theorem and Parseval's identity</a>, <a href="existence-and-uniqueness-for-ordinary-differential-equations.html">Existence and uniqueness for ordinary differential equations</a>, <a href="the-heat-equation-separation-of-variables-and-the-maximum-principle.html">The heat equation: separation of variables and the maximum principle</a>, <a href="the-weierstrass-approximation-theorem.html">The Weierstrass approximation theorem</a>, <a href="the-tietze-extension-theorem.html">The Tietze extension theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="analysis.html">Analysis</a>, <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 13 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org8d924a3">
+<p>
+Functions <img class="m" src="m/da05c9d9b711711131838bf0afdd4d96112b8db6.svg" alt="\(f_{n} \colon D \to \R\)" style="height:0.974em;vertical-align:-0.214em"> <i>converge pointwise</i> to
+<img class="m" src="m/979c6360e64657e99af847a4effa6b30bfc2c4d0.svg" alt="\(f \colon D \to \R\)" style="height:0.974em;vertical-align:-0.214em"> if <img class="m" src="m/50f99a5f3d01b74b640064057fcecc52b48b5e43.svg" alt="\(f_{n}(x) \to f(x)\)" style="height:1.096em;vertical-align:-0.274em"> for every <img class="m" src="m/ee3f11d646a6e332199b0bf4674c6135b2566e0d.svg" alt="\(x \in D\)" style="height:0.792em;vertical-align:-0.040em">:
+for each <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> and each <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> there is <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">, possibly depending
+on <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, with <img class="m" src="m/c7e0c26acf41e38ed5073eb79243d9ad9056379f.svg" alt="\(\abs{f_{n}(x) - f(x)} &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/e3a7f6df845655195bb1fcfe91670525ec99e1e5.svg" alt="\(n \ge N\)" style="height:0.898em;vertical-align:-0.153em">.
+</p>
+
+</div>
+
+<div class="definition" id="orgd7e809c">
+<p>
+The convergence is <i>uniform</i> if the same <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> serves every point: for
+every <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> there is <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> such that
+<img class="m" src="m/c7e0c26acf41e38ed5073eb79243d9ad9056379f.svg" alt="\(\abs{f_{n}(x) - f(x)} &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em"> for all <img class="m" src="m/e3a7f6df845655195bb1fcfe91670525ec99e1e5.svg" alt="\(n \ge N\)" style="height:0.898em;vertical-align:-0.153em"> and all
+<img class="m" src="m/ee3f11d646a6e332199b0bf4674c6135b2566e0d.svg" alt="\(x \in D\)" style="height:0.792em;vertical-align:-0.040em">. Equivalently
+<img class="m" src="m/0121d18cb9717ed6e8324847791ab9e6ec3c328f.svg" alt="\(\sup_{x \in D} \abs{f_{n}(x) - f(x)} \to 0\)" style="height:1.148em;vertical-align:-0.321em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org2712070">
+<p>
+A uniform limit of continuous functions is continuous.
+</p>
+
+</div>
+
+<div class="proof" id="orgde6e082">
+<p>
+Let <img class="m" src="m/0340c6911034302d13b26cfe912a60629ece1513.svg" alt="\(f_{n} \to f\)" style="height:0.974em;vertical-align:-0.214em"> uniformly with each <img class="m" src="m/49a40127e0e33313f413f93580d0f462ef6ac7d2.svg" alt="\(f_{n}\)" style="height:0.974em;vertical-align:-0.214em"> continuous, fix
+<img class="m" src="m/c56433072da5c67f6ef2896b2989726770d5e374.svg" alt="\(x_{0} \in D\)" style="height:0.913em;vertical-align:-0.164em"> and <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em">. Choose <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> with
+<img class="m" src="m/4d5e56e364dd669994a6643ce45d367c1f5b7463.svg" alt="\(\abs{f_{n}(y) - f(y)} &lt; \eps/3\)" style="height:1.096em;vertical-align:-0.274em"> for every <img class="m" src="m/2b9cf94971ad656f078f6578e21bbf35ff685a41.svg" alt="\(y \in D\)" style="height:0.962em;vertical-align:-0.212em">, and then
+<img class="m" src="m/2834db4da57323bf6f47d0a640028cc90f572412.svg" alt="\(\delta &gt; 0\)" style="height:0.804em;vertical-align:-0.040em"> from continuity of that one <img class="m" src="m/49a40127e0e33313f413f93580d0f462ef6ac7d2.svg" alt="\(f_{n}\)" style="height:0.974em;vertical-align:-0.214em"> at <img class="m" src="m/4f8246e7705a9c0df96e9d12bf2c596179c4d261.svg" alt="\(x_{0}\)" style="height:0.636em;vertical-align:-0.165em">, so
+that <img class="m" src="m/be0d7801450038f940cf1d33ad75b434920c49bd.svg" alt="\(\abs{f_{n}(x) - f_{n}(x_{0})} &lt; \eps/3\)" style="height:1.096em;vertical-align:-0.274em"> for
+<img class="m" src="m/f5d6d947168af415db2965d57ced214e16bc2ad8.svg" alt="\(\abs{x - x_{0}} &lt; \delta\)" style="height:1.096em;vertical-align:-0.274em">. For such <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">,
+<div class="mb"><img class="m" src="m/0118c98088f71794b57668a7b63574765f5d1699.svg" alt="\[ \abs{f(x) - f(x_{0})} \le \abs{f(x) - f_{n}(x)} + \abs{f_{n}(x) - f_{n}(x_{0})} + \abs{f_{n}(x_{0}) - f(x_{0})} &lt; \eps. \]" style="width:35.156em"></div>
+</p>
+
+</div>
+
+<div class="remark" id="org7e7e411">
+<p>
+The three thirds are where uniformity is spent: the outer two need one
+<img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> that is simultaneously good at <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> and at <img class="m" src="m/4f8246e7705a9c0df96e9d12bf2c596179c4d261.svg" alt="\(x_{0}\)" style="height:0.636em;vertical-align:-0.165em">, and
+pointwise convergence supplies no such <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">. This is the entire
+difference between the two definitions, and every failure of pointwise
+convergence to preserve anything is a failure to close this argument.
+</p>
+
+</div>
+
+<div class="theorem" id="org09c6a42">
+<p>
+Functions <img class="m" src="m/da05c9d9b711711131838bf0afdd4d96112b8db6.svg" alt="\(f_{n} \colon D \to \R\)" style="height:0.974em;vertical-align:-0.214em"> converge uniformly to some limit if
+and only if for every <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> there is <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> with
+<img class="m" src="m/118c83b34038db0a1926957e3fe2318a70a849fb.svg" alt="\(\sup_{x \in D} \abs{f_{n}(x) - f_{m}(x)} &lt; \eps\)" style="height:1.148em;vertical-align:-0.321em"> for all
+<img class="m" src="m/4ffacc8372a96c01501ce258d5b37d6d9dc538e3.svg" alt="\(n, m \ge N\)" style="height:0.962em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="proof" id="org0548ed1">
+<p>
+If <img class="m" src="m/0340c6911034302d13b26cfe912a60629ece1513.svg" alt="\(f_{n} \to f\)" style="height:0.974em;vertical-align:-0.214em"> uniformly, take <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> beyond which the sup distance
+to <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is below <img class="m" src="m/211a2a37f996f96293dac069c43ef1260c5dbb46.svg" alt="\(\eps/2\)" style="height:1.096em;vertical-align:-0.274em">; the triangle inequality gives the
+condition. Conversely, the condition makes <img class="m" src="m/ffe12822b72a121447899791e33f9a7c44c13c42.svg" alt="\((f_{n}(x))\)" style="height:1.096em;vertical-align:-0.274em"> a Cauchy
+sequence in <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em"> for each fixed <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, so it converges to some
+<img class="m" src="m/e5ceae42d20882b9a191c5a7061083f903b09df0.svg" alt="\(f(x)\)" style="height:1.096em;vertical-align:-0.274em"> by the Cauchy criterion. Given <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> take <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> from the
+hypothesis; for <img class="m" src="m/e3a7f6df845655195bb1fcfe91670525ec99e1e5.svg" alt="\(n \ge N\)" style="height:0.898em;vertical-align:-0.153em"> and any <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, letting <img class="m" src="m/0f754ac9cb134dc1801e16f28669efa395b2f4aa.svg" alt="\(m \to \infty\)" style="height:0.472em;vertical-align:-0.000em"> in
+<img class="m" src="m/942d451fcb274567b2e43e9ac33d2e1bb7145b6b.svg" alt="\(\abs{f_{n}(x) - f_{m}(x)} &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em"> gives
+<img class="m" src="m/47efe08d78e9a3c61650935f0db728e2b210e7cf.svg" alt="\(\abs{f_{n}(x) - f(x)} \le \eps\)" style="height:1.096em;vertical-align:-0.274em">, uniformly in <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgd29ed78">
+<p>
+Let <img class="m" src="m/029ede176b1725f163211ea599fabdff39b4769d.svg" alt="\(u_{n} \colon D \to \R\)" style="height:0.919em;vertical-align:-0.165em"> satisfy <img class="m" src="m/9e28dbb925dc946760552a2a059e9ec3516651fb.svg" alt="\(\sup_{D} \abs{u_{n}} \le M_{n}\)" style="height:1.096em;vertical-align:-0.274em">
+with <img class="m" src="m/b4d480a13d38031675bf8350952ea83c9cd55545.svg" alt="\(\sum M_{n}\)" style="height:1.096em;vertical-align:-0.274em"> convergent. Then <img class="m" src="m/7f1e8b963473bd86d8f36726eb62e21ef19a2074.svg" alt="\(\sum u_{n}\)" style="height:1.096em;vertical-align:-0.274em"> converges uniformly
+on <img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org2b9211c">
+<p>
+Let <img class="m" src="m/b49c41ae098d456fafb76000443373d73987a856.svg" alt="\(s_{N} = \sum_{n \le N} u_{n}\)" style="height:1.293em;vertical-align:-0.465em">. For <img class="m" src="m/1f46581864565efe713573419ee62c02eb8e586e.svg" alt="\(m &gt; n\)" style="height:0.634em;vertical-align:-0.044em"> and every
+<img class="m" src="m/ee3f11d646a6e332199b0bf4674c6135b2566e0d.svg" alt="\(x \in D\)" style="height:0.792em;vertical-align:-0.040em">,
+<img class="m" src="m/90a67736c8c5567d5d81c4a82e06a1553a9e3865.svg" alt="\(\abs{s_{m}(x) - s_{n}(x)} \le \sum_{k=n+1}^{m} \abs{u_{k}(x)} \le \sum_{k=n+1}^{m} M_{k}\)" style="height:1.301em;vertical-align:-0.416em">,
+and the right-hand side is below <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em"> for <img class="m" src="m/53babe99e79a383ae2a7574072bbe2c6101a6a25.svg" alt="\(m &gt; n \ge N\)" style="height:0.898em;vertical-align:-0.153em"> because
+<img class="m" src="m/b4d480a13d38031675bf8350952ea83c9cd55545.svg" alt="\(\sum M_{n}\)" style="height:1.096em;vertical-align:-0.274em"> converges and is therefore Cauchy. The bound does not
+involve <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, so the uniform Cauchy criterion applies.
+</p>
+
+</div>
+
+<div class="theorem" id="org5822336">
+<p>
+Let <img class="m" src="m/0340c6911034302d13b26cfe912a60629ece1513.svg" alt="\(f_{n} \to f\)" style="height:0.974em;vertical-align:-0.214em"> uniformly on <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em"> with every <img class="m" src="m/49a40127e0e33313f413f93580d0f462ef6ac7d2.svg" alt="\(f_{n}\)" style="height:0.974em;vertical-align:-0.214em">
+continuous. Then <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is integrable and
+<img class="m" src="m/d3f140a1a1deef6fd33c01b31a28d335ad37d774.svg" alt="\(\int_{a}^{b} f_{n} \to \int_{a}^{b} f\)" style="height:1.534em;vertical-align:-0.384em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgcd4db8a">
+<p>
+The limit is continuous, hence integrable. Writing
+<img class="m" src="m/d0edf7b65cd2819e6ec1236481b0b0be11796eed.svg" alt="\(\eps_{n} = \sup_{[a,b]} \abs{f_{n} - f}\)" style="height:1.282em;vertical-align:-0.461em">, monotonicity and the
+triangle inequality for the integral give
+<div class="mb"><img class="m" src="m/44c631f3418e4763bf4cf92de77fbd37fab82937.svg" alt="\[ \Bigl| \int_{a}^{b} f_{n} - \int_{a}^{b} f \Bigr| \le \int_{a}^{b} \abs{f_{n} - f} \le \eps_{n} (b - a), \]" style="width:20.143em"></div>
+and <img class="m" src="m/e10bbf4ac0e06ffb357120a04c849e5014c752ee.svg" alt="\(\eps_{n} \to 0\)" style="height:0.871em;vertical-align:-0.165em"> by uniform convergence.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="limit-superior-and-limit-inferior.html"><span>← previous</span>Limit superior and limit inferior</a><a rel="next" href="line-integrals-exact-forms-and-greens-theorem.html"><span>next →</span>Line integrals, exact forms and Green's theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

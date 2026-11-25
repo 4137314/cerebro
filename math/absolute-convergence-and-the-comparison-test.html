@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Absolute convergence and the comparison test · Mathematics</title>
+<meta name="description" content="Two tools, and the second is the reason the first is worth having: a series of non-negative terms is a monotone sequence of partial sums, so its convergence is decided by boundedness alone – and absolute convergence reduces the general case to that one.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/absolute-convergence-and-the-comparison-test.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Absolute convergence and the comparison test · Mathematics">
+<meta property="og:description" content="Two tools, and the second is the reason the first is worth having: a series of non-negative terms is a monotone sequence of partial sums, so its convergence is decided by boundedness alone – and absolute convergence reduces the general case to that one.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/absolute-convergence-and-the-comparison-test.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Analysis · Real Analysis</p>
+<h1>Absolute convergence and the comparison test</h1>
+<p class="summary">Two tools, and the second is the reason the first is worth having: a series of non-negative terms is a monotone sequence of partial sums, so its convergence is decided by boundedness alone &#x2013; and absolute convergence reduces the general case to that one.</p>
+<p class="rel"><span>needs</span> <a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a>, <a href="monotone-convergence-theorem.html">Monotone convergence theorem</a>, <a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></p>
+<p class="rel"><span>unlocks</span> <a href="monotone-functions-are-integrable-and-the-mean-value-theorem-for-integrals.html">Monotone functions are integrable, and the mean value theorem for integrals</a>, <a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a>, <a href="the-alternating-series-test.html">The alternating series test</a>, <a href="the-cauchy-criterion-for-series-the-harmonic-series-and-condensation.html">The Cauchy criterion for series, the harmonic series and condensation</a>, <a href="the-ratio-and-root-tests.html">The ratio and root tests</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li></ol></details>
+</header>
+<main class="note">
+<div class="theorem" id="org625109d">
+<p>
+Let <img class="m" src="m/017f54556c907e049fb7d49a0b8e4911da93909d.svg" alt="\(0 \le a_{n} \le b_{n}\)" style="height:0.925em;vertical-align:-0.167em"> for all <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">. If
+<img class="m" src="m/c062296dad6c384c9585da63934579e85e187c59.svg" alt="\(\sum_{n \ge 1} b_{n}\)" style="height:1.293em;vertical-align:-0.465em"> converges then so does
+<img class="m" src="m/3cbaf2111d9cd1fc1a0e7f3a0c9d620965457457.svg" alt="\(\sum_{n \ge 1} a_{n}\)" style="height:1.293em;vertical-align:-0.465em">; if <img class="m" src="m/3cbaf2111d9cd1fc1a0e7f3a0c9d620965457457.svg" alt="\(\sum_{n \ge 1} a_{n}\)" style="height:1.293em;vertical-align:-0.465em"> diverges then so
+does <img class="m" src="m/c062296dad6c384c9585da63934579e85e187c59.svg" alt="\(\sum_{n \ge 1} b_{n}\)" style="height:1.293em;vertical-align:-0.465em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgb41fbde">
+<p>
+Write <img class="m" src="m/98d245ee45cc79d619aefcb768e9c37f341dcf08.svg" alt="\(s_{N}\)" style="height:0.636em;vertical-align:-0.165em"> and <img class="m" src="m/a1d0b1ca2bf0fc4b6385bd5502121ef1fb7f51e5.svg" alt="\(t_{N}\)" style="height:0.838em;vertical-align:-0.168em"> for the partial sums of <img class="m" src="m/61f9283fe1503c8d1cecd228c646c41f111be43f.svg" alt="\((a_{n})\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/9c956497f6d9ae957b625c7a454d8ed7c73a9871.svg" alt="\((b_{n})\)" style="height:1.096em;vertical-align:-0.274em">. Both are increasing, and <img class="m" src="m/a9081cb4161f523ea381f85d2171518d8cade45a.svg" alt="\(s_{N} \le t_{N}\)" style="height:0.861em;vertical-align:-0.164em"> for every
+<img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">. If <img class="m" src="m/02064ecc25d65f889ab5c3f67bb6daae5c85414e.svg" alt="\(\sum b_{n}\)" style="height:1.096em;vertical-align:-0.274em"> converges then <img class="m" src="m/15ff94d669744b730c5cc0d9d7ce1e0040c28cf4.svg" alt="\((t_{N})\)" style="height:1.096em;vertical-align:-0.274em"> is bounded above,
+hence so is <img class="m" src="m/04ae89a2276ee5e86bf57e57df6b0f1360a5ae74.svg" alt="\((s_{N})\)" style="height:1.096em;vertical-align:-0.274em">, and an increasing bounded sequence converges by
+the monotone convergence theorem. The second statement is the
+contrapositive of the first.
+</p>
+
+</div>
+
+<div class="definition" id="org7ca02fd">
+<p>
+The series <img class="m" src="m/3cbaf2111d9cd1fc1a0e7f3a0c9d620965457457.svg" alt="\(\sum_{n \ge 1} a_{n}\)" style="height:1.293em;vertical-align:-0.465em"> <i>converges absolutely</i> if
+<img class="m" src="m/dd0b7872e5887fa8992b62997f34f864d5215b87.svg" alt="\(\sum_{n \ge 1} \abs{a_{n}}\)" style="height:1.293em;vertical-align:-0.465em"> converges.
+</p>
+
+</div>
+
+<div class="theorem" id="org5ad53af">
+<p>
+An absolutely convergent series converges.
+</p>
+
+</div>
+
+<div class="proof" id="orgac128be">
+<p>
+Let <img class="m" src="m/98d245ee45cc79d619aefcb768e9c37f341dcf08.svg" alt="\(s_{N}\)" style="height:0.636em;vertical-align:-0.165em"> and <img class="m" src="m/6e56adb0e4effd965356f472b5c6a934c33a209b.svg" alt="\(\sigma_{N}\)" style="height:0.636em;vertical-align:-0.165em"> be the partial sums of <img class="m" src="m/61f9283fe1503c8d1cecd228c646c41f111be43f.svg" alt="\((a_{n})\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/bf2f77d3171bf646b5bb3285ccd1803955f69a53.svg" alt="\((\abs{a_{n}})\)" style="height:1.096em;vertical-align:-0.274em">. Since <img class="m" src="m/232143db0b7b37674f4f842b4255ebf2eb5a0390.svg" alt="\((\sigma_{N})\)" style="height:1.096em;vertical-align:-0.274em"> converges it is Cauchy, so
+given <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> there is <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> with
+<img class="m" src="m/849503dfd4cc444177de87ed26641a0a816dab9d.svg" alt="\(\sigma_{m} - \sigma_{n} &lt; \eps\)" style="height:0.804em;vertical-align:-0.161em"> for <img class="m" src="m/53babe99e79a383ae2a7574072bbe2c6101a6a25.svg" alt="\(m &gt; n \ge N\)" style="height:0.898em;vertical-align:-0.153em">. By the triangle
+inequality,
+<div class="mb"><img class="m" src="m/6d06bfde8141df5d7a0120f93884360c85b2cfdd.svg" alt="\[ \abs{s_{m} - s_{n}} = \Bigl| \sum_{k=n+1}^{m} a_{k} \Bigr| \le \sum_{k=n+1}^{m} \abs{a_{k}} = \sigma_{m} - \sigma_{n} &lt; \eps, \]" style="width:24.462em"></div>
+so <img class="m" src="m/04ae89a2276ee5e86bf57e57df6b0f1360a5ae74.svg" alt="\((s_{N})\)" style="height:1.096em;vertical-align:-0.274em"> is Cauchy and therefore converges.
+</p>
+
+</div>
+
+<div class="remark" id="org74ab2bf">
+<p>
+The converse fails: <img class="m" src="m/4f2b568279ed8efda39cbe0a2a9484b03c58b428.svg" alt="\(\sum (-1)^{n+1}/n\)" style="height:1.166em;vertical-align:-0.268em"> converges (its partial sums
+interlace) while <img class="m" src="m/63e0a1bc66a8125628a6c06482b51599fcf89a4c.svg" alt="\(\sum 1/n\)" style="height:1.096em;vertical-align:-0.274em"> does not. A convergent series that is not
+absolutely convergent can be rearranged to sum to anything, which is why
+absolute convergence is the hypothesis that appears everywhere later.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="series-and-convergence-of-the-partial-sums.html"><span>← previous</span>Series and convergence of the partial sums</a><a rel="next" href="the-mean-value-theorem.html"><span>next →</span>The mean value theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

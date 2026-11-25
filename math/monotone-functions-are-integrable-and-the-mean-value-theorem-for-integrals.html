@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monotone functions are integrable, and the mean value theorem for integrals · Mathematics</title>
+<meta name="description" content="Continuity is sufficient for integrability, not necessary, and the cheapest demonstration of that is monotonicity: a monotone function may have infinitely many discontinuities and is integrable all the same, because on a partition into equal pieces its oscillations telescope. The mean value theorem…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/monotone-functions-are-integrable-and-the-mean-value-theorem-for-integrals.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Monotone functions are integrable, and the mean value theorem for integrals · Mathematics">
+<meta property="og:description" content="Continuity is sufficient for integrability, not necessary, and the cheapest demonstration of that is monotonicity: a monotone function may have infinitely many discontinuities and is integrable all the same, because on a partition into equal pieces its oscillations telescope. The mean value theorem…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/monotone-functions-are-integrable-and-the-mean-value-theorem-for-integrals.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Analysis · Real Analysis</p>
+<h1>Monotone functions are integrable, and the mean value theorem for integrals</h1>
+<p class="summary">Continuity is sufficient for integrability, not necessary, and the cheapest demonstration of that is monotonicity: a monotone function may have infinitely many discontinuities and is integrable all the same, because on a partition into equal pieces its oscillations telescope. The mean value theorem for integrals is the other half of this note &#x2013; the statement that an integral of a continuous function is a value of it, which is what turns the first fundamental theorem into a one-line argument.</p>
+<p class="rel"><span>needs</span> <a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a>, <a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a>, <a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a>, <a href="one-sided-limits-and-the-discontinuities-of-a-monotone-function.html">One-sided limits and the discontinuities of a monotone function</a>, <a href="the-archimedean-property-and-the-density-of-the-rationals.html">The Archimedean property and the density of the rationals</a>, <a href="the-intermediate-value-theorem.html">The intermediate value theorem</a>, <a href="the-riemann-integral.html">The Riemann integral</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 18 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="one-sided-limits-and-the-discontinuities-of-a-monotone-function.html">One-sided limits and the discontinuities of a monotone function</a></li><li><a href="the-intermediate-value-theorem.html">The intermediate value theorem</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="the-archimedean-property-and-the-density-of-the-rationals.html">The Archimedean property and the density of the rationals</a></li></ol></details>
+</header>
+<main class="note">
+<div class="theorem" id="orgff8db6f">
+<p>
+Every monotone function <img class="m" src="m/ea7523ee0e750ece60b78b197c477d8b9d00d721.svg" alt="\(f \colon [a,b] \to \R\)" style="height:1.096em;vertical-align:-0.274em"> is Riemann
+integrable.
+</p>
+
+</div>
+
+<div class="proof" id="org317a291">
+<p>
+Assume <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> increasing (otherwise replace it by <img class="m" src="m/260f963332ff7cc2fa4c5efa180922c4739a327e.svg" alt="\(-f\)" style="height:0.974em;vertical-align:-0.214em">); it is bounded,
+since <img class="m" src="m/9754a377e0f897d39923f67a6e16906629e84536.svg" alt="\(f(a) \le f(x) \le f(b)\)" style="height:1.096em;vertical-align:-0.274em">. Let <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> and take the
+partition <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> into <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> equal subintervals of length
+<img class="m" src="m/fcae915728f2da4d57d5bbd6a3383edb7a956387.svg" alt="\((b-a)/n\)" style="height:1.096em;vertical-align:-0.274em">. On <img class="m" src="m/21e9d2948f4aa902bc38a56654d9b58709dd5d4d.svg" alt="\([x_{i-1}, x_{i}]\)" style="height:1.096em;vertical-align:-0.274em"> monotonicity gives
+<img class="m" src="m/6d1b3d0cfa6231db2dd39d008b4c197e196c46ac.svg" alt="\(m_{i} = f(x_{i-1})\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/7f42b9e31de0b49645aa8148e39075550b64b0d2.svg" alt="\(M_{i} = f(x_{i})\)" style="height:1.096em;vertical-align:-0.274em">, so the sum telescopes:
+<div class="mb"><img class="m" src="m/0d62e78785a83963867f120d6c0726e75f26c91a.svg" alt="\[ U(f,P) - L(f,P) = \frac{b-a}{n} \sum_{i=1}^{n} \bigl( f(x_{i}) - f(x_{i-1}) \bigr) = \frac{(b-a)\bigl( f(b) - f(a) \bigr)}{n}. \]" style="width:34.548em"></div>
+By the Archimedean property choose <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> with this below <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em">; the
+Riemann criterion gives integrability.
+</p>
+
+</div>
+
+<div class="proposition" id="org35faf10">
+<p>
+There is a Riemann integrable function on <img class="m" src="m/b40f419d16d54b95652910807100bb67f190c2b6.svg" alt="\([0,1]\)" style="height:1.096em;vertical-align:-0.274em"> whose set of
+discontinuities is dense: continuity is sufficient for integrability
+and far from necessary.
+</p>
+
+</div>
+
+<div class="proof" id="org85f491a">
+<p>
+Enumerate the rationals of <img class="m" src="m/b40f419d16d54b95652910807100bb67f190c2b6.svg" alt="\([0,1]\)" style="height:1.096em;vertical-align:-0.274em"> as <img class="m" src="m/1d4d593a2a3cbf4535f5188d893c8bf4cc8aa325.svg" alt="\((q_{n})_{n \ge 1}\)" style="height:1.129em;vertical-align:-0.305em"> and set
+<img class="m" src="m/0b2155973d4b10c552aae6726f25fe388de878f3.svg" alt="\(f(x) = \sum_{q_{n} \le x} 2^{-n}\)" style="height:1.351em;vertical-align:-0.473em">, the sum taken over those indices
+<img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> with <img class="m" src="m/78998f29d567ea754e8824d43f03b3ea2ab9a3d1.svg" alt="\(q_{n} \le x\)" style="height:0.910em;vertical-align:-0.209em">. The sum converges by comparison with
+<img class="m" src="m/d895dc10c0d5e6aee1c856d9c26f31b5f086195d.svg" alt="\(\sum 2^{-n}\)" style="height:1.147em;vertical-align:-0.275em">, and <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is increasing: enlarging <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> only adds
+non-negative terms. At each <img class="m" src="m/dfa7dce9d5dbed149a48bf6bd5318ca6a1c697d1.svg" alt="\(q_{m}\)" style="height:0.685em;vertical-align:-0.212em"> the value jumps by at least
+<img class="m" src="m/610fb40f600f4bc01cd79b0eca1a04dfc15449d8.svg" alt="\(2^{-m}\)" style="height:0.873em;vertical-align:-0.000em">, since the term <img class="m" src="m/610fb40f600f4bc01cd79b0eca1a04dfc15449d8.svg" alt="\(2^{-m}\)" style="height:0.873em;vertical-align:-0.000em"> is present for <img class="m" src="m/fd42400158e68b4b1a7133a650e265fa3584c8f5.svg" alt="\(x \ge q_{m}\)" style="height:0.910em;vertical-align:-0.209em">
+and absent below, so <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is discontinuous there by the jump
+description of a monotone function's discontinuities. The rationals are
+dense in <img class="m" src="m/b40f419d16d54b95652910807100bb67f190c2b6.svg" alt="\([0,1]\)" style="height:1.096em;vertical-align:-0.274em">, and <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">, being monotone, is integrable.
+</p>
+
+</div>
+
+<div class="theorem" id="org0a996f6">
+<p>
+Let <img class="m" src="m/ea7523ee0e750ece60b78b197c477d8b9d00d721.svg" alt="\(f \colon [a,b] \to \R\)" style="height:1.096em;vertical-align:-0.274em"> be continuous. Then there is
+<img class="m" src="m/0bf7096054fe5b8aa2944f6c6543b720ad75dd27.svg" alt="\(c \in [a,b]\)" style="height:1.096em;vertical-align:-0.274em"> with
+<div class="mb"><img class="m" src="m/ea04783e54731d20c641d2495430cf34e9315add.svg" alt="\[ \int_{a}^{b} f(x) \dd x = f(c) \, (b - a). \]" style="width:12.258em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="org407329c">
+<p>
+By the extreme value theorem <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> attains a minimum <img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em"> and a
+maximum <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> on <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em">, and it is integrable. Monotonicity of the
+integral gives
+<img class="m" src="m/f769e3201ce7e8208b20ee9d822eb4cc2ddf0572.svg" alt="\(m (b-a) \le \int_{a}^{b} f \le M (b-a)\)" style="height:1.534em;vertical-align:-0.384em">, so the number
+<div class="mb"><img class="m" src="m/d6029718921969699ca8f7f54cfa8cacf54fd969.svg" alt="\[ \mu = \frac{1}{b-a} \int_{a}^{b} f(x) \dd x \]" style="width:10.043em"></div>
+lies in <img class="m" src="m/f9221297f58008a6a6e0038213efb630f7787fa1.svg" alt="\([m, M]\)" style="height:1.096em;vertical-align:-0.274em">. Since <img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> are attained, the
+intermediate value theorem produces <img class="m" src="m/0bf7096054fe5b8aa2944f6c6543b720ad75dd27.svg" alt="\(c \in [a,b]\)" style="height:1.096em;vertical-align:-0.274em"> with
+<img class="m" src="m/bcdab14019a50fd460ac26810656981f85ec7254.svg" alt="\(f(c) = \mu\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="remark" id="org7454cbd">
+<p>
+The hypothesis of continuity is used only in the last step, and it is
+used essentially: for the integrable but discontinuous <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> equal to
+<img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> on <img class="m" src="m/340acc873f82956cd46f2f804823f09ffd1a5b62.svg" alt="\([0,1)\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em"> at <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">, the average <img class="m" src="m/70959336da5572081639cf1117df00155cb19dc1.svg" alt="\(\mu = 0\)" style="height:0.919em;vertical-align:-0.211em"> is
+attained, but a two-valued step function on <img class="m" src="m/b1ef34aff05c7b28039a3176fd4752fa3e91107d.svg" alt="\([-1,1]\)" style="height:1.096em;vertical-align:-0.274em"> has average
+<img class="m" src="m/29a5998bc550aea5fc1f800530f1d12166463f16.svg" alt="\(\tfrac{1}{2}\)" style="height:1.304em;vertical-align:-0.378em"> and never takes it. What the theorem really says is
+that a continuous function attains its own average, which is the
+intermediate value theorem wearing different notation.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-archimedean-property-and-the-density-of-the-rationals.html"><span>← previous</span>The Archimedean property and the density of the rationals</a><a rel="next" href="monotonicity-and-the-sign-of-the-derivative.html"><span>next →</span>Monotonicity and the sign of the derivative</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

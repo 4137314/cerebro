@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Converting constructors and explicit · Computer Science</title>
+<meta name="description" content="A constructor callable with one argument is also an implicit conversion: with A(int), f(3) compiles as f(A(3)) and a = 3 as a = A(3); declaring it explicit forbids the silent conversion.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/implicit-conversion.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Converting constructors and explicit · Computer Science">
+<meta property="og:description" content="A constructor callable with one argument is also an implicit conversion: with A(int), f(3) compiles as f(A(3)) and a = 3 as a = A(3); declaring it explicit forbids the silent conversion.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/implicit-conversion.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--cpp">Cpp</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Cpp</p>
+<h1>Converting constructors and explicit</h1>
+<p class="summary">A constructor callable with one argument is also an implicit conversion: with <code>A(int)</code>, <code>f(3)</code> compiles as <code>f(A(3))</code> and <code>a = 3</code> as <code>a = A(3)</code>; declaring it <code>explicit</code> forbids the silent conversion.</p>
+<p class="rel"><span>needs</span> <a href="cpp-special-members.html">Special member functions and RAII</a></p>
+<p class="rel"><span>see also</span> <a href="operator-overloading.html">Operator overloading in C++</a>, <a href="wrapper-autoboxing.html">Wrapper classes and autoboxing</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="pointers-references.html">Pointers, references and dynamic memory in C++</a></li><li><a href="cpp-special-members.html">Special member functions and RAII</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org1252067" class="outline-2">
+<h2 id="org1252067">Definition</h2>
+<div class="outline-text-2" id="text-org1252067">
+<p>
+Given
+</p>
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="k">class</span> <span class="t">A</span> { <span class="t">int</span> <span class="v">i</span>; <span class="k">public</span>: <span class="f">A</span>(<span class="t">int</span> <span class="v">i_</span>) : i(i_) {} };
+<span class="t">void</span> <span class="f">f</span>(<span class="t">A</span>);</code></pre></figure>
+<p>
+the call <code>f(3)</code> is accepted: the compiler looks for a way to turn <code>int</code> into <code>A</code> and finds the constructor, so it compiles <code>f(A(3))</code>. Likewise <code>A a; a = 3;</code> becomes <code>a.operator=(A(3))</code>.
+</p>
+
+<p>
+With <code>explicit A(int i_);</code> both lines are compile errors; the conversion must be written: <code>f(A(3))</code>, <code>a = A(3)</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org74d3d9d" class="outline-2">
+<h2 id="org74d3d9d">Intuition</h2>
+<div class="outline-text-2" id="text-org74d3d9d">
+<p>
+Every one-argument constructor is a door between two types. Sometimes the door is welcome (<code>std::string s = "abc";</code>); otherwise lock it with <code>explicit</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orga3c329e" class="outline-2">
+<h2 id="orga3c329e">Pitfall</h2>
+<div class="outline-text-2" id="text-orga3c329e">
+<p>
+Implicit conversions also apply to arguments of overloaded operators defined as free functions, so <code>3 + a</code> can compile for <code>operator+(const A&amp;, const A&amp;)</code> but not for a member <code>A::operator+</code> (see <a href="operator-overloading.html">operator overloading</a>).
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="cpp-special-members.html"><span>← previous</span>Special member functions and RAII</a><a rel="next" href="exception-safety.html"><span>next →</span>Exception-safety guarantees</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--cpp.pdf" title="PDF manual">Cpp</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

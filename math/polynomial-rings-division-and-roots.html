@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Polynomial rings, division and roots · Mathematics</title>
+<meta name="description" content="A polynomial is not a function – over a finite field two different polynomials can induce the same function – but a formal object, a finitely supported sequence of coefficients. Keeping the distinction is what makes the degree an invariant, and the degree is what makes division with remainder possi…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/polynomial-rings-division-and-roots.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Polynomial rings, division and roots · Mathematics">
+<meta property="og:description" content="A polynomial is not a function – over a finite field two different polynomials can induce the same function – but a formal object, a finitely supported sequence of coefficients. Keeping the distinction is what makes the degree an invariant, and the degree is what makes division with remainder possi…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/polynomial-rings-division-and-roots.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--commutative-algebra">Commutative Algebra</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Algebra · Commutative Algebra</p>
+<h1>Polynomial rings, division and roots</h1>
+<p class="summary">A polynomial is not a function &#x2013; over a finite field two different polynomials can induce the same function &#x2013; but a formal object, a finitely supported sequence of coefficients. Keeping the distinction is what makes the degree an invariant, and the degree is what makes division with remainder possible; everything else in this note is that division, applied.</p>
+<p class="rel"><span>needs</span> <a href="integral-domains-fields-prime-and-maximal-ideals.html">Integral domains, fields, prime and maximal ideals</a>, <a href="rings-ideals-and-the-quotient-ring.html">Rings, ideals and the quotient ring</a></p>
+<p class="rel"><span>unlocks</span> <a href="eigenvalues-the-characteristic-polynomial-and-cayley-hamilton.html">Eigenvalues, the characteristic polynomial and Cayley-Hamilton</a>, <a href="field-extensions-the-tower-law-and-minimal-polynomials.html">Field extensions, the tower law and minimal polynomials</a>, <a href="finite-fields.html">Finite fields</a>, <a href="noetherian-rings-and-the-hilbert-basis-theorem.html">Noetherian rings and the Hilbert basis theorem</a>, <a href="the-cauchy-integral-formula-and-analyticity.html">The Cauchy integral formula and analyticity</a>, <a href="the-weierstrass-approximation-theorem.html">The Weierstrass approximation theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="rings-and-commutative-algebra.html">Rings and commutative algebra</a></p>
+<details class="path"><summary>Learning path: 15 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li><li><a href="rings-ideals-and-the-quotient-ring.html">Rings, ideals and the quotient ring</a></li><li><a href="integral-domains-fields-prime-and-maximal-ideals.html">Integral domains, fields, prime and maximal ideals</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org1055d17">
+<p>
+Let <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> be a commutative ring. A <i>polynomial</i> over <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> is a sequence
+<img class="m" src="m/557aaf1ec2efaa93899439c0109b3a1d76aad36d.svg" alt="\((a_{0}, a_{1}, \dots)\)" style="height:1.096em;vertical-align:-0.274em"> in <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/dc9bb8d623d95b487b4263db7b30ae5d3761e049.svg" alt="\(a_{i} = 0\)" style="height:0.871em;vertical-align:-0.165em"> for all but
+finitely many <img class="m" src="m/820a2ed5b51be608772286616d5575a49dd61525.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em">, written <img class="m" src="m/4307439b0da78b74b59cc71078039c53e3da3ce1.svg" alt="\(\sum_{i} a_{i} x^{i}\)" style="height:1.234em;vertical-align:-0.333em">. With coefficientwise
+addition and the product <img class="m" src="m/93f1c9c9b794aff6fd9a47a53a513dffe76b1677.svg" alt="\((ab)_{k} = \sum_{i+j=k} a_{i} b_{j}\)" style="height:1.300em;vertical-align:-0.481em"> these
+form the <i>polynomial ring</i> <img class="m" src="m/ed66dab0437b00d764a53b6a4e98ac0990d25ef0.svg" alt="\(R[x]\)" style="height:1.096em;vertical-align:-0.274em">. The <i>degree</i> <img class="m" src="m/e6eee81492345d80362e8b5333454089ca408bc2.svg" alt="\(\deg f\)" style="height:0.974em;vertical-align:-0.214em"> of
+<img class="m" src="m/fc354d19805ff49c525b69b70293537d62b8640b.svg" alt="\(f \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> is the largest <img class="m" src="m/820a2ed5b51be608772286616d5575a49dd61525.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em"> with <img class="m" src="m/46aed730def47c784c948ef57948d4ab7ca8ae51.svg" alt="\(a_{i} \ne 0\)" style="height:0.974em;vertical-align:-0.214em">, and <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is
+<i>monic</i> if that coefficient is <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">; the degree of <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> is left
+undefined.
+</p>
+
+</div>
+
+<div class="proposition" id="org2ac8e8d">
+<p>
+If <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> is an integral domain and <img class="m" src="m/22891755904d029340f8fa9baedce5fa47470137.svg" alt="\(f, g \in R[x]\)" style="height:1.096em;vertical-align:-0.274em"> are non-zero, then
+<img class="m" src="m/76f84a9b8d611efb3c2eb5fbce1f5c9c15e71c3c.svg" alt="\(fg \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/7808d882e48abee813bcccf24711018fef14e604.svg" alt="\(\deg(fg) = \deg f + \deg g\)" style="height:1.096em;vertical-align:-0.274em">. Consequently <img class="m" src="m/ed66dab0437b00d764a53b6a4e98ac0990d25ef0.svg" alt="\(R[x]\)" style="height:1.096em;vertical-align:-0.274em">
+is a domain and its units are the units of <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org121e02e">
+<p>
+Let <img class="m" src="m/a58261f668193dc7e71132f66f750139af4a7e7f.svg" alt="\(a_{m}, b_{n}\)" style="height:0.974em;vertical-align:-0.214em"> be the leading coefficients. The coefficient of
+<img class="m" src="m/d7fa1252027953d68c52e1a1972b29e962df13c9.svg" alt="\(x^{m+n}\)" style="height:0.873em;vertical-align:-0.000em"> in <img class="m" src="m/32ed46e9ed1dbb3ed096181dacbcd70b881f1189.svg" alt="\(fg\)" style="height:0.974em;vertical-align:-0.214em"> is <img class="m" src="m/593843470fa363a1927b4947b8ec35f92bae0d84.svg" alt="\(a_{m}b_{n}\)" style="height:0.925em;vertical-align:-0.167em">, which is non-zero since <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">
+is a domain, and every higher coefficient vanishes because each of its
+terms has a factor of index above the degree. Hence <img class="m" src="m/76f84a9b8d611efb3c2eb5fbce1f5c9c15e71c3c.svg" alt="\(fg \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> with
+the stated degree. If <img class="m" src="m/38c48f6691acf557f2e966551c6200ee6f75ce0c.svg" alt="\(fg = 1\)" style="height:0.974em;vertical-align:-0.214em"> then <img class="m" src="m/752ec5e58b6e2004cc71cfda68972b314333a351.svg" alt="\(\deg f + \deg g = 0\)" style="height:0.974em;vertical-align:-0.214em">, so both
+are constants, and they are inverse units of <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgd859132">
+<p>
+Let <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> be commutative, <img class="m" src="m/ca73ea8866fafb17e59f97bb3dc8b7ed4309d599.svg" alt="\(g \in R[x]\)" style="height:1.096em;vertical-align:-0.274em"> monic of degree <img class="m" src="m/8add7e85758abffc26b4394aa35d136ed1327bcb.svg" alt="\(n \ge 0\)" style="height:0.855em;vertical-align:-0.145em">.
+For every <img class="m" src="m/81bc2e1d5d9cad08d79579233767a5f2537136be.svg" alt="\(f \in R[x]\)" style="height:1.096em;vertical-align:-0.274em"> there are unique <img class="m" src="m/5187488ed27879a0a81442b3aac0537f2985577a.svg" alt="\(q, r \in R[x]\)" style="height:1.096em;vertical-align:-0.274em"> with
+<img class="m" src="m/596dd22a1785dae1d193d7b3df49641cb3df2e7f.svg" alt="\(f = qg + r\)" style="height:0.974em;vertical-align:-0.214em"> and either <img class="m" src="m/519e929e8ac669d7074f43b54c40ab5e740827c3.svg" alt="\(r = 0\)" style="height:0.706em;vertical-align:-0.000em"> or <img class="m" src="m/a456fc43ad8ef530c288e4e88cf3e43d6523eb9f.svg" alt="\(\deg r &lt; n\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="proof" id="org4f01e01">
+<p>
+Existence, by induction on <img class="m" src="m/e6eee81492345d80362e8b5333454089ca408bc2.svg" alt="\(\deg f\)" style="height:0.974em;vertical-align:-0.214em"> (the case <img class="m" src="m/13235348a6c9dc7eeecf7b70455cac3dd6d936e9.svg" alt="\(f = 0\)" style="height:0.974em;vertical-align:-0.214em"> or
+<img class="m" src="m/f346bd6c4a9662ae5ecb2cdf895ee432ea92f602.svg" alt="\(\deg f &lt; n\)" style="height:0.974em;vertical-align:-0.214em"> being <img class="m" src="m/5297e9d2bac650db70275d40b0db4819ff165e57.svg" alt="\(q = 0\)" style="height:0.919em;vertical-align:-0.211em">, <img class="m" src="m/501606f0549e7c39091a9283be98cec2b6d0f762.svg" alt="\(r = f\)" style="height:0.974em;vertical-align:-0.214em">). If <img class="m" src="m/bad1c5f9705437a05d7923b04a415bf6e0463fb9.svg" alt="\(\deg f = m \ge n\)" style="height:0.974em;vertical-align:-0.214em">
+with leading coefficient <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">, then <img class="m" src="m/a3e9ca6266ab62c2a3d4fb77358b7d9b04bd5077.svg" alt="\(f - a x^{m-n} g\)" style="height:1.086em;vertical-align:-0.217em"> has degree less
+than <img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em">, because <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> is monic and the two leading terms cancel; by
+induction it is <img class="m" src="m/619fb8effe0e32bd3dcd6d1e757133d0f1e35090.svg" alt="\(q_{1}g + r\)" style="height:0.852em;vertical-align:-0.213em">, so <img class="m" src="m/58c2d85149870045a0ab39bca00e3d1fe9304000.svg" alt="\(f = (a x^{m-n} + q_{1})g + r\)" style="height:1.147em;vertical-align:-0.275em">.
+</p>
+
+<p>
+Uniqueness: if <img class="m" src="m/4d7b188a19eae605ff941388d375c2a87843cc6d.svg" alt="\(q g + r = q'g + r'\)" style="height:1.037em;vertical-align:-0.218em"> then <img class="m" src="m/56f061129da393b00b76b3911c0d578493b29a81.svg" alt="\((q - q')g = r' - r\)" style="height:1.098em;vertical-align:-0.274em">. Were
+<img class="m" src="m/bf29073ef0f44201b7199fe2a93c1751fa620583.svg" alt="\(q \ne q'\)" style="height:1.037em;vertical-align:-0.218em">, the left side would have degree at least <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> &#x2013; <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> is
+monic, so multiplying by <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> adds exactly <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> to the degree, no
+cancellation of the leading term being possible &#x2013; while the right side
+has degree less than <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> or is <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">. So <img class="m" src="m/2cc380100f4cd6626cd7d09d5002f48b450babcb.svg" alt="\(q = q'\)" style="height:1.037em;vertical-align:-0.218em"> and then
+<img class="m" src="m/6cea2e2a165bcce4aba35c8e204cabc1472a4389.svg" alt="\(r = r'\)" style="height:0.824em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="remark" id="org36d6a95">
+<p>
+Monic, not merely non-zero: over a general commutative ring one cannot
+divide by the leading coefficient. Over a field every non-zero <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> is
+a unit multiple of a monic one, so the theorem holds there for all
+<img class="m" src="m/36e09fcd08e3d0977658c4807a321b980a5a3d41.svg" alt="\(g \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> &#x2013; which is the form used to prove that <img class="m" src="m/af650f35ded7a794d389ff310327aaedc266a5d4.svg" alt="\(K[x]\)" style="height:1.096em;vertical-align:-0.274em"> is a
+principal ideal domain.
+</p>
+
+</div>
+
+<div class="corollary" id="org2cb2fc4">
+<p>
+Let <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> be commutative and <img class="m" src="m/81bc2e1d5d9cad08d79579233767a5f2537136be.svg" alt="\(f \in R[x]\)" style="height:1.096em;vertical-align:-0.274em">. Then <img class="m" src="m/8ba126095cbfc73cd149ef736727ed54abad76e8.svg" alt="\(a \in R\)" style="height:0.792em;vertical-align:-0.040em"> is a root
+of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">, that is <img class="m" src="m/fc750832156bbc7d477f02e9bc88163c9e566698.svg" alt="\(f(a) = 0\)" style="height:1.096em;vertical-align:-0.274em">, if and only if <img class="m" src="m/e2b6b29bc8085c826b398fe0cd11ab371eb8f583.svg" alt="\(x - a\)" style="height:0.731em;vertical-align:-0.088em"> divides <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">
+in <img class="m" src="m/ed66dab0437b00d764a53b6a4e98ac0990d25ef0.svg" alt="\(R[x]\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org41b5522">
+<p>
+Divide by the monic <img class="m" src="m/e2b6b29bc8085c826b398fe0cd11ab371eb8f583.svg" alt="\(x - a\)" style="height:0.731em;vertical-align:-0.088em">: <img class="m" src="m/8a2bc304e1d3c71aa07b54e76205ac20a2737fb7.svg" alt="\(f = q \cdot (x-a) + r\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/6a662e32b188f7fd491c82ebcd46ddece8ed8644.svg" alt="\(r\)" style="height:0.472em;vertical-align:-0.000em">
+constant. Evaluating at <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> &#x2013; a ring homomorphism <img class="m" src="m/94eac7c0d222fe867cd2b9ce4dd473bd629c9df9.svg" alt="\(R[x] \to R\)" style="height:1.096em;vertical-align:-0.274em">,
+since <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> is commutative &#x2013; gives <img class="m" src="m/4310822e18af44232ed094a10ead5138fe1c3ad7.svg" alt="\(f(a) = r\)" style="height:1.096em;vertical-align:-0.274em">. So <img class="m" src="m/fc750832156bbc7d477f02e9bc88163c9e566698.svg" alt="\(f(a) = 0\)" style="height:1.096em;vertical-align:-0.274em">
+exactly when <img class="m" src="m/519e929e8ac669d7074f43b54c40ab5e740827c3.svg" alt="\(r = 0\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="corollary" id="org8fa2c53">
+<p>
+A non-zero polynomial of degree <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> over an integral domain has at
+most <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> roots in that domain.
+</p>
+
+</div>
+
+<div class="proof" id="org727b0b2">
+<p>
+Induct on <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">. A non-zero constant has no roots. If <img class="m" src="m/26f5c8e0ebafde7b2be29f7bc4c54bcb552d781b.svg" alt="\(\deg f = n \ge 1\)" style="height:0.974em;vertical-align:-0.214em">
+and <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> has a root <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">, write <img class="m" src="m/b87643c13c4a5a44415b61cb9e704d1b2fb56836.svg" alt="\(f = (x-a)q\)" style="height:1.096em;vertical-align:-0.274em"> with
+<img class="m" src="m/9e5c506d724916c91f9dcbe649bd11f0906b118b.svg" alt="\(\deg q = n - 1\)" style="height:0.974em;vertical-align:-0.214em">. Any root <img class="m" src="m/712b5ce5aca4e4bc46b1c32c1914fe1acdef0d31.svg" alt="\(b \ne a\)" style="height:0.974em;vertical-align:-0.214em"> satisfies
+<img class="m" src="m/ae644baacd8aa604c1517394e0ccbde51f9f5614.svg" alt="\((b-a)q(b) = 0\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/a4cbe0214f3b80bcacd9a0a2344b11bf7b90b298.svg" alt="\(b - a \ne 0\)" style="height:0.974em;vertical-align:-0.214em">, so <img class="m" src="m/a4ca8f10e9c9b04f869f3c0decf42410d0bbbfff.svg" alt="\(q(b) = 0\)" style="height:1.096em;vertical-align:-0.274em"> because the ring
+is a domain; by induction there are at most <img class="m" src="m/9954ab1aa9e74e6384dd717436dfaac44435c636.svg" alt="\(n-1\)" style="height:0.798em;vertical-align:-0.088em"> such <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em">, giving
+at most <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> roots in all.
+</p>
+
+</div>
+
+<div class="remark" id="org21cb0c1">
+<p>
+The hypothesis is not decorative: over a ring with zero divisors it
+fails outright, and the failure is what the corollary is really about.
+Read positively, it is the statement that a polynomial identity of
+degree <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> can be checked on <img class="m" src="m/8667d4ccbeefcc1a86781878d6b636f39c49c68a.svg" alt="\(n+1\)" style="height:0.798em;vertical-align:-0.088em"> points &#x2013; the principle behind
+interpolation and behind every "two polynomials that agree often are
+equal" argument.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="integral-domains-fields-prime-and-maximal-ideals.html"><span>← previous</span>Integral domains, fields, prime and maximal ideals</a><a rel="next" href="euclidean-domains-principal-ideals-and-unique-factorisation.html"><span>next →</span>Euclidean domains, principal ideals and unique factorisation</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--commutative-algebra.pdf" title="PDF manual">Commutative Algebra</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

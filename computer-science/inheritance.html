@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inheritance and overriding · Computer Science</title>
+<meta name="description" content="A subclass is defined as an extension of a superclass: it inherits all its fields and methods, can add new ones and can override inherited methods; constructors are not inherited but chained, the superclass part being built first.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/inheritance.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Inheritance and overriding · Computer Science">
+<meta property="og:description" content="A subclass is defined as an extension of a superclass: it inherits all its fields and methods, can add new ones and can override inherited methods; constructors are not inherited but chained, the superclass part being built first.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/inheritance.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--oop">Oop</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Oop</p>
+<h1>Inheritance and overriding</h1>
+<p class="summary">A subclass is defined as an extension of a superclass: it inherits all its fields and methods, can add new ones and can override inherited methods; constructors are not inherited but chained, the superclass part being built first.</p>
+<p class="rel"><span>needs</span> <a href="object-oriented-programming.html">Object-oriented programming</a>, <a href="uml-generalization.html">Generalization (is-a)</a></p>
+<p class="rel"><span>unlocks</span> <a href="polymorphism.html">Polymorphism and dynamic binding</a>, <a href="cpp-inheritance-visibility.html">Public, protected and private inheritance in C++</a>, <a href="stack-and-queue.html">Stack and queue as classes</a>, <a href="java-object-class.html">The class Object and final</a>, <a href="javafx-scene-graph.html">JavaFX: stage, scene and the node tree</a></p>
+<p class="rel"><span>see also</span> <a href="polymorphism.html">Polymorphism and dynamic binding</a>, <a href="method-overloading.html">Overloading</a>, <a href="cpp-inheritance-visibility.html">Public, protected and private inheritance in C++</a>, <a href="stack-and-queue.html">Stack and queue as classes</a>, <a href="java-object-class.html">The class Object and final</a>, <a href="javafx-scene-graph.html">JavaFX: stage, scene and the node tree</a></p>
+<p class="rel"><span>mentioned in</span> <a href="abstract-class-interface.html">Abstract classes and interfaces</a>, <a href="exception-handling.html">Exceptions</a>, <a href="multiple-inheritance.html">Multiple inheritance and the diamond</a>, <a href="virtual-functions.html">Virtual functions and the virtual table</a>, <a href="generic-programming.html">Generic programming</a>, <a href="java-exceptions.html">Exceptions in Java: checked, unchecked, finally</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org81eb7dc" class="outline-2">
+<h2 id="org81eb7dc">Definition</h2>
+<div class="outline-text-2" id="text-org81eb7dc">
+<p>
+<code>class D extends B</code> (Java) or <code>class D : public B</code> (C++) makes <code>D</code> a subclass of <code>B</code>:
+</p>
+<ul class="org-ul">
+<li><code>D</code> inherits every field and method of <code>B</code> (private members exist in <code>D</code> but are not accessible by name);</li>
+<li><code>D</code> can <b>add</b> fields and methods;</li>
+<li><code>D</code> can <b><a href="virtual-functions.html">override</a></b> a method of <code>B</code>: same name and same parameter types, new body. <code>super.m()</code> (Java) or <code>B::m()</code> (C++) calls the overridden version.</li>
+</ul>
+
+<p>
+Java allows single inheritance only (one superclass), and every class without <code>extends</code> extends <code>Object</code>. C++ allows <a href="multiple-inheritance.html">multiple inheritance</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-orge58e862" class="outline-2">
+<h2 id="orge58e862">Constructors</h2>
+<div class="outline-text-2" id="text-orge58e862">
+<p>
+Constructors are not inherited. The constructor of <code>D</code> first builds the <code>B</code> part: Java calls <code>super(...)</code> as its first statement (implicitly <code>super()</code>), C++ uses the initialiser list <code>D(int x) : B(x) {}</code>. If <code>B</code> has no no-argument constructor, the explicit call is mandatory, or the code does not compile. Destruction (C++) runs in reverse order: <code>~D</code> then <code>~B</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbd51037" class="outline-2">
+<h2 id="orgbd51037">Example</h2>
+<div class="outline-text-2" id="text-orgbd51037">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">class</span> <span class="t">Stack</span> {
+    <span class="k">protected</span> <span class="t">int</span>[] <span class="v">data</span> = <span class="k">new</span> <span class="t">int</span>[16]; <span class="k">protected</span> <span class="t">int</span> <span class="v">size</span>;
+    <span class="k">public</span> <span class="t">void</span> <span class="f">push</span>(<span class="t">int</span> <span class="v">x</span>) { data[size++] = x; }
+    <span class="k">public</span> <span class="t">int</span> <span class="f">pop</span>() { <span class="k">return</span> data[--size]; }        <span class="c">// last in, first out
+</span>}
+<span class="k">class</span> <span class="t">Queue</span> <span class="k">extends</span> <span class="t">Stack</span> {
+    <span class="k">private</span> <span class="t">int</span> <span class="v">head</span>;
+    @Override <span class="k">public</span> <span class="t">int</span> <span class="f">pop</span>() { <span class="k">return</span> data[head++]; }   <span class="c">// first in, first out
+</span>}</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org9ba2423" class="outline-2">
+<h2 id="org9ba2423">Picture</h2>
+<div class="outline-text-2" id="text-org9ba2423">
+<figure class="fig"><img class="m" src="m/399981b8571ea761c8e2983f22d262ebe018c367.svg" alt="figure" style="width:16.131em"><figcaption><span class="fl">Figure 1.</span> Memory layout of a derived object: the base part B (data, size) comes first, followed by the members D adds (head).</figcaption></figure>
+<p>
+A subclass object contains a complete superclass object, built first.
+</p>
+</div>
+</div>
+<div id="outline-container-org5799ab5" class="outline-2">
+<h2 id="org5799ab5">Intuition</h2>
+<div class="outline-text-2" id="text-org5799ab5">
+<p>
+Inheritance is "the same as B, except…". It is cheap to write and expensive to undo: every subclass depends on the internals the superclass leaves visible.
+</p>
+</div>
+</div>
+<div id="outline-container-org44da64d" class="outline-2">
+<h2 id="org44da64d">Pitfall</h2>
+<div class="outline-text-2" id="text-org44da64d">
+<p>
+Overriding requires the same signature: a method with the same name and different parameter types is an <a href="method-overloading.html">overload</a>, a new method that the dynamic binding never selects. Java's <code>@Override</code> makes the compiler check it. The queue above also inherits an operation that breaks its contract, which is the problem <a href="liskov-substitution.html">substitutability</a> warns about.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="object-oriented-programming.html"><span>← previous</span>Object-oriented programming</a><a rel="next" href="polymorphism.html"><span>next →</span>Polymorphism and dynamic binding</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--oop.pdf" title="PDF manual">Oop</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Master equations and open quantum systems · Physics</title>
+<meta name="description" content="Tracing out a Markovian bath gives the Lindblad equation \dot\rho=-\frac i\hbar[H,\rho]+\sum_k\gamma_k\left(L_k\rho L_k^\dagger-\tfrac12\{L_k^\dagger L_k,\rho\}\right); for a damped cavity L=a, for a decaying atom L=\sigma_-, giving the optical Bloch equations with T_1=1/\Gamma, T_2=2/\Gamma.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/master-equation-and-open-systems.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Master equations and open quantum systems · Physics">
+<meta property="og:description" content="Tracing out a Markovian bath gives the Lindblad equation \dot\rho=-\frac i\hbar[H,\rho]+\sum_k\gamma_k\left(L_k\rho L_k^\dagger-\tfrac12\{L_k^\dagger L_k,\rho\}\right); for a damped cavity L=a, for a decaying atom L=\sigma_-, giving the optical Bloch equations with T_1=1/\Gamma, T_2=2/\Gamma.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/master-equation-and-open-systems.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-optics">Quantum Optics</a> / <a rel="up" href="index.html#a-quantum-optics--light-matter">Light Matter</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Quantum Optics · Light Matter</p>
+<h1>Master equations and open quantum systems</h1>
+<p class="summary">Tracing out a Markovian bath gives the Lindblad equation <img class="m" src="m/08a0931f2661ebe6e011c5e0d3bf1067981ab874.svg" alt="\(\dot\rho=-\frac i\hbar[H,\rho]+\sum_k\gamma_k\left(L_k\rho L_k^\dagger-\tfrac12\{L_k^\dagger L_k,\rho\}\right)\)" style="height:1.973em;vertical-align:-0.710em">; for a damped cavity <img class="m" src="m/b79cfd9c1e669d77fb321a05a497fd8bda06f40d.svg" alt="\(L=a\)" style="height:0.749em;vertical-align:-0.000em">, for a decaying atom <img class="m" src="m/7d992d564f268efbb2f85b2c803bcbf9727dda90.svg" alt="\(L=\sigma_-\)" style="height:1.005em;vertical-align:-0.251em">, giving the optical Bloch equations with <img class="m" src="m/3f52d463f50bc1fae7d833b92e97529399ca2ee8.svg" alt="\(T_1=1/\Gamma\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/acb2c064bcebbdab763761c7f03063fcc4988940.svg" alt="\(T_2=2/\Gamma\)" style="height:1.096em;vertical-align:-0.274em">.</p>
+<p class="rel"><span>needs</span> <a href="spontaneous-emission-and-purcell-effect.html">Spontaneous emission (Weisskopf–Wigner) and the Purcell effect</a>, <a href="density-operator.html">The density operator: pure and mixed states</a></p>
+<p class="rel"><span>see also</span> <a href="stimulated-emission-and-lasers.html">Stimulated emission and the laser</a>, <a href="qubits-and-quantum-gates.html">Qubits and quantum gates</a></p>
+<details class="path"><summary>Learning path: 30 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></li><li><a href="spin-precession-and-rabi-oscillations.html">Spin precession and Rabi oscillations</a></li><li><a href="angular-momentum-algebra.html">Angular momentum: algebra and spectrum</a></li><li><a href="orbital-angular-momentum.html">Orbital angular momentum and spherical harmonics</a></li><li><a href="symmetries-and-conservation-laws.html">Symmetries, conservation laws and degeneracy</a></li><li><a href="potentials-and-gauges.html">Potentials, gauges and retarded potentials</a></li><li><a href="quantum-harmonic-oscillator.html">The quantum harmonic oscillator</a></li><li><a href="time-independent-perturbation-theory.html">Time-independent perturbation theory</a></li><li><a href="time-dependent-perturbation-and-golden-rule.html">Time-dependent perturbation theory and Fermi's golden rule</a></li><li><a href="radiative-transitions-and-selection-rules.html">Radiative transitions, dipole approximation and selection rules</a></li><li><a href="quantum-optics.html">Quantum optics: the map of the subject</a></li><li><a href="quantization-of-the-electromagnetic-field.html">Quantisation of the electromagnetic field</a></li><li><a href="density-operator.html">The density operator: pure and mixed states</a></li><li><a href="jaynes-cummings-model.html">The Jaynes–Cummings model</a></li><li><a href="spontaneous-emission-and-purcell-effect.html">Spontaneous emission (Weisskopf–Wigner) and the Purcell effect</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org0fa976a" class="outline-2">
+<h2 id="org0fa976a">Model</h2>
+<div class="outline-text-2" id="text-org0fa976a">
+<p>
+System + bath, <img class="m" src="m/8bcd378e00635c8475074c7032d16331c846fb09.svg" alt="\(H=H_S+H_B+H_{SB}\)" style="height:0.913em;vertical-align:-0.164em">. Assumptions: weak coupling (Born: <img class="m" src="m/0b63ede9f67dcf0cbc1abdd212a2f904a481739c.svg" alt="\(\rho_{SB}\approx\rho_S\otimes\rho_B\)" style="height:0.852em;vertical-align:-0.213em">), bath correlation time short (Markov), and secular (RWA) approximation. The result is the most general generator of completely positive, trace-preserving semigroups (Lindblad–Gorini–Kossakowski–Sudarshan) <span class="cite">(<a class="ref" href="https://doi.org/10.1007/bf01608499" data-full="G. Lindblad, “On the generators of quantum dynamical semigroups”, Communications in Mathematical Physics 48, 119–130 (1976)." aria-label="G. Lindblad, “On the generators of quantum dynamical semigroups”, Communications in Mathematical Physics 48, 119–130 (1976).">Lindblad 1976</a>; <a class="ref" href="https://doi.org/10.1063/1.522979" data-full="V. Gorini, A. Kossakowski and E. C. G. Sudarshan, “Completely positive dynamical semigroups of N-level systems”, Journal of Mathematical Physics 17, 821–825 (1976)." aria-label="V. Gorini, A. Kossakowski and E. C. G. Sudarshan, “Completely positive dynamical semigroups of N-level systems”, Journal of Mathematical Physics 17, 821–825 (1976).">Gorini et al. 1976</a>)</span>.
+</p>
+</div>
+</div>
+<div id="outline-container-org8b1107b" class="outline-2">
+<h2 id="org8b1107b">Damped cavity</h2>
+<div class="outline-text-2" id="text-org8b1107b">
+<p>
+<img class="m" src="m/2b1a319bb026c0cf27129331156eb4309bc64bc8.svg" alt="\(\dot\rho=-i\omega[a^\dagger a,\rho]+\kappa(\bar n+1)\mathcal D[a]\rho+\kappa\bar n\mathcal D[a^\dagger]\rho\)" style="height:1.204em;vertical-align:-0.277em">, with <img class="m" src="m/a5789092d5b5fcf25f61967ae5c43e7b22463b29.svg" alt="\(\mathcal D[L]\rho=L\rho L^\dagger-\tfrac12\{L^\dagger L,\rho\}\)" style="height:1.308em;vertical-align:-0.379em">. Then <img class="m" src="m/38cb06a6205b28d13a745727117e83680a2f66e9.svg" alt="\(\frac{\dd}{\dd t}\braket a=-(i\omega+\kappa/2)\braket a\)" style="height:1.342em;vertical-align:-0.376em"> and <img class="m" src="m/5554e61eb2c254f35b960b47edb02b360ce506ec.svg" alt="\(\frac{\dd}{\dd t}\braket n=-\kappa(\braket n-\bar n)\)" style="height:1.342em;vertical-align:-0.376em">: field amplitude decays at <img class="m" src="m/172a9463632bf36aeea4ecf29891372c05f14bbc.svg" alt="\(\kappa/2\)" style="height:1.096em;vertical-align:-0.274em">, energy at <img class="m" src="m/2b4ece0264e280a329a0b3df879e3047951d007e.svg" alt="\(\kappa\)" style="height:0.472em;vertical-align:-0.000em"> towards thermal equilibrium. <img class="m" src="m/4df2568525f2de690267804ddd66c2247222a18a.svg" alt="\(Q=\omega/\kappa\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org3229d24" class="outline-2">
+<h2 id="org3229d24">Optical Bloch equations</h2>
+<div class="outline-text-2" id="text-org3229d24">
+<p>
+Two-level atom driven at Rabi frequency <img class="m" src="m/9f0a07445868a613e95d9c5dc83b0fbb5ddb6d37.svg" alt="\(\Omega\)" style="height:0.749em;vertical-align:-0.000em">, detuning <img class="m" src="m/0c59276c12b4705636da1a08bc61816f2402f5e9.svg" alt="\(\Delta\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/96051d47e8d0f7793c1e9c75eb03afa95c242a03.svg" alt="\(L=\sqrt\Gamma\sigma_-\)" style="height:1.271em;vertical-align:-0.254em">. With <img class="m" src="m/379b9e504a838d1342289b20c9e469cb11810036.svg" alt="\(\mathbf r=\Tr(\rho\boldsymbol\sigma)\)" style="height:1.096em;vertical-align:-0.274em">:
+<div class="mb"><img class="m" src="m/aee4d763ce92fde7edeedacb991660a20dee96ef.svg" alt="\[ \dot u=-\Delta v-\tfrac\Gamma2u,\qquad \dot v=\Delta u-\Omega w-\tfrac\Gamma2v,\qquad \dot w=\Omega v-\Gamma(w+1). \]" style="width:31.306em"></div>
+Steady-state excited population <img class="m" src="m/40c565b9dc7a0130cbc54e91888e69a37440f736.svg" alt="\(\rho_{ee}=\frac{s/2}{1+s+(2\Delta/\Gamma)^2}\)" style="height:1.677em;vertical-align:-0.570em">, saturation parameter <img class="m" src="m/e27d4f42ca87e66172041cdc5e00719c614b1242.svg" alt="\(s=2\Omega^2/\Gamma^2=I/I_{sat}\)" style="height:1.166em;vertical-align:-0.268em">: power broadening and saturation of absorption.
+</p>
+</div>
+</div>
+<div id="outline-container-org37332ec" class="outline-2">
+<h2 id="org37332ec">Worked example</h2>
+<div class="outline-text-2" id="text-org37332ec">
+<p>
+Sodium D2, <img class="m" src="m/67b6e2f572f719f24becff503547914f8cd01fd2.svg" alt="\(\Gamma/2\pi=9.8\)" style="height:1.096em;vertical-align:-0.274em"> MHz, <img class="m" src="m/3e311aaee424ca0de7f1d69459d38feab7a50fa4.svg" alt="\(I_{sat}=6.3\)" style="height:0.913em;vertical-align:-0.164em"> mW/cm<img class="m" src="m/1fedd888fcc109f50d63a0fa69830ca428cd2637.svg" alt="\(^2\)" style="height:0.892em;vertical-align:-0.000em">. At <img class="m" src="m/c0bde7a7f211926c71d8c3552d7bec95fd0c29a5.svg" alt="\(I=I_{sat}\)" style="height:0.913em;vertical-align:-0.164em">, resonance: <img class="m" src="m/6ea54c103bf77e5c892cbe6128713a29698ce7ab.svg" alt="\(\rho_{ee}=1/4\)" style="height:1.096em;vertical-align:-0.274em">; scattered photon rate <img class="m" src="m/2200034538f6246a69184c590d764f84e4f5d203.svg" alt="\(\Gamma\rho_{ee}=1.5\times10^7\)" style="height:1.105em;vertical-align:-0.210em"> s<img class="m" src="m/6174f00c281084cf5eb1be35c3830ee14666a0c8.svg" alt="\(^{-1}\)" style="height:0.892em;vertical-align:-0.000em">, the radiation-pressure force behind laser cooling (<img class="m" src="m/f9555d46644ee4b3df66ec430503fdc2f0cd5f68.svg" alt="\(\hbar k\Gamma\rho_{ee}\approx10^5\,g\)" style="height:1.105em;vertical-align:-0.210em"> for Na).
+</p>
+</div>
+</div>
+<div id="outline-container-org3b3c683" class="outline-2">
+<h2 id="org3b3c683">Engineering applications</h2>
+<div class="outline-text-2" id="text-org3b3c683">
+<p>
+Qubit <img class="m" src="m/87193541e02a7b3c5d6b5a5e39398a1703763d77.svg" alt="\(T_1/T_2\)" style="height:1.096em;vertical-align:-0.274em"> modelling and error budgets, laser rate equations and linewidth, saturable absorbers for mode-locking, optical pumping in atomic clocks and magnetometers, quantum-trajectory simulation of photon counting.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc255edc" class="outline-2">
+<h2 id="orgc255edc">Pitfall</h2>
+<div class="outline-text-2" id="text-orgc255edc">
+<p>
+Phenomenological damping added to the Schrödinger equation (<img class="m" src="m/3188e635be651818a2ad99088b3c01f4fd5318ff.svg" alt="\(-i\gamma\)" style="height:0.936em;vertical-align:-0.215em"> in <img class="m" src="m/42c5c23db9555d1fd6049261e23079da0bfbff51.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em">) does not conserve trace; the jump terms <img class="m" src="m/b5355fb2c69cc24fc238b2c41bbadcded6969265.svg" alt="\(L\rho L^\dagger\)" style="height:1.144em;vertical-align:-0.217em"> are needed to put the probability back into the ground state.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="spontaneous-emission-and-purcell-effect.html"><span>← previous</span>Spontaneous emission (Weisskopf–Wigner) and the Purcell effect</a><a rel="next" href="quantum-electrodynamics.html"><span>next →</span>Quantum electrodynamics: the map of the subject</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-optics--light-matter.pdf" title="PDF manual">Light Matter</a> · <a class="pdf" href="pdf/quantum-optics.pdf" title="PDF manual">Quantum Optics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

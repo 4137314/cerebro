@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cauchy's theorem and the Sylow theorems · Mathematics</title>
+<meta name="description" content="Lagrange's theorem forbids subgroups of the wrong size and promises none. The Sylow theorems are the partial converse: for each prime power dividing the order exactly, subgroups of that size exist, they are all conjugate, and their number is constrained modulo the prime. All three proofs are the sa…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/cauchys-theorem-and-the-sylow-theorems.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Cauchy's theorem and the Sylow theorems · Mathematics">
+<meta property="og:description" content="Lagrange's theorem forbids subgroups of the wrong size and promises none. The Sylow theorems are the partial converse: for each prime power dividing the order exactly, subgroups of that size exist, they are all conjugate, and their number is constrained modulo the prime. All three proofs are the sa…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/cauchys-theorem-and-the-sylow-theorems.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--group-theory">Group Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Algebra · Group Theory</p>
+<h1>Cauchy's theorem and the Sylow theorems</h1>
+<p class="summary">Lagrange's theorem forbids subgroups of the wrong size and promises none. The Sylow theorems are the partial converse: for each prime power dividing the order exactly, subgroups of that size exist, they are all conjugate, and their number is constrained modulo the prime. All three proofs are the same technique &#x2013; let the group act on a set built for the purpose and count the orbits.</p>
+<p class="rel"><span>needs</span> <a href="cosets-the-index-and-lagranges-theorem.html">Cosets, the index and Lagrange's theorem</a>, <a href="group-actions-orbits-and-the-orbit-stabiliser-theorem.html">Group actions, orbits and the orbit-stabiliser theorem</a>, <a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a>, <a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a>, <a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a>, <a href="the-order-of-an-element-and-cyclic-groups.html">The order of an element and cyclic groups</a></p>
+<p class="rel"><span>unlocks</span> <a href="direct-and-semidirect-products.html">Direct and semidirect products</a></p>
+<p class="rel"><span>mentioned in</span> <a href="algebra.html">Algebra</a>, <a href="group-theory.html">Group theory</a></p>
+<details class="path"><summary>Learning path: 12 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li><li><a href="the-order-of-an-element-and-cyclic-groups.html">The order of an element and cyclic groups</a></li><li><a href="cosets-the-index-and-lagranges-theorem.html">Cosets, the index and Lagrange's theorem</a></li><li><a href="group-actions-orbits-and-the-orbit-stabiliser-theorem.html">Group actions, orbits and the orbit-stabiliser theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="lemma" id="orgb11d607">
+<p>
+Let a group <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> of order <img class="m" src="m/2a8c742e1a929b1e64bb4cf8ab34c6e27abfbe8e.svg" alt="\(p^{k}\)" style="height:1.144em;vertical-align:-0.217em">, <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> prime, act on a finite set
+<img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">, and let <img class="m" src="m/caa2bdb5b2dba95e3dbddc8d642b4754bd69986c.svg" alt="\(X^{P}\)" style="height:0.922em;vertical-align:-0.000em"> be the set of points fixed by every element of
+<img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em">. Then <img class="m" src="m/d8b868cc6ae2f692d9c66467ddf5abf330e1c526.svg" alt="\(\abs{X} \equiv \abs{X^{P}} \pmod p\)" style="height:1.196em;vertical-align:-0.275em">.
+</p>
+
+</div>
+
+<div class="proof" id="org8e036a7">
+<p>
+The orbits partition <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">, and each has size <img class="m" src="m/c1a63cd4c5599ab236e0964eb71514881595fd12.svg" alt="\([P : P_{x}]\)" style="height:1.096em;vertical-align:-0.274em">, a divisor
+of <img class="m" src="m/2a8c742e1a929b1e64bb4cf8ab34c6e27abfbe8e.svg" alt="\(p^{k}\)" style="height:1.144em;vertical-align:-0.217em">. An orbit of size <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em"> is exactly a fixed point; every
+other orbit has size a positive power of <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">, hence divisible by
+<img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">. Summing the orbit sizes gives the congruence.
+</p>
+
+</div>
+
+<div class="theorem" id="orgc667a4b">
+<p>
+If a prime <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> divides the order of a finite group <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">, then <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">
+has an element of order <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="proof" id="org6466cfa">
+<p>
+Let <img class="m" src="m/8cfdc96b24a2602aff0bf78a19b92fdb2c16e163.svg" alt="\(X = \setst{(g_{1},\dots,g_{p}) \in G^{p}}{g_{1}\cdots g_{p} = e}\)" style="height:1.135em;vertical-align:-0.318em">.
+A tuple is determined by its first <img class="m" src="m/70501203c8dd733ca117ccec8aad9d4664777c4c.svg" alt="\(p-1\)" style="height:0.919em;vertical-align:-0.211em"> entries, the last being
+forced, so <img class="m" src="m/8c9b7ccd9b35b82813cc0153dba6d7b999486cf1.svg" alt="\(\abs{X} = \abs{G}^{p-1}\)" style="height:1.166em;vertical-align:-0.268em">, divisible by <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+
+<p>
+The cyclic group <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> of order <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> acts on <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> by cyclic shift:
+if <img class="m" src="m/11360c3b355fa1f642def677e7e7a4fd414cef68.svg" alt="\(g_{1}\cdots g_{p} = e\)" style="height:0.801em;vertical-align:-0.312em"> then <img class="m" src="m/7b24c3595222d8088c3742b567845c8142c3079b.svg" alt="\(g_{2}\cdots g_{p}g_{1} = g_{1}^{-1}(g_{1}\cdots g_{p})g_{1} = e\)" style="height:1.277em;vertical-align:-0.319em">,
+so the shift maps <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> to itself, and shifting <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> times is the
+identity. By the lemma <img class="m" src="m/f2f98ecd10e875b0b41ac9369694fa6cd911b244.svg" alt="\(\abs{X^{C}} \equiv \abs{X} \equiv 0 \pmod p\)" style="height:1.196em;vertical-align:-0.275em">.
+A fixed point is a constant tuple <img class="m" src="m/41c568db4499b1cb26452793339da04beb2e3623.svg" alt="\((g,\dots,g)\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/46b30cbc3f72c2a28240d6f43d46f7432361a9ea.svg" alt="\(g^{p} = e\)" style="height:0.941em;vertical-align:-0.216em">;
+one of them is <img class="m" src="m/8b9dc462c79c9cfb28c96b2d2c4529b7dfa649d0.svg" alt="\((e,\dots,e)\)" style="height:1.096em;vertical-align:-0.274em">, so there are at least <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> of them, and
+any other gives an element <img class="m" src="m/b864157f9047ff7da65a1451eab28ca2293204a8.svg" alt="\(g \ne e\)" style="height:0.974em;vertical-align:-0.214em"> with <img class="m" src="m/46b30cbc3f72c2a28240d6f43d46f7432361a9ea.svg" alt="\(g^{p} = e\)" style="height:0.941em;vertical-align:-0.216em">, of order
+<img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> since <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> is prime.
+</p>
+
+</div>
+
+<div class="definition" id="orgcea7f8a">
+<p>
+Let <img class="m" src="m/7cfb2dc8e8b4a121f8fadd816172140c2c9d1aa0.svg" alt="\(\abs{G} = p^{k}m\)" style="height:1.204em;vertical-align:-0.277em"> with <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> prime and <img class="m" src="m/a6548d3fc18d81408293ae9ec0eb28e5007c081f.svg" alt="\(p \nmid m\)" style="height:1.088em;vertical-align:-0.272em">. A
+<i>Sylow <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">-subgroup</i> of <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> is a subgroup of order <img class="m" src="m/2a8c742e1a929b1e64bb4cf8ab34c6e27abfbe8e.svg" alt="\(p^{k}\)" style="height:1.144em;vertical-align:-0.217em">. A
+group whose order is a power of <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> is a <i><img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">-group</i>.
+</p>
+
+</div>
+
+<div class="theorem" id="org3dabc47">
+<p>
+Every finite group has a Sylow <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">-subgroup, for every prime <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">
+dividing its order.
+</p>
+
+</div>
+
+<div class="proof" id="orgb35ca7f">
+<p>
+Induct on <img class="m" src="m/d3febd33fc47d5ed80e6f69e2edb4aaa89356598.svg" alt="\(\abs{G}\)" style="height:1.096em;vertical-align:-0.274em">, with <img class="m" src="m/7cfb2dc8e8b4a121f8fadd816172140c2c9d1aa0.svg" alt="\(\abs{G} = p^{k}m\)" style="height:1.204em;vertical-align:-0.277em"> and <img class="m" src="m/a62e8703f14b691da1d779f59712003daff2cb8e.svg" alt="\(k \ge 1\)" style="height:0.910em;vertical-align:-0.146em">.
+</p>
+
+<p>
+If some proper subgroup <img class="m" src="m/ddff39d7c76b6001d8845044a6840a4035186e2b.svg" alt="\(H &lt; G\)" style="height:0.792em;vertical-align:-0.040em"> has index prime to <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">, then
+<img class="m" src="m/2a8c742e1a929b1e64bb4cf8ab34c6e27abfbe8e.svg" alt="\(p^{k}\)" style="height:1.144em;vertical-align:-0.217em"> divides <img class="m" src="m/26a98f43d366f7b0dedd35e39afa54da798e0e4f.svg" alt="\(\abs{H}\)" style="height:1.096em;vertical-align:-0.274em">, and by induction <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> has a subgroup of
+order <img class="m" src="m/2a8c742e1a929b1e64bb4cf8ab34c6e27abfbe8e.svg" alt="\(p^{k}\)" style="height:1.144em;vertical-align:-0.217em">, which serves for <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+<p>
+Otherwise every proper subgroup has index divisible by <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">. Let <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">
+act on itself by conjugation; the class equation reads
+<img class="m" src="m/532aabeac118a58a0d528346ff8ee2b85cc51a8e.svg" alt="\(\abs{G} = \abs{Z(G)} + \sum_{i}[G : C_{G}(a_{i})]\)" style="height:1.151em;vertical-align:-0.334em">, where each
+centraliser <img class="m" src="m/a01ed1aba11556aa2027d1ac73ced2ad85233712.svg" alt="\(C_{G}(a_{i})\)" style="height:1.096em;vertical-align:-0.274em"> is a proper subgroup, so every term of the
+sum is divisible by <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">. Hence <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> divides <img class="m" src="m/d1fed56b36aa39cd444fd73eb4bbe3d352cd9c3d.svg" alt="\(\abs{Z(G)}\)" style="height:1.096em;vertical-align:-0.274em">, and by
+Cauchy's theorem <img class="m" src="m/22259f2219526337d702dcf5d571c7e7a62f7b2f.svg" alt="\(Z(G)\)" style="height:1.096em;vertical-align:-0.274em"> contains an element <img class="m" src="m/a3dcfa6c97b29682527f7556e1c40cc9580c366a.svg" alt="\(z\)" style="height:0.472em;vertical-align:-0.000em"> of order <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">. The
+subgroup <img class="m" src="m/a162ac2b1903991f19b0d2984f142c71c6ee347e.svg" alt="\(N = \langle z\rangle\)" style="height:1.096em;vertical-align:-0.274em"> is normal, being central, so
+<img class="m" src="m/c3b38b79f8c68712dc62afb575a8c676210d0203.svg" alt="\(G/N\)" style="height:1.096em;vertical-align:-0.274em"> has order <img class="m" src="m/914b8e994a7a543f28918e641e4b1b8f083fb784.svg" alt="\(p^{k-1}m\)" style="height:1.144em;vertical-align:-0.217em">; by induction it has a subgroup <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> of
+order <img class="m" src="m/75937833f7c262d44b2a4938434ef69e8803390a.svg" alt="\(p^{k-1}\)" style="height:1.144em;vertical-align:-0.217em">. Its preimage <img class="m" src="m/5ae672f26a1faf165bc989e4b64100dd3562117a.svg" alt="\(H = \pi^{-1}(S)\)" style="height:1.166em;vertical-align:-0.268em"> under the projection
+<img class="m" src="m/30fe0ed1e0e26e6fd4b2c1f99610496ea5f8ae93.svg" alt="\(\pi \colon G \to G/N\)" style="height:1.096em;vertical-align:-0.274em"> is a subgroup, and <img class="m" src="m/b1e3c27a225dba8050e88d2182ad88a60344ed21.svg" alt="\(\pi\)" style="height:0.472em;vertical-align:-0.000em"> restricted to <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em">
+is surjective onto <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> with kernel <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">, so <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> is partitioned into
+<img class="m" src="m/fd280a46388846736d66eec92ad545a335c461af.svg" alt="\(\abs{S}\)" style="height:1.096em;vertical-align:-0.274em"> cosets of <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/0dd05fa440044902d6291939e673a6e4b3e7061a.svg" alt="\(\abs{H} = p^{k-1}\cdot p = p^{k}\)" style="height:1.204em;vertical-align:-0.277em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org602edb5">
+<p>
+Let <img class="m" src="m/7cfb2dc8e8b4a121f8fadd816172140c2c9d1aa0.svg" alt="\(\abs{G} = p^{k}m\)" style="height:1.204em;vertical-align:-0.277em"> with <img class="m" src="m/a6548d3fc18d81408293ae9ec0eb28e5007c081f.svg" alt="\(p \nmid m\)" style="height:1.088em;vertical-align:-0.272em">. Then every <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">-subgroup
+of <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> is contained in a Sylow <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">-subgroup, any two Sylow
+<img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">-subgroups are conjugate, and their number <img class="m" src="m/126a4fa8eeb00adc0879ab38dd66b651b2cdb9eb.svg" alt="\(n_{p}\)" style="height:0.785em;vertical-align:-0.314em"> satisfies
+<img class="m" src="m/8de7485fda03fe835b95519f659fc7d20165c42a.svg" alt="\(n_{p} \equiv 1 \pmod p\)" style="height:1.135em;vertical-align:-0.318em"> and <img class="m" src="m/f69b666d4b1a586140cd842d8415d8f38833633c.svg" alt="\(n_{p} \mid m\)" style="height:1.135em;vertical-align:-0.318em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgfeddd65">
+<p>
+Fix a Sylow <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">-subgroup <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> and let <img class="m" src="m/f5b2fd106192be88a5de7a139a6fee4d755cdf09.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> be any <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">-subgroup.
+Let <img class="m" src="m/f5b2fd106192be88a5de7a139a6fee4d755cdf09.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> act by left multiplication on the set <img class="m" src="m/6418718d9754ff6eea4c8ee66e4323d1cf24cb03.svg" alt="\(G/P\)" style="height:1.096em;vertical-align:-0.274em"> of left cosets,
+of size <img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em">, which is prime to <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">. By the fixed-point lemma the
+number of fixed cosets is <img class="m" src="m/0edc161710903b54bf8a8c8cd14d26c03cb4a063.svg" alt="\(\equiv m \not\equiv 0 \pmod p\)" style="height:1.096em;vertical-align:-0.274em">, so some
+<img class="m" src="m/4edbb486abeb9fe91202e383c1a20ce68f16d386.svg" alt="\(gP\)" style="height:0.962em;vertical-align:-0.212em"> is fixed: <img class="m" src="m/d4deea466a4a688c2a1d0b197f66b21c631d194f.svg" alt="\(QgP = gP\)" style="height:0.962em;vertical-align:-0.212em">, that is <img class="m" src="m/86ebcfed8a13a794fa6583f995440ac3d32b5542.svg" alt="\(g^{-1}Qg \subseteq P\)" style="height:1.105em;vertical-align:-0.210em">. Hence
+<img class="m" src="m/f5b2fd106192be88a5de7a139a6fee4d755cdf09.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> lies in the Sylow subgroup <img class="m" src="m/2347f31e3c7285c3c13faf69fbea11ba83390f39.svg" alt="\(gPg^{-1}\)" style="height:1.105em;vertical-align:-0.210em">. Taking <img class="m" src="m/f5b2fd106192be88a5de7a139a6fee4d755cdf09.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> itself
+Sylow forces <img class="m" src="m/e8e605c81d4aa85c3e5dc571b0563d3de49fa78a.svg" alt="\(Q = gPg^{-1}\)" style="height:1.105em;vertical-align:-0.210em"> by equality of orders, which proves
+conjugacy and the first claim.
+</p>
+
+<p>
+So the Sylow <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">-subgroups form one orbit under conjugation, and by
+the orbit-stabiliser theorem <img class="m" src="m/9090c3816e7e07f51d52568c8221508ab5ad2bbe.svg" alt="\(n_{p} = [G : N]\)" style="height:1.135em;vertical-align:-0.318em"> where <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> is the
+stabiliser of <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em">, a subgroup containing <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em">; hence <img class="m" src="m/126a4fa8eeb00adc0879ab38dd66b651b2cdb9eb.svg" alt="\(n_{p}\)" style="height:0.785em;vertical-align:-0.314em">
+divides <img class="m" src="m/e32a16aa7e3ac79d72b9fbc2a5435c6ac4f84a7e.svg" alt="\([G:P] = m\)" style="height:1.096em;vertical-align:-0.274em">. Now let <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> act by conjugation on the set of
+all Sylow <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">-subgroups. A fixed point is a <img class="m" src="m/f5b2fd106192be88a5de7a139a6fee4d755cdf09.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> normalised by
+<img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em">; then <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/f5b2fd106192be88a5de7a139a6fee4d755cdf09.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> are both Sylow subgroups of the group
+<img class="m" src="m/ae463390b86e6cfef9ea7d736f4ebdc15742fe1f.svg" alt="\(QP\)" style="height:0.962em;vertical-align:-0.212em">, in which <img class="m" src="m/f5b2fd106192be88a5de7a139a6fee4d755cdf09.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> is normal, so they are conjugate there and
+<img class="m" src="m/8e7f5ff58afe321d62add14165b5e7a9eab5d808.svg" alt="\(P = Q\)" style="height:0.962em;vertical-align:-0.212em">. Thus there is exactly one fixed point, and the lemma gives
+<img class="m" src="m/9ad2967ebd0fc85f9947f0214dc43a58ab235663.svg" alt="\(n_{p}\equiv 1 \pmod p\)" style="height:1.135em;vertical-align:-0.318em">.
+</p>
+
+</div>
+
+<div class="corollary" id="org9da5d00">
+<p>
+A Sylow <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">-subgroup is normal if and only if it is the only one; and
+a group of order <img class="m" src="m/926c42f7cff61218a7bd1935d37b47ccb6e07075.svg" alt="\(pq\)" style="height:0.685em;vertical-align:-0.212em"> with primes <img class="m" src="m/38404e7ef8db319dcb3890a96275601a706677ba.svg" alt="\(p &lt; q\)" style="height:0.804em;vertical-align:-0.217em"> and <img class="m" src="m/9f224dc2560065f144b51f303ce20a04efdf6146.svg" alt="\(p \nmid q-1\)" style="height:1.088em;vertical-align:-0.272em"> is
+cyclic.
+</p>
+
+</div>
+
+<div class="proof" id="orgd1530f3">
+<p>
+Conjugates of a Sylow subgroup are Sylow subgroups and all of them arise
+this way, so there is one orbit; it is a single point exactly when the
+subgroup is normal.
+</p>
+
+<p>
+For the second claim, <img class="m" src="m/c66ee96a59daa6779f41c64f0375c4def69adbca.svg" alt="\(n_{q}\)" style="height:0.785em;vertical-align:-0.314em"> divides <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> and is <img class="m" src="m/22c670d528a2b05e65e84f4fbc236fd34664f5a6.svg" alt="\(\equiv 1 \pmod q\)" style="height:1.096em;vertical-align:-0.274em">;
+as <img class="m" src="m/38404e7ef8db319dcb3890a96275601a706677ba.svg" alt="\(p &lt; q\)" style="height:0.804em;vertical-align:-0.217em"> this forces <img class="m" src="m/9ca752b7be6222db2bab202fc2f5f5b77c573cd6.svg" alt="\(n_{q} = 1\)" style="height:1.020em;vertical-align:-0.316em">. Likewise <img class="m" src="m/126a4fa8eeb00adc0879ab38dd66b651b2cdb9eb.svg" alt="\(n_{p}\)" style="height:0.785em;vertical-align:-0.314em"> divides
+<img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> and is <img class="m" src="m/c34e4f9f8c51869a0540c56ac57dc20eb24b2ded.svg" alt="\(\equiv 1 \pmod p\)" style="height:1.096em;vertical-align:-0.274em">, and <img class="m" src="m/c994eae9958ae0f1e066b10679fb1cc494860c24.svg" alt="\(n_{p} = q\)" style="height:0.785em;vertical-align:-0.314em"> would give
+<img class="m" src="m/0343506cd47b4a94299a65976807d4d6f0f26f82.svg" alt="\(p \mid q - 1\)" style="height:1.096em;vertical-align:-0.274em">, excluded; so <img class="m" src="m/3f5d3fee6a251ddc85cb954ea2477cd440c8bb2f.svg" alt="\(n_{p} = 1\)" style="height:1.020em;vertical-align:-0.316em">. Both Sylow subgroups are
+then normal, of coprime prime orders, so they intersect trivially and
+their elements commute &#x2013; the commutator of <img class="m" src="m/62f72512c9ca6173f927609c7a1747da430be0ce.svg" alt="\(a \in P\)" style="height:0.792em;vertical-align:-0.040em"> and <img class="m" src="m/a5e1b87be4acdc5daa247f5adad4138bb553034e.svg" alt="\(b \in Q\)" style="height:0.974em;vertical-align:-0.214em">
+lies in <img class="m" src="m/67c3cb5de738124c442b81910c876d849ad0c62d.svg" alt="\(P \cap Q\)" style="height:0.962em;vertical-align:-0.212em">. Hence <img class="m" src="m/b6eebf8d24c4287536f88be59ee8c44dc77956a4.svg" alt="\(ab\)" style="height:0.761em;vertical-align:-0.000em"> has order <img class="m" src="m/926c42f7cff61218a7bd1935d37b47ccb6e07075.svg" alt="\(pq\)" style="height:0.685em;vertical-align:-0.212em"> and generates the
+group.
+</p>
+
+</div>
+
+<div class="remark" id="org0438421">
+<p>
+The counting constraints are what make the theorems a classification
+tool rather than an existence statement: for a group of order <img class="m" src="m/926c42f7cff61218a7bd1935d37b47ccb6e07075.svg" alt="\(pq\)" style="height:0.685em;vertical-align:-0.212em">,
+or <img class="m" src="m/e3ac87077b42c1ebd92734507c87f8a39eab6c92.svg" alt="\(p^{2}q\)" style="height:1.105em;vertical-align:-0.210em">, the possibilities for <img class="m" src="m/126a4fa8eeb00adc0879ab38dd66b651b2cdb9eb.svg" alt="\(n_{p}\)" style="height:0.785em;vertical-align:-0.314em"> are so few that normality
+is forced, and a normal subgroup splits the group into smaller pieces &#x2013;
+which is the programme the Jordan-Holder theorem organises.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-symmetric-group-and-the-sign-of-a-permutation.html"><span>← previous</span>The symmetric group and the sign of a permutation</a><a rel="next" href="composition-series-jordan-holder-and-solvable-groups.html"><span>next →</span>Composition series, Jordan-Holder and solvable groups</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--group-theory.pdf" title="PDF manual">Group Theory</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

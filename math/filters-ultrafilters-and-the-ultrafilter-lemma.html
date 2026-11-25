@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filters, ultrafilters and the ultrafilter lemma · Mathematics</title>
+<meta name="description" content="A sequence is a map out of \N, and the whole theory of convergence built on it inherits that accident: in a space whose points have no countable neighbourhood basis, sequences are too few to detect the closure. A filter carries no index set at all – it is the family of sets a limit would eventually…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/filters-ultrafilters-and-the-ultrafilter-lemma.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Filters, ultrafilters and the ultrafilter lemma · Mathematics">
+<meta property="og:description" content="A sequence is a map out of \N, and the whole theory of convergence built on it inherits that accident: in a space whose points have no countable neighbourhood basis, sequences are too few to detect the closure. A filter carries no index set at all – it is the family of sets a limit would eventually…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/filters-ultrafilters-and-the-ultrafilter-lemma.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-foundations">Foundations</a> / <a rel="up" href="index.html#a-foundations--set-theory">Set Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Foundations · Set Theory</p>
+<h1>Filters, ultrafilters and the ultrafilter lemma</h1>
+<p class="summary">A sequence is a map out of <img class="m" src="m/d36edebe5171c584e95c5e3966023a2f078fce29.svg" alt="\(\N\)" style="height:0.755em;vertical-align:-0.000em">, and the whole theory of convergence built on it inherits that accident: in a space whose points have no countable neighbourhood basis, sequences are too few to detect the closure. A filter carries no index set at all &#x2013; it is the family of sets a limit would eventually be in &#x2013; and it is the object that makes convergence work in every topological space.</p>
+<p class="rel"><span>needs</span> <a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a>, <a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a>, <a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a>, <a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a>, <a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></p>
+<p class="rel"><span>unlocks</span> <a href="boolean-algebras-and-stones-representation-theorem.html">Boolean algebras and Stone's representation theorem</a>, <a href="ultraproducts-and-the-theorem-of-los.html">Ultraproducts and the theorem of Los</a>, <a href="nets-and-convergence-in-topological-spaces.html">Nets and convergence in topological spaces</a>, <a href="tychonoffs-theorem.html">Tychonoff's theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="mathematics.html">Mathematics</a>, <a href="foundations.html">Foundations</a>, <a href="set-theory.html">Set theory</a>, <a href="logic.html">Logic</a>, <a href="topology.html">Topology</a>, <a href="general-topology.html">General topology</a></p>
+<details class="path"><summary>Learning path: 21 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org43b39e6">
+<p>
+A <i>filter</i> on a set <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is a family <img class="m" src="m/94e875ed771ea5fa5a0855a42416fd2a60a6f842.svg" alt="\(\mathcal{F}\)" style="height:0.749em;vertical-align:-0.000em"> of subsets such
+that <img class="m" src="m/c85af4e9fa6c1998518745b5d3cda026b70f6e68.svg" alt="\(X \in \mathcal{F}\)" style="height:0.792em;vertical-align:-0.040em">, <img class="m" src="m/ad8f18d14c27a444166369163dec400083253923.svg" alt="\(\emptyset \notin \mathcal{F}\)" style="height:0.883em;vertical-align:-0.062em">,
+<img class="m" src="m/94e875ed771ea5fa5a0855a42416fd2a60a6f842.svg" alt="\(\mathcal{F}\)" style="height:0.749em;vertical-align:-0.000em"> is closed under finite intersections, and
+<img class="m" src="m/ae1159606ccd6de5c73a1aa8bd6448beff79c921.svg" alt="\(A \in \mathcal{F}\)" style="height:0.792em;vertical-align:-0.040em"> with <img class="m" src="m/7fd84bf71d959083a5f910ebcb4f07bbeaeacbbc.svg" alt="\(A \subseteq B\)" style="height:0.898em;vertical-align:-0.153em"> implies
+<img class="m" src="m/6f393c71ed004764833150f829f15ecba06db5dc.svg" alt="\(B \in \mathcal{F}\)" style="height:0.792em;vertical-align:-0.040em">. An <i>ultrafilter</i> is a filter maximal under
+inclusion among filters on <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">. The <i>principal</i> filter at <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> is
+<img class="m" src="m/b9f59a5b77ccf866b41d77f6f2a028bed29b989d.svg" alt="\(\setst{A \subseteq X}{x \in A}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgac903e0">
+<p>
+A filter <img class="m" src="m/9b5051d8f9149f1300fa601c9104624a6e64a9a6.svg" alt="\(\mathcal{U}\)" style="height:0.749em;vertical-align:-0.000em"> on <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is an ultrafilter if and only if for
+every <img class="m" src="m/8cf713af0820812531d65e982303553bcc04428e.svg" alt="\(A \subseteq X\)" style="height:0.898em;vertical-align:-0.153em"> either <img class="m" src="m/2f19661d230ecd9a066296375554412720dcfe24.svg" alt="\(A \in \mathcal{U}\)" style="height:0.792em;vertical-align:-0.040em"> or
+<img class="m" src="m/b915cb9b22ca0b223f873987570d78c05dcc8b7d.svg" alt="\(X \setminus A \in \mathcal{U}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgc47c5d6">
+<p>
+Suppose <img class="m" src="m/9b5051d8f9149f1300fa601c9104624a6e64a9a6.svg" alt="\(\mathcal{U}\)" style="height:0.749em;vertical-align:-0.000em"> is maximal and <img class="m" src="m/0a354c8e128913d511e1351256fd217b24476155.svg" alt="\(A \notin \mathcal{U}\)" style="height:0.865em;vertical-align:-0.043em">. Then
+some <img class="m" src="m/fd85bd3510c04ea11056148829252f87f576bf1b.svg" alt="\(F \in \mathcal{U}\)" style="height:0.792em;vertical-align:-0.040em"> has <img class="m" src="m/531da46a8536bbd15ef9249dc52fb8a748320008.svg" alt="\(F \cap A = \emptyset\)" style="height:0.883em;vertical-align:-0.062em">: otherwise the
+family of sets containing some <img class="m" src="m/100afd322982edb792da69ce800fdad51e46bc2a.svg" alt="\(F \cap A\)" style="height:0.749em;vertical-align:-0.000em"> would be a filter strictly
+larger than <img class="m" src="m/9b5051d8f9149f1300fa601c9104624a6e64a9a6.svg" alt="\(\mathcal{U}\)" style="height:0.749em;vertical-align:-0.000em">, contradicting maximality. But
+<img class="m" src="m/531da46a8536bbd15ef9249dc52fb8a748320008.svg" alt="\(F \cap A = \emptyset\)" style="height:0.883em;vertical-align:-0.062em"> means <img class="m" src="m/e8bca5632044e0fe7a3fe2f53018279bb22d1df7.svg" alt="\(F \subseteq X\setminus A\)" style="height:1.096em;vertical-align:-0.274em">, so
+<img class="m" src="m/b915cb9b22ca0b223f873987570d78c05dcc8b7d.svg" alt="\(X \setminus A \in \mathcal{U}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+Conversely, assume the dichotomy and let
+<img class="m" src="m/162f1ff3359ffd4fddf2063115afdafa0071cc7d.svg" alt="\(\mathcal{U} \subseteq \mathcal{G}\)" style="height:0.898em;vertical-align:-0.153em"> with <img class="m" src="m/acd48386bed6623392c384251f279b0db5e0bf4d.svg" alt="\(\mathcal{G}\)" style="height:0.855em;vertical-align:-0.103em"> a filter and
+<img class="m" src="m/8e037b79b6b2fb1972ca10877c3318080642851c.svg" alt="\(A \in \mathcal{G} \setminus \mathcal{U}\)" style="height:1.096em;vertical-align:-0.274em">. Then
+<img class="m" src="m/0d8e167e2f3657f5cac87c3146f16b2ae905a18b.svg" alt="\(X\setminus A \in \mathcal{U} \subseteq \mathcal{G}\)" style="height:1.096em;vertical-align:-0.274em">, so
+<img class="m" src="m/483f983ebaf82adf2afe3675fdb8409d633c5ac8.svg" alt="\(\emptyset = A \cap (X\setminus A) \in \mathcal{G}\)" style="height:1.096em;vertical-align:-0.274em"> &#x2013; impossible.
+Hence <img class="m" src="m/372a30556407431f75742d467e908873db8e4e30.svg" alt="\(\mathcal{U} = \mathcal{G}\)" style="height:0.855em;vertical-align:-0.103em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org5f26635">
+<p>
+Every filter is contained in an ultrafilter. In particular, every family
+of sets with the finite intersection property &#x2013; every finite subfamily
+has non-empty intersection &#x2013; extends to an ultrafilter.
+</p>
+
+</div>
+
+<div class="proof" id="orgf0af697">
+<p>
+Order the filters containing a given <img class="m" src="m/94e875ed771ea5fa5a0855a42416fd2a60a6f842.svg" alt="\(\mathcal{F}\)" style="height:0.749em;vertical-align:-0.000em"> by inclusion. The
+union <img class="m" src="m/9b5051d8f9149f1300fa601c9104624a6e64a9a6.svg" alt="\(\mathcal{U}\)" style="height:0.749em;vertical-align:-0.000em"> of a chain of filters is a filter: it is closed
+upwards, and two of its members lie in a common member of the chain, so
+their intersection lies there and is non-empty. Zorn's lemma gives a
+maximal element, which is an ultrafilter containing <img class="m" src="m/94e875ed771ea5fa5a0855a42416fd2a60a6f842.svg" alt="\(\mathcal{F}\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+<p>
+Given a family with the finite intersection property, the sets
+containing some finite intersection of its members form a filter, to
+which the first part applies.
+</p>
+
+</div>
+
+<div class="definition" id="orgb729fad">
+<p>
+A filter <img class="m" src="m/94e875ed771ea5fa5a0855a42416fd2a60a6f842.svg" alt="\(\mathcal{F}\)" style="height:0.749em;vertical-align:-0.000em"> on a topological space <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> <i>converges</i> to
+<img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, written <img class="m" src="m/3cd31b77bca6f4a6fa8ca458b84149aa56fbb4d4.svg" alt="\(\mathcal{F} \to x\)" style="height:0.749em;vertical-align:-0.000em">, if every neighbourhood of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">
+belongs to <img class="m" src="m/94e875ed771ea5fa5a0855a42416fd2a60a6f842.svg" alt="\(\mathcal{F}\)" style="height:0.749em;vertical-align:-0.000em">; it <i>clusters</i> at <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> if every
+neighbourhood of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> meets every member of <img class="m" src="m/94e875ed771ea5fa5a0855a42416fd2a60a6f842.svg" alt="\(\mathcal{F}\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgd20ba6b">
+<p>
+For <img class="m" src="m/8cf713af0820812531d65e982303553bcc04428e.svg" alt="\(A \subseteq X\)" style="height:0.898em;vertical-align:-0.153em">, <img class="m" src="m/f082329d7cf44a97a473d3af4fe4675892dd9a5f.svg" alt="\(x \in \overline{A}\)" style="height:1.011em;vertical-align:-0.040em"> if and only if some filter
+containing <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> converges to <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">. A map <img class="m" src="m/d7c0c93f2d459ca20e4f53c81d24a704a65c7b84.svg" alt="\(f \colon X \to Y\)" style="height:0.974em;vertical-align:-0.214em"> is
+continuous at <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> if and only if <img class="m" src="m/c2a4e80a6864aee5a494590da1dd0f466f39514c.svg" alt="\(\mathcal{F}\to x\)" style="height:0.749em;vertical-align:-0.000em"> implies
+<img class="m" src="m/9a7347c1b60126ef9d22a7cd765218d71d9babfa.svg" alt="\(f(\mathcal{F}) \to f(x)\)" style="height:1.096em;vertical-align:-0.274em">, where <img class="m" src="m/5b02f1976fb8ad7305783aa134586d1a4d689807.svg" alt="\(f(\mathcal{F})\)" style="height:1.096em;vertical-align:-0.274em"> is the filter
+generated by the images <img class="m" src="m/be34b377529cd78d48f945cf91f33b818e28e807.svg" alt="\(f(F)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/8143c61f3fc9ec720981f118b4d60f0e0dbc29fc.svg" alt="\(F \in \mathcal{F}\)" style="height:0.792em;vertical-align:-0.040em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgd9d06c5">
+<p>
+If <img class="m" src="m/3cd31b77bca6f4a6fa8ca458b84149aa56fbb4d4.svg" alt="\(\mathcal{F} \to x\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/ae1159606ccd6de5c73a1aa8bd6448beff79c921.svg" alt="\(A \in \mathcal{F}\)" style="height:0.792em;vertical-align:-0.040em">, every neighbourhood
+of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> lies in <img class="m" src="m/94e875ed771ea5fa5a0855a42416fd2a60a6f842.svg" alt="\(\mathcal{F}\)" style="height:0.749em;vertical-align:-0.000em">, so it meets <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> &#x2013; two members of a
+filter cannot be disjoint. Hence <img class="m" src="m/f082329d7cf44a97a473d3af4fe4675892dd9a5f.svg" alt="\(x \in \overline{A}\)" style="height:1.011em;vertical-align:-0.040em">. Conversely, if
+<img class="m" src="m/f082329d7cf44a97a473d3af4fe4675892dd9a5f.svg" alt="\(x \in \overline{A}\)" style="height:1.011em;vertical-align:-0.040em"> then the sets <img class="m" src="m/2c03839fad01871a8790c9fe8e44cadeab752768.svg" alt="\(N \cap A\)" style="height:0.749em;vertical-align:-0.000em">, with <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> a
+neighbourhood of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, are all non-empty and closed under finite
+intersection, so they generate a filter containing <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> and every
+neighbourhood of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+<p>
+For continuity: if <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is continuous at <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/c2a4e80a6864aee5a494590da1dd0f466f39514c.svg" alt="\(\mathcal{F}\to x\)" style="height:0.749em;vertical-align:-0.000em">,
+let <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> be a neighbourhood of <img class="m" src="m/e5ceae42d20882b9a191c5a7061083f903b09df0.svg" alt="\(f(x)\)" style="height:1.096em;vertical-align:-0.274em">; some neighbourhood <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> of
+<img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> has <img class="m" src="m/fcc9b5bb40e58c0dd46b0f207b0a7a4f86924543.svg" alt="\(f(U) \subseteq V\)" style="height:1.096em;vertical-align:-0.274em">, and <img class="m" src="m/3ed2800e2d3d1e9d229f4bb075d01ab5db0c83e2.svg" alt="\(U \in \mathcal{F}\)" style="height:0.792em;vertical-align:-0.040em">, so
+<img class="m" src="m/4c81a4aa50a6832078b568c6a104367d628140ad.svg" alt="\(V \in f(\mathcal{F})\)" style="height:1.096em;vertical-align:-0.274em">. Conversely, apply the hypothesis to the filter
+of all neighbourhoods of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, which converges to <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">: its image
+contains every neighbourhood of <img class="m" src="m/e5ceae42d20882b9a191c5a7061083f903b09df0.svg" alt="\(f(x)\)" style="height:1.096em;vertical-align:-0.274em">, which says exactly that some
+neighbourhood of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> is mapped into each.
+</p>
+
+</div>
+
+<div class="theorem" id="orgf647fdc">
+<p>
+A topological space is compact if and only if every ultrafilter on it
+converges.
+</p>
+
+</div>
+
+<div class="proof" id="org9b1e156">
+<p>
+Let <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> be compact and <img class="m" src="m/9b5051d8f9149f1300fa601c9104624a6e64a9a6.svg" alt="\(\mathcal{U}\)" style="height:0.749em;vertical-align:-0.000em"> an ultrafilter that converges
+to no point. Then each <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> has an open neighbourhood
+<img class="m" src="m/00a06a1d9ec4946c42f23847bce7142150fc1b2a.svg" alt="\(U_{x} \notin \mathcal{U}\)" style="height:0.986em;vertical-align:-0.168em">, hence with
+<img class="m" src="m/0fb70cd46c17259122b34a58316e534a2c8bef4d.svg" alt="\(X \setminus U_{x} \in \mathcal{U}\)" style="height:1.096em;vertical-align:-0.274em">. Finitely many <img class="m" src="m/1aa0eb8e108067e79f08bb315cb9b86c1aee495b.svg" alt="\(U_{x_{i}}\)" style="height:1.023em;vertical-align:-0.276em"> cover
+<img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">, so <img class="m" src="m/76a62dabd20552c3f136acb65907db920f20cd0f.svg" alt="\(\bigcap_{i}(X\setminus U_{x_{i}}) = \emptyset\)" style="height:1.151em;vertical-align:-0.334em"> lies in
+<img class="m" src="m/9b5051d8f9149f1300fa601c9104624a6e64a9a6.svg" alt="\(\mathcal{U}\)" style="height:0.749em;vertical-align:-0.000em"> &#x2013; impossible.
+</p>
+
+<p>
+Conversely, suppose every ultrafilter converges and let
+<img class="m" src="m/cd053a42dc6593a0d14dc4a0625b55838bea74c4.svg" alt="\(\mathcal{C}\)" style="height:0.749em;vertical-align:-0.000em"> be a family of closed sets with the finite intersection
+property. Extend it to an ultrafilter <img class="m" src="m/9b5051d8f9149f1300fa601c9104624a6e64a9a6.svg" alt="\(\mathcal{U}\)" style="height:0.749em;vertical-align:-0.000em">, which converges
+to some <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">. For <img class="m" src="m/17ea4222ec7325f86748b97e6a1b3540f7bd75f6.svg" alt="\(C \in \mathcal{C}\)" style="height:0.792em;vertical-align:-0.040em">, every neighbourhood of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">
+lies in <img class="m" src="m/9b5051d8f9149f1300fa601c9104624a6e64a9a6.svg" alt="\(\mathcal{U}\)" style="height:0.749em;vertical-align:-0.000em"> and so meets <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">; as <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> is closed,
+<img class="m" src="m/12e228f37a45df605a07429ef64a6d06808fbedb.svg" alt="\(x \in C\)" style="height:0.792em;vertical-align:-0.040em">. Thus <img class="m" src="m/d482596598371a6dfd77e81e004be13ab273a13b.svg" alt="\(\bigcap\mathcal{C} \ne \emptyset\)" style="height:1.096em;vertical-align:-0.274em">, and taking
+complements this is exactly the finite subcover property.
+</p>
+
+</div>
+
+<div class="remark" id="org41c7e53">
+<p>
+The last theorem replaces "extract a convergent subsequence" by
+"extend to an ultrafilter and it converges", with no countability
+anywhere &#x2013; and it makes Tychonoff's theorem a two-line argument, since
+an ultrafilter on a product pushes forward to an ultrafilter in each
+coordinate.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="maps-invertibility-and-the-canonical-factorisation.html"><span>← previous</span>Maps, invertibility and the canonical factorisation</a><a rel="next" href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html"><span>next →</span>Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/foundations--set-theory.pdf" title="PDF manual">Set Theory</a> · <a class="pdf" href="pdf/foundations.pdf" title="PDF manual">Foundations</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

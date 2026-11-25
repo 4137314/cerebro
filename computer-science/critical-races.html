@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Critical races · Computer Science</title>
+<meta name="description" content="When a transition changes several state bits, or several flip-flops see an input that changes near the clock edge, the bits may switch at different times and the machine may land in a wrong or nonexistent state; a race is critical when the final state depends on the order; asynchronous circuits mus…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/critical-races.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Critical races · Computer Science">
+<meta property="og:description" content="When a transition changes several state bits, or several flip-flops see an input that changes near the clock edge, the bits may switch at different times and the machine may land in a wrong or nonexistent state; a race is critical when the final state depends on the order; asynchronous circuits mus…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/critical-races.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--sequential">Sequential</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Hardware · Sequential</p>
+<h1>Critical races</h1>
+<p class="summary">When a transition changes several state bits, or several flip-flops see an input that changes near the clock edge, the bits may switch at different times and the machine may land in a wrong or nonexistent state; a race is critical when the final state depends on the order; asynchronous circuits must avoid it with adjacent encodings (extra states if necessary), synchronous circuits are immune on the state but not on asynchronous inputs, which are fixed by encoding the possible destinations one bit apart or by synchronizing the input with a flip-flop.</p>
+<p class="rel"><span>needs</span> <a href="fsm-synthesis.html">Synthesis of finite-state machines</a></p>
+<p class="rel"><span>see also</span> <a href="metastability.html">Metastability and synchronizers</a>, <a href="fsm-state-encoding.html">State encoding of FSMs</a>, <a href="logic-hazards.html">Timing diagrams and static hazards</a>, <a href="sr-latch.html">SR latch and D latch</a></p>
+<p class="rel"><span>mentioned in</span> <a href="fsm-patterns.html">Recurring state-machine patterns</a>, <a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li><li><a href="sr-latch.html">SR latch and D latch</a></li><li><a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></li><li><a href="fsm-analysis.html">Analysis of synchronous sequential circuits</a></li><li><a href="fsm-synthesis.html">Synthesis of finite-state machines</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orga941a1d" class="outline-2">
+<h2 id="orga941a1d">Definition</h2>
+<div class="outline-text-2" id="text-orga941a1d">
+<p>
+<b>State race (asynchronous circuits)</b>: the state is held by feedback loops and changes as soon as the next state does. A transition 00→11 really goes through 01 or 10, whichever bit is faster; if from that intermediate code the circuit moves elsewhere (another stable state for the current input), the race is <b>critical</b>. Fix: encode states so that every transition changes one bit (adjacent codes on a Karnaugh-like cube); when the transition graph does not allow it (e.g. a triangle of mutual transitions with 2 bits), add intermediate transient states or extra state bits. Synchronous circuits do not have state races: all bits are sampled together at the edge, after the next state has settled.
+<b>Input race (synchronous circuits)</b>: a primary input (a button) is not synchronous with the clock. If it changes just before the edge, its effect may reach one flip-flop's <img class="m" src="m/9bc9fac98a58f67aa2a9c76ad1bb70f716743fac.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> before the edge and another's after: the flip-flops act on <b>different</b> values of the same input.
+</p>
+</div>
+</div>
+<div id="outline-container-org47f9d6c" class="outline-2">
+<h2 id="org47f9d6c">Example</h2>
+<div class="outline-text-2" id="text-org47f9d6c">
+<p>
+From state <img class="m" src="m/4fba9e4cf2d170f5e907cc12aaab763e4aadad87.svg" alt="\(a=00\)" style="height:0.706em;vertical-align:-0.000em">: <img class="m" src="m/b9a217d8afc6aa090bb3352507b5b24ba1a8dd82.svg" alt="\(S=0\)" style="height:0.749em;vertical-align:-0.000em"> leads to <img class="m" src="m/9a9e478ff943a309ecb17df71ac414cc09c1be96.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em">, <img class="m" src="m/82015a3f3bf193fd6aa1ef859a5229bdedb36b78.svg" alt="\(S=1\)" style="height:0.749em;vertical-align:-0.000em"> to <img class="m" src="m/b89f22107378b842f1c34383ec5fd8b764c4d3aa.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em">. With <img class="m" src="m/813079ebcc9d842be88b70089e49e158758062fc.svg" alt="\(b=10\)" style="height:0.761em;vertical-align:-0.000em">, <img class="m" src="m/4feea0e1ebf86da3e70734d67d27f6db4d5d5522.svg" alt="\(c=01\)" style="height:0.706em;vertical-align:-0.000em">: <img class="m" src="m/401fcca0ff388f27a09b3300cf2bb3f19529440b.svg" alt="\(D_x=\bar S\)" style="height:1.064em;vertical-align:-0.160em">, <img class="m" src="m/5180494cc054e9c2d2ab6fb5e299eba52bd05a0d.svg" alt="\(D_y=S\)" style="height:1.062em;vertical-align:-0.319em">. <img class="m" src="m/ef6d40f3cd5b8650803ccfcfb2c1556494e74417.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> rises right at the edge, <img class="m" src="m/9f87aae64376012583dae81adef88af8822d8e40.svg" alt="\(D_y\)" style="height:1.062em;vertical-align:-0.319em"> sees the new value and <img class="m" src="m/22ef50aa8d2eba46e3ba3d98f9e6748e9c3d8ee7.svg" alt="\(D_x\)" style="height:0.913em;vertical-align:-0.164em"> still the old one: <img class="m" src="m/06b203ad90c9ec6055cbe2b05a056e314561f42d.svg" alt="\(x^+y^+=11\)" style="height:1.086em;vertical-align:-0.217em"> — a state that does not exist.
+Fix by encoding: <img class="m" src="m/813079ebcc9d842be88b70089e49e158758062fc.svg" alt="\(b=10\)" style="height:0.761em;vertical-align:-0.000em">, <img class="m" src="m/95bc0c278d6a9d343af983bd98b2f876d789174c.svg" alt="\(c=11\)" style="height:0.706em;vertical-align:-0.000em">. Now <img class="m" src="m/244a93719c919d0d9457be1e02f4173b19e6a384.svg" alt="\(D_x=1\)" style="height:0.913em;vertical-align:-0.164em"> regardless of <img class="m" src="m/ef6d40f3cd5b8650803ccfcfb2c1556494e74417.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">, only <img class="m" src="m/5180494cc054e9c2d2ab6fb5e299eba52bd05a0d.svg" alt="\(D_y=S\)" style="height:1.062em;vertical-align:-0.319em"> depends on it: the worst case is ending in <img class="m" src="m/9a9e478ff943a309ecb17df71ac414cc09c1be96.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em"> instead of <img class="m" src="m/b89f22107378b842f1c34383ec5fd8b764c4d3aa.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> — the input was seen one cycle later — never in a phantom state. Rule: the codes of all states reachable from the same state through an input-dependent choice must differ in only one bit among themselves (they need not be adjacent to the source).
+Three destinations <img class="m" src="m/ead86d6ce758e3cc60f075f81581292cb3fd89bf.svg" alt="\(b,c,d\)" style="height:0.974em;vertical-align:-0.214em"> cannot be pairwise adjacent with 2 bits: add a state (and a state bit) so the choice is split into two binary steps, at the cost of one cycle of delay — check the specification still allows it.
+General fix: <b>synchronize</b> the input with a D flip-flop clocked by the system clock; every flip-flop of the machine then sees the same, stable value, one cycle later. (The synchronizer itself can go <a href="metastability.html">metastable</a>; two in series make it negligible.)
+</p>
+</div>
+</div>
+<div id="outline-container-org17e4966" class="outline-2">
+<h2 id="org17e4966">Intuition</h2>
+<div class="outline-text-2" id="text-org17e4966">
+<p>
+A race is two runners told to start "now" by a voice that each hears at a slightly different moment.
+</p>
+</div>
+</div>
+<div id="outline-container-org06183d0" class="outline-2">
+<h2 id="org06183d0">Pitfall</h2>
+<div class="outline-text-2" id="text-org06183d0">
+<p>
+Synchronizing an input that the machine uses only in one flip-flop is unnecessary; feeding the <b>same</b> asynchronous signal to several flip-flops (directly or through logic) is the bug — in practice the classic failure of FPGA projects with push buttons, solved by registering every board input.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="asm-chart.html"><span>← previous</span>Algorithmic state machine (ASM) charts</a><a rel="next" href="flip-flop-types.html"><span>next →</span>D, T, JK and SR flip-flops: characteristic and excitation tables</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--sequential.pdf" title="PDF manual">Sequential</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

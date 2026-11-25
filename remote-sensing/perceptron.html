@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perceptron algorithm · Remote Sensing</title>
+<meta name="description" content="The perceptron learns a linear discriminant g(\mathbf x)=\mathbf w^\top\mathbf x (with \mathbf x augmented by a 1) from labelled samples: whenever a sample is misclassified, \mathbf w\gets\mathbf w+\eta\,y\,\mathbf x; if the classes are linearly separable the algorithm converges in a finite number …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/perceptron.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Perceptron algorithm · Remote Sensing">
+<meta property="og:description" content="The perceptron learns a linear discriminant g(\mathbf x)=\mathbf w^\top\mathbf x (with \mathbf x augmented by a 1) from labelled samples: whenever a sample is misclassified, \mathbf w\gets\mathbf w+\eta\,y\,\mathbf x; if the classes are linearly separable the algorithm converges in a finite number …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/perceptron.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-recognition">Recognition</a> / <a rel="up" href="index.html#a-recognition--classification">Classification</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Recognition · Classification</p>
+<h1>Perceptron algorithm</h1>
+<p class="summary">The perceptron learns a linear discriminant <img class="m" src="m/8005a4b41a3166c04e4b139b0b647a47477ee40d.svg" alt="\(g(\mathbf x)=\mathbf w^\top\mathbf x\)" style="height:1.204em;vertical-align:-0.277em"> (with <img class="m" src="m/8438ca060c315ddafc0993ec6eb6c0427f77fa2d.svg" alt="\(\mathbf x\)" style="height:0.487em;vertical-align:-0.000em"> augmented by a 1) from labelled samples: whenever a sample is misclassified, <img class="m" src="m/820cf3cc96ca1cdcf9b11ae65612b1ec3aea4573.svg" alt="\(\mathbf w\gets\mathbf w+\eta\,y\,\mathbf x\)" style="height:0.852em;vertical-align:-0.213em">; if the classes are linearly separable the algorithm converges in a finite number of steps.</p>
+<p class="rel"><span>needs</span> <a href="discriminant-functions.html">Discriminant functions and decision regions</a></p>
+<p class="rel"><span>unlocks</span> <a href="support-vector-machine.html">Support vector machines</a>, <a href="artificial-neuron.html">Artificial neuron and machine learning</a></p>
+<p class="rel"><span>see also</span> <a href="artificial-neuron.html">Artificial neuron and machine learning</a>, <a href="multilayer-perceptron.html">Multilayer perceptron</a>, <a href="support-vector-machine.html">Support vector machines</a></p>
+<p class="rel"><span>mentioned in</span> <a href="backpropagation.html">Backpropagation</a>, <a href="multilayer-perceptron.html">Multilayer perceptron</a></p>
+<details class="path"><summary>Learning path: 20 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="spectral-signature.html">Spectral signature</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li><li><a href="image-statistics.html">Image statistics: moments, mode, median</a></li><li><a href="homogeneous-area-statistics.html">Statistics of homogeneous areas in optical images</a></li><li><a href="recognition-system.html">Recognition systems</a></li><li><a href="feature-extraction.html">Feature extraction</a></li><li><a href="feature-space.html">Feature space and spectral classes</a></li><li><a href="discriminant-functions.html">Discriminant functions and decision regions</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org991e50b" class="outline-2">
+<h2 id="org991e50b">Method</h2>
+<div class="outline-text-2" id="text-org991e50b">
+<p>
+Two classes, labels <img class="m" src="m/cb75a74e7a58cea3a632c0b026c2908cf2ea6031.svg" alt="\(y=\pm1\)" style="height:0.919em;vertical-align:-0.211em">, augmented vectors <img class="m" src="m/fc184a1cfa5c083733be50af536c2a0c1985fe08.svg" alt="\(\mathbf x=(x_1,\dots,x_p,1)\)" style="height:1.135em;vertical-align:-0.318em">. Decide <img class="m" src="m/c8ce2f50270e76d7d68ab8de3dbd1858b75ab662.svg" alt="\(\omega_1\)" style="height:0.636em;vertical-align:-0.165em"> if <img class="m" src="m/030bb7e5e652d1586901ef11c93cff68e0d543ea.svg" alt="\(\mathbf w^\top\mathbf x&gt;0\)" style="height:0.973em;vertical-align:-0.039em">. A sample is correct iff <img class="m" src="m/0f416ff8cf922f46afb40722ad8cc70a36be417d.svg" alt="\(y\,\mathbf w^\top\mathbf x&gt;0\)" style="height:1.144em;vertical-align:-0.217em">. The perceptron criterion <img class="m" src="m/2a211d8748123902ee599f198bc16dda798897f4.svg" alt="\(J(\mathbf w)=-\sum_{\text{misclassified}}y\,\mathbf w^\top\mathbf x\)" style="height:1.259em;vertical-align:-0.327em"> is minimised by gradient descent, one sample at a time.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc01e66d" class="outline-2">
+<h2 id="orgc01e66d">Algorithm</h2>
+<div class="outline-text-2" id="text-orgc01e66d">
+<figure class="fig"><img class="m" src="m/becf65c10e57bc67f933454fa78bd0fcf4024957.svg" alt="figure" style="width:25.445em"><figcaption><span class="fl">Algorithm 1.</span> The perceptron algorithm: for each misclassified sample (<img class="m" src="m/51416755ebe6936e45d3e95648f9b156d35889ac.svg" alt="\(y_k\mathbf w^\top\mathbf x_k\le0\)" style="height:1.144em;vertical-align:-0.217em">) add <img class="m" src="m/9c6e21a701e06a3bcd076d90e5ee298a56b4a07d.svg" alt="\(y_k\mathbf x_k\)" style="height:0.700em;vertical-align:-0.210em"> to the weights, until an epoch has no errors or the limit is reached.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-orgddc494d" class="outline-2">
+<h2 id="orgddc494d">Convergence</h2>
+<div class="outline-text-2" id="text-orgddc494d">
+<p>
+If some <img class="m" src="m/eda710a2e7408cbd4201dffd161b87c9e7be9295.svg" alt="\(\mathbf w^\ast\)" style="height:0.755em;vertical-align:-0.000em"> separates the data with margin <img class="m" src="m/5b3e883687e2dcac8fc1f681021ba0ace1927a61.svg" alt="\(\gamma\)" style="height:0.685em;vertical-align:-0.212em"> (<img class="m" src="m/b98e85be1e4a87f0184539647d06c5224647f2f0.svg" alt="\(y_k\mathbf w^{\ast\top}\mathbf x_k\ge\gamma\)" style="height:1.144em;vertical-align:-0.217em">, <img class="m" src="m/c0c908b92ce6db3b80628db3b6daa8bd9b260d8f.svg" alt="\(\|\mathbf w^\ast\|=1\)" style="height:1.096em;vertical-align:-0.274em">) and <img class="m" src="m/4bcba5ca1289ccdb5e17b836509bc19155fac824.svg" alt="\(\|\mathbf x_k\|\le R\)" style="height:1.096em;vertical-align:-0.274em">, the number of updates is at most <img class="m" src="m/695a9981ba2a970d03964223696f76d1cf3c5ff0.svg" alt="\((R/\gamma)^2\)" style="height:1.166em;vertical-align:-0.268em"> (Novikoff). Multi-class: one weight vector per class, update the true class up and the wrongly winning class down.
+</p>
+</div>
+</div>
+<div id="outline-container-org9bcbc4a" class="outline-2">
+<h2 id="org9bcbc4a">Intuition</h2>
+<div class="outline-text-2" id="text-org9bcbc4a">
+<p>
+Every mistake tilts the boundary a little towards the right side of the misclassified pixel.
+</p>
+</div>
+</div>
+<div id="outline-container-orgea10461" class="outline-2">
+<h2 id="orgea10461">Pitfall</h2>
+<div class="outline-text-2" id="text-orgea10461">
+<p>
+On non-separable data (almost always, in <a href="remote-sensing-system.html">remote sensing</a>) the perceptron never stops oscillating; one stops after a fixed number of epochs or uses a decreasing <a href="backpropagation.html">learning rate</a>, or a multilayer network.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="kmeans-clustering.html"><span>← previous</span>k-means clustering</a><a rel="next" href="support-vector-machine.html"><span>next →</span>Support vector machines</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/recognition--classification.pdf" title="PDF manual">Classification</a> · <a class="pdf" href="pdf/recognition.pdf" title="PDF manual">Recognition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

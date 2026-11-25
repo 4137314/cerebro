@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generic programming · Computer Science</title>
+<meta name="description" content="Writing types and algorithms with types as parameters, at the highest level of abstraction that does not lose efficiency; the parameter is fixed at compile time in C++ templates and checked at compile time then erased in Java generics.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/generic-programming.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Generic programming · Computer Science">
+<meta property="og:description" content="Writing types and algorithms with types as parameters, at the highest level of abstraction that does not lose efficiency; the parameter is fixed at compile time in C++ templates and checked at compile time then erased in Java generics.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/generic-programming.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--generic-programming">Generic Programming</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Generic Programming</p>
+<h1>Generic programming</h1>
+<p class="summary">Writing types and algorithms with types as parameters, at the highest level of abstraction that does not lose efficiency; the parameter is fixed at compile time in C++ templates and checked at compile time then erased in Java generics.</p>
+<p class="rel"><span>needs</span> <a href="polymorphism.html">Polymorphism and dynamic binding</a></p>
+<p class="rel"><span>unlocks</span> <a href="cpp-templates.html">C++ templates</a>, <a href="java-generics.html">Java generics and type erasure</a></p>
+<p class="rel"><span>see also</span> <a href="cpp-templates.html">C++ templates</a>, <a href="java-generics.html">Java generics and type erasure</a>, <a href="stl-containers.html">STL containers</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org1c9acd0" class="outline-2">
+<h2 id="org1c9acd0">Definition</h2>
+<div class="outline-text-2" id="text-org1c9acd0">
+<p>
+A generic type or algorithm has one or more <b>type parameters</b>: <code>Stack&lt;T&gt;</code>, <code>swap&lt;T&gt;</code>, <code>sort&lt;Iterator&gt;</code>. The actual type is supplied when the generic is used. The aim is to write an algorithm once for all the types that support the operations it needs.
+</p>
+</div>
+</div>
+<div id="outline-container-org0ca8887" class="outline-2">
+<h2 id="org0ca8887">Four ways to write a generic swap</h2>
+<div class="outline-text-2" id="text-org0ca8887">
+<ol class="org-ol">
+<li><b>Overloading</b>: one <code>swap(int&amp;, int&amp;)</code>, one <code>swap(double&amp;, double&amp;)</code>, … — repeated code.</li>
+<li><code>void*</code> and sizes (C style): <code>swap(void* a, void* b, size_t n)</code> with <code>memcpy</code> — no type checking.</li>
+<li><b>Common <a href="inheritance.html">base class</a></b> with <a href="virtual-functions.html">virtual</a> methods: works only for classes in the hierarchy, costs a virtual call.</li>
+<li><b>Template</b>:</li>
+</ol>
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="k">template</span> &lt;<span class="k">class</span> <span class="t">T</span>&gt;
+<span class="t">void</span> <span class="f">my_swap</span>(<span class="t">T</span>&amp; <span class="v">a</span>, <span class="t">T</span>&amp; <span class="v">b</span>) { <span class="t">T</span> <span class="v">tmp</span> = a; a = b; b = tmp; }
+my_swap(x, y);              <span class="c">// T deduced as int
+</span>my_swap&lt;<span class="n">std</span>::string&gt;(s, t); <span class="c">// T given explicitly</span></code></pre></figure>
+<p>
+Type-safe, no repetition, no run-time cost: the compiler generates one function per type used.
+</p>
+</div>
+</div>
+<div id="outline-container-org35c0fdf" class="outline-2">
+<h2 id="org35c0fdf">C++ and Java</h2>
+<div class="outline-text-2" id="text-org35c0fdf">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">C++ templates</th>
+<th scope="col" class="org-left">Java generics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">resolved</td>
+<td class="org-left">compile time, one instance per type</td>
+<td class="org-left">compile time, then erased</td>
+</tr>
+
+<tr>
+<td class="org-left">type arguments</td>
+<td class="org-left">any type, also values (bitset&lt;64&gt;)</td>
+<td class="org-left">reference types only</td>
+</tr>
+
+<tr>
+<td class="org-left">checked</td>
+<td class="org-left">when instantiated</td>
+<td class="org-left">at the declaration (bounds)</td>
+</tr>
+
+<tr>
+<td class="org-left">run-time cost</td>
+<td class="org-left">none; code size grows</td>
+<td class="org-left">casts; one shared code</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org67bf81b" class="outline-2">
+<h2 id="org67bf81b">Intuition</h2>
+<div class="outline-text-2" id="text-org67bf81b">
+<p>
+Generic code says what it needs from a type (copyable, <a href="comparable-comparator.html">comparable</a>, <a href="java-iterator.html">iterable</a>) and nothing else; any type that meets the requirements works.
+</p>
+</div>
+</div>
+<div id="outline-container-orgda831d0" class="outline-2">
+<h2 id="orgda831d0">Pitfall</h2>
+<div class="outline-text-2" id="text-orgda831d0">
+<p>
+Generic is not the same as polymorphic at run time: <code>vector&lt;Shape*&gt;</code> with virtual calls and <code>vector&lt;T&gt;</code> with templates solve different problems and are often combined.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="copy-and-swap.html"><span>← previous</span>The copy-and-swap idiom</a><a rel="next" href="cpp-templates.html"><span>next →</span>C++ templates</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--generic-programming.pdf" title="PDF manual">Generic Programming</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

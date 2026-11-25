@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Satellite system architecture · Remote Sensing</title>
+<meta name="description" content="A satellite system has a space segment (the satellite plus tracking, telemetry and command stations) and a ground segment (receiving, processing, archiving and distribution); the satellite is a payload module (antennas or sensors) carried by a service module (power, attitude and orbit control, thru…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/satellite-architecture.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Satellite system architecture · Remote Sensing">
+<meta property="og:description" content="A satellite system has a space segment (the satellite plus tracking, telemetry and command stations) and a ground segment (receiving, processing, archiving and distribution); the satellite is a payload module (antennas or sensors) carried by a service module (power, attitude and orbit control, thru…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/satellite-architecture.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-acquisition">Acquisition</a> / <a rel="up" href="index.html#a-acquisition--satellites">Satellites</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Acquisition · Satellites</p>
+<h1>Satellite system architecture</h1>
+<p class="summary">A satellite system has a space segment (the satellite plus tracking, telemetry and command stations) and a ground segment (receiving, processing, archiving and distribution); the satellite is a payload module (antennas or sensors) carried by a service module (power, attitude and orbit control, thrusters, TT&amp;C), powered by solar arrays and by batteries during eclipses.</p>
+<p class="rel"><span>needs</span> <a href="telecom-satellite-orbits.html">Orbits of telecommunication satellites</a></p>
+<p class="rel"><span>unlocks</span> <a href="satellite-data-transmission.html">Satellite data transmission</a></p>
+<p class="rel"><span>see also</span> <a href="satellite-data-transmission.html">Satellite data transmission</a>, <a href="passive-active-sensors.html">Passive and active sensors</a></p>
+<p class="rel"><span>mentioned in</span> <a href="remote-sensing-system.html">Remote sensing system</a></p>
+<details class="path"><summary>Learning path: 4 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="telecom-satellite-orbits.html">Orbits of telecommunication satellites</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org9293873" class="outline-2">
+<h2 id="org9293873">Model</h2>
+<div class="outline-text-2" id="text-org9293873">
+<ul class="org-ul">
+<li><b>Space segment</b>: satellite(s) and TT&amp;C stations that control and monitor them. Links: <b>uplink</b> (ground to satellite, usually the higher frequency), <b>downlink</b>, <b>interlinks</b> between satellites (radio or optical).</li>
+<li><b>Ground segment</b>: for <a href="remote-sensing-system.html">Earth observation</a>, a <b>flight operations segment</b> (configuration, on-board software, orbit control) and a <b>data management segment</b> (processing, storage, dissemination to users).</li>
+<li><b>Payload module</b>: transponders and antennas (telecommunications) or remote sensing instruments and their management (Earth observation).</li>
+<li><b>Service module</b> (bus): power generation, attitude and orbit control, thrusters, TT&amp;C, and for Earth observation the data transmission system.</li>
+<li><b>Power</b>: primary subsystem = solar arrays; secondary = electrochemical batteries, charged in sunlight, used in the shadow cone. In eclipse an Earth-observation satellite often cannot both acquire and transmit: sensors are switched off, or data are recorded on board and downlinked later.</li>
+<li><b>Launch</b>: a launch vehicle (Vega, Ariane, Falcon 9) places the satellite in orbit in minutes (about 24 min for <a href="copernicus-sentinel.html">Sentinel-2</a> on Vega) at very high cost; reusable stages reduce it.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7f5fa6c" class="outline-2">
+<h2 id="org7f5fa6c">Picture</h2>
+<div class="outline-text-2" id="text-org7f5fa6c">
+<figure class="fig"><img class="m" src="m/7cc7af0642f0ca6d34d2219caeef3a049e723d12.svg" alt="figure" style="width:26.123em"><figcaption><span class="fl">Figure 1.</span> Architecture of an Earth-observation system: the satellite (payload and service module) commanded by a TT&amp;C station, data downlinked to ground stations for processing and archiving, and the users.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org81651c0" class="outline-2">
+<h2 id="org81651c0">Worked example</h2>
+<div class="outline-text-2" id="text-org81651c0">
+<p>
+A satellite at 700 km (<img class="m" src="m/7aab8eba19782d4296af93248f436ece67381b3b.svg" alt="\(r=7078\)" style="height:0.706em;vertical-align:-0.000em"> km) is in the Earth's shadow over an arc of about <img class="m" src="m/ff3759c1998dcbc8da87d1ac1b49464a55f03915.svg" alt="\(2\arcsin(R_\oplus/r)=2\arcsin(0.901)\approx128^\circ\)" style="height:1.096em;vertical-align:-0.274em"> of the orbit in the worst season, i.e. up to 35% of the 99-minute period (≈ 35 min) for orbits whose plane contains the Sun direction; dawn–dusk sun-synchronous orbits avoid eclipses almost entirely, which is why some radar missions use them.
+</p>
+</div>
+</div>
+<div id="outline-container-orge9d4bd4" class="outline-2">
+<h2 id="orge9d4bd4">Intuition</h2>
+<div class="outline-text-2" id="text-orge9d4bd4">
+<p>
+The instrument is the reason for the mission; everything else on board exists to keep it pointed, powered, warm and talking to the ground.
+</p>
+</div>
+</div>
+<div id="outline-container-org4ea4207" class="outline-2">
+<h2 id="org4ea4207">Pitfall</h2>
+<div class="outline-text-2" id="text-org4ea4207">
+<p>
+Power and downlink capacity, not the sensor, often limit how much a satellite can image per orbit.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="telecom-satellite-orbits.html"><span>← previous</span>Orbits of telecommunication satellites</a><a rel="next" href="satellite-data-transmission.html"><span>next →</span>Satellite data transmission</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/acquisition--satellites.pdf" title="PDF manual">Satellites</a> · <a class="pdf" href="pdf/acquisition.pdf" title="PDF manual">Acquisition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

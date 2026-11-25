@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Self-adjoint operators and the spectral theorem · Physics</title>
+<meta name="description" content="Observables in infinite dimensions are self-adjoint operators A=A^* including equality of domains; the spectral theorem writes each as A=\int_{\sigma(A)}\lambda\,\dd P(\lambda) with a projection-valued measure, which gives Born probabilities \mu_\psi(\Delta)=\bra\psi P(\Delta)\ket\psi also for cont…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/self-adjoint-operators-and-spectral-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Self-adjoint operators and the spectral theorem · Physics">
+<meta property="og:description" content="Observables in infinite dimensions are self-adjoint operators A=A^* including equality of domains; the spectral theorem writes each as A=\int_{\sigma(A)}\lambda\,\dd P(\lambda) with a projection-valued measure, which gives Born probabilities \mu_\psi(\Delta)=\bra\psi P(\Delta)\ket\psi also for cont…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/self-adjoint-operators-and-spectral-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-mechanics">Quantum Mechanics</a> / <a rel="up" href="index.html#a-quantum-mechanics--mathematical-foundations">Mathematical Foundations</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Quantum Mechanics · Mathematical Foundations</p>
+<h1>Self-adjoint operators and the spectral theorem</h1>
+<p class="summary">Observables in infinite dimensions are self-adjoint operators <img class="m" src="m/81ec64c88975dd1c9385e64ca2ce11633d70fc88.svg" alt="\(A=A^*\)" style="height:0.755em;vertical-align:-0.000em"> including equality of domains; the spectral theorem writes each as <img class="m" src="m/1199abd22dadc12037fa43716c19a4cfc7ad58a9.svg" alt="\(A=\int_{\sigma(A)}\lambda\,\dd P(\lambda)\)" style="height:1.464em;vertical-align:-0.586em"> with a projection-valued measure, which gives Born probabilities <img class="m" src="m/30e55d66be7b9125f62560d90d82f1a8a0efa4d5.svg" alt="\(\mu_\psi(\Delta)=\bra\psi P(\Delta)\ket\psi\)" style="height:1.135em;vertical-align:-0.318em"> also for continuous spectra.</p>
+<p class="rel"><span>needs</span> <a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a>, <a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></p>
+<p class="rel"><span>unlocks</span> <a href="stone-and-stone-von-neumann-theorems.html">Stone's theorem and the Stone–von Neumann theorem</a></p>
+<p class="rel"><span>see also</span> <a href="stone-and-stone-von-neumann-theorems.html">Stone's theorem and the Stone–von Neumann theorem</a>, <a href="algebraic-quantum-theory.html">Algebraic quantum theory: C*-algebras, GNS and Gleason</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org2bfdfdf" class="outline-2">
+<h2 id="org2bfdfdf">Definitions</h2>
+<div class="outline-text-2" id="text-org2bfdfdf">
+<ul class="org-ul">
+<li>An operator <img class="m" src="m/ab4d5b3604e572aae8418bc873e1b717a85a3c2b.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> with dense domain <img class="m" src="m/a6688fa8b9c9e2d8cb4a957e55996e55547d5516.svg" alt="\(D(A)\subset\mathcal H\)" style="height:1.096em;vertical-align:-0.274em">. Its adjoint: <img class="m" src="m/d38555534a906f3d45e46513af9bbe5de660bead.svg" alt="\(D(A^*)=\{\phi:\psi\mapsto\braket{\phi|A\psi}\text{ bounded}\}\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/e1540f5a8d9d7fd072b925f2052e5d91be5656cf.svg" alt="\(\braket{A^*\phi|\psi}=\braket{\phi|A\psi}\)" style="height:1.096em;vertical-align:-0.274em">.</li>
+<li><b>Symmetric</b>: <img class="m" src="m/42289be3fb5208216fd6a3bf08ae92dce279ecda.svg" alt="\(\braket{\phi|A\psi}=\braket{A\phi|\psi}\)" style="height:1.096em;vertical-align:-0.274em"> on <img class="m" src="m/4c7cce3462636ec89cfabf6411e7d798cc453804.svg" alt="\(D(A)\)" style="height:1.096em;vertical-align:-0.274em">, i.e. <img class="m" src="m/80f43e04c87e551097fcc4ba35e14d64d967178f.svg" alt="\(A\subset A^*\)" style="height:0.797em;vertical-align:-0.040em">. <b>Self-adjoint</b>: <img class="m" src="m/81ec64c88975dd1c9385e64ca2ce11633d70fc88.svg" alt="\(A=A^*\)" style="height:0.755em;vertical-align:-0.000em"> (same domain) <span class="cite">(<a class="ref" href="https://doi.org/10.1007/bf01782338" data-full="J. von Neumann, “Allgemeine Eigenwerttheorie Hermitescher Funktionaloperatoren”, Mathematische Annalen 102, 49–131 (1930)." aria-label="J. von Neumann, “Allgemeine Eigenwerttheorie Hermitescher Funktionaloperatoren”, Mathematische Annalen 102, 49–131 (1930).">von Neumann 1930</a>)</span>. <b>Essentially self-adjoint</b>: closure is self-adjoint.</li>
+<li>Hellinger–Toeplitz: a symmetric operator defined on all of <img class="m" src="m/2ae09b62384d6cf4e9cc03a18473979fbb21ceed.svg" alt="\(\mathcal H\)" style="height:0.749em;vertical-align:-0.000em"> is bounded. Hence <img class="m" src="m/258dcb04caf8c3d82dd7028e1c60cad8a941e7d5.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/b6d7ad69879c68e00b20371d2b8069a669f8fbd1.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> are necessarily defined on proper domains.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgdc20bd7" class="outline-2">
+<h2 id="orgdc20bd7">Theorem (spectral)</h2>
+<div class="outline-text-2" id="text-orgdc20bd7">
+<p>
+For every self-adjoint <img class="m" src="m/ab4d5b3604e572aae8418bc873e1b717a85a3c2b.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> there is a unique projection-valued measure <img class="m" src="m/0bd021c435fd4f41fb34c2b2b12489378ab8cafb.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> on the Borel sets of <img class="m" src="m/c93487371e566d886fa22872dfe371a36df44a85.svg" alt="\(\mathbb R\)" style="height:0.755em;vertical-align:-0.000em">, supported on <img class="m" src="m/1c3536e081f7e2780133a59a8cb2a937bed46287.svg" alt="\(\sigma(A)\subset\mathbb R\)" style="height:1.096em;vertical-align:-0.274em">, with
+<div class="mb"><img class="m" src="m/c0e49d4d96343897b074de2117baddb7f0b68f8a.svg" alt="\[ A=\int_{\sigma(A)}\lambda\,\dd P(\lambda),\qquad f(A)=\int f(\lambda)\,\dd P(\lambda). \]" style="width:22.124em"></div>
+Physically: the probability that a measurement of <img class="m" src="m/ab4d5b3604e572aae8418bc873e1b717a85a3c2b.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> in state <img class="m" src="m/80680388fec8fcb230d8bb37c57a45b5d3781994.svg" alt="\(\psi\)" style="height:0.974em;vertical-align:-0.214em"> gives a value in <img class="m" src="m/0c59276c12b4705636da1a08bc61816f2402f5e9.svg" alt="\(\Delta\)" style="height:0.749em;vertical-align:-0.000em"> is <img class="m" src="m/1b9abd686c5430b9d846ab9c57f503f8a65d3ff1.svg" alt="\(\bra\psi P(\Delta)\ket\psi\)" style="height:1.096em;vertical-align:-0.274em">. For position, <img class="m" src="m/a0d54f450ea9e69bb77d461acc66830e8af04c77.svg" alt="\((P(\Delta)\psi)(x)=\chi_\Delta(x)\psi(x)\)" style="height:1.096em;vertical-align:-0.274em">: no eigenvectors needed.
+</p>
+</div>
+</div>
+<div id="outline-container-org26720d0" class="outline-2">
+<h2 id="org26720d0">Example: why domains matter</h2>
+<div class="outline-text-2" id="text-org26720d0">
+<p>
+<img class="m" src="m/81745313b6bdf35721316cd7f45e0065056315ee.svg" alt="\(p=-i\hbar\,\dd/\dd x\)" style="height:1.096em;vertical-align:-0.274em"> on <img class="m" src="m/1560ac42854b426b760f19df6c6c9122afa4614f.svg" alt="\(L^2[0,1]\)" style="height:1.166em;vertical-align:-0.268em">. On functions vanishing at both ends it is symmetric but <b>not</b> self-adjoint; its self-adjoint extensions are labelled by <img class="m" src="m/ddd43eb2496843bebd9dddeb3ee2710c679a0f6a.svg" alt="\(\psi(1)=e^{i\theta}\psi(0)\)" style="height:1.204em;vertical-align:-0.277em">, each with spectrum <img class="m" src="m/0bed9f25ad79c87de70595b2dacc0c03cb79296b.svg" alt="\(\hbar(\theta+2\pi n)\)" style="height:1.096em;vertical-align:-0.274em">. The boundary condition is physics (a ring threaded by flux <img class="m" src="m/5918fe08224bc39b20d987dfe6183ef03b18a40a.svg" alt="\(\propto\theta\)" style="height:0.761em;vertical-align:-0.000em">: <a href="electromagnetic-potentials-and-gauge-invariance.html">Aharonov–Bohm</a>). On the half line <img class="m" src="m/82f44d70d228de48c2a3036c05b3eeec5ab90c04.svg" alt="\([0,\infty)\)" style="height:1.096em;vertical-align:-0.274em"> there is <b>no</b> self-adjoint extension: no momentum observable.
+</p>
+</div>
+</div>
+<div id="outline-container-orgcf932d7" class="outline-2">
+<h2 id="orgcf932d7">Spectrum</h2>
+<div class="outline-text-2" id="text-orgcf932d7">
+<p>
+<img class="m" src="m/6ed0588e0f8616bac06551167686a6f78b52cc41.svg" alt="\(\sigma(A)=\sigma_p\cup\sigma_c\)" style="height:1.135em;vertical-align:-0.318em">: point spectrum (eigenvalues, bound states) and continuous spectrum (scattering states). Hydrogen: <img class="m" src="m/fa611f4fcaa7c1d551bf412d9a36f7c057ea4fbd.svg" alt="\(\sigma_p=\{-13.6/n^2\}\)" style="height:1.206em;vertical-align:-0.313em">, <img class="m" src="m/98f003ff58d5b830bcc5d4966bc169f20734f143.svg" alt="\(\sigma_c=[0,\infty)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org50924e3" class="outline-2">
+<h2 id="org50924e3">Engineering applications</h2>
+<div class="outline-text-2" id="text-org50924e3">
+<p>
+Numerical solvers discretise a self-adjoint problem into a Hermitian matrix: the choice of boundary conditions (periodic, absorbing, perfectly matched layers in photonic mode solvers) is the choice of extension, and non-self-adjoint absorbing boundaries give complex eigenvalues (leaky modes).
+</p>
+</div>
+</div>
+<div id="outline-container-orgf25c6e4" class="outline-2">
+<h2 id="orgf25c6e4">Pitfall</h2>
+<div class="outline-text-2" id="text-orgf25c6e4">
+<p>
+"Hermitian" (symmetric) is not enough: only self-adjoint operators generate unitary dynamics (<a href="stone-and-stone-von-neumann-theorems.html">Stone</a>) and have a spectral decomposition.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="qubits-and-quantum-gates.html"><span>← previous</span>Qubits and quantum gates</a><a rel="next" href="stone-and-stone-von-neumann-theorems.html"><span>next →</span>Stone's theorem and the Stone–von Neumann theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-mechanics--mathematical-foundations.pdf" title="PDF manual">Mathematical Foundations</a> · <a class="pdf" href="pdf/quantum-mechanics.pdf" title="PDF manual">Quantum Mechanics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

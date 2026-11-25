@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Process variation and control charts · Business</title>
+<meta name="description" content="Natural process variation often follows a normal distribution; control limits at ±3σ separate random from assignable causes, and capability Cp compares the specification range with 6σ.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/business/statistical-process-control.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Process variation and control charts · Business">
+<meta property="og:description" content="Natural process variation often follows a normal distribution; control limits at ±3σ separate random from assignable causes, and capability Cp compares the specification range with 6σ.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/business/statistical-process-control.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Business</a> / <a href="index.html#d-operations">Operations</a> / <a rel="up" href="index.html#a-operations--quality">Quality</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Operations · Quality</p>
+<h1>Process variation and control charts</h1>
+<p class="summary">Natural process variation often follows a normal distribution; control limits at ±3σ separate random from assignable causes, and capability Cp compares the specification range with 6σ.</p>
+<p class="rel"><span>needs</span> <a href="quality-management.html">Quality, service gaps and quality costs</a></p>
+<p class="rel"><span>unlocks</span> <a href="six-sigma.html">Six Sigma and DMAIC</a></p>
+<p class="rel"><span>see also</span> <a href="six-sigma.html">Six Sigma and DMAIC</a>, <a href="business-map.html">Business Organization and Management: study map</a></p>
+<p class="rel"><span>mentioned in</span> <a href="business-map.html">Business Organization and Management: study map</a></p>
+<details class="path"><summary>Learning path: 4 notes lead here, in study order</summary><ol><li><a href="organization-and-performance.html">Organizations, resources and performance</a></li><li><a href="business-processes.html">Processes and coordination</a></li><li><a href="operations-objectives.html">Operations, the four Vs and performance objectives</a></li><li><a href="quality-management.html">Quality, service gaps and quality costs</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org1c62502" class="outline-2">
+<h2 id="org1c62502">Definition</h2>
+<div class="outline-text-2" id="text-org1c62502">
+<p>
+Process performance measured over time varies. Question: is a strange point
+random variation or a change in the process to investigate? Sampling call times
+day after day builds a histogram that fits a <b>normal distribution</b>.
+</p>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Range</th>
+<th scope="col" class="org-right">Share of points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">±1σ</td>
+<td class="org-right">68%</td>
+</tr>
+
+<tr>
+<td class="org-left">±2σ</td>
+<td class="org-right">95.4%</td>
+</tr>
+
+<tr>
+<td class="org-left">±3σ</td>
+<td class="org-right">99.7%</td>
+</tr>
+</tbody>
+</table>
+<p>
+<b>Natural variation</b> = 99.7% of the distribution = ±3σ around the mean.
+<div class="mb"><img class="m" src="m/f66e9d5f7d02b426de2dd2f5f778523c425bd9a7.svg" alt="\[ C_p = \frac{\text{specification range}}{\text{natural variation}}
+       = \frac{UTL - LTL}{6\sigma} \qquad \text{capable if } C_p &gt; 1 \]" style="width:30.088em"></div>
+</p>
+</div>
+</div>
+<div id="outline-container-orgcd6fa14" class="outline-2">
+<h2 id="orgcd6fa14">Model</h2>
+<div class="outline-text-2" id="text-orgcd6fa14">
+<p>
+Control chart: centre line (mean), UCL and LCL at ±3σ. A point outside →
+likely <b>assignable cause</b> → process out of control. Also investigate unlikely
+patterns even inside the limits:
+</p>
+<ul class="org-ul">
+<li>alternating and erratic behaviour;</li>
+<li>suspiciously average behaviour (all points hugging the centre);</li>
+<li>two points near a control limit;</li>
+<li>five points on one side of the centre line;</li>
+<li>an apparent trend in one direction;</li>
+<li>a sudden change of level.</li>
+</ul>
+<p>
+Control limits come from the process; specification (tolerance) limits come
+from the customer — different things.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb693666" class="outline-2">
+<h2 id="orgb693666">Worked example</h2>
+<div class="outline-text-2" id="text-orgb693666">
+<p>
+Call centre: mean 100 s, σ = 20 s → natural variation 40–160 s. Specification
+40–160 s → <img class="m" src="m/737b3325b6974064ca9a1fbbdb845a8d2d16ff2f.svg" alt="\( C_p = 120/120 = 1.0 \)" style="height:1.135em;vertical-align:-0.318em">: barely capable. Cutting σ to 15 s gives
+<img class="m" src="m/b11acf7e2da7d5826e3216e74fcf6c44a228a805.svg" alt="\( C_p = 120/90 = 1.33 \)" style="height:1.135em;vertical-align:-0.318em">. A call of 175 s is above UCL = 160 s → investigate.
+</p>
+</div>
+</div>
+<div id="outline-container-org64016f9" class="outline-2">
+<h2 id="org64016f9">Pitfall</h2>
+<div class="outline-text-2" id="text-org64016f9">
+<p>
+In control ≠ capable: a stable process can still produce out of specification.
+Cp ignores centring (a shifted mean can fail with Cp &gt; 1).
+</p>
+</div>
+</div>
+<div id="outline-container-org1f1fea7" class="outline-2">
+<h2 id="org1f1fea7">Recall</h2>
+<div class="outline-text-2" id="text-org1f1fea7">
+<p>
+State the 68/95/99.7 rule; compute Cp; list six patterns to investigate.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbe98ebc" class="outline-2">
+<h2 id="orgbe98ebc">Picture</h2>
+<div class="outline-text-2" id="text-orgbe98ebc">
+<figure class="fig"><img class="m" src="m/40a384540461903e9b423631d68829eae83cc852.svg" alt="figure" style="width:26.955em"><figcaption><span class="fl">Figure 1.</span> A control chart of call times: points within the control limits UCL and LCL show common-cause variation only.</figcaption></figure>
+<p>
+The last point exceeds the UCL: an assignable cause is likely.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="quality-management.html"><span>← previous</span>Quality, service gaps and quality costs</a><a rel="next" href="improvement-approaches.html"><span>next →</span>TQM, continuous improvement and BPR</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/operations--quality.pdf" title="PDF manual">Quality</a> · <a class="pdf" href="pdf/operations.pdf" title="PDF manual">Operations</a> · <a class="pdf" href="pdf/business.pdf" title="PDF manual">whole Business</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

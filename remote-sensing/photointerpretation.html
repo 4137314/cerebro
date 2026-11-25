@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Photointerpretation · Remote Sensing</title>
+<meta name="description" content="A trained analyst classifies the scene visually on one or more false-colour composites, using tone and colour, size, shape, texture, pattern, shadow and context; it exploits knowledge that is hard to formalise, but is slow, qualitative and subjective, and today mainly produces training and validati…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/photointerpretation.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Photointerpretation · Remote Sensing">
+<meta property="og:description" content="A trained analyst classifies the scene visually on one or more false-colour composites, using tone and colour, size, shape, texture, pattern, shadow and context; it exploits knowledge that is hard to formalise, but is slow, qualitative and subjective, and today mainly produces training and validati…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/photointerpretation.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-recognition">Recognition</a> / <a rel="up" href="index.html#a-recognition--features">Features</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Recognition · Features</p>
+<h1>Photointerpretation</h1>
+<p class="summary">A trained analyst classifies the scene visually on one or more false-colour composites, using tone and colour, size, shape, texture, pattern, shadow and context; it exploits knowledge that is hard to formalise, but is slow, qualitative and subjective, and today mainly produces training and validation data for automatic classifiers.</p>
+<p class="rel"><span>needs</span> <a href="recognition-system.html">Recognition systems</a>, <a href="false-color-composite.html">True and false colour composites</a></p>
+<p class="rel"><span>see also</span> <a href="accuracy-assessment.html">Accuracy assessment and the confusion matrix</a></p>
+<p class="rel"><span>mentioned in</span> <a href="unsupervised-change-detection.html">Unsupervised change detection with EM and Bayes</a></p>
+<details class="path"><summary>Learning path: 20 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="spectral-signature.html">Spectral signature</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="sensor-resolutions.html">Geometric, radiometric, spectral and temporal resolution</a></li><li><a href="multispectral-hyperspectral-image.html">Multispectral and hyperspectral images</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li><li><a href="look-up-table.html">Look-up tables and visualization</a></li><li><a href="contrast-stretching.html">Contrast stretching</a></li><li><a href="false-color-composite.html">True and false colour composites</a></li><li><a href="recognition-system.html">Recognition systems</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org2fa8db6" class="outline-2">
+<h2 id="org2fa8db6">Method</h2>
+<div class="outline-text-2" id="text-org2fa8db6">
+<p>
+Elements of interpretation: tone/colour (spectral behaviour), size and shape (fields, roads, buildings), <a href="texture-features.html">texture</a> (orchards vs meadows), pattern (field layouts, drainage networks), shadow (height, relief), site and association (a harbour near water). The interpreter draws polygons and assigns classes using interpretation keys, often after field checks.
+</p>
+</div>
+</div>
+<div id="outline-container-orgeb5adfe" class="outline-2">
+<h2 id="orgeb5adfe">Comparison</h2>
+<div class="outline-text-2" id="text-orgeb5adfe">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">photointerpretation</th>
+<th scope="col" class="org-left">automatic recognition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">speed</td>
+<td class="org-left">slow, small areas</td>
+<td class="org-left">fast, huge volumes</td>
+</tr>
+
+<tr>
+<td class="org-left">result</td>
+<td class="org-left">qualitative</td>
+<td class="org-left">quantitative</td>
+</tr>
+
+<tr>
+<td class="org-left">repeatability</td>
+<td class="org-left">subjective</td>
+<td class="org-left">objective</td>
+</tr>
+
+<tr>
+<td class="org-left">knowledge</td>
+<td class="org-left">rich context, experience</td>
+<td class="org-left">only what the features encode</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orge791fb5" class="outline-2">
+<h2 id="orge791fb5">Intuition</h2>
+<div class="outline-text-2" id="text-orge791fb5">
+<p>
+The human eye is an excellent classifier trained for decades; the problem is that it cannot look at a continent every five days.
+</p>
+</div>
+</div>
+<div id="outline-container-orge187faf" class="outline-2">
+<h2 id="orge187faf">Pitfall</h2>
+<div class="outline-text-2" id="text-orge187faf">
+<p>
+Different interpreters draw different maps of the same image; when photointerpretation is used as <a href="training-validation.html">ground truth</a>, its own errors become the classifier's apparent errors.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="ndvi.html"><span>← previous</span>NDVI and normalised difference indices</a><a rel="next" href="scattergram.html"><span>next →</span>Scattergram</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/recognition--features.pdf" title="PDF manual">Features</a> · <a class="pdf" href="pdf/recognition.pdf" title="PDF manual">Recognition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

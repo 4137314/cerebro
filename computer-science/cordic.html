@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CORDIC · Computer Science</title>
+<meta name="description" content="CORDIC rotates a vector by any angle using only shifts, additions and a small table: the angle is decomposed into micro-rotations by \pm\arctan2^{-i}, each of which multiplies by (1\mp j2^{-i}), so after n steps it yields \cos\theta, \sin\theta (or magnitude and \arctan) to n bits, scaled by a cons…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/cordic.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="CORDIC · Computer Science">
+<meta property="og:description" content="CORDIC rotates a vector by any angle using only shifts, additions and a small table: the angle is decomposed into micro-rotations by \pm\arctan2^{-i}, each of which multiplies by (1\mp j2^{-i}), so after n steps it yields \cos\theta, \sin\theta (or magnitude and \arctan) to n bits, scaled by a cons…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/cordic.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--arithmetic">Arithmetic</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Hardware · Arithmetic</p>
+<h1>CORDIC</h1>
+<p class="summary">CORDIC rotates a vector by any angle using only shifts, additions and a small table: the angle is decomposed into micro-rotations by <img class="m" src="m/7b1d11d29a57c950a365231e1e49de30859ff8a5.svg" alt="\(\pm\arctan2^{-i}\)" style="height:0.997em;vertical-align:-0.090em">, each of which multiplies by <img class="m" src="m/26455991e6753313a8752f7f7b2b6ccee3d3740c.svg" alt="\((1\mp j2^{-i})\)" style="height:1.179em;vertical-align:-0.271em">, so after <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> steps it yields <img class="m" src="m/be9f8c1262a011e6872593e3605a12d4b92eeee4.svg" alt="\(\cos\theta\)" style="height:0.761em;vertical-align:-0.000em">, <img class="m" src="m/9003d3f3671c8056f87eb59f78c26f3c2fad5109.svg" alt="\(\sin\theta\)" style="height:0.761em;vertical-align:-0.000em"> (or magnitude and <img class="m" src="m/310ee5f08f9c8638e1340969d095b6143b394137.svg" alt="\(\arctan\)" style="height:0.674em;vertical-align:-0.000em">) to <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> bits, scaled by a constant gain <img class="m" src="m/fddbf39273c944bbc85d11a42edec7676df65303.svg" alt="\(K\approx1.6468\)" style="height:0.749em;vertical-align:-0.000em">.</p>
+<p class="rel"><span>needs</span> <a href="ripple-carry-adder.html">Full adder and ripple-carry adder</a></p>
+<p class="rel"><span>see also</span> <a href="array-multiplier.html">Multipliers</a>, <a href="serial-arithmetic.html">Bit-serial arithmetic</a>, <a href="finite-state-machine.html">Finite-state machines</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="ripple-carry-adder.html">Full adder and ripple-carry adder</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgf92ebc7" class="outline-2">
+<h2 id="orgf92ebc7">Method</h2>
+<div class="outline-text-2" id="text-orgf92ebc7">
+<p>
+Rotation by <img class="m" src="m/cb17c9772c14f282cb868e9f92c5384c9d5180c9.svg" alt="\(\theta_i=\arctan2^{-i}\)" style="height:1.070em;vertical-align:-0.160em"> in direction <img class="m" src="m/0b9450f4b8431f043fde9c758a70babc26eb27e8.svg" alt="\(d_i=\pm1\)" style="height:0.925em;vertical-align:-0.167em">:
+<div class="mb"><img class="m" src="m/132da73f6d9646af001808ffcef1c4064bc37b71.svg" alt="\[ x_{i+1}=x_i-d_i\,2^{-i}y_i,\qquad y_{i+1}=y_i+d_i\,2^{-i}x_i,\qquad z_{i+1}=z_i-d_i\arctan2^{-i}. \]" style="width:36.198em"></div>
+</p>
+<ul class="org-ul">
+<li><b>Rotation mode</b>: <img class="m" src="m/719b87cd4b9d0f3bc44148f4b8d184a5c58f2a8c.svg" alt="\(d_i=\mathrm{sign}(z_i)\)" style="height:1.096em;vertical-align:-0.274em"> drives the residual angle <img class="m" src="m/e730d8cd532e4dd51091c85ba5138b35495d43c0.svg" alt="\(z\)" style="height:0.472em;vertical-align:-0.000em"> to 0. Starting from <img class="m" src="m/9439dd6b25edcab5f761141161b6c05a510c197b.svg" alt="\((1/K,0,\theta)\)" style="height:1.096em;vertical-align:-0.274em"> gives <img class="m" src="m/340ac73ebf2b40e1c88575da0f9225e8142bdbad.svg" alt="\((\cos\theta,\sin\theta,0)\)" style="height:1.096em;vertical-align:-0.274em">.</li>
+<li><b>Vectoring mode</b>: <img class="m" src="m/1a72c34a6b1317b3dda96d2654fa5459456dca4c.svg" alt="\(d_i=-\mathrm{sign}(y_i)\)" style="height:1.096em;vertical-align:-0.274em"> drives <img class="m" src="m/5cf5ac6e98f9052d4dbfec03db39d31465ea78f1.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> to 0: <img class="m" src="m/7f37a28452200ece54902f88071564cf588208fc.svg" alt="\(x_n=K\sqrt{x_0^2+y_0^2}\)" style="height:1.359em;vertical-align:-0.313em">, <img class="m" src="m/2c856a70d9adfdf344bf359c520e305293b1b18b.svg" alt="\(z_n=z_0+\arctan(y_0/x_0)\)" style="height:1.096em;vertical-align:-0.274em">.</li>
+</ul>
+<p>
+The gain <img class="m" src="m/6c76e84788279547a0c80b23a3a7f2c95ae6b55a.svg" alt="\(K=\prod_i\sqrt{1+2^{-2i}}\to1.6468\)" style="height:1.336em;vertical-align:-0.334em"> is constant, so it is compensated once.
+</p>
+</div>
+</div>
+<div id="outline-container-org75dcbae" class="outline-2">
+<h2 id="org75dcbae">Derivation</h2>
+<div class="outline-text-2" id="text-org75dcbae">
+<p>
+A true rotation multiplies by <img class="m" src="m/dd454560bd6559026ebea3dd0924896c71cddaa0.svg" alt="\(\cos\theta_i\)" style="height:0.925em;vertical-align:-0.167em"> and by <img class="m" src="m/718900cabe838d2306ee484f43995b688ed919b2.svg" alt="\(\begin{pmatrix}1&amp;-\tan\theta_i\\ \tan\theta_i&amp;1\end{pmatrix}\)" style="height:2.630em;vertical-align:-1.052em">. Choosing <img class="m" src="m/5e47363264ddbf9ea9ccd393be45d62c44bb90a5.svg" alt="\(\tan\theta_i=2^{-i}\)" style="height:1.070em;vertical-align:-0.160em"> turns the matrix product into shifts; dropping the <img class="m" src="m/dd454560bd6559026ebea3dd0924896c71cddaa0.svg" alt="\(\cos\theta_i\)" style="height:0.925em;vertical-align:-0.167em"> factors leaves the constant gain. Since <img class="m" src="m/0562ac4aa6d4d2e32ab0c0c8d3cb7a7f162781d9.svg" alt="\(\sum_{k&gt;i}\theta_k\ge\theta_i\)" style="height:1.209em;vertical-align:-0.387em">, any angle in <img class="m" src="m/85f67593e79af0952ab2b57568ccd9f7a75cd6fd.svg" alt="\([-1.74,1.74]\)" style="height:1.096em;vertical-align:-0.274em"> rad is reachable, and each step adds about one bit of precision.
+</p>
+</div>
+</div>
+<div id="outline-container-orge02dd86" class="outline-2">
+<h2 id="orge02dd86">Algorithm</h2>
+<div class="outline-text-2" id="text-orge02dd86">
+<figure class="fig"><img class="m" src="m/c62deb12a10bb47e547c9c6002a7a37366989a58.svg" alt="figure" style="width:25.588em"><figcaption><span class="fl">Algorithm 1.</span> CORDIC in rotation mode: <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> iterations of shifts and additions rotate <img class="m" src="m/bd170e6bc43d24003373a140f11105f88603b886.svg" alt="\((x,y)\)" style="height:1.096em;vertical-align:-0.274em"> by <img class="m" src="m/e730d8cd532e4dd51091c85ba5138b35495d43c0.svg" alt="\(z\)" style="height:0.472em;vertical-align:-0.000em">, steering each micro-rotation by the sign of the residual angle.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-orgfbb5dd9" class="outline-2">
+<h2 id="orgfbb5dd9">Hardware</h2>
+<div class="outline-text-2" id="text-orgfbb5dd9">
+<p>
+Iterative: three registers, two shifters (barrel or wired), three adder/subtractors, an angle table, and an FSM counting iterations: <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> cycles per result, small area. Unrolled and pipelined: one result per cycle, <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> stages with fixed wired shifts.
+</p>
+</div>
+</div>
+<div id="outline-container-org9cd9ed2" class="outline-2">
+<h2 id="org9cd9ed2">Intuition</h2>
+<div class="outline-text-2" id="text-org9cd9ed2">
+<p>
+Reach any angle by a sequence of ever smaller turns left or right, chosen so that each turn costs a shift and an add.
+</p>
+</div>
+</div>
+<div id="outline-container-org3404216" class="outline-2">
+<h2 id="org3404216">Pitfall</h2>
+<div class="outline-text-2" id="text-org3404216">
+<p>
+Fixed-point word lengths need guard bits: each iteration rounds, and <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> iterations accumulate about <img class="m" src="m/cc4fc4bb5074e1854880f1c46fb5b9d4121a912c.svg" alt="\(\log_2 n\)" style="height:1.029em;vertical-align:-0.268em"> bits of error.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="carry-save-adder.html"><span>← previous</span>Carry-save adders and adder trees</a><a rel="next" href="datapath-subsystems.html"><span>next →</span>Datapath subsystems: detectors, shifters, counters</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--arithmetic.pdf" title="PDF manual">Arithmetic</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

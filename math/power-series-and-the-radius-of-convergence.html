@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Power series and the radius of convergence · Mathematics</title>
+<meta name="description" content="A power series converges on an interval and diverges outside it, and the radius that separates the two is not an extra hypothesis: it is determined by the coefficients, through the same \limsup the root test already used. Everything else – that the sum is continuous, that it may be integrated and d…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/power-series-and-the-radius-of-convergence.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Power series and the radius of convergence · Mathematics">
+<meta property="og:description" content="A power series converges on an interval and diverges outside it, and the radius that separates the two is not an extra hypothesis: it is determined by the coefficients, through the same \limsup the root test already used. Everything else – that the sum is continuous, that it may be integrated and d…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/power-series-and-the-radius-of-convergence.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Real Analysis</p>
+<h1>Power series and the radius of convergence</h1>
+<p class="summary">A power series converges on an interval and diverges outside it, and the radius that separates the two is not an extra hypothesis: it is determined by the coefficients, through the same <img class="m" src="m/597ef37e6b3d74f87a2d6a4a2396b5ad801df1eb.svg" alt="\(\limsup\)" style="height:0.974em;vertical-align:-0.214em"> the root test already used. Everything else &#x2013; that the sum is continuous, that it may be integrated and differentiated term by term &#x2013; follows because the convergence is uniform on every closed subinterval.</p>
+<p class="rel"><span>needs</span> <a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a>, <a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a>, <a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a>, <a href="the-ratio-and-root-tests.html">The ratio and root tests</a></p>
+<p class="rel"><span>unlocks</span> <a href="the-cauchy-integral-formula-and-analyticity.html">The Cauchy integral formula and analyticity</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 17 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="the-ratio-and-root-tests.html">The ratio and root tests</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org5ed9fab">
+<p>
+For a power series <img class="m" src="m/f04404f1ce2373fabab05ae90c5a7ada825a03dc.svg" alt="\(\sum_{n \ge 0} a_{n} (x - c)^{n}\)" style="height:1.293em;vertical-align:-0.465em">, the <i>radius of
+convergence</i> is
+<div class="mb"><img class="m" src="m/bc78ca548bc6611c46f933c61e79660984495567.svg" alt="\[ R = \frac{1}{\limsup_{n \to \infty} \abs{a_{n}}^{1/n}}, \]" style="width:11.835em"></div>
+read as <img class="m" src="m/c3f143e06e63bfcde4c77dd04f7d816928987fce.svg" alt="\(R = \infty\)" style="height:0.749em;vertical-align:-0.000em"> when the <img class="m" src="m/597ef37e6b3d74f87a2d6a4a2396b5ad801df1eb.svg" alt="\(\limsup\)" style="height:0.974em;vertical-align:-0.214em"> is <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> and <img class="m" src="m/2a258238f06bd5f1b1a21ccf0338fde6bd92c812.svg" alt="\(R = 0\)" style="height:0.749em;vertical-align:-0.000em"> when
+it is <img class="m" src="m/d39b5f2320262e1ac5f34b7db7f5d688cd9df10d.svg" alt="\(\infty\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org9c87429">
+<p>
+The series converges absolutely for <img class="m" src="m/9d7db3b13370164c601af035bacf88b5e02ac23b.svg" alt="\(\abs{x - c} &lt; R\)" style="height:1.096em;vertical-align:-0.274em"> and diverges
+for <img class="m" src="m/c06abb27c7d6c138e25a1fcb0cdd3dfc8b6f9ce3.svg" alt="\(\abs{x - c} &gt; R\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgec643d9">
+<p>
+Apply the root test to <img class="m" src="m/906b6b8733c706aa05132dacab17904be014b30f.svg" alt="\(u_{n} = a_{n}(x-c)^{n}\)" style="height:1.096em;vertical-align:-0.274em">:
+<img class="m" src="m/6ee4329a35b059acbfb3195aacb8b9a8f3558b5e.svg" alt="\(\limsup \abs{u_{n}}^{1/n} = \abs{x - c} \limsup \abs{a_{n}}^{1/n} = \abs{x-c}/R\)" style="height:1.247em;vertical-align:-0.274em">.
+This is <img class="m" src="m/646ac2b388a47dc2749306d2397f0e9c5835e633.svg" alt="\(&lt; 1\)" style="height:0.749em;vertical-align:-0.045em"> exactly when <img class="m" src="m/9d7db3b13370164c601af035bacf88b5e02ac23b.svg" alt="\(\abs{x - c} &lt; R\)" style="height:1.096em;vertical-align:-0.274em">, giving absolute
+convergence, and <img class="m" src="m/70eb7105352a930324b2579918d955503f71e0e3.svg" alt="\(&gt; 1\)" style="height:0.749em;vertical-align:-0.045em"> exactly when <img class="m" src="m/c06abb27c7d6c138e25a1fcb0cdd3dfc8b6f9ce3.svg" alt="\(\abs{x - c} &gt; R\)" style="height:1.096em;vertical-align:-0.274em">, in which case
+<img class="m" src="m/909ebbee682fdb5bef6bed07725e2d879f4121fb.svg" alt="\(\abs{u_{n}} \ge 1\)" style="height:1.096em;vertical-align:-0.274em"> infinitely often and the terms do not tend to
+<img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="remark" id="org085fc2f">
+<p>
+Nothing is claimed at <img class="m" src="m/31e64c4a2036e063feff499c8f90530ac2e56f2b.svg" alt="\(\abs{x - c} = R\)" style="height:1.096em;vertical-align:-0.274em">, and nothing can be: the
+radius is defined by a <img class="m" src="m/597ef37e6b3d74f87a2d6a4a2396b5ad801df1eb.svg" alt="\(\limsup\)" style="height:0.974em;vertical-align:-0.214em"> of <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">-th roots, which is blind to
+the boundary. The three series <img class="m" src="m/af373b7e378e41f68ff8426735aacd37d611b8f6.svg" alt="\(\sum x^{n}\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/bcdf375013f234bf91dade1a5dff3c302bb9b82e.svg" alt="\(\sum x^{n}/n\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/2229cd6026255f4baaca61b9fef4688c569b417f.svg" alt="\(\sum x^{n}/n^{2}\)" style="height:1.166em;vertical-align:-0.268em"> all have <img class="m" src="m/2adffc9d3bf6d91e414e837a5536e5e8514a66e9.svg" alt="\(R = 1\)" style="height:0.749em;vertical-align:-0.000em"> and differ there, so the
+boundary is a separate question for each series and never a corollary.
+</p>
+
+</div>
+
+<div class="theorem" id="orga32c7bf">
+<p>
+For every <img class="m" src="m/265ee825b2656ba3289621dd8a09628469148dc1.svg" alt="\(r &lt; R\)" style="height:0.792em;vertical-align:-0.040em"> the series converges uniformly on
+<img class="m" src="m/2794c8dc1aba579b82b0a72de6ae201e6a47bd3a.svg" alt="\(\setst{x}{\abs{x - c} \le r}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgc109cbf">
+<p>
+Pick <img class="m" src="m/183e6a1c54f452e32457484b282b63813d79eb6a.svg" alt="\(\rho\)" style="height:0.685em;vertical-align:-0.212em"> with <img class="m" src="m/6dc103749029e1ae9d7ecdd07ff0e30522f4906e.svg" alt="\(r &lt; \rho &lt; R\)" style="height:0.962em;vertical-align:-0.212em">. By the previous theorem
+<img class="m" src="m/62c65baafe8d9f2bb5ca9af462172e6849db60b8.svg" alt="\(\sum \abs{a_{n}} \rho^{n}\)" style="height:1.096em;vertical-align:-0.274em"> converges, so
+<img class="m" src="m/8cb2708dee4e93e3f9a0640eb56bf770f923b37a.svg" alt="\(\abs{a_{n}} \rho^{n} \to 0\)" style="height:1.096em;vertical-align:-0.274em"> and in particular
+<img class="m" src="m/9f145d375fed50d018a29ca879c106378a431212.svg" alt="\(\abs{a_{n}} \le C \rho^{-n}\)" style="height:1.147em;vertical-align:-0.275em"> for some <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> and all <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">. On the
+closed ball, <img class="m" src="m/bef05770ab7e66ef8af3dc76f6c3dbb09f57c517.svg" alt="\(\abs{a_{n}(x-c)^{n}} \le C (r/\rho)^{n} = M_{n}\)" style="height:1.096em;vertical-align:-0.274em">, and
+<img class="m" src="m/b4d480a13d38031675bf8350952ea83c9cd55545.svg" alt="\(\sum M_{n}\)" style="height:1.096em;vertical-align:-0.274em"> is a convergent geometric series. The Weierstrass
+<img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">-test gives uniform convergence.
+</p>
+
+</div>
+
+<div class="corollary" id="org36d35c0">
+<p>
+The sum of a power series is continuous on <img class="m" src="m/9d7db3b13370164c601af035bacf88b5e02ac23b.svg" alt="\(\abs{x - c} &lt; R\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org4b354e2">
+<p>
+Continuity is local: a point with <img class="m" src="m/455f126827d405424e9bc49441a58a6f8872a438.svg" alt="\(\abs{x_{0} - c} &lt; R\)" style="height:1.096em;vertical-align:-0.274em"> lies in the
+closed ball of some radius <img class="m" src="m/265ee825b2656ba3289621dd8a09628469148dc1.svg" alt="\(r &lt; R\)" style="height:0.792em;vertical-align:-0.040em">, on which the partial sums &#x2013;
+polynomials, hence continuous &#x2013; converge uniformly. A uniform limit of
+continuous functions is continuous, so the sum is continuous at
+<img class="m" src="m/4f8246e7705a9c0df96e9d12bf2c596179c4d261.svg" alt="\(x_{0}\)" style="height:0.636em;vertical-align:-0.165em">.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-ratio-and-root-tests.html"><span>← previous</span>The ratio and root tests</a><a rel="next" href="real-analysis.html"><span>next →</span>Real analysis</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

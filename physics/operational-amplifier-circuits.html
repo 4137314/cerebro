@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operational-amplifier circuits · Physics</title>
+<meta name="description" content="With negative feedback an ideal op-amp (infinite gain and input impedance) forces v_+=v_- and draws no input current; this gives inverting gain -R_f/R_1, non-inverting 1+R_f/R_1, integrators -1/sRC, transimpedance -R_f; a real op-amp has finite gain–bandwidth product \mathrm{GBW}, so closed-loop ba…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/operational-amplifier-circuits.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Operational-amplifier circuits · Physics">
+<meta property="og:description" content="With negative feedback an ideal op-amp (infinite gain and input impedance) forces v_+=v_- and draws no input current; this gives inverting gain -R_f/R_1, non-inverting 1+R_f/R_1, integrators -1/sRC, transimpedance -R_f; a real op-amp has finite gain–bandwidth product \mathrm{GBW}, so closed-loop ba…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/operational-amplifier-circuits.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-circuits">Circuits</a> / <a rel="up" href="index.html#a-circuits--analog-building-blocks">Analog Building Blocks</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Circuits · Analog Building Blocks</p>
+<h1>Operational-amplifier circuits</h1>
+<p class="summary">With negative feedback an ideal op-amp (infinite gain and input impedance) forces <img class="m" src="m/91f987d3edcf0cc76f085f54a751ae7ed00ce8f7.svg" alt="\(v_+=v_-\)" style="height:0.728em;vertical-align:-0.255em"> and draws no input current; this gives inverting gain <img class="m" src="m/5176193f07e6a6161676111fba19d1387310ba54.svg" alt="\(-R_f/R_1\)" style="height:1.135em;vertical-align:-0.318em">, non-inverting <img class="m" src="m/37866ed1a6d951d5d7eaa9b13d6bb9c38af58a55.svg" alt="\(1+R_f/R_1\)" style="height:1.135em;vertical-align:-0.318em">, integrators <img class="m" src="m/d99671f8ad3e1acbe08262f34f0ea65bdbef4f2b.svg" alt="\(-1/sRC\)" style="height:1.096em;vertical-align:-0.274em">, transimpedance <img class="m" src="m/890762a8c99b4cb62ef9808abc0020ce1fae44d6.svg" alt="\(-R_f\)" style="height:1.062em;vertical-align:-0.319em">; a real op-amp has finite gain–bandwidth product <img class="m" src="m/0e8c36ad8c5805959c0eead13e3253a636190b19.svg" alt="\(\mathrm{GBW}\)" style="height:0.749em;vertical-align:-0.000em">, so closed-loop bandwidth <img class="m" src="m/54e4295016c4ac05a616734dce831a8644419d4a.svg" alt="\(\approx\mathrm{GBW}/(1+R_f/R_1)\)" style="height:1.135em;vertical-align:-0.318em">.</p>
+<p class="rel"><span>needs</span> <a href="frequency-response-and-filters.html">Frequency response, Bode plots and filters</a></p>
+<p class="rel"><span>unlocks</span> <a href="exam-practice-circuits.html">Exam practice: circuit theory (solved)</a></p>
+<p class="rel"><span>see also</span> <a href="photodetectors.html">Photodetectors: pn, pin and avalanche photodiodes</a>, <a href="noise-in-photodetectors.html">Noise in photodetection and receiver sensitivity</a></p>
+<details class="path"><summary>Learning path: 13 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="circuits.html">Circuit theory: the map of the subject</a></li><li><a href="kirchhoff-laws-and-network-theorems.html">Kirchhoff's laws and network theorems</a></li><li><a href="lti-systems-and-convolution.html">LTI systems, impulse response and first/second-order circuits</a></li><li><a href="complex-numbers-and-phasors.html">Complex numbers and phasors</a></li><li><a href="fourier-series-and-transform.html">Fourier series and Fourier transform</a></li><li><a href="impedance-and-ac-circuit-analysis.html">Impedance and the symbolic method</a></li><li><a href="frequency-response-and-filters.html">Frequency response, Bode plots and filters</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orge6cdeb6" class="outline-2">
+<h2 id="orge6cdeb6">Model</h2>
+<div class="outline-text-2" id="text-orge6cdeb6">
+<p>
+Open-loop <img class="m" src="m/78f163d035ff39653db047d49acc58ccf344cdc9.svg" alt="\(A(s)=\frac{A_0}{1+s/\omega_p}\)" style="height:1.568em;vertical-align:-0.596em">, GBW <img class="m" src="m/b3a53e36a2e0938111ed42cb6f7e3518b2336935.svg" alt="\(=A_0\omega_p/2\pi\)" style="height:1.135em;vertical-align:-0.318em">. Feedback fraction <img class="m" src="m/093589ec7d8b9405e955926c22aaf48677e1efe3.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em">: closed-loop gain <img class="m" src="m/58950d31cb6bd3ccce61b38440cb594680105a82.svg" alt="\(\frac{A}{1+A\beta}\to\frac1\beta\)" style="height:1.483em;vertical-align:-0.534em"> when loop gain <img class="m" src="m/7eb834b514e62bfb2d7d7b8b428ff198aeadbaba.svg" alt="\(A\beta\gg1\)" style="height:0.974em;vertical-align:-0.214em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1002/j.1538-7305.1934.tb00652.x" data-full="H. S. Black, “Stabilized feedback amplifiers”, Bell System Technical Journal 13, 1–18 (1934)." aria-label="H. S. Black, “Stabilized feedback amplifiers”, Bell System Technical Journal 13, 1–18 (1934).">Black 1934</a>)</span>. Golden rules (ideal): no input current, <img class="m" src="m/91f987d3edcf0cc76f085f54a751ae7ed00ce8f7.svg" alt="\(v_+=v_-\)" style="height:0.728em;vertical-align:-0.255em"> (virtual short) <span class="cite">(<a class="ref" href="https://doi.org/10.1109/jrproc.1947.232616" data-full="J. R. Ragazzini, R. H. Randall and F. A. Russell, “Analysis of problems in dynamics by electronic circuits”, Proceedings of the IRE 35, 444–452 (1947)." aria-label="J. R. Ragazzini, R. H. Randall and F. A. Russell, “Analysis of problems in dynamics by electronic circuits”, Proceedings of the IRE 35, 444–452 (1947).">Ragazzini et al. 1947</a>)</span>.
+</p>
+</div>
+</div>
+<div id="outline-container-org94563bd" class="outline-2">
+<h2 id="org94563bd">Standard circuits</h2>
+<div class="outline-text-2" id="text-org94563bd">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">circuit</th>
+<th scope="col" class="org-left">transfer</th>
+<th scope="col" class="org-left">note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">inverting</td>
+<td class="org-left">−R_f/R₁</td>
+<td class="org-left">input impedance R₁</td>
+</tr>
+
+<tr>
+<td class="org-left">non-inverting</td>
+<td class="org-left">1 + R_f/R₁</td>
+<td class="org-left">very high input impedance</td>
+</tr>
+
+<tr>
+<td class="org-left">follower</td>
+<td class="org-left">1</td>
+<td class="org-left">buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">summing</td>
+<td class="org-left">−R_f Σ v_k/R_k</td>
+<td class="org-left">audio mixer, DAC</td>
+</tr>
+
+<tr>
+<td class="org-left">integrator</td>
+<td class="org-left">−1/(sRC)</td>
+<td class="org-left">needs DC reset or R in parallel</td>
+</tr>
+
+<tr>
+<td class="org-left">difference</td>
+<td class="org-left">(R₂/R₁)(v₂ − v₁)</td>
+<td class="org-left">matched resistors for CMRR</td>
+</tr>
+
+<tr>
+<td class="org-left">transimpedance</td>
+<td class="org-left">v_out = −R_f i_in</td>
+<td class="org-left">photodiode receiver</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org2b0d0f5" class="outline-2">
+<h2 id="org2b0d0f5">Derivation: inverting amplifier with finite gain</h2>
+<div class="outline-text-2" id="text-org2b0d0f5">
+<p>
+KCL at <img class="m" src="m/c7a268268c26223b65a3fee87bcffff131678472.svg" alt="\(v_-\)" style="height:0.728em;vertical-align:-0.255em">: <img class="m" src="m/d3de3eca3710b5e54c0d058ade75048e6322e36f.svg" alt="\(\frac{v_i-v_-}{R_1}=\frac{v_--v_o}{R_f}\)" style="height:1.616em;vertical-align:-0.598em">, <img class="m" src="m/1f47b499c33832e446b840fbf55d3342dc5ce7f9.svg" alt="\(v_o=-Av_-\)" style="height:1.005em;vertical-align:-0.251em">. Eliminating: <img class="m" src="m/693da3a3f8c9c65dc5c6e0973153adac15cb0933.svg" alt="\(\frac{v_o}{v_i}=-\frac{R_f/R_1}{1+(1+R_f/R_1)/A}\)" style="height:1.739em;vertical-align:-0.609em">. With <img class="m" src="m/1722067e64f720e0b2bf4e5274e34c6c0d6e13f7.svg" alt="\(A(s)\)" style="height:1.096em;vertical-align:-0.274em"> single-pole, the closed-loop pole is at <img class="m" src="m/b4e3f539d2e4a75fd797674b4181508ea7b99503.svg" alt="\(\mathrm{GBW}/(1+R_f/R_1)\)" style="height:1.135em;vertical-align:-0.318em"> (noise gain).
+</p>
+</div>
+</div>
+<div id="outline-container-org5ce9a71" class="outline-2">
+<h2 id="org5ce9a71">Worked example</h2>
+<div class="outline-text-2" id="text-org5ce9a71">
+<p>
+Photodiode TIA, <img class="m" src="m/2431779317ea4afc18b53624ed5c05e323978517.svg" alt="\(R_f=10\)" style="height:1.062em;vertical-align:-0.319em"> kΩ, photodiode capacitance 1 pF, op-amp GBW = 1 GHz: bandwidth <img class="m" src="m/b1812e91d6218a2ce06224067c5bbca5a2248d20.svg" alt="\(\approx\sqrt{\frac{\mathrm{GBW}}{2\pi R_fC_{in}}}=\sqrt{\frac{10^9}{2\pi\cdot10^4\cdot10^{-12}}}=126\)" style="height:2.152em;vertical-align:-0.753em"> MHz (feedback capacitor <img class="m" src="m/153a40a7341b70be2a30a5f74b0db59258205fc6.svg" alt="\(C_f\approx\sqrt{C_{in}/2\pi R_f\mathrm{GBW}}\)" style="height:1.359em;vertical-align:-0.353em"> for stability) — the receiver of <a href="photodetectors.html">photodetectors</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org28b3415" class="outline-2">
+<h2 id="org28b3415">Engineering applications</h2>
+<div class="outline-text-2" id="text-org28b3415">
+<p>
+Sensor conditioning, active filters (Sallen–Key), ADC drivers, precision references, photoreceivers, control loops; CMOS op-amps are built from the <a href="mosfet-operation-and-iv.html">MOSFETs</a> of the digital domain.
+</p>
+</div>
+</div>
+<div id="outline-container-orgaa56612" class="outline-2">
+<h2 id="orgaa56612">Pitfall</h2>
+<div class="outline-text-2" id="text-orgaa56612">
+<p>
+The virtual short holds only with negative feedback and an op-amp not saturated or slew-limited; with positive feedback (comparators, Schmitt triggers) <img class="m" src="m/94efc4d5d5bcafa1e8ca8d4dde637fe1407cc043.svg" alt="\(v_+\neq v_-\)" style="height:1.017em;vertical-align:-0.254em">.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="power-generation-and-distribution.html"><span>← previous</span>Generation and distribution of electric power</a><a rel="next" href="digital-electronics.html"><span>next →</span>Digital electronic circuits: the map of the subject</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/circuits--analog-building-blocks.pdf" title="PDF manual">Analog Building Blocks</a> · <a class="pdf" href="pdf/circuits.pdf" title="PDF manual">Circuits</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Subspace, product and quotient topologies · Mathematics</title>
+<meta name="description" content="Three constructions produce almost every space one meets, and each is defined the same way: by the maps it is required to make continuous. Stating them by their universal properties rather than by a formula is what keeps the proofs short – and it is what shows that the product topology, which looks…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/subspace-product-and-quotient-topologies.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Subspace, product and quotient topologies · Mathematics">
+<meta property="og:description" content="Three constructions produce almost every space one meets, and each is defined the same way: by the maps it is required to make continuous. Stating them by their universal properties rather than by a formula is what keeps the proofs short – and it is what shows that the product topology, which looks…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/subspace-product-and-quotient-topologies.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-topology">Topology</a> / <a rel="up" href="index.html#a-topology--general-topology">General Topology</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Topology · General Topology</p>
+<h1>Subspace, product and quotient topologies</h1>
+<p class="summary">Three constructions produce almost every space one meets, and each is defined the same way: by the maps it is required to make continuous. Stating them by their universal properties rather than by a formula is what keeps the proofs short &#x2013; and it is what shows that the product topology, which looks like the wrong definition for infinite products, is the only reasonable one.</p>
+<p class="rel"><span>needs</span> <a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a>, <a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a>, <a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></p>
+<p class="rel"><span>unlocks</span> <a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a>, <a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a>, <a href="the-tietze-extension-theorem.html">The Tietze extension theorem</a>, <a href="tychonoffs-theorem.html">Tychonoff's theorem</a>, <a href="covering-spaces-and-the-fundamental-group-of-the-circle.html">Covering spaces and the fundamental group of the circle</a>, <a href="homotopy-equivalence-retracts-and-contractible-spaces.html">Homotopy equivalence, retracts and contractible spaces</a>, <a href="path-homotopy-and-the-fundamental-group.html">Path homotopy and the fundamental group</a></p>
+<p class="rel"><span>mentioned in</span> <a href="general-topology.html">General topology</a></p>
+<details class="path"><summary>Learning path: 14 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgd311618">
+<p>
+Let <img class="m" src="m/8cf713af0820812531d65e982303553bcc04428e.svg" alt="\(A \subseteq X\)" style="height:0.898em;vertical-align:-0.153em"> with <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> a topological space. The <i>subspace
+topology</i> on <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> has as open sets the <img class="m" src="m/bba2860c16477974634ac7b36a27bfe1fd6006ac.svg" alt="\(U \cap A\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> open in
+<img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgba39a1c">
+<p>
+The subspace topology is a topology; the inclusion
+<img class="m" src="m/c5535f57fcdaedf418156682debe82940de2dcec.svg" alt="\(\iota \colon A \to X\)" style="height:0.749em;vertical-align:-0.000em"> is continuous; and it is the coarsest topology
+with that property. A map <img class="m" src="m/422008f356658fb1c2463aacd27626a5aa69eb6c.svg" alt="\(f \colon Z \to A\)" style="height:0.974em;vertical-align:-0.214em"> is continuous if and only
+if <img class="m" src="m/12212c1ede8db9304c499ae8a3c70dbd8cc48fe5.svg" alt="\(\iota \circ f \colon Z \to X\)" style="height:0.974em;vertical-align:-0.214em"> is.
+</p>
+
+</div>
+
+<div class="proof" id="orgdab3c32">
+<p>
+<img class="m" src="m/b9fcf2ccae8d3515975b71b2e2ab3c4479b2d3d5.svg" alt="\(\emptyset\)" style="height:0.883em;vertical-align:-0.062em"> and <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> arise from <img class="m" src="m/b9fcf2ccae8d3515975b71b2e2ab3c4479b2d3d5.svg" alt="\(\emptyset\)" style="height:0.883em;vertical-align:-0.062em"> and <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">, and
+intersecting with <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> commutes with unions and finite intersections,
+so the family is a topology. Continuity of <img class="m" src="m/216ccdeb0d6cab34c139363cb21ee8370f7770d4.svg" alt="\(\iota\)" style="height:0.472em;vertical-align:-0.000em"> is the statement
+<img class="m" src="m/da021a318553903ac36e2d6c6011e326e91f28e5.svg" alt="\(\iota^{-1}(U) = U\cap A\)" style="height:1.166em;vertical-align:-0.268em">, and any topology making <img class="m" src="m/216ccdeb0d6cab34c139363cb21ee8370f7770d4.svg" alt="\(\iota\)" style="height:0.472em;vertical-align:-0.000em">
+continuous must contain every such set, so the subspace topology is the
+coarsest.
+</p>
+
+<p>
+If <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is continuous so is <img class="m" src="m/e943163bf9ac7f6032087f7bdfc6275454605da9.svg" alt="\(\iota\circ f\)" style="height:0.974em;vertical-align:-0.214em">. Conversely, if
+<img class="m" src="m/e943163bf9ac7f6032087f7bdfc6275454605da9.svg" alt="\(\iota\circ f\)" style="height:0.974em;vertical-align:-0.214em"> is continuous and <img class="m" src="m/bba2860c16477974634ac7b36a27bfe1fd6006ac.svg" alt="\(U \cap A\)" style="height:0.749em;vertical-align:-0.000em"> is open in <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, then
+<img class="m" src="m/3d608213c0acf9a91486a792de8eae7a1eb4fbac.svg" alt="\(f^{-1}(U\cap A) = (\iota\circ f)^{-1}(U)\)" style="height:1.166em;vertical-align:-0.268em"> is open in <img class="m" src="m/7c4b861f7a604d8d12b3c250305352daee8e7002.svg" alt="\(Z\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="definition" id="org3f1e5dd">
+<p>
+Let <img class="m" src="m/4636435697736d486c6f9ad9a7e36df2757163e9.svg" alt="\((X_{i})_{i \in I}\)" style="height:1.096em;vertical-align:-0.274em"> be topological spaces. The <i>product topology</i>
+on <img class="m" src="m/619079e41f0973fc6e17e2da45c2b494c9d62e71.svg" alt="\(\prod_{i}X_{i}\)" style="height:1.151em;vertical-align:-0.334em"> is generated by the subbasis of sets
+<img class="m" src="m/5994ebbf55ae8126b2002aa7f591c0afd5c9b6fc.svg" alt="\(\pi_{j}^{-1}(U)\)" style="height:1.418em;vertical-align:-0.454em">, for <img class="m" src="m/85743b1373d0d4f00f25c8dfc5df3050ae7ef2f8.svg" alt="\(j \in I\)" style="height:0.962em;vertical-align:-0.212em"> and <img class="m" src="m/873465ddc074c7af33a197defc41b74de4ec5ccc.svg" alt="\(U \subseteq X_{j}\)" style="height:1.062em;vertical-align:-0.319em"> open,
+where <img class="m" src="m/ea4785d80660b5a9c072452d051b0b35dc9772e7.svg" alt="\(\pi_{j}\)" style="height:0.785em;vertical-align:-0.314em"> is the projection onto the <img class="m" src="m/3368b211f5038907d6dc36c5bec32916d1755948.svg" alt="\(j\)" style="height:0.936em;vertical-align:-0.215em">-th factor. A basis is
+therefore given by the sets <img class="m" src="m/9e8171443517f8366d0b3b0d7936b686128e581f.svg" alt="\(\prod_{i}U_{i}\)" style="height:1.151em;vertical-align:-0.334em"> with <img class="m" src="m/a562c7cdcf67e22ae80bce9ef8a7a99fe4abb681.svg" alt="\(U_{i}\)" style="height:0.913em;vertical-align:-0.164em"> open and
+<img class="m" src="m/d9e5d59d4cd45b331d8e5bc3a1468ed4490e38dc.svg" alt="\(U_{i} = X_{i}\)" style="height:0.913em;vertical-align:-0.164em"> for all but finitely many <img class="m" src="m/820a2ed5b51be608772286616d5575a49dd61525.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org53bdafa">
+<p>
+Each projection <img class="m" src="m/ea4785d80660b5a9c072452d051b0b35dc9772e7.svg" alt="\(\pi_{j}\)" style="height:0.785em;vertical-align:-0.314em"> is continuous, and the product topology is
+the coarsest with that property. A map <img class="m" src="m/73d11d7c26be6cf04768026c605d09e563f2d901.svg" alt="\(f \colon Z \to \prod_{i}X_{i}\)" style="height:1.151em;vertical-align:-0.334em">
+is continuous if and only if every <img class="m" src="m/9d19a0e91c7a28671acb6873ae647107da8637e0.svg" alt="\(\pi_{i}\circ f\)" style="height:0.974em;vertical-align:-0.214em"> is.
+</p>
+
+</div>
+
+<div class="proof" id="org2452df3">
+<p>
+Continuity of <img class="m" src="m/ea4785d80660b5a9c072452d051b0b35dc9772e7.svg" alt="\(\pi_{j}\)" style="height:0.785em;vertical-align:-0.314em"> and minimality hold because the generating
+subbasis consists precisely of the sets a topology must contain to make
+the projections continuous.
+</p>
+
+<p>
+If <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is continuous, so is each <img class="m" src="m/9d19a0e91c7a28671acb6873ae647107da8637e0.svg" alt="\(\pi_{i}\circ f\)" style="height:0.974em;vertical-align:-0.214em"> as a composition.
+Conversely, suppose every <img class="m" src="m/9d19a0e91c7a28671acb6873ae647107da8637e0.svg" alt="\(\pi_{i}\circ f\)" style="height:0.974em;vertical-align:-0.214em"> is continuous. For a
+subbasic set,
+<img class="m" src="m/00223d47d1a77a2252495f30601f93ff5044aee6.svg" alt="\(f^{-1}(\pi_{j}^{-1}(U)) = (\pi_{j}\circ f)^{-1}(U)\)" style="height:1.418em;vertical-align:-0.454em"> is open; by the
+subbasis criterion <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is continuous.
+</p>
+
+</div>
+
+<div class="remark" id="org4b0b1da">
+<p>
+The finiteness restriction in the basis is what the universal property
+forces. Declaring all products <img class="m" src="m/9e8171443517f8366d0b3b0d7936b686128e581f.svg" alt="\(\prod_{i}U_{i}\)" style="height:1.151em;vertical-align:-0.334em"> of open sets to be
+basic gives a strictly finer topology for infinite <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> &#x2013; the box
+topology &#x2013; for which the theorem above is false, and with it Tychonoff's
+theorem. The definition is chosen to make the maps behave, not the sets
+look natural.
+</p>
+
+</div>
+
+<div class="definition" id="orge2d66db">
+<p>
+Let <img class="m" src="m/779b6cb1ed8d5286b8611ae528e6e9511312e005.svg" alt="\(\sim\)" style="height:0.402em;vertical-align:-0.000em"> be an equivalence relation on a space <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> and
+<img class="m" src="m/7ec46b9199419dabc2e7e2d5d5d67d67831cd0c9.svg" alt="\(\pi \colon X \to X/{\sim}\)" style="height:1.096em;vertical-align:-0.274em"> the projection. The <i>quotient topology</i>
+declares <img class="m" src="m/f5012af67baa5b2efd2e277f87db353b24becc4a.svg" alt="\(V \subseteq X/{\sim}\)" style="height:1.096em;vertical-align:-0.274em"> open exactly when <img class="m" src="m/e09345c2fa86e32e47b1d44f8c0851afe5b6cfd1.svg" alt="\(\pi^{-1}(V)\)" style="height:1.166em;vertical-align:-0.268em"> is
+open in <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org00f794e">
+<p>
+The quotient topology is a topology, <img class="m" src="m/b1e3c27a225dba8050e88d2182ad88a60344ed21.svg" alt="\(\pi\)" style="height:0.472em;vertical-align:-0.000em"> is continuous, and it is
+the finest topology with that property. A map
+<img class="m" src="m/0d56d34753864b9d210979f7b8e20533bbf7bea9.svg" alt="\(g \colon X/{\sim} \to Z\)" style="height:1.096em;vertical-align:-0.274em"> is continuous if and only if
+<img class="m" src="m/4edd2c8e7d93b1140f6c0e3d7d110b18f3cb8915.svg" alt="\(g \circ \pi\)" style="height:0.700em;vertical-align:-0.210em"> is; hence a continuous <img class="m" src="m/a10b70988efd3cf2d12d6ccd8835c597e46b9f6e.svg" alt="\(f \colon X \to Z\)" style="height:0.974em;vertical-align:-0.214em"> that is
+constant on classes induces a unique continuous
+<img class="m" src="m/5219bceced6c1ca810d9286a4893bf9ab8cb149f.svg" alt="\(\bar{f} \colon X/{\sim} \to Z\)" style="height:1.185em;vertical-align:-0.273em"> with <img class="m" src="m/4ade4a36e4730440ad7fe8b816e1d982ba6209ce.svg" alt="\(\bar{f}\circ\pi = f\)" style="height:1.125em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="proof" id="org3fa3dc2">
+<p>
+Preimage commutes with unions and intersections, so the family of <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">
+with <img class="m" src="m/e09345c2fa86e32e47b1d44f8c0851afe5b6cfd1.svg" alt="\(\pi^{-1}(V)\)" style="height:1.166em;vertical-align:-0.268em"> open is a topology; <img class="m" src="m/b1e3c27a225dba8050e88d2182ad88a60344ed21.svg" alt="\(\pi\)" style="height:0.472em;vertical-align:-0.000em"> is continuous by
+definition, and any topology on <img class="m" src="m/66228f521cb630877f04399a7cc46b969a6ed703.svg" alt="\(X/{\sim}\)" style="height:1.096em;vertical-align:-0.274em"> making <img class="m" src="m/b1e3c27a225dba8050e88d2182ad88a60344ed21.svg" alt="\(\pi\)" style="height:0.472em;vertical-align:-0.000em"> continuous
+consists of such <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">, hence is coarser.
+</p>
+
+<p>
+If <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> is continuous so is <img class="m" src="m/4edd2c8e7d93b1140f6c0e3d7d110b18f3cb8915.svg" alt="\(g \circ \pi\)" style="height:0.700em;vertical-align:-0.210em">. Conversely, if
+<img class="m" src="m/bd915b08effa399f327e1839af36783f48595af9.svg" alt="\(g\circ\pi\)" style="height:0.700em;vertical-align:-0.210em"> is continuous and <img class="m" src="m/bd55345f79198927ef63ab1b470be790300770ce.svg" alt="\(W \subseteq Z\)" style="height:0.898em;vertical-align:-0.153em"> is open, then
+<img class="m" src="m/ba8e1422a8b4ef576e1137be6874fd7b56c9d06a.svg" alt="\(\pi^{-1}(g^{-1}(W)) = (g\circ\pi)^{-1}(W)\)" style="height:1.166em;vertical-align:-0.268em"> is open, so
+<img class="m" src="m/1fd1377fa837f1449427597ce7033665d6d1117a.svg" alt="\(g^{-1}(W)\)" style="height:1.166em;vertical-align:-0.268em"> is open by the definition of the quotient topology. The
+last claim combines this with the universal property of the quotient
+set, which supplies <img class="m" src="m/ae93336ca48a9cff141c82f3f3a98d51896a0035.svg" alt="\(\bar{f}\)" style="height:1.125em;vertical-align:-0.214em"> as a map.
+</p>
+
+</div>
+
+<div class="remark" id="org34071a7">
+<p>
+Subspaces and products are defined by mapping <i>into</i> them, quotients by
+mapping <i>out</i> of them, and the two directions correspond to taking the
+coarsest and the finest topology. That is the whole reason the same
+three-line proof works for all of them, and the reason a quotient of a
+well-behaved space can be badly behaved: nothing in the construction
+preserves separation properties.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="continuous-maps-homeomorphisms-and-topological-invariants.html"><span>← previous</span>Continuous maps, homeomorphisms and topological invariants</a><a rel="next" href="hausdorff-spaces-and-separation.html"><span>next →</span>Hausdorff spaces and separation</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/topology--general-topology.pdf" title="PDF manual">General Topology</a> · <a class="pdf" href="pdf/topology.pdf" title="PDF manual">Topology</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

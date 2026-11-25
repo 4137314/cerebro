@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Serial communication · Computer Science</title>
+<meta name="description" content="Sending bits one after another on few wires saves pins and avoids skew between parallel lines; synchronous links (SPI, I²C, I²S) share a clock wire, asynchronous ones (UART) agree on a bit rate and resynchronise on every character with a start bit.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/serial-communication.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Serial communication · Computer Science">
+<meta property="og:description" content="Sending bits one after another on few wires saves pins and avoids skew between parallel lines; synchronous links (SPI, I²C, I²S) share a clock wire, asynchronous ones (UART) agree on a bit rate and resynchronise on every character with a start bit.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/serial-communication.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--interfaces">Interfaces</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Hardware · Interfaces</p>
+<h1>Serial communication</h1>
+<p class="summary">Sending bits one after another on few wires saves pins and avoids skew between parallel lines; synchronous links (SPI, I²C, I²S) share a clock wire, asynchronous ones (UART) agree on a bit rate and resynchronise on every character with a start bit.</p>
+<p class="rel"><span>unlocks</span> <a href="i2c.html">I²C</a>, <a href="spi.html">SPI</a>, <a href="uart.html">UART (RS-232)</a></p>
+<p class="rel"><span>see also</span> <a href="uart.html">UART (RS-232)</a>, <a href="spi.html">SPI</a>, <a href="i2c.html">I²C</a>, <a href="serial-arithmetic.html">Bit-serial arithmetic</a></p>
+</header>
+<main class="note">
+<div id="outline-container-orgd23e8a9" class="outline-2">
+<h2 id="orgd23e8a9">Definition</h2>
+<div class="outline-text-2" id="text-orgd23e8a9">
+<ul class="org-ul">
+<li><b>Parallel</b>: <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> data lines plus control; fast over short distances, but pins, cable and skew grow with <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">.</li>
+<li><b>Serial</b>: one or two data lines. <b>Synchronous</b>: the transmitter's clock is sent along (SCK, SCL): the receiver samples on its edges. <b>Asynchronous</b>: no clock; each side has its own, at a nominal rate; framing bits realign the receiver.</li>
+<li><b>Duplex</b>: simplex (one direction), half duplex (both, alternately, e.g. I²C), full duplex (both at once, e.g. SPI, UART with TX and RX).</li>
+<li><b>Topology</b>: point to point (UART), master with several slaves selected by wires (SPI) or by addresses on a shared bus (I²C).</li>
+</ul>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">UART</th>
+<th scope="col" class="org-left">SPI</th>
+<th scope="col" class="org-left">I²C</th>
+<th scope="col" class="org-left">I²S</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">wires</td>
+<td class="org-left">TX, RX</td>
+<td class="org-left">SCK MOSI MISO SS</td>
+<td class="org-left">SCL, SDA</td>
+<td class="org-left">SCK, WS, SD</td>
+</tr>
+
+<tr>
+<td class="org-left">clock</td>
+<td class="org-left">none (agreed)</td>
+<td class="org-left">master</td>
+<td class="org-left">master</td>
+<td class="org-left">master</td>
+</tr>
+
+<tr>
+<td class="org-left">addressing</td>
+<td class="org-left">none</td>
+<td class="org-left">SS per slave</td>
+<td class="org-left">7-bit address</td>
+<td class="org-left">none</td>
+</tr>
+
+<tr>
+<td class="org-left">duplex</td>
+<td class="org-left">full</td>
+<td class="org-left">full</td>
+<td class="org-left">half</td>
+<td class="org-left">one way</td>
+</tr>
+
+<tr>
+<td class="org-left">speed</td>
+<td class="org-left">≤ 921.6 kbit/s</td>
+<td class="org-left">10–50 Mbit/s</td>
+<td class="org-left">0.1–3.4 Mbit/s</td>
+<td class="org-left">audio</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+I²S carries stereo audio: the word-select line WS says whether the current word is the left or the right channel.
+</p>
+</div>
+</div>
+<div id="outline-container-org13ee188" class="outline-2">
+<h2 id="org13ee188">Worked example</h2>
+<div class="outline-text-2" id="text-org13ee188">
+<p>
+UART at 115 200 baud, 8N1: each byte costs 10 bit times (start + 8 data + stop): <img class="m" src="m/3a8dcf98cf031b198a127abdf0eb40a3093757dd.svg" alt="\(115\,200/10=11\,520\)" style="height:1.096em;vertical-align:-0.274em"> bytes/s, 80% efficiency. SPI at 10 MHz moves 10 Mbit/s = 1.25 MB/s with no framing overhead. I²C at 400 kHz: 9 clocks per byte (8 data + ACK) plus address and start/stop per transaction: below 44 kB/s.
+</p>
+</div>
+</div>
+<div id="outline-container-org3524b51" class="outline-2">
+<h2 id="org3524b51">Intuition</h2>
+<div class="outline-text-2" id="text-org3524b51">
+<p>
+Serial links trade wires for time. With fast transistors and expensive pins, time is the cheaper resource.
+</p>
+</div>
+</div>
+<div id="outline-container-orgac698cd" class="outline-2">
+<h2 id="orgac698cd">Pitfall</h2>
+<div class="outline-text-2" id="text-orgac698cd">
+<p>
+Two clock domains meet at every receiver: signals coming from outside must be synchronised (two flip-flops) before the receiver's FSM uses them, or <a href="setup-hold-time.html">metastability</a> will eventually strike.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="pipeline-hazards.html"><span>← previous</span>Pipeline hazards</a><a rel="next" href="i2c.html"><span>next →</span>I²C</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--interfaces.pdf" title="PDF manual">Interfaces</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

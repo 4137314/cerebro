@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Smith chart and impedance matching · Physics</title>
+<meta name="description" content="The Smith chart plots \Gamma=\frac{z-1}{z+1} (with z=Z/Z_0) in the unit disk, where moving along a lossless line is a rotation by -2\beta\ell; matching transforms Z_L to Z_0 (or Z_s^* for maximum power) with L-networks, stubs or quarter-wave sections.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/smith-chart-and-impedance-matching.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The Smith chart and impedance matching · Physics">
+<meta property="og:description" content="The Smith chart plots \Gamma=\frac{z-1}{z+1} (with z=Z/Z_0) in the unit disk, where moving along a lossless line is a rotation by -2\beta\ell; matching transforms Z_L to Z_0 (or Z_s^* for maximum power) with L-networks, stubs or quarter-wave sections.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/smith-chart-and-impedance-matching.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-electromagnetic-fields">Electromagnetic Fields</a> / <a rel="up" href="index.html#a-electromagnetic-fields--transmission-lines">Transmission Lines</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Electromagnetic Fields · Transmission Lines</p>
+<h1>The Smith chart and impedance matching</h1>
+<p class="summary">The Smith chart plots <img class="m" src="m/ca008ae09525d8fc429a57fe641220573a73312d.svg" alt="\(\Gamma=\frac{z-1}{z+1}\)" style="height:1.395em;vertical-align:-0.474em"> (with <img class="m" src="m/70eefb30359671bd0080a2ad6aaf6ddb4e4990ec.svg" alt="\(z=Z/Z_0\)" style="height:1.096em;vertical-align:-0.274em">) in the unit disk, where moving along a lossless line is a rotation by <img class="m" src="m/1f9b8c0885a39a0856512ca1d220292705bf7bef.svg" alt="\(-2\beta\ell\)" style="height:0.974em;vertical-align:-0.214em">; matching transforms <img class="m" src="m/802b3d6a1cc62b2e20223a1a39627dbfe21a9faa.svg" alt="\(Z_L\)" style="height:0.913em;vertical-align:-0.164em"> to <img class="m" src="m/4a3ab7b93af2cd898c4ef01883c7d3100fa9c745.svg" alt="\(Z_0\)" style="height:0.913em;vertical-align:-0.164em"> (or <img class="m" src="m/72220580f142bd6d02f3b57ebda1afe39811ffd8.svg" alt="\(Z_s^*\)" style="height:1.026em;vertical-align:-0.267em"> for maximum power) with L-networks, stubs or quarter-wave sections.</p>
+<p class="rel"><span>needs</span> <a href="transmission-lines.html">Transmission lines</a></p>
+<p class="rel"><span>unlocks</span> <a href="scattering-parameters.html">Scattering parameters</a></p>
+<p class="rel"><span>see also</span> <a href="scattering-parameters.html">Scattering parameters</a>, <a href="impedance-and-ac-circuit-analysis.html">Impedance and the symbolic method</a></p>
+<p class="rel"><span>mentioned in</span> <a href="impedance-and-ac-circuit-analysis.html">Impedance and the symbolic method</a></p>
+<details class="path"><summary>Learning path: 10 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="capacitance-and-laplace-equation.html">Poisson, Laplace and capacitance</a></li><li><a href="poynting-theorem.html">Poynting's theorem and electromagnetic power</a></li><li><a href="plane-waves-in-media.html">Plane waves in lossless and lossy media</a></li><li><a href="transmission-lines.html">Transmission lines</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org2645af7" class="outline-2">
+<h2 id="org2645af7">Method</h2>
+<div class="outline-text-2" id="text-org2645af7">
+<ol class="org-ol">
+<li>Normalise <img class="m" src="m/02cd7732bcc06d504f32b12aa22c195ed0bed048.svg" alt="\(z_L=Z_L/Z_0\)" style="height:1.096em;vertical-align:-0.274em">; plot on the constant-<img class="m" src="m/c4746592dc70211ead899718883f7b978f7e1c75.svg" alt="\(r\)" style="height:0.472em;vertical-align:-0.000em"> circles and constant-<img class="m" src="m/258dcb04caf8c3d82dd7028e1c60cad8a941e7d5.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> arcs.</li>
+<li>Towards the generator: rotate clockwise by <img class="m" src="m/026c06e19047c05db3568d689977913b665c7016.svg" alt="\(2\beta\ell\)" style="height:0.974em;vertical-align:-0.214em"> (half a turn = <img class="m" src="m/678a8fea488607b98b66a53fa8f41ca2feda0e8c.svg" alt="\(\lambda/4\)" style="height:1.096em;vertical-align:-0.274em">); <img class="m" src="m/0292e959339e39ba782ffbec1fda5152759d0cc9.svg" alt="\(|\Gamma|\)" style="height:1.096em;vertical-align:-0.274em"> and VSWR stay constant <span class="cite">(<a class="ref" href="references.html#ref-smith1939" data-full="P. H. Smith, “Transmission line calculator”, Electronics 12, 29–31 (1939)." aria-label="P. H. Smith, “Transmission line calculator”, Electronics 12, 29–31 (1939).">Smith 1939</a>)</span>.</li>
+<li>Admittance = point reflected through the centre.</li>
+<li>Design: reach the <img class="m" src="m/48b6cb7cc4434ed951cd7d7f23535a0d01892bfc.svg" alt="\(r=1\)" style="height:0.706em;vertical-align:-0.000em"> (or <img class="m" src="m/0a248d5e544ba73669befe549b052aec8e743f5e.svg" alt="\(g=1\)" style="height:0.919em;vertical-align:-0.211em">) circle, then cancel the remaining reactance.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgced9d81" class="outline-2">
+<h2 id="orgced9d81">L-network (lumped) design</h2>
+<div class="outline-text-2" id="text-orgced9d81">
+<p>
+For <img class="m" src="m/c1d4986311f994a0d1b98de61a32043b54cae8db.svg" alt="\(R_L&gt;R_s\)" style="height:0.913em;vertical-align:-0.164em">: shunt element at the load, series at the source. <img class="m" src="m/7f0cfd1637f337fde427492b878ea8c0af44fe9a.svg" alt="\(Q=\sqrt{R_L/R_s-1}\)" style="height:1.359em;vertical-align:-0.340em">, <img class="m" src="m/1f5b595672cb44a6b2941fa2674cb574cc5cfa8f.svg" alt="\(X_{series}=QR_s\)" style="height:0.962em;vertical-align:-0.212em">, <img class="m" src="m/03f5832617c18203c030db1fd0bdf1f65f066f8b.svg" alt="\(B_{shunt}=Q/R_L\)" style="height:1.096em;vertical-align:-0.274em">. Bandwidth <img class="m" src="m/dae33ff5cf48116bb34310608565a380f9d834db.svg" alt="\(\approx f_0/Q\)" style="height:1.096em;vertical-align:-0.274em">: high transformation ratios are narrowband (Bode–Fano limit <img class="m" src="m/4dc99ec5a01e77c4e174bb278086bf48124bf7ab.svg" alt="\(\int\ln\frac1{|\Gamma|}\dd\omega\le\pi/RC\)" style="height:1.496em;vertical-align:-0.568em">).
+</p>
+</div>
+</div>
+<div id="outline-container-org31c82e0" class="outline-2">
+<h2 id="org31c82e0">Single shunt stub (derivation sketch)</h2>
+<div class="outline-text-2" id="text-org31c82e0">
+<p>
+Move a distance <img class="m" src="m/d46c245811065c84e021ddbb606829312b52fe11.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em"> from the load until <img class="m" src="m/0a26b455bca3dd00e868de9de59654d92cb5d011.svg" alt="\(y=1+jb\)" style="height:0.974em;vertical-align:-0.214em"> (on the <img class="m" src="m/0a248d5e544ba73669befe549b052aec8e743f5e.svg" alt="\(g=1\)" style="height:0.919em;vertical-align:-0.211em"> circle); place a short-circuited stub of length <img class="m" src="m/09ef2b4dd90b5d569780cad4265f1f20c17392ac.svg" alt="\(\ell_s\)" style="height:0.925em;vertical-align:-0.167em"> with susceptance <img class="m" src="m/06b043f77e07595d6dec053eae090d212110ab31.svg" alt="\(-b\)" style="height:0.852em;vertical-align:-0.094em">: <img class="m" src="m/294402dc45b4a7bd02ab596b6eef29d6d3794677.svg" alt="\(\cot\beta\ell_s=b\)" style="height:0.974em;vertical-align:-0.214em">. Two solutions per wavelength; choose the shorter for bandwidth.
+</p>
+</div>
+</div>
+<div id="outline-container-org607feda" class="outline-2">
+<h2 id="org607feda">Worked example</h2>
+<div class="outline-text-2" id="text-org607feda">
+<p>
+Match <img class="m" src="m/58028ceecf03ffd94092095561afa63f9c105d14.svg" alt="\(Z_L=25-j25\)" style="height:0.962em;vertical-align:-0.212em"> Ω to 50 Ω at 1 GHz. Since <img class="m" src="m/ea43c6e133014b89857777e78ebba95cb62de73c.svg" alt="\(R_L=25&lt;50\)" style="height:0.913em;vertical-align:-0.164em">, put the series element at the load and the shunt element at the source: <img class="m" src="m/7663d6b0bcb8bb5030db6aefcd6c1ab23bca396f.svg" alt="\(Q=\sqrt{50/25-1}=1\)" style="height:1.359em;vertical-align:-0.340em">. Series reactance must turn <img class="m" src="m/289357874a4f4369611fd4d8feca875371ebf0d9.svg" alt="\(-j25\)" style="height:0.936em;vertical-align:-0.215em"> into <img class="m" src="m/79b2acbdb0e31b3eb40654c78774c9a914e08c59.svg" alt="\(+jQR_L=+j25\)" style="height:0.962em;vertical-align:-0.212em">: add <img class="m" src="m/b219237238f1a08a2be979c838ff078c3891e994.svg" alt="\(X=+50\)" style="height:0.840em;vertical-align:-0.092em"> Ω, an inductor <img class="m" src="m/b06cdc077693cceea28e309546e17bdc181c8d7f.svg" alt="\(L=50/(2\pi\cdot10^9)=8.0\)" style="height:1.166em;vertical-align:-0.268em"> nH. Now <img class="m" src="m/783d63018bbec41f4e09d1c4a0d68951f4c9d927.svg" alt="\(Z=25+j25\)" style="height:0.962em;vertical-align:-0.212em">, <img class="m" src="m/63c54fc665f61b7fa1ff32927ddf8c975222857b.svg" alt="\(Y=1/Z=0.02-j0.02\)" style="height:1.096em;vertical-align:-0.274em"> S. A shunt capacitor with <img class="m" src="m/d952bb7fbc9a8b8ad2d5483d045752f5d8e0d926.svg" alt="\(B=+0.02\)" style="height:0.840em;vertical-align:-0.092em"> S (<img class="m" src="m/98ce3945e369c2d7f4099ba765840a6807bdf1fe.svg" alt="\(C=0.02/(2\pi\cdot10^9)=3.2\)" style="height:1.166em;vertical-align:-0.268em"> pF) leaves <img class="m" src="m/dfab4513990707c65c38eada1750c61bace3f7c3.svg" alt="\(Y=0.02\)" style="height:0.749em;vertical-align:-0.000em"> S, i.e. 50 Ω. Matched.
+</p>
+</div>
+</div>
+<div id="outline-container-org977fc24" class="outline-2">
+<h2 id="org977fc24">Engineering applications</h2>
+<div class="outline-text-2" id="text-org977fc24">
+<p>
+Matching LNAs and power amplifiers, antenna feeds, RFID and NFC coils, impedance tuners in load-pull, broadband matching with multisection (Chebyshev) transformers.
+</p>
+</div>
+</div>
+<div id="outline-container-org5e06a0e" class="outline-2">
+<h2 id="org5e06a0e">Pitfall</h2>
+<div class="outline-text-2" id="text-org5e06a0e">
+<p>
+Maximum power transfer needs <img class="m" src="m/ddacbe5a499892556b16be467640926e095207eb.svg" alt="\(Z_L=Z_s^*\)" style="height:1.026em;vertical-align:-0.267em"> (conjugate), which is not the same as minimum reflection on a line unless <img class="m" src="m/14d6e0beb2961f2c0db88e40591c4aba77869507.svg" alt="\(Z_s=Z_0\)" style="height:0.913em;vertical-align:-0.164em"> real; for amplifiers, noise matching and power matching are different targets.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="transmission-lines.html"><span>← previous</span>Transmission lines</a><a rel="next" href="scattering-parameters.html"><span>next →</span>Scattering parameters</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/electromagnetic-fields--transmission-lines.pdf" title="PDF manual">Transmission Lines</a> · <a class="pdf" href="pdf/electromagnetic-fields.pdf" title="PDF manual">Electromagnetic Fields</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

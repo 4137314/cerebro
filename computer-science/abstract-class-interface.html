@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abstract classes and interfaces · Computer Science</title>
+<meta name="description" content="An abstract class has at least one method without a body and cannot be instantiated; an interface is a set of method signatures that classes implement, giving multiple inheritance of type without multiple inheritance of state.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/abstract-class-interface.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Abstract classes and interfaces · Computer Science">
+<meta property="og:description" content="An abstract class has at least one method without a body and cannot be instantiated; an interface is a set of method signatures that classes implement, giving multiple inheritance of type without multiple inheritance of state.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/abstract-class-interface.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--oop">Oop</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Oop</p>
+<h1>Abstract classes and interfaces</h1>
+<p class="summary">An abstract class has at least one method without a body and cannot be instantiated; an interface is a set of method signatures that classes implement, giving multiple inheritance of type without multiple inheritance of state.</p>
+<p class="rel"><span>needs</span> <a href="polymorphism.html">Polymorphism and dynamic binding</a></p>
+<p class="rel"><span>unlocks</span> <a href="java-inner-classes.html">Nested, inner and anonymous classes</a>, <a href="event-handling.html">Event-driven programming and event handlers</a></p>
+<p class="rel"><span>see also</span> <a href="virtual-functions.html">Virtual functions and the virtual table</a>, <a href="java-generics.html">Java generics and type erasure</a>, <a href="event-handling.html">Event-driven programming and event handlers</a>, <a href="comparable-comparator.html">Comparable and Comparator</a>, <a href="java-inner-classes.html">Nested, inner and anonymous classes</a></p>
+<p class="rel"><span>mentioned in</span> <a href="multiple-inheritance.html">Multiple inheritance and the diamond</a>, <a href="virtual-functions.html">Virtual functions and the virtual table</a>, <a href="pla-pal.html">PLA and PAL</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgd1c6ea8" class="outline-2">
+<h2 id="orgd1c6ea8">Definition</h2>
+<div class="outline-text-2" id="text-orgd1c6ea8">
+<ul class="org-ul">
+<li><b>Abstract method</b>: declared without a body; <code>abstract void draw();</code> (Java), <code>virtual void draw() = 0;</code> (C++, <a href="virtual-functions.html">pure virtual</a>).</li>
+<li><b>Abstract class</b>: has at least one abstract method (Java can also mark it <code>abstract</code> explicitly). It has no instances, but can have fields, constructors and concrete methods; subclasses become concrete when they implement every abstract method.</li>
+<li><b>Interface</b> (Java): a collection of method signatures and constants, no state. A class <code>implements</code> any number of interfaces and must give a body to every method (or be abstract). Since Java 8 interfaces may have <code>default</code> and <code>static</code> methods. An interface can <code>extend</code> several interfaces. Empty marker interfaces (<code>Cloneable</code>, <code>Serializable</code>) label a capability.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8956307" class="outline-2">
+<h2 id="org8956307">Why interfaces</h2>
+<div class="outline-text-2" id="text-org8956307">
+<p>
+With <a href="uml-generalization.html">multiple inheritance</a> of classes, two superclasses can provide conflicting implementations of the same method (the <a href="multiple-inheritance.html">diamond problem</a>). Java separates the two uses of inheritance: a single hierarchy of classes for implementation, a multiple hierarchy of interfaces for types. An <code>Animal</code> can be both <code>Flying</code> and <code>Swimming</code> (a duck) without inheriting two bodies of <code>move()</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb73cba2" class="outline-2">
+<h2 id="orgb73cba2">Picture</h2>
+<div class="outline-text-2" id="text-orgb73cba2">
+<figure class="fig"><img class="m" src="m/053f0766020151139b04bf55e354a6a6bf969c91.svg" alt="figure" style="width:23.430em"><figcaption><span class="fl">Figure 1.</span> UML of a class extending the abstract class Animal and implementing the interfaces Flying and Swimming: Duck.</figcaption></figure>
+<p>
+One <a href="inheritance.html">superclass</a> (solid), many interfaces (dashed).
+</p>
+</div>
+</div>
+<div id="outline-container-org3789c01" class="outline-2">
+<h2 id="org3789c01">Example</h2>
+<div class="outline-text-2" id="text-org3789c01">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">interface</span> <span class="t">Shape</span> {
+    <span class="t">double</span> <span class="f">area</span>();
+    <span class="k">default</span> <span class="t">String</span> <span class="f">describe</span>() { <span class="k">return</span> <span class="s">"area "</span> + area(); }
+}
+<span class="k">abstract</span> <span class="k">class</span> <span class="t">Polygon</span> <span class="k">implements</span> <span class="t">Shape</span> { <span class="k">protected</span> <span class="t">int</span> <span class="v">sides</span>; }
+<span class="k">class</span> <span class="t">Square</span> <span class="k">extends</span> <span class="t">Polygon</span> {
+    <span class="k">private</span> <span class="k">final</span> <span class="t">double</span> <span class="v">l</span>;
+    <span class="f">Square</span>(<span class="t">double</span> <span class="v">l</span>) { <span class="k">this</span>.l = l; sides = 4; }
+    <span class="k">public</span> <span class="t">double</span> <span class="f">area</span>() { <span class="k">return</span> l * l; }
+}
+<span class="t">Shape</span> <span class="v">s</span> = <span class="k">new</span> <span class="t">Square</span>(2);  <span class="c">// an interface is a type: polymorphism as usual</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orgd72c841" class="outline-2">
+<h2 id="orgd72c841">Intuition</h2>
+<div class="outline-text-2" id="text-orgd72c841">
+<p>
+An interface is a role a class can play; an abstract class is an unfinished class that shares code with its children.
+</p>
+</div>
+</div>
+<div id="outline-container-org5ada072" class="outline-2">
+<h2 id="org5ada072">Pitfall</h2>
+<div class="outline-text-2" id="text-org5ada072">
+<p>
+An interface cannot be instantiated, but <code>new Shape() { ... }</code> is legal: it creates an <a href="event-handling.html">anonymous class</a> that implements it.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="polymorphism.html"><span>← previous</span>Polymorphism and dynamic binding</a><a rel="next" href="exception-handling.html"><span>next →</span>Exceptions</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--oop.pdf" title="PDF manual">Oop</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

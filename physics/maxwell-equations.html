@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maxwell's equations · Physics</title>
+<meta name="description" content="\nabla\cdot\mathbf D=\rho, \nabla\cdot\mathbf B=0, \nabla\times\mathbf E=-\partial_t\mathbf B, \nabla\times\mathbf H=\mathbf J+\partial_t\mathbf D; the displacement current makes charge conservation consistent and predicts waves at c=1/\sqrt{\mu_0\epsilon_0}; in phasor form \partial_t\to j\omega.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/maxwell-equations.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Maxwell's equations · Physics">
+<meta property="og:description" content="\nabla\cdot\mathbf D=\rho, \nabla\cdot\mathbf B=0, \nabla\times\mathbf E=-\partial_t\mathbf B, \nabla\times\mathbf H=\mathbf J+\partial_t\mathbf D; the displacement current makes charge conservation consistent and predicts waves at c=1/\sqrt{\mu_0\epsilon_0}; in phasor form \partial_t\to j\omega.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/maxwell-equations.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-electromagnetic-fields">Electromagnetic Fields</a> / <a rel="up" href="index.html#a-electromagnetic-fields--maxwell">Maxwell</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Electromagnetic Fields · Maxwell</p>
+<h1>Maxwell's equations</h1>
+<p class="summary"><img class="m" src="m/61b5f1c30bed3e599290c70b5e97322cc84df209.svg" alt="\(\nabla\cdot\mathbf D=\rho\)" style="height:0.965em;vertical-align:-0.212em">, <img class="m" src="m/067d2c5029619ea2ea4bc2c98b6cdd6f0c4ee2c6.svg" alt="\(\nabla\cdot\mathbf B=0\)" style="height:0.752em;vertical-align:-0.000em">, <img class="m" src="m/19e286e5458d4ac14c3da9ecb1f85a678037f035.svg" alt="\(\nabla\times\mathbf E=-\partial_t\mathbf B\)" style="height:0.925em;vertical-align:-0.167em">, <img class="m" src="m/94f6bb1f4b405038eee21caf82c40e90b993b571.svg" alt="\(\nabla\times\mathbf H=\mathbf J+\partial_t\mathbf D\)" style="height:0.925em;vertical-align:-0.167em">; the displacement current makes charge conservation consistent and predicts waves at <img class="m" src="m/d0a0f98cd6075be21f5f67eb5afd9b8d17b8f8fd.svg" alt="\(c=1/\sqrt{\mu_0\epsilon_0}\)" style="height:1.191em;vertical-align:-0.369em">; in phasor form <img class="m" src="m/9b7056a00cf0936cfe1748e8142b9c8bcd882d28.svg" alt="\(\partial_t\to j\omega\)" style="height:0.974em;vertical-align:-0.214em">.</p>
+<p class="rel"><span>needs</span> <a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></p>
+<p class="rel"><span>unlocks</span> <a href="quantization-of-the-electromagnetic-field.html">Quantisation of the electromagnetic field</a>, <a href="potentials-and-gauges.html">Potentials, gauges and retarded potentials</a>, <a href="poynting-theorem.html">Poynting's theorem and electromagnetic power</a>, <a href="kirchhoff-laws-and-network-theorems.html">Kirchhoff's laws and network theorems</a></p>
+<p class="rel"><span>see also</span> <a href="potentials-and-gauges.html">Potentials, gauges and retarded potentials</a>, <a href="poynting-theorem.html">Poynting's theorem and electromagnetic power</a>, <a href="plane-waves-in-media.html">Plane waves in lossless and lossy media</a>, <a href="four-vectors-and-lorentz-transformations.html">Four-vectors, natural units and Mandelstam variables</a></p>
+<p class="rel"><span>mentioned in</span> <a href="complex-numbers-and-phasors.html">Complex numbers and phasors</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org0411927" class="outline-2">
+<h2 id="org0411927">Statement</h2>
+<div class="outline-text-2" id="text-org0411927">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">law</th>
+<th scope="col" class="org-left">differential</th>
+<th scope="col" class="org-left">integral</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Gauss (E)</td>
+<td class="org-left">∇·D = ρ</td>
+<td class="org-left">∮ D·dS = Q</td>
+</tr>
+
+<tr>
+<td class="org-left">Gauss (B)</td>
+<td class="org-left">∇·B = 0</td>
+<td class="org-left">∮ B·dS = 0</td>
+</tr>
+
+<tr>
+<td class="org-left">Faraday</td>
+<td class="org-left">∇×E = −∂B/∂t</td>
+<td class="org-left">∮ E·dl = −dΦ/dt</td>
+</tr>
+
+<tr>
+<td class="org-left">Ampère–M.</td>
+<td class="org-left">∇×H = J + ∂D/∂t</td>
+<td class="org-left">∮ H·dl = I + d/dt ∫ D·dS</td>
+</tr>
+</tbody>
+</table>
+<p>
+Constitutive: <img class="m" src="m/105cee60315dbc6afed8341ab7407058b8bd6e64.svg" alt="\(\mathbf D=\epsilon\mathbf E\)" style="height:0.752em;vertical-align:-0.000em">, <img class="m" src="m/a2042dc9eb5d3d9c72475766e64b409572cb4e0d.svg" alt="\(\mathbf B=\mu\mathbf H\)" style="height:0.965em;vertical-align:-0.212em">, <img class="m" src="m/c1c26cd20f95034aa34bc39674db92448464f193.svg" alt="\(\mathbf J=\sigma\mathbf E\)" style="height:0.752em;vertical-align:-0.000em"> (linear isotropic media).
+</p>
+</div>
+</div>
+<div id="outline-container-orgd053611" class="outline-2">
+<h2 id="orgd053611">Derivation: why the displacement current</h2>
+<div class="outline-text-2" id="text-orgd053611">
+<p>
+Taking the divergence of Ampère's static law gives <img class="m" src="m/b70680bb80e2476c689bc219374f2649b2444186.svg" alt="\(\nabla\cdot\mathbf J=0\)" style="height:0.752em;vertical-align:-0.000em">, false when charge accumulates (charging capacitor) <span class="cite">(<a class="ref" href="https://doi.org/10.1098/rstl.1865.0008" data-full="J. C. Maxwell, “A dynamical theory of the electromagnetic field”, Philosophical Transactions of the Royal Society of London 155, 459–512 (1865)." aria-label="J. C. Maxwell, “A dynamical theory of the electromagnetic field”, Philosophical Transactions of the Royal Society of London 155, 459–512 (1865).">Maxwell 1865</a>)</span>. Continuity <img class="m" src="m/150a3aa4244e6a8f92748630e413dab1f9d4e3a1.svg" alt="\(\nabla\cdot\mathbf J=-\partial_t\rho=-\partial_t\nabla\cdot\mathbf D\)" style="height:0.974em;vertical-align:-0.214em"> requires adding <img class="m" src="m/13b87d52d3ab5a737eb52c680e6b6b45b7acd3a8.svg" alt="\(\partial_t\mathbf D\)" style="height:0.925em;vertical-align:-0.167em">. Then in vacuum, <img class="m" src="m/e94fbf7b1d3dee4fa130a3fda0005de63063fb56.svg" alt="\(\nabla\times\nabla\times\mathbf E=-\mu_0\epsilon_0\partial_t^2\mathbf E\)" style="height:1.163em;vertical-align:-0.267em"> and <img class="m" src="m/08af7daed91dc8208568accda5c0ecec34ceaeec.svg" alt="\(\nabla\cdot\mathbf E=0\)" style="height:0.752em;vertical-align:-0.000em"> give
+<div class="mb"><img class="m" src="m/4b72eefe30c20fd55089d9452309ae6e01824ea7.svg" alt="\[ \nabla^2\mathbf E=\mu_0\epsilon_0\frac{\partial^2\mathbf E}{\partial t^2},\qquad c=\frac{1}{\sqrt{\mu_0\epsilon_0}}=2.998\times10^8\text{ m/s}. \]" style="width:25.334em"></div>
+</p>
+</div>
+</div>
+<div id="outline-container-orgd10b5de" class="outline-2">
+<h2 id="orgd10b5de">Boundary conditions</h2>
+<div class="outline-text-2" id="text-orgd10b5de">
+<p>
+<img class="m" src="m/2846cc52bccb686daf2dd71fd725dada64b8ffdd.svg" alt="\(\hat n\times(\mathbf E_1-\mathbf E_2)=0\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/706879aecfedafc1570f2ec6190ad3b41e4138e3.svg" alt="\(\hat n\times(\mathbf H_1-\mathbf H_2)=\mathbf J_s\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/e3fe797c8ed11c95a9abb8ee56ae58b383f73a81.svg" alt="\(\hat n\cdot(\mathbf D_1-\mathbf D_2)=\rho_s\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/ff78cfb924c394df127c5b6275cdb5b2c8041f38.svg" alt="\(\hat n\cdot(\mathbf B_1-\mathbf B_2)=0\)" style="height:1.096em;vertical-align:-0.274em">. Perfect conductor: <img class="m" src="m/401139319ea242d48dff41d4b12b2211c8ee027c.svg" alt="\(\mathbf E_t=0\)" style="height:0.916em;vertical-align:-0.165em">, <img class="m" src="m/f6b067203a10b29b347147741f0b404f2b4f13d9.svg" alt="\(\mathbf B_n=0\)" style="height:0.916em;vertical-align:-0.165em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org111b2c7" class="outline-2">
+<h2 id="org111b2c7">Time-harmonic form</h2>
+<div class="outline-text-2" id="text-org111b2c7">
+<p>
+With <img class="m" src="m/46512a7f378ec3014de39d095b3a93761c05aad0.svg" alt="\(\mathbf E(\mathbf r,t)=\mathrm{Re}[\mathbf E(\mathbf r)e^{j\omega t}]\)" style="height:1.179em;vertical-align:-0.271em">: <img class="m" src="m/03b6602179461dc90297c59fb41a0cb9888701da.svg" alt="\(\nabla\times\mathbf E=-j\omega\mu\mathbf H\)" style="height:0.965em;vertical-align:-0.212em">, <img class="m" src="m/8eb798f4e05787514717791373c71724e523cbe5.svg" alt="\(\nabla\times\mathbf H=(\sigma+j\omega\epsilon)\mathbf E\)" style="height:1.096em;vertical-align:-0.274em">. Complex permittivity <img class="m" src="m/f6236c6faa577e9d06c1f121e104718d5ea4bbd2.svg" alt="\(\epsilon_c=\epsilon-j\sigma/\omega\)" style="height:1.096em;vertical-align:-0.274em">; loss tangent <img class="m" src="m/3177331962025e5ddcc145924f36bf8e1c73c3e3.svg" alt="\(\tan\delta=\sigma/\omega\epsilon\)" style="height:1.096em;vertical-align:-0.274em">. Helmholtz equation <img class="m" src="m/2356c27e3bd15ebfd602f3e81139692d31c1bab0.svg" alt="\(\nabla^2\mathbf E+k^2\mathbf E=0\)" style="height:0.983em;vertical-align:-0.089em">, <img class="m" src="m/246f95b8417b3328aac67620eadc89180966f8e5.svg" alt="\(k=\omega\sqrt{\mu\epsilon_c}\)" style="height:1.140em;vertical-align:-0.365em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org9093a2e" class="outline-2">
+<h2 id="org9093a2e">Worked example</h2>
+<div class="outline-text-2" id="text-org9093a2e">
+<p>
+Capacitor charged at <img class="m" src="m/c3ca74f0767bb8a9919e19fbe8b4d38406c333cb.svg" alt="\(I=1\)" style="height:0.749em;vertical-align:-0.000em"> A: between the plates, <img class="m" src="m/b5f9910f789c84db3a582030f9b8d5abb866e7b2.svg" alt="\(\partial_tD\cdot A=I\)" style="height:0.925em;vertical-align:-0.167em">, so Ampère's loop around the gap still encloses 1 A — of displacement current. For copper at 1 GHz, <img class="m" src="m/9fb2e1ec3a1ba1b96ee9b65a41c530fb3e65d0fe.svg" alt="\(\sigma/\omega\epsilon_0=5.8\times10^7/(2\pi\cdot10^9\cdot8.85\times10^{-12})\approx10^9\)" style="height:1.166em;vertical-align:-0.268em">: conduction current dominates; in sea water (<img class="m" src="m/e443d839a80884a53c39aadbb5c412aa82814e11.svg" alt="\(\sigma=4\)" style="height:0.706em;vertical-align:-0.000em"> S/m, <img class="m" src="m/dc833061987fca6d7a67c8d7bccd0f116e89e31e.svg" alt="\(\epsilon_r=81\)" style="height:0.871em;vertical-align:-0.165em">) at 1 MHz, <img class="m" src="m/f677f7f98f519b05e3d9ba11aa35b8aaa729fbed.svg" alt="\(\sigma/\omega\epsilon\approx900\)" style="height:1.096em;vertical-align:-0.274em">, at 10 GHz <img class="m" src="m/48361824df486f24a5e24525fd5b554ea8b9cdc2.svg" alt="\(\approx0.09\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org661c40f" class="outline-2">
+<h2 id="org661c40f">Engineering applications</h2>
+<div class="outline-text-2" id="text-org661c40f">
+<p>
+Every EM simulator (FDTD, FEM, MoM) solves these four equations; signal integrity, antennas, waveguides, optical fibres, wireless power and EMC all start here. Quantising the free field gives <a href="quantization-of-the-electromagnetic-field.html">photons</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-orge3b1c21" class="outline-2">
+<h2 id="orge3b1c21">Pitfall</h2>
+<div class="outline-text-2" id="text-orge3b1c21">
+<p>
+Phasor convention: engineering uses <img class="m" src="m/4df40f0403b7c15b711d880a78a096ea3685331f.svg" alt="\(e^{j\omega t}\)" style="height:0.905em;vertical-align:-0.000em"> (waves <img class="m" src="m/82511175a467a6a82e15c0fba36179bbbc72aaa9.svg" alt="\(e^{-jkz}\)" style="height:0.930em;vertical-align:-0.000em">), physics <img class="m" src="m/a75d3a14fb50ce688da600aa197453e94c9e3a6d.svg" alt="\(e^{-i\omega t}\)" style="height:0.905em;vertical-align:-0.000em"> (waves <img class="m" src="m/54cbf5ee478ebcaebad53f03782c09df02b96fad.svg" alt="\(e^{ikz}\)" style="height:0.930em;vertical-align:-0.000em">); signs of imaginary parts (losses, <img class="m" src="m/94e9acd0120004e5bfcae60cd8896c1edfb7ac16.svg" alt="\(\epsilon''\)" style="height:0.824em;vertical-align:-0.000em">) flip between texts.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="faraday-law-and-induction.html"><span>← previous</span>Faraday's law and electromagnetic induction</a><a rel="next" href="potentials-and-gauges.html"><span>next →</span>Potentials, gauges and retarded potentials</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/electromagnetic-fields--maxwell.pdf" title="PDF manual">Maxwell</a> · <a class="pdf" href="pdf/electromagnetic-fields.pdf" title="PDF manual">Electromagnetic Fields</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

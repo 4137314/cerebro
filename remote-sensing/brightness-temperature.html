@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brightness temperature and surface temperature · Remote Sensing</title>
+<meta name="description" content="The brightness temperature is the temperature a black body would need to emit the measured radiance, obtained by inverting Planck's law T_B=c_2/\big(\lambda\ln(1+c_1\lambda^{-5}/L)\big); it underestimates the kinetic temperature of a real surface because \varepsilon&lt;1, so land-surface temperature r…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/brightness-temperature.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Brightness temperature and surface temperature · Remote Sensing">
+<meta property="og:description" content="The brightness temperature is the temperature a black body would need to emit the measured radiance, obtained by inverting Planck's law T_B=c_2/\big(\lambda\ln(1+c_1\lambda^{-5}/L)\big); it underestimates the kinetic temperature of a real surface because \varepsilon&lt;1, so land-surface temperature r…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/brightness-temperature.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-physics">Physics</a> / <a rel="up" href="index.html#a-physics--radiation">Radiation</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Physics · Radiation</p>
+<h1>Brightness temperature and surface temperature</h1>
+<p class="summary">The brightness temperature is the temperature a black body would need to emit the measured radiance, obtained by inverting Planck's law <img class="m" src="m/8d0c7f18bf55bf2cdaf2f4363cc60120760421d4.svg" alt="\(T_B=c_2/\big(\lambda\ln(1+c_1\lambda^{-5}/L)\big)\)" style="height:1.315em;vertical-align:-0.381em">; it underestimates the kinetic temperature of a real surface because <img class="m" src="m/69d71836feb4b3455ac039ae61e2d7bafb16492e.svg" alt="\(\varepsilon&lt;1\)" style="height:0.749em;vertical-align:-0.045em">, so land-surface temperature retrieval corrects for emissivity and atmosphere.</p>
+<p class="rel"><span>needs</span> <a href="planck-law.html">Black body and Planck's law</a>, <a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></p>
+<p class="rel"><span>see also</span> <a href="sun-earth-radiation.html">The Sun and the Earth as sources</a>, <a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org4fcbdea" class="outline-2">
+<h2 id="org4fcbdea">Definition</h2>
+<div class="outline-text-2" id="text-org4fcbdea">
+<p>
+From <a href="radiometric-quantities.html">spectral radiance</a> <img class="m" src="m/910336e0c726b498a6d7f7c7e30ed33465c194bb.svg" alt="\(L_\lambda\)" style="height:0.913em;vertical-align:-0.164em"> (in the form <img class="m" src="m/4df47a17beab13c2c57e7cc09beba72186c48e76.svg" alt="\(L=B/\pi\)" style="height:1.096em;vertical-align:-0.274em"> for radiance):
+<div class="mb"><img class="m" src="m/562df2e5e7598e0b5ce08017a0ac097796a7ebbb.svg" alt="\[ T_B=\frac{c_2}{\lambda\,\ln\!\left(1+\dfrac{c_1'}{\lambda^5L_\lambda}\right)},\qquad c_1'=2hc^2,\ c_2=\frac{hc}{k}=14388\ \mu\mathrm{m\,K}. \]" style="width:30.630em"></div>
+<a href="earth-observation-missions.html">Landsat</a> provides it per band as <img class="m" src="m/969cdedb45a4726e7ab76290083643e69b54a9ae.svg" alt="\(T_B=K_2/\ln(1+K_1/L)\)" style="height:1.096em;vertical-align:-0.274em"> with tabulated <img class="m" src="m/c16276e2c12516c0e008165deead9f87fae19249.svg" alt="\(K_1,K_2\)" style="height:0.962em;vertical-align:-0.212em">.
+For a <a href="gray-body.html">gray body</a> at kinetic temperature <img class="m" src="m/94739ec580d0267ce9639c71ab70cb61aed32135.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em">: <img class="m" src="m/61163287412a37eebde8e61ea5a21ccb5c34ff39.svg" alt="\(\varepsilon B(\lambda,T)=B(\lambda,T_B)\)" style="height:1.096em;vertical-align:-0.274em">, hence <img class="m" src="m/efaa686501e1e7460ec0fe518f4bc259d0659bf8.svg" alt="\(T_B&lt;T\)" style="height:0.913em;vertical-align:-0.164em">. In the Rayleigh–Jeans regime (microwaves) <img class="m" src="m/f711f2d678e6a836a53a2257f2579a6f32914d5b.svg" alt="\(T_B\approx\varepsilon T\)" style="height:0.913em;vertical-align:-0.164em"> exactly.
+</p>
+</div>
+</div>
+<div id="outline-container-org4eb9e6d" class="outline-2">
+<h2 id="org4eb9e6d">Example</h2>
+<div class="outline-text-2" id="text-org4eb9e6d">
+<p>
+At 11 µm, a surface at 300 K with <img class="m" src="m/1c3bba3d280a5b96e396f7c289f1177572b3de0a.svg" alt="\(\varepsilon=0.95\)" style="height:0.706em;vertical-align:-0.000em">: <img class="m" src="m/763940bcec4109b39a9df284ba3b0ce9bf6e0b18.svg" alt="\(\partial\ln B/\partial T=c_2/(\lambda T^2)\approx0.0145\)" style="height:1.166em;vertical-align:-0.268em"> K<img class="m" src="m/af83f4fda75cfae92fbea92bca01ba797c9487f4.svg" alt="\(^{-1}\)" style="height:0.892em;vertical-align:-0.000em">, so a 5% radiance deficit is <img class="m" src="m/49b6f6cc2ef27d4b6849f61b737ab6049536cb72.svg" alt="\(\Delta T\approx-\ln(0.95)/0.0145\approx3.5\)" style="height:1.096em;vertical-align:-0.274em"> K: <img class="m" src="m/497f8878fa6c4689b137fa26d764fed84356d652.svg" alt="\(T_B\approx296.5\)" style="height:0.913em;vertical-align:-0.164em"> K. Neglecting emissivity costs several kelvin.
+</p>
+</div>
+</div>
+<div id="outline-container-org45572ae" class="outline-2">
+<h2 id="org45572ae">Corrections</h2>
+<div class="outline-text-2" id="text-org45572ae">
+<ul class="org-ul">
+<li><b>emissivity</b>: from land-cover class or NDVI-based estimates;</li>
+<li><b>atmosphere</b>: water vapour absorbs and emits; <b>split-window</b> algorithms combine two thermal bands (e.g. 11 and 12 µm) whose different absorption cancels most of the effect.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org19ed455" class="outline-2">
+<h2 id="org19ed455">Intuition</h2>
+<div class="outline-text-2" id="text-org19ed455">
+<p>
+Brightness temperature is "how hot it looks"; kinetic temperature is "how hot it is". They coincide only for a perfect emitter.
+</p>
+</div>
+</div>
+<div id="outline-container-orgacea5d1" class="outline-2">
+<h2 id="orgacea5d1">Pitfall</h2>
+<div class="outline-text-2" id="text-orgacea5d1">
+<p>
+Comparing thermal images of surfaces with different emissivity (water, rock, metal roofs) as if they were temperatures mislabels cool materials as hot and vice versa.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="gray-body.html"><span>← previous</span>Real bodies: emissivity and Kirchhoff's law</a><a rel="next" href="wien-stefan-boltzmann.html"><span>next →</span>Stefan–Boltzmann and Wien laws</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/physics--radiation.pdf" title="PDF manual">Radiation</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">Physics</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

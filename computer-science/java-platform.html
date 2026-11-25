@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Java platform · Computer Science</title>
+<meta name="description" content="javac compiles .java sources to bytecode in .class files; the Java Virtual Machine loads, verifies and runs that bytecode (interpreting and JIT-compiling it) on any operating system, with a garbage-collected heap and a large standard library.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/java-platform.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The Java platform · Computer Science">
+<meta property="og:description" content="javac compiles .java sources to bytecode in .class files; the Java Virtual Machine loads, verifies and runs that bytecode (interpreting and JIT-compiling it) on any operating system, with a garbage-collected heap and a large standard library.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/java-platform.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--java">Java</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Programming · Java</p>
+<h1>The Java platform</h1>
+<p class="summary"><code>javac</code> compiles <code>.java</code> sources to bytecode in <code>.class</code> files; the Java Virtual Machine loads, verifies and runs that bytecode (interpreting and JIT-compiling it) on any operating system, with a garbage-collected heap and a large standard library.</p>
+<p class="rel"><span>unlocks</span> <a href="java-references.html">Objects, references and garbage collection in Java</a>, <a href="javafx-scene-graph.html">JavaFX: stage, scene and the node tree</a></p>
+<p class="rel"><span>see also</span> <a href="java-references.html">Objects, references and garbage collection in Java</a>, <a href="object-oriented-programming.html">Object-oriented programming</a>, <a href="javafx-scene-graph.html">JavaFX: stage, scene and the node tree</a></p>
+</header>
+<main class="note">
+<div id="outline-container-org239de37" class="outline-2">
+<h2 id="org239de37">Model</h2>
+<div class="outline-text-2" id="text-org239de37">
+<ul class="org-ul">
+<li><b>Source</b>: one public class per file <code>Name.java</code>; classes grouped in <a href="java-packages.html">packages</a>.</li>
+<li><b>Compilation</b>: <code>javac Name.java</code> produces <code>Name.class</code>, containing bytecode for a stack-based <a href="virtual-functions.html">virtual</a> machine, not machine code.</li>
+<li><b>Execution</b>: <code>java Name</code> starts a JVM, which loads the classes on demand, verifies the bytecode, interprets it and compiles the hot parts to native code (just-in-time). Entry point: <code>public static void main(String[] args)</code>.</li>
+<li><b>Platform</b>: JDK (compiler and tools) ⊃ JRE (JVM and libraries). The reference implementation is OpenJDK.</li>
+</ul>
+
+<p>
+Java is C-like in syntax but removes pointers with arithmetic and manual memory, and adds classes, inheritance, polymorphism and a standard library for I/O, threads, <a href="java-collections.html">collections</a>, <a href="java-exceptions.html">exceptions</a> and networking.
+</p>
+</div>
+</div>
+<div id="outline-container-org2a9de01" class="outline-2">
+<h2 id="org2a9de01">Picture</h2>
+<div class="outline-text-2" id="text-org2a9de01">
+<figure class="fig"><img class="m" src="m/c5030dafce32bd432a67fec03eb661d148a9af64.svg" alt="figure" style="width:29.633em"><figcaption><span class="fl">Figure 1.</span> The Java platform: javac compiles Hello.java to bytecode, which the JVM of each system (Linux, Windows) runs unchanged.</figcaption></figure>
+<p>
+One compiled artefact, many machines.
+</p>
+</div>
+</div>
+<div id="outline-container-org7d43b1e" class="outline-2">
+<h2 id="org7d43b1e">History</h2>
+<div class="outline-text-2" id="text-org7d43b1e">
+<p>
+Born at Sun in the early 1990s for consumer electronics, re-targeted in 1994 to the Web (moving code, not only data, between client and server), general purpose from 1996, acquired by Oracle with Sun in 2010. Android uses Java (and Kotlin) on its own, incompatible, virtual machine.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbf29396" class="outline-2">
+<h2 id="orgbf29396">Intuition</h2>
+<div class="outline-text-2" id="text-orgbf29396">
+<p>
+C++ compiles for the machine; Java compiles for an imaginary machine and ships a program that emulates it everywhere.
+</p>
+</div>
+</div>
+<div id="outline-container-org3fc42b6" class="outline-2">
+<h2 id="org3fc42b6">Pitfall</h2>
+<div class="outline-text-2" id="text-org3fc42b6">
+<p>
+"Compiles" is not "runs": classes are loaded at run time, so a missing class or a version mismatch shows up as <code>NoClassDefFoundError</code> or <code>UnsupportedClassVersionError</code> only when the code is executed.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="java-generics.html"><span>← previous</span>Java generics and type erasure</a><a rel="next" href="java-references.html"><span>next →</span>Objects, references and garbage collection in Java</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--java.pdf" title="PDF manual">Java</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

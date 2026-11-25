@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>List scheduling · Computer Science</title>
+<meta name="description" content="Scheduling with limited resources is NP-hard; list scheduling goes cycle by cycle, keeps the operations whose predecessors are done (ready list) and starts as many as the free units allow, choosing by priority — usually the smallest mobility or the longest path to the sink; a dual version minimises…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/list-scheduling.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="List scheduling · Computer Science">
+<meta property="og:description" content="Scheduling with limited resources is NP-hard; list scheduling goes cycle by cycle, keeps the operations whose predecessors are done (ready list) and starts as many as the free units allow, choosing by priority — usually the smallest mobility or the longest path to the sink; a dual version minimises…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/list-scheduling.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--high-level-synthesis">High Level Synthesis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Hardware · High Level Synthesis</p>
+<h1>List scheduling</h1>
+<p class="summary">Scheduling with limited resources is NP-hard; list scheduling goes cycle by cycle, keeps the operations whose predecessors are done (ready list) and starts as many as the free units allow, choosing by priority — usually the smallest mobility or the longest path to the sink; a dual version minimises resources under a latency bound.</p>
+<p class="rel"><span>needs</span> <a href="asap-alap-scheduling.html">ASAP and ALAP scheduling, mobility</a>, <a href="np-hard-optimization.html">Hard optimization problems and heuristics</a></p>
+<p class="rel"><span>unlocks</span> <a href="resource-binding.html">Resource sharing and binding</a></p>
+<p class="rel"><span>see also</span> <a href="resource-binding.html">Resource sharing and binding</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="big-o-complexity.html">Computational complexity and big-O</a></li><li><a href="digital-design-flow.html">Digital design flow and abstraction levels</a></li><li><a href="np-hard-optimization.html">Hard optimization problems and heuristics</a></li><li><a href="data-flow-graph.html">Data-flow graphs and architectural synthesis</a></li><li><a href="asap-alap-scheduling.html">ASAP and ALAP scheduling, mobility</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org0a7445d" class="outline-2">
+<h2 id="org0a7445d">Method</h2>
+<div class="outline-text-2" id="text-org0a7445d">
+<p>
+<b>Resource-constrained</b> (minimise latency with <img class="m" src="m/f1941bb44ada39f1472a17abbd30cd8265ef0eb8.svg" alt="\(a_k\)" style="height:0.636em;vertical-align:-0.165em"> units of type <img class="m" src="m/ab474955bf3a453be6c3259db9214b4a610e4bf7.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em">): in each cycle <img class="m" src="m/fe915aa82580a7488d31c0d44f681e4e1c78f753.svg" alt="\(l\)" style="height:0.761em;vertical-align:-0.000em">, for each type <img class="m" src="m/ab474955bf3a453be6c3259db9214b4a610e4bf7.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em">
+</p>
+<ol class="org-ol">
+<li><img class="m" src="m/47d8cc6761592be53a9a1c25cb2f83ef1b1798a0.svg" alt="\(U_{l,k}\)" style="height:1.062em;vertical-align:-0.319em">: ready operations of type <img class="m" src="m/ab474955bf3a453be6c3259db9214b4a610e4bf7.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> (all predecessors finished);</li>
+<li><img class="m" src="m/4a47be9b6deffa4b7fb720704477552e4e902b62.svg" alt="\(T_{l,k}\)" style="height:1.062em;vertical-align:-0.319em">: operations of type <img class="m" src="m/ab474955bf3a453be6c3259db9214b4a610e4bf7.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> still executing;</li>
+<li>start the <img class="m" src="m/deb8be656f33f28f047e825ebe10820fe3e29f56.svg" alt="\(a_k-|T_{l,k}|\)" style="height:1.135em;vertical-align:-0.318em"> operations of <img class="m" src="m/47d8cc6761592be53a9a1c25cb2f83ef1b1798a0.svg" alt="\(U_{l,k}\)" style="height:1.062em;vertical-align:-0.319em"> with highest priority.</li>
+</ol>
+<p>
+<b>Latency-constrained</b> (minimise units for a bound <img class="m" src="m/0db64d4436c33154f8d33c7d8e77b845d2c187e8.svg" alt="\(\bar\lambda\)" style="height:0.911em;vertical-align:-0.000em">): compute ALAP times; in each cycle schedule all ready operations with zero slack (forced), adding units if needed, then the others that fit in the units already allocated.
+</p>
+</div>
+</div>
+<div id="outline-container-orgddb690a" class="outline-2">
+<h2 id="orgddb690a">Algorithm</h2>
+<div class="outline-text-2" id="text-orgddb690a">
+<figure class="fig"><img class="m" src="m/958c6098cae93501b3421fc32fe420c1db762057.svg" alt="figure" style="width:33.849em"><figcaption><span class="fl">Algorithm 1.</span> Resource-constrained list scheduling: at each cycle, start the ready operations of highest priority up to the number of units of each type, until the sink is scheduled.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org7a1bc50" class="outline-2">
+<h2 id="org7a1bc50">Example</h2>
+<div class="outline-text-2" id="text-org7a1bc50">
+<p>
+<a href="data-flow-graph.html">Solver graph</a>, unit delays, priority = least <a href="asap-alap-scheduling.html">mobility</a>.
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-right">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">cycle</th>
+<th scope="col" class="org-left">1 multiplier</th>
+<th scope="col" class="org-left">1 ALU</th>
+<th scope="col" class="org-left">2 multipliers</th>
+<th scope="col" class="org-left">1 ALU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">v1</td>
+<td class="org-left">v10</td>
+<td class="org-left">v1, v2</td>
+<td class="org-left">v10</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">v2</td>
+<td class="org-left">v11</td>
+<td class="org-left">v3, v4</td>
+<td class="org-left">v11</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">v3</td>
+<td class="org-left">—</td>
+<td class="org-left">v5, v6</td>
+<td class="org-left">v7</td>
+</tr>
+
+<tr>
+<td class="org-right">4</td>
+<td class="org-left">v4</td>
+<td class="org-left">v7</td>
+<td class="org-left">—</td>
+<td class="org-left">v8</td>
+</tr>
+
+<tr>
+<td class="org-right">5</td>
+<td class="org-left">v5</td>
+<td class="org-left">—</td>
+<td class="org-left">—</td>
+<td class="org-left">v9</td>
+</tr>
+
+<tr>
+<td class="org-right">6</td>
+<td class="org-left">v6</td>
+<td class="org-left">v8</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">7</td>
+<td class="org-left">—</td>
+<td class="org-left">v9</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+One multiplier: latency 7 (six multiplications in series, then v9). Two multipliers: latency 5, and the single ALU is now the bottleneck (v8 and v9 compete in cycle 4); with two ALUs it drops to the critical-path bound of 4.
+</p>
+</div>
+</div>
+<div id="outline-container-org3b9dc34" class="outline-2">
+<h2 id="org3b9dc34">Intuition</h2>
+<div class="outline-text-2" id="text-org3b9dc34">
+<p>
+A greedy foreman: each morning, give the free machines to the most urgent jobs that are ready.
+</p>
+</div>
+</div>
+<div id="outline-container-org74469f1" class="outline-2">
+<h2 id="org74469f1">Pitfall</h2>
+<div class="outline-text-2" id="text-org74469f1">
+<p>
+List scheduling is a heuristic: a different priority can give a shorter schedule, and no single priority is best for every graph. It is fast, <img class="m" src="m/36e67e8059f7c76577300f13e8c71a5b2225ef91.svg" alt="\(O(|V|\log|V|)\)" style="height:1.096em;vertical-align:-0.274em"> plus the cycles, which is why it is the workhorse of HLS tools.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="asap-alap-scheduling.html"><span>← previous</span>ASAP and ALAP scheduling, mobility</a><a rel="next" href="resource-binding.html"><span>next →</span>Resource sharing and binding</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--high-level-synthesis.pdf" title="PDF manual">High Level Synthesis</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

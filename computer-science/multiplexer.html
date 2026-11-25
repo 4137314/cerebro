@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multiplexer and demultiplexer · Computer Science</title>
+<meta name="description" content="A 2^n-to-1 multiplexer routes one of 2^n data inputs to the output under an n-bit select, m=\bar sa+sb for two inputs; large ones are built as trees of small ones (Shannon expansion in hardware), any function of n variables is a mux with the truth table on its data inputs; the demultiplexer does th…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/multiplexer.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Multiplexer and demultiplexer · Computer Science">
+<meta property="og:description" content="A 2^n-to-1 multiplexer routes one of 2^n data inputs to the output under an n-bit select, m=\bar sa+sb for two inputs; large ones are built as trees of small ones (Shannon expansion in hardware), any function of n variables is a mux with the truth table on its data inputs; the demultiplexer does th…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/multiplexer.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--combinational">Combinational</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Hardware · Combinational</p>
+<h1>Multiplexer and demultiplexer</h1>
+<p class="summary">A <img class="m" src="m/c26a7f26d15dab5c1c6e5096f2fb7c0c2fafc477.svg" alt="\(2^n\)" style="height:0.728em;vertical-align:-0.000em">-to-1 multiplexer routes one of <img class="m" src="m/c26a7f26d15dab5c1c6e5096f2fb7c0c2fafc477.svg" alt="\(2^n\)" style="height:0.728em;vertical-align:-0.000em"> data inputs to the output under an <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">-bit select, <img class="m" src="m/18b30324664a89e1e05281e4c3e83876f3cd6f6a.svg" alt="\(m=\bar sa+sb\)" style="height:0.852em;vertical-align:-0.094em"> for two inputs; large ones are built as trees of small ones (Shannon expansion in hardware), any function of <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> variables is a mux with the truth table on its data inputs; the demultiplexer does the reverse, a decoder whose outputs are gated by one data line.</p>
+<p class="rel"><span>needs</span> <a href="canonical-forms.html">Shannon expansion and canonical forms</a></p>
+<p class="rel"><span>unlocks</span> <a href="registers-shift-registers.html">Registers and shift registers</a></p>
+<p class="rel"><span>see also</span> <a href="decoder-encoder.html">Decoders, encoders and priority encoders</a>, <a href="registers-shift-registers.html">Registers and shift registers</a>, <a href="register-transfer-buses.html">Register transfers: multiplexers, buses, tri-state</a>, <a href="fpga-architecture.html">FPGA architecture</a>, <a href="vhdl-concurrent-assignments.html">Concurrent assignments: when–else and with–select</a></p>
+<p class="rel"><span>mentioned in</span> <a href="decoder-encoder.html">Decoders, encoders and priority encoders</a>, <a href="logic-hazards.html">Timing diagrams and static hazards</a></p>
+<details class="path"><summary>Learning path: 2 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org1084c7c" class="outline-2">
+<h2 id="org1084c7c">Construction</h2>
+<div class="outline-text-2" id="text-org1084c7c">
+<p>
+2-to-1: from the truth table on <img class="m" src="m/fbc32c11f08db14407e100cd0ecda86f733d31b5.svg" alt="\(s,a,b\)" style="height:0.974em;vertical-align:-0.214em">, the canonical SOP <img class="m" src="m/4c6d8e071a84cff7456c372ba3b67740b2c15b93.svg" alt="\(\bar sa\bar b+\bar sab+s\bar ab+sab\)" style="height:1.003em;vertical-align:-0.090em"> reduces by adjacency to
+<div class="mb"><img class="m" src="m/1305e38d15dbd1fb5a9c717b286c464addaf7f8e.svg" alt="\[ m=\bar s\,a+s\,b \]" style="width:6.205em"></div>
+(12 literals → 4). Prime implicants <img class="m" src="m/8dc3bdc0680bd32ae4648ff2a57ac366bc3b439c.svg" alt="\(\bar sa\)" style="height:0.622em;vertical-align:-0.000em">, <img class="m" src="m/e81dc530ee6b39b81521ab433e246561cd5ce45e.svg" alt="\(sb\)" style="height:0.761em;vertical-align:-0.000em">, <img class="m" src="m/cce5bfb78b077db7ba05b4616fbc1e486a1fe702.svg" alt="\(ab\)" style="height:0.761em;vertical-align:-0.000em">: the first two are essential, <img class="m" src="m/cce5bfb78b077db7ba05b4616fbc1e486a1fe702.svg" alt="\(ab\)" style="height:0.761em;vertical-align:-0.000em"> is redundant for the function (but cures a <a href="logic-hazards.html">static hazard</a>).
+4-to-1 with select <img class="m" src="m/415d3b4ecd1fac104b7527c253c1130bf78f0710.svg" alt="\(s_1s_0\)" style="height:0.636em;vertical-align:-0.165em">: six inputs, too many for a comfortable map; built <b>hierarchically</b>: two 2-to-1 muxes choose between <img class="m" src="m/439f79a65e6a359971e3fdd7957ec34ec3c2184a.svg" alt="\(a,b\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/e14b8ebe40aa2cdafbd8f718f0bbc6bd3d8ea302.svg" alt="\(c,d\)" style="height:0.974em;vertical-align:-0.214em"> with <img class="m" src="m/b839bdab10757a82b0215767cab30db9b289a2b9.svg" alt="\(s_0\)" style="height:0.636em;vertical-align:-0.165em">, a third chooses between their outputs with <img class="m" src="m/49cdbef1b3fd2434faacbea8ad20d4fd2de1be5a.svg" alt="\(s_1\)" style="height:0.636em;vertical-align:-0.165em">. Three levels instead of two, but obviously correct. The flat two-level form is <img class="m" src="m/b9eeda63855edadb3949688d785dc4a0a5afc396.svg" alt="\(m=\bar s_1\bar s_0a+\bar s_1s_0b+s_1\bar s_0c+s_1s_0d\)" style="height:0.925em;vertical-align:-0.167em">.
+<b>Mux as universal function</b>: <img class="m" src="m/82620db5d4a1c06360eb94e7c57b1cb0aeea5081.svg" alt="\(f(x_1,\dots,x_n)\)" style="height:1.096em;vertical-align:-0.274em"> is a <img class="m" src="m/c26a7f26d15dab5c1c6e5096f2fb7c0c2fafc477.svg" alt="\(2^n\)" style="height:0.728em;vertical-align:-0.000em">-to-1 mux with select <img class="m" src="m/7fcec87ea97a5eb25cdc0f77a7ebc125679bd82f.svg" alt="\(x_1\dots x_n\)" style="height:0.636em;vertical-align:-0.165em"> and constants <img class="m" src="m/602b8285262c9ddece110289759aa2359a0447b5.svg" alt="\(f(\text{row})\)" style="height:1.096em;vertical-align:-0.274em"> on the data inputs — the <a href="rom-as-logic.html">lookup-table</a> idea behind FPGAs; with one variable moved to the data inputs, a <img class="m" src="m/597ed70d1853adaaa2022905143846101729e52d.svg" alt="\(2^{n-1}\)" style="height:0.892em;vertical-align:-0.000em">-to-1 mux suffices (data inputs <img class="m" src="m/7b0797fd160679e923bc3547aefeea818b20564b.svg" alt="\(\in\{0,1,x_n,\bar x_n\}\)" style="height:1.096em;vertical-align:-0.274em">).
+<b>Demultiplexer</b> 1-to-<img class="m" src="m/c26a7f26d15dab5c1c6e5096f2fb7c0c2fafc477.svg" alt="\(2^n\)" style="height:0.728em;vertical-align:-0.000em">: the data input <img class="m" src="m/c1cb305e0744a841c0171151eaf770796c623d6f.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> appears on the output selected by <img class="m" src="m/a6b3b959e1474b87242b0106c5fd9e3d5416e924.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em">, the others are 0: <img class="m" src="m/56eed90c88475dda0fdd8d018a6a74d706dff40a.svg" alt="\(y_k=x\cdot[s=k]\)" style="height:1.096em;vertical-align:-0.274em">, i.e. a <a href="decoder-encoder.html">decoder</a> of <img class="m" src="m/a6b3b959e1474b87242b0106c5fd9e3d5416e924.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> whose outputs are ANDed with <img class="m" src="m/c1cb305e0744a841c0171151eaf770796c623d6f.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orga5a1051" class="outline-2">
+<h2 id="orga5a1051">Picture</h2>
+<div class="outline-text-2" id="text-orga5a1051">
+<figure class="fig"><img class="m" src="m/4da3968d39cc2a3142f4d4c25349df80be09b926.svg" alt="figure" style="width:23.354em"><figcaption><span class="fl">Figure 1.</span> A 2:1 multiplexer as gates: <img class="m" src="m/18b30324664a89e1e05281e4c3e83876f3cd6f6a.svg" alt="\(m=\bar sa+sb\)" style="height:0.852em;vertical-align:-0.094em"> passes <img class="m" src="m/36ad57d0b9b05e12447762c553bda3a072bc992d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> when <img class="m" src="m/5aa7c7530e8638e6b8391c3c75d53edc8daf6ed3.svg" alt="\(s=0\)" style="height:0.706em;vertical-align:-0.000em"> and <img class="m" src="m/9a9e478ff943a309ecb17df71ac414cc09c1be96.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em"> when <img class="m" src="m/878851747a6fcc764e3c3f5be3723d33fb2125a9.svg" alt="\(s=1\)" style="height:0.706em;vertical-align:-0.000em">.</figcaption></figure>
+<p>
+The inverter on <img class="m" src="m/a6b3b959e1474b87242b0106c5fd9e3d5416e924.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> makes the upper path one gate slower than the lower: the source of the mux glitch.
+</p>
+</div>
+</div>
+<div id="outline-container-org03cfcf7" class="outline-2">
+<h2 id="org03cfcf7">Example</h2>
+<div class="outline-text-2" id="text-org03cfcf7">
+<p>
+Realize <img class="m" src="m/641f072edc4dfaa0de5739d961efd2f9e6d98475.svg" alt="\(f(a,b,c)=\sum m(1,2,6,7)\)" style="height:1.096em;vertical-align:-0.274em"> with a 4-to-1 mux, select <img class="m" src="m/cce5bfb78b077db7ba05b4616fbc1e486a1fe702.svg" alt="\(ab\)" style="height:0.761em;vertical-align:-0.000em">: for <img class="m" src="m/8495ee5810669899ebb539eb61dc5aa304b0c7fb.svg" alt="\(ab=00\)" style="height:0.761em;vertical-align:-0.000em"> <img class="m" src="m/ca8c5189295709f648626d86136732e8bf94390d.svg" alt="\(f=c\)" style="height:0.974em;vertical-align:-0.214em">; <img class="m" src="m/fd44a5dd471a334cee19a1f0ddddfa5f34a7373a.svg" alt="\(01\)" style="height:0.706em;vertical-align:-0.000em">: <img class="m" src="m/8a96e6e5f43cfc445192599fb6f523e660e6fb66.svg" alt="\(\bar c\)" style="height:0.622em;vertical-align:-0.000em">; <img class="m" src="m/9dde4d3687d02e73d38ca0f0cf2bb78161c114b3.svg" alt="\(10\)" style="height:0.706em;vertical-align:-0.000em">: 0; <img class="m" src="m/1725c9a01f22aafaff06a4829ad040cb77fa594c.svg" alt="\(11\)" style="height:0.706em;vertical-align:-0.000em">: 1. Data inputs <img class="m" src="m/1daf7d1a0a0205a06613d59267e4a9571f6dfef7.svg" alt="\(c,\bar c,0,1\)" style="height:0.919em;vertical-align:-0.211em">.
+Uses: sharing a resource among several sources, <a href="registers-shift-registers.html">load enables</a> in registers, <a href="register-transfer-buses.html">register transfers</a>, memory column selection (a decoder picks the row, a mux the column: 256 cells as <img class="m" src="m/4a6ff866aeea418cd669a7122b7ee5af053c6390.svg" alt="\(16\times16\)" style="height:0.798em;vertical-align:-0.088em">).
+</p>
+</div>
+</div>
+<div id="outline-container-org07f4ddf" class="outline-2">
+<h2 id="org07f4ddf">Intuition</h2>
+<div class="outline-text-2" id="text-org07f4ddf">
+<p>
+A mux is Shannon's expansion built in gates: the select variable picks which cofactor reaches the output.
+</p>
+</div>
+</div>
+<div id="outline-container-org961100d" class="outline-2">
+<h2 id="org961100d">Pitfall</h2>
+<div class="outline-text-2" id="text-org961100d">
+<p>
+The delay is not symmetric: a change on <img class="m" src="m/a6b3b959e1474b87242b0106c5fd9e3d5416e924.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> crosses the inverter and takes one gate more than a change on <img class="m" src="m/36ad57d0b9b05e12447762c553bda3a072bc992d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> or <img class="m" src="m/9a9e478ff943a309ecb17df71ac414cc09c1be96.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em"> — worst-case timing must consider every input.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="seven-segment-decoder.html"><span>← previous</span>7-segment decoder: don't-cares and joint minimization</a><a rel="next" href="nand-nor-synthesis.html"><span>next →</span>NAND–NAND and NOR–NOR realizations</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--combinational.pdf" title="PDF manual">Combinational</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

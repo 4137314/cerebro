@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sequential circuits: memory through feedback · Computer Science</title>
+<meta name="description" content="A combinational circuit gives the same output for the same input; a function whose output depends on the input history is sequential and needs memory, obtained by feeding an output back to an input (the boiler controller C=L+C\bar H); separating the memory into well-understood elements and updating…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/sequential-circuits.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Sequential circuits: memory through feedback · Computer Science">
+<meta property="og:description" content="A combinational circuit gives the same output for the same input; a function whose output depends on the input history is sequential and needs memory, obtained by feeding an output back to an input (the boiler controller C=L+C\bar H); separating the memory into well-understood elements and updating…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/sequential-circuits.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--sequential">Sequential</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Hardware · Sequential</p>
+<h1>Sequential circuits: memory through feedback</h1>
+<p class="summary">A combinational circuit gives the same output for the same input; a function whose output depends on the input history is sequential and needs memory, obtained by feeding an output back to an input (the boiler controller <img class="m" src="m/59ae5123e7dcf7a7eadd86a8efc9b5cec72d5b05.svg" alt="\(C=L+C\bar H\)" style="height:0.991em;vertical-align:-0.089em">); separating the memory into well-understood elements and updating it only at clock events gives synchronous circuits, otherwise the circuit is asynchronous and can race or oscillate.</p>
+<p class="rel"><span>needs</span> <a href="karnaugh-maps.html">Karnaugh maps</a></p>
+<p class="rel"><span>unlocks</span> <a href="sr-latch.html">SR latch and D latch</a></p>
+<p class="rel"><span>see also</span> <a href="sr-latch.html">SR latch and D latch</a>, <a href="fsm-analysis.html">Analysis of synchronous sequential circuits</a>, <a href="critical-races.html">Critical races</a>, <a href="finite-state-machine.html">Finite-state machines</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgcecb06d" class="outline-2">
+<h2 id="orgcecb06d">Definition</h2>
+<div class="outline-text-2" id="text-orgcecb06d">
+<ul class="org-ul">
+<li><b>Combinational</b>: <img class="m" src="m/ab0320f5cb1a1f429ee8f3615ddbd6973a5bb15f.svg" alt="\(\mathit{out}(t)=f(\mathit{in}(t))\)" style="height:1.096em;vertical-align:-0.274em"> (after the transient). Same input, same output, whenever it occurs.</li>
+<li><b>Sequential</b>: the output depends on the <b>sequence</b> of past inputs; the part of the past that matters is the <b>state</b>, stored in memory.</li>
+</ul>
+<p>
+Structure: a combinational network computes outputs and <b>next state</b> from inputs and <b>present state</b>; a memory holds the present state.
+</p>
+<ul class="org-ul">
+<li><b>Asynchronous</b>: the state changes as soon as the next state changes; present and next state depend on each other immediately (feedback through wires).</li>
+<li><b>Synchronous</b>: the state is updated only at events of a special signal, the <b>clock</b>; between events the next state can settle without affecting the present one.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb7aeb00" class="outline-2">
+<h2 id="orgb7aeb00">Example</h2>
+<div class="outline-text-2" id="text-orgb7aeb00">
+<p>
+Boiler with hysteresis: inputs <img class="m" src="m/300aa70f8d951bd5a3fcf6135eb614413e06bbeb.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> (<img class="m" src="m/01126171b5421e1c67f001febef9290a0efd829f.svg" alt="\(T&gt;T_{max}\)" style="height:0.913em;vertical-align:-0.164em">) and <img class="m" src="m/c6306f7556c20ed611b57417e4530ef85873290c.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> (<img class="m" src="m/d45db270ebeaac6ee961f6decfc55d7107938b48.svg" alt="\(T&lt;T_{min}\)" style="height:0.913em;vertical-align:-0.164em">), output <img class="m" src="m/52138c1336de78ec97ddf99f4365ef7a94e63f4d.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> (1 = burner on). <img class="m" src="m/f2d49d59b32254ac97ee2e4a0a5d194a330704a4.svg" alt="\(H=L=1\)" style="height:0.749em;vertical-align:-0.000em"> is impossible (don't-care). For <img class="m" src="m/bd11c8ff64695f803d360dfc8c8d022de83dd168.svg" alt="\(H=1\)" style="height:0.749em;vertical-align:-0.000em"> switch off, for <img class="m" src="m/700fa3d66248f0a0a835587b2ae03b9ea8a98b47.svg" alt="\(L=1\)" style="height:0.749em;vertical-align:-0.000em"> switch on. For <img class="m" src="m/26a9e67a036fed6d5ed9587e5460b2ae10aaa7a0.svg" alt="\(H=L=0\)" style="height:0.749em;vertical-align:-0.000em"> (temperature between the thresholds) <b>both</b> answers are needed: on if it was heating, off if it was not — one input, two outputs: not a function. Feed <img class="m" src="m/52138c1336de78ec97ddf99f4365ef7a94e63f4d.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> back as an input:
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">C</th>
+<th scope="col" class="org-right">H</th>
+<th scope="col" class="org-right">L</th>
+<th scope="col" class="org-right">C⁺</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">-</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">-</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Map: <img class="m" src="m/13e47f07a598bab1815ae76982bdf6301409908c.svg" alt="\(C^+=L+C\bar H\)" style="height:0.991em;vertical-align:-0.089em">. The loop from the OR output back to the AND input <b>holds</b> the value when <img class="m" src="m/26a9e67a036fed6d5ed9587e5460b2ae10aaa7a0.svg" alt="\(H=L=0\)" style="height:0.749em;vertical-align:-0.000em">: the circuit remembers. With a D flip-flop in the loop the same equation becomes the synchronous <a href="fsm-synthesis.html">state machine</a> <img class="m" src="m/600177e41dee33cf7351b64d9d7f10b74cf090e8.svg" alt="\(X_{n+1}=L+X_n\bar H\)" style="height:1.155em;vertical-align:-0.254em">, <img class="m" src="m/c1e8cacb62f158c41a3a273c8a2f74dd1e332099.svg" alt="\(C=X_n\)" style="height:0.913em;vertical-align:-0.164em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org9f91292" class="outline-2">
+<h2 id="org9f91292">Intuition</h2>
+<div class="outline-text-2" id="text-org9f91292">
+<p>
+Memory is a loop that keeps telling itself the same thing; a clock decides when it is allowed to listen to something new.
+</p>
+</div>
+</div>
+<div id="outline-container-org0b4e7af" class="outline-2">
+<h2 id="org0b4e7af">Pitfall</h2>
+<div class="outline-text-2" id="text-org0b4e7af">
+<p>
+A feedback equation <img class="m" src="m/195ddd0bb3e60d67eaedf15c270bd036fe35f71f.svg" alt="\(x=F(x,\mathit{in})\)" style="height:1.096em;vertical-align:-0.274em"> may have no stable solution (<img class="m" src="m/b38428abd8e28fd037f4fdde5371390cc6ed46ef.svg" alt="\(x=\bar x\)" style="height:0.622em;vertical-align:-0.000em"> oscillates) or more than one (<img class="m" src="m/e76f8a5cc74edf44809acca3fe6bb9d5d2300462.svg" alt="\(x=x\)" style="height:0.472em;vertical-align:-0.000em"> can hold either): asynchronous loops must be designed for stability and against <a href="critical-races.html">races</a>. Keep loops inside known memory elements and let the rest be combinational.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="logic-hazards.html"><span>← previous</span>Timing diagrams and static hazards</a><a rel="next" href="sr-latch.html"><span>next →</span>SR latch and D latch</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--sequential.pdf" title="PDF manual">Sequential</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Dirac equation · Physics</title>
+<meta name="description" content="Linearising E^2=p^2+m^2 requires 4\times4 matrices with \{\gamma^\mu,\gamma^\nu\}=2g^{\mu\nu}: (i\gamma^\mu\partial_\mu-m)\psi=0; its current \bar\psi\gamma^\mu\psi has positive density, spin ½ appears automatically, and the non-relativistic limit gives the Pauli equation with g=2.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/dirac-equation.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The Dirac equation · Physics">
+<meta property="og:description" content="Linearising E^2=p^2+m^2 requires 4\times4 matrices with \{\gamma^\mu,\gamma^\nu\}=2g^{\mu\nu}: (i\gamma^\mu\partial_\mu-m)\psi=0; its current \bar\psi\gamma^\mu\psi has positive density, spin ½ appears automatically, and the non-relativistic limit gives the Pauli equation with g=2.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/dirac-equation.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-electrodynamics">Quantum Electrodynamics</a> / <a rel="up" href="index.html#a-quantum-electrodynamics--relativistic-wave-equations">Relativistic Wave Equations</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Quantum Electrodynamics · Relativistic Wave Equations</p>
+<h1>The Dirac equation</h1>
+<p class="summary">Linearising <img class="m" src="m/3e729b51bc36f2d1f8d3edae53bf48689fe4b017.svg" alt="\(E^2=p^2+m^2\)" style="height:1.105em;vertical-align:-0.210em"> requires <img class="m" src="m/3377b30958b61fc0a13c930a9b80cfa72cf3a10b.svg" alt="\(4\times4\)" style="height:0.798em;vertical-align:-0.088em"> matrices with <img class="m" src="m/7620c8e0dcf06a3253f60dea47fe6a3aaaf25631.svg" alt="\(\{\gamma^\mu,\gamma^\nu\}=2g^{\mu\nu}\)" style="height:1.096em;vertical-align:-0.274em">: <img class="m" src="m/ea6c6eb22b9bc0b04554b93846305e3133a8ae1c.svg" alt="\((i\gamma^\mu\partial_\mu-m)\psi=0\)" style="height:1.135em;vertical-align:-0.318em">; its current <img class="m" src="m/04cdffdea27544816a55df569b660e18b5dcf75b.svg" alt="\(\bar\psi\gamma^\mu\psi\)" style="height:1.125em;vertical-align:-0.214em"> has positive density, spin ½ appears automatically, and the non-relativistic limit gives the Pauli equation with <img class="m" src="m/02c92a7ad319974d6abf8e413f3e3b63226035eb.svg" alt="\(g=2\)" style="height:0.919em;vertical-align:-0.211em">.</p>
+<p class="rel"><span>needs</span> <a href="klein-gordon-equation.html">The Klein–Gordon equation</a>, <a href="angular-momentum-algebra.html">Angular momentum: algebra and spectrum</a></p>
+<p class="rel"><span>unlocks</span> <a href="free-dirac-solutions-and-antiparticles.html">Free Dirac solutions, completeness relations and antiparticles</a>, <a href="anomalous-magnetic-moment.html">The anomalous magnetic moment of the electron</a></p>
+<p class="rel"><span>see also</span> <a href="fine-structure-and-zeeman-effect.html">Fine structure and the Zeeman effect</a>, <a href="group-representations-and-spin.html">Group representations, Wigner's theorem and spin</a>, <a href="anomalous-magnetic-moment.html">The anomalous magnetic moment of the electron</a></p>
+<p class="rel"><span>mentioned in</span> <a href="fine-structure-and-zeeman-effect.html">Fine structure and the Zeeman effect</a>, <a href="group-representations-and-spin.html">Group representations, Wigner's theorem and spin</a></p>
+<details class="path"><summary>Learning path: 15 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></li><li><a href="spin-precession-and-rabi-oscillations.html">Spin precession and Rabi oscillations</a></li><li><a href="angular-momentum-algebra.html">Angular momentum: algebra and spectrum</a></li><li><a href="quantum-electrodynamics.html">Quantum electrodynamics: the map of the subject</a></li><li><a href="four-vectors-and-lorentz-transformations.html">Four-vectors, natural units and Mandelstam variables</a></li><li><a href="klein-gordon-equation.html">The Klein–Gordon equation</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org0ad79ac" class="outline-2">
+<h2 id="org0ad79ac">Derivation</h2>
+<div class="outline-text-2" id="text-org0ad79ac">
+<p>
+Seek <img class="m" src="m/c5473aacdeeb8f96bb57e22a989f2421d1bee32e.svg" alt="\(i\partial_t\psi=(\boldsymbol\alpha\cdot\mathbf p+\beta m)\psi\)" style="height:1.096em;vertical-align:-0.274em"> whose square is KG: requires <img class="m" src="m/e94c078ad62bb12b6cf032ea17f7bc6c593f1b61.svg" alt="\(\alpha_i^2=\beta^2=1\)" style="height:1.177em;vertical-align:-0.283em">, <img class="m" src="m/1466506ba5efb93a7bfa14552bf9eab3072cb0b2.svg" alt="\(\{\alpha_i,\alpha_j\}=2\delta_{ij}\)" style="height:1.135em;vertical-align:-0.318em">, <img class="m" src="m/1047dd6686017ce8b52d6dcee1e19a00070557a1.svg" alt="\(\{\alpha_i,\beta\}=0\)" style="height:1.096em;vertical-align:-0.274em">. Smallest solution: <img class="m" src="m/3377b30958b61fc0a13c930a9b80cfa72cf3a10b.svg" alt="\(4\times4\)" style="height:0.798em;vertical-align:-0.088em">. With <img class="m" src="m/4f4946ba41f3908457840636560528bbd9ca5ae4.svg" alt="\(\gamma^0=\beta\)" style="height:1.105em;vertical-align:-0.210em">, <img class="m" src="m/5ce7ea911eaace99503ab6be6430d51480bb927a.svg" alt="\(\gamma^i=\beta\alpha_i\)" style="height:1.118em;vertical-align:-0.212em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1098/rspa.1928.0023" data-full="P. A. M. Dirac, “The quantum theory of the electron”, Proceedings of the Royal Society of London. Series A 117, 610–624 (1928)." aria-label="P. A. M. Dirac, “The quantum theory of the electron”, Proceedings of the Royal Society of London. Series A 117, 610–624 (1928).">Dirac 1928</a>)</span>:
+<div class="mb"><img class="m" src="m/f603d0947b5537cae58dbc417bbbfddda80a335f.svg" alt="\[ (i\gamma^\mu\partial_\mu-m)\psi=0,\qquad \{\gamma^\mu,\gamma^\nu\}=2g^{\mu\nu}. \]" style="width:19.284em"></div>
+Dirac representation <img class="m" src="m/aa6424329735a3591d70bedd095c90781079d962.svg" alt="\(\gamma^0=\begin{pmatrix}1&amp;0\\0&amp;-1\end{pmatrix}\)" style="height:2.630em;vertical-align:-1.052em">, <img class="m" src="m/ba3323250c9f28ee86b5b2a07dcb561ed60b788d.svg" alt="\(\gamma^i=\begin{pmatrix}0&amp;\sigma_i\\-\sigma_i&amp;0\end{pmatrix}\)" style="height:2.630em;vertical-align:-1.052em">. Notation <img class="m" src="m/8d3cecd1c51ca8f0b10a974358ac1df98a88aeff.svg" alt="\(\slashed{a}=\gamma^\mu a_\mu\)" style="height:1.097em;vertical-align:-0.318em">, <img class="m" src="m/9b44228f2b087f8c5410b07b33b80fd32cdc982b.svg" alt="\(\bar\psi=\psi^\dagger\gamma^0\)" style="height:1.144em;vertical-align:-0.217em">, <img class="m" src="m/c9075c27baa244dea2fc8a70b4a0004bcfc4b396.svg" alt="\(\gamma^5=i\gamma^0\gamma^1\gamma^2\gamma^3\)" style="height:1.105em;vertical-align:-0.210em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org42cc0e2" class="outline-2">
+<h2 id="org42cc0e2">Current and covariance</h2>
+<div class="outline-text-2" id="text-org42cc0e2">
+<p>
+<img class="m" src="m/6778e539fc69920e4f0283a373b0c9b7b6171297.svg" alt="\(j^\mu=\bar\psi\gamma^\mu\psi\)" style="height:1.125em;vertical-align:-0.214em">, <img class="m" src="m/5234f8e7d7cb02f653dbc3bd5556734dc163faba.svg" alt="\(\partial_\mu j^\mu=0\)" style="height:1.075em;vertical-align:-0.312em">, <img class="m" src="m/d890b3590695cc01fbaac8cbc7e3299029b2f132.svg" alt="\(j^0=\psi^\dagger\psi\ge0\)" style="height:1.144em;vertical-align:-0.217em">. Under a Lorentz transformation <img class="m" src="m/229efab49ae68dbbf70cf37985565a1df0e44d81.svg" alt="\(\psi'(x')=S(\Lambda)\psi(x)\)" style="height:1.098em;vertical-align:-0.274em"> with <img class="m" src="m/40b74ad3a4d184c13d4ba46becb9a7862102e6f7.svg" alt="\(S=e^{-\frac i4\sigma_{\mu\nu}\omega^{\mu\nu}}\)" style="height:1.057em;vertical-align:-0.000em">, <img class="m" src="m/34b1d852e8c54a854e03393981400217c568caec.svg" alt="\(\sigma_{\mu\nu}=\frac i2[\gamma_\mu,\gamma_\nu]\)" style="height:1.317em;vertical-align:-0.382em">: a rotation by <img class="m" src="m/e4891c4be689e29794f8ebb746d6bdf2c5516db2.svg" alt="\(2\pi\)" style="height:0.706em;vertical-align:-0.000em"> gives <img class="m" src="m/16cdf7d55adf92d8f8832c89d1ba179a54f4412a.svg" alt="\(S=-1\)" style="height:0.840em;vertical-align:-0.092em"> (spinor).
+</p>
+</div>
+</div>
+<div id="outline-container-org049f197" class="outline-2">
+<h2 id="org049f197">Non-relativistic limit and g = 2</h2>
+<div class="outline-text-2" id="text-org049f197">
+<p>
+With <img class="m" src="m/f7ac077aeeeb6a4486f6ebe58db269787db38f5f.svg" alt="\(\pi=\mathbf p-e\mathbf A\)" style="height:0.965em;vertical-align:-0.212em"> and <img class="m" src="m/290952dc202e83dd155400003e00d5b4bdfcfbc4.svg" alt="\(\psi=e^{-imt}(\varphi,\chi)\)" style="height:1.179em;vertical-align:-0.271em">: <img class="m" src="m/de12a20d85443040dd84fd3b09e3c80985691a23.svg" alt="\(\chi\approx\frac{\boldsymbol\sigma\cdot\boldsymbol\pi}{2m}\varphi\)" style="height:1.166em;vertical-align:-0.373em">, and using <img class="m" src="m/76f0396bb94e03391c1191d3906df19abc868d32.svg" alt="\((\boldsymbol\sigma\cdot\boldsymbol\pi)^2=\boldsymbol\pi^2-e\boldsymbol\sigma\cdot\mathbf B\)" style="height:1.166em;vertical-align:-0.268em">:
+<div class="mb"><img class="m" src="m/6804cce7e749bd6ae42ea99fd7029fb31e8bb808.svg" alt="\[ i\partial_t\varphi=\left[\frac{\boldsymbol\pi^2}{2m}-\frac{e}{2m}\,2\,\mathbf S\cdot\mathbf B+e\phi\right]\varphi: \]" style="width:16.878em"></div>
+the Pauli equation with <img class="m" src="m/02c92a7ad319974d6abf8e413f3e3b63226035eb.svg" alt="\(g=2\)" style="height:0.919em;vertical-align:-0.211em">. The next order (Foldy–Wouthuysen) yields spin–orbit with the Thomas factor and the Darwin term: the <a href="fine-structure-and-zeeman-effect.html">fine structure</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org48e19bd" class="outline-2">
+<h2 id="org48e19bd">Coulomb problem</h2>
+<div class="outline-text-2" id="text-org48e19bd">
+<p>
+Exact levels <img class="m" src="m/b0146176d77edc94214a74318591fc5f52ffff6d.svg" alt="\(E_{nj}=m\left[1+\frac{(Z\alpha)^2}{\left(n-j-\frac12+\sqrt{(j+\frac12)^2-(Z\alpha)^2}\right)^2}\right]^{-1/2}\)" style="height:3.592em;vertical-align:-1.365em">, degenerate in <img class="m" src="m/a6aab7c32e95b4249a3129fc78bf13880de8a0a5.svg" alt="\(l\)" style="height:0.761em;vertical-align:-0.000em"> at fixed <img class="m" src="m/991aeaa8f2d2a1550b651c69bc2001fd1ca55107.svg" alt="\(j\)" style="height:0.936em;vertical-align:-0.215em">. For <img class="m" src="m/e5ec2650fefdb3c42fa7ce34d05d23bb5f0d0cbb.svg" alt="\(Z\alpha&gt;1\)" style="height:0.792em;vertical-align:-0.040em"> the <img class="m" src="m/d7d25b8fa1f7cc6d993a7e31c71e9a2094fe898c.svg" alt="\(1s_{1/2}\)" style="height:1.096em;vertical-align:-0.395em"> solution breaks down: <a href="strong-field-qed-and-pair-creation.html">strong-field QED</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org3c88aa5" class="outline-2">
+<h2 id="org3c88aa5">Worked example</h2>
+<div class="outline-text-2" id="text-org3c88aa5">
+<p>
+Free electron at rest: <img class="m" src="m/7aa669065b92d8a15be08938a805e04ea3135e0c.svg" alt="\(\gamma^0m\psi=m\psi\)" style="height:1.105em;vertical-align:-0.210em"> gives 2 positive-energy (upper) and 2 negative-energy (lower) components — spin up/down for particle and antiparticle. Hydrogen <img class="m" src="m/4e8eb864084cea105985f073d20ecb83e885c9de.svg" alt="\(1s\)" style="height:0.706em;vertical-align:-0.000em">: <img class="m" src="m/00d13e1c0ff74546b43b934c48cfbc61ad7ecff5.svg" alt="\(E=m\sqrt{1-\alpha^2}\approx m-\frac{m\alpha^2}2-\frac{m\alpha^4}8\)" style="height:1.493em;vertical-align:-0.373em">: <img class="m" src="m/117e7880791f54cad50c0df4f4ac321e1f3c959c.svg" alt="\(-13.6\)" style="height:0.798em;vertical-align:-0.088em"> eV and a <img class="m" src="m/a66feb3b211102fb6930af4ddaa10af44c539695.svg" alt="\(-0.18\)" style="height:0.798em;vertical-align:-0.088em"> meV relativistic shift.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf2626c6" class="outline-2">
+<h2 id="orgf2626c6">Engineering applications</h2>
+<div class="outline-text-2" id="text-orgf2626c6">
+<p>
+Spin–orbit coupling in semiconductors (Rashba/Dresselhaus effects for spintronics), relativistic corrections to heavy-atom chemistry (gold's colour, lead–acid battery voltage), Dirac-like electrons in graphene (massless 2D Dirac equation with <img class="m" src="m/71fd4bdd329de8f3ba471350fd57ec5551b60ea7.svg" alt="\(v_F\approx c/300\)" style="height:1.096em;vertical-align:-0.274em">).
+</p>
+</div>
+</div>
+<div id="outline-container-org100088b" class="outline-2">
+<h2 id="org100088b">Pitfall</h2>
+<div class="outline-text-2" id="text-org100088b">
+<p>
+The Dirac "wave function" cannot be a one-particle state at high energy (Zitterbewegung, Klein paradox): negative-energy solutions are reinterpreted as positrons.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="klein-gordon-equation.html"><span>← previous</span>The Klein–Gordon equation</a><a rel="next" href="free-dirac-solutions-and-antiparticles.html"><span>next →</span>Free Dirac solutions, completeness relations and antiparticles</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-electrodynamics--relativistic-wave-equations.pdf" title="PDF manual">Relativistic Wave Equations</a> · <a class="pdf" href="pdf/quantum-electrodynamics.pdf" title="PDF manual">Quantum Electrodynamics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

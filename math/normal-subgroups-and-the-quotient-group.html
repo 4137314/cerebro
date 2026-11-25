@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Normal subgroups and the quotient group · Mathematics</title>
+<meta name="description" content="The set of cosets always exists; what is not automatic is that it carries a group structure. The obstruction is measured exactly by one condition on the subgroup, and the condition turns out to be the same as &quot;is the kernel of some homomorphism&quot;. Normality is therefore not a technical hypothesis bu…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/normal-subgroups-and-the-quotient-group.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Normal subgroups and the quotient group · Mathematics">
+<meta property="og:description" content="The set of cosets always exists; what is not automatic is that it carries a group structure. The obstruction is measured exactly by one condition on the subgroup, and the condition turns out to be the same as &quot;is the kernel of some homomorphism&quot;. Normality is therefore not a technical hypothesis bu…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/normal-subgroups-and-the-quotient-group.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--group-theory">Group Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Algebra · Group Theory</p>
+<h1>Normal subgroups and the quotient group</h1>
+<p class="summary">The set of cosets always exists; what is not automatic is that it carries a group structure. The obstruction is measured exactly by one condition on the subgroup, and the condition turns out to be the same as "is the kernel of some homomorphism". Normality is therefore not a technical hypothesis but the answer to "which subgroups can be divided out".</p>
+<p class="rel"><span>needs</span> <a href="group-homomorphism.html">Group homomorphism</a>, <a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a>, <a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></p>
+<p class="rel"><span>unlocks</span> <a href="cauchys-theorem-and-the-sylow-theorems.html">Cauchy's theorem and the Sylow theorems</a>, <a href="composition-series-jordan-holder-and-solvable-groups.html">Composition series, Jordan-Holder and solvable groups</a>, <a href="direct-and-semidirect-products.html">Direct and semidirect products</a>, <a href="free-groups-and-presentations.html">Free groups and presentations</a>, <a href="group-actions-orbits-and-the-orbit-stabiliser-theorem.html">Group actions, orbits and the orbit-stabiliser theorem</a>, <a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a>, <a href="the-symmetric-group-and-the-sign-of-a-permutation.html">The symmetric group and the sign of a permutation</a>, <a href="modules-quotients-and-exact-sequences.html">Modules, quotients and exact sequences</a>, <a href="rings-ideals-and-the-quotient-ring.html">Rings, ideals and the quotient ring</a></p>
+<p class="rel"><span>see also</span> <a href="cosets-the-index-and-lagranges-theorem.html">Cosets, the index and Lagrange's theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="algebra.html">Algebra</a>, <a href="group-theory.html">Group theory</a></p>
+<details class="path"><summary>Learning path: 6 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgedce420">
+<p>
+A subgroup <img class="m" src="m/17e1ab532ebb1113d4e974560d7e029eb8f8cac7.svg" alt="\(N \le G\)" style="height:0.898em;vertical-align:-0.153em"> is <i>normal</i>, written <img class="m" src="m/9e3c8c089919e0f80674755c6796acf42aae38ca.svg" alt="\(N \normalin G\)" style="height:0.899em;vertical-align:-0.153em">, if
+<img class="m" src="m/a86628fae97cccafd14fc3b7f5e17d4b32e969a1.svg" alt="\(gNg^{-1} = N\)" style="height:1.105em;vertical-align:-0.210em"> for every <img class="m" src="m/82faec96fceff7f2dac4c374cfef1d25104886db.svg" alt="\(g \in G\)" style="height:0.962em;vertical-align:-0.212em">, where
+<img class="m" src="m/bfc65cc7456699c764f43bc48d38fcaf3f412d15.svg" alt="\(gNg^{-1} = \setst{gng^{-1}}{n \in N}\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org100f867">
+<p>
+For <img class="m" src="m/17e1ab532ebb1113d4e974560d7e029eb8f8cac7.svg" alt="\(N \le G\)" style="height:0.898em;vertical-align:-0.153em"> the following are equivalent: (i) <img class="m" src="m/9e3c8c089919e0f80674755c6796acf42aae38ca.svg" alt="\(N \normalin G\)" style="height:0.899em;vertical-align:-0.153em">;
+(ii) <img class="m" src="m/4dedbe9a259b905a7172080074fb586f39150127.svg" alt="\(gNg^{-1} \subseteq N\)" style="height:1.105em;vertical-align:-0.210em"> for all <img class="m" src="m/82faec96fceff7f2dac4c374cfef1d25104886db.svg" alt="\(g \in G\)" style="height:0.962em;vertical-align:-0.212em">; (iii) <img class="m" src="m/28474df6672c571f1ccaffeabc0806fca308d06c.svg" alt="\(gN = Ng\)" style="height:0.962em;vertical-align:-0.212em"> for
+all <img class="m" src="m/82faec96fceff7f2dac4c374cfef1d25104886db.svg" alt="\(g \in G\)" style="height:0.962em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="proof" id="org34194fd">
+<p>
+(i) implies (ii) trivially. Assume (ii); applying it to <img class="m" src="m/f14acd7df725b615265b67cbcdbac36f95c3bd7b.svg" alt="\(g^{-1}\)" style="height:1.105em;vertical-align:-0.210em"> gives
+<img class="m" src="m/d22d133675d67fb87d96b35ec0eaf072d682b4ee.svg" alt="\(g^{-1}Ng \subseteq N\)" style="height:1.105em;vertical-align:-0.210em">, and conjugating by <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> turns this into
+<img class="m" src="m/d3dab42ddf89cd9a8f61b6dc90c0d94f50a9935b.svg" alt="\(N \subseteq gNg^{-1}\)" style="height:1.105em;vertical-align:-0.210em">, so (i) holds. Given (i), multiplying
+<img class="m" src="m/a86628fae97cccafd14fc3b7f5e17d4b32e969a1.svg" alt="\(gNg^{-1} = N\)" style="height:1.105em;vertical-align:-0.210em"> on the right by <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> gives <img class="m" src="m/28474df6672c571f1ccaffeabc0806fca308d06c.svg" alt="\(gN = Ng\)" style="height:0.962em;vertical-align:-0.212em">, which is
+(iii); and multiplying (iii) on the right by <img class="m" src="m/f14acd7df725b615265b67cbcdbac36f95c3bd7b.svg" alt="\(g^{-1}\)" style="height:1.105em;vertical-align:-0.210em"> returns (i).
+</p>
+
+</div>
+
+<div class="theorem" id="orgd7a1649">
+<p>
+Let <img class="m" src="m/9e3c8c089919e0f80674755c6796acf42aae38ca.svg" alt="\(N \normalin G\)" style="height:0.899em;vertical-align:-0.153em">. Then <img class="m" src="m/c3b38b79f8c68712dc62afb575a8c676210d0203.svg" alt="\(G/N\)" style="height:1.096em;vertical-align:-0.274em"> is a group under
+<img class="m" src="m/d710250211e0aa941a8a5b7d17ad0fd97d725e6c.svg" alt="\((aN)(bN) = abN\)" style="height:1.096em;vertical-align:-0.274em">, the operation is well defined, and
+<img class="m" src="m/30fe0ed1e0e26e6fd4b2c1f99610496ea5f8ae93.svg" alt="\(\pi \colon G \to G/N\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/11874a8b02f931fe33a8ba8e0e09e0420f7722d1.svg" alt="\(\pi(a) = aN\)" style="height:1.096em;vertical-align:-0.274em">, is a surjective homomorphism
+with kernel <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgfea051a">
+<p>
+Well-definedness is the only issue. Suppose <img class="m" src="m/06a73f0d2b4023f3b585399963917e039f356061.svg" alt="\(aN = a'N\)" style="height:0.824em;vertical-align:-0.000em"> and
+<img class="m" src="m/6e9ad56153e7d85e46b22ddd9308e6991ec912ad.svg" alt="\(bN = b'N\)" style="height:0.824em;vertical-align:-0.000em">, so <img class="m" src="m/d15c333aef464c39b15e206a89fdfd004417084d.svg" alt="\(a' = an\)" style="height:0.824em;vertical-align:-0.000em"> and <img class="m" src="m/2e05bae1f30074efe7fa426381ffb74e3bcf408b.svg" alt="\(b' = bm\)" style="height:0.824em;vertical-align:-0.000em"> with <img class="m" src="m/41e74452f6fba97ca1ee0ef9c1950d8cf05ae239.svg" alt="\(n, m \in N\)" style="height:0.962em;vertical-align:-0.212em">. Then
+<img class="m" src="m/d16ce3198fc777e96c76f489d7b559a43f6483e9.svg" alt="\(a'b' = anbm = ab (b^{-1}nb) m\)" style="height:1.166em;vertical-align:-0.268em">, and <img class="m" src="m/b9d2d72d40b673a8f77737639df7c1ecfc048950.svg" alt="\(b^{-1}nb \in N\)" style="height:0.935em;vertical-align:-0.047em"> by normality,
+so <img class="m" src="m/58f6be42cca24ca9c9b81ac7e100f6f784072886.svg" alt="\(a'b'N = abN\)" style="height:0.824em;vertical-align:-0.000em">. Associativity is inherited from <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">; <img class="m" src="m/e10159ee9214140e09d102781e84bcdd729b465a.svg" alt="\(eN = N\)" style="height:0.749em;vertical-align:-0.000em"> is
+an identity; and <img class="m" src="m/ef4079d33dc293e2575c062d90c59139eda25fad.svg" alt="\(a^{-1}N\)" style="height:0.892em;vertical-align:-0.000em"> inverts <img class="m" src="m/a2652245d7af5de4f2a7231c55f3724968cc014f.svg" alt="\(aN\)" style="height:0.749em;vertical-align:-0.000em">. The map <img class="m" src="m/b1e3c27a225dba8050e88d2182ad88a60344ed21.svg" alt="\(\pi\)" style="height:0.472em;vertical-align:-0.000em"> is a
+homomorphism by the very definition of the product, and surjective by
+construction. Finally <img class="m" src="m/e0b3c261323f2368c513bc50675c21cdb3587c45.svg" alt="\(\pi(a) = N\)" style="height:1.096em;vertical-align:-0.274em"> means <img class="m" src="m/fb52ba1eb07249c6c4cd125a2b8bd6ef4e4160f8.svg" alt="\(aN = N\)" style="height:0.749em;vertical-align:-0.000em">, that is
+<img class="m" src="m/0adc37c9619290f6fb7b3de71c0087c3b19d04df.svg" alt="\(a \in N\)" style="height:0.792em;vertical-align:-0.040em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgb9189cd">
+<p>
+The kernel <img class="m" src="m/718378693f2a4d343f8a55fab7e968520771bd77.svg" alt="\(\ker \varphi = \setst{a \in G}{\varphi(a) = e}\)" style="height:1.096em;vertical-align:-0.274em"> of a
+homomorphism <img class="m" src="m/a9f6e3ee90549568a36a4bff653e4fd741d4d97a.svg" alt="\(\varphi \colon G \to H\)" style="height:0.962em;vertical-align:-0.212em"> is a normal subgroup of <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">,
+and every normal subgroup is such a kernel.
+</p>
+
+</div>
+
+<div class="proof" id="orga9804a6">
+<p>
+<img class="m" src="m/afa7f58567b75dbf6225aeba310d00f5c768a9bd.svg" alt="\(\ker\varphi\)" style="height:0.974em;vertical-align:-0.214em"> is a subgroup: <img class="m" src="m/6cc07343cd542d15f6151f03b8ccdccfd7bfb3be.svg" alt="\(\varphi(e) = e\)" style="height:1.096em;vertical-align:-0.274em">, and if
+<img class="m" src="m/fedd2d741e94702043af64db8fc42837d492a63d.svg" alt="\(\varphi(a) = \varphi(b) = e\)" style="height:1.096em;vertical-align:-0.274em"> then
+<img class="m" src="m/97ac47a3810d2474b758560c67fbf2e79d61a56d.svg" alt="\(\varphi(ab^{-1}) = \varphi(a)\varphi(b)^{-1} = e\)" style="height:1.166em;vertical-align:-0.268em">. It is normal:
+<img class="m" src="m/a55fdc7eaf95e399fa8a2e0217f51c20e0787755.svg" alt="\(\varphi(gag^{-1}) = \varphi(g) e \varphi(g)^{-1} = e\)" style="height:1.166em;vertical-align:-0.268em"> for
+<img class="m" src="m/09d5c74fbc64572079dc446f7ceb049a692133e2.svg" alt="\(a \in \ker\varphi\)" style="height:0.974em;vertical-align:-0.214em">. Conversely, a normal <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> is the kernel of the
+projection <img class="m" src="m/30fe0ed1e0e26e6fd4b2c1f99610496ea5f8ae93.svg" alt="\(\pi \colon G \to G/N\)" style="height:1.096em;vertical-align:-0.274em"> by the previous theorem.
+</p>
+
+</div>
+
+<div class="proposition" id="org56a5c91">
+<p>
+A homomorphism <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> is injective if and only if
+<img class="m" src="m/cd6ec0ceddc0f59a70356b83f969984aa37a2df9.svg" alt="\(\ker\varphi = \set{e}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org3c4c124">
+<p>
+If <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> is injective and <img class="m" src="m/b68a577ffed4f5d3441050022ce085eb02c6d6c8.svg" alt="\(\varphi(a) = e = \varphi(e)\)" style="height:1.096em;vertical-align:-0.274em">, then
+<img class="m" src="m/8892551759ffdd44d68cc4fd1ecfd73d920628ee.svg" alt="\(a = e\)" style="height:0.472em;vertical-align:-0.000em">. Conversely, if the kernel is trivial and
+<img class="m" src="m/16ec397d359e98282e88975d02d4d2d1990500e0.svg" alt="\(\varphi(a) = \varphi(b)\)" style="height:1.096em;vertical-align:-0.274em">, then <img class="m" src="m/5b69ec78b413503f40ee904c3ed3d3340215be53.svg" alt="\(\varphi(ab^{-1}) = e\)" style="height:1.166em;vertical-align:-0.268em">, so
+<img class="m" src="m/733dd7cec11f344b04c68187a7cdd325caf0efde.svg" alt="\(ab^{-1} = e\)" style="height:0.892em;vertical-align:-0.000em"> and <img class="m" src="m/b2b547b2f2540b5e31da76dc2660ae515baba691.svg" alt="\(a = b\)" style="height:0.761em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="remark" id="org505d2ba">
+<p>
+The last two propositions together say that a homomorphism is measured
+by a single subgroup: how far it is from injective is <img class="m" src="m/afa7f58567b75dbf6225aeba310d00f5c768a9bd.svg" alt="\(\ker\varphi\)" style="height:0.974em;vertical-align:-0.214em">,
+and nothing else. That is what makes the isomorphism theorems possible,
+and it is a phenomenon of algebra rather than of sets &#x2013; for a bare map,
+the failure of injectivity is a whole partition, not one class of it.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="subgroups-the-subgroup-criterion-and-generation.html"><span>← previous</span>Subgroups, the subgroup criterion and generation</a><a rel="next" href="the-isomorphism-theorems-for-groups.html"><span>next →</span>The isomorphism theorems for groups</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--group-theory.pdf" title="PDF manual">Group Theory</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

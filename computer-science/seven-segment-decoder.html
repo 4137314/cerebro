@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>7-segment decoder: don't-cares and joint minimization · Computer Science</title>
+<meta name="description" content="Each of the seven segments is a separate 4-input function of the digit xyzw; for hexadecimal digits segment a needs 14 literals, but if only BCD digits 0–9 can occur the six unused codes are don't-cares and a=x+z+yw+\bar y\bar w needs 6; across outputs a product already built for one segment can be…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/seven-segment-decoder.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="7-segment decoder: don't-cares and joint minimization · Computer Science">
+<meta property="og:description" content="Each of the seven segments is a separate 4-input function of the digit xyzw; for hexadecimal digits segment a needs 14 literals, but if only BCD digits 0–9 can occur the six unused codes are don't-cares and a=x+z+yw+\bar y\bar w needs 6; across outputs a product already built for one segment can be…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/seven-segment-decoder.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--combinational">Combinational</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">example · Hardware · Combinational</p>
+<h1>7-segment decoder: don't-cares and joint minimization</h1>
+<p class="summary">Each of the seven segments is a separate 4-input function of the digit <img class="m" src="m/437a45feb9e4ffd7385490f6845447aad89a7ab3.svg" alt="\(xyzw\)" style="height:0.685em;vertical-align:-0.212em">; for hexadecimal digits segment <img class="m" src="m/36ad57d0b9b05e12447762c553bda3a072bc992d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> needs 14 literals, but if only BCD digits 0–9 can occur the six unused codes are don't-cares and <img class="m" src="m/e1570371b3b27604e4258a4141eda34d7f7d7c9d.svg" alt="\(a=x+z+yw+\bar y\bar w\)" style="height:0.852em;vertical-align:-0.213em"> needs 6; across outputs a product already built for one segment can be reused by another even when it is not prime there.</p>
+<p class="rel"><span>needs</span> <a href="karnaugh-maps.html">Karnaugh maps</a>, <a href="decoder-encoder.html">Decoders, encoders and priority encoders</a></p>
+<p class="rel"><span>see also</span> <a href="counters.html">Synchronous counters</a>, <a href="rtl-design.html">The RTL design method: datapath and control unit</a>, <a href="two-level-minimization.html">Two-level minimization: prime implicants and covers</a></p>
+<p class="rel"><span>mentioned in</span> <a href="rtl-design.html">The RTL design method: datapath and control unit</a></p>
+<details class="path"><summary>Learning path: 4 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="decoder-encoder.html">Decoders, encoders and priority encoders</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org4337ea4" class="outline-2">
+<h2 id="org4337ea4">Example</h2>
+<div class="outline-text-2" id="text-org4337ea4">
+<p>
+Segments: <img class="m" src="m/36ad57d0b9b05e12447762c553bda3a072bc992d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> top, <img class="m" src="m/9a9e478ff943a309ecb17df71ac414cc09c1be96.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em"> top right, <img class="m" src="m/b89f22107378b842f1c34383ec5fd8b764c4d3aa.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> bottom right, <img class="m" src="m/9ebc774c2af2128831b85f4a54f6ceb82b3ea827.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em"> bottom, <img class="m" src="m/fef9f2849a385dc45613d185beaef099d06c14ee.svg" alt="\(e\)" style="height:0.472em;vertical-align:-0.000em"> bottom left, <img class="m" src="m/c1ed5a3ca52156eb9911941034a69236922afca1.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> top left, <img class="m" src="m/6f6395a26920710244b20c126620bba591d87d59.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> middle. Input <img class="m" src="m/437a45feb9e4ffd7385490f6845447aad89a7ab3.svg" alt="\(xyzw\)" style="height:0.685em;vertical-align:-0.212em">, <img class="m" src="m/c1cb305e0744a841c0171151eaf770796c623d6f.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> most significant.
+<b>Segment <img class="m" src="m/36ad57d0b9b05e12447762c553bda3a072bc992d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">, hex digits</b> (off only for 1, 4, b, d). Map, rows <img class="m" src="m/f318dd0f47abf95440a157ce72330f86a787c543.svg" alt="\(xy\)" style="height:0.685em;vertical-align:-0.212em">, columns <img class="m" src="m/36932fc39f2fe7cea0f655fab435879e62091e63.svg" alt="\(zw\)" style="height:0.472em;vertical-align:-0.000em"> in Gray order:
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">xy/zw</th>
+<th scope="col" class="org-right">00</th>
+<th scope="col" class="org-right">01</th>
+<th scope="col" class="org-right">11</th>
+<th scope="col" class="org-right">10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">00</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">01</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">11</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">10</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Primes: <img class="m" src="m/6d493afe69072608f858d1a92e7f5e4012a9d7c8.svg" alt="\(\bar xz\)" style="height:0.622em;vertical-align:-0.000em">, <img class="m" src="m/f186bdbb11e5cf4c08627a6691c9bbbb680f5ff6.svg" alt="\(yz\)" style="height:0.685em;vertical-align:-0.212em">, <img class="m" src="m/ea88c606f5972d10e1b14941cefe82592e14f9f7.svg" alt="\(\bar y\bar w\)" style="height:0.835em;vertical-align:-0.217em">, <img class="m" src="m/512e76b355d2bf4451c58cedc74795c3e44069bd.svg" alt="\(x\bar w\)" style="height:0.622em;vertical-align:-0.000em">, <img class="m" src="m/ffc3c1f259a617f8df7679fbaa0cc211fa1c517e.svg" alt="\(\bar xyw\)" style="height:0.835em;vertical-align:-0.217em">, <img class="m" src="m/8e23d8e41b0f5cc51855e67756672691399cbb77.svg" alt="\(x\bar y\bar z\)" style="height:0.835em;vertical-align:-0.217em">, <img class="m" src="m/c65a297e0be8916085cdd5d912c537bd8a2c6a28.svg" alt="\(z\bar w\)" style="height:0.622em;vertical-align:-0.000em">. All but <img class="m" src="m/c65a297e0be8916085cdd5d912c537bd8a2c6a28.svg" alt="\(z\bar w\)" style="height:0.622em;vertical-align:-0.000em"> are essential and already cover everything:
+<div class="mb"><img class="m" src="m/73ad98c36f08bdc57ef4399b84df1c223c980fd4.svg" alt="\[ a=\bar xz+yz+\bar y\bar w+x\bar w+\bar xyw+x\bar y\bar z\quad(14\text{ literals}). \]" style="width:24.615em"></div>
+<b>Segment <img class="m" src="m/36ad57d0b9b05e12447762c553bda3a072bc992d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">, decimal digits only</b>: rows 11 and the cells 1010, 1011 become <img class="m" src="m/4c7425d5d39282c3f17ceffd0f7b1f33fac56c39.svg" alt="\(-\)" style="height:0.731em;vertical-align:-0.088em">. Treating them as 1, the primes grow to <img class="m" src="m/e730d8cd532e4dd51091c85ba5138b35495d43c0.svg" alt="\(z\)" style="height:0.472em;vertical-align:-0.000em">, <img class="m" src="m/c1cb305e0744a841c0171151eaf770796c623d6f.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, <img class="m" src="m/d4667a363ef884155df03e07e1ba0a9300918023.svg" alt="\(yw\)" style="height:0.685em;vertical-align:-0.212em">, <img class="m" src="m/ea88c606f5972d10e1b14941cefe82592e14f9f7.svg" alt="\(\bar y\bar w\)" style="height:0.835em;vertical-align:-0.217em">:
+<div class="mb"><img class="m" src="m/d350117263016cec6f73a78040e93630dc48b8c6.svg" alt="\[ a=x+z+yw+\bar y\bar w\quad(6\text{ literals}). \]" style="width:16.426em"></div>
+<b>Segment <img class="m" src="m/6f6395a26920710244b20c126620bba591d87d59.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"></b> (off for 0, 1, 7, C): hex <img class="m" src="m/b0a3e9c58efc45de2ebc4665cc5612d7ce873dd2.svg" alt="\(g=\bar yz+x\bar y+z\bar w+xw+\bar xy\bar z\)" style="height:0.852em;vertical-align:-0.213em"> (11 literals); decimal <img class="m" src="m/2b156608fdd1a570273430ee6540ee4e31cd0da3.svg" alt="\(g=x+z\bar w+y\bar z+\bar yz\)" style="height:0.852em;vertical-align:-0.213em"> (7 literals).
+<b>Joint minimization</b>: <img class="m" src="m/8e23d8e41b0f5cc51855e67756672691399cbb77.svg" alt="\(x\bar y\bar z\)" style="height:0.835em;vertical-align:-0.217em"> is an essential prime of <img class="m" src="m/36ad57d0b9b05e12447762c553bda3a072bc992d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> and is therefore built anyway. For <img class="m" src="m/6f6395a26920710244b20c126620bba591d87d59.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> it is an implicant (not prime: it lies inside <img class="m" src="m/864e60c97915910c70460a26f46fb405d4e9f8bd.svg" alt="\(x\bar y\)" style="height:0.835em;vertical-align:-0.217em">); using it instead of <img class="m" src="m/864e60c97915910c70460a26f46fb405d4e9f8bd.svg" alt="\(x\bar y\)" style="height:0.835em;vertical-align:-0.217em">,
+<div class="mb"><img class="m" src="m/ed1b1315e5833e75163265aabf47dfbcdc49c4fb.svg" alt="\[ g=\bar yz+x\bar y\bar z+z\bar w+xw+\bar xy\bar z \]" style="width:14.849em"></div>
+has 12 literals on paper but the shared AND costs nothing new: 9 new literals instead of 11.
+</p>
+</div>
+</div>
+<div id="outline-container-org37b8bcd" class="outline-2">
+<h2 id="org37b8bcd">Intuition</h2>
+<div class="outline-text-2" id="text-org37b8bcd">
+<p>
+Don't-cares are free ones: every unused code is a cell the map may claim to make a rectangle bigger. Sharing gates between outputs is the same idea one level up: the cheapest term is the one already in the circuit.
+</p>
+</div>
+</div>
+<div id="outline-container-org9eda4d9" class="outline-2">
+<h2 id="org9eda4d9">Pitfall</h2>
+<div class="outline-text-2" id="text-org9eda4d9">
+<p>
+With don't-cares the circuit's output on the unused codes is whatever the chosen cover says (here 1010 lights segment <img class="m" src="m/36ad57d0b9b05e12447762c553bda3a072bc992d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">): fine only if those codes really never occur. Joint minimization by hand is error-prone; for several outputs, tools do it (the <a href="two-level-minimization.html">multiple-output</a> version of the cover problem).
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="karnaugh-maps.html"><span>← previous</span>Karnaugh maps</a><a rel="next" href="multiplexer.html"><span>next →</span>Multiplexer and demultiplexer</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--combinational.pdf" title="PDF manual">Combinational</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

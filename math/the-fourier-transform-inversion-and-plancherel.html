@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Fourier transform, inversion and Plancherel · Mathematics</title>
+<meta name="description" content="On a bounded interval the frequencies are discrete and the expansion is a series; on the line they form a continuum and the sum becomes an integral. What survives is what matters for mathematical physics: differentiation becomes multiplication, convolution becomes multiplication, and the transform …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-fourier-transform-inversion-and-plancherel.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The Fourier transform, inversion and Plancherel · Mathematics">
+<meta property="og:description" content="On a bounded interval the frequencies are discrete and the expansion is a series; on the line they form a continuum and the sum becomes an integral. What survives is what matters for mathematical physics: differentiation becomes multiplication, convolution becomes multiplication, and the transform …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-fourier-transform-inversion-and-plancherel.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--harmonic-analysis">Harmonic Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Harmonic Analysis</p>
+<h1>The Fourier transform, inversion and Plancherel</h1>
+<p class="summary">On a bounded interval the frequencies are discrete and the expansion is a series; on the line they form a continuum and the sum becomes an integral. What survives is what matters for <a href="mathematical-physics.html">mathematical physics</a>: differentiation becomes multiplication, convolution becomes multiplication, and the transform preserves the <img class="m" src="m/f3b131d6a772188adab030e30e89617ec918342f.svg" alt="\(L^{2}\)" style="height:0.892em;vertical-align:-0.000em"> norm &#x2013; so a differential equation becomes an algebraic one.</p>
+<p class="rel"><span>needs</span> <a href="expectation-the-transfer-theorem-and-jensens-inequality.html">Expectation, the transfer theorem and Jensen's inequality</a>, <a href="fourier-series-fejers-theorem-and-parsevals-identity.html">Fourier series, Fejer's theorem and Parseval's identity</a>, <a href="product-measures-and-the-theorems-of-tonelli-and-fubini.html">Product measures and the theorems of Tonelli and Fubini</a>, <a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a>, <a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a>, <a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></p>
+<p class="rel"><span>unlocks</span> <a href="the-harmonic-oscillator-by-ladder-operators.html">The harmonic oscillator by ladder operators</a>, <a href="the-hilbert-space-formalism-of-quantum-mechanics.html">The Hilbert space formalism of quantum mechanics</a></p>
+<p class="rel"><span>mentioned in</span> <a href="analysis.html">Analysis</a>, <a href="partial-differential-equations.html">Partial differential equations</a></p>
+<details class="path"><summary>Learning path: 60 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="convex-functions-and-the-second-derivative.html">Convex functions and the second derivative</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li><li><a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="the-baire-category-theorem.html">The Baire category theorem</a></li><li><a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></li><li><a href="convex-set.html">Convex set</a></li><li><a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a></li><li><a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a></li><li><a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a></li><li><a href="product-measures-and-the-theorems-of-tonelli-and-fubini.html">Product measures and the theorems of Tonelli and Fubini</a></li><li><a href="fourier-series-fejers-theorem-and-parsevals-identity.html">Fourier series, Fejer's theorem and Parseval's identity</a></li><li><a href="probability-spaces-conditioning-and-independence.html">Probability spaces, conditioning and independence</a></li><li><a href="random-variables-laws-and-distribution-functions.html">Random variables, laws and distribution functions</a></li><li><a href="expectation-the-transfer-theorem-and-jensens-inequality.html">Expectation, the transfer theorem and Jensen's inequality</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgf234b57">
+<p>
+For <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> integrable on <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em">, the <i>Fourier transform</i> is
+<div class="mb"><img class="m" src="m/0182ce232f287259659649982618db6464695564.svg" alt="\[ \hat{f}(\xi) = \int_{\R} f(x) e^{-i\xi x}\dd x, \qquad \xi \in \R, \]" style="width:16.393em"></div>
+and the <i>convolution</i> of integrable <img class="m" src="m/52fffc9055064e5c85f3c1e5957d19079fc01ab2.svg" alt="\(f, g\)" style="height:0.974em;vertical-align:-0.214em"> is
+<img class="m" src="m/8834a2dcc5d7a5705271ead3221ae175f8e4dc06.svg" alt="\((f*g)(x) = \int_{\R}f(x-y)g(y)\dd y\)" style="height:1.272em;vertical-align:-0.394em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgb6c300c">
+<p>
+For integrable <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">: <img class="m" src="m/3219725231353fee79555167350ea97e156585a4.svg" alt="\(\hat{f}\)" style="height:1.263em;vertical-align:-0.215em"> is bounded by
+<img class="m" src="m/fb91d1669977b99d769418361cace6c69f01000a.svg" alt="\(\int\abs{f}\)" style="height:1.218em;vertical-align:-0.341em"> and uniformly continuous; <img class="m" src="m/442f2904db92e551f61c5068b2007ec8493c767f.svg" alt="\(\widehat{f*g} = \hat{f}\hat{g}\)" style="height:1.371em;vertical-align:-0.219em">;
+if <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is <img class="m" src="m/137c7a7820d2ce9b6547f412208e261180f342ab.svg" alt="\(C^{1}\)" style="height:0.892em;vertical-align:-0.000em"> with <img class="m" src="m/add89c37f79634c5da7b06faa0d5d0c024760d88.svg" alt="\(f, f'\)" style="height:1.037em;vertical-align:-0.218em"> integrable then
+<img class="m" src="m/c329293f2a95d2e514d2957aabb80d4b2fa3f84f.svg" alt="\(\widehat{f'}(\xi) = i\xi\hat{f}(\xi)\)" style="height:1.355em;vertical-align:-0.271em">; and if <img class="m" src="m/267192e6d8d023ff2b95fa65b8142d7827278eda.svg" alt="\(xf(x)\)" style="height:1.096em;vertical-align:-0.274em"> is integrable
+then <img class="m" src="m/3219725231353fee79555167350ea97e156585a4.svg" alt="\(\hat{f}\)" style="height:1.263em;vertical-align:-0.215em"> is differentiable with
+<img class="m" src="m/6959d8b769ed7107a07c317aab77d9c045caae11.svg" alt="\(\hat{f}'(\xi) = \widehat{-ixf}(\xi)\)" style="height:1.432em;vertical-align:-0.272em">.
+</p>
+
+</div>
+
+<div class="proof" id="org8523ec4">
+<p>
+The bound is the triangle inequality, the modulus of the exponential
+being <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">. Uniform continuity: <img class="m" src="m/222586b05ef4f8b6c7df130169b224ca366b2350.svg" alt="\(\abs{\hat{f}(\xi+h)-\hat{f}(\xi)} \le \int\abs{f(x)}\abs{e^{-ihx}-1}\dd x\)" style="height:1.385em;vertical-align:-0.332em">,
+independent of <img class="m" src="m/a63871ebf2397ca84d940081566b2aaf597facad.svg" alt="\(\xi\)" style="height:0.974em;vertical-align:-0.214em">, and the integrand is dominated by
+<img class="m" src="m/516533e84216a399e51fdf3e3b392d37c57ef326.svg" alt="\(2\abs{f}\)" style="height:1.096em;vertical-align:-0.274em"> and tends to <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> pointwise, so dominated convergence
+applies.
+</p>
+
+<p>
+For the convolution, <img class="m" src="m/d37277b53775e192f343e8d35ae51c86530df98f.svg" alt="\(\abs{f(x-y)g(y)}\)" style="height:1.096em;vertical-align:-0.274em"> is integrable on the plane by
+Tonelli, so Fubini permits exchanging the order in
+<img class="m" src="m/ea8f263ae155d9a430f051c726a4d0da79a9c5ca.svg" alt="\(\int\!\!\int f(x-y)g(y)e^{-i\xi x}\dd y\dd x\)" style="height:1.265em;vertical-align:-0.329em">; substituting
+<img class="m" src="m/fb67e69d9dfc60913d05a873bc9c8e4431beb989.svg" alt="\(x = u+y\)" style="height:0.852em;vertical-align:-0.213em"> factorises the exponential and gives the product.
+</p>
+
+<p>
+Integrating by parts on <img class="m" src="m/78bb31b60bdc0e22e43e956cb1f1860fb211dd4f.svg" alt="\([-R,R]\)" style="height:1.096em;vertical-align:-0.274em"> and letting <img class="m" src="m/df739c80f7eec2f571e60bd1595ea5af414c5287.svg" alt="\(R\to\infty\)" style="height:0.749em;vertical-align:-0.000em"> &#x2013; the
+boundary terms tend to <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> because <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is integrable with integrable
+derivative, hence has limit <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> at <img class="m" src="m/11da4967deab16e9dbd550bc9725da149ae02d75.svg" alt="\(\pm\infty\)" style="height:0.731em;vertical-align:-0.088em"> &#x2013; gives the rule for
+<img class="m" src="m/fcd248f8faa113603c50440935779dfa8223591a.svg" alt="\(f'\)" style="height:1.037em;vertical-align:-0.218em">. Differentiation under the integral sign, justified by the
+dominating function <img class="m" src="m/ddae8f7e8480c0a538ae79dee43f57863b444e78.svg" alt="\(\abs{xf(x)}\)" style="height:1.096em;vertical-align:-0.274em">, gives the last rule.
+</p>
+
+</div>
+
+<div class="proposition" id="org0b7d187">
+<p>
+For <img class="m" src="m/b3d8cf0c73e16a7929e5e56e15b29cb4389154a8.svg" alt="\(g(x) = e^{-x^{2}/2}\)" style="height:1.355em;vertical-align:-0.271em"> one has <img class="m" src="m/1767eff58ca758c259fe1b476bd7f7eb3411c56f.svg" alt="\(\hat{g}(\xi) = \sqrt{2\pi}\,e^{-\xi^{2}/2}\)" style="height:1.355em;vertical-align:-0.271em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgc961720">
+<p>
+Both rules of the previous proposition apply to <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em">, which decays
+faster than any polynomial. Differentiating under the integral and then
+integrating by parts,
+<img class="m" src="m/92da45937451908e99908a5f0c56ddd0cf414032.svg" alt="\(\hat{g}'(\xi) = \int (-ix)e^{-x^{2}/2}e^{-i\xi x}\dd x = i\int \frac{\dd}{\dd x}\bigl(e^{-x^{2}/2}\bigr)e^{-i\xi x}\dd x = -\xi\hat{g}(\xi)\)" style="height:1.465em;vertical-align:-0.381em">.
+So <img class="m" src="m/f1bbc1374e714bd485684f3d5169f624fabfdbfc.svg" alt="\((\hat{g}(\xi)e^{\xi^{2}/2})' = 0\)" style="height:1.355em;vertical-align:-0.271em">, whence
+<img class="m" src="m/2d5311b03f7c9149d881b61506ff8ace7c34e7cd.svg" alt="\(\hat{g}(\xi) = \hat{g}(0)e^{-\xi^{2}/2}\)" style="height:1.355em;vertical-align:-0.271em">, and
+<img class="m" src="m/4207d4bd681de17d83dd89177a7624110f665383.svg" alt="\(\hat{g}(0) = \int e^{-x^{2}/2}\dd x = \sqrt{2\pi}\)" style="height:1.416em;vertical-align:-0.340em"> is the Gaussian
+integral, computed by squaring it and passing to polar coordinates.
+</p>
+
+</div>
+
+<div class="theorem" id="orgc604e65">
+<p>
+Let <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> be integrable and continuous with <img class="m" src="m/3219725231353fee79555167350ea97e156585a4.svg" alt="\(\hat{f}\)" style="height:1.263em;vertical-align:-0.215em"> integrable.
+Then
+<div class="mb"><img class="m" src="m/8c6a22c3d37071c843fed3dd6b74131439f3fdd1.svg" alt="\[ f(x) = \frac{1}{2\pi}\int_{\R}\hat{f}(\xi)e^{i\xi x}\dd\xi \qquad \text{for every } x. \]" style="width:19.320em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="org2dcb379">
+<p>
+For <img class="m" src="m/2cffdc597a54fae183dedb83e6fbd3d870b664ce.svg" alt="\(\eps&gt;0\)" style="height:0.749em;vertical-align:-0.045em"> consider
+<img class="m" src="m/b94a4adb69b738046e4d3d2f58ce64c033b04794.svg" alt="\(I_{\eps}(x) = \frac{1}{2\pi}\int \hat{f}(\xi)e^{-\eps^{2}\xi^{2}/2}e^{i\xi x}\dd\xi\)" style="height:1.459em;vertical-align:-0.379em">.
+Substituting the definition of <img class="m" src="m/3219725231353fee79555167350ea97e156585a4.svg" alt="\(\hat{f}\)" style="height:1.263em;vertical-align:-0.215em"> and applying Fubini &#x2013;
+legitimate because <img class="m" src="m/de5dcb831deabf343dd70401107ae7d65aaed32a.svg" alt="\(\abs{f(y)}e^{-\eps^{2}\xi^{2}/2}\)" style="height:1.355em;vertical-align:-0.271em"> is integrable on
+the plane &#x2013; gives
+<img class="m" src="m/958bf910840103b109d8c02cc171baa9a6ce652d.svg" alt="\(I_{\eps}(x) = \int f(y)\,\Phi_{\eps}(x-y)\dd y\)" style="height:1.218em;vertical-align:-0.341em">, where
+<img class="m" src="m/4515c7f016e38d0329c3e75923d5604927c2f41c.svg" alt="\(\Phi_{\eps}(u) = \frac{1}{2\pi}\int e^{-\eps^{2}\xi^{2}/2}e^{i\xi u}\dd\xi\)" style="height:1.459em;vertical-align:-0.379em">.
+By the Gaussian computation and a change of scale,
+<img class="m" src="m/0c3ac29b8b8796764257c0cc96c2b2e3c41f68db.svg" alt="\(\Phi_{\eps}(u) = \frac{1}{\eps\sqrt{2\pi}}e^{-u^{2}/(2\eps^{2})}\)" style="height:1.678em;vertical-align:-0.604em">,
+which is non-negative with total integral <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em"> and concentrates at
+<img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+
+<p>
+Hence <img class="m" src="m/f4b8b9e9a49ecddacd3fbc553e819d2ed940436d.svg" alt="\(I_{\eps}(x) \to f(x)\)" style="height:1.096em;vertical-align:-0.274em"> as <img class="m" src="m/6d307a417231e98c040fe6cd14b0d68b0cfcdf13.svg" alt="\(\eps\to0\)" style="height:0.706em;vertical-align:-0.000em">, by the same splitting
+argument as for Fejer's kernel, using continuity of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> at <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> and
+integrability to control the tail. On the other hand <img class="m" src="m/690b81d06b49fa7066c0215960853880744d308d.svg" alt="\(I_{\eps}(x)\)" style="height:1.096em;vertical-align:-0.274em">
+tends to the right-hand side of the statement by dominated convergence,
+the integrand being dominated by <img class="m" src="m/6fffdd38ef76c472a6c47156935c8dc7b40a8768.svg" alt="\(\abs{\hat{f}}\)" style="height:1.324em;vertical-align:-0.278em">. The two limits agree.
+</p>
+
+</div>
+
+<div class="theorem" id="org0a03f70">
+<p>
+For <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> integrable and square-integrable with <img class="m" src="m/3219725231353fee79555167350ea97e156585a4.svg" alt="\(\hat{f}\)" style="height:1.263em;vertical-align:-0.215em"> integrable,
+<div class="mb"><img class="m" src="m/1d75e1b8bc7e5d2d7237392e3744d156c5f91f49.svg" alt="\[ \int_{\R}\abs{f(x)}^{2}\dd x = \frac{1}{2\pi}\int_{\R}\abs{\hat{f}(\xi)}^{2}\dd\xi. \]" style="width:14.603em"></div>
+Consequently the transform extends to a bijective linear map of
+<img class="m" src="m/3f6f54b671d2c5454df600eaa973ac29c5786fb8.svg" alt="\(L^{2}(\R)\)" style="height:1.166em;vertical-align:-0.268em"> onto itself preserving the norm up to the factor
+<img class="m" src="m/c41f9b7208fa907b2fe2e5eb456970cf9afb69bb.svg" alt="\(2\pi\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org039c6f7">
+<p>
+Put <img class="m" src="m/f8eb418325fc9023c08881b7f0e734f5694d9947.svg" alt="\(g(x) = \overline{f(-x)}\)" style="height:1.315em;vertical-align:-0.276em">, so that
+<img class="m" src="m/571b0c0c440a9ada46dd465326d53f4c16e49ab5.svg" alt="\(\hat{g} = \overline{\hat{f}}\)" style="height:1.482em;vertical-align:-0.208em"> and <img class="m" src="m/526152b62c18a451298f9b762c5b2015d641f5b5.svg" alt="\((f*g)(0) = \int\abs{f}^{2}\)" style="height:1.227em;vertical-align:-0.331em">. The
+convolution <img class="m" src="m/2b83b35c5a34907826c764066b3ea99b54e978be.svg" alt="\(f*g\)" style="height:0.974em;vertical-align:-0.214em"> is continuous and its transform
+<img class="m" src="m/dd88289c2371b7af3ec55a055735e0aac9e0474f.svg" alt="\(\hat{f}\hat{g} = \abs{\hat{f}}^{2}\)" style="height:1.324em;vertical-align:-0.278em"> is integrable, so the inversion
+formula applies at <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">:
+<img class="m" src="m/e658a3fa8d25cc535941eaaa27da655bb720c283.svg" alt="\((f*g)(0) = \frac{1}{2\pi}\int\abs{\hat{f}(\xi)}^{2}\dd\xi\)" style="height:1.428em;vertical-align:-0.371em">, which is
+the identity.
+</p>
+
+<p>
+The set of such <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is dense in <img class="m" src="m/f3b131d6a772188adab030e30e89617ec918342f.svg" alt="\(L^{2}\)" style="height:0.892em;vertical-align:-0.000em">, and an isometry defined on
+a dense subspace of a complete space extends uniquely to the whole; the
+extension is onto because the inverse transform extends likewise and the
+two compositions are the identity on the dense subspace.
+</p>
+
+</div>
+
+<div class="remark" id="org46faa5c">
+<p>
+The three rules &#x2013; derivative to multiplication, convolution to product,
+norm preserved &#x2013; are exactly what makes the transform the standard tool
+for linear constant-coefficient equations: applying it turns the heat
+and wave equations into ordinary differential equations in <img class="m" src="m/a63871ebf2397ca84d940081566b2aaf597facad.svg" alt="\(\xi\)" style="height:0.974em;vertical-align:-0.214em">,
+solvable by inspection, and Plancherel guarantees that the answer
+obtained by inverting has the same energy as the data.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="fourier-series-fejers-theorem-and-parsevals-identity.html"><span>← previous</span>Fourier series, Fejer's theorem and Parseval's identity</a><a rel="next" href="existence-and-uniqueness-for-ordinary-differential-equations.html"><span>next →</span>Existence and uniqueness for ordinary differential equations</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--harmonic-analysis.pdf" title="PDF manual">Harmonic Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

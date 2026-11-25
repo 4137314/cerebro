@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bayes decision rule · Remote Sensing</title>
+<meta name="description" content="Assigning each pixel to the class with the largest posterior probability P(\omega_i\mid\mathbf x)\propto p(\mathbf x\mid\omega_i)P(\omega_i) minimises the probability of error; it needs the class-conditional densities and the prior probabilities, and gives the discriminants g_i(\mathbf x)=\ln p(\ma…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/bayes-classifier.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Bayes decision rule · Remote Sensing">
+<meta property="og:description" content="Assigning each pixel to the class with the largest posterior probability P(\omega_i\mid\mathbf x)\propto p(\mathbf x\mid\omega_i)P(\omega_i) minimises the probability of error; it needs the class-conditional densities and the prior probabilities, and gives the discriminants g_i(\mathbf x)=\ln p(\ma…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/bayes-classifier.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-recognition">Recognition</a> / <a rel="up" href="index.html#a-recognition--classification">Classification</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Recognition · Classification</p>
+<h1>Bayes decision rule</h1>
+<p class="summary">Assigning each pixel to the class with the largest posterior probability <img class="m" src="m/82e1468d2cb223146695e3aa9abe68bb7822b209.svg" alt="\(P(\omega_i\mid\mathbf x)\propto p(\mathbf x\mid\omega_i)P(\omega_i)\)" style="height:1.096em;vertical-align:-0.274em"> minimises the probability of error; it needs the class-conditional densities and the prior probabilities, and gives the discriminants <img class="m" src="m/af51a3f898e1579db8a96fde7702b3c8c3ad4748.svg" alt="\(g_i(\mathbf x)=\ln p(\mathbf x\mid\omega_i)+\ln P(\omega_i)\)" style="height:1.096em;vertical-align:-0.274em">.</p>
+<p class="rel"><span>needs</span> <a href="discriminant-functions.html">Discriminant functions and decision regions</a></p>
+<p class="rel"><span>unlocks</span> <a href="gaussian-maximum-likelihood.html">Gaussian maximum-likelihood classifier</a>, <a href="unsupervised-change-detection.html">Unsupervised change detection with EM and Bayes</a></p>
+<p class="rel"><span>see also</span> <a href="gaussian-maximum-likelihood.html">Gaussian maximum-likelihood classifier</a>, <a href="image-thresholding.html">Histogram thresholding</a>, <a href="spectral-signature.html">Spectral signature</a>, <a href="unsupervised-change-detection.html">Unsupervised change detection with EM and Bayes</a></p>
+<p class="rel"><span>mentioned in</span> <a href="spectral-signature.html">Spectral signature</a>, <a href="image-thresholding.html">Histogram thresholding</a>, <a href="feature-space.html">Feature space and spectral classes</a></p>
+<details class="path"><summary>Learning path: 20 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="spectral-signature.html">Spectral signature</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li><li><a href="image-statistics.html">Image statistics: moments, mode, median</a></li><li><a href="homogeneous-area-statistics.html">Statistics of homogeneous areas in optical images</a></li><li><a href="recognition-system.html">Recognition systems</a></li><li><a href="feature-extraction.html">Feature extraction</a></li><li><a href="feature-space.html">Feature space and spectral classes</a></li><li><a href="discriminant-functions.html">Discriminant functions and decision regions</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgf811e86" class="outline-2">
+<h2 id="orgf811e86">Statement</h2>
+<div class="outline-text-2" id="text-orgf811e86">
+<p>
+Bayes' theorem: <img class="m" src="m/7b1a8e6a8fe1dc58bf28a6e35425df1628301039.svg" alt="\(P(\omega_i\mid\mathbf x)=\dfrac{p(\mathbf x\mid\omega_i)P(\omega_i)}{p(\mathbf x)}\)" style="height:2.589em;vertical-align:-1.036em">, <img class="m" src="m/85ba03e78952eae7d42959cea1efdd7e40587e7b.svg" alt="\(p(\mathbf x)=\sum_jp(\mathbf x\mid\omega_j)P(\omega_j)\)" style="height:1.300em;vertical-align:-0.481em">. <a href="discriminant-functions.html">Decision rule</a> (MAP):
+<div class="mb"><img class="m" src="m/fbbe604c3999bc9a2fea8adb2a679acc88905e75.svg" alt="\[ \mathbf x\in\omega_i\iff p(\mathbf x\mid\omega_i)P(\omega_i)&gt;p(\mathbf x\mid\omega_j)P(\omega_j)\quad\forall j\ne i. \]" style="width:25.864em"></div>
+Among all rules, it has the minimum probability of error <img class="m" src="m/02829bd2840e43039ae9f808c81e5973538bcb10.svg" alt="\(P_e=\int\big(1-\max_iP(\omega_i\mid\mathbf x)\big)p(\mathbf x)\,d\mathbf x\)" style="height:1.315em;vertical-align:-0.381em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org98c5e66" class="outline-2">
+<h2 id="org98c5e66">Derivation</h2>
+<div class="outline-text-2" id="text-org98c5e66">
+<p>
+A rule with regions <img class="m" src="m/5b8635cc479fd57b915354797e2faee6a75ae934.svg" alt="\(\mathcal R_i\)" style="height:0.913em;vertical-align:-0.164em"> is correct with probability <img class="m" src="m/19d7dcd8193be38d2c1f5e64b69d1f0ec7a5faa0.svg" alt="\(\sum_i\int_{\mathcal R_i}p(\mathbf x\mid\omega_i)P(\omega_i)\,d\mathbf x\)" style="height:1.382em;vertical-align:-0.498em">. To maximise it, each <img class="m" src="m/8438ca060c315ddafc0993ec6eb6c0427f77fa2d.svg" alt="\(\mathbf x\)" style="height:0.487em;vertical-align:-0.000em"> should lie in the region whose integrand is largest at <img class="m" src="m/8438ca060c315ddafc0993ec6eb6c0427f77fa2d.svg" alt="\(\mathbf x\)" style="height:0.487em;vertical-align:-0.000em">, which is the MAP rule. With equal priors it reduces to maximum likelihood.
+</p>
+</div>
+</div>
+<div id="outline-container-org3a5705b" class="outline-2">
+<h2 id="org3a5705b">Picture</h2>
+<div class="outline-text-2" id="text-org3a5705b">
+<figure class="fig"><img class="m" src="m/ccdaa4f07b962973a95797f92e09ee2cdee8e3a9.svg" alt="figure" style="width:18.251em"><figcaption><span class="fl">Figure 1.</span> The Bayes decision rule for two classes: assign <img class="m" src="m/e90eee614ccff89dc50a4f360f55b37c3ea3519a.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> to the class with the larger <img class="m" src="m/27d628b200b424c4defb10c7be9f7d1a4b7f40c1.svg" alt="\(p(x\mid\omega_i)P(\omega_i)\)" style="height:1.096em;vertical-align:-0.274em">; the crossing of the curves is the decision boundary.</figcaption></figure>
+<p>
+The threshold sits where the weighted densities cross, shifted towards the less probable class.
+</p>
+</div>
+</div>
+<div id="outline-container-org725ba71" class="outline-2">
+<h2 id="org725ba71">Intuition</h2>
+<div class="outline-text-2" id="text-org725ba71">
+<p>
+Pick the most believable explanation of the pixel, weighing how typical the measurement is for each class and how common each class is.
+</p>
+</div>
+</div>
+<div id="outline-container-orgeae244c" class="outline-2">
+<h2 id="orgeae244c">Pitfall</h2>
+<div class="outline-text-2" id="text-orgeae244c">
+<p>
+Priors matter: estimating them from the <a href="training-validation.html">training set</a>, where classes are sampled in arbitrary proportions, biases the map; and the rule is only as good as the estimated densities.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="discriminant-functions.html"><span>← previous</span>Discriminant functions and decision regions</a><a rel="next" href="gaussian-maximum-likelihood.html"><span>next →</span>Gaussian maximum-likelihood classifier</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/recognition--classification.pdf" title="PDF manual">Classification</a> · <a class="pdf" href="pdf/recognition.pdf" title="PDF manual">Recognition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

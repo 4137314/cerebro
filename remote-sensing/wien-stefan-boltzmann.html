@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stefan–Boltzmann and Wien laws · Remote Sensing</title>
+<meta name="description" content="Integrating Planck's law over all wavelengths gives the total exitance M=\sigma T^4 (\sigma=5.67\times10^{-8} W m^{-2} K^{-4}); setting its derivative to zero gives the peak wavelength \lambda_{\max}=b/T with b=2898 µm K.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/wien-stefan-boltzmann.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Stefan–Boltzmann and Wien laws · Remote Sensing">
+<meta property="og:description" content="Integrating Planck's law over all wavelengths gives the total exitance M=\sigma T^4 (\sigma=5.67\times10^{-8} W m^{-2} K^{-4}); setting its derivative to zero gives the peak wavelength \lambda_{\max}=b/T with b=2898 µm K.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/wien-stefan-boltzmann.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-physics">Physics</a> / <a rel="up" href="index.html#a-physics--radiation">Radiation</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Physics · Radiation</p>
+<h1>Stefan–Boltzmann and Wien laws</h1>
+<p class="summary">Integrating Planck's law over all wavelengths gives the total exitance <img class="m" src="m/5a2ef049f81f21c904f77d4eca593d36246f037d.svg" alt="\(M=\sigma T^4\)" style="height:0.892em;vertical-align:-0.000em"> (<img class="m" src="m/f2124c550b4f8ff0459394558b47d98424f71417.svg" alt="\(\sigma=5.67\times10^{-8}\)" style="height:0.983em;vertical-align:-0.089em"> W m<img class="m" src="m/e42e9bee0e7100a19c8ae0eb4fbd16105910a93e.svg" alt="\(^{-2}\)" style="height:0.892em;vertical-align:-0.000em"> K<img class="m" src="m/865a8c855c55e163f9ffa12353270eaed87ce413.svg" alt="\(^{-4}\)" style="height:0.892em;vertical-align:-0.000em">); setting its derivative to zero gives the peak wavelength <img class="m" src="m/eb73f59f1d5a860c9d5bc01ba1dde6e40f3563a2.svg" alt="\(\lambda_{\max}=b/T\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/8b43ebfc1e8a4eee192f17cadddbb0e8f3873a1f.svg" alt="\(b=2898\)" style="height:0.761em;vertical-align:-0.000em"> µm K.</p>
+<p class="rel"><span>needs</span> <a href="planck-law.html">Black body and Planck's law</a></p>
+<p class="rel"><span>unlocks</span> <a href="sun-earth-radiation.html">The Sun and the Earth as sources</a></p>
+<p class="rel"><span>see also</span> <a href="sun-earth-radiation.html">The Sun and the Earth as sources</a>, <a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></p>
+<details class="path"><summary>Learning path: 4 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orga337a67" class="outline-2">
+<h2 id="orga337a67">Statement</h2>
+<div class="outline-text-2" id="text-orga337a67">
+<p>
+<div class="mb"><img class="m" src="m/8bf2dd07f1049745fada4732b6e6f6344341fa7a.svg" alt="\[ M(T)=\int_0^\infty B(\lambda,T)\,d\lambda=\sigma T^4,\qquad \lambda_{\max}=\frac{b}{T},\quad b=2898\ \mu\mathrm{m\,K}. \]" style="width:31.448em"></div>
+</p>
+</div>
+</div>
+<div id="outline-container-org17ffab3" class="outline-2">
+<h2 id="org17ffab3">Derivation</h2>
+<div class="outline-text-2" id="text-org17ffab3">
+<p>
+With <img class="m" src="m/5ec35e4a67f00cb5ed1510361e261a4207e9cd07.svg" alt="\(x=c_2/(\lambda T)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/4791528f4adcf65e67cdf217bfde923f98eb8d72.svg" alt="\(d\lambda=-c_2/(Tx^2)\,dx\)" style="height:1.166em;vertical-align:-0.268em">:
+<div class="mb"><img class="m" src="m/633c89ca574aae324d0f2f05b1b109afe50200f9.svg" alt="\[ M=\frac{c_1T^4}{c_2^4}\int_0^\infty\frac{x^3}{e^x-1}dx=\frac{c_1T^4}{c_2^4}\frac{\pi^4}{15}, \]" style="width:17.653em"></div>
+so <img class="m" src="m/6ee8865fecddf0d2a3640c9b4314d02261af5004.svg" alt="\(\sigma=\pi^4c_1/(15c_2^4)\)" style="height:1.166em;vertical-align:-0.268em">. For the peak, <img class="m" src="m/59070807b12ceee1f526f968e7b663af6661f3b1.svg" alt="\(\partial B/\partial\lambda=0\)" style="height:1.096em;vertical-align:-0.274em"> gives <img class="m" src="m/d86fdf7df3b50b5210a074c1fe748b684aaf59b7.svg" alt="\(x e^x/(e^x-1)=5\)" style="height:1.096em;vertical-align:-0.274em">, whose root is <img class="m" src="m/b360408dbda08a4499cdc4124f038d31a5ccaafe.svg" alt="\(x\approx4.965\)" style="height:0.706em;vertical-align:-0.000em">: <img class="m" src="m/3edb7ad556d75dc394154144339f46497854b26c.svg" alt="\(\lambda_{\max}T=c_2/4.965\approx2898\)" style="height:1.096em;vertical-align:-0.274em"> µm K.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc44e15e" class="outline-2">
+<h2 id="orgc44e15e">Example</h2>
+<div class="outline-text-2" id="text-orgc44e15e">
+<p>
+Doubling the temperature multiplies the emitted power by 16 and halves the peak wavelength. A forest fire at 800 K peaks at 3.6 µm, in the MWIR, which is why fire detection uses the 3–4 µm window.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfab2e9d" class="outline-2">
+<h2 id="orgfab2e9d">Intuition</h2>
+<div class="outline-text-2" id="text-orgfab2e9d">
+<p>
+Hotter bodies emit far more and bluer.
+</p>
+</div>
+</div>
+<div id="outline-container-org0882d03" class="outline-2">
+<h2 id="org0882d03">Pitfall</h2>
+<div class="outline-text-2" id="text-org0882d03">
+<p>
+Wien's law gives the peak in wavelength; the peak of the same spectrum written per unit frequency is at a different place. Use the form that matches the units of the sensor's bands.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="brightness-temperature.html"><span>← previous</span>Brightness temperature and surface temperature</a><a rel="next" href="sun-earth-radiation.html"><span>next →</span>The Sun and the Earth as sources</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/physics--radiation.pdf" title="PDF manual">Radiation</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">Physics</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

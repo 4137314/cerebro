@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nearest points and the separating hyperplane theorem · Mathematics</title>
+<meta name="description" content="A convex set is one that contains the segment between any two of its points, which is a statement about lines. The theorem below turns it into a statement about linear functionals: a closed convex set is the intersection of the half-spaces containing it, so convexity can always be certified by ineq…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/nearest-points-and-the-separating-hyperplane-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Nearest points and the separating hyperplane theorem · Mathematics">
+<meta property="og:description" content="A convex set is one that contains the segment between any two of its points, which is a statement about lines. The theorem below turns it into a statement about linear functionals: a closed convex set is the intersection of the half-spaces containing it, so convexity can always be certified by ineq…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/nearest-points-and-the-separating-hyperplane-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-geometry">Geometry</a> / <a rel="up" href="index.html#a-geometry--convex-geometry">Convex Geometry</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Geometry · Convex Geometry</p>
+<h1>Nearest points and the separating hyperplane theorem</h1>
+<p class="summary">A <a href="convex-set.html">convex set</a> is one that contains the segment between any two of its points, which is a statement about lines. The theorem below turns it into a statement about linear functionals: a closed convex set is the intersection of the half-spaces containing it, so convexity can always be certified by inequalities. Every duality argument in optimisation is this theorem.</p>
+<p class="rel"><span>needs</span> <a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a>, <a href="convex-set.html">Convex set</a>, <a href="inner-product-space.html">Inner product space</a>, <a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a>, <a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></p>
+<p class="rel"><span>unlocks</span> <a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a>, <a href="extreme-points-and-minkowskis-theorem-on-convex-bodies.html">Extreme points and Minkowski's theorem on convex bodies</a></p>
+<p class="rel"><span>mentioned in</span> <a href="functional-analysis.html">Functional analysis</a>, <a href="geometry.html">Geometry</a></p>
+<details class="path"><summary>Learning path: 20 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="convex-set.html">Convex set</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org89c72ec">
+<p>
+For <img class="m" src="m/07ec8ea269c89d062306b74f042e9ef4b37212fb.svg" alt="\(u \in \R^{n}\)" style="height:0.798em;vertical-align:-0.040em"> non-zero and <img class="m" src="m/666d753d852d225cc14d513f507ce9154061ca00.svg" alt="\(\alpha \in \R\)" style="height:0.798em;vertical-align:-0.040em">, the <i>hyperplane</i> is
+<img class="m" src="m/8b0d51150f687b63143c849da73f42189bda6ce5.svg" alt="\(H = \setst{y}{\inner{u}{y} = \alpha}\)" style="height:1.096em;vertical-align:-0.274em"> and the two closed
+<i>half-spaces</i> it bounds are <img class="m" src="m/e4343794ec831b222adb79516e040a371824f688.svg" alt="\(\setst{y}{\inner{u}{y} \le \alpha}\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/4960f3e7fc7272c84be81e11c52b584c353a69ac.svg" alt="\(\setst{y}{\inner{u}{y} \ge \alpha}\)" style="height:1.096em;vertical-align:-0.274em">. The hyperplane <i>separates</i> two
+sets if they lie in opposite half-spaces, and <i>strictly separates</i> them
+if the inequalities are strict.
+</p>
+
+</div>
+
+<div class="theorem" id="org1a8c90b">
+<p>
+Let <img class="m" src="m/c9435c8c4a830d117b169c5f0cc96be14eda57d5.svg" alt="\(C \subseteq \R^{n}\)" style="height:0.904em;vertical-align:-0.145em"> be non-empty, closed and convex, and let
+<img class="m" src="m/12370b17294a449903507cf965b1246f0d5b86f1.svg" alt="\(x \in \R^{n}\)" style="height:0.798em;vertical-align:-0.040em">. Then there is exactly one <img class="m" src="m/25863219ecef0406ce384cafa4d8791b4d2096f8.svg" alt="\(p \in C\)" style="height:0.962em;vertical-align:-0.212em"> with
+<img class="m" src="m/1711cf25d34eecda4041799ebbb4696c65a9e482.svg" alt="\(\norm{x - p} = \inf_{c \in C}\norm{x - c}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgaab431e">
+<p>
+Let <img class="m" src="m/ad855e27454841e8ad2eca7f08dfc4eb67657f15.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em"> be that infimum and pick <img class="m" src="m/3e7fb26dcc16c37f4f45a9dc552330ea50c28bdd.svg" alt="\(c_{k} \in C\)" style="height:0.913em;vertical-align:-0.164em"> with
+<img class="m" src="m/92ac865dfeb9b11c04c64b02d237f004ab797753.svg" alt="\(\norm{x - c_{k}} \to d\)" style="height:1.096em;vertical-align:-0.274em">. The parallelogram identity, applied to
+<img class="m" src="m/2406ca40b14dc16d13a548abb4fd618bf0ec7956.svg" alt="\(x - c_{k}\)" style="height:0.804em;vertical-align:-0.161em"> and <img class="m" src="m/fe2a5851e232de8a4489be7ed6b30712ee075b68.svg" alt="\(x - c_{l}\)" style="height:0.804em;vertical-align:-0.161em">, gives
+<div class="mb"><img class="m" src="m/cf482c8deba39f57edda762d544ffa641b3fcefd.svg" alt="\[ \norm{c_{k}-c_{l}}^{2} = 2\norm{x-c_{k}}^{2} + 2\norm{x-c_{l}}^{2} - 4\norm{x - \tfrac{c_{k}+c_{l}}{2}}^{2}. \]" style="width:25.839em"></div>
+The midpoint lies in <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> by convexity, so the last term is at least
+<img class="m" src="m/64a1d845a63ad61abcb670a216d7f36acffcdc76.svg" alt="\(4d^{2}\)" style="height:0.892em;vertical-align:-0.000em">, and the right-hand side tends to
+<img class="m" src="m/b876bd3b1d1d565857d1623dd53bbc62bf205bf9.svg" alt="\(2d^{2}+2d^{2}-4d^{2} = 0\)" style="height:0.983em;vertical-align:-0.089em">. Hence <img class="m" src="m/9411eb65b4db16e5e7f8d35d67881d3a6d4617eb.svg" alt="\((c_{k})\)" style="height:1.096em;vertical-align:-0.274em"> is Cauchy, so it
+converges to some <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">, which lies in <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> because <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> is closed;
+and <img class="m" src="m/a30d53cdd19898c844048f984a5cc54368c0d043.svg" alt="\(\norm{x-p} = d\)" style="height:1.096em;vertical-align:-0.274em"> by continuity of the norm.
+</p>
+
+<p>
+Uniqueness: if <img class="m" src="m/cc580994e5536c86a124862174c25ea7515c2028.svg" alt="\(p, p'\)" style="height:1.037em;vertical-align:-0.218em"> both attain <img class="m" src="m/ad855e27454841e8ad2eca7f08dfc4eb67657f15.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em">, the same identity with
+<img class="m" src="m/284bf99f4c339e1515c0ce9f0377643e62b23e6a.svg" alt="\(c_{k} = p\)" style="height:0.685em;vertical-align:-0.212em">, <img class="m" src="m/94921032074148564fb6f9bb1b9e711f43212488.svg" alt="\(c_{l} = p'\)" style="height:1.037em;vertical-align:-0.218em"> gives
+<img class="m" src="m/05bd7153d3c89d7e9e1d78e55ebe61899469461a.svg" alt="\(\norm{p-p'}^{2} \le 4d^{2}-4d^{2} = 0\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgcccb149">
+<p>
+With the notation above, <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> is the nearest point of <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> to <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> if
+and only if <img class="m" src="m/27c486add899f7eb71ba0a6ddf353b6b4b815a27.svg" alt="\(\inner{x - p}{c - p} \le 0\)" style="height:1.096em;vertical-align:-0.274em"> for every <img class="m" src="m/bb871a339f407acc1daa1b77e46265e142d4f9da.svg" alt="\(c \in C\)" style="height:0.792em;vertical-align:-0.040em">.
+</p>
+
+</div>
+
+<div class="proof" id="org63ba08e">
+<p>
+Assume <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> is nearest and let <img class="m" src="m/bb871a339f407acc1daa1b77e46265e142d4f9da.svg" alt="\(c \in C\)" style="height:0.792em;vertical-align:-0.040em">, <img class="m" src="m/b93451ee8202045619851e3f3e5e33e86075d594.svg" alt="\(t \in (0,1]\)" style="height:1.096em;vertical-align:-0.274em">. Convexity
+puts <img class="m" src="m/dbf5fa680df76e14d17686e75e6b688708557eee.svg" alt="\(p + t(c-p)\)" style="height:1.096em;vertical-align:-0.274em"> in <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">, so
+<img class="m" src="m/403d9540fc1e63e9be67db53ab5b9370217fec82.svg" alt="\(\norm{x-p-t(c-p)}^{2} \ge \norm{x-p}^{2}\)" style="height:1.166em;vertical-align:-0.268em">; expanding,
+<img class="m" src="m/adae7dbe86fe63db2e45e6ceabe8d27d32c194a0.svg" alt="\(-2t\inner{x-p}{c-p} + t^{2}\norm{c-p}^{2} \ge 0\)" style="height:1.166em;vertical-align:-0.268em">, so
+<img class="m" src="m/379d6a68a0c8175b5fd60499378107f49de2e5db.svg" alt="\(\inner{x-p}{c-p} \le \tfrac{t}{2}\norm{c-p}^{2}\)" style="height:1.281em;vertical-align:-0.372em"> for every
+<img class="m" src="m/b93451ee8202045619851e3f3e5e33e86075d594.svg" alt="\(t \in (0,1]\)" style="height:1.096em;vertical-align:-0.274em">, and letting <img class="m" src="m/a2b17e7583e24bb0de27015cdc9b9b0c8a662855.svg" alt="\(t \to 0\)" style="height:0.706em;vertical-align:-0.000em"> gives the inequality.
+Conversely, if it holds then for <img class="m" src="m/bb871a339f407acc1daa1b77e46265e142d4f9da.svg" alt="\(c \in C\)" style="height:0.792em;vertical-align:-0.040em">,
+<img class="m" src="m/f78cfdf10af245176cc33c9eea658055c33ed285.svg" alt="\(\norm{x-c}^{2} = \norm{(x-p) - (c-p)}^{2} = \norm{x-p}^{2} - 2\inner{x-p}{c-p} + \norm{c-p}^{2} \ge \norm{x-p}^{2}\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org5649df0">
+<p>
+Let <img class="m" src="m/c9435c8c4a830d117b169c5f0cc96be14eda57d5.svg" alt="\(C \subseteq \R^{n}\)" style="height:0.904em;vertical-align:-0.145em"> be non-empty, closed and convex, and
+<img class="m" src="m/0562289dcd130364e8d7f7807b69334cf9e8d25a.svg" alt="\(x \notin C\)" style="height:0.865em;vertical-align:-0.043em">. Then there are <img class="m" src="m/cbd2270de67a34f1c883aaca755cbc103976d45e.svg" alt="\(u \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/666d753d852d225cc14d513f507ce9154061ca00.svg" alt="\(\alpha \in \R\)" style="height:0.798em;vertical-align:-0.040em"> with
+<img class="m" src="m/116a27ef60460fd02e663918f4ce3aec1c4b6dc9.svg" alt="\(\inner{u}{c} &lt; \alpha &lt; \inner{u}{x}\)" style="height:1.096em;vertical-align:-0.274em"> for every <img class="m" src="m/bb871a339f407acc1daa1b77e46265e142d4f9da.svg" alt="\(c \in C\)" style="height:0.792em;vertical-align:-0.040em">.
+</p>
+
+</div>
+
+<div class="proof" id="org66dc40d">
+<p>
+Let <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> be the nearest point of <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> to <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> and put <img class="m" src="m/71d7c814495f49fecc79bae85210f0dcac70f96a.svg" alt="\(u = x - p\)" style="height:0.852em;vertical-align:-0.213em">,
+non-zero since <img class="m" src="m/0562289dcd130364e8d7f7807b69334cf9e8d25a.svg" alt="\(x \notin C\)" style="height:0.865em;vertical-align:-0.043em">. By the previous proposition
+<img class="m" src="m/d7c8f867a80532e357a57c25e1c03a39bb54385a.svg" alt="\(\inner{u}{c - p} \le 0\)" style="height:1.096em;vertical-align:-0.274em">, that is <img class="m" src="m/7ebd9ec3a18e8f3b2619725f3c4599c23e92d94f.svg" alt="\(\inner{u}{c} \le \inner{u}{p}\)" style="height:1.096em;vertical-align:-0.274em">,
+for every <img class="m" src="m/bb871a339f407acc1daa1b77e46265e142d4f9da.svg" alt="\(c \in C\)" style="height:0.792em;vertical-align:-0.040em">, while
+<img class="m" src="m/12cebd5e15d4a4ddee10191794e20084364cc54f.svg" alt="\(\inner{u}{x} = \inner{u}{p} + \norm{u}^{2} &gt; \inner{u}{p}\)" style="height:1.166em;vertical-align:-0.268em">. Any
+<img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> strictly between <img class="m" src="m/102b26e931e4bbc1e32d1d39387912057ffae09d.svg" alt="\(\inner{u}{p}\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/c76915df826cad79e0c304aa1f61fd3ec12120e6.svg" alt="\(\inner{u}{x}\)" style="height:1.096em;vertical-align:-0.274em"> works.
+</p>
+
+</div>
+
+<div class="corollary" id="orgb2e086e">
+<p>
+Let <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> be closed and convex and let <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> be a boundary point of
+<img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">. Then there is <img class="m" src="m/cbd2270de67a34f1c883aaca755cbc103976d45e.svg" alt="\(u \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> with
+<img class="m" src="m/7ebd9ec3a18e8f3b2619725f3c4599c23e92d94f.svg" alt="\(\inner{u}{c} \le \inner{u}{p}\)" style="height:1.096em;vertical-align:-0.274em"> for every <img class="m" src="m/bb871a339f407acc1daa1b77e46265e142d4f9da.svg" alt="\(c \in C\)" style="height:0.792em;vertical-align:-0.040em">.
+</p>
+
+</div>
+
+<div class="proof" id="org244574d">
+<p>
+Since <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> is on the boundary there are <img class="m" src="m/8392ce199059dd583b5deaf3ce2520c3a62bd84b.svg" alt="\(x_{k} \notin C\)" style="height:0.986em;vertical-align:-0.168em"> with
+<img class="m" src="m/2e2dd70afeadf2112bae89865999f10d231598e1.svg" alt="\(x_{k} \to p\)" style="height:0.685em;vertical-align:-0.212em">. For each <img class="m" src="m/5ec5e3b2fda230219e6719c59682076f93242498.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> the theorem gives a unit vector
+<img class="m" src="m/f35489d689026906045a1851300442d2bfc382db.svg" alt="\(u_{k}\)" style="height:0.636em;vertical-align:-0.165em"> with <img class="m" src="m/472ae83819ed72bead7108477312e1e43fdd545a.svg" alt="\(\inner{u_{k}}{c} \le \inner{u_{k}}{x_{k}}\)" style="height:1.096em;vertical-align:-0.274em"> for all
+<img class="m" src="m/bb871a339f407acc1daa1b77e46265e142d4f9da.svg" alt="\(c \in C\)" style="height:0.792em;vertical-align:-0.040em"> (normalise the separating vector). The unit sphere is
+bounded, so by Bolzano-Weierstrass a subsequence <img class="m" src="m/4e24613f5b47a62e39b1d6f0c125d02497835f9e.svg" alt="\(u_{k_{j}}\)" style="height:0.852em;vertical-align:-0.384em"> converges
+to some <img class="m" src="m/43f1d6c46cc02af73d5390471e1c8c127d40b707.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em">, which has <img class="m" src="m/8d298edbb950799d7793ae8aba5c612c31135b35.svg" alt="\(\norm{u} = 1\)" style="height:1.096em;vertical-align:-0.274em"> and hence is non-zero.
+Passing to the limit in
+<img class="m" src="m/a0127004a6b03bc156aab788b75a60b263442177.svg" alt="\(\inner{u_{k_{j}}}{c} \le \inner{u_{k_{j}}}{x_{k_{j}}}\)" style="height:1.202em;vertical-align:-0.385em">, using
+continuity of the inner product and <img class="m" src="m/bc2549c3f500ab11b4f65603403bf473e2dd28ee.svg" alt="\(x_{k_{j}} \to p\)" style="height:0.852em;vertical-align:-0.384em">, gives
+<img class="m" src="m/7ebd9ec3a18e8f3b2619725f3c4599c23e92d94f.svg" alt="\(\inner{u}{c} \le \inner{u}{p}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="remark" id="org57f06f6">
+<p>
+Closedness is what the nearest point needs and convexity is what turns
+the nearest point into a separating direction; drop either and the
+conclusion fails. The corollary is the geometric content of a Lagrange
+multiplier: at a boundary point there is a direction in which the set
+does not extend, and it is normal to a hyperplane touching the set
+there.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="convex-set.html"><span>← previous</span>Convex set</a><a rel="next" href="convex-hulls-and-caratheodorys-theorem.html"><span>next →</span>Convex hulls and Caratheodory's theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/geometry--convex-geometry.pdf" title="PDF manual">Convex Geometry</a> · <a class="pdf" href="pdf/geometry.pdf" title="PDF manual">Geometry</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

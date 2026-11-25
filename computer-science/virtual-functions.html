@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Virtual functions and the virtual table · Computer Science</title>
+<meta name="description" content="In C++ a method is dynamically bound only if declared virtual and called through a pointer or reference; the compiler implements it with a per-class table of function pointers, and every polymorphic base class needs a virtual destructor.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/virtual-functions.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Virtual functions and the virtual table · Computer Science">
+<meta property="og:description" content="In C++ a method is dynamically bound only if declared virtual and called through a pointer or reference; the compiler implements it with a per-class table of function pointers, and every polymorphic base class needs a virtual destructor.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/virtual-functions.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--cpp">Cpp</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Programming · Cpp</p>
+<h1>Virtual functions and the virtual table</h1>
+<p class="summary">In C++ a method is dynamically bound only if declared <code>virtual</code> and called through a pointer or reference; the compiler implements it with a per-class table of function pointers, and every polymorphic base class needs a virtual destructor.</p>
+<p class="rel"><span>needs</span> <a href="polymorphism.html">Polymorphism and dynamic binding</a>, <a href="cpp-inheritance-visibility.html">Public, protected and private inheritance in C++</a></p>
+<p class="rel"><span>unlocks</span> <a href="casts-rtti.html">C++ named casts and RTTI</a>, <a href="multiple-inheritance.html">Multiple inheritance and the diamond</a></p>
+<p class="rel"><span>see also</span> <a href="abstract-class-interface.html">Abstract classes and interfaces</a>, <a href="java-dynamic-binding.html">The Java method selection rule</a>, <a href="function-objects.html">Function pointers and function objects</a>, <a href="casts-rtti.html">C++ named casts and RTTI</a>, <a href="multiple-inheritance.html">Multiple inheritance and the diamond</a></p>
+<p class="rel"><span>mentioned in</span> <a href="abstract-class-interface.html">Abstract classes and interfaces</a>, <a href="inheritance.html">Inheritance and overriding</a>, <a href="method-overloading.html">Overloading</a>, <a href="generic-programming.html">Generic programming</a>, <a href="java-platform.html">The Java platform</a>, <a href="power-gating.html">Power gating and leakage reduction</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li><li><a href="information-hiding.html">Information hiding and visibility</a></li><li><a href="cpp-inheritance-visibility.html">Public, protected and private inheritance in C++</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org18017b7" class="outline-2">
+<h2 id="org18017b7">Definition</h2>
+<div class="outline-text-2" id="text-org18017b7">
+<ul class="org-ul">
+<li><b>Early binding</b>: the compiler resolves the call from the <a href="polymorphism.html">static type</a>. Default in C++.</li>
+<li><b>Late binding</b>: the call is resolved at run time from the dynamic type. Requested with <code>virtual</code> in the <a href="inheritance.html">base class</a>, and effective only through <code>B*</code> or <code>B&amp;</code>.</li>
+<li><code>override</code> (C++11) asks the compiler to check that the method really overrides a virtual one.</li>
+<li><b><a href="abstract-class-interface.html">Pure virtual</a></b>: <code>virtual void f() = 0;</code>. A class with at least one is abstract and has no instances.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1eae5ea" class="outline-2">
+<h2 id="org1eae5ea">Construction</h2>
+<div class="outline-text-2" id="text-org1eae5ea">
+<p>
+Every class with virtual methods gets a <b>vtable</b>: an array with one <a href="function-objects.html">function pointer</a> per virtual method. Every object of such a class stores a hidden pointer <code>vptr</code> to its class's vtable. A call <code>p-&gt;f()</code> becomes <code>(*(p-&gt;vptr[k]))(p)</code> with <img class="m" src="m/ab474955bf3a453be6c3259db9214b4a610e4bf7.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> the slot of <code>f</code>, fixed at compile time: one indirect load and one indirect call.
+</p>
+</div>
+</div>
+<div id="outline-container-org901bdb4" class="outline-2">
+<h2 id="org901bdb4">Picture</h2>
+<div class="outline-text-2" id="text-org901bdb4">
+<figure class="fig"><img class="m" src="m/dd79c04d7c43187cb79dfdb629a6501a8659bc6d.svg" alt="figure" style="width:28.595em"><figcaption><span class="fl">Figure 1.</span> Dynamic dispatch through the virtual table: the object's hidden vptr points to Wizard's vtable, so a call through a Character pointer runs Wizard::act.</figcaption></figure>
+<p>
+<code>c-&gt;act()</code> reads the vptr, takes slot 0, calls it.
+</p>
+</div>
+</div>
+<div id="outline-container-org9ea8b10" class="outline-2">
+<h2 id="org9ea8b10">Virtual destructor</h2>
+<div class="outline-text-2" id="text-org9ea8b10">
+<p>
+<code>delete c</code> with <code>c</code> of type <code>Character*</code> calls the <a href="cpp-special-members.html">destructor</a> of the static type unless <code>~Character</code> is virtual: the <code>Wizard</code> part is never destroyed. Rule: a class meant to be used polymorphically declares <code>virtual ~B() = default;</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org6dbad5b" class="outline-2">
+<h2 id="org6dbad5b">Intuition</h2>
+<div class="outline-text-2" id="text-org6dbad5b">
+<p>
+<code>virtual</code> is the price tag of polymorphism: C++ makes you ask for it, because its rule is that you do not pay for what you do not use.
+</p>
+</div>
+</div>
+<div id="outline-container-org78af15f" class="outline-2">
+<h2 id="org78af15f">Pitfall</h2>
+<div class="outline-text-2" id="text-org78af15f">
+<p>
+Inside constructors and destructors virtual calls are not dynamic: during <code>B()</code> the object is still a <code>B</code>, so <code>B::f</code> runs even if the object being built is a <code>D</code>.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="cpp-inheritance-visibility.html"><span>← previous</span>Public, protected and private inheritance in C++</a><a rel="next" href="casts-rtti.html"><span>next →</span>C++ named casts and RTTI</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--cpp.pdf" title="PDF manual">Cpp</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

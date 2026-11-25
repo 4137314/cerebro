@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enumerated types · Computer Science</title>
+<meta name="description" content="enum defines a type whose only values are a fixed list of named constants; in Java an enum is a full class (implicitly final, extending java.lang.Enum) that can have fields, constructors, methods and implement interfaces.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/java-enum.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Enumerated types · Computer Science">
+<meta property="og:description" content="enum defines a type whose only values are a fixed list of named constants; in Java an enum is a full class (implicitly final, extending java.lang.Enum) that can have fields, constructors, methods and implement interfaces.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/java-enum.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--java">Java</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Java</p>
+<h1>Enumerated types</h1>
+<p class="summary"><code>enum</code> defines a type whose only values are a fixed list of named constants; in Java an enum is a full class (implicitly <code>final</code>, extending <code>java.lang.Enum</code>) that can have fields, constructors, methods and implement interfaces.</p>
+<p class="rel"><span>needs</span> <a href="java-object-class.html">The class Object and final</a></p>
+<p class="rel"><span>see also</span> <a href="finite-state-machine.html">Finite-state machines</a>, <a href="abstract-class-interface.html">Abstract classes and interfaces</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="java-platform.html">The Java platform</a></li><li><a href="java-references.html">Objects, references and garbage collection in Java</a></li><li><a href="java-object-class.html">The class Object and final</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orge760c9a" class="outline-2">
+<h2 id="orge760c9a">Definition</h2>
+<div class="outline-text-2" id="text-orge760c9a">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">public</span> <span class="k">enum</span> <span class="t">Planet</span> {
+    <span class="f">MERCURY</span>(3.303e+23, 2.4397e6), <span class="f">EARTH</span>(5.976e+24, 6.37814e6);
+    <span class="k">private</span> <span class="k">final</span> <span class="t">double</span> <span class="v">mass</span>, <span class="v">radius</span>;           <span class="c">// fields
+</span>    Planet(<span class="t">double</span> <span class="v">mass</span>, <span class="t">double</span> <span class="v">radius</span>) { <span class="k">this</span>.mass = mass; <span class="k">this</span>.radius = radius; }
+    <span class="t">double</span> <span class="f">surfaceGravity</span>() { <span class="k">return</span> 6.67300E-11 * mass / (radius * radius); }
+}
+<span class="k">for</span> (<span class="t">Planet</span> <span class="v">p</span> : Planet.values()) System.out.println(p + <span class="s">" "</span> + p.surfaceGravity());</code></pre></figure>
+<ul class="org-ul">
+<li>the constants are the only instances; they can be compared with <code>==</code> and used in <code>switch</code>;</li>
+<li><code>toString()</code> and <code>name()</code> give the name, <code>ordinal()</code> the position, <code>values()</code> the array of constants, <code>valueOf("EARTH")</code> the constant from its name;</li>
+<li>an enum cannot be extended, but can implement interfaces.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org28fc3b3" class="outline-2">
+<h2 id="org28fc3b3">Why</h2>
+<div class="outline-text-2" id="text-org28fc3b3">
+<p>
+Instead of <code>static final int RED = 0, GREEN = 1;</code>, which accepts any <code>int</code>, an enum is checked by the compiler: a method taking a <code>Colour</code> cannot receive 7. It groups the constants and makes code more readable.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc27714b" class="outline-2">
+<h2 id="orgc27714b">Intuition</h2>
+<div class="outline-text-2" id="text-orgc27714b">
+<p>
+An enum is a class whose objects are all created in advance, by name.
+</p>
+</div>
+</div>
+<div id="outline-container-org0c041e4" class="outline-2">
+<h2 id="org0c041e4">Pitfall</h2>
+<div class="outline-text-2" id="text-org0c041e4">
+<p>
+<code>ordinal()</code> depends on the declaration order: storing it (in a file, a database) breaks as soon as a constant is inserted in the middle.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="comparable-comparator.html"><span>← previous</span>Comparable and Comparator</a><a rel="next" href="java-exceptions.html"><span>next →</span>Exceptions in Java: checked, unchecked, finally</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--java.pdf" title="PDF manual">Java</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

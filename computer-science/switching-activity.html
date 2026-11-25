@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signal and transition probabilities · Computer Science</title>
+<meta name="description" content="If a node is 1 with probability p and successive cycles are independent, its 0\to1 transition probability is \alpha=(1-p)\,p; output probabilities follow from input ones gate by gate (p_{AND}=p_Ap_B, p_{OR}=1-(1-p_A)(1-p_B)) as long as the inputs are independent, which reconvergent fanout breaks.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/switching-activity.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Signal and transition probabilities · Computer Science">
+<meta property="og:description" content="If a node is 1 with probability p and successive cycles are independent, its 0\to1 transition probability is \alpha=(1-p)\,p; output probabilities follow from input ones gate by gate (p_{AND}=p_Ap_B, p_{OR}=1-(1-p_A)(1-p_B)) as long as the inputs are independent, which reconvergent fanout breaks.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/switching-activity.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--power">Power</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Hardware · Power</p>
+<h1>Signal and transition probabilities</h1>
+<p class="summary">If a node is 1 with probability <img class="m" src="m/f36675eba15aea6660e2d7dd51b0ebbeb8285769.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> and successive cycles are independent, its <img class="m" src="m/46ca94db446d2aa728edccb2440738b6df8928df.svg" alt="\(0\to1\)" style="height:0.706em;vertical-align:-0.000em"> transition probability is <img class="m" src="m/a31031b2f4463d2c1f5b82850c13c7c02be60138.svg" alt="\(\alpha=(1-p)\,p\)" style="height:1.096em;vertical-align:-0.274em">; output probabilities follow from input ones gate by gate (<img class="m" src="m/ade5542e150468999cac71cae00704cd8d9d5fc4.svg" alt="\(p_{AND}=p_Ap_B\)" style="height:0.685em;vertical-align:-0.212em">, <img class="m" src="m/96f58cb97f3f2a4d8a94c7da5a89b4525bc3a3e6.svg" alt="\(p_{OR}=1-(1-p_A)(1-p_B)\)" style="height:1.096em;vertical-align:-0.274em">) as long as the inputs are independent, which reconvergent fanout breaks.</p>
+<p class="rel"><span>needs</span> <a href="cmos-power.html">Power dissipation in CMOS</a></p>
+<p class="rel"><span>unlocks</span> <a href="low-power-encoding.html">Encodings and orderings for low power</a>, <a href="glitches.html">Glitches</a></p>
+<p class="rel"><span>see also</span> <a href="glitches.html">Glitches</a>, <a href="low-power-encoding.html">Encodings and orderings for low power</a>, <a href="boolean-difference.html">Shannon cofactors and the Boolean difference</a></p>
+<details class="path"><summary>Learning path: 2 notes lead here, in study order</summary><ol><li><a href="gate-delay-model.html">Gate and wire delay models</a></li><li><a href="cmos-power.html">Power dissipation in CMOS</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org6e01adb" class="outline-2">
+<h2 id="org6e01adb">Method</h2>
+<div class="outline-text-2" id="text-org6e01adb">
+<p>
+Static probability <img class="m" src="m/0832d2aef48b2c2aa5f0d1761c458f511188683e.svg" alt="\(p=P(x=1)\)" style="height:1.096em;vertical-align:-0.274em">. With temporal independence,
+<div class="mb"><img class="m" src="m/2ba4200a502c25273e4ddbf25267cd79ef93ad3f.svg" alt="\[ \alpha_{0\to1}=P(x_{t-1}=0)\,P(x_t=1)=(1-p)\,p,\]" style="width:20.518em"></div>
+maximal (<img class="m" src="m/2310160e718a73b2c9b6b3a891b87c36a3284b3d.svg" alt="\(1/4\)" style="height:1.096em;vertical-align:-0.274em">) at <img class="m" src="m/f6655b7dd3694c8c69a796dc8b993f4d46ca884f.svg" alt="\(p=1/2\)" style="height:1.096em;vertical-align:-0.274em">. For independent inputs <img class="m" src="m/fb7b9cf4487eeeade4739cf563e4c3e1dc8075c9.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/402f75f953bf52786bb55f1b3b80469bf2c08bf8.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">:
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">gate</th>
+<th scope="col" class="org-left">p_out (independent inputs)</th>
+<th scope="col" class="org-left">α 0→1</th>
+<th scope="col" class="org-left">with p_A = p_B = 1/2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">AND</td>
+<td class="org-left">p_A·p_B</td>
+<td class="org-left">(1 − p)·p</td>
+<td class="org-left">p = 1/4, α = 3/16</td>
+</tr>
+
+<tr>
+<td class="org-left">OR</td>
+<td class="org-left">1 − (1 − p_A)(1 − p_B)</td>
+<td class="org-left">(1 − p)·p</td>
+<td class="org-left">p = 3/4, α = 3/16</td>
+</tr>
+
+<tr>
+<td class="org-left">NAND</td>
+<td class="org-left">1 − p_A·p_B</td>
+<td class="org-left">(1 − p)·p</td>
+<td class="org-left">p = 3/4, α = 3/16</td>
+</tr>
+
+<tr>
+<td class="org-left">XOR</td>
+<td class="org-left">p_A + p_B − 2·p_A·p_B</td>
+<td class="org-left">(1 − p)·p</td>
+<td class="org-left">p = 1/2, α = 1/4</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+With <img class="m" src="m/ce5f9f8b2cbae9a39145fd9b7d2a6d631861ff02.svg" alt="\(p_A=p_B=\tfrac12\)" style="height:1.304em;vertical-align:-0.378em">: NAND has <img class="m" src="m/63dcd0b347f25152ff78fb98d18e34759662d6dd.svg" alt="\(p=\tfrac34\)" style="height:1.304em;vertical-align:-0.378em">, <img class="m" src="m/56fe26eb42b9aa8225c1525630f298c2ebb2c183.svg" alt="\(\alpha=\tfrac3{16}\)" style="height:1.304em;vertical-align:-0.378em">; AND <img class="m" src="m/29ff15d384c9dfd5fbe9dee0c28d5a4ec807d1ee.svg" alt="\(p=\tfrac14\)" style="height:1.304em;vertical-align:-0.378em">, <img class="m" src="m/56fe26eb42b9aa8225c1525630f298c2ebb2c183.svg" alt="\(\alpha=\tfrac3{16}\)" style="height:1.304em;vertical-align:-0.378em">; XOR <img class="m" src="m/48fa1cb5d94c18fd04102a24264e58ee60baad56.svg" alt="\(p=\tfrac12\)" style="height:1.304em;vertical-align:-0.378em">, <img class="m" src="m/056bfc27187bd6c3b8827419293263b39d4495e4.svg" alt="\(\alpha=\tfrac14\)" style="height:1.304em;vertical-align:-0.378em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org5beb04d" class="outline-2">
+<h2 id="org5beb04d">Correlations</h2>
+<div class="outline-text-2" id="text-org5beb04d">
+<ul class="org-ul">
+<li><b>Spatial</b>: reconvergent fanout makes gate inputs dependent. For <img class="m" src="m/11117f50b3b985dc827ed4384dcb0b9d5eaf47aa.svg" alt="\(y=x\cdot\bar x\)" style="height:0.835em;vertical-align:-0.217em"> the formula gives <img class="m" src="m/5ac233b651ddbfeaf51252a992e4a4cb9d36cd93.svg" alt="\(p(1-p)\)" style="height:1.096em;vertical-align:-0.274em">, but <img class="m" src="m/778402ef7cbb62eb9c7e8599058c8f0031d70023.svg" alt="\(y\equiv0\)" style="height:0.919em;vertical-align:-0.211em">. Exact computation conditions on the reconvergent signals (via <a href="boolean-difference.html">cofactors</a>) or uses BDDs.</li>
+<li><b>Temporal</b>: real signals are correlated in time (counters, slowly varying data), so <img class="m" src="m/4ec9c7a391e636d72e2a0cc62782adbb6a6766a5.svg" alt="\(\alpha\neq p(1-p)\)" style="height:1.096em;vertical-align:-0.274em">; one uses transition probabilities <img class="m" src="m/38596fa78f769ad5238e74a59dbe5dc78c711e75.svg" alt="\(p_{01}\)" style="height:0.685em;vertical-align:-0.212em"> directly.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2a901bf" class="outline-2">
+<h2 id="org2a901bf">Picture</h2>
+<div class="outline-text-2" id="text-org2a901bf">
+<figure class="fig"><img class="m" src="m/d8ac6c14ca99fb071e8668dc6e0ca5c452051444.svg" alt="figure" style="width:19.234em"><figcaption><span class="fl">Figure 1.</span> Transition probability <img class="m" src="m/ec423e5467b147e7045bc038cc20405039999fe6.svg" alt="\(\alpha_{0\to1}=p(1-p)\)" style="height:1.096em;vertical-align:-0.274em"> of a signal that is 1 with probability <img class="m" src="m/f36675eba15aea6660e2d7dd51b0ebbeb8285769.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">: largest at <img class="m" src="m/f6655b7dd3694c8c69a796dc8b993f4d46ca884f.svg" alt="\(p=1/2\)" style="height:1.096em;vertical-align:-0.274em">.</figcaption></figure>
+<p>
+Activity is highest for signals that are 1 half of the time.
+</p>
+</div>
+</div>
+<div id="outline-container-org38784d3" class="outline-2">
+<h2 id="org38784d3">Intuition</h2>
+<div class="outline-text-2" id="text-org38784d3">
+<p>
+A node that is almost always 0 or almost always 1 rarely switches; balanced, random signals switch the most.
+</p>
+</div>
+</div>
+<div id="outline-container-org0c01921" class="outline-2">
+<h2 id="org0c01921">Pitfall</h2>
+<div class="outline-text-2" id="text-org0c01921">
+<p>
+Propagating probabilities gate by gate ignores glitches: the zero-delay estimate underestimates the real activity of deep, unbalanced logic.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="clock-gating.html"><span>← previous</span>Clock gating and operand isolation</a><a rel="next" href="low-power-encoding.html"><span>next →</span>Encodings and orderings for low power</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--power.pdf" title="PDF manual">Power</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

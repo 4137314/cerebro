@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NAND–NAND and NOR–NOR realizations · Computer Science</title>
+<meta name="description" content="Applying De Morgan twice, a minimal SOP f=\sum p_i becomes f=\overline{\prod\overline{p_i}}: every AND and the final OR turn into NANDs with the same implicants; dually a minimal POS becomes a NOR–NOR network; single literals entering the output gate directly must be complemented.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/nand-nor-synthesis.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="NAND–NAND and NOR–NOR realizations · Computer Science">
+<meta property="og:description" content="Applying De Morgan twice, a minimal SOP f=\sum p_i becomes f=\overline{\prod\overline{p_i}}: every AND and the final OR turn into NANDs with the same implicants; dually a minimal POS becomes a NOR–NOR network; single literals entering the output gate directly must be complemented.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/nand-nor-synthesis.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--combinational">Combinational</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Hardware · Combinational</p>
+<h1>NAND–NAND and NOR–NOR realizations</h1>
+<p class="summary">Applying De Morgan twice, a minimal SOP <img class="m" src="m/962fd47e1562e9cc1a307e619936e242fe02f0a2.svg" alt="\(f=\sum p_i\)" style="height:1.096em;vertical-align:-0.274em"> becomes <img class="m" src="m/b8fc0420ad035916e87ceb823111a77a97659373.svg" alt="\(f=\overline{\prod\overline{p_i}}\)" style="height:1.315em;vertical-align:-0.276em">: every AND and the final OR turn into NANDs with the same implicants; dually a minimal POS becomes a NOR–NOR network; single literals entering the output gate directly must be complemented.</p>
+<p class="rel"><span>needs</span> <a href="karnaugh-maps.html">Karnaugh maps</a></p>
+<p class="rel"><span>see also</span> <a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a>, <a href="technology-mapping.html">Technology mapping by tree covering</a>, <a href="cmos-power.html">Power dissipation in CMOS</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgd6a5bfd" class="outline-2">
+<h2 id="orgd6a5bfd">Construction</h2>
+<div class="outline-text-2" id="text-orgd6a5bfd">
+<p>
+From SOP to NAND–NAND:
+<div class="mb"><img class="m" src="m/fb0a02a6279d7bb5a3da0237769064f68b1e720a.svg" alt="\[ f=p_1+p_2+\dots+p_k=\overline{\overline{p_1+\dots+p_k}}=\overline{\bar p_1\,\bar p_2\cdots\bar p_k}. \]" style="width:24.910em"></div>
+Each <img class="m" src="m/9d6f6fd983010822a3278fa8e8b4753e0e4a752b.svg" alt="\(\bar p_i\)" style="height:0.835em;vertical-align:-0.217em"> is a NAND of the literals of <img class="m" src="m/ca9734f26db98be33e9e6cdaf212d66cbe3defc1.svg" alt="\(p_i\)" style="height:0.685em;vertical-align:-0.212em">; the outer bar-of-product is a NAND. Procedure: replace every AND by a NAND, the OR by a NAND, and complement a literal that goes straight into the output gate (a one-literal term <img class="m" src="m/e730d8cd532e4dd51091c85ba5138b35495d43c0.svg" alt="\(z\)" style="height:0.472em;vertical-align:-0.000em"> enters as <img class="m" src="m/c990eb24d15250782fb782523cb357f445098973.svg" alt="\(\bar z\)" style="height:0.622em;vertical-align:-0.000em">, since <img class="m" src="m/0af2142bdae839a641c756cf35fd4c3554bfd2ba.svg" alt="\(\bar p_i=\bar z\)" style="height:0.835em;vertical-align:-0.217em">).
+From POS to NOR–NOR: <img class="m" src="m/678678fe6e183a19d585dc1ccd9e102cd0fae938.svg" alt="\(f=\prod s_i=\overline{\sum\bar s_i}\)" style="height:1.315em;vertical-align:-0.276em">, each <img class="m" src="m/a4b1bb237c43c5a1d8f5d8ccabd49912c9860e0c.svg" alt="\(\bar s_i\)" style="height:0.787em;vertical-align:-0.165em"> a NOR of the literals of <img class="m" src="m/5d97de10aa3ce0480e28279e1492df98cbb40fe1.svg" alt="\(s_i\)" style="height:0.636em;vertical-align:-0.165em">; implicants come from the <b>zeros</b> of the map.
+The implicants are exactly those of the AND–OR (or OR–AND) form: the map work does not change.
+</p>
+</div>
+</div>
+<div id="outline-container-org0e78e4f" class="outline-2">
+<h2 id="org0e78e4f">Example</h2>
+<div class="outline-text-2" id="text-org0e78e4f">
+<p>
+<img class="m" src="m/79a36e1cb8cab28dae1d625a64afdb66857863b4.svg" alt="\(f=z+\bar y\bar w+yw+x\bar z\)" style="height:0.974em;vertical-align:-0.214em">:
+<div class="mb"><img class="m" src="m/74313ea2f9c5e9d1a5efe7742ae5c78abb90584b.svg" alt="\[ f=\overline{\bar z\cdot\overline{\bar y\bar w}\cdot\overline{yw}\cdot\overline{x\bar z}} \]" style="width:9.013em"></div>
+three 2-input NANDs (<img class="m" src="m/ea88c606f5972d10e1b14941cefe82592e14f9f7.svg" alt="\(\bar y\bar w\)" style="height:0.835em;vertical-align:-0.217em">, <img class="m" src="m/d4667a363ef884155df03e07e1ba0a9300918023.svg" alt="\(yw\)" style="height:0.685em;vertical-align:-0.212em">, <img class="m" src="m/c9e0f6970cd6325e5311eaea21bf14d115cee981.svg" alt="\(x\bar z\)" style="height:0.622em;vertical-align:-0.000em">), the literal <img class="m" src="m/e730d8cd532e4dd51091c85ba5138b35495d43c0.svg" alt="\(z\)" style="height:0.472em;vertical-align:-0.000em"> complemented to <img class="m" src="m/c990eb24d15250782fb782523cb357f445098973.svg" alt="\(\bar z\)" style="height:0.622em;vertical-align:-0.000em">, and one 4-input NAND at the output: two levels, one gate type.
+</p>
+</div>
+</div>
+<div id="outline-container-orge2d6b61" class="outline-2">
+<h2 id="orge2d6b61">Picture</h2>
+<div class="outline-text-2" id="text-orge2d6b61">
+<figure class="fig"><img class="m" src="m/b898fdbef0a42930c6ed8bc52e1eceb91f675252.svg" alt="figure" style="width:17.503em"><figcaption><span class="fl">Figure 1.</span> NAND–NAND realisation of <img class="m" src="m/b3ad19c92fabe3e5e0e50ee364d5e89bea2afec7.svg" alt="\(ab+cd\)" style="height:0.852em;vertical-align:-0.094em">: a sum of products maps directly onto two levels of NAND gates.</figcaption></figure>
+<p>
+Two levels of NAND compute <img class="m" src="m/b3ad19c92fabe3e5e0e50ee364d5e89bea2afec7.svg" alt="\(ab+cd\)" style="height:0.852em;vertical-align:-0.094em">: the bubbles at the AND outputs and at the OR inputs cancel.
+</p>
+</div>
+</div>
+<div id="outline-container-orga048802" class="outline-2">
+<h2 id="orga048802">Intuition</h2>
+<div class="outline-text-2" id="text-orga048802">
+<p>
+A NAND is an AND followed by an inverter, and also an OR with inverted inputs; between two levels the two inversions annihilate.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc22bfdc" class="outline-2">
+<h2 id="orgc22bfdc">Pitfall</h2>
+<div class="outline-text-2" id="text-orgc22bfdc">
+<p>
+Forgetting to invert the single literals feeding the output NAND gives <img class="m" src="m/c990eb24d15250782fb782523cb357f445098973.svg" alt="\(\bar z\)" style="height:0.622em;vertical-align:-0.000em"> where <img class="m" src="m/e730d8cd532e4dd51091c85ba5138b35495d43c0.svg" alt="\(z\)" style="height:0.472em;vertical-align:-0.000em"> was meant. In CMOS, inverting gates are cheaper (4 transistors for a 2-input NAND, 6 for an AND), so NAND–NAND is usually smaller and faster than AND–OR, not just "more uniform".
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="multiplexer.html"><span>← previous</span>Multiplexer and demultiplexer</a><a rel="next" href="logic-hazards.html"><span>next →</span>Timing diagrams and static hazards</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--combinational.pdf" title="PDF manual">Combinational</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

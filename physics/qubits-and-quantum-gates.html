@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qubits and quantum gates · Physics</title>
+<meta name="description" content="A qubit is a two-level system \alpha\ket0+\beta\ket1; single-qubit gates are SU(2) rotations of the Bloch sphere, CNOT entangles two qubits, and {H, T, CNOT} is universal; real qubits lose coherence with times T_1 (energy) and T_2 (phase).">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/qubits-and-quantum-gates.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Qubits and quantum gates · Physics">
+<meta property="og:description" content="A qubit is a two-level system \alpha\ket0+\beta\ket1; single-qubit gates are SU(2) rotations of the Bloch sphere, CNOT entangles two qubits, and {H, T, CNOT} is universal; real qubits lose coherence with times T_1 (energy) and T_2 (phase).">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/qubits-and-quantum-gates.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-mechanics">Quantum Mechanics</a> / <a rel="up" href="index.html#a-quantum-mechanics--quantum-information">Quantum Information</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Quantum Mechanics · Quantum Information</p>
+<h1>Qubits and quantum gates</h1>
+<p class="summary">A qubit is a two-level system <img class="m" src="m/7b29ada72d84eef5772ab3f54c34284aafb68d02.svg" alt="\(\alpha\ket0+\beta\ket1\)" style="height:1.096em;vertical-align:-0.274em">; single-qubit gates are SU(2) rotations of the Bloch sphere, CNOT entangles two qubits, and {H, T, CNOT} is universal; real qubits lose coherence with times <img class="m" src="m/53dbeff6a09c7fe960f22f5d9cee4174e6a7124e.svg" alt="\(T_1\)" style="height:0.913em;vertical-align:-0.164em"> (energy) and <img class="m" src="m/4050c24ede44eef0d5866c8e00b94383273b1e81.svg" alt="\(T_2\)" style="height:0.913em;vertical-align:-0.164em"> (phase).</p>
+<p class="rel"><span>needs</span> <a href="entanglement-and-bell-inequalities.html">Entanglement and Bell inequalities</a>, <a href="spin-precession-and-rabi-oscillations.html">Spin precession and Rabi oscillations</a></p>
+<p class="rel"><span>see also</span> <a href="josephson-junction-and-rcsj-model.html">The Josephson junction and the RCSJ model</a>, <a href="jaynes-cummings-model.html">The Jaynes–Cummings model</a></p>
+<p class="rel"><span>mentioned in</span> <a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a>, <a href="superconducting-electronics.html">Superconducting electronics: the map of the subject</a>, <a href="josephson-junction-and-rcsj-model.html">The Josephson junction and the RCSJ model</a></p>
+<details class="path"><summary>Learning path: 15 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></li><li><a href="spin-precession-and-rabi-oscillations.html">Spin precession and Rabi oscillations</a></li><li><a href="angular-momentum-algebra.html">Angular momentum: algebra and spectrum</a></li><li><a href="addition-of-angular-momenta.html">Addition of angular momenta</a></li><li><a href="density-operator.html">The density operator: pure and mixed states</a></li><li><a href="entanglement-and-bell-inequalities.html">Entanglement and Bell inequalities</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org9fd0123" class="outline-2">
+<h2 id="org9fd0123">Definitions</h2>
+<div class="outline-text-2" id="text-org9fd0123">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">gate</th>
+<th scope="col" class="org-left">matrix</th>
+<th scope="col" class="org-left">action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">X</td>
+<td class="org-left">(0 1; 1 0)</td>
+<td class="org-left">bit flip, π rotation about x</td>
+</tr>
+
+<tr>
+<td class="org-left">Z</td>
+<td class="org-left">diag(1,−1)</td>
+<td class="org-left">phase flip</td>
+</tr>
+
+<tr>
+<td class="org-left">H</td>
+<td class="org-left">(1 1; 1 −1)/√2</td>
+<td class="org-left">ket 0 → (ket 0 + ket 1)/√2</td>
+</tr>
+
+<tr>
+<td class="org-left">S, T</td>
+<td class="org-left">diag(1,i), diag(1,e<sup>iπ/4</sup>)</td>
+<td class="org-left">phase gates</td>
+</tr>
+
+<tr>
+<td class="org-left">CNOT</td>
+<td class="org-left">flips target if control = 1</td>
+<td class="org-left">creates entanglement</td>
+</tr>
+</tbody>
+</table>
+<p>
+<img class="m" src="m/df2fb9e4030e5a0e4540782bfd1be717e080a680.svg" alt="\(R_{\hat n}(\theta)=e^{-i\theta\,\boldsymbol\sigma\cdot\hat n/2}\)" style="height:1.247em;vertical-align:-0.274em"> is realised physically by a resonant pulse (<a href="spin-precession-and-rabi-oscillations.html">Rabi</a>) of area <img class="m" src="m/751cfdc0271db20b2ed611bb90e4d5ec84ff46a8.svg" alt="\(\theta=\Omega t\)" style="height:0.761em;vertical-align:-0.000em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1098/rspa.1985.0070" data-full="D. Deutsch, “Quantum theory, the Church–Turing principle and the universal quantum computer”, Proceedings of the Royal Society of London. Series A 400, 97–117 (1985)." aria-label="D. Deutsch, “Quantum theory, the Church–Turing principle and the universal quantum computer”, Proceedings of the Royal Society of London. Series A 400, 97–117 (1985).">Deutsch 1985</a>)</span>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdcbb0f0" class="outline-2">
+<h2 id="orgdcbb0f0">Bell-state circuit</h2>
+<div class="outline-text-2" id="text-orgdcbb0f0">
+<p>
+<img class="m" src="m/216fa23660a06f91a99c2b245b2d885e9b330108.svg" alt="\(\ket{00}\xrightarrow{H\otimes1}\tfrac1{\sqrt2}(\ket{00}+\ket{10})\xrightarrow{\mathrm{CNOT}}\tfrac1{\sqrt2}(\ket{00}+\ket{11})=\ket{\Phi^+}\)" style="height:1.851em;vertical-align:-0.592em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1103/physreva.52.3457" data-full="A. Barenco et al., “Elementary gates for quantum computation”, Physical Review A 52, 3457–3467 (1995)." aria-label="A. Barenco et al., “Elementary gates for quantum computation”, Physical Review A 52, 3457–3467 (1995).">Barenco et al. 1995</a>)</span>.
+</p>
+</div>
+</div>
+<div id="outline-container-org1974846" class="outline-2">
+<h2 id="org1974846">Picture</h2>
+<div class="outline-text-2" id="text-org1974846">
+<figure class="fig"><img class="m" src="m/2994d92712a47f3764ed83ff0bcf9c7459ae46dc.svg" alt="figure" style="width:14.119em"><figcaption><span class="fl">Figure 1.</span> A two-qubit circuit: a Hadamard gate followed by a CNOT turns <img class="m" src="m/e262fac57297a9330a1ead0d2829bcd0c71dbca9.svg" alt="\(\ket{00}\)" style="height:1.096em;vertical-align:-0.274em"> into the Bell state <img class="m" src="m/2750414a68362c75d9d991cd7d85c7672b4dde42.svg" alt="\((\ket{00}+\ket{11})/\sqrt2\)" style="height:1.268em;vertical-align:-0.279em">.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-orgdb76758" class="outline-2">
+<h2 id="orgdb76758">Teleportation (derivation)</h2>
+<div class="outline-text-2" id="text-orgdb76758">
+<p>
+Alice holds <img class="m" src="m/8b1cddb5d3d62b88791f47b0e59b29ddd531f373.svg" alt="\(\ket\psi=\alpha\ket0+\beta\ket1\)" style="height:1.096em;vertical-align:-0.274em"> and half of <img class="m" src="m/6947a3af78e119174f4197ff631ee44730340628.svg" alt="\(\ket{\Phi^+}\)" style="height:1.147em;vertical-align:-0.275em">. Rewriting <img class="m" src="m/1fe923d9879f4ea29a971c7dbb995cd1aac20e4b.svg" alt="\(\ket\psi\ket{\Phi^+}=\tfrac12\sum_{k}\ket{\text{Bell}_k}_{12}\,\sigma_k\ket\psi_3\)" style="height:1.304em;vertical-align:-0.378em">: a Bell measurement (2 classical bits) tells Bob which Pauli <img class="m" src="m/76f7c9a61d758ef3ae042d3d85cb0597ffa6d237.svg" alt="\(\sigma_k\)" style="height:0.636em;vertical-align:-0.165em"> to undo. No cloning, no superluminal signalling.
+</p>
+</div>
+</div>
+<div id="outline-container-org7517b27" class="outline-2">
+<h2 id="org7517b27">Decoherence</h2>
+<div class="outline-text-2" id="text-org7517b27">
+<p>
+<img class="m" src="m/53dbeff6a09c7fe960f22f5d9cee4174e6a7124e.svg" alt="\(T_1\)" style="height:0.913em;vertical-align:-0.164em">: decay <img class="m" src="m/8bba944d3116e4bcd52e8c7c30049288425ef6a6.svg" alt="\(\rho_{11}(t)=\rho_{11}(0)e^{-t/T_1}\)" style="height:1.247em;vertical-align:-0.274em">; <img class="m" src="m/4050c24ede44eef0d5866c8e00b94383273b1e81.svg" alt="\(T_2\)" style="height:0.913em;vertical-align:-0.164em">: decay of coherences, <img class="m" src="m/288a28e6406b986121f557c315f1d5b46eb09ea7.svg" alt="\(1/T_2=1/2T_1+1/T_\phi\)" style="height:1.135em;vertical-align:-0.318em">. Gate fidelity <img class="m" src="m/4e49d8cd14fbc477d658685eb0f7f0671ac27b56.svg" alt="\(\approx1-t_{gate}/T_2\)" style="height:1.135em;vertical-align:-0.318em">. Superconducting transmons: <img class="m" src="m/65e8c375b8e79e56315eef836a26b8caa94bf637.svg" alt="\(T_1\sim100\)" style="height:0.913em;vertical-align:-0.164em"> µs, gates <img class="m" src="m/4ee99761cff36abf8ec68ef52b146d6dce805889.svg" alt="\(\sim20\)" style="height:0.706em;vertical-align:-0.000em">–50 ns.
+</p>
+</div>
+</div>
+<div id="outline-container-org1d4046b" class="outline-2">
+<h2 id="org1d4046b">Worked example</h2>
+<div class="outline-text-2" id="text-org1d4046b">
+<p>
+Deutsch's algorithm: one query of <img class="m" src="m/8f8ccd3acfbd79a89269170b1180446217d73815.svg" alt="\(f:\{0,1\}\to\{0,1\}\)" style="height:1.096em;vertical-align:-0.274em"> via <img class="m" src="m/2e76ae58955ebe308c1350305bb906feee4b0098.svg" alt="\(U_f\ket x\ket y=\ket x\ket{y\oplus f(x)}\)" style="height:1.135em;vertical-align:-0.318em">, on input <img class="m" src="m/fb44bf7a85fc3caeb3c2968fa8302515350ed0b0.svg" alt="\(H\ket0\otimes H\ket1\)" style="height:1.096em;vertical-align:-0.274em">, yields <img class="m" src="m/bda273ca1edd8f56e9df16066b0d0834c389fac7.svg" alt="\((-1)^{f(0)}\ket{f(0)\oplus f(1)}\)" style="height:1.247em;vertical-align:-0.274em"> after a final <img class="m" src="m/42c5c23db9555d1fd6049261e23079da0bfbff51.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em">: constant vs balanced is decided with one evaluation (classically two).
+</p>
+</div>
+</div>
+<div id="outline-container-org88b435e" class="outline-2">
+<h2 id="org88b435e">Engineering applications</h2>
+<div class="outline-text-2" id="text-org88b435e">
+<p>
+Superconducting qubits (transmons built on <a href="josephson-junction-and-rcsj-model.html">Josephson junctions</a>, controlled at 4–8 GHz, read through dispersive <a href="jaynes-cummings-model.html">cavity QED</a>), trapped ions, photonic qubits in integrated circuits, spin qubits in silicon. Cryogenic control electronics can use <a href="rsfq-logic.html">SFQ pulses</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org0b6bba7" class="outline-2">
+<h2 id="org0b6bba7">Pitfall</h2>
+<div class="outline-text-2" id="text-org0b6bba7">
+<p>
+A global phase is unobservable, but a <b>relative</b> phase between <img class="m" src="m/554b9c9fb0266c3099d046f93fb19e99e2033939.svg" alt="\(\ket0\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/6a98ff0904a26c752bb2cd6f88a52f054ae0c090.svg" alt="\(\ket1\)" style="height:1.096em;vertical-align:-0.274em"> is physical: <img class="m" src="m/df377a3a415424836378ea64cd8b786c3dbf0e5f.svg" alt="\(\ket+\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/698879dab32335d1608384b85a6978bf2fd135f1.svg" alt="\(\ket-\)" style="height:1.096em;vertical-align:-0.274em"> give identical <img class="m" src="m/1053a473407c8b439237559652b9636a4f8132c5.svg" alt="\(Z\)" style="height:0.749em;vertical-align:-0.000em"> statistics yet are orthogonal.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="entanglement-and-bell-inequalities.html"><span>← previous</span>Entanglement and Bell inequalities</a><a rel="next" href="self-adjoint-operators-and-spectral-theorem.html"><span>next →</span>Self-adjoint operators and the spectral theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-mechanics--quantum-information.pdf" title="PDF manual">Quantum Information</a> · <a class="pdf" href="pdf/quantum-mechanics.pdf" title="PDF manual">Quantum Mechanics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

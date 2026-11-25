@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Small oscillations and normal modes · Mathematics</title>
+<meta name="description" content="Near a stable equilibrium a mechanical system is, to first order, a collection of independent harmonic oscillators. Producing them is a purely algebraic statement – two quadratic forms, one of them positive definite, can be diagonalised simultaneously – and it is the spectral theorem applied after …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/small-oscillations-and-normal-modes.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Small oscillations and normal modes · Mathematics">
+<meta property="og:description" content="Near a stable equilibrium a mechanical system is, to first order, a collection of independent harmonic oscillators. Producing them is a purely algebraic statement – two quadratic forms, one of them positive definite, can be diagonalised simultaneously – and it is the spectral theorem applied after …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/small-oscillations-and-normal-modes.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-physics">Physics</a> / <a rel="up" href="index.html#a-physics--classical-mechanics">Classical Mechanics</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Physics · Classical Mechanics</p>
+<h1>Small oscillations and normal modes</h1>
+<p class="summary">Near a stable equilibrium a mechanical system is, to first order, a collection of independent harmonic oscillators. Producing them is a purely algebraic statement &#x2013; two quadratic forms, one of them positive definite, can be diagonalised simultaneously &#x2013; and it is the <a href="the-spectral-theorem-for-symmetric-operators.html">spectral theorem</a> applied after a change of variables that makes the kinetic form the identity.</p>
+<p class="rel"><span>needs</span> <a href="bilinear-forms-quadratic-forms-and-sylvesters-law-of-inertia.html">Bilinear forms, quadratic forms and Sylvester's law of inertia</a>, <a href="equilibria-stability-and-the-lagrange-dirichlet-theorem.html">Equilibria, stability and the Lagrange-Dirichlet theorem</a>, <a href="taylors-theorem-with-the-peano-remainder.html">Taylor's theorem with the Peano remainder</a>, <a href="the-spectral-theorem-for-symmetric-operators.html">The spectral theorem for symmetric operators</a></p>
+<p class="rel"><span>mentioned in</span> <a href="mathematical-physics.html">Mathematical physics</a></p>
+<details class="path"><summary>Learning path: 63 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="bilinear-forms-quadratic-forms-and-sylvesters-law-of-inertia.html">Bilinear forms, quadratic forms and Sylvester's law of inertia</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-algebra-of-continuous-functions-and-composition.html">The algebra of continuous functions and composition</a></li><li><a href="one-sided-limits-and-the-discontinuities-of-a-monotone-function.html">One-sided limits and the discontinuities of a monotone function</a></li><li><a href="the-intermediate-value-theorem.html">The intermediate value theorem</a></li><li><a href="the-continuous-image-of-an-interval-and-the-continuous-inverse.html">The continuous image of an interval and the continuous inverse</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-rules-of-differentiation.html">The rules of differentiation</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="the-spectral-theorem-for-symmetric-operators.html">The spectral theorem for symmetric operators</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="cauchys-mean-value-theorem-and-de-lhopitals-rule.html">Cauchy's mean value theorem and de l'Hopital's rule</a></li><li><a href="differentiability-in-several-variables.html">Differentiability in several variables</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="the-contraction-mapping-principle.html">The contraction mapping principle</a></li><li><a href="the-inverse-and-implicit-function-theorems.html">The inverse and implicit function theorems</a></li><li><a href="constrained-extrema-and-lagrange-multipliers.html">Constrained extrema and Lagrange multipliers</a></li><li><a href="taylors-theorem-with-the-lagrange-remainder.html">Taylor's theorem with the Lagrange remainder</a></li><li><a href="taylors-theorem-with-the-peano-remainder.html">Taylor's theorem with the Peano remainder</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="the-fundamental-theorem-of-calculus.html">The fundamental theorem of calculus</a></li><li><a href="integration-by-parts-and-substitution.html">Integration by parts and substitution</a></li><li><a href="the-action-functional-and-the-first-variation.html">The action functional and the first variation</a></li><li><a href="the-euler-lagrange-equations.html">The Euler-Lagrange equations</a></li><li><a href="noethers-theorem.html">Noether's theorem</a></li><li><a href="constraints-virtual-work-and-the-lagrange-equations.html">Constraints, virtual work and the Lagrange equations</a></li><li><a href="equilibria-stability-and-the-lagrange-dirichlet-theorem.html">Equilibria, stability and the Lagrange-Dirichlet theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="theorem" id="orgda25b9b">
+<p>
+Let <img class="m" src="m/058b3407c8e36c3c9af16bdda79c11cf34511b63.svg" alt="\(A, B\)" style="height:0.962em;vertical-align:-0.212em"> be real symmetric <img class="m" src="m/bc483d6673df76af952406a832a2249a91196ab4.svg" alt="\(n\times n\)" style="height:0.731em;vertical-align:-0.088em"> matrices with <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">
+positive definite. Then there is an invertible <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> with
+<img class="m" src="m/6653de2a9c87e7b5e35e849b42fb190efcc6115e.svg" alt="\(S^{\mathsf{T}}AS = I\)" style="height:0.930em;vertical-align:-0.000em"> and <img class="m" src="m/12e01d676413185127c39275e56d63f9ae88ee03.svg" alt="\(S^{\mathsf{T}}BS\)" style="height:0.930em;vertical-align:-0.000em"> diagonal, with
+diagonal entries the roots <img class="m" src="m/bf732bcb08e251641d188904cbb646f8c7c05665.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em"> of <img class="m" src="m/a97037a547b02e2ed89896ce39e077426d163d7c.svg" alt="\(\det(B-\lambda A) = 0\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org18cfa1d">
+<p>
+Since <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is symmetric positive definite, the spectral theorem gives
+<img class="m" src="m/9df64b472a41253b7554bd7287fe20e6aa99e24a.svg" alt="\(A = Q\Lambda Q^{\mathsf{T}}\)" style="height:1.144em;vertical-align:-0.217em"> with <img class="m" src="m/f5b2fd106192be88a5de7a139a6fee4d755cdf09.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> orthogonal and <img class="m" src="m/ef20dcae594d2c559db23b17d502ab2d692633b3.svg" alt="\(\Lambda\)" style="height:0.749em;vertical-align:-0.000em">
+diagonal with positive entries; put
+<img class="m" src="m/3d94a1322b2216184cd357e5b28b3b541be4a302.svg" alt="\(A^{-1/2} = Q\Lambda^{-1/2}Q^{\mathsf{T}}\)" style="height:1.186em;vertical-align:-0.214em">, symmetric with
+<img class="m" src="m/b45c09fe8204e4ec3e8b98d149f46afa209f5279.svg" alt="\(A^{-1/2}AA^{-1/2} = I\)" style="height:0.973em;vertical-align:-0.000em">. The matrix <img class="m" src="m/5c2bcd9981a956f8186f880d213275af58f34f92.svg" alt="\(C = A^{-1/2}BA^{-1/2}\)" style="height:0.973em;vertical-align:-0.000em"> is
+symmetric, so <img class="m" src="m/a7563af443222bffe36b3ebc036a7d259be1262d.svg" alt="\(C = R D R^{\mathsf{T}}\)" style="height:0.930em;vertical-align:-0.000em"> with <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> orthogonal and
+<img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> diagonal. Put <img class="m" src="m/428be4dad11919a3c0e1e7cf0e278d28b9231a4d.svg" alt="\(S = A^{-1/2}R\)" style="height:0.973em;vertical-align:-0.000em">: then
+<img class="m" src="m/999ce088d7d89d4396b68651a3de313151aaedc2.svg" alt="\(S^{\mathsf{T}}AS = R^{\mathsf{T}}R = I\)" style="height:0.930em;vertical-align:-0.000em"> and
+<img class="m" src="m/a4b2ff760efd8202ef93617b15bb7338b1c9d244.svg" alt="\(S^{\mathsf{T}}BS = D\)" style="height:0.930em;vertical-align:-0.000em">.
+</p>
+
+<p>
+The diagonal entries are the eigenvalues of <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">, and
+<img class="m" src="m/135e46f4256ced6e38167cbd5c3d86d81e145257.svg" alt="\(\det(B-\lambda A) = \det(A^{1/2})^{2}\det(C-\lambda I)\)" style="height:1.247em;vertical-align:-0.274em">, so they are
+exactly the roots of that polynomial.
+</p>
+
+</div>
+
+<div class="theorem" id="orgfccad91">
+<p>
+Let <img class="m" src="m/a11f00a66517ad782ea0370bd4b8667ea75527de.svg" alt="\(q_{0}\)" style="height:0.685em;vertical-align:-0.212em"> be an equilibrium of a natural system with <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> of class
+<img class="m" src="m/50c56d1e9783b96a5cc2b4f818a17d6fdcccb7d1.svg" alt="\(C^{2}\)" style="height:0.892em;vertical-align:-0.000em">, and set <img class="m" src="m/f18b1d48ed5f2ec6669f25a0df454f6f7c1b60e0.svg" alt="\(A = A(q_{0})\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/d9a75fdaf98c58faabcbc35999faa714d3a53488.svg" alt="\(B = D^{2}V(q_{0})\)" style="height:1.166em;vertical-align:-0.268em">. The
+linearisation of the equations of motion at <img class="m" src="m/a11f00a66517ad782ea0370bd4b8667ea75527de.svg" alt="\(q_{0}\)" style="height:0.685em;vertical-align:-0.212em"> is
+<img class="m" src="m/9ba7580bb0bcd93289d1635c7ad1cabc3f5e9ab1.svg" alt="\(A\ddot{u} = -Bu\)" style="height:0.840em;vertical-align:-0.092em">, and in the coordinates <img class="m" src="m/e4ed686ec348194514f2a5f688118a1a7838f5aa.svg" alt="\(u = S\eta\)" style="height:0.962em;vertical-align:-0.212em"> of the
+previous theorem it decouples into
+<img class="m" src="m/0da0cb3f3858b79b12bbee789238dd5a441b93d6.svg" alt="\(\ddot{\eta}_{k} = -\lambda_{k}\eta_{k}\)" style="height:0.974em;vertical-align:-0.214em">. If all <img class="m" src="m/6e850a44ddf5d1bfda8d8fb4a89f94631d811e8c.svg" alt="\(\lambda_{k}&gt;0\)" style="height:0.925em;vertical-align:-0.167em"> the
+solutions are superpositions of <i>normal modes</i>
+<img class="m" src="m/480eefbd018f16686be20ad85fca7c9d2331d43e.svg" alt="\(\eta_{k}(t) = c_{k}\cos(\omega_{k}t+\varphi_{k})\)" style="height:1.096em;vertical-align:-0.274em"> with frequencies
+<img class="m" src="m/a885659a92bf573cf38175b63952d1f34068e9dc.svg" alt="\(\omega_{k} = \sqrt{\lambda_{k}}\)" style="height:1.140em;vertical-align:-0.205em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgc0303d9">
+<p>
+Write <img class="m" src="m/310abaeb600099a6eef6cf2bb32917dda32afe64.svg" alt="\(q = q_{0}+u\)" style="height:0.852em;vertical-align:-0.213em">. Expanding the Lagrangian to second order in
+<img class="m" src="m/6deafd20ee4e951d5053cd0f61267f711059fdb6.svg" alt="\((u,\dot{u})\)" style="height:1.096em;vertical-align:-0.274em"> by Taylor's theorem, the kinetic term is
+<img class="m" src="m/091c72a9c3ae76f971445e1972f9985ada422069.svg" alt="\(\tfrac{1}{2}\inner{A\dot{u}}{\dot{u}}\)" style="height:1.304em;vertical-align:-0.378em"> up to terms of higher order &#x2013;
+<img class="m" src="m/3096c763fa1514c3217353ddc90e5208bc1277da.svg" alt="\(A(q)\)" style="height:1.096em;vertical-align:-0.274em"> is continuous and <img class="m" src="m/dc9166ad48c66cb8176caa15e821822de80181e6.svg" alt="\(\dot{u}\)" style="height:0.732em;vertical-align:-0.000em"> already appears quadratically &#x2013;
+and the potential is
+<img class="m" src="m/057fe30a402c5ae019f39b92feacddbfce2a5acf.svg" alt="\(V(q_{0})+\tfrac{1}{2}\inner{Bu}{u}+o(\abs{u}^{2})\)" style="height:1.304em;vertical-align:-0.378em">, the linear term
+vanishing because <img class="m" src="m/a11f00a66517ad782ea0370bd4b8667ea75527de.svg" alt="\(q_{0}\)" style="height:0.685em;vertical-align:-0.212em"> is a critical point. The Lagrange equations
+of the quadratic Lagrangian are <img class="m" src="m/9ba7580bb0bcd93289d1635c7ad1cabc3f5e9ab1.svg" alt="\(A\ddot{u} = -Bu\)" style="height:0.840em;vertical-align:-0.092em">.
+</p>
+
+<p>
+Substituting <img class="m" src="m/e4ed686ec348194514f2a5f688118a1a7838f5aa.svg" alt="\(u = S\eta\)" style="height:0.962em;vertical-align:-0.212em"> and multiplying by <img class="m" src="m/86ac8397e8ce9550589bf501e8417f40adb0bd8c.svg" alt="\(S^{\mathsf{T}}\)" style="height:0.930em;vertical-align:-0.000em"> gives
+<img class="m" src="m/ec38b0122800ac02e9302e5f3fb773ca431a855e.svg" alt="\(S^{\mathsf{T}}AS\ddot{\eta} = -S^{\mathsf{T}}BS\eta\)" style="height:1.144em;vertical-align:-0.217em">, that is
+<img class="m" src="m/41cc1f2e2acdab6394017eb5530308f351d60481.svg" alt="\(\ddot{\eta} = -D\eta\)" style="height:0.962em;vertical-align:-0.212em">, one scalar equation per coordinate. For
+<img class="m" src="m/6e850a44ddf5d1bfda8d8fb4a89f94631d811e8c.svg" alt="\(\lambda_{k}&gt;0\)" style="height:0.925em;vertical-align:-0.167em"> the general solution of
+<img class="m" src="m/21319a36b5b0cffd82fe3aa202adac9e75982db8.svg" alt="\(\ddot{\eta}_{k}=-\lambda_{k}\eta_{k}\)" style="height:0.974em;vertical-align:-0.214em"> is the displayed sinusoid, and
+the general solution of the system is their superposition through
+<img class="m" src="m/e4ed686ec348194514f2a5f688118a1a7838f5aa.svg" alt="\(u = S\eta\)" style="height:0.962em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="corollary" id="org048ba0d">
+<p>
+All <img class="m" src="m/6e97e91efe141a680b7fa4e3452f9284319e6e73.svg" alt="\(\lambda_{k}\)" style="height:0.925em;vertical-align:-0.167em"> are positive exactly when <img class="m" src="m/c881899bf5f798ea79f265d8a4d9f404e4d9be83.svg" alt="\(D^{2}V(q_{0})\)" style="height:1.166em;vertical-align:-0.268em"> is
+positive definite, in which case <img class="m" src="m/a11f00a66517ad782ea0370bd4b8667ea75527de.svg" alt="\(q_{0}\)" style="height:0.685em;vertical-align:-0.212em"> is a stable equilibrium of
+the full nonlinear system; a negative <img class="m" src="m/6e97e91efe141a680b7fa4e3452f9284319e6e73.svg" alt="\(\lambda_{k}\)" style="height:0.925em;vertical-align:-0.167em"> makes it unstable.
+</p>
+
+</div>
+
+<div class="proof" id="org0a9717c">
+<p>
+By the theorem the <img class="m" src="m/6e97e91efe141a680b7fa4e3452f9284319e6e73.svg" alt="\(\lambda_{k}\)" style="height:0.925em;vertical-align:-0.167em"> are the roots of
+<img class="m" src="m/a97037a547b02e2ed89896ce39e077426d163d7c.svg" alt="\(\det(B-\lambda A) = 0\)" style="height:1.096em;vertical-align:-0.274em">, which are the eigenvalues of
+<img class="m" src="m/9f8f18ac383b66e124c151a7bcb56411cc5b7642.svg" alt="\(A^{-1/2}BA^{-1/2}\)" style="height:0.973em;vertical-align:-0.000em">; that matrix is positive definite exactly when
+<img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> is, since <img class="m" src="m/7b469a86bf4e2e3497c66ea92adb6de5ab0ab5a7.svg" alt="\(\inner{A^{-1/2}BA^{-1/2}x}{x} = \inner{B y}{y}\)" style="height:1.247em;vertical-align:-0.274em"> with
+<img class="m" src="m/2a052ca261114a774c07746c585446d2f10fe0f7.svg" alt="\(y = A^{-1/2}x\)" style="height:1.186em;vertical-align:-0.214em"> ranging over everything. A positive definite Hessian
+makes <img class="m" src="m/a11f00a66517ad782ea0370bd4b8667ea75527de.svg" alt="\(q_{0}\)" style="height:0.685em;vertical-align:-0.212em"> a strict local minimum of <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">, by Taylor's theorem, so
+Lagrange-Dirichlet gives stability; a negative eigenvalue gives
+instability by the earlier proposition.
+</p>
+
+</div>
+
+<div class="remark" id="org0ebfb7a">
+<p>
+The normal modes are the physically meaningful objects and the
+coordinates <img class="m" src="m/a1b54939210c3b11c7045471f72745425f4ff660.svg" alt="\(\eta\)" style="height:0.685em;vertical-align:-0.212em"> are not orthonormal for anything except the kinetic
+energy &#x2013; which is exactly the point of the simultaneous
+diagonalisation: the two forms cannot in general be brought to the
+identity together, and privileging the positive definite one is what
+makes the frequencies, rather than the eigenvalues of <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> alone,
+the invariants. The same algebra reappears whenever a quadratic energy
+is minimised subject to a quadratic normalisation, from the generalised
+eigenvalue problems of numerical analysis to the <a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Rayleigh quotient</a>.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="mathematical-physics.html"><span>← previous</span>Mathematical physics</a><a rel="next" href="dynamical-systems.html"><span>next →</span>Dynamical systems</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/physics--classical-mechanics.pdf" title="PDF manual">Classical Mechanics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">Physics</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

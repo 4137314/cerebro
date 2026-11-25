@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Statistical models, estimators and consistency · Mathematics</title>
+<meta name="description" content="Probability starts from a law and computes; statistics starts from data and asks which law produced it. The formal difference is one word in the definition: the probability measure is not given but ranges over a family, and everything the subject does is choose among the members of that family or b…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/statistical-models-estimators-and-consistency.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Statistical models, estimators and consistency · Mathematics">
+<meta property="og:description" content="Probability starts from a law and computes; statistics starts from data and asks which law produced it. The formal difference is one word in the definition: the probability measure is not given but ranges over a family, and everything the subject does is choose among the members of that family or b…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/statistical-models-estimators-and-consistency.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-probability">Probability</a> / <a rel="up" href="index.html#a-probability--statistics">Statistics</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Probability · Statistics</p>
+<h1>Statistical models, estimators and consistency</h1>
+<p class="summary">Probability starts from a law and computes; statistics starts from data and asks which law produced it. The formal difference is one word in the definition: the probability measure is not given but ranges over a family, and everything the subject does is choose among the members of that family or bound the error of having chosen.</p>
+<p class="rel"><span>needs</span> <a href="expectation-the-transfer-theorem-and-jensens-inequality.html">Expectation, the transfer theorem and Jensen's inequality</a>, <a href="modes-of-convergence-and-the-borel-cantelli-lemmas.html">Modes of convergence and the Borel-Cantelli lemmas</a>, <a href="probability-spaces-conditioning-and-independence.html">Probability spaces, conditioning and independence</a>, <a href="random-variables-laws-and-distribution-functions.html">Random variables, laws and distribution functions</a>, <a href="the-weak-and-strong-laws-of-large-numbers.html">The weak and strong laws of large numbers</a>, <a href="variance-covariance-and-the-markov-and-chebyshev-inequalities.html">Variance, covariance and the Markov and Chebyshev inequalities</a></p>
+<p class="rel"><span>unlocks</span> <a href="fisher-information-and-the-cramer-rao-bound.html">Fisher information and the Cramer-Rao bound</a>, <a href="hypothesis-tests-and-the-neyman-pearson-lemma.html">Hypothesis tests and the Neyman-Pearson lemma</a>, <a href="sufficiency-and-the-factorisation-theorem.html">Sufficiency and the factorisation theorem</a>, <a href="the-rao-blackwell-theorem.html">The Rao-Blackwell theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="statistics.html">Statistics</a></p>
+<details class="path"><summary>Learning path: 61 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="convex-functions-and-the-second-derivative.html">Convex functions and the second derivative</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li><li><a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="the-baire-category-theorem.html">The Baire category theorem</a></li><li><a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></li><li><a href="convex-set.html">Convex set</a></li><li><a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a></li><li><a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a></li><li><a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a></li><li><a href="probability-spaces-conditioning-and-independence.html">Probability spaces, conditioning and independence</a></li><li><a href="random-variables-laws-and-distribution-functions.html">Random variables, laws and distribution functions</a></li><li><a href="expectation-the-transfer-theorem-and-jensens-inequality.html">Expectation, the transfer theorem and Jensen's inequality</a></li><li><a href="variance-covariance-and-the-markov-and-chebyshev-inequalities.html">Variance, covariance and the Markov and Chebyshev inequalities</a></li><li><a href="modes-of-convergence-and-the-borel-cantelli-lemmas.html">Modes of convergence and the Borel-Cantelli lemmas</a></li><li><a href="the-weak-and-strong-laws-of-large-numbers.html">The weak and strong laws of large numbers</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org3a45e24">
+<p>
+A <i>statistical model</i> is a measurable space <img class="m" src="m/ff4f091177037e558b577f76a16d8e6604d00ed9.svg" alt="\((\mathcal{X},\mathcal{A})\)" style="height:1.096em;vertical-align:-0.274em">
+together with a family <img class="m" src="m/ced1ffd780e5cded747a4e8fc2e2570a4e46be9c.svg" alt="\((\Prob_{\theta})_{\theta\in\Theta}\)" style="height:1.096em;vertical-align:-0.274em"> of
+probability measures on it, indexed by a <i>parameter</i> <img class="m" src="m/346f66be96cb38ba0680cfd40867d9bf1796163d.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em">. The
+model is <i>dominated</i> by a measure <img class="m" src="m/5602b42c49566a683e5183a144a93b453d1accef.svg" alt="\(\mu\)" style="height:0.685em;vertical-align:-0.212em"> if each <img class="m" src="m/45c1143de6e05e65f9de9f66da540605f3f29893.svg" alt="\(\Prob_{\theta}\)" style="height:0.919em;vertical-align:-0.165em"> has
+a density <img class="m" src="m/547111868ccbd1ad648d47eb798dd941cc7c4f4e.svg" alt="\(f(\cdot\,;\theta)\)" style="height:1.096em;vertical-align:-0.274em"> with respect to <img class="m" src="m/5602b42c49566a683e5183a144a93b453d1accef.svg" alt="\(\mu\)" style="height:0.685em;vertical-align:-0.212em">, and
+<i>identifiable</i> if <img class="m" src="m/a97c54381326fd256c80ad19979b36f3dbf15657.svg" alt="\(\theta\ne\theta'\)" style="height:1.037em;vertical-align:-0.218em"> implies
+<img class="m" src="m/4bbaff4a195a35ed67d689ad7a338bbd8dec6c2c.svg" alt="\(\Prob_{\theta}\ne\Prob_{\theta'}\)" style="height:0.974em;vertical-align:-0.214em">. A <i>sample</i> of size <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> is a
+vector <img class="m" src="m/57bef949fcdcf317f9f85bc9a0fb1d6ff2a20598.svg" alt="\(X = (X_{1},\dots,X_{n})\)" style="height:1.096em;vertical-align:-0.274em"> of independent random variables with
+common law <img class="m" src="m/45c1143de6e05e65f9de9f66da540605f3f29893.svg" alt="\(\Prob_{\theta}\)" style="height:0.919em;vertical-align:-0.165em">.
+</p>
+
+</div>
+
+<div class="definition" id="org41c3db0">
+<p>
+A <i>statistic</i> is a measurable function of the sample alone, carrying no
+<img class="m" src="m/346f66be96cb38ba0680cfd40867d9bf1796163d.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em">. An <i>estimator</i> of a quantity <img class="m" src="m/f968bfe4183545cdfaaeda4f42d39bb6857267b1.svg" alt="\(g(\theta)\)" style="height:1.096em;vertical-align:-0.274em"> is a statistic
+<img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em">; its <i>bias</i> is <img class="m" src="m/b4b21c39241eea4a366c5ef70bcea139baf3099c.svg" alt="\(b_{\theta}(T) = \E_{\theta}[T]-g(\theta)\)" style="height:1.096em;vertical-align:-0.274em">, and
+it is <i>unbiased</i> if the bias vanishes for every <img class="m" src="m/346f66be96cb38ba0680cfd40867d9bf1796163d.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em">. Its <i>mean
+squared error</i> is
+<img class="m" src="m/7c24a06a40187117703af25891273e7cdfeeebf9.svg" alt="\(\mathrm{MSE}_{\theta}(T) = \E_{\theta}[(T-g(\theta))^{2}]\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orga79647c">
+<p>
+For a square-integrable estimator,
+<img class="m" src="m/933e2dc618e657374ce1931bdaa40ba7c5146d4d.svg" alt="\(\mathrm{MSE}_{\theta}(T) = \Var_{\theta}(T) + b_{\theta}(T)^{2}\)" style="height:1.166em;vertical-align:-0.268em">.
+In particular an unbiased estimator has mean squared error equal to its
+variance, and a biased one can beat it.
+</p>
+
+</div>
+
+<div class="proof" id="org21608fb">
+<p>
+Write <img class="m" src="m/9121fd2634842a49aa6028a7fd9f3d4bc38c327e.svg" alt="\(T - g(\theta) = (T-\E_{\theta}[T]) + b_{\theta}(T)\)" style="height:1.096em;vertical-align:-0.274em">. Squaring
+and taking expectations, the cross term is
+<img class="m" src="m/b05179eddd9563e4593a1074ee75935e3c473a44.svg" alt="\(2b_{\theta}(T)\,\E_{\theta}[T-\E_{\theta}[T]] = 0\)" style="height:1.096em;vertical-align:-0.274em">, leaving the
+variance and the squared bias.
+</p>
+
+</div>
+
+<div class="definition" id="org61d2d1b">
+<p>
+A sequence of estimators <img class="m" src="m/08ec1627eb8a4dac270ce15cba5cb503666f1f2a.svg" alt="\(T_{n}\)" style="height:0.913em;vertical-align:-0.164em">, with <img class="m" src="m/08ec1627eb8a4dac270ce15cba5cb503666f1f2a.svg" alt="\(T_{n}\)" style="height:0.913em;vertical-align:-0.164em"> a function of a
+sample of size <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">, is <i>consistent</i> for <img class="m" src="m/f968bfe4183545cdfaaeda4f42d39bb6857267b1.svg" alt="\(g(\theta)\)" style="height:1.096em;vertical-align:-0.274em"> if
+<img class="m" src="m/467c6c79af52a05f2482a709b60a6cd366705dd8.svg" alt="\(T_{n} \to g(\theta)\)" style="height:1.096em;vertical-align:-0.274em"> in probability under <img class="m" src="m/45c1143de6e05e65f9de9f66da540605f3f29893.svg" alt="\(\Prob_{\theta}\)" style="height:0.919em;vertical-align:-0.165em">, for
+every <img class="m" src="m/346f66be96cb38ba0680cfd40867d9bf1796163d.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org19f8df0">
+<p>
+Let the model have finite variance <img class="m" src="m/40b0063e7363a601e300c4774043bc2bd45e2858.svg" alt="\(\sigma^{2}(\theta)\)" style="height:1.166em;vertical-align:-0.268em"> and mean
+<img class="m" src="m/8c4f3753825fea7c7577562a9ee3f029252ccea3.svg" alt="\(\mu(\theta)\)" style="height:1.096em;vertical-align:-0.274em">, and let
+<img class="m" src="m/11b01d55e60ab20ef6fd6744eaff99bc7b767182.svg" alt="\(\bar{X}_{n} = (X_{1}+\cdots+X_{n})/n\)" style="height:1.173em;vertical-align:-0.270em">. Then <img class="m" src="m/240ea7289110966b4f6353c938a2893ba8299759.svg" alt="\(\bar{X}_{n}\)" style="height:1.064em;vertical-align:-0.160em"> is an
+unbiased and consistent estimator of <img class="m" src="m/8c4f3753825fea7c7577562a9ee3f029252ccea3.svg" alt="\(\mu(\theta)\)" style="height:1.096em;vertical-align:-0.274em">, with
+<img class="m" src="m/a697accd469d409209aed810334aa0ac0ac267fb.svg" alt="\(\mathrm{MSE}_{\theta}(\bar{X}_{n}) = \sigma^{2}(\theta)/n\)" style="height:1.173em;vertical-align:-0.270em">; and it is
+strongly consistent &#x2013; convergence holds almost surely &#x2013; when the
+fourth moment is finite.
+</p>
+
+</div>
+
+<div class="proof" id="org4c1b4c5">
+<p>
+Unbiasedness is linearity of expectation. The mean squared error equals
+the variance, which is <img class="m" src="m/0b526435fe278f7a522e8ffdad3f728052ae3672.svg" alt="\(\sigma^{2}(\theta)/n\)" style="height:1.166em;vertical-align:-0.268em"> since the sample is
+independent. Consistency is the weak law of large numbers applied under
+<img class="m" src="m/45c1143de6e05e65f9de9f66da540605f3f29893.svg" alt="\(\Prob_{\theta}\)" style="height:0.919em;vertical-align:-0.165em">, and the almost sure statement is the strong law
+under the fourth-moment hypothesis.
+</p>
+
+</div>
+
+<div class="proposition" id="org20aa9cd">
+<p>
+With <img class="m" src="m/235b795286e4d3284a3584e76bc781134abf84fd.svg" alt="\(S_{n}^{2} = \frac{1}{n-1}\sum_{i=1}^{n}(X_{i}-\bar{X}_{n})^{2}\)" style="height:1.395em;vertical-align:-0.474em">
+and <img class="m" src="m/8404eb102e3e868153630c118c966d1256a76645.svg" alt="\(n \ge 2\)" style="height:0.855em;vertical-align:-0.145em">, <img class="m" src="m/574c9289466e50e2687d1a8a9db2991574039b85.svg" alt="\(\E_{\theta}[S_{n}^{2}] = \sigma^{2}(\theta)\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+</div>
+
+<div class="proof" id="org06b7cd4">
+<p>
+Assume <img class="m" src="m/ece103c37968d685836dfb77fda906aa919fae27.svg" alt="\(\mu(\theta) = 0\)" style="height:1.096em;vertical-align:-0.274em">, which changes neither side. Expanding,
+<img class="m" src="m/b9575c7ec609d8ae048d9a0ab7c3a0cdcde8d257.svg" alt="\(\sum_{i}(X_{i}-\bar{X}_{n})^{2} = \sum_{i}X_{i}^{2} - n\bar{X}_{n}^{2}\)" style="height:1.228em;vertical-align:-0.332em">.
+Taking expectations, <img class="m" src="m/b662d4391a5263d23607e868fa0724d11820e690.svg" alt="\(\E[\sum_{i}X_{i}^{2}] = n\sigma^{2}\)" style="height:1.221em;vertical-align:-0.330em"> and
+<img class="m" src="m/9a1882a7de2e8851c72be267e51935c01124f334.svg" alt="\(\E[\bar{X}_{n}^{2}] = \Var(\bar{X}_{n}) = \sigma^{2}/n\)" style="height:1.173em;vertical-align:-0.270em"> by
+independence, so the total is <img class="m" src="m/b49678c17d4ada62b629260f5ccca6cba6b06647.svg" alt="\(n\sigma^{2}-\sigma^{2} = (n-1)\sigma^{2}\)" style="height:1.166em;vertical-align:-0.268em">.
+Dividing by <img class="m" src="m/9954ab1aa9e74e6384dd717436dfaac44435c636.svg" alt="\(n-1\)" style="height:0.798em;vertical-align:-0.088em"> gives the claim.
+</p>
+
+</div>
+
+<div class="remark" id="orgd63442d">
+<p>
+The divisor <img class="m" src="m/9954ab1aa9e74e6384dd717436dfaac44435c636.svg" alt="\(n-1\)" style="height:0.798em;vertical-align:-0.088em"> is exactly the correction for having estimated the
+mean from the same data, and the proposition is the whole justification
+of it; with <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> in the denominator the estimator is biased downwards
+by a factor <img class="m" src="m/44b31c6f8d6745b08c772333ad57d24b40a6f831.svg" alt="\((n-1)/n\)" style="height:1.096em;vertical-align:-0.274em">. Unbiasedness is a weaker virtue than it looks,
+though &#x2013; the bias-variance decomposition shows an estimator may trade a
+little bias for a large reduction in variance and win.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-weak-and-strong-laws-of-large-numbers.html"><span>← previous</span>The weak and strong laws of large numbers</a><a rel="next" href="fisher-information-and-the-cramer-rao-bound.html"><span>next →</span>Fisher information and the Cramer-Rao bound</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/probability--statistics.pdf" title="PDF manual">Statistics</a> · <a class="pdf" href="pdf/probability.pdf" title="PDF manual">Probability</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

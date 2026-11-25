@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unsupervised change detection with EM and Bayes · Remote Sensing</title>
+<meta name="description" content="The difference (or log-ratio) image is modelled as a mixture of two classes, unchanged and changed, p(d)=P_np(d\mid\omega_n)+P_cp(d\mid\omega_c); the expectation–maximization algorithm estimates the priors and the class densities without any label, and the Bayes rule then gives the minimum-error th…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/unsupervised-change-detection.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Unsupervised change detection with EM and Bayes · Remote Sensing">
+<meta property="og:description" content="The difference (or log-ratio) image is modelled as a mixture of two classes, unchanged and changed, p(d)=P_np(d\mid\omega_n)+P_cp(d\mid\omega_c); the expectation–maximization algorithm estimates the priors and the class densities without any label, and the Bayes rule then gives the minimum-error th…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/unsupervised-change-detection.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-recognition">Recognition</a> / <a rel="up" href="index.html#a-recognition--applications">Applications</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Recognition · Applications</p>
+<h1>Unsupervised change detection with EM and Bayes</h1>
+<p class="summary">The difference (or log-ratio) image is modelled as a mixture of two classes, unchanged and changed, <img class="m" src="m/12d5b5f5f58b6c661f5ef1d6574ccc6c7f42accd.svg" alt="\(p(d)=P_np(d\mid\omega_n)+P_cp(d\mid\omega_c)\)" style="height:1.096em;vertical-align:-0.274em">; the expectation–maximization algorithm estimates the priors and the class densities without any label, and the Bayes rule then gives the minimum-error threshold — optionally refined with spatial context.</p>
+<p class="rel"><span>needs</span> <a href="change-detection.html">Change detection</a>, <a href="bayes-classifier.html">Bayes decision rule</a>, <a href="kmeans-clustering.html">k-means clustering</a></p>
+<p class="rel"><span>see also</span> <a href="speckle-statistics.html">Speckle and its statistics</a>, <a href="image-thresholding.html">Histogram thresholding</a></p>
+<details class="path"><summary>Learning path: 30 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="atmospheric-scattering.html">Atmospheric scattering: Rayleigh and Mie</a></li><li><a href="spectral-signature.html">Spectral signature</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li><li><a href="image-statistics.html">Image statistics: moments, mode, median</a></li><li><a href="geometric-distortions.html">Geometric distortions</a></li><li><a href="geometric-correction.html">Geometric correction, geocoding and registration</a></li><li><a href="radiometric-correction.html">Radiometric errors and corrections</a></li><li><a href="homogeneous-area-statistics.html">Statistics of homogeneous areas in optical images</a></li><li><a href="image-segmentation.html">Image segmentation</a></li><li><a href="image-thresholding.html">Histogram thresholding</a></li><li><a href="recognition-system.html">Recognition systems</a></li><li><a href="feature-extraction.html">Feature extraction</a></li><li><a href="feature-space.html">Feature space and spectral classes</a></li><li><a href="discriminant-functions.html">Discriminant functions and decision regions</a></li><li><a href="bayes-classifier.html">Bayes decision rule</a></li><li><a href="minimum-distance-classifier.html">Minimum-distance classifier</a></li><li><a href="kmeans-clustering.html">k-means clustering</a></li><li><a href="change-detection.html">Change detection</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org50f723d" class="outline-2">
+<h2 id="org50f723d">Method</h2>
+<div class="outline-text-2" id="text-org50f723d">
+<ol class="org-ol">
+<li>Build <img class="m" src="m/588903fb08fcda4c95b5c78df0c31fb690799e67.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em">: magnitude of the change vector (optical) or <a href="change-detection.html">log-ratio</a> (SAR).</li>
+<li>Model each class (Gaussian for differences of optical data; generalized Gaussian or Nakagami-type densities for SAR ratios).</li>
+<li><b>EM</b>, from an initial split (e.g. a rough threshold):
+<ul class="org-ul">
+<li>E-step: posterior of each pixel <img class="m" src="m/318bb475a326af61896bf9824806b64e41e145ad.svg" alt="\(\displaystyle P(\omega_c\mid d_i)=\frac{P_cp(d_i\mid\omega_c)}{P_np(d_i\mid\omega_n)+P_cp(d_i\mid\omega_c)}\)" style="height:2.589em;vertical-align:-1.036em">;</li>
+<li>M-step: <img class="m" src="m/7eaeccffe5a7bd7730a391727b75fe8a647f2ee7.svg" alt="\(P_c=\frac1N\sum_iP(\omega_c\mid d_i)\)" style="height:1.304em;vertical-align:-0.378em">, <img class="m" src="m/d688a36d78c3c7c0e87fdb4dd2c29af8f74e8da6.svg" alt="\(\mu_c=\frac{\sum_iP(\omega_c\mid d_i)d_i}{\sum_iP(\omega_c\mid d_i)}\)" style="height:1.786em;vertical-align:-0.625em">, <img class="m" src="m/5da0a92d084c3d40e92b8c3406f742629a7243c3.svg" alt="\(\sigma_c^2\)" style="height:1.163em;vertical-align:-0.267em"> likewise; same for <img class="m" src="m/595111eb6f33034b4b6f73ca9e926972095b7fda.svg" alt="\(\omega_n\)" style="height:0.636em;vertical-align:-0.165em">;</li>
+<li>iterate until the parameters stop changing (the <a href="bayes-classifier.html">likelihood</a> never decreases).</li>
+</ul></li>
+<li><b>Decision</b>: Bayes rule <img class="m" src="m/cc8fae04b929ac09844529909ceaf23c6804431c.svg" alt="\(P_cp(d\mid\omega_c)&gt;P_np(d\mid\omega_n)\)" style="height:1.096em;vertical-align:-0.274em">, i.e. a threshold <img class="m" src="m/94739ec580d0267ce9639c71ab70cb61aed32135.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> where the weighted densities cross.</li>
+<li><b><a href="photointerpretation.html">Context</a></b>: Markov random fields or majority filtering add the prior that changes form compact regions.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org09e710e" class="outline-2">
+<h2 id="org09e710e">Picture</h2>
+<div class="outline-text-2" id="text-org09e710e">
+<figure class="fig"><img class="m" src="m/26ef53dc878a1f9b78869babc383980ccc7d3863.svg" alt="figure" style="width:18.281em"><figcaption><span class="fl">Figure 1.</span> Change detection on the magnitude <img class="m" src="m/588903fb08fcda4c95b5c78df0c31fb690799e67.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em"> of the difference image: the weighted densities of the no-change and change classes, estimated by EM, and the Bayes threshold where they cross.</figcaption></figure>
+<p>
+The Bayes threshold (dashed) sits where the two weighted densities cross.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfcacdc1" class="outline-2">
+<h2 id="orgfcacdc1">Intuition</h2>
+<div class="outline-text-2" id="text-orgfcacdc1">
+<p>
+Without labels, let the histogram of differences explain itself as "a big hill of nothing happened" plus "a small hill of change", and cut where one becomes more likely than the other.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc237830" class="outline-2">
+<h2 id="orgc237830">Pitfall</h2>
+<div class="outline-text-2" id="text-orgc237830">
+<p>
+EM finds a local optimum and assumes the chosen family of densities fits: a strongly non-Gaussian unchanged class (seasonal effects, misregistration) pulls the threshold and floods the map with false changes.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="change-detection.html"><span>← previous</span>Change detection</a><span></span></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/recognition--applications.pdf" title="PDF manual">Applications</a> · <a class="pdf" href="pdf/recognition.pdf" title="PDF manual">Recognition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

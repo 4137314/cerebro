@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Equicontinuity and the Arzela-Ascoli theorem · Mathematics</title>
+<meta name="description" content="In a space of functions, closed and bounded is not enough for compactness: the unit ball of a space of functions is never compact in infinite dimension. Arzela-Ascoli identifies what has to be added – uniform control of the modulus of continuity across the whole family – and it is the compactness c…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/equicontinuity-and-the-arzela-ascoli-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Equicontinuity and the Arzela-Ascoli theorem · Mathematics">
+<meta property="og:description" content="In a space of functions, closed and bounded is not enough for compactness: the unit ball of a space of functions is never compact in infinite dimension. Arzela-Ascoli identifies what has to be added – uniform control of the modulus of continuity across the whole family – and it is the compactness c…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/equicontinuity-and-the-arzela-ascoli-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--functional-analysis">Functional Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Functional Analysis</p>
+<h1>Equicontinuity and the Arzela-Ascoli theorem</h1>
+<p class="summary">In a space of functions, closed and bounded is not enough for compactness: the unit ball of a space of functions is never compact in infinite dimension. Arzela-Ascoli identifies what has to be added &#x2013; uniform control of the modulus of continuity across the whole family &#x2013; and it is the compactness criterion that every existence proof by approximation ultimately uses.</p>
+<p class="rel"><span>needs</span> <a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a>, <a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a>, <a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a>, <a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a>, <a href="uniform-continuity-extension-and-the-completion-of-a-metric-space.html">Uniform continuity, extension and the completion of a metric space</a></p>
+<p class="rel"><span>mentioned in</span> <a href="functional-analysis.html">Functional analysis</a></p>
+<details class="path"><summary>Learning path: 28 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="uniform-continuity-extension-and-the-completion-of-a-metric-space.html">Uniform continuity, extension and the completion of a metric space</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org70ade03">
+<p>
+Let <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> be a metric space and <img class="m" src="m/94e875ed771ea5fa5a0855a42416fd2a60a6f842.svg" alt="\(\mathcal{F}\)" style="height:0.749em;vertical-align:-0.000em"> a family of functions
+<img class="m" src="m/71e8c978472e241010cd65dbf2f63a10ba5928e0.svg" alt="\(X \to \R\)" style="height:0.755em;vertical-align:-0.000em">. It is <i>equicontinuous at <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"></i> if for every <img class="m" src="m/2cffdc597a54fae183dedb83e6fbd3d870b664ce.svg" alt="\(\eps&gt;0\)" style="height:0.749em;vertical-align:-0.045em">
+there is <img class="m" src="m/722b00acf7aef71aba0503bbe9a32ea420a49689.svg" alt="\(\delta&gt;0\)" style="height:0.804em;vertical-align:-0.040em"> with <img class="m" src="m/08940b38c131cbd4e645271a4563fbc92bdf4d28.svg" alt="\(\abs{f(y)-f(x)}&lt;\eps\)" style="height:1.096em;vertical-align:-0.274em"> for all
+<img class="m" src="m/551258dbe8b160adc76f2371db5f962259d64c4b.svg" alt="\(f\in\mathcal{F}\)" style="height:0.974em;vertical-align:-0.214em"> and all <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> with <img class="m" src="m/456efe5e202e19edc8f6cde6d153a6c7e9120fed.svg" alt="\(d(y,x)&lt;\delta\)" style="height:1.096em;vertical-align:-0.274em">, and
+<i>uniformly equicontinuous</i> if <img class="m" src="m/ae9908b1dd9140d114827a466a957908d1672568.svg" alt="\(\delta\)" style="height:0.761em;vertical-align:-0.000em"> may be chosen independently of
+<img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">. It is <i>pointwise bounded</i> if
+<img class="m" src="m/eb48ac33e19d04128bc9464e8fcf0fedb978f114.svg" alt="\(\setst{f(x)}{f\in\mathcal{F}}\)" style="height:1.096em;vertical-align:-0.274em"> is bounded for each <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, and
+<i>uniformly bounded</i> if bounded by one constant.
+</p>
+
+</div>
+
+<div class="lemma" id="org9918984">
+<p>
+A compact metric space has a countable dense subset.
+</p>
+
+</div>
+
+<div class="proof" id="org76ad395">
+<p>
+For each <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">, compactness gives a finite set <img class="m" src="m/93aa2a50ca3a613d4768bb2fa696e69f723da387.svg" alt="\(D_{n}\)" style="height:0.913em;vertical-align:-0.164em"> whose
+<img class="m" src="m/fd41c1f34c6cfa984f86d9d39d28b47ec4c886c4.svg" alt="\(1/n\)" style="height:1.096em;vertical-align:-0.274em">-balls cover <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">. The union <img class="m" src="m/e614876a70336f03efb437a3031bb5369c31f2de.svg" alt="\(D = \bigcup_{n}D_{n}\)" style="height:1.151em;vertical-align:-0.334em"> is
+countable, and every ball <img class="m" src="m/3347046e8711cb22c1bbc9268323c41bddd87b85.svg" alt="\(B(x,\eps)\)" style="height:1.096em;vertical-align:-0.274em"> contains a point of
+<img class="m" src="m/93aa2a50ca3a613d4768bb2fa696e69f723da387.svg" alt="\(D_{n}\)" style="height:0.913em;vertical-align:-0.164em"> for <img class="m" src="m/4fe862e8a7faee998c88f867a7440effa2e3c5f7.svg" alt="\(1/n&lt;\eps\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> is dense.
+</p>
+
+</div>
+
+<div class="theorem" id="org891dc5a">
+<p>
+Let <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> be a compact metric space and <img class="m" src="m/cb4b078f4edc982173ab433e99a2c27552e4210e.svg" alt="\((f_{n})\)" style="height:1.096em;vertical-align:-0.274em"> a sequence of
+functions <img class="m" src="m/d5883ca3ab9a2f83fbf46fa53e279d283e1b72f9.svg" alt="\(K \to \R\)" style="height:0.755em;vertical-align:-0.000em"> that is pointwise bounded and equicontinuous at
+every point. Then some subsequence converges uniformly on <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgffdf9c5">
+<p>
+Let <img class="m" src="m/20e0d2e2f6cb12339109aeebab0386973d3a71ee.svg" alt="\(D = \set{x_{1},x_{2},\dots}\)" style="height:1.096em;vertical-align:-0.274em"> be countable and dense in <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">. The
+sequence <img class="m" src="m/cb00bdd5f6d1e37df67598921b983c3b144b99e0.svg" alt="\((f_{n}(x_{1}))\)" style="height:1.096em;vertical-align:-0.274em"> is bounded, so it has a convergent
+subsequence; from that subsequence extract another along which
+<img class="m" src="m/d12c25fa7151090fdd4434eee4fac70f24945685.svg" alt="\((f_{n}(x_{2}))\)" style="height:1.096em;vertical-align:-0.274em"> converges, and so on. The diagonal sequence
+<img class="m" src="m/d354e78ac4a4326f396537fab4acbd31bb7e03a7.svg" alt="\(g_{n} = f_{n_{n}}\)" style="height:1.035em;vertical-align:-0.269em"> converges at every point of <img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em">, being
+eventually a subsequence of each extracted sequence.
+</p>
+
+<p>
+Now <img class="m" src="m/166cf92754cf0c0cf0da7685fdabd399f6977785.svg" alt="\((g_{n})\)" style="height:1.096em;vertical-align:-0.274em"> is uniformly Cauchy. Given <img class="m" src="m/2cffdc597a54fae183dedb83e6fbd3d870b664ce.svg" alt="\(\eps&gt;0\)" style="height:0.749em;vertical-align:-0.045em">, equicontinuity
+gives for each <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> a <img class="m" src="m/9bbfd5c8d690cdfa9b7f124712f497f413067ff0.svg" alt="\(\delta_{x}&gt;0\)" style="height:0.925em;vertical-align:-0.167em"> with
+<img class="m" src="m/681a8fe2a5117030a90a44dec1c26e3080438236.svg" alt="\(\abs{f(y)-f(x)}&lt;\eps/4\)" style="height:1.096em;vertical-align:-0.274em"> for all <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> in the family and
+<img class="m" src="m/e3b956d115bc00935500cfa6ec6d3fe8a8b00cd6.svg" alt="\(d(y,x)&lt;\delta_{x}\)" style="height:1.096em;vertical-align:-0.274em">. The balls <img class="m" src="m/912816461dcb728b6617e3d38858477b0d21ee18.svg" alt="\(B(x,\delta_{x}/2)\)" style="height:1.096em;vertical-align:-0.274em"> cover <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">; take
+a finite subcover with centres <img class="m" src="m/a31fc111ad2189957d6e1dc61be92213e93c179d.svg" alt="\(y_{1},\dots,y_{m}\)" style="height:0.685em;vertical-align:-0.212em">, and pick
+<img class="m" src="m/905b8ff83fedcef652eed0eebe8d273e641790a7.svg" alt="\(z_{k}\in D\cap B(y_{k},\delta_{y_{k}}/2)\)" style="height:1.135em;vertical-align:-0.318em">, possible by density.
+Choose <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/8c146e962f9055ddf737392193bcc6cfb42d0bb7.svg" alt="\(\abs{g_{n}(z_{k})-g_{p}(z_{k})}&lt;\eps/4\)" style="height:1.135em;vertical-align:-0.318em"> for all
+<img class="m" src="m/2820a57017a743c03750a5803d5aedd08591cab2.svg" alt="\(k\le m\)" style="height:0.910em;vertical-align:-0.146em"> and <img class="m" src="m/393852186309da4fe1fd944aa2cd931f239ddd6d.svg" alt="\(n,p\ge N\)" style="height:0.962em;vertical-align:-0.212em">.
+</p>
+
+<p>
+For any <img class="m" src="m/7af96b4c29652a52e4461b3ed215866ea4d2d703.svg" alt="\(x\in K\)" style="height:0.792em;vertical-align:-0.040em">, pick <img class="m" src="m/5ec5e3b2fda230219e6719c59682076f93242498.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> with <img class="m" src="m/d8ea2168f7b395919ac88567dac941c8933b3ce8.svg" alt="\(x \in B(y_{k},\delta_{y_{k}}/2)\)" style="height:1.135em;vertical-align:-0.318em">;
+then <img class="m" src="m/12c4f219b091b4ca5e4db208ccea89f903a27295.svg" alt="\(d(x,z_{k})&lt;\delta_{y_{k}}\)" style="height:1.135em;vertical-align:-0.318em"> as both are within
+<img class="m" src="m/ab36cb4475d478b2a9e4a5966d61fbbb076ef233.svg" alt="\(\delta_{y_{k}}/2\)" style="height:1.135em;vertical-align:-0.318em"> of <img class="m" src="m/2e63e6336ac04fd574ddcb7929252f5edf1937bf.svg" alt="\(y_{k}\)" style="height:0.685em;vertical-align:-0.212em">, so for <img class="m" src="m/393852186309da4fe1fd944aa2cd931f239ddd6d.svg" alt="\(n,p\ge N\)" style="height:0.962em;vertical-align:-0.212em">,
+<img class="m" src="m/47c55d387d55476f008302e5ff2030f38ebc51ed.svg" alt="\(\abs{g_{n}(x)-g_{p}(x)} \le \abs{g_{n}(x)-g_{n}(z_{k})} + \abs{g_{n}(z_{k})-g_{p}(z_{k})} + \abs{g_{p}(z_{k})-g_{p}(x)} &lt; \eps\)" style="height:1.135em;vertical-align:-0.318em">,
+using equicontinuity at <img class="m" src="m/2e63e6336ac04fd574ddcb7929252f5edf1937bf.svg" alt="\(y_{k}\)" style="height:0.685em;vertical-align:-0.212em"> twice, with <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/e2f67a553fe0830f556bb84121e2b35f6b72fca4.svg" alt="\(z_{k}\)" style="height:0.636em;vertical-align:-0.165em"> both
+in <img class="m" src="m/cf7030c0ac7c3aced929d8fa626c6d0c0f0b8677.svg" alt="\(B(y_{k},\delta_{y_{k}})\)" style="height:1.135em;vertical-align:-0.318em">. By the uniform Cauchy criterion
+<img class="m" src="m/166cf92754cf0c0cf0da7685fdabd399f6977785.svg" alt="\((g_{n})\)" style="height:1.096em;vertical-align:-0.274em"> converges uniformly.
+</p>
+
+</div>
+
+<div class="corollary" id="org893f4e0">
+<p>
+Let <img class="m" src="m/cb4b078f4edc982173ab433e99a2c27552e4210e.svg" alt="\((f_{n})\)" style="height:1.096em;vertical-align:-0.274em"> be differentiable on <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em"> with
+<img class="m" src="m/9d2f0e5fd6fe373888d3ba3f2f366f067947e87d.svg" alt="\(\abs{f_{n}} \le M\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/aeb23413a17d3291568fb248cda6ce86d95a4c74.svg" alt="\(\abs{f_{n}'}\le L\)" style="height:1.098em;vertical-align:-0.274em"> for all <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">. Then some
+subsequence converges uniformly.
+</p>
+
+</div>
+
+<div class="proof" id="org2c480ac">
+<p>
+The bound on the derivatives gives
+<img class="m" src="m/c9cdf93f8735e113aeed8dc605e1c03279ffb712.svg" alt="\(\abs{f_{n}(y)-f_{n}(x)}\le L\abs{y-x}\)" style="height:1.096em;vertical-align:-0.274em"> by the mean value theorem, so
+the family is uniformly equicontinuous, with <img class="m" src="m/129ba2e5ba92324f295170005c44063ca51122b0.svg" alt="\(\delta = \eps/L\)" style="height:1.096em;vertical-align:-0.274em">; it is
+uniformly bounded by <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">. Arzela-Ascoli applies, <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em"> being
+compact.
+</p>
+
+</div>
+
+<div class="remark" id="org385dc00">
+<p>
+Equicontinuity is exactly what fails for the sequence
+<img class="m" src="m/9ecc4713efa527d87b94f44d83261b1d64f43df4.svg" alt="\(f_{n}(x) = \sin(nx)\)" style="height:1.096em;vertical-align:-0.274em">, which is uniformly bounded with no uniformly
+convergent subsequence. Read in reverse, the theorem says that the
+compact subsets of the space of continuous functions on a compact space
+are the closed, bounded, equicontinuous ones &#x2013; the correct
+Heine-Borel statement in that setting, and the reason Peano's existence
+theorem for differential equations works without any Lipschitz
+hypothesis.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html"><span>← previous</span>Hilbert spaces: projection, Riesz representation and orthonormal bases</a><a rel="next" href="functional-analysis.html"><span>next →</span>Functional analysis</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--functional-analysis.pdf" title="PDF manual">Functional Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

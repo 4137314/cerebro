@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The variational method · Physics</title>
+<meta name="description" content="For any normalisable trial state, E_0\le\frac{\bra\psi H\ket\psi}{\braket{\psi|\psi}}; minimising over parameters of \ket\psi gives an upper bound to the ground energy whose error is second order in the error of the wave function.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/variational-method.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The variational method · Physics">
+<meta property="og:description" content="For any normalisable trial state, E_0\le\frac{\bra\psi H\ket\psi}{\braket{\psi|\psi}}; minimising over parameters of \ket\psi gives an upper bound to the ground energy whose error is second order in the error of the wave function.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/variational-method.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-mechanics">Quantum Mechanics</a> / <a rel="up" href="index.html#a-quantum-mechanics--approximation-methods">Approximation Methods</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Quantum Mechanics · Approximation Methods</p>
+<h1>The variational method</h1>
+<p class="summary">For any normalisable trial state, <img class="m" src="m/bf37a885437b6f6db943025d1c4021ee181f97f2.svg" alt="\(E_0\le\frac{\bra\psi H\ket\psi}{\braket{\psi|\psi}}\)" style="height:1.677em;vertical-align:-0.570em">; minimising over parameters of <img class="m" src="m/c29b9b42d43b4bd37e971cfd1111435c131b433f.svg" alt="\(\ket\psi\)" style="height:1.096em;vertical-align:-0.274em"> gives an upper bound to the ground energy whose error is second order in the error of the wave function.</p>
+<p class="rel"><span>needs</span> <a href="time-independent-perturbation-theory.html">Time-independent perturbation theory</a>, <a href="hydrogen-atom.html">The hydrogen atom</a></p>
+<p class="rel"><span>see also</span> <a href="identical-particles-and-pauli-principle.html">Identical particles, bosons, fermions and Pauli's principle</a></p>
+<p class="rel"><span>mentioned in</span> <a href="effective-index-method.html">The effective index method</a></p>
+<details class="path"><summary>Learning path: 16 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></li><li><a href="spin-precession-and-rabi-oscillations.html">Spin precession and Rabi oscillations</a></li><li><a href="angular-momentum-algebra.html">Angular momentum: algebra and spectrum</a></li><li><a href="orbital-angular-momentum.html">Orbital angular momentum and spherical harmonics</a></li><li><a href="hydrogen-atom.html">The hydrogen atom</a></li><li><a href="quantum-harmonic-oscillator.html">The quantum harmonic oscillator</a></li><li><a href="time-independent-perturbation-theory.html">Time-independent perturbation theory</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgf559fdc" class="outline-2">
+<h2 id="orgf559fdc">Theorem</h2>
+<div class="outline-text-2" id="text-orgf559fdc">
+<p>
+Expand <img class="m" src="m/fa0743e18d35c236ffc1b1d65c43b5e497793c8a.svg" alt="\(\ket\psi=\sum c_n\ket n\)" style="height:1.096em;vertical-align:-0.274em"> in energy eigenkets: <img class="m" src="m/c72bcbf3459e581d23b34d95682c1ccdb3a26592.svg" alt="\(\bra\psi H\ket\psi=\sum|c_n|^2E_n\ge E_0\sum|c_n|^2\)" style="height:1.166em;vertical-align:-0.268em">. Equality iff <img class="m" src="m/d21171e187d7060c8f3a0d21d0cf68215098b145.svg" alt="\(\ket\psi\propto\ket0\)" style="height:1.096em;vertical-align:-0.274em">. If <img class="m" src="m/31d1085264ef77cd073c405f19cb78d82594b97f.svg" alt="\(\ket\psi=\ket0+\epsilon\ket\delta\)" style="height:1.096em;vertical-align:-0.274em">, the energy error is <img class="m" src="m/603b4d7d1de4314fb08cffbdd714196c79a59fb6.svg" alt="\(O(\epsilon^2)\)" style="height:1.166em;vertical-align:-0.268em">: rough wave functions give good energies.
+</p>
+</div>
+</div>
+<div id="outline-container-org760b6b8" class="outline-2">
+<h2 id="org760b6b8">Method</h2>
+<div class="outline-text-2" id="text-org760b6b8">
+<ol class="org-ol">
+<li>Choose a family <img class="m" src="m/0345d3502cbf5c6b49b4d1520657aebae917395e.svg" alt="\(\psi(\mathbf r;\alpha,\beta,\dots)\)" style="height:1.096em;vertical-align:-0.274em"> with the right symmetry and boundary behaviour.</li>
+<li>Compute <img class="m" src="m/b6fa7e09b74f0dc51c94d7a6ed7883a9389d3d3c.svg" alt="\(\bar H(\alpha)=\braket{H}/\braket{\psi|\psi}\)" style="height:1.173em;vertical-align:-0.270em">.</li>
+<li>Minimise: <img class="m" src="m/ad2b8cde6b3d9fcb79a2610245c25c0d590cde71.svg" alt="\(\partial_\alpha\bar H=0\)" style="height:1.064em;vertical-align:-0.160em">. The minimum is the best estimate in the family.</li>
+</ol>
+<p>
+Linear combinations <img class="m" src="m/b20eec31b873b40e451833c43677e462c5bec98a.svg" alt="\(\psi=\sum c_i\phi_i\)" style="height:1.096em;vertical-align:-0.274em"> give the generalised eigenproblem <img class="m" src="m/3d44de70287b109ada523872d2a3c4d0604665a9.svg" alt="\(Hc=ESc\)" style="height:0.749em;vertical-align:-0.000em"> (Rayleigh–Ritz), the basis of quantum chemistry and of finite elements <span class="cite">(<a class="ref" href="https://doi.org/10.1515/crll.1909.135.1" data-full="W. Ritz, “Über eine neue Methode zur Lösung gewisser Variationsprobleme der mathematischen Physik”, Journal für die reine und angewandte Mathematik 135, 1–61 (1909)." aria-label="W. Ritz, “Über eine neue Methode zur Lösung gewisser Variationsprobleme der mathematischen Physik”, Journal für die reine und angewandte Mathematik 135, 1–61 (1909).">Ritz 1909</a>)</span>.
+</p>
+</div>
+</div>
+<div id="outline-container-orga2640c5" class="outline-2">
+<h2 id="orga2640c5">Worked example: helium</h2>
+<div class="outline-text-2" id="text-orga2640c5">
+<p>
+Trial <img class="m" src="m/499907eac0f7b916116b96738c80736fff5409cf.svg" alt="\(\psi=\frac{Z_e^3}{\pi a_0^3}e^{-Z_e(r_1+r_2)/a_0}\)" style="height:1.890em;vertical-align:-0.643em"> with effective charge <img class="m" src="m/b96b9d6212a9f4495639af95b094fa90a69ac3ec.svg" alt="\(Z_e\)" style="height:0.913em;vertical-align:-0.164em">. Kinetic <img class="m" src="m/15101e332ef0828cd83a2f3b2dbd7868fb0f28a2.svg" alt="\(2\cdot Z_e^2\,\mathrm{Ry}\)" style="height:1.163em;vertical-align:-0.267em">, nuclear <img class="m" src="m/be68b390e74a0f7026b93c3fcda40e8ef4538033.svg" alt="\(-2\cdot2\cdot2Z_e\,\mathrm{Ry}\)" style="height:0.962em;vertical-align:-0.212em">, repulsion <img class="m" src="m/8d18a985d6a7293626e0ba8e57592084047bc330.svg" alt="\(\frac54Z_e\,\mathrm{Ry}\)" style="height:1.304em;vertical-align:-0.378em"> (Ry = 13.6 eV):
+<div class="mb"><img class="m" src="m/64da6359d4468ecd337c2e9c928f0ce3eb4a4db5.svg" alt="\[ \bar H=\left(2Z_e^2-8Z_e+\tfrac54Z_e\right)\mathrm{Ry}\;\Rightarrow\;Z_e=\tfrac{27}{16},\quad E\approx-2\left(\tfrac{27}{16}\right)^2\mathrm{Ry}=-77.5\text{ eV}, \]" style="width:35.364em"></div>
+against the measured <img class="m" src="m/053b688fe62f8fc8a6717aecd614745cb6df5b2c.svg" alt="\(-78.98\)" style="height:0.798em;vertical-align:-0.088em"> eV (2% error). Each electron screens the nucleus from the other.
+</p>
+</div>
+</div>
+<div id="outline-container-org5fff1bd" class="outline-2">
+<h2 id="org5fff1bd">Engineering applications</h2>
+<div class="outline-text-2" id="text-org5fff1bd">
+<p>
+Density-functional theory (variational in the electron density) designs semiconductors and catalysts; finite-element solvers for waveguide modes (<a href="effective-index-method.html">photonic modes</a>) minimise a Rayleigh quotient; hydrogen-molecule bonding (LCAO).
+</p>
+</div>
+</div>
+<div id="outline-container-orgd10aac0" class="outline-2">
+<h2 id="orgd10aac0">Pitfall</h2>
+<div class="outline-text-2" id="text-orgd10aac0">
+<p>
+The method bounds only the <b>lowest</b> energy of a given symmetry; excited states need trial functions orthogonal to the lower ones.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="fine-structure-and-zeeman-effect.html"><span>← previous</span>Fine structure and the Zeeman effect</a><a rel="next" href="identical-particles-and-pauli-principle.html"><span>next →</span>Identical particles, bosons, fermions and Pauli's principle</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-mechanics--approximation-methods.pdf" title="PDF manual">Approximation Methods</a> · <a class="pdf" href="pdf/quantum-mechanics.pdf" title="PDF manual">Quantum Mechanics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eigenvalues, the characteristic polynomial and Cayley-Hamilton · Mathematics</title>
+<meta name="description" content="A linear map is understood when a basis is found in which it acts independently on each coordinate. Eigenvectors are the candidates for such a basis, and the determinant turns the search for them into a question about the roots of one polynomial – after which everything depends on whether the field…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/eigenvalues-the-characteristic-polynomial-and-cayley-hamilton.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Eigenvalues, the characteristic polynomial and Cayley-Hamilton · Mathematics">
+<meta property="og:description" content="A linear map is understood when a basis is found in which it acts independently on each coordinate. Eigenvectors are the candidates for such a basis, and the determinant turns the search for them into a question about the roots of one polynomial – after which everything depends on whether the field…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/eigenvalues-the-characteristic-polynomial-and-cayley-hamilton.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--linear-algebra">Linear Algebra</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Algebra · Linear Algebra</p>
+<h1>Eigenvalues, the characteristic polynomial and Cayley-Hamilton</h1>
+<p class="summary">A linear map is understood when a basis is found in which it acts independently on each coordinate. Eigenvectors are the candidates for such a basis, and the determinant turns the search for them into a question about the roots of one polynomial &#x2013; after which everything depends on whether the field contains those roots and whether they are distinct.</p>
+<p class="rel"><span>needs</span> <a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a>, <a href="polynomial-rings-division-and-roots.html">Polynomial rings, division and roots</a>, <a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a>, <a href="the-determinant-as-the-alternating-multilinear-form.html">The determinant as the alternating multilinear form</a></p>
+<p class="rel"><span>mentioned in</span> <a href="linear-algebra.html">Linear algebra</a></p>
+<details class="path"><summary>Learning path: 24 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li><li><a href="rings-ideals-and-the-quotient-ring.html">Rings, ideals and the quotient ring</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="the-order-of-an-element-and-cyclic-groups.html">The order of an element and cyclic groups</a></li><li><a href="cosets-the-index-and-lagranges-theorem.html">Cosets, the index and Lagrange's theorem</a></li><li><a href="group-actions-orbits-and-the-orbit-stabiliser-theorem.html">Group actions, orbits and the orbit-stabiliser theorem</a></li><li><a href="the-symmetric-group-and-the-sign-of-a-permutation.html">The symmetric group and the sign of a permutation</a></li><li><a href="the-determinant-as-the-alternating-multilinear-form.html">The determinant as the alternating multilinear form</a></li><li><a href="integral-domains-fields-prime-and-maximal-ideals.html">Integral domains, fields, prime and maximal ideals</a></li><li><a href="polynomial-rings-division-and-roots.html">Polynomial rings, division and roots</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgae3f695">
+<p>
+Let <img class="m" src="m/a75a8ab6f03d49aef6b2b00c4830c8d84a2c79a9.svg" alt="\(f \colon V \to V\)" style="height:0.974em;vertical-align:-0.214em"> be linear, <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> a vector space over <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">. A
+scalar <img class="m" src="m/3ec2b91c4b6ee0b21457adc6f7714d824dced68c.svg" alt="\(\lambda \in K\)" style="height:0.804em;vertical-align:-0.040em"> is an <i>eigenvalue</i> of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> if
+<img class="m" src="m/b032d3ed834ec6675b9b759e86231faca34bebd8.svg" alt="\(f(v) = \lambda v\)" style="height:1.096em;vertical-align:-0.274em"> for some <img class="m" src="m/8605ad4a39064be56858f06c79cfb196fb260c60.svg" alt="\(v \ne 0\)" style="height:0.974em;vertical-align:-0.214em">, which is then an
+<i>eigenvector</i>; the <i>eigenspace</i> is
+<img class="m" src="m/c2519acf0710524259db04f2fbec55fbd97f0bad.svg" alt="\(V_{\lambda} = \ker(f - \lambda\,\id)\)" style="height:1.096em;vertical-align:-0.274em">. For <img class="m" src="m/7139688cdd77c78b2d71fd11f23f48234f04009e.svg" alt="\(\dim V = n\)" style="height:0.761em;vertical-align:-0.000em"> and a
+matrix <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">, the <i>characteristic polynomial</i> is
+<img class="m" src="m/c86f6a1ceba1dbd0f0812882ad5dffd89f87de7f.svg" alt="\(\chi_{A}(x) = \det(x I - A) \in K[x]\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgeb873fa">
+<p>
+<img class="m" src="m/bf732bcb08e251641d188904cbb646f8c7c05665.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em"> is an eigenvalue of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> if and only if
+<img class="m" src="m/40deaaaac7df1f8ba20aa48db5c110d3cf6d121c.svg" alt="\(\chi_{A}(\lambda) = 0\)" style="height:1.096em;vertical-align:-0.274em">; and <img class="m" src="m/9359af20b7c580736faefd572e566921fa78d36a.svg" alt="\(\chi_{A}\)" style="height:0.685em;vertical-align:-0.212em"> is monic of degree <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> and
+does not depend on the basis chosen.
+</p>
+
+</div>
+
+<div class="proof" id="org9621728">
+<p>
+<img class="m" src="m/bf732bcb08e251641d188904cbb646f8c7c05665.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em"> is an eigenvalue exactly when <img class="m" src="m/a96582617d298728cf83eb6acd7c7ea20ffd0d61.svg" alt="\(f - \lambda\id\)" style="height:0.974em;vertical-align:-0.214em"> has
+non-trivial kernel, that is is not invertible, that is
+<img class="m" src="m/c589a33a8bcf5a62ea9ab81daed532c3d99d01a5.svg" alt="\(\det(\lambda I - A) = 0\)" style="height:1.096em;vertical-align:-0.274em">. Expanding the defining sum of
+<img class="m" src="m/026ab764b6620203e982326162c7e3dc05e2e29c.svg" alt="\(\det(xI - A)\)" style="height:1.096em;vertical-align:-0.274em">, the term of <img class="m" src="m/8fe83c53581c7ec7865d120fef233ae25f0c76dd.svg" alt="\(\sigma = \id\)" style="height:0.761em;vertical-align:-0.000em"> is
+<img class="m" src="m/58d1a2816d81dd3f35d0e04f70bb12ec80a584d2.svg" alt="\(\prod_{i}(x - a_{ii})\)" style="height:1.151em;vertical-align:-0.334em">, of degree <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> and monic, and every other
+term omits at least two diagonal entries, hence has degree at most
+<img class="m" src="m/5f05cca6e2b7c91cc86d734d96593bdfd5e7e31e.svg" alt="\(n-2\)" style="height:0.798em;vertical-align:-0.088em">.
+</p>
+
+<p>
+A change of basis replaces <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> by <img class="m" src="m/a5d11291a29dd8218226b4b3d3901f8de0ff47f8.svg" alt="\(P^{-1}AP\)" style="height:0.892em;vertical-align:-0.000em">, and
+<img class="m" src="m/803b76201c9f35d5624f83035a4607cab52b447f.svg" alt="\(\det(xI - P^{-1}AP) = \det(P^{-1}(xI-A)P) = \det(xI-A)\)" style="height:1.166em;vertical-align:-0.268em"> by
+multiplicativity.
+</p>
+
+</div>
+
+<div class="proposition" id="org2490d6c">
+<p>
+Eigenvectors for pairwise distinct eigenvalues are linearly
+independent. Hence a map on an <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">-dimensional space with <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">
+distinct eigenvalues has a basis of eigenvectors.
+</p>
+
+</div>
+
+<div class="proof" id="org24e0f0a">
+<p>
+Suppose not, and take a dependence
+<img class="m" src="m/ab1a803f9824258f93300d419315da9a34cac22d.svg" alt="\(\sum_{i=1}^{k}\alpha_{i}v_{i} = 0\)" style="height:1.412em;vertical-align:-0.325em"> with all <img class="m" src="m/e0f9f0d60acf6c1fa180734783dc1cd53d16b1ee.svg" alt="\(\alpha_{i}\ne 0\)" style="height:0.974em;vertical-align:-0.214em"> and
+<img class="m" src="m/5ec5e3b2fda230219e6719c59682076f93242498.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> minimal, the <img class="m" src="m/79c5a96d8bc6866bd8bdd744a17e794b667c0782.svg" alt="\(v_{i}\)" style="height:0.636em;vertical-align:-0.165em"> eigenvectors for distinct
+<img class="m" src="m/19b026f551a440c2d7ab467dcac533d187e025aa.svg" alt="\(\lambda_{i}\)" style="height:0.925em;vertical-align:-0.167em">. Applying <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> gives
+<img class="m" src="m/64469f36571b63ce43b113af71da8f681daf9f11.svg" alt="\(\sum_{i}\alpha_{i}\lambda_{i}v_{i} = 0\)" style="height:1.151em;vertical-align:-0.334em">; subtracting
+<img class="m" src="m/6e97e91efe141a680b7fa4e3452f9284319e6e73.svg" alt="\(\lambda_{k}\)" style="height:0.925em;vertical-align:-0.167em"> times the original relation leaves
+<img class="m" src="m/929601a8905b705947fdd80ca06c7337a0051cc9.svg" alt="\(\sum_{i&lt;k}\alpha_{i}(\lambda_{i}-\lambda_{k})v_{i} = 0\)" style="height:1.209em;vertical-align:-0.387em">, a shorter
+dependence with non-zero coefficients &#x2013; contradicting minimality
+(for <img class="m" src="m/00dbe2de4cf2549503c5f4856483edb63ccc14b6.svg" alt="\(k = 1\)" style="height:0.761em;vertical-align:-0.000em"> the relation reads <img class="m" src="m/9410601448b614b17d347dc6e52d87855048fa30.svg" alt="\(\alpha_{1}v_{1} = 0\)" style="height:0.871em;vertical-align:-0.165em"> with
+<img class="m" src="m/0d87de7a587b0eaa7752ca55c750a20642ca1f92.svg" alt="\(v_{1}\ne0\)" style="height:0.974em;vertical-align:-0.214em">, already impossible).
+</p>
+
+<p>
+With <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> distinct eigenvalues, the corresponding eigenvectors are
+<img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> independent vectors, hence a basis.
+</p>
+
+</div>
+
+<div class="theorem" id="org2f51cb4">
+<p>
+<img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> has a basis of eigenvectors if and only if
+<img class="m" src="m/ca7dbbf11ad69e2b5d2a53afaf6b462a67be24b5.svg" alt="\(V = \bigoplus_{\lambda}V_{\lambda}\)" style="height:1.151em;vertical-align:-0.334em">, the sum over the eigenvalues; and
+then the matrix of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> in that basis is diagonal.
+</p>
+
+</div>
+
+<div class="proof" id="orgbad6cbb">
+<p>
+A basis of eigenvectors partitions into the eigenspaces, so <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> is
+their sum, and the sum is direct because a non-trivial relation between
+vectors from distinct eigenspaces would contradict the previous
+proposition. Conversely, taking a basis of each <img class="m" src="m/9ca2a812b599fb66b42d3c4542e789d7720cb96d.svg" alt="\(V_{\lambda}\)" style="height:0.913em;vertical-align:-0.164em"> and
+concatenating gives a basis of the direct sum, consisting of
+eigenvectors. In such a basis the <img class="m" src="m/3368b211f5038907d6dc36c5bec32916d1755948.svg" alt="\(j\)" style="height:0.936em;vertical-align:-0.215em">-th column of the matrix is
+<img class="m" src="m/24f06807acabedcdd2621431a82479ae877d2423.svg" alt="\(\lambda_{j}e_{j}\)" style="height:1.075em;vertical-align:-0.312em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org197969c">
+<p>
+<img class="m" src="m/6e01aa984494721dd12d8cb96cd1b3732a297b07.svg" alt="\(\chi_{A}(A) = 0\)" style="height:1.096em;vertical-align:-0.274em"> for every square matrix <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> over a commutative
+ring.
+</p>
+
+</div>
+
+<div class="proof" id="org4554fb8">
+<p>
+Work in the matrices over <img class="m" src="m/af650f35ded7a794d389ff310327aaedc266a5d4.svg" alt="\(K[x]\)" style="height:1.096em;vertical-align:-0.274em"> and put
+<img class="m" src="m/4d857152fd228b5bfff4d25abfd71dcea77c333f.svg" alt="\(B(x) = \operatorname{adj}(xI - A)\)" style="height:1.096em;vertical-align:-0.274em">. Its entries are determinants of
+<img class="m" src="m/64918ae237d2fd7117bababf6f1b9b9d71bd25e1.svg" alt="\((n-1)\times(n-1)\)" style="height:1.096em;vertical-align:-0.274em"> matrices whose entries are of degree at most <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">,
+so <img class="m" src="m/501c97e4790808757893a6347577dcf9f038f4bd.svg" alt="\(B(x) = \sum_{i=0}^{n-1}B_{i}x^{i}\)" style="height:1.374em;vertical-align:-0.330em"> with <img class="m" src="m/8bab848ce9e1e909d4c2fbc4b98e8abc7efb12ac.svg" alt="\(B_{i}\)" style="height:0.913em;vertical-align:-0.164em"> matrices over
+the base ring. The adjugate identity gives
+<div class="mb"><img class="m" src="m/0a5ff741e83b7bf578b552f11081a02e6e95f554.svg" alt="\[ (xI - A)\Bigl(\sum_{i=0}^{n-1}B_{i}x^{i}\Bigr) = \chi_{A}(x) I = \Bigl(\sum_{j=0}^{n}c_{j}x^{j}\Bigr) I. \]" style="width:21.889em"></div>
+Comparing coefficients of <img class="m" src="m/e01ebf52afb5a994fd1ffca00c3d60846a983d11.svg" alt="\(x^{j}\)" style="height:0.905em;vertical-align:-0.000em">: <img class="m" src="m/70e9614d601f90902cd4de5cafc0eb8daa732954.svg" alt="\(B_{j-1} - AB_{j} = c_{j}I\)" style="height:1.062em;vertical-align:-0.319em">, with
+the conventions <img class="m" src="m/d773953ee9efcb305e631258117cb06fe580d0d0.svg" alt="\(B_{-1} = B_{n} = 0\)" style="height:1.005em;vertical-align:-0.251em">.
+</p>
+
+<p>
+Multiply the equation for <img class="m" src="m/e01ebf52afb5a994fd1ffca00c3d60846a983d11.svg" alt="\(x^{j}\)" style="height:0.905em;vertical-align:-0.000em"> on the left by <img class="m" src="m/59aa82d200912d256a006fd75b4aa9956c146593.svg" alt="\(A^{j}\)" style="height:0.905em;vertical-align:-0.000em"> and sum
+over <img class="m" src="m/3368b211f5038907d6dc36c5bec32916d1755948.svg" alt="\(j\)" style="height:0.936em;vertical-align:-0.215em">. The left-hand side telescopes to <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">, each term
+<img class="m" src="m/e42450ab67f3871f19481cfd1574478569a2059d.svg" alt="\(A^{j}B_{j-1}\)" style="height:1.219em;vertical-align:-0.317em"> cancelling against <img class="m" src="m/ddfe1fad46b24fbdd2b2de18141fd9d4e716fcbf.svg" alt="\(-A^{j-1}\cdot AB_{j-1}\)" style="height:1.219em;vertical-align:-0.317em"> from the
+next equation; the right-hand side is <img class="m" src="m/09cc755d6eb54470a1968e2f07a35ac7944138ab.svg" alt="\(\sum_{j}c_{j}A^{j} = \chi_{A}(A)\)" style="height:1.383em;vertical-align:-0.484em">.
+</p>
+
+</div>
+
+<div class="remark" id="org25b5ca7">
+<p>
+The proof cannot be shortened to "substitute <img class="m" src="m/f617bce3fc78ce8aea15a6849d18c21ba77531d2.svg" alt="\(x = A\)" style="height:0.749em;vertical-align:-0.000em"> in
+<img class="m" src="m/491972db27cba8fc258f77795c2ee1ca331fff0b.svg" alt="\(\det(xI-A)\)" style="height:1.096em;vertical-align:-0.274em">": the entries of <img class="m" src="m/6c081a9efaa692c854112cbb9590d13025889a86.svg" alt="\(xI - A\)" style="height:0.840em;vertical-align:-0.092em"> are scalars-plus-<img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, and
+substituting a matrix for <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> is not a ring homomorphism when the
+matrices involved do not commute. Comparing coefficients first, and only
+then multiplying by powers of <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> on a fixed side, is exactly what
+repairs that gap &#x2013; and it is why the theorem holds over any commutative
+ring, with no eigenvalues in sight.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-determinant-as-the-alternating-multilinear-form.html"><span>← previous</span>The determinant as the alternating multilinear form</a><a rel="next" href="linear-algebra.html"><span>next →</span>Linear algebra</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--linear-algebra.pdf" title="PDF manual">Linear Algebra</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

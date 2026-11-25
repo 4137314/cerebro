@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From DN to top-of-atmosphere and surface reflectance · Remote Sensing</title>
+<meta name="description" content="Calibration turns DN into at-sensor radiance L=g\,\mathrm{DN}+o; dividing by the solar irradiance on a horizontal surface gives the top-of-atmosphere reflectance \rho_{TOA}=\pi L d^2/(E_{sun}\cos\theta_s); removing path radiance and transmittance with an atmospheric model gives surface reflectance,…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/toa-reflectance.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="From DN to top-of-atmosphere and surface reflectance · Remote Sensing">
+<meta property="og:description" content="Calibration turns DN into at-sensor radiance L=g\,\mathrm{DN}+o; dividing by the solar irradiance on a horizontal surface gives the top-of-atmosphere reflectance \rho_{TOA}=\pi L d^2/(E_{sun}\cos\theta_s); removing path radiance and transmittance with an atmospheric model gives surface reflectance,…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/toa-reflectance.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-physics">Physics</a> / <a rel="up" href="index.html#a-physics--atmosphere">Atmosphere</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Physics · Atmosphere</p>
+<h1>From DN to top-of-atmosphere and surface reflectance</h1>
+<p class="summary">Calibration turns DN into at-sensor radiance <img class="m" src="m/bcbc8b7abbe82c683572675fb95753a2539af3cf.svg" alt="\(L=g\,\mathrm{DN}+o\)" style="height:0.962em;vertical-align:-0.212em">; dividing by the solar irradiance on a horizontal surface gives the top-of-atmosphere reflectance <img class="m" src="m/f2333d677146b00460382f5f4b4ed197adbaa182.svg" alt="\(\rho_{TOA}=\pi L d^2/(E_{sun}\cos\theta_s)\)" style="height:1.166em;vertical-align:-0.268em">; removing path radiance and transmittance with an atmospheric model gives surface reflectance, the quantity comparable across dates and sensors.</p>
+<p class="rel"><span>needs</span> <a href="lambertian-surface.html">Lambertian surfaces and the BRDF</a>, <a href="atmospheric-scattering.html">Atmospheric scattering: Rayleigh and Mie</a></p>
+<p class="rel"><span>see also</span> <a href="radiometric-correction.html">Radiometric errors and corrections</a>, <a href="digital-number.html">Detector, quantization and digital numbers</a>, <a href="ndvi.html">NDVI and normalised difference indices</a></p>
+<p class="rel"><span>mentioned in</span> <a href="radiometric-quantities.html">Radiometric quantities</a>, <a href="radiometric-correction.html">Radiometric errors and corrections</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="atmospheric-scattering.html">Atmospheric scattering: Rayleigh and Mie</a></li><li><a href="lambertian-surface.html">Lambertian surfaces and the BRDF</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org1d8a403" class="outline-2">
+<h2 id="org1d8a403">Method</h2>
+<div class="outline-text-2" id="text-org1d8a403">
+<ol class="org-ol">
+<li><b>Radiance</b>: <img class="m" src="m/ab4eb56bedb48679bd7e523c7b9fc5245d5b7796.svg" alt="\(L_\lambda=g_\lambda\,\mathrm{DN}+o_\lambda\)" style="height:0.962em;vertical-align:-0.212em"> (W m<img class="m" src="m/e42e9bee0e7100a19c8ae0eb4fbd16105910a93e.svg" alt="\(^{-2}\)" style="height:0.892em;vertical-align:-0.000em"> sr<img class="m" src="m/af83f4fda75cfae92fbea92bca01ba797c9487f4.svg" alt="\(^{-1}\)" style="height:0.892em;vertical-align:-0.000em"> µm<img class="m" src="m/af83f4fda75cfae92fbea92bca01ba797c9487f4.svg" alt="\(^{-1}\)" style="height:0.892em;vertical-align:-0.000em">), gain and offset from the metadata.</li>
+<li><b>TOA reflectance</b>:</li>
+</ol>
+<p>
+<div class="mb"><img class="m" src="m/f0f3546c9c96c59693c94586f86060b43b781f1d.svg" alt="\[ \rho_{TOA}=\frac{\pi\,L_\lambda\,d^2}{E_{sun,\lambda}\cos\theta_s}, \]" style="width:10.568em"></div>
+with <img class="m" src="m/918c18942bce23fdad074f22d67f446d039d6611.svg" alt="\(E_{sun,\lambda}\)" style="height:1.062em;vertical-align:-0.319em"> the mean exo-atmospheric solar <a href="radiometric-quantities.html">irradiance</a> of the band, <img class="m" src="m/588903fb08fcda4c95b5c78df0c31fb690799e67.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em"> the Earth–Sun distance in astronomical units, <img class="m" src="m/d05198831b0f24a926564d6dc68180cb1da4d434.svg" alt="\(\theta_s\)" style="height:0.925em;vertical-align:-0.167em"> the solar zenith angle.
+</p>
+<ol class="org-ol">
+<li><b><a href="radiometric-correction.html">Surface reflectance</a></b>: inverting the at-sensor model of a <a href="lambertian-surface.html">Lambertian</a> surface,</li>
+</ol>
+<p>
+<div class="mb"><img class="m" src="m/a30b8e1e0874afa6f18cf17e3b2b4d1e0af54014.svg" alt="\[ L_s=\frac{\tau_\uparrow\,\rho\,(E_{sun}\cos\theta_s\,\tau_\downarrow/d^2+E_{sky})}{\pi}+L_p \;\Rightarrow\; \rho=\frac{\pi\,(L_s-L_p)}{\tau_\uparrow(E_{sun}\cos\theta_s\,\tau_\downarrow/d^2+E_{sky})}, \]" style="width:38.044em"></div>
+with <img class="m" src="m/8704485635bec7973d37d692d51c358f2377e27d.svg" alt="\(\tau_\downarrow,\tau_\uparrow\)" style="height:0.785em;vertical-align:-0.314em"> the transmittances, <img class="m" src="m/0d66266185313dc59c309bf02acc7e1a43360cf4.svg" alt="\(E_{sky}\)" style="height:1.062em;vertical-align:-0.319em"> diffuse sky irradiance, <img class="m" src="m/eb80d6ac078e8098f3b55693bb0ecd409169733b.svg" alt="\(L_p\)" style="height:1.062em;vertical-align:-0.319em"> <a href="atmospheric-scattering.html">path radiance</a>, estimated by radiative transfer codes or by dark-object subtraction.
+</p>
+</div>
+</div>
+<div id="outline-container-orga606c64" class="outline-2">
+<h2 id="orga606c64">Example</h2>
+<div class="outline-text-2" id="text-orga606c64">
+<p>
+Red band, <img class="m" src="m/b78444fb34b711c83a0dea1b2ea5ce1ae766752d.svg" alt="\(L=60\)" style="height:0.749em;vertical-align:-0.000em"> W m<img class="m" src="m/e42e9bee0e7100a19c8ae0eb4fbd16105910a93e.svg" alt="\(^{-2}\)" style="height:0.892em;vertical-align:-0.000em"> sr<img class="m" src="m/af83f4fda75cfae92fbea92bca01ba797c9487f4.svg" alt="\(^{-1}\)" style="height:0.892em;vertical-align:-0.000em"> µm<img class="m" src="m/af83f4fda75cfae92fbea92bca01ba797c9487f4.svg" alt="\(^{-1}\)" style="height:0.892em;vertical-align:-0.000em">, <img class="m" src="m/d1ed1e9ede333f6f62b85b2f9079033d1c0b2b83.svg" alt="\(E_{sun}=1550\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/e03c6b1e6a948b0a6cd7aa371f9526eef06d4b6d.svg" alt="\(\theta_s=40^\circ\)" style="height:0.925em;vertical-align:-0.167em">, <img class="m" src="m/a912446a770df88935c5acb16a7171a8de65463b.svg" alt="\(d=1\)" style="height:0.761em;vertical-align:-0.000em">: <img class="m" src="m/d29dcc2fd0bd6973da3d43111214f54bea396018.svg" alt="\(\rho_{TOA}=\pi\cdot60/(1550\cdot0.766)\approx0.16\)" style="height:1.096em;vertical-align:-0.274em">. <a href="copernicus-sentinel.html">Sentinel-2</a> Level-1C products are TOA reflectance (scaled by 10 000), Level-2A surface reflectance.
+</p>
+</div>
+</div>
+<div id="outline-container-org6221d6c" class="outline-2">
+<h2 id="org6221d6c">Intuition</h2>
+<div class="outline-text-2" id="text-org6221d6c">
+<p>
+Reflectance answers "what fraction of the light that arrived came back?", which removes the Sun's strength, angle and distance from the measurement.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfdf5589" class="outline-2">
+<h2 id="orgfdf5589">Pitfall</h2>
+<div class="outline-text-2" id="text-orgfdf5589">
+<p>
+TOA reflectance still contains the atmosphere: indices and thresholds tuned on surface reflectance shift when applied to TOA data, most in the blue.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="atmospheric-scattering.html"><span>← previous</span>Atmospheric scattering: Rayleigh and Mie</a><a rel="next" href="lambertian-surface.html"><span>next →</span>Lambertian surfaces and the BRDF</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/physics--atmosphere.pdf" title="PDF manual">Atmosphere</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">Physics</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

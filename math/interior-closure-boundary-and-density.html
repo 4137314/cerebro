@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interior, closure, boundary and density · Mathematics</title>
+<meta name="description" content="Every subset of a topological space has a largest open set inside it and a smallest closed set around it. The two operations are dual, they are defined by intersections rather than by construction, and the local characterisation below – a point is in the closure when every neighbourhood meets the s…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/interior-closure-boundary-and-density.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Interior, closure, boundary and density · Mathematics">
+<meta property="og:description" content="Every subset of a topological space has a largest open set inside it and a smallest closed set around it. The two operations are dual, they are defined by intersections rather than by construction, and the local characterisation below – a point is in the closure when every neighbourhood meets the s…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/interior-closure-boundary-and-density.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-topology">Topology</a> / <a rel="up" href="index.html#a-topology--general-topology">General Topology</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Topology · General Topology</p>
+<h1>Interior, closure, boundary and density</h1>
+<p class="summary">Every subset of a topological space has a largest open set inside it and a smallest closed set around it. The two operations are dual, they are defined by intersections rather than by construction, and the local characterisation below &#x2013; a point is in the closure when every neighbourhood meets the set &#x2013; is what makes them usable in proofs.</p>
+<p class="rel"><span>needs</span> <a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></p>
+<p class="rel"><span>unlocks</span> <a href="filters-ultrafilters-and-the-ultrafilter-lemma.html">Filters, ultrafilters and the ultrafilter lemma</a>, <a href="connectedness-components-and-path-connectedness.html">Connectedness, components and path-connectedness</a>, <a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a>, <a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a>, <a href="nets-and-convergence-in-topological-spaces.html">Nets and convergence in topological spaces</a>, <a href="regular-and-normal-spaces-and-urysohns-lemma.html">Regular and normal spaces, and Urysohn's lemma</a>, <a href="the-baire-category-theorem.html">The Baire category theorem</a>, <a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></p>
+<p class="rel"><span>mentioned in</span> <a href="topology.html">Topology</a>, <a href="general-topology.html">General topology</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orga2b0643">
+<p>
+Let <img class="m" src="m/8cf713af0820812531d65e982303553bcc04428e.svg" alt="\(A \subseteq X\)" style="height:0.898em;vertical-align:-0.153em">. The <i>interior</i> <img class="m" src="m/d140e756c5bd5c5646ac3c3837e6af1eb830c6d2.svg" alt="\(A^{\circ}\)" style="height:0.755em;vertical-align:-0.000em"> is the union of all
+open sets contained in <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, the <i>closure</i> <img class="m" src="m/583955cc3615dbf38f19d4187ceb351e86f8aad5.svg" alt="\(\overline{A}\)" style="height:0.968em;vertical-align:-0.000em"> is the
+intersection of all closed sets containing <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, and the <i>boundary</i> is
+<img class="m" src="m/9527488f65a09e570644ef05ef99005cee8db7aa.svg" alt="\(\partial A = \overline{A} \setminus A^{\circ}\)" style="height:1.242em;vertical-align:-0.273em">. The set <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is
+<i>dense</i> if <img class="m" src="m/d2b9f3cc312285cfff7df786dc26167eb7bfd21a.svg" alt="\(\overline{A} = X\)" style="height:0.968em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org0269eea">
+<p>
+<img class="m" src="m/d140e756c5bd5c5646ac3c3837e6af1eb830c6d2.svg" alt="\(A^{\circ}\)" style="height:0.755em;vertical-align:-0.000em"> is the largest open set contained in <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> and
+<img class="m" src="m/583955cc3615dbf38f19d4187ceb351e86f8aad5.svg" alt="\(\overline{A}\)" style="height:0.968em;vertical-align:-0.000em"> the smallest closed set containing <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">; <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is open
+if and only if <img class="m" src="m/47d05da18cb6c45301e18b5c794b92a95ca68753.svg" alt="\(A = A^{\circ}\)" style="height:0.755em;vertical-align:-0.000em">, and closed if and only if
+<img class="m" src="m/a1d84639d821baad24c6a62790ee11d1c0eab57a.svg" alt="\(A = \overline{A}\)" style="height:0.968em;vertical-align:-0.000em">. Moreover
+<img class="m" src="m/3dc4dd9915eca3fbdf9c9376ead56d61e3d63a55.svg" alt="\(X \setminus \overline{A} = (X\setminus A)^{\circ}\)" style="height:1.242em;vertical-align:-0.273em">.
+</p>
+
+</div>
+
+<div class="proof" id="org20ede93">
+<p>
+A union of open sets is open and an intersection of closed sets is
+closed, so <img class="m" src="m/d140e756c5bd5c5646ac3c3837e6af1eb830c6d2.svg" alt="\(A^{\circ}\)" style="height:0.755em;vertical-align:-0.000em"> and <img class="m" src="m/583955cc3615dbf38f19d4187ceb351e86f8aad5.svg" alt="\(\overline{A}\)" style="height:0.968em;vertical-align:-0.000em"> are open and closed
+respectively, and by construction each is extremal among the sets in its
+definition. If <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is open it is one of the sets united to form
+<img class="m" src="m/d140e756c5bd5c5646ac3c3837e6af1eb830c6d2.svg" alt="\(A^{\circ}\)" style="height:0.755em;vertical-align:-0.000em">, so <img class="m" src="m/54c50586a303cb8714d07f3d1c5350562b0c2dd7.svg" alt="\(A \subseteq A^{\circ} \subseteq A\)" style="height:0.904em;vertical-align:-0.145em">; the converse is
+immediate, and dually for closures. For the last identity, complements
+turn the closed sets containing <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> into the open sets contained in
+<img class="m" src="m/227b97a46e5d1c571db070f2e477750df957cb84.svg" alt="\(X \setminus A\)" style="height:1.096em;vertical-align:-0.274em">, and intersection into union.
+</p>
+
+</div>
+
+<div class="theorem" id="org6089183">
+<p>
+<img class="m" src="m/f082329d7cf44a97a473d3af4fe4675892dd9a5f.svg" alt="\(x \in \overline{A}\)" style="height:1.011em;vertical-align:-0.040em"> if and only if every neighbourhood of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> meets
+<img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">; and <img class="m" src="m/5f1f0822d0018d599537c05a046e21b010ec2803.svg" alt="\(x \in A^{\circ}\)" style="height:0.797em;vertical-align:-0.040em"> if and only if some neighbourhood of
+<img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> is contained in <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org64e737a">
+<p>
+Suppose some open <img class="m" src="m/f0e0b59a6d9438fcfd7d5c0e3f0acd12e8b04dae.svg" alt="\(U \ni x\)" style="height:0.792em;vertical-align:-0.040em"> misses <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">. Then <img class="m" src="m/002ed70ca93c9e966495a74763fae8e9be6c2efa.svg" alt="\(X \setminus U\)" style="height:1.096em;vertical-align:-0.274em"> is a
+closed set containing <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, so <img class="m" src="m/64d55b4b022976176e92caab9f9d68875fb0522b.svg" alt="\(\overline{A} \subseteq X\setminus U\)" style="height:1.242em;vertical-align:-0.273em">
+and <img class="m" src="m/3aee6e2601c7588fa856e916f19094b1e4fecb00.svg" alt="\(x \notin \overline{A}\)" style="height:1.011em;vertical-align:-0.040em">. Conversely if <img class="m" src="m/3aee6e2601c7588fa856e916f19094b1e4fecb00.svg" alt="\(x \notin \overline{A}\)" style="height:1.011em;vertical-align:-0.040em">
+then <img class="m" src="m/4e0e08b72b7e9605e6b72d82ddb869c074f83870.svg" alt="\(U = X \setminus \overline{A}\)" style="height:1.242em;vertical-align:-0.273em"> is an open neighbourhood of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">
+missing <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">. The statement about the interior is the definition of
+<img class="m" src="m/d140e756c5bd5c5646ac3c3837e6af1eb830c6d2.svg" alt="\(A^{\circ}\)" style="height:0.755em;vertical-align:-0.000em"> as a union of open sets.
+</p>
+
+</div>
+
+<div class="corollary" id="org5b80c71">
+<p>
+<img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is dense in <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> if and only if every non-empty open set meets
+<img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org71e3770">
+<p>
+Density says every point lies in <img class="m" src="m/583955cc3615dbf38f19d4187ceb351e86f8aad5.svg" alt="\(\overline{A}\)" style="height:0.968em;vertical-align:-0.000em">, which by the theorem
+says every neighbourhood of every point meets <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">; and a non-empty
+open set is a neighbourhood of each of its points.
+</p>
+
+</div>
+
+<div class="proposition" id="org3bb15e9">
+<p>
+<img class="m" src="m/2d06108e7c4b68a4097e1833782bbd43323e71c7.svg" alt="\(\partial A\)" style="height:0.761em;vertical-align:-0.000em"> is closed, <img class="m" src="m/74565e131656159689cd62a5695b6f2547e132f9.svg" alt="\(\partial A = \overline{A} \cap \overline{X \setminus A}\)" style="height:1.315em;vertical-align:-0.276em">,
+and <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is the disjoint union of <img class="m" src="m/d140e756c5bd5c5646ac3c3837e6af1eb830c6d2.svg" alt="\(A^{\circ}\)" style="height:0.755em;vertical-align:-0.000em">, <img class="m" src="m/2d06108e7c4b68a4097e1833782bbd43323e71c7.svg" alt="\(\partial A\)" style="height:0.761em;vertical-align:-0.000em"> and
+<img class="m" src="m/fce832b3e0fbbb7e49c647557dc5eee0005baf54.svg" alt="\((X\setminus A)^{\circ}\)" style="height:1.096em;vertical-align:-0.274em">. A set is closed exactly when it contains its
+boundary, and open exactly when it is disjoint from it.
+</p>
+
+</div>
+
+<div class="proof" id="orgfbefeb6">
+<p>
+Using <img class="m" src="m/0658ecdfb17311f59d0b8b64aae38d7720bc9e6f.svg" alt="\(X \setminus \overline{X\setminus A} = A^{\circ}\)" style="height:1.315em;vertical-align:-0.276em">, we get
+<img class="m" src="m/4ef1de2e10fa7001d94f40155b5335bf73d9cf86.svg" alt="\(\overline{A}\cap\overline{X\setminus A} = \overline{A}\setminus A^{\circ} = \partial A\)" style="height:1.315em;vertical-align:-0.276em">,
+an intersection of closed sets, hence closed. The three sets are
+pairwise disjoint by construction and cover <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">, since a point outside
+<img class="m" src="m/85daf2dd5b846eadb8f3f3fbe965e605827f23b6.svg" alt="\(A^{\circ} \cup (X\setminus A)^{\circ}\)" style="height:1.096em;vertical-align:-0.274em"> lies in
+<img class="m" src="m/33f4ea0112f80eff5780a68cde445c78834fbd36.svg" alt="\(\overline{A}\cap\overline{X\setminus A}\)" style="height:1.315em;vertical-align:-0.276em">.
+</p>
+
+<p>
+If <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is closed then <img class="m" src="m/b35e047d8ed12a5cc953e124faf84a4646ad1b72.svg" alt="\(\overline{A} = A\)" style="height:0.968em;vertical-align:-0.000em">, so
+<img class="m" src="m/9d8a1ef889b5f5af3ec318b93672365ae16da24a.svg" alt="\(\partial A \subseteq A\)" style="height:0.910em;vertical-align:-0.146em">; conversely <img class="m" src="m/9d8a1ef889b5f5af3ec318b93672365ae16da24a.svg" alt="\(\partial A \subseteq A\)" style="height:0.910em;vertical-align:-0.146em"> gives
+<img class="m" src="m/74c851fdfd44a2ec61418582f1c6c8687c7930a2.svg" alt="\(\overline{A} = A^{\circ}\cup\partial A \subseteq A\)" style="height:1.117em;vertical-align:-0.145em">. Applying this to
+the complement gives the statement for open sets.
+</p>
+
+</div>
+
+<div class="remark" id="orgcfdf683">
+<p>
+The closure is not "<img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> together with its limit points of sequences":
+that description is correct in a metric space and false in general,
+because a sequence is indexed by <img class="m" src="m/d36edebe5171c584e95c5e3966023a2f078fce29.svg" alt="\(\N\)" style="height:0.755em;vertical-align:-0.000em"> and a neighbourhood basis need
+not be countable. Nets and filters exist to repair exactly this, and the
+theorem above is the statement that survives without them.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="topological-spaces-bases-and-generated-topologies.html"><span>← previous</span>Topological spaces, bases and generated topologies</a><a rel="next" href="continuous-maps-homeomorphisms-and-topological-invariants.html"><span>next →</span>Continuous maps, homeomorphisms and topological invariants</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/topology--general-topology.pdf" title="PDF manual">General Topology</a> · <a class="pdf" href="pdf/topology.pdf" title="PDF manual">Topology</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moving-window (convolution) filters · Remote Sensing</title>
+<meta name="description" content="A linear spatial filter moves a small kernel w over the image and replaces each pixel by the weighted sum of its neighbourhood, I'(y,x)=\sum_{i,j}w(i,j)\,I(y+i,x+j); averaging kernels smooth (low-pass), kernels with zero sum enhance differences (high-pass).">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/moving-window-filters.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Moving-window (convolution) filters · Remote Sensing">
+<meta property="og:description" content="A linear spatial filter moves a small kernel w over the image and replaces each pixel by the weighted sum of its neighbourhood, I'(y,x)=\sum_{i,j}w(i,j)\,I(y+i,x+j); averaging kernels smooth (low-pass), kernels with zero sum enhance differences (high-pass).">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/moving-window-filters.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--filtering">Filtering</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Processing · Filtering</p>
+<h1>Moving-window (convolution) filters</h1>
+<p class="summary">A linear spatial filter moves a small kernel <img class="m" src="m/760d5951105b1fc1d1d6cd12eb2c180f8d9b3a0d.svg" alt="\(w\)" style="height:0.472em;vertical-align:-0.000em"> over the image and replaces each pixel by the weighted sum of its neighbourhood, <img class="m" src="m/8d85c5c75d77c300ebb26915cb9a627fce19f92e.svg" alt="\(I'(y,x)=\sum_{i,j}w(i,j)\,I(y+i,x+j)\)" style="height:1.302em;vertical-align:-0.482em">; averaging kernels smooth (low-pass), kernels with zero sum enhance differences (high-pass).</p>
+<p class="rel"><span>needs</span> <a href="digital-image.html">Digital images</a></p>
+<p class="rel"><span>unlocks</span> <a href="edge-detection.html">Edge detection and directional filters</a>, <a href="statistical-filters.html">Statistical (rank) filters</a>, <a href="convolution-theorem.html">The convolution theorem</a>, <a href="speckle-filtering.html">Speckle reduction</a>, <a href="convolutional-neural-network.html">Convolutional neural networks and deep learning</a></p>
+<p class="rel"><span>see also</span> <a href="frequency-domain-filtering.html">Filtering in the frequency domain</a>, <a href="statistical-filters.html">Statistical (rank) filters</a>, <a href="edge-detection.html">Edge detection and directional filters</a>, <a href="texture-features.html">Texture features</a>, <a href="speckle-filtering.html">Speckle reduction</a>, <a href="convolution-theorem.html">The convolution theorem</a>, <a href="convolutional-neural-network.html">Convolutional neural networks and deep learning</a></p>
+<p class="rel"><span>mentioned in</span> <a href="geometric-correction.html">Geometric correction, geocoding and registration</a>, <a href="texture-features.html">Texture features</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgd59c7c2" class="outline-2">
+<h2 id="orgd59c7c2">Method</h2>
+<div class="outline-text-2" id="text-orgd59c7c2">
+<p>
+For a <img class="m" src="m/0549e92f6445d9345f98ca23027b4a72cfb4ac46.svg" alt="\((2a+1)\times(2b+1)\)" style="height:1.096em;vertical-align:-0.274em"> kernel:
+<div class="mb"><img class="m" src="m/f7ba58d2c60b92abcb7a215258484acd6da544dd.svg" alt="\[ I'(y,x)=\sum_{i=-a}^{a}\sum_{j=-b}^{b}w(i,j)\,I(y+i,x+j). \]" style="width:19.750em"></div>
+</p>
+<ul class="org-ul">
+<li><b>mean (box)</b> <img class="m" src="m/50db2fc2c0f28b7a9f0286b8c62522b48a5bd284.svg" alt="\(3\times3\)" style="height:0.798em;vertical-align:-0.088em">: all weights <img class="m" src="m/6361c0cbfd580dc5c9addd3afa3643d051068e83.svg" alt="\(1/9\)" style="height:1.096em;vertical-align:-0.274em">: removes noise, blurs edges;</li>
+<li><b>Gaussian</b>: weights <img class="m" src="m/3ebdffcf92b3dfd8df562dd4b42ced0c3544d417.svg" alt="\(\propto e^{-(i^2+j^2)/2s^2}\)" style="height:1.082em;vertical-align:-0.000em">: smooth, isotropic;</li>
+<li><b>high-pass</b>: identity minus low-pass, e.g. centre 8, others −1 (weights sum to 0);</li>
+<li><b>high-boost / sharpening</b>: <img class="m" src="m/33f9216511e424c354f65d43b2f4426b3742bc5f.svg" alt="\(I+k(I-I_{LP})\)" style="height:1.096em;vertical-align:-0.274em">.</li>
+</ul>
+<p>
+Borders need a policy (replicate, mirror, zero, or discard). Cost <img class="m" src="m/53c685d1d63b7ab9b927efd4a01e53b59b392282.svg" alt="\(O(NM\,K)\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/6b809e9622699ee3be531912c1fe98bee17ecc35.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> kernel weights; large kernels are cheaper in the frequency domain.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc9c3734" class="outline-2">
+<h2 id="orgc9c3734">Example</h2>
+<div class="outline-text-2" id="text-orgc9c3734">
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="k">from</span> scipy <span class="k">import</span> ndimage
+<span class="v">mean3</span> = ndimage.uniform_filter(band.astype(<span class="b">float</span>), size=3)
+<span class="v">gauss</span> = ndimage.gaussian_filter(band.astype(<span class="b">float</span>), sigma=1.5)
+<span class="v">hp</span> = band - mean3</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org623412d" class="outline-2">
+<h2 id="org623412d">Picture</h2>
+<div class="outline-text-2" id="text-org623412d">
+<figure class="fig"><img class="m" src="m/d0327dc91db952f155d866aa499a2638965d1390.svg" alt="figure" style="width:23.620em"><figcaption><span class="fl">Figure 1.</span> A moving-window filter: each output pixel <img class="m" src="m/1e8b2cf375da08f2a141b62b1ec97ca55b3cdc40.svg" alt="\(I'(y,x)\)" style="height:1.098em;vertical-align:-0.274em"> is the weighted sum of the input pixels in a window centred on it.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org5653942" class="outline-2">
+<h2 id="org5653942">Intuition</h2>
+<div class="outline-text-2" id="text-org5653942">
+<p>
+Each output pixel asks its neighbours for a weighted vote: equal votes smooth, opposing votes highlight differences.
+</p>
+</div>
+</div>
+<div id="outline-container-org39e8446" class="outline-2">
+<h2 id="org39e8446">Pitfall</h2>
+<div class="outline-text-2" id="text-org39e8446">
+<p>
+Linear smoothing cannot tell noise from edges: it blurs both. Edge-preserving filters (<a href="statistical-filters.html">median</a>, adaptive speckle filters) are nonlinear.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="radiometric-correction.html"><span>← previous</span>Radiometric errors and corrections</a><a rel="next" href="edge-detection.html"><span>next →</span>Edge detection and directional filters</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--filtering.pdf" title="PDF manual">Filtering</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

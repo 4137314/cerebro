@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Registers and shift registers · Computer Science</title>
+<meta name="description" content="A register is a group of D flip-flops on the same clock holding logically related bits; a load enable is built with a 2-to-1 multiplexer in front of each flip-flop (D_i=\mathit{ld}\,d_i+\overline{\mathit{ld}}\,Q_i), not by gating the clock; a shift register chains the flip-flops so the content move…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/registers-shift-registers.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Registers and shift registers · Computer Science">
+<meta property="og:description" content="A register is a group of D flip-flops on the same clock holding logically related bits; a load enable is built with a 2-to-1 multiplexer in front of each flip-flop (D_i=\mathit{ld}\,d_i+\overline{\mathit{ld}}\,Q_i), not by gating the clock; a shift register chains the flip-flops so the content move…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/registers-shift-registers.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--sequential">Sequential</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Hardware · Sequential</p>
+<h1>Registers and shift registers</h1>
+<p class="summary">A register is a group of D flip-flops on the same clock holding logically related bits; a load enable is built with a 2-to-1 multiplexer in front of each flip-flop (<img class="m" src="m/a998e88c2492f226342882e5e3b2a1650be5cc86.svg" alt="\(D_i=\mathit{ld}\,d_i+\overline{\mathit{ld}}\,Q_i\)" style="height:1.193em;vertical-align:-0.215em">), not by gating the clock; a shift register chains the flip-flops so the content moves one position per edge, and with a 4-input mux per bit it can hold, shift either way or load in parallel.</p>
+<p class="rel"><span>needs</span> <a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a>, <a href="multiplexer.html">Multiplexer and demultiplexer</a></p>
+<p class="rel"><span>unlocks</span> <a href="counters.html">Synchronous counters</a></p>
+<p class="rel"><span>see also</span> <a href="counters.html">Synchronous counters</a>, <a href="sequential-logic.html">Flip-flops and registers in VHDL</a>, <a href="clock-gating.html">Clock gating and operand isolation</a>, <a href="serial-communication.html">Serial communication</a>, <a href="register-transfer-buses.html">Register transfers: multiplexers, buses, tri-state</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="multiplexer.html">Multiplexer and demultiplexer</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li><li><a href="sr-latch.html">SR latch and D latch</a></li><li><a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgf72eb41" class="outline-2">
+<h2 id="orgf72eb41">Construction</h2>
+<div class="outline-text-2" id="text-orgf72eb41">
+<p>
+<b>Parallel register with clear</b>: <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> D flip-flops, common clock, common asynchronous clear (active low): <img class="m" src="m/c9e87f8dd2ee4dc7ef26ee24f811110f661e9c84.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> is <img class="m" src="m/9bc9fac98a58f67aa2a9c76ad1bb70f716743fac.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> delayed to the next edge; clear forces 0 at once and holds it until the first edge after its release.
+<b>Load enable</b>: either gate the clock (only the cycles to load get an edge — risky: the gated edge arrives late and the register may sample other registers' <b>new</b> values, the skew problem; done today only to save <a href="clock-gating.html">power</a>, with dedicated cells) or, the safe synchronous way, choose what to load with a mux:
+<div class="mb"><img class="m" src="m/4ed9a2fdec2f065e5ef05417f58c691ac7b985c6.svg" alt="\[ D_i=\mathit{ld}\cdot d_i+\overline{\mathit{ld}}\cdot Q_i \]" style="width:9.729em"></div>
+(when not loading, reload the current value). A <b>synchronous init</b> is one more mux input wired to 0 (applied at the next edge), unlike an <b>asynchronous reset</b> (immediate, through the flip-flops' clear pins). The rule: the clock is not to be touched.
+<b>Shift register</b>: <img class="m" src="m/e8443dcb9238cc7eace4382af2ddbe30e70183e5.svg" alt="\(D_0=SI\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/0e83dd824ca4842b6cda07d68d49fd9346d9b6cd.svg" alt="\(D_i=Q_{i-1}\)" style="height:1.005em;vertical-align:-0.251em">, <img class="m" src="m/997c215f93ea4d7d513a908b700b3485249412b7.svg" alt="\(SO=Q_{n-1}\)" style="height:1.005em;vertical-align:-0.251em">; each edge moves the content one place. Tapping every <img class="m" src="m/4c97de7c43ca7f1e692a7f560c025a5a1736b003.svg" alt="\(Q_i\)" style="height:0.962em;vertical-align:-0.212em"> gives parallel output (serial-in parallel-out); a mux per bit adds enable, parallel load, direction:
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">S1</th>
+<th scope="col" class="org-right">S0</th>
+<th scope="col" class="org-left">mode</th>
+<th scope="col" class="org-left">Dᵢ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-left">hold</td>
+<td class="org-left">Qᵢ</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">shift towards Qₙ₋₁</td>
+<td class="org-left">Qᵢ₋₁</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-left">shift towards Q₀</td>
+<td class="org-left">Qᵢ₊₁</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">parallel load</td>
+<td class="org-left">dᵢ</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org1e7a307" class="outline-2">
+<h2 id="org1e7a307">Example</h2>
+<div class="outline-text-2" id="text-org1e7a307">
+<p>
+4-bit SIPO, input sequence 1, 0, 0, 1 on <img class="m" src="m/a57327e82c30456ade433b9db8f4e4187a9bbe48.svg" alt="\(SI\)" style="height:0.749em;vertical-align:-0.000em">, starting from 0000 (written <img class="m" src="m/248e891a7e18e96c4e4fcffd1f95b0f6fb82c8d4.svg" alt="\(Q_0Q_1Q_2Q_3\)" style="height:0.962em;vertical-align:-0.212em">): 1000, 0100, 0010, 1001 — after four edges the first bit received is in <img class="m" src="m/00b77482f9c36a15b452cf3abb48a46969b78257.svg" alt="\(Q_3\)" style="height:0.962em;vertical-align:-0.212em">.
+Uses: serial links (load in parallel, send one bit per cycle on one wire, rebuild on the other side: <a href="uart.html">UART</a>, SPI, I²C, USB), bit-serial arithmetic, parity and CRC, scan chains for testing (JTAG: all flip-flops chained to set and read internal values).
+</p>
+</div>
+</div>
+<div id="outline-container-orgc962127" class="outline-2">
+<h2 id="orgc962127">Intuition</h2>
+<div class="outline-text-2" id="text-orgc962127">
+<p>
+A register is a variable; a shift register is a queue that advances one place per tick.
+</p>
+</div>
+</div>
+<div id="outline-container-org3838701" class="outline-2">
+<h2 id="org3838701">Pitfall</h2>
+<div class="outline-text-2" id="text-org3838701">
+<p>
+Between consecutive flip-flops of a shift register there is only a wire: the fastest possible path, the first place where <a href="setup-hold-time.html">hold violations</a> and clock skew bite. Never build the shift enable by gating the clock of some stages.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="flip-flop-types.html"><span>← previous</span>D, T, JK and SR flip-flops: characteristic and excitation tables</a><a rel="next" href="counters.html"><span>next →</span>Synchronous counters</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--sequential.pdf" title="PDF manual">Sequential</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

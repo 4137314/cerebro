@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Weierstrass approximation theorem · Mathematics</title>
+<meta name="description" content="Taylor's theorem approximates a smooth function near a point and says nothing away from it. Weierstrass' theorem is the opposite statement: every continuous function on a compact interval, with no differentiability whatever, is a uniform limit of polynomials. The proof below is constructive – the p…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-weierstrass-approximation-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The Weierstrass approximation theorem · Mathematics">
+<meta property="og:description" content="Taylor's theorem approximates a smooth function near a point and says nothing away from it. Weierstrass' theorem is the opposite statement: every continuous function on a compact interval, with no differentiability whatever, is a uniform limit of polynomials. The proof below is constructive – the p…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-weierstrass-approximation-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--approximation-theory">Approximation Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Approximation Theory</p>
+<h1>The Weierstrass approximation theorem</h1>
+<p class="summary">Taylor's theorem approximates a smooth function near a point and says nothing away from it. Weierstrass' theorem is the opposite statement: <i>every</i> continuous function on a compact interval, with no differentiability whatever, is a uniform limit of polynomials. The proof below is constructive &#x2013; the polynomials are written down &#x2013; and the computation that makes it work is an identity about a binomial sum.</p>
+<p class="rel"><span>needs</span> <a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a>, <a href="limits-and-continuity.html">Limits and continuity</a>, <a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a>, <a href="polynomial-rings-division-and-roots.html">Polynomial rings, division and roots</a>, <a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="analysis.html">Analysis</a></p>
+<details class="path"><summary>Learning path: 31 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li><li><a href="rings-ideals-and-the-quotient-ring.html">Rings, ideals and the quotient ring</a></li><li><a href="integral-domains-fields-prime-and-maximal-ideals.html">Integral domains, fields, prime and maximal ideals</a></li><li><a href="polynomial-rings-division-and-roots.html">Polynomial rings, division and roots</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org2823b6d">
+<p>
+For <img class="m" src="m/308f24f18f12bea61d623efc5f3efdfa015eb7ab.svg" alt="\(f \colon [0,1]\to\R\)" style="height:1.096em;vertical-align:-0.274em"> the <i>Bernstein polynomial</i> of degree <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">
+is
+<div class="mb"><img class="m" src="m/1bea5672e1738915c2b0513ce4a07ecfc85c14a0.svg" alt="\[ B_{n}f(x) = \sum_{k=0}^{n}f\Bigl(\frac{k}{n}\Bigr)\binom{n}{k}x^{k}(1-x)^{n-k}. \]" style="width:18.556em"></div>
+</p>
+
+</div>
+
+<div class="lemma" id="org1a640cb">
+<p>
+Write <img class="m" src="m/9559aedeb25402868e807e7a24e3c0a94b553b5d.svg" alt="\(r_{k}(x) = \binom{n}{k}x^{k}(1-x)^{n-k}\)" style="height:1.315em;vertical-align:-0.381em">. Then for every
+<img class="m" src="m/5116e6e66dc0151a2fb832df310340eea824b6f3.svg" alt="\(x \in [0,1]\)" style="height:1.096em;vertical-align:-0.274em">,
+<div class="mb"><img class="m" src="m/3a2a2e1d426b10b15c80da2c83c8b1d20d1e0436.svg" alt="\[ \sum_{k}r_{k}(x) = 1, \qquad \sum_{k}\Bigl(x - \frac{k}{n}\Bigr)^{2}r_{k}(x) = \frac{x(1-x)}{n} \le \frac{1}{4n}. \]" style="width:26.699em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="orga23622d">
+<p>
+The first is the binomial theorem for <img class="m" src="m/b51ed4196ac6dc9867380cb8017a7f38a4747f78.svg" alt="\((x + (1-x))^{n}\)" style="height:1.096em;vertical-align:-0.274em">.
+Differentiating the binomial identity
+<img class="m" src="m/c1d0c3a631280520ad1a2f70c67c5e48055f810d.svg" alt="\(\sum_{k}\binom{n}{k}x^{k}y^{n-k} = (x+y)^{n}\)" style="height:1.315em;vertical-align:-0.381em"> with respect to <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">
+and multiplying by <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> gives
+<img class="m" src="m/b690f3923167cc99bc1e2f22025a426691c66b63.svg" alt="\(\sum_{k}k\binom{n}{k}x^{k}y^{n-k} = nx(x+y)^{n-1}\)" style="height:1.315em;vertical-align:-0.381em">; repeating the
+operation gives
+<img class="m" src="m/0a5f2c6d46293ef5b80c369ee28ac18fc8f7ce69.svg" alt="\(\sum_{k}k^{2}\binom{n}{k}x^{k}y^{n-k} = nx(x+y)^{n-1} + n(n-1)x^{2}(x+y)^{n-2}\)" style="height:1.315em;vertical-align:-0.381em">.
+Setting <img class="m" src="m/b7572651c19297191d96fc757f8811763e681bac.svg" alt="\(y = 1-x\)" style="height:0.919em;vertical-align:-0.211em">, so that <img class="m" src="m/6f5c71ac7ba2add2eaea5220b921ff27410f8d72.svg" alt="\(x+y=1\)" style="height:0.919em;vertical-align:-0.211em">, yields
+<img class="m" src="m/1e09f466da434169af81689006c23afde66d16e1.svg" alt="\(\sum_{k}k\,r_{k} = nx\)" style="height:1.151em;vertical-align:-0.334em"> and <img class="m" src="m/9d87dc602508cf3f63fbd940532af2391abac5d4.svg" alt="\(\sum_{k}k^{2}r_{k} = nx + n(n-1)x^{2}\)" style="height:1.221em;vertical-align:-0.330em">.
+Hence
+<img class="m" src="m/5850682c9b9e18a8a8e1c3d4369f1f968eafcf3e.svg" alt="\(\sum_{k}(x-k/n)^{2}r_{k} = x^{2} - 2x\cdot x + \frac{nx+n(n-1)x^{2}}{n^{2}} = \frac{x - x^{2}}{n}\)" style="height:1.593em;vertical-align:-0.382em">,
+and <img class="m" src="m/a822f1e97e17c408aa2f361ca15ea6ebbdf9bc79.svg" alt="\(x(1-x)\le1/4\)" style="height:1.096em;vertical-align:-0.274em"> on <img class="m" src="m/b40f419d16d54b95652910807100bb67f190c2b6.svg" alt="\([0,1]\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org17776e9">
+<p>
+Let <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> be continuous on <img class="m" src="m/b40f419d16d54b95652910807100bb67f190c2b6.svg" alt="\([0,1]\)" style="height:1.096em;vertical-align:-0.274em">. Then <img class="m" src="m/c72a493a0e0bdc70ecaccf298cd47091228c4e71.svg" alt="\(B_{n}f \to f\)" style="height:0.974em;vertical-align:-0.214em"> uniformly on
+<img class="m" src="m/b40f419d16d54b95652910807100bb67f190c2b6.svg" alt="\([0,1]\)" style="height:1.096em;vertical-align:-0.274em">. Consequently every continuous function on a compact interval
+is a uniform limit of polynomials.
+</p>
+
+</div>
+
+<div class="proof" id="orgddb58ab">
+<p>
+Let <img class="m" src="m/2cffdc597a54fae183dedb83e6fbd3d870b664ce.svg" alt="\(\eps&gt;0\)" style="height:0.749em;vertical-align:-0.045em">. By the Heine-Cantor theorem <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is uniformly
+continuous, so there is <img class="m" src="m/722b00acf7aef71aba0503bbe9a32ea420a49689.svg" alt="\(\delta&gt;0\)" style="height:0.804em;vertical-align:-0.040em"> with <img class="m" src="m/db124f6bb78d8c04eaf8bd8592da6aeb2b10a479.svg" alt="\(\abs{f(s)-f(t)}&lt;\eps/2\)" style="height:1.096em;vertical-align:-0.274em">
+whenever <img class="m" src="m/e2794a56869c8d690aba271474482faf7a0d288c.svg" alt="\(\abs{s-t}&lt;\delta\)" style="height:1.096em;vertical-align:-0.274em">; and <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is bounded, say by <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">, being
+continuous on a compact interval.
+</p>
+
+<p>
+Using <img class="m" src="m/75ee7805d19ce6903d59028eb41da6c89bfd2ed3.svg" alt="\(\sum_{k}r_{k} = 1\)" style="height:1.151em;vertical-align:-0.334em">,
+<div class="mb"><img class="m" src="m/1150f71ce7e589c005519037d04440c0a87ffc00.svg" alt="\[ \abs{B_{n}f(x)-f(x)} \le \sum_{k}\Bigl| f\Bigl(\frac{k}{n}\Bigr)-f(x)\Bigr| r_{k}(x). \]" style="width:20.591em"></div>
+Split the sum. Where <img class="m" src="m/ac33f78560bb7835d44443d649f106ca146b7ac2.svg" alt="\(\abs{x - k/n}&lt;\delta\)" style="height:1.096em;vertical-align:-0.274em"> the difference is less
+than <img class="m" src="m/211a2a37f996f96293dac069c43ef1260c5dbb46.svg" alt="\(\eps/2\)" style="height:1.096em;vertical-align:-0.274em">, and those terms contribute at most <img class="m" src="m/211a2a37f996f96293dac069c43ef1260c5dbb46.svg" alt="\(\eps/2\)" style="height:1.096em;vertical-align:-0.274em">. Where
+<img class="m" src="m/3000ebfb37a7154c5326d90a587b4ca991362e35.svg" alt="\(\abs{x-k/n}\ge\delta\)" style="height:1.096em;vertical-align:-0.274em"> the difference is at most <img class="m" src="m/327a6ad107fb6fc33f4986860640fb6ca35aae6d.svg" alt="\(2M\)" style="height:0.749em;vertical-align:-0.000em">, and
+<img class="m" src="m/878d7be94938603a3f783fbf912c4a93caa93038.svg" alt="\(1 \le (x-k/n)^{2}/\delta^{2}\)" style="height:1.166em;vertical-align:-0.268em">, so by the second identity those terms
+contribute at most
+<img class="m" src="m/976079dbdbde025a6c0faae1a52bce313741f1fa.svg" alt="\(\frac{2M}{\delta^{2}}\sum_{k}(x-k/n)^{2}r_{k}(x) \le \frac{M}{2n\delta^{2}}\)" style="height:1.334em;vertical-align:-0.373em">.
+Choosing <img class="m" src="m/a0465b410f14cf882950927d2294156de0481d50.svg" alt="\(n &gt; M/(\eps\delta^{2})\)" style="height:1.166em;vertical-align:-0.268em"> makes the total less than <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em">,
+uniformly in <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+<p>
+For a general interval <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em">, the affine change of variable
+<img class="m" src="m/6e2a3d026b559034874b1f41b9db346d1aebb560.svg" alt="\(t \mapsto a + t(b-a)\)" style="height:1.096em;vertical-align:-0.274em"> carries polynomials to polynomials and uniform
+convergence to uniform convergence.
+</p>
+
+</div>
+
+<div class="corollary" id="org0e1529b">
+<p>
+If <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is continuous on <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/bb8313c6b4aa5571ca745f192b7c3307e55d6f48.svg" alt="\(\int_{a}^{b}f(x)x^{n}\dd x = 0\)" style="height:1.534em;vertical-align:-0.384em">
+for every <img class="m" src="m/8add7e85758abffc26b4394aa35d136ed1327bcb.svg" alt="\(n \ge 0\)" style="height:0.855em;vertical-align:-0.145em">, then <img class="m" src="m/2ac1b5c312405f8513b8d8ceb2435a262bc287c1.svg" alt="\(f \equiv 0\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="proof" id="org54d018a">
+<p>
+By linearity the hypothesis gives <img class="m" src="m/1c2a6f8aa47ca7215946615a1e8f9d5f14d0da7e.svg" alt="\(\int_{a}^{b}fP = 0\)" style="height:1.534em;vertical-align:-0.384em"> for every
+polynomial <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em">. Choose polynomials <img class="m" src="m/6b995e6601c192497f416ab047d1f984c9852cd5.svg" alt="\(P_{n}\to f\)" style="height:0.974em;vertical-align:-0.214em"> uniformly; then
+<img class="m" src="m/f686f60a680ab02de343d7c4e0403ed250812a9f.svg" alt="\(fP_{n}\to f^{2}\)" style="height:1.105em;vertical-align:-0.210em"> uniformly, since <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is bounded, so
+<img class="m" src="m/73c1fb43fcbe501e555ae3753fb8f5d758812fa1.svg" alt="\(\int f^{2} = \lim \int fP_{n} = 0\)" style="height:1.227em;vertical-align:-0.331em"> by the theorem on integrating a
+uniform limit. A non-negative continuous function with zero integral is
+identically zero &#x2013; otherwise it exceeds some <img class="m" src="m/83ea983c2eac9c89edde55ddfa024e187bca802d.svg" alt="\(c&gt;0\)" style="height:0.749em;vertical-align:-0.045em"> on an interval,
+whose contribution to the integral is positive.
+</p>
+
+</div>
+
+<div class="remark" id="org62b93bf">
+<p>
+The theorem is the reason the trigonometric and polynomial expansions of
+analysis are not two unrelated tricks: both are instances of a
+subalgebra of continuous functions that separates points being dense,
+which is the Stone-Weierstrass theorem. The Bernstein proof also gives a
+rate, and it is famously bad &#x2013; the error is of order <img class="m" src="m/178e17862abcdf3d8cf1a7f477755ea98aebb59a.svg" alt="\(1/\sqrt{n}\)" style="height:1.151em;vertical-align:-0.276em"> for
+a Lipschitz function &#x2013; which is why approximation theory did not stop
+here.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-wave-equation-dalemberts-formula-and-energy.html"><span>← previous</span>The wave equation: d'Alembert's formula and energy</a><a rel="next" href="metric-spaces-and-completeness.html"><span>next →</span>Metric spaces and completeness</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--approximation-theory.pdf" title="PDF manual">Approximation Theory</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

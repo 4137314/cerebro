@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parnas principles and contracts · Computer Science</title>
+<meta name="description" content="The client of a function must be given everything needed to use it and nothing more; the implementer must be given everything needed to implement it and nothing more: a specification is a contract of preconditions and postconditions.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/parnas-principles.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Parnas principles and contracts · Computer Science">
+<meta property="og:description" content="The client of a function must be given everything needed to use it and nothing more; the implementer must be given everything needed to implement it and nothing more: a specification is a contract of preconditions and postconditions.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/parnas-principles.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--oop">Oop</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Oop</p>
+<h1>Parnas principles and contracts</h1>
+<p class="summary">The client of a function must be given everything needed to use it and nothing more; the implementer must be given everything needed to implement it and nothing more: a specification is a contract of preconditions and postconditions.</p>
+<p class="rel"><span>see also</span> <a href="information-hiding.html">Information hiding and visibility</a>, <a href="exception-handling.html">Exceptions</a>, <a href="call-stack.html">Memory model: static area, stack and heap</a></p>
+<p class="rel"><span>mentioned in</span> <a href="liskov-substitution.html">Liskov substitution principle</a></p>
+</header>
+<main class="note">
+<div id="outline-container-org0752f84" class="outline-2">
+<h2 id="org0752f84">Statement</h2>
+<div class="outline-text-2" id="text-org0752f84">
+<p>
+D. L. Parnas's two rules for specifying a module or a function:
+</p>
+<ol class="org-ol">
+<li>the <b>client</b> must receive all the information needed to use the function correctly, and nothing more;</li>
+<li>the <b>implementer</b> must receive all the information needed to implement it, and nothing more.</li>
+</ol>
+
+<p>
+The specification is a contract:
+</p>
+<ul class="org-ul">
+<li><b>precondition</b>: what the caller guarantees on entry (<code>pop()</code> on a non-empty stack);</li>
+<li><b>postcondition</b>: what the function guarantees on exit (the size decreases by one, the top element is returned);</li>
+<li><b>invariant</b>: what holds for the object between any two calls (<img class="m" src="m/ee64dc43f6c631c8eaf34b199b2fabe63da46c77.svg" alt="\(0\le\text{size}\le\text{capacity}\)" style="height:0.945em;vertical-align:-0.217em">).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgaae9b97" class="outline-2">
+<h2 id="orgaae9b97">Derivation</h2>
+<div class="outline-text-2" id="text-orgaae9b97">
+<p>
+Each side hides its part from the other. The client depends only on the contract, so the implementation can change. The implementer depends only on the contract, so it need not handle calls outside the precondition. A violated precondition is the caller's bug; a violated postcondition is the implementer's bug.
+</p>
+</div>
+</div>
+<div id="outline-container-orga3b9f64" class="outline-2">
+<h2 id="orga3b9f64">Checking contracts</h2>
+<div class="outline-text-2" id="text-orga3b9f64">
+<p>
+Java <code>assert cond : message;</code> checks a condition at run time when assertions are enabled (<code>java -ea</code>). Violations that the caller can provoke with legal input belong in <a href="exception-handling.html">exceptions</a> instead (<code>IllegalArgumentException</code>, <code>EmptyStackException</code>).
+</p>
+</div>
+</div>
+<div id="outline-container-org0e7ca18" class="outline-2">
+<h2 id="org0e7ca18">Intuition</h2>
+<div class="outline-text-2" id="text-org0e7ca18">
+<p>
+A good signature plus a one-line contract is all a colleague should need. If they have to read the body, the contract is incomplete.
+</p>
+</div>
+</div>
+<div id="outline-container-org5e50b10" class="outline-2">
+<h2 id="org5e50b10">Pitfall</h2>
+<div class="outline-text-2" id="text-org5e50b10">
+<p>
+Global variables break both rules: a function that reads a global depends on information not in its interface, and every caller can be affected by a change no one sees.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="method-overloading.html"><span>← previous</span>Overloading</a><a rel="next" href="cpp-inheritance-visibility.html"><span>next →</span>Public, protected and private inheritance in C++</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--oop.pdf" title="PDF manual">Oop</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

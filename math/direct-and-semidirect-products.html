@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direct and semidirect products · Mathematics</title>
+<meta name="description" content="A normal subgroup and its quotient do not determine a group: the two pieces can be assembled in several ways, and which one occurred is extra data. The recognition theorems below say when a group is an assembly of two of its subgroups, and the semidirect product is the first construction in which t…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/direct-and-semidirect-products.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Direct and semidirect products · Mathematics">
+<meta property="og:description" content="A normal subgroup and its quotient do not determine a group: the two pieces can be assembled in several ways, and which one occurred is extra data. The recognition theorems below say when a group is an assembly of two of its subgroups, and the semidirect product is the first construction in which t…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/direct-and-semidirect-products.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--group-theory">Group Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Algebra · Group Theory</p>
+<h1>Direct and semidirect products</h1>
+<p class="summary">A normal subgroup and its quotient do not determine a group: the two pieces can be assembled in several ways, and which one occurred is extra data. The recognition theorems below say when a group <i>is</i> an assembly of two of its subgroups, and the semidirect product is the first construction in which the assembly is genuinely non-trivial &#x2013; the action of one factor on the other.</p>
+<p class="rel"><span>needs</span> <a href="cauchys-theorem-and-the-sylow-theorems.html">Cauchy's theorem and the Sylow theorems</a>, <a href="cosets-the-index-and-lagranges-theorem.html">Cosets, the index and Lagrange's theorem</a>, <a href="group.html">Group</a>, <a href="group-actions-orbits-and-the-orbit-stabiliser-theorem.html">Group actions, orbits and the orbit-stabiliser theorem</a>, <a href="group-homomorphism.html">Group homomorphism</a>, <a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a>, <a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></p>
+<p class="rel"><span>unlocks</span> <a href="modules-quotients-and-exact-sequences.html">Modules, quotients and exact sequences</a></p>
+<p class="rel"><span>mentioned in</span> <a href="group-theory.html">Group theory</a></p>
+<details class="path"><summary>Learning path: 13 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li><li><a href="the-order-of-an-element-and-cyclic-groups.html">The order of an element and cyclic groups</a></li><li><a href="cosets-the-index-and-lagranges-theorem.html">Cosets, the index and Lagrange's theorem</a></li><li><a href="group-actions-orbits-and-the-orbit-stabiliser-theorem.html">Group actions, orbits and the orbit-stabiliser theorem</a></li><li><a href="cauchys-theorem-and-the-sylow-theorems.html">Cauchy's theorem and the Sylow theorems</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org1db322c">
+<p>
+The <i>direct product</i> of groups <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> is <img class="m" src="m/59d92d34da76464f2b2124711dab2e97223ed2bc.svg" alt="\(H \times K\)" style="height:0.840em;vertical-align:-0.092em"> with
+componentwise multiplication. It contains <img class="m" src="m/da1b61a0c43bdb4091d81b446cd72cf26b2a80c1.svg" alt="\(H \times \set{e}\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/bb601e4458b5a1aa89dd191ad4e46fedaead709e.svg" alt="\(\set{e}\times K\)" style="height:1.096em;vertical-align:-0.274em"> as normal subgroups intersecting trivially and
+generating it.
+</p>
+
+</div>
+
+<div class="theorem" id="org6545eec">
+<p>
+Let <img class="m" src="m/7a95f43dab66aa58b42c02459c2077a793b3f735.svg" alt="\(H, K \normalin G\)" style="height:0.962em;vertical-align:-0.212em"> with <img class="m" src="m/249938881b7416279b70b6b5c52ae7c38a9b60d4.svg" alt="\(H \cap K = \set{e}\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/f4d6fc51e74ac69ce7176a8165da69d770245fb9.svg" alt="\(HK = G\)" style="height:0.749em;vertical-align:-0.000em">.
+Then <img class="m" src="m/9e9553529e1f0167af185f84adac18c7e79b6482.svg" alt="\(hk = kh\)" style="height:0.761em;vertical-align:-0.000em"> for all <img class="m" src="m/e4135061762372896f3dd08a60fd573b006ffa4e.svg" alt="\(h \in H\)" style="height:0.804em;vertical-align:-0.040em">, <img class="m" src="m/6c2ce46b22b4295fe9b12d7dd3d4406ff5b3683d.svg" alt="\(k \in K\)" style="height:0.804em;vertical-align:-0.040em">, and
+<img class="m" src="m/063092474623f85f6f2920649b097f3fa4febc17.svg" alt="\((h,k)\mapsto hk\)" style="height:1.096em;vertical-align:-0.274em"> is an isomorphism <img class="m" src="m/bd18090709f1423715b082c0b50fc00f3922f44e.svg" alt="\(H\times K \to G\)" style="height:0.840em;vertical-align:-0.092em">.
+</p>
+
+</div>
+
+<div class="proof" id="orga9e1c16">
+<p>
+For <img class="m" src="m/e4135061762372896f3dd08a60fd573b006ffa4e.svg" alt="\(h \in H\)" style="height:0.804em;vertical-align:-0.040em">, <img class="m" src="m/6c2ce46b22b4295fe9b12d7dd3d4406ff5b3683d.svg" alt="\(k \in K\)" style="height:0.804em;vertical-align:-0.040em">, the commutator
+<img class="m" src="m/8986b23964ca753f68474b0e6781abfab8542582.svg" alt="\(hkh^{-1}k^{-1}\)" style="height:0.892em;vertical-align:-0.000em"> lies in <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> &#x2013; as <img class="m" src="m/bcc162995a15bff596692236978d0697be5ae08c.svg" alt="\((hkh^{-1})k^{-1}\)" style="height:1.166em;vertical-align:-0.268em">, using
+normality of <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> &#x2013; and in <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> &#x2013; as <img class="m" src="m/2638849f527408ca89026530023b7e27d86d77da.svg" alt="\(h(kh^{-1}k^{-1})\)" style="height:1.166em;vertical-align:-0.268em">, using
+normality of <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em">; so it is <img class="m" src="m/09798e3cb5ef8291c7239dd012807e66ef0eccaf.svg" alt="\(e\)" style="height:0.472em;vertical-align:-0.000em"> and the elements commute.
+</p>
+
+<p>
+The map is then a homomorphism:
+<img class="m" src="m/83c2927513dda29e399026a115a840bd5dd840ec.svg" alt="\((h_{1}k_{1})(h_{2}k_{2}) = h_{1}h_{2}k_{1}k_{2}\)" style="height:1.096em;vertical-align:-0.274em">. It is surjective
+because <img class="m" src="m/f4d6fc51e74ac69ce7176a8165da69d770245fb9.svg" alt="\(HK = G\)" style="height:0.749em;vertical-align:-0.000em">, and injective because <img class="m" src="m/7f8b9c8bc42d87d026c4ce2eb3a464fc526c3c59.svg" alt="\(hk = e\)" style="height:0.761em;vertical-align:-0.000em"> forces
+<img class="m" src="m/c232bfcae23d4b37cf86166aa077f1250d525d54.svg" alt="\(h = k^{-1} \in H \cap K = \set{e}\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+</div>
+
+<div class="definition" id="org9ceff9a">
+<p>
+Let <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> be groups and <img class="m" src="m/ffa6cd6bdd270f720726586dd033559e7f6ed31e.svg" alt="\(\theta \colon H \to \Aut(N)\)" style="height:1.096em;vertical-align:-0.274em"> a
+homomorphism into the group of automorphisms of <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">. The <i>semidirect
+product</i> <img class="m" src="m/4626575cdc2e70b53904cf4c941717f23a7eeff8.svg" alt="\(N \rtimes_{\theta} H\)" style="height:0.913em;vertical-align:-0.164em"> is the set <img class="m" src="m/b421005529b96b7c778c8a389147de6cafa7f7e9.svg" alt="\(N \times H\)" style="height:0.840em;vertical-align:-0.092em"> with
+<div class="mb"><img class="m" src="m/96d62d2cdcd8557b003999d653620ff71204e4eb.svg" alt="\[ (n_{1},h_{1})(n_{2},h_{2}) = \bigl(n_{1}\,\theta(h_{1})(n_{2}),\; h_{1}h_{2}\bigr). \]" style="width:18.886em"></div>
+</p>
+
+</div>
+
+<div class="proposition" id="orga97e91a">
+<p>
+<img class="m" src="m/2459774d4f216a269c7a589588d336ced4010b11.svg" alt="\(N\rtimes_{\theta}H\)" style="height:0.913em;vertical-align:-0.164em"> is a group, in which <img class="m" src="m/214e28a6cd4a9027684d8cb3778b44dc44689dac.svg" alt="\(N\times\set{e}\)" style="height:1.096em;vertical-align:-0.274em"> is normal
+with quotient isomorphic to <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em">, and <img class="m" src="m/de584fe86a9fe4e49dc32c1e82917df6aadd2020.svg" alt="\(\set{e}\times H\)" style="height:1.096em;vertical-align:-0.274em"> is a subgroup
+meeting it trivially. It is the direct product exactly when <img class="m" src="m/346f66be96cb38ba0680cfd40867d9bf1796163d.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em">
+is trivial.
+</p>
+
+</div>
+
+<div class="proof" id="org8e4730c">
+<p>
+Associativity is a computation in which <img class="m" src="m/346f66be96cb38ba0680cfd40867d9bf1796163d.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em"> being a homomorphism
+into automorphisms is used twice:
+<img class="m" src="m/c44768b05ff0e9c57a5e1679bb9a65998388e841.svg" alt="\(\bigl((n_{1},h_{1})(n_{2},h_{2})\bigr)(n_{3},h_{3})\)" style="height:1.315em;vertical-align:-0.381em"> and
+<img class="m" src="m/3aac8b347d47fd78120045dee1a03b785ada21c1.svg" alt="\((n_{1},h_{1})\bigl((n_{2},h_{2})(n_{3},h_{3})\bigr)\)" style="height:1.315em;vertical-align:-0.381em"> both have first
+component
+<img class="m" src="m/c391ebddf75cc8f357a2be0b8d527fbadc4da0e7.svg" alt="\(n_{1}\,\theta(h_{1})(n_{2})\,\theta(h_{1}h_{2})(n_{3})\)" style="height:1.096em;vertical-align:-0.274em">. The
+identity is <img class="m" src="m/32daa07b3a0f816299b9505bde52020b2cf425d6.svg" alt="\((e,e)\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/382666483c533c6e2fa0cf5d5bad3cf14f80e664.svg" alt="\((n,h)^{-1} = (\theta(h^{-1})(n^{-1}), h^{-1})\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+<p>
+The projection <img class="m" src="m/ab5ff0be23adbbd6b50475da197c3ee47eab73b2.svg" alt="\((n,h)\mapsto h\)" style="height:1.096em;vertical-align:-0.274em"> is a surjective homomorphism with
+kernel <img class="m" src="m/c4aac5f74201329f7d31aa49b63a8a659b9cff3e.svg" alt="\(N \times \set{e}\)" style="height:1.096em;vertical-align:-0.274em">, which is therefore normal with quotient
+<img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em">; and <img class="m" src="m/de584fe86a9fe4e49dc32c1e82917df6aadd2020.svg" alt="\(\set{e}\times H\)" style="height:1.096em;vertical-align:-0.274em"> is closed under the operation. The
+product is componentwise exactly when <img class="m" src="m/fe70b147833572a2e19dd2fb1ce2e1972f9ed869.svg" alt="\(\theta(h) = \id\)" style="height:1.096em;vertical-align:-0.274em"> for all <img class="m" src="m/6c6a7c0f65b6e5eec3c9e58e95f4608590dbb80f.svg" alt="\(h\)" style="height:0.761em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org469ff9e">
+<p>
+Let <img class="m" src="m/9e3c8c089919e0f80674755c6796acf42aae38ca.svg" alt="\(N \normalin G\)" style="height:0.899em;vertical-align:-0.153em"> and <img class="m" src="m/e6240680439cedf4d545e91634fbb7d91deadc06.svg" alt="\(H \le G\)" style="height:0.898em;vertical-align:-0.153em"> with <img class="m" src="m/098f8ab350cc7ec1f47017397ad27d7d828cb478.svg" alt="\(N \cap H = \set{e}\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/dea7ad3f17c4ef2e92845eca606864c7df8d341e.svg" alt="\(NH = G\)" style="height:0.749em;vertical-align:-0.000em">. Then <img class="m" src="m/f84773679bec844470d91123a3f379226cce6e73.svg" alt="\(G \iso N \rtimes_{\theta} H\)" style="height:0.913em;vertical-align:-0.164em">, where
+<img class="m" src="m/46bcdd49bb8bb88c1ab76f577eca31f30ccc0323.svg" alt="\(\theta(h)(n) = hnh^{-1}\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+</div>
+
+<div class="proof" id="org72f08fe">
+<p>
+Conjugation by <img class="m" src="m/6c6a7c0f65b6e5eec3c9e58e95f4608590dbb80f.svg" alt="\(h\)" style="height:0.761em;vertical-align:-0.000em"> maps <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> to itself by normality and is an
+automorphism of it, and <img class="m" src="m/346f66be96cb38ba0680cfd40867d9bf1796163d.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em"> is a homomorphism because
+<img class="m" src="m/93f4a994f00cb8013207ecc95f6b849bc2689561.svg" alt="\((h_{1}h_{2})n(h_{1}h_{2})^{-1} = h_{1}(h_{2}nh_{2}^{-1})h_{1}^{-1}\)" style="height:1.255em;vertical-align:-0.289em">.
+</p>
+
+<p>
+Define <img class="m" src="m/5a7252fd8e1f7aa6e0f2464c2afec18c50b5d842.svg" alt="\(\Phi(n,h) = nh\)" style="height:1.096em;vertical-align:-0.274em">. It is surjective since <img class="m" src="m/dea7ad3f17c4ef2e92845eca606864c7df8d341e.svg" alt="\(NH = G\)" style="height:0.749em;vertical-align:-0.000em">, and
+injective since <img class="m" src="m/86b6de161cffe35dc5a0f6fc9b023e7c86e42aa7.svg" alt="\(n_{1}h_{1} = n_{2}h_{2}\)" style="height:0.925em;vertical-align:-0.167em"> gives
+<img class="m" src="m/0a8d2574571a9f2bebaab82103a909fdba9aa39d.svg" alt="\(n_{2}^{-1}n_{1} = h_{2}h_{1}^{-1} \in N \cap H = \set{e}\)" style="height:1.255em;vertical-align:-0.289em">. It is a
+homomorphism:
+<img class="m" src="m/7fd561916480037f0804e51bb5c76380de9a5b2c.svg" alt="\(\Phi(n_{1},h_{1})\Phi(n_{2},h_{2}) = n_{1}h_{1}n_{2}h_{2} = n_{1}(h_{1}n_{2}h_{1}^{-1})h_{1}h_{2} = \Phi\bigl((n_{1},h_{1})(n_{2},h_{2})\bigr)\)" style="height:1.347em;vertical-align:-0.377em">.
+</p>
+
+</div>
+
+<div class="corollary" id="orgfb9ff45">
+<p>
+Let <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> be an odd prime. A group of order <img class="m" src="m/434bfb023448410851eb3474023547db52d739ee.svg" alt="\(2p\)" style="height:0.919em;vertical-align:-0.211em"> is either cyclic or
+isomorphic to the semidirect product <img class="m" src="m/9f42cb3d16ec944c710e321b02cba1896fb56039.svg" alt="\(\Z/p\Z \rtimes \Z/2\Z\)" style="height:1.096em;vertical-align:-0.274em"> in which
+the generator of order <img class="m" src="m/682209d80cc07f86795f987ad28681d443268af8.svg" alt="\(2\)" style="height:0.706em;vertical-align:-0.000em"> inverts the generator of order <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> &#x2013; the
+dihedral group.
+</p>
+
+</div>
+
+<div class="proof" id="org3a0cd1f">
+<p>
+By Cauchy's theorem there are elements <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> of order <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> and <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em"> of
+order <img class="m" src="m/682209d80cc07f86795f987ad28681d443268af8.svg" alt="\(2\)" style="height:0.706em;vertical-align:-0.000em">. The subgroup <img class="m" src="m/2c9ba3b5087f5eb9f2b283d8b0a2b179be4e228a.svg" alt="\(N = \langle a\rangle\)" style="height:1.096em;vertical-align:-0.274em"> has index <img class="m" src="m/682209d80cc07f86795f987ad28681d443268af8.svg" alt="\(2\)" style="height:0.706em;vertical-align:-0.000em">,
+hence is normal: its two left cosets are <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/f6497963f6824bbd59bc81c4516547f8d6ceb27b.svg" alt="\(G\setminus N\)" style="height:1.096em;vertical-align:-0.274em">, and
+the same holds for right cosets, so <img class="m" src="m/28474df6672c571f1ccaffeabc0806fca308d06c.svg" alt="\(gN = Ng\)" style="height:0.962em;vertical-align:-0.212em"> for all <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em">. Also
+<img class="m" src="m/4e0b202ead46668622d2e444f10f9693e8ca829d.svg" alt="\(H = \langle b\rangle\)" style="height:1.096em;vertical-align:-0.274em"> meets <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> trivially, by orders, and
+<img class="m" src="m/7640b8ec38bbd05839126ab74576a8594aa132fd.svg" alt="\(NH\)" style="height:0.749em;vertical-align:-0.000em"> has <img class="m" src="m/434bfb023448410851eb3474023547db52d739ee.svg" alt="\(2p\)" style="height:0.919em;vertical-align:-0.211em"> elements, so <img class="m" src="m/dea7ad3f17c4ef2e92845eca606864c7df8d341e.svg" alt="\(NH = G\)" style="height:0.749em;vertical-align:-0.000em">. The recognition theorem gives
+<img class="m" src="m/f84773679bec844470d91123a3f379226cce6e73.svg" alt="\(G \iso N \rtimes_{\theta} H\)" style="height:0.913em;vertical-align:-0.164em">, and <img class="m" src="m/807c2eeadc65caa345d8f7f2fd8b67141a7f25a4.svg" alt="\(\theta(b)\)" style="height:1.096em;vertical-align:-0.274em"> is an automorphism of
+<img class="m" src="m/56e9b8100eb9ec21289fca81c210c7295382cf96.svg" alt="\(\Z/p\Z\)" style="height:1.096em;vertical-align:-0.274em"> of order dividing <img class="m" src="m/682209d80cc07f86795f987ad28681d443268af8.svg" alt="\(2\)" style="height:0.706em;vertical-align:-0.000em">, so <img class="m" src="m/4297eff19e2a11034f18b06b55bf121518382bc5.svg" alt="\(a \mapsto a\)" style="height:0.472em;vertical-align:-0.000em"> or
+<img class="m" src="m/8ad155ecb730d0ea6795052b6fd1512acdc12025.svg" alt="\(a \mapsto a^{-1}\)" style="height:0.892em;vertical-align:-0.000em">. The first case makes the product direct, and then
+<img class="m" src="m/b6eebf8d24c4287536f88be59ee8c44dc77956a4.svg" alt="\(ab\)" style="height:0.761em;vertical-align:-0.000em"> has order <img class="m" src="m/434bfb023448410851eb3474023547db52d739ee.svg" alt="\(2p\)" style="height:0.919em;vertical-align:-0.211em">, so <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> is cyclic; the second is the dihedral
+group.
+</p>
+
+</div>
+
+<div class="remark" id="orgfdbd988">
+<p>
+The two cases are genuinely different groups with the same normal
+subgroup and the same quotient, which is the point: an extension is not
+determined by its ends. Classifying all the ways of assembling <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> and
+<img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> &#x2013; including those with no complementary subgroup at all, so not
+semidirect &#x2013; is the subject of group cohomology.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="composition-series-jordan-holder-and-solvable-groups.html"><span>← previous</span>Composition series, Jordan-Holder and solvable groups</a><a rel="next" href="free-groups-and-presentations.html"><span>next →</span>Free groups and presentations</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--group-theory.pdf" title="PDF manual">Group Theory</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

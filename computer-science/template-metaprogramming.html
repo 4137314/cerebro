@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Template metaprogramming · Computer Science</title>
+<meta name="description" content="Template instantiation is a functional language evaluated by the compiler: recursion is a template that refers to itself, the base case is a specialisation, conditionals are partial specialisations; values and types are computed at compile time, and the mechanism is Turing complete.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/template-metaprogramming.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Template metaprogramming · Computer Science">
+<meta property="og:description" content="Template instantiation is a functional language evaluated by the compiler: recursion is a template that refers to itself, the base case is a specialisation, conditionals are partial specialisations; values and types are computed at compile time, and the mechanism is Turing complete.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/template-metaprogramming.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--generic-programming">Generic Programming</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Programming · Generic Programming</p>
+<h1>Template metaprogramming</h1>
+<p class="summary">Template instantiation is a functional language evaluated by the compiler: recursion is a template that refers to itself, the base case is a specialisation, conditionals are partial specialisations; values and types are computed at compile time, and the mechanism is Turing complete.</p>
+<p class="rel"><span>needs</span> <a href="cpp-templates.html">C++ templates</a></p>
+<p class="rel"><span>see also</span> <a href="bitset.html">std::bitset</a>, <a href="big-o-complexity.html">Computational complexity and big-O</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li><li><a href="generic-programming.html">Generic programming</a></li><li><a href="cpp-templates.html">C++ templates</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orge8c1c57" class="outline-2">
+<h2 id="orge8c1c57">Construction</h2>
+<div class="outline-text-2" id="text-orge8c1c57">
+<p>
+No assignment exists — a type is defined once and for ever — so computation is recursive.
+</p>
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="k">template</span> &lt;<span class="t">unsigned</span> <span class="v">n</span>&gt;
+<span class="k">struct</span> <span class="t">factorial</span> { <span class="k">enum</span> { <span class="v">value</span> = n * <span class="n">factorial</span>&lt;n - 1&gt;::value }; };
+<span class="k">template</span> &lt;&gt;           <span class="k">struct</span> <span class="t">factorial</span>&lt;0&gt; { <span class="k">enum</span> { <span class="v">value</span> = 1 }; };   <span class="c">// base case
+</span>static_assert(<span class="n">factorial</span>&lt;7&gt;::value == 5040);
+
+<span class="k">template</span> &lt;<span class="t">bool</span> <span class="v">c</span>, <span class="k">class</span> <span class="t">Then</span>, <span class="k">class</span> <span class="t">Else</span>&gt; <span class="k">struct</span> <span class="t">IF</span> { <span class="k">using</span> <span class="t">RET</span> = Then; };
+<span class="k">template</span> &lt;<span class="k">class</span> <span class="t">Then</span>, <span class="k">class</span> <span class="t">Else</span>&gt;
+<span class="k">struct</span> <span class="t">IF</span>&lt;<span class="n">false</span>, <span class="t">Then</span>, <span class="t">Else</span>&gt; { <span class="k">using</span> <span class="t">RET</span> = Else; };
+<span class="n">IF</span>&lt;(<span class="k">sizeof</span>(<span class="t">int</span>) &lt; <span class="k">sizeof</span>(<span class="t">long</span>)), <span class="t">long</span>, <span class="t">int</span>&gt;::<span class="t">RET</span> <span class="v">i</span>;   <span class="c">// the larger type
+</span>
+<span class="c">// Accumulate&lt;n, F&gt; = F&lt;0&gt; + F&lt;1&gt; + ... + F&lt;n&gt;: a higher-order function
+</span><span class="k">template</span> &lt;<span class="t">int</span> <span class="v">n</span>, <span class="k">template</span> &lt;<span class="t">int</span>&gt; <span class="k">class</span> <span class="t">F</span>&gt;
+<span class="k">struct</span> <span class="t">Accumulate</span> { <span class="k">enum</span> { <span class="v">RET</span> = <span class="n">Accumulate</span>&lt;n - 1, <span class="t">F</span>&gt;::RET + <span class="n">F</span>&lt;n&gt;::RET }; };
+<span class="k">template</span> &lt;<span class="k">template</span> &lt;<span class="t">int</span>&gt; <span class="k">class</span> <span class="t">F</span>&gt;
+<span class="k">struct</span> <span class="t">Accumulate</span>&lt;0, <span class="t">F</span>&gt; { <span class="k">enum</span> { <span class="v">RET</span> = <span class="n">F</span>&lt;0&gt;::RET }; };
+<span class="c">// Accumulate&lt;3,Square&gt;::RET == 14
+</span><span class="k">template</span> &lt;<span class="t">int</span> <span class="v">n</span>&gt; <span class="k">struct</span> <span class="t">Square</span> { <span class="k">enum</span> { <span class="v">RET</span> = n * n }; };</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org3edaaa0" class="outline-2">
+<h2 id="org3edaaa0">Key points</h2>
+<div class="outline-text-2" id="text-org3edaaa0">
+<ul class="org-ul">
+<li>expressions evaluated at compile time; only the instances actually used are generated (laziness);</li>
+<li>specialisation gives conditionals, deduction gives <a href="casting-instanceof.html">pattern matching</a>;</li>
+<li>templates with conditionals and recursion can simulate a Turing machine (Veldhuizen), so compile-time computation is as powerful as any;</li>
+<li>uses: move computation from run time to compile time, choose types that depend on the hardware (<code>IF&lt;...&gt;::RET</code>), generate specialised and faster code.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb568a76" class="outline-2">
+<h2 id="orgb568a76">Modern practice</h2>
+<div class="outline-text-2" id="text-orgb568a76">
+<p>
+The C++ Core Guidelines: use TMP only when needed, prefer <code>constexpr</code> functions for values (<code>constexpr unsigned fact(unsigned n) { return n ? n * fact(n - 1) : 1; }</code>), template aliases and <code>&lt;type_traits&gt;</code> for types, and C++20 concepts for constraints.
+</p>
+</div>
+</div>
+<div id="outline-container-org0efcbb7" class="outline-2">
+<h2 id="org0efcbb7">Intuition</h2>
+<div class="outline-text-2" id="text-org0efcbb7">
+<p>
+The compiler is a second computer that runs before yours; templates are how you program it.
+</p>
+</div>
+</div>
+<div id="outline-container-org2da9250" class="outline-2">
+<h2 id="org2da9250">Pitfall</h2>
+<div class="outline-text-2" id="text-org2da9250">
+<p>
+Each recursion step is an <a href="cpp-templates.html">instantiation</a>: deep recursion hits the compiler's depth limit, and compile times grow quickly.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="stl-algorithms.html"><span>← previous</span>STL algorithms</a><a rel="next" href="template-specialization.html"><span>next →</span>Template specialization, SFINAE and concepts</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--generic-programming.pdf" title="PDF manual">Generic Programming</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

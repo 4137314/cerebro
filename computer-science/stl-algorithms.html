@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STL algorithms · Computer Science</title>
+<meta name="description" content="&lt;algorithm&gt; and &lt;numeric&gt; provide generic functions over iterator ranges — sort, find_if, count_if, transform, accumulate, binary_search — customised by predicates and comparators passed as functions, functors or lambdas.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/stl-algorithms.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="STL algorithms · Computer Science">
+<meta property="og:description" content="&lt;algorithm&gt; and &lt;numeric&gt; provide generic functions over iterator ranges — sort, find_if, count_if, transform, accumulate, binary_search — customised by predicates and comparators passed as functions, functors or lambdas.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/stl-algorithms.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--generic-programming">Generic Programming</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Programming · Generic Programming</p>
+<h1>STL algorithms</h1>
+<p class="summary"><code>&lt;algorithm&gt;</code> and <code>&lt;numeric&gt;</code> provide generic functions over iterator ranges — <code>sort</code>, <code>find_if</code>, <code>count_if</code>, <code>transform</code>, <code>accumulate</code>, <code>binary_search</code> — customised by predicates and comparators passed as functions, functors or lambdas.</p>
+<p class="rel"><span>needs</span> <a href="stl-iterators.html">Iterators</a>, <a href="function-objects.html">Function pointers and function objects</a></p>
+<p class="rel"><span>see also</span> <a href="lambda-expressions.html">Lambda expressions</a>, <a href="comparable-comparator.html">Comparable and Comparator</a>, <a href="big-o-complexity.html">Computational complexity and big-O</a></p>
+<p class="rel"><span>mentioned in</span> <a href="java-streams.html">Java streams and method references</a>, <a href="condition-variable.html">Condition variables and the producer–consumer problem</a></p>
+<details class="path"><summary>Learning path: 15 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li><li><a href="method-overloading.html">Overloading</a></li><li><a href="pointers-references.html">Pointers, references and dynamic memory in C++</a></li><li><a href="cpp-special-members.html">Special member functions and RAII</a></li><li><a href="generic-programming.html">Generic programming</a></li><li><a href="cpp-templates.html">C++ templates</a></li><li><a href="operator-overloading.html">Operator overloading in C++</a></li><li><a href="function-objects.html">Function pointers and function objects</a></li><li><a href="stl-containers.html">STL containers</a></li><li><a href="stl-iterators.html">Iterators</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgd8c4ede" class="outline-2">
+<h2 id="orgd8c4ede">Method</h2>
+<div class="outline-text-2" id="text-orgd8c4ede">
+<p>
+An algorithm takes a range <code>[first, last)</code> and, optionally, a callable:
+</p>
+<ul class="org-ul">
+<li>non-modifying: <code>find</code>, <code>find_if</code>, <code>count</code>, <code>count_if</code>, <code>for_each</code>, <code>equal</code>, <code>min_element</code>;</li>
+<li>modifying: <code>copy</code>, <code>transform</code>, <code>replace_if</code>, <code>remove_if</code> (moves the kept elements forward, then <code>erase</code>), <code>reverse</code>;</li>
+<li>sorting and searching: <code>sort</code> (random access, <img class="m" src="m/97e1e39e776ec7a09228b9dbb54c0b49d831e225.svg" alt="\(O(n\log n)\)" style="height:1.096em;vertical-align:-0.274em">), <code>stable_sort</code>, <code>partial_sort</code>, <code>binary_search=/=lower_bound</code> on sorted ranges in <img class="m" src="m/66ddf3bcf31dc141ffc1f3be703fe5e8f1db2803.svg" alt="\(O(\log n)\)" style="height:1.096em;vertical-align:-0.274em">;</li>
+<li>numeric: <code>accumulate</code>, <code>inner_product</code>, <code>iota</code>.</li>
+</ul>
+<p>
+A comparator must be a strict weak ordering: <code>comp(a, b)</code> true when <img class="m" src="m/36ad57d0b9b05e12447762c553bda3a072bc992d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> goes before <img class="m" src="m/9a9e478ff943a309ecb17df71ac414cc09c1be96.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orge989cd0" class="outline-2">
+<h2 id="orge989cd0">Example: a ranking</h2>
+<div class="outline-text-2" id="text-orge989cd0">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="k">struct</span> <span class="t">Entry</span> { <span class="n">std</span>::<span class="t">string</span> <span class="v">name</span>; <span class="t">int</span> <span class="v">points</span>; };
+<span class="n">std</span>::<span class="t">vector</span>&lt;<span class="t">Entry</span>&gt; <span class="v">r</span> = {{<span class="s">"Giovanna"</span>, 7}, {<span class="s">"Franco"</span>, 9}, {<span class="s">"Carla"</span>, 9}};
+<span class="n">std</span>::stable_sort(r.begin(), r.end(),
+                 [](<span class="k">const</span> <span class="t">Entry</span>&amp; <span class="v">a</span>, <span class="k">const</span> <span class="t">Entry</span>&amp; <span class="v">b</span>) {
+                                    <span class="k">return</span> a.points &gt; b.points;
+                                  });
+<span class="k">auto</span> <span class="v">n</span> = <span class="n">std</span>::count_if(r.begin(), r.end(),
+                       [](<span class="k">const</span> <span class="t">Entry</span>&amp; <span class="v">e</span>) { <span class="k">return</span> e.points &gt;= 8; });
+<span class="t">int</span> <span class="v">total</span> = <span class="n">std</span>::accumulate(r.begin(), r.end(), 0,
+                            [](<span class="t">int</span> <span class="v">s</span>, <span class="k">const</span> <span class="t">Entry</span>&amp; <span class="v">e</span>) { <span class="k">return</span> s + e.points; });</code></pre></figure>
+<p>
+<code>stable_sort</code> keeps Franco before Carla (equal points, original order).
+</p>
+</div>
+</div>
+<div id="outline-container-org4804f30" class="outline-2">
+<h2 id="org4804f30">Intuition</h2>
+<div class="outline-text-2" id="text-org4804f30">
+<p>
+Write the loop once, correctly, in the library; say only what differs (the predicate) at the call site.
+</p>
+</div>
+</div>
+<div id="outline-container-org7b51d03" class="outline-2">
+<h2 id="org7b51d03">Pitfall</h2>
+<div class="outline-text-2" id="text-org7b51d03">
+<p>
+<code>std::sort</code> needs random-access <a href="stl-iterators.html">iterators</a>, so it does not work on <code>std::list</code>, which has its own member <code>l.sort()</code>. <code>remove_if</code> does not change the size of the container.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="stl-iterators.html"><span>← previous</span>Iterators</a><a rel="next" href="template-metaprogramming.html"><span>next →</span>Template metaprogramming</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--generic-programming.pdf" title="PDF manual">Generic Programming</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

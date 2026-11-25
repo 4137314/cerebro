@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Impedance and the symbolic method · Physics</title>
+<meta name="description" content="With phasors, Z_R=R, Z_L=j\omega L, Z_C=\frac{1}{j\omega C}; impedances combine like resistances (series add, parallel admittances add), all DC theorems hold, and a network function H(j\omega)=\mathbf V_{out}/\mathbf V_{in} describes the circuit; RLC resonance at \omega_0=1/\sqrt{LC} with Q=\omega_…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/impedance-and-ac-circuit-analysis.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Impedance and the symbolic method · Physics">
+<meta property="og:description" content="With phasors, Z_R=R, Z_L=j\omega L, Z_C=\frac{1}{j\omega C}; impedances combine like resistances (series add, parallel admittances add), all DC theorems hold, and a network function H(j\omega)=\mathbf V_{out}/\mathbf V_{in} describes the circuit; RLC resonance at \omega_0=1/\sqrt{LC} with Q=\omega_…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/impedance-and-ac-circuit-analysis.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-circuits">Circuits</a> / <a rel="up" href="index.html#a-circuits--ac-circuits">Ac Circuits</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Circuits · Ac Circuits</p>
+<h1>Impedance and the symbolic method</h1>
+<p class="summary">With phasors, <img class="m" src="m/c81e63c964e370eaf6aeb73399716c5f13fc7e13.svg" alt="\(Z_R=R\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/fa77dfd16c98f5c83b368d646f1a5952af275dcf.svg" alt="\(Z_L=j\omega L\)" style="height:0.962em;vertical-align:-0.212em">, <img class="m" src="m/9efaa7ecc06497acf1ee7a4a1ffc365dda0bc433.svg" alt="\(Z_C=\frac{1}{j\omega C}\)" style="height:1.453em;vertical-align:-0.523em">; impedances combine like resistances (series add, parallel admittances add), all DC theorems hold, and a network function <img class="m" src="m/af5508b81f1db5cc22ac0d2e3dd39843c275403a.svg" alt="\(H(j\omega)=\mathbf V_{out}/\mathbf V_{in}\)" style="height:1.096em;vertical-align:-0.274em"> describes the circuit; RLC resonance at <img class="m" src="m/bda72d77ec28fad61cd11cad844f49e5d74f0db5.svg" alt="\(\omega_0=1/\sqrt{LC}\)" style="height:1.289em;vertical-align:-0.271em"> with <img class="m" src="m/ced20530cf89ae19fa539535c12ffdc3ca73b5c7.svg" alt="\(Q=\omega_0L/R\)" style="height:1.096em;vertical-align:-0.274em"> (series) and bandwidth <img class="m" src="m/fbdee301d2fc2430f0ec2eddebc678dfe378bb5e.svg" alt="\(\omega_0/Q\)" style="height:1.096em;vertical-align:-0.274em">.</p>
+<p class="rel"><span>needs</span> <a href="complex-numbers-and-phasors.html">Complex numbers and phasors</a></p>
+<p class="rel"><span>unlocks</span> <a href="ac-power-and-power-factor.html">AC power and power factor</a>, <a href="frequency-response-and-filters.html">Frequency response, Bode plots and filters</a>, <a href="transformer.html">The transformer</a></p>
+<p class="rel"><span>see also</span> <a href="frequency-response-and-filters.html">Frequency response, Bode plots and filters</a>, <a href="smith-chart-and-impedance-matching.html">The Smith chart and impedance matching</a>, <a href="transmission-lines.html">Transmission lines</a></p>
+<details class="path"><summary>Learning path: 10 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="circuits.html">Circuit theory: the map of the subject</a></li><li><a href="kirchhoff-laws-and-network-theorems.html">Kirchhoff's laws and network theorems</a></li><li><a href="lti-systems-and-convolution.html">LTI systems, impulse response and first/second-order circuits</a></li><li><a href="complex-numbers-and-phasors.html">Complex numbers and phasors</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org010ffc8" class="outline-2">
+<h2 id="org010ffc8">Method</h2>
+<div class="outline-text-2" id="text-org010ffc8">
+<ol class="org-ol">
+<li>Draw the phasor circuit: each element → impedance <span class="cite">(<a class="ref" href="references.html#ref-steinmetz1893" data-full="C. P. Steinmetz, “Complex quantities and their use in electrical engineering”, Proceedings of the International Electrical Congress, Chicago, 640–648 (1893)." aria-label="C. P. Steinmetz, “Complex quantities and their use in electrical engineering”, Proceedings of the International Electrical Congress, Chicago, 640–648 (1893).">Steinmetz 1893</a>)</span>.</li>
+<li>Apply series/parallel reduction, dividers, nodal or mesh analysis, Thévenin — exactly as for resistors, with complex arithmetic.</li>
+<li>Network function <img class="m" src="m/f5a40429a2c2d4df230a3893da8ff587914bd507.svg" alt="\(H(j\omega)\)" style="height:1.096em;vertical-align:-0.274em">: magnitude = gain, argument = phase shift.</li>
+</ol>
+<p>
+Admittance <img class="m" src="m/55ce269a672fda178ca7b9a7f7403b836c3f995c.svg" alt="\(Y=1/Z=G+jB\)" style="height:1.096em;vertical-align:-0.274em">. <img class="m" src="m/da29ba495c2d09c672bd0be96965d5496c744c25.svg" alt="\(Z=R+jX\)" style="height:0.962em;vertical-align:-0.212em">: <img class="m" src="m/aa2f930438a41db5727e022f9800a0227815086d.svg" alt="\(X&gt;0\)" style="height:0.792em;vertical-align:-0.040em"> inductive (current lags), <img class="m" src="m/9425a09a050985a20239537a1b93ee2870da8690.svg" alt="\(X&lt;0\)" style="height:0.792em;vertical-align:-0.040em"> capacitive (current leads).
+</p>
+</div>
+</div>
+<div id="outline-container-org7a0400d" class="outline-2">
+<h2 id="org7a0400d">Resonance</h2>
+<div class="outline-text-2" id="text-org7a0400d">
+<p>
+Series RLC: <img class="m" src="m/fa69c269ebcdc24097633cf7ee941d675ba4936e.svg" alt="\(Z=R+j(\omega L-\frac1{\omega C})\)" style="height:1.304em;vertical-align:-0.378em">, minimum <img class="m" src="m/951104ca2f2a91a5c999a2857098bd39c0abec21.svg" alt="\(|Z|=R\)" style="height:1.096em;vertical-align:-0.274em"> at <img class="m" src="m/73a6e99c9a8d1d8eefab003d16bb599ab2c6f12d.svg" alt="\(\omega_0\)" style="height:0.636em;vertical-align:-0.165em">; voltages across <img class="m" src="m/eb0200e826c9a3cb1998e695fad1695c59dd0eb3.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/3e74ecac7a2e702d99fd47d620503b09985dd12f.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> are <img class="m" src="m/bacb144e40b701a8ee522e840210fcde663b0d8c.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> times the source. Parallel RLC: maximum impedance <img class="m" src="m/462be1156f106ccb2bd073436a86dc7d0df95c1f.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> at <img class="m" src="m/73a6e99c9a8d1d8eefab003d16bb599ab2c6f12d.svg" alt="\(\omega_0\)" style="height:0.636em;vertical-align:-0.165em">, <img class="m" src="m/b46232a8d06ed510536d829104e603de650deea3.svg" alt="\(Q=R/\omega_0L\)" style="height:1.096em;vertical-align:-0.274em">. Half-power bandwidth <img class="m" src="m/7d744d50fa7978b6d914fbf5d6c56754c13dd522.svg" alt="\(\Delta\omega=\omega_0/Q\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org380e47b" class="outline-2">
+<h2 id="org380e47b">Worked example</h2>
+<div class="outline-text-2" id="text-org380e47b">
+<p>
+Series <img class="m" src="m/05305553174f96e161546b245ab99bae3fa65c6b.svg" alt="\(R=10\)" style="height:0.749em;vertical-align:-0.000em"> Ω, <img class="m" src="m/6630aed1c3d63cffc10e02bea9795edcb6a4d5e3.svg" alt="\(L=10\)" style="height:0.749em;vertical-align:-0.000em"> mH, <img class="m" src="m/94ed8e8c13bdc75e27259cf020840daf808787f4.svg" alt="\(C=1\)" style="height:0.749em;vertical-align:-0.000em"> µF, source 1 V: <img class="m" src="m/f607f473bb0932074ccd7cee6e5514b5f6d8af2e.svg" alt="\(\omega_0=10^4\)" style="height:1.056em;vertical-align:-0.169em"> rad/s (1.59 kHz), <img class="m" src="m/40820d65cde81c15225b64383b147c4d647b233e.svg" alt="\(Q=\frac{10^4\cdot0.01}{10}=10\)" style="height:1.493em;vertical-align:-0.373em">, bandwidth 159 Hz. At resonance <img class="m" src="m/541c3d7046caf6bd27d8f75c747b7b973c8cd51f.svg" alt="\(I=0.1\)" style="height:0.749em;vertical-align:-0.000em"> A and <img class="m" src="m/490358fb9cb32e0c98b6101b73a0a461c3e1882d.svg" alt="\(|V_L|=|V_C|=\omega_0LI=10\)" style="height:1.096em;vertical-align:-0.274em"> V — ten times the source.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbde605d" class="outline-2">
+<h2 id="orgbde605d">Engineering applications</h2>
+<div class="outline-text-2" id="text-orgbde605d">
+<p>
+Tuned circuits in radios and oscillators, impedance of decoupling networks, sensor excitation, <a href="smith-chart-and-impedance-matching.html">matching networks</a>, power-factor correction (<a href="ac-power-and-power-factor.html">AC power</a>), LC filters in switching converters.
+</p>
+</div>
+</div>
+<div id="outline-container-org9092082" class="outline-2">
+<h2 id="org9092082">Pitfall</h2>
+<div class="outline-text-2" id="text-org9092082">
+<p>
+At resonance the source sees a pure resistance, but element voltages (series) or currents (parallel) can be dangerously large: component ratings must consider <img class="m" src="m/bacb144e40b701a8ee522e840210fcde663b0d8c.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em">.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="complex-numbers-and-phasors.html"><span>← previous</span>Complex numbers and phasors</a><a rel="next" href="ac-power-and-power-factor.html"><span>next →</span>AC power and power factor</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/circuits--ac-circuits.pdf" title="PDF manual">Ac Circuits</a> · <a class="pdf" href="pdf/circuits.pdf" title="PDF manual">Circuits</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

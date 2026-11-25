@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Riemann integral · Mathematics</title>
+<meta name="description" content="The integral is defined by squeezing: approximate the area from below and from above, and call the function integrable when the two approximations meet. Nothing about the definition presumes continuity; that hypothesis enters only to prove that they do meet.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-riemann-integral.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The Riemann integral · Mathematics">
+<meta property="og:description" content="The integral is defined by squeezing: approximate the area from below and from above, and call the function integrable when the two approximations meet. Nothing about the definition presumes continuity; that hypothesis enters only to prove that they do meet.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-riemann-integral.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Real Analysis</p>
+<h1>The Riemann integral</h1>
+<p class="summary">The integral is defined by squeezing: approximate the area from below and from above, and call the function integrable when the two approximations meet. Nothing about the definition presumes continuity; that hypothesis enters only to prove that they do meet.</p>
+<p class="rel"><span>needs</span> <a href="supremum-and-infimum.html">Supremum and infimum</a>, <a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></p>
+<p class="rel"><span>unlocks</span> <a href="integration-by-parts-and-substitution.html">Integration by parts and substitution</a>, <a href="line-integrals-exact-forms-and-greens-theorem.html">Line integrals, exact forms and Green's theorem</a>, <a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a>, <a href="monotone-functions-are-integrable-and-the-mean-value-theorem-for-integrals.html">Monotone functions are integrable, and the mean value theorem for integrals</a>, <a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a>, <a href="surface-integrals-the-divergence-theorem-and-stokes-theorem.html">Surface integrals, the divergence theorem and Stokes' theorem</a>, <a href="the-fundamental-theorem-of-calculus.html">The fundamental theorem of calculus</a>, <a href="complex-integration-and-cauchys-theorem.html">Complex integration and Cauchy's theorem</a>, <a href="regular-curves-arc-length-and-curvature.html">Regular curves, arc length and curvature</a>, <a href="the-action-functional-and-the-first-variation.html">The action functional and the first variation</a></p>
+<p class="rel"><span>mentioned in</span> <a href="analysis.html">Analysis</a>, <a href="real-analysis.html">Real analysis</a>, <a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org80820bf">
+<p>
+A <i>partition</i> of <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em"> is a finite set
+<img class="m" src="m/4790abf06f56ed4aaa2acb5833544988e022356a.svg" alt="\(P = \set{x_{0}, \dots, x_{n}}\)" style="height:1.096em;vertical-align:-0.274em"> with
+<img class="m" src="m/8d5f88b345824adc0f0433bb63926a95dbd7a4b5.svg" alt="\(a = x_{0} &lt; x_{1} &lt; \cdots &lt; x_{n} = b\)" style="height:0.925em;vertical-align:-0.167em">. A partition <img class="m" src="m/15a1c339afca40eed9f6845da647b713fa20e5dd.svg" alt="\(P'\)" style="height:0.824em;vertical-align:-0.000em"> <i>refines</i>
+<img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> if <img class="m" src="m/1e291ad6fefcb43a47e77534159304cdd55dc421.svg" alt="\(P \subseteq P'\)" style="height:0.973em;vertical-align:-0.146em">.
+</p>
+
+</div>
+
+<div class="definition" id="org48c1ab4">
+<p>
+Let <img class="m" src="m/ea7523ee0e750ece60b78b197c477d8b9d00d721.svg" alt="\(f \colon [a,b] \to \R\)" style="height:1.096em;vertical-align:-0.274em"> be bounded and <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> a partition. Writing
+<img class="m" src="m/cc362aa70bf58e79bb3b1274b370c2947baec8cd.svg" alt="\(m_{i} = \inf_{[x_{i-1}, x_{i}]} f\)" style="height:1.160em;vertical-align:-0.394em"> and
+<img class="m" src="m/8d2d6ea2dddc4216dfc1f0692bae89025a6373d8.svg" alt="\(M_{i} = \sup_{[x_{i-1}, x_{i}]} f\)" style="height:1.230em;vertical-align:-0.467em">, the <i>lower</i> and <i>upper Darboux
+sums</i> of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> over <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> are
+<div class="mb"><img class="m" src="m/421c05c299944ca5affcb07843f251bb444bb8f9.svg" alt="\[ L(f, P) = \sum_{i=1}^{n} m_{i}(x_{i} - x_{i-1}), \qquad U(f, P) = \sum_{i=1}^{n} M_{i}(x_{i} - x_{i-1}). \]" style="width:29.975em"></div>
+Refining a partition increases <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> and decreases <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">, so every lower
+sum is at most every upper sum.
+</p>
+
+</div>
+
+<div class="definition" id="orgc1c0f00">
+<p>
+The <i>lower</i> and <i>upper integrals</i> of a bounded
+<img class="m" src="m/ea7523ee0e750ece60b78b197c477d8b9d00d721.svg" alt="\(f \colon [a,b] \to \R\)" style="height:1.096em;vertical-align:-0.274em"> are <img class="m" src="m/fc4b27f98f0c050e16805ad47145b0679f5dc92d.svg" alt="\(\underline{I}(f) = \sup_{P} L(f,P)\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/11a83b50a025e9d71cc40fa993a10dd46cc9055a.svg" alt="\(\overline{I}(f) = \inf_{P} U(f,P)\)" style="height:1.242em;vertical-align:-0.273em">; they satisfy
+<img class="m" src="m/30bf229a36eaab9f7336029459d2b7f069e47139.svg" alt="\(\underline{I}(f) \le \overline{I}(f)\)" style="height:1.242em;vertical-align:-0.273em">. The function is
+<i>Riemann integrable</i> if they are equal, and their common value is
+<img class="m" src="m/e9b66e9dbedc5e0d6ef0ddc2797155eea00f524d.svg" alt="\(\int_{a}^{b} f(x) \dd x\)" style="height:1.534em;vertical-align:-0.384em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org2835ca1">
+<p>
+A bounded <img class="m" src="m/ea7523ee0e750ece60b78b197c477d8b9d00d721.svg" alt="\(f \colon [a,b] \to \R\)" style="height:1.096em;vertical-align:-0.274em"> is Riemann integrable if and only if
+for every <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> there is a partition <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> with
+<img class="m" src="m/0c1ba22b674151d32df7805b4119f936d55ece68.svg" alt="\(U(f,P) - L(f,P) &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org5ea7b3e">
+<p>
+Suppose the condition holds and let <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em">, with <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> as given.
+Since <img class="m" src="m/7634befe2fdfe0332c3e01f405495ec55cf9e295.svg" alt="\(L(f,P) \le \underline{I}(f) \le \overline{I}(f) \le U(f,P)\)" style="height:1.242em;vertical-align:-0.273em">,
+the two integrals differ by less than <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em">; as <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em"> was
+arbitrary they are equal. Conversely, if <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is integrable with
+integral <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em">, choose by the characterisation of the supremum and the
+infimum partitions <img class="m" src="m/c602c2abfaf766d8767011fbbbf80c6e5c820aec.svg" alt="\(P_{1}, P_{2}\)" style="height:0.962em;vertical-align:-0.212em"> with <img class="m" src="m/831e68a3246a1ab5e56083c05bb89f63f4cdefbc.svg" alt="\(L(f,P_{1}) &gt; I - \eps/2\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/18ab69179000d9be39c1af1f125cd70c053eecb1.svg" alt="\(U(f,P_{2}) &lt; I + \eps/2\)" style="height:1.096em;vertical-align:-0.274em">. Their common refinement <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> satisfies
+both inequalities, hence <img class="m" src="m/0c1ba22b674151d32df7805b4119f936d55ece68.svg" alt="\(U(f,P) - L(f,P) &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org97a0197">
+<p>
+Every continuous function on <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em"> is Riemann integrable.
+</p>
+
+</div>
+
+<div class="proof" id="orgeb5a4fc">
+<p>
+Let <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em">. By the Heine&#x2013;Cantor theorem <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is uniformly
+continuous, so there is <img class="m" src="m/2834db4da57323bf6f47d0a640028cc90f572412.svg" alt="\(\delta &gt; 0\)" style="height:0.804em;vertical-align:-0.040em"> with
+<img class="m" src="m/cee0a08b3679de7500aca360299ec3aedcfd157f.svg" alt="\(\abs{f(x) - f(y)} &lt; \eps/(b-a)\)" style="height:1.096em;vertical-align:-0.274em"> whenever <img class="m" src="m/13468d6554da3c0a2aadb7ba716275a61dd78cc4.svg" alt="\(\abs{x - y} &lt; \delta\)" style="height:1.096em;vertical-align:-0.274em">.
+Take any partition <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> with all subintervals shorter than <img class="m" src="m/ae9908b1dd9140d114827a466a957908d1672568.svg" alt="\(\delta\)" style="height:0.761em;vertical-align:-0.000em">.
+On each subinterval <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> attains its supremum and infimum (extreme
+value theorem), at points less than <img class="m" src="m/ae9908b1dd9140d114827a466a957908d1672568.svg" alt="\(\delta\)" style="height:0.761em;vertical-align:-0.000em"> apart, so
+<img class="m" src="m/a5a20c769b116337ac0450ee251c9f90cf97800c.svg" alt="\(M_{i} - m_{i} \le \eps/(b-a)\)" style="height:1.096em;vertical-align:-0.274em"> and
+<div class="mb"><img class="m" src="m/f403d4116c0fbb3e2c7c8052c7d7172de217a82f.svg" alt="\[ U(f,P) - L(f,P) = \sum_{i=1}^{n} (M_{i} - m_{i})(x_{i} - x_{i-1}) \le \frac{\eps}{b-a} (b - a) = \eps. \]" style="width:31.449em"></div>
+The criterion above gives integrability.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="uniform-continuity-and-the-heine-cantor-theorem.html"><span>← previous</span>Uniform continuity and the Heine&#x2013;Cantor theorem</a><a rel="next" href="linearity-additivity-and-monotonicity-of-the-integral.html"><span>next →</span>Linearity, additivity and monotonicity of the integral</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

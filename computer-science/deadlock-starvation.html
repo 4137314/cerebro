@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deadlock and starvation · Computer Science</title>
+<meta name="description" content="A set of threads is deadlocked when each waits for a resource held by another; it needs mutual exclusion, hold-and-wait, no preemption and a circular wait at once, so breaking any one (for example, always locking in the same order) prevents it; starvation is a thread that never gets its turn.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/deadlock-starvation.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Deadlock and starvation · Computer Science">
+<meta property="og:description" content="A set of threads is deadlocked when each waits for a resource held by another; it needs mutual exclusion, hold-and-wait, no preemption and a circular wait at once, so breaking any one (for example, always locking in the same order) prevents it; starvation is a thread that never gets its turn.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/deadlock-starvation.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--concurrency">Concurrency</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Programming · Concurrency</p>
+<h1>Deadlock and starvation</h1>
+<p class="summary">A set of threads is deadlocked when each waits for a resource held by another; it needs mutual exclusion, hold-and-wait, no preemption and a circular wait at once, so breaking any one (for example, always locking in the same order) prevents it; starvation is a thread that never gets its turn.</p>
+<p class="rel"><span>needs</span> <a href="mutual-exclusion.html">Atomics and mutual exclusion</a></p>
+<p class="rel"><span>see also</span> <a href="threads-data-race.html">Threads and data races</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="threads-data-race.html">Threads and data races</a></li><li><a href="mutual-exclusion.html">Atomics and mutual exclusion</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org8e3d02e" class="outline-2">
+<h2 id="org8e3d02e">Statement</h2>
+<div class="outline-text-2" id="text-org8e3d02e">
+<p>
+Coffman's conditions: a deadlock can occur only if all four hold.
+</p>
+<ol class="org-ol">
+<li><b>Mutual exclusion</b>: a resource is held by one thread at a time.</li>
+<li><b>Hold and wait</b>: a thread holds a resource while waiting for another.</li>
+<li><b>No <a href="threads-data-race.html">preemption</a></b>: resources are released only voluntarily.</li>
+<li><b>Circular wait</b>: there is a cycle <img class="m" src="m/0ebf472378762830b337f4ca51c9a2f43df4b989.svg" alt="\(T_1\to T_2\to\dots\to T_1\)" style="height:0.913em;vertical-align:-0.164em"> of "waits for a resource held by".</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org15bd35f" class="outline-2">
+<h2 id="org15bd35f">Derivation</h2>
+<div class="outline-text-2" id="text-org15bd35f">
+<p>
+Order the mutexes globally and make every thread lock in increasing order. A cycle in the waits-for graph would need some thread to hold a higher mutex while waiting for a lower one, which the rule forbids; so condition 4 fails and no deadlock can occur. <code>std::lock(m1, m2)</code> achieves the same with a back-off algorithm.
+</p>
+</div>
+</div>
+<div id="outline-container-org8bc34b1" class="outline-2">
+<h2 id="org8bc34b1">Picture</h2>
+<div class="outline-text-2" id="text-org8bc34b1">
+<figure class="fig"><img class="m" src="m/b2ada04c316db75e9f80260777fd7ade675b36a3.svg" alt="figure" style="width:14.544em"><figcaption><span class="fl">Figure 1.</span> A deadlock: thread A holds mutex m1 and waits for m2, while B holds m2 and waits for m1, a cycle in the wait-for graph.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org0059f18" class="outline-2">
+<h2 id="org0059f18">Common causes in C++</h2>
+<div class="outline-text-2" id="text-org0059f18">
+<ul class="org-ul">
+<li>forgetting <code>unlock</code> (or an exception skipping it): use <code>lock_guard</code>;</li>
+<li>a function locking a mutex already held by its caller: <code>recursive_mutex</code> or restructure;</li>
+<li>two mutexes locked in different orders by different threads: fixed order or <code>std::lock</code>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge6b11a7" class="outline-2">
+<h2 id="orge6b11a7">Starvation</h2>
+<div class="outline-text-2" id="text-orge6b11a7">
+<p>
+A thread is <b>starved</b> when the access policy keeps postponing it indefinitely, though no deadlock exists (readers that keep a writer out). Fair queues and priorities that age prevent it. Semaphores and monitors are other classical primitives; Java gives every object a <a href="java-monitors.html">monitor</a> (<code>synchronized</code>).
+</p>
+</div>
+</div>
+<div id="outline-container-orgc824256" class="outline-2">
+<h2 id="orgc824256">Intuition</h2>
+<div class="outline-text-2" id="text-orgc824256">
+<p>
+Two cars at a narrow bridge, each waiting for the other to back up. Nobody is wrong locally; the cycle is the bug.
+</p>
+</div>
+</div>
+<div id="outline-container-org7a169d5" class="outline-2">
+<h2 id="org7a169d5">Pitfall</h2>
+<div class="outline-text-2" id="text-org7a169d5">
+<p>
+Deadlocks depend on timing: a program can run correctly a thousand times and hang on the next run.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="condition-variable.html"><span>← previous</span>Condition variables and the producer–consumer problem</a><a rel="next" href="java-monitors.html"><span>next →</span>Threads and monitors in Java</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--concurrency.pdf" title="PDF manual">Concurrency</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

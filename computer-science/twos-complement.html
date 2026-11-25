@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Binary numbers and two's complement · Computer Science</title>
+<meta name="description" content="In two's complement an n-bit word a_{n-1}\dots a_0 stands for -a_{n-1}2^{n-1}+\sum_{i&lt;n-1}a_i2^i, range [-2^{n-1},2^{n-1}-1], with a single zero; -M is obtained by inverting all bits and adding 1, so one adder both adds and subtracts (XOR on B, carry-in 1), and signed overflow happens when the last…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/twos-complement.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Binary numbers and two's complement · Computer Science">
+<meta property="og:description" content="In two's complement an n-bit word a_{n-1}\dots a_0 stands for -a_{n-1}2^{n-1}+\sum_{i&lt;n-1}a_i2^i, range [-2^{n-1},2^{n-1}-1], with a single zero; -M is obtained by inverting all bits and adding 1, so one adder both adds and subtracts (XOR on B, carry-in 1), and signed overflow happens when the last…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/twos-complement.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--arithmetic">Arithmetic</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Hardware · Arithmetic</p>
+<h1>Binary numbers and two's complement</h1>
+<p class="summary">In two's complement an <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">-bit word <img class="m" src="m/d2cc3b8e79373d7955963b7a13bebf21f63af90e.svg" alt="\(a_{n-1}\dots a_0\)" style="height:0.728em;vertical-align:-0.255em"> stands for <img class="m" src="m/c28b7e0e3ba30bd8f9f6c74b3764e736e7f4c0c0.svg" alt="\(-a_{n-1}2^{n-1}+\sum_{i&lt;n-1}a_i2^i\)" style="height:1.325em;vertical-align:-0.424em">, range <img class="m" src="m/beeb363afe35f2e42a0122513e5d48f55b139a45.svg" alt="\([-2^{n-1},2^{n-1}-1]\)" style="height:1.166em;vertical-align:-0.268em">, with a single zero; <img class="m" src="m/e6754b1ae2a6979336bdb3edfd8139afd48f2b93.svg" alt="\(-M\)" style="height:0.840em;vertical-align:-0.092em"> is obtained by inverting all bits and adding 1, so one adder both adds and subtracts (XOR on <img class="m" src="m/402f75f953bf52786bb55f1b3b80469bf2c08bf8.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">, carry-in 1), and signed overflow happens when the last two carries differ — not when the final carry is 1.</p>
+<p class="rel"><span>see also</span> <a href="ripple-carry-adder.html">Full adder and ripple-carry adder</a>, <a href="fixed-point-arithmetic.html">Fixed-point arithmetic</a>, <a href="alu-design.html">Arithmetic logic unit</a>, <a href="magnitude-comparator.html">Iterative magnitude comparator</a>, <a href="bcd-adder.html">BCD adder</a></p>
+</header>
+<main class="note">
+<div id="outline-container-org9e6c9ce" class="outline-2">
+<h2 id="org9e6c9ce">Definition</h2>
+<div class="outline-text-2" id="text-org9e6c9ce">
+<p>
+Positional base 2: <img class="m" src="m/edada74025143fdafe124daf270ffa6d06edc05a.svg" alt="\(101101.101_2=32+8+4+1+0.5+0.125=45.625\)" style="height:0.871em;vertical-align:-0.165em">. <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> bits distinguish <img class="m" src="m/c26a7f26d15dab5c1c6e5096f2fb7c0c2fafc477.svg" alt="\(2^n\)" style="height:0.728em;vertical-align:-0.000em"> values; <img class="m" src="m/f19d00b567f03ea93981f37f632ec605b342d3f5.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> values need <img class="m" src="m/885557a713a773b3fb494da9d1ba0d4fa7beb593.svg" alt="\(\lceil\log_2v\rceil\)" style="height:1.096em;vertical-align:-0.274em"> bits.
+</p>
+<ul class="org-ul">
+<li><b>Unsigned</b>: <img class="m" src="m/df8bb1187e760918d1f354f66ad2efea6a894aa6.svg" alt="\(0\dots2^n-1\)" style="height:0.819em;vertical-align:-0.090em">; overflow = carry out <img class="m" src="m/ec9cf1bd88fddfc9337ba33f8f87e146ab1d655d.svg" alt="\(c_n=1\)" style="height:0.871em;vertical-align:-0.165em"> (e.g. 4 bits: <img class="m" src="m/33c6da2362d844148510ccc64c591035bd7921b2.svg" alt="\(12+7=19=1\,0011_2\)" style="height:0.871em;vertical-align:-0.165em">, the result shows 3, the carry is worth 16).</li>
+<li><b>Sign and magnitude</b>: one sign bit; two zeros, and subtraction needs its own circuit.</li>
+<li><b>Two's complement</b>: <img class="m" src="m/e6754b1ae2a6979336bdb3edfd8139afd48f2b93.svg" alt="\(-M\)" style="height:0.840em;vertical-align:-0.092em"> is coded as <img class="m" src="m/2ef0c876f3275db8f5c53220d59a660a52dcb0aa.svg" alt="\(2^n-M\)" style="height:0.840em;vertical-align:-0.092em">. Weights <img class="m" src="m/e5676a18efecce08d086b4aab5cafab7a7e6c349.svg" alt="\(-2^{n-1},2^{n-2},\dots,1\)" style="height:1.105em;vertical-align:-0.210em">: the MSB is the sign. Range <img class="m" src="m/beeb363afe35f2e42a0122513e5d48f55b139a45.svg" alt="\([-2^{n-1},2^{n-1}-1]\)" style="height:1.166em;vertical-align:-0.268em">: 4 bits <img class="m" src="m/599cdcebd05889ea26bba48e528b6856303ea9a8.svg" alt="\([-8,7]\)" style="height:1.096em;vertical-align:-0.274em">, 8 bits <img class="m" src="m/b8125f85d2a5ff035d777dc28bdf31190e07f2e6.svg" alt="\([-128,127]\)" style="height:1.096em;vertical-align:-0.274em">, 32 bits <img class="m" src="m/ab91ca25ff7f89ce7d491abccab8e0dd83227a43.svg" alt="\([-2\,147\,483\,648,\;2\,147\,483\,647]\)" style="height:1.096em;vertical-align:-0.274em">.</li>
+</ul>
+<p>
+Computing it: <img class="m" src="m/dbe993a327804d3c0c27125ebd01e2129f38d313.svg" alt="\(2^n-M=(2^n-1-M)+1\)" style="height:1.096em;vertical-align:-0.274em">; <img class="m" src="m/0c59a239ed5a2a3a045387195191b270fef0aef6.svg" alt="\(2^n-1\)" style="height:0.819em;vertical-align:-0.090em"> is all ones, so <img class="m" src="m/78b243b6f9a45a65831246fad8ba0b872893594a.svg" alt="\(2^n-1-M\)" style="height:0.840em;vertical-align:-0.092em"> (<b>one's complement</b>) is <img class="m" src="m/2e95cf34f5cd6be7d74c19f235ad667de160b4a6.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> with every bit inverted. Example: <img class="m" src="m/3a870f2068ab9396ee3e2a517d4aaddaa548f931.svg" alt="\(5=0101\to1010\to1011=-5\)" style="height:0.798em;vertical-align:-0.088em">; <img class="m" src="m/5331555fe8f076a1e93bba22f975f5882b9b4d0f.svg" alt="\(12=01100\to10011\to10100=-12\)" style="height:0.798em;vertical-align:-0.088em"> (5 bits). The complement of the complement is <img class="m" src="m/2e95cf34f5cd6be7d74c19f235ad667de160b4a6.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> again.
+</p>
+</div>
+</div>
+<div id="outline-container-org5fe48a1" class="outline-2">
+<h2 id="org5fe48a1">Derivation</h2>
+<div class="outline-text-2" id="text-org5fe48a1">
+<p>
+Why the adder works unchanged: <img class="m" src="m/0e2f5dba22b60db0a99e5e8065f8a092e286cdcb.svg" alt="\(M+(-N)=M+(2^n-N)=(M-N)+2^n\)" style="height:1.096em;vertical-align:-0.274em">, and <img class="m" src="m/c26a7f26d15dab5c1c6e5096f2fb7c0c2fafc477.svg" alt="\(2^n\)" style="height:0.728em;vertical-align:-0.000em"> is the carry out of an <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">-bit adder, discarded. If <img class="m" src="m/9b349a85f629e72b5644f840b5fdc869b1b26250.svg" alt="\(M-N&lt;0\)" style="height:0.840em;vertical-align:-0.092em"> the result is left in two's complement, which is what we want.
+<b>Adder–subtractor</b>: <img class="m" src="m/dbd76a63cdcdcf496c960ef20e2aac38b6d1a7cd.svg" alt="\(A-B=A+\bar B+1\)" style="height:0.991em;vertical-align:-0.089em">. Put an XOR on each <img class="m" src="m/402f75f953bf52786bb55f1b3b80469bf2c08bf8.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> bit with control <img class="m" src="m/badb79e5a1238f4dea1374c039cd390f684c7a32.svg" alt="\(\mathit{sub}\)" style="height:0.761em;vertical-align:-0.000em"> (<img class="m" src="m/63fafd3cbfb614c95462e8485b8acbee924a0c12.svg" alt="\(b_i\oplus\mathit{sub}\)" style="height:0.925em;vertical-align:-0.167em"> = <img class="m" src="m/cef4aabe29d9037f88ec469d16c6176a2f51340e.svg" alt="\(b_i\)" style="height:0.925em;vertical-align:-0.167em"> or <img class="m" src="m/7017a633516535d7017435ee93b01ae2f9ea1cb6.svg" alt="\(\bar b_i\)" style="height:1.076em;vertical-align:-0.161em">) and feed <img class="m" src="m/e8a60fcd1258f41a3db3851e887958b497dc0c74.svg" alt="\(c_0=\mathit{sub}\)" style="height:0.925em;vertical-align:-0.167em">.
+<b>Signed overflow</b>: two positives give a negative, or two negatives a positive (operands of different sign never overflow). Equivalently <img class="m" src="m/9af59713dfcef9d683dd13f1adf996e6426a8569.svg" alt="\(V=c_n\oplus c_{n-1}\)" style="height:1.005em;vertical-align:-0.251em">: the carry into the sign bit differs from the carry out of it.
+<b>Sign extension</b>: to widen, copy the MSB: <img class="m" src="m/aa1410d21d472d8023e5c97b4d5976c65696ea6b.svg" alt="\(1011\)" style="height:0.706em;vertical-align:-0.000em"> (<img class="m" src="m/4487877dfe768b65561d8f40a078249d9940b11e.svg" alt="\(-5\)" style="height:0.798em;vertical-align:-0.088em">) → <img class="m" src="m/fd498a6ed07aa0531a0ed4a30446ea6b108167d7.svg" alt="\(1111\,1011\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgff84a49" class="outline-2">
+<h2 id="orgff84a49">Example</h2>
+<div class="outline-text-2" id="text-orgff84a49">
+<p>
+4 bits.
+</p>
+<ul class="org-ul">
+<li><img class="m" src="m/af6b590c1487ade3ae6091dcd1e655ae2b7300a8.svg" alt="\(5+4\)" style="height:0.798em;vertical-align:-0.088em">: <img class="m" src="m/8239ffef498fc13151c99b5ad6143626481dbcbd.svg" alt="\(0101+0100=1001\)" style="height:0.798em;vertical-align:-0.088em">, carries <img class="m" src="m/7573bb40b2a8e960fb446c3daf34c42e3973f04b.svg" alt="\(c_4=0\)" style="height:0.871em;vertical-align:-0.165em">, <img class="m" src="m/73f08745dd6a59736df3290e9ca68384db6c4be0.svg" alt="\(c_3=1\)" style="height:0.871em;vertical-align:-0.165em">: <img class="m" src="m/c11d950f0a061483e0fc13479d991bea20e37809.svg" alt="\(V=1\)" style="height:0.749em;vertical-align:-0.000em">, the result reads <img class="m" src="m/8312843c8cd8362fd948ad173959055a493523d8.svg" alt="\(-7\)" style="height:0.798em;vertical-align:-0.088em"> — overflow (9 is out of <img class="m" src="m/599cdcebd05889ea26bba48e528b6856303ea9a8.svg" alt="\([-8,7]\)" style="height:1.096em;vertical-align:-0.274em">).</li>
+<li><img class="m" src="m/b1414b060b0884fb153f0f0faa785e8c786cdac5.svg" alt="\(-3+(-2)\)" style="height:1.096em;vertical-align:-0.274em">: <img class="m" src="m/05b176797d041ed3cb5229c1c798273c384b3c5d.svg" alt="\(1101+1110=1\,1011\)" style="height:0.798em;vertical-align:-0.088em">, <img class="m" src="m/9a3c49e191b0efed76916e052bd3241cbb7ee6b2.svg" alt="\(c_4=1\)" style="height:0.871em;vertical-align:-0.165em">, <img class="m" src="m/73f08745dd6a59736df3290e9ca68384db6c4be0.svg" alt="\(c_3=1\)" style="height:0.871em;vertical-align:-0.165em">: <img class="m" src="m/dc5c0ee1e0914635de87c7b691c6fe179ed5bd70.svg" alt="\(V=0\)" style="height:0.749em;vertical-align:-0.000em">, result <img class="m" src="m/6a798b3a8cab702bcb3fc124c857b9fbcadb4bf1.svg" alt="\(1011=-5\)" style="height:0.798em;vertical-align:-0.088em">, correct even though the carry out is 1.</li>
+<li><img class="m" src="m/e8d91c551a168f480f48616c25b60aae2fd37501.svg" alt="\(7-3\)" style="height:0.798em;vertical-align:-0.088em">: <img class="m" src="m/373e2f51804b0e94d3f66adcf9dc6892e716881d.svg" alt="\(0111+1100+1=1\,0100\)" style="height:0.798em;vertical-align:-0.088em">, discard <img class="m" src="m/2cb0535c18c3e75fc99210bc8d9aab81972d80a9.svg" alt="\(c_4\)" style="height:0.636em;vertical-align:-0.165em">: <img class="m" src="m/a6fa96b9b81c9e0b41b0f292b7622c18dcb52b6c.svg" alt="\(0100=4\)" style="height:0.706em;vertical-align:-0.000em">.</li>
+<li><img class="m" src="m/953c4b6cde3842dd032c9cf66a706517e0f1fd00.svg" alt="\(3-6\)" style="height:0.798em;vertical-align:-0.088em">: <img class="m" src="m/ddc56f233b4c64c7dc5d544645d6a0472f193694.svg" alt="\(0011+1001+1=1101=-3\)" style="height:0.798em;vertical-align:-0.088em">.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org876e31b" class="outline-2">
+<h2 id="org876e31b">Intuition</h2>
+<div class="outline-text-2" id="text-org876e31b">
+<p>
+Two's complement is arithmetic on a clock face with <img class="m" src="m/c26a7f26d15dab5c1c6e5096f2fb7c0c2fafc477.svg" alt="\(2^n\)" style="height:0.728em;vertical-align:-0.000em"> hours: going back <img class="m" src="m/c9556610734f8d479d56f4a3f024509a5a0741cf.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> hours is the same as going forward <img class="m" src="m/97d75ca51e2b5964c83638162bb4085e5c98b705.svg" alt="\(2^n-N\)" style="height:0.840em;vertical-align:-0.092em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org6cafa86" class="outline-2">
+<h2 id="org6cafa86">Pitfall</h2>
+<div class="outline-text-2" id="text-org6cafa86">
+<p>
+The final carry means overflow only for unsigned numbers; for signed ones look at <img class="m" src="m/45db6af8a57aeb7671b64a63011796defd743417.svg" alt="\(c_n\oplus c_{n-1}\)" style="height:0.895em;vertical-align:-0.260em"> (or at the signs). <img class="m" src="m/4d947e191398f0a6eeff4b5e87147402f1614f74.svg" alt="\(-2^{n-1}\)" style="height:0.983em;vertical-align:-0.089em"> has no positive counterpart: negating <img class="m" src="m/5dc0b62d2d4e98b4a4fd0ee7439571aee0f38c62.svg" alt="\(1000\)" style="height:0.706em;vertical-align:-0.000em"> gives <img class="m" src="m/5dc0b62d2d4e98b4a4fd0ee7439571aee0f38c62.svg" alt="\(1000\)" style="height:0.706em;vertical-align:-0.000em"> again.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="bcd-adder.html"><span>← previous</span>BCD adder</a><a rel="next" href="serial-arithmetic.html"><span>next →</span>Bit-serial arithmetic</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--arithmetic.pdf" title="PDF manual">Arithmetic</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

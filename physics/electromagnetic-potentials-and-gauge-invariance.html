@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Electromagnetic potentials and gauge invariance · Physics</title>
+<meta name="description" content="A charge in a field has H=\frac{(\mathbf p-q\mathbf A)^2}{2m}+q\phi; a gauge change \mathbf A\to\mathbf A+\nabla\Lambda is compensated by the phase \psi\to e^{iq\Lambda/\hbar}\psi, and the potentials themselves are physical through the Aharonov–Bohm phase q\Phi/\hbar.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/electromagnetic-potentials-and-gauge-invariance.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Electromagnetic potentials and gauge invariance · Physics">
+<meta property="og:description" content="A charge in a field has H=\frac{(\mathbf p-q\mathbf A)^2}{2m}+q\phi; a gauge change \mathbf A\to\mathbf A+\nabla\Lambda is compensated by the phase \psi\to e^{iq\Lambda/\hbar}\psi, and the potentials themselves are physical through the Aharonov–Bohm phase q\Phi/\hbar.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/electromagnetic-potentials-and-gauge-invariance.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-mechanics">Quantum Mechanics</a> / <a rel="up" href="index.html#a-quantum-mechanics--dynamics">Dynamics</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Quantum Mechanics · Dynamics</p>
+<h1>Electromagnetic potentials and gauge invariance</h1>
+<p class="summary">A charge in a field has <img class="m" src="m/2187fb76fd369969975909875cf6a642c6ba526e.svg" alt="\(H=\frac{(\mathbf p-q\mathbf A)^2}{2m}+q\phi\)" style="height:1.593em;vertical-align:-0.382em">; a gauge change <img class="m" src="m/3b8de04f5b2c3dfa7640c133831b3c71eb8d3643.svg" alt="\(\mathbf A\to\mathbf A+\nabla\Lambda\)" style="height:0.843em;vertical-align:-0.093em"> is compensated by the phase <img class="m" src="m/48d7c86d5cb904709132224211080bd4abc1917b.svg" alt="\(\psi\to e^{iq\Lambda/\hbar}\psi\)" style="height:1.186em;vertical-align:-0.214em">, and the potentials themselves are physical through the Aharonov–Bohm phase <img class="m" src="m/93d23a8e0e9ce446baa2361c655be5f4cb228dd1.svg" alt="\(q\Phi/\hbar\)" style="height:1.096em;vertical-align:-0.274em">.</p>
+<p class="rel"><span>needs</span> <a href="propagator-and-path-integral.html">The propagator and Feynman's path integral</a>, <a href="potentials-and-gauges.html">Potentials, gauges and retarded potentials</a></p>
+<p class="rel"><span>unlocks</span> <a href="superconductivity-and-flux-quantization.html">Superconductivity and flux quantisation</a></p>
+<p class="rel"><span>see also</span> <a href="superconductivity-and-flux-quantization.html">Superconductivity and flux quantisation</a>, <a href="dirac-equation.html">The Dirac equation</a></p>
+<p class="rel"><span>mentioned in</span> <a href="self-adjoint-operators-and-spectral-theorem.html">Self-adjoint operators and the spectral theorem</a></p>
+<details class="path"><summary>Learning path: 18 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></li><li><a href="potentials-and-gauges.html">Potentials, gauges and retarded potentials</a></li><li><a href="propagator-and-path-integral.html">The propagator and Feynman's path integral</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org344110b" class="outline-2">
+<h2 id="org344110b">Minimal coupling</h2>
+<div class="outline-text-2" id="text-org344110b">
+<p>
+<div class="mb"><img class="m" src="m/c723e77aa46be72a102e428e8d0ed8e22e9e5845.svg" alt="\[ H=\frac{1}{2m}\left(\mathbf p-q\mathbf A\right)^2+q\phi,\qquad m\dot{\mathbf x}=\mathbf p-q\mathbf A\equiv\boldsymbol\Pi . \]" style="width:23.843em"></div>
+The kinetic momenta do not commute: <img class="m" src="m/c1358b7a1bb5fc80ec158e8dc2792f8cd30e06f4.svg" alt="\([\Pi_i,\Pi_j]=i\hbar q\,\epsilon_{ijk}B_k\)" style="height:1.135em;vertical-align:-0.318em">. The Heisenberg equations give the Lorentz force <img class="m" src="m/c53bdb8ebeecb95a135243700c93a60a89c1f586.svg" alt="\(m\ddot{\mathbf x}=q\left(\mathbf E+\tfrac12(\dot{\mathbf x}\times\mathbf B-\mathbf B\times\dot{\mathbf x})\right)\)" style="height:1.315em;vertical-align:-0.381em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgcd9da8f" class="outline-2">
+<h2 id="orgcd9da8f">Gauge invariance</h2>
+<div class="outline-text-2" id="text-orgcd9da8f">
+<p>
+Under <img class="m" src="m/3b8de04f5b2c3dfa7640c133831b3c71eb8d3643.svg" alt="\(\mathbf A\to\mathbf A+\nabla\Lambda\)" style="height:0.843em;vertical-align:-0.093em">, <img class="m" src="m/e4b579342a733750c489a02c34eb9649b6036fbe.svg" alt="\(\phi\to\phi-\partial_t\Lambda\)" style="height:0.974em;vertical-align:-0.214em"> (fields unchanged), the Schrödinger equation keeps its form if <img class="m" src="m/48d7c86d5cb904709132224211080bd4abc1917b.svg" alt="\(\psi\to e^{iq\Lambda/\hbar}\psi\)" style="height:1.186em;vertical-align:-0.214em">. Proof: <img class="m" src="m/87a730b0102ce1cc7f67c6aa324a7de6cb975459.svg" alt="\((\mathbf p-q\mathbf A-q\nabla\Lambda)e^{iq\Lambda/\hbar}\psi=e^{iq\Lambda/\hbar}(\mathbf p-q\mathbf A)\psi\)" style="height:1.247em;vertical-align:-0.274em">. Reversing the logic — demanding invariance under local phase changes — <b>requires</b> a gauge field: the principle behind <a href="quantum-electrodynamics.html">QED</a> <span class="cite">(<a class="ref" href="https://doi.org/10.1007/bf01339504" data-full="H. Weyl, “Elektron und Gravitation. I”, Zeitschrift für Physik 56, 330–352 (1929)." aria-label="H. Weyl, “Elektron und Gravitation. I”, Zeitschrift für Physik 56, 330–352 (1929).">Weyl 1929</a>)</span>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb2b617a" class="outline-2">
+<h2 id="orgb2b617a">Aharonov–Bohm effect</h2>
+<div class="outline-text-2" id="text-orgb2b617a">
+<p>
+A solenoid confines <img class="m" src="m/f1115cbf45e6f69e714a8b4fb61bc7d195478cc9.svg" alt="\(\mathbf B\)" style="height:0.752em;vertical-align:-0.000em">; outside <img class="m" src="m/4a81ba1d97b88ad1e8e5473972bdccd8cd24e817.svg" alt="\(\mathbf B=0\)" style="height:0.752em;vertical-align:-0.000em"> but <img class="m" src="m/1f63bb0c1fe683e1f44c10d1c67c5b923137e4e6.svg" alt="\(\mathbf A\neq0\)" style="height:0.974em;vertical-align:-0.214em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1103/physrev.115.485" data-full="Y. Aharonov and D. Bohm, “Significance of electromagnetic potentials in the quantum theory”, Physical Review 115, 485–491 (1959)." aria-label="Y. Aharonov and D. Bohm, “Significance of electromagnetic potentials in the quantum theory”, Physical Review 115, 485–491 (1959).">Aharonov and Bohm 1959</a>)</span>. Two paths around it acquire phases <img class="m" src="m/2f83682da70b55234f23ec6b0224d4908142f76c.svg" alt="\(\frac q\hbar\int\mathbf A\cdot\dd\mathbf l\)" style="height:1.261em;vertical-align:-0.378em">, whose difference is
+<div class="mb"><img class="m" src="m/b4038bbf88fcdfbda531d7558907ff37e79887fd.svg" alt="\[ \Delta\varphi=\frac q\hbar\oint\mathbf A\cdot\dd\mathbf l=\frac{q\Phi_B}{\hbar}. \]" style="width:12.214em"></div>
+The interference pattern shifts with <img class="m" src="m/6f548d846982d1b4d5f0a80cb4575c30e8b73cf9.svg" alt="\(\Phi_B\)" style="height:0.913em;vertical-align:-0.164em"> though the electrons never touch <img class="m" src="m/f1115cbf45e6f69e714a8b4fb61bc7d195478cc9.svg" alt="\(\mathbf B\)" style="height:0.752em;vertical-align:-0.000em">. Periodicity: <img class="m" src="m/c4d8c18c6eb02d24b4979aa58ae360ca701b6d9c.svg" alt="\(\Phi_B\to\Phi_B+h/|q|\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org1f16986" class="outline-2">
+<h2 id="org1f16986">Landau levels</h2>
+<div class="outline-text-2" id="text-org1f16986">
+<p>
+Uniform <img class="m" src="m/3f1233fad20a1bbbc350ef4fb8dc9dc651235f31.svg" alt="\(B\hat z\)" style="height:0.761em;vertical-align:-0.000em">, Landau gauge <img class="m" src="m/71908fcc83c65c833e91667c4c9f476c6eccf665.svg" alt="\(\mathbf A=(0,Bx,0)\)" style="height:1.096em;vertical-align:-0.274em">: <img class="m" src="m/42c5c23db9555d1fd6049261e23079da0bfbff51.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> reduces to a harmonic oscillator with cyclotron frequency <img class="m" src="m/b25e39c67c377fa023e422f1798f4173c803d749.svg" alt="\(\omega_c=|q|B/m\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/5ccea12b0dee01a180a780462460fa144c0949d9.svg" alt="\(E_n=\hbar\omega_c(n+\tfrac12)+p_z^2/2m\)" style="height:1.304em;vertical-align:-0.378em">, degeneracy <img class="m" src="m/68c09d7ea14da27678b668fbda974d7fc03212ea.svg" alt="\(|q|B/h\)" style="height:1.096em;vertical-align:-0.274em"> per unit area.
+</p>
+</div>
+</div>
+<div id="outline-container-org85b6578" class="outline-2">
+<h2 id="org85b6578">Worked example</h2>
+<div class="outline-text-2" id="text-org85b6578">
+<p>
+Electrons (<img class="m" src="m/3599c18edf60d7364e2ea333e56121d0bc226f8b.svg" alt="\(q=-e\)" style="height:0.852em;vertical-align:-0.213em">) in a 1 µm<img class="m" src="m/1fedd888fcc109f50d63a0fa69830ca428cd2637.svg" alt="\(^2\)" style="height:0.892em;vertical-align:-0.000em"> ring: one flux period <img class="m" src="m/35363b7a8f1b48268f76e66818ad6725d16dc2b1.svg" alt="\(h/e=4.14\times10^{-15}\)" style="height:1.166em;vertical-align:-0.268em"> Wb corresponds to <img class="m" src="m/17a7faa3665da981585db0c4137f6121e9d4eb5f.svg" alt="\(B=4.1\)" style="height:0.749em;vertical-align:-0.000em"> mT. Superconductors have pairs, <img class="m" src="m/7181e48c2f399fd679cac20dd77acf9446e5e792.svg" alt="\(q=-2e\)" style="height:0.919em;vertical-align:-0.211em">: the flux quantum is <img class="m" src="m/be357e53b7bcdc54ca0256fe1d0d590406201ff6.svg" alt="\(\Phi_0=h/2e=2.07\times10^{-15}\)" style="height:1.166em;vertical-align:-0.268em"> Wb, the unit of <a href="superconductivity-and-flux-quantization.html">SQUIDs and SFQ logic</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfb8818d" class="outline-2">
+<h2 id="orgfb8818d">Engineering applications</h2>
+<div class="outline-text-2" id="text-orgfb8818d">
+<p>
+SQUID magnetometers, the quantum Hall resistance standard <img class="m" src="m/494db7241579da0e5e5c0d34524cb7eb8c0ec6c7.svg" alt="\(R_K=h/e^2=25812.807\)" style="height:1.166em;vertical-align:-0.268em"> Ω (Landau levels), magnetoresistance oscillations in mesoscopic devices, SFQ electronics.
+</p>
+</div>
+</div>
+<div id="outline-container-org6df24d2" class="outline-2">
+<h2 id="org6df24d2">Pitfall</h2>
+<div class="outline-text-2" id="text-org6df24d2">
+<p>
+<img class="m" src="m/ef0e12dc70c236b7c3a2a134e0529b5bac7dab90.svg" alt="\(\mathbf p\)" style="height:0.700em;vertical-align:-0.210em"> (canonical) is not <img class="m" src="m/459031337ffb76d689c126e7ace2c9eccbe53518.svg" alt="\(m\mathbf v\)" style="height:0.487em;vertical-align:-0.000em"> and is gauge dependent; physical quantities must be expressed through <img class="m" src="m/0ef97bf35b7769c7bab7e6f707d172c8e474ee28.svg" alt="\(\boldsymbol\Pi\)" style="height:0.752em;vertical-align:-0.000em">.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="propagator-and-path-integral.html"><span>← previous</span>The propagator and Feynman's path integral</a><a rel="next" href="square-well-potentials.html"><span>next →</span>Square wells: particle in a box and finite well</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-mechanics--dynamics.pdf" title="PDF manual">Dynamics</a> · <a class="pdf" href="pdf/quantum-mechanics.pdf" title="PDF manual">Quantum Mechanics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exception-safety guarantees · Computer Science</title>
+<meta name="description" content="A C++ operation that may throw promises one of three levels: the basic guarantee (no leaks, invariants hold, state valid but unspecified), the strong guarantee (commit or rollback: either it succeeds or nothing changed), or the nothrow guarantee (it never throws, noexcept); RAII gives the first, co…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/exception-safety.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Exception-safety guarantees · Computer Science">
+<meta property="og:description" content="A C++ operation that may throw promises one of three levels: the basic guarantee (no leaks, invariants hold, state valid but unspecified), the strong guarantee (commit or rollback: either it succeeds or nothing changed), or the nothrow guarantee (it never throws, noexcept); RAII gives the first, co…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/exception-safety.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--cpp">Cpp</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Cpp</p>
+<h1>Exception-safety guarantees</h1>
+<p class="summary">A C++ operation that may throw promises one of three levels: the basic guarantee (no leaks, invariants hold, state valid but unspecified), the strong guarantee (commit or rollback: either it succeeds or nothing changed), or the nothrow guarantee (it never throws, <code>noexcept</code>); RAII gives the first, copy-and-swap the second.</p>
+<p class="rel"><span>needs</span> <a href="exception-handling.html">Exceptions</a>, <a href="cpp-special-members.html">Special member functions and RAII</a></p>
+<p class="rel"><span>unlocks</span> <a href="copy-and-swap.html">The copy-and-swap idiom</a></p>
+<p class="rel"><span>see also</span> <a href="copy-and-swap.html">The copy-and-swap idiom</a>, <a href="smart-pointers.html">Smart pointers: unique_ptr, shared_ptr, weak_ptr</a>, <a href="mutual-exclusion.html">Atomics and mutual exclusion</a>, <a href="move-semantics.html">Move semantics and the rule of five</a></p>
+<details class="path"><summary>Learning path: 4 notes lead here, in study order</summary><ol><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="exception-handling.html">Exceptions</a></li><li><a href="pointers-references.html">Pointers, references and dynamic memory in C++</a></li><li><a href="cpp-special-members.html">Special member functions and RAII</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgdcb1e44" class="outline-2">
+<h2 id="orgdcb1e44">Definition</h2>
+<div class="outline-text-2" id="text-orgdcb1e44">
+<ul class="org-ul">
+<li><b>Nothrow</b> (<code>noexcept</code>): the operation cannot fail. Destructors, <code>swap</code>, move operations and deallocation should be nothrow, because they are what recovery code calls.</li>
+<li><b>Strong</b>: if an exception escapes, the program state is exactly as before the call (transactional semantics).</li>
+<li><b>Basic</b>: if an exception escapes, no resource leaks and every object is in a valid (destructible, assignable) state, possibly changed.</li>
+<li><b>No guarantee</b>: an exception can leave leaks or broken invariants — a bug.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf6699d6" class="outline-2">
+<h2 id="orgf6699d6">Derivation</h2>
+<div class="outline-text-2" id="text-orgf6699d6">
+<p>
+Why destructors must not throw: during <a href="exception-handling.html">stack unwinding</a> every local object is destroyed; if a <a href="cpp-special-members.html">destructor</a> <a href="java-exceptions.html">throws</a> while another exception is in flight, two exceptions are active and the program calls <code>std::terminate</code>. Since C++11 destructors are implicitly <code>noexcept</code>.
+</p>
+
+<p>
+Why <code>std::vector</code> needs <code>noexcept</code> moves: when it grows it must transfer <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> elements to new storage. With copies, an exception at element <img class="m" src="m/ab474955bf3a453be6c3259db9214b4a610e4bf7.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> leaves the old buffer intact (strong guarantee). With a throwing move, elements <img class="m" src="m/f1ab26fb1f1a3f441493763510524ba60823c144.svg" alt="\(0..k-1\)" style="height:0.852em;vertical-align:-0.094em"> would already be moved-from and could not be restored, so the vector copies instead unless the <a href="move-semantics.html">move constructor</a> is <code>noexcept</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org2b302ce" class="outline-2">
+<h2 id="org2b302ce">Example</h2>
+<div class="outline-text-2" id="text-org2b302ce">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="c">// basic only: if new B throws after delete, pb dangles
+</span><span class="t">A</span>&amp; <span class="n">A</span>::<span class="k">operator</span>=(<span class="k">const</span> <span class="t">A</span>&amp; <span class="v">a</span>) { <span class="k">delete</span> pb; pb = <span class="k">new</span> <span class="t">B</span>(*a.pb); i = a.i; <span class="k">return</span> *<span class="k">this</span>; }
+
+<span class="c">// strong: do everything that can throw first, then commit with nothrow operations
+</span><span class="t">A</span>&amp; <span class="n">A</span>::<span class="k">operator</span>=(<span class="k">const</span> <span class="t">A</span>&amp; <span class="v">a</span>) {
+  <span class="t">B</span>* <span class="v">tmp</span> = a.pb ? <span class="k">new</span> <span class="t">B</span>(*a.pb) : <span class="n">nullptr</span>;   <span class="c">// may throw: *this untouched
+</span>  <span class="k">delete</span> pb; pb = tmp; i = a.i;              <span class="c">// nothrow commit
+</span>  <span class="k">return</span> *<span class="k">this</span>;
+}</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org4358bb8" class="outline-2">
+<h2 id="org4358bb8">Intuition</h2>
+<div class="outline-text-2" id="text-org4358bb8">
+<p>
+Do the risky work on the side, then swap it in with operations that cannot fail.
+</p>
+</div>
+</div>
+<div id="outline-container-org3a67509" class="outline-2">
+<h2 id="org3a67509">Pitfall</h2>
+<div class="outline-text-2" id="text-org3a67509">
+<p>
+The strong guarantee is not free: it usually costs an extra copy. Many standard operations offer only the basic one; read the guarantee before relying on rollback.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="implicit-conversion.html"><span>← previous</span>Converting constructors and explicit</a><a rel="next" href="shallow-deep-copy.html"><span>next →</span>Shallow and deep copy, rule of three</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--cpp.pdf" title="PDF manual">Cpp</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Time-dependent perturbation theory and Fermi's golden rule · Physics</title>
+<meta name="description" content="To first order c_f(t)=\frac{1}{i\hbar}\int_0^t\bra fV(t')\ket ie^{i\omega_{fi}t'}\dd t'; a constant or harmonic perturbation coupling to a continuum gives the constant rate \Gamma_{i\to f}=\frac{2\pi}\hbar|V_{fi}|^2\rho(E_f) with E_f=E_i\pm\hbar\omega.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/time-dependent-perturbation-and-golden-rule.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Time-dependent perturbation theory and Fermi's golden rule · Physics">
+<meta property="og:description" content="To first order c_f(t)=\frac{1}{i\hbar}\int_0^t\bra fV(t')\ket ie^{i\omega_{fi}t'}\dd t'; a constant or harmonic perturbation coupling to a continuum gives the constant rate \Gamma_{i\to f}=\frac{2\pi}\hbar|V_{fi}|^2\rho(E_f) with E_f=E_i\pm\hbar\omega.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/time-dependent-perturbation-and-golden-rule.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-mechanics">Quantum Mechanics</a> / <a rel="up" href="index.html#a-quantum-mechanics--approximation-methods">Approximation Methods</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Quantum Mechanics · Approximation Methods</p>
+<h1>Time-dependent perturbation theory and Fermi's golden rule</h1>
+<p class="summary">To first order <img class="m" src="m/0f82d7af8fb22a8bd8d5e50b7da60d04ac5df1e2.svg" alt="\(c_f(t)=\frac{1}{i\hbar}\int_0^t\bra fV(t')\ket ie^{i\omega_{fi}t'}\dd t'\)" style="height:1.473em;vertical-align:-0.383em">; a constant or harmonic perturbation coupling to a continuum gives the constant rate <img class="m" src="m/5a837907552aa7c331728b9fcf7a85c2a25bbf3b.svg" alt="\(\Gamma_{i\to f}=\frac{2\pi}\hbar|V_{fi}|^2\rho(E_f)\)" style="height:1.304em;vertical-align:-0.378em"> with <img class="m" src="m/db4165806147c431051362dc92269108045d5d85.svg" alt="\(E_f=E_i\pm\hbar\omega\)" style="height:1.068em;vertical-align:-0.310em">.</p>
+<p class="rel"><span>needs</span> <a href="time-independent-perturbation-theory.html">Time-independent perturbation theory</a>, <a href="spin-precession-and-rabi-oscillations.html">Spin precession and Rabi oscillations</a></p>
+<p class="rel"><span>unlocks</span> <a href="radiative-transitions-and-selection-rules.html">Radiative transitions, dipole approximation and selection rules</a>, <a href="scattering-and-born-approximation.html">Scattering theory and the Born approximation</a>, <a href="spontaneous-emission-and-purcell-effect.html">Spontaneous emission (Weisskopf–Wigner) and the Purcell effect</a>, <a href="s-matrix-and-cross-sections.html">The S matrix, cross sections and decay rates</a>, <a href="semiconductor-optical-properties.html">Optical absorption and emission in semiconductors</a></p>
+<p class="rel"><span>see also</span> <a href="s-matrix-and-cross-sections.html">The S matrix, cross sections and decay rates</a>, <a href="spontaneous-emission-and-purcell-effect.html">Spontaneous emission (Weisskopf–Wigner) and the Purcell effect</a>, <a href="scattering-and-born-approximation.html">Scattering theory and the Born approximation</a></p>
+<p class="rel"><span>mentioned in</span> <a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></p>
+<details class="path"><summary>Learning path: 13 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></li><li><a href="spin-precession-and-rabi-oscillations.html">Spin precession and Rabi oscillations</a></li><li><a href="quantum-harmonic-oscillator.html">The quantum harmonic oscillator</a></li><li><a href="time-independent-perturbation-theory.html">Time-independent perturbation theory</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orga184828" class="outline-2">
+<h2 id="orga184828">Dyson series</h2>
+<div class="outline-text-2" id="text-orga184828">
+<p>
+In the interaction picture <img class="m" src="m/745f63483f3c58aae358775c031953938b167284.svg" alt="\(i\hbar\partial_tU_I=V_IU_I\)" style="height:0.925em;vertical-align:-0.167em">, iterated <span class="cite">(<a class="ref" href="https://doi.org/10.1098/rspa.1927.0039" data-full="P. A. M. Dirac, “The quantum theory of the emission and absorption of radiation”, Proceedings of the Royal Society of London. Series A 114, 243–265 (1927)." aria-label="P. A. M. Dirac, “The quantum theory of the emission and absorption of radiation”, Proceedings of the Royal Society of London. Series A 114, 243–265 (1927).">Dirac 1927</a>)</span>:
+<div class="mb"><img class="m" src="m/d7302fd080fb5e6887fd775eb37c76fd747c1094.svg" alt="\[ U_I(t)=1+\frac1{i\hbar}\int_0^t\dd t_1V_I(t_1)+\frac1{(i\hbar)^2}\int_0^t\dd t_1\int_0^{t_1}\dd t_2V_I(t_1)V_I(t_2)+\dots \]" style="width:32.900em"></div>
+First order amplitude <img class="m" src="m/7fa09e42fdf6c2d67f6b464c959a3c2dae944f27.svg" alt="\(c_f^{(1)}=\frac1{i\hbar}\int_0^te^{i\omega_{fi}t'}V_{fi}(t')\dd t'\)" style="height:1.624em;vertical-align:-0.487em">, <img class="m" src="m/4d52437bbfd97d55a04bb1be4f209bb1858625f8.svg" alt="\(\omega_{fi}=(E_f-E_i)/\hbar\)" style="height:1.135em;vertical-align:-0.318em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org2241ee6" class="outline-2">
+<h2 id="org2241ee6">Derivation of the golden rule</h2>
+<div class="outline-text-2" id="text-org2241ee6">
+<p>
+Constant <img class="m" src="m/b1823c2844011c3351ca12a680a0432837e249b6.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> switched on at <img class="m" src="m/0cd60c86f06f73831e556e91eea48867019685bc.svg" alt="\(t=0\)" style="height:0.706em;vertical-align:-0.000em"> <span class="cite">(<a class="ref" href="references.html#ref-fermi1950" data-full="E. Fermi, Nuclear Physics (University of Chicago Press, Chicago, 1950)." aria-label="E. Fermi, Nuclear Physics (University of Chicago Press, Chicago, 1950).">Fermi 1950</a>)</span>:
+<div class="mb"><img class="m" src="m/a22d833e4f04f8aef5349aee978ca09702911c2d.svg" alt="\[ |c_f|^2=\frac{|V_{fi}|^2}{\hbar^2}\frac{\sin^2(\omega_{fi}t/2)}{(\omega_{fi}/2)^2}. \]" style="width:12.794em"></div>
+For large <img class="m" src="m/35667e44f401ec8e9c1d76417ab6c6c6667dd3c9.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em">, <img class="m" src="m/b0d07d75fcf4c0c6a614b899de7b5c6b55cdfb88.svg" alt="\(\frac{\sin^2(\omega t/2)}{(\omega/2)^2}\to2\pi t\,\delta(\omega)\)" style="height:1.785em;vertical-align:-0.571em">: the probability grows linearly in time. Summing over a continuum with density of states <img class="m" src="m/26332732a5959464e1b2fb5c20fdd5878b2911dd.svg" alt="\(\rho(E)\)" style="height:1.096em;vertical-align:-0.274em">:
+<div class="mb"><img class="m" src="m/817c0b2bb6deeccfca8a15e85e7602c50221092d.svg" alt="\[ \Gamma=\frac{\dd}{\dd t}\sum_f|c_f|^2=\frac{2\pi}\hbar|V_{fi}|^2\rho(E_f)\Big|_{E_f=E_i}. \]" style="width:19.380em"></div>
+For <img class="m" src="m/f84066823fbccb1569488b69bbc3ee213de0edb7.svg" alt="\(V(t)=Fe^{-i\omega t}+F^\dagger e^{i\omega t}\)" style="height:1.204em;vertical-align:-0.277em">: absorption with <img class="m" src="m/fab3fa6017116f1a3f3a2f879a6b118ba639c8e2.svg" alt="\(E_f=E_i+\hbar\omega\)" style="height:1.068em;vertical-align:-0.310em"> (matrix element of <img class="m" src="m/9069a4527b75814b5a320b98284170da88f5f79c.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em">) and stimulated emission with <img class="m" src="m/1e351cf4888195057f193c9f6829e0008699ba4e.svg" alt="\(E_f=E_i-\hbar\omega\)" style="height:1.068em;vertical-align:-0.310em"> (of <img class="m" src="m/30cd79daae0c4e80400824ac9971f70ba5f72482.svg" alt="\(F^\dagger\)" style="height:0.930em;vertical-align:-0.000em">).
+</p>
+</div>
+</div>
+<div id="outline-container-orga14f6f0" class="outline-2">
+<h2 id="orga14f6f0">Validity</h2>
+<div class="outline-text-2" id="text-orga14f6f0">
+<p>
+<img class="m" src="m/35667e44f401ec8e9c1d76417ab6c6c6667dd3c9.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> long compared with <img class="m" src="m/77bf1923f7547ee2b52535bd73426f9ebd578709.svg" alt="\(1/\Delta\omega\)" style="height:1.096em;vertical-align:-0.274em"> of the continuum (so the delta is well defined) but short enough that <img class="m" src="m/d74e0da0c0b1a8f6cd2c877e3e497984bf97045c.svg" alt="\(|c_f|^2\ll1\)" style="height:1.206em;vertical-align:-0.313em"> (initial state not depleted); otherwise exponential decay (Weisskopf–Wigner) or Rabi oscillation (discrete final state).
+</p>
+</div>
+</div>
+<div id="outline-container-org008b383" class="outline-2">
+<h2 id="org008b383">Worked example</h2>
+<div class="outline-text-2" id="text-org008b383">
+<p>
+Photoelectric absorption in a semiconductor: <img class="m" src="m/dcb32af5b849bef52d8719b73558ad19273b6ca4.svg" alt="\(\alpha(\hbar\omega)\propto|p_{cv}|^2\rho_{joint}(\hbar\omega)\)" style="height:1.206em;vertical-align:-0.313em">, and the 3D joint density of states <img class="m" src="m/c620dd2ef3618b6381cc7018523be4fecddc8f8b.svg" alt="\(\propto\sqrt{\hbar\omega-E_g}\)" style="height:1.359em;vertical-align:-0.394em"> gives the square-root absorption edge of <a href="semiconductor-optical-properties.html">direct-gap semiconductors</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd1bac2e" class="outline-2">
+<h2 id="orgd1bac2e">Engineering applications</h2>
+<div class="outline-text-2" id="text-orgd1bac2e">
+<p>
+Absorption and gain in lasers, radiative and Auger recombination rates in LEDs, electron–phonon scattering times (mobility), tunnelling currents (Bardeen), decay rates and cross sections in <a href="s-matrix-and-cross-sections.html">QED</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org089e4e7" class="outline-2">
+<h2 id="org089e4e7">Pitfall</h2>
+<div class="outline-text-2" id="text-org089e4e7">
+<p>
+<img class="m" src="m/779d1be5c66415989d53bcdef24e23c6d8decb2e.svg" alt="\(\rho\)" style="height:0.685em;vertical-align:-0.212em"> is the density of <b>final</b> states at the energy fixed by energy conservation; for photons it includes polarisation and direction, for electrons spin.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="time-independent-perturbation-theory.html"><span>← previous</span>Time-independent perturbation theory</a><a rel="next" href="radiative-transitions-and-selection-rules.html"><span>next →</span>Radiative transitions, dipole approximation and selection rules</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-mechanics--approximation-methods.pdf" title="PDF manual">Approximation Methods</a> · <a class="pdf" href="pdf/quantum-mechanics.pdf" title="PDF manual">Quantum Mechanics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

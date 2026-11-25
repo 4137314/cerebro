@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Side-looking radar geometry · Remote Sensing</title>
+<meta name="description" content="An imaging radar looks sideways, perpendicular to its track: points are separated in range by the delay of their echoes and in azimuth by the motion of the platform; looking straight down would be ambiguous, because points symmetric about the track return at the same time.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/side-looking-radar.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Side-looking radar geometry · Remote Sensing">
+<meta property="og:description" content="An imaging radar looks sideways, perpendicular to its track: points are separated in range by the delay of their echoes and in azimuth by the motion of the platform; looking straight down would be ambiguous, because points symmetric about the track return at the same time.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/side-looking-radar.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-acquisition">Acquisition</a> / <a rel="up" href="index.html#a-acquisition--radar">Radar</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Acquisition · Radar</p>
+<h1>Side-looking radar geometry</h1>
+<p class="summary">An imaging radar looks sideways, perpendicular to its track: points are separated in range by the delay of their echoes and in azimuth by the motion of the platform; looking straight down would be ambiguous, because points symmetric about the track return at the same time.</p>
+<p class="rel"><span>needs</span> <a href="radar-equation.html">Radar principle and radar equation</a></p>
+<p class="rel"><span>unlocks</span> <a href="azimuth-resolution.html">Azimuth resolution of a real-aperture radar</a>, <a href="radar-geometric-distortions.html">Foreshortening, layover and shadow</a>, <a href="range-resolution.html">Range resolution</a></p>
+<p class="rel"><span>see also</span> <a href="radar-geometric-distortions.html">Foreshortening, layover and shadow</a>, <a href="range-resolution.html">Range resolution</a>, <a href="azimuth-resolution.html">Azimuth resolution of a real-aperture radar</a></p>
+<p class="rel"><span>mentioned in</span> <a href="backscattering-coefficient.html">Backscattering coefficient</a>, <a href="chirp-pulse-compression.html">Chirp and pulse compression</a>, <a href="synthetic-aperture-radar.html">Synthetic aperture radar (SAR)</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="radar-equation.html">Radar principle and radar equation</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org69bb2d0" class="outline-2">
+<h2 id="org69bb2d0">Definition</h2>
+<div class="outline-text-2" id="text-org69bb2d0">
+<ul class="org-ul">
+<li><b>Azimuth</b>: the flight direction (along track).</li>
+<li><b>Range</b>: across track. <b>Slant range</b> <img class="m" src="m/d7afb8ff790a1638c2f4f8daf02681b369fe25c2.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> is the distance along the line of sight; <b>ground range</b> its projection on the ground.</li>
+<li><b>Near range / far range</b>: the edges of the swath closest to and farthest from the track.</li>
+<li><b>Look angle</b> (at the antenna) and <b><a href="backscattering-coefficient.html">incidence angle</a></b> <img class="m" src="m/c8d9a433f30967c52095060bff5783652eb30ded.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em"> (at the ground, between the beam and the local normal) change across the swath.</li>
+</ul>
+<p>
+Hardware: transmitter, duplexer (switches the antenna between transmit and receive), receiver, antenna.
+</p>
+</div>
+</div>
+<div id="outline-container-orge755dc9" class="outline-2">
+<h2 id="orge755dc9">Why side-looking</h2>
+<div class="outline-text-2" id="text-orge755dc9">
+<p>
+Range separation needs different delays. With a nadir-looking radar two points A and B at equal distance on the two sides of the track return simultaneously: ambiguity. Illuminating only one side removes it; points at different ground ranges have different slant ranges.
+</p>
+</div>
+</div>
+<div id="outline-container-org13ab215" class="outline-2">
+<h2 id="org13ab215">Picture</h2>
+<div class="outline-text-2" id="text-org13ab215">
+<figure class="fig"><img class="m" src="m/217c3d71705b78fc59aea3764b5cc940491abebc.svg" alt="figure" style="width:26.323em"><figcaption><span class="fl">Figure 1.</span> Side-looking radar geometry: the antenna flies into the page and looks sideways at incidence <img class="m" src="m/c8d9a433f30967c52095060bff5783652eb30ded.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em">, from near to far range; slant range <img class="m" src="m/d7afb8ff790a1638c2f4f8daf02681b369fe25c2.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> projects onto ground range.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-orga3c0fdd" class="outline-2">
+<h2 id="orga3c0fdd">Worked example</h2>
+<div class="outline-text-2" id="text-orga3c0fdd">
+<p>
+Altitude <img class="m" src="m/62deaefaa8e487972e3b2dc5f9d693a2473a2453.svg" alt="\(H=700\)" style="height:0.749em;vertical-align:-0.000em"> km, look angles from 20° (near) to 45° (far), flat Earth approximation:
+</p>
+<ul class="org-ul">
+<li>near range: ground distance <img class="m" src="m/8d112d842405e6b71520cf521e627bfcf92434b5.svg" alt="\(H\tan20^\circ=255\)" style="height:0.755em;vertical-align:-0.000em"> km, slant range <img class="m" src="m/2c528f37e8925b34e2bd54602c675e4873df6bcc.svg" alt="\(H/\cos20^\circ=745\)" style="height:1.096em;vertical-align:-0.274em"> km;</li>
+<li>far range: <img class="m" src="m/55bb8016630efd753b5d211a97af2d35434ba5af.svg" alt="\(H\tan45^\circ=700\)" style="height:0.755em;vertical-align:-0.000em"> km, slant range <img class="m" src="m/e024a4580dc1dc0eeac438a7c40b3d04bfd92ab2.svg" alt="\(990\)" style="height:0.706em;vertical-align:-0.000em"> km.</li>
+</ul>
+<p>
+Swath on the ground 445 km; echoes from the swath arrive between <img class="m" src="m/924f0d0ce3db110d0f124d27aa04919350b4ca1f.svg" alt="\(2\cdot745/c=4.97\)" style="height:1.096em;vertical-align:-0.274em"> ms and <img class="m" src="m/a489c83061d72dc6368d759d6a5486398fc89ede.svg" alt="\(6.60\)" style="height:0.706em;vertical-align:-0.000em"> ms after each pulse, so the pulse repetition interval must exceed 1.6 ms to avoid range ambiguities.
+</p>
+</div>
+</div>
+<div id="outline-container-org99b6d27" class="outline-2">
+<h2 id="org99b6d27">Intuition</h2>
+<div class="outline-text-2" id="text-org99b6d27">
+<p>
+The radar measures distances, not angles: the image is a map of "how far" against "when along the track".
+</p>
+</div>
+</div>
+<div id="outline-container-orgb957885" class="outline-2">
+<h2 id="orgb957885">Pitfall</h2>
+<div class="outline-text-2" id="text-orgb957885">
+<p>
+In slant-range geometry the ground is compressed at near range relative to far range; images must be projected to ground range before measuring distances.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="radar-equation.html"><span>← previous</span>Radar principle and radar equation</a><a rel="next" href="azimuth-resolution.html"><span>next →</span>Azimuth resolution of a real-aperture radar</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/acquisition--radar.pdf" title="PDF manual">Radar</a> · <a class="pdf" href="pdf/acquisition.pdf" title="PDF manual">Acquisition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

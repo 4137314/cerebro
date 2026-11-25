@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exceptions · Computer Science</title>
+<meta name="description" content="An exception is an object describing an abnormal event; throw interrupts the normal flow, the run time unwinds the stack of calls until a try block with a matching catch is found, separating error handling from the normal code and letting the caller, not the callee, decide what to do.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/exception-handling.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Exceptions · Computer Science">
+<meta property="og:description" content="An exception is an object describing an abnormal event; throw interrupts the normal flow, the run time unwinds the stack of calls until a try block with a matching catch is found, separating error handling from the normal code and letting the caller, not the callee, decide what to do.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/exception-handling.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--oop">Oop</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Programming · Oop</p>
+<h1>Exceptions</h1>
+<p class="summary">An exception is an object describing an abnormal event; <code>throw</code> interrupts the normal flow, the run time unwinds the stack of calls until a <code>try</code> block with a matching <code>catch</code> is found, separating error handling from the normal code and letting the caller, not the callee, decide what to do.</p>
+<p class="rel"><span>needs</span> <a href="call-stack.html">Memory model: static area, stack and heap</a></p>
+<p class="rel"><span>unlocks</span> <a href="exception-safety.html">Exception-safety guarantees</a>, <a href="java-exceptions.html">Exceptions in Java: checked, unchecked, finally</a></p>
+<p class="rel"><span>see also</span> <a href="java-exceptions.html">Exceptions in Java: checked, unchecked, finally</a>, <a href="parnas-principles.html">Parnas principles and contracts</a>, <a href="cpp-special-members.html">Special member functions and RAII</a>, <a href="mutual-exclusion.html">Atomics and mutual exclusion</a>, <a href="exception-safety.html">Exception-safety guarantees</a></p>
+<p class="rel"><span>mentioned in</span> <a href="parnas-principles.html">Parnas principles and contracts</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgd13fa23" class="outline-2">
+<h2 id="orgd13fa23">Method</h2>
+<div class="outline-text-2" id="text-orgd13fa23">
+<p>
+Traditional error handling has known limits: terminating in the callee (a decision that belongs to the caller), conventional return values (confusing when an error has the type of a result, impossible for constructors, no information about the cause), a global error handler (centralised, unreadable). Exceptions:
+</p>
+<ul class="org-ul">
+<li><b>separate</b> the handling from the application code;</li>
+<li><b>propagate</b> errors in a controlled way along the dynamic chain of calls;</li>
+<li><b>group or distinguish</b> errors through a class hierarchy (catching a <a href="inheritance.html">base class</a> catches all its subclasses).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org04943fd" class="outline-2">
+<h2 id="org04943fd">Mechanism</h2>
+<div class="outline-text-2" id="text-org04943fd">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="t">double</span> <span class="f">safe_div</span>(<span class="t">double</span> <span class="v">a</span>, <span class="t">double</span> <span class="v">b</span>) {
+  <span class="k">if</span> (b == 0) <span class="k">throw</span> <span class="n">std</span>::invalid_argument(<span class="s">"division by zero"</span>);   <span class="c">// &lt;stdexcept&gt;
+</span>  <span class="k">return</span> a / b;
+}
+<span class="k">try</span> {
+  <span class="n">std</span>::cout &lt;&lt; safe_div(1, 0);
+} <span class="k">catch</span> (<span class="k">const</span> <span class="n">std</span>::<span class="t">invalid_argument</span>&amp; <span class="v">e</span>) {      <span class="c">// catch by reference
+</span>  <span class="n">std</span>::cerr &lt;&lt; e.what();
+}</code></pre></figure>
+<p>
+When an exception is thrown, the current block stops; the frames of the call stack are popped one by one (<b>unwinding</b>), running the destructors of their local objects in C++, until a matching <code>catch</code> is found. If none exists, the program terminates.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfb34201" class="outline-2">
+<h2 id="orgfb34201">Picture</h2>
+<div class="outline-text-2" id="text-orgfb34201">
+<figure class="fig"><img class="m" src="m/3955163e69ac05838ac24d9badc02ed2f5b3bb53.svg" alt="figure" style="width:17.194em"><figcaption><span class="fl">Figure 1.</span> Stack unwinding: an exception thrown in safe_div propagates through g and f, discarding their frames, until the try block in main catches it.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org301d178" class="outline-2">
+<h2 id="org301d178">Intuition</h2>
+<div class="outline-text-2" id="text-org301d178">
+<p>
+An exception is a return that skips every caller that does not know what to do with the problem, landing on the first one that does.
+</p>
+</div>
+</div>
+<div id="outline-container-org0099f97" class="outline-2">
+<h2 id="org0099f97">Pitfall</h2>
+<div class="outline-text-2" id="text-org0099f97">
+<p>
+Exceptions are for exceptional events, not for normal control flow. In C++, code that acquires resources without RAII leaks them when an exception skips the release.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="abstract-class-interface.html"><span>← previous</span>Abstract classes and interfaces</a><a rel="next" href="information-hiding.html"><span>next →</span>Information hiding and visibility</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--oop.pdf" title="PDF manual">Oop</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

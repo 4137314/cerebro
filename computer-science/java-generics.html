@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Java generics and type erasure · Computer Science</title>
+<meta name="description" content="Since Java 5 classes, interfaces and methods can take type parameters (class Stack&lt;T&gt;, &lt;T&gt; T max(...)) checked at compile time; the compiler then erases them to their bounds (usually Object) and inserts casts, so one class serves all instantiations and no type information remains at run time.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/java-generics.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Java generics and type erasure · Computer Science">
+<meta property="og:description" content="Since Java 5 classes, interfaces and methods can take type parameters (class Stack&lt;T&gt;, &lt;T&gt; T max(...)) checked at compile time; the compiler then erases them to their bounds (usually Object) and inserts casts, so one class serves all instantiations and no type information remains at run time.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/java-generics.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--java">Java</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Programming · Java</p>
+<h1>Java generics and type erasure</h1>
+<p class="summary">Since Java 5 classes, interfaces and methods can take type parameters (<code>class Stack&lt;T&gt;</code>, <code>&lt;T&gt; T max(...)</code>) checked at compile time; the compiler then erases them to their bounds (usually <code>Object</code>) and inserts casts, so one class serves all instantiations and no type information remains at run time.</p>
+<p class="rel"><span>needs</span> <a href="generic-programming.html">Generic programming</a>, <a href="casting-instanceof.html">Casts, instanceof and array covariance</a></p>
+<p class="rel"><span>unlocks</span> <a href="comparable-comparator.html">Comparable and Comparator</a>, <a href="generic-invariance.html">Invariance of generics and wildcards</a>, <a href="java-collections.html">The Java Collections Framework</a></p>
+<p class="rel"><span>see also</span> <a href="generic-invariance.html">Invariance of generics and wildcards</a>, <a href="java-collections.html">The Java Collections Framework</a>, <a href="wrapper-autoboxing.html">Wrapper classes and autoboxing</a>, <a href="stack-and-queue.html">Stack and queue as classes</a>, <a href="comparable-comparator.html">Comparable and Comparator</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li><li><a href="generic-programming.html">Generic programming</a></li><li><a href="casting-instanceof.html">Casts, instanceof and array covariance</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgb2ea143" class="outline-2">
+<h2 id="orgb2ea143">Construction</h2>
+<div class="outline-text-2" id="text-orgb2ea143">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">public</span> <span class="k">class</span> <span class="t">Stack</span>&lt;<span class="t">T</span>&gt; {
+    <span class="k">private</span> <span class="t">ArrayList</span>&lt;<span class="t">T</span>&gt; <span class="v">data</span> = <span class="k">new</span> <span class="t">ArrayList</span>&lt;&gt;();   <span class="c">// diamond: T inferred
+</span>    <span class="k">public</span> <span class="t">void</span> <span class="f">push</span>(<span class="t">T</span> <span class="v">x</span>) { data.add(x); }
+    <span class="k">public</span> <span class="t">T</span> <span class="f">pop</span>() { <span class="k">return</span> data.remove(data.size() - 1); }
+}
+<span class="t">Stack</span>&lt;<span class="t">String</span>&gt; <span class="v">s</span> = <span class="k">new</span> <span class="t">Stack</span>&lt;&gt;();
+s.push(<span class="s">"a"</span>);
+<span class="t">String</span> <span class="v">x</span> = s.pop();        <span class="c">// no cast in the source
+</span>s.push(3);                 <span class="c">// compile error: int is not a String
+</span>
+<span class="k">static</span> &lt;<span class="t">T</span> <span class="k">extends</span> <span class="t">Comparable</span>&lt;<span class="t">T</span>&gt;&gt; <span class="t">T</span> <span class="f">max</span>(<span class="t">T</span> <span class="v">a</span>, <span class="t">T</span> <span class="v">b</span>) {
+    <span class="k">return</span> a.compareTo(b) &gt;= 0 ? a : b;
+}</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orgd29b33e" class="outline-2">
+<h2 id="orgd29b33e">Type erasure</h2>
+<div class="outline-text-2" id="text-orgd29b33e">
+<p>
+After checking, the compiler replaces each <a href="generic-programming.html">type parameter</a> with its bound (<code>Object</code>, or <code>Comparable</code> for <code>T extends Comparable&lt;T&gt;</code>) and inserts casts at the uses: <code>String x = (String) s.pop();</code>. Consequences:
+</p>
+<ul class="org-ul">
+<li>one <code>.class</code> per generic class, no run-time overhead, compatibility with pre-generic code (raw types, with warnings);</li>
+<li>type parameters cannot be primitive (<code>Stack&lt;int&gt;</code> is illegal; use <code>Stack&lt;Integer&gt;</code>);</li>
+<li>no <code>new T()</code>, no <code>new T[n]</code>, no <code>x instanceof Stack&lt;String&gt;</code>, no static field of type <code>T</code>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org56a36f3" class="outline-2">
+<h2 id="org56a36f3">Intuition</h2>
+<div class="outline-text-2" id="text-org56a36f3">
+<p>
+Generics are a compile-time contract. The compiler checks you keep it and then <a href="java-exceptions.html">throws</a> the contract away, leaving the casts it proved safe.
+</p>
+</div>
+</div>
+<div id="outline-container-org25d97e4" class="outline-2">
+<h2 id="org25d97e4">Pitfall</h2>
+<div class="outline-text-2" id="text-org25d97e4">
+<p>
+Raw types (<code>Stack s = new Stack();</code>) switch the checks off and turn type errors into <code>[[id:casting-instanceof][ClassCastException]]</code> far from their cause. Always use the parameterised form.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="casting-instanceof.html"><span>← previous</span>Casts, instanceof and array covariance</a><a rel="next" href="java-platform.html"><span>next →</span>The Java platform</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--java.pdf" title="PDF manual">Java</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

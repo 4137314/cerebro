@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Square-integrable functions and the completeness of L2 · Mathematics</title>
+<meta name="description" content="The Hilbert space theory was developed abstractly, with no example that was not finite-dimensional. This note supplies the one that matters: the square-integrable functions on a measure space, which are complete because the convergence theorems are strong enough to turn a Cauchy sequence in norm in…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/square-integrable-functions-and-the-completeness-of-l2.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Square-integrable functions and the completeness of L2 · Mathematics">
+<meta property="og:description" content="The Hilbert space theory was developed abstractly, with no example that was not finite-dimensional. This note supplies the one that matters: the square-integrable functions on a measure space, which are complete because the convergence theorems are strong enough to turn a Cauchy sequence in norm in…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/square-integrable-functions-and-the-completeness-of-l2.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--measure-theory">Measure Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Measure Theory</p>
+<h1>Square-integrable functions and the completeness of L2</h1>
+<p class="summary">The <a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert space</a> theory was developed abstractly, with no example that was not finite-dimensional. This note supplies the one that matters: the square-integrable functions on a measure space, which are complete because the <a href="the-lebesgue-integral-and-the-convergence-theorems.html">convergence theorems</a> are strong enough to turn a Cauchy sequence in norm into a pointwise limit almost everywhere.</p>
+<p class="rel"><span>needs</span> <a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a>, <a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a>, <a href="inner-product-space.html">Inner product space</a>, <a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a>, <a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a>, <a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></p>
+<p class="rel"><span>unlocks</span> <a href="product-measures-and-the-theorems-of-tonelli-and-fubini.html">Product measures and the theorems of Tonelli and Fubini</a>, <a href="fourier-series-fejers-theorem-and-parsevals-identity.html">Fourier series, Fejer's theorem and Parseval's identity</a>, <a href="the-fourier-transform-inversion-and-plancherel.html">The Fourier transform, inversion and Plancherel</a>, <a href="sturm-liouville-problems-and-eigenfunction-expansions.html">Sturm-Liouville problems and eigenfunction expansions</a>, <a href="conditional-expectation-as-an-orthogonal-projection.html">Conditional expectation as an orthogonal projection</a>, <a href="modes-of-convergence-and-the-borel-cantelli-lemmas.html">Modes of convergence and the Borel-Cantelli lemmas</a>, <a href="variance-covariance-and-the-markov-and-chebyshev-inequalities.html">Variance, covariance and the Markov and Chebyshev inequalities</a>, <a href="the-hilbert-space-formalism-of-quantum-mechanics.html">The Hilbert space formalism of quantum mechanics</a></p>
+<p class="rel"><span>mentioned in</span> <a href="analysis.html">Analysis</a>, <a href="probability.html">Probability</a></p>
+<details class="path"><summary>Learning path: 51 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li><li><a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="the-baire-category-theorem.html">The Baire category theorem</a></li><li><a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></li><li><a href="convex-set.html">Convex set</a></li><li><a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a></li><li><a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org161ee18">
+<p>
+A set <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> is <i>null</i> if <img class="m" src="m/3e76b84fd74cab6a9f753a2881c91146bf44dee0.svg" alt="\(\mu(N) = 0\)" style="height:1.096em;vertical-align:-0.274em">. A statement holds <i>almost
+everywhere</i> if the set where it fails is contained in a null set. Two
+measurable functions are <i>equivalent</i> if they agree almost everywhere.
+</p>
+
+</div>
+
+<div class="proposition" id="org284a0e5">
+<p>
+For measurable <img class="m" src="m/a9ea5b39d0f5d8942d7b47b39c53b9c347ad82ab.svg" alt="\(f \ge 0\)" style="height:0.974em;vertical-align:-0.214em">, <img class="m" src="m/9f118b84b7a12b9481b3a3fcbbed461f3e5c011a.svg" alt="\(\int f \dd\mu = 0\)" style="height:1.218em;vertical-align:-0.341em"> if and only if
+<img class="m" src="m/13235348a6c9dc7eeecf7b70455cac3dd6d936e9.svg" alt="\(f = 0\)" style="height:0.974em;vertical-align:-0.214em"> almost everywhere; consequently equivalent integrable
+functions have the same integral, and a countable union of null sets is
+null.
+</p>
+
+</div>
+
+<div class="proof" id="org6eec8c5">
+<p>
+If <img class="m" src="m/13235348a6c9dc7eeecf7b70455cac3dd6d936e9.svg" alt="\(f = 0\)" style="height:0.974em;vertical-align:-0.214em"> off a null set <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">, every simple <img class="m" src="m/6703e2b9e9e42cbb3efea6de12734fbf9a1903af.svg" alt="\(0\le s\le f\)" style="height:0.974em;vertical-align:-0.214em"> is
+supported in <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">, so <img class="m" src="m/38dec564b4ed699c8b3e3e5f9a8070656f10785c.svg" alt="\(\int s\dd\mu = 0\)" style="height:1.218em;vertical-align:-0.341em"> and the supremum is <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">.
+Conversely let <img class="m" src="m/e075a217c7985fca21123167bc2f18b5fd9a0a14.svg" alt="\(A_{n} = \setst{x}{f(x)&gt;1/n}\)" style="height:1.096em;vertical-align:-0.274em">; then
+<img class="m" src="m/dbce884693f15ef1e55ea8590687d5c327b2c062.svg" alt="\(\tfrac{1}{n}\indicator_{A_{n}} \le f\)" style="height:1.304em;vertical-align:-0.378em">, so
+<img class="m" src="m/c39cbeab8005e053ce38ca715bd9250ec1a3c8fc.svg" alt="\(\mu(A_{n})/n \le \int f\dd\mu = 0\)" style="height:1.218em;vertical-align:-0.341em"> and each <img class="m" src="m/b33906b81a0a0b67870798fdbd43e0d16439b942.svg" alt="\(A_{n}\)" style="height:0.913em;vertical-align:-0.164em"> is null. Their
+union is <img class="m" src="m/795b74e5366ab218ceece6387d4e9bd9afb338c4.svg" alt="\(\setst{x}{f(x)&gt;0}\)" style="height:1.096em;vertical-align:-0.274em">, null by countable subadditivity &#x2013; which
+is also the last claim. If <img class="m" src="m/9056a4f36b326bd4ab932bea2143f475720af943.svg" alt="\(f = g\)" style="height:0.974em;vertical-align:-0.214em"> almost everywhere then
+<img class="m" src="m/cdbf81004eabd9c0d1cbd6945c67308974aa8e79.svg" alt="\(\int\abs{f-g}\dd\mu = 0\)" style="height:1.218em;vertical-align:-0.341em">, and additivity gives
+<img class="m" src="m/03666d9737bf89e713bfc778c0998d6db691e66d.svg" alt="\(\int f = \int g\)" style="height:1.218em;vertical-align:-0.341em">.
+</p>
+
+</div>
+
+<div class="definition" id="orge8a06e2">
+<p>
+Let <img class="m" src="m/a495fb0b06668bc69963146325a107091594f3a7.svg" alt="\((X,\mathcal{A},\mu)\)" style="height:1.096em;vertical-align:-0.274em"> be a measure space. Write
+<img class="m" src="m/f19e832178a05d0b5bd58dbeb11682a26a86075f.svg" alt="\(\mathcal{L}^{2}\)" style="height:0.892em;vertical-align:-0.000em"> for the measurable <img class="m" src="m/1f72f324fe864b0de3686fb63345bf63b28dbf01.svg" alt="\(f \colon X \to \R\)" style="height:0.974em;vertical-align:-0.214em"> with
+<img class="m" src="m/1a7ff6c70014cf5e012b9a197a05f0edaa6e89fe.svg" alt="\(\int f^{2}\dd\mu&lt;\infty\)" style="height:1.227em;vertical-align:-0.331em">, and <img class="m" src="m/e4cb228cebdac42f47b302c0a8ed2e224c77f7b3.svg" alt="\(L^{2}(\mu)\)" style="height:1.166em;vertical-align:-0.268em"> for the set of
+equivalence classes of such functions modulo equality almost everywhere,
+with
+<img class="m" src="m/15747689e6e5b1a248cf0d8fd16464b4637c3ec7.svg" alt="\(\inner{f}{g} = \int fg \dd\mu\)" style="height:1.218em;vertical-align:-0.341em"> and <img class="m" src="m/ea702cb667a9d582fd70f87e512030eb1c829d15.svg" alt="\(\norm{f} = (\int f^{2}\dd\mu)^{1/2}\)" style="height:1.308em;vertical-align:-0.340em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org3cc3bed">
+<p>
+<img class="m" src="m/e4cb228cebdac42f47b302c0a8ed2e224c77f7b3.svg" alt="\(L^{2}(\mu)\)" style="height:1.166em;vertical-align:-0.268em"> is a real vector space and <img class="m" src="m/7a3466157ce755cc89b7e18212b8941ed9cd5461.svg" alt="\(\inner{\cdot}{\cdot}\)" style="height:1.096em;vertical-align:-0.274em"> is a
+well-defined inner product on it; in particular
+<img class="m" src="m/6325cf6ece72bd85f18b1d25b38a279c38b061c6.svg" alt="\(\abs{\int fg\dd\mu} \le \norm{f}\norm{g}\)" style="height:1.218em;vertical-align:-0.341em">.
+</p>
+
+</div>
+
+<div class="proof" id="org6c148d1">
+<p>
+For <img class="m" src="m/3f054af3fbe659bcfbab64eddb6b83b272340801.svg" alt="\(f,g \in \mathcal{L}^{2}\)" style="height:1.105em;vertical-align:-0.210em"> the inequality
+<img class="m" src="m/58cbac73362db7c4bb38343ba3084d837aab8edf.svg" alt="\(2\abs{fg} \le f^{2}+g^{2}\)" style="height:1.166em;vertical-align:-0.268em"> shows <img class="m" src="m/32ed46e9ed1dbb3ed096181dacbcd70b881f1189.svg" alt="\(fg\)" style="height:0.974em;vertical-align:-0.214em"> is integrable, so the pairing
+is defined and finite; and
+<img class="m" src="m/7faa98c370ff7429b92558ba45ab5e3d28b420f6.svg" alt="\((f+g)^{2}\le 2f^{2}+2g^{2}\)" style="height:1.166em;vertical-align:-0.268em"> shows <img class="m" src="m/f19e832178a05d0b5bd58dbeb11682a26a86075f.svg" alt="\(\mathcal{L}^{2}\)" style="height:0.892em;vertical-align:-0.000em"> is closed under
+sums, hence a vector space. The pairing does not depend on the
+representatives, by the previous proposition. It is bilinear and
+symmetric by linearity of the integral, and <img class="m" src="m/b3e1255ba6c0d4b0e93b952b580843394076b9b8.svg" alt="\(\inner{f}{f} = 0\)" style="height:1.096em;vertical-align:-0.274em"> forces
+<img class="m" src="m/c02e66fa87f9abb4f5516863e5449572e2d75dbe.svg" alt="\(f^{2} = 0\)" style="height:1.105em;vertical-align:-0.210em"> almost everywhere, that is <img class="m" src="m/13235348a6c9dc7eeecf7b70455cac3dd6d936e9.svg" alt="\(f = 0\)" style="height:0.974em;vertical-align:-0.214em"> in <img class="m" src="m/f3b131d6a772188adab030e30e89617ec918342f.svg" alt="\(L^{2}\)" style="height:0.892em;vertical-align:-0.000em"> &#x2013; which
+is exactly why the quotient by null functions is taken. The
+Cauchy-Schwarz inequality holds in any inner product space.
+</p>
+
+</div>
+
+<div class="theorem" id="org1922718">
+<p>
+<img class="m" src="m/e4cb228cebdac42f47b302c0a8ed2e224c77f7b3.svg" alt="\(L^{2}(\mu)\)" style="height:1.166em;vertical-align:-0.268em"> is complete, hence a Hilbert space; and every sequence
+converging in <img class="m" src="m/f3b131d6a772188adab030e30e89617ec918342f.svg" alt="\(L^{2}\)" style="height:0.892em;vertical-align:-0.000em"> has a subsequence converging almost everywhere.
+</p>
+
+</div>
+
+<div class="proof" id="orgc6c5b1c">
+<p>
+Let <img class="m" src="m/cb4b078f4edc982173ab433e99a2c27552e4210e.svg" alt="\((f_{n})\)" style="height:1.096em;vertical-align:-0.274em"> be Cauchy. Choose <img class="m" src="m/62f7d90b4a6ed08783d5aecff69d46005d957f14.svg" alt="\(n_{1}&lt;n_{2}&lt;\cdots\)" style="height:0.755em;vertical-align:-0.166em"> with
+<img class="m" src="m/8dcdbb927ed11312763ced4c453511a3c917315a.svg" alt="\(\norm{f_{m}-f_{n_{k}}}\le 2^{-k}\)" style="height:1.211em;vertical-align:-0.279em"> for all <img class="m" src="m/e18319f4862a19a93dd0d0b78e227bf9338e5777.svg" alt="\(m \ge n_{k}\)" style="height:0.861em;vertical-align:-0.164em">, and put
+<img class="m" src="m/494d11de9b69e11174c0a8b12e5c792b6c3112ca.svg" alt="\(g_{k} = f_{n_{k+1}}-f_{n_{k}}\)" style="height:1.133em;vertical-align:-0.374em">, so <img class="m" src="m/15145ad5764fa662eb95c564dae17e1f16039b6e.svg" alt="\(\norm{g_{k}}\le2^{-k}\)" style="height:1.204em;vertical-align:-0.277em">.
+</p>
+
+<p>
+Let <img class="m" src="m/a4d0bb562a5a9ec3cc1fe1e8edc7f4f43c1b7c71.svg" alt="\(G_{K} = \sum_{k\le K}\abs{g_{k}}\)" style="height:1.293em;vertical-align:-0.465em">. By the triangle inequality in
+<img class="m" src="m/f3b131d6a772188adab030e30e89617ec918342f.svg" alt="\(L^{2}\)" style="height:0.892em;vertical-align:-0.000em">, <img class="m" src="m/502e052e6a33ab12fe314bab484f64d4f87760fc.svg" alt="\(\norm{G_{K}}\le\sum_{k}2^{-k}\le1\)" style="height:1.259em;vertical-align:-0.327em">, so
+<img class="m" src="m/a4dfee7db4475cf38dcce3576f0d5df9604039ec.svg" alt="\(\int G_{K}^{2}\dd\mu\le1\)" style="height:1.227em;vertical-align:-0.331em"> for every <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">. The <img class="m" src="m/eec07ba59ae2ea63bb2d522d4566253a4eb881ea.svg" alt="\(G_{K}\)" style="height:0.913em;vertical-align:-0.164em"> increase to
+<img class="m" src="m/e1522c2960f0df9886f70168c13d5d0bb5497f10.svg" alt="\(G = \sum_{k}\abs{g_{k}}\)" style="height:1.151em;vertical-align:-0.334em">, so by monotone convergence
+<img class="m" src="m/5404b0c549d591b8a4953b21844b87a9c016824e.svg" alt="\(\int G^{2}\dd\mu \le 1\)" style="height:1.227em;vertical-align:-0.331em">; hence <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> is finite almost everywhere, and
+therefore the series <img class="m" src="m/66e336a8667b8cfa44a6228c1c68494c09bf0609.svg" alt="\(\sum_{k}g_{k}\)" style="height:1.151em;vertical-align:-0.334em"> converges absolutely at almost
+every point. Define <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> as its sum where it converges and <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">
+elsewhere, so <img class="m" src="m/9ef50e478632a2b65f08efb3f311fea4fd1b920c.svg" alt="\(f_{n_{k}} \to f\)" style="height:1.042em;vertical-align:-0.281em"> almost everywhere and <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is
+measurable as an almost-everywhere limit of measurable functions.
+</p>
+
+<p>
+Finally <img class="m" src="m/d7b393e1dead8a4ed610c07c77645aae0386eb36.svg" alt="\(f \in L^{2}\)" style="height:1.105em;vertical-align:-0.210em"> and <img class="m" src="m/d8a7f916e8a19ab8b6bade30d1bcaed8a19afa75.svg" alt="\(f_{n}\to f\)" style="height:0.974em;vertical-align:-0.214em">: given <img class="m" src="m/2cffdc597a54fae183dedb83e6fbd3d870b664ce.svg" alt="\(\eps&gt;0\)" style="height:0.749em;vertical-align:-0.045em">, take
+<img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/23bf955d1c05cb77ba8fdb63301a571879aa4ecd.svg" alt="\(\norm{f_{m}-f_{n}}\le\eps\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/bff009831f5272540fc1a876ed8a62b3be36ca13.svg" alt="\(m,n\ge N\)" style="height:0.962em;vertical-align:-0.212em">. For
+<img class="m" src="m/e3a7f6df845655195bb1fcfe91670525ec99e1e5.svg" alt="\(n \ge N\)" style="height:0.898em;vertical-align:-0.153em">, Fatou's lemma applied to
+<img class="m" src="m/e9238f1fa0bad12853ad7f6d9baf842eba83d067.svg" alt="\((f_{n_{k}}-f_{n})^{2}\to(f-f_{n})^{2}\)" style="height:1.173em;vertical-align:-0.281em"> gives
+<img class="m" src="m/ded25b8fa852fc5381efd2afc5d9b4c4a2244bfb.svg" alt="\(\int(f-f_{n})^{2}\dd\mu \le \liminf_{k}\int(f_{n_{k}}-f_{n})^{2}\dd\mu \le \eps^{2}\)" style="height:1.227em;vertical-align:-0.331em">.
+Hence <img class="m" src="m/de6d2237e7fbf3544503bf589081cb89398cde9a.svg" alt="\(f - f_{n}\in L^{2}\)" style="height:1.105em;vertical-align:-0.210em">, so <img class="m" src="m/d7b393e1dead8a4ed610c07c77645aae0386eb36.svg" alt="\(f \in L^{2}\)" style="height:1.105em;vertical-align:-0.210em">, and
+<img class="m" src="m/55a4519085455250b1f56551b013763ab7f33d4a.svg" alt="\(\norm{f-f_{n}}\le\eps\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="remark" id="orgafb851c">
+<p>
+The quotient by null functions is not fastidiousness: without it
+<img class="m" src="m/c9861b408b8de24175f3831e35499629b58257f6.svg" alt="\(\norm{f} = 0\)" style="height:1.096em;vertical-align:-0.274em"> would not imply <img class="m" src="m/13235348a6c9dc7eeecf7b70455cac3dd6d936e9.svg" alt="\(f = 0\)" style="height:0.974em;vertical-align:-0.214em"> and the norm would not be a
+norm. The price is that an element of <img class="m" src="m/f3b131d6a772188adab030e30e89617ec918342f.svg" alt="\(L^{2}\)" style="height:0.892em;vertical-align:-0.000em"> has no value at a point,
+which is why every later statement about it is "almost everywhere" &#x2013;
+and the subsequence clause above is the standard repair when a pointwise
+statement is genuinely needed.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-lebesgue-integral-and-the-convergence-theorems.html"><span>← previous</span>The Lebesgue integral and the convergence theorems</a><a rel="next" href="product-measures-and-the-theorems-of-tonelli-and-fubini.html"><span>next →</span>Product measures and the theorems of Tonelli and Fubini</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--measure-theory.pdf" title="PDF manual">Measure Theory</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

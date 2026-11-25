@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Backscattering coefficient · Remote Sensing</title>
+<meta name="description" content="\sigma^0 is the radar cross section per unit area, usually in dB; it depends on the radar (wavelength, polarization, incidence angle) and on the surface (roughness relative to \lambda, dielectric constant i.e. moisture, geometry and orientation): smooth surfaces mirror energy away and look dark, ro…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/backscattering-coefficient.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Backscattering coefficient · Remote Sensing">
+<meta property="og:description" content="\sigma^0 is the radar cross section per unit area, usually in dB; it depends on the radar (wavelength, polarization, incidence angle) and on the surface (roughness relative to \lambda, dielectric constant i.e. moisture, geometry and orientation): smooth surfaces mirror energy away and look dark, ro…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/backscattering-coefficient.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-acquisition">Acquisition</a> / <a rel="up" href="index.html#a-acquisition--radar">Radar</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Acquisition · Radar</p>
+<h1>Backscattering coefficient</h1>
+<p class="summary"><img class="m" src="m/88aacec02e6ea8f67e4c3001bce15a12392bb702.svg" alt="\(\sigma^0\)" style="height:0.892em;vertical-align:-0.000em"> is the radar cross section per unit area, usually in dB; it depends on the radar (wavelength, polarization, incidence angle) and on the surface (roughness relative to <img class="m" src="m/623ed6fe71f30e4d5681590495eb1e0754aae1f3.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em">, dielectric constant i.e. moisture, geometry and orientation): smooth surfaces mirror energy away and look dark, rough ones and corners look bright.</p>
+<p class="rel"><span>needs</span> <a href="radar-equation.html">Radar principle and radar equation</a></p>
+<p class="rel"><span>unlocks</span> <a href="sar-complex-image.html">SAR complex, amplitude and intensity images</a>, <a href="sar-polarimetry.html">SAR polarimetry</a></p>
+<p class="rel"><span>see also</span> <a href="radar-bands.html">Radar frequency bands</a>, <a href="sar-complex-image.html">SAR complex, amplitude and intensity images</a>, <a href="radar-geometric-distortions.html">Foreshortening, layover and shadow</a>, <a href="sar-polarimetry.html">SAR polarimetry</a></p>
+<p class="rel"><span>mentioned in</span> <a href="passive-active-sensors.html">Passive and active sensors</a>, <a href="radar-geometric-distortions.html">Foreshortening, layover and shadow</a>, <a href="side-looking-radar.html">Side-looking radar geometry</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="radar-equation.html">Radar principle and radar equation</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orge7e9922" class="outline-2">
+<h2 id="orge7e9922">Definition</h2>
+<div class="outline-text-2" id="text-orge7e9922">
+<p>
+<img class="m" src="m/58a50b7821e3b7a8f7906ffd456567fd10a4c20f.svg" alt="\(\sigma^0=\sigma/A\)" style="height:1.166em;vertical-align:-0.268em">, dimensionless, expressed as <img class="m" src="m/29e9d1df6411377c49e1865e593c8906e9e52029.svg" alt="\(10\log_{10}\sigma^0\)" style="height:1.160em;vertical-align:-0.267em"> dB (typically −25 to +5 dB).
+</p>
+
+<p>
+System parameters:
+</p>
+<ul class="org-ul">
+<li><b>wavelength</b>: longer waves penetrate deeper into vegetation and dry soil (X: canopy top; C: canopy; L and P: branches, trunks, ground);</li>
+<li><b>polarization</b>: transmit and receive horizontally (H) or vertically (V): HH, VV co-polarized; HV, VH cross-polarized, sensitive to <a href="sar-polarimetry.html">volume scattering</a> (vegetation);</li>
+<li><b><a href="side-looking-radar.html">incidence angle</a></b> <img class="m" src="m/c8d9a433f30967c52095060bff5783652eb30ded.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em">: <img class="m" src="m/88aacec02e6ea8f67e4c3001bce15a12392bb702.svg" alt="\(\sigma^0\)" style="height:0.892em;vertical-align:-0.000em"> decreases with <img class="m" src="m/c8d9a433f30967c52095060bff5783652eb30ded.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em">, fast for smooth surfaces.</li>
+</ul>
+<p>
+Surface parameters:
+</p>
+<ul class="org-ul">
+<li><b>roughness</b>: smooth if height variations <img class="m" src="m/fb365c2a6b7129c4499fc3b9a52a51335ec6704c.svg" alt="\(h&lt;\lambda/(8\cos\theta)\)" style="height:1.096em;vertical-align:-0.274em"> (Rayleigh criterion), giving <a href="lambertian-surface.html">specular reflection</a> away from the sensor (calm water: black);</li>
+<li><b>dielectric constant</b>: water raises it, so wet soil and vegetation backscatter more;</li>
+<li><b>geometry</b>: slopes facing the radar are bright, dihedral corners (building–ground) give strong double-bounce returns.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org68be258" class="outline-2">
+<h2 id="org68be258">Picture</h2>
+<div class="outline-text-2" id="text-org68be258">
+<figure class="fig"><img class="m" src="m/54144e6748909ac35ce52f08eab1ba6b70686e38.svg" alt="figure" style="width:26.059em"><figcaption><span class="fl">Figure 1.</span> Radar backscatter from three surfaces: a smooth surface reflects specularly away from the sensor, a rough one scatters diffusely, and a corner reflector returns a strong double bounce.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org219ec3e" class="outline-2">
+<h2 id="org219ec3e">Worked example</h2>
+<div class="outline-text-2" id="text-org219ec3e">
+<p>
+<img class="m" src="m/88aacec02e6ea8f67e4c3001bce15a12392bb702.svg" alt="\(\sigma^0\)" style="height:0.892em;vertical-align:-0.000em"> values are compared in dB: a field at −8 dB and a lake at −22 dB differ by 14 dB, a factor <img class="m" src="m/393ef31c25fba9b1ea1dcd6e78cf6d733795b6db.svg" alt="\(10^{1.4}\approx25\)" style="height:0.892em;vertical-align:-0.000em"> in power. Averaging must be done in linear units: the mean of −10 dB and −20 dB is <img class="m" src="m/48dbb08af15248db26516daa253ef8e3298c20de.svg" alt="\(10\log_{10}((0.1+0.01)/2)=-12.6\)" style="height:1.096em;vertical-align:-0.274em"> dB, not −15 dB. Rayleigh criterion in C band (<img class="m" src="m/5f7319fcc0172ad0ba2bdf307a2f95b44a42784c.svg" alt="\(\lambda=5.6\)" style="height:0.761em;vertical-align:-0.000em"> cm) at <img class="m" src="m/bc12877df55e908214fdd760f09fb819c99bc0b8.svg" alt="\(\theta=35^\circ\)" style="height:0.761em;vertical-align:-0.000em">: smooth if <img class="m" src="m/0e45847af018fb1fc635cf54a8ee093e09906514.svg" alt="\(h&lt;5.6/(8\cos35^\circ)\approx0.85\)" style="height:1.096em;vertical-align:-0.274em"> cm — a ploughed field (several cm) is rough, a calm lake smooth.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbe31412" class="outline-2">
+<h2 id="orgbe31412">Intuition</h2>
+<div class="outline-text-2" id="text-orgbe31412">
+<p>
+A radar image is a map of roughness, wetness and geometry seen from the side, not a map of colour.
+</p>
+</div>
+</div>
+<div id="outline-container-org4807a1c" class="outline-2">
+<h2 id="org4807a1c">Pitfall</h2>
+<div class="outline-text-2" id="text-org4807a1c">
+<p>
+The same <img class="m" src="m/88aacec02e6ea8f67e4c3001bce15a12392bb702.svg" alt="\(\sigma^0\)" style="height:0.892em;vertical-align:-0.000em"> can come from different causes (a wet smooth field and a dry rough one): interpretation needs several bands, polarizations, angles or dates.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="azimuth-resolution.html"><span>← previous</span>Azimuth resolution of a real-aperture radar</a><a rel="next" href="range-resolution.html"><span>next →</span>Range resolution</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/acquisition--radar.pdf" title="PDF manual">Radar</a> · <a class="pdf" href="pdf/acquisition.pdf" title="PDF manual">Acquisition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Histogram thresholding · Remote Sensing</title>
+<meta name="description" content="When the histogram is bimodal, a threshold T between the modes splits the image into two classes; Otsu's method chooses T maximising the between-class variance \omega_0\omega_1(\mu_0-\mu_1)^2, and with Gaussian models the Bayes threshold is where the weighted class densities cross.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/image-thresholding.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Histogram thresholding · Remote Sensing">
+<meta property="og:description" content="When the histogram is bimodal, a threshold T between the modes splits the image into two classes; Otsu's method chooses T maximising the between-class variance \omega_0\omega_1(\mu_0-\mu_1)^2, and with Gaussian models the Bayes threshold is where the weighted class densities cross.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/image-thresholding.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--segmentation">Segmentation</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Processing · Segmentation</p>
+<h1>Histogram thresholding</h1>
+<p class="summary">When the histogram is bimodal, a threshold <img class="m" src="m/94739ec580d0267ce9639c71ab70cb61aed32135.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> between the modes splits the image into two classes; Otsu's method chooses <img class="m" src="m/94739ec580d0267ce9639c71ab70cb61aed32135.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> maximising the between-class variance <img class="m" src="m/93dbbbf95258854cce2fb616bc900de1a5514aa2.svg" alt="\(\omega_0\omega_1(\mu_0-\mu_1)^2\)" style="height:1.166em;vertical-align:-0.268em">, and with Gaussian models the Bayes threshold is where the weighted class densities cross.</p>
+<p class="rel"><span>needs</span> <a href="image-segmentation.html">Image segmentation</a>, <a href="image-histogram.html">Image histogram</a></p>
+<p class="rel"><span>unlocks</span> <a href="morphological-operations.html">Mathematical morphology</a>, <a href="change-detection.html">Change detection</a></p>
+<p class="rel"><span>see also</span> <a href="change-detection.html">Change detection</a>, <a href="bayes-classifier.html">Bayes decision rule</a>, <a href="morphological-operations.html">Mathematical morphology</a></p>
+<details class="path"><summary>Learning path: 17 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="spectral-signature.html">Spectral signature</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li><li><a href="image-statistics.html">Image statistics: moments, mode, median</a></li><li><a href="homogeneous-area-statistics.html">Statistics of homogeneous areas in optical images</a></li><li><a href="image-segmentation.html">Image segmentation</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org46ce23e" class="outline-2">
+<h2 id="org46ce23e">Method</h2>
+<div class="outline-text-2" id="text-org46ce23e">
+<p>
+For a threshold <img class="m" src="m/94739ec580d0267ce9639c71ab70cb61aed32135.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em">: class 0 = <img class="m" src="m/1083bbd7c2c54de42afc95dbac85878a553f8563.svg" alt="\(\{\mathrm{DN}\le T\}\)" style="height:1.096em;vertical-align:-0.274em">, class 1 = <img class="m" src="m/e4b3cd097965d9aef03b6820ec614803e16a4d23.svg" alt="\(\{\mathrm{DN}&gt;T\}\)" style="height:1.096em;vertical-align:-0.274em">, with weights <img class="m" src="m/ed1c8d8381dfa6740dd30ca8de8c1fb8345c7ac5.svg" alt="\(\omega_0(T)=H(T)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/4fbb4d2e3bb23eb479243ef7edc35a5393673e32.svg" alt="\(\omega_1=1-\omega_0\)" style="height:0.871em;vertical-align:-0.165em">, means <img class="m" src="m/702ce0ba4aaa6f73c328b94c244ea4e3b0d16be2.svg" alt="\(\mu_0,\mu_1\)" style="height:0.685em;vertical-align:-0.212em">. Otsu:
+<div class="mb"><img class="m" src="m/4967d93a0a09ded1d6e194892613252ba8ee5f15.svg" alt="\[ T^\ast=\arg\max_T\ \sigma_B^2(T)=\omega_0\,\omega_1\,(\mu_0-\mu_1)^2, \]" style="width:19.559em"></div>
+equivalent to minimising the within-class <a href="image-statistics.html">variance</a>; computed in one pass over the histogram. Bayesian alternative: fit two densities and put <img class="m" src="m/94739ec580d0267ce9639c71ab70cb61aed32135.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> where <img class="m" src="m/77579a39895bbe1c7bb4c047eeb85f7ee5287f79.svg" alt="\(P_0p_0(T)=P_1p_1(T)\)" style="height:1.096em;vertical-align:-0.274em"> (<a href="bayes-classifier.html">minimum error</a>).
+</p>
+</div>
+</div>
+<div id="outline-container-org5b9d11b" class="outline-2">
+<h2 id="org5b9d11b">Example</h2>
+<div class="outline-text-2" id="text-org5b9d11b">
+<p>
+Water mapping: water is dark in NIR and in SAR intensity, land bright; one threshold gives a binary water mask.
+</p>
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="k">from</span> skimage.filters <span class="k">import</span> threshold_otsu
+<span class="v">T</span> = threshold_otsu(nir); <span class="v">water</span> = nir &lt; T</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orgc37407e" class="outline-2">
+<h2 id="orgc37407e">Intuition</h2>
+<div class="outline-text-2" id="text-orgc37407e">
+<p>
+Look at the valley between the two hills of the histogram and cut there.
+</p>
+</div>
+</div>
+<div id="outline-container-org7e6fc08" class="outline-2">
+<h2 id="org7e6fc08">Pitfall</h2>
+<div class="outline-text-2" id="text-org7e6fc08">
+<p>
+A threshold uses no spatial information: noise and mixed pixels produce isolated errors; and if one class is tiny, its hill is invisible and Otsu splits the dominant class instead.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="image-segmentation.html"><span>← previous</span>Image segmentation</a><a rel="next" href="morphological-operations.html"><span>next →</span>Mathematical morphology</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--segmentation.pdf" title="PDF manual">Segmentation</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mealy versus Moore machines · Computer Science</title>
+<meta name="description" content="In a Moore machine the outputs depend only on the present state, so they are written inside the states, are constant for the whole clock cycle and react to an input one cycle late; in a Mealy machine they depend on state and inputs, are written on the arrows, react within the same cycle and often n…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/mealy-moore.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Mealy versus Moore machines · Computer Science">
+<meta property="og:description" content="In a Moore machine the outputs depend only on the present state, so they are written inside the states, are constant for the whole clock cycle and react to an input one cycle late; in a Mealy machine they depend on state and inputs, are written on the arrows, react within the same cycle and often n…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/mealy-moore.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--sequential">Sequential</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Hardware · Sequential</p>
+<h1>Mealy versus Moore machines</h1>
+<p class="summary">In a Moore machine the outputs depend only on the present state, so they are written inside the states, are constant for the whole clock cycle and react to an input one cycle late; in a Mealy machine they depend on state and inputs, are written on the arrows, react within the same cycle and often need fewer states — but they follow input glitches and two Mealy machines connected in a loop can close a combinational cycle.</p>
+<p class="rel"><span>needs</span> <a href="fsm-synthesis.html">Synthesis of finite-state machines</a></p>
+<p class="rel"><span>unlocks</span> <a href="asm-chart.html">Algorithmic state machine (ASM) charts</a></p>
+<p class="rel"><span>see also</span> <a href="asm-chart.html">Algorithmic state machine (ASM) charts</a>, <a href="fsm-patterns.html">Recurring state-machine patterns</a>, <a href="finite-state-machine.html">Finite-state machines</a>, <a href="critical-races.html">Critical races</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li><li><a href="sr-latch.html">SR latch and D latch</a></li><li><a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></li><li><a href="fsm-analysis.html">Analysis of synchronous sequential circuits</a></li><li><a href="fsm-synthesis.html">Synthesis of finite-state machines</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgd8d0d17" class="outline-2">
+<h2 id="orgd8d0d17">Definition</h2>
+<div class="outline-text-2" id="text-orgd8d0d17">
+<ul class="org-ul">
+<li><b>Moore</b>: <img class="m" src="m/7e0c3d0174c1232f9dd60958cd38b9f7c2bbeadf.svg" alt="\(OUT(n)=\Lambda(X(n))\)" style="height:1.096em;vertical-align:-0.274em">. Output logic fed by the flip-flops only.</li>
+<li><b>Mealy</b>: <img class="m" src="m/09c10c674fa3ba0a839b42f3cf2c1cf350057bad.svg" alt="\(OUT(n)=\Lambda(IN(n),X(n))\)" style="height:1.096em;vertical-align:-0.274em">. Output logic fed by flip-flops and inputs.</li>
+</ul>
+<p>
+Every Moore machine is a Mealy machine whose outputs ignore the inputs; a Mealy machine is converted to Moore by splitting each state according to the output with which it is entered (more states, one cycle later).
+</p>
+</div>
+</div>
+<div id="outline-container-org40ac2cb" class="outline-2">
+<h2 id="org40ac2cb">Example</h2>
+<div class="outline-text-2" id="text-org40ac2cb">
+<p>
+Boiler (inputs <img class="m" src="m/300aa70f8d951bd5a3fcf6135eb614413e06bbeb.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/c6306f7556c20ed611b57417e4530ef85873290c.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">; output <img class="m" src="m/52138c1336de78ec97ddf99f4365ef7a94e63f4d.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">; state <img class="m" src="m/22e0ddfd6474a3c3a70ea5996f05cd2a4a0226b1.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">=burner on).
+Moore: <img class="m" src="m/f9c87579375c8d046fd2762fd69b65db59f4bb8d.svg" alt="\(X^+=L+X\bar H\)" style="height:0.991em;vertical-align:-0.089em">, <img class="m" src="m/88a2ee92c28c114336cb5707c46c93026810cdb8.svg" alt="\(C=X\)" style="height:0.749em;vertical-align:-0.000em">. The burner switches on in the cycle <b>after</b> <img class="m" src="m/c6306f7556c20ed611b57417e4530ef85873290c.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> is seen, when the state has become 1.
+Mealy: same next-state function, <img class="m" src="m/a80993e1d83aeed349da4811ee41de0e003a774b.svg" alt="\(C=L+X\bar H\)" style="height:0.991em;vertical-align:-0.089em">: the burner switches on in the same cycle in which <img class="m" src="m/c6306f7556c20ed611b57417e4530ef85873290c.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> rises — <img class="m" src="m/52138c1336de78ec97ddf99f4365ef7a94e63f4d.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> equals the next state instead of the present one.
+Timing, <img class="m" src="m/c6306f7556c20ed611b57417e4530ef85873290c.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> rises in the middle of cycle 2:
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">cycle</th>
+<th scope="col" class="org-right">1</th>
+<th scope="col" class="org-right">2</th>
+<th scope="col" class="org-right">3</th>
+<th scope="col" class="org-right">4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">L</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-left">X (state)</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-left">C Moore</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-left">C Mealy</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+The Mealy output moves together with the input (even mid-cycle), the Moore output only after the edge.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdca107a" class="outline-2">
+<h2 id="orgdca107a">Picture</h2>
+<div class="outline-text-2" id="text-orgdca107a">
+<figure class="fig"><img class="m" src="m/cf534d618b69052a814b229779a98f9bce11b7c6.svg" alt="figure" style="width:37.943em"><figcaption><span class="fl">Figure 1.</span> The same light controller as a Moore machine (outputs <img class="m" src="m/52138c1336de78ec97ddf99f4365ef7a94e63f4d.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> in the states) and as a Mealy machine (outputs on the transitions), which reacts one clock earlier.</figcaption></figure>
+<p>
+Left Moore (output in the state), right Mealy (output on the arrow).
+</p>
+</div>
+</div>
+<div id="outline-container-org506c9ae" class="outline-2">
+<h2 id="org506c9ae">Intuition</h2>
+<div class="outline-text-2" id="text-org506c9ae">
+<p>
+Moore answers "where am I?", Mealy answers "where am I and what is happening now?" — the second is quicker and more nervous.
+</p>
+</div>
+</div>
+<div id="outline-container-org10fb5c7" class="outline-2">
+<h2 id="org10fb5c7">Pitfall</h2>
+<div class="outline-text-2" id="text-org10fb5c7">
+<p>
+When several machines talk to each other, a Mealy output feeding another Mealy machine's input whose output comes back closes a loop with no flip-flop in it: possible oscillation. With Moore machines (or registered Mealy outputs) every loop crosses a register. In an <a href="asm-chart.html">ASM chart</a> a Mealy output is a <b>conditional output</b> box, never a state.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="fsm-synthesis.html"><span>← previous</span>Synthesis of finite-state machines</a><a rel="next" href="asm-chart.html"><span>next →</span>Algorithmic state machine (ASM) charts</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--sequential.pdf" title="PDF manual">Sequential</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

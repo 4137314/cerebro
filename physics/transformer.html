@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The transformer · Physics</title>
+<meta name="description" content="An ideal transformer (no losses, no leakage, infinite self-inductance) obeys \frac{v_2}{v_1}=\frac{n_2}{n_1}, \frac{i_2}{i_1}=-\frac{n_1}{n_2} (associated reference directions), conserves power and reflects a load as Z_{in}=\left(\frac{n_1}{n_2}\right)^2Z_L; a real transformer adds magnetising and …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/transformer.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The transformer · Physics">
+<meta property="og:description" content="An ideal transformer (no losses, no leakage, infinite self-inductance) obeys \frac{v_2}{v_1}=\frac{n_2}{n_1}, \frac{i_2}{i_1}=-\frac{n_1}{n_2} (associated reference directions), conserves power and reflects a load as Z_{in}=\left(\frac{n_1}{n_2}\right)^2Z_L; a real transformer adds magnetising and …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/transformer.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-circuits">Circuits</a> / <a rel="up" href="index.html#a-circuits--power-systems">Power Systems</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Circuits · Power Systems</p>
+<h1>The transformer</h1>
+<p class="summary">An ideal transformer (no losses, no leakage, infinite self-inductance) obeys <img class="m" src="m/d3b8eaa2f5537a9734af7eab525f8ca31abf6d84.svg" alt="\(\frac{v_2}{v_1}=\frac{n_2}{n_1}\)" style="height:1.267em;vertical-align:-0.481em">, <img class="m" src="m/29b61f33e629c7dc26099dbd64dd06b1a138b75f.svg" alt="\(\frac{i_2}{i_1}=-\frac{n_1}{n_2}\)" style="height:1.444em;vertical-align:-0.491em"> (associated reference directions), conserves power and reflects a load as <img class="m" src="m/3029feed69f430d6c27a9d30bacf27dc25d6a704.svg" alt="\(Z_{in}=\left(\frac{n_1}{n_2}\right)^2Z_L\)" style="height:2.196em;vertical-align:-0.703em">; a real transformer adds magnetising and leakage inductances, winding resistances and core losses.</p>
+<p class="rel"><span>needs</span> <a href="impedance-and-ac-circuit-analysis.html">Impedance and the symbolic method</a>, <a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a>, <a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></p>
+<p class="rel"><span>unlocks</span> <a href="power-generation-and-distribution.html">Generation and distribution of electric power</a></p>
+<p class="rel"><span>see also</span> <a href="power-generation-and-distribution.html">Generation and distribution of electric power</a>, <a href="smith-chart-and-impedance-matching.html">The Smith chart and impedance matching</a></p>
+<p class="rel"><span>mentioned in</span> <a href="switching-converters.html">Switching converters: buck, boost and losses</a></p>
+<details class="path"><summary>Learning path: 11 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="circuits.html">Circuit theory: the map of the subject</a></li><li><a href="kirchhoff-laws-and-network-theorems.html">Kirchhoff's laws and network theorems</a></li><li><a href="lti-systems-and-convolution.html">LTI systems, impulse response and first/second-order circuits</a></li><li><a href="complex-numbers-and-phasors.html">Complex numbers and phasors</a></li><li><a href="impedance-and-ac-circuit-analysis.html">Impedance and the symbolic method</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orge014546" class="outline-2">
+<h2 id="orge014546">Ideal model (derivation)</h2>
+<div class="outline-text-2" id="text-orge014546">
+<p>
+Same flux <img class="m" src="m/a5b8be2b369bbd9819dbec7696122e0898ec246c.svg" alt="\(\Phi\)" style="height:0.749em;vertical-align:-0.000em"> links both windings (no leakage): <img class="m" src="m/493b79bccd022cedf1ec85b601c930943c38c782.svg" alt="\(v_1=n_1\dot\Phi\)" style="height:1.173em;vertical-align:-0.164em">, <img class="m" src="m/7903995e24874ec4639ec5c929ca99f3c4956109.svg" alt="\(v_2=n_2\dot\Phi\Rightarrow v_2/v_1=n_2/n_1\)" style="height:1.283em;vertical-align:-0.269em">. Ampère around the core: <img class="m" src="m/80aeb8914ddf201e20526fb222811a469a77e1d9.svg" alt="\(n_1i_1+n_2i_2=\mathcal R\Phi\to0\)" style="height:0.913em;vertical-align:-0.164em"> for infinite permeability (infinite self-inductance): <img class="m" src="m/5527679999a2b9b6ea802c5c2ec6eef65a094b92.svg" alt="\(i_2/i_1=-n_1/n_2\)" style="height:1.096em;vertical-align:-0.274em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1098/rstl.1832.0006" data-full="M. Faraday, “Experimental researches in electricity”, Philosophical Transactions of the Royal Society of London 122, 125–162 (1832)." aria-label="M. Faraday, “Experimental researches in electricity”, Philosophical Transactions of the Royal Society of London 122, 125–162 (1832).">Faraday 1832</a>)</span>. Hence <img class="m" src="m/30741ad33694b7e7722d4bab1683e37658286769.svg" alt="\(v_1i_1+v_2i_2=0\)" style="height:0.887em;vertical-align:-0.169em">: no stored or dissipated energy. With load <img class="m" src="m/802b3d6a1cc62b2e20223a1a39627dbfe21a9faa.svg" alt="\(Z_L\)" style="height:0.913em;vertical-align:-0.164em"> on the secondary (<img class="m" src="m/040f66fbbc5bca252ae297bd099e66285bba0d19.svg" alt="\(\mathbf V_2=-Z_L\mathbf I_2\)" style="height:0.916em;vertical-align:-0.165em">): <img class="m" src="m/9f82973f4bf135e1667ca08453edae614f269ff9.svg" alt="\(Z_{in}=\frac{\mathbf V_1}{\mathbf I_1}=\left(\frac{n_1}{n_2}\right)^2Z_L\)" style="height:2.196em;vertical-align:-0.703em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org36bf2d7" class="outline-2">
+<h2 id="org36bf2d7">Coupled inductors and real transformer</h2>
+<div class="outline-text-2" id="text-org36bf2d7">
+<p>
+<img class="m" src="m/acf6d442954ac868c7f8666ef31157047cfff5c7.svg" alt="\(v_1=L_1\dot i_1+M\dot i_2\)" style="height:1.147em;vertical-align:-0.161em">, <img class="m" src="m/4908a42c1805b530cd4d397835929797989bf0c6.svg" alt="\(v_2=M\dot i_1+L_2\dot i_2\)" style="height:1.147em;vertical-align:-0.161em">, <img class="m" src="m/450e61b932345b8bef82d8b19df1b79c95c47dad.svg" alt="\(M=k\sqrt{L_1L_2}\)" style="height:1.140em;vertical-align:-0.205em">. Equivalent circuit: <img class="m" src="m/8a65ef7ff18d4ba1589bbfbd8640967afb01b22a.svg" alt="\(R_1\)" style="height:0.913em;vertical-align:-0.164em">, leakage <img class="m" src="m/e95cc87122998ce12129b296576800f35a332004.svg" alt="\(L_{\sigma1}\)" style="height:0.913em;vertical-align:-0.164em">, magnetising <img class="m" src="m/c31fe177eb471a6e10e0e2a3a85fa70924a896a9.svg" alt="\(L_m\)" style="height:0.913em;vertical-align:-0.164em"> in parallel with core-loss <img class="m" src="m/a9bc6b8611b10e64e22c09215f95b2415bbcf8be.svg" alt="\(R_c\)" style="height:0.913em;vertical-align:-0.164em">, ideal transformer, <img class="m" src="m/8e03ba852a0ff7433617fdff061e934f4862a112.svg" alt="\(R_2'\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/644483ddea2d9eb9f0d1abf7fe7651f8510b70f3.svg" alt="\(L_{\sigma2}'\)" style="height:1.096em;vertical-align:-0.274em">. Open-circuit test → <img class="m" src="m/e7ccf13e61d8fcc42a43cccb91bc2c0c34cd7838.svg" alt="\(L_m,R_c\)" style="height:0.962em;vertical-align:-0.212em">; short-circuit test → <img class="m" src="m/d0ba5271fb6fda237402b2a8b916438309475f2a.svg" alt="\(R_{eq},L_{\sigma}\)" style="height:1.062em;vertical-align:-0.319em">. Efficiency of large units &gt; 99%.
+</p>
+</div>
+</div>
+<div id="outline-container-orgcc3cae4" class="outline-2">
+<h2 id="orgcc3cae4">Picture</h2>
+<div class="outline-text-2" id="text-orgcc3cae4">
+<figure class="fig"><img class="m" src="m/be1defe1961d7926354f9ad1b135e4fcd5c87427.svg" alt="figure" style="width:14.659em"><figcaption><span class="fl">Figure 1.</span> An ideal transformer with <img class="m" src="m/570cbe3474c706f570a157a534da162da7540674.svg" alt="\(n_1\)" style="height:0.636em;vertical-align:-0.165em"> and <img class="m" src="m/03e42cffc020373de036081d9b43a04cf3eae847.svg" alt="\(n_2\)" style="height:0.636em;vertical-align:-0.165em"> turns feeding the load <img class="m" src="m/802b3d6a1cc62b2e20223a1a39627dbfe21a9faa.svg" alt="\(Z_L\)" style="height:0.913em;vertical-align:-0.164em">; the dots mark the windings' polarity.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org0259e92" class="outline-2">
+<h2 id="org0259e92">Worked example</h2>
+<div class="outline-text-2" id="text-org0259e92">
+<p>
+Audio output: 8 Ω speaker to look like 800 Ω for a tube amplifier: <img class="m" src="m/0f72cea02b8c0e84ccdffd86177c37f674c8753a.svg" alt="\((n_1/n_2)^2=100\)" style="height:1.166em;vertical-align:-0.268em">, turns ratio 10:1. Mains transformer 230 V → 12 V, 2 A secondary: <img class="m" src="m/b022dce3ce879fef5fd9a99d591cb6ceff52459e.svg" alt="\(n_1/n_2=19.2\)" style="height:1.096em;vertical-align:-0.274em">, primary current ≈ 0.104 A plus magnetising current (lagging, typically 2–10% of rated).
+</p>
+</div>
+</div>
+<div id="outline-container-orga1c2dab" class="outline-2">
+<h2 id="orga1c2dab">Engineering applications</h2>
+<div class="outline-text-2" id="text-orga1c2dab">
+<p>
+Voltage conversion and isolation in power grids and supplies (<a href="power-generation-and-distribution.html">distribution</a>), flyback/forward converters (<a href="switching-converters.html">switching converters</a>), impedance matching (baluns, RF transformers), current transformers for metering, galvanic isolation in gate drivers.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf175ece" class="outline-2">
+<h2 id="orgf175ece">Pitfall</h2>
+<div class="outline-text-2" id="text-orgf175ece">
+<p>
+Transformers do not work at DC: a DC component saturates the core (<img class="m" src="m/c31fe177eb471a6e10e0e2a3a85fa70924a896a9.svg" alt="\(L_m\)" style="height:0.913em;vertical-align:-0.164em"> collapses). And the ideal current relation fails at light load, where the magnetising current dominates.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="frequency-response-and-filters.html"><span>← previous</span>Frequency response, Bode plots and filters</a><a rel="next" href="power-generation-and-distribution.html"><span>next →</span>Generation and distribution of electric power</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/circuits--power-systems.pdf" title="PDF manual">Power Systems</a> · <a class="pdf" href="pdf/circuits.pdf" title="PDF manual">Circuits</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conditional expectation as an orthogonal projection · Mathematics</title>
+<meta name="description" content="Conditioning on an event of positive probability is a definition; conditioning on a random variable, whose every value may have probability zero, is not. The construction that works is geometric: the conditional expectation is the best square-integrable approximation to X among the variables that d…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/conditional-expectation-as-an-orthogonal-projection.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Conditional expectation as an orthogonal projection · Mathematics">
+<meta property="og:description" content="Conditioning on an event of positive probability is a definition; conditioning on a random variable, whose every value may have probability zero, is not. The construction that works is geometric: the conditional expectation is the best square-integrable approximation to X among the variables that d…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/conditional-expectation-as-an-orthogonal-projection.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-probability">Probability</a> / <a rel="up" href="index.html#a-probability--probability-theory">Probability Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Probability · Probability Theory</p>
+<h1>Conditional expectation as an orthogonal projection</h1>
+<p class="summary">Conditioning on an event of positive probability is a definition; conditioning on a random variable, whose every value may have probability zero, is not. The construction that works is geometric: the conditional expectation is the best square-integrable approximation to <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> among the variables that depend only on the given information, and the <a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert space</a> projection theorem is what makes it exist.</p>
+<p class="rel"><span>needs</span> <a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a>, <a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a>, <a href="random-variables-laws-and-distribution-functions.html">Random variables, laws and distribution functions</a>, <a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a>, <a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a>, <a href="variance-covariance-and-the-markov-and-chebyshev-inequalities.html">Variance, covariance and the Markov and Chebyshev inequalities</a></p>
+<p class="rel"><span>unlocks</span> <a href="the-rao-blackwell-theorem.html">The Rao-Blackwell theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="probability.html">Probability</a>, <a href="statistics.html">Statistics</a></p>
+<details class="path"><summary>Learning path: 59 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="convex-functions-and-the-second-derivative.html">Convex functions and the second derivative</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li><li><a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="the-baire-category-theorem.html">The Baire category theorem</a></li><li><a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></li><li><a href="convex-set.html">Convex set</a></li><li><a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a></li><li><a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a></li><li><a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a></li><li><a href="probability-spaces-conditioning-and-independence.html">Probability spaces, conditioning and independence</a></li><li><a href="random-variables-laws-and-distribution-functions.html">Random variables, laws and distribution functions</a></li><li><a href="expectation-the-transfer-theorem-and-jensens-inequality.html">Expectation, the transfer theorem and Jensen's inequality</a></li><li><a href="variance-covariance-and-the-markov-and-chebyshev-inequalities.html">Variance, covariance and the Markov and Chebyshev inequalities</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org0b3430c">
+<p>
+Let <img class="m" src="m/68e4695a374bc8fea1198d77be986a3d133a301d.svg" alt="\((\Omega,\mathcal{F},\Prob)\)" style="height:1.096em;vertical-align:-0.274em"> be a probability space and
+<img class="m" src="m/708bed9066a7cdf3a4882e4b4c9c8a0d7243de62.svg" alt="\(\mathcal{G}\subseteq\mathcal{F}\)" style="height:0.898em;vertical-align:-0.153em"> a sub-<img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-algebra &#x2013; the
+<i>information</i>. Write <img class="m" src="m/effb6a1e52c98ae275278bc6c49a5e1955f79148.svg" alt="\(L^{2}(\mathcal{G})\)" style="height:1.166em;vertical-align:-0.268em"> for the square-integrable
+random variables that are <img class="m" src="m/acd48386bed6623392c384251f279b0db5e0bf4d.svg" alt="\(\mathcal{G}\)" style="height:0.855em;vertical-align:-0.103em">-measurable, taken modulo
+equality almost surely.
+</p>
+
+</div>
+
+<div class="proposition" id="orgcc68e1d">
+<p>
+<img class="m" src="m/effb6a1e52c98ae275278bc6c49a5e1955f79148.svg" alt="\(L^{2}(\mathcal{G})\)" style="height:1.166em;vertical-align:-0.268em"> is a closed subspace of <img class="m" src="m/420d8ff8ba2a081441495adbb882902aff09a958.svg" alt="\(L^{2}(\mathcal{F})\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+</div>
+
+<div class="proof" id="org623c164">
+<p>
+It is a subspace: sums and scalar multiples of <img class="m" src="m/acd48386bed6623392c384251f279b0db5e0bf4d.svg" alt="\(\mathcal{G}\)" style="height:0.855em;vertical-align:-0.103em">-measurable
+functions are <img class="m" src="m/acd48386bed6623392c384251f279b0db5e0bf4d.svg" alt="\(\mathcal{G}\)" style="height:0.855em;vertical-align:-0.103em">-measurable. It is closed: if
+<img class="m" src="m/e2d958e353b40eb84c793b4c53f85a1c07a28349.svg" alt="\(Y_{n} \in L^{2}(\mathcal{G})\)" style="height:1.166em;vertical-align:-0.268em"> converges in <img class="m" src="m/f3b131d6a772188adab030e30e89617ec918342f.svg" alt="\(L^{2}\)" style="height:0.892em;vertical-align:-0.000em"> to <img class="m" src="m/82d9b7c5c94f297586981fdbe7ca67b30095b73a.svg" alt="\(Y\)" style="height:0.749em;vertical-align:-0.000em">, then
+by the Riesz-Fischer theorem some subsequence converges to <img class="m" src="m/82d9b7c5c94f297586981fdbe7ca67b30095b73a.svg" alt="\(Y\)" style="height:0.749em;vertical-align:-0.000em"> almost
+surely; a pointwise limit of <img class="m" src="m/acd48386bed6623392c384251f279b0db5e0bf4d.svg" alt="\(\mathcal{G}\)" style="height:0.855em;vertical-align:-0.103em">-measurable functions is
+<img class="m" src="m/acd48386bed6623392c384251f279b0db5e0bf4d.svg" alt="\(\mathcal{G}\)" style="height:0.855em;vertical-align:-0.103em">-measurable, and changing <img class="m" src="m/82d9b7c5c94f297586981fdbe7ca67b30095b73a.svg" alt="\(Y\)" style="height:0.749em;vertical-align:-0.000em"> on a null set does not
+change its class.
+</p>
+
+</div>
+
+<div class="theorem" id="org9a57755">
+<p>
+For every <img class="m" src="m/27fe2e8d92aa04bc0de0a8008377d939733333f3.svg" alt="\(X \in L^{2}(\mathcal{F})\)" style="height:1.166em;vertical-align:-0.268em"> there is a unique
+<img class="m" src="m/db7a9c6f23373fbc6a111793cb746ab0ed66d2d2.svg" alt="\(\E[X\mid\mathcal{G}] \in L^{2}(\mathcal{G})\)" style="height:1.166em;vertical-align:-0.268em">, the <i>conditional
+expectation</i>, such that
+<div class="mb"><img class="m" src="m/7cdbb18613774b8454e8006f67266a2e19d65c4d.svg" alt="\[ \E\bigl[(X - \E[X\mid\mathcal{G}])\,Y\bigr] = 0 \qquad \text{for every } Y \in L^{2}(\mathcal{G}); \]" style="width:23.959em"></div>
+equivalently, it is the element of <img class="m" src="m/effb6a1e52c98ae275278bc6c49a5e1955f79148.svg" alt="\(L^{2}(\mathcal{G})\)" style="height:1.166em;vertical-align:-0.268em"> nearest to
+<img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">. It is linear in <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> and satisfies
+<img class="m" src="m/790b66801e1c74eebbe87610eb707cbe8dd7e423.svg" alt="\(\E[\E[X\mid\mathcal{G}]] = \E[X]\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgc174c7a">
+<p>
+<img class="m" src="m/420d8ff8ba2a081441495adbb882902aff09a958.svg" alt="\(L^{2}(\mathcal{F})\)" style="height:1.166em;vertical-align:-0.268em"> is a Hilbert space and <img class="m" src="m/effb6a1e52c98ae275278bc6c49a5e1955f79148.svg" alt="\(L^{2}(\mathcal{G})\)" style="height:1.166em;vertical-align:-0.268em"> a
+closed subspace, so the projection theorem gives a unique nearest point
+<img class="m" src="m/b4c9aa4182818852a9c73dd5656f01b60b18fcff.svg" alt="\(P X\)" style="height:0.749em;vertical-align:-0.000em">, characterised by <img class="m" src="m/c786dbceba479b986488b854937a94245f88182d.svg" alt="\(X - PX \perp L^{2}(\mathcal{G})\)" style="height:1.166em;vertical-align:-0.268em"> &#x2013; which
+is the displayed identity, the inner product being
+<img class="m" src="m/64b0d088dd5cc0b41c06d44eaaeee926d55e7e67.svg" alt="\(\inner{U}{V} = \E[UV]\)" style="height:1.096em;vertical-align:-0.274em">. The projection is linear. Taking
+<img class="m" src="m/aeaadc69a06c0cb7cf72f10986f817d41ee9ba63.svg" alt="\(Y = 1\)" style="height:0.749em;vertical-align:-0.000em">, which lies in <img class="m" src="m/effb6a1e52c98ae275278bc6c49a5e1955f79148.svg" alt="\(L^{2}(\mathcal{G})\)" style="height:1.166em;vertical-align:-0.268em"> because the space has
+finite measure, gives <img class="m" src="m/8c29a6d4b911f43fc9c707273e2bc8f80a5ddedc.svg" alt="\(\E[X - PX] = 0\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orga4d633b">
+<p>
+Let <img class="m" src="m/172b625de0f3c794e7b9402a8e145f6908efa6ff.svg" alt="\(\mathcal{H}\subseteq\mathcal{G}\subseteq\mathcal{F}\)" style="height:0.898em;vertical-align:-0.153em">. Then
+<img class="m" src="m/6e74eac63dc64acdf4d2c5cb1e1a966508ed4178.svg" alt="\(\E[\E[X\mid\mathcal{G}]\mid\mathcal{H}] = \E[X\mid\mathcal{H}]\)" style="height:1.096em;vertical-align:-0.274em">
+almost surely. If <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is itself <img class="m" src="m/acd48386bed6623392c384251f279b0db5e0bf4d.svg" alt="\(\mathcal{G}\)" style="height:0.855em;vertical-align:-0.103em">-measurable then
+<img class="m" src="m/4604e237443a13f25c398b517a1f65ccbfc232e8.svg" alt="\(\E[X\mid\mathcal{G}] = X\)" style="height:1.096em;vertical-align:-0.274em">; and if <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is independent of
+<img class="m" src="m/acd48386bed6623392c384251f279b0db5e0bf4d.svg" alt="\(\mathcal{G}\)" style="height:0.855em;vertical-align:-0.103em">, in the sense that <img class="m" src="m/7242fb383ee3674654c4588e2e10e524c9cd00c4.svg" alt="\(\E[XY] = \E[X]\E[Y]\)" style="height:1.096em;vertical-align:-0.274em"> for every
+<img class="m" src="m/fa32bb61c503c1ebea234c3511a6e5f87cb3893b.svg" alt="\(Y \in L^{2}(\mathcal{G})\)" style="height:1.166em;vertical-align:-0.268em">, then <img class="m" src="m/b0b0600b72248c46f620934f39548b80242339c3.svg" alt="\(\E[X\mid\mathcal{G}] = \E[X]\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgc361e6e">
+<p>
+For <img class="m" src="m/1fdf4e71e986c612269157f00455b8a56478539a.svg" alt="\(Y \in L^{2}(\mathcal{H})\subseteq L^{2}(\mathcal{G})\)" style="height:1.166em;vertical-align:-0.268em">, the
+defining identity for <img class="m" src="m/acd48386bed6623392c384251f279b0db5e0bf4d.svg" alt="\(\mathcal{G}\)" style="height:0.855em;vertical-align:-0.103em"> gives
+<img class="m" src="m/4cfe39968406cc8d4885c544244ac7f6b6447d3a.svg" alt="\(\E[(X-\E[X\mid\mathcal{G}])Y] = 0\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/508f3c619d92e7b110a2a938246f9f9c17029d75.svg" alt="\(\E[XY] = \E[\E[X\mid\mathcal{G}]Y]\)" style="height:1.096em;vertical-align:-0.274em">.
+Hence <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/be922e63871ae73f384e7258a810805fc2657846.svg" alt="\(\E[X\mid\mathcal{G}]\)" style="height:1.096em;vertical-align:-0.274em"> have the same inner products
+against <img class="m" src="m/88113295c4ded18c0c07a7caf613df534d658e0d.svg" alt="\(L^{2}(\mathcal{H})\)" style="height:1.166em;vertical-align:-0.268em"> and therefore the same projection onto
+it, which is the tower property.
+</p>
+
+<p>
+If <img class="m" src="m/596ef7166ea8254729ac49f18a716d7c4fcff9c6.svg" alt="\(X \in L^{2}(\mathcal{G})\)" style="height:1.166em;vertical-align:-0.268em"> it is its own nearest point. If <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is
+independent of <img class="m" src="m/acd48386bed6623392c384251f279b0db5e0bf4d.svg" alt="\(\mathcal{G}\)" style="height:0.855em;vertical-align:-0.103em">, then for every
+<img class="m" src="m/fa32bb61c503c1ebea234c3511a6e5f87cb3893b.svg" alt="\(Y \in L^{2}(\mathcal{G})\)" style="height:1.166em;vertical-align:-0.268em">,
+<img class="m" src="m/4be4e5ba6857108730c5b3d3fd2fd55601b42096.svg" alt="\(\E[(X-\E[X])Y] = \E[X]\E[Y]-\E[X]\E[Y] = 0\)" style="height:1.096em;vertical-align:-0.274em">, and the constant
+<img class="m" src="m/c5c42b83793600c7915369f924ee98086da28ab3.svg" alt="\(\E[X]\)" style="height:1.096em;vertical-align:-0.274em"> lies in <img class="m" src="m/effb6a1e52c98ae275278bc6c49a5e1955f79148.svg" alt="\(L^{2}(\mathcal{G})\)" style="height:1.166em;vertical-align:-0.268em">; uniqueness identifies it as
+the projection.
+</p>
+
+</div>
+
+<div class="theorem" id="org793a5b4">
+<p>
+For <img class="m" src="m/6d9dfd25cb2b9797d452149d0b417c195ef3f41b.svg" alt="\(X \in L^{2}\)" style="height:0.935em;vertical-align:-0.047em"> and a sub-<img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-algebra <img class="m" src="m/acd48386bed6623392c384251f279b0db5e0bf4d.svg" alt="\(\mathcal{G}\)" style="height:0.855em;vertical-align:-0.103em">,
+<div class="mb"><img class="m" src="m/db939da0613e484dabbdbe51ae3bba16af44700b.svg" alt="\[ \Var(X) = \Var\bigl(\E[X\mid\mathcal{G}]\bigr) + \E\bigl[(X - \E[X\mid\mathcal{G}])^{2}\bigr], \]" style="width:22.619em"></div>
+so <img class="m" src="m/bcbe240871272a70433acc3693eee5ed142ad136.svg" alt="\(\Var(\E[X\mid\mathcal{G}]) \le \Var(X)\)" style="height:1.096em;vertical-align:-0.274em">: conditioning cannot
+increase the variance.
+</p>
+
+</div>
+
+<div class="proof" id="org3e7e6f1">
+<p>
+Assume <img class="m" src="m/c92f03d67099f5fe0daf641f26e8339a928c6631.svg" alt="\(\E[X] = 0\)" style="height:1.096em;vertical-align:-0.274em">, which changes neither side. Write
+<img class="m" src="m/1d0cd5efe262ca650f088243f6f5198333d546ab.svg" alt="\(X = \E[X\mid\mathcal{G}] + (X - \E[X\mid\mathcal{G}])\)" style="height:1.096em;vertical-align:-0.274em">, an orthogonal
+decomposition in <img class="m" src="m/f3b131d6a772188adab030e30e89617ec918342f.svg" alt="\(L^{2}\)" style="height:0.892em;vertical-align:-0.000em"> by the defining identity. Pythagoras gives
+<img class="m" src="m/0a364ceb06339547c5e48e4117b358af27ab33b6.svg" alt="\(\E[X^{2}] = \E[\E[X\mid\mathcal{G}]^{2}] + \E[(X-\E[X\mid\mathcal{G}])^{2}]\)" style="height:1.166em;vertical-align:-0.268em">,
+and both squared terms are variances because
+<img class="m" src="m/8a361dacd0de4f134142fe85506c30fb658da2f2.svg" alt="\(\E[\E[X\mid\mathcal{G}]] = \E[X] = 0\)" style="height:1.096em;vertical-align:-0.274em">. The inequality follows since
+the second summand is non-negative.
+</p>
+
+</div>
+
+<div class="remark" id="org7193a21">
+<p>
+Restricting to square-integrable <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is what allows the geometric
+construction, and it is a genuine restriction: the general definition,
+for integrable <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">, is the Radon-Nikodym derivative of
+<img class="m" src="m/792b7bbd124f770e9933a3c84825ac2cf5319d60.svg" alt="\(A \mapsto \E[X\indicator_{A}]\)" style="height:1.096em;vertical-align:-0.274em"> on <img class="m" src="m/acd48386bed6623392c384251f279b0db5e0bf4d.svg" alt="\(\mathcal{G}\)" style="height:0.855em;vertical-align:-0.103em">, and it agrees with
+this one where both apply. The variance decomposition above is the
+identity that makes the <a href="the-rao-blackwell-theorem.html">Rao-Blackwell theorem</a> a one-line consequence.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="characteristic-functions.html"><span>← previous</span>Characteristic functions</a><a rel="next" href="probability.html"><span>next →</span>Probability</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/probability--probability-theory.pdf" title="PDF manual">Probability Theory</a> · <a class="pdf" href="pdf/probability.pdf" title="PDF manual">Probability</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

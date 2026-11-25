@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elementary substructures and the Lowenheim-Skolem theorems · Mathematics</title>
+<meta name="description" content="A substructure inherits the quantifier-free statements and nothing more. Asking that it inherit all of them defines an elementary substructure, and the two theorems below say such things are plentiful in both directions: a structure always has a small elementary substructure and always has large el…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/elementary-substructures-and-the-lowenheim-skolem-theorems.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Elementary substructures and the Lowenheim-Skolem theorems · Mathematics">
+<meta property="og:description" content="A substructure inherits the quantifier-free statements and nothing more. Asking that it inherit all of them defines an elementary substructure, and the two theorems below say such things are plentiful in both directions: a structure always has a small elementary substructure and always has large el…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/elementary-substructures-and-the-lowenheim-skolem-theorems.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-foundations">Foundations</a> / <a rel="up" href="index.html#a-foundations--model-theory">Model Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Foundations · Model Theory</p>
+<h1>Elementary substructures and the Lowenheim-Skolem theorems</h1>
+<p class="summary">A substructure inherits the quantifier-free statements and nothing more. Asking that it inherit <i>all</i> of them defines an elementary substructure, and the two theorems below say such things are plentiful in both directions: a structure always has a small elementary substructure and always has large elementary extensions. Together they say that first-order theories cannot control the size of their models &#x2013; which is why "the" model of a theory is almost never a well-formed phrase.</p>
+<p class="rel"><span>needs</span> <a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a>, <a href="first-order-languages-structures-and-satisfaction.html">First-order languages, structures and satisfaction</a>, <a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a>, <a href="ultraproducts-and-the-theorem-of-los.html">Ultraproducts and the theorem of Los</a></p>
+<p class="rel"><span>mentioned in</span> <a href="foundations.html">Foundations</a>, <a href="logic.html">Logic</a></p>
+<details class="path"><summary>Learning path: 25 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="filters-ultrafilters-and-the-ultrafilter-lemma.html">Filters, ultrafilters and the ultrafilter lemma</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="first-order-languages-structures-and-satisfaction.html">First-order languages, structures and satisfaction</a></li><li><a href="ultraproducts-and-the-theorem-of-los.html">Ultraproducts and the theorem of Los</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org35ee7ff">
+<p>
+Let <img class="m" src="m/6d40145d26458af58776ea3bb7d3688a443c67b2.svg" alt="\(\mathcal{B}\)" style="height:0.749em;vertical-align:-0.000em"> be a substructure of <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em">. It is an
+<i>elementary substructure</i>, written <img class="m" src="m/5a0bd31dc597dec67e238e439543974126758ed9.svg" alt="\(\mathcal{B}\preceq\mathcal{A}\)" style="height:0.898em;vertical-align:-0.153em">, if
+for every formula <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> and every assignment <img class="m" src="m/65ed198e156bf7d35f2bcbce00232479bbe853b2.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em"> with values
+in <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">,
+<img class="m" src="m/70f45a0a0282eb3f14ff7d3aeef789c5604a475f.svg" alt="\(\mathcal{B}\models\varphi[\beta]\)" style="height:1.096em;vertical-align:-0.274em"> if and only if
+<img class="m" src="m/24d51f4318a1f2f93ade688a45ae6c42cf3571ec.svg" alt="\(\mathcal{A}\models\varphi[\beta]\)" style="height:1.096em;vertical-align:-0.274em">. Two structures are <i>elementarily
+equivalent</i> if they satisfy the same sentences.
+</p>
+
+</div>
+
+<div class="theorem" id="org618cf7b">
+<p>
+Let <img class="m" src="m/6d40145d26458af58776ea3bb7d3688a443c67b2.svg" alt="\(\mathcal{B}\)" style="height:0.749em;vertical-align:-0.000em"> be a substructure of <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em">. Then
+<img class="m" src="m/5a0bd31dc597dec67e238e439543974126758ed9.svg" alt="\(\mathcal{B}\preceq\mathcal{A}\)" style="height:0.898em;vertical-align:-0.153em"> if and only if: for every formula
+<img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">, every assignment <img class="m" src="m/65ed198e156bf7d35f2bcbce00232479bbe853b2.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em"> into <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> and every variable
+<img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, if <img class="m" src="m/1ecc5f099e40091003f6fb65e25ff3d910ec8a2c.svg" alt="\(\mathcal{A}\models\exists x\,\varphi[\beta]\)" style="height:1.096em;vertical-align:-0.274em"> then some
+<img class="m" src="m/7d4b2793865f7c4a0af9fae46f96c63d7dd72b6d.svg" alt="\(b \in B\)" style="height:0.804em;vertical-align:-0.040em"> witnesses it in <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgda5a247">
+<p>
+Necessity: if <img class="m" src="m/5a0bd31dc597dec67e238e439543974126758ed9.svg" alt="\(\mathcal{B}\preceq\mathcal{A}\)" style="height:0.898em;vertical-align:-0.153em"> and
+<img class="m" src="m/1ecc5f099e40091003f6fb65e25ff3d910ec8a2c.svg" alt="\(\mathcal{A}\models\exists x\,\varphi[\beta]\)" style="height:1.096em;vertical-align:-0.274em">, then
+<img class="m" src="m/db8029ef199a0ce021277a7118962734d07160d3.svg" alt="\(\mathcal{B}\models\exists x\,\varphi[\beta]\)" style="height:1.096em;vertical-align:-0.274em">, so some <img class="m" src="m/7d4b2793865f7c4a0af9fae46f96c63d7dd72b6d.svg" alt="\(b \in B\)" style="height:0.804em;vertical-align:-0.040em">
+satisfies <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> in <img class="m" src="m/6d40145d26458af58776ea3bb7d3688a443c67b2.svg" alt="\(\mathcal{B}\)" style="height:0.749em;vertical-align:-0.000em">, hence in <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em"> by
+elementarity.
+</p>
+
+<p>
+Sufficiency: induct on <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">. Atomic formulas agree because
+<img class="m" src="m/6d40145d26458af58776ea3bb7d3688a443c67b2.svg" alt="\(\mathcal{B}\)" style="height:0.749em;vertical-align:-0.000em"> is a substructure, and the cases of <img class="m" src="m/d98ea9123f192051780bfe031476f329b80f970c.svg" alt="\(\neg\)" style="height:0.472em;vertical-align:-0.000em"> and
+<img class="m" src="m/590201a38380e9fc74a8481a0e767f0242b1deb3.svg" alt="\(\wedge\)" style="height:0.609em;vertical-align:-0.000em"> are immediate from the induction hypothesis. For
+<img class="m" src="m/31b29d7ffcea0bd87aec1baac2f4aba6bf40e28c.svg" alt="\(\exists x\,\varphi\)" style="height:0.974em;vertical-align:-0.214em">: if <img class="m" src="m/db8029ef199a0ce021277a7118962734d07160d3.svg" alt="\(\mathcal{B}\models\exists x\,\varphi[\beta]\)" style="height:1.096em;vertical-align:-0.274em">
+then a witness in <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> satisfies <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> in <img class="m" src="m/6d40145d26458af58776ea3bb7d3688a443c67b2.svg" alt="\(\mathcal{B}\)" style="height:0.749em;vertical-align:-0.000em">, hence
+in <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em"> by induction, so
+<img class="m" src="m/1ecc5f099e40091003f6fb65e25ff3d910ec8a2c.svg" alt="\(\mathcal{A}\models\exists x\,\varphi[\beta]\)" style="height:1.096em;vertical-align:-0.274em">. Conversely, if
+<img class="m" src="m/1ecc5f099e40091003f6fb65e25ff3d910ec8a2c.svg" alt="\(\mathcal{A}\models\exists x\,\varphi[\beta]\)" style="height:1.096em;vertical-align:-0.274em">, the hypothesis provides
+a witness <img class="m" src="m/7d4b2793865f7c4a0af9fae46f96c63d7dd72b6d.svg" alt="\(b \in B\)" style="height:0.804em;vertical-align:-0.040em"> with <img class="m" src="m/2dd3132c5a11e300b2a6224acd2c9e6a69a9bb65.svg" alt="\(\mathcal{A}\models\varphi\)" style="height:1.096em;vertical-align:-0.274em"> at <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em">, and
+by induction <img class="m" src="m/cab2ec25695a5c5faeeb10784c23048f68a46ecf.svg" alt="\(\mathcal{B}\models\varphi\)" style="height:1.096em;vertical-align:-0.274em"> at <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em">; hence
+<img class="m" src="m/db8029ef199a0ce021277a7118962734d07160d3.svg" alt="\(\mathcal{B}\models\exists x\,\varphi[\beta]\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgcfb1a5a">
+<p>
+Let <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> be a countable language, <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em"> an <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">-structure
+and <img class="m" src="m/7d67a64e0ffe9fb5761a6a00bfac4a6946a2fdbd.svg" alt="\(S \subseteq A\)" style="height:0.898em;vertical-align:-0.153em"> countable. Then <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em"> has a countable
+elementary substructure containing <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org62ebc8d">
+<p>
+There are countably many formulas, since each is a finite string over a
+countable alphabet and the finite strings over a countable alphabet form
+a countable union of countable sets. Fix a choice function on the
+non-empty subsets of <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+<p>
+Define <img class="m" src="m/dc13ae9edf9016b2b6d49a4a627bd4dedbc35ee8.svg" alt="\(B_{0} = S \cup \set{c^{\mathcal{A}}}\)" style="height:1.196em;vertical-align:-0.275em">, a countable set (take
+any point of <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> if <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> is empty and there are no constants), and
+recursively let <img class="m" src="m/768029ec52d1c08175ae80b776cdb90b3786d9a2.svg" alt="\(B_{n+1}\)" style="height:1.005em;vertical-align:-0.251em"> be <img class="m" src="m/205ee18fc8f25b889f4be3dea3cd6f4bec49d6a8.svg" alt="\(B_{n}\)" style="height:0.913em;vertical-align:-0.164em"> together with: the values of
+every function symbol on tuples from <img class="m" src="m/205ee18fc8f25b889f4be3dea3cd6f4bec49d6a8.svg" alt="\(B_{n}\)" style="height:0.913em;vertical-align:-0.164em">; and, for every formula
+<img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">, every variable <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> and every assignment <img class="m" src="m/65ed198e156bf7d35f2bcbce00232479bbe853b2.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em"> taking
+values in <img class="m" src="m/205ee18fc8f25b889f4be3dea3cd6f4bec49d6a8.svg" alt="\(B_{n}\)" style="height:0.913em;vertical-align:-0.164em"> and differing from a fixed default at finitely many
+variables, a chosen witness in <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> for
+<img class="m" src="m/1ecc5f099e40091003f6fb65e25ff3d910ec8a2c.svg" alt="\(\mathcal{A}\models\exists x\,\varphi[\beta]\)" style="height:1.096em;vertical-align:-0.274em"> whenever that holds.
+Each stage adds countably many elements &#x2013; countably many formulas,
+countably many function symbols, countably many relevant assignments,
+each contributing at most one element &#x2013; so <img class="m" src="m/768029ec52d1c08175ae80b776cdb90b3786d9a2.svg" alt="\(B_{n+1}\)" style="height:1.005em;vertical-align:-0.251em"> is countable by
+the countable union theorem.
+</p>
+
+<p>
+Let <img class="m" src="m/be2ae719f4b34b2ef5834d7f5f1c6fe4ce8be7bf.svg" alt="\(B = \bigcup_{n}B_{n}\)" style="height:1.151em;vertical-align:-0.334em">, countable for the same reason. It is
+closed under the function symbols and contains the constants, so it is
+the domain of a substructure; and it satisfies the Tarski-Vaught
+condition, because a formula with parameters in <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> has them in some
+<img class="m" src="m/205ee18fc8f25b889f4be3dea3cd6f4bec49d6a8.svg" alt="\(B_{n}\)" style="height:0.913em;vertical-align:-0.164em">, where a witness was added at stage <img class="m" src="m/8667d4ccbeefcc1a86781878d6b636f39c49c68a.svg" alt="\(n+1\)" style="height:0.798em;vertical-align:-0.088em">. Hence
+<img class="m" src="m/5a0bd31dc597dec67e238e439543974126758ed9.svg" alt="\(\mathcal{B}\preceq\mathcal{A}\)" style="height:0.898em;vertical-align:-0.153em">, and <img class="m" src="m/44f5cc5821b0d112569be5b9c40d1bdac418e261.svg" alt="\(S \subseteq B\)" style="height:0.898em;vertical-align:-0.153em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orge4266c2">
+<p>
+Let <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em"> be an infinite <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">-structure and <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> any set.
+Then there is a structure elementarily equivalent to <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em">
+whose domain has a subset in bijection with <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="orge833aac">
+<p>
+Let <img class="m" src="m/728f7136e84a02e6c5b5aaba57ee5495b80002a5.svg" alt="\(L'\)" style="height:0.824em;vertical-align:-0.000em"> be <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> with a new constant <img class="m" src="m/648b50cad4832b9baf8e0ccd14b4ae1704dc856d.svg" alt="\(c_{x}\)" style="height:0.636em;vertical-align:-0.165em"> for each <img class="m" src="m/94eaa1f197d2485b6086400fc7bd6537a638d7d8.svg" alt="\(x \in X\)" style="height:0.792em;vertical-align:-0.040em">,
+and let <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> be the set of <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">-sentences true in <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em">
+together with all sentences <img class="m" src="m/638b44953bc851328391eb3e205ec0eeae9096f9.svg" alt="\(\neg (c_{x} = c_{y})\)" style="height:1.135em;vertical-align:-0.318em"> for <img class="m" src="m/d8bbcaa55606851960ee0c534f69095478c4801d.svg" alt="\(x \ne y\)" style="height:0.974em;vertical-align:-0.214em">. A
+finite subset of <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> mentions finitely many new constants; since
+<img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em"> is infinite, distinct elements can be assigned to them,
+so <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em"> with those interpretations is a model of that finite
+subset. By compactness <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> has a model <img class="m" src="m/cd053a42dc6593a0d14dc4a0625b55838bea74c4.svg" alt="\(\mathcal{C}\)" style="height:0.749em;vertical-align:-0.000em">; its reduct to
+<img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> satisfies exactly the sentences true in <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em">, and
+<img class="m" src="m/f6db6a2c3e01813974f64bced9a7c6f9cc7c3175.svg" alt="\(x \mapsto c_{x}^{\mathcal{C}}\)" style="height:1.193em;vertical-align:-0.274em"> is injective.
+</p>
+
+</div>
+
+<div class="remark" id="org7ad11d6">
+<p>
+Applied to a countable axiomatisation of set theory, the downward
+theorem produces a countable model of it &#x2013; inside which some set is
+provably uncountable. That is Skolem's paradox, and it is not a
+contradiction: "uncountable" means the model contains no bijection with
+its own natural numbers, and the missing bijection exists outside it.
+The lesson is exactly the one both theorems teach: a first-order theory
+constrains its models only up to what finitely many symbols can say.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="ultraproducts-and-the-theorem-of-los.html"><span>← previous</span>Ultraproducts and the theorem of Los</a><a rel="next" href="logic.html"><span>next →</span>Logic</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/foundations--model-theory.pdf" title="PDF manual">Model Theory</a> · <a class="pdf" href="pdf/foundations.pdf" title="PDF manual">Foundations</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

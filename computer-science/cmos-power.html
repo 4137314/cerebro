@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Power dissipation in CMOS · Computer Science</title>
+<meta name="description" content="P=\alpha\,C_L V_{DD}^2 f+I_{sc}V_{DD}+I_{leak}V_{DD}: dynamic switching power (activity \alpha, switched capacitance, the square of the supply, frequency), short-circuit power during transitions, and static leakage; the quadratic dependence on V_{DD} makes the supply the strongest lever.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/cmos-power.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Power dissipation in CMOS · Computer Science">
+<meta property="og:description" content="P=\alpha\,C_L V_{DD}^2 f+I_{sc}V_{DD}+I_{leak}V_{DD}: dynamic switching power (activity \alpha, switched capacitance, the square of the supply, frequency), short-circuit power during transitions, and static leakage; the quadratic dependence on V_{DD} makes the supply the strongest lever.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/cmos-power.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--power">Power</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Hardware · Power</p>
+<h1>Power dissipation in CMOS</h1>
+<p class="summary"><img class="m" src="m/b81a44bd4648221eb6d00e8adca5530670e20e30.svg" alt="\(P=\alpha\,C_L V_{DD}^2 f+I_{sc}V_{DD}+I_{leak}V_{DD}\)" style="height:1.194em;vertical-align:-0.298em">: dynamic switching power (activity <img class="m" src="m/dabec0db832b25aa2ca0696129003fd5e252557b.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em">, switched capacitance, the square of the supply, frequency), short-circuit power during transitions, and static leakage; the quadratic dependence on <img class="m" src="m/ccb13c212acbc5115edf5630c486c3ecb861de26.svg" alt="\(V_{DD}\)" style="height:0.913em;vertical-align:-0.164em"> makes the supply the strongest lever.</p>
+<p class="rel"><span>needs</span> <a href="gate-delay-model.html">Gate and wire delay models</a></p>
+<p class="rel"><span>unlocks</span> <a href="clock-gating.html">Clock gating and operand isolation</a>, <a href="power-gating.html">Power gating and leakage reduction</a>, <a href="switching-activity.html">Signal and transition probabilities</a>, <a href="dvfs-parallelism.html">Voltage scaling, DVFS and parallel datapaths</a></p>
+<p class="rel"><span>see also</span> <a href="switching-activity.html">Signal and transition probabilities</a>, <a href="clock-gating.html">Clock gating and operand isolation</a>, <a href="dvfs-parallelism.html">Voltage scaling, DVFS and parallel datapaths</a>, <a href="low-power-encoding.html">Encodings and orderings for low power</a>, <a href="digital-design-flow.html">Digital design flow and abstraction levels</a>, <a href="power-gating.html">Power gating and leakage reduction</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="gate-delay-model.html">Gate and wire delay models</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org290625e" class="outline-2">
+<h2 id="org290625e">Model</h2>
+<div class="outline-text-2" id="text-org290625e">
+<ul class="org-ul">
+<li><b>Switching (dynamic) power</b>: every <img class="m" src="m/46ca94db446d2aa728edccb2440738b6df8928df.svg" alt="\(0\to1\)" style="height:0.706em;vertical-align:-0.000em"> transition at a node of capacitance <img class="m" src="m/6c325b51b26888b3d7d4ad571346d7f35110fe9b.svg" alt="\(C_L\)" style="height:0.913em;vertical-align:-0.164em"> draws <img class="m" src="m/919b7b9e9c5ebed25b2c20002f307d1210ab52de.svg" alt="\(C_LV_{DD}^2\)" style="height:1.194em;vertical-align:-0.298em"> from the supply (half stored, half burned in the pull-up; the stored half is burned at the <img class="m" src="m/09fe1647689d8510cbd7766463c7551c33171b3a.svg" alt="\(1\to0\)" style="height:0.706em;vertical-align:-0.000em"> transition). With <img class="m" src="m/dabec0db832b25aa2ca0696129003fd5e252557b.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> = probability of a <img class="m" src="m/46ca94db446d2aa728edccb2440738b6df8928df.svg" alt="\(0\to1\)" style="height:0.706em;vertical-align:-0.000em"> transition per cycle:</li>
+</ul>
+<p>
+<div class="mb"><img class="m" src="m/4d9594b7d6821327e17682bc4fa33eb21787147d.svg" alt="\[ P_{dyn}=\alpha\,C_L\,V_{DD}^2\,f. \]" style="width:9.454em"></div>
+</p>
+<ul class="org-ul">
+<li><b>Short-circuit power</b>: during a slow input transition both networks conduct briefly; it grows with input slew, typically 10–15% of the dynamic power.</li>
+<li><b>Static power</b>: subthreshold and gate leakage, <img class="m" src="m/f015724ed3d8b50b3c6d000a879aee5c23958504.svg" alt="\(P_{stat}=I_{leak}V_{DD}\)" style="height:0.913em;vertical-align:-0.164em">; it flows even when nothing switches and grows exponentially as the threshold voltage drops.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org58af12a" class="outline-2">
+<h2 id="org58af12a">Derivation</h2>
+<div class="outline-text-2" id="text-org58af12a">
+<p>
+Charging <img class="m" src="m/6c325b51b26888b3d7d4ad571346d7f35110fe9b.svg" alt="\(C_L\)" style="height:0.913em;vertical-align:-0.164em"> from 0 to <img class="m" src="m/ccb13c212acbc5115edf5630c486c3ecb861de26.svg" alt="\(V_{DD}\)" style="height:0.913em;vertical-align:-0.164em"> moves charge <img class="m" src="m/89f32dbc93306b24076130ff570242b22f381a91.svg" alt="\(Q=C_LV_{DD}\)" style="height:0.962em;vertical-align:-0.212em"> out of the supply at voltage <img class="m" src="m/ccb13c212acbc5115edf5630c486c3ecb861de26.svg" alt="\(V_{DD}\)" style="height:0.913em;vertical-align:-0.164em">: energy <img class="m" src="m/ac5c4fd2020c70cc7ac20a78984cffb9dd121046.svg" alt="\(QV_{DD}=C_LV_{DD}^2\)" style="height:1.194em;vertical-align:-0.298em">. The capacitor ends with <img class="m" src="m/ac8088ec82f4715f0989f2c431ff2ce12918da8a.svg" alt="\(\tfrac12C_LV_{DD}^2\)" style="height:1.304em;vertical-align:-0.378em">, so the other half is dissipated in the PMOS. Discharging dissipates the stored half in the NMOS. One full cycle <img class="m" src="m/af1d31c4fce0242152c7002f9188691a3f1cd7ae.svg" alt="\(0\to1\to0\)" style="height:0.706em;vertical-align:-0.000em"> costs <img class="m" src="m/919b7b9e9c5ebed25b2c20002f307d1210ab52de.svg" alt="\(C_LV_{DD}^2\)" style="height:1.194em;vertical-align:-0.298em">; at <img class="m" src="m/e692e8b198b9a6e679c3019d4cecc2725295721b.svg" alt="\(\alpha f\)" style="height:0.974em;vertical-align:-0.214em"> such cycles per second, <img class="m" src="m/bb68a524620bae1f9ab86fde989923394ca17792.svg" alt="\(P=\alpha C_LV_{DD}^2f\)" style="height:1.194em;vertical-align:-0.298em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org3aa991b" class="outline-2">
+<h2 id="org3aa991b">Levers</h2>
+<div class="outline-text-2" id="text-org3aa991b">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">parameter</th>
+<th scope="col" class="org-left">how to reduce it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">activity α</td>
+<td class="org-left">fewer transitions: clock gating, encodings, glitch removal</td>
+</tr>
+
+<tr>
+<td class="org-left">capacitance C_L</td>
+<td class="org-left">smaller gates, shorter wires, fewer nodes</td>
+</tr>
+
+<tr>
+<td class="org-left">supply V_DD</td>
+<td class="org-left">voltage scaling, multiple supplies (quadratic gain)</td>
+</tr>
+
+<tr>
+<td class="org-left">frequency f</td>
+<td class="org-left">lower clock: saves power, not energy per operation</td>
+</tr>
+
+<tr>
+<td class="org-left">leakage I_leak</td>
+<td class="org-left">power gating, high-threshold cells</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgaa1ea8c" class="outline-2">
+<h2 id="orgaa1ea8c">Intuition</h2>
+<div class="outline-text-2" id="text-orgaa1ea8c">
+<p>
+Every bit flip pays a toll proportional to the capacitance and to the square of the voltage. Low-power design is flipping fewer bits, smaller wires, at lower voltage.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdb68f1d" class="outline-2">
+<h2 id="orgdb68f1d">Pitfall</h2>
+<div class="outline-text-2" id="text-orgdb68f1d">
+<p>
+Halving <img class="m" src="m/c1ed5a3ca52156eb9911941034a69236922afca1.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> halves power but not energy: the task takes twice as long. Energy per operation <img class="m" src="m/ad5971909cd53df955d4640b01c1eea107c3b884.svg" alt="\(\alpha C_LV_{DD}^2\)" style="height:1.194em;vertical-align:-0.298em"> only falls by reducing <img class="m" src="m/dabec0db832b25aa2ca0696129003fd5e252557b.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em">, <img class="m" src="m/6c325b51b26888b3d7d4ad571346d7f35110fe9b.svg" alt="\(C_L\)" style="height:0.913em;vertical-align:-0.164em"> or <img class="m" src="m/ccb13c212acbc5115edf5630c486c3ecb861de26.svg" alt="\(V_{DD}\)" style="height:0.913em;vertical-align:-0.164em">.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="two-level-minimization.html"><span>← previous</span>Two-level minimization: prime implicants and covers</a><a rel="next" href="clock-gating.html"><span>next →</span>Clock gating and operand isolation</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--power.pdf" title="PDF manual">Power</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

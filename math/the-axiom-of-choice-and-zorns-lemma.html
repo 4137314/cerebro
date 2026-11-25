@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The axiom of choice and Zorn's lemma · Mathematics</title>
+<meta name="description" content="Three theorems in this archive are proved by producing an object no construction reaches: a basis of an arbitrary vector space, a maximal ideal of an arbitrary ring, a satisfying assignment for an infinite set of formulas. Each is Zorn's lemma applied to a partial order chosen so that &quot;maximal&quot; mea…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-axiom-of-choice-and-zorns-lemma.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The axiom of choice and Zorn's lemma · Mathematics">
+<meta property="og:description" content="Three theorems in this archive are proved by producing an object no construction reaches: a basis of an arbitrary vector space, a maximal ideal of an arbitrary ring, a satisfying assignment for an infinite set of formulas. Each is Zorn's lemma applied to a partial order chosen so that &quot;maximal&quot; mea…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-axiom-of-choice-and-zorns-lemma.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-foundations">Foundations</a> / <a rel="up" href="index.html#a-foundations--set-theory">Set Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Foundations · Set Theory</p>
+<h1>The axiom of choice and Zorn's lemma</h1>
+<p class="summary">Three theorems in this archive are proved by producing an object no construction reaches: a basis of an arbitrary vector space, a maximal ideal of an arbitrary ring, a satisfying assignment for an infinite set of formulas. Each is Zorn's lemma applied to a partial order chosen so that "maximal" means what is wanted. Zorn's lemma is not more than the axiom of choice &#x2013; they are equivalent &#x2013; but it is the form in which choice is usable without transfinite recursion.</p>
+<p class="rel"><span>needs</span> <a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a>, <a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></p>
+<p class="rel"><span>unlocks</span> <a href="boolean-algebras-and-stones-representation-theorem.html">Boolean algebras and Stone's representation theorem</a>, <a href="completeness-of-propositional-logic.html">Completeness of propositional logic</a>, <a href="propositional-logic-formulas-assignments-and-compactness.html">Propositional logic: formulas, assignments and compactness</a>, <a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a>, <a href="filters-ultrafilters-and-the-ultrafilter-lemma.html">Filters, ultrafilters and the ultrafilter lemma</a>, <a href="elementary-substructures-and-the-lowenheim-skolem-theorems.html">Elementary substructures and the Lowenheim-Skolem theorems</a>, <a href="ultraproducts-and-the-theorem-of-los.html">Ultraproducts and the theorem of Los</a>, <a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a>, <a href="integral-domains-fields-prime-and-maximal-ideals.html">Integral domains, fields, prime and maximal ideals</a>, <a href="noetherian-rings-and-the-hilbert-basis-theorem.html">Noetherian rings and the Hilbert basis theorem</a>, <a href="the-hahn-banach-theorem.html">The Hahn-Banach theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="mathematics.html">Mathematics</a>, <a href="foundations.html">Foundations</a>, <a href="set-theory.html">Set theory</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li></ol></details>
+</header>
+<main class="note">
+<div class="axiom" id="org3925c72">
+<p>
+For every family <img class="m" src="m/4636435697736d486c6f9ad9a7e36df2757163e9.svg" alt="\((X_{i})_{i \in I}\)" style="height:1.096em;vertical-align:-0.274em"> of non-empty sets there is a
+function <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> on <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/723a9444d9487db74ffdb2a1f5a28818b8dbc4a5.svg" alt="\(c(i) \in X_{i}\)" style="height:1.096em;vertical-align:-0.274em"> for every <img class="m" src="m/820a2ed5b51be608772286616d5575a49dd61525.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="remark" id="orgccc168a">
+<p>
+Stated for a family of sets rather than for one set of sets because
+that is the form every use below takes. It is an <i>axiom</i> and marked so:
+it is independent of the other axioms of set theory, and a proof that
+uses it is a proof of a weaker kind than one that does not, which is
+worth being able to see.
+</p>
+
+</div>
+
+<div class="definition" id="orga9ed540">
+<p>
+A partially ordered set is <i>inductive</i> if it is non-empty and every
+chain in it has an upper bound.
+</p>
+
+</div>
+
+<div class="lemma" id="org023c9a0">
+<p>
+Let <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> be a partially ordered set, <img class="m" src="m/3e2912bea020bb9c075428c8d9b567f60640c8c2.svg" alt="\(a_{0} \in P\)" style="height:0.913em;vertical-align:-0.164em">, and let <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">
+assign to every chain <img class="m" src="m/156940455ada10b3f5a099243682592232b02d28.svg" alt="\(C \subseteq P\)" style="height:0.898em;vertical-align:-0.153em"> an element <img class="m" src="m/e69d7995db191359881cb6d7114935eacecbe6d8.svg" alt="\(f(C) \in P\)" style="height:1.096em;vertical-align:-0.274em"> that
+is a strict upper bound of <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">. Call <img class="m" src="m/8bf1f57efc13355e39a4cb3adb475b6027eeb1c2.svg" alt="\(A \subseteq P\)" style="height:0.898em;vertical-align:-0.153em"> a <i>tower</i> if
+<img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is a chain, is well ordered by <img class="m" src="m/1b248c11c728b8e48c49f9f268e80d588d1a5b08.svg" alt="\(\le\)" style="height:0.846em;vertical-align:-0.152em">, and every <img class="m" src="m/67cfd0662406b4a66864b7834697edf23e0b7194.svg" alt="\(x \in A\)" style="height:0.792em;vertical-align:-0.040em">
+satisfies <img class="m" src="m/4ad77530c45ad560ae89e6e5e12b1bc151bcffbd.svg" alt="\(x = f(\setst{y \in A}{y &lt; x})\)" style="height:1.096em;vertical-align:-0.274em">. Then of any two towers,
+one is an initial segment of the other.
+</p>
+
+</div>
+
+<div class="proof" id="orga08adc6">
+<p>
+Let <img class="m" src="m/058b3407c8e36c3c9af16bdda79c11cf34511b63.svg" alt="\(A, B\)" style="height:0.962em;vertical-align:-0.212em"> be towers and let <img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> be the union of those initial
+segments of <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> that are also initial segments of <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">. Then <img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em">
+is an initial segment of both (a union of initial segments is one), and
+it is a tower, being an initial segment of a tower.
+</p>
+
+<p>
+Suppose <img class="m" src="m/36fbc0da7df4e3ed21d5cfa810219e635414f795.svg" alt="\(D \ne A\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/648e18f54ee904ec2c31ad432f1a9d4a123e4f74.svg" alt="\(D \ne B\)" style="height:0.974em;vertical-align:-0.214em">. Since <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is well ordered and
+<img class="m" src="m/cd614066992e2c8bb4cb70ea74e232439577a9e4.svg" alt="\(A \setminus D\)" style="height:1.096em;vertical-align:-0.274em"> is non-empty it has a least element <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, and
+<img class="m" src="m/f8b1b668fdc9d32f603b37b1fabd7459d6afb36d.svg" alt="\(D = \setst{y \in A}{y &lt; x}\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/309add52a84834f7a71a28386c87aa7ea43a6356.svg" alt="\(x = f(D)\)" style="height:1.096em;vertical-align:-0.274em">; likewise the least
+element <img class="m" src="m/9c1e79b9c89d5f20c9bc897101756b64fad2c3cd.svg" alt="\(x'\)" style="height:0.824em;vertical-align:-0.000em"> of <img class="m" src="m/0dd6ab8f4edf34716c9e32a9d5576dc7bbe62703.svg" alt="\(B \setminus D\)" style="height:1.096em;vertical-align:-0.274em"> satisfies <img class="m" src="m/649b9fe508e41d3cc204f91125abcf42746f3003.svg" alt="\(x' = f(D)\)" style="height:1.098em;vertical-align:-0.274em">. Hence
+<img class="m" src="m/4a8fa00d367ed6a8502b50429738ad0a19f3f32e.svg" alt="\(x = x'\)" style="height:0.824em;vertical-align:-0.000em"> and <img class="m" src="m/5955576801ff75ed6b76d6a6910285b220fa6c58.svg" alt="\(D \cup \set{x}\)" style="height:1.096em;vertical-align:-0.274em"> is an initial segment of both <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">
+and <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">, strictly larger than <img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> &#x2013; contradicting the definition of
+<img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em">. So <img class="m" src="m/c07e5f1566dee82050dd3ef7e42f7bca80afc7f8.svg" alt="\(D = A\)" style="height:0.749em;vertical-align:-0.000em"> or <img class="m" src="m/348637bfa191de11116ea77e2910a1aa12d2e24d.svg" alt="\(D = B\)" style="height:0.749em;vertical-align:-0.000em">, which is the claim.
+</p>
+
+</div>
+
+<div class="theorem" id="org3d773de">
+<p>
+Every inductive partially ordered set has a maximal element.
+</p>
+
+</div>
+
+<div class="proof" id="org4958458">
+<p>
+Let <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> be inductive and suppose it has no maximal element. For every
+chain <img class="m" src="m/156940455ada10b3f5a099243682592232b02d28.svg" alt="\(C \subseteq P\)" style="height:0.898em;vertical-align:-0.153em"> choose, by the axiom of choice, an element
+<img class="m" src="m/585edb8c556cfc3c29591c0c485724d5a0dc1307.svg" alt="\(f(C)\)" style="height:1.096em;vertical-align:-0.274em"> as follows: <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> has an upper bound <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em">, and <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em"> is not
+maximal, so the set of strict upper bounds of <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> is non-empty; let
+<img class="m" src="m/585edb8c556cfc3c29591c0c485724d5a0dc1307.svg" alt="\(f(C)\)" style="height:1.096em;vertical-align:-0.274em"> be a chosen member of it. (For <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> empty this uses that
+<img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> is non-empty.)
+</p>
+
+<p>
+Let <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> be the union of all towers, in the sense of the lemma. By the
+lemma the towers are totally ordered by "is an initial segment of", so
+<img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> is a chain, is well ordered &#x2013; a non-empty subset <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> of <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">
+meets some tower <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, and the least element of <img class="m" src="m/18afa6b7bc20de8f75a3bada1b437d2ab3e111c0.svg" alt="\(S \cap A\)" style="height:0.749em;vertical-align:-0.000em"> is least
+in <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">, because everything in <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> below a point of <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> already
+lies in <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> &#x2013; and each <img class="m" src="m/2573d1748830236ec01b770825fd743b9341425a.svg" alt="\(x \in U\)" style="height:0.792em;vertical-align:-0.040em"> lies in a tower <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> with
+<img class="m" src="m/0cf8cd3118714198372fb2bbdc7fd6c21953a5ac.svg" alt="\(\setst{y \in U}{y &lt; x} = \setst{y \in A}{y &lt; x}\)" style="height:1.096em;vertical-align:-0.274em">, whence
+<img class="m" src="m/0b244afbc4e44a026792ef82dfea3b2160db4ee3.svg" alt="\(x = f(\setst{y \in U}{y &lt; x})\)" style="height:1.096em;vertical-align:-0.274em">. So <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> is a tower.
+</p>
+
+<p>
+But then <img class="m" src="m/c32f493e39205868040cb9a7c7e88e888289ea5a.svg" alt="\(U \cup \set{f(U)}\)" style="height:1.096em;vertical-align:-0.274em"> is a tower as well: <img class="m" src="m/5206853425118261d58ef12fd983daa1c0a5f664.svg" alt="\(f(U)\)" style="height:1.096em;vertical-align:-0.274em"> is a strict
+upper bound of <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">, so the set is a well-ordered chain, and its
+largest element satisfies the required equation by construction. This
+tower is not contained in <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">, contradicting the definition of <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">.
+Hence <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> has a maximal element.
+</p>
+
+</div>
+
+<div class="remark" id="orge2bd59a">
+<p>
+The converse implication also holds &#x2013; Zorn's lemma applied to the
+partial functions choosing from a family, ordered by extension, yields a
+choice function &#x2013; so the two are equivalent, and so is the well-ordering
+theorem. Which of the three is called the axiom is a matter of
+presentation; that all later uses in this archive go through the maximal
+element is not.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="well-ordered-sets-and-transfinite-induction.html"><span>← previous</span>Well-ordered sets and transfinite induction</a><a rel="next" href="maps-invertibility-and-the-canonical-factorisation.html"><span>next →</span>Maps, invertibility and the canonical factorisation</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/foundations--set-theory.pdf" title="PDF manual">Set Theory</a> · <a class="pdf" href="pdf/foundations.pdf" title="PDF manual">Foundations</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

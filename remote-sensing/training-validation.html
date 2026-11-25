@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Training, validation and test samples · Remote Sensing</title>
+<meta name="description" content="Labelled samples are split into a training set (fit parameters), a validation set (choose hyperparameters and features, stop training) and a test set (estimate accuracy once, at the end); k-fold cross-validation reuses small sets, and in remote sensing the split must be spatially independent — whol…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/training-validation.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Training, validation and test samples · Remote Sensing">
+<meta property="og:description" content="Labelled samples are split into a training set (fit parameters), a validation set (choose hyperparameters and features, stop training) and a test set (estimate accuracy once, at the end); k-fold cross-validation reuses small sets, and in remote sensing the split must be spatially independent — whol…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/training-validation.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-recognition">Recognition</a> / <a rel="up" href="index.html#a-recognition--classification">Classification</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Recognition · Classification</p>
+<h1>Training, validation and test samples</h1>
+<p class="summary">Labelled samples are split into a training set (fit parameters), a validation set (choose hyperparameters and features, stop training) and a test set (estimate accuracy once, at the end); k-fold cross-validation reuses small sets, and in remote sensing the split must be spatially independent — whole fields or blocks, not random pixels — or accuracy is overestimated.</p>
+<p class="rel"><span>needs</span> <a href="recognition-system.html">Recognition systems</a>, <a href="accuracy-assessment.html">Accuracy assessment and the confusion matrix</a></p>
+<p class="rel"><span>see also</span> <a href="support-vector-machine.html">Support vector machines</a>, <a href="backpropagation.html">Backpropagation</a>, <a href="hughes-phenomenon.html">Hughes phenomenon (curse of dimensionality)</a></p>
+<p class="rel"><span>mentioned in</span> <a href="photointerpretation.html">Photointerpretation</a>, <a href="bayes-classifier.html">Bayes decision rule</a>, <a href="hughes-phenomenon.html">Hughes phenomenon (curse of dimensionality)</a>, <a href="support-vector-machine.html">Support vector machines</a>, <a href="multilayer-perceptron.html">Multilayer perceptron</a>, <a href="remote-sensing-applications.html">Applications of remote sensing</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="recognition-system.html">Recognition systems</a></li><li><a href="accuracy-assessment.html">Accuracy assessment and the confusion matrix</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org259633e" class="outline-2">
+<h2 id="org259633e">Method</h2>
+<div class="outline-text-2" id="text-org259633e">
+<ul class="org-ul">
+<li><b>Hold-out</b>: e.g. 60/20/20. The <a href="accuracy-assessment.html">test set</a> is never used to make decisions.</li>
+<li><b>k-fold cross-validation</b>: split the training data into <img class="m" src="m/ffba2bd3deca9ae12b2f58d5d12739b5efaff0ec.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> folds; train on <img class="m" src="m/b6197bc0a1c903861dc81a483ac879ef7153d4b8.svg" alt="\(k-1\)" style="height:0.852em;vertical-align:-0.094em">, validate on the remaining one, rotate, average. Used to choose <img class="m" src="m/a76ca14cb44498154f0fe7e558158872b7de30fb.svg" alt="\(C,\gamma\)" style="height:0.962em;vertical-align:-0.212em"> of an <a href="support-vector-machine.html">SVM</a>, the network size of an <a href="multilayer-perceptron.html">MLP</a>, the number of features.</li>
+<li><b>Stratification</b>: keep class proportions in every fold, or sample rare classes deliberately and weight the accuracy.</li>
+<li><b>Spatial independence</b>: neighbouring pixels are nearly identical (spatial autocorrelation). Assign whole polygons (fields, buildings) or spatial blocks to one set only.</li>
+<li><b><a href="backpropagation.html">Overfitting</a> signal</b>: training accuracy keeps rising while validation accuracy falls.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org048c83c" class="outline-2">
+<h2 id="org048c83c">Example</h2>
+<div class="outline-text-2" id="text-org048c83c">
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="k">from</span> sklearn.model_selection <span class="k">import</span> GroupKFold, GridSearchCV
+<span class="k">from</span> sklearn.svm <span class="k">import</span> SVC
+<span class="v">grid</span> = GridSearchCV(SVC(kernel=<span class="s">"rbf"</span>), {<span class="s">"C"</span>: [1, 10, 100], <span class="s">"gamma"</span>: [0.01, 0.1, 1]},
+                    <span class="c"># groups = field id of each pixel
+</span>                    cv=GroupKFold(n_splits=5))
+grid.fit(X_train, y_train, groups=field_id)
+<span class="b">print</span>(grid.best_params_, grid.score(X_test, y_test))   <span class="c"># test set used once</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org24eca2e" class="outline-2">
+<h2 id="org24eca2e">Intuition</h2>
+<div class="outline-text-2" id="text-org24eca2e">
+<p>
+Do not mark your own homework: the data used to make choices cannot also judge them.
+</p>
+</div>
+</div>
+<div id="outline-container-org8f86f2a" class="outline-2">
+<h2 id="org8f86f2a">Pitfall</h2>
+<div class="outline-text-2" id="text-org8f86f2a">
+<p>
+Random pixel splits from the same fields routinely report 99% accuracy for models that fail on a new region; reporting how the samples were split is as important as the accuracy itself.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="support-vector-machine.html"><span>← previous</span>Support vector machines</a><a rel="next" href="artificial-neuron.html"><span>next →</span>Artificial neuron and machine learning</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/recognition--classification.pdf" title="PDF manual">Classification</a> · <a class="pdf" href="pdf/recognition.pdf" title="PDF manual">Recognition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

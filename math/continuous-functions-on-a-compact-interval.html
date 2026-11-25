@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Continuous functions on a compact interval · Mathematics</title>
+<meta name="description" content="Two properties of a continuous function on [a,b] that fail on an open or unbounded interval, and both come from Bolzano--Weierstrass: it is bounded, and it attains its bounds.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/continuous-functions-on-a-compact-interval.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Continuous functions on a compact interval · Mathematics">
+<meta property="og:description" content="Two properties of a continuous function on [a,b] that fail on an open or unbounded interval, and both come from Bolzano--Weierstrass: it is bounded, and it attains its bounds.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/continuous-functions-on-a-compact-interval.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Analysis · Real Analysis</p>
+<h1>Continuous functions on a compact interval</h1>
+<p class="summary">Two properties of a continuous function on <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em"> that fail on an open or unbounded interval, and both come from Bolzano&#x2013;Weierstrass: it is bounded, and it attains its bounds.</p>
+<p class="rel"><span>needs</span> <a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a>, <a href="limits-and-continuity.html">Limits and continuity</a>, <a href="supremum-and-infimum.html">Supremum and infimum</a></p>
+<p class="rel"><span>unlocks</span> <a href="extrema-in-several-variables-and-the-second-differential.html">Extrema in several variables and the second differential</a>, <a href="monotone-functions-are-integrable-and-the-mean-value-theorem-for-integrals.html">Monotone functions are integrable, and the mean value theorem for integrals</a>, <a href="the-continuous-image-of-an-interval-and-the-continuous-inverse.html">The continuous image of an interval and the continuous inverse</a>, <a href="the-mean-value-theorem.html">The mean value theorem</a>, <a href="the-weierstrass-approximation-theorem.html">The Weierstrass approximation theorem</a>, <a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li></ol></details>
+</header>
+<main class="note">
+<div class="theorem" id="orgab307d3">
+<p>
+A continuous function <img class="m" src="m/ea7523ee0e750ece60b78b197c477d8b9d00d721.svg" alt="\(f \colon [a,b] \to \R\)" style="height:1.096em;vertical-align:-0.274em"> is bounded.
+</p>
+
+</div>
+
+<div class="proof" id="orgea2bfb2">
+<p>
+Suppose not. Then for every <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> there is <img class="m" src="m/37ac8079e57318e69ee59f6730f49169adac771b.svg" alt="\(x_{n} \in [a,b]\)" style="height:1.096em;vertical-align:-0.274em"> with
+<img class="m" src="m/dad66c39904ed02b19afff24d48cb87ef48b247a.svg" alt="\(\abs{f(x_{n})} &gt; n\)" style="height:1.096em;vertical-align:-0.274em">. By Bolzano&#x2013;Weierstrass a subsequence
+<img class="m" src="m/607f9d4b95a97e39a6a06d0542ccd023d908b3e5.svg" alt="\(x_{n_{k}} \to c\)" style="height:0.753em;vertical-align:-0.278em">, and <img class="m" src="m/0bf7096054fe5b8aa2944f6c6543b720ad75dd27.svg" alt="\(c \in [a,b]\)" style="height:1.096em;vertical-align:-0.274em"> since the interval is closed.
+Continuity at <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> gives <img class="m" src="m/5189cb9b05b2de911eec6805f5014d63ff40d577.svg" alt="\(f(x_{n_{k}}) \to f(c)\)" style="height:1.103em;vertical-align:-0.276em">, so
+<img class="m" src="m/b56531a653ca0d40f3f29634dcaacbf992cb0c73.svg" alt="\((f(x_{n_{k}}))\)" style="height:1.103em;vertical-align:-0.276em"> is bounded &#x2013; contradicting
+<img class="m" src="m/ff10160db001d3320bdea1163584ec7a3bbad354.svg" alt="\(\abs{f(x_{n_{k}})} &gt; n_{k} \to \infty\)" style="height:1.103em;vertical-align:-0.276em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org9ed317b">
+<p>
+A continuous function <img class="m" src="m/ea7523ee0e750ece60b78b197c477d8b9d00d721.svg" alt="\(f \colon [a,b] \to \R\)" style="height:1.096em;vertical-align:-0.274em"> attains a maximum and a
+minimum: there are <img class="m" src="m/f79b0b0ebe106b38605910f2a7bf1c23911fe3b8.svg" alt="\(p, q \in [a,b]\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/2aa8dd953ee9c6db1942c3564af47971116c07a2.svg" alt="\(f(p) \le f(x) \le f(q)\)" style="height:1.096em;vertical-align:-0.274em">
+for every <img class="m" src="m/e1abde1a085c88b1d3a4096c2f415c1a139fa827.svg" alt="\(x \in [a,b]\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org880d394">
+<p>
+By the previous theorem <img class="m" src="m/7f1bf97a2eb4bbed2a94d0a009bcbee5fd5d5571.svg" alt="\(M = \sup_{x \in [a,b]} f(x)\)" style="height:1.282em;vertical-align:-0.461em"> exists. By the
+characterisation of the supremum, for every <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> there is
+<img class="m" src="m/37ac8079e57318e69ee59f6730f49169adac771b.svg" alt="\(x_{n} \in [a,b]\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/dcf0dc7f7350e721e5c35cf02af659e1044eb2bd.svg" alt="\(f(x_{n}) &gt; M - 1/n\)" style="height:1.096em;vertical-align:-0.274em">. By
+Bolzano&#x2013;Weierstrass a subsequence <img class="m" src="m/d3d9c7c1800debfc227e0607084026f2d832873d.svg" alt="\(x_{n_{k}} \to q \in [a,b]\)" style="height:1.103em;vertical-align:-0.276em">, and
+continuity gives <img class="m" src="m/bb2544ef987fe1a17e08521941fca351f9b04d73.svg" alt="\(f(q) = \lim_{k} f(x_{n_{k}}) = M\)" style="height:1.103em;vertical-align:-0.276em">. Applying this to
+<img class="m" src="m/260f963332ff7cc2fa4c5efa180922c4739a327e.svg" alt="\(-f\)" style="height:0.974em;vertical-align:-0.214em"> produces the minimum.
+</p>
+
+</div>
+
+<div class="remark" id="org37cb229">
+<p>
+Both fail without compactness: <img class="m" src="m/73dc25767a414025f5cc6b54c714888187143cf4.svg" alt="\(f(x) = 1/x\)" style="height:1.096em;vertical-align:-0.274em"> is continuous and unbounded
+on <img class="m" src="m/567ffe96ce52fb1227e476aaa24b411bd4d4db38.svg" alt="\((0,1]\)" style="height:1.096em;vertical-align:-0.274em">, and <img class="m" src="m/7a9b0d9bcd2a9659c486ededb066ed14b214bddd.svg" alt="\(f(x) = x\)" style="height:1.096em;vertical-align:-0.274em"> attains no maximum on <img class="m" src="m/340acc873f82956cd46f2f804823f09ffd1a5b62.svg" alt="\([0,1)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="limits-and-continuity.html"><span>← previous</span>Limits and continuity</a><a rel="next" href="cauchy-sequences-and-the-completeness-criterion.html"><span>next →</span>Cauchy sequences and the completeness criterion</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Polymorphism and dynamic binding · Computer Science</title>
+<meta name="description" content="A variable of type T can refer to an object of any subtype of T; a method call on it executes the version of the dynamic (run-time) type of the object, not of the static (declared) type of the variable.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/polymorphism.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Polymorphism and dynamic binding · Computer Science">
+<meta property="og:description" content="A variable of type T can refer to an object of any subtype of T; a method call on it executes the version of the dynamic (run-time) type of the object, not of the static (declared) type of the variable.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/polymorphism.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--oop">Oop</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Oop</p>
+<h1>Polymorphism and dynamic binding</h1>
+<p class="summary">A variable of type T can refer to an object of any subtype of T; a method call on it executes the version of the dynamic (run-time) type of the object, not of the static (declared) type of the variable.</p>
+<p class="rel"><span>needs</span> <a href="inheritance.html">Inheritance and overriding</a></p>
+<p class="rel"><span>unlocks</span> <a href="abstract-class-interface.html">Abstract classes and interfaces</a>, <a href="liskov-substitution.html">Liskov substitution principle</a>, <a href="virtual-functions.html">Virtual functions and the virtual table</a>, <a href="generic-programming.html">Generic programming</a>, <a href="casting-instanceof.html">Casts, instanceof and array covariance</a>, <a href="java-dynamic-binding.html">The Java method selection rule</a></p>
+<p class="rel"><span>see also</span> <a href="liskov-substitution.html">Liskov substitution principle</a>, <a href="virtual-functions.html">Virtual functions and the virtual table</a>, <a href="java-dynamic-binding.html">The Java method selection rule</a>, <a href="casting-instanceof.html">Casts, instanceof and array covariance</a>, <a href="generic-programming.html">Generic programming</a>, <a href="abstract-class-interface.html">Abstract classes and interfaces</a></p>
+<p class="rel"><span>mentioned in</span> <a href="object-oriented-programming.html">Object-oriented programming</a>, <a href="casts-rtti.html">C++ named casts and RTTI</a>, <a href="java-object-class.html">The class Object and final</a></p>
+<details class="path"><summary>Learning path: 4 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org08177f6" class="outline-2">
+<h2 id="org08177f6">Definition</h2>
+<div class="outline-text-2" id="text-org08177f6">
+<p>
+Polymorphism in general is the ability of one piece of code to work on values of different types. In object-oriented languages it is <b>subtype polymorphism</b>:
+</p>
+<ul class="org-ul">
+<li>a variable, parameter or array element of type <img class="m" src="m/197fb2e6904fdaa6194048653a7de0a3a5fffc10.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> can hold an object of any subtype of <img class="m" src="m/197fb2e6904fdaa6194048653a7de0a3a5fffc10.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em">;</li>
+<li>its <b>static type</b> is <img class="m" src="m/197fb2e6904fdaa6194048653a7de0a3a5fffc10.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em">, fixed by the declaration and used by the compiler to check calls;</li>
+<li>its <b>dynamic type</b> is the class of the object it refers to at run time;</li>
+<li>a call <code>x.m()</code> is <b>dynamically bound</b> (late binding): the body executed is the one of the dynamic type.</li>
+</ul>
+
+<p>
+Java binds every instance method dynamically, except <code>static</code>, <code>private</code>, <code>final</code> methods and constructors. C++ binds dynamically only <code>virtual</code> methods called through a pointer or a reference (see <a href="virtual-functions.html">virtual functions</a>).
+</p>
+</div>
+</div>
+<div id="outline-container-org9b510b0" class="outline-2">
+<h2 id="org9b510b0">Example</h2>
+<div class="outline-text-2" id="text-org9b510b0">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="t">Point</span> <span class="v">p</span> = <span class="k">new</span> <span class="t">NamedPoint</span>(1, 2, <span class="s">"A"</span>);   <span class="c">// static type Point, dynamic type NamedPoint
+</span>p.print();          <span class="c">// NamedPoint.print(): decided at run time
+</span>p.getName();        <span class="c">// compile error: Point has no getName</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org7518aed" class="outline-2">
+<h2 id="org7518aed">Picture</h2>
+<div class="outline-text-2" id="text-org7518aed">
+<figure class="fig"><img class="m" src="m/0729ff0fa835bd76b0ddf8401515060974493b92.svg" alt="figure" style="width:23.236em"><figcaption><span class="fl">Figure 1.</span> Static and dynamic type: a Point reference to a NamedPoint object; the static type decides what may be called, the dynamic type which body runs.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org50496ef" class="outline-2">
+<h2 id="org50496ef">Why it matters</h2>
+<div class="outline-text-2" id="text-org50496ef">
+<p>
+Code written once against a supertype keeps working, unchanged, on subtypes written later: the open/closed principle. Together with inheritance it lets one choose the most suitable view of an object and keep a class open to extension.
+</p>
+</div>
+</div>
+<div id="outline-container-org61a300d" class="outline-2">
+<h2 id="org61a300d">Intuition</h2>
+<div class="outline-text-2" id="text-org61a300d">
+<p>
+The compiler checks the label on the box; the run time looks inside.
+</p>
+</div>
+</div>
+<div id="outline-container-org126293b" class="outline-2">
+<h2 id="org126293b">Pitfall</h2>
+<div class="outline-text-2" id="text-org126293b">
+<p>
+Fields are not polymorphic: a field redeclared in a <a href="inheritance.html">subclass</a> hides the superclass one, and <code>p.x</code> reads the field of the static type.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="inheritance.html"><span>← previous</span>Inheritance and overriding</a><a rel="next" href="abstract-class-interface.html"><span>next →</span>Abstract classes and interfaces</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--oop.pdf" title="PDF manual">Oop</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

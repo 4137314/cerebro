@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LTI systems, impulse response and first/second-order circuits · Physics</title>
+<meta name="description" content="A linear time-invariant system is fully characterised by its impulse response: y(t)=\int h(\tau)x(t-\tau)\dd\tau=(h*x)(t); RC/RL circuits are first order (h=\frac1\tau e^{-t/\tau}u(t), \tau=RC or L/R), RLC circuits second order with \omega_0=1/\sqrt{LC} and damping \zeta=\frac R2\sqrt{C/L} (series).">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/lti-systems-and-convolution.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="LTI systems, impulse response and first/second-order circuits · Physics">
+<meta property="og:description" content="A linear time-invariant system is fully characterised by its impulse response: y(t)=\int h(\tau)x(t-\tau)\dd\tau=(h*x)(t); RC/RL circuits are first order (h=\frac1\tau e^{-t/\tau}u(t), \tau=RC or L/R), RLC circuits second order with \omega_0=1/\sqrt{LC} and damping \zeta=\frac R2\sqrt{C/L} (series).">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/lti-systems-and-convolution.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-circuits">Circuits</a> / <a rel="up" href="index.html#a-circuits--lti-systems">Lti Systems</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Circuits · Lti Systems</p>
+<h1>LTI systems, impulse response and first/second-order circuits</h1>
+<p class="summary">A linear time-invariant system is fully characterised by its impulse response: <img class="m" src="m/a9c6f5a015e304a30152637ebc9fda45ea0e5b16.svg" alt="\(y(t)=\int h(\tau)x(t-\tau)\dd\tau=(h*x)(t)\)" style="height:1.218em;vertical-align:-0.341em">; RC/RL circuits are first order (<img class="m" src="m/da953b6f7cfda9b8c496376345e2bfa3813121d6.svg" alt="\(h=\frac1\tau e^{-t/\tau}u(t)\)" style="height:1.351em;vertical-align:-0.378em">, <img class="m" src="m/16a349ed3b9a4ea2b22181c6f9760ad0e53811aa.svg" alt="\(\tau=RC\)" style="height:0.749em;vertical-align:-0.000em"> or <img class="m" src="m/d412dcc2bbc1dccaa4a1e1799e6a0e46c6743bb9.svg" alt="\(L/R\)" style="height:1.096em;vertical-align:-0.274em">), RLC circuits second order with <img class="m" src="m/bda72d77ec28fad61cd11cad844f49e5d74f0db5.svg" alt="\(\omega_0=1/\sqrt{LC}\)" style="height:1.289em;vertical-align:-0.271em"> and damping <img class="m" src="m/068fc98d97ac2cf6ab8e050aba65876fe3a612df.svg" alt="\(\zeta=\frac R2\sqrt{C/L}\)" style="height:1.403em;vertical-align:-0.379em"> (series).</p>
+<p class="rel"><span>needs</span> <a href="kirchhoff-laws-and-network-theorems.html">Kirchhoff's laws and network theorems</a></p>
+<p class="rel"><span>unlocks</span> <a href="complex-numbers-and-phasors.html">Complex numbers and phasors</a>, <a href="laplace-transform-and-transients.html">The Laplace transform and circuit transients</a>, <a href="cmos-propagation-delay.html">CMOS propagation delay</a>, <a href="switching-converters.html">Switching converters: buck, boost and losses</a>, <a href="josephson-junction-and-rcsj-model.html">The Josephson junction and the RCSJ model</a></p>
+<p class="rel"><span>see also</span> <a href="laplace-transform-and-transients.html">The Laplace transform and circuit transients</a>, <a href="fourier-series-and-transform.html">Fourier series and Fourier transform</a>, <a href="green-functions-and-feynman-propagator.html">Green's functions and the Feynman propagator</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="circuits.html">Circuit theory: the map of the subject</a></li><li><a href="kirchhoff-laws-and-network-theorems.html">Kirchhoff's laws and network theorems</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgba98b04" class="outline-2">
+<h2 id="orgba98b04">Theorem</h2>
+<div class="outline-text-2" id="text-orgba98b04">
+<p>
+Write <img class="m" src="m/aef1a8c38ab2c6b50f469a887d01434123952ad3.svg" alt="\(x(t)=\int x(\tau)\delta(t-\tau)\dd\tau\)" style="height:1.218em;vertical-align:-0.341em">. Linearity lets the response be the same integral of responses to impulses; time invariance makes the response to <img class="m" src="m/c9913edcac065cec042863e470f72dd0b93e65c0.svg" alt="\(\delta(t-\tau)\)" style="height:1.096em;vertical-align:-0.274em"> equal to <img class="m" src="m/d60cce246bb4021c42e1a310c44c3c729b377381.svg" alt="\(h(t-\tau)\)" style="height:1.096em;vertical-align:-0.274em">. Hence <img class="m" src="m/fcff1aaddabf4790611e6c2276da73e55c21bb18.svg" alt="\(y=h*x\)" style="height:0.974em;vertical-align:-0.214em">. Causal: <img class="m" src="m/6880e0c09e86306c98cdfa28c93649f423c59b45.svg" alt="\(h(t)=0\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/35c5d03c080cf453f6224fa01b028368d61cf4b7.svg" alt="\(t&lt;0\)" style="height:0.749em;vertical-align:-0.045em">. BIBO stable iff <img class="m" src="m/606437d1531fec2b7573de10611acd3f5563ebf5.svg" alt="\(\int|h|&lt;\infty\)" style="height:1.218em;vertical-align:-0.341em">. Exponentials are eigenfunctions: <img class="m" src="m/8629afd11cc6e54d690aaa19dbed7c4b16245c17.svg" alt="\(e^{st}\to H(s)e^{st}\)" style="height:1.144em;vertical-align:-0.274em">, <img class="m" src="m/f4082bbf1bbc19939c024c4f54c5d0c2cd0cd4ca.svg" alt="\(H(s)=\int h(t)e^{-st}\dd t\)" style="height:1.218em;vertical-align:-0.341em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb8fdc57" class="outline-2">
+<h2 id="orgb8fdc57">First-order circuits</h2>
+<div class="outline-text-2" id="text-orgb8fdc57">
+<p>
+RC driven by <img class="m" src="m/775511a840f81439dc656595d8c56fa6e960aa44.svg" alt="\(v_s\)" style="height:0.636em;vertical-align:-0.165em">: <img class="m" src="m/425c974c2cd83cddee5eb1a8e8cfe5fcc1a0cb5a.svg" alt="\(RC\dot v_C+v_C=v_s\)" style="height:0.913em;vertical-align:-0.164em">. Step of amplitude <img class="m" src="m/b1823c2844011c3351ca12a680a0432837e249b6.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">: <img class="m" src="m/c96d94edf37baf2dfef82b75a09e6211699cd34f.svg" alt="\(v_C(t)=V(1-e^{-t/RC})\)" style="height:1.247em;vertical-align:-0.274em">. General rule: <img class="m" src="m/7db86470bbe2173afe75824373d1e5d6bce35b5d.svg" alt="\(x(t)=x_\infty+(x_0-x_\infty)e^{-t/\tau}\)" style="height:1.247em;vertical-align:-0.274em"> — find initial value, final value and <img class="m" src="m/f77c34bd54f137122923ae37d5e6ca7e52898483.svg" alt="\(\tau=R_{th}C\)" style="height:0.913em;vertical-align:-0.164em"> (or <img class="m" src="m/827b6b888c54bc3f54f8f136fe56a66410eb68a5.svg" alt="\(L/R_{th}\)" style="height:1.096em;vertical-align:-0.274em">). 10–90% rise time <img class="m" src="m/679ca971e8de9c2024d9bce4fafe1d66b54e636d.svg" alt="\(t_r=2.2\tau\)" style="height:0.871em;vertical-align:-0.165em">; time to 50% <img class="m" src="m/c035949d53619727ed674c218be9366ec3ab491e.svg" alt="\(=0.69\tau\)" style="height:0.706em;vertical-align:-0.000em"> — the factors of <a href="cmos-propagation-delay.html">gate delay</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org88584c0" class="outline-2">
+<h2 id="org88584c0">Second-order circuits</h2>
+<div class="outline-text-2" id="text-org88584c0">
+<p>
+Series RLC: <img class="m" src="m/bee55700b935c3a3300bb1ae457d016e41a8c981.svg" alt="\(\ddot v_C+2\zeta\omega_0\dot v_C+\omega_0^2v_C=\omega_0^2v_s\)" style="height:1.164em;vertical-align:-0.268em">. Roots <img class="m" src="m/6739bbf61065fc6d257700e64a8cc655ae64e0e9.svg" alt="\(s=-\zeta\omega_0\pm\omega_0\sqrt{\zeta^2-1}\)" style="height:1.359em;vertical-align:-0.313em">: overdamped (<img class="m" src="m/33973aa83b9731cdbe113370c92ee294966734fb.svg" alt="\(\zeta&gt;1\)" style="height:0.974em;vertical-align:-0.214em">), critically damped (<img class="m" src="m/2389ffa7324bf6a367b5e0222baf196ac48272b0.svg" alt="\(\zeta=1\)" style="height:0.974em;vertical-align:-0.214em">, fastest without overshoot), underdamped (<img class="m" src="m/7a86a283969940f5e3731f60630d8c7f51f92619.svg" alt="\(\zeta&lt;1\)" style="height:0.974em;vertical-align:-0.214em">, oscillation at <img class="m" src="m/02b64802b5c0e6302adb1b9db207fa74c2de1971.svg" alt="\(\omega_d=\omega_0\sqrt{1-\zeta^2}\)" style="height:1.359em;vertical-align:-0.313em">, overshoot <img class="m" src="m/b967b25971ff5f2dbecc8e8300a2925784d041d6.svg" alt="\(e^{-\pi\zeta/\sqrt{1-\zeta^2}}\)" style="height:1.258em;vertical-align:-0.000em">). <img class="m" src="m/8bbb56ba8788fa11a74180298ecc60590e03fa79.svg" alt="\(Q=1/2\zeta\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org58e8cd6" class="outline-2">
+<h2 id="org58e8cd6">Picture</h2>
+<div class="outline-text-2" id="text-org58e8cd6">
+<figure class="fig"><img class="m" src="m/f5937c6df7cbe0388c987f18ec84c8cd5c414717.svg" alt="figure" style="width:23.334em"><figcaption><span class="fl">Figure 1.</span> Step responses of a first-order system and of a second-order system, underdamped (<img class="m" src="m/983f3e6551e5043b43cf043fcecbc1cd86193041.svg" alt="\(\zeta=0.2\)" style="height:0.974em;vertical-align:-0.214em">) and critically damped (<img class="m" src="m/2389ffa7324bf6a367b5e0222baf196ac48272b0.svg" alt="\(\zeta=1\)" style="height:0.974em;vertical-align:-0.214em">).</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org255972c" class="outline-2">
+<h2 id="org255972c">Worked example</h2>
+<div class="outline-text-2" id="text-org255972c">
+<p>
+<img class="m" src="m/02ef10da95fe136277f2d990b4b3c35d9d29b020.svg" alt="\(R=50\)" style="height:0.749em;vertical-align:-0.000em"> Ω, <img class="m" src="m/0a65477d6ebc8bca6d276884c6f3706462a90e04.svg" alt="\(L=1\)" style="height:0.749em;vertical-align:-0.000em"> µH, <img class="m" src="m/94ed8e8c13bdc75e27259cf020840daf808787f4.svg" alt="\(C=1\)" style="height:0.749em;vertical-align:-0.000em"> nF: <img class="m" src="m/0f14ed747d64e67cdef29f697e2a88563d0c6961.svg" alt="\(\omega_0=3.16\times10^7\)" style="height:1.056em;vertical-align:-0.169em"> rad/s (5 MHz), <img class="m" src="m/ce007dc18378e59ef32dc2b3614195e8d75562db.svg" alt="\(\zeta=\frac{50}{2}\sqrt{10^{-9}/10^{-6}}=0.79\)" style="height:1.403em;vertical-align:-0.379em">: slightly underdamped, overshoot <img class="m" src="m/ddd8f1c612acb08ada13840395db8f253e754a6d.svg" alt="\(e^{-\pi0.79/0.61}=1.7\%\)" style="height:1.034em;vertical-align:-0.062em">. Halving <img class="m" src="m/462be1156f106ccb2bd073436a86dc7d0df95c1f.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> gives <img class="m" src="m/435fdc91b51997cfe7cec594c778ed639b9bd7b5.svg" alt="\(\zeta=0.4\)" style="height:0.974em;vertical-align:-0.214em">, overshoot 25% — ringing on a PCB power rail.
+</p>
+</div>
+</div>
+<div id="outline-container-org57a77b2" class="outline-2">
+<h2 id="org57a77b2">Engineering applications</h2>
+<div class="outline-text-2" id="text-org57a77b2">
+<p>
+Timing circuits, debouncing, power-supply decoupling and resonance, interconnect delay (Elmore), control systems (second-order step specs), signal filtering by convolution (FIR filters in DSP).
+</p>
+</div>
+</div>
+<div id="outline-container-org0ef060e" class="outline-2">
+<h2 id="org0ef060e">Pitfall</h2>
+<div class="outline-text-2" id="text-org0ef060e">
+<p>
+Capacitor voltage and inductor current are continuous across a switching instant (finite energy); their derivatives are not. Initial conditions must use <img class="m" src="m/62a63a5071f56298df79415241ff9e2008c06cb7.svg" alt="\(v_C(0^-)\)" style="height:1.147em;vertical-align:-0.275em"> and <img class="m" src="m/54d98da83af9e910b883f6dabe55fb827e432d37.svg" alt="\(i_L(0^-)\)" style="height:1.147em;vertical-align:-0.275em">.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="kirchhoff-laws-and-network-theorems.html"><span>← previous</span>Kirchhoff's laws and network theorems</a><a rel="next" href="complex-numbers-and-phasors.html"><span>next →</span>Complex numbers and phasors</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/circuits--lti-systems.pdf" title="PDF manual">Lti Systems</a> · <a class="pdf" href="pdf/circuits.pdf" title="PDF manual">Circuits</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

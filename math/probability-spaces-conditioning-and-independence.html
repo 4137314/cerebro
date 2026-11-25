@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Probability spaces, conditioning and independence · Mathematics</title>
+<meta name="description" content="A probability is a measure of total mass one, and everything formal about it – monotonicity, continuity along increasing sequences, countable subadditivity – is inherited from that and needs no separate proof. What is genuinely probabilistic begins with the two notions this note adds, conditioning …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/probability-spaces-conditioning-and-independence.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Probability spaces, conditioning and independence · Mathematics">
+<meta property="og:description" content="A probability is a measure of total mass one, and everything formal about it – monotonicity, continuity along increasing sequences, countable subadditivity – is inherited from that and needs no separate proof. What is genuinely probabilistic begins with the two notions this note adds, conditioning …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/probability-spaces-conditioning-and-independence.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-probability">Probability</a> / <a rel="up" href="index.html#a-probability--probability-theory">Probability Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Probability · Probability Theory</p>
+<h1>Probability spaces, conditioning and independence</h1>
+<p class="summary">A probability is a <a href="sigma-algebras-measures-and-measurable-functions.html">measure</a> of total mass one, and everything formal about it &#x2013; monotonicity, continuity along increasing sequences, countable subadditivity &#x2013; is inherited from that and needs no separate proof. What is genuinely probabilistic begins with the two notions this note adds, conditioning and independence, neither of which is a measure-theoretic idea at all: they are hypotheses about how information is distributed.</p>
+<p class="rel"><span>needs</span> <a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a>, <a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></p>
+<p class="rel"><span>unlocks</span> <a href="expectation-the-transfer-theorem-and-jensens-inequality.html">Expectation, the transfer theorem and Jensen's inequality</a>, <a href="modes-of-convergence-and-the-borel-cantelli-lemmas.html">Modes of convergence and the Borel-Cantelli lemmas</a>, <a href="random-variables-laws-and-distribution-functions.html">Random variables, laws and distribution functions</a>, <a href="hypothesis-tests-and-the-neyman-pearson-lemma.html">Hypothesis tests and the Neyman-Pearson lemma</a>, <a href="statistical-models-estimators-and-consistency.html">Statistical models, estimators and consistency</a>, <a href="sufficiency-and-the-factorisation-theorem.html">Sufficiency and the factorisation theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="probability.html">Probability</a></p>
+<details class="path"><summary>Learning path: 18 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgb86ea95">
+<p>
+A <i>probability space</i> is a measure space <img class="m" src="m/68e4695a374bc8fea1198d77be986a3d133a301d.svg" alt="\((\Omega,\mathcal{F},\Prob)\)" style="height:1.096em;vertical-align:-0.274em">
+with <img class="m" src="m/fc8a7172d5388c6b65782516c49973f811b76c3f.svg" alt="\(\Prob(\Omega) = 1\)" style="height:1.096em;vertical-align:-0.274em">. Elements of <img class="m" src="m/b41edcfbc96f3fa34e8d58b21086b5659a2f0420.svg" alt="\(\Omega\)" style="height:0.749em;vertical-align:-0.000em"> are <i>outcomes</i>,
+measurable sets are <i>events</i>, and <img class="m" src="m/825c3383d95fe865908a07aaac574684c8882e8d.svg" alt="\(\Prob(A)\)" style="height:1.096em;vertical-align:-0.274em"> is the <i>probability</i> of
+<img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgdae12f4">
+<p>
+For events <img class="m" src="m/058b3407c8e36c3c9af16bdda79c11cf34511b63.svg" alt="\(A, B\)" style="height:0.962em;vertical-align:-0.212em">: <img class="m" src="m/a343b585166b0ddd7d3ef1a5318c743c7f5cf23b.svg" alt="\(\Prob(A^{c}) = 1-\Prob(A)\)" style="height:1.096em;vertical-align:-0.274em">;
+<img class="m" src="m/e78d72714e105c2116e821081213c4c7ec3b13a7.svg" alt="\(\Prob(A\cup B) = \Prob(A)+\Prob(B)-\Prob(A\cap B)\)" style="height:1.096em;vertical-align:-0.274em">; and
+<img class="m" src="m/e8c95431deb4a28f901fe64f974c15cb9849dcaa.svg" alt="\(\Prob(\bigcup_{n}A_{n}) \le \sum_{n}\Prob(A_{n})\)" style="height:1.151em;vertical-align:-0.334em"> for any sequence of
+events. If <img class="m" src="m/d4cfa9f003816316be6d1c3b4e979a0d09865ff2.svg" alt="\(A_{n}\uparrow A\)" style="height:0.974em;vertical-align:-0.214em"> or <img class="m" src="m/71e29f51aa82363c79ed3bd6498a2aa39e802a03.svg" alt="\(A_{n}\downarrow A\)" style="height:0.974em;vertical-align:-0.214em">, then
+<img class="m" src="m/0948a17b1fcf2c079b4fbeb2cdfa38b02fa96580.svg" alt="\(\Prob(A_{n})\to\Prob(A)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgcab6879">
+<p>
+Additivity on the disjoint pair <img class="m" src="m/f790dbf08ead2c80fa18b477e0e157cb90ea6954.svg" alt="\(A, A^{c}\)" style="height:0.962em;vertical-align:-0.212em"> with total mass <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em"> gives
+the first. For the second, <img class="m" src="m/408bc8ad4dbec21d3938589739ec0aa07ccb881d.svg" alt="\(A \cup B\)" style="height:0.749em;vertical-align:-0.000em"> is the disjoint union of
+<img class="m" src="m/cc953b5878f01886232fda058dc113cbd32d5d40.svg" alt="\(A \setminus B\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/8f9395c18d2b0ee231152dc8f6e04bce92c0f248.svg" alt="\(A\cap B\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/02f9b1c41a20cf4d8f8cb8c224429c4b9dc1f97e.svg" alt="\(B \setminus A\)" style="height:1.096em;vertical-align:-0.274em">, and
+<img class="m" src="m/b55c1165df89ed3fed865fb06340ec7e1f7c3746.svg" alt="\(\Prob(A) = \Prob(A\setminus B)+\Prob(A\cap B)\)" style="height:1.096em;vertical-align:-0.274em">; substituting gives
+the identity. Subadditivity and continuity from below are properties of
+any measure; continuity from above needs <img class="m" src="m/55a016cc92931b66c50d2d810a3dd34a1c1014f9.svg" alt="\(\Prob(A_{1})&lt;\infty\)" style="height:1.096em;vertical-align:-0.274em">, which
+here is automatic.
+</p>
+
+</div>
+
+<div class="definition" id="org53f0666">
+<p>
+For events <img class="m" src="m/058b3407c8e36c3c9af16bdda79c11cf34511b63.svg" alt="\(A, B\)" style="height:0.962em;vertical-align:-0.212em"> with <img class="m" src="m/8b2a6ba4ffc9af276c175104382865959b4412cf.svg" alt="\(\Prob(B)&gt;0\)" style="height:1.096em;vertical-align:-0.274em">, the <i>conditional probability</i>
+of <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> given <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> is
+<img class="m" src="m/9e8a0d58fb59d2af52433fe9c416c4f68e314e62.svg" alt="\(\Prob(A \mid B) = \Prob(A\cap B)/\Prob(B)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org2677ac5">
+<p>
+For fixed <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/8b2a6ba4ffc9af276c175104382865959b4412cf.svg" alt="\(\Prob(B)&gt;0\)" style="height:1.096em;vertical-align:-0.274em">, the map
+<img class="m" src="m/edba216eaf0fd5020326affbafa10ba928655fed.svg" alt="\(A \mapsto \Prob(A\mid B)\)" style="height:1.096em;vertical-align:-0.274em"> is a probability measure on
+<img class="m" src="m/d402a37ff8e2cf6bbc70a44c7c1d0af8816212d2.svg" alt="\((\Omega,\mathcal{F})\)" style="height:1.096em;vertical-align:-0.274em">, concentrated on <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgc6298f4">
+<p>
+It is non-negative, assigns <img class="m" src="m/9244bf43e965dc4d6747d45503f951ff48f02fce.svg" alt="\(\Prob(B\cap\Omega)/\Prob(B) = 1\)" style="height:1.096em;vertical-align:-0.274em"> to
+<img class="m" src="m/b41edcfbc96f3fa34e8d58b21086b5659a2f0420.svg" alt="\(\Omega\)" style="height:0.749em;vertical-align:-0.000em">, and is countably additive because
+<img class="m" src="m/e0c5cbc18b633c9a48ce352c84d378924160375f.svg" alt="\(A \mapsto \Prob(A \cap B)\)" style="height:1.096em;vertical-align:-0.274em"> is, division by the constant
+<img class="m" src="m/c022631c87c8ecb2888ffd075d485ef40368ae70.svg" alt="\(\Prob(B)\)" style="height:1.096em;vertical-align:-0.274em"> preserving the sums. It assigns <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> to any event disjoint
+from <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org0c81a19">
+<p>
+Let <img class="m" src="m/197c5d7acbccf7af3b545da99e9e864d309e3b66.svg" alt="\((B_{n})\)" style="height:1.096em;vertical-align:-0.274em"> be a countable partition of <img class="m" src="m/b41edcfbc96f3fa34e8d58b21086b5659a2f0420.svg" alt="\(\Omega\)" style="height:0.749em;vertical-align:-0.000em"> into events of
+positive probability, and <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> an event. Then
+<div class="mb"><img class="m" src="m/a73dcea3c42ab36e4229a114a6b282247ca6e268.svg" alt="\[ \Prob(A) = \sum_{n}\Prob(A\mid B_{n})\,\Prob(B_{n}), \]" style="width:13.693em"></div>
+and if <img class="m" src="m/7c55563ca88be034ae66cb72771a625d9ba0b54e.svg" alt="\(\Prob(A)&gt;0\)" style="height:1.096em;vertical-align:-0.274em">,
+<img class="m" src="m/1049d8c91d3c489b95ca7e9f5f85e3ff83831883.svg" alt="\(\Prob(B_{k}\mid A) = \Prob(A\mid B_{k})\Prob(B_{k}) / \sum_{n}\Prob(A\mid B_{n})\Prob(B_{n})\)" style="height:1.151em;vertical-align:-0.334em">.
+</p>
+
+</div>
+
+<div class="proof" id="org1fce988">
+<p>
+The events <img class="m" src="m/13c3ceb67c59ae7d2f703b6a1fb0b2bc539a70db.svg" alt="\(A \cap B_{n}\)" style="height:0.913em;vertical-align:-0.164em"> are pairwise disjoint with union <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, so
+countable additivity gives
+<img class="m" src="m/ddc5eb9868d2ed3ec8e52f0e6f6c2c192df11381.svg" alt="\(\Prob(A) = \sum_{n}\Prob(A\cap B_{n})\)" style="height:1.151em;vertical-align:-0.334em">, and each term is
+<img class="m" src="m/e001a04b3328995aad7ccb0ff9f484c1fb1d4d64.svg" alt="\(\Prob(A\mid B_{n})\Prob(B_{n})\)" style="height:1.096em;vertical-align:-0.274em"> by the definition. For the second
+identity,
+<img class="m" src="m/a10bf562addca9cc36659edebecbcd962fbff4c4.svg" alt="\(\Prob(B_{k}\mid A) = \Prob(A\cap B_{k})/\Prob(A)\)" style="height:1.096em;vertical-align:-0.274em">; rewrite the
+numerator as <img class="m" src="m/986e12d29e240cbb240658d85be86a1d63ae1b66.svg" alt="\(\Prob(A\mid B_{k})\Prob(B_{k})\)" style="height:1.096em;vertical-align:-0.274em"> and the denominator by
+the first identity.
+</p>
+
+</div>
+
+<div class="definition" id="orge22df55">
+<p>
+Events <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> are <i>independent</i> if
+<img class="m" src="m/19e71e83934be240f52c701543acfd40458a041f.svg" alt="\(\Prob(A\cap B) = \Prob(A)\Prob(B)\)" style="height:1.096em;vertical-align:-0.274em">. A family <img class="m" src="m/753db70680aeee742b2b5e999d50edb48a625d09.svg" alt="\((A_{i})_{i\in I}\)" style="height:1.096em;vertical-align:-0.274em"> is
+<i>independent</i> if
+<img class="m" src="m/afe370cc58c2912be1aa775cf5983d9126c1ee9a.svg" alt="\(\Prob(A_{i_{1}}\cap\cdots\cap A_{i_{k}}) = \Prob(A_{i_{1}})\cdots\Prob(A_{i_{k}})\)" style="height:1.103em;vertical-align:-0.276em">
+for every finite set of distinct indices.
+</p>
+
+</div>
+
+<div class="proposition" id="orgaa4a2fc">
+<p>
+If <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> are independent, so are <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/92587a42cfe9244b3d5b50290a8aeafd911464d7.svg" alt="\(B^{c}\)" style="height:0.749em;vertical-align:-0.000em">; and if
+<img class="m" src="m/8b2a6ba4ffc9af276c175104382865959b4412cf.svg" alt="\(\Prob(B)&gt;0\)" style="height:1.096em;vertical-align:-0.274em">, independence is equivalent to
+<img class="m" src="m/4676bdbf212904a7e5a46942ebaef1ed445f421b.svg" alt="\(\Prob(A\mid B) = \Prob(A)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org055cd39">
+<p>
+<img class="m" src="m/d31be2f78b03f923c62792d84dec31bf83420d9f.svg" alt="\(\Prob(A\cap B^{c}) = \Prob(A)-\Prob(A\cap B) = \Prob(A)(1-\Prob(B)) = \Prob(A)\Prob(B^{c})\)" style="height:1.096em;vertical-align:-0.274em">.
+The second claim is the definition of conditional probability with the
+factorisation substituted, in either direction.
+</p>
+
+</div>
+
+<div class="remark" id="org5fa126f">
+<p>
+Independence of a family is <i>not</i> pairwise independence: three events
+can be pairwise independent while the intersection of all three
+factorises wrongly, which is why the definition quantifies over every
+finite subfamily. The distinction is what makes the second
+Borel-Cantelli lemma and the strong law true statements rather than
+plausible ones.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="projective-transformations-and-the-cross-ratio.html"><span>← previous</span>Projective transformations and the cross-ratio</a><a rel="next" href="random-variables-laws-and-distribution-functions.html"><span>next →</span>Random variables, laws and distribution functions</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/probability--probability-theory.pdf" title="PDF manual">Probability Theory</a> · <a class="pdf" href="pdf/probability.pdf" title="PDF manual">Probability</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

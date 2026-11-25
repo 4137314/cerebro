@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Logic · Mathematics</title>
+<meta name="description" content="Logic begins when a formula stops being notation for an argument and becomes an object a theorem can quantify over. From that point the subject has a fixed shape: define what it means for a formula to be true in a structure, define separately what it means to be derivable, and then compare the two.…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/logic.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Logic · Mathematics">
+<meta property="og:description" content="Logic begins when a formula stops being notation for an argument and becomes an object a theorem can quantify over. From that point the subject has a fixed shape: define what it means for a formula to be true in a structure, define separately what it means to be derivable, and then compare the two.…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/logic.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-foundations">Foundations</a> / <a rel="up" href="index.html#a-foundations--model-theory">Model Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">overview · Foundations · Model Theory</p>
+<h1>Logic</h1>
+<p class="summary">Logic begins when a formula stops being notation for an argument and becomes an object a theorem can quantify over. From that point the subject has a fixed shape: define what it means for a formula to be <i>true</i> in a structure, define separately what it means to be <i>derivable</i>, and then compare the two. Everything below is that comparison, or a consequence of it.</p>
+<p class="rel"><span>mentioned in</span> <a href="foundations.html">Foundations</a></p>
+</header>
+<main class="note">
+<p>
+Part of <a href="foundations.html">Foundations</a>.
+</p>
+<div id="outline-container-org42d666b" class="outline-2">
+<h2 id="org42d666b">Propositional logic</h2>
+<div class="outline-text-2" id="text-org42d666b">
+<p>
+<a href="propositional-logic-formulas-assignments-and-compactness.html">Propositional logic: formulas, assignments and compactness</a> gives the
+semantics &#x2013; two inductive definitions, one building formulas and one
+evaluating them &#x2013; and the theorem that makes the subject infinite
+rather than finitary: satisfiability is decided by finite subsets.
+</p>
+
+<p>
+<a href="a-proof-system-for-propositional-logic-soundness-and-the-deduction-theorem.html">A proof system: soundness and the deduction theorem</a> gives the syntax,
+as a finite combinatorial object, and the easy half of the comparison.
+<a href="completeness-of-propositional-logic.html">Completeness of propositional logic</a> gives the hard half, by building a
+model out of the syntax itself &#x2013; after which compactness reappears as a
+corollary, for the reason that a derivation is finite.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf241c5c" class="outline-2">
+<h2 id="orgf241c5c">First-order logic</h2>
+<div class="outline-text-2" id="text-orgf241c5c">
+<p>
+<a href="first-order-languages-structures-and-satisfaction.html">First-order languages, structures and satisfaction</a> makes "<img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">
+satisfies the group axioms" a mathematical statement, and with it
+statements about <i>all</i> structures satisfying a theory.
+<a href="ultraproducts-and-the-theorem-of-los.html">Ultraproducts and the theorem of Los</a> then prove compactness at this
+level without a proof system at all, by assembling a model out of a
+family of models along an <a href="filters-ultrafilters-and-the-ultrafilter-lemma.html">ultrafilter</a> &#x2013; the only property used being
+that "large" is closed under complement, which is exactly what negation
+needs.
+</p>
+
+<p>
+<a href="elementary-substructures-and-the-lowenheim-skolem-theorems.html">Elementary substructures and the Lowenheim-Skolem theorems</a> say how
+little a first-order theory controls: every infinite structure has a
+countable elementary substructure and arbitrarily large elementary
+extensions, so no such theory pins down the size of its models.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc5f5c3b" class="outline-2">
+<h2 id="orgc5f5c3b">The limits</h2>
+<div class="outline-text-2" id="text-orgc5f5c3b">
+<p>
+<a href="computability-the-halting-problem-and-rices-theorem.html">Computability, the halting problem and Rice's theorem</a> is the other kind
+of limitative result: not "the theory has too many models" but "no
+procedure decides this". The two undecidability proofs there use only
+two properties of any reasonable model of computation &#x2013; a program can
+simulate a program, and a parameter can be frozen &#x2013; which is why the
+conclusions do not depend on the machine chosen.
+</p>
+</div>
+</div>
+<div id="outline-container-org1595965" class="outline-2">
+<h2 id="org1595965">What is missing</h2>
+<div class="outline-text-2" id="text-org1595965">
+<p>
+Godel's completeness theorem for first-order logic, whose consequence
+was obtained here by <a href="ultraproducts-and-the-theorem-of-los.html">ultraproducts</a> instead; the incompleteness theorems,
+and with them arithmetic as an object of study; quantifier elimination
+and the model theory of specific theories; intuitionistic and modal
+logic; and the connection between <a href="computability-the-halting-problem-and-rices-theorem.html">computability</a> and definability.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="elementary-substructures-and-the-lowenheim-skolem-theorems.html"><span>← previous</span>Elementary substructures and the Lowenheim-Skolem theorems</a><a rel="next" href="a-proof-system-for-propositional-logic-soundness-and-the-deduction-theorem.html"><span>next →</span>A proof system for propositional logic: soundness and the deduction theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/foundations--model-theory.pdf" title="PDF manual">Model Theory</a> · <a class="pdf" href="pdf/foundations.pdf" title="PDF manual">Foundations</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

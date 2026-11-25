@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compactness and the Heine-Borel theorem · Mathematics</title>
+<meta name="description" content="Every theorem of the first course about continuous functions on a closed interval – boundedness, attainment of extrema, uniform continuity – used the same feature of [a,b] and nothing else: a local condition holding at every point can be made to hold uniformly, because finitely many neighbourhoods …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/compactness-and-the-heine-borel-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Compactness and the Heine-Borel theorem · Mathematics">
+<meta property="og:description" content="Every theorem of the first course about continuous functions on a closed interval – boundedness, attainment of extrema, uniform continuity – used the same feature of [a,b] and nothing else: a local condition holding at every point can be made to hold uniformly, because finitely many neighbourhoods …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/compactness-and-the-heine-borel-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-topology">Topology</a> / <a rel="up" href="index.html#a-topology--general-topology">General Topology</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Topology · General Topology</p>
+<h1>Compactness and the Heine-Borel theorem</h1>
+<p class="summary">Every theorem of the first course about <a href="continuous-functions-on-a-compact-interval.html">continuous functions on a closed interval</a> &#x2013; boundedness, attainment of extrema, uniform continuity &#x2013; used the same feature of <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em"> and nothing else: a local condition holding at every point can be made to hold uniformly, because finitely many neighbourhoods suffice. Compactness is that feature, named, and it is what makes those proofs transfer.</p>
+<p class="rel"><span>needs</span> <a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a>, <a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a>, <a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a>, <a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a>, <a href="supremum-and-infimum.html">Supremum and infimum</a>, <a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></p>
+<p class="rel"><span>unlocks</span> <a href="boolean-algebras-and-stones-representation-theorem.html">Boolean algebras and Stone's representation theorem</a>, <a href="filters-ultrafilters-and-the-ultrafilter-lemma.html">Filters, ultrafilters and the ultrafilter lemma</a>, <a href="the-spectral-theorem-for-symmetric-operators.html">The spectral theorem for symmetric operators</a>, <a href="constrained-extrema-and-lagrange-multipliers.html">Constrained extrema and Lagrange multipliers</a>, <a href="zeros-the-identity-theorem-and-the-maximum-principle.html">Zeros, the identity theorem and the maximum principle</a>, <a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a>, <a href="harmonic-functions-the-mean-value-property-and-the-dirichlet-problem.html">Harmonic functions, the mean value property and the Dirichlet problem</a>, <a href="the-heat-equation-separation-of-variables-and-the-maximum-principle.html">The heat equation: separation of variables and the maximum principle</a>, <a href="local-compactness-and-the-one-point-compactification.html">Local compactness and the one-point compactification</a>, <a href="nets-and-convergence-in-topological-spaces.html">Nets and convergence in topological spaces</a>, <a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a>, <a href="tychonoffs-theorem.html">Tychonoff's theorem</a>, <a href="covering-spaces-and-the-fundamental-group-of-the-circle.html">Covering spaces and the fundamental group of the circle</a>, <a href="extreme-points-and-minkowskis-theorem-on-convex-bodies.html">Extreme points and Minkowski's theorem on convex bodies</a>, <a href="equilibria-stability-and-the-lagrange-dirichlet-theorem.html">Equilibria, stability and the Lagrange-Dirichlet theorem</a>, <a href="lyapunov-functions-and-invariant-sets.html">Lyapunov functions and invariant sets</a></p>
+<p class="rel"><span>mentioned in</span> <a href="topology.html">Topology</a>, <a href="general-topology.html">General topology</a></p>
+<details class="path"><summary>Learning path: 17 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orga98b16c">
+<p>
+An <i>open cover</i> of a topological space <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is a family of open sets
+whose union is <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">. The space is <i>compact</i> if every open cover has a
+finite subcover. A subset is compact if it is so in the subspace
+topology, equivalently if every cover of it by open sets of <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> has a
+finite subfamily covering it.
+</p>
+
+</div>
+
+<div class="theorem" id="orgad4205f">
+<p>
+The continuous image of a compact space is compact. Compactness is
+therefore a topological invariant.
+</p>
+
+</div>
+
+<div class="proof" id="org58f2026">
+<p>
+Let <img class="m" src="m/d7c0c93f2d459ca20e4f53c81d24a704a65c7b84.svg" alt="\(f \colon X \to Y\)" style="height:0.974em;vertical-align:-0.214em"> be continuous and surjective with <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">
+compact, and let <img class="m" src="m/45293bdc0608418bf65841de43847ad3a7f8715b.svg" alt="\((V_{i})\)" style="height:1.096em;vertical-align:-0.274em"> cover <img class="m" src="m/82d9b7c5c94f297586981fdbe7ca67b30095b73a.svg" alt="\(Y\)" style="height:0.749em;vertical-align:-0.000em">. The sets <img class="m" src="m/008817c3433a2978150d8a012670860698b45228.svg" alt="\(f^{-1}(V_{i})\)" style="height:1.166em;vertical-align:-0.268em"> are
+open and cover <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">, so finitely many of them cover <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">; the
+corresponding <img class="m" src="m/e1b0784c10c6aff0d9c10b34d55616d289aba575.svg" alt="\(V_{i}\)" style="height:0.913em;vertical-align:-0.164em"> then cover <img class="m" src="m/717487efe2ecdaceac854ccc611cb7efd4a1335e.svg" alt="\(f(X) = Y\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org97248c3">
+<p>
+A closed subset of a compact space is compact.
+</p>
+
+</div>
+
+<div class="proof" id="orgbb07952">
+<p>
+Let <img class="m" src="m/52ae05264b3260261436df46e1d5985432c8859d.svg" alt="\(C \subseteq X\)" style="height:0.898em;vertical-align:-0.153em"> be closed and let <img class="m" src="m/1c985a43bc3d13166db340c10353a17a26469c7c.svg" alt="\((U_{i})\)" style="height:1.096em;vertical-align:-0.274em"> be open sets of
+<img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> covering <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">. Adding <img class="m" src="m/4ab317203f3ec4fade884a0ca0bec2c34604dccd.svg" alt="\(X \setminus C\)" style="height:1.096em;vertical-align:-0.274em">, which is open, gives an
+open cover of <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">; extract a finite subcover and discard
+<img class="m" src="m/04f7c06e82e87b24a85a4f78f913ff1af29e6349.svg" alt="\(X\setminus C\)" style="height:1.096em;vertical-align:-0.274em"> from it. What remains is a finite subfamily of the
+<img class="m" src="m/a562c7cdcf67e22ae80bce9ef8a7a99fe4abb681.svg" alt="\(U_{i}\)" style="height:0.913em;vertical-align:-0.164em"> covering <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgab0d7b8">
+<p>
+Every closed bounded interval <img class="m" src="m/c51e2b58dafed08d1f822c851c4fa2edb3418603.svg" alt="\([a,b] \subseteq \R\)" style="height:1.096em;vertical-align:-0.274em"> is compact.
+</p>
+
+</div>
+
+<div class="proof" id="org7615f14">
+<p>
+Let <img class="m" src="m/9b5051d8f9149f1300fa601c9104624a6e64a9a6.svg" alt="\(\mathcal{U}\)" style="height:0.749em;vertical-align:-0.000em"> be a cover of <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em"> by sets open in <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em">, and
+let
+<img class="m" src="m/3039ecc7204cf03dfdaee39e59c5480961a70c78.svg" alt="\(S = \setst{x \in [a,b]}{[a,x] \text{ is covered by finitely many members of } \mathcal{U}}\)" style="height:1.096em;vertical-align:-0.274em">.
+It contains <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> and is bounded above by <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em">, so <img class="m" src="m/14f51440e8e1d69363f0698e9c4ccfedb6db664e.svg" alt="\(s = \sup S\)" style="height:0.962em;vertical-align:-0.212em">
+exists by completeness, and <img class="m" src="m/93dffa29abd5a0db0ff0b673408d5384db84ebf7.svg" alt="\(s \in [a,b]\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+Some <img class="m" src="m/4473d688e61feb795990b184db540f729d708e8c.svg" alt="\(U \in \mathcal{U}\)" style="height:0.792em;vertical-align:-0.040em"> contains <img class="m" src="m/42d2c35f20f2c22043ef0eb42920ada193d61639.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em">, and being open it contains
+<img class="m" src="m/9f4f3da7b40da0f2c4305f63c60026ff283fba4a.svg" alt="\((s-\delta, s+\delta)\)" style="height:1.096em;vertical-align:-0.274em"> for some <img class="m" src="m/2834db4da57323bf6f47d0a640028cc90f572412.svg" alt="\(\delta &gt; 0\)" style="height:0.804em;vertical-align:-0.040em">. By definition of the
+supremum there is <img class="m" src="m/aa5e9b66b05ad8372d01b950834a60169cc40839.svg" alt="\(x \in S\)" style="height:0.792em;vertical-align:-0.040em"> with <img class="m" src="m/f00c71895636f8cee11f918b33e22ab2577918ae.svg" alt="\(x &gt; s - \delta\)" style="height:0.852em;vertical-align:-0.094em">; a finite
+subfamily covers <img class="m" src="m/ff4ea6b6ae2988bb939044158138987a65d7d8d5.svg" alt="\([a,x]\)" style="height:1.096em;vertical-align:-0.274em">, and adding <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> covers
+<img class="m" src="m/16eb58ebffcb56a1be9fa97d467a03beeb17afb0.svg" alt="\([a, \min(s+\delta/2, b)]\)" style="height:1.096em;vertical-align:-0.274em">. Hence <img class="m" src="m/30c68b78e3d446d712e62966310abaf0f6ef5587.svg" alt="\(s \in S\)" style="height:0.792em;vertical-align:-0.040em">, and if <img class="m" src="m/8d84101fd414ede272a0d0b98bf740f6f4e08b5a.svg" alt="\(s &lt; b\)" style="height:0.804em;vertical-align:-0.040em"> then
+some point of <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> exceeds <img class="m" src="m/42d2c35f20f2c22043ef0eb42920ada193d61639.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> &#x2013; impossible. So <img class="m" src="m/22162ed84d6018493d9a473ec363f335ed02ed25.svg" alt="\(s = b \in S\)" style="height:0.804em;vertical-align:-0.040em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orge9353c0">
+<p>
+A subset of <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em"> is compact if and only if it is closed and bounded.
+</p>
+
+</div>
+
+<div class="proof" id="orgb16970b">
+<p>
+Let <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> be closed and bounded, so <img class="m" src="m/575f04eff78d8b12896f71217f97c738ea54a887.svg" alt="\(K \subseteq [a,b]\)" style="height:1.096em;vertical-align:-0.274em"> for some
+interval. Then <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> is a closed subset of the compact space <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em">,
+hence compact.
+</p>
+
+<p>
+Conversely let <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> be compact. It is closed, being a compact subset of
+the Hausdorff space <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em">. It is bounded: the open intervals
+<img class="m" src="m/909c7c4acd9f888aa6a827f93cc5e61db6c1b536.svg" alt="\((-n, n)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/f8ea5aeeb2cceb9a128df6774aa55a23ce60145e.svg" alt="\(n \in \N\)" style="height:0.798em;vertical-align:-0.040em">, cover <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">, so finitely many do, and their
+union is the largest of them.
+</p>
+
+</div>
+
+<div class="corollary" id="org63c1643">
+<p>
+A continuous real-valued function on a non-empty compact space is
+bounded and attains its supremum and its infimum.
+</p>
+
+</div>
+
+<div class="proof" id="org8510d3d">
+<p>
+The image <img class="m" src="m/7cfb49f757783b9f8915e078fb5ee0e67e363780.svg" alt="\(f(X) \subseteq \R\)" style="height:1.096em;vertical-align:-0.274em"> is compact, hence closed and bounded.
+Bounded and non-empty, it has a supremum <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">; every neighbourhood of
+<img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> meets <img class="m" src="m/54bc7085f15afe06df4b04598ea8549e334f1a89.svg" alt="\(f(X)\)" style="height:1.096em;vertical-align:-0.274em"> by the definition of the supremum, so
+<img class="m" src="m/bd6b8655613c69ee59e99b0da58fb9eacc18282b.svg" alt="\(M \in \overline{f(X)} = f(X)\)" style="height:1.315em;vertical-align:-0.276em">, that is <img class="m" src="m/835ad4fdd07722a51453d7cae11a4b459bb3c02a.svg" alt="\(M = f(x)\)" style="height:1.096em;vertical-align:-0.274em"> for some <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">.
+The infimum is the same argument applied to <img class="m" src="m/260f963332ff7cc2fa4c5efa180922c4739a327e.svg" alt="\(-f\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="remark" id="org04db0b3">
+<p>
+This is the extreme value theorem of the first course with the interval
+replaced by any compact space, and the proof no longer mentions
+sequences or subsequences at all. Which formulation to prove first is a
+real choice: on metric spaces the covering and sequential definitions
+agree, and the equivalence is itself a theorem worth isolating.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="hausdorff-spaces-and-separation.html"><span>← previous</span>Hausdorff spaces and separation</a><a rel="next" href="the-metric-topology-and-continuity-in-metric-spaces.html"><span>next →</span>The metric topology and continuity in metric spaces</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/topology--general-topology.pdf" title="PDF manual">General Topology</a> · <a class="pdf" href="pdf/topology.pdf" title="PDF manual">Topology</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

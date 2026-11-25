@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Event-driven programming and event handlers · Computer Science</title>
+<meta name="description" content="A GUI program does not follow a fixed sequence: it registers handlers and waits; each user action becomes an Event object delivered to the handlers of the target node, travelling from the stage down to the target (capturing, seen by filters) and back up (bubbling, seen by handlers).">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/event-handling.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Event-driven programming and event handlers · Computer Science">
+<meta property="og:description" content="A GUI program does not follow a fixed sequence: it registers handlers and waits; each user action becomes an Event object delivered to the handlers of the target node, travelling from the stage down to the target (capturing, seen by filters) and back up (bubbling, seen by handlers).">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/event-handling.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--gui">Gui</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Programming · Gui</p>
+<h1>Event-driven programming and event handlers</h1>
+<p class="summary">A GUI program does not follow a fixed sequence: it registers handlers and waits; each user action becomes an <code>Event</code> object delivered to the handlers of the target node, travelling from the stage down to the target (capturing, seen by filters) and back up (bubbling, seen by handlers).</p>
+<p class="rel"><span>needs</span> <a href="javafx-scene-graph.html">JavaFX: stage, scene and the node tree</a>, <a href="abstract-class-interface.html">Abstract classes and interfaces</a></p>
+<p class="rel"><span>unlocks</span> <a href="observer-mvc.html">Observer pattern and model–view–controller</a></p>
+<p class="rel"><span>see also</span> <a href="lambda-expressions.html">Lambda expressions</a>, <a href="threads-data-race.html">Threads and data races</a>, <a href="user-input.html">Reading and validating user input</a>, <a href="observer-mvc.html">Observer pattern and model–view–controller</a></p>
+<p class="rel"><span>mentioned in</span> <a href="low-power-encoding.html">Encodings and orderings for low power</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li><li><a href="abstract-class-interface.html">Abstract classes and interfaces</a></li><li><a href="java-platform.html">The Java platform</a></li><li><a href="javafx-scene-graph.html">JavaFX: stage, scene and the node tree</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org394a136" class="outline-2">
+<h2 id="org394a136">Model</h2>
+<div class="outline-text-2" id="text-org394a136">
+<ul class="org-ul">
+<li><b>Events</b> form a hierarchy (<code>MouseEvent</code>, <code>KeyEvent</code>, <code>ActionEvent</code>, …), each with its own attributes (position, key, source) and sub-types (<code>MOUSE_CLICKED</code>, <code>KEY_PRESSED</code>).</li>
+<li>A <b>handler</b> <a href="abstract-class-interface.html">implements</a> <code>EventHandler&lt;T extends Event&gt;</code>, whose only method is <code>void handle(T e)</code>. It is registered on a node with <code>addEventHandler(type, h)</code> or with convenience methods <code>setOnAction</code>, <code>setOnMouseClicked</code>, <code>setOnKeyPressed</code>.</li>
+<li>The <b>target</b> is the node that has the keyboard focus (key events) or the topmost node under the cursor (mouse events).</li>
+<li><b>Dispatch chain</b>: from the stage to the target (<b>capturing</b>, intercepted by filters registered with <code>addEventFilter</code>), then back from the target to the stage (<b>bubbling</b>, handlers). <code>e.consume()</code> stops the propagation.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2fa44d9" class="outline-2">
+<h2 id="org2fa44d9">Ways to write a handler</h2>
+<div class="outline-text-2" id="text-org2fa44d9">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">class</span> <span class="t">Clicker</span> <span class="k">implements</span> <span class="t">EventHandler</span>&lt;<span class="t">ActionEvent</span>&gt; {          <span class="c">// external class
+</span>    <span class="k">public</span> <span class="t">void</span> <span class="f">handle</span>(<span class="t">ActionEvent</span> <span class="v">e</span>) { System.out.println(<span class="s">"click"</span>); }
+}
+btn.setOnAction(<span class="k">new</span> <span class="t">Clicker</span>());
+<span class="c">// anonymous inner class
+</span>btn.setOnAction(<span class="k">new</span> <span class="t">EventHandler</span>&lt;<span class="t">ActionEvent</span>&gt;() {
+    <span class="c">// sees the outer fields
+</span>    <span class="k">public</span> <span class="t">void</span> <span class="f">handle</span>(<span class="t">ActionEvent</span> <span class="v">e</span>) { counter++; }
+});
+btn.setOnAction(e -&gt; counter++);                              <span class="c">// lambda (Java 8)</span></code></pre></figure>
+<p>
+Inner and anonymous classes can access the members of the enclosing object, which keeps state in one place and improves encapsulation.
+</p>
+</div>
+</div>
+<div id="outline-container-org078cd41" class="outline-2">
+<h2 id="org078cd41">Picture</h2>
+<div class="outline-text-2" id="text-org078cd41">
+<figure class="fig"><img class="m" src="m/1b2360f7c007a70426bff62d07db3d5881f93877.svg" alt="figure" style="width:23.333em"><figcaption><span class="fl">Figure 1.</span> JavaFX event dispatch through the scene graph: the event is captured from Stage down to the target Button (filters) and bubbles back up (handlers).</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org97631ee" class="outline-2">
+<h2 id="org97631ee">Intuition</h2>
+<div class="outline-text-2" id="text-org97631ee">
+<p>
+Instead of asking "what next?", the program says "call me when this happens". The main loop belongs to the library.
+</p>
+</div>
+</div>
+<div id="outline-container-org75a1e0d" class="outline-2">
+<h2 id="org75a1e0d">Pitfall</h2>
+<div class="outline-text-2" id="text-org75a1e0d">
+<p>
+Handlers run on the single JavaFX application thread: a long computation inside one freezes the whole window. Long work goes to a background thread, and only the UI update comes back.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="javafx-scene-graph.html"><span>← previous</span>JavaFX: stage, scene and the node tree</a><a rel="next" href="javafx-layout.html"><span>next →</span>JavaFX layout panes</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--gui.pdf" title="PDF manual">Gui</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

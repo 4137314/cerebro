@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Algorithmic state machine (ASM) charts · Computer Science</title>
+<meta name="description" content="An ASM chart draws a state machine as a flowchart: a rectangle per state with its Moore outputs, diamonds testing input conditions (one true and one false exit), rounded boxes for conditional (Mealy) outputs; arrows from one state to the next may pass through several decisions, but every path must …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/asm-chart.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Algorithmic state machine (ASM) charts · Computer Science">
+<meta property="og:description" content="An ASM chart draws a state machine as a flowchart: a rectangle per state with its Moore outputs, diamonds testing input conditions (one true and one false exit), rounded boxes for conditional (Mealy) outputs; arrows from one state to the next may pass through several decisions, but every path must …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/asm-chart.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--sequential">Sequential</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Hardware · Sequential</p>
+<h1>Algorithmic state machine (ASM) charts</h1>
+<p class="summary">An ASM chart draws a state machine as a flowchart: a rectangle per state with its Moore outputs, diamonds testing input conditions (one true and one false exit), rounded boxes for conditional (Mealy) outputs; arrows from one state to the next may pass through several decisions, but every path must end in a state, and inputs are never assigned nor outputs tested.</p>
+<p class="rel"><span>needs</span> <a href="mealy-moore.html">Mealy versus Moore machines</a></p>
+<p class="rel"><span>unlocks</span> <a href="fsm-patterns.html">Recurring state-machine patterns</a></p>
+<p class="rel"><span>see also</span> <a href="fsm-patterns.html">Recurring state-machine patterns</a>, <a href="rtl-design.html">The RTL design method: datapath and control unit</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li><li><a href="sr-latch.html">SR latch and D latch</a></li><li><a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></li><li><a href="fsm-analysis.html">Analysis of synchronous sequential circuits</a></li><li><a href="fsm-synthesis.html">Synthesis of finite-state machines</a></li><li><a href="mealy-moore.html">Mealy versus Moore machines</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org0b0c198" class="outline-2">
+<h2 id="org0b0c198">Definition</h2>
+<div class="outline-text-2" id="text-org0b0c198">
+<ul class="org-ul">
+<li><b>State box</b> (rectangle): name, optional code, outputs asserted for the whole cycle (Moore). Unlisted outputs are 0 by default.</li>
+<li><b>Decision box</b> (diamond): a Boolean condition on inputs (or on datapath status signals); two exits, 1 and 0. Decisions can be chained to factor complicated conditions.</li>
+<li><b>Conditional output box</b> (rounded rectangle) on a path: outputs asserted while in the source state <b>and</b> the conditions on the path hold — a Mealy output. It is not a state and takes no clock cycle.</li>
+<li>One <b>ASM block</b> = a state box with everything hanging below it until the next state boxes: everything in a block happens in the same clock cycle; the transition happens at the edge.</li>
+</ul>
+<p>
+Rules: never assign a value to an input (you cannot decide it); never test an output (you already know it); no loop made only of decisions (with no state box inside it the values never change, the machine would be stuck).
+</p>
+</div>
+</div>
+<div id="outline-container-org1e17c2b" class="outline-2">
+<h2 id="org1e17c2b">Example</h2>
+<div class="outline-text-2" id="text-org1e17c2b">
+<p>
+Boiler, Moore: state OFF (<img class="m" src="m/71c7f4692b1a3c9af44a1c717b69ae73af48013b.svg" alt="\(C=0\)" style="height:0.749em;vertical-align:-0.000em">): diamond <img class="m" src="m/c6306f7556c20ed611b57417e4530ef85873290c.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">; 1 → ON, 0 → OFF. State ON (<img class="m" src="m/21b84aa0b26f8098b681177bd1291757d7146232.svg" alt="\(C=1\)" style="height:0.749em;vertical-align:-0.000em">): diamond <img class="m" src="m/300aa70f8d951bd5a3fcf6135eb614413e06bbeb.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em">; 1 → OFF, 0 → ON. Two decisions express the four transitions.
+Mealy version: in OFF, on the <img class="m" src="m/700fa3d66248f0a0a835587b2ae03b9ea8a98b47.svg" alt="\(L=1\)" style="height:0.749em;vertical-align:-0.000em"> path a conditional box <img class="m" src="m/21b84aa0b26f8098b681177bd1291757d7146232.svg" alt="\(C=1\)" style="height:0.749em;vertical-align:-0.000em"> — the burner starts in the same cycle in which <img class="m" src="m/c6306f7556c20ed611b57417e4530ef85873290c.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> is seen.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbb7c185" class="outline-2">
+<h2 id="orgbb7c185">Picture</h2>
+<div class="outline-text-2" id="text-orgbb7c185">
+<figure class="fig"><img class="m" src="m/55bd964bd58949ab97e9a4f39b8a919e9cdb0203.svg" alt="figure" style="width:8.806em"><figcaption><span class="fl">Figure 1.</span> An ASM chart of a light controller: state boxes OFF and ON with their outputs, and decision boxes on the inputs <img class="m" src="m/c6306f7556c20ed611b57417e4530ef85873290c.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/300aa70f8d951bd5a3fcf6135eb614413e06bbeb.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> choosing the next state.</figcaption></figure>
+<p>
+Mealy boiler: the cyan conditional box turns the burner on in the cycle in which <img class="m" src="m/c6306f7556c20ed611b57417e4530ef85873290c.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> is detected.
+</p>
+</div>
+</div>
+<div id="outline-container-org61f3a1f" class="outline-2">
+<h2 id="org61f3a1f">Intuition</h2>
+<div class="outline-text-2" id="text-org61f3a1f">
+<p>
+It reads like a program — "in this state do this, if that go there" — which is why it scales to the controllers of <a href="rtl-design.html">RTL designs</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org84faa50" class="outline-2">
+<h2 id="org84faa50">Pitfall</h2>
+<div class="outline-text-2" id="text-org84faa50">
+<p>
+Two conditional boxes for the same output on different paths are fine; a conditional box that drives a register <b>load</b> still takes effect only at the next edge (the register shows the new value in the next state).
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="mealy-moore.html"><span>← previous</span>Mealy versus Moore machines</a><a rel="next" href="critical-races.html"><span>next →</span>Critical races</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--sequential.pdf" title="PDF manual">Sequential</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

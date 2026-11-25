@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data-flow graphs and architectural synthesis · Computer Science</title>
+<meta name="description" content="High-level synthesis turns an algorithm into a datapath plus a controller: the computation becomes a sequencing graph (operations as vertices, data dependences as edges), then scheduling assigns each operation a clock cycle and binding assigns it a functional unit and its values registers.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/data-flow-graph.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Data-flow graphs and architectural synthesis · Computer Science">
+<meta property="og:description" content="High-level synthesis turns an algorithm into a datapath plus a controller: the computation becomes a sequencing graph (operations as vertices, data dependences as edges), then scheduling assigns each operation a clock cycle and binding assigns it a functional unit and its values registers.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/data-flow-graph.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--high-level-synthesis">High Level Synthesis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Hardware · High Level Synthesis</p>
+<h1>Data-flow graphs and architectural synthesis</h1>
+<p class="summary">High-level synthesis turns an algorithm into a datapath plus a controller: the computation becomes a sequencing graph (operations as vertices, data dependences as edges), then scheduling assigns each operation a clock cycle and binding assigns it a functional unit and its values registers.</p>
+<p class="rel"><span>needs</span> <a href="digital-design-flow.html">Digital design flow and abstraction levels</a></p>
+<p class="rel"><span>unlocks</span> <a href="asap-alap-scheduling.html">ASAP and ALAP scheduling, mobility</a></p>
+<p class="rel"><span>see also</span> <a href="asap-alap-scheduling.html">ASAP and ALAP scheduling, mobility</a>, <a href="datapath-control.html">Datapath and control unit</a></p>
+<p class="rel"><span>mentioned in</span> <a href="np-hard-optimization.html">Hard optimization problems and heuristics</a>, <a href="list-scheduling.html">List scheduling</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="digital-design-flow.html">Digital design flow and abstraction levels</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgc45c8a8" class="outline-2">
+<h2 id="orgc45c8a8">Definition</h2>
+<div class="outline-text-2" id="text-orgc45c8a8">
+<p>
+A system at the architectural level is a <b>datapath</b> (functional units, registers, multiplexers, buses) driven by a <b>control unit</b> (an FSM) through control signals, which reads back status signals (comparisons, flags).
+</p>
+
+<p>
+A <b>sequencing graph</b> <img class="m" src="m/b9cfc01d5ca3174140e3ed4e64e5e65a07d23317.svg" alt="\(G=(V,E)\)" style="height:1.096em;vertical-align:-0.274em">: one vertex per operation (with its type: multiply, add, compare), an edge <img class="m" src="m/a29c09fe40d2e9b9e9442cda73a71b3aa80ebabd.svg" alt="\(u\to v\)" style="height:0.472em;vertical-align:-0.000em"> when <img class="m" src="m/f19d00b567f03ea93981f37f632ec605b342d3f5.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> uses the result of <img class="m" src="m/4991c399e4958beb9b49014c1ed4a2eb918bc19f.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em">, plus a source and a sink no-op. It is a DAG for the body of a loop.
+</p>
+
+<p>
+Architectural synthesis answers:
+</p>
+<ol class="org-ol">
+<li><b>scheduling</b>: in which cycle does each operation start? (latency)</li>
+<li><b>allocation</b>: how many units of each type?</li>
+<li><b>binding</b>: which unit executes each operation, which register holds each value? (area)</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgcf15707" class="outline-2">
+<h2 id="orgcf15707">Example</h2>
+<div class="outline-text-2" id="text-orgcf15707">
+<p>
+The inner loop of a differential-equation solver,
+<div class="mb"><img class="m" src="m/f10845df091f4fd270b8d32570df704035b44e64.svg" alt="\[ x_1=x+dx,\quad u_1=u-3x\,u\,dx-3y\,dx,\quad y_1=y+u\,dx, \]" style="width:27.379em"></div>
+has 6 multiplications, 2 subtractions, 2 additions and a comparison <img class="m" src="m/6c3e1492ed76772c3193b8371efab43ff3abf602.svg" alt="\(x_1&lt;a\)" style="height:0.755em;vertical-align:-0.166em">:
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">op</th>
+<th scope="col" class="org-left">computes</th>
+<th scope="col" class="org-left">op</th>
+<th scope="col" class="org-left">computes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">v1</td>
+<td class="org-left">3 · x</td>
+<td class="org-left">v7</td>
+<td class="org-left">u − v3</td>
+</tr>
+
+<tr>
+<td class="org-left">v2</td>
+<td class="org-left">u · dx</td>
+<td class="org-left">v8</td>
+<td class="org-left">v7 − v5  (= u1)</td>
+</tr>
+
+<tr>
+<td class="org-left">v3</td>
+<td class="org-left">v1 · v2</td>
+<td class="org-left">v9</td>
+<td class="org-left">y + v6   (= y1)</td>
+</tr>
+
+<tr>
+<td class="org-left">v4</td>
+<td class="org-left">3 · y</td>
+<td class="org-left">v10</td>
+<td class="org-left">x + dx   (= x1)</td>
+</tr>
+
+<tr>
+<td class="org-left">v5</td>
+<td class="org-left">v4 · dx</td>
+<td class="org-left">v11</td>
+<td class="org-left">v10 &lt; a</td>
+</tr>
+
+<tr>
+<td class="org-left">v6</td>
+<td class="org-left">u · dx</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+The longest chain v1 → v3 → v7 → v8 has four operations: with unit delays no schedule is shorter than 4 cycles.
+</p>
+</div>
+</div>
+<div id="outline-container-org2e9c8f9" class="outline-2">
+<h2 id="org2e9c8f9">Picture</h2>
+<div class="outline-text-2" id="text-org2e9c8f9">
+<figure class="fig"><img class="m" src="m/8c7fbcf320c9d8b50258109c6781331914b49f67.svg" alt="figure" style="width:24.988em"><figcaption><span class="fl">Figure 1.</span> A data-flow graph scheduled in control steps: operations <img class="m" src="m/833344af9bf8fd2e64476704b6ef10b276c5b5ce.svg" alt="\(v_1\)" style="height:0.636em;vertical-align:-0.165em"> to <img class="m" src="m/ea68e164ccdbd098bc8a7be4ebc1ed42262688fa.svg" alt="\(v_{11}\)" style="height:0.636em;vertical-align:-0.165em"> placed in cycles, edges carrying data dependencies.</figcaption></figure>
+<p>
+Multiplications (cyan) form the long chains; the subtractions wait for them.
+</p>
+</div>
+</div>
+<div id="outline-container-org95d2978" class="outline-2">
+<h2 id="org95d2978">Intuition</h2>
+<div class="outline-text-2" id="text-org95d2978">
+<p>
+The graph shows what could run in parallel; scheduling decides what does, given how much hardware is available.
+</p>
+</div>
+</div>
+<div id="outline-container-org34b31d6" class="outline-2">
+<h2 id="org34b31d6">Pitfall</h2>
+<div class="outline-text-2" id="text-org34b31d6">
+<p>
+The graph exposes only the parallelism of the source as written; rewriting the algorithm (<a href="tree-height-reduction.html">tree height reduction</a>, loop unrolling) often matters more than the scheduler.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="dvfs-parallelism.html"><span>← previous</span>Voltage scaling, DVFS and parallel datapaths</a><a rel="next" href="asap-alap-scheduling.html"><span>next →</span>ASAP and ALAP scheduling, mobility</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--high-level-synthesis.pdf" title="PDF manual">High Level Synthesis</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

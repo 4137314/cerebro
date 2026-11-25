@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feature extraction · Remote Sensing</title>
+<meta name="description" content="Feature extraction computes, for each pixel (pixel-based) or each segmented region (region-based), a vector of parameters useful to discriminate the classes — original bands, spectral indices such as NDVI, texture measures, region shape — normalised to a common range before classification.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/feature-extraction.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Feature extraction · Remote Sensing">
+<meta property="og:description" content="Feature extraction computes, for each pixel (pixel-based) or each segmented region (region-based), a vector of parameters useful to discriminate the classes — original bands, spectral indices such as NDVI, texture measures, region shape — normalised to a common range before classification.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/feature-extraction.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-recognition">Recognition</a> / <a rel="up" href="index.html#a-recognition--features">Features</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Recognition · Features</p>
+<h1>Feature extraction</h1>
+<p class="summary">Feature extraction computes, for each pixel (pixel-based) or each segmented region (region-based), a vector of parameters useful to discriminate the classes — original bands, spectral indices such as NDVI, texture measures, region shape — normalised to a common range before classification.</p>
+<p class="rel"><span>needs</span> <a href="recognition-system.html">Recognition systems</a></p>
+<p class="rel"><span>unlocks</span> <a href="feature-space.html">Feature space and spectral classes</a>, <a href="ndvi.html">NDVI and normalised difference indices</a>, <a href="hughes-phenomenon.html">Hughes phenomenon (curse of dimensionality)</a></p>
+<p class="rel"><span>see also</span> <a href="ndvi.html">NDVI and normalised difference indices</a>, <a href="texture-features.html">Texture features</a>, <a href="feature-space.html">Feature space and spectral classes</a>, <a href="image-segmentation.html">Image segmentation</a>, <a href="hughes-phenomenon.html">Hughes phenomenon (curse of dimensionality)</a></p>
+<p class="rel"><span>mentioned in</span> <a href="multispectral-hyperspectral-image.html">Multispectral and hyperspectral images</a>, <a href="image-segmentation.html">Image segmentation</a></p>
+<details class="path"><summary>Learning path: 2 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="recognition-system.html">Recognition systems</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org680e503" class="outline-2">
+<h2 id="org680e503">Method</h2>
+<div class="outline-text-2" id="text-org680e503">
+<p>
+Input: multispectral and/or multiband, multipolarization images, pre-processed. Features:
+</p>
+<ul class="org-ul">
+<li>unaltered bands;</li>
+<li>indices from band ratios and differences (<a href="ndvi.html">NDVI</a>, water and snow indices) that enhance a property and reduce illumination effects;</li>
+<li><a href="texture-features.html">texture</a> (<a href="image-statistics.html">variance</a>, entropy, co-occurrence measures).</li>
+</ul>
+<p>
+Approaches:
+</p>
+<ul class="org-ul">
+<li><b>pixel-based</b>: one feature vector per pixel; the output is a set of feature images, one per feature. Suitable when classes are internally homogeneous at the image resolution.</li>
+<li><b>region-based</b>: segment first, then compute region descriptors (mean DN, area, perimeter, compactness, texture). Suitable for very high resolution images where objects span many heterogeneous pixels.</li>
+</ul>
+<p>
+<b>Normalisation</b>: each feature <img class="m" src="m/d8238ec5bbc1139b3d6e0ccb9389d20d8541137f.svg" alt="\(f_i\)" style="height:0.974em;vertical-align:-0.214em"> mapped to <img class="m" src="m/ae44badaca28b2f1edc2a05a673ec774ff9dfce8.svg" alt="\([0,1]\)" style="height:1.096em;vertical-align:-0.274em"> by <img class="m" src="m/8ab7aa02e6f8d092c68a9aed680b65ec46582e32.svg" alt="\((f_i-\min f_i)/(\max f_i-\min f_i)\)" style="height:1.096em;vertical-align:-0.274em"> or standardised to zero mean and unit variance, so that no feature dominates distances only because of its units.
+<b>Selection</b>: keep the subset that best separates the classes (separability measures, wrappers), fighting the curse of dimensionality.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd1329d4" class="outline-2">
+<h2 id="orgd1329d4">Example</h2>
+<div class="outline-text-2" id="text-orgd1329d4">
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="v">ndvi</span> = (nir - red) / (nir + red + 1e-9)
+<span class="v">var5</span> = ndimage.generic_filter(nir, np.var, size=5)
+<span class="v">F</span> = np.stack([blue, green, red, nir, ndvi, var5], axis=-1).reshape(-1, 6)
+<span class="v">F</span> = (F - F.mean(0)) / F.std(0)</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org455d81b" class="outline-2">
+<h2 id="org455d81b">Intuition</h2>
+<div class="outline-text-2" id="text-org455d81b">
+<p>
+Features are the questions the classifier is allowed to ask about a pixel; good questions make the answer easy.
+</p>
+</div>
+</div>
+<div id="outline-container-org38de48b" class="outline-2">
+<h2 id="org38de48b">Pitfall</h2>
+<div class="outline-text-2" id="text-org38de48b">
+<p>
+More features are not always better: with few training samples, adding weak features lowers accuracy (<a href="hughes-phenomenon.html">Hughes phenomenon</a>).
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="recognition-system.html"><span>← previous</span>Recognition systems</a><a rel="next" href="feature-space.html"><span>next →</span>Feature space and spectral classes</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/recognition--features.pdf" title="PDF manual">Features</a> · <a class="pdf" href="pdf/recognition.pdf" title="PDF manual">Recognition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

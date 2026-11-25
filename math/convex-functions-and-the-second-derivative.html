@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Convex functions and the second derivative · Mathematics</title>
+<meta name="description" content="Convexity is defined without any derivative at all, which is why it survives where differentiability does not; when the derivatives exist, the mean value theorem identifies it with a sign condition.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/convex-functions-and-the-second-derivative.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Convex functions and the second derivative · Mathematics">
+<meta property="og:description" content="Convexity is defined without any derivative at all, which is why it survives where differentiability does not; when the derivatives exist, the mean value theorem identifies it with a sign condition.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/convex-functions-and-the-second-derivative.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Real Analysis</p>
+<h1>Convex functions and the second derivative</h1>
+<p class="summary">Convexity is defined without any derivative at all, which is why it survives where differentiability does not; when the derivatives exist, the mean value theorem identifies it with a sign condition.</p>
+<p class="rel"><span>needs</span> <a href="the-mean-value-theorem.html">The mean value theorem</a></p>
+<p class="rel"><span>unlocks</span> <a href="expectation-the-transfer-theorem-and-jensens-inequality.html">Expectation, the transfer theorem and Jensen's inequality</a>, <a href="the-legendre-transform.html">The Legendre transform</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 11 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgf5fb3f8">
+<p>
+A function <img class="m" src="m/36f80007748da007b6c8978fee6b361c4d0d087d.svg" alt="\(f \colon I \to \R\)" style="height:0.974em;vertical-align:-0.214em"> on an interval is <i>convex</i> if
+<div class="mb"><img class="m" src="m/c0a4ddd470be935825bad81a8cc10ea9f1378134.svg" alt="\[ f(\lambda x + (1 - \lambda) y) \le \lambda f(x) + (1 - \lambda) f(y) \]" style="width:19.103em"></div>
+for all <img class="m" src="m/824da3976e21ee6eb9b0b87583bc35ca25c495e9.svg" alt="\(x, y \in I\)" style="height:0.962em;vertical-align:-0.212em"> and <img class="m" src="m/287123b2b17be141543c61a1e6381aef1be78088.svg" alt="\(\lambda \in [0,1]\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org83afd95">
+<p>
+Let <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> be twice differentiable on an open interval <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> with
+<img class="m" src="m/313ffe8d66f29ee3907526a599f5050757407af9.svg" alt="\(f'' \ge 0\)" style="height:1.037em;vertical-align:-0.218em">. Then <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is convex on <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgab7cf42">
+<p>
+Since <img class="m" src="m/313ffe8d66f29ee3907526a599f5050757407af9.svg" alt="\(f'' \ge 0\)" style="height:1.037em;vertical-align:-0.218em">, the mean value theorem applied to <img class="m" src="m/fcd248f8faa113603c50440935779dfa8223591a.svg" alt="\(f'\)" style="height:1.037em;vertical-align:-0.218em"> shows
+<img class="m" src="m/fcd248f8faa113603c50440935779dfa8223591a.svg" alt="\(f'\)" style="height:1.037em;vertical-align:-0.218em"> is increasing on <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em">. Let <img class="m" src="m/cd381fb892d8b86197abf6604b87376f8fee3a18.svg" alt="\(x &lt; y\)" style="height:0.804em;vertical-align:-0.217em"> in <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em">,
+<img class="m" src="m/6a3b80e426a154cdbb10c27c5a3b27abd5286af9.svg" alt="\(\lambda \in (0,1)\)" style="height:1.096em;vertical-align:-0.274em">, and put <img class="m" src="m/14c837bee3e28165891a2ac5399c9808a5323fdb.svg" alt="\(z = \lambda x + (1 - \lambda) y\)" style="height:1.096em;vertical-align:-0.274em">, so
+<img class="m" src="m/10815cf42e8a1ce0e66324299b2e4a0dae3f1c3c.svg" alt="\(x &lt; z &lt; y\)" style="height:0.804em;vertical-align:-0.217em">. By the mean value theorem there are <img class="m" src="m/d18d560f2dfbbd1a62f7be6b7ac3b94f334433e4.svg" alt="\(s \in (x, z)\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/a1877a2ee1262ba48a3319e7549afceb28c022d4.svg" alt="\(t \in (z, y)\)" style="height:1.096em;vertical-align:-0.274em"> with
+<div class="mb"><img class="m" src="m/a019a80c3789a74481664361a512dcff49bdd594.svg" alt="\[ f(z) - f(x) = f'(s)(z - x), \qquad f(y) - f(z) = f'(t)(y - z). \]" style="width:28.171em"></div>
+As <img class="m" src="m/9fb2e9ee2b28625ff69dda119a89006b902cd709.svg" alt="\(s &lt; t\)" style="height:0.717em;vertical-align:-0.043em"> we have <img class="m" src="m/d00d66d5e1bef0e590511ca7aec48341278783fa.svg" alt="\(f'(s) \le f'(t)\)" style="height:1.098em;vertical-align:-0.274em">, hence
+<div class="mb"><img class="m" src="m/df8ab822a49f0df5dc2610b6c8233aa65e53bb71.svg" alt="\[ \frac{f(z) - f(x)}{z - x} \le \frac{f(y) - f(z)}{y - z}. \]" style="width:13.316em"></div>
+Substituting <img class="m" src="m/bdbbd3ef8b86d85ac0f2e268d0f372485defe68b.svg" alt="\(z - x = (1-\lambda)(y - x)\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/433063a6938f1ef8015b0f5bc759ec378eb38c3e.svg" alt="\(y - z = \lambda (y - x)\)" style="height:1.096em;vertical-align:-0.274em"> and clearing denominators gives
+<img class="m" src="m/381470325da82935a12c3474d9c1b6c496a7c7eb.svg" alt="\(f(z) \le \lambda f(x) + (1 - \lambda) f(y)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="constrained-extrema-and-lagrange-multipliers.html"><span>← previous</span>Constrained extrema and Lagrange multipliers</a><a rel="next" href="taylors-theorem-with-the-lagrange-remainder.html"><span>next →</span>Taylor's theorem with the Lagrange remainder</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

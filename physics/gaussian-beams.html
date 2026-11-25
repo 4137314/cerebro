@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gaussian beams · Physics</title>
+<meta name="description" content="The fundamental solution of the paraxial wave equation has intensity I\propto e^{-2r^2/w^2(z)}, width w(z)=w_0\sqrt{1+(z/z_0)^2}, Rayleigh range z_0=\pi w_0^2/\lambda, wavefront radius R(z)=z[1+(z_0/z)^2] and far-field half-angle \theta=\lambda/\pi w_0; laser beams are Gaussian, and stable cavities…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/gaussian-beams.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Gaussian beams · Physics">
+<meta property="og:description" content="The fundamental solution of the paraxial wave equation has intensity I\propto e^{-2r^2/w^2(z)}, width w(z)=w_0\sqrt{1+(z/z_0)^2}, Rayleigh range z_0=\pi w_0^2/\lambda, wavefront radius R(z)=z[1+(z_0/z)^2] and far-field half-angle \theta=\lambda/\pi w_0; laser beams are Gaussian, and stable cavities…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/gaussian-beams.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-optoelectronics">Optoelectronics</a> / <a rel="up" href="index.html#a-optoelectronics--wave-optics">Wave Optics</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Optoelectronics · Wave Optics</p>
+<h1>Gaussian beams</h1>
+<p class="summary">The fundamental solution of the paraxial wave equation has intensity <img class="m" src="m/1117257a7544114f75ae79d1e3391eb71b9751ed.svg" alt="\(I\propto e^{-2r^2/w^2(z)}\)" style="height:1.082em;vertical-align:-0.000em">, width <img class="m" src="m/a82a9e60bfb4d96ba406ad98e39beb0384a3ef37.svg" alt="\(w(z)=w_0\sqrt{1+(z/z_0)^2}\)" style="height:1.359em;vertical-align:-0.340em">, Rayleigh range <img class="m" src="m/a93d5d913da2067612d93e52f6e5978683189bda.svg" alt="\(z_0=\pi w_0^2/\lambda\)" style="height:1.166em;vertical-align:-0.268em">, wavefront radius <img class="m" src="m/c542c346dc0891ddb74abd254a0e569a6279aa72.svg" alt="\(R(z)=z[1+(z_0/z)^2]\)" style="height:1.166em;vertical-align:-0.268em"> and far-field half-angle <img class="m" src="m/b858fd9e3b97cea8f2ba62c18a8c4fe45aa181bf.svg" alt="\(\theta=\lambda/\pi w_0\)" style="height:1.096em;vertical-align:-0.274em">; laser beams are Gaussian, and stable cavities select the beam whose wavefronts match the mirrors.</p>
+<p class="rel"><span>needs</span> <a href="dispersion-and-group-velocity.html">Dispersion, group velocity and group index</a></p>
+<p class="rel"><span>unlocks</span> <a href="exam-basics-of-optoelectronics.html">Exam: Basics of Opto-Electronics (all past papers solved)</a>, <a href="interference-and-fabry-perot.html">Interference and the Fabry–Perot resonator</a>, <a href="grating-couplers.html">Grating couplers</a></p>
+<p class="rel"><span>see also</span> <a href="interference-and-fabry-perot.html">Interference and the Fabry–Perot resonator</a>, <a href="stimulated-emission-and-lasers.html">Stimulated emission and the laser</a>, <a href="grating-couplers.html">Grating couplers</a></p>
+<p class="rel"><span>mentioned in</span> <a href="exam-practice-fields-and-optoelectronics.html">Exam practice: fields, optoelectronics and photonics (solved)</a>, <a href="optoelectronics.html">Optoelectronics: the map of the subject</a></p>
+<details class="path"><summary>Learning path: 10 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="poynting-theorem.html">Poynting's theorem and electromagnetic power</a></li><li><a href="plane-waves-in-media.html">Plane waves in lossless and lossy media</a></li><li><a href="optoelectronics.html">Optoelectronics: the map of the subject</a></li><li><a href="dispersion-and-group-velocity.html">Dispersion, group velocity and group index</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org8ae7ead" class="outline-2">
+<h2 id="org8ae7ead">Model</h2>
+<div class="outline-text-2" id="text-org8ae7ead">
+<p>
+Write <img class="m" src="m/ac91ecd1f4fffa7d0a06c78b6338acefabcb369b.svg" alt="\(E=A(x,y,z)e^{-jkz}\)" style="height:1.204em;vertical-align:-0.277em"> with <img class="m" src="m/ab4d5b3604e572aae8418bc873e1b717a85a3c2b.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> slowly varying: <img class="m" src="m/064e39bdd0d7743c78205ba0a1091f1fbdc217d7.svg" alt="\(\nabla_t^2A-2jk\partial_zA=0\)" style="height:1.163em;vertical-align:-0.267em"> (paraxial). The Gaussian solution:
+<div class="mb"><img class="m" src="m/9357497eb47825106f6a967190cd0717c81aa739.svg" alt="\[ E=E_0\frac{w_0}{w(z)}\exp\!\left(-\frac{r^2}{w^2(z)}\right)\exp\!\left(-jkz-jk\frac{r^2}{2R(z)}+j\zeta(z)\right),\qquad \zeta=\arctan\frac z{z_0}. \]" style="width:38.448em"></div>
+<img class="m" src="m/e0deda07afc7db997840f28f0723c7dd6bf1c609.svg" alt="\(\zeta\)" style="height:0.974em;vertical-align:-0.214em"> is the Gouy phase (<img class="m" src="m/6ba8cf9ba286d26abb2e4c7f5ec9bc7ba671e475.svg" alt="\(\pi\)" style="height:0.472em;vertical-align:-0.000em"> across the focus). Beam-parameter product <img class="m" src="m/099c57c166e26532ed6d00156b532611c040f4dd.svg" alt="\(w_0\theta=\lambda/\pi\)" style="height:1.096em;vertical-align:-0.274em">: a narrow waist diverges fast <span class="cite">(<a class="ref" href="https://doi.org/10.1364/ao.5.001550" data-full="H. Kogelnik and T. Li, “Laser beams and resonators”, Applied Optics 5, 1550–1567 (1966)." aria-label="H. Kogelnik and T. Li, “Laser beams and resonators”, Applied Optics 5, 1550–1567 (1966).">Kogelnik and Li 1966</a>)</span>. Real beams: <img class="m" src="m/7acd6ece2701b11b521114a536194f79de14aaca.svg" alt="\(w_0\theta=M^2\lambda/\pi\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org921883c" class="outline-2">
+<h2 id="org921883c">Cavity matching</h2>
+<div class="outline-text-2" id="text-org921883c">
+<p>
+A beam fits a resonator when <img class="m" src="m/30079fe7b31908c8eae6810681593e1e592cf071.svg" alt="\(R(z)\)" style="height:1.096em;vertical-align:-0.274em"> equals the mirror radii at the mirror positions. Symmetric confocal cavity (<img class="m" src="m/d6e6278f45b24657217ce23951984c194962584e.svg" alt="\(L=R\)" style="height:0.749em;vertical-align:-0.000em">): <img class="m" src="m/fedabc10506f18df451532ea78f938c3d25080be.svg" alt="\(z_0=L/2\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/52c663737ffd2616e84d05697b52537d2d0d24da.svg" alt="\(2w_0=\sqrt{2R\lambda/\pi}\)" style="height:1.359em;vertical-align:-0.340em">. Stability of a two-mirror cavity: <img class="m" src="m/f20628b27313981cac2e9bca92a477d53f87a1a8.svg" alt="\(0\le g_1g_2\le1\)" style="height:0.919em;vertical-align:-0.211em">, <img class="m" src="m/858ae4812c177d5450d1708a9e35b38b23429cfc.svg" alt="\(g_i=1-L/R_i\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org9907cef" class="outline-2">
+<h2 id="org9907cef">Worked example</h2>
+<div class="outline-text-2" id="text-org9907cef">
+<p>
+HeNe at 633 nm, <img class="m" src="m/2e12e33c3bb08f317236a3823d0cd0c4d14573c6.svg" alt="\(2w_0=0.8\)" style="height:0.871em;vertical-align:-0.165em"> mm: <img class="m" src="m/e276b54102746124cbf7392fb03bf0d32971db36.svg" alt="\(\theta=\frac{633\times10^{-9}}{\pi\cdot0.4\times10^{-3}}=0.50\)" style="height:1.597em;vertical-align:-0.463em"> mrad (divergence <img class="m" src="m/1952327bbf15fca74313457de21c6522e12521a7.svg" alt="\(2\theta=1\)" style="height:0.761em;vertical-align:-0.000em"> mrad), <img class="m" src="m/9052090528533f20ae390c46faf9533eb4c3db33.svg" alt="\(z_0=\frac{\pi(0.4\times10^{-3})^2}{633\times10^{-9}}=0.79\)" style="height:1.697em;vertical-align:-0.475em"> m. At 10 m: <img class="m" src="m/d8ae79c659a44f7511673f0c8df35379f1504f4e.svg" alt="\(w=0.4\sqrt{1+(10/0.79)^2}=5.1\)" style="height:1.359em;vertical-align:-0.340em"> mm, beam width 10.2 mm. Confocal cavity <img class="m" src="m/9966c34aa7af8978c548b1a30b23c5ce2bbf7c7c.svg" alt="\(L=R=50\)" style="height:0.749em;vertical-align:-0.000em"> cm: <img class="m" src="m/f5dc307e0dc6ee566fe871e397ce47ca354f59a8.svg" alt="\(2w_0=\sqrt{2\cdot0.5\cdot633\times10^{-9}/\pi}=0.45\)" style="height:1.359em;vertical-align:-0.340em"> mm, at the mirrors <img class="m" src="m/b0d1189d70ae2a70f3286648ad1a1a26684ec2ac.svg" alt="\(\sqrt2\)" style="height:1.140em;vertical-align:-0.148em"> larger: 0.63 mm.
+</p>
+</div>
+</div>
+<div id="outline-container-org1717e40" class="outline-2">
+<h2 id="org1717e40">Butt coupling into a fibre</h2>
+<div class="outline-text-2" id="text-org1717e40">
+<p>
+A laser diode's output is roughly Gaussian with a small waist and a large divergence. To keep the beam inside a fibre mode of radius <img class="m" src="m/e67a48cdaabd0f36841a53a92d3c8846b559658b.svg" alt="\(w_f\)" style="height:0.785em;vertical-align:-0.314em"> (half the MFD), the fibre must sit within <img class="m" src="m/e26c3ba988e05d3fc842f62efffb23c23093f994.svg" alt="\(z_{max}=z_0\sqrt{(w_f/w_0)^2-1}\approx w_f/\theta\)" style="height:1.359em;vertical-align:-0.353em">. Full divergence <img class="m" src="m/f19b8d6a47b1abca17da026b3ec4eea034d9ee25.svg" alt="\(2\theta=30^\circ\)" style="height:0.761em;vertical-align:-0.000em"> at 850 nm: <img class="m" src="m/1afba638a3d8fa6fd478d50920491682703bc474.svg" alt="\(w_0=\frac{\lambda}{\pi\theta}=\frac{0.85}{\pi\cdot0.262}=1.03\)" style="height:1.342em;vertical-align:-0.376em"> µm, <img class="m" src="m/65ffcd4e1e47f166ba48121c90c15e77d74a6aaa.svg" alt="\(z_0=3.9\)" style="height:0.871em;vertical-align:-0.165em"> µm; MFD 9 µm gives <img class="m" src="m/29406b03503d15ec5a41d18c098bf9d489a3c462.svg" alt="\(z_{max}=17\)" style="height:0.871em;vertical-align:-0.165em"> µm. That is why packages use lensed fibres or ball lenses to match the two mode sizes.
+</p>
+</div>
+</div>
+<div id="outline-container-orga363646" class="outline-2">
+<h2 id="orga363646">Picture: beam envelope</h2>
+<div class="outline-text-2" id="text-orga363646">
+<figure class="fig"><img class="m" src="m/e9e38a57283e00e2378426f54a3aa8c6f91ff93f.svg" alt="figure" style="width:24.039em"><figcaption><span class="fl">Figure 1.</span> Envelope <img class="m" src="m/d15df448cfa3bf16eec020bbba233eea25b7cfee.svg" alt="\(w(z)\)" style="height:1.096em;vertical-align:-0.274em"> of a Gaussian beam: the waist <img class="m" src="m/3cc55a319433039d066d0309348e06e51d60ed7a.svg" alt="\(w_0\)" style="height:0.636em;vertical-align:-0.165em">, the Rayleigh range where the beam has widened by <img class="m" src="m/b0d1189d70ae2a70f3286648ad1a1a26684ec2ac.svg" alt="\(\sqrt2\)" style="height:1.140em;vertical-align:-0.148em">, and the far-field divergence <img class="m" src="m/7683f8367b7a91cf40a8061c2fe9ce6eb1df5b25.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em">.</figcaption></figure>
+<p>
+At <img class="m" src="m/25ef6b52453c8acbd007c3be9ff1b69898f9a095.svg" alt="\(z=z_0\)" style="height:0.636em;vertical-align:-0.165em"> the width is <img class="m" src="m/c8ba14faf7e4d9cb87fa6ba5859fbaa5fce89c13.svg" alt="\(\sqrt2w_0\)" style="height:1.159em;vertical-align:-0.162em"> and the wavefront curvature is strongest; beyond a few <img class="m" src="m/6007961689cb0b19da924e50b04189afcc249359.svg" alt="\(z_0\)" style="height:0.636em;vertical-align:-0.165em"> the beam grows linearly with half-angle <img class="m" src="m/b858fd9e3b97cea8f2ba62c18a8c4fe45aa181bf.svg" alt="\(\theta=\lambda/\pi w_0\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org8660411" class="outline-2">
+<h2 id="org8660411">Engineering applications</h2>
+<div class="outline-text-2" id="text-org8660411">
+<p>
+Fibre coupling (mode-field matching: overlap of two Gaussians), laser focusing for machining and lithography (spot <img class="m" src="m/d4bb475eda6a60de8ed1a0f8a2cce91e6bb5c207.svg" alt="\(\approx\lambda/\pi\mathrm{NA}\)" style="height:1.096em;vertical-align:-0.274em">), LiDAR beam footprint, free-space optical links, optical tweezers, <a href="grating-couplers.html">grating couplers</a> designed to emit near-Gaussian beams.
+</p>
+</div>
+</div>
+<div id="outline-container-orgaeeafd4" class="outline-2">
+<h2 id="orgaeeafd4">Exam-style exercise</h2>
+<div class="outline-text-2" id="text-orgaeeafd4">
+<p>
+A 5 mW He–Ne beam (633 nm) with <img class="m" src="m/e9c6bd351457aefe232d9118560554edcc5396ef.svg" alt="\(2w_0=1\)" style="height:0.871em;vertical-align:-0.165em"> mm. (a) Diameter at 100 m. (b) It is focused by a lens <img class="m" src="m/1970d02c18254fb90f0f8aa33f1b5af540c9f30c.svg" alt="\(f=50\)" style="height:0.974em;vertical-align:-0.214em"> mm placed at the waist: focal spot radius (<img class="m" src="m/d89b66b8d82430a67673ea234d3dab083c0bdd02.svg" alt="\(w_f\approx\frac{\lambda f}{\pi w_0}\)" style="height:1.509em;vertical-align:-0.483em">), peak intensity <img class="m" src="m/117859b3357f708fc2c3877d916e479e4f31fc5c.svg" alt="\(\frac{2P}{\pi w_f^2}\)" style="height:1.737em;vertical-align:-0.782em">, depth of focus <img class="m" src="m/d8a56f7f763ef8378ae2ef18b759c7ed740e7e28.svg" alt="\(2z_0'\)" style="height:1.096em;vertical-align:-0.274em">. (c) Fraction of power inside a circle of radius <img class="m" src="m/71f9beb04cc5f8abc1283237c38bb04e1584ecbc.svg" alt="\(w\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+</div>
+<div id="outline-container-org1160ab7" class="outline-3">
+<h3 id="org1160ab7">Solution</h3>
+<div class="outline-text-3" id="text-org1160ab7">
+<p>
+(a) <img class="m" src="m/291af890a54ab0226aab7979c9947ec6305fb1b3.svg" alt="\(z_0=1.24\)" style="height:0.871em;vertical-align:-0.165em"> m, <img class="m" src="m/842e9ed91c130489dc8f82b96be2ab97f10c2f02.svg" alt="\(2w(100)=1\cdot\sqrt{1+(100/1.24)^2}=81\)" style="height:1.359em;vertical-align:-0.340em"> mm. (b) <img class="m" src="m/b09cc769fc2ee6b328346dde14a8ebceff8c4a9f.svg" alt="\(w_f=\frac{0.633\times10^{-6}\cdot0.05}{\pi\cdot5\times10^{-4}}=20\)" style="height:1.597em;vertical-align:-0.463em"> µm; <img class="m" src="m/aaeddf9b0f69c225c38b33d3fcf8e5045b680612.svg" alt="\(I=\frac{2\cdot5\times10^{-3}}{\pi(2.0\times10^{-5})^2}=7.8\times10^6\)" style="height:1.697em;vertical-align:-0.577em"> W/m² <img class="m" src="m/22fb13851322f81ec22d77ea573fa26b78d71732.svg" alt="\(=784\)" style="height:0.706em;vertical-align:-0.000em"> W/cm²; <img class="m" src="m/da03b971a14ce0f3efcad13a1598609afd6f16ff.svg" alt="\(2z_0'=2\pi w_f^2/\lambda=4.0\)" style="height:1.352em;vertical-align:-0.460em"> mm. (c) <img class="m" src="m/dd12eec115b0290f65f3d75898bd5212ed6f02a6.svg" alt="\(1-e^{-2}=86.5\%\)" style="height:0.983em;vertical-align:-0.089em"> (the formula sheet's definition of the beam diameter).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdd57ca6" class="outline-2">
+<h2 id="orgdd57ca6">Pitfall</h2>
+<div class="outline-text-2" id="text-orgdd57ca6">
+<p>
+<img class="m" src="m/71f9beb04cc5f8abc1283237c38bb04e1584ecbc.svg" alt="\(w\)" style="height:0.472em;vertical-align:-0.000em"> is the <img class="m" src="m/f4cae0961522a25dd9898a215ccfaa046eacb684.svg" alt="\(1/e^2\)" style="height:1.166em;vertical-align:-0.268em"> intensity radius, not the FWHM: FWHM <img class="m" src="m/8611eb2fdfb2582f35144987bc1d10a3f3d009e3.svg" alt="\(=w\sqrt{2\ln2}=1.18w\)" style="height:1.140em;vertical-align:-0.114em">.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="dispersion-and-group-velocity.html"><span>← previous</span>Dispersion, group velocity and group index</a><a rel="next" href="interference-and-fabry-perot.html"><span>next →</span>Interference and the Fabry–Perot resonator</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/optoelectronics--wave-optics.pdf" title="PDF manual">Wave Optics</a> · <a class="pdf" href="pdf/optoelectronics.pdf" title="PDF manual">Optoelectronics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

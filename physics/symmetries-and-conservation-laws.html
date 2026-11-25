@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Symmetries, conservation laws and degeneracy · Physics</title>
+<meta name="description" content="A unitary symmetry \mathcal S=e^{-i\epsilon G/\hbar} of the Hamiltonian, [\mathcal S,H]=0, makes G a constant of motion and forces degeneracies; discrete symmetries (parity, lattice translations, time reversal) give parity selection rules, Bloch bands and Kramers doublets.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/symmetries-and-conservation-laws.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Symmetries, conservation laws and degeneracy · Physics">
+<meta property="og:description" content="A unitary symmetry \mathcal S=e^{-i\epsilon G/\hbar} of the Hamiltonian, [\mathcal S,H]=0, makes G a constant of motion and forces degeneracies; discrete symmetries (parity, lattice translations, time reversal) give parity selection rules, Bloch bands and Kramers doublets.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/symmetries-and-conservation-laws.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-mechanics">Quantum Mechanics</a> / <a rel="up" href="index.html#a-quantum-mechanics--symmetries">Symmetries</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Quantum Mechanics · Symmetries</p>
+<h1>Symmetries, conservation laws and degeneracy</h1>
+<p class="summary">A unitary symmetry <img class="m" src="m/cd148a3e1ea32cb00349137e205a53aa7832170e.svg" alt="\(\mathcal S=e^{-i\epsilon G/\hbar}\)" style="height:0.973em;vertical-align:-0.000em"> of the Hamiltonian, <img class="m" src="m/ccc8567bcebaab0df9815d08a46e239e99b4eff7.svg" alt="\([\mathcal S,H]=0\)" style="height:1.096em;vertical-align:-0.274em">, makes <img class="m" src="m/3b89e89236da9a0d9086faa7c83e721e1319be60.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> a constant of motion and forces degeneracies; discrete symmetries (parity, lattice translations, time reversal) give parity selection rules, Bloch bands and Kramers doublets.</p>
+<p class="rel"><span>needs</span> <a href="angular-momentum-algebra.html">Angular momentum: algebra and spectrum</a>, <a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></p>
+<p class="rel"><span>unlocks</span> <a href="radiative-transitions-and-selection-rules.html">Radiative transitions, dipole approximation and selection rules</a>, <a href="group-representations-and-spin.html">Group representations, Wigner's theorem and spin</a>, <a href="bloch-theorem-and-energy-bands.html">Bloch's theorem and energy bands</a></p>
+<p class="rel"><span>see also</span> <a href="group-representations-and-spin.html">Group representations, Wigner's theorem and spin</a>, <a href="bloch-theorem-and-energy-bands.html">Bloch's theorem and energy bands</a>, <a href="radiative-transitions-and-selection-rules.html">Radiative transitions, dipole approximation and selection rules</a></p>
+<details class="path"><summary>Learning path: 12 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></li><li><a href="spin-precession-and-rabi-oscillations.html">Spin precession and Rabi oscillations</a></li><li><a href="angular-momentum-algebra.html">Angular momentum: algebra and spectrum</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org00a0047" class="outline-2">
+<h2 id="org00a0047">Theorem</h2>
+<div class="outline-text-2" id="text-org00a0047">
+<p>
+If <img class="m" src="m/5683c1f40a75be2ff041e2195dcaf5edc521aafb.svg" alt="\([G,H]=0\)" style="height:1.096em;vertical-align:-0.274em"> then <img class="m" src="m/5643d161beb1eef3286e62436ebe8420bb0a11b2.svg" alt="\(\dd\braket G/\dd t=0\)" style="height:1.096em;vertical-align:-0.274em"> (Heisenberg equation) and, if <img class="m" src="m/7cbccda536065290bf99d2796939ce7723305d59.svg" alt="\(\ket n\)" style="height:1.096em;vertical-align:-0.274em"> is an energy eigenket, <img class="m" src="m/e86572c5565b18f63b462ca13ed1f267fcc37f05.svg" alt="\(\mathcal S\ket n\)" style="height:1.096em;vertical-align:-0.274em"> is an eigenket with the same energy <span class="cite">(<a class="ref" href="references.html#ref-noether1918" data-full="E. Noether, “Invariante Variationsprobleme”, Nachrichten von der Gesellschaft der Wissenschaften zu Göttingen, Mathematisch-Physikalische Klasse, 235–257 (1918)." aria-label="E. Noether, “Invariante Variationsprobleme”, Nachrichten von der Gesellschaft der Wissenschaften zu Göttingen, Mathematisch-Physikalische Klasse, 235–257 (1918).">Noether 1918</a>)</span>. If the symmetry group is non-Abelian (rotations), irreducible representations of dimension <img class="m" src="m/6f2cccb3320ed09bfcc06ca9de9ed019b09c0787.svg" alt="\(&gt;1\)" style="height:0.749em;vertical-align:-0.045em"> force degeneracy (<img class="m" src="m/7ebbd02b9cd8b09401f029e4163db2185b5fbfc7.svg" alt="\(2l+1\)" style="height:0.852em;vertical-align:-0.094em"> states for rotations) <span class="cite">(<a class="ref" href="references.html#ref-wigner1931" data-full="E. Wigner, Gruppentheorie und ihre Anwendung auf die Quantenmechanik der Atomspektren (Vieweg, Braunschweig, 1931)." aria-label="E. Wigner, Gruppentheorie und ihre Anwendung auf die Quantenmechanik der Atomspektren (Vieweg, Braunschweig, 1931).">Wigner 1931</a>)</span>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbb7cf59" class="outline-2">
+<h2 id="orgbb7cf59">Discrete symmetries</h2>
+<div class="outline-text-2" id="text-orgbb7cf59">
+<ul class="org-ul">
+<li><b>Parity</b> <img class="m" src="m/6ba8cf9ba286d26abb2e4c7f5ec9bc7ba671e475.svg" alt="\(\pi\)" style="height:0.472em;vertical-align:-0.000em">: <img class="m" src="m/832a3b4f1eb01f1b37bdfa405e429c3937b7e98a.svg" alt="\(\pi\mathbf x\pi^\dagger=-\mathbf x\)" style="height:1.022em;vertical-align:-0.092em">, <img class="m" src="m/0a2c6c2fa30f68cf946cf75bc09ab8f5cbc72985.svg" alt="\(\pi\mathbf p\pi^\dagger=-\mathbf p\)" style="height:1.144em;vertical-align:-0.217em">, <img class="m" src="m/4e97e91b45b88902eca642cc2e881426e2d27d87.svg" alt="\(\pi\mathbf L\pi^\dagger=\mathbf L\)" style="height:0.930em;vertical-align:-0.000em">. Eigenvalues <img class="m" src="m/584e332c4206f0c8c5f243328ff2f984cc574f8c.svg" alt="\(\pm1\)" style="height:0.798em;vertical-align:-0.088em">; <img class="m" src="m/065789258d848144e4297fe0c49e9073bebbbaa1.svg" alt="\(Y_l^m\)" style="height:1.059em;vertical-align:-0.307em"> has parity <img class="m" src="m/7a68cf02c5872eb94ca3120d84946fbbeabec4d2.svg" alt="\((-1)^l\)" style="height:1.204em;vertical-align:-0.277em">. Since <img class="m" src="m/ece9ddcd22a04a775806787c00c1fccd8f5a5003.svg" alt="\(\mathbf x\)" style="height:0.487em;vertical-align:-0.000em"> is odd, <img class="m" src="m/57623653afb839310fd9e6713d6af5b1a7b56698.svg" alt="\(\bra\beta\mathbf x\ket\alpha=0\)" style="height:1.096em;vertical-align:-0.274em"> between states of the same parity: the electric-dipole rule <img class="m" src="m/5c38568e030ee8841edecd1984a0d4f142cc47b8.svg" alt="\(\Delta l=\pm1\)" style="height:0.852em;vertical-align:-0.094em">.</li>
+<li><b>Lattice translations</b> <img class="m" src="m/884669a7221a974d6d3e64b2d0099a145e6aeeb1.svg" alt="\(\tau(a)\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/8cca94af3249e94f5236bf72c5dd8eaa8ef36360.svg" alt="\(V(x+a)=V(x)\)" style="height:1.096em;vertical-align:-0.274em">: eigenvalues <img class="m" src="m/725a1cf3369388d729d32b4724c285631630846b.svg" alt="\(e^{-ika}\)" style="height:0.930em;vertical-align:-0.000em"> — <a href="bloch-theorem-and-energy-bands.html">Bloch's theorem</a>.</li>
+<li><b>Time reversal</b> <img class="m" src="m/f11100eaac31027bcf551fc9f3b5716e18507c5b.svg" alt="\(\Theta\)" style="height:0.749em;vertical-align:-0.000em">: antiunitary, <img class="m" src="m/1979e5809272897a364cf4ef5a132fabacd56fd9.svg" alt="\(\Theta\mathbf p\Theta^{-1}=-\mathbf p\)" style="height:1.105em;vertical-align:-0.210em">, <img class="m" src="m/560eb4979ad1dcbe25d6ae077c95548a1d50fcf9.svg" alt="\(\Theta\mathbf J\Theta^{-1}=-\mathbf J\)" style="height:0.983em;vertical-align:-0.089em">. For half-integer spin <img class="m" src="m/bd68882f305e36f1b16efaec64919bc29c60bfc9.svg" alt="\(\Theta^2=-1\)" style="height:0.983em;vertical-align:-0.089em">, so every level is at least doubly degenerate if <img class="m" src="m/42c5c23db9555d1fd6049261e23079da0bfbff51.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> is time-reversal invariant (Kramers), broken only by <img class="m" src="m/f1115cbf45e6f69e714a8b4fb61bc7d195478cc9.svg" alt="\(\mathbf B\)" style="height:0.752em;vertical-align:-0.000em">.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgccf849f" class="outline-2">
+<h2 id="orgccf849f">Proof (Kramers)</h2>
+<div class="outline-text-2" id="text-orgccf849f">
+<p>
+If <img class="m" src="m/560143d0746c10b3120ba4fb74c7c2082d068bbf.svg" alt="\(\Theta\ket n\propto\ket n\)" style="height:1.096em;vertical-align:-0.274em">, i.e. <img class="m" src="m/a2067625bd6b5d7e882b977cf89fbd9bd0f281f3.svg" alt="\(\Theta\ket n=c\ket n\)" style="height:1.096em;vertical-align:-0.274em">, then <img class="m" src="m/19f79c80d24947740d7bd63e251d439dfeb5fa62.svg" alt="\(\Theta^2\ket n=\bar cc\ket n=|c|^2\ket n\)" style="height:1.166em;vertical-align:-0.268em">, contradicting <img class="m" src="m/bd68882f305e36f1b16efaec64919bc29c60bfc9.svg" alt="\(\Theta^2=-1\)" style="height:0.983em;vertical-align:-0.089em">. So <img class="m" src="m/7cbccda536065290bf99d2796939ce7723305d59.svg" alt="\(\ket n\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/02012643ff005214b5a0bd99931c01d7ad676678.svg" alt="\(\Theta\ket n\)" style="height:1.096em;vertical-align:-0.274em"> are distinct, degenerate states.
+</p>
+</div>
+</div>
+<div id="outline-container-orgafc2bf7" class="outline-2">
+<h2 id="orgafc2bf7">Worked example</h2>
+<div class="outline-text-2" id="text-orgafc2bf7">
+<p>
+Symmetric double well: parity commutes with <img class="m" src="m/42c5c23db9555d1fd6049261e23079da0bfbff51.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em">, so eigenstates are even <img class="m" src="m/9cd38c75b6dc9373350f0cdfa96cbe92871ff499.svg" alt="\(\ket S\)" style="height:1.096em;vertical-align:-0.274em"> (lower) and odd <img class="m" src="m/0ef88e95d685cc46006179a80a33f81f4a496e25.svg" alt="\(\ket A\)" style="height:1.096em;vertical-align:-0.274em">, split by tunnelling <img class="m" src="m/0c59276c12b4705636da1a08bc61816f2402f5e9.svg" alt="\(\Delta\)" style="height:0.749em;vertical-align:-0.000em">. A particle localised on the left, <img class="m" src="m/2ffc2d12a34360396d811a54cfd0124fac8ad000.svg" alt="\((\ket S+\ket A)/\sqrt2\)" style="height:1.268em;vertical-align:-0.279em">, oscillates between wells with period <img class="m" src="m/172a249bfe46d72c103688a8b794624a5b1a6309.svg" alt="\(2\pi\hbar/\Delta\)" style="height:1.096em;vertical-align:-0.274em">: the ammonia maser at 24 GHz.
+</p>
+</div>
+</div>
+<div id="outline-container-orga6bf9ff" class="outline-2">
+<h2 id="orga6bf9ff">Engineering applications</h2>
+<div class="outline-text-2" id="text-orga6bf9ff">
+<p>
+Selection rules in lasers and spectroscopy, band-structure labelling of semiconductors by crystal symmetry, spin degeneracy and its lifting (Zeeman, Rashba) in spintronics, protected degeneracies in topological insulators.
+</p>
+</div>
+</div>
+<div id="outline-container-org5224ae6" class="outline-2">
+<h2 id="org5224ae6">Pitfall</h2>
+<div class="outline-text-2" id="text-org5224ae6">
+<p>
+A symmetry of <img class="m" src="m/42c5c23db9555d1fd6049261e23079da0bfbff51.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> does not mean each eigenstate is symmetric when there is degeneracy; one can choose a symmetric basis, but superpositions are equally valid.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="addition-of-angular-momenta.html"><span>← previous</span>Addition of angular momenta</a><a rel="next" href="time-independent-perturbation-theory.html"><span>next →</span>Time-independent perturbation theory</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-mechanics--symmetries.pdf" title="PDF manual">Symmetries</a> · <a class="pdf" href="pdf/quantum-mechanics.pdf" title="PDF manual">Quantum Mechanics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

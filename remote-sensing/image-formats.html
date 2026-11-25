@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Image storage formats: BSQ, BIL, BIP · Remote Sensing</title>
+<meta name="description" content="A cube of N lines, M columns and B bands can be written band after band (BSQ), line after line with all bands of each line (BIL), or pixel after pixel with all bands of each pixel (BIP, also BIS); the choice decides which access is fast.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/image-formats.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Image storage formats: BSQ, BIL, BIP · Remote Sensing">
+<meta property="og:description" content="A cube of N lines, M columns and B bands can be written band after band (BSQ), line after line with all bands of each line (BIL), or pixel after pixel with all bands of each pixel (BIP, also BIS); the choice decides which access is fast.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/image-formats.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-acquisition">Acquisition</a> / <a rel="up" href="index.html#a-acquisition--optical-sensors">Optical Sensors</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Acquisition · Optical Sensors</p>
+<h1>Image storage formats: BSQ, BIL, BIP</h1>
+<p class="summary">A cube of <img class="m" src="m/0b5ebb9337a8adeadec859c3b646bacae4ce15c3.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> lines, <img class="m" src="m/c4fd2f6a2a637a717d5252e439e3977d6c881168.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> columns and <img class="m" src="m/930bceceff5ba504b5eefacfc24da37e501bf942.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> bands can be written band after band (BSQ), line after line with all bands of each line (BIL), or pixel after pixel with all bands of each pixel (BIP, also BIS); the choice decides which access is fast.</p>
+<p class="rel"><span>needs</span> <a href="multispectral-hyperspectral-image.html">Multispectral and hyperspectral images</a></p>
+<p class="rel"><span>see also</span> <a href="digital-image.html">Digital images</a></p>
+<details class="path"><summary>Learning path: 14 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="spectral-signature.html">Spectral signature</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="sensor-resolutions.html">Geometric, radiometric, spectral and temporal resolution</a></li><li><a href="multispectral-hyperspectral-image.html">Multispectral and hyperspectral images</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgb25dcea" class="outline-2">
+<h2 id="orgb25dcea">Definition</h2>
+<div class="outline-text-2" id="text-orgb25dcea">
+<p>
+Offset of sample <img class="m" src="m/feeeb7b591022a1a44917e6d0bf4cd0da0919bbb.svg" alt="\((b,y,x)\)" style="height:1.096em;vertical-align:-0.274em"> in a flat array:
+</p>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">format</th>
+<th scope="col" class="org-left">order on disk</th>
+<th scope="col" class="org-left">offset of sample (b, y, x)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">BSQ, band sequential</td>
+<td class="org-left">band, line, pixel</td>
+<td class="org-left">b·N·M + y·M + x</td>
+</tr>
+
+<tr>
+<td class="org-left">BIL, interleaved by line</td>
+<td class="org-left">line, band, pixel</td>
+<td class="org-left">y·B·M + b·M + x</td>
+</tr>
+
+<tr>
+<td class="org-left">BIP/BIS, by pixel</td>
+<td class="org-left">line, pixel, band</td>
+<td class="org-left">(y·M + x)·B + b</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org9f2ded9" class="outline-2">
+<h2 id="org9f2ded9">Example</h2>
+<div class="outline-text-2" id="text-org9f2ded9">
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="v">raw</span> = np.fromfile(<span class="s">"scene.bil"</span>, dtype=np.uint16)
+<span class="v">cube</span> = raw.reshape(N, B, M).transpose(1, 0, 2)   <span class="c"># BIL -&gt; (band, line, pixel)
+</span><span class="v">ndvi_ready</span> = cube[[3, 2]]                        <span class="c"># two bands at once</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org8efebdf" class="outline-2">
+<h2 id="org8efebdf">Intuition</h2>
+<div class="outline-text-2" id="text-org8efebdf">
+<p>
+BSQ is a stack of single-band pictures; BIP is a list of spectra; BIL is in between and matches how a <a href="scanner-geometry.html">pushbroom</a> acquires a line.
+</p>
+</div>
+</div>
+<div id="outline-container-org1bafda2" class="outline-2">
+<h2 id="org1bafda2">Pitfall</h2>
+<div class="outline-text-2" id="text-org1bafda2">
+<p>
+Reading a pixel's spectrum from a large BSQ file touches <img class="m" src="m/930bceceff5ba504b5eefacfc24da37e501bf942.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> distant locations on disk; reading one band from BIP touches every pixel. Pick the layout for the dominant operation or convert once.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="multispectral-hyperspectral-image.html"><span>← previous</span>Multispectral and hyperspectral images</a><a rel="next" href="point-spread-function.html"><span>next →</span>Point spread function and spectral response</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/acquisition--optical-sensors.pdf" title="PDF manual">Optical Sensors</a> · <a class="pdf" href="pdf/acquisition.pdf" title="PDF manual">Acquisition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

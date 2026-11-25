@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ultraproducts and the theorem of Los · Mathematics</title>
+<meta name="description" content="Compactness in propositional logic came from a maximal finitely satisfiable set. In first-order logic the same statement needs an actual structure, and the ultraproduct builds one: a single model assembled from a family of models by declaring a statement true when it holds on a set of indices large…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/ultraproducts-and-the-theorem-of-los.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Ultraproducts and the theorem of Los · Mathematics">
+<meta property="og:description" content="Compactness in propositional logic came from a maximal finitely satisfiable set. In first-order logic the same statement needs an actual structure, and the ultraproduct builds one: a single model assembled from a family of models by declaring a statement true when it holds on a set of indices large…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/ultraproducts-and-the-theorem-of-los.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-foundations">Foundations</a> / <a rel="up" href="index.html#a-foundations--model-theory">Model Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Foundations · Model Theory</p>
+<h1>Ultraproducts and the theorem of Los</h1>
+<p class="summary">Compactness in propositional logic came from a maximal finitely satisfiable set. In first-order logic the same statement needs an actual <i>structure</i>, and the ultraproduct builds one: a single model assembled from a family of models by declaring a statement true when it holds on a set of indices large in the sense of an ultrafilter. What makes it work is that "large" is closed under complement &#x2013; the only property of ultrafilters used, and exactly the one negation needs.</p>
+<p class="rel"><span>needs</span> <a href="filters-ultrafilters-and-the-ultrafilter-lemma.html">Filters, ultrafilters and the ultrafilter lemma</a>, <a href="first-order-languages-structures-and-satisfaction.html">First-order languages, structures and satisfaction</a>, <a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a>, <a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></p>
+<p class="rel"><span>unlocks</span> <a href="elementary-substructures-and-the-lowenheim-skolem-theorems.html">Elementary substructures and the Lowenheim-Skolem theorems</a></p>
+<p class="rel"><span>mentioned in</span> <a href="foundations.html">Foundations</a>, <a href="logic.html">Logic</a></p>
+<details class="path"><summary>Learning path: 23 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="filters-ultrafilters-and-the-ultrafilter-lemma.html">Filters, ultrafilters and the ultrafilter lemma</a></li><li><a href="first-order-languages-structures-and-satisfaction.html">First-order languages, structures and satisfaction</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgafedb41">
+<p>
+Let <img class="m" src="m/63467fed75e286506fa6136c96a19284799c90b1.svg" alt="\((\mathcal{A}_{i})_{i\in I}\)" style="height:1.096em;vertical-align:-0.274em"> be <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">-structures with domains
+<img class="m" src="m/b1e3680d2248d80f9a665ce65aca627daae3eaca.svg" alt="\(A_{i}\)" style="height:0.913em;vertical-align:-0.164em">, and <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> an ultrafilter on <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em">. On <img class="m" src="m/1cf7c5bd1481ce5d3d7fed9a75425a23c22ff3e9.svg" alt="\(\prod_{i}A_{i}\)" style="height:1.151em;vertical-align:-0.334em">
+declare <img class="m" src="m/f9f38ba4d2c5dbabda84f2c018286a1e276d7904.svg" alt="\(f \sim g\)" style="height:0.974em;vertical-align:-0.214em"> when <img class="m" src="m/86e289046a9f81bdebe6f34e8ee93a55ce8d993d.svg" alt="\(\setst{i}{f(i) = g(i)} \in U\)" style="height:1.096em;vertical-align:-0.274em">. The
+<i>ultraproduct</i> <img class="m" src="m/be2aa12e5c4234b9e2d934c6d0ea1c76562af7c6.svg" alt="\(\prod_{i}\mathcal{A}_{i}/U\)" style="height:1.151em;vertical-align:-0.334em"> has domain the set of
+classes <img class="m" src="m/251b3efcf59d8f3d2f40efbf40cb0173eb2ff144.svg" alt="\([f]\)" style="height:1.096em;vertical-align:-0.274em">, with
+<img class="m" src="m/2208bea135d3cdcc389f90ed6c6fdcd76ba8278a.svg" alt="\(F^{\mathcal{A}}([f_{1}],\dots,[f_{n}]) = [i \mapsto F^{\mathcal{A}_{i}}(f_{1}(i),\dots,f_{n}(i))]\)" style="height:1.196em;vertical-align:-0.275em">,
+<img class="m" src="m/f15b2755b84723a09b57f5f201a62a51f61fe6e4.svg" alt="\(c^{\mathcal{A}} = [i\mapsto c^{\mathcal{A}_{i}}]\)" style="height:1.196em;vertical-align:-0.275em">, and
+<img class="m" src="m/2da2d2014f52c59c39b8ad09d3d1b879816854ba.svg" alt="\(([f_{1}],\dots,[f_{n}]) \in R^{\mathcal{A}}\)" style="height:1.196em;vertical-align:-0.275em"> exactly when
+<img class="m" src="m/a7e16b594b7bce210584a88a5156d79301cb7f18.svg" alt="\(\setst{i}{(f_{1}(i),\dots,f_{n}(i)) \in R^{\mathcal{A}_{i}}} \in U\)" style="height:1.196em;vertical-align:-0.275em">.
+When all <img class="m" src="m/e37a91d56fec84824e92b65540038e5684880e9c.svg" alt="\(\mathcal{A}_{i}\)" style="height:0.913em;vertical-align:-0.164em"> are equal to <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em"> this is the
+<i>ultrapower</i> <img class="m" src="m/1cffa5913da739a920495f5434d582881d6df0a4.svg" alt="\(\mathcal{A}^{I}/U\)" style="height:1.196em;vertical-align:-0.275em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org0df4318">
+<p>
+The relation <img class="m" src="m/779b6cb1ed8d5286b8611ae528e6e9511312e005.svg" alt="\(\sim\)" style="height:0.402em;vertical-align:-0.000em"> is an equivalence relation, and the operations and
+relations above do not depend on the representatives chosen; so the
+ultraproduct is an <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">-structure.
+</p>
+
+</div>
+
+<div class="proof" id="org75c7389">
+<p>
+Reflexivity uses <img class="m" src="m/960077c87964d33a576033dd28196c685edf6fe7.svg" alt="\(I \in U\)" style="height:0.792em;vertical-align:-0.040em">; symmetry is clear; transitivity holds
+because <img class="m" src="m/782c791369c9fc46202e06f445cf7ffe4eea2a42.svg" alt="\(\setst{i}{f(i)=g(i)}\cap\setst{i}{g(i)=h(i)}\)" style="height:1.096em;vertical-align:-0.274em"> is in <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> and
+is contained in <img class="m" src="m/3938293e178c8d42fb9c2c3717d34833ea0740cd.svg" alt="\(\setst{i}{f(i)=h(i)}\)" style="height:1.096em;vertical-align:-0.274em">, which is therefore in <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> by
+upward closure.
+</p>
+
+<p>
+If <img class="m" src="m/b7d16ca889b493ed1b9476daca52dbb4db7df18d.svg" alt="\(f_{k}\sim g_{k}\)" style="height:0.974em;vertical-align:-0.214em"> for <img class="m" src="m/f1d1cfc4542fc2a89da82b29f52d6d3e22a3fd48.svg" alt="\(k \le n\)" style="height:0.910em;vertical-align:-0.146em">, the intersection
+<img class="m" src="m/5dabdb40d369d7d2903645e7b376aec0e6088cad.svg" alt="\(E = \bigcap_{k}\setst{i}{f_{k}(i)=g_{k}(i)}\)" style="height:1.151em;vertical-align:-0.334em"> lies in <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">. On <img class="m" src="m/af428b55ddf829e9044704887ce1bde83bdc2a14.svg" alt="\(E\)" style="height:0.749em;vertical-align:-0.000em">
+the two tuples agree, so the values of <img class="m" src="m/d54ba4f0f3d5575fccd1b17628ad80a6bbf2ce82.svg" alt="\(F^{\mathcal{A}_{i}}\)" style="height:0.922em;vertical-align:-0.000em"> agree
+there, giving <img class="m" src="m/779b6cb1ed8d5286b8611ae528e6e9511312e005.svg" alt="\(\sim\)" style="height:0.402em;vertical-align:-0.000em">-equivalent representatives; and the sets defining
+membership in <img class="m" src="m/a751dfe616de0eb523ffe20940ab46415c71beec.svg" alt="\(R^{\mathcal{A}}\)" style="height:0.922em;vertical-align:-0.000em"> for the two tuples have the same
+intersection with <img class="m" src="m/af428b55ddf829e9044704887ce1bde83bdc2a14.svg" alt="\(E\)" style="height:0.749em;vertical-align:-0.000em">, so one lies in <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> exactly when the other
+does. The domain is non-empty because each <img class="m" src="m/b1e3680d2248d80f9a665ce65aca627daae3eaca.svg" alt="\(A_{i}\)" style="height:0.913em;vertical-align:-0.164em"> is.
+</p>
+
+</div>
+
+<div class="theorem" id="orgb77de5e">
+<p>
+Let <img class="m" src="m/069c77ad47f344b8dfae7a3c09988f4393c93e38.svg" alt="\(\mathcal{A} = \prod_{i}\mathcal{A}_{i}/U\)" style="height:1.151em;vertical-align:-0.334em"> and let <img class="m" src="m/65ed198e156bf7d35f2bcbce00232479bbe853b2.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em"> be an
+assignment into <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em">, say <img class="m" src="m/853c8bd0278659589fd253399ac3cceb709d66ef.svg" alt="\(\beta(x) = [f_{x}]\)" style="height:1.096em;vertical-align:-0.274em">, with
+<img class="m" src="m/09db6444e14327c07006f8da8033daca813d834c.svg" alt="\(\beta_{i}(x) = f_{x}(i)\)" style="height:1.096em;vertical-align:-0.274em"> the induced assignments. Then for every
+formula <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">,
+<div class="mb"><img class="m" src="m/7bde2f2b81b56740a8163af9e158d9e1a746eaee.svg" alt="\[ \mathcal{A} \models \varphi[\beta] \iff \setst{i \in I}{\mathcal{A}_{i}\models\varphi[\beta_{i}]} \in U. \]" style="width:19.262em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="org83a5073">
+<p>
+Write <img class="m" src="m/85dc6c48f1df9220b0dacebbafcaf453684ea17a.svg" alt="\(\lVert\varphi\rVert\)" style="height:1.096em;vertical-align:-0.274em"> for the index set on the right. For a term
+<img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em">, induction on terms gives <img class="m" src="m/d2ae0fe2ced1e78e5eef6287837233907e922c67.svg" alt="\(\beta(t) = [i \mapsto \beta_{i}(t)]\)" style="height:1.096em;vertical-align:-0.274em">,
+directly from the definition of the operations. Atomic formulas are then
+the definition of <img class="m" src="m/a751dfe616de0eb523ffe20940ab46415c71beec.svg" alt="\(R^{\mathcal{A}}\)" style="height:0.922em;vertical-align:-0.000em"> and of <img class="m" src="m/779b6cb1ed8d5286b8611ae528e6e9511312e005.svg" alt="\(\sim\)" style="height:0.402em;vertical-align:-0.000em">.
+</p>
+
+<p>
+Negation: <img class="m" src="m/fa63bb82c2af409c3175c4e31aba281528c696cb.svg" alt="\(\mathcal{A}\models\neg\varphi[\beta]\)" style="height:1.096em;vertical-align:-0.274em"> means
+<img class="m" src="m/73af33ea4a0089e01bad85cadcb0fe03c5037c2d.svg" alt="\(\mathcal{A}\not\models\varphi[\beta]\)" style="height:1.096em;vertical-align:-0.274em">, which by induction means
+<img class="m" src="m/643cf3c3cb1c50779cfb47ca30f077038965cf82.svg" alt="\(\lVert\varphi\rVert \notin U\)" style="height:1.096em;vertical-align:-0.274em">, which by the ultrafilter criterion
+means <img class="m" src="m/ae4e824bf5cd92ad7233bba40912e187ea5c5f49.svg" alt="\(I \setminus \lVert\varphi\rVert = \lVert\neg\varphi\rVert \in U\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+Conjunction: <img class="m" src="m/3c57dc0be0b22939be86bc9a2dd9e2ef28c5bd0c.svg" alt="\(\lVert\varphi\wedge\psi\rVert = \lVert\varphi\rVert\cap\lVert\psi\rVert\)" style="height:1.096em;vertical-align:-0.274em">,
+and a filter contains an intersection exactly when it contains both
+sets.
+</p>
+
+<p>
+Existential quantifier. Suppose
+<img class="m" src="m/1ecc5f099e40091003f6fb65e25ff3d910ec8a2c.svg" alt="\(\mathcal{A}\models\exists x\,\varphi[\beta]\)" style="height:1.096em;vertical-align:-0.274em">, witnessed by
+<img class="m" src="m/648c6ab75f0b25fcb8943df66a6771ef05d52c5e.svg" alt="\([g]\)" style="height:1.096em;vertical-align:-0.274em">. By induction the set of <img class="m" src="m/820a2ed5b51be608772286616d5575a49dd61525.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em"> at which <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> holds under
+<img class="m" src="m/3b110db3f23b4e26bbdf9694bfaef476258cd922.svg" alt="\(\beta_{i}\)" style="height:0.974em;vertical-align:-0.214em"> modified at <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> by <img class="m" src="m/236c62382ca63a37a1d646fcf0849bf5627ef53b.svg" alt="\(g(i)\)" style="height:1.096em;vertical-align:-0.274em"> lies in <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">, and that set
+is contained in <img class="m" src="m/0bb6bb8382fbc7065e837c6ec88f8d4753e1aa1f.svg" alt="\(\lVert\exists x\,\varphi\rVert\)" style="height:1.096em;vertical-align:-0.274em">, which is therefore
+in <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">. Conversely, suppose
+<img class="m" src="m/514b26bce0554a4a142cf626627502773b023014.svg" alt="\(J = \lVert\exists x\,\varphi\rVert \in U\)" style="height:1.096em;vertical-align:-0.274em">. For each <img class="m" src="m/a0e65b06bc55e9bddb2a45d5235b6f20bb3cc48d.svg" alt="\(i \in J\)" style="height:0.792em;vertical-align:-0.040em">
+choose a witness <img class="m" src="m/011f113fb87d25f75edb6de3078280a1b6737b45.svg" alt="\(g(i) \in A_{i}\)" style="height:1.096em;vertical-align:-0.274em">, and define <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> arbitrarily off
+<img class="m" src="m/5919fa9b720d5923593af26bfc506877418cd319.svg" alt="\(J\)" style="height:0.749em;vertical-align:-0.000em">; this is a choice from a family of non-empty sets. Then the set
+of indices at which <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> holds with <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> interpreted as <img class="m" src="m/236c62382ca63a37a1d646fcf0849bf5627ef53b.svg" alt="\(g(i)\)" style="height:1.096em;vertical-align:-0.274em">
+contains <img class="m" src="m/5919fa9b720d5923593af26bfc506877418cd319.svg" alt="\(J\)" style="height:0.749em;vertical-align:-0.000em">, hence lies in <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">, so by induction
+<img class="m" src="m/2dd3132c5a11e300b2a6224acd2c9e6a69a9bb65.svg" alt="\(\mathcal{A}\models\varphi\)" style="height:1.096em;vertical-align:-0.274em"> under <img class="m" src="m/65ed198e156bf7d35f2bcbce00232479bbe853b2.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em"> modified at <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> by
+<img class="m" src="m/648c6ab75f0b25fcb8943df66a6771ef05d52c5e.svg" alt="\([g]\)" style="height:1.096em;vertical-align:-0.274em">, and therefore <img class="m" src="m/1ecc5f099e40091003f6fb65e25ff3d910ec8a2c.svg" alt="\(\mathcal{A}\models\exists x\,\varphi[\beta]\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org59cc0e9">
+<p>
+An <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">-theory every finite subset of which has a model has a model.
+</p>
+
+</div>
+
+<div class="proof" id="org44ae72f">
+<p>
+Let <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> be such a theory and let <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> be the set of finite subsets of
+<img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em">. For each <img class="m" src="m/2f5089137daf75dfe141a23edc20ffbcc993be5d.svg" alt="\(i \in I\)" style="height:0.792em;vertical-align:-0.040em"> choose a model <img class="m" src="m/7421334aed2f050e822b983adb3e41e24ceab34c.svg" alt="\(\mathcal{A}_{i} \models i\)" style="height:1.096em;vertical-align:-0.274em">.
+For <img class="m" src="m/3d299558c37ba5adf707117179dd81ce10766834.svg" alt="\(\sigma \in T\)" style="height:0.792em;vertical-align:-0.040em"> put <img class="m" src="m/ccaa1000c3759d17b389c1c26592eae655563e74.svg" alt="\(X_{\sigma} = \setst{i \in I}{\sigma \in i}\)" style="height:1.096em;vertical-align:-0.274em">.
+The family <img class="m" src="m/6ddd6c11a0ef452f1a5b99c167218b5f0f605616.svg" alt="\(\setst{X_{\sigma}}{\sigma\in T}\)" style="height:1.096em;vertical-align:-0.274em"> has the finite
+intersection property, since
+<img class="m" src="m/55b2cee5cdcb3cadb3718cb8bca2aae9a2891ab3.svg" alt="\(\set{\sigma_{1},\dots,\sigma_{n}}\)" style="height:1.096em;vertical-align:-0.274em"> belongs to
+<img class="m" src="m/998dae549c99be974fdb0d9c3714d17808e1168e.svg" alt="\(X_{\sigma_{1}}\cap\cdots\cap X_{\sigma_{n}}\)" style="height:1.023em;vertical-align:-0.276em">; extend it to an
+ultrafilter <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> on <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+<p>
+Let <img class="m" src="m/069c77ad47f344b8dfae7a3c09988f4393c93e38.svg" alt="\(\mathcal{A} = \prod_{i}\mathcal{A}_{i}/U\)" style="height:1.151em;vertical-align:-0.334em">. For <img class="m" src="m/3d299558c37ba5adf707117179dd81ce10766834.svg" alt="\(\sigma \in T\)" style="height:0.792em;vertical-align:-0.040em">,
+every <img class="m" src="m/5a24a57916942506819c6aacd68b6db91ebc3f7a.svg" alt="\(i \in X_{\sigma}\)" style="height:0.913em;vertical-align:-0.164em"> satisfies <img class="m" src="m/c7d77e0e1dbb25681f0a01902fd2e1856a60c116.svg" alt="\(\mathcal{A}_{i}\models\sigma\)" style="height:1.096em;vertical-align:-0.274em">,
+so <img class="m" src="m/c31aaeafda5465eed97b868b423fa39ecf3a1c5b.svg" alt="\(\lVert\sigma\rVert \supseteq X_{\sigma}\)" style="height:1.096em;vertical-align:-0.274em"> lies in <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">; by the
+theorem of Los, <img class="m" src="m/f5239ec56ded78f58c4df214ffd9e2730527af16.svg" alt="\(\mathcal{A}\models\sigma\)" style="height:1.096em;vertical-align:-0.274em">. Hence
+<img class="m" src="m/0945fd9e8a7df097e7fa05193aae46fa21889373.svg" alt="\(\mathcal{A}\models T\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="corollary" id="orgf2db6b9">
+<p>
+No set of first-order sentences has exactly the finite structures as its
+models; and any theory with arbitrarily large finite models has an
+infinite one.
+</p>
+
+</div>
+
+<div class="proof" id="orgb2e8f6f">
+<p>
+Let <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> have arbitrarily large finite models and let <img class="m" src="m/72d6f75c14e526edd323216cdd687c9b89c4fd05.svg" alt="\(\lambda_{n}\)" style="height:0.925em;vertical-align:-0.167em">
+say "there are at least <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> distinct elements", a first-order
+sentence. Every finite subset of <img class="m" src="m/e976c5ae2b1fea3bd9657975cd65073dba733077.svg" alt="\(T \cup \setst{\lambda_{n}}{n\in\N}\)" style="height:1.096em;vertical-align:-0.274em">
+mentions finitely many <img class="m" src="m/72d6f75c14e526edd323216cdd687c9b89c4fd05.svg" alt="\(\lambda_{n}\)" style="height:0.925em;vertical-align:-0.167em"> and so has a model, namely a
+sufficiently large finite model of <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em">. By compactness the whole set
+has a model, which satisfies every <img class="m" src="m/72d6f75c14e526edd323216cdd687c9b89c4fd05.svg" alt="\(\lambda_{n}\)" style="height:0.925em;vertical-align:-0.167em"> and is therefore
+infinite. Applying this to a would-be axiomatisation of finiteness gives
+the first statement.
+</p>
+
+</div>
+
+<div class="remark" id="orgdf73400">
+<p>
+The ultrapower of <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em"> by a non-principal ultrafilter on <img class="m" src="m/d36edebe5171c584e95c5e3966023a2f078fce29.svg" alt="\(\N\)" style="height:0.755em;vertical-align:-0.000em"> is an
+ordered field satisfying exactly the first-order sentences true in
+<img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em"> and containing an element larger than every real &#x2013; the class
+of a sequence tending to infinity. That is the standard construction of
+the hyperreals, and it shows the price of compactness: no first-order
+theory can pin down the archimedean property.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="first-order-languages-structures-and-satisfaction.html"><span>← previous</span>First-order languages, structures and satisfaction</a><a rel="next" href="elementary-substructures-and-the-lowenheim-skolem-theorems.html"><span>next →</span>Elementary substructures and the Lowenheim-Skolem theorems</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/foundations--model-theory.pdf" title="PDF manual">Model Theory</a> · <a class="pdf" href="pdf/foundations.pdf" title="PDF manual">Foundations</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

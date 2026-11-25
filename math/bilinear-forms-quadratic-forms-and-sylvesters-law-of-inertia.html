@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bilinear forms, quadratic forms and Sylvester's law of inertia · Mathematics</title>
+<meta name="description" content="An inner product is a symmetric bilinear form that is positive definite. Dropping definiteness leaves an object that no longer measures lengths but still classifies: over the reals, a symmetric form is determined up to change of basis by two integers, and no basis-dependent computation can produce …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/bilinear-forms-quadratic-forms-and-sylvesters-law-of-inertia.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Bilinear forms, quadratic forms and Sylvester's law of inertia · Mathematics">
+<meta property="og:description" content="An inner product is a symmetric bilinear form that is positive definite. Dropping definiteness leaves an object that no longer measures lengths but still classifies: over the reals, a symmetric form is determined up to change of basis by two integers, and no basis-dependent computation can produce …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/bilinear-forms-quadratic-forms-and-sylvesters-law-of-inertia.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--linear-algebra">Linear Algebra</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Algebra · Linear Algebra</p>
+<h1>Bilinear forms, quadratic forms and Sylvester's law of inertia</h1>
+<p class="summary">An <a href="inner-product-space.html">inner product</a> is a symmetric bilinear form that is positive definite. Dropping definiteness leaves an object that no longer measures lengths but still classifies: over the reals, a symmetric form is determined up to change of basis by two integers, and no basis-dependent computation can produce anything else. That is what a normal form theorem is for.</p>
+<p class="rel"><span>needs</span> <a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a>, <a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a>, <a href="vector-space.html">Vector space</a></p>
+<p class="rel"><span>unlocks</span> <a href="the-spectral-theorem-for-symmetric-operators.html">The spectral theorem for symmetric operators</a>, <a href="conics-and-quadrics-classification-by-signature.html">Conics and quadrics: classification by signature</a>, <a href="isometries-of-euclidean-space-and-the-orthogonal-group.html">Isometries of Euclidean space and the orthogonal group</a>, <a href="surfaces-the-two-fundamental-forms-and-gauss-curvature.html">Surfaces: the two fundamental forms and Gauss curvature</a>, <a href="rigid-body-kinematics-and-the-inertia-tensor.html">Rigid body kinematics and the inertia tensor</a>, <a href="small-oscillations-and-normal-modes.html">Small oscillations and normal modes</a></p>
+<p class="rel"><span>mentioned in</span> <a href="mathematics.html">Mathematics</a>, <a href="linear-algebra.html">Linear algebra</a>, <a href="geometry.html">Geometry</a></p>
+<details class="path"><summary>Learning path: 11 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgd30ef31">
+<p>
+Let <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> be a vector space over a field <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">. A <i>bilinear form</i> is a
+map <img class="m" src="m/61e2795f1ff34e4533c71eacbdc939f5b01d570c.svg" alt="\(b \colon V \times V \to K\)" style="height:0.852em;vertical-align:-0.094em"> linear in each argument separately. It
+is <i>symmetric</i> if <img class="m" src="m/6864e0a6284f7ab3e54767a77cf6ce8c24e9ffd7.svg" alt="\(b(u,v) = b(v,u)\)" style="height:1.096em;vertical-align:-0.274em">, and the associated <i>quadratic
+form</i> is <img class="m" src="m/b66e082a1e89701d8d1160862c79bfcd4068f351.svg" alt="\(q(v) = b(v,v)\)" style="height:1.096em;vertical-align:-0.274em">. Vectors <img class="m" src="m/07d17ee7f989338466656d950783e64199a255cc.svg" alt="\(u, v\)" style="height:0.685em;vertical-align:-0.212em"> are <i>orthogonal</i> for <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em">
+if <img class="m" src="m/f82167efa96badcb81d3ea1792bebb11cfc3b894.svg" alt="\(b(u,v) = 0\)" style="height:1.096em;vertical-align:-0.274em">, and the <i>radical</i> is
+<img class="m" src="m/835095427c47fd80743ca8c55c25278cea831853.svg" alt="\(\setst{v \in V}{b(v,u) = 0 \text{ for all } u \in V}\)" style="height:1.096em;vertical-align:-0.274em">; <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em"> is
+<i>non-degenerate</i> if the radical is <img class="m" src="m/8dcf131464dd5858fa06f691aaba11b1ce2eb67c.svg" alt="\(\set{0}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org3b14d65">
+<p>
+Let <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> have characteristic <img class="m" src="m/52e3a49b19fd138c316b243276e62e4cd9afd964.svg" alt="\(\ne 2\)" style="height:0.974em;vertical-align:-0.214em">. A symmetric bilinear form is
+determined by its quadratic form:
+<div class="mb"><img class="m" src="m/df3060790c54858504dafb8b40ca50c6b5d8ba60.svg" alt="\[ b(u,v) = \tfrac{1}{2}\bigl(q(u+v) - q(u) - q(v)\bigr). \]" style="width:17.034em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="orgeefa71e">
+<p>
+Expanding by bilinearity,
+<img class="m" src="m/93c4de35ad47d541f25222996fa467300e12ec69.svg" alt="\(q(u+v) = b(u+v,u+v) = q(u) + b(u,v) + b(v,u) + q(v)\)" style="height:1.096em;vertical-align:-0.274em">, and symmetry
+turns the middle terms into <img class="m" src="m/2b477c9f86c3be5c259c83441f5d3e4c1d1856ec.svg" alt="\(2b(u,v)\)" style="height:1.096em;vertical-align:-0.274em">. Division by <img class="m" src="m/682209d80cc07f86795f987ad28681d443268af8.svg" alt="\(2\)" style="height:0.706em;vertical-align:-0.000em"> is available
+since the characteristic is not <img class="m" src="m/682209d80cc07f86795f987ad28681d443268af8.svg" alt="\(2\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org3c86fa3">
+<p>
+Let <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> have characteristic <img class="m" src="m/52e3a49b19fd138c316b243276e62e4cd9afd964.svg" alt="\(\ne 2\)" style="height:0.974em;vertical-align:-0.214em"> and let <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em"> be a symmetric
+bilinear form on a finite-dimensional <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">. Then <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> has a basis
+<img class="m" src="m/4a49c5f9ed88452a1f58e7acacdc79b8c4f84b44.svg" alt="\(e_{1}, \dots, e_{n}\)" style="height:0.685em;vertical-align:-0.212em"> with <img class="m" src="m/fd7fb726b49a282016c8f92aa246d86d6c148d2e.svg" alt="\(b(e_{i}, e_{j}) = 0\)" style="height:1.135em;vertical-align:-0.318em"> for <img class="m" src="m/31dfd5928d5dbacedbe17c7a4de8b3d624d479b8.svg" alt="\(i \ne j\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgd4d55bd">
+<p>
+Induct on <img class="m" src="m/5e324eb2dbb514d54a81210f90d5c0ea44e3c5f5.svg" alt="\(n = \dim V\)" style="height:0.761em;vertical-align:-0.000em">; for <img class="m" src="m/65862bc611d3fc06feaf1fa98b7ad9b5ef87f50f.svg" alt="\(n \le 1\)" style="height:0.855em;vertical-align:-0.145em"> there is nothing to prove. If
+<img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> vanishes identically then <img class="m" src="m/257c61c5215496e97b922556e83b5344a53b2b23.svg" alt="\(b = 0\)" style="height:0.761em;vertical-align:-0.000em"> by polarisation and any basis
+works. Otherwise pick <img class="m" src="m/9569d7fde8d10125a088a28510a937f4206c9f4b.svg" alt="\(e_{1}\)" style="height:0.636em;vertical-align:-0.165em"> with <img class="m" src="m/7ca92e498504a49f9a4090a77dbbeddcab2f3c4e.svg" alt="\(q(e_{1}) \ne 0\)" style="height:1.096em;vertical-align:-0.274em"> and set
+<img class="m" src="m/e5973a289790a8fa7b902c45deff88aa7c579eb6.svg" alt="\(W = \setst{v}{b(e_{1}, v) = 0}\)" style="height:1.096em;vertical-align:-0.274em">, the kernel of the non-zero linear
+functional <img class="m" src="m/9f30368d4bbd7fdca8f892818b39cd546980bbf1.svg" alt="\(v \mapsto b(e_{1},v)\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/da2f907f1a4aaabd7d6bd33fed86c547780897a6.svg" alt="\(\dim W = n-1\)" style="height:0.852em;vertical-align:-0.094em"> by
+rank-nullity. Moreover <img class="m" src="m/e3572db73b266b3f147f071d44bdac8bfd1716f7.svg" alt="\(e_{1} \notin W\)" style="height:0.986em;vertical-align:-0.168em">, so
+<img class="m" src="m/ee641db1314b44cb542e7a5138e8642ef6f617ad.svg" alt="\(V = \Span\set{e_{1}} \oplus W\)" style="height:1.096em;vertical-align:-0.274em"> by dimension count. The restriction of
+<img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em"> to <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em"> is symmetric bilinear, so by induction <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em"> has a basis
+<img class="m" src="m/a835e804b06af7ecd68f1ff009869cf09c4dff77.svg" alt="\(e_{2},\dots,e_{n}\)" style="height:0.685em;vertical-align:-0.212em"> orthogonal for <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em">; together with <img class="m" src="m/9569d7fde8d10125a088a28510a937f4206c9f4b.svg" alt="\(e_{1}\)" style="height:0.636em;vertical-align:-0.165em">,
+which is orthogonal to all of <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em">, this is the required basis.
+</p>
+
+</div>
+
+<div class="theorem" id="orgc47c1d3">
+<p>
+Let <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em"> be a symmetric bilinear form on a real vector space of
+dimension <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">. Then there is a basis in which
+<img class="m" src="m/d618352747c20ceed13593ac77ee03ba260e0869.svg" alt="\(q(x) = x_{1}^{2} + \cdots + x_{p}^{2} - x_{p+1}^{2} - \cdots - x_{p+m}^{2}\)" style="height:1.313em;vertical-align:-0.420em">,
+and the pair <img class="m" src="m/4ba3a14115522f92050556e067653b8784ee881e.svg" alt="\((p, m)\)" style="height:1.096em;vertical-align:-0.274em"> &#x2013; the <i>signature</i> &#x2013; does not depend on the
+basis chosen.
+</p>
+
+</div>
+
+<div class="proof" id="org5df0d35">
+<p>
+By the previous theorem there is a basis with
+<img class="m" src="m/d1f6cf3015e5f2b9e0a4c43b25a693e71df93d53.svg" alt="\(q(\sum x_{i}e_{i}) = \sum_{i} c_{i} x_{i}^{2}\)" style="height:1.221em;vertical-align:-0.330em">, where
+<img class="m" src="m/476dcfdcfee2460351492e2cbfcc69c1e9b576f0.svg" alt="\(c_{i} = q(e_{i})\)" style="height:1.096em;vertical-align:-0.274em">. Rescaling <img class="m" src="m/18dfcd04160230486aa94a4b83a96336b24d42b5.svg" alt="\(e_{i}\)" style="height:0.636em;vertical-align:-0.165em"> by
+<img class="m" src="m/df879f8f5b30978e7dc54bb254f8e876c755ff79.svg" alt="\(\abs{c_{i}}^{-1/2}\)" style="height:1.247em;vertical-align:-0.274em"> when <img class="m" src="m/67bcb5f0a728f0b661265f67df52456493bc8d6c.svg" alt="\(c_{i} \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> and reordering brings
+<img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> to the displayed shape, with <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> the number of positive <img class="m" src="m/a0188c7ce9f65e61ce3a491af7c9249fbd4cae54.svg" alt="\(c_{i}\)" style="height:0.636em;vertical-align:-0.165em">
+and <img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em"> the number of negative ones.
+</p>
+
+<p>
+For invariance, let <img class="m" src="m/0bac6a8fd923aed25755230eecf1ef94d02df18c.svg" alt="\(P = \Span\set{e_{1},\dots,e_{p}}\)" style="height:1.135em;vertical-align:-0.318em">, on which
+<img class="m" src="m/c326678e5050b6bc2f6a0e89ae4db7a9f244f36d.svg" alt="\(q &gt; 0\)" style="height:0.919em;vertical-align:-0.211em"> off zero, and <img class="m" src="m/f81dbca53d729316f4ee4107ae50190ccc8a3c84.svg" alt="\(N = \Span\set{e_{p+1}, \dots, e_{n}}\)" style="height:1.135em;vertical-align:-0.318em">, on
+which <img class="m" src="m/bcd39e2500fb9b6cedf5f64e907344ac5b07927a.svg" alt="\(q \le 0\)" style="height:0.919em;vertical-align:-0.211em">. If <img class="m" src="m/15a1c339afca40eed9f6845da647b713fa20e5dd.svg" alt="\(P'\)" style="height:0.824em;vertical-align:-0.000em"> is any subspace with <img class="m" src="m/c326678e5050b6bc2f6a0e89ae4db7a9f244f36d.svg" alt="\(q &gt; 0\)" style="height:0.919em;vertical-align:-0.211em"> off zero,
+then <img class="m" src="m/7f9408da94081142cc151043df8db5843d26d64b.svg" alt="\(P' \cap N = \set{0}\)" style="height:1.098em;vertical-align:-0.274em">, so
+<img class="m" src="m/09e67d866854e6c61fee5ab8949e336e9302c563.svg" alt="\(\dim P' + \dim N \le n\)" style="height:0.973em;vertical-align:-0.146em"> by the Grassmann formula, giving
+<img class="m" src="m/5ae70fef264640cc5f3d43a0697a3f84182dfd9c.svg" alt="\(\dim P' \le n - (n - p) = p\)" style="height:1.098em;vertical-align:-0.274em">. Hence <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> is the largest dimension of
+a subspace on which <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> is positive definite &#x2013; a description that
+mentions no basis. The same argument applied to <img class="m" src="m/74b5b6afe82568b0155e4c3744064107f72edb46.svg" alt="\(-q\)" style="height:0.852em;vertical-align:-0.213em"> characterises
+<img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="remark" id="orgff71923">
+<p>
+Definiteness, the hypothesis that turns a symmetric form into an inner
+product, is the case <img class="m" src="m/fd2d58a3d51d3bafd47db6c9c5d618918cc2851a.svg" alt="\((p,m) = (n,0)\)" style="height:1.096em;vertical-align:-0.274em">; the Lorentzian form of
+relativity is <img class="m" src="m/78adf539f524b8e754223096ce16e8db2e60a1ff.svg" alt="\((1,3)\)" style="height:1.096em;vertical-align:-0.274em">. The theorem says these are genuinely different
+objects and that no amount of change of coordinates can convert one into
+the other &#x2013; which is why "signature" is data attached to a geometry
+rather than to a choice of frame.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html"><span>← previous</span>Linear maps, quotient spaces and the rank-nullity theorem</a><a rel="next" href="inner-product-space.html"><span>next →</span>Inner product space</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--linear-algebra.pdf" title="PDF manual">Linear Algebra</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

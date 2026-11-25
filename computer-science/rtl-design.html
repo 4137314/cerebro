@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The RTL design method: datapath and control unit · Computer Science</title>
+<meta name="description" content="Large systems are split into a datapath (registers, counters, arithmetic, multiplexers: where data live and are transformed) and a control unit (a state machine deciding which operation happens in each cycle); the controller is first written with symbolic micro-operations (TM\gets TM+1, SD\gets TM)…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/rtl-design.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The RTL design method: datapath and control unit · Computer Science">
+<meta property="og:description" content="Large systems are split into a datapath (registers, counters, arithmetic, multiplexers: where data live and are transformed) and a control unit (a state machine deciding which operation happens in each cycle); the controller is first written with symbolic micro-operations (TM\gets TM+1, SD\gets TM)…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/rtl-design.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--sequential">Sequential</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Hardware · Sequential</p>
+<h1>The RTL design method: datapath and control unit</h1>
+<p class="summary">Large systems are split into a datapath (registers, counters, arithmetic, multiplexers: where data live and are transformed) and a control unit (a state machine deciding which operation happens in each cycle); the controller is first written with symbolic micro-operations (<img class="m" src="m/c8c834ca4f6aee8159f213757743d8ce02ce11f8.svg" alt="\(TM\gets TM+1\)" style="height:0.840em;vertical-align:-0.092em">, <img class="m" src="m/56d8cdccebecb34dcd22ee44b69f0f29f5ff402b.svg" alt="\(SD\gets TM\)" style="height:0.749em;vertical-align:-0.000em">) and conditions, the datapath is built to execute them, then each micro-operation and condition is encoded as control and status signals.</p>
+<p class="rel"><span>needs</span> <a href="fsm-patterns.html">Recurring state-machine patterns</a></p>
+<p class="rel"><span>unlocks</span> <a href="register-transfer-buses.html">Register transfers: multiplexers, buses, tri-state</a>, <a href="vending-machine-design.html">Worked design: a vending-machine controller</a></p>
+<p class="rel"><span>see also</span> <a href="register-transfer-buses.html">Register transfers: multiplexers, buses, tri-state</a>, <a href="vending-machine-design.html">Worked design: a vending-machine controller</a>, <a href="datapath-control.html">Datapath and control unit</a>, <a href="data-flow-graph.html">Data-flow graphs and architectural synthesis</a>, <a href="alu-design.html">Arithmetic logic unit</a>, <a href="magnitude-comparator.html">Iterative magnitude comparator</a></p>
+<p class="rel"><span>mentioned in</span> <a href="asm-chart.html">Algorithmic state machine (ASM) charts</a></p>
+<details class="path"><summary>Learning path: 14 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="multiplexer.html">Multiplexer and demultiplexer</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li><li><a href="sr-latch.html">SR latch and D latch</a></li><li><a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></li><li><a href="fsm-analysis.html">Analysis of synchronous sequential circuits</a></li><li><a href="fsm-synthesis.html">Synthesis of finite-state machines</a></li><li><a href="mealy-moore.html">Mealy versus Moore machines</a></li><li><a href="asm-chart.html">Algorithmic state machine (ASM) charts</a></li><li><a href="registers-shift-registers.html">Registers and shift registers</a></li><li><a href="counters.html">Synchronous counters</a></li><li><a href="fsm-patterns.html">Recurring state-machine patterns</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org586a26a" class="outline-2">
+<h2 id="org586a26a">Method</h2>
+<div class="outline-text-2" id="text-org586a26a">
+<p>
+Why: an 8-bit register alone has 256 states — too many to draw — but its value rarely affects the <b>flow</b> of operations. Separate concerns:
+</p>
+<ul class="org-ul">
+<li><b>Datapath</b>: data inputs and outputs, registers and counters, arithmetic/logic units, comparators, multiplexers and buses. Receives <b>control signals</b> (enables, loads, mux selects, operation codes), returns <b>status signals</b> (terminal count, carry, overflow, comparator outputs).</li>
+<li><b>Control unit</b>: an FSM with the control inputs and outputs of the system (buttons, lamps), producing the control signals from the state and the status signals.</li>
+</ul>
+<p>
+Both are synchronous on the same clock; the split is conceptual (deciding vs executing), not "combinational vs sequential".
+Steps:
+</p>
+<ol class="org-ol">
+<li>specification; 2. primary inputs and outputs, data and control; 3. data registers; 4. control FSM with symbolic register transfers and conditions; 5. datapath schematic implementing them; 6. encoding of micro-operations into control signals (default 0, list only those at 1) and of conditions into status signals; 7. detailed design of both; 8. verification (timing diagrams, simulation). Steps 4–5 are usually iterated together.</li>
+</ol>
+<p>
+Timing rule: a load commanded in state <img class="m" src="m/a6b3b959e1474b87242b0106c5fd9e3d5416e924.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> is visible in the register only in the <b>next</b> cycle (next state); a combinational result (comparator) is valid in the same cycle, after its delay, and must settle before the edge — glitches on it are harmless because the FSM samples at the edge.
+</p>
+</div>
+</div>
+<div id="outline-container-orgec7fb1b" class="outline-2">
+<h2 id="orgec7fb1b">Example</h2>
+<div class="outline-text-2" id="text-orgec7fb1b">
+<p>
+Stopwatch 00.00–99.99 s, buttons START (reset and run), STOP, CSS (compare and store shortest), RESET (clear best time).
+Datapath: <img class="m" src="m/58f6f131e373179f3a7eee7476392c4d1ba3a81a.svg" alt="\(TM\)" style="height:0.749em;vertical-align:-0.000em"> 4-digit BCD counter with sync init <img class="m" src="m/258d445650147f88266249d75c84e4e876b1cfdb.svg" alt="\(rsTM\)" style="height:0.749em;vertical-align:-0.000em"> and enable <img class="m" src="m/92471d13552cff27d8093841ec965782e276c0ff.svg" alt="\(enTM\)" style="height:0.749em;vertical-align:-0.000em"> (100 Hz clock); <img class="m" src="m/50bc735b24c7c14e9eb39105e43f655e7c3866a9.svg" alt="\(SD\)" style="height:0.749em;vertical-align:-0.000em"> 16-bit register with load <img class="m" src="m/ef0468de6b325072b44fdc9b831f5030610be84f.svg" alt="\(ldSD\)" style="height:0.761em;vertical-align:-0.000em">; a mux on <img class="m" src="m/50bc735b24c7c14e9eb39105e43f655e7c3866a9.svg" alt="\(SD\)" style="height:0.749em;vertical-align:-0.000em">'s input choosing 99.99 or <img class="m" src="m/58f6f131e373179f3a7eee7476392c4d1ba3a81a.svg" alt="\(TM\)" style="height:0.749em;vertical-align:-0.000em"> (<img class="m" src="m/9bed967b5f57b4390da75d7a405ea0570687613b.svg" alt="\(update\)" style="height:0.974em;vertical-align:-0.214em">); a BCD <a href="magnitude-comparator.html">comparator</a> <img class="m" src="m/5ccc2815615524a1436243527c0fe4df48f1b4be.svg" alt="\(AltB=[TM&lt;SD]\)" style="height:1.096em;vertical-align:-0.274em">; a mux <img class="m" src="m/9472a6c231754a508e1a79b666eaa1c6126f3b60.svg" alt="\(DS\)" style="height:0.749em;vertical-align:-0.000em"> choosing <img class="m" src="m/58f6f131e373179f3a7eee7476392c4d1ba3a81a.svg" alt="\(TM\)" style="height:0.749em;vertical-align:-0.000em"> or <img class="m" src="m/50bc735b24c7c14e9eb39105e43f655e7c3866a9.svg" alt="\(SD\)" style="height:0.749em;vertical-align:-0.000em"> <b>before</b> the single <a href="seven-segment-decoder.html">7-segment decoder</a> (16-bit mux instead of 28-bit, one decoder instead of two).
+<img class="m" src="m/50bc735b24c7c14e9eb39105e43f655e7c3866a9.svg" alt="\(SD\)" style="height:0.749em;vertical-align:-0.000em"> must start at 99.99, not 0: initialized at 0 no time would ever be smaller.
+Controller (symbolic): RESET state <img class="m" src="m/93b8fd1bd40d40c8251b5d7d622dbb1dc372aa55.svg" alt="\(SD\gets99.99\)" style="height:0.749em;vertical-align:-0.000em">; STOPPED (display <img class="m" src="m/58f6f131e373179f3a7eee7476392c4d1ba3a81a.svg" alt="\(TM\)" style="height:0.749em;vertical-align:-0.000em">) — START → INIT (<img class="m" src="m/40d9c8dd82503ea8689560ca4aa0efc20fa136e2.svg" alt="\(TM\gets0\)" style="height:0.749em;vertical-align:-0.000em">) → COUNT (<img class="m" src="m/c8c834ca4f6aee8159f213757743d8ce02ce11f8.svg" alt="\(TM\gets TM+1\)" style="height:0.840em;vertical-align:-0.092em">) until STOP; in STOPPED, CSS → if <img class="m" src="m/a340924c492182312e2c41178478f8afdc48d66b.svg" alt="\(TM&lt;SD\)" style="height:0.792em;vertical-align:-0.040em">: UPDATE (<img class="m" src="m/56d8cdccebecb34dcd22ee44b69f0f29f5ff402b.svg" alt="\(SD\gets TM\)" style="height:0.749em;vertical-align:-0.000em">), then SHOW (display <img class="m" src="m/50bc735b24c7c14e9eb39105e43f655e7c3866a9.svg" alt="\(SD\)" style="height:0.749em;vertical-align:-0.000em">). Encoded: <img class="m" src="m/40d9c8dd82503ea8689560ca4aa0efc20fa136e2.svg" alt="\(TM\gets0\)" style="height:0.749em;vertical-align:-0.000em">: <img class="m" src="m/c68db92f28faf5e8a3e43404aa7601fcc1ba37f6.svg" alt="\(rsTM=1\)" style="height:0.749em;vertical-align:-0.000em">; <img class="m" src="m/c8c834ca4f6aee8159f213757743d8ce02ce11f8.svg" alt="\(TM\gets TM+1\)" style="height:0.840em;vertical-align:-0.092em">: <img class="m" src="m/cc543c4e04017a6b10795d772f6da3759fe9c76e.svg" alt="\(enTM=1\)" style="height:0.749em;vertical-align:-0.000em">; <img class="m" src="m/93b8fd1bd40d40c8251b5d7d622dbb1dc372aa55.svg" alt="\(SD\gets99.99\)" style="height:0.749em;vertical-align:-0.000em">: <img class="m" src="m/8d7753e410a50053f447a600a5c0c7307a362345.svg" alt="\(ldSD=1\)" style="height:0.761em;vertical-align:-0.000em">; <img class="m" src="m/56d8cdccebecb34dcd22ee44b69f0f29f5ff402b.svg" alt="\(SD\gets TM\)" style="height:0.749em;vertical-align:-0.000em">: <img class="m" src="m/02e9bcb74cd0864cd442f7099633c5dfd0965883.svg" alt="\(ldSD=update=1\)" style="height:0.974em;vertical-align:-0.214em">; display <img class="m" src="m/50bc735b24c7c14e9eb39105e43f655e7c3866a9.svg" alt="\(SD\)" style="height:0.749em;vertical-align:-0.000em">: <img class="m" src="m/52403136c1cdd2da89248bf8e48baa6e96b4f7e1.svg" alt="\(DS=1\)" style="height:0.749em;vertical-align:-0.000em">.
+Detail: START is seen at an edge and INIT costs a cycle, so counting starts 1–2 hundredths late; either run the FSM on a faster clock or initialize <img class="m" src="m/58f6f131e373179f3a7eee7476392c4d1ba3a81a.svg" alt="\(TM\)" style="height:0.749em;vertical-align:-0.000em"> to 00.01.
+</p>
+</div>
+</div>
+<div id="outline-container-orga79d4a1" class="outline-2">
+<h2 id="orga79d4a1">Intuition</h2>
+<div class="outline-text-2" id="text-orga79d4a1">
+<p>
+The datapath is the orchestra, the controller the conductor: it never plays a note, it only says who plays when.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf41d5c0" class="outline-2">
+<h2 id="orgf41d5c0">Pitfall</h2>
+<div class="outline-text-2" id="text-orgf41d5c0">
+<p>
+Testing in a state the value just loaded in that same state reads the <b>old</b> value. Merging states to save flip-flops can silently change the behaviour (e.g. a waiting state that now also reacts to CSS before any time has been measured) — re-check the specification after every optimization.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="fsm-patterns.html"><span>← previous</span>Recurring state-machine patterns</a><a rel="next" href="register-transfer-buses.html"><span>next →</span>Register transfers: multiplexers, buses, tri-state</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--sequential.pdf" title="PDF manual">Sequential</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

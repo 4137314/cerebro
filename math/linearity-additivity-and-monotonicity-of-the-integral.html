@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linearity, additivity and monotonicity of the integral · Mathematics</title>
+<meta name="description" content="These are the properties the integral is used through, and none of them is visible in the definition: the definition is about suprema of lower sums, and a supremum of a sum is not the sum of the suprema. Each one therefore has to be proved, and the Riemann criterion is what makes each proof short –…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/linearity-additivity-and-monotonicity-of-the-integral.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Linearity, additivity and monotonicity of the integral · Mathematics">
+<meta property="og:description" content="These are the properties the integral is used through, and none of them is visible in the definition: the definition is about suprema of lower sums, and a supremum of a sum is not the sum of the suprema. Each one therefore has to be proved, and the Riemann criterion is what makes each proof short –…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/linearity-additivity-and-monotonicity-of-the-integral.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Analysis · Real Analysis</p>
+<h1>Linearity, additivity and monotonicity of the integral</h1>
+<p class="summary">These are the properties the integral is used through, and none of them is visible in the definition: the definition is about suprema of lower sums, and a supremum of a sum is not the sum of the suprema. Each one therefore has to be proved, and the Riemann criterion is what makes each proof short &#x2013; work with the gap <img class="m" src="m/95e77a32bc9bd912fefee65b951e2613a81711b3.svg" alt="\(U - L\)" style="height:0.840em;vertical-align:-0.092em">, never with the integral itself.</p>
+<p class="rel"><span>needs</span> <a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a>, <a href="the-riemann-integral.html">The Riemann integral</a></p>
+<p class="rel"><span>unlocks</span> <a href="integration-by-parts-and-substitution.html">Integration by parts and substitution</a>, <a href="monotone-functions-are-integrable-and-the-mean-value-theorem-for-integrals.html">Monotone functions are integrable, and the mean value theorem for integrals</a>, <a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a>, <a href="the-fundamental-theorem-of-calculus.html">The fundamental theorem of calculus</a>, <a href="complex-integration-and-cauchys-theorem.html">Complex integration and Cauchy's theorem</a>, <a href="existence-and-uniqueness-for-ordinary-differential-equations.html">Existence and uniqueness for ordinary differential equations</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li></ol></details>
+</header>
+<main class="note">
+<div class="theorem" id="orga00792c">
+<p>
+Let <img class="m" src="m/0ec967fd9dc8e51d6b42ea4df2709851bfbfd933.svg" alt="\(f, g \colon [a,b] \to \R\)" style="height:1.096em;vertical-align:-0.274em"> be Riemann integrable and
+<img class="m" src="m/9770c19ad756aa2d481d695c3f09e9c534ef4b77.svg" alt="\(\lambda \in \R\)" style="height:0.804em;vertical-align:-0.040em">. Then <img class="m" src="m/cccca9f583cec6a35dc027039a39c5e74f52f78b.svg" alt="\(f + g\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/b1be5e9605cf1bff43c67d178201f3c1d70564e9.svg" alt="\(\lambda f\)" style="height:0.974em;vertical-align:-0.214em"> are integrable, and
+<div class="mb"><img class="m" src="m/89412ac51f131a210b1760887c4029c58b3449e2.svg" alt="\[ \int_{a}^{b} (f + g) = \int_{a}^{b} f + \int_{a}^{b} g, \qquad \int_{a}^{b} \lambda f = \lambda \int_{a}^{b} f. \]" style="width:22.990em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="orgd7db3a4">
+<p>
+On any subinterval, <img class="m" src="m/4a19f4ce25342a9913506911e65a517715910cba.svg" alt="\(\sup (f + g) \le \sup f + \sup g\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/902f63d59386163c08e47fa969987355e515eb74.svg" alt="\(\inf (f+g) \ge \inf f + \inf g\)" style="height:1.096em;vertical-align:-0.274em">, so for every partition <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em">
+<div class="mb"><img class="m" src="m/fa80dd8ede4f2d9c3ad7d9864ab7a7dadf5317ad.svg" alt="\[ L(f,P) + L(g,P) \le L(f+g,P) \le U(f+g,P) \le U(f,P) + U(g,P). \]" style="width:32.802em"></div>
+Given <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em">, take partitions with
+<img class="m" src="m/e4c9c4d29f4fd908ece0a2dff58e3720ac3d60cf.svg" alt="\(U(f,P_{1}) - L(f,P_{1}) &lt; \eps/2\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/0808d816974681c10088f6cd2eed22b8ce68b4c4.svg" alt="\(U(g,P_{2}) - L(g,P_{2}) &lt; \eps/2\)" style="height:1.096em;vertical-align:-0.274em">, and let <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> refine
+both; the displayed inequalities give
+<img class="m" src="m/f6695a911ad1d3e24233ed3600aab9527b5f7353.svg" alt="\(U(f+g,P) - L(f+g,P) &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/cccca9f583cec6a35dc027039a39c5e74f52f78b.svg" alt="\(f + g\)" style="height:0.974em;vertical-align:-0.214em"> is integrable by the
+criterion. Both integrals are then squeezed between the same two
+quantities, which differ by less than <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em"> for every <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em">,
+hence they are equal.
+</p>
+
+<p>
+For <img class="m" src="m/8f59d3ecd369a82f31ea6433bfd4709d06d6e1e4.svg" alt="\(\lambda \ge 0\)" style="height:0.910em;vertical-align:-0.146em">, <img class="m" src="m/e670592bfdd303878ae6763ba7788091708f6624.svg" alt="\(L(\lambda f, P) = \lambda L(f,P)\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/777ba3b5d57b7e61ea5bf8dfc48dc57b552ffae7.svg" alt="\(U(\lambda f, P) = \lambda U(f,P)\)" style="height:1.096em;vertical-align:-0.274em">, and the claim is immediate. For
+<img class="m" src="m/866c3b89a85e82b06bba63cb0279c09c7d492c18.svg" alt="\(\lambda = -1\)" style="height:0.852em;vertical-align:-0.094em"> the suprema and infima exchange roles:
+<img class="m" src="m/1ddfc1aa066f2929e7820aeba8e372890dac8e85.svg" alt="\(L(-f,P) = -U(f,P)\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/4969b11b96e30937d1c0996033e77ef842ffb882.svg" alt="\(U(-f,P) = -L(f,P)\)" style="height:1.096em;vertical-align:-0.274em">, so the gap is
+unchanged and the upper and lower integrals swap sign. The general
+<img class="m" src="m/bf732bcb08e251641d188904cbb646f8c7c05665.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em"> is a composition of the two cases.
+</p>
+
+</div>
+
+<div class="theorem" id="org450adb7">
+<p>
+Let <img class="m" src="m/d0a8c2f5fdc3ef90c546b98fb29b98c84cf97119.svg" alt="\(a &lt; c &lt; b\)" style="height:0.804em;vertical-align:-0.040em">. Then <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is integrable on <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em"> if and only if
+it is integrable on <img class="m" src="m/b192df28c628de44b14fcf9490b3bd4a6d3c2735.svg" alt="\([a,c]\)" style="height:1.096em;vertical-align:-0.274em"> and on <img class="m" src="m/d6a6c62b628b4e7562dcce0e71f35cfc51acb1c7.svg" alt="\([c,b]\)" style="height:1.096em;vertical-align:-0.274em">, and then
+<div class="mb"><img class="m" src="m/411836162cee3624f065bdb68a65ecbc775970e2.svg" alt="\[ \int_{a}^{b} f = \int_{a}^{c} f + \int_{c}^{b} f. \]" style="width:10.170em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="org82c0259">
+<p>
+A partition of <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em"> containing <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> splits into partitions
+<img class="m" src="m/c602c2abfaf766d8767011fbbbf80c6e5c820aec.svg" alt="\(P_{1}, P_{2}\)" style="height:0.962em;vertical-align:-0.212em"> of the two halves, with
+<img class="m" src="m/d47bfc0601121b4b011bd5076378fbbef1a72ac2.svg" alt="\(U(f,P) = U(f,P_{1}) + U(f,P_{2})\)" style="height:1.096em;vertical-align:-0.274em"> and likewise for <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">; adding
+<img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> to a partition only refines it, so nothing is lost by assuming
+<img class="m" src="m/cd8c6fb74ac6c7f0e6784915bbd90f06b18a8161.svg" alt="\(c \in P\)" style="height:0.792em;vertical-align:-0.040em">.
+</p>
+
+<p>
+If <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is integrable on both halves, choose <img class="m" src="m/c602c2abfaf766d8767011fbbbf80c6e5c820aec.svg" alt="\(P_{1}, P_{2}\)" style="height:0.962em;vertical-align:-0.212em"> with gap
+less than <img class="m" src="m/211a2a37f996f96293dac069c43ef1260c5dbb46.svg" alt="\(\eps/2\)" style="height:1.096em;vertical-align:-0.274em"> each; their union has gap less than <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em">.
+Conversely, if <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is integrable on <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em">, take <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> with gap
+less than <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em"> and refine it by <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em">; since both
+<img class="m" src="m/745ef8ea2d84cba033d8b16e40e532a17c6ebccf.svg" alt="\(U(f,P_{i}) - L(f,P_{i})\)" style="height:1.096em;vertical-align:-0.274em"> are non-negative and they sum to less than
+<img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em">, each is less than <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em">. The identity of the three
+integrals is the identity <img class="m" src="m/d47bfc0601121b4b011bd5076378fbbef1a72ac2.svg" alt="\(U(f,P) = U(f,P_{1}) + U(f,P_{2})\)" style="height:1.096em;vertical-align:-0.274em"> passed
+to the infimum over such partitions.
+</p>
+
+</div>
+
+<div class="proposition" id="orgf524c63">
+<p>
+If <img class="m" src="m/16613a320678fc68dfbb16bbefcb74a2873f6607.svg" alt="\(f \le g\)" style="height:0.974em;vertical-align:-0.214em"> are integrable on <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em">, then
+<img class="m" src="m/25619297ad3dc201ac84295521c5e82cbe966bb3.svg" alt="\(\int_{a}^{b} f \le \int_{a}^{b} g\)" style="height:1.534em;vertical-align:-0.384em">. In particular, if
+<img class="m" src="m/709300c4b3be0f702552c92570bae8fac0803417.svg" alt="\(m \le f \le M\)" style="height:0.974em;vertical-align:-0.214em"> then
+<img class="m" src="m/630fb915a8f4308ba56cdf3119c998d9cdc75cb3.svg" alt="\(m(b-a) \le \int_{a}^{b} f \le M(b-a)\)" style="height:1.534em;vertical-align:-0.384em">.
+</p>
+
+</div>
+
+<div class="proof" id="org1127378">
+<p>
+On every subinterval <img class="m" src="m/9e14a36e8e5685026d13d395d323d3cc7368aadf.svg" alt="\(\sup f \le \sup g\)" style="height:0.974em;vertical-align:-0.214em">, so
+<img class="m" src="m/796f96159bc92454f2dc1a3b7ccb42c6cdf9f1bb.svg" alt="\(U(f,P) \le U(g,P)\)" style="height:1.096em;vertical-align:-0.274em"> for every partition <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em">, and taking the infimum
+over <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> gives the inequality between the upper integrals, which are
+the integrals. The second claim is the first applied to the constant
+functions <img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">, whose integrals are <img class="m" src="m/708f3de353af5f8794032e15f15ca1dee6db3062.svg" alt="\(m(b-a)\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/2b2b380ff1fddf6ef06b2d5b84ec28faae100ddc.svg" alt="\(M(b-a)\)" style="height:1.096em;vertical-align:-0.274em"> directly from the definition.
+</p>
+
+</div>
+
+<div class="corollary" id="org6895d0e">
+<p>
+If <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is integrable on <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em">, then so is <img class="m" src="m/2aeac56be656e1980256b1b31fa628725465236c.svg" alt="\(\abs{f}\)" style="height:1.096em;vertical-align:-0.274em">, and
+<div class="mb"><img class="m" src="m/8b68989824c70ede7fc4c58b2a7c3b975dce1dc9.svg" alt="\[ \Bigl| \int_{a}^{b} f \Bigr| \le \int_{a}^{b} \abs{f}. \]" style="width:7.669em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="org2fc3886">
+<p>
+On any subinterval the oscillation of <img class="m" src="m/2aeac56be656e1980256b1b31fa628725465236c.svg" alt="\(\abs{f}\)" style="height:1.096em;vertical-align:-0.274em"> is at most that of
+<img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">, by the reverse triangle inequality, so
+<img class="m" src="m/04e371fb261064d802c1f368716c0e5b996b23db.svg" alt="\(U(\abs{f},P) - L(\abs{f},P) \le U(f,P) - L(f,P)\)" style="height:1.096em;vertical-align:-0.274em"> and the Riemann
+criterion transfers. Since <img class="m" src="m/4004ced081c280ba5b4fe5a7dec583b7dbdb3db0.svg" alt="\(-\abs{f} \le f \le \abs{f}\)" style="height:1.096em;vertical-align:-0.274em">, monotonicity
+and linearity give
+<img class="m" src="m/8b612fa5ef55dc98d7e2867d28a4e8d46de9781a.svg" alt="\(-\int \abs{f} \le \int f \le \int \abs{f}\)" style="height:1.218em;vertical-align:-0.341em">, which is the claim.
+</p>
+
+</div>
+
+<div class="remark" id="org33925c4">
+<p>
+Additivity is what the first fundamental theorem uses when it writes
+<img class="m" src="m/06fd380b925b7cf5b8d9fc7d9dffc08d28325cd1.svg" alt="\(F(c+h) - F(c)\)" style="height:1.096em;vertical-align:-0.274em"> as an integral over <img class="m" src="m/db99636aca75467ba0325c1b86fe0c2bdbfea0da.svg" alt="\([c, c+h]\)" style="height:1.096em;vertical-align:-0.274em">, and the estimate it
+follows with is monotonicity. Neither was available before this note,
+which is a fair statement of how much of the theory of the integral is
+spent making the notation behave.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-riemann-integral.html"><span>← previous</span>The Riemann integral</a><a rel="next" href="the-fundamental-theorem-of-calculus.html"><span>next →</span>The fundamental theorem of calculus</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

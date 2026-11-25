@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Propositional logic: formulas, assignments and compactness · Mathematics</title>
+<meta name="description" content="Logic becomes mathematics at the point where formulas stop being notation for arguments and become objects that a proof can quantify over. The whole of propositional logic is then two inductive definitions – one building formulas, one evaluating them – and the theorem that makes the subject infinit…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/propositional-logic-formulas-assignments-and-compactness.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Propositional logic: formulas, assignments and compactness · Mathematics">
+<meta property="og:description" content="Logic becomes mathematics at the point where formulas stop being notation for arguments and become objects that a proof can quantify over. The whole of propositional logic is then two inductive definitions – one building formulas, one evaluating them – and the theorem that makes the subject infinit…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/propositional-logic-formulas-assignments-and-compactness.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-foundations">Foundations</a> / <a rel="up" href="index.html#a-foundations--logic">Logic</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Foundations · Logic</p>
+<h1>Propositional logic: formulas, assignments and compactness</h1>
+<p class="summary">Logic becomes mathematics at the point where formulas stop being notation for arguments and become objects that a proof can quantify over. The whole of propositional logic is then two inductive definitions &#x2013; one building formulas, one evaluating them &#x2013; and the theorem that makes the subject infinite rather than merely finitary: satisfiability is decided by finite subsets.</p>
+<p class="rel"><span>needs</span> <a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></p>
+<p class="rel"><span>unlocks</span> <a href="completeness-of-propositional-logic.html">Completeness of propositional logic</a>, <a href="a-proof-system-for-propositional-logic-soundness-and-the-deduction-theorem.html">A proof system for propositional logic: soundness and the deduction theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="foundations.html">Foundations</a>, <a href="logic.html">Logic</a></p>
+<details class="path"><summary>Learning path: 4 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org378cb71">
+<p>
+Fix a set <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> of <i>propositional variables</i>. The set <img class="m" src="m/32409bcf84368ff4eada874fcf3cae3550e81a98.svg" alt="\(\mathrm{Form}\)" style="height:0.749em;vertical-align:-0.000em">
+of <i>formulas</i> over <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> is the smallest set of finite strings such that
+every <img class="m" src="m/155ebc1c9ca81889603d0eb377cf26bc2b2255f2.svg" alt="\(p \in V\)" style="height:0.962em;vertical-align:-0.212em"> belongs to it and, whenever <img class="m" src="m/1178eede218f6561ee594f7737a076728dd911fe.svg" alt="\(\varphi, \psi\)" style="height:0.974em;vertical-align:-0.214em"> belong
+to it, so do <img class="m" src="m/16725297cfa7469787c3bb52ed1aee110871d552.svg" alt="\(\neg \varphi\)" style="height:0.685em;vertical-align:-0.212em"> and <img class="m" src="m/64879bd2f374ad46eec0915ec63768b69d53b704.svg" alt="\((\varphi \wedge \psi)\)" style="height:1.096em;vertical-align:-0.274em">. One writes
+<img class="m" src="m/57cea678798e0e174a8d4ed0c93e406ddc23049d.svg" alt="\((\varphi \vee \psi)\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/4b53d5351073020f37f39ef5cb957ccc77152ab6.svg" alt="\(\neg(\neg \varphi \wedge \neg \psi)\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/a4f0b7f3ab841986e07367b2a5b8b378704195d0.svg" alt="\((\varphi \to \psi)\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/6054e0b995c597f3327316aed6998462455b6ba8.svg" alt="\(\neg(\varphi \wedge \neg \psi)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgaec212a">
+<p>
+Let <img class="m" src="m/3ab1161df527fa9c47cb7dfe5f5cadc86c2bacd7.svg" alt="\(S \subseteq \mathrm{Form}\)" style="height:0.898em;vertical-align:-0.153em"> contain every variable and satisfy:
+<img class="m" src="m/443a20eac54ad80f84d5722bb0b0650c3cfb9330.svg" alt="\(\varphi, \psi \in S\)" style="height:0.974em;vertical-align:-0.214em"> implies <img class="m" src="m/9fae9a93838eca1889947664cba729ef0ffa33c3.svg" alt="\(\neg \varphi \in S\)" style="height:0.962em;vertical-align:-0.212em"> and
+<img class="m" src="m/e233c8ba0c2379facd43e842355a82b57ea8e93f.svg" alt="\((\varphi \wedge \psi) \in S\)" style="height:1.096em;vertical-align:-0.274em">. Then <img class="m" src="m/c0ca4853175d7e8add37f8254902847a0d322808.svg" alt="\(S = \mathrm{Form}\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org7f5b165">
+<p>
+"Smallest" in the definition means the intersection of all sets of
+strings with the two closure properties, which is itself such a set.
+<img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> is one of the sets being intersected, so
+<img class="m" src="m/f84ad8e3a12484b5e427ae387daf6d936f903e5c.svg" alt="\(\mathrm{Form} \subseteq S\)" style="height:0.898em;vertical-align:-0.153em">; the reverse inclusion is the hypothesis
+<img class="m" src="m/3ab1161df527fa9c47cb7dfe5f5cadc86c2bacd7.svg" alt="\(S \subseteq \mathrm{Form}\)" style="height:0.898em;vertical-align:-0.153em">.
+</p>
+
+</div>
+
+<div class="definition" id="orgafa9d9f">
+<p>
+A <i>truth assignment</i> is a map <img class="m" src="m/5da11728d7e04fc1363fc429af2817b1f6ecb552.svg" alt="\(v \colon V \to \set{0,1}\)" style="height:1.096em;vertical-align:-0.274em">. It extends
+to <img class="m" src="m/60a12edab74131178858575ce701cd196997657d.svg" alt="\(\hat{v} \colon \mathrm{Form} \to \set{0,1}\)" style="height:1.096em;vertical-align:-0.274em"> by
+<img class="m" src="m/5aa3cc988d59b0391d40732478995d4addaac15b.svg" alt="\(\hat{v}(p) = v(p)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/b0a1acc534e7bc4be7fff16d0cde2c1eb42eb5a1.svg" alt="\(\hat{v}(\neg \varphi) = 1 - \hat{v}(\varphi)\)" style="height:1.096em;vertical-align:-0.274em">
+and
+<img class="m" src="m/7fb7431aa07fef3eacc446ae451649faa63292b8.svg" alt="\(\hat{v}((\varphi \wedge \psi)) = \min(\hat{v}(\varphi), \hat{v}(\psi))\)" style="height:1.096em;vertical-align:-0.274em">.
+One writes <img class="m" src="m/e5467be686452d18285b2f281a1dd09cdfc78fdb.svg" alt="\(v \models \varphi\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/39ef7d1438c4fae7dfd7b61cbca06774a7dab9b3.svg" alt="\(\hat{v}(\varphi) = 1\)" style="height:1.096em;vertical-align:-0.274em"> and says
+<img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> <i>satisfies</i> <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="definition" id="org69ffdb3">
+<p>
+A set <img class="m" src="m/41cabce6f9f00a55f91774b01b966977a176ff70.svg" alt="\(\Sigma \subseteq \mathrm{Form}\)" style="height:0.898em;vertical-align:-0.153em"> is <i>satisfiable</i> if some
+assignment satisfies every member of it, and <i>finitely satisfiable</i> if
+every finite subset of it is satisfiable. A formula satisfied by every
+assignment is a <i>tautology</i>.
+</p>
+
+</div>
+
+<div class="lemma" id="org7353073">
+<p>
+Every finitely satisfiable <img class="m" src="m/dd733a94278b0684a31c5e52904679e109eb8625.svg" alt="\(\Sigma\)" style="height:0.749em;vertical-align:-0.000em"> is contained in a set <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> that
+is finitely satisfiable and maximal with that property, and such an
+<img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> contains exactly one of <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">, <img class="m" src="m/16725297cfa7469787c3bb52ed1aee110871d552.svg" alt="\(\neg \varphi\)" style="height:0.685em;vertical-align:-0.212em"> for every
+formula <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="proof" id="org205f9f4">
+<p>
+Order the finitely satisfiable supersets of <img class="m" src="m/dd733a94278b0684a31c5e52904679e109eb8625.svg" alt="\(\Sigma\)" style="height:0.749em;vertical-align:-0.000em"> by inclusion.
+The union of a chain of them is finitely satisfiable, since a finite
+subset of the union already lies in one member of the chain; and the
+family is non-empty. Zorn's lemma gives a maximal element <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+<p>
+Not both <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> and <img class="m" src="m/16725297cfa7469787c3bb52ed1aee110871d552.svg" alt="\(\neg \varphi\)" style="height:0.685em;vertical-align:-0.212em"> lie in <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">, since the finite
+set <img class="m" src="m/5877e826b2ba3a7ccb9c2c02978ad0e9de9f97b4.svg" alt="\(\set{\varphi, \neg \varphi}\)" style="height:1.096em;vertical-align:-0.274em"> is unsatisfiable. Suppose neither
+does. By maximality <img class="m" src="m/01ebe314a60323f25956a9b52554ae919757d0dd.svg" alt="\(M \cup \set{\varphi}\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/71af3a906ad2f62113620a15a8d18cd262e0177b.svg" alt="\(M \cup \set{\neg \varphi}\)" style="height:1.096em;vertical-align:-0.274em"> fail to be finitely satisfiable, so there
+are finite <img class="m" src="m/fb87c6016a6c33b46e9aaf6b87b8f7fe07c16894.svg" alt="\(A, B \subseteq M\)" style="height:0.962em;vertical-align:-0.212em"> with <img class="m" src="m/753a16a821cbe71032a068906c86aa26e40a5569.svg" alt="\(A \cup \set{\varphi}\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/6e94c361322d3978014f896457330736b6c38806.svg" alt="\(B \cup \set{\neg \varphi}\)" style="height:1.096em;vertical-align:-0.274em"> unsatisfiable. But <img class="m" src="m/408bc8ad4dbec21d3938589739ec0aa07ccb881d.svg" alt="\(A \cup B\)" style="height:0.749em;vertical-align:-0.000em"> is a
+finite subset of <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">, hence satisfied by some <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em">; and <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em">
+satisfies <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> or <img class="m" src="m/16725297cfa7469787c3bb52ed1aee110871d552.svg" alt="\(\neg \varphi\)" style="height:0.685em;vertical-align:-0.212em">, contradicting one of the two.
+</p>
+
+</div>
+
+<div class="theorem" id="orgd87d1a7">
+<p>
+A set of propositional formulas is satisfiable if and only if it is
+finitely satisfiable.
+</p>
+
+</div>
+
+<div class="proof" id="org248776e">
+<p>
+One direction is trivial. Let <img class="m" src="m/dd733a94278b0684a31c5e52904679e109eb8625.svg" alt="\(\Sigma\)" style="height:0.749em;vertical-align:-0.000em"> be finitely satisfiable and
+let <img class="m" src="m/50b98d3f65747707d1358643c54ac9a8f258af94.svg" alt="\(M \supseteq \Sigma\)" style="height:0.898em;vertical-align:-0.153em"> be maximal finitely satisfiable, as in the
+lemma. Define <img class="m" src="m/cc8cd9aef445a704d3c6ea5edfef51caea223e1c.svg" alt="\(v(p) = 1\)" style="height:1.096em;vertical-align:-0.274em"> exactly when <img class="m" src="m/be907badb25996ce1bc58d417ae52f719bbd8d5a.svg" alt="\(p \in M\)" style="height:0.962em;vertical-align:-0.212em">. We show by
+induction on formulas that <img class="m" src="m/e5467be686452d18285b2f281a1dd09cdfc78fdb.svg" alt="\(v \models \varphi\)" style="height:1.096em;vertical-align:-0.274em"> if and only if
+<img class="m" src="m/2274dde914407ce1fa2142ed3fb3dcca0029e5a7.svg" alt="\(\varphi \in M\)" style="height:0.962em;vertical-align:-0.212em">.
+</p>
+
+<p>
+For a variable this is the definition of <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em">. For a negation:
+<img class="m" src="m/5bcebc346b1e49610b3d2276f2bcf151abd4d3f5.svg" alt="\(v \models \neg \varphi\)" style="height:1.096em;vertical-align:-0.274em"> means <img class="m" src="m/17ba07df810e70dd87cd5d4d2626c6e72ca52242.svg" alt="\(v \not\models \varphi\)" style="height:1.096em;vertical-align:-0.274em">, which by
+induction means <img class="m" src="m/512dbc3c8e441d34fabc716bd5919bb801a08f10.svg" alt="\(\varphi \notin M\)" style="height:1.035em;vertical-align:-0.217em">, which by the lemma means
+<img class="m" src="m/bb4f35a761f872052332d3fb1c988253a3826393.svg" alt="\(\neg \varphi \in M\)" style="height:0.962em;vertical-align:-0.212em">. For a conjunction, suppose first
+<img class="m" src="m/d1375692d6f72e562cb78653ab354587ea87e6cc.svg" alt="\((\varphi \wedge \psi) \in M\)" style="height:1.096em;vertical-align:-0.274em">; if <img class="m" src="m/512dbc3c8e441d34fabc716bd5919bb801a08f10.svg" alt="\(\varphi \notin M\)" style="height:1.035em;vertical-align:-0.217em"> then
+<img class="m" src="m/bb4f35a761f872052332d3fb1c988253a3826393.svg" alt="\(\neg \varphi \in M\)" style="height:0.962em;vertical-align:-0.212em">, and <img class="m" src="m/95ce09cefb850e2ea77f10c435d22f1d236928f4.svg" alt="\(\set{(\varphi \wedge \psi), \neg \varphi}\)" style="height:1.096em;vertical-align:-0.274em">
+is an unsatisfiable finite subset of <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> &#x2013; so <img class="m" src="m/2274dde914407ce1fa2142ed3fb3dcca0029e5a7.svg" alt="\(\varphi \in M\)" style="height:0.962em;vertical-align:-0.212em">, and
+likewise <img class="m" src="m/4e5271e616729045cc65bf04de14f25171623ab5.svg" alt="\(\psi \in M\)" style="height:0.974em;vertical-align:-0.214em">, whence <img class="m" src="m/64259cbd929e37b9c6c628b3e6fbecbe2d890c65.svg" alt="\(v \models \varphi \wedge \psi\)" style="height:1.096em;vertical-align:-0.274em"> by
+induction. Conversely if <img class="m" src="m/74207420408c817287fbbfb276ec1339928bd534.svg" alt="\(\varphi, \psi \in M\)" style="height:0.974em;vertical-align:-0.214em"> but
+<img class="m" src="m/e3f01ef0b74cbf954e051b342cd111df665ae07a.svg" alt="\((\varphi \wedge \psi) \notin M\)" style="height:1.096em;vertical-align:-0.274em">, then
+<img class="m" src="m/958a23228093946e866d21f1281e56fab235b862.svg" alt="\(\neg(\varphi \wedge \psi) \in M\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/8eebab8d2c6a5d3ba6f5a18ea3f6cd0c3b180e05.svg" alt="\(\set{\varphi, \psi, \neg(\varphi \wedge \psi)}\)" style="height:1.096em;vertical-align:-0.274em"> is an unsatisfiable
+finite subset. By the induction principle the equivalence holds for
+every formula, so <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> satisfies every member of <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">, in particular
+every member of <img class="m" src="m/dd733a94278b0684a31c5e52904679e109eb8625.svg" alt="\(\Sigma\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="remark" id="orgf93b367">
+<p>
+The theorem is where the axiom of choice enters logic: for an
+uncountable set of variables the proof above is Zorn's lemma, and the
+statement is in fact equivalent to a weak form of choice (the ultrafilter
+lemma). Its consequences are the ones that make model theory possible &#x2013;
+a property of arbitrary structures that holds in all finite
+approximations holds outright.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="boolean-algebras-and-stones-representation-theorem.html"><span>← previous</span>Boolean algebras and Stone's representation theorem</a><a rel="next" href="completeness-of-propositional-logic.html"><span>next →</span>Completeness of propositional logic</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/foundations--logic.pdf" title="PDF manual">Logic</a> · <a class="pdf" href="pdf/foundations.pdf" title="PDF manual">Foundations</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

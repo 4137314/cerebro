@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stack and queue as classes · Computer Science</title>
+<meta name="description" content="A stack (last in, first out) and a queue (first in, first out) are abstract data types defined by their operations; implemented as classes over an array that grows when full, they show encapsulation, constructors, deep copy and, deriving the queue from the stack, both the power and the danger of in…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/stack-and-queue.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Stack and queue as classes · Computer Science">
+<meta property="og:description" content="A stack (last in, first out) and a queue (first in, first out) are abstract data types defined by their operations; implemented as classes over an array that grows when full, they show encapsulation, constructors, deep copy and, deriving the queue from the stack, both the power and the danger of in…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/stack-and-queue.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--java">Java</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">example · Programming · Java</p>
+<h1>Stack and queue as classes</h1>
+<p class="summary">A stack (last in, first out) and a queue (first in, first out) are abstract data types defined by their operations; implemented as classes over an array that grows when full, they show encapsulation, constructors, deep copy and, deriving the queue from the stack, both the power and the danger of inheritance.</p>
+<p class="rel"><span>needs</span> <a href="inheritance.html">Inheritance and overriding</a>, <a href="java-references.html">Objects, references and garbage collection in Java</a></p>
+<p class="rel"><span>see also</span> <a href="liskov-substitution.html">Liskov substitution principle</a>, <a href="information-hiding.html">Information hiding and visibility</a>, <a href="java-collections.html">The Java Collections Framework</a>, <a href="java-generics.html">Java generics and type erasure</a></p>
+<p class="rel"><span>mentioned in</span> <a href="fir-filter.html">FIR filter architectures</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="java-platform.html">The Java platform</a></li><li><a href="java-references.html">Objects, references and garbage collection in Java</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgc86c0bd" class="outline-2">
+<h2 id="orgc86c0bd">Example</h2>
+<div class="outline-text-2" id="text-orgc86c0bd">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">public</span> <span class="k">class</span> <span class="t">Stack</span> {
+    <span class="k">protected</span> <span class="t">int</span>[] <span class="v">data</span>;
+    <span class="k">protected</span> <span class="t">int</span> <span class="v">size</span> = 0;
+    <span class="k">public</span> <span class="f">Stack</span>() { <span class="k">this</span>(10); }
+    <span class="k">public</span> <span class="f">Stack</span>(<span class="t">int</span> <span class="v">capacity</span>) { data = <span class="k">new</span> <span class="t">int</span>[capacity]; }
+    <span class="c">// deep copy
+</span>    <span class="k">public</span> <span class="f">Stack</span>(<span class="t">Stack</span> <span class="v">other</span>) { data = other.data.clone(); size = other.size; }
+    <span class="k">public</span> <span class="t">void</span> <span class="f">push</span>(<span class="t">int</span> <span class="v">x</span>) {
+        <span class="k">if</span> (size == data.length)
+            data = <span class="n">java</span>.<span class="n">util</span>.Arrays.copyOf(data, 2 * data.length);
+        data[size++] = x;
+    }
+    <span class="k">public</span> <span class="t">int</span> <span class="f">pop</span>() {
+        <span class="k">if</span> (size == 0) <span class="k">throw</span> <span class="k">new</span> <span class="t">IllegalStateException</span>(<span class="s">"empty stack"</span>);
+        <span class="k">return</span> data[--size];
+    }
+    <span class="k">public</span> <span class="t">boolean</span> <span class="f">isEmpty</span>() { <span class="k">return</span> size == 0; }
+}
+
+<span class="k">public</span> <span class="k">class</span> <span class="t">Queue</span> <span class="k">extends</span> <span class="t">Stack</span> {     <span class="c">// reuse of push, isEmpty and the storage
+</span>    <span class="k">private</span> <span class="t">int</span> <span class="v">head</span> = 0;
+    @Override <span class="k">public</span> <span class="t">int</span> <span class="f">pop</span>() {
+        <span class="k">if</span> (head == size) <span class="k">throw</span> <span class="k">new</span> <span class="t">IllegalStateException</span>(<span class="s">"empty queue"</span>);
+        <span class="k">return</span> data[head++];
+    }
+    @Override <span class="k">public</span> <span class="t">boolean</span> <span class="f">isEmpty</span>() { <span class="k">return</span> head == size; }
+}</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orgaa332c0" class="outline-2">
+<h2 id="orgaa332c0">Picture</h2>
+<div class="outline-text-2" id="text-orgaa332c0">
+<figure class="fig"><img class="m" src="m/a9093bac15a51afd485cffd901fc4e2bdb9e98a2.svg" alt="figure" style="width:15.515em"><figcaption><span class="fl">Figure 1.</span> A stack and a queue on the same sequence: the stack pops its newest element (top), the queue its oldest (head).</figcaption></figure>
+<p>
+The stack takes from the top; the queue from the head, where the oldest element is.
+</p>
+</div>
+</div>
+<div id="outline-container-org1c0afc4" class="outline-2">
+<h2 id="org1c0afc4">The C++ version</h2>
+<div class="outline-text-2" id="text-org1c0afc4">
+<p>
+The same class in C++ owns its array through a pointer, so it needs a destructor (<code>delete[] data</code>), a <a href="cpp-special-members.html">copy constructor</a> and an assignment operator that copy the array: the <a href="shallow-deep-copy.html">rule of three</a>. In Java, <code>clone()</code> on the array plays the role of the deep copy and the <a href="java-references.html">garbage collector</a> of the destructor.
+</p>
+</div>
+</div>
+<div id="outline-container-org2d5ad01" class="outline-2">
+<h2 id="org2d5ad01">Intuition</h2>
+<div class="outline-text-2" id="text-org2d5ad01">
+<p>
+Two ten-line classes contain most of <a href="object-oriented-programming.html">object orientation</a>: hidden representation, invariants, construction, copying, reuse by extension.
+</p>
+</div>
+</div>
+<div id="outline-container-org7e4c5fa" class="outline-2">
+<h2 id="org7e4c5fa">Pitfall</h2>
+<div class="outline-text-2" id="text-org7e4c5fa">
+<p>
+The queue never reclaims the slots before <code>head</code>, and a <code>Queue</code> passed where a <code>Stack</code> is expected changes the meaning of <code>pop</code>: inheritance used for code reuse, not for an is-a relation (see <a href="liskov-substitution.html">Liskov</a>). <a href="aggregation-composition.html">Composition</a> (a queue that contains an array or a list) is the better design.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="user-input.html"><span>← previous</span>Reading and validating user input</a><a rel="next" href="java-dynamic-binding.html"><span>next →</span>The Java method selection rule</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--java.pdf" title="PDF manual">Java</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

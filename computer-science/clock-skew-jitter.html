@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clock skew and jitter · Computer Science</title>
+<meta name="description" content="Skew is the difference in arrival time of the same clock edge at two registers, jitter the variation of the period from cycle to cycle; skew in the direction of data flow relaxes setup and tightens hold, jitter always reduces the usable period, so balanced clock trees and an uncertainty margin are …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/clock-skew-jitter.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Clock skew and jitter · Computer Science">
+<meta property="og:description" content="Skew is the difference in arrival time of the same clock edge at two registers, jitter the variation of the period from cycle to cycle; skew in the direction of data flow relaxes setup and tightens hold, jitter always reduces the usable period, so balanced clock trees and an uncertainty margin are …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/clock-skew-jitter.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--timing">Timing</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Hardware · Timing</p>
+<h1>Clock skew and jitter</h1>
+<p class="summary">Skew is the difference in arrival time of the same clock edge at two registers, jitter the variation of the period from cycle to cycle; skew in the direction of data flow relaxes setup and tightens hold, jitter always reduces the usable period, so balanced clock trees and an uncertainty margin are built into timing analysis.</p>
+<p class="rel"><span>needs</span> <a href="setup-hold-time.html">Setup and hold constraints</a></p>
+<p class="rel"><span>see also</span> <a href="static-timing-analysis.html">Static timing analysis</a>, <a href="clock-gating.html">Clock gating and operand isolation</a>, <a href="metastability.html">Metastability and synchronizers</a></p>
+<p class="rel"><span>mentioned in</span> <a href="clock-gating.html">Clock gating and operand isolation</a></p>
+<details class="path"><summary>Learning path: 13 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li><li><a href="sr-latch.html">SR latch and D latch</a></li><li><a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></li><li><a href="digital-design-flow.html">Digital design flow and abstraction levels</a></li><li><a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a></li><li><a href="std-logic.html">std_logic: nine-valued logic and resolution</a></li><li><a href="vhdl-concurrent-assignments.html">Concurrent assignments: when–else and with–select</a></li><li><a href="vhdl-process.html">Processes and sequential statements</a></li><li><a href="sequential-logic.html">Flip-flops and registers in VHDL</a></li><li><a href="setup-hold-time.html">Setup and hold constraints</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org26847e6" class="outline-2">
+<h2 id="org26847e6">Definition</h2>
+<div class="outline-text-2" id="text-org26847e6">
+<p>
+For a path from <img class="m" src="m/d9a12797b2d99d554c3f46d03d5deb65336f573f.svg" alt="\(R_1\)" style="height:0.913em;vertical-align:-0.164em"> (clock at <img class="m" src="m/d591ee815055753cb76c023ffa674f0668db6f44.svg" alt="\(t_1\)" style="height:0.838em;vertical-align:-0.168em">) to <img class="m" src="m/fbb25d35aa78b5dcc60069953b6f54794bf6b6b1.svg" alt="\(R_2\)" style="height:0.913em;vertical-align:-0.164em"> (clock at <img class="m" src="m/a55d1b0e04f624d538415f210502154d56e006e8.svg" alt="\(t_2\)" style="height:0.838em;vertical-align:-0.168em">), skew <img class="m" src="m/2e715443e204ac77df8de01004db55f2202137e0.svg" alt="\(t_{sk}=t_2-t_1\)" style="height:0.838em;vertical-align:-0.168em">; jitter <img class="m" src="m/7055184ba246b19ccc2863ba7303834857370202.svg" alt="\(t_j\)" style="height:0.988em;vertical-align:-0.316em"> = maximum deviation of an edge from its ideal position. The <a href="setup-hold-time.html">constraints</a> become
+<div class="mb"><img class="m" src="m/c2e37a947c940860eb12173beeab0c4e090741f8.svg" alt="\[ T\ge t_{cq}+t_{max}+t_{su}-t_{sk}+2t_j,\qquad t_{cq}+t_{min}\ge t_h+t_{sk}. \]" style="width:28.006em"></div>
+</p>
+<ul class="org-ul">
+<li><b>positive skew</b> (<a href="lambda-expressions.html">capture</a> clock later): more time for setup, less margin for hold — too much skew causes hold violations no clock frequency can fix;</li>
+<li><b>negative skew</b>: the opposite;</li>
+<li><b>useful skew</b>: skew introduced on purpose to borrow time from a short stage for a long one.</li>
+</ul>
+<p>
+Clock distribution: H-trees and balanced buffer trees equalise wire lengths; FPGAs provide dedicated global clock networks with low skew.
+</p>
+</div>
+</div>
+<div id="outline-container-org5ddec51" class="outline-2">
+<h2 id="org5ddec51">Picture</h2>
+<div class="outline-text-2" id="text-org5ddec51">
+<figure class="fig"><img class="m" src="m/6d44cbeb0bc52956da1684b2be412e9520488e8b.svg" alt="figure" style="width:19.921em"><figcaption><span class="fl">Figure 1.</span> Clock skew: the same clock edge reaches registers <img class="m" src="m/d9a12797b2d99d554c3f46d03d5deb65336f573f.svg" alt="\(R_1\)" style="height:0.913em;vertical-align:-0.164em"> and <img class="m" src="m/fbb25d35aa78b5dcc60069953b6f54794bf6b6b1.svg" alt="\(R_2\)" style="height:0.913em;vertical-align:-0.164em"> at different times, separated by <img class="m" src="m/8ebe68397d837015f3f0c2efb4e15693084535b3.svg" alt="\(t_{sk}\)" style="height:0.838em;vertical-align:-0.168em">.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org2541f20" class="outline-2">
+<h2 id="org2541f20">Worked example</h2>
+<div class="outline-text-2" id="text-org2541f20">
+<p>
+<img class="m" src="m/6d4b923fac2bdabe7375661d8010b57b63a2bba8.svg" alt="\(t_{cq}=0.2\)" style="height:1.020em;vertical-align:-0.316em"> ns, <img class="m" src="m/cc2fda363327da60556a411f7185b94466b28710.svg" alt="\(t_{max}=3.5\)" style="height:0.871em;vertical-align:-0.165em"> ns, <img class="m" src="m/88d835f9fee5d0fc0cf45d4c9d48006fda58b10b.svg" alt="\(t_{su}=0.1\)" style="height:0.871em;vertical-align:-0.165em"> ns, <img class="m" src="m/6b2a2cd7500f424b7d1e7e13ecae1b772d91bed5.svg" alt="\(t_{min}=0.15\)" style="height:0.871em;vertical-align:-0.165em"> ns, <img class="m" src="m/5a2579476d744d43abb86328f8206843b3bd5e83.svg" alt="\(t_h=0.1\)" style="height:0.871em;vertical-align:-0.165em"> ns, jitter <img class="m" src="m/19f37e64cad3116c67ad6293107fa0bd249843b6.svg" alt="\(t_j=0.05\)" style="height:1.020em;vertical-align:-0.316em"> ns.
+</p>
+<ul class="org-ul">
+<li>Zero skew: <img class="m" src="m/f70e1cef7e23b7d3c801539ef00d9ebc8ec6f71a.svg" alt="\(T\ge0.2+3.5+0.1+0.1=3.9\)" style="height:0.898em;vertical-align:-0.153em"> ns, <img class="m" src="m/0a90d05c3cf4e5aa8606bd9258f37f69700fb681.svg" alt="\(f_{max}\approx256\)" style="height:0.974em;vertical-align:-0.214em"> MHz; hold: <img class="m" src="m/abc8f2f785521a63ad6b71fd7378bfa29400eded.svg" alt="\(0.2+0.15=0.35\ge0.1\)" style="height:0.855em;vertical-align:-0.145em"> ✓.</li>
+<li>Skew <img class="m" src="m/a3569c13d8928401aa3af523f2a7c7b431390d9b.svg" alt="\(+0.3\)" style="height:0.798em;vertical-align:-0.088em"> ns (capture later): <img class="m" src="m/12a689110b61c4331066bf97ccfadf18b51cfd64.svg" alt="\(T\ge3.6\)" style="height:0.898em;vertical-align:-0.153em"> ns (278 MHz) but hold needs <img class="m" src="m/4a923fe7742f3963c3e5793c09dd9b022938a54a.svg" alt="\(0.35\ge0.1+0.3=0.4\)" style="height:0.855em;vertical-align:-0.145em"> ✗: a hold violation that no clock frequency can fix — add a 0.05 ns+ buffer on the short path.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgaa61298" class="outline-2">
+<h2 id="orgaa61298">Intuition</h2>
+<div class="outline-text-2" id="text-orgaa61298">
+<p>
+Skew moves the finish line of a race; jitter makes it wobble. You can plan around a line that is moved, but you must leave margin for one that wobbles.
+</p>
+</div>
+</div>
+<div id="outline-container-org1dc0298" class="outline-2">
+<h2 id="org1dc0298">Pitfall</h2>
+<div class="outline-text-2" id="text-org1dc0298">
+<p>
+Gated or derived clocks add skew through their logic; that is why <a href="clock-gating.html">clock gating</a> uses dedicated cells and why generating clocks with ordinary logic is avoided.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="setup-hold-time.html"><span>← previous</span>Setup and hold constraints</a><a rel="next" href="gate-delay-model.html"><span>next →</span>Gate and wire delay models</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--timing.pdf" title="PDF manual">Timing</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

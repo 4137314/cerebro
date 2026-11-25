@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>State minimization · Computer Science</title>
+<meta name="description" content="Two states are equivalent when, for every input sequence, they produce the same output sequence; equivalent states can be merged without changing the behaviour; the minimal machine is found by partition refinement — split first by outputs, then repeatedly split any block whose states move, on some …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/state-minimization.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="State minimization · Computer Science">
+<meta property="og:description" content="Two states are equivalent when, for every input sequence, they produce the same output sequence; equivalent states can be merged without changing the behaviour; the minimal machine is found by partition refinement — split first by outputs, then repeatedly split any block whose states move, on some …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/state-minimization.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--sequential">Sequential</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Hardware · Sequential</p>
+<h1>State minimization</h1>
+<p class="summary">Two states are equivalent when, for every input sequence, they produce the same output sequence; equivalent states can be merged without changing the behaviour; the minimal machine is found by partition refinement — split first by outputs, then repeatedly split any block whose states move, on some input, into different blocks — until nothing changes.</p>
+<p class="rel"><span>needs</span> <a href="fsm-synthesis.html">Synthesis of finite-state machines</a></p>
+<p class="rel"><span>see also</span> <a href="fsm-state-encoding.html">State encoding of FSMs</a>, <a href="np-hard-optimization.html">Hard optimization problems and heuristics</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li><li><a href="sr-latch.html">SR latch and D latch</a></li><li><a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></li><li><a href="fsm-analysis.html">Analysis of synchronous sequential circuits</a></li><li><a href="fsm-synthesis.html">Synthesis of finite-state machines</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org8ea15a6" class="outline-2">
+<h2 id="org8ea15a6">Method</h2>
+<div class="outline-text-2" id="text-org8ea15a6">
+<ol class="org-ol">
+<li><img class="m" src="m/f3068e56594cbd96ec73ac757a52f5ce8e515de7.svg" alt="\(P_0\)" style="height:0.913em;vertical-align:-0.164em">: group the states with the same outputs for every input (same row of outputs in the table).</li>
+<li><img class="m" src="m/49c27781ce14510a7f48e7ea1dfe4d72d1491e5d.svg" alt="\(P_{k+1}\)" style="height:1.005em;vertical-align:-0.251em">: two states stay together only if, for every input, their next states lie in the same block of <img class="m" src="m/3cade6c1ac7f679e8fffa24560909aaab6440868.svg" alt="\(P_k\)" style="height:0.913em;vertical-align:-0.164em">.</li>
+<li>Stop when <img class="m" src="m/434a8b59fc036f92d551a76533248c6060b99d77.svg" alt="\(P_{k+1}=P_k\)" style="height:1.005em;vertical-align:-0.251em">: each block is one state of the minimal machine.</li>
+</ol>
+<p>
+Quick special case: two rows with identical outputs <b>and</b> identical next states are equivalent at once. Machines with different numbers of states can do exactly the same thing; the minimal one is unique up to renaming.
+</p>
+</div>
+</div>
+<div id="outline-container-org24c60f8" class="outline-2">
+<h2 id="org24c60f8">Example</h2>
+<div class="outline-text-2" id="text-org24c60f8">
+<p>
+Mealy machine, input <img class="m" src="m/c1cb305e0744a841c0171151eaf770796c623d6f.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, entries next state/output:
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">state</th>
+<th scope="col" class="org-left">x = 0</th>
+<th scope="col" class="org-left">x = 1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">A</td>
+<td class="org-left">A/0</td>
+<td class="org-left">B/0</td>
+</tr>
+
+<tr>
+<td class="org-left">B</td>
+<td class="org-left">C/0</td>
+<td class="org-left">B/0</td>
+</tr>
+
+<tr>
+<td class="org-left">C</td>
+<td class="org-left">A/0</td>
+<td class="org-left">D/1</td>
+</tr>
+
+<tr>
+<td class="org-left">D</td>
+<td class="org-left">C/0</td>
+<td class="org-left">B/0</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+<img class="m" src="m/051387fe0ac9e5afb04a1505a400667b9520d13f.svg" alt="\(P_0=\{A,B,D\}\{C\}\)" style="height:1.096em;vertical-align:-0.274em"> (C is the only one emitting 1). For <img class="m" src="m/9a0752da5b7c9ac35ea7fe82a5d424dd4da538c7.svg" alt="\(x=0\)" style="height:0.706em;vertical-align:-0.000em">: A→A (block 1), B→C (block 2), D→C (block 2): split, <img class="m" src="m/943541556d6faa4b7427c1ef7e2bbaa4f7a71397.svg" alt="\(P_1=\{A\}\{B,D\}\{C\}\)" style="height:1.096em;vertical-align:-0.274em">. B and D: <img class="m" src="m/9a0752da5b7c9ac35ea7fe82a5d424dd4da538c7.svg" alt="\(x=0\)" style="height:0.706em;vertical-align:-0.000em">→C, C; <img class="m" src="m/4eb7bc30320be020fecb2a7447ffcd23f5a64376.svg" alt="\(x=1\)" style="height:0.706em;vertical-align:-0.000em">→B, B: same blocks, <img class="m" src="m/a4c937df1dc1ee4a292afbd61a7d766604d44130.svg" alt="\(P_2=P_1\)" style="height:0.913em;vertical-align:-0.164em">. D is merged into B: three states, <img class="m" src="m/c1ee6038f97ecc45ecfa3a76c69938be52bd91b3.svg" alt="\(A\xrightarrow{1}B\xrightarrow{0}C\xrightarrow{1/1}B\)" style="height:1.401em;vertical-align:-0.000em"> — a 101 detector with overlap.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd87153b" class="outline-2">
+<h2 id="orgd87153b">Intuition</h2>
+<div class="outline-text-2" id="text-orgd87153b">
+<p>
+States that no experiment can tell apart are the same state with two names.
+</p>
+</div>
+</div>
+<div id="outline-container-org74b875c" class="outline-2">
+<h2 id="org74b875c">Pitfall</h2>
+<div class="outline-text-2" id="text-org74b875c">
+<p>
+With don't-cares in the table (incompletely specified machines) equivalence is no longer transitive and the problem becomes hard; also, the minimal number of states is not always the cheapest circuit — a few extra states (one-hot, or an output-decoded encoding) can shrink the logic.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="register-transfer-buses.html"><span>← previous</span>Register transfers: multiplexers, buses, tri-state</a><a rel="next" href="vending-machine-design.html"><span>next →</span>Worked design: a vending-machine controller</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--sequential.pdf" title="PDF manual">Sequential</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

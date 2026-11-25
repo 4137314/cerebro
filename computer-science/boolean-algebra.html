@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boolean algebra: axioms, theorems, complete operator sets · Computer Science</title>
+<meta name="description" content="On B=\{0,1\} with AND, OR, NOT, four pairs of axioms (identity, commutativity, distributivity, complement) imply every identity used to shrink circuits — absorption x+xy=x, adjacency xy+x\bar y=x, simplification x+\bar xy=x+y, consensus, De Morgan; each identity holds together with its dual, any on…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/boolean-algebra.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Boolean algebra: axioms, theorems, complete operator sets · Computer Science">
+<meta property="og:description" content="On B=\{0,1\} with AND, OR, NOT, four pairs of axioms (identity, commutativity, distributivity, complement) imply every identity used to shrink circuits — absorption x+xy=x, adjacency xy+x\bar y=x, simplification x+\bar xy=x+y, consensus, De Morgan; each identity holds together with its dual, any on…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/boolean-algebra.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--combinational">Combinational</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Hardware · Combinational</p>
+<h1>Boolean algebra: axioms, theorems, complete operator sets</h1>
+<p class="summary">On <img class="m" src="m/508b595c8b0c8212b20add3af862ceaee00435cd.svg" alt="\(B=\{0,1\}\)" style="height:1.096em;vertical-align:-0.274em"> with AND, OR, NOT, four pairs of axioms (identity, commutativity, distributivity, complement) imply every identity used to shrink circuits — absorption <img class="m" src="m/b91907b4623c5cd98f215fc9a17b18dd8c96e284.svg" alt="\(x+xy=x\)" style="height:0.852em;vertical-align:-0.213em">, adjacency <img class="m" src="m/8530c80fb1afe62fe227f52d0a67d7323e99aaf5.svg" alt="\(xy+x\bar y=x\)" style="height:0.852em;vertical-align:-0.213em">, simplification <img class="m" src="m/47180d14004783a4e6a29a946c29f5f47ce88fc7.svg" alt="\(x+\bar xy=x+y\)" style="height:0.852em;vertical-align:-0.213em">, consensus, De Morgan; each identity holds together with its dual, any one can be proved by perfect induction, and NAND alone (or NOR alone) is functionally complete.</p>
+<p class="rel"><span>unlocks</span> <a href="canonical-forms.html">Shannon expansion and canonical forms</a></p>
+<p class="rel"><span>see also</span> <a href="canonical-forms.html">Shannon expansion and canonical forms</a>, <a href="nand-nor-synthesis.html">NAND–NAND and NOR–NOR realizations</a>, <a href="karnaugh-maps.html">Karnaugh maps</a>, <a href="boolean-difference.html">Shannon cofactors and the Boolean difference</a></p>
+</header>
+<main class="note">
+<div id="outline-container-orgcd7b74f" class="outline-2">
+<h2 id="orgcd7b74f">Statement</h2>
+<div class="outline-text-2" id="text-orgcd7b74f">
+<p>
+A function <img class="m" src="m/3363a4dc905528c3f36286f7c72a76f9bb6485ed.svg" alt="\(f:B^n\to B\)" style="height:0.974em;vertical-align:-0.214em"> is given by its <b>truth table</b> (<img class="m" src="m/c26a7f26d15dab5c1c6e5096f2fb7c0c2fafc477.svg" alt="\(2^n\)" style="height:0.728em;vertical-align:-0.000em"> rows) or by an <b>expression</b>; a vector function <img class="m" src="m/77d716fe07a77daf4241c69edc1ede0f0b07ec9f.svg" alt="\(F:B^n\to B^m\)" style="height:0.749em;vertical-align:-0.000em"> is <img class="m" src="m/5f2d4f790b418da9d600db34c8fe8eb825040aa9.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em"> scalar functions of the same inputs. AND binds tighter than OR: <img class="m" src="m/3bad64dbb46f02b984f3f2fe63616af88600e353.svg" alt="\(ab+\bar bc=(ab)+(\bar bc)\)" style="height:1.185em;vertical-align:-0.273em">.
+</p>
+
+<p>
+Axioms (each with its dual, obtained by swapping <img class="m" src="m/20f1a273b53b861a7eec6393bac4c371e56773d2.svg" alt="\(+\leftrightarrow\cdot\)" style="height:0.731em;vertical-align:-0.088em"> and <img class="m" src="m/84e0aa74125f1b3d7601811d7ba5e2dc69778c5c.svg" alt="\(0\leftrightarrow1\)" style="height:0.706em;vertical-align:-0.000em">):
+</p>
+<ul class="org-ul">
+<li>identity <img class="m" src="m/fffa786de1c3cdece3d52a9c9a0837f7d0675f9e.svg" alt="\(x+0=x\)" style="height:0.798em;vertical-align:-0.088em">, <img class="m" src="m/fd12fe3524047dd376f3f0b16d91a9acd06817d4.svg" alt="\(x\cdot1=x\)" style="height:0.706em;vertical-align:-0.000em">;  commutativity <img class="m" src="m/7d345cf8790b075cf10a8942174e161f10d3f18e.svg" alt="\(x+y=y+x\)" style="height:0.852em;vertical-align:-0.213em">, <img class="m" src="m/41048017c58e6f6dfe11ad7aec22d430d6b80c18.svg" alt="\(xy=yx\)" style="height:0.685em;vertical-align:-0.212em">;</li>
+<li>distributivity <img class="m" src="m/96c611226502f63c0b392e59e5b41421b32d7e95.svg" alt="\(x(y+z)=xy+xz\)" style="height:1.096em;vertical-align:-0.274em"> <b>and</b> <img class="m" src="m/fbbe78f5238de6bf8112b36056b8377cd7fef5cc.svg" alt="\(x+yz=(x+y)(x+z)\)" style="height:1.096em;vertical-align:-0.274em"> (the second one has no counterpart in ordinary arithmetic);</li>
+<li>complement <img class="m" src="m/ff222d68483a05d6e4b4b6edb24750231ed0711e.svg" alt="\(x+\bar x=1\)" style="height:0.798em;vertical-align:-0.088em">, <img class="m" src="m/4e7c8fc441e87b45f17267af74faa83214a2dada.svg" alt="\(x\bar x=0\)" style="height:0.706em;vertical-align:-0.000em">.</li>
+</ul>
+
+<p>
+Theorems:
+</p>
+<ul class="org-ul">
+<li>null element <img class="m" src="m/732e74cd64a056064bc03331392d3d9e251aafef.svg" alt="\(x+1=1\)" style="height:0.798em;vertical-align:-0.088em">, <img class="m" src="m/17b69a5d62d48fca62a60d321939a7dac588ce61.svg" alt="\(x\cdot0=0\)" style="height:0.706em;vertical-align:-0.000em">;  idempotence <img class="m" src="m/e18cb534b5fb7681fed583b8207f545e35b4c19d.svg" alt="\(x+x=x\)" style="height:0.731em;vertical-align:-0.088em">, <img class="m" src="m/2d7491556c38c2a34bf321ba563b96230498eadf.svg" alt="\(xx=x\)" style="height:0.472em;vertical-align:-0.000em">;  involution <img class="m" src="m/818c7da4f0bcc5c4bb63052518bad3b271d430ba.svg" alt="\(\bar{\bar x}=x\)" style="height:0.773em;vertical-align:-0.000em">;  associativity;</li>
+<li><b>absorption</b> <img class="m" src="m/b91907b4623c5cd98f215fc9a17b18dd8c96e284.svg" alt="\(x+xy=x\)" style="height:0.852em;vertical-align:-0.213em">, <img class="m" src="m/a020afa96ebacf877010382acbd8689103645993.svg" alt="\(x(x+y)=x\)" style="height:1.096em;vertical-align:-0.274em">;</li>
+<li><b>adjacency</b> <img class="m" src="m/8530c80fb1afe62fe227f52d0a67d7323e99aaf5.svg" alt="\(xy+x\bar y=x\)" style="height:0.852em;vertical-align:-0.213em">, <img class="m" src="m/a0d7f9aa7f3694586636288dbd68e21a32dd2c1e.svg" alt="\((x+y)(x+\bar y)=x\)" style="height:1.096em;vertical-align:-0.274em"> — the rule behind every <a href="karnaugh-maps.html">Karnaugh</a> group;</li>
+<li><b>simplification</b> <img class="m" src="m/47180d14004783a4e6a29a946c29f5f47ce88fc7.svg" alt="\(x+\bar xy=x+y\)" style="height:0.852em;vertical-align:-0.213em">, <img class="m" src="m/065c6185cf033cedbead80f8e91476476a4f34c5.svg" alt="\(x(\bar x+y)=xy\)" style="height:1.096em;vertical-align:-0.274em">;</li>
+<li><b>consensus</b> <img class="m" src="m/f9aec5fdaa98b70b5e3dfd35e92fd239513dbf0c.svg" alt="\(xy+\bar xz+yz=xy+\bar xz\)" style="height:0.852em;vertical-align:-0.213em"> — the term <img class="m" src="m/f186bdbb11e5cf4c08627a6691c9bbbb680f5ff6.svg" alt="\(yz\)" style="height:0.685em;vertical-align:-0.212em"> is redundant for the function but not for <a href="logic-hazards.html">hazards</a>;</li>
+<li><b>De Morgan</b> <img class="m" src="m/1b025d19c9ca7a235bd402555e5706a44dd8bf0c.svg" alt="\(\overline{x+y}=\bar x\bar y\)" style="height:1.072em;vertical-align:-0.214em">, <img class="m" src="m/bfea37fb61f7587be516f541e81e3b09fdd69529.svg" alt="\(\overline{xy}=\bar x+\bar y\)" style="height:0.904em;vertical-align:-0.217em"> (also for <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> variables).</li>
+</ul>
+<p>
+Derived operators: NAND <img class="m" src="m/a76c7aa486fd624a73488c3aca62dd42cb9422ad.svg" alt="\(\overline{xy}\)" style="height:0.904em;vertical-align:-0.217em">, NOR <img class="m" src="m/c98d86fa8e20449e41b1f59b70f1d1c97984bb52.svg" alt="\(\overline{x+y}\)" style="height:1.072em;vertical-align:-0.214em">, XOR <img class="m" src="m/c683654e0abae4fbb3b326bc26486470080a5043.svg" alt="\(x\oplus y=x\bar y+\bar xy\)" style="height:0.852em;vertical-align:-0.213em"> (1 when the inputs differ), XNOR <img class="m" src="m/88029e9b1a3e9274d04cd8f3fb895c4a9697ad6b.svg" alt="\(\overline{x\oplus y}=xy+\bar x\bar y\)" style="height:1.072em;vertical-align:-0.214em"> (equality).
+</p>
+</div>
+</div>
+<div id="outline-container-org8582f2c" class="outline-2">
+<h2 id="org8582f2c">Derivation</h2>
+<div class="outline-text-2" id="text-org8582f2c">
+<p>
+Absorption from the axioms: <img class="m" src="m/0875a81d1a2d61b2221bf30879fb0f8c5d539993.svg" alt="\(x+xy=x\cdot1+xy=x(1+y)=x\cdot1=x\)" style="height:1.096em;vertical-align:-0.274em">.
+Simplification: <img class="m" src="m/6fc11e964588b9349e6c473d78a480c3db7f4536.svg" alt="\(x+\bar xy=(x+\bar x)(x+y)=1\cdot(x+y)=x+y\)" style="height:1.096em;vertical-align:-0.274em"> (second distributive law).
+Consensus: <img class="m" src="m/7027d4e9bc8bbeabe8dcfcc552289e832c6ae1b0.svg" alt="\(yz=yz(x+\bar x)=xyz+\bar xyz\)" style="height:1.096em;vertical-align:-0.274em">; the first term is absorbed by <img class="m" src="m/f318dd0f47abf95440a157ce72330f86a787c543.svg" alt="\(xy\)" style="height:0.685em;vertical-align:-0.212em">, the second by <img class="m" src="m/6d493afe69072608f858d1a92e7f5e4012a9d7c8.svg" alt="\(\bar xz\)" style="height:0.622em;vertical-align:-0.000em">.
+<b>Perfect induction</b>: since <img class="m" src="m/162db08c9365f3351d5f83ffcbe130fbba088eb4.svg" alt="\(B^n\)" style="height:0.749em;vertical-align:-0.000em"> is finite, an identity is proved by comparing the two truth tables row by row.
+</p>
+
+<p>
+Completeness: every function has a <a href="canonical-forms.html">canonical form</a> in AND, OR, NOT, so <img class="m" src="m/14bf4ff9f76633db53f5cdd6a2ecc7bde55f9f9d.svg" alt="\(\{\)" style="height:1.096em;vertical-align:-0.274em">AND, OR, NOT<img class="m" src="m/3382b516c80bc07752e71bc9894dfc03d292cf40.svg" alt="\(\}\)" style="height:1.096em;vertical-align:-0.274em"> is complete. By De Morgan <img class="m" src="m/d586643d2458a5634f4952eb35be9c611eade660.svg" alt="\(x+y=\overline{\bar x\,\bar y}\)" style="height:1.054em;vertical-align:-0.211em">, so <img class="m" src="m/14bf4ff9f76633db53f5cdd6a2ecc7bde55f9f9d.svg" alt="\(\{\)" style="height:1.096em;vertical-align:-0.274em">AND, NOT<img class="m" src="m/3382b516c80bc07752e71bc9894dfc03d292cf40.svg" alt="\(\}\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/14bf4ff9f76633db53f5cdd6a2ecc7bde55f9f9d.svg" alt="\(\{\)" style="height:1.096em;vertical-align:-0.274em">OR, NOT<img class="m" src="m/3382b516c80bc07752e71bc9894dfc03d292cf40.svg" alt="\(\}\)" style="height:1.096em;vertical-align:-0.274em"> are complete too. NAND alone: <img class="m" src="m/12480565cf7d5cf331556c4c6e81705f7a801660.svg" alt="\(\bar x=\overline{xx}\)" style="height:0.691em;vertical-align:-0.000em">, <img class="m" src="m/7c78e07b59e583562c42edd656ea776dd9bc92f6.svg" alt="\(xy=\overline{\overline{xy}}\)" style="height:1.123em;vertical-align:-0.213em">, <img class="m" src="m/d586643d2458a5634f4952eb35be9c611eade660.svg" alt="\(x+y=\overline{\bar x\,\bar y}\)" style="height:1.054em;vertical-align:-0.211em">; dually NOR alone. Also <img class="m" src="m/14bf4ff9f76633db53f5cdd6a2ecc7bde55f9f9d.svg" alt="\(\{\)" style="height:1.096em;vertical-align:-0.274em">XOR, AND<img class="m" src="m/3382b516c80bc07752e71bc9894dfc03d292cf40.svg" alt="\(\}\)" style="height:1.096em;vertical-align:-0.274em"> with the constant 1 (<img class="m" src="m/1d3d4da4d85f6f0984a72dc48ab71a79aa692e01.svg" alt="\(\bar x=x\oplus1\)" style="height:0.798em;vertical-align:-0.088em">).
+</p>
+</div>
+</div>
+<div id="outline-container-org3d41301" class="outline-2">
+<h2 id="org3d41301">Example</h2>
+<div class="outline-text-2" id="text-org3d41301">
+<p>
+Specification → function: lower the awning (<img class="m" src="m/690dabd7d393e502bfc0b1e75ceec96136946597.svg" alt="\(t=1\)" style="height:0.706em;vertical-align:-0.000em">) if there is sun (<img class="m" src="m/a6b3b959e1474b87242b0106c5fd9e3d5416e924.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em">) or the button is pressed (<img class="m" src="m/b89f22107378b842f1c34383ec5fd8b764c4d3aa.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em">), unless there is too much wind (<img class="m" src="m/f19d00b567f03ea93981f37f632ec605b342d3f5.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em">): <img class="m" src="m/077b8dfc8bdf282bf9124d879d7a3e799c10c0c1.svg" alt="\(t=\bar v\,(s+c)\)" style="height:1.096em;vertical-align:-0.274em">. Seat-belt light: <img class="m" src="m/b82ba2bc5fc2e32ec0b023c961435d4f16b20514.svg" alt="\(l=q\,\bar c\)" style="height:0.974em;vertical-align:-0.214em"> (dashboard on, belt not fastened).
+</p>
+
+<p>
+Simplify <img class="m" src="m/4de8893e7c71fe1d2756ecaedb67c8a1725e48fb.svg" alt="\(f=\bar a(\bar b+\bar c)+c(a+\bar b)\)" style="height:1.185em;vertical-align:-0.273em">:
+<div class="mb"><img class="m" src="m/c666e29d83efe0583c8a7b6fa3b325bcc0c6bac9.svg" alt="\[ f=\bar a\bar b+\bar a\bar c+ac+\bar bc=\bar a\bar b+\bar a\bar c+ac \]" style="width:17.532em"></div>
+(<img class="m" src="m/396a3a78d32f680acaa0251b171997a9ceba3989.svg" alt="\(\bar bc\)" style="height:0.911em;vertical-align:-0.000em"> is the consensus of <img class="m" src="m/45120618dc140df1c0e417a50bc254ecf80c5d00.svg" alt="\(\bar a\bar b\)" style="height:0.911em;vertical-align:-0.000em"> and <img class="m" src="m/67227f7d515355d2911f9b196c54d6beb6d97ecb.svg" alt="\(ac\)" style="height:0.472em;vertical-align:-0.000em"> on <img class="m" src="m/36ad57d0b9b05e12447762c553bda3a072bc992d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">): 6 literals instead of 8.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbabb6a2" class="outline-2">
+<h2 id="orgbabb6a2">Intuition</h2>
+<div class="outline-text-2" id="text-orgbabb6a2">
+<p>
+Every rule says "these two circuits compute the same table"; algebra moves between them, the truth table is the referee.
+</p>
+</div>
+</div>
+<div id="outline-container-org5672acf" class="outline-2">
+<h2 id="org5672acf">Pitfall</h2>
+<div class="outline-text-2" id="text-org5672acf">
+<p>
+<img class="m" src="m/5e68607a778f9504aff2069c763850628bf66f0e.svg" alt="\(x+yz\ne(x+y)z\)" style="height:1.096em;vertical-align:-0.274em">: the second distributive law needs the brackets on both sums, <img class="m" src="m/6339234d265758079068f63b819dcfd7c2280d58.svg" alt="\((x+y)(x+z)\)" style="height:1.096em;vertical-align:-0.274em">. And De Morgan negates the operator <b>and</b> every operand: <img class="m" src="m/7d4c4e0d68f089629ecaf6fb1b915c11d03b062c.svg" alt="\(\overline{a+\bar bc}=\bar a(b+\bar c)\)" style="height:1.405em;vertical-align:-0.281em">, not <img class="m" src="m/26788d8aec8a4d30eeaeff4ef44e100ba33298ca.svg" alt="\(\bar a+b\bar c\)" style="height:0.852em;vertical-align:-0.094em">.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="observer-mvc.html"><span>← previous</span>Observer pattern and model–view–controller</a><a rel="next" href="canonical-forms.html"><span>next →</span>Shannon expansion and canonical forms</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--combinational.pdf" title="PDF manual">Combinational</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

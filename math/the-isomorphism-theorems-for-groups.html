@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The isomorphism theorems for groups · Mathematics</title>
+<meta name="description" content="The canonical factorisation of a map says every function is a quotient followed by an injection. A homomorphism is a map that respects the operation, so its factorisation must respect it too – and the equivalence relation involved is the one whose classes are the cosets of the kernel. The three the…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-isomorphism-theorems-for-groups.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The isomorphism theorems for groups · Mathematics">
+<meta property="og:description" content="The canonical factorisation of a map says every function is a quotient followed by an injection. A homomorphism is a map that respects the operation, so its factorisation must respect it too – and the equivalence relation involved is the one whose classes are the cosets of the kernel. The three the…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-isomorphism-theorems-for-groups.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--group-theory">Group Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Algebra · Group Theory</p>
+<h1>The isomorphism theorems for groups</h1>
+<p class="summary">The canonical factorisation of a map says every function is a quotient followed by an injection. A <a href="group-homomorphism.html">homomorphism</a> is a map that respects the operation, so its factorisation must respect it too &#x2013; and the equivalence relation involved is the one whose classes are the cosets of the kernel. The three theorems below are that observation, plus the two standard ways of comparing quotients.</p>
+<p class="rel"><span>needs</span> <a href="group-homomorphism.html">Group homomorphism</a>, <a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a>, <a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a>, <a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></p>
+<p class="rel"><span>unlocks</span> <a href="cauchys-theorem-and-the-sylow-theorems.html">Cauchy's theorem and the Sylow theorems</a>, <a href="composition-series-jordan-holder-and-solvable-groups.html">Composition series, Jordan-Holder and solvable groups</a>, <a href="direct-and-semidirect-products.html">Direct and semidirect products</a>, <a href="free-groups-and-presentations.html">Free groups and presentations</a>, <a href="the-order-of-an-element-and-cyclic-groups.html">The order of an element and cyclic groups</a>, <a href="the-symmetric-group-and-the-sign-of-a-permutation.html">The symmetric group and the sign of a permutation</a>, <a href="rings-ideals-and-the-quotient-ring.html">Rings, ideals and the quotient ring</a></p>
+<p class="rel"><span>mentioned in</span> <a href="algebra.html">Algebra</a>, <a href="group-theory.html">Group theory</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li></ol></details>
+</header>
+<main class="note">
+<div class="proposition" id="org8dd941b">
+<p>
+The image <img class="m" src="m/e1049ac23baa033acb40628ffab530f92c81bb57.svg" alt="\(\varphi(G)\)" style="height:1.096em;vertical-align:-0.274em"> of a homomorphism <img class="m" src="m/a9f6e3ee90549568a36a4bff653e4fd741d4d97a.svg" alt="\(\varphi \colon G \to H\)" style="height:0.962em;vertical-align:-0.212em"> is
+a subgroup of <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em">, and the preimage of a subgroup of <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> is a
+subgroup of <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">, normal if the subgroup is.
+</p>
+
+</div>
+
+<div class="proof" id="org245bb36">
+<p>
+The image contains <img class="m" src="m/6cc07343cd542d15f6151f03b8ccdccfd7bfb3be.svg" alt="\(\varphi(e) = e\)" style="height:1.096em;vertical-align:-0.274em"> and satisfies
+<img class="m" src="m/05c192380fd6a18158d4044f84ce4244e42c3277.svg" alt="\(\varphi(a)\varphi(b)^{-1} = \varphi(ab^{-1})\)" style="height:1.166em;vertical-align:-0.268em">, so the subgroup
+criterion applies. For <img class="m" src="m/d1852aad45fa6c165527c91887207368a6aa1b2c.svg" alt="\(K \le H\)" style="height:0.898em;vertical-align:-0.153em">, the preimage contains <img class="m" src="m/09798e3cb5ef8291c7239dd012807e66ef0eccaf.svg" alt="\(e\)" style="height:0.472em;vertical-align:-0.000em"> and
+<img class="m" src="m/344cb0a3c55af8ab6e3262e7b50a00ea8ac51d31.svg" alt="\(a, b \in \varphi^{-1}(K)\)" style="height:1.166em;vertical-align:-0.268em"> gives
+<img class="m" src="m/7676b78955894120fbe9b773a63b8d2652f18bbd.svg" alt="\(\varphi(ab^{-1}) = \varphi(a)\varphi(b)^{-1} \in K\)" style="height:1.166em;vertical-align:-0.268em">. If <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> is
+normal in <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/fbd6e00050c96ef86234728de85296cbdeb9e913.svg" alt="\(a \in \varphi^{-1}(K)\)" style="height:1.166em;vertical-align:-0.268em">, <img class="m" src="m/82faec96fceff7f2dac4c374cfef1d25104886db.svg" alt="\(g \in G\)" style="height:0.962em;vertical-align:-0.212em">, then
+<img class="m" src="m/027b3a1f866d9937c2623b53cf87a48b70eb0ab6.svg" alt="\(\varphi(gag^{-1}) = \varphi(g)\varphi(a)\varphi(g)^{-1} \in K\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org4957b38">
+<p>
+Let <img class="m" src="m/a9f6e3ee90549568a36a4bff653e4fd741d4d97a.svg" alt="\(\varphi \colon G \to H\)" style="height:0.962em;vertical-align:-0.212em"> be a homomorphism. Then
+<img class="m" src="m/5c0261413214f8b869bd47b97c8260fc0e7ccb89.svg" alt="\(G/\ker\varphi \iso \varphi(G)\)" style="height:1.096em;vertical-align:-0.274em">, the isomorphism being
+<img class="m" src="m/77f6748c9589762db762e2f1169c575379214dea.svg" alt="\(a \ker\varphi \mapsto \varphi(a)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org38ab7b7">
+<p>
+Put <img class="m" src="m/cbc5ce856f6d1aa2ff2ee449e64b365cb70e9753.svg" alt="\(N = \ker\varphi\)" style="height:0.974em;vertical-align:-0.214em">, normal by the earlier proposition, so <img class="m" src="m/c3b38b79f8c68712dc62afb575a8c676210d0203.svg" alt="\(G/N\)" style="height:1.096em;vertical-align:-0.274em">
+is a group. The cosets of <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> are exactly the fibres of <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">:
+<img class="m" src="m/abbaf63cc76b7d31aa5ee0fbbe346a7bb3ea1044.svg" alt="\(aN = bN\)" style="height:0.761em;vertical-align:-0.000em"> iff <img class="m" src="m/130c780cb089a57a34fe6471fb134473260d27be.svg" alt="\(a^{-1}b \in N\)" style="height:0.935em;vertical-align:-0.047em"> iff <img class="m" src="m/16ec397d359e98282e88975d02d4d2d1990500e0.svg" alt="\(\varphi(a) = \varphi(b)\)" style="height:1.096em;vertical-align:-0.274em">.
+Hence <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> is constant on cosets and the induced map
+<img class="m" src="m/428cedd1f966e8a37a8c3aefc67283830450125b.svg" alt="\(\bar{\varphi}(aN) = \varphi(a)\)" style="height:1.096em;vertical-align:-0.274em"> is well defined and injective, by the
+canonical factorisation; it is surjective onto <img class="m" src="m/e1049ac23baa033acb40628ffab530f92c81bb57.svg" alt="\(\varphi(G)\)" style="height:1.096em;vertical-align:-0.274em"> by
+construction. It is a homomorphism because
+<img class="m" src="m/0b6bd5a3db4399e1f2489442bfeb2709bca302a0.svg" alt="\(\bar{\varphi}(aN \cdot bN) = \bar{\varphi}(abN) = \varphi(ab) = \varphi(a)\varphi(b)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgf842e7c">
+<p>
+Let <img class="m" src="m/e6240680439cedf4d545e91634fbb7d91deadc06.svg" alt="\(H \le G\)" style="height:0.898em;vertical-align:-0.153em"> and <img class="m" src="m/9e3c8c089919e0f80674755c6796acf42aae38ca.svg" alt="\(N \normalin G\)" style="height:0.899em;vertical-align:-0.153em">. Then <img class="m" src="m/a64dcb9a4d2e335e895f2237877fe58974511320.svg" alt="\(HN = \setst{hn}{h \in H, n \in N}\)" style="height:1.096em;vertical-align:-0.274em">
+is a subgroup of <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/512064a707174ffdfc6021287bf8ead77e9b0948.svg" alt="\(H \cap N \normalin H\)" style="height:0.899em;vertical-align:-0.153em">, and
+<img class="m" src="m/fb70b22ebdc02aa6a1a2d8b4731756846fbbe6b4.svg" alt="\(HN/N \iso H/(H \cap N)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org871d7d5">
+<p>
+<img class="m" src="m/96f95e1a937ad0ef69b2698882ff6bd8314894f7.svg" alt="\(HN\)" style="height:0.749em;vertical-align:-0.000em"> is a subgroup: for <img class="m" src="m/8a35dc28b4b86f710446f91c530d867dd6be6ecd.svg" alt="\(h n, h'n' \in HN\)" style="height:1.037em;vertical-align:-0.218em">,
+<img class="m" src="m/81705b24aff1e612e98ae97dcba9e5d655f06d3a.svg" alt="\((hn)(h'n')^{-1} = h (n n'^{-1}) h'^{-1} = (h h'^{-1}) \bigl(h' (n n'^{-1}) h'^{-1}\bigr)\)" style="height:1.315em;vertical-align:-0.381em">,
+and the second factor lies in <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> by normality. Also <img class="m" src="m/74e034e1faacea157d1f332aae49b0f7e4692c73.svg" alt="\(N \normalin HN\)" style="height:0.899em;vertical-align:-0.153em">,
+since <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> is normal in all of <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+<p>
+Let <img class="m" src="m/f66e964bc266e2050b7188ac7b204c504544b355.svg" alt="\(\psi \colon H \to HN/N\)" style="height:1.096em;vertical-align:-0.274em"> be the restriction to <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> of the
+projection <img class="m" src="m/07c0b22767d1344fc503aa46e32bde4de9dea86a.svg" alt="\(HN \to HN/N\)" style="height:1.096em;vertical-align:-0.274em">. It is a homomorphism; it is surjective
+because <img class="m" src="m/4642472066a7459872e492b29ec45c802d360435.svg" alt="\(hnN = hN = \psi(h)\)" style="height:1.096em;vertical-align:-0.274em">; and <img class="m" src="m/4a41facb21262e7f463c6185bba192dff8a041aa.svg" alt="\(\psi(h) = N\)" style="height:1.096em;vertical-align:-0.274em"> means <img class="m" src="m/59c31cef4114f494b86a0a400831620e63d2c53a.svg" alt="\(h \in N\)" style="height:0.804em;vertical-align:-0.040em">,
+so <img class="m" src="m/bcdabcd2edcc4a4633447838a1359d7e50454986.svg" alt="\(\ker\psi = H \cap N\)" style="height:0.974em;vertical-align:-0.214em">, which is therefore normal in <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em">. The
+first isomorphism theorem gives <img class="m" src="m/4ec8579b48a775f4beb40f2b7c1d622eae70efe2.svg" alt="\(H/(H \cap N) \iso HN/N\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org6f3bcda">
+<p>
+Let <img class="m" src="m/9e3c8c089919e0f80674755c6796acf42aae38ca.svg" alt="\(N \normalin G\)" style="height:0.899em;vertical-align:-0.153em"> and <img class="m" src="m/be72ab9055c53409e7718ffb099a65c3583b21b6.svg" alt="\(K \normalin G\)" style="height:0.899em;vertical-align:-0.153em"> with <img class="m" src="m/984eff92edb9bdf2c231ad3fd38f220b6853b551.svg" alt="\(N \subseteq K\)" style="height:0.898em;vertical-align:-0.153em">. Then
+<img class="m" src="m/fc1ca291fba5c72a3ffb66de31a259eb1c5294b2.svg" alt="\(K/N \normalin G/N\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/5df55be797a553751eb1e28e1fa5dc0f087292e7.svg" alt="\((G/N)/(K/N) \iso G/K\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgb3136fb">
+<p>
+Define <img class="m" src="m/07542f354572c252aa80690f8e2f1362ca6f9a4a.svg" alt="\(\varphi \colon G/N \to G/K\)" style="height:1.096em;vertical-align:-0.274em"> by <img class="m" src="m/a9e24dae1b6d573c91b69dd5c9fadb6536b02ac2.svg" alt="\(\varphi(aN) = aK\)" style="height:1.096em;vertical-align:-0.274em">. It is
+well defined: <img class="m" src="m/abbaf63cc76b7d31aa5ee0fbbe346a7bb3ea1044.svg" alt="\(aN = bN\)" style="height:0.761em;vertical-align:-0.000em"> gives <img class="m" src="m/164cca8174f4feed04b9266759c09db01add5a4e.svg" alt="\(a^{-1}b \in N \subseteq K\)" style="height:1.041em;vertical-align:-0.146em">, hence
+<img class="m" src="m/d2639d1aae8dd939f43749809ec286fc3651fdde.svg" alt="\(aK = bK\)" style="height:0.761em;vertical-align:-0.000em">. It is a surjective homomorphism, directly from the
+definitions of the two products. Its kernel is
+<img class="m" src="m/08827d5c011c2d91d160b1586b9da9fe7a03c798.svg" alt="\(\setst{aN}{a \in K} = K/N\)" style="height:1.096em;vertical-align:-0.274em">, which is therefore a normal subgroup of
+<img class="m" src="m/c3b38b79f8c68712dc62afb575a8c676210d0203.svg" alt="\(G/N\)" style="height:1.096em;vertical-align:-0.274em">, and the first isomorphism theorem gives the claim.
+</p>
+
+</div>
+
+<div class="remark" id="orgd501e6f">
+<p>
+The third theorem is the statement that quotienting twice is
+quotienting once, so a tower of normal subgroups can be analysed one
+step at a time &#x2013; the hypothesis under which "build a group out of
+simpler pieces" is a well-posed programme, and the reason simple groups
+(those with no proper non-trivial normal subgroup) are the atoms of it.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="normal-subgroups-and-the-quotient-group.html"><span>← previous</span>Normal subgroups and the quotient group</a><a rel="next" href="the-order-of-an-element-and-cyclic-groups.html"><span>next →</span>The order of an element and cyclic groups</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--group-theory.pdf" title="PDF manual">Group Theory</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

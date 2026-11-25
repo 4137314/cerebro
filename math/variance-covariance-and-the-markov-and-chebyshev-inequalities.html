@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Variance, covariance and the Markov and Chebyshev inequalities · Mathematics</title>
+<meta name="description" content="Two numbers summarise a law: where it sits and how far it spreads. The second is useful because of one inequality – a bound on the probability of a large deviation in terms of a moment – which is crude, universal and, applied to an average, already proves the law of large numbers.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/variance-covariance-and-the-markov-and-chebyshev-inequalities.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Variance, covariance and the Markov and Chebyshev inequalities · Mathematics">
+<meta property="og:description" content="Two numbers summarise a law: where it sits and how far it spreads. The second is useful because of one inequality – a bound on the probability of a large deviation in terms of a moment – which is crude, universal and, applied to an average, already proves the law of large numbers.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/variance-covariance-and-the-markov-and-chebyshev-inequalities.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-probability">Probability</a> / <a rel="up" href="index.html#a-probability--probability-theory">Probability Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Probability · Probability Theory</p>
+<h1>Variance, covariance and the Markov and Chebyshev inequalities</h1>
+<p class="summary">Two numbers summarise a law: where it sits and how far it spreads. The second is useful because of one inequality &#x2013; a bound on the probability of a large deviation in terms of a moment &#x2013; which is crude, universal and, applied to an average, already proves the law of large numbers.</p>
+<p class="rel"><span>needs</span> <a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a>, <a href="expectation-the-transfer-theorem-and-jensens-inequality.html">Expectation, the transfer theorem and Jensen's inequality</a>, <a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a></p>
+<p class="rel"><span>unlocks</span> <a href="conditional-expectation-as-an-orthogonal-projection.html">Conditional expectation as an orthogonal projection</a>, <a href="modes-of-convergence-and-the-borel-cantelli-lemmas.html">Modes of convergence and the Borel-Cantelli lemmas</a>, <a href="the-central-limit-theorem.html">The central limit theorem</a>, <a href="the-weak-and-strong-laws-of-large-numbers.html">The weak and strong laws of large numbers</a>, <a href="fisher-information-and-the-cramer-rao-bound.html">Fisher information and the Cramer-Rao bound</a>, <a href="least-squares-and-the-gauss-markov-theorem.html">Least squares and the Gauss-Markov theorem</a>, <a href="statistical-models-estimators-and-consistency.html">Statistical models, estimators and consistency</a>, <a href="flows-equilibria-and-linearisation.html">Flows, equilibria and linearisation</a></p>
+<p class="rel"><span>mentioned in</span> <a href="probability.html">Probability</a></p>
+<details class="path"><summary>Learning path: 58 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="convex-functions-and-the-second-derivative.html">Convex functions and the second derivative</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li><li><a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="the-baire-category-theorem.html">The Baire category theorem</a></li><li><a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></li><li><a href="convex-set.html">Convex set</a></li><li><a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a></li><li><a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a></li><li><a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a></li><li><a href="probability-spaces-conditioning-and-independence.html">Probability spaces, conditioning and independence</a></li><li><a href="random-variables-laws-and-distribution-functions.html">Random variables, laws and distribution functions</a></li><li><a href="expectation-the-transfer-theorem-and-jensens-inequality.html">Expectation, the transfer theorem and Jensen's inequality</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgc8b67f6">
+<p>
+For square-integrable <img class="m" src="m/e168b0a8572eaa6902d221aeca7b5440c3eec239.svg" alt="\(X, Y\)" style="height:0.962em;vertical-align:-0.212em">, the <i>variance</i> is
+<img class="m" src="m/f8581727b36e80a1fa75ada11cfd0d73d3ac2ffd.svg" alt="\(\Var(X) = \E[(X-\E[X])^{2}]\)" style="height:1.166em;vertical-align:-0.268em">, the <i>standard deviation</i> is
+<img class="m" src="m/7136bd53b83a745bff0add4eb927b0c95bacd4a6.svg" alt="\(\sqrt{\Var(X)}\)" style="height:1.359em;vertical-align:-0.340em">, and the <i>covariance</i> is
+<img class="m" src="m/381837956bd4c36d124ca0d826a17c3510ecb92d.svg" alt="\(\Cov(X,Y) = \E[(X-\E[X])(Y-\E[Y])]\)" style="height:1.096em;vertical-align:-0.274em">. They are <i>uncorrelated</i> if the
+covariance vanishes.
+</p>
+
+</div>
+
+<div class="proposition" id="org4261415">
+<p>
+<img class="m" src="m/3d055c093885eaa5db29f5ba4436adb6ada098cf.svg" alt="\(\Var(X) = \E[X^{2}]-\E[X]^{2}\)" style="height:1.166em;vertical-align:-0.268em"> and
+<img class="m" src="m/64096df28157b196867012b78a6de8d747c53412.svg" alt="\(\Cov(X,Y) = \E[XY]-\E[X]\E[Y]\)" style="height:1.096em;vertical-align:-0.274em">; <img class="m" src="m/4a666ad0da2be7175b14e0e749e4548619a9fea0.svg" alt="\(\Cov\)" style="height:0.749em;vertical-align:-0.000em"> is symmetric and bilinear;
+<img class="m" src="m/086c3c04410890ccd37ea0087e47458f4a4e5f48.svg" alt="\(\Var(aX+b) = a^{2}\Var(X)\)" style="height:1.166em;vertical-align:-0.268em">; and
+<img class="m" src="m/da7ecb0b56fac6f53d145aa0b64ef69790efcb63.svg" alt="\(\Var(X_{1}+\cdots+X_{n}) = \sum_{i}\Var(X_{i}) + 2\sum_{i&lt;j}\Cov(X_{i},X_{j})\)" style="height:1.300em;vertical-align:-0.481em">.
+</p>
+
+</div>
+
+<div class="proof" id="orge8ae774">
+<p>
+Expanding <img class="m" src="m/8a61d3428a691cf19a99087f90dc4a2ee2683776.svg" alt="\((X-\E[X])^{2}\)" style="height:1.166em;vertical-align:-0.268em"> and using linearity gives the first
+identity, and the same expansion gives the second. Bilinearity and
+symmetry follow from those of the product and linearity of expectation.
+For an affine change, <img class="m" src="m/53fef355f7dbae169c6f5d7fdb33282d9923f049.svg" alt="\(aX+b-\E[aX+b] = a(X-\E[X])\)" style="height:1.096em;vertical-align:-0.274em">, and squaring pulls
+out <img class="m" src="m/9a4909b7025d4f45f7762566470443ba4ab99b00.svg" alt="\(a^{2}\)" style="height:0.892em;vertical-align:-0.000em">. The last identity is the expansion of the square of a
+sum, with the diagonal terms giving variances.
+</p>
+
+</div>
+
+<div class="corollary" id="org856a978">
+<p>
+Independent square-integrable random variables are uncorrelated, so
+<img class="m" src="m/1695a8c098b82677e2e128e289f9141abc1d8071.svg" alt="\(\Var(X_{1}+\cdots+X_{n}) = \sum_{i}\Var(X_{i})\)" style="height:1.151em;vertical-align:-0.334em">. The converse fails.
+</p>
+
+</div>
+
+<div class="proof" id="org12765d5">
+<p>
+Independence gives <img class="m" src="m/8baabde267a1701fdfcc35e905be71f0e030ddb8.svg" alt="\(\E[X_{i}X_{j}] = \E[X_{i}]\E[X_{j}]\)" style="height:1.135em;vertical-align:-0.318em"> for
+<img class="m" src="m/31dfd5928d5dbacedbe17c7a4de8b3d624d479b8.svg" alt="\(i \ne j\)" style="height:0.974em;vertical-align:-0.214em">, hence <img class="m" src="m/0e3cf27cc9843e54433110015ff711858c5b9700.svg" alt="\(\Cov(X_{i},X_{j}) = 0\)" style="height:1.135em;vertical-align:-0.318em">, and the cross terms in the
+previous identity vanish.
+</p>
+
+</div>
+
+<div class="theorem" id="org62658dd">
+<p>
+Let <img class="m" src="m/66ee56800fdc95bd387eace5ee13ee5f882d36dc.svg" alt="\(X \ge 0\)" style="height:0.898em;vertical-align:-0.153em"> and <img class="m" src="m/b85172f77366842e683def45887fc9bad2f47530.svg" alt="\(a&gt;0\)" style="height:0.749em;vertical-align:-0.045em">. Then <img class="m" src="m/542f3e3dda6b8c5c96718b2648e104c2cbc249ad.svg" alt="\(\Prob(X \ge a) \le \E[X]/a\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgb7289c8">
+<p>
+Pointwise <img class="m" src="m/d1920e571e0354367edb1e3b3e49fbeecc53d56f.svg" alt="\(a\,\indicator_{\set{X\ge a}} \le X\)" style="height:1.139em;vertical-align:-0.387em">: where the indicator is
+<img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em"> this says <img class="m" src="m/cbb32782b64c2c35b178f9e1efa108f6b33f2f19.svg" alt="\(a \le X\)" style="height:0.898em;vertical-align:-0.153em">, and where it is <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> it says
+<img class="m" src="m/964fedcd48e63a5493f4991a7cd8d4cd1f4df65a.svg" alt="\(0 \le X\)" style="height:0.898em;vertical-align:-0.153em">. Taking expectations and using monotonicity and linearity,
+<img class="m" src="m/f5db6cd7ce1bb095d2a738f4edff93381b14bd59.svg" alt="\(a\,\Prob(X\ge a) \le \E[X]\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="corollary" id="org8769ddd">
+<p>
+For square-integrable <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/2cffdc597a54fae183dedb83e6fbd3d870b664ce.svg" alt="\(\eps&gt;0\)" style="height:0.749em;vertical-align:-0.045em">,
+<img class="m" src="m/9bcaf5e97ebe8c345c21a72774fd9010f8066730.svg" alt="\(\Prob(\abs{X-\E[X]}\ge\eps) \le \Var(X)/\eps^{2}\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgeb6d4ad">
+<p>
+Apply Markov's inequality to the non-negative variable
+<img class="m" src="m/8a61d3428a691cf19a99087f90dc4a2ee2683776.svg" alt="\((X-\E[X])^{2}\)" style="height:1.166em;vertical-align:-0.268em"> and the level <img class="m" src="m/19a3d40f46fc56ae71bfad6c75f7dd94a52d249f.svg" alt="\(\eps^{2}\)" style="height:0.892em;vertical-align:-0.000em">: the event
+<img class="m" src="m/91c183a7e99a70520cc2a9648d85ebc621b1133d.svg" alt="\(\abs{X-\E[X]}\ge\eps\)" style="height:1.096em;vertical-align:-0.274em"> is exactly <img class="m" src="m/7950d64a95c00f4dc8235dbea5342ede9a345a73.svg" alt="\((X-\E[X])^{2}\ge\eps^{2}\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgffff432">
+<p>
+<img class="m" src="m/498955e56cf316b75ddff43aa0ad391d56b03abd.svg" alt="\(\abs{\Cov(X,Y)} \le \sqrt{\Var(X)\Var(Y)}\)" style="height:1.359em;vertical-align:-0.340em">, with equality only if
+<img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/82d9b7c5c94f297586981fdbe7ca67b30095b73a.svg" alt="\(Y\)" style="height:0.749em;vertical-align:-0.000em"> are almost surely affinely related.
+</p>
+
+</div>
+
+<div class="proof" id="orgd06b38d">
+<p>
+Covariance is the inner product of <img class="m" src="m/f3b131d6a772188adab030e30e89617ec918342f.svg" alt="\(L^{2}\)" style="height:0.892em;vertical-align:-0.000em"> applied to the centred
+variables <img class="m" src="m/fdaf76951139172b70f51ca182bce4bddf7bade8.svg" alt="\(X-\E[X]\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/749ac580983159969853e845feb921bd11a281d6.svg" alt="\(Y-\E[Y]\)" style="height:1.096em;vertical-align:-0.274em">, and variance is the square of the
+corresponding norm; the inequality is Cauchy-Schwarz, and its equality
+case is that the two centred variables are proportional as elements of
+<img class="m" src="m/f3b131d6a772188adab030e30e89617ec918342f.svg" alt="\(L^{2}\)" style="height:0.892em;vertical-align:-0.000em">, that is almost surely.
+</p>
+
+</div>
+
+<div class="remark" id="org55a7944">
+<p>
+Markov's inequality is the whole of elementary concentration, and its
+crudeness is the point: it assumes nothing about the law, so the bound
+it gives is the one available before any modelling. Sharper bounds come
+from applying it to a better function &#x2013; to <img class="m" src="m/ceecca1a01e6ea44a373cfe6cdc64791abaac932.svg" alt="\(X^{2}\)" style="height:0.892em;vertical-align:-0.000em"> it is Chebyshev,
+to <img class="m" src="m/e3d402722ac0052735a0e04187cf986e94872711.svg" alt="\(e^{\lambda X}\)" style="height:0.930em;vertical-align:-0.000em"> it is the exponential bound underlying the theory
+of large deviations.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="expectation-the-transfer-theorem-and-jensens-inequality.html"><span>← previous</span>Expectation, the transfer theorem and Jensen's inequality</a><a rel="next" href="modes-of-convergence-and-the-borel-cantelli-lemmas.html"><span>next →</span>Modes of convergence and the Borel-Cantelli lemmas</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/probability--probability-theory.pdf" title="PDF manual">Probability Theory</a> · <a class="pdf" href="pdf/probability.pdf" title="PDF manual">Probability</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

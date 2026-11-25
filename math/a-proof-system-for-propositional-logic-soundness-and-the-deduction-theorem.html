@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A proof system for propositional logic: soundness and the deduction theorem · Mathematics</title>
+<meta name="description" content="Truth assignments say which formulas are true; they say nothing about what can be derived. Proof theory begins by writing down a derivation relation as a finite combinatorial object and then comparing the two notions. Soundness is the easy direction and is proved by induction on derivations; that i…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/a-proof-system-for-propositional-logic-soundness-and-the-deduction-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="A proof system for propositional logic: soundness and the deduction theorem · Mathematics">
+<meta property="og:description" content="Truth assignments say which formulas are true; they say nothing about what can be derived. Proof theory begins by writing down a derivation relation as a finite combinatorial object and then comparing the two notions. Soundness is the easy direction and is proved by induction on derivations; that i…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/a-proof-system-for-propositional-logic-soundness-and-the-deduction-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-foundations">Foundations</a> / <a rel="up" href="index.html#a-foundations--proof-theory">Proof Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Foundations · Proof Theory</p>
+<h1>A proof system for propositional logic: soundness and the deduction theorem</h1>
+<p class="summary">Truth assignments say which formulas <i>are</i> true; they say nothing about what can be <i>derived</i>. Proof theory begins by writing down a derivation relation as a finite combinatorial object and then comparing the two notions. Soundness is the easy direction and is proved by induction on derivations; that induction is the reason the axioms are chosen as schemes rather than as a list.</p>
+<p class="rel"><span>needs</span> <a href="propositional-logic-formulas-assignments-and-compactness.html">Propositional logic: formulas, assignments and compactness</a></p>
+<p class="rel"><span>unlocks</span> <a href="completeness-of-propositional-logic.html">Completeness of propositional logic</a></p>
+<p class="rel"><span>mentioned in</span> <a href="foundations.html">Foundations</a>, <a href="logic.html">Logic</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="propositional-logic-formulas-assignments-and-compactness.html">Propositional logic: formulas, assignments and compactness</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orga38c0c1">
+<p>
+Write <img class="m" src="m/4532170f02e36f3dce2cd1fe8589739c177f3c93.svg" alt="\(\varphi \to \psi\)" style="height:0.974em;vertical-align:-0.214em"> for <img class="m" src="m/3a848bfc5fc72b16622711a15d258ae3cae90853.svg" alt="\(\neg(\varphi\wedge\neg\psi)\)" style="height:1.096em;vertical-align:-0.274em">. The
+<i>axioms</i> are all formulas of the six shapes
+</p>
+<ol class="org-ol">
+<li><img class="m" src="m/e152d3a032cb816c965d3f3d9ef3a3fa4cf46d67.svg" alt="\(\varphi \to (\psi \to \varphi)\)" style="height:1.096em;vertical-align:-0.274em">;</li>
+<li><img class="m" src="m/1775ca68b129e2ea2458e24c0b7aae492244d47c.svg" alt="\(\bigl(\varphi\to(\psi\to\chi)\bigr) \to \bigl((\varphi\to\psi)\to(\varphi\to\chi)\bigr)\)" style="height:1.315em;vertical-align:-0.381em">;</li>
+<li><img class="m" src="m/aa659a06776cadabf580a0379bb21a0f88c3baca.svg" alt="\((\neg\psi\to\neg\varphi)\to(\varphi\to\psi)\)" style="height:1.096em;vertical-align:-0.274em">;</li>
+<li><img class="m" src="m/8a4326030395a20e54cff416f7ed0a0065ebdf4e.svg" alt="\((\varphi\wedge\psi)\to\varphi\)" style="height:1.096em;vertical-align:-0.274em">;</li>
+<li><img class="m" src="m/5f894ef85ccbe097e6db5a9158dcfc6ce418e99b.svg" alt="\((\varphi\wedge\psi)\to\psi\)" style="height:1.096em;vertical-align:-0.274em">;</li>
+<li><img class="m" src="m/807fc2868ce85dc08a0ad464cb6104fb8a583e2b.svg" alt="\(\varphi\to\bigl(\psi\to(\varphi\wedge\psi)\bigr)\)" style="height:1.315em;vertical-align:-0.381em">.</li>
+</ol>
+<p>
+A <i>derivation</i> of <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> from a set <img class="m" src="m/dd733a94278b0684a31c5e52904679e109eb8625.svg" alt="\(\Sigma\)" style="height:0.749em;vertical-align:-0.000em"> is a finite sequence
+of formulas ending in <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">, each of which is an axiom, a member
+of <img class="m" src="m/dd733a94278b0684a31c5e52904679e109eb8625.svg" alt="\(\Sigma\)" style="height:0.749em;vertical-align:-0.000em">, or follows from two earlier ones by <i>modus ponens</i> &#x2013; from
+<img class="m" src="m/2e2ecb9215e28dd6ef1bafe8e3c434e1e21c161c.svg" alt="\(\chi\)" style="height:0.685em;vertical-align:-0.212em"> and <img class="m" src="m/dd6bab878afb5cf08070f42b7a9ce17d6808eccf.svg" alt="\(\chi\to\theta\)" style="height:0.974em;vertical-align:-0.214em">, infer <img class="m" src="m/346f66be96cb38ba0680cfd40867d9bf1796163d.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em">. One writes
+<img class="m" src="m/91a245e4c33451f7e56c87533d572cdae389595a.svg" alt="\(\Sigma \vdash \varphi\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org8120217">
+<p>
+If <img class="m" src="m/91a245e4c33451f7e56c87533d572cdae389595a.svg" alt="\(\Sigma \vdash \varphi\)" style="height:0.974em;vertical-align:-0.214em"> then <img class="m" src="m/a50af1c5b3b3559ccd8842e1de960d11ce0b1148.svg" alt="\(\Sigma_{0} \vdash \varphi\)" style="height:0.974em;vertical-align:-0.214em"> for some
+finite <img class="m" src="m/f2931e640be287c12c72d16aacd1a08700ca6b0e.svg" alt="\(\Sigma_{0}\subseteq\Sigma\)" style="height:0.913em;vertical-align:-0.164em">; and <img class="m" src="m/78f415741f2991d6f7c7efb33456807d69e81f14.svg" alt="\(\vdash\)" style="height:0.761em;vertical-align:-0.000em"> is monotone:
+<img class="m" src="m/a77bbc732f8dd02b18f9de8e661e13eda254a00d.svg" alt="\(\Sigma\subseteq\Sigma'\)" style="height:0.973em;vertical-align:-0.146em"> and <img class="m" src="m/2f73fab8bc60dd9d5de684f3bb9c4ba2f305c769.svg" alt="\(\Sigma\vdash\varphi\)" style="height:0.974em;vertical-align:-0.214em"> imply
+<img class="m" src="m/518f9ab3c69c929e42965e065a5df2edd3997532.svg" alt="\(\Sigma'\vdash\varphi\)" style="height:1.037em;vertical-align:-0.218em">.
+</p>
+
+</div>
+
+<div class="proof" id="org5a80737">
+<p>
+A derivation is a finite sequence, so it mentions finitely many members
+of <img class="m" src="m/dd733a94278b0684a31c5e52904679e109eb8625.svg" alt="\(\Sigma\)" style="height:0.749em;vertical-align:-0.000em">; those form the required <img class="m" src="m/acc950cd3949879220335e4fda03dc42b4959e04.svg" alt="\(\Sigma_{0}\)" style="height:0.913em;vertical-align:-0.164em">, and the same
+sequence is a derivation from it. Monotonicity holds because every
+derivation from <img class="m" src="m/dd733a94278b0684a31c5e52904679e109eb8625.svg" alt="\(\Sigma\)" style="height:0.749em;vertical-align:-0.000em"> is literally a derivation from <img class="m" src="m/58a0e03f6273cc33e0ba55f2c1475ae90a147222.svg" alt="\(\Sigma'\)" style="height:0.824em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orga2d1067">
+<p>
+If <img class="m" src="m/91a245e4c33451f7e56c87533d572cdae389595a.svg" alt="\(\Sigma \vdash \varphi\)" style="height:0.974em;vertical-align:-0.214em"> then <img class="m" src="m/e710efea48b3159c550f83febd10c0aa1abcd83f.svg" alt="\(\Sigma \models \varphi\)" style="height:1.096em;vertical-align:-0.274em">: every
+truth assignment satisfying all of <img class="m" src="m/dd733a94278b0684a31c5e52904679e109eb8625.svg" alt="\(\Sigma\)" style="height:0.749em;vertical-align:-0.000em"> satisfies <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="proof" id="org19e81a6">
+<p>
+Unfolding the abbreviation, <img class="m" src="m/140a0eccb15f92aecb33208261a3ae4d8830f6f5.svg" alt="\(v \models \varphi\to\psi\)" style="height:1.096em;vertical-align:-0.274em"> holds exactly
+when <img class="m" src="m/17ba07df810e70dd87cd5d4d2626c6e72ca52242.svg" alt="\(v \not\models \varphi\)" style="height:1.096em;vertical-align:-0.274em"> or <img class="m" src="m/780cf9cd4e1da018aa926a073694d6c78d8d9adc.svg" alt="\(v \models \psi\)" style="height:1.096em;vertical-align:-0.274em">; this is the only
+semantic fact used below.
+</p>
+
+<p>
+Each axiom is satisfied by every assignment. Scheme 1: if
+<img class="m" src="m/f4107d3a8a0875611ec47385dc8c94e09a1beba5.svg" alt="\(v\models\varphi\)" style="height:1.096em;vertical-align:-0.274em"> then <img class="m" src="m/1fa6d167642de37424ae85b015f18701d3a4ede0.svg" alt="\(v \models \psi\to\varphi\)" style="height:1.096em;vertical-align:-0.274em">, so the
+implication holds in either case. Scheme 2: assume <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> satisfies
+<img class="m" src="m/ecc72e8c2f55c10485fad2768e7d1064f35f7b6b.svg" alt="\(\varphi\to(\psi\to\chi)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/5dcfb0514b944add4e6d6a32a6578f526006353c.svg" alt="\(\varphi\to\psi\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">; then
+<img class="m" src="m/cb3723eb8cb3e530e661b9c23b587fe1123a9a75.svg" alt="\(v\models\psi\to\chi\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/9475ff47ef50ca9eb9e9c0f53fda2412d925be7e.svg" alt="\(v\models\psi\)" style="height:1.096em;vertical-align:-0.274em">, hence <img class="m" src="m/0d52b01a594231b8518fdc8c382913378e786ef4.svg" alt="\(v\models\chi\)" style="height:1.096em;vertical-align:-0.274em">.
+Scheme 3: assume <img class="m" src="m/1cb2fcc00b4caa36cbb82617e35a29ac4b79352f.svg" alt="\(v\models\neg\psi\to\neg\varphi\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/f4107d3a8a0875611ec47385dc8c94e09a1beba5.svg" alt="\(v\models\varphi\)" style="height:1.096em;vertical-align:-0.274em">; if <img class="m" src="m/069f20b97ca50892cc9fee48e199015b461d561b.svg" alt="\(v\not\models\psi\)" style="height:1.096em;vertical-align:-0.274em"> then <img class="m" src="m/33b220dd72a732d2e89766ee1ccb2f5aa06e96f8.svg" alt="\(v\models\neg\psi\)" style="height:1.096em;vertical-align:-0.274em">,
+so <img class="m" src="m/c85dd009d1719a01f41dc32ee361d730ffb0427e.svg" alt="\(v\models\neg\varphi\)" style="height:1.096em;vertical-align:-0.274em">, contradicting <img class="m" src="m/f4107d3a8a0875611ec47385dc8c94e09a1beba5.svg" alt="\(v\models\varphi\)" style="height:1.096em;vertical-align:-0.274em">; hence
+<img class="m" src="m/9475ff47ef50ca9eb9e9c0f53fda2412d925be7e.svg" alt="\(v\models\psi\)" style="height:1.096em;vertical-align:-0.274em">. Schemes 4 to 6 are the clause
+<img class="m" src="m/55a3236b333ba6e1d85e36b1bc5c46f2dfe066d6.svg" alt="\(\hat{v}(\varphi\wedge\psi) = \min(\hat{v}(\varphi),\hat{v}(\psi))\)" style="height:1.096em;vertical-align:-0.274em">
+read three times.
+</p>
+
+<p>
+Now let <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> satisfy <img class="m" src="m/dd733a94278b0684a31c5e52904679e109eb8625.svg" alt="\(\Sigma\)" style="height:0.749em;vertical-align:-0.000em"> and induct along a derivation
+<img class="m" src="m/a2cae9bb020c4895f48806b108625c5c3a35ce7c.svg" alt="\(\chi_{1},\dots,\chi_{n}\)" style="height:0.685em;vertical-align:-0.212em">. If <img class="m" src="m/d42fd014d84e61fe233458d01a35836736900a54.svg" alt="\(\chi_{i}\)" style="height:0.685em;vertical-align:-0.212em"> is an axiom it is satisfied
+by the previous paragraph; if <img class="m" src="m/cd04f7b665aa715d1f9933436b6b31b3f0c4e59b.svg" alt="\(\chi_{i}\in\Sigma\)" style="height:0.962em;vertical-align:-0.212em">, by hypothesis; and
+if <img class="m" src="m/d42fd014d84e61fe233458d01a35836736900a54.svg" alt="\(\chi_{i}\)" style="height:0.685em;vertical-align:-0.212em"> follows by modus ponens from <img class="m" src="m/4347fb5c3fcabb928e22f004f17cba0e0c862672.svg" alt="\(\chi_{j}\)" style="height:0.785em;vertical-align:-0.314em"> and
+<img class="m" src="m/e24dc9e55ccac935804f53df8830cdeeea72b972.svg" alt="\(\chi_{j}\to\chi_{i}\)" style="height:0.785em;vertical-align:-0.314em"> with <img class="m" src="m/3746fa937fdcb048f5c8ca07dda219a7d7e5f6f7.svg" alt="\(j &lt; i\)" style="height:0.936em;vertical-align:-0.215em">, then <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> satisfies both by
+induction, hence satisfies <img class="m" src="m/d42fd014d84e61fe233458d01a35836736900a54.svg" alt="\(\chi_{i}\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="lemma" id="org9580ac7">
+<p>
+<img class="m" src="m/b9b45868acecf3e27b02305b458607ca86b5ce4d.svg" alt="\(\vdash \varphi\to\varphi\)" style="height:0.974em;vertical-align:-0.214em"> for every formula <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="proof" id="org4887ec7">
+<p>
+Take the instance of scheme 2 with <img class="m" src="m/ea37f3a20ab712ee7e7071a4f1af5e2ee7cd7466.svg" alt="\(\psi = (\varphi\to\varphi)\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/e9558ba22d8f0e39143e231dde607e2e476089b6.svg" alt="\(\chi = \varphi\)" style="height:0.685em;vertical-align:-0.212em">:
+<img class="m" src="m/d8b480eade322bba6631ced82645f3ef3401b6b6.svg" alt="\(\bigl(\varphi\to((\varphi\to\varphi)\to\varphi)\bigr)\to\bigl((\varphi\to(\varphi\to\varphi))\to(\varphi\to\varphi)\bigr)\)" style="height:1.315em;vertical-align:-0.381em">.
+Its antecedent is an instance of scheme 1, so modus ponens gives
+<img class="m" src="m/23103521117a000cf20b0af81ebfe051c427143a.svg" alt="\((\varphi\to(\varphi\to\varphi))\to(\varphi\to\varphi)\)" style="height:1.096em;vertical-align:-0.274em">; the
+antecedent of <i>that</i> is again an instance of scheme 1, and a second
+modus ponens yields <img class="m" src="m/71e7777a1a516761f23e5b84a8118564f98bd33f.svg" alt="\(\varphi\to\varphi\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org26459ae">
+<p>
+<img class="m" src="m/39339f3e57aeb4bb02f06c62815510454f10539a.svg" alt="\(\Sigma \cup \set{\varphi} \vdash \psi\)" style="height:1.096em;vertical-align:-0.274em"> if and only if
+<img class="m" src="m/dd015691bd7f9b458bdc39ae5ffd637d36e881bc.svg" alt="\(\Sigma \vdash \varphi \to \psi\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgba183f2">
+<p>
+For the direction that is not immediate, induct along a derivation <img class="m" src="m/20cf3657b5e4e9500fa319ced82448442a8b040b.svg" alt="\(\chi_{1},\dots,\chi_{n} = \psi\)" style="height:0.974em;vertical-align:-0.214em"> from
+<img class="m" src="m/7889026ffb03ae9f62d6bb6307dafa4e626141ef.svg" alt="\(\Sigma\cup\set{\varphi}\)" style="height:1.096em;vertical-align:-0.274em">, showing <img class="m" src="m/c12e2a428429852969a5f653468ad96055aadea8.svg" alt="\(\Sigma\vdash\varphi\to\chi_{i}\)" style="height:0.974em;vertical-align:-0.214em">.
+If <img class="m" src="m/d42fd014d84e61fe233458d01a35836736900a54.svg" alt="\(\chi_{i}\)" style="height:0.685em;vertical-align:-0.212em"> is an axiom or lies in <img class="m" src="m/dd733a94278b0684a31c5e52904679e109eb8625.svg" alt="\(\Sigma\)" style="height:0.749em;vertical-align:-0.000em">, then scheme 1 gives
+<img class="m" src="m/06bb6e6031fe0cd267a66e67f561cb2ca4e0e5c3.svg" alt="\(\chi_{i}\to(\varphi\to\chi_{i})\)" style="height:1.096em;vertical-align:-0.274em">, and modus ponens yields the claim.
+If <img class="m" src="m/843886a56dd1ccd207997bdaf483a7da07e788f5.svg" alt="\(\chi_{i} = \varphi\)" style="height:0.685em;vertical-align:-0.212em">, this is the lemma. If
+<img class="m" src="m/d42fd014d84e61fe233458d01a35836736900a54.svg" alt="\(\chi_{i}\)" style="height:0.685em;vertical-align:-0.212em"> comes by modus ponens from <img class="m" src="m/4347fb5c3fcabb928e22f004f17cba0e0c862672.svg" alt="\(\chi_{j}\)" style="height:0.785em;vertical-align:-0.314em"> and
+<img class="m" src="m/e24dc9e55ccac935804f53df8830cdeeea72b972.svg" alt="\(\chi_{j}\to\chi_{i}\)" style="height:0.785em;vertical-align:-0.314em">, then by induction <img class="m" src="m/dd733a94278b0684a31c5e52904679e109eb8625.svg" alt="\(\Sigma\)" style="height:0.749em;vertical-align:-0.000em"> derives
+<img class="m" src="m/3bd4486602b4df262144addcb09410318f6c9133.svg" alt="\(\varphi\to\chi_{j}\)" style="height:0.785em;vertical-align:-0.314em"> and <img class="m" src="m/ec703c5035f1d5f74acb5fe4eb2c6de3c327e677.svg" alt="\(\varphi\to(\chi_{j}\to\chi_{i})\)" style="height:1.135em;vertical-align:-0.318em">; scheme 2
+and two applications of modus ponens give <img class="m" src="m/158457a89ab6c00ac90492379b9c23f8f865ead0.svg" alt="\(\varphi\to\chi_{i}\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+
+<p>
+The converse is one application of modus ponens: from
+<img class="m" src="m/8bd7c76a87f278f9d514fc04427473bee9e35724.svg" alt="\(\Sigma\vdash\varphi\to\psi\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">, infer <img class="m" src="m/a4a52c4927ccc1e44f25ba3cda049e822fa6a1fc.svg" alt="\(\psi\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="remark" id="org632056e">
+<p>
+The deduction theorem is what makes a Hilbert system usable at all &#x2013;
+without it, proving an implication means guessing an axiom instance.
+Note that it is a theorem <i>about</i> the system, proved by induction on
+derivations in the ambient mathematics, and not a rule of the system:
+that separation between the object language and the language reasoning
+about it is the whole methodological point of proof theory.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="logic.html"><span>← previous</span>Logic</a><a rel="next" href="computability-the-halting-problem-and-rices-theorem.html"><span>next →</span>Computability, the halting problem and Rice's theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/foundations--proof-theory.pdf" title="PDF manual">Proof Theory</a> · <a class="pdf" href="pdf/foundations.pdf" title="PDF manual">Foundations</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

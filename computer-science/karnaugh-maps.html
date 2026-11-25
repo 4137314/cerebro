@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Karnaugh maps · Computer Science</title>
+<meta name="description" content="A Karnaugh map lays the truth table out in Gray order so that logically adjacent rows (differing in one variable) are geometrically adjacent, edges wrapping; rectangles of 2^k ones are products with k fewer literals; the minimal SOP takes all essential prime implicants and covers the remaining ones…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/karnaugh-maps.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Karnaugh maps · Computer Science">
+<meta property="og:description" content="A Karnaugh map lays the truth table out in Gray order so that logically adjacent rows (differing in one variable) are geometrically adjacent, edges wrapping; rectangles of 2^k ones are products with k fewer literals; the minimal SOP takes all essential prime implicants and covers the remaining ones…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/karnaugh-maps.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--combinational">Combinational</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Hardware · Combinational</p>
+<h1>Karnaugh maps</h1>
+<p class="summary">A Karnaugh map lays the truth table out in Gray order so that logically adjacent rows (differing in one variable) are geometrically adjacent, edges wrapping; rectangles of <img class="m" src="m/ea012971b1552aed3682aa6f67abed487dc61e2d.svg" alt="\(2^k\)" style="height:0.930em;vertical-align:-0.000em"> ones are products with <img class="m" src="m/ab474955bf3a453be6c3259db9214b4a610e4bf7.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> fewer literals; the minimal SOP takes all essential prime implicants and covers the remaining ones with as few primes as possible, don't-cares counting as 1 when growing groups and as 0 when choosing them.</p>
+<p class="rel"><span>needs</span> <a href="canonical-forms.html">Shannon expansion and canonical forms</a></p>
+<p class="rel"><span>unlocks</span> <a href="seven-segment-decoder.html">7-segment decoder: don't-cares and joint minimization</a>, <a href="nand-nor-synthesis.html">NAND–NAND and NOR–NOR realizations</a>, <a href="logic-hazards.html">Timing diagrams and static hazards</a>, <a href="sequential-circuits.html">Sequential circuits: memory through feedback</a>, <a href="two-level-minimization.html">Two-level minimization: prime implicants and covers</a></p>
+<p class="rel"><span>see also</span> <a href="two-level-minimization.html">Two-level minimization: prime implicants and covers</a>, <a href="nand-nor-synthesis.html">NAND–NAND and NOR–NOR realizations</a>, <a href="logic-hazards.html">Timing diagrams and static hazards</a>, <a href="seven-segment-decoder.html">7-segment decoder: don't-cares and joint minimization</a></p>
+<p class="rel"><span>mentioned in</span> <a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></p>
+<details class="path"><summary>Learning path: 2 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgc17c486" class="outline-2">
+<h2 id="orgc17c486">Method</h2>
+<div class="outline-text-2" id="text-orgc17c486">
+<ol class="org-ol">
+<li>Draw the map: rows and columns numbered in <b>Gray code</b> (00, 01, 11, 10), so neighbours differ in one bit; the first and last column (and row) are neighbours too — the map is a torus.</li>
+<li>Fill it from the truth table (careful: cell <img class="m" src="m/c566fe3e90ac5f60a17e5cf9f983fca30c598d11.svg" alt="\(ab=11\)" style="height:0.761em;vertical-align:-0.000em"> is the third column, not the fourth).</li>
+<li><b>Prime implicants</b>: from each 1 grow the largest rectangle of <img class="m" src="m/805014a67c7a4b1016600b637b660caaa2288384.svg" alt="\(1,2,4,8,\dots\)" style="height:0.919em;vertical-align:-0.211em"> cells containing only ones (and don't-cares). A group of <img class="m" src="m/ea012971b1552aed3682aa6f67abed487dc61e2d.svg" alt="\(2^k\)" style="height:0.930em;vertical-align:-0.000em"> cells is a product of <img class="m" src="m/19d7dbd15057cc8745dd6820aee8f626bad60387.svg" alt="\(n-k\)" style="height:0.852em;vertical-align:-0.094em"> literals: write the variables that are <b>constant</b> across the group.</li>
+<li><b>Essential primes</b>: a prime that is the only one covering some 1. They are in every minimal cover.</li>
+<li>Cover the ones still uncovered with the fewest, largest primes (choose to minimize overlaps). Covering a 1 twice is fine; using a non-prime group is never minimal.</li>
+</ol>
+<p>
+<b>POS</b>: group the zeros the same way and write each group as a sum with polarity reversed (a variable constant at 0 appears plain): <img class="m" src="m/8ab566ede91283fbf9fa1acabc4e95caee47e30a.svg" alt="\(f=\prod\)" style="height:1.096em;vertical-align:-0.274em">.
+<b>Don't-cares</b> (<img class="m" src="m/4c7425d5d39282c3f17ceffd0f7b1f33fac56c39.svg" alt="\(-\)" style="height:0.731em;vertical-align:-0.088em">, inputs that never occur or whose output does not matter): treat them as 1 to enlarge primes, as 0 when deciding which primes are needed — a prime is never essential because of a don't-care, and no prime is added to cover only don't-cares.
+<b>Five variables</b>: two 4-variable maps for <img class="m" src="m/baaf31274f115ed78adf0abfc112861cfa091876.svg" alt="\(v=0\)" style="height:0.706em;vertical-align:-0.000em"> and <img class="m" src="m/f1f614ab5e98547a632f3fe09343cb9b681cb415.svg" alt="\(v=1\)" style="height:0.706em;vertical-align:-0.000em"> (Shannon on <img class="m" src="m/f19d00b567f03ea93981f37f632ec605b342d3f5.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em">), imagined one on top of the other: same cell in both maps = adjacent. Six: four maps. Beyond, split with Shannon.
+</p>
+</div>
+</div>
+<div id="outline-container-org34afcd7" class="outline-2">
+<h2 id="org34afcd7">Picture</h2>
+<div class="outline-text-2" id="text-org34afcd7">
+<figure class="fig"><img class="m" src="m/da3a4c5f76d14d35ddb786812a09d8a90d6b38b5.svg" alt="figure" style="width:25.401em"><figcaption><span class="fl">Figure 1.</span> A four-variable Karnaugh map: the four corners give <img class="m" src="m/ea88c606f5972d10e1b14941cefe82592e14f9f7.svg" alt="\(\bar y\bar w\)" style="height:0.835em;vertical-align:-0.217em">, <img class="m" src="m/d4667a363ef884155df03e07e1ba0a9300918023.svg" alt="\(yw\)" style="height:0.685em;vertical-align:-0.212em"> is essential, and <img class="m" src="m/36932fc39f2fe7cea0f655fab435879e62091e63.svg" alt="\(zw\)" style="height:0.472em;vertical-align:-0.000em">, <img class="m" src="m/87d673cbbacd32b3786959ab8a9ed51464506a90.svg" alt="\(xw\)" style="height:0.472em;vertical-align:-0.000em"> complete the minimal cover <img class="m" src="m/fe419da5f3025d4959f5d8baa6bd1a202d256f8f.svg" alt="\(f=\bar y\bar w+yw+xw+zw\)" style="height:0.974em;vertical-align:-0.214em">.</figcaption></figure>
+<p>
+The four corners are one group: rows 00 and 10 are adjacent, and so are columns 00 and 10.
+</p>
+</div>
+</div>
+<div id="outline-container-org4a5da3a" class="outline-2">
+<h2 id="org4a5da3a">Example</h2>
+<div class="outline-text-2" id="text-org4a5da3a">
+<p>
+The map above has six primes, all of four cells: <img class="m" src="m/ea88c606f5972d10e1b14941cefe82592e14f9f7.svg" alt="\(\bar y\bar w\)" style="height:0.835em;vertical-align:-0.217em">, <img class="m" src="m/d4667a363ef884155df03e07e1ba0a9300918023.svg" alt="\(yw\)" style="height:0.685em;vertical-align:-0.212em">, <img class="m" src="m/87d673cbbacd32b3786959ab8a9ed51464506a90.svg" alt="\(xw\)" style="height:0.472em;vertical-align:-0.000em">, <img class="m" src="m/864e60c97915910c70460a26f46fb405d4e9f8bd.svg" alt="\(x\bar y\)" style="height:0.835em;vertical-align:-0.217em">, <img class="m" src="m/36932fc39f2fe7cea0f655fab435879e62091e63.svg" alt="\(zw\)" style="height:0.472em;vertical-align:-0.000em">, <img class="m" src="m/7bd9b2d5e6b8a1b262a723abe037a0c0be93319d.svg" alt="\(\bar yz\)" style="height:0.835em;vertical-align:-0.217em">. Essential: <img class="m" src="m/ea88c606f5972d10e1b14941cefe82592e14f9f7.svg" alt="\(\bar y\bar w\)" style="height:0.835em;vertical-align:-0.217em"> (only cover of cell 0000) and <img class="m" src="m/d4667a363ef884155df03e07e1ba0a9300918023.svg" alt="\(yw\)" style="height:0.685em;vertical-align:-0.212em"> (only cover of 0101). Still uncovered: 0011 and 1001. Cell 0011 is covered by <img class="m" src="m/36932fc39f2fe7cea0f655fab435879e62091e63.svg" alt="\(zw\)" style="height:0.472em;vertical-align:-0.000em"> or <img class="m" src="m/7bd9b2d5e6b8a1b262a723abe037a0c0be93319d.svg" alt="\(\bar yz\)" style="height:0.835em;vertical-align:-0.217em">; cell 1001 by <img class="m" src="m/87d673cbbacd32b3786959ab8a9ed51464506a90.svg" alt="\(xw\)" style="height:0.472em;vertical-align:-0.000em"> or <img class="m" src="m/864e60c97915910c70460a26f46fb405d4e9f8bd.svg" alt="\(x\bar y\)" style="height:0.835em;vertical-align:-0.217em">; any choice gives 4 terms, 8 literals, e.g. <img class="m" src="m/72e76d40f5b23057f82845f3ab2a47f9d7010d9a.svg" alt="\(f=\bar y\bar w+yw+xw+zw=\overline{y\oplus w}+w(x+z)\)" style="height:1.132em;vertical-align:-0.272em">.
+Wrong answer: <img class="m" src="m/899eedcdb600b11d7a008380ef964cb69eeb17fc.svg" alt="\(f=\bar y\bar w+yw+x\bar yw+\bar x\bar yzw\)" style="height:0.974em;vertical-align:-0.214em"> — it is a cover, but with non-prime groups (10 literals).
+</p>
+
+<p>
+Don't-care example (BCD input, codes 1010–1111 never occur): segment <img class="m" src="m/36ad57d0b9b05e12447762c553bda3a072bc992d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> of a <a href="seven-segment-decoder.html">7-segment decoder</a> drops from 14 to 6 literals, <img class="m" src="m/e1570371b3b27604e4258a4141eda34d7f7d7c9d.svg" alt="\(a=x+z+yw+\bar y\bar w\)" style="height:0.852em;vertical-align:-0.213em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgef955d0" class="outline-2">
+<h2 id="orgef955d0">Intuition</h2>
+<div class="outline-text-2" id="text-orgef955d0">
+<p>
+The map is the adjacency rule <img class="m" src="m/8530c80fb1afe62fe227f52d0a67d7323e99aaf5.svg" alt="\(xy+x\bar y=x\)" style="height:0.852em;vertical-align:-0.213em"> made visible: each doubling of a rectangle erases one variable, the one that changes inside it.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd6d081b" class="outline-2">
+<h2 id="orgd6d081b">Pitfall</h2>
+<div class="outline-text-2" id="text-orgd6d081b">
+<p>
+Reading columns in binary order (00, 01, 10, 11) breaks adjacency and produces wrong groups. Groups must be rectangles of a power of two cells: an L-shape of three ones is two overlapping pairs, not one term. In a 5-variable map with columns numbered 000 001 011 010 100 101 111 110 the two middle columns (010 and 100) are <b>not</b> adjacent.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="decoder-encoder.html"><span>← previous</span>Decoders, encoders and priority encoders</a><a rel="next" href="seven-segment-decoder.html"><span>next →</span>7-segment decoder: don't-cares and joint minimization</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--combinational.pdf" title="PDF manual">Combinational</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

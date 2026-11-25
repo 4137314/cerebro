@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Computability, the halting problem and Rice's theorem · Mathematics</title>
+<meta name="description" content="The undecidability results do not depend on which machine model is chosen; they depend on two properties any reasonable model has – a program can be simulated by another program, and a program with a parameter frozen is again a program. Taking those two properties as the definition isolates what th…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/computability-the-halting-problem-and-rices-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Computability, the halting problem and Rice's theorem · Mathematics">
+<meta property="og:description" content="The undecidability results do not depend on which machine model is chosen; they depend on two properties any reasonable model has – a program can be simulated by another program, and a program with a parameter frozen is again a program. Taking those two properties as the definition isolates what th…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/computability-the-halting-problem-and-rices-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-foundations">Foundations</a> / <a rel="up" href="index.html#a-foundations--computability">Computability</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Foundations · Computability</p>
+<h1>Computability, the halting problem and Rice's theorem</h1>
+<p class="summary">The undecidability results do not depend on which machine model is chosen; they depend on two properties any reasonable model has &#x2013; a program can be simulated by another program, and a program with a parameter frozen is again a program. Taking those two properties as the definition isolates what the diagonal argument actually uses, and makes the theorems below independent of any coding.</p>
+<p class="rel"><span>needs</span> <a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a>, <a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></p>
+<p class="rel"><span>mentioned in</span> <a href="foundations.html">Foundations</a>, <a href="logic.html">Logic</a></p>
+<details class="path"><summary>Learning path: 6 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orga67c7f8">
+<p>
+Write <img class="m" src="m/66948bf5225570a9c5e4fd7c480e3de5a20d5eca.svg" alt="\(\varphi(n)\!\downarrow\)" style="height:1.096em;vertical-align:-0.274em"> when a partial function <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> is
+defined at <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">. An <i>acceptable numbering</i> is a family
+<img class="m" src="m/3b7b072c079b969c63b16f760e7bae8b97144a0f.svg" alt="\((\varphi_{e})_{e\in\N}\)" style="height:1.096em;vertical-align:-0.274em"> of partial functions
+<img class="m" src="m/3e7ea9ee861ef0af837bd6baaefc69ddd2f0e06b.svg" alt="\(\N \rightharpoonup \N\)" style="height:0.755em;vertical-align:-0.000em">, whose members are by definition the
+<i>computable</i> partial functions &#x2013; so that every computable partial
+function is <img class="m" src="m/7f7805ff00e8193894e62f532d5d989a2706a676.svg" alt="\(\varphi_{e}\)" style="height:0.685em;vertical-align:-0.212em"> for at least one index <img class="m" src="m/09798e3cb5ef8291c7239dd012807e66ef0eccaf.svg" alt="\(e\)" style="height:0.472em;vertical-align:-0.000em">, never
+required to be unique &#x2013; such that
+</p>
+<ol class="org-ol">
+<li>(universality) the partial function <img class="m" src="m/7f0ccd64a1d81f54185076968f404599bb8d3bff.svg" alt="\((e,n)\mapsto\varphi_{e}(n)\)" style="height:1.096em;vertical-align:-0.274em"> is
+computable;</li>
+<li>(parametrisation) there is a total computable <img class="m" src="m/42d2c35f20f2c22043ef0eb42920ada193d61639.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> with
+<img class="m" src="m/3c0da69a9ed468c22e4f924fafbb336a0eb5c8a9.svg" alt="\(\varphi_{s(e,m)}(n) = \varphi_{e}(\langle m,n\rangle)\)" style="height:1.212em;vertical-align:-0.388em"> for all
+<img class="m" src="m/a6b4bd15ab60b2cfd8a6fa8b6e352de29b553da9.svg" alt="\(e,m,n\)" style="height:0.685em;vertical-align:-0.212em">, where <img class="m" src="m/a188c3c809a60399c17da000334918ba43b4d582.svg" alt="\(\langle\cdot,\cdot\rangle\)" style="height:1.096em;vertical-align:-0.274em"> is a computable
+pairing bijection <img class="m" src="m/27226b720762dd7cd91bc664b466f2d3ba296795.svg" alt="\(\N^{2}\to\N\)" style="height:0.892em;vertical-align:-0.000em">.</li>
+</ol>
+<p>
+A set <img class="m" src="m/2f6d671039d5eeeed65d64538e47d86a0c3f53c2.svg" alt="\(A \subseteq \N\)" style="height:0.904em;vertical-align:-0.145em"> is <i>decidable</i> if its indicator function is
+computable and total, and <i>semidecidable</i> if <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is the domain of some
+<img class="m" src="m/7f7805ff00e8193894e62f532d5d989a2706a676.svg" alt="\(\varphi_{e}\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgcac6048">
+<p>
+There are functions <img class="m" src="m/9987ff8d522356361bb481d52364a32074c29626.svg" alt="\(\N \to \N\)" style="height:0.755em;vertical-align:-0.000em"> that are not computable; indeed the
+computable ones are countable and the others are not.
+</p>
+
+</div>
+
+<div class="proof" id="org1f85e5f">
+<p>
+The computable partial functions are indexed by <img class="m" src="m/d36edebe5171c584e95c5e3966023a2f078fce29.svg" alt="\(\N\)" style="height:0.755em;vertical-align:-0.000em">, hence countable.
+If every function <img class="m" src="m/e044f9641843cb0d15e129c6a7d725cb5f9c5248.svg" alt="\(\N\to\N\)" style="height:0.755em;vertical-align:-0.000em"> were computable, the set of such functions
+would be countable, so there would be a surjection
+<img class="m" src="m/710ecb96e8a438b410cfcb0cd91385d8c60050d3.svg" alt="\(\N \to \N^{\N}\)" style="height:0.926em;vertical-align:-0.000em">; restricting values to <img class="m" src="m/d32140fbcca0f033995b1ff46b0a63fe0f218725.svg" alt="\(\set{0,1}\)" style="height:1.096em;vertical-align:-0.274em"> this would give
+a surjection onto the subsets of <img class="m" src="m/d36edebe5171c584e95c5e3966023a2f078fce29.svg" alt="\(\N\)" style="height:0.755em;vertical-align:-0.000em">, contradicting Cantor's theorem.
+</p>
+
+</div>
+
+<div class="theorem" id="org0314a20">
+<p>
+The set <img class="m" src="m/50e1062fe183391d5ec7cd92cbacaece0afda115.svg" alt="\(K = \setst{e \in \N}{\varphi_{e}(e)\!\downarrow}\)" style="height:1.096em;vertical-align:-0.274em"> is
+semidecidable and not decidable.
+</p>
+
+</div>
+
+<div class="proof" id="orgf271b36">
+<p>
+Semidecidable: by universality, <img class="m" src="m/61c093dc4f2c11672790a434de92efd310838cc1.svg" alt="\(e \mapsto \varphi_{e}(e)\)" style="height:1.096em;vertical-align:-0.274em"> is a
+computable partial function, so it is some <img class="m" src="m/5a2c2ae5225d0464c3546f90174659fb1abdb418.svg" alt="\(\varphi_{k}\)" style="height:0.685em;vertical-align:-0.212em">, and its
+domain is <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+<p>
+Suppose <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> were decidable. Then the partial function <img class="m" src="m/a4a52c4927ccc1e44f25ba3cda049e822fa6a1fc.svg" alt="\(\psi\)" style="height:0.974em;vertical-align:-0.214em"> given
+by <img class="m" src="m/cbd210cfa268fd65632336aeb673e6c5b6cd45ea.svg" alt="\(\psi(e) = 0\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/a8e523986f0d41733c151999a27c183c8f793fcc.svg" alt="\(e \notin K\)" style="height:0.865em;vertical-align:-0.043em"> and undefined for <img class="m" src="m/b97b413be8b9ebc77c3e2cac04eb064fdc946604.svg" alt="\(e \in K\)" style="height:0.792em;vertical-align:-0.040em"> is
+computable: run the decision procedure for <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> and, if the answer is
+"no", output <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">, otherwise loop for ever. So <img class="m" src="m/a0e6723ad2b51c428144d3909779525328504a17.svg" alt="\(\psi = \varphi_{a}\)" style="height:0.974em;vertical-align:-0.214em">
+for some <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">. Now <img class="m" src="m/2cef3ef8c0bef9523ec896bebbc757a20d08305d.svg" alt="\(a \in K\)" style="height:0.792em;vertical-align:-0.040em"> means <img class="m" src="m/65786245cf9a5187d349b80fc6dcee9bc1fcb358.svg" alt="\(\varphi_{a}(a)\!\downarrow\)" style="height:1.096em;vertical-align:-0.274em">,
+which means <img class="m" src="m/66f992e1a8089f22f0a61fb43ec1fd863f4d35c5.svg" alt="\(\psi(a)\!\downarrow\)" style="height:1.096em;vertical-align:-0.274em">, which by definition of <img class="m" src="m/a4a52c4927ccc1e44f25ba3cda049e822fa6a1fc.svg" alt="\(\psi\)" style="height:0.974em;vertical-align:-0.214em">
+means <img class="m" src="m/48776c5639c4eccf30eeadcbb1a625c2ca042528.svg" alt="\(a \notin K\)" style="height:0.865em;vertical-align:-0.043em"> &#x2013; and the converse implication likewise. This is a
+contradiction, so <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> is not decidable.
+</p>
+
+</div>
+
+<div class="proposition" id="orgd17948b">
+<p>
+<img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is decidable if and only if <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/dd1c58ebbdd470e32a1b907a1e50abe34fa1831f.svg" alt="\(\N\setminus A\)" style="height:1.096em;vertical-align:-0.274em"> are both
+semidecidable. Hence <img class="m" src="m/f60742d1039e5616bf4a8c1d0defd83987b0756f.svg" alt="\(\N \setminus K\)" style="height:1.096em;vertical-align:-0.274em"> is not semidecidable.
+</p>
+
+</div>
+
+<div class="proof" id="org55dce94">
+<p>
+If <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is decidable, its indicator function decides membership, and
+the partial functions "output <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> if <img class="m" src="m/cb0a0860dca7ee11fe423d0c926c0a4aaae992f4.svg" alt="\(n \in A\)" style="height:0.792em;vertical-align:-0.040em">, else diverge" and
+its complement witness semidecidability of both sides. Conversely, if
+<img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is the domain of <img class="m" src="m/4533510bf8c13305f81f36366fabac73d41d1ac1.svg" alt="\(\varphi_{a}\)" style="height:0.685em;vertical-align:-0.212em"> and <img class="m" src="m/dd1c58ebbdd470e32a1b907a1e50abe34fa1831f.svg" alt="\(\N\setminus A\)" style="height:1.096em;vertical-align:-0.274em"> that of
+<img class="m" src="m/fe41a29cc8185a7c3cc7d91f0b50ea00119b93b5.svg" alt="\(\varphi_{b}\)" style="height:0.685em;vertical-align:-0.212em">, then simulating both computations in alternation &#x2013;
+possible by universality &#x2013; terminates for every <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">, since <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> lies
+in one of the two sets, and which of the two halts first decides
+membership.
+</p>
+
+<p>
+If <img class="m" src="m/9d8eb43db344fea373ebf5770e8518f022fcb914.svg" alt="\(\N\setminus K\)" style="height:1.096em;vertical-align:-0.274em"> were semidecidable, <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> would be decidable by the
+above, contradicting the previous theorem.
+</p>
+
+</div>
+
+<div class="theorem" id="org2d07884">
+<p>
+Let <img class="m" src="m/8859a04a0051970e583dc76c75fbfc25d3cc50ad.svg" alt="\(\mathcal{P}\)" style="height:0.749em;vertical-align:-0.000em"> be a set of partial computable functions that is
+neither empty nor all of them, and let
+<img class="m" src="m/06c5ada08afca706417e2f94c1cbb1b717cf3497.svg" alt="\(I = \setst{e}{\varphi_{e} \in \mathcal{P}}\)" style="height:1.096em;vertical-align:-0.274em">. Then <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> is not
+decidable.
+</p>
+
+</div>
+
+<div class="proof" id="orgcfb62e3">
+<p>
+Let <img class="m" src="m/b9fcf2ccae8d3515975b71b2e2ab3c4479b2d3d5.svg" alt="\(\emptyset\)" style="height:0.883em;vertical-align:-0.062em"> denote the nowhere defined function; replacing
+<img class="m" src="m/8859a04a0051970e583dc76c75fbfc25d3cc50ad.svg" alt="\(\mathcal{P}\)" style="height:0.749em;vertical-align:-0.000em"> by its complement if necessary &#x2013; which changes <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em">
+into its complement, decidable exactly when <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> is &#x2013; assume
+<img class="m" src="m/32437e19d55a4cf867fdabdafcdca57ff7369531.svg" alt="\(\emptyset \notin \mathcal{P}\)" style="height:0.883em;vertical-align:-0.062em">. Pick <img class="m" src="m/e56449141456583a4686820667d4ea2f5cddb2d2.svg" alt="\(\chi \in \mathcal{P}\)" style="height:0.962em;vertical-align:-0.212em">, say
+<img class="m" src="m/c22a5a5444814af9132e51b6478da346850eda27.svg" alt="\(\chi = \varphi_{c}\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+
+<p>
+Define a partial function of two arguments by: on <img class="m" src="m/2dc6b0ca8f9ffcf181cdf38f56e0700a71dc0917.svg" alt="\((m,n)\)" style="height:1.096em;vertical-align:-0.274em">, first run
+<img class="m" src="m/14be5ef606bf8d5003ab09c1e1665717dd490c3d.svg" alt="\(\varphi_{m}(m)\)" style="height:1.096em;vertical-align:-0.274em">; if it halts, output <img class="m" src="m/e86ab154a001fe48da56edc7f03f8634d29a6a55.svg" alt="\(\chi(n)\)" style="height:1.096em;vertical-align:-0.274em">. This is computable
+by universality, so it is <img class="m" src="m/e08131f20806918e0d67d8b5c5dd6424e5471fcf.svg" alt="\(u(\langle m,n\rangle)\)" style="height:1.096em;vertical-align:-0.274em"> for a computable
+<img class="m" src="m/5e8e5b6f0e512229e741a481d9b510c7ce238be3.svg" alt="\(u = \varphi_{d}\)" style="height:0.685em;vertical-align:-0.212em">, and by parametrisation there is a total computable
+<img class="m" src="m/57e9a5244ad4a98ca8cf96014d635b50ce1bfd95.svg" alt="\(g(m) = s(d,m)\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/cc2f311ee2f5287dc6a1103f86227d6e00c4abf7.svg" alt="\(\varphi_{g(m)}(n) = u(\langle m,n\rangle)\)" style="height:1.212em;vertical-align:-0.388em">.
+</p>
+
+<p>
+If <img class="m" src="m/f91a58b06e1d3de291dd66f6b5b1aeeda6b4cb0e.svg" alt="\(m \in K\)" style="height:0.792em;vertical-align:-0.040em"> then <img class="m" src="m/687ab6d160f0e3c43aaf9b407322d6b1523f5b99.svg" alt="\(\varphi_{g(m)} = \chi \in \mathcal{P}\)" style="height:1.139em;vertical-align:-0.387em">, so
+<img class="m" src="m/3ca72daf58c6938d91bacc4af86b025ea533aec0.svg" alt="\(g(m) \in I\)" style="height:1.096em;vertical-align:-0.274em">; if <img class="m" src="m/e230eb84d2018edafa13826ee7ae45319b39bbae.svg" alt="\(m \notin K\)" style="height:0.865em;vertical-align:-0.043em"> then <img class="m" src="m/801aa8addaad7cf14aa1961ba6e01e1155466754.svg" alt="\(\varphi_{g(m)}\)" style="height:0.861em;vertical-align:-0.388em"> is nowhere
+defined, so <img class="m" src="m/a5d449afc6135455a27287966bf570c667dc50aa.svg" alt="\(g(m)\notin I\)" style="height:1.096em;vertical-align:-0.274em">. A decision procedure for <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> composed
+with <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> would therefore decide <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">, which is impossible.
+</p>
+
+</div>
+
+<div class="remark" id="org7391900">
+<p>
+Rice's theorem says every non-trivial property <i>of the function computed</i>
+is undecidable: whether a program halts on all inputs, whether it
+computes the constant zero, whether two programs agree. Properties of
+the <i>text</i> of the program &#x2013; its length, whether it contains a loop &#x2013;
+are of course decidable, and the distinction between the two is the
+whole content of the statement.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="a-proof-system-for-propositional-logic-soundness-and-the-deduction-theorem.html"><span>← previous</span>A proof system for propositional logic: soundness and the deduction theorem</a><a rel="next" href="binary-operation.html"><span>next →</span>Binary operation</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/foundations--computability.pdf" title="PDF manual">Computability</a> · <a class="pdf" href="pdf/foundations.pdf" title="PDF manual">Foundations</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

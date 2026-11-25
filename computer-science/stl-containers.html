@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STL containers · Computer Science</title>
+<meta name="description" content="The Standard Template Library separates containers (class templates that hold elements), iterators (positions in them) and algorithms (templates over iterators); sequence containers keep insertion order, associative ones keep elements sorted by operator&lt;, unordered ones hash them.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/stl-containers.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="STL containers · Computer Science">
+<meta property="og:description" content="The Standard Template Library separates containers (class templates that hold elements), iterators (positions in them) and algorithms (templates over iterators); sequence containers keep insertion order, associative ones keep elements sorted by operator&lt;, unordered ones hash them.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/stl-containers.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--generic-programming">Generic Programming</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Generic Programming</p>
+<h1>STL containers</h1>
+<p class="summary">The Standard Template Library separates containers (class templates that hold elements), iterators (positions in them) and algorithms (templates over iterators); sequence containers keep insertion order, associative ones keep elements sorted by <code>operator&lt;</code>, unordered ones hash them.</p>
+<p class="rel"><span>needs</span> <a href="cpp-templates.html">C++ templates</a></p>
+<p class="rel"><span>unlocks</span> <a href="stl-iterators.html">Iterators</a></p>
+<p class="rel"><span>see also</span> <a href="stl-iterators.html">Iterators</a>, <a href="java-collections.html">The Java Collections Framework</a>, <a href="move-semantics.html">Move semantics and the rule of five</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li><li><a href="generic-programming.html">Generic programming</a></li><li><a href="cpp-templates.html">C++ templates</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org53aedc6" class="outline-2">
+<h2 id="org53aedc6">Definition</h2>
+<div class="outline-text-2" id="text-org53aedc6">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">container</th>
+<th scope="col" class="org-left">structure</th>
+<th scope="col" class="org-left">access</th>
+<th scope="col" class="org-left">insert / erase</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">vector&lt;T&gt;</td>
+<td class="org-left">contiguous array</td>
+<td class="org-left">O(1) index</td>
+<td class="org-left">O(1) amortised at end</td>
+</tr>
+
+<tr>
+<td class="org-left">deque&lt;T&gt;</td>
+<td class="org-left">blocks of arrays</td>
+<td class="org-left">O(1) index</td>
+<td class="org-left">O(1) at both ends</td>
+</tr>
+
+<tr>
+<td class="org-left">list&lt;T&gt;</td>
+<td class="org-left">doubly linked</td>
+<td class="org-left">sequential</td>
+<td class="org-left">O(1) at a known position</td>
+</tr>
+
+<tr>
+<td class="org-left">set, multiset</td>
+<td class="org-left">balanced tree</td>
+<td class="org-left">O(log n)</td>
+<td class="org-left">O(log n), sorted</td>
+</tr>
+
+<tr>
+<td class="org-left">map, multimap</td>
+<td class="org-left">tree of pairs</td>
+<td class="org-left">O(log n)</td>
+<td class="org-left">O(log n); m[k] inserts</td>
+</tr>
+
+<tr>
+<td class="org-left">unordered_map</td>
+<td class="org-left">hash table</td>
+<td class="org-left">O(1) average</td>
+<td class="org-left">O(1) average</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Sequence containers have <code>front</code> and <code>back</code>, <code>push_back</code>, <code>emplace_back</code> (build in place). Associative containers have no front and back: one uses <code>insert</code>, <code>find</code>, <code>count</code>, <code>erase</code>. <code>multimap</code> allows duplicate keys and has no <code>operator[]</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org607c504" class="outline-2">
+<h2 id="org607c504">Example</h2>
+<div class="outline-text-2" id="text-org607c504">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="n">std</span>::<span class="t">map</span>&lt;<span class="n">std</span>::string, <span class="t">int</span>&gt; <span class="v">votes</span>;
+<span class="k">for</span> (<span class="k">const</span> <span class="k">auto</span>&amp; <span class="v">name</span> : ballots) ++votes[name];      <span class="c">// missing keys start at 0
+// needs bool operator&lt;(const Film&amp;) const
+</span><span class="n">std</span>::<span class="t">set</span>&lt;Film&gt; <span class="v">archive</span>;
+archive.insert(Film(<span class="s">"Tenet"</span>, 2020));
+<span class="k">for</span> (<span class="k">auto</span> <span class="v">it</span> = votes.begin(); it != votes.end(); ++it)
+  <span class="n">std</span>::cout &lt;&lt; it-&gt;first &lt;&lt; <span class="s">": "</span> &lt;&lt; it-&gt;second &lt;&lt; <span class="s">"\n"</span>;   <span class="c">// in key order</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org46d6952" class="outline-2">
+<h2 id="org46d6952">Intuition</h2>
+<div class="outline-text-2" id="text-org46d6952">
+<p>
+Pick by the operation you do most: index (vector), insert in the middle (list), look up by key (map or unordered_map), keep sorted and unique (set).
+</p>
+</div>
+</div>
+<div id="outline-container-org296deb3" class="outline-2">
+<h2 id="org296deb3">Pitfall</h2>
+<div class="outline-text-2" id="text-org296deb3">
+<p>
+Storing user classes in <code>set</code> or <code>map</code> requires a strict weak ordering <code>operator&lt;</code>; two elements with neither <img class="m" src="m/2bcfff7d54348a04f2b851acbcfe1d0fa5a2b936.svg" alt="\(a&lt;b\)" style="height:0.804em;vertical-align:-0.040em"> nor <img class="m" src="m/0e8f30b5190098bf6e7b83e6504866865b62033f.svg" alt="\(b&lt;a\)" style="height:0.804em;vertical-align:-0.040em"> count as equal and only one is kept.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="cpp-templates.html"><span>← previous</span>C++ templates</a><a rel="next" href="stl-iterators.html"><span>next →</span>Iterators</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--generic-programming.pdf" title="PDF manual">Generic Programming</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

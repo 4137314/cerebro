@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radar principle and radar equation · Remote Sensing</title>
+<meta name="description" content="A radar transmits a pulse and measures the echo: its delay gives the range R=c\,t/2, its power P_r=\dfrac{P_tG^2\lambda^2\sigma}{(4\pi)^3R^4} depends on the radar cross section \sigma of the target, i.e. on how the surface backscatters at that wavelength.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/radar-equation.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Radar principle and radar equation · Remote Sensing">
+<meta property="og:description" content="A radar transmits a pulse and measures the echo: its delay gives the range R=c\,t/2, its power P_r=\dfrac{P_tG^2\lambda^2\sigma}{(4\pi)^3R^4} depends on the radar cross section \sigma of the target, i.e. on how the surface backscatters at that wavelength.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/radar-equation.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-acquisition">Acquisition</a> / <a rel="up" href="index.html#a-acquisition--radar">Radar</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Acquisition · Radar</p>
+<h1>Radar principle and radar equation</h1>
+<p class="summary">A radar transmits a pulse and measures the echo: its delay gives the range <img class="m" src="m/c9639f246766bea0a5cf56e3a472af743f70b12b.svg" alt="\(R=c\,t/2\)" style="height:1.096em;vertical-align:-0.274em">, its power <img class="m" src="m/c69d3e50a06518786ec3ee9cdb1ce68e6453a8c2.svg" alt="\(P_r=\dfrac{P_tG^2\lambda^2\sigma}{(4\pi)^3R^4}\)" style="height:2.659em;vertical-align:-1.037em"> depends on the radar cross section <img class="m" src="m/8516f62704cfc9f6fef98a2694f3ea1455c1ccb7.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em"> of the target, i.e. on how the surface backscatters at that wavelength.</p>
+<p class="rel"><span>needs</span> <a href="passive-active-sensors.html">Passive and active sensors</a></p>
+<p class="rel"><span>unlocks</span> <a href="backscattering-coefficient.html">Backscattering coefficient</a>, <a href="radar-bands.html">Radar frequency bands</a>, <a href="side-looking-radar.html">Side-looking radar geometry</a></p>
+<p class="rel"><span>see also</span> <a href="backscattering-coefficient.html">Backscattering coefficient</a>, <a href="side-looking-radar.html">Side-looking radar geometry</a>, <a href="radar-bands.html">Radar frequency bands</a></p>
+<details class="path"><summary>Learning path: 2 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org7b407cb" class="outline-2">
+<h2 id="org7b407cb">Statement</h2>
+<div class="outline-text-2" id="text-org7b407cb">
+<p>
+For a monostatic radar with transmitted power <img class="m" src="m/75862ed32dfe53987595611e17c771fb0c9ffb37.svg" alt="\(P_t\)" style="height:0.913em;vertical-align:-0.164em">, antenna gain <img class="m" src="m/c4eadafb5bf1ac78e96cd70fd41f042fabf47273.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">, wavelength <img class="m" src="m/623ed6fe71f30e4d5681590495eb1e0754aae1f3.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em">, target radar cross section <img class="m" src="m/8516f62704cfc9f6fef98a2694f3ea1455c1ccb7.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em"> (m<img class="m" src="m/c9fc16220980696d2d9f7789b2e53ef457b2f588.svg" alt="\(^2\)" style="height:0.892em;vertical-align:-0.000em">) at range <img class="m" src="m/d7afb8ff790a1638c2f4f8daf02681b369fe25c2.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">:
+<div class="mb"><img class="m" src="m/09bab5cf9aede5a2e26e52a3c09c142530cf5de5.svg" alt="\[ P_r=\frac{P_t\,G^2\,\lambda^2\,\sigma}{(4\pi)^3\,R^4}. \]" style="width:8.005em"></div>
+Range from the round-trip time <img class="m" src="m/3dc0fdbef274704c5e49f5942163270da27e84a9.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em">: <img class="m" src="m/387121d86feee1804b9113cec53ae761763b7ca1.svg" alt="\(R=ct/2\)" style="height:1.096em;vertical-align:-0.274em">. For distributed targets (terrain) <img class="m" src="m/8516f62704cfc9f6fef98a2694f3ea1455c1ccb7.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em"> is replaced by <img class="m" src="m/c5592ae8580d08c38aee64c36391315bfe862e44.svg" alt="\(\sigma^0A\)" style="height:0.892em;vertical-align:-0.000em">, with <img class="m" src="m/88aacec02e6ea8f67e4c3001bce15a12392bb702.svg" alt="\(\sigma^0\)" style="height:0.892em;vertical-align:-0.000em"> the dimensionless <a href="backscattering-coefficient.html">backscattering coefficient</a> and <img class="m" src="m/354f32ba775592a734c6aac69e3c36f9ad710587.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> the illuminated area.
+</p>
+</div>
+</div>
+<div id="outline-container-org2567719" class="outline-2">
+<h2 id="org2567719">Derivation</h2>
+<div class="outline-text-2" id="text-org2567719">
+<p>
+Power density at the target: <img class="m" src="m/e0272b42da4d76ad67a8191f830a24101d751d8c.svg" alt="\(P_tG/(4\pi R^2)\)" style="height:1.166em;vertical-align:-0.268em">. The target intercepts and re-radiates isotropically the power <img class="m" src="m/b01bd00c6b5215747cc914cf2f4a248445feb68e.svg" alt="\(\sigma\,P_tG/(4\pi R^2)\)" style="height:1.166em;vertical-align:-0.268em">; at the radar the density is that divided by <img class="m" src="m/a3ef9dd213793ea157815a76b89f80ce91fb702e.svg" alt="\(4\pi R^2\)" style="height:0.892em;vertical-align:-0.000em">; the antenna collects it over its effective area <img class="m" src="m/9b880a00a004265723242210502b71b91c536049.svg" alt="\(A_e=G\lambda^2/(4\pi)\)" style="height:1.166em;vertical-align:-0.268em">. Multiplying gives the equation; the <img class="m" src="m/844992f91d76546386d11c00f42a301003811935.svg" alt="\(R^{-4}\)" style="height:0.892em;vertical-align:-0.000em"> comes from the two spreadings.
+</p>
+</div>
+</div>
+<div id="outline-container-org07244aa" class="outline-2">
+<h2 id="org07244aa">Uses</h2>
+<div class="outline-text-2" id="text-org07244aa">
+<p>
+Radars measure two quantities: distance (altimeters, ranging) and backscattered power. Imaging radars for <a href="remote-sensing-system.html">Earth observation</a> are interested mainly in the backscattering coefficient, which carries the physical information about the surface; they work in microwaves (1 mm–1 m), day and night, through clouds, fog and rain.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc1ce3fd" class="outline-2">
+<h2 id="orgc1ce3fd">Intuition</h2>
+<div class="outline-text-2" id="text-orgc1ce3fd">
+<p>
+Shouting at a wall and listening: the delay tells how far it is, the loudness of the echo what it is made of.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc41011d" class="outline-2">
+<h2 id="orgc41011d">Pitfall</h2>
+<div class="outline-text-2" id="text-orgc41011d">
+<p>
+The <img class="m" src="m/844992f91d76546386d11c00f42a301003811935.svg" alt="\(R^{-4}\)" style="height:0.892em;vertical-align:-0.000em"> law makes the echo extremely weak from orbit: spaceborne radars need high peak power, large antennas and the processing gain of <a href="chirp-pulse-compression.html">pulse compression</a> and <a href="synthetic-aperture-radar.html">synthetic aperture</a>.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="radiometric-snr.html"><span>← previous</span>Signal-to-noise ratio and noise-equivalent quantities</a><a rel="next" href="side-looking-radar.html"><span>next →</span>Side-looking radar geometry</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/acquisition--radar.pdf" title="PDF manual">Radar</a> · <a class="pdf" href="pdf/acquisition.pdf" title="PDF manual">Acquisition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

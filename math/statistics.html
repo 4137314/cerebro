@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Statistics · Mathematics</title>
+<meta name="description" content="Probability computes forwards, from a law to the behaviour of a sample; statistics computes backwards, from a sample to the law. The formal difference is a single quantifier – the measure is not given but ranges over a family – and it changes what a theorem can say: no procedure is right, so every …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/statistics.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Statistics · Mathematics">
+<meta property="og:description" content="Probability computes forwards, from a law to the behaviour of a sample; statistics computes backwards, from a sample to the law. The formal difference is a single quantifier – the measure is not given but ranges over a family – and it changes what a theorem can say: no procedure is right, so every …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/statistics.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-probability">Probability</a> / <a rel="up" href="index.html#a-probability--statistics">Statistics</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">overview · Probability · Statistics</p>
+<h1>Statistics</h1>
+<p class="summary">Probability computes forwards, from a law to the behaviour of a sample; statistics computes backwards, from a sample to the law. The formal difference is a single quantifier &#x2013; the measure is not given but ranges over a family &#x2013; and it changes what a theorem can say: no procedure is right, so every result is a bound on how wrong one can be, or a proof that no procedure does better.</p>
+<p class="rel"><span>mentioned in</span> <a href="mathematics.html">Mathematics</a>, <a href="probability.html">Probability</a></p>
+</header>
+<main class="note">
+<p>
+Part of <a href="probability.html">Probability</a>.
+</p>
+<div id="outline-container-org896585c" class="outline-2">
+<h2 id="org896585c">Estimation</h2>
+<div class="outline-text-2" id="text-org896585c">
+<p>
+<a href="statistical-models-estimators-and-consistency.html">Statistical models, estimators and consistency</a> sets up the vocabulary
+and proves the two things one can say about an estimator with no further
+hypotheses: the mean squared error splits into variance and squared
+bias, and the sample mean is consistent by the <a href="the-weak-and-strong-laws-of-large-numbers.html">law of large numbers</a>.
+</p>
+
+<p>
+Then two theorems that say where the good estimators are and how good
+they can be:
+</p>
+
+<ul class="org-ul">
+<li><a href="sufficiency-and-the-factorisation-theorem.html">Sufficiency and the factorisation theorem</a> &#x2013; a statistic that keeps
+everything relevant to the parameter, recognised by inspecting how the
+density depends on it.</li>
+<li><a href="the-rao-blackwell-theorem.html">The Rao-Blackwell theorem</a> &#x2013; conditioning any unbiased estimator on a
+sufficient statistic never makes it worse. The proof is Pythagoras in
+<img class="m" src="m/f3b131d6a772188adab030e30e89617ec918342f.svg" alt="\(L^{2}\)" style="height:0.892em;vertical-align:-0.000em">, which is why <a href="conditional-expectation-as-an-orthogonal-projection.html">conditional expectation</a> had to be built
+geometrically first.</li>
+<li><a href="fisher-information-and-the-cramer-rao-bound.html">Fisher information and the Cramer-Rao bound</a> &#x2013; a floor on the
+variance of every unbiased estimator, depending on the model alone.</li>
+</ul>
+
+<p>
+Read together they are one argument: improve towards a sufficient
+statistic, and stop when the Cramer-Rao floor is reached.
+</p>
+</div>
+</div>
+<div id="outline-container-org8d8855c" class="outline-2">
+<h2 id="org8d8855c">Decisions</h2>
+<div class="outline-text-2" id="text-org8d8855c">
+<p>
+<a href="hypothesis-tests-and-the-neyman-pearson-lemma.html">Hypothesis tests and the Neyman-Pearson lemma</a> is the other half of the
+subject: two kinds of error that cannot both be made small, a
+convention that fixes one and minimises the other, and a complete answer
+for two simple hypotheses &#x2013; reject where the likelihood ratio is large.
+</p>
+</div>
+</div>
+<div id="outline-container-org9bc6032" class="outline-2">
+<h2 id="org9bc6032">Linear models</h2>
+<div class="outline-text-2" id="text-org9bc6032">
+<p>
+<a href="least-squares-and-the-gauss-markov-theorem.html">Least squares and the Gauss-Markov theorem</a> is where statistics is
+<a href="linear-algebra.html">linear algebra</a>: the fitted values are an orthogonal projection, the
+normal equations are that projection in coordinates, and optimality
+among linear unbiased estimators follows from Pythagoras again. Notably
+no distributional assumption is used.
+</p>
+</div>
+</div>
+<div id="outline-container-org6837e58" class="outline-2">
+<h2 id="org6837e58">What is missing</h2>
+<div class="outline-text-2" id="text-org6837e58">
+<p>
+Maximum likelihood, its equivariance and its asymptotic normality &#x2013; the
+single largest gap, and the method most used in practice; the
+Lehmann-Scheffe theorem, which turns <a href="the-rao-blackwell-theorem.html">Rao-Blackwell</a> into a uniqueness
+statement; confidence intervals and their duality with tests; the
+chi-squared, <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> and <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em"> distributions, which need the normal theory
+of quadratic forms; Bayesian inference; and nonparametric methods.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="least-squares-and-the-gauss-markov-theorem.html"><span>← previous</span>Least squares and the Gauss-Markov theorem</a><a rel="next" href="sufficiency-and-the-factorisation-theorem.html"><span>next →</span>Sufficiency and the factorisation theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/probability--statistics.pdf" title="PDF manual">Statistics</a> · <a class="pdf" href="pdf/probability.pdf" title="PDF manual">Probability</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

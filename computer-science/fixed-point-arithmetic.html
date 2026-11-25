@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fixed-point arithmetic · Computer Science</title>
+<meta name="description" content="Hardware DSP stores real numbers as integers with an implicit binary point: in Qm.n a word of m+n+1 bits represents x=\text{integer}\cdot2^{-n}; addition aligns points, multiplication adds fraction bits (Qa.b × Qc.d → Q(a+c+1).(b+d)), and every step must choose rounding versus truncation and satura…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/fixed-point-arithmetic.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Fixed-point arithmetic · Computer Science">
+<meta property="og:description" content="Hardware DSP stores real numbers as integers with an implicit binary point: in Qm.n a word of m+n+1 bits represents x=\text{integer}\cdot2^{-n}; addition aligns points, multiplication adds fraction bits (Qa.b × Qc.d → Q(a+c+1).(b+d)), and every step must choose rounding versus truncation and satura…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/fixed-point-arithmetic.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--arithmetic">Arithmetic</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Hardware · Arithmetic</p>
+<h1>Fixed-point arithmetic</h1>
+<p class="summary">Hardware DSP stores real numbers as integers with an implicit binary point: in Qm.n a word of <img class="m" src="m/4c1e53c992860f972bf6d4cfdd802d3839318185.svg" alt="\(m+n+1\)" style="height:0.798em;vertical-align:-0.088em"> bits represents <img class="m" src="m/d15dd1b6d83a461d0b1e8e728f9ecb7481a571b2.svg" alt="\(x=\text{integer}\cdot2^{-n}\)" style="height:1.086em;vertical-align:-0.217em">; addition aligns points, multiplication adds fraction bits (Qa.b × Qc.d → Q(a+c+1).(b+d)), and every step must choose rounding versus truncation and saturation versus wrap-around.</p>
+<p class="rel"><span>needs</span> <a href="ripple-carry-adder.html">Full adder and ripple-carry adder</a></p>
+<p class="rel"><span>see also</span> <a href="cordic.html">CORDIC</a>, <a href="fir-filter.html">FIR filter architectures</a>, <a href="array-multiplier.html">Multipliers</a></p>
+<p class="rel"><span>mentioned in</span> <a href="tree-height-reduction.html">Tree height reduction</a>, <a href="spi.html">SPI</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="ripple-carry-adder.html">Full adder and ripple-carry adder</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org56fc046" class="outline-2">
+<h2 id="org56fc046">Definition</h2>
+<div class="outline-text-2" id="text-org56fc046">
+<p>
+Signed Qm.n: 1 sign bit, <img class="m" src="m/5f2d4f790b418da9d600db34c8fe8eb825040aa9.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em"> integer bits, <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> fraction bits. Range <img class="m" src="m/47eb019bb4b573eb3115c4c42bacb36e839ad32f.svg" alt="\([-2^m,\,2^m-2^{-n}]\)" style="height:1.147em;vertical-align:-0.275em">, resolution <img class="m" src="m/a16e2f7fc74eb350886c60d1fbc861a9e3fd6e6d.svg" alt="\(2^{-n}\)" style="height:0.873em;vertical-align:-0.000em">.
+</p>
+<ul class="org-ul">
+<li><b>Addition</b>: same format in, one extra integer bit out to avoid overflow.</li>
+<li><b>Multiplication</b>: Q<img class="m" src="m/36ad57d0b9b05e12447762c553bda3a072bc992d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">.<img class="m" src="m/9a9e478ff943a309ecb17df71ac414cc09c1be96.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em"> × Q<img class="m" src="m/b89f22107378b842f1c34383ec5fd8b764c4d3aa.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em">.<img class="m" src="m/9ebc774c2af2128831b85f4a54f6ceb82b3ea827.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em"> = Q<img class="m" src="m/b0d25f7b06de95a5fa12989e384b1d3e4b086411.svg" alt="\((a+c+1)\)" style="height:1.096em;vertical-align:-0.274em">.<img class="m" src="m/ef77c4a2d54ac59fa6b4b57698baa0e973159d46.svg" alt="\((b+d)\)" style="height:1.096em;vertical-align:-0.274em">; the product is then shifted right by the excess fraction bits.</li>
+<li><b>Quantization error</b>: truncation (drop bits) has bias <img class="m" src="m/6ce3e6c9b35be60cca7373cdc2fc9c2cb72683e5.svg" alt="\(-2^{-n-1}\)" style="height:0.983em;vertical-align:-0.089em"> on average; rounding to nearest has zero mean and error uniform in <img class="m" src="m/bd87b9108b2ab25d103ac4e8e2d6873517e7fe89.svg" alt="\(\pm2^{-n-1}\)" style="height:0.983em;vertical-align:-0.089em">, variance <img class="m" src="m/699a678ac56829a6200185801d5eb613ae2e8847.svg" alt="\(2^{-2n}/12\)" style="height:1.166em;vertical-align:-0.268em">.</li>
+<li><b>Overflow</b>: wrap-around (two's complement default) gives huge errors; saturation clips to the extremes.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge69eb8f" class="outline-2">
+<h2 id="orge69eb8f">Example</h2>
+<div class="outline-text-2" id="text-orge69eb8f">
+<p>
+Q1.6 (8 bits): <img class="m" src="m/ff9d0c78d09f3c0712b4e4722416d400a8bba9f0.svg" alt="\(0.75=48\cdot2^{-6}\)" style="height:0.892em;vertical-align:-0.000em"> is <code>00110000</code>, <img class="m" src="m/95547ccd744a269c14cf5279dda2a19bf9a40a52.svg" alt="\(-0.5\)" style="height:0.798em;vertical-align:-0.088em"> is <code>11100000</code>. Product: <img class="m" src="m/bdebcd954817317234eed02d0841a0468b4110de.svg" alt="\(48\cdot(-32)=-1536\)" style="height:1.096em;vertical-align:-0.274em"> in Q3.12; shift right by 6: <img class="m" src="m/d25c6c363f2356db434ff3e1726c9caacbb99d2a.svg" alt="\(-24\)" style="height:0.798em;vertical-align:-0.088em"> in Q1.6, i.e. <img class="m" src="m/a39586d262c3ea05da0f2f6cf205d3839c421bc2.svg" alt="\(-24/64=-0.375\)" style="height:1.096em;vertical-align:-0.274em"> ✓.
+</p>
+<figure class="listing lang-vhdl"><figcaption><span class="lang">VHDL</span></figcaption><pre class="src"><code><span class="k">signal</span> <span class="v">a</span>, <span class="v">b</span> : <span class="t">signed</span>(7 <span class="k">downto</span> 0);              <span class="c">-- Q1.6
+</span><span class="k">signal</span> <span class="v">p</span>    : <span class="t">signed</span>(15 <span class="k">downto</span> 0);             <span class="c">-- Q3.12
+</span>p &lt;= a * b;
+y &lt;= resize(shift_right(p + 32, 6), 8);         <span class="c">-- round to nearest, back to Q1.6</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orgfbf9d44" class="outline-2">
+<h2 id="orgfbf9d44">Intuition</h2>
+<div class="outline-text-2" id="text-orgfbf9d44">
+<p>
+Fixed point is doing all your sums in, say, cents: integers everywhere, and you just remember where the decimal point is.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd2f6c31" class="outline-2">
+<h2 id="orgd2f6c31">Pitfall</h2>
+<div class="outline-text-2" id="text-orgd2f6c31">
+<p>
+Word lengths grow at every multiplication and accumulation (a FIR with <img class="m" src="m/c9556610734f8d479d56f4a3f024509a5a0741cf.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> taps needs <img class="m" src="m/4337493b231ea5f10a21863740acc289596931cb.svg" alt="\(\lceil\log_2N\rceil\)" style="height:1.096em;vertical-align:-0.274em"> guard bits in the accumulator); forgetting them gives silent wrap-around, the worst possible error.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="fir-filter.html"><span>← previous</span>FIR filter architectures</a><a rel="next" href="magnitude-comparator.html"><span>next →</span>Iterative magnitude comparator</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--arithmetic.pdf" title="PDF manual">Arithmetic</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

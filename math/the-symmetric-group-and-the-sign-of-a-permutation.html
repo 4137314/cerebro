@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The symmetric group and the sign of a permutation · Mathematics</title>
+<meta name="description" content="Every finite group embeds in a symmetric group, so S_{n} is where finite group theory happens. It carries one invariant that costs nothing and decides a surprising amount: a homomorphism onto a group of two elements. Its existence is the only non-formal step – a permutation can be written as a prod…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-symmetric-group-and-the-sign-of-a-permutation.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The symmetric group and the sign of a permutation · Mathematics">
+<meta property="og:description" content="Every finite group embeds in a symmetric group, so S_{n} is where finite group theory happens. It carries one invariant that costs nothing and decides a surprising amount: a homomorphism onto a group of two elements. Its existence is the only non-formal step – a permutation can be written as a prod…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-symmetric-group-and-the-sign-of-a-permutation.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--group-theory">Group Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Algebra · Group Theory</p>
+<h1>The symmetric group and the sign of a permutation</h1>
+<p class="summary">Every finite group embeds in a symmetric group, so <img class="m" src="m/8ac92dccea20d5f4d0eb823b3b1087cc09e295fe.svg" alt="\(S_{n}\)" style="height:0.913em;vertical-align:-0.164em"> is where finite group theory happens. It carries one invariant that costs nothing and decides a surprising amount: a homomorphism onto a group of two elements. Its existence is the only non-formal step &#x2013; a permutation can be written as a product of transpositions in many ways, and the claim is that the parity of their number does not depend on the way.</p>
+<p class="rel"><span>needs</span> <a href="cosets-the-index-and-lagranges-theorem.html">Cosets, the index and Lagrange's theorem</a>, <a href="group.html">Group</a>, <a href="group-actions-orbits-and-the-orbit-stabiliser-theorem.html">Group actions, orbits and the orbit-stabiliser theorem</a>, <a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a>, <a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></p>
+<p class="rel"><span>unlocks</span> <a href="the-determinant-as-the-alternating-multilinear-form.html">The determinant as the alternating multilinear form</a></p>
+<p class="rel"><span>mentioned in</span> <a href="group-theory.html">Group theory</a></p>
+<details class="path"><summary>Learning path: 12 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li><li><a href="the-order-of-an-element-and-cyclic-groups.html">The order of an element and cyclic groups</a></li><li><a href="cosets-the-index-and-lagranges-theorem.html">Cosets, the index and Lagrange's theorem</a></li><li><a href="group-actions-orbits-and-the-orbit-stabiliser-theorem.html">Group actions, orbits and the orbit-stabiliser theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgf308521">
+<p>
+The <i>symmetric group</i> <img class="m" src="m/8ac92dccea20d5f4d0eb823b3b1087cc09e295fe.svg" alt="\(S_{n}\)" style="height:0.913em;vertical-align:-0.164em"> is the group of bijections of
+<img class="m" src="m/c48c3090fe72b3433c1e7c4f8fa7268abccb8bce.svg" alt="\(\set{1, \dots, n}\)" style="height:1.096em;vertical-align:-0.274em"> under composition. A <i>transposition</i> is an element
+exchanging two points and fixing the rest.
+</p>
+
+</div>
+
+<div class="proposition" id="org445c99d">
+<p>
+Every element of <img class="m" src="m/8ac92dccea20d5f4d0eb823b3b1087cc09e295fe.svg" alt="\(S_{n}\)" style="height:0.913em;vertical-align:-0.164em"> is a product of transpositions (the identity
+being the empty product).
+</p>
+
+</div>
+
+<div class="proof" id="orgf476c70">
+<p>
+Induct on <img class="m" src="m/258989f594f29aa0c4c19266440c2be28e73f0e8.svg" alt="\(m(\sigma) = \abs{\setst{i}{\sigma(i) \ne i}}\)" style="height:1.096em;vertical-align:-0.274em">, the number
+of points moved. If <img class="m" src="m/4ee033b80de04487bd9260af0d185437969bcf67.svg" alt="\(m(\sigma) = 0\)" style="height:1.096em;vertical-align:-0.274em"> then <img class="m" src="m/8fe83c53581c7ec7865d120fef233ae25f0c76dd.svg" alt="\(\sigma = \id\)" style="height:0.761em;vertical-align:-0.000em">. Otherwise
+pick <img class="m" src="m/820a2ed5b51be608772286616d5575a49dd61525.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em"> with <img class="m" src="m/951468570049c34f961b272d361c21625675543e.svg" alt="\(\sigma(i) = j \ne i\)" style="height:1.096em;vertical-align:-0.274em"> and let <img class="m" src="m/f3778496560b26955f4102ffc056c53509a2cafc.svg" alt="\(\tau\)" style="height:0.472em;vertical-align:-0.000em"> be the
+transposition of <img class="m" src="m/820a2ed5b51be608772286616d5575a49dd61525.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em"> and <img class="m" src="m/3368b211f5038907d6dc36c5bec32916d1755948.svg" alt="\(j\)" style="height:0.936em;vertical-align:-0.215em">. Every point fixed by <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em"> is
+fixed by <img class="m" src="m/21bd145a3e0b3c876dcf5f6238c9f06cbca5e27e.svg" alt="\(\tau\sigma\)" style="height:0.472em;vertical-align:-0.000em">: such a <img class="m" src="m/5ec5e3b2fda230219e6719c59682076f93242498.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> is neither <img class="m" src="m/820a2ed5b51be608772286616d5575a49dd61525.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em"> (which <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">
+moves) nor <img class="m" src="m/3368b211f5038907d6dc36c5bec32916d1755948.svg" alt="\(j\)" style="height:0.936em;vertical-align:-0.215em"> (for <img class="m" src="m/4e22915d2a665d3df42e236bc1971232844cc337.svg" alt="\(\sigma(j) = j\)" style="height:1.096em;vertical-align:-0.274em"> together with <img class="m" src="m/be72b1ec37315a8106e5788fbd5c25f552f477cb.svg" alt="\(\sigma(i) = j\)" style="height:1.096em;vertical-align:-0.274em">
+would contradict injectivity), so <img class="m" src="m/f3778496560b26955f4102ffc056c53509a2cafc.svg" alt="\(\tau\)" style="height:0.472em;vertical-align:-0.000em"> fixes <img class="m" src="m/793f6781d6256ccbb6f172ea2060c4ab617709d3.svg" alt="\(\sigma(k) = k\)" style="height:1.096em;vertical-align:-0.274em">. And
+<img class="m" src="m/3385f15e44c48a0e57d39a03f4fbad090a7b0fc5.svg" alt="\(\tau\sigma(i) = \tau(j) = i\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/21bd145a3e0b3c876dcf5f6238c9f06cbca5e27e.svg" alt="\(\tau\sigma\)" style="height:0.472em;vertical-align:-0.000em"> fixes <img class="m" src="m/820a2ed5b51be608772286616d5575a49dd61525.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em"> as well.
+Hence <img class="m" src="m/033fc4cd8d5278b917a79d3bc986cc4dc1bd50dd.svg" alt="\(m(\tau\sigma) \le m(\sigma) - 1\)" style="height:1.096em;vertical-align:-0.274em">, and by induction
+<img class="m" src="m/21bd145a3e0b3c876dcf5f6238c9f06cbca5e27e.svg" alt="\(\tau\sigma\)" style="height:0.472em;vertical-align:-0.000em"> is a product of transpositions; so
+<img class="m" src="m/c3704c56d44229875706d12129d78084425afc1f.svg" alt="\(\sigma = \tau(\tau\sigma)\)" style="height:1.096em;vertical-align:-0.274em"> is one too.
+</p>
+
+</div>
+
+<div class="theorem" id="orgddd9d14">
+<p>
+There is a unique homomorphism
+<img class="m" src="m/b4b808ed2459d00e6941df473538df4acbe6a7f4.svg" alt="\(\sgn \colon S_{n} \to \set{1, -1}\)" style="height:1.096em;vertical-align:-0.274em"> (the latter a group under
+multiplication) taking the value <img class="m" src="m/57cc80c3f3402407b1ad11bd691da3ac1beb4037.svg" alt="\(-1\)" style="height:0.798em;vertical-align:-0.088em"> on every transposition, for
+<img class="m" src="m/8404eb102e3e868153630c118c966d1256a76645.svg" alt="\(n \ge 2\)" style="height:0.855em;vertical-align:-0.145em">. Explicitly
+<img class="m" src="m/b01ff4304b5c04300da69850feede046a0477aee.svg" alt="\(\sgn(\sigma) = \prod_{i &lt; j} \frac{\sigma(j) - \sigma(i)}{j - i}\)" style="height:1.634em;vertical-align:-0.523em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgfdc87f9">
+<p>
+Work in the polynomial ring <img class="m" src="m/b3d581909e0873b86b9dd26c7476906477a7c207.svg" alt="\(\Z[x_{1}, \dots, x_{n}]\)" style="height:1.096em;vertical-align:-0.274em"> and let
+<img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em"> act on it by the substitution <img class="m" src="m/ce56d806a1227bdc202ff56fa32de7f845d1c187.svg" alt="\(x_{m} \mapsto x_{\sigma(m)}\)" style="height:0.861em;vertical-align:-0.388em">,
+so that <img class="m" src="m/2c195c1b1eab2d8ebb4b62bab36f1f8f88fd259d.svg" alt="\(\sigma \cdot Q\)" style="height:0.962em;vertical-align:-0.212em"> is a polynomial and
+<img class="m" src="m/2b15cea95887574e15bd1a033b2c8c8ae8a66a4b.svg" alt="\(\sigma \cdot (\tau \cdot Q) = (\sigma\tau) \cdot Q\)" style="height:1.096em;vertical-align:-0.274em">. Put
+<img class="m" src="m/4eb0f692abf3ef094b8cb4dd49cd3c3f3c63ef31.svg" alt="\(P = \prod_{i&lt;j}(x_{j} - x_{i})\)" style="height:1.300em;vertical-align:-0.481em">, so
+<img class="m" src="m/94a5be288b85c5233eb2162b3f5f22483f232521.svg" alt="\(\sigma \cdot P = \prod_{i&lt;j}(x_{\sigma(j)} - x_{\sigma(i)})\)" style="height:1.300em;vertical-align:-0.481em">. Since
+<img class="m" src="m/3487a1adbe7c52804d9ea6619296b5a863164d2d.svg" alt="\(\set{i,j} \mapsto \set{\sigma(i), \sigma(j)}\)" style="height:1.096em;vertical-align:-0.274em"> is a bijection of the
+two-element subsets, the factors of <img class="m" src="m/f0ac4a8f1dae65ef36639f24dbdb9d0d14ad484c.svg" alt="\(\sigma \cdot P\)" style="height:0.749em;vertical-align:-0.000em"> are those of
+<img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> up to sign: <img class="m" src="m/911f05f54ee7489b2361a18cd0c1063529c8e205.svg" alt="\(\sigma \cdot P = \eps(\sigma) P\)" style="height:1.096em;vertical-align:-0.274em"> with
+<img class="m" src="m/a2a88496f32805295b95a19daabc92e771bd9e9c.svg" alt="\(\eps(\sigma) = (-1)^{k}\)" style="height:1.204em;vertical-align:-0.277em">, where <img class="m" src="m/5ec5e3b2fda230219e6719c59682076f93242498.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> is the number of pairs
+<img class="m" src="m/d52a4b1a5bc768696cc1d62f8a0ecddec7bdeadd.svg" alt="\(i &lt; j\)" style="height:0.936em;vertical-align:-0.215em"> with <img class="m" src="m/5d705f1c15f66124211290582bc2190bc57d5b6b.svg" alt="\(\sigma(i) &gt; \sigma(j)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+The assignment is a homomorphism, because the action is one:
+<img class="m" src="m/6f1367cd980fe78dbe56e8d6c83ad10269120360.svg" alt="\(\eps(\sigma\tau) P = (\sigma\tau) \cdot P = \sigma \cdot (\eps(\tau) P) = \eps(\sigma)\eps(\tau) P\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+A transposition <img class="m" src="m/f3778496560b26955f4102ffc056c53509a2cafc.svg" alt="\(\tau\)" style="height:0.472em;vertical-align:-0.000em"> of <img class="m" src="m/94f0deca0561bf7eeb84211a5f031cecdcb28d95.svg" alt="\(a &lt; b\)" style="height:0.804em;vertical-align:-0.040em"> has <img class="m" src="m/cbe2af85573bcbb71af9a561f39f6f21a7d5e1eb.svg" alt="\(\eps(\tau) = -1\)" style="height:1.096em;vertical-align:-0.274em">: the pairs
+<img class="m" src="m/879245a751af884d88c4719271d0d1a3af20c91d.svg" alt="\(i&lt;j\)" style="height:0.936em;vertical-align:-0.215em"> it inverts are <img class="m" src="m/892f6e276795871574e0f64d2c5d39c77bd59ff8.svg" alt="\(\set{a,b}\)" style="height:1.096em;vertical-align:-0.274em"> itself and, for each <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> with
+<img class="m" src="m/d0a8c2f5fdc3ef90c546b98fb29b98c84cf97119.svg" alt="\(a &lt; c &lt; b\)" style="height:0.804em;vertical-align:-0.040em">, the two pairs <img class="m" src="m/b5fad39d7ffe9d4721d6043a20935b3b8d742b5c.svg" alt="\(\set{a,c}\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/cd9898704d63e58d6d504ca4c8e5f65c86884013.svg" alt="\(\set{c,b}\)" style="height:1.096em;vertical-align:-0.274em"> &#x2013; an odd
+number in total. Dividing the displayed product by <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> gives the
+stated formula. Uniqueness holds because the transpositions generate
+<img class="m" src="m/8ac92dccea20d5f4d0eb823b3b1087cc09e295fe.svg" alt="\(S_{n}\)" style="height:0.913em;vertical-align:-0.164em">.
+</p>
+
+</div>
+
+<div class="corollary" id="org5b527c6">
+<p>
+If <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em"> is a product of <img class="m" src="m/5ec5e3b2fda230219e6719c59682076f93242498.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> transpositions and also of <img class="m" src="m/32f7610802d98c5c99d87dca309b724f66a24aa8.svg" alt="\(l\)" style="height:0.761em;vertical-align:-0.000em">
+transpositions, then <img class="m" src="m/63faa445b7ca9668c2ba92cc5502637b3252be7d.svg" alt="\(k \equiv l \pmod 2\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orge0ac153">
+<p>
+Applying <img class="m" src="m/893ead722410b23b8a413d874af7526b8548e080.svg" alt="\(\sgn\)" style="height:0.685em;vertical-align:-0.212em"> gives <img class="m" src="m/0dd75c3f5f0414d54bb5f0dfead10363dc49be52.svg" alt="\((-1)^{k} = \sgn(\sigma) = (-1)^{l}\)" style="height:1.204em;vertical-align:-0.277em">.
+</p>
+
+</div>
+
+<div class="corollary" id="orga94c5fb">
+<p>
+For <img class="m" src="m/8404eb102e3e868153630c118c966d1256a76645.svg" alt="\(n \ge 2\)" style="height:0.855em;vertical-align:-0.145em"> the set <img class="m" src="m/4550fe2dc44d04b7903502043ccc07bee9f21236.svg" alt="\(A_{n} = \ker(\sgn)\)" style="height:1.096em;vertical-align:-0.274em"> of <i>even</i> permutations is
+a normal subgroup of <img class="m" src="m/8ac92dccea20d5f4d0eb823b3b1087cc09e295fe.svg" alt="\(S_{n}\)" style="height:0.913em;vertical-align:-0.164em"> of index <img class="m" src="m/682209d80cc07f86795f987ad28681d443268af8.svg" alt="\(2\)" style="height:0.706em;vertical-align:-0.000em">, so
+<img class="m" src="m/dff40649f5af0e4f316ec1229e42637da745b77f.svg" alt="\(\abs{A_{n}} = n!/2\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgee62379">
+<p>
+A kernel is a normal subgroup. Since <img class="m" src="m/8404eb102e3e868153630c118c966d1256a76645.svg" alt="\(n \ge 2\)" style="height:0.855em;vertical-align:-0.145em"> there is a
+transposition, so <img class="m" src="m/893ead722410b23b8a413d874af7526b8548e080.svg" alt="\(\sgn\)" style="height:0.685em;vertical-align:-0.212em"> is surjective onto <img class="m" src="m/3e8b23513ce48421a6b7bc95b6b0fc7026c3af3f.svg" alt="\(\set{1,-1}\)" style="height:1.096em;vertical-align:-0.274em">, and the
+first isomorphism theorem gives <img class="m" src="m/94be8b9320c178c2476fd1d8f7d68e69176a417e.svg" alt="\(S_{n}/A_{n} \iso \set{1,-1}\)" style="height:1.096em;vertical-align:-0.274em">, a group
+of order <img class="m" src="m/682209d80cc07f86795f987ad28681d443268af8.svg" alt="\(2\)" style="height:0.706em;vertical-align:-0.000em">. By Lagrange, <img class="m" src="m/e1f75526bfe001f199141ba3f198718f9a6b30ca.svg" alt="\(\abs{A_{n}} = \abs{S_{n}}/2 = n!/2\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="remark" id="org7c170c8">
+<p>
+The sign is the determinant of the corresponding permutation matrix, and
+that is not a coincidence but the same computation: both are the action
+on the top exterior power, which for a permutation of coordinates is the
+alternating polynomial <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> above.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="group-actions-orbits-and-the-orbit-stabiliser-theorem.html"><span>← previous</span>Group actions, orbits and the orbit-stabiliser theorem</a><a rel="next" href="cauchys-theorem-and-the-sylow-theorems.html"><span>next →</span>Cauchy's theorem and the Sylow theorems</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--group-theory.pdf" title="PDF manual">Group Theory</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

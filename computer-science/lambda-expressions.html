@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lambda expressions · Computer Science</title>
+<meta name="description" content="[captures](params) -&gt; ret { body } defines an unnamed function object where it is used; the capture list copies ([=], [x]) or references ([&amp;], [&amp;x]) variables of the enclosing scope, and that choice decides what the lambda sees when it runs later.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/lambda-expressions.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Lambda expressions · Computer Science">
+<meta property="og:description" content="[captures](params) -&gt; ret { body } defines an unnamed function object where it is used; the capture list copies ([=], [x]) or references ([&amp;], [&amp;x]) variables of the enclosing scope, and that choice decides what the lambda sees when it runs later.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/lambda-expressions.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--cpp">Cpp</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Cpp</p>
+<h1>Lambda expressions</h1>
+<p class="summary"><code>[captures](params) -&gt; ret { body }</code> defines an unnamed function object where it is used; the capture list copies (<code>[=]</code>, <code>[x]</code>) or references (<code>[&amp;]</code>, <code>[&amp;x]</code>) variables of the enclosing scope, and that choice decides what the lambda sees when it runs later.</p>
+<p class="rel"><span>needs</span> <a href="function-objects.html">Function pointers and function objects</a></p>
+<p class="rel"><span>unlocks</span> <a href="java-streams.html">Java streams and method references</a></p>
+<p class="rel"><span>see also</span> <a href="stl-algorithms.html">STL algorithms</a>, <a href="event-handling.html">Event-driven programming and event handlers</a>, <a href="threads-data-race.html">Threads and data races</a>, <a href="java-streams.html">Java streams and method references</a></p>
+<p class="rel"><span>mentioned in</span> <a href="clock-skew-jitter.html">Clock skew and jitter</a>, <a href="metastability.html">Metastability and synchronizers</a>, <a href="setup-hold-time.html">Setup and hold constraints</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="method-overloading.html">Overloading</a></li><li><a href="pointers-references.html">Pointers, references and dynamic memory in C++</a></li><li><a href="cpp-special-members.html">Special member functions and RAII</a></li><li><a href="operator-overloading.html">Operator overloading in C++</a></li><li><a href="function-objects.html">Function pointers and function objects</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org5a5d2d2" class="outline-2">
+<h2 id="org5a5d2d2">Definition</h2>
+<div class="outline-text-2" id="text-org5a5d2d2">
+<p>
+A lambda is syntax for a <a href="function-objects.html">function object</a> whose class the compiler generates. Captured variables become its members.
+</p>
+<ul class="org-ul">
+<li><code>[]</code> captures nothing; <code>[=]</code> all used variables by copy; <code>[&amp;]</code> by reference;</li>
+<li><code>[x, &amp;y]</code> mixes: <code>x</code> by copy (frozen at creation), <code>y</code> by reference (read at call time);</li>
+<li><code>mutable</code> allows changing the copies; <code>-&gt; ret</code> fixes the return type when it cannot be deduced.</li>
+</ul>
+<p>
+Java has lambdas too (<code>x -&gt; x * 2</code>), restricted to <a href="java-inner-classes.html">effectively final</a> captures and used to implement single-method interfaces (<code>EventHandler</code>, <code>Comparator</code>).
+</p>
+</div>
+</div>
+<div id="outline-container-org8cd7206" class="outline-2">
+<h2 id="org8cd7206">Example</h2>
+<div class="outline-text-2" id="text-org8cd7206">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="n">std</span>::<span class="t">vector</span>&lt;<span class="n">std</span>::<span class="t">function</span>&lt;<span class="t">float</span>()&gt;&gt; <span class="v">vf</span>(16);
+<span class="t">int</span> <span class="v">j</span> = 0;
+<span class="k">for</span> (<span class="t">unsigned</span> <span class="v">i</span> = 0; i &lt; vf.size(); ++i) {
+  vf[i] = [<span class="n">i</span>, &amp;<span class="v">j</span>]() { <span class="k">return</span> i / (1.0f * j); };   <span class="c">// i frozen, j shared
+</span>  j += i;
+}
+<span class="k">for</span> (<span class="k">auto</span>&amp; <span class="v">f</span> : vf) <span class="n">std</span>::cout &lt;&lt; f() &lt;&lt; <span class="s">" "</span>;   <span class="c">// every f sees the final j = 120</span></code></pre></figure>
+<p>
+Since <code>j</code> is captured by reference, all sixteen lambdas divide by its value at call time, <img class="m" src="m/906757824d1597ed43019e12fafea9f641f61ecd.svg" alt="\(\sum_{i&lt;16} i = 120\)" style="height:1.209em;vertical-align:-0.387em">: the output is <img class="m" src="m/2b4f25704daf1f25e813d1092e05aefb719a1e2b.svg" alt="\(0, 1/120, 2/120, \dots\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org2ea0b4e" class="outline-2">
+<h2 id="org2ea0b4e">Intuition</h2>
+<div class="outline-text-2" id="text-org2ea0b4e">
+<p>
+A lambda is a function plus a snapshot (by value) or a window (by reference) on its surroundings.
+</p>
+</div>
+</div>
+<div id="outline-container-org636aef6" class="outline-2">
+<h2 id="org636aef6">Pitfall</h2>
+<div class="outline-text-2" id="text-org636aef6">
+<p>
+Capturing by reference a local that dies before the lambda runs (a lambda stored, returned, or given to a thread) is a dangling reference.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="function-objects.html"><span>← previous</span>Function pointers and function objects</a><a rel="next" href="multiple-inheritance.html"><span>next →</span>Multiple inheritance and the diamond</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--cpp.pdf" title="PDF manual">Cpp</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

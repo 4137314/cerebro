@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geometric correction, geocoding and registration · Remote Sensing</title>
+<meta name="description" content="Ground control points identified both in the image and on a map (or in a reference image) fit a mapping, typically a low-order polynomial by least squares, from map to image coordinates; the corrected grid is filled by resampling — nearest neighbour, bilinear or cubic convolution — and the residual…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/geometric-correction.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Geometric correction, geocoding and registration · Remote Sensing">
+<meta property="og:description" content="Ground control points identified both in the image and on a map (or in a reference image) fit a mapping, typically a low-order polynomial by least squares, from map to image coordinates; the corrected grid is filled by resampling — nearest neighbour, bilinear or cubic convolution — and the residual…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/geometric-correction.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--corrections">Corrections</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Processing · Corrections</p>
+<h1>Geometric correction, geocoding and registration</h1>
+<p class="summary">Ground control points identified both in the image and on a map (or in a reference image) fit a mapping, typically a low-order polynomial by least squares, from map to image coordinates; the corrected grid is filled by resampling — nearest neighbour, bilinear or cubic convolution — and the residual error at independent points measures the accuracy.</p>
+<p class="rel"><span>needs</span> <a href="geometric-distortions.html">Geometric distortions</a></p>
+<p class="rel"><span>unlocks</span> <a href="pansharpening.html">Pansharpening</a>, <a href="change-detection.html">Change detection</a></p>
+<p class="rel"><span>see also</span> <a href="radar-geometric-distortions.html">Foreshortening, layover and shadow</a>, <a href="change-detection.html">Change detection</a>, <a href="pansharpening.html">Pansharpening</a></p>
+<p class="rel"><span>mentioned in</span> <a href="copernicus-sentinel.html">Copernicus and the Sentinel missions</a></p>
+<details class="path"><summary>Learning path: 6 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="geometric-distortions.html">Geometric distortions</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org4d140c3" class="outline-2">
+<h2 id="org4d140c3">Method</h2>
+<div class="outline-text-2" id="text-org4d140c3">
+<ol class="org-ol">
+<li><b>GCPs</b>: well-defined points (road crossings, corners) with image coordinates <img class="m" src="m/a4561088d0ad1f6136cc03f471a3c20752649442.svg" alt="\((u_i,v_i)\)" style="height:1.096em;vertical-align:-0.274em"> and map coordinates <img class="m" src="m/15e6971289fb707898bd9ed51a4fbf7b7cb3b9fe.svg" alt="\((x_i,y_i)\)" style="height:1.096em;vertical-align:-0.274em">.</li>
+<li><b>Mapping</b>: <img class="m" src="m/8e245215d710468bf13ca20336316ddf9369b49e.svg" alt="\(u=\sum_{p+q\le n}a_{pq}x^py^q\)" style="height:1.300em;vertical-align:-0.481em">, <img class="m" src="m/82b62f2d39ff681b47dcd917977a03eaa4653475.svg" alt="\(v=\sum b_{pq}x^py^q\)" style="height:1.135em;vertical-align:-0.318em">. First order (affine, 6 coefficients) handles shift, rotation, scale, skew; second order (12 coefficients) mild curvature. At least <img class="m" src="m/90e88960656a5d6f75447d687d15fb3bfb1fb234.svg" alt="\((n+1)(n+2)/2\)" style="height:1.096em;vertical-align:-0.274em"> GCPs, in practice many more.</li>
+<li><b>Least squares</b>: <img class="m" src="m/5f323a55dcec0c93e7de6df2bc1816134dd93c72.svg" alt="\(\mathbf a=(X^\top X)^{-1}X^\top\mathbf u\)" style="height:1.204em;vertical-align:-0.277em">; residuals per GCP, <img class="m" src="m/1085d5b32bb1405cc5b85a1dfdfe32d1285501b4.svg" alt="\(\mathrm{RMSE}=\sqrt{\tfrac1K\sum(\Delta u^2+\Delta v^2)}\)" style="height:2.016em;vertical-align:-0.665em">, target below one pixel on check points not used for fitting.</li>
+<li><b>Resampling</b>: for each output pixel compute <img class="m" src="m/628eabd6241cf29f8c999a693548dee5d570a225.svg" alt="\((u,v)\)" style="height:1.096em;vertical-align:-0.274em"> (inverse mapping, so no holes) and interpolate:
+<ul class="org-ul">
+<li><b>nearest neighbour</b>: keeps original DNs (good before classification), blocky;</li>
+<li><b>bilinear</b>: 4 neighbours, smooth, slightly blurred;</li>
+<li><b>cubic <a href="moving-window-filters.html">convolution</a></b>: 16 neighbours, sharper, may overshoot.</li>
+</ul></li>
+</ol>
+<p>
+<b>Geocoding</b>: to map coordinates. <b>Registration</b>: to another image (co-registration for change detection). <b>Orthorectification</b>: with a DEM, removing relief.
+</p>
+</div>
+</div>
+<div id="outline-container-org29212d7" class="outline-2">
+<h2 id="org29212d7">Example</h2>
+<div class="outline-text-2" id="text-org29212d7">
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="c"># affine fit from K ground control points
+</span><span class="v">X</span> = np.c_[np.ones(K), x, y]
+<span class="v">a</span>, *<span class="v">_</span> = np.linalg.lstsq(X, u, rcond=<span class="n">None</span>)
+<span class="v">b</span>, *<span class="v">_</span> = np.linalg.lstsq(X, v, rcond=<span class="n">None</span>)
+<span class="v">rmse</span> = np.sqrt(np.mean((X @ a - u) ** 2 + (X @ b - v) ** 2))</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org20e452c" class="outline-2">
+<h2 id="org20e452c">Intuition</h2>
+<div class="outline-text-2" id="text-org20e452c">
+<p>
+Pin the image to the map at known points, find the smoothest rubber-sheet deformation that fits the pins, and repaint the pixels on the new sheet.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbf9f311" class="outline-2">
+<h2 id="orgbf9f311">Pitfall</h2>
+<div class="outline-text-2" id="text-orgbf9f311">
+<p>
+High-order polynomials fit the GCPs perfectly and go wild between and outside them; GCPs clustered in one corner give an extrapolation, not a correction.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="geometric-distortions.html"><span>← previous</span>Geometric distortions</a><a rel="next" href="radiometric-correction.html"><span>next →</span>Radiometric errors and corrections</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--corrections.pdf" title="PDF manual">Corrections</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

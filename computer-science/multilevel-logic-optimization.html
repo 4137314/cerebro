@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multi-level logic optimization · Computer Science</title>
+<meta name="description" content="A Boolean network is a DAG of nodes, each a sum of products of its fan-ins; it is optimised for area (number of literals) by structural operations — decomposition, extraction, substitution, factoring, elimination — and by node simplification with don't-cares, applied iteratively by heuristic script…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/multilevel-logic-optimization.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Multi-level logic optimization · Computer Science">
+<meta property="og:description" content="A Boolean network is a DAG of nodes, each a sum of products of its fan-ins; it is optimised for area (number of literals) by structural operations — decomposition, extraction, substitution, factoring, elimination — and by node simplification with don't-cares, applied iteratively by heuristic script…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/multilevel-logic-optimization.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--logic-synthesis">Logic Synthesis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Hardware · Logic Synthesis</p>
+<h1>Multi-level logic optimization</h1>
+<p class="summary">A Boolean network is a DAG of nodes, each a sum of products of its fan-ins; it is optimised for area (number of literals) by structural operations — decomposition, extraction, substitution, factoring, elimination — and by node simplification with don't-cares, applied iteratively by heuristic scripts.</p>
+<p class="rel"><span>needs</span> <a href="algebraic-division.html">Algebraic (weak) division</a>, <a href="boolean-difference.html">Shannon cofactors and the Boolean difference</a></p>
+<p class="rel"><span>unlocks</span> <a href="technology-mapping.html">Technology mapping by tree covering</a>, <a href="tree-height-reduction.html">Tree height reduction</a></p>
+<p class="rel"><span>see also</span> <a href="technology-mapping.html">Technology mapping by tree covering</a>, <a href="pla-pal.html">PLA and PAL</a>, <a href="np-hard-optimization.html">Hard optimization problems and heuristics</a>, <a href="tree-height-reduction.html">Tree height reduction</a></p>
+<p class="rel"><span>mentioned in</span> <a href="template-specialization.html">Template specialization, SFINAE and concepts</a>, <a href="np-hard-optimization.html">Hard optimization problems and heuristics</a></p>
+<details class="path"><summary>Learning path: 2 notes lead here, in study order</summary><ol><li><a href="algebraic-division.html">Algebraic (weak) division</a></li><li><a href="boolean-difference.html">Shannon cofactors and the Boolean difference</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org5cd5696" class="outline-2">
+<h2 id="org5cd5696">Method</h2>
+<div class="outline-text-2" id="text-org5cd5696">
+<p>
+Representation: a DAG; each internal node <img class="m" src="m/f19d00b567f03ea93981f37f632ec605b342d3f5.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> has a local function <img class="m" src="m/c5e342504bdf5f785a34a6e70eb832c2ea928be2.svg" alt="\(f_v\)" style="height:0.974em;vertical-align:-0.214em"> in sum-of-products form of its fan-ins. Cost: the total number of literals in factored form, a proxy for the area after mapping.
+</p>
+
+<p>
+Operations:
+</p>
+<ul class="org-ul">
+<li><b>decomposition</b>: split a node into simpler ones, <img class="m" src="m/7553c1bf1f50ca8e9ec0ad27e52d12df0afbbd2b.svg" alt="\(f=abc+abd+\bar a\bar c\bar d\to f=xy+\bar x\bar y\)" style="height:1.125em;vertical-align:-0.214em"> with <img class="m" src="m/90e99a95cbc77ffbd47c36a59c4a72cfc186bfaf.svg" alt="\(x=ab\)" style="height:0.761em;vertical-align:-0.000em">, <img class="m" src="m/0e72ec2c43acb06e146003bf6efcf7b4a04ffda8.svg" alt="\(y=c+d\)" style="height:0.974em;vertical-align:-0.214em">;</li>
+<li><b>extraction</b>: find a common sub-expression (a kernel) of several nodes and make it a node: <img class="m" src="m/5330dcc33a63f0dbf2eed2e5ef531e5f587be70e.svg" alt="\(f=(a+b)cd+e\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/6914dda4bb842e4d97d061dd55e901a03b5f670c.svg" alt="\(g=(a+b)\bar e\to\)" style="height:1.096em;vertical-align:-0.274em"> <img class="m" src="m/56c925074bbbc8c3e179547aba6532aa47accdc3.svg" alt="\(x=a+b\)" style="height:0.852em;vertical-align:-0.094em">, <img class="m" src="m/9d900c82aa5072d807e6d341da58a2eb5fca2b61.svg" alt="\(f=xcd+e\)" style="height:0.974em;vertical-align:-0.214em">, <img class="m" src="m/7345dda6afc5c6bb68f2de3ba39f1d1d08fd930c.svg" alt="\(g=x\bar e\)" style="height:0.835em;vertical-align:-0.217em">;</li>
+<li><b>substitution</b>: re-express a node with an existing node as divisor: <img class="m" src="m/c3c68b8912dce03b03f1ec48bba48d5631f76b02.svg" alt="\(f=a+bc\)" style="height:0.974em;vertical-align:-0.214em">, <img class="m" src="m/1aa553737aef06b5787358722a360a33b9247991.svg" alt="\(g=a+b\to f=g(a+c)\)" style="height:1.096em;vertical-align:-0.274em">;</li>
+<li><b>factoring</b>: write a node in factored form: <img class="m" src="m/88818f2104f63594820dc2d8d56df4adaabe6450.svg" alt="\(ac+ad+bc+bd\to(a+b)(c+d)\)" style="height:1.096em;vertical-align:-0.274em">;</li>
+<li><b>elimination</b> (collapsing): substitute a node into its fan-outs and delete it, when it saves little or blocks other moves;</li>
+<li><b>simplification</b>: minimise each node with two-level methods using don't-cares from the network (<a href="boolean-difference.html">observability</a>, satisfiability).</li>
+</ul>
+<p>
+A script alternates them (eliminate, simplify, extract, resubstitute) until no gain.
+</p>
+</div>
+</div>
+<div id="outline-container-org8c491d3" class="outline-2">
+<h2 id="org8c491d3">Picture</h2>
+<div class="outline-text-2" id="text-org8c491d3">
+<figure class="fig"><img class="m" src="m/d886bd6002ef9ffebbcf0925be4ecbe95f0c41e8.svg" alt="figure" style="width:11.753em"><figcaption><span class="fl">Figure 1.</span> Multi-level optimisation by extraction: the common sub-expression <img class="m" src="m/56c925074bbbc8c3e179547aba6532aa47accdc3.svg" alt="\(x=a+b\)" style="height:0.852em;vertical-align:-0.094em"> is factored out of <img class="m" src="m/c1ed5a3ca52156eb9911941034a69236922afca1.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/6f6395a26920710244b20c126620bba591d87d59.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> and computed once.</figcaption></figure>
+<p>
+The extracted node <img class="m" src="m/c1cb305e0744a841c0171151eaf770796c623d6f.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> is computed once and used by both outputs.
+</p>
+</div>
+</div>
+<div id="outline-container-org6b7b6f8" class="outline-2">
+<h2 id="org6b7b6f8">Intuition</h2>
+<div class="outline-text-2" id="text-org6b7b6f8">
+<p>
+Two-level logic writes every output from scratch; multi-level logic shares partial results, like a program with variables instead of one huge expression per output.
+</p>
+</div>
+</div>
+<div id="outline-container-org33eabb8" class="outline-2">
+<h2 id="org33eabb8">Pitfall</h2>
+<div class="outline-text-2" id="text-org33eabb8">
+<p>
+Optimising literals tends to deepen the network, which costs delay. The area-optimised network is the starting point for <a href="tree-height-reduction.html">delay-oriented restructuring</a> and timing-driven mapping.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="boolean-difference.html"><span>← previous</span>Shannon cofactors and the Boolean difference</a><a rel="next" href="tree-height-reduction.html"><span>next →</span>Tree height reduction</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--logic-synthesis.pdf" title="PDF manual">Logic Synthesis</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

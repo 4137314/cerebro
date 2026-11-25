@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The convolution theorem · Remote Sensing</title>
+<meta name="description" content="Convolving an image with a kernel equals multiplying their Fourier transforms: \mathrm{DFT}\{h\ast I\}=H\cdot I_F; so every moving-window filter has a transfer function telling which spatial frequencies it passes, and large kernels are cheaper through the FFT (O(NM\log NM) instead of O(NMK)).">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/convolution-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The convolution theorem · Remote Sensing">
+<meta property="og:description" content="Convolving an image with a kernel equals multiplying their Fourier transforms: \mathrm{DFT}\{h\ast I\}=H\cdot I_F; so every moving-window filter has a transfer function telling which spatial frequencies it passes, and large kernels are cheaper through the FFT (O(NM\log NM) instead of O(NMK)).">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/convolution-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--filtering">Filtering</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Processing · Filtering</p>
+<h1>The convolution theorem</h1>
+<p class="summary">Convolving an image with a kernel equals multiplying their Fourier transforms: <img class="m" src="m/97ed624dbc577215cefb0a066255f50bc4af983b.svg" alt="\(\mathrm{DFT}\{h\ast I\}=H\cdot I_F\)" style="height:1.096em;vertical-align:-0.274em">; so every moving-window filter has a transfer function telling which spatial frequencies it passes, and large kernels are cheaper through the FFT (<img class="m" src="m/e6cb3306ca06d15007d96905bb61b25d3e7db56d.svg" alt="\(O(NM\log NM)\)" style="height:1.096em;vertical-align:-0.274em"> instead of <img class="m" src="m/f67ee50c831f0cd118fe0679848726bc7d272e2e.svg" alt="\(O(NMK)\)" style="height:1.096em;vertical-align:-0.274em">).</p>
+<p class="rel"><span>needs</span> <a href="discrete-fourier-transform.html">Two-dimensional discrete Fourier transform</a>, <a href="moving-window-filters.html">Moving-window (convolution) filters</a></p>
+<p class="rel"><span>see also</span> <a href="frequency-domain-filtering.html">Filtering in the frequency domain</a>, <a href="point-spread-function.html">Point spread function and spectral response</a>, <a href="sampling-aliasing.html">Sampling theorem and aliasing</a></p>
+<p class="rel"><span>mentioned in</span> <a href="sampling-aliasing.html">Sampling theorem and aliasing</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="moving-window-filters.html">Moving-window (convolution) filters</a></li><li><a href="discrete-fourier-transform.html">Two-dimensional discrete Fourier transform</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orge33f62b" class="outline-2">
+<h2 id="orge33f62b">Statement</h2>
+<div class="outline-text-2" id="text-orge33f62b">
+<p>
+For <img class="m" src="m/c2020d094abe9d1a37eb094d5c801771a17e64d1.svg" alt="\(N\times M\)" style="height:0.840em;vertical-align:-0.092em"> arrays with circular (periodic) <a href="moving-window-filters.html">convolution</a>
+<div class="mb"><img class="m" src="m/f4a190699d5dc3637322cf9e8219d507f4474881.svg" alt="\[ (h\circledast I)(y,x)=\sum_{i,j}h(i,j)\,I(y-i,x-j)\quad\Longleftrightarrow\quad \mathrm{DFT}\{h\circledast I\}=H(k_y,k_x)\,I_F(k_y,k_x). \]" style="width:40.950em"></div>
+Dually, multiplication in space is convolution in frequency.
+</p>
+</div>
+</div>
+<div id="outline-container-org02f9bb1" class="outline-2">
+<h2 id="org02f9bb1">Derivation</h2>
+<div class="outline-text-2" id="text-org02f9bb1">
+<p>
+Substitute the convolution into the DFT and change variables <img class="m" src="m/3ced63b5832be9d6b86a57e4e32833c7b385bbbb.svg" alt="\(y'=y-i\)" style="height:1.037em;vertical-align:-0.218em">, <img class="m" src="m/41dd27f1375a7783bce615790ab669c01d397814.svg" alt="\(x'=x-j\)" style="height:1.037em;vertical-align:-0.218em">:
+<div class="mb"><img class="m" src="m/8b00f4abeed4146cbd398c31bf1bb3f8845a2fc8.svg" alt="\[ \sum_{y,x}\sum_{i,j}h(i,j)I(y-i,x-j)e^{-j2\pi(\frac{k_yy}{N}+\frac{k_xx}{M})}=\sum_{i,j}h(i,j)e^{-j2\pi(\frac{k_yi}{N}+\frac{k_xj}{M})}\sum_{y',x'}I(y',x')e^{-j2\pi(\frac{k_yy'}{N}+\frac{k_xx'}{M})}, \]" style="width:47.262em"></div>
+using periodicity to keep the sums over a full period.
+</p>
+</div>
+</div>
+<div id="outline-container-org1bfe0e3" class="outline-2">
+<h2 id="org1bfe0e3">Example</h2>
+<div class="outline-text-2" id="text-org1bfe0e3">
+<p>
+The <img class="m" src="m/70fe689640aa9373f5b89235d809e4d1fed98b3c.svg" alt="\(1\times3\)" style="height:0.798em;vertical-align:-0.088em"> mean filter <img class="m" src="m/cc1c4b5a0fd88af2c970272792250aeb8fa435c8.svg" alt="\(h=(1,1,1)/3\)" style="height:1.096em;vertical-align:-0.274em"> has <img class="m" src="m/13aab716f02e878528d9e3844c2b51d049c1c361.svg" alt="\(H(k)=\frac13\big(1+2\cos(2\pi k/M)\big)\)" style="height:1.315em;vertical-align:-0.381em">: 1 at <img class="m" src="m/5dd0af6e4836d0eae498adecc893189066a20418.svg" alt="\(k=0\)" style="height:0.761em;vertical-align:-0.000em"> (mean preserved), zero at <img class="m" src="m/eb7066be60d8c936bdfe149fbba8ed498ac04591.svg" alt="\(k=M/3\)" style="height:1.096em;vertical-align:-0.274em">, negative beyond — a poor low-pass with sign inversions, which is why Gaussian kernels are preferred. The PSF of a sensor acts the same way: its transform, the MTF, is the transfer function of the acquisition.
+</p>
+</div>
+</div>
+<div id="outline-container-org86a3396" class="outline-2">
+<h2 id="org86a3396">Intuition</h2>
+<div class="outline-text-2" id="text-org86a3396">
+<p>
+A filter is a set of volume knobs, one per <a href="discrete-fourier-transform.html">spatial frequency</a>; convolving in space and turning the knobs in frequency are the same operation.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd245a38" class="outline-2">
+<h2 id="orgd245a38">Pitfall</h2>
+<div class="outline-text-2" id="text-orgd245a38">
+<p>
+The DFT implies periodic images: filtering through the FFT wraps the right edge onto the left. Pad the image (with zeros or mirrored borders) before transforming.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="texture-features.html"><span>← previous</span>Texture features</a><a rel="next" href="homogeneous-area-statistics.html"><span>next →</span>Statistics of homogeneous areas in optical images</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--filtering.pdf" title="PDF manual">Filtering</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

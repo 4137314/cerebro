@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Condition variables and the producer–consumer problem · Computer Science</title>
+<meta name="description" content="A mutex makes a thread wait for access; a condition variable makes it wait for a condition (buffer not empty, not full): wait(lock, pred) atomically releases the mutex and sleeps until notified, then re-acquires it and re-checks the predicate, which also handles spurious wake-ups.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/condition-variable.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Condition variables and the producer–consumer problem · Computer Science">
+<meta property="og:description" content="A mutex makes a thread wait for access; a condition variable makes it wait for a condition (buffer not empty, not full): wait(lock, pred) atomically releases the mutex and sleeps until notified, then re-acquires it and re-checks the predicate, which also handles spurious wake-ups.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/condition-variable.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--concurrency">Concurrency</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Programming · Concurrency</p>
+<h1>Condition variables and the producer–consumer problem</h1>
+<p class="summary">A mutex makes a thread wait for access; a condition variable makes it wait for a condition (buffer not empty, not full): <code>wait(lock, pred)</code> atomically releases the mutex and sleeps until notified, then re-acquires it and re-checks the predicate, which also handles spurious wake-ups.</p>
+<p class="rel"><span>needs</span> <a href="mutual-exclusion.html">Atomics and mutual exclusion</a></p>
+<p class="rel"><span>see also</span> <a href="deadlock-starvation.html">Deadlock and starvation</a>, <a href="java-monitors.html">Threads and monitors in Java</a>, <a href="threads-data-race.html">Threads and data races</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="threads-data-race.html">Threads and data races</a></li><li><a href="mutual-exclusion.html">Atomics and mutual exclusion</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgae7c362" class="outline-2">
+<h2 id="orgae7c362">Method</h2>
+<div class="outline-text-2" id="text-orgae7c362">
+<p>
+Shared state protected by one mutex; one condition variable per condition waited on.
+</p>
+<ol class="org-ol">
+<li>the waiter takes a <code>std::unique_lock</code>, calls <code>cv.wait(lock, [&amp;]{ return condition; })</code>;</li>
+<li>the notifier changes the state under the lock, then calls <code>cv.notify_one()</code> (or <code>notify_all()</code>).</li>
+</ol>
+<p>
+<code>wait</code> with a <a href="stl-algorithms.html">predicate</a> is a loop: <code>while (!pred()) cv.wait(lock);</code>, so a wake-up without the condition (spurious, or another consumer was faster) just goes back to sleep.
+</p>
+</div>
+</div>
+<div id="outline-container-org765b446" class="outline-2">
+<h2 id="org765b446">Example: bounded buffer</h2>
+<div class="outline-text-2" id="text-org765b446">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="k">template</span> &lt;<span class="k">class</span> <span class="t">T</span>&gt; <span class="k">class</span> <span class="t">BoundedQueue</span> {
+  <span class="n">std</span>::<span class="t">queue</span>&lt;<span class="t">T</span>&gt; <span class="v">q</span>; <span class="t">size_t</span> <span class="v">cap</span>; <span class="n">std</span>::<span class="t">mutex</span> <span class="v">m</span>;
+  <span class="n">std</span>::<span class="t">condition_variable</span> <span class="v">not_empty</span>, <span class="v">not_full</span>;
+<span class="k">public</span>:
+  <span class="k">explicit</span> <span class="f">BoundedQueue</span>(<span class="t">size_t</span> <span class="v">c</span>) : cap(c) {}
+  <span class="t">void</span> <span class="f">push</span>(<span class="t">T</span> <span class="v">x</span>) {
+    <span class="n">std</span>::<span class="t">unique_lock</span>&lt;<span class="n">std</span>::<span class="t">mutex</span>&gt; <span class="v">lk</span>(m);
+    not_full.wait(lk, [&amp;] { <span class="k">return</span> q.size() &lt; cap; });
+    q.push(<span class="n">std</span>::<span class="t">move</span>(<span class="v">x</span>));
+    not_empty.notify_one();
+  }
+  <span class="t">T</span> <span class="f">pop</span>() {
+    <span class="n">std</span>::<span class="t">unique_lock</span>&lt;<span class="n">std</span>::<span class="t">mutex</span>&gt; <span class="v">lk</span>(m);
+    not_empty.wait(lk, [&amp;] { <span class="k">return</span> <span class="k">!</span>q.empty(); });
+    <span class="t">T</span> <span class="v">x</span> = <span class="n">std</span>::move(q.front()); q.pop();
+    not_full.notify_one();
+    <span class="k">return</span> x;
+  }
+};</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org69f746d" class="outline-2">
+<h2 id="org69f746d">Picture</h2>
+<div class="outline-text-2" id="text-org69f746d">
+<figure class="fig"><img class="m" src="m/94f308277b8dc099217a1ec824e9ab043151937a.svg" alt="figure" style="width:22.968em"><figcaption><span class="fl">Figure 1.</span> Producer–consumer on a bounded buffer: the producer waits on a condition variable while the buffer is full, the consumer while it is empty.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org2c8dcc2" class="outline-2">
+<h2 id="org2c8dcc2">Intuition</h2>
+<div class="outline-text-2" id="text-org2c8dcc2">
+<p>
+A mutex is a door; a condition variable is a waiting room next to it, where you sleep until someone inside says "your condition may now be true — come and check".
+</p>
+</div>
+</div>
+<div id="outline-container-orgb99e40d" class="outline-2">
+<h2 id="orgb99e40d">Pitfall</h2>
+<div class="outline-text-2" id="text-orgb99e40d">
+<p>
+Waiting without a predicate (<code>if</code> instead of <code>while</code>) breaks on spurious wake-ups, and changing the condition without holding the mutex can lose a notification: the waiter checks, the notifier changes and notifies, then the waiter sleeps for ever.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="mutual-exclusion.html"><span>← previous</span>Atomics and mutual exclusion</a><a rel="next" href="deadlock-starvation.html"><span>next →</span>Deadlock and starvation</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--concurrency.pdf" title="PDF manual">Concurrency</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

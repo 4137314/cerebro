@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Four-vectors, natural units and Mandelstam variables · Physics</title>
+<meta name="description" content="With metric g=\mathrm{diag}(1,-1,-1,-1) and \hbar=c=1, x^\mu=(t,\mathbf x), p^\mu=(E,\mathbf p), p^2=E^2-\mathbf p^2=m^2, \partial_\mu=(\partial_t,\nabla), p_\mu\to i\partial_\mu; for 2\to2 processes s=(p_1+p_2)^2, t=(p_1-p_3)^2, u=(p_1-p_4)^2 with s+t+u=\sum m_i^2.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/four-vectors-and-lorentz-transformations.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Four-vectors, natural units and Mandelstam variables · Physics">
+<meta property="og:description" content="With metric g=\mathrm{diag}(1,-1,-1,-1) and \hbar=c=1, x^\mu=(t,\mathbf x), p^\mu=(E,\mathbf p), p^2=E^2-\mathbf p^2=m^2, \partial_\mu=(\partial_t,\nabla), p_\mu\to i\partial_\mu; for 2\to2 processes s=(p_1+p_2)^2, t=(p_1-p_3)^2, u=(p_1-p_4)^2 with s+t+u=\sum m_i^2.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/four-vectors-and-lorentz-transformations.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-electrodynamics">Quantum Electrodynamics</a> / <a rel="up" href="index.html#a-quantum-electrodynamics--relativistic-wave-equations">Relativistic Wave Equations</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Quantum Electrodynamics · Relativistic Wave Equations</p>
+<h1>Four-vectors, natural units and Mandelstam variables</h1>
+<p class="summary">With metric <img class="m" src="m/32fc312aac8af2a8bb4f2381a04673755d327f0f.svg" alt="\(g=\mathrm{diag}(1,-1,-1,-1)\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/a9b7dfe27a609acf967461a35df1da0cad53aa64.svg" alt="\(\hbar=c=1\)" style="height:0.755em;vertical-align:-0.000em">, <img class="m" src="m/2bacecb97f27734d4fead4652b5048387c433d08.svg" alt="\(x^\mu=(t,\mathbf x)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/8580c901f9a2b7936eaac6f5828a930914b890c7.svg" alt="\(p^\mu=(E,\mathbf p)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/72f3d4e38cd3667bb5a6f293bbbc70a2fddb2102.svg" alt="\(p^2=E^2-\mathbf p^2=m^2\)" style="height:1.105em;vertical-align:-0.210em">, <img class="m" src="m/7dc46383a8ef1e3b10b4e09771392ec822b4dd7f.svg" alt="\(\partial_\mu=(\partial_t,\nabla)\)" style="height:1.135em;vertical-align:-0.318em">, <img class="m" src="m/866b2717b2189010404f2fdec2ecdf4b874b539f.svg" alt="\(p_\mu\to i\partial_\mu\)" style="height:1.075em;vertical-align:-0.312em">; for <img class="m" src="m/d20f235fd2f9741649a7fbe01ae8575bb5475dae.svg" alt="\(2\to2\)" style="height:0.706em;vertical-align:-0.000em"> processes <img class="m" src="m/ab865d0b06658d4974fcb5e49c536ba5e9adcd92.svg" alt="\(s=(p_1+p_2)^2\)" style="height:1.166em;vertical-align:-0.268em">, <img class="m" src="m/c3492de85bc21ecdca65436f2367fa5a47e70b52.svg" alt="\(t=(p_1-p_3)^2\)" style="height:1.166em;vertical-align:-0.268em">, <img class="m" src="m/4f497df9278ba2c01fd26075b17f1486c3b429e9.svg" alt="\(u=(p_1-p_4)^2\)" style="height:1.166em;vertical-align:-0.268em"> with <img class="m" src="m/e83b8901288e54210b2e06a17136980636dfa28a.svg" alt="\(s+t+u=\sum m_i^2\)" style="height:1.177em;vertical-align:-0.283em">.</p>
+<p class="rel"><span>needs</span> <a href="quantum-electrodynamics.html">Quantum electrodynamics: the map of the subject</a></p>
+<p class="rel"><span>unlocks</span> <a href="klein-gordon-equation.html">The Klein–Gordon equation</a></p>
+<p class="rel"><span>see also</span> <a href="maxwell-equations.html">Maxwell's equations</a>, <a href="group-representations-and-spin.html">Group representations, Wigner's theorem and spin</a></p>
+<details class="path"><summary>Learning path: 2 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="quantum-electrodynamics.html">Quantum electrodynamics: the map of the subject</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgcf88d81" class="outline-2">
+<h2 id="orgcf88d81">Definitions</h2>
+<div class="outline-text-2" id="text-orgcf88d81">
+<ul class="org-ul">
+<li>Contravariant <img class="m" src="m/a3f2c68a9f6a5dd6340885a98947546e9761d4dc.svg" alt="\(a^\mu\)" style="height:0.728em;vertical-align:-0.000em">, covariant <img class="m" src="m/93830f8ad40c86e79c11cb4859ef8ed66566c2c9.svg" alt="\(a_\mu=g_{\mu\nu}a^\nu\)" style="height:1.042em;vertical-align:-0.312em">; scalar product <img class="m" src="m/6e07a68eefbbd44568d0f0b8fba01a0539c589dd.svg" alt="\(a\cdot b=a^0b^0-\mathbf a\cdot\mathbf b\)" style="height:0.983em;vertical-align:-0.089em">, invariant under <img class="m" src="m/d322dfa12c3f8097b68c2fc23bae6a756698c821.svg" alt="\(\Lambda\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/1c352a60a68e138aa9153b6bca31550d5b00c86d.svg" alt="\(\Lambda^Tg\Lambda=g\)" style="height:1.135em;vertical-align:-0.216em">.</li>
+<li>Boost along <img class="m" src="m/258dcb04caf8c3d82dd7028e1c60cad8a941e7d5.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">: <img class="m" src="m/35ce754359ad32bd44f87477a4d7e04f721c6a37.svg" alt="\(t'=\gamma(t-\beta x)\)" style="height:1.098em;vertical-align:-0.274em">, <img class="m" src="m/e1911e5c69e7bbfeed79e05c94033995338ef82a.svg" alt="\(x'=\gamma(x-\beta t)\)" style="height:1.098em;vertical-align:-0.274em">, <img class="m" src="m/43bf80d27471c2b88b9a8b0cb21ecc05044194e6.svg" alt="\(\gamma=1/\sqrt{1-\beta^2}\)" style="height:1.359em;vertical-align:-0.313em">.</li>
+<li>Electromagnetism: <img class="m" src="m/2f14f8f27cc32b724a022bff8329f679f1218883.svg" alt="\(A^\mu=(\phi,\mathbf A)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/53683688fbe30eb8f18125f74c3cced0bcff7197.svg" alt="\(F^{\mu\nu}=\partial^\mu A^\nu-\partial^\nu A^\mu\)" style="height:0.852em;vertical-align:-0.094em">, <img class="m" src="m/c1cebb99cb64a85b4cfdb90d1b4ea0373e901a45.svg" alt="\(\partial_\mu F^{\mu\nu}=j^\nu\)" style="height:1.075em;vertical-align:-0.312em"> (Heaviside–Lorentz units, <img class="m" src="m/613396f164d67706fb4f8c9c4eeb8b2bde5b62ea.svg" alt="\(\alpha=e^2/4\pi\)" style="height:1.166em;vertical-align:-0.268em">), Lorenz gauge <img class="m" src="m/db262f72b279398d22007272f3f9267d1fb8d95e.svg" alt="\(\partial_\mu A^\mu=0\)" style="height:1.075em;vertical-align:-0.312em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1002/andp.19053221004" data-full="A. Einstein, “Zur Elektrodynamik bewegter Körper”, Annalen der Physik 322, 891–921 (1905)." aria-label="A. Einstein, “Zur Elektrodynamik bewegter Körper”, Annalen der Physik 322, 891–921 (1905).">Einstein 1905</a>)</span>.</li>
+<li>Natural units: <img class="m" src="m/5b36707cd67a3017471ff1fb842736ec76072478.svg" alt="\(\hbar c=197.327\)" style="height:0.755em;vertical-align:-0.000em"> MeV fm, <img class="m" src="m/9446039baacc1786bf6aa3b2e1e0a179823219b4.svg" alt="\(m_ec^2=0.511\)" style="height:1.056em;vertical-align:-0.169em"> MeV, <img class="m" src="m/6afb12f47ce18d0e40e2651ae2b64ce958f98ea3.svg" alt="\(1\,\mathrm{GeV}^{-2}=0.3894\)" style="height:0.972em;vertical-align:-0.000em"> mb.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org505dd9b" class="outline-2">
+<h2 id="org505dd9b">Mandelstam variables</h2>
+<div class="outline-text-2" id="text-org505dd9b">
+<p>
+For <img class="m" src="m/4e549ba3a1ccf22d5ef928597bd9f0b649f655ec.svg" alt="\(p_1+p_2\to p_3+p_4\)" style="height:0.852em;vertical-align:-0.213em">: <img class="m" src="m/aa055d35ba42b642c6ba0e36820703aecb2f0093.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> = squared CM energy, <img class="m" src="m/35667e44f401ec8e9c1d76417ab6c6c6667dd3c9.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> = squared momentum transfer (<img class="m" src="m/d5605434e04a3080e1981076d8c811751cbb24ad.svg" alt="\(\le0\)" style="height:0.855em;vertical-align:-0.145em"> in elastic scattering), <img class="m" src="m/c808e3a0a4f0917bfff7ce3c694cc73f673f6919.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em"> crossed <span class="cite">(<a class="ref" href="https://doi.org/10.1103/physrev.112.1344" data-full="S. Mandelstam, “Determination of the pion-nucleon scattering amplitude from dispersion relations and unitarity. General theory”, Physical Review 112, 1344–1360 (1958)." aria-label="S. Mandelstam, “Determination of the pion-nucleon scattering amplitude from dispersion relations and unitarity. General theory”, Physical Review 112, 1344–1360 (1958).">Mandelstam 1958</a>)</span>. In the CM frame for massless particles: <img class="m" src="m/a27aa7f4ccfc997317e6fac754e95d400e28424b.svg" alt="\(t=-\frac s2(1-\cos\theta)\)" style="height:1.200em;vertical-align:-0.372em">, <img class="m" src="m/254f1d451959e7b04c2a8ba332996acd7fb54de5.svg" alt="\(u=-\frac s2(1+\cos\theta)\)" style="height:1.200em;vertical-align:-0.372em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb7dab2e" class="outline-2">
+<h2 id="orgb7dab2e">Derivation: threshold energy</h2>
+<div class="outline-text-2" id="text-orgb7dab2e">
+<p>
+Fixed-target production of <img class="m" src="m/cbb972253d439e9ab41f9681ae49300d524e2733.svg" alt="\(e^+e^-\)" style="height:0.873em;vertical-align:-0.000em"> by a photon on an electron, <img class="m" src="m/55f070fbadd4fe27423110cc7186bda13185a48b.svg" alt="\(\gamma e\to e\,e^+e^-\)" style="height:1.086em;vertical-align:-0.217em">: invariance of <img class="m" src="m/aa055d35ba42b642c6ba0e36820703aecb2f0093.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em">: <img class="m" src="m/0ff02e57deb051eb43572ea222bae337bd7f0740.svg" alt="\(s=(E_\gamma+m)^2-E_\gamma^2=m^2+2mE_\gamma\ge(3m)^2\Rightarrow E_\gamma\ge4m=2.04\)" style="height:1.312em;vertical-align:-0.420em"> MeV. On a nucleus of mass <img class="m" src="m/a80707b01be5945ebc5ab46bc1318b2d305d277d.svg" alt="\(M\gg m\)" style="height:0.792em;vertical-align:-0.040em"> the threshold is <img class="m" src="m/a34026eb162c87a53338404695e28d190d4a2972.svg" alt="\(\approx2m=1.022\)" style="height:0.706em;vertical-align:-0.000em"> MeV.
+</p>
+</div>
+</div>
+<div id="outline-container-org7d62dc0" class="outline-2">
+<h2 id="org7d62dc0">Worked example</h2>
+<div class="outline-text-2" id="text-org7d62dc0">
+<p>
+Compton kinematics from invariants: <img class="m" src="m/3d1bcdc12fc555465a4c48bc9e0cc6d132ffab43.svg" alt="\(k+p=k'+p'\Rightarrow(p+k-k')^2=m^2\Rightarrow m(\omega-\omega')=\omega\omega'(1-\cos\theta)\)" style="height:1.166em;vertical-align:-0.268em">, i.e. <img class="m" src="m/6eeccfdd81fdaeb18769b8c4115fd4efb98d3e6e.svg" alt="\(\lambda'-\lambda=\frac{h}{mc}(1-\cos\theta)\)" style="height:1.342em;vertical-align:-0.376em">, Compton wavelength 2.43 pm.
+</p>
+</div>
+</div>
+<div id="outline-container-org59f729e" class="outline-2">
+<h2 id="org59f729e">Engineering applications</h2>
+<div class="outline-text-2" id="text-org59f729e">
+<p>
+Collider energy budgets, relativistic Doppler in GPS and in radar, inverse-Compton X-ray sources, kinematics of PET (511 keV back-to-back photons).
+</p>
+</div>
+</div>
+<div id="outline-container-orga7e9e4c" class="outline-2">
+<h2 id="orga7e9e4c">Pitfall</h2>
+<div class="outline-text-2" id="text-orga7e9e4c">
+<p>
+Sign conventions: Greiner and Bjorken–Drell use <img class="m" src="m/d6743b7aabd92a178bd828e65abb90eed235930d.svg" alt="\((+,-,-,-)\)" style="height:1.096em;vertical-align:-0.274em">; some texts use <img class="m" src="m/a0f87e7702f3f9201071a2af0bd31db5ceb5f108.svg" alt="\((-,+,+,+)\)" style="height:1.096em;vertical-align:-0.274em">, which flips the sign of <img class="m" src="m/086831771faaf5954a486aeacebf7f5f5ebf4f75.svg" alt="\(p^2\)" style="height:1.105em;vertical-align:-0.210em"> and of <img class="m" src="m/35667e44f401ec8e9c1d76417ab6c6c6667dd3c9.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em">. Always state the metric.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="quantum-electrodynamics.html"><span>← previous</span>Quantum electrodynamics: the map of the subject</a><a rel="next" href="klein-gordon-equation.html"><span>next →</span>The Klein–Gordon equation</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-electrodynamics--relativistic-wave-equations.pdf" title="PDF manual">Relativistic Wave Equations</a> · <a class="pdf" href="pdf/quantum-electrodynamics.pdf" title="PDF manual">Quantum Electrodynamics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

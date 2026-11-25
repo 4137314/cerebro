@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>D, T, JK and SR flip-flops: characteristic and excitation tables · Computer Science</title>
+<meta name="description" content="Each edge-triggered flip-flop type is described by a characteristic equation (next state from inputs) — D: Q^+=D, T: Q^+=T\oplus Q, JK: Q^+=J\bar Q+\bar KQ, SR: Q^+=S+\bar RQ with SR=0 — and, for synthesis, by its excitation table (inputs needed for each transition Q\to Q^+); with T or JK the next-…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/flip-flop-types.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="D, T, JK and SR flip-flops: characteristic and excitation tables · Computer Science">
+<meta property="og:description" content="Each edge-triggered flip-flop type is described by a characteristic equation (next state from inputs) — D: Q^+=D, T: Q^+=T\oplus Q, JK: Q^+=J\bar Q+\bar KQ, SR: Q^+=S+\bar RQ with SR=0 — and, for synthesis, by its excitation table (inputs needed for each transition Q\to Q^+); with T or JK the next-…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/flip-flop-types.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--sequential">Sequential</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Hardware · Sequential</p>
+<h1>D, T, JK and SR flip-flops: characteristic and excitation tables</h1>
+<p class="summary">Each edge-triggered flip-flop type is described by a characteristic equation (next state from inputs) — D: <img class="m" src="m/ec6ca49667cc3dac39a2bace35258db25fea16b3.svg" alt="\(Q^+=D\)" style="height:1.086em;vertical-align:-0.217em">, T: <img class="m" src="m/c34e4a46e9c3ceb5a7e2470b7e9e98e2d589c45c.svg" alt="\(Q^+=T\oplus Q\)" style="height:1.086em;vertical-align:-0.217em">, JK: <img class="m" src="m/90962bcb42bf6465697511548ab4909622c0f85c.svg" alt="\(Q^+=J\bar Q+\bar KQ\)" style="height:1.112em;vertical-align:-0.211em">, SR: <img class="m" src="m/7e2ac7f3b57dc222f1e9812fb44408b1cfa191b6.svg" alt="\(Q^+=S+\bar RQ\)" style="height:1.112em;vertical-align:-0.211em"> with <img class="m" src="m/bfa0ffd3bb0eda7e3f6882c2a165896fa0b9c4ce.svg" alt="\(SR=0\)" style="height:0.749em;vertical-align:-0.000em"> — and, for synthesis, by its excitation table (inputs needed for each transition <img class="m" src="m/c3f41e5e0c43a1435eb59dea654a0edf7070231b.svg" alt="\(Q\to Q^+\)" style="height:1.086em;vertical-align:-0.217em">); with T or JK the next-state maps are replaced by maps of the flip-flop inputs, often simpler thanks to the don't-cares.</p>
+<p class="rel"><span>needs</span> <a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></p>
+<p class="rel"><span>see also</span> <a href="fsm-synthesis.html">Synthesis of finite-state machines</a>, <a href="counters.html">Synchronous counters</a>, <a href="sr-latch.html">SR latch and D latch</a></p>
+<p class="rel"><span>mentioned in</span> <a href="counters.html">Synchronous counters</a>, <a href="fsm-synthesis.html">Synthesis of finite-state machines</a></p>
+<details class="path"><summary>Learning path: 6 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li><li><a href="sr-latch.html">SR latch and D latch</a></li><li><a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orga89454d" class="outline-2">
+<h2 id="orga89454d">Definition</h2>
+<div class="outline-text-2" id="text-orga89454d">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">type</th>
+<th scope="col" class="org-left">Q⁺</th>
+<th scope="col" class="org-right">0→0</th>
+<th scope="col" class="org-right">0→1</th>
+<th scope="col" class="org-right">1→0</th>
+<th scope="col" class="org-right">1→1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">D</td>
+<td class="org-left">D</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">T ⊕ Q</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-left">JK</td>
+<td class="org-left">J·Q̄ + K̄·Q</td>
+<td class="org-right">0-</td>
+<td class="org-right">1-</td>
+<td class="org-right">-1</td>
+<td class="org-right">-0</td>
+</tr>
+
+<tr>
+<td class="org-left">SR</td>
+<td class="org-left">S + R̄·Q, SR=0</td>
+<td class="org-right">0-</td>
+<td class="org-right">10</td>
+<td class="org-right">01</td>
+<td class="org-right">-0</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+The last four columns are the <b>excitation table</b>: the input values (JK, SR as pairs) that produce the transition; "-" is a don't-care. JK is an SR whose forbidden combination <img class="m" src="m/7cf58449ea7e47f8dbca0f200ab4c80a612e3e1d.svg" alt="\(J=K=1\)" style="height:0.749em;vertical-align:-0.000em"> has been given a meaning: toggle. T is a JK with <img class="m" src="m/6adf456bb13023485c3d143fe024dd3f81e9bff2.svg" alt="\(J=K=T\)" style="height:0.749em;vertical-align:-0.000em">. D is the cheapest and the default in synchronous design and in FPGAs.
+</p>
+</div>
+</div>
+<div id="outline-container-orgadbe860" class="outline-2">
+<h2 id="orgadbe860">Method</h2>
+<div class="outline-text-2" id="text-orgadbe860">
+<p>
+Synthesis with a flip-flop other than D (step 4 of <a href="fsm-synthesis.html">FSM synthesis</a>): for each state bit and each row of the state table, look up the transition <img class="m" src="m/c3f41e5e0c43a1435eb59dea654a0edf7070231b.svg" alt="\(Q\to Q^+\)" style="height:1.086em;vertical-align:-0.217em"> and write the required inputs; then make one Karnaugh map per flip-flop input (two for JK) instead of one per next-state bit.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf86e948" class="outline-2">
+<h2 id="orgf86e948">Example</h2>
+<div class="outline-text-2" id="text-orgf86e948">
+<p>
+2-bit up counter <img class="m" src="m/a020f6a3a11165009009536e6e86a8f2a1aab6ba.svg" alt="\(Q_1Q_0\)" style="height:0.962em;vertical-align:-0.212em">: 00→01→10→11→00.
+</p>
+<ul class="org-ul">
+<li>With D: <img class="m" src="m/b6d781a84113dcdd8accd36a650528ab3571125e.svg" alt="\(D_0=\bar Q_0\)" style="height:1.112em;vertical-align:-0.211em">, <img class="m" src="m/e0652ecbcb07b07f04994aafd1e775ea48f0b005.svg" alt="\(D_1=Q_1\oplus Q_0\)" style="height:0.962em;vertical-align:-0.212em">.</li>
+<li>With T: <img class="m" src="m/a3786d244c1d588d65c78331fd57cf45be134ddb.svg" alt="\(Q_0\)" style="height:0.962em;vertical-align:-0.212em"> toggles every cycle, <img class="m" src="m/f0eb299ddebce23ad2c719856e53ebee4668f082.svg" alt="\(Q_1\)" style="height:0.962em;vertical-align:-0.212em"> when <img class="m" src="m/751245eb7ec18f0703a7e8ae275df00e3b05964f.svg" alt="\(Q_0=1\)" style="height:0.962em;vertical-align:-0.212em">: <img class="m" src="m/451d910aa4bc1c82bd094c5c6925e31884256ec2.svg" alt="\(T_0=1\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/9af68a530cb0758f17a69c30299bc86625c31fbc.svg" alt="\(T_1=Q_0\)" style="height:0.962em;vertical-align:-0.212em">. For <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> bits <img class="m" src="m/ce492d504d9676b5eafa14b4b84c0565c9fce05b.svg" alt="\(T_i=Q_{i-1}\cdots Q_0\)" style="height:1.005em;vertical-align:-0.251em"> — the textbook synchronous counter.</li>
+<li>With JK: <img class="m" src="m/711be7fa7e42248375e9ba67f4463b457f6b5cc8.svg" alt="\(J_0=K_0=1\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/7d346015153a7e10497d3273c2ee7924884464a8.svg" alt="\(J_1=K_1=Q_0\)" style="height:0.962em;vertical-align:-0.212em">. The JK maps here have a don't-care in every cell pair, which is why JK designs often need fewer gates.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org719eea4" class="outline-2">
+<h2 id="org719eea4">Intuition</h2>
+<div class="outline-text-2" id="text-org719eea4">
+<p>
+The characteristic equation answers "what will it do?" (analysis); the excitation table answers "what must I tell it?" (synthesis).
+</p>
+</div>
+</div>
+<div id="outline-container-org7892aa3" class="outline-2">
+<h2 id="org7892aa3">Pitfall</h2>
+<div class="outline-text-2" id="text-org7892aa3">
+<p>
+A T flip-flop must start from a known state: toggling an unknown value gives an unknown value forever — give it a reset. In an excitation table, 1→1 for JK is <img class="m" src="m/8d006fd3b9872571ba3be4a0d565540a77d0cfbb.svg" alt="\(K=0\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/c1ad6dec4684b1026f32951e33fe5ea387278101.svg" alt="\(J\)" style="height:0.749em;vertical-align:-0.000em"> free, not <img class="m" src="m/aab7f0af17f58859b283a524641f3d37ecf08c65.svg" alt="\(J=1\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="critical-races.html"><span>← previous</span>Critical races</a><a rel="next" href="registers-shift-registers.html"><span>next →</span>Registers and shift registers</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--sequential.pdf" title="PDF manual">Sequential</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

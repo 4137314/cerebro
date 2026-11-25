@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Structural VHDL: components, port maps, generics · Computer Science</title>
+<meta name="description" content="A structural architecture instantiates components and connects their ports to signals with port map (by position or by name); generic parameters such as a width are fixed per instance with generic map, and for ... generate replicates instances.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/vhdl-structural.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Structural VHDL: components, port maps, generics · Computer Science">
+<meta property="og:description" content="A structural architecture instantiates components and connects their ports to signals with port map (by position or by name); generic parameters such as a width are fixed per instance with generic map, and for ... generate replicates instances.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/vhdl-structural.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--vhdl">Vhdl</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Hardware · Vhdl</p>
+<h1>Structural VHDL: components, port maps, generics</h1>
+<p class="summary">A structural architecture instantiates components and connects their ports to signals with <code>port map</code> (by position or by name); <code>generic</code> parameters such as a width are fixed per instance with <code>generic map</code>, and <code>for ... generate</code> replicates instances.</p>
+<p class="rel"><span>needs</span> <a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a></p>
+<p class="rel"><span>see also</span> <a href="ripple-carry-adder.html">Full adder and ripple-carry adder</a>, <a href="vhdl-testbench.html">Testbenches</a></p>
+<details class="path"><summary>Learning path: 2 notes lead here, in study order</summary><ol><li><a href="digital-design-flow.html">Digital design flow and abstraction levels</a></li><li><a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org856d785" class="outline-2">
+<h2 id="org856d785">Construction</h2>
+<div class="outline-text-2" id="text-org856d785">
+<p>
+A full adder from two half adders, then an <img class="m" src="m/c9556610734f8d479d56f4a3f024509a5a0741cf.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">-bit <a href="ripple-carry-adder.html">ripple-carry adder</a>:
+</p>
+<figure class="listing lang-vhdl"><figcaption><span class="lang">VHDL</span></figcaption><pre class="src"><code><span class="k">entity</span> <span class="f">full_adder</span> <span class="k">is</span>
+  <span class="k">port</span> ( <span class="v">a</span>, <span class="v">b</span>, <span class="v">cin</span> : <span class="k">in</span> <span class="t">std_logic</span>; <span class="v">s</span>, <span class="v">cout</span> : <span class="k">out</span> <span class="t">std_logic</span> );
+<span class="k">end</span> <span class="k">entity</span>;
+<span class="k">architecture</span> <span class="f">dataflow</span> <span class="k">of</span> <span class="f">full_adder</span> <span class="k">is</span>
+<span class="k">begin</span>
+  s    &lt;= a <span class="k">xor</span> b <span class="k">xor</span> cin;
+  cout &lt;= (a <span class="k">and</span> b) <span class="k">or</span> (a <span class="k">and</span> cin) <span class="k">or</span> (b <span class="k">and</span> cin);
+<span class="k">end</span> <span class="k">architecture</span>;
+
+<span class="k">entity</span> <span class="f">adder</span> <span class="k">is</span>
+  <span class="k">generic</span> ( <span class="v">N</span> : <span class="t">positive</span> := 8 );
+  <span class="k">port</span> ( <span class="v">a</span>, <span class="v">b</span> : <span class="k">in</span> <span class="t">std_logic_vector</span>(N-1 <span class="k">downto</span> 0); <span class="v">cin</span> : <span class="k">in</span> <span class="t">std_logic</span>;
+         <span class="v">s</span> : <span class="k">out</span> <span class="t">std_logic_vector</span>(N-1 <span class="k">downto</span> 0); <span class="v">cout</span> : <span class="k">out</span> <span class="t">std_logic</span> );
+<span class="k">end</span> <span class="k">entity</span>;
+<span class="k">architecture</span> <span class="f">structural</span> <span class="k">of</span> <span class="f">adder</span> <span class="k">is</span>
+  <span class="k">signal</span> <span class="v">c</span> : <span class="t">std_logic_vector</span>(N <span class="k">downto</span> 0);
+<span class="k">begin</span>
+  c(0) &lt;= cin;
+  <span class="f">chain</span> : <span class="k">for</span> <span class="v">i</span> <span class="k">in</span> 0 <span class="k">to</span> N-1 <span class="k">generate</span>
+    <span class="f">fa</span> : <span class="k">entity</span> work.<span class="f">full_adder</span>
+      <span class="k">port</span> <span class="k">map</span> ( <span class="v">a</span> =&gt; a(i), <span class="v">b</span> =&gt; b(i), <span class="v">cin</span> =&gt; c(i),     <span class="c">-- formal =&gt; actual
+</span>                 <span class="v">s</span> =&gt; s(i), <span class="v">cout</span> =&gt; c(i+1) );
+  <span class="k">end</span> <span class="k">generate</span>;
+  cout &lt;= c(N);
+<span class="k">end</span> <span class="k">architecture</span>;
+
+<span class="c">-- an instance with a different width
+</span><span class="f">u1</span> : <span class="k">entity</span> work.<span class="f">adder</span> <span class="k">generic</span> <span class="k">map</span> ( <span class="v">N</span> =&gt; 16 ) <span class="k">port</span> <span class="k">map</span> ( x, y, <span class="s">'0'</span>, z, <span class="k">open</span> );</code></pre></figure>
+<ul class="org-ul">
+<li><b>Formal</b> parameters are the ports of the component, <b>actual</b> ones the signals of the enclosing architecture. Named <a href="uml-association.html">association</a> (<code>a =&gt; x</code>) is robust to reordering; positional association is shorter. <code>open</code> leaves an output unconnected.</li>
+<li>A <code>component</code> declaration (older style) or direct <code>entity work.name</code> <a href="cpp-templates.html">instantiation</a>.</li>
+<li>Each instance has a label (<code>fa</code>, <code>u1</code>).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org16a2cf2" class="outline-2">
+<h2 id="org16a2cf2">Intuition</h2>
+<div class="outline-text-2" id="text-org16a2cf2">
+<p>
+Structural VHDL is a schematic written as text: boxes with names, wires with names, and a list of which pin goes to which wire.
+</p>
+</div>
+</div>
+<div id="outline-container-org8a7181e" class="outline-2">
+<h2 id="org8a7181e">Pitfall</h2>
+<div class="outline-text-2" id="text-org8a7181e">
+<p>
+An output port cannot be read inside the architecture in VHDL-93 (<code>cout &lt;</code> &#x2026;= then <code>x &lt;</code> cout=): use an internal signal (<code>c(N)</code>) and assign the port from it.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="fsm-state-encoding.html"><span>← previous</span>State encoding of FSMs</a><a rel="next" href="vhdl-testbench.html"><span>next →</span>Testbenches</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--vhdl.pdf" title="PDF manual">Vhdl</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

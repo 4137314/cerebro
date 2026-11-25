@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Applications of remote sensing · Remote Sensing</title>
+<meta name="description" content="Optical and radar remote sensing with automatic image analysis serve environmental monitoring, risk analysis and civil protection, climate change, natural resources, agriculture and food security, forestry, urban areas, the cryosphere, meteorology and planetary exploration; each pairs specific sens…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/remote-sensing-applications.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Applications of remote sensing · Remote Sensing">
+<meta property="og:description" content="Optical and radar remote sensing with automatic image analysis serve environmental monitoring, risk analysis and civil protection, climate change, natural resources, agriculture and food security, forestry, urban areas, the cryosphere, meteorology and planetary exploration; each pairs specific sens…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/remote-sensing-applications.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-recognition">Recognition</a> / <a rel="up" href="index.html#a-recognition--applications">Applications</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">example · Recognition · Applications</p>
+<h1>Applications of remote sensing</h1>
+<p class="summary">Optical and radar remote sensing with automatic image analysis serve environmental monitoring, risk analysis and civil protection, climate change, natural resources, agriculture and food security, forestry, urban areas, the cryosphere, meteorology and planetary exploration; each pairs specific sensors with specific processing.</p>
+<p class="rel"><span>needs</span> <a href="recognition-system.html">Recognition systems</a></p>
+<p class="rel"><span>see also</span> <a href="change-detection.html">Change detection</a>, <a href="ndvi.html">NDVI and normalised difference indices</a>, <a href="copernicus-sentinel.html">Copernicus and the Sentinel missions</a>, <a href="earth-observation-missions.html">Main Earth-observation missions</a>, <a href="convolutional-neural-network.html">Convolutional neural networks and deep learning</a></p>
+<p class="rel"><span>mentioned in</span> <a href="remote-sensing-system.html">Remote sensing system</a>, <a href="radar-bands.html">Radar frequency bands</a>, <a href="earth-observation-missions.html">Main Earth-observation missions</a>, <a href="false-color-composite.html">True and false colour composites</a></p>
+<details class="path"><summary>Learning path: 2 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="recognition-system.html">Recognition systems</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org56d70b5" class="outline-2">
+<h2 id="org56d70b5">Example</h2>
+<div class="outline-text-2" id="text-org56d70b5">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">application</th>
+<th scope="col" class="org-left">data</th>
+<th scope="col" class="org-left">processing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">floods</td>
+<td class="org-left">SAR (water is dark)</td>
+<td class="org-left">thresholds, log-ratio</td>
+</tr>
+
+<tr>
+<td class="org-left">fires, burnt areas</td>
+<td class="org-left">MWIR, TIR, SWIR + NIR</td>
+<td class="org-left">thresholds, NBR in time</td>
+</tr>
+
+<tr>
+<td class="org-left">landslides</td>
+<td class="org-left">SAR interferometry</td>
+<td class="org-left">phase time series</td>
+</tr>
+
+<tr>
+<td class="org-left">agriculture</td>
+<td class="org-left">Sentinel-2 series, SAR</td>
+<td class="org-left">NDVI phenology, crop maps</td>
+</tr>
+
+<tr>
+<td class="org-left">forestry</td>
+<td class="org-left">optical, lidar, L/P SAR</td>
+<td class="org-left">classes, height, biomass</td>
+</tr>
+
+<tr>
+<td class="org-left">urban areas</td>
+<td class="org-left">VHR optical, X-band SAR</td>
+<td class="org-left">objects, CNNs, change</td>
+</tr>
+
+<tr>
+<td class="org-left">cryosphere</td>
+<td class="org-left">SAR, NDSI, altimetry</td>
+<td class="org-left">snow, glacier speed, ice</td>
+</tr>
+
+<tr>
+<td class="org-left">climate</td>
+<td class="org-left">thermal, spectrometers</td>
+<td class="org-left">SST, gases, sea level</td>
+</tr>
+
+<tr>
+<td class="org-left">meteorology</td>
+<td class="org-left">geostationary imagers</td>
+<td class="org-left">cloud tracking</td>
+</tr>
+
+<tr>
+<td class="org-left">planets</td>
+<td class="org-left">radar sounders, cameras</td>
+<td class="org-left">subsurface, mapping</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orga73e74b" class="outline-2">
+<h2 id="orga73e74b">Intuition</h2>
+<div class="outline-text-2" id="text-orga73e74b">
+<p>
+The same chain — acquisition, processing, recognition — answers very different questions; what changes is the choice of wavelength, revisit, resolution and algorithm for the phenomenon at hand.
+</p>
+</div>
+</div>
+<div id="outline-container-org3d11f72" class="outline-2">
+<h2 id="org3d11f72">Pitfall</h2>
+<div class="outline-text-2" id="text-org3d11f72">
+<p>
+A product is only useful if validated against <a href="training-validation.html">ground truth</a> in the area and season where it is used: maps transferred to new regions without validation can be confidently wrong.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="convolutional-neural-network.html"><span>← previous</span>Convolutional neural networks and deep learning</a><a rel="next" href="change-detection.html"><span>next →</span>Change detection</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/recognition--applications.pdf" title="PDF manual">Applications</a> · <a class="pdf" href="pdf/recognition.pdf" title="PDF manual">Recognition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

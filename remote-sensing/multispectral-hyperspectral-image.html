@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multispectral and hyperspectral images · Remote Sensing</title>
+<meta name="description" content="A multispectral scanner measures a few broad bands, a hyperspectral one hundreds of narrow contiguous bands; either way the image is a cube I(x,y,b), and each pixel is a vector of B values that samples the spectral signature of its ground cell.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/multispectral-hyperspectral-image.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Multispectral and hyperspectral images · Remote Sensing">
+<meta property="og:description" content="A multispectral scanner measures a few broad bands, a hyperspectral one hundreds of narrow contiguous bands; either way the image is a cube I(x,y,b), and each pixel is a vector of B values that samples the spectral signature of its ground cell.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/multispectral-hyperspectral-image.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-acquisition">Acquisition</a> / <a rel="up" href="index.html#a-acquisition--optical-sensors">Optical Sensors</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Acquisition · Optical Sensors</p>
+<h1>Multispectral and hyperspectral images</h1>
+<p class="summary">A multispectral scanner measures a few broad bands, a hyperspectral one hundreds of narrow contiguous bands; either way the image is a cube <img class="m" src="m/784acf5a0c61d9dee76974e33d1c1b1351b6eb06.svg" alt="\(I(x,y,b)\)" style="height:1.096em;vertical-align:-0.274em">, and each pixel is a vector of <img class="m" src="m/930bceceff5ba504b5eefacfc24da37e501bf942.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> values that samples the spectral signature of its ground cell.</p>
+<p class="rel"><span>needs</span> <a href="sensor-resolutions.html">Geometric, radiometric, spectral and temporal resolution</a>, <a href="spectral-signature.html">Spectral signature</a></p>
+<p class="rel"><span>unlocks</span> <a href="image-formats.html">Image storage formats: BSQ, BIL, BIP</a>, <a href="principal-component-analysis.html">Principal component analysis of multispectral images</a>, <a href="false-color-composite.html">True and false colour composites</a>, <a href="spectral-unmixing.html">Linear spectral unmixing</a></p>
+<p class="rel"><span>see also</span> <a href="image-formats.html">Image storage formats: BSQ, BIL, BIP</a>, <a href="false-color-composite.html">True and false colour composites</a>, <a href="feature-space.html">Feature space and spectral classes</a>, <a href="digital-image.html">Digital images</a>, <a href="principal-component-analysis.html">Principal component analysis of multispectral images</a>, <a href="spectral-unmixing.html">Linear spectral unmixing</a></p>
+<p class="rel"><span>mentioned in</span> <a href="atmospheric-scattering.html">Atmospheric scattering: Rayleigh and Mie</a></p>
+<details class="path"><summary>Learning path: 13 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="spectral-signature.html">Spectral signature</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="sensor-resolutions.html">Geometric, radiometric, spectral and temporal resolution</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgfc58f90" class="outline-2">
+<h2 id="orgfc58f90">Model</h2>
+<div class="outline-text-2" id="text-orgfc58f90">
+<p>
+<div class="mb"><img class="m" src="m/c70124f410fd1e456966d2ac84d8772ccc732310.svg" alt="\[ I(x,y,b)=\int\!\!\int\!\!\int_{\text{cell}(x,y)\times\text{band }b} L(x',y',\lambda)\,dx'\,dy'\,d\lambda, \]" style="width:24.696em"></div>
+for <img class="m" src="m/85b0fc52db49ce04022eac5dde14b87b057062b4.svg" alt="\(b=1,\dots,B\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+<ul class="org-ul">
+<li><b>Multispectral</b>: <img class="m" src="m/2bdeb497772d2a6308a19a67aabfb35d8d0a3970.svg" alt="\(B\approx4\)" style="height:0.749em;vertical-align:-0.000em">–15, bands of 30–200 nm placed in atmospheric windows and on key features (red, NIR, SWIR). Example: <a href="earth-observation-missions.html">Landsat</a> TM, <a href="copernicus-sentinel.html">Sentinel-2</a> (13 bands).</li>
+<li><b>Hyperspectral</b> (imaging spectrometers, since the 1980s): <img class="m" src="m/eb32a2f6fc2506bcb31d32be69fbbc1212119502.svg" alt="\(B\approx100\)" style="height:0.749em;vertical-align:-0.000em">–400 contiguous bands of ~10 nm over 0.4–2.5 µm (AVIRIS, PRISMA). Fine sampling of the signature allows identifying materials (minerals, pigments) and estimating physical parameters, at the cost of huge data volumes, redundancy between bands and lower SNR per band.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb3d0a5b" class="outline-2">
+<h2 id="orgb3d0a5b">Picture</h2>
+<div class="outline-text-2" id="text-orgb3d0a5b">
+<figure class="fig"><img class="m" src="m/9c48325fa99c70c78721fdcd298891a2bd43aa0f.svg" alt="figure" style="width:16.551em"><figcaption><span class="fl">Figure 1.</span> A multispectral image as a data cube: two spatial axes <img class="m" src="m/e90eee614ccff89dc50a4f360f55b37c3ea3519a.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, <img class="m" src="m/cf5630f5e92df0c892b614e53a928ecead453343.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> and the band <img class="m" src="m/91708f0e0338a9a807ccfe3e469f248e0b04bbbe.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em">; each pixel is a vector <img class="m" src="m/493bc393e943317c84beeb01613a4a3b5cdfad2c.svg" alt="\(\mathbf x\in\mathbb R^B\)" style="height:0.965em;vertical-align:-0.039em">.</figcaption></figure>
+<p>
+Two spatial axes and one spectral axis; a pixel is a line through the cube.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdb6797c" class="outline-2">
+<h2 id="orgdb6797c">Worked example</h2>
+<div class="outline-text-2" id="text-orgdb6797c">
+<p>
+A <img class="m" src="m/eb457aea04380f275a432db43affa582dc889ec0.svg" alt="\(1000\times1000\)" style="height:0.798em;vertical-align:-0.088em"> scene: Sentinel-2-like with 13 bands at 12 bits: <img class="m" src="m/bac8db4019b31c838df03b04c881959efd6e8aef.svg" alt="\(1.56\times10^8\)" style="height:0.983em;vertical-align:-0.089em"> bits ≈ 19.5 MB; PRISMA-like with 240 bands at 12 bits: 360 MB for the same area. A Gaussian classifier needs <img class="m" src="m/e4f689cd1c7aaf188d1a9f16cb7477df97ac79c4.svg" alt="\(p(p+3)/2\)" style="height:1.096em;vertical-align:-0.274em"> parameters per class: 104 for 13 bands, 29 160 for 240 — the root of the <a href="hughes-phenomenon.html">Hughes phenomenon</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org5e1a543" class="outline-2">
+<h2 id="org5e1a543">Intuition</h2>
+<div class="outline-text-2" id="text-org5e1a543">
+<p>
+A colour photo has three bands; a hyperspectral image is a photo with a spectrometer behind every pixel.
+</p>
+</div>
+</div>
+<div id="outline-container-orgea626a5" class="outline-2">
+<h2 id="orgea626a5">Pitfall</h2>
+<div class="outline-text-2" id="text-orgea626a5">
+<p>
+More bands do not automatically give better classification: with few training samples, high dimensionality makes estimates unreliable (<a href="hughes-phenomenon.html">Hughes phenomenon</a>), so <a href="feature-extraction.html">feature selection</a> or extraction is needed.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="sensor-resolutions.html"><span>← previous</span>Geometric, radiometric, spectral and temporal resolution</a><a rel="next" href="image-formats.html"><span>next →</span>Image storage formats: BSQ, BIL, BIP</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/acquisition--optical-sensors.pdf" title="PDF manual">Optical Sensors</a> · <a class="pdf" href="pdf/acquisition.pdf" title="PDF manual">Acquisition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

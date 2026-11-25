@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Move semantics and the rule of five · Computer Science</title>
+<meta name="description" content="A move constructor A(A&amp;&amp;) and a move assignment transfer the resources of a dying object instead of copying them, leaving the source empty but valid; a resource-owning class defines destructor, copy constructor, copy assignment, move constructor and move assignment.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/move-semantics.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Move semantics and the rule of five · Computer Science">
+<meta property="og:description" content="A move constructor A(A&amp;&amp;) and a move assignment transfer the resources of a dying object instead of copying them, leaving the source empty but valid; a resource-owning class defines destructor, copy constructor, copy assignment, move constructor and move assignment.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/move-semantics.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--cpp">Cpp</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Programming · Cpp</p>
+<h1>Move semantics and the rule of five</h1>
+<p class="summary">A move constructor <code>A(A&amp;&amp;)</code> and a move assignment transfer the resources of a dying object instead of copying them, leaving the source empty but valid; a resource-owning class defines destructor, copy constructor, copy assignment, move constructor and move assignment.</p>
+<p class="rel"><span>needs</span> <a href="value-categories.html">Value categories and rvalue references</a>, <a href="shallow-deep-copy.html">Shallow and deep copy, rule of three</a></p>
+<p class="rel"><span>unlocks</span> <a href="perfect-forwarding.html">Forwarding references and perfect forwarding</a>, <a href="smart-pointers.html">Smart pointers: unique_ptr, shared_ptr, weak_ptr</a></p>
+<p class="rel"><span>see also</span> <a href="smart-pointers.html">Smart pointers: unique_ptr, shared_ptr, weak_ptr</a>, <a href="stl-containers.html">STL containers</a>, <a href="perfect-forwarding.html">Forwarding references and perfect forwarding</a></p>
+<p class="rel"><span>mentioned in</span> <a href="exception-safety.html">Exception-safety guarantees</a>, <a href="cpp-special-members.html">Special member functions and RAII</a>, <a href="copy-and-swap.html">The copy-and-swap idiom</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-association.html">Association, links and multiplicity</a></li><li><a href="aggregation-composition.html">Aggregation and composition</a></li><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="pointers-references.html">Pointers, references and dynamic memory in C++</a></li><li><a href="cpp-special-members.html">Special member functions and RAII</a></li><li><a href="shallow-deep-copy.html">Shallow and deep copy, rule of three</a></li><li><a href="value-categories.html">Value categories and rvalue references</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org0dcda9d" class="outline-2">
+<h2 id="org0dcda9d">Construction</h2>
+<div class="outline-text-2" id="text-org0dcda9d">
+<p>
+For <code>class A { int i; B* pb; };</code> with <code>pb</code> owned:
+</p>
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="n">A</span>::<span class="f">A</span>(<span class="t">A</span>&amp;&amp; <span class="v">a</span>) <span class="k">noexcept</span> : i(a.i), pb(a.pb) {   <span class="c">// take the pointer
+</span>  a.i = 0; a.pb = <span class="n">nullptr</span>;                  <span class="c">// leave the source empty
+</span>}
+<span class="t">A</span>&amp; <span class="n">A</span>::<span class="k">operator</span>=(<span class="t">A</span>&amp;&amp; <span class="v">a</span>) <span class="k">noexcept</span> {
+  <span class="k">if</span> (<span class="k">this</span> != &amp;a) { <span class="k">delete</span> pb; i = a.i; pb = a.pb; a.i = 0; a.pb = <span class="n">nullptr</span>; }
+  <span class="k">return</span> *<span class="k">this</span>;
+}</code></pre></figure>
+<p>
+The cost of a move is a few pointer assignments, independent of the size of what <code>B</code> holds.
+</p>
+</div>
+</div>
+<div id="outline-container-org5fabe55" class="outline-2">
+<h2 id="org5fabe55">Rule of five</h2>
+<div class="outline-text-2" id="text-org5fabe55">
+<p>
+A class that manages a resource defines (or <code>= default</code> / <code>= delete</code> explicitly) all of: destructor, <a href="cpp-special-members.html">copy constructor</a>, copy assignment, move constructor, move assignment. With members that already manage themselves (<code>std::unique_ptr</code>, <code>std::vector</code>) the defaults are correct and nothing needs writing: the rule of zero.
+</p>
+</div>
+</div>
+<div id="outline-container-org8a8e642" class="outline-2">
+<h2 id="org8a8e642">When moves happen</h2>
+<div class="outline-text-2" id="text-org8a8e642">
+<p>
+The compiler picks the <code>&amp;&amp;</code> overload when the argument is an <a href="value-categories.html">rvalue</a>: returning a local by value, passing a temporary, <code>v.push_back(A(3))</code>, or an explicit <code>std::move(x)</code>, which only casts <code>x</code> to an rvalue and moves nothing by itself.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbcd837d" class="outline-2">
+<h2 id="orgbcd837d">Picture</h2>
+<div class="outline-text-2" id="text-orgbcd837d">
+<figure class="fig"><img class="m" src="m/dffde5e2a0d397660bea686758dba5dd0d4ad9e5.svg" alt="figure" style="width:14.693em"><figcaption><span class="fl">Figure 1.</span> Moving an object: the destination takes over the source's buffer pointer, and the source is left holding nullptr, with no copy of the buffer.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-orgc39219e" class="outline-2">
+<h2 id="orgc39219e">Intuition</h2>
+<div class="outline-text-2" id="text-orgc39219e">
+<p>
+Copying a moving box means buying the same furniture again; moving means handing over the box.
+</p>
+</div>
+</div>
+<div id="outline-container-org07952f1" class="outline-2">
+<h2 id="org07952f1">Pitfall</h2>
+<div class="outline-text-2" id="text-org07952f1">
+<p>
+A moved-from object is valid but unspecified: it may be destroyed or assigned, not read. Move operations should be <code>noexcept</code>, or <code>std::vector</code> will copy instead of moving when it grows.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="value-categories.html"><span>← previous</span>Value categories and rvalue references</a><a rel="next" href="perfect-forwarding.html"><span>next →</span>Forwarding references and perfect forwarding</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--cpp.pdf" title="PDF manual">Cpp</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

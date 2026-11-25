@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tychonoff's theorem · Mathematics</title>
+<meta name="description" content="A product of compact spaces is compact – for arbitrarily many factors, with no countability and no metric. The statement is strong enough to be equivalent to the axiom of choice, and the shortest honest proof is the one that says what compactness is in terms of ultrafilters: a product is compact be…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/tychonoffs-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Tychonoff's theorem · Mathematics">
+<meta property="og:description" content="A product of compact spaces is compact – for arbitrarily many factors, with no countability and no metric. The statement is strong enough to be equivalent to the axiom of choice, and the shortest honest proof is the one that says what compactness is in terms of ultrafilters: a product is compact be…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/tychonoffs-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-topology">Topology</a> / <a rel="up" href="index.html#a-topology--general-topology">General Topology</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Topology · General Topology</p>
+<h1>Tychonoff's theorem</h1>
+<p class="summary">A product of compact spaces is compact &#x2013; for arbitrarily many factors, with no countability and no metric. The statement is strong enough to be equivalent to the axiom of choice, and the shortest honest proof is the one that says what compactness <i>is</i> in terms of ultrafilters: a product is compact because an ultrafilter can be pushed into every coordinate at once, and reassembled.</p>
+<p class="rel"><span>needs</span> <a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a>, <a href="filters-ultrafilters-and-the-ultrafilter-lemma.html">Filters, ultrafilters and the ultrafilter lemma</a>, <a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a>, <a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a>, <a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></p>
+<p class="rel"><span>mentioned in</span> <a href="foundations.html">Foundations</a>, <a href="functional-analysis.html">Functional analysis</a>, <a href="topology.html">Topology</a>, <a href="general-topology.html">General topology</a></p>
+<details class="path"><summary>Learning path: 25 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="filters-ultrafilters-and-the-ultrafilter-lemma.html">Filters, ultrafilters and the ultrafilter lemma</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li></ol></details>
+</header>
+<main class="note">
+<div class="lemma" id="orgee427c4">
+<p>
+Let <img class="m" src="m/9b5051d8f9149f1300fa601c9104624a6e64a9a6.svg" alt="\(\mathcal{U}\)" style="height:0.749em;vertical-align:-0.000em"> be an ultrafilter on a set <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> and
+<img class="m" src="m/fca682140f52a0c25364b87862b9c25ade6dcfeb.svg" alt="\(f \colon I \to Y\)" style="height:0.974em;vertical-align:-0.214em"> any map. Then
+<img class="m" src="m/12fbfe1568ec9a3351c651cd6d7af7c891deebee.svg" alt="\(f_{*}\mathcal{U} = \setst{B \subseteq Y}{f^{-1}(B)\in\mathcal{U}}\)" style="height:1.166em;vertical-align:-0.268em"> is
+an ultrafilter on <img class="m" src="m/82d9b7c5c94f297586981fdbe7ca67b30095b73a.svg" alt="\(Y\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org19480aa">
+<p>
+Preimage commutes with intersection and complement and preserves
+inclusion, so <img class="m" src="m/46256a9e259e0de411339a34d258e84ffcb31efc.svg" alt="\(f_{*}\mathcal{U}\)" style="height:0.974em;vertical-align:-0.214em"> is closed under finite intersections
+and upward closed, contains <img class="m" src="m/82d9b7c5c94f297586981fdbe7ca67b30095b73a.svg" alt="\(Y\)" style="height:0.749em;vertical-align:-0.000em">, and omits <img class="m" src="m/b9fcf2ccae8d3515975b71b2e2ab3c4479b2d3d5.svg" alt="\(\emptyset\)" style="height:0.883em;vertical-align:-0.062em">. For any
+<img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">, either <img class="m" src="m/5f5f998f58d95e1c965372683d365d924527a43d.svg" alt="\(f^{-1}(B)\in\mathcal{U}\)" style="height:1.166em;vertical-align:-0.268em"> or its complement
+<img class="m" src="m/2a9635e03148e293b68625cc1eef2ebe8e9a475d.svg" alt="\(f^{-1}(Y\setminus B)\)" style="height:1.166em;vertical-align:-0.268em"> is, by the ultrafilter criterion; so
+<img class="m" src="m/46256a9e259e0de411339a34d258e84ffcb31efc.svg" alt="\(f_{*}\mathcal{U}\)" style="height:0.974em;vertical-align:-0.214em"> satisfies that criterion too.
+</p>
+
+</div>
+
+<div class="theorem" id="org6ff897a">
+<p>
+An arbitrary product <img class="m" src="m/ee9d57feb0645a5c25409d12c4bbe233b76e370c.svg" alt="\(X = \prod_{i\in I}X_{i}\)" style="height:1.209em;vertical-align:-0.387em"> of compact spaces is
+compact in the product topology.
+</p>
+
+</div>
+
+<div class="proof" id="org18e56e8">
+<p>
+By the ultrafilter characterisation of compactness it suffices to show
+that every ultrafilter <img class="m" src="m/9b5051d8f9149f1300fa601c9104624a6e64a9a6.svg" alt="\(\mathcal{U}\)" style="height:0.749em;vertical-align:-0.000em"> on <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> converges.
+</p>
+
+<p>
+For each <img class="m" src="m/820a2ed5b51be608772286616d5575a49dd61525.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em">, the pushforward <img class="m" src="m/6f7f394eafd2e1af18b4805e5be091527b5351e0.svg" alt="\((\pi_{i})_{*}\mathcal{U}\)" style="height:1.096em;vertical-align:-0.274em"> is an
+ultrafilter on <img class="m" src="m/024ec503e467bb004aaf6a21692c830bd7fa5661.svg" alt="\(X_{i}\)" style="height:0.913em;vertical-align:-0.164em">, which is compact, so it converges to some
+point; choose one and call it <img class="m" src="m/e7f9de506eae7e9e89a3fd163d8879dedf6a9c2b.svg" alt="\(x_{i}\)" style="height:0.636em;vertical-align:-0.165em">. Let <img class="m" src="m/e98244e3ccbf0c86ed5a4afeb11434477f82b523.svg" alt="\(x = (x_{i})_{i}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+We claim <img class="m" src="m/cee4352295286641920048234d0cf5aeba2d515e.svg" alt="\(\mathcal{U}\to x\)" style="height:0.749em;vertical-align:-0.000em">. A basic neighbourhood of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> is a
+finite intersection <img class="m" src="m/f064c3d5cc16cb3481d3224478f76bb942065d4f.svg" alt="\(\bigcap_{k\le n}\pi_{i_{k}}^{-1}(V_{k})\)" style="height:1.434em;vertical-align:-0.473em"> with
+<img class="m" src="m/9f76f9a5a057d1a29542081645a7f70915c68ad4.svg" alt="\(V_{k}\)" style="height:0.913em;vertical-align:-0.164em"> an open neighbourhood of <img class="m" src="m/646ecf77520d757002197774aaca71a3d45c0590.svg" alt="\(x_{i_{k}}\)" style="height:0.753em;vertical-align:-0.278em">. Since
+<img class="m" src="m/294740522677faf869b6ca216e2338a4768cfec0.svg" alt="\((\pi_{i_{k}})_{*}\mathcal{U}\to x_{i_{k}}\)" style="height:1.103em;vertical-align:-0.276em">, we have
+<img class="m" src="m/0d98fe074afa6ffd4c6ff8b7ff62385af0599cfc.svg" alt="\(V_{k}\in(\pi_{i_{k}})_{*}\mathcal{U}\)" style="height:1.103em;vertical-align:-0.276em">, that is
+<img class="m" src="m/528630ccfbca5553f211ee49ca89976471de46e6.svg" alt="\(\pi_{i_{k}}^{-1}(V_{k})\in\mathcal{U}\)" style="height:1.385em;vertical-align:-0.415em">; a filter is closed under
+finite intersections, so the basic neighbourhood lies in
+<img class="m" src="m/9b5051d8f9149f1300fa601c9104624a6e64a9a6.svg" alt="\(\mathcal{U}\)" style="height:0.749em;vertical-align:-0.000em">, and hence so does every neighbourhood of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> by
+upward closure.
+</p>
+
+</div>
+
+<div class="corollary" id="org5fd0e92">
+<p>
+For any set <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em">, the cube <img class="m" src="m/8afcb782e52865e47d84dc30a9cf2120e45cd34f.svg" alt="\([0,1]^{I}\)" style="height:1.196em;vertical-align:-0.275em"> is compact Hausdorff.
+</p>
+
+</div>
+
+<div class="proof" id="org787b4b0">
+<p>
+<img class="m" src="m/b40f419d16d54b95652910807100bb67f190c2b6.svg" alt="\([0,1]\)" style="height:1.096em;vertical-align:-0.274em"> is closed and bounded in <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em">, hence compact, and it is
+Hausdorff as a metric space. Tychonoff's theorem gives compactness of
+the product, and a product of Hausdorff spaces is Hausdorff.
+</p>
+
+</div>
+
+<div class="remark" id="orgfd7611d">
+<p>
+The proof used a choice of limit in each coordinate, and that use is not
+an artefact: Tychonoff's theorem implies the axiom of choice. Given
+non-empty sets <img class="m" src="m/024ec503e467bb004aaf6a21692c830bd7fa5661.svg" alt="\(X_{i}\)" style="height:0.913em;vertical-align:-0.164em">, topologise <img class="m" src="m/9a2f8bba8358af334cb07ae4afd4e5cd80d46bab.svg" alt="\(X_{i}\cup\set{\infty_{i}}\)" style="height:1.096em;vertical-align:-0.274em"> so
+that it is compact, apply the theorem to the product, and a point of a
+suitable closed subset of it is a choice function. For <i>Hausdorff</i>
+factors the theorem is strictly weaker &#x2013; it is equivalent to the
+ultrafilter lemma &#x2013; which is a rare case where the exact strength of a
+standard theorem is known.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-tietze-extension-theorem.html"><span>← previous</span>The Tietze extension theorem</a><a rel="next" href="algebraic-topology.html"><span>next →</span>Algebraic topology</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/topology--general-topology.pdf" title="PDF manual">General Topology</a> · <a class="pdf" href="pdf/topology.pdf" title="PDF manual">Topology</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

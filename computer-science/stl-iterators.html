@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iterators · Computer Science</title>
+<meta name="description" content="An iterator is an object that behaves like a pointer into a container (*it, ++it, ==); begin() and end() give the half-open range [\text{first},\text{last}), and iterator categories (input, forward, bidirectional, random access) say which operations are allowed.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/stl-iterators.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Iterators · Computer Science">
+<meta property="og:description" content="An iterator is an object that behaves like a pointer into a container (*it, ++it, ==); begin() and end() give the half-open range [\text{first},\text{last}), and iterator categories (input, forward, bidirectional, random access) say which operations are allowed.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/stl-iterators.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--generic-programming">Generic Programming</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Generic Programming</p>
+<h1>Iterators</h1>
+<p class="summary">An iterator is an object that behaves like a pointer into a container (<code>*it</code>, <code>++it</code>, <code>==</code>); <code>begin()</code> and <code>end()</code> give the half-open range <img class="m" src="m/6d3250a98d1a1f39d9e64a806048e3bd9b8db085.svg" alt="\([\text{first},\text{last})\)" style="height:1.096em;vertical-align:-0.274em">, and iterator categories (input, forward, bidirectional, random access) say which operations are allowed.</p>
+<p class="rel"><span>needs</span> <a href="stl-containers.html">STL containers</a></p>
+<p class="rel"><span>unlocks</span> <a href="stl-algorithms.html">STL algorithms</a></p>
+<p class="rel"><span>see also</span> <a href="stl-algorithms.html">STL algorithms</a>, <a href="java-iterator.html">Iterators and for-each in Java</a>, <a href="pointers-references.html">Pointers, references and dynamic memory in C++</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li><li><a href="generic-programming.html">Generic programming</a></li><li><a href="cpp-templates.html">C++ templates</a></li><li><a href="stl-containers.html">STL containers</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org0be4df3" class="outline-2">
+<h2 id="org0be4df3">Definition</h2>
+<div class="outline-text-2" id="text-org0be4df3">
+<p>
+Iterators form a hierarchy of concepts, each adding operations:
+</p>
+<ul class="org-ul">
+<li><b>input/output</b>: read or write once, <code>++</code>;</li>
+<li><b>forward</b>: several passes;</li>
+<li><b>bidirectional</b>: also <code>--</code> (<code>list</code>, <code>set</code>, <code>map</code>);</li>
+<li><b>random access</b>: <code>it + n</code>, <code>it[n]</code>, <code>&lt;</code> in <img class="m" src="m/db232d0cd832a3fae3e6b6755f176b14153e936b.svg" alt="\(O(1)\)" style="height:1.096em;vertical-align:-0.274em"> (<code>vector</code>, <code>deque</code>, raw pointers).</li>
+</ul>
+<p>
+They reproduce part of pointer behaviour through overloaded operators, but they are not pointers. Each container provides <code>iterator</code>, <code>const_iterator</code> (<code>cbegin</code>), <code>reverse_iterator</code> (<code>rbegin</code>, <code>crend</code>).
+</p>
+</div>
+</div>
+<div id="outline-container-org535ba76" class="outline-2">
+<h2 id="org535ba76">Example</h2>
+<div class="outline-text-2" id="text-org535ba76">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="n">std</span>::<span class="t">list</span>&lt;<span class="t">int</span>&gt; <span class="v">l</span> = {3, 1, 4};
+<span class="k">for</span> (<span class="n">std</span>::<span class="n">list</span>&lt;<span class="t">int</span>&gt;::<span class="t">iterator</span> <span class="v">it</span> = l.begin(); it != l.end(); ++it) *it *= 2;
+<span class="c">// range-for: the same loop, written by the compiler
+</span><span class="k">for</span> (<span class="t">int</span> <span class="v">x</span> : l) <span class="n">std</span>::cout &lt;&lt; x;</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org19ef9b7" class="outline-2">
+<h2 id="org19ef9b7">Picture</h2>
+<div class="outline-text-2" id="text-org19ef9b7">
+<figure class="fig"><img class="m" src="m/01acad56ea0f6ed2f13dbbefaea7160bb54d08aa.svg" alt="figure" style="width:12.892em"><figcaption><span class="fl">Figure 1.</span> An STL range: begin() points to the first element and end() one past the last, so iteration stops when the iterator equals end().</figcaption></figure>
+<p>
+<code>end()</code> points one past the last element: the range is half open, and an empty range has <code>begin() =</code> end()=.
+</p>
+</div>
+</div>
+<div id="outline-container-org0a2d505" class="outline-2">
+<h2 id="org0a2d505">Intuition</h2>
+<div class="outline-text-2" id="text-org0a2d505">
+<p>
+Iterators are the glue of the STL: algorithms speak iterators, containers produce them, so <img class="m" src="m/5f2d4f790b418da9d600db34c8fe8eb825040aa9.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em"> algorithms and <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> containers need <img class="m" src="m/17c8fc25c76139254ed1aa1e3dc02848c4d3b96e.svg" alt="\(m+n\)" style="height:0.731em;vertical-align:-0.088em"> pieces of code, not <img class="m" src="m/6a1219b0d4c2a9550cbdb5daa8b0505edc479d29.svg" alt="\(m\times n\)" style="height:0.731em;vertical-align:-0.088em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org59c0e5e" class="outline-2">
+<h2 id="org59c0e5e">Pitfall</h2>
+<div class="outline-text-2" id="text-org59c0e5e">
+<p>
+Changing a container can invalidate its iterators: <code>push_back</code> on a <code>vector</code> may reallocate and leave every iterator dangling; erasing inside a loop must use the iterator returned by <code>erase</code>.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="stl-containers.html"><span>← previous</span>STL containers</a><a rel="next" href="stl-algorithms.html"><span>next →</span>STL algorithms</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--generic-programming.pdf" title="PDF manual">Generic Programming</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

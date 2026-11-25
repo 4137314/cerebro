@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spin precession and Rabi oscillations · Physics</title>
+<meta name="description" content="A spin in a static field precesses at the Larmor frequency \omega_0=|g|eB/2m; adding a transverse field rotating at \omega produces the Rabi formula P_{\downarrow}(t)=\frac{\Omega^2}{\Omega^2+\Delta^2}\sin^2\!\left(\tfrac12\sqrt{\Omega^2+\Delta^2}\,t\right), the basis of NMR, MRI and qubit control.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/spin-precession-and-rabi-oscillations.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Spin precession and Rabi oscillations · Physics">
+<meta property="og:description" content="A spin in a static field precesses at the Larmor frequency \omega_0=|g|eB/2m; adding a transverse field rotating at \omega produces the Rabi formula P_{\downarrow}(t)=\frac{\Omega^2}{\Omega^2+\Delta^2}\sin^2\!\left(\tfrac12\sqrt{\Omega^2+\Delta^2}\,t\right), the basis of NMR, MRI and qubit control.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/spin-precession-and-rabi-oscillations.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-mechanics">Quantum Mechanics</a> / <a rel="up" href="index.html#a-quantum-mechanics--dynamics">Dynamics</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">example · Quantum Mechanics · Dynamics</p>
+<h1>Spin precession and Rabi oscillations</h1>
+<p class="summary">A spin in a static field precesses at the Larmor frequency <img class="m" src="m/2d63fc34dab7a23b2706e1bea745e28338df406a.svg" alt="\(\omega_0=|g|eB/2m\)" style="height:1.096em;vertical-align:-0.274em">; adding a transverse field rotating at <img class="m" src="m/6f82683b85c04ff62db49f40d5190a83749239dd.svg" alt="\(\omega\)" style="height:0.472em;vertical-align:-0.000em"> produces the Rabi formula <img class="m" src="m/0c10d01f2ba3a3cc2d7be58a2e0e8f7d80b4d2ec.svg" alt="\(P_{\downarrow}(t)=\frac{\Omega^2}{\Omega^2+\Delta^2}\sin^2\!\left(\tfrac12\sqrt{\Omega^2+\Delta^2}\,t\right)\)" style="height:1.585em;vertical-align:-0.475em">, the basis of NMR, MRI and qubit control.</p>
+<p class="rel"><span>needs</span> <a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a>, <a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></p>
+<p class="rel"><span>unlocks</span> <a href="angular-momentum-algebra.html">Angular momentum: algebra and spectrum</a>, <a href="time-dependent-perturbation-and-golden-rule.html">Time-dependent perturbation theory and Fermi's golden rule</a>, <a href="qubits-and-quantum-gates.html">Qubits and quantum gates</a>, <a href="jaynes-cummings-model.html">The Jaynes–Cummings model</a></p>
+<p class="rel"><span>see also</span> <a href="jaynes-cummings-model.html">The Jaynes–Cummings model</a>, <a href="qubits-and-quantum-gates.html">Qubits and quantum gates</a>, <a href="density-operator.html">The density operator: pure and mixed states</a></p>
+<p class="rel"><span>mentioned in</span> <a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a>, <a href="directional-couplers.html">Directional couplers and coupled-mode theory</a></p>
+<details class="path"><summary>Learning path: 10 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org36b50b3" class="outline-2">
+<h2 id="org36b50b3">Precession</h2>
+<div class="outline-text-2" id="text-org36b50b3">
+<p>
+<img class="m" src="m/5ce193da799de43769655f7afd15bd7ca11c3574.svg" alt="\(H=-\boldsymbol\mu\cdot\mathbf B=\omega_0S_z\)" style="height:0.965em;vertical-align:-0.212em"> with <img class="m" src="m/5b60abedb8c6b872f7ba411c05850c8ce0c17d3f.svg" alt="\(\omega_0=|e|B/m_e\)" style="height:1.096em;vertical-align:-0.274em"> for the electron (<img class="m" src="m/02c92a7ad319974d6abf8e413f3e3b63226035eb.svg" alt="\(g=2\)" style="height:0.919em;vertical-align:-0.211em">). Heisenberg equations: <img class="m" src="m/b1121cd278b56fc6d3767e52222f6b4b9eaff9c8.svg" alt="\(\dot S_x=-\omega_0S_y\)" style="height:1.322em;vertical-align:-0.317em">, <img class="m" src="m/fb62adc334f4eb3f76466913fbcacf9fd342b828.svg" alt="\(\dot S_y=\omega_0S_x\)" style="height:1.322em;vertical-align:-0.317em">: the expectation <img class="m" src="m/edc68f635d57638ced036fe4047428e42767296b.svg" alt="\(\braket{\mathbf S}\)" style="height:1.096em;vertical-align:-0.274em"> rotates about <img class="m" src="m/08d25f41e0da09e1b7e717161dc5008fc26906aa.svg" alt="\(\hat z\)" style="height:0.761em;vertical-align:-0.000em"> at <img class="m" src="m/73a6e99c9a8d1d8eefab003d16bb599ab2c6f12d.svg" alt="\(\omega_0\)" style="height:0.636em;vertical-align:-0.165em">. Equivalently <img class="m" src="m/34c5606dcc39b9ec7e22bad2a19d18a60aceab7b.svg" alt="\(U(t)=e^{-i\omega_0tS_z/\hbar}\)" style="height:1.247em;vertical-align:-0.274em"> is a rotation by <img class="m" src="m/4cdf8bb2862e76833ccc9b324ef9219be690ae4a.svg" alt="\(\phi=\omega_0t\)" style="height:0.974em;vertical-align:-0.214em">. A rotation by <img class="m" src="m/e4891c4be689e29794f8ebb746d6bdf2c5516db2.svg" alt="\(2\pi\)" style="height:0.706em;vertical-align:-0.000em"> multiplies a spinor by <img class="m" src="m/2b5d580b6e61c94da1bb188b65a19b9b37604104.svg" alt="\(-1\)" style="height:0.798em;vertical-align:-0.088em"> (verified by neutron interferometry).
+</p>
+</div>
+</div>
+<div id="outline-container-org3b8d3a8" class="outline-2">
+<h2 id="org3b8d3a8">Rabi problem</h2>
+<div class="outline-text-2" id="text-org3b8d3a8">
+<p>
+<img class="m" src="m/bddff50d0241552187387f5553b9a3fd529970ad.svg" alt="\(H=\tfrac{\hbar\omega_0}{2}\sigma_z+\hbar\Omega\left(\cos\omega t\,\sigma_x+\sin\omega t\,\sigma_y\right)/2\)" style="height:1.356em;vertical-align:-0.380em"> (rotating field) <span class="cite">(<a class="ref" href="https://doi.org/10.1103/physrev.51.652" data-full="I. I. Rabi, “Space quantization in a gyrating magnetic field”, Physical Review 51, 652–654 (1937)." aria-label="I. I. Rabi, “Space quantization in a gyrating magnetic field”, Physical Review 51, 652–654 (1937).">Rabi 1937</a>)</span>. Go to the frame rotating at <img class="m" src="m/6f82683b85c04ff62db49f40d5190a83749239dd.svg" alt="\(\omega\)" style="height:0.472em;vertical-align:-0.000em">: <img class="m" src="m/19aa854c13319b39bdd8a2eead66314d4c47dccb.svg" alt="\(\ket{\tilde\psi}=e^{i\omega t\sigma_z/2}\ket\psi\)" style="height:1.295em;vertical-align:-0.272em">. The Hamiltonian becomes time independent:
+<div class="mb"><img class="m" src="m/25a05d119c54357463155c76c66579ca4e42342e.svg" alt="\[ \tilde H=\frac\hbar2\left(\Delta\,\sigma_z+\Omega\,\sigma_x\right),\qquad \Delta=\omega_0-\omega. \]" style="width:18.845em"></div>
+This is precession about an effective field tilted by <img class="m" src="m/5a1d3054df9ec6d66399f84d318dbfba50b0982a.svg" alt="\(\tan\theta=\Omega/\Delta\)" style="height:1.096em;vertical-align:-0.274em"> at frequency <img class="m" src="m/f969d3fba49b4a698bc2970c7dae21776e08d87b.svg" alt="\(\Omega_R=\sqrt{\Omega^2+\Delta^2}\)" style="height:1.165em;vertical-align:-0.163em">. Starting from <img class="m" src="m/478014109349bfc8b7394cb9149582bee6f75752.svg" alt="\(\ket\uparrow\)" style="height:1.096em;vertical-align:-0.274em">:
+<div class="mb"><img class="m" src="m/95d82bad5da0d7466e6e3a0f296523bceda09286.svg" alt="\[ P_{\uparrow\to\downarrow}(t)=\frac{\Omega^2}{\Omega^2+\Delta^2}\sin^2\frac{\Omega_Rt}{2}. \]" style="width:14.206em"></div>
+On resonance (<img class="m" src="m/583aae336151f6b1b6feafa34012d02817c65086.svg" alt="\(\Delta=0\)" style="height:0.749em;vertical-align:-0.000em">) the spin flips completely after the "<img class="m" src="m/6ba8cf9ba286d26abb2e4c7f5ec9bc7ba671e475.svg" alt="\(\pi\)" style="height:0.472em;vertical-align:-0.000em"> pulse" <img class="m" src="m/71674856407e9e6525949e75d81cf159c6461b3a.svg" alt="\(t=\pi/\Omega\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org8e1897f" class="outline-2">
+<h2 id="org8e1897f">Picture</h2>
+<div class="outline-text-2" id="text-org8e1897f">
+<figure class="fig"><img class="m" src="m/203322c9a7fbd2075514a5290dd5c40772439a71.svg" alt="figure" style="width:22.487em"><figcaption><span class="fl">Figure 1.</span> Rabi oscillations: probability of the excited state versus time on resonance (<img class="m" src="m/583aae336151f6b1b6feafa34012d02817c65086.svg" alt="\(\Delta=0\)" style="height:0.749em;vertical-align:-0.000em">), with full inversion, and detuned (<img class="m" src="m/b05b2069b461f0db0cf7c439a94b9b347fe4ebb9.svg" alt="\(\Delta=\Omega\)" style="height:0.749em;vertical-align:-0.000em">), faster and incomplete.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-orgbdc5679" class="outline-2">
+<h2 id="orgbdc5679">Worked example</h2>
+<div class="outline-text-2" id="text-orgbdc5679">
+<p>
+MRI at <img class="m" src="m/9b17d6310680409c7db74611337ea3ab986efa83.svg" alt="\(B_0=1.5\)" style="height:0.913em;vertical-align:-0.164em"> T on protons (<img class="m" src="m/37080efdc299b256a031234b2207b8dd6237ed25.svg" alt="\(\gamma/2\pi=42.58\)" style="height:1.096em;vertical-align:-0.274em"> MHz/T): <img class="m" src="m/5af1e522afe1cb4dfef8a1c96e56de9c4971d314.svg" alt="\(f_0=63.9\)" style="height:0.974em;vertical-align:-0.214em"> MHz. With an RF field <img class="m" src="m/eb756224dfef158cb9564c2249407e1d1e8cffcb.svg" alt="\(B_1=10\)" style="height:0.913em;vertical-align:-0.164em"> µT, <img class="m" src="m/5ebbe8b508a5086cb0706eedc57cb5d6c106807c.svg" alt="\(\Omega=\gamma B_1=2\pi\cdot426\)" style="height:0.962em;vertical-align:-0.212em"> Hz, so the <img class="m" src="m/5f3004c8a95126d4d31a59f35a986a61a134aedd.svg" alt="\(\pi/2\)" style="height:1.096em;vertical-align:-0.274em"> pulse lasts <img class="m" src="m/3cc383695d8e1e5ecba739db5acf6e02e156d2d1.svg" alt="\(t=\pi/2\Omega=0.59\)" style="height:1.096em;vertical-align:-0.274em"> ms. A gradient <img class="m" src="m/a90b41c6aff30a3723d36b8cf35ddcf9622557ac.svg" alt="\(G=10\)" style="height:0.749em;vertical-align:-0.000em"> mT/m shifts <img class="m" src="m/8c7f55bb7ab32a1424e1ce28d306eb18b20e4a7c.svg" alt="\(f_0\)" style="height:0.974em;vertical-align:-0.214em"> by 426 Hz per mm: frequency encodes position.
+</p>
+</div>
+</div>
+<div id="outline-container-org88fe166" class="outline-2">
+<h2 id="org88fe166">Engineering applications</h2>
+<div class="outline-text-2" id="text-org88fe166">
+<p>
+NMR spectroscopy and MRI; atomic clocks (Ramsey interrogation); single-qubit gates in superconducting, ion and spin qubits (<a href="qubits-and-quantum-gates.html">qubits</a>); ESR. The same mathematics describes the optical two-level atom (<a href="jaynes-cummings-model.html">Jaynes–Cummings</a>).
+</p>
+</div>
+</div>
+<div id="outline-container-orgb9702f1" class="outline-2">
+<h2 id="orgb9702f1">Pitfall</h2>
+<div class="outline-text-2" id="text-orgb9702f1">
+<p>
+A linearly polarised field <img class="m" src="m/d1b91dce88a790c12a8057cf522fb4c7d154b9de.svg" alt="\(2\Omega\cos\omega t\,\sigma_x\)" style="height:0.913em;vertical-align:-0.164em"> is the sum of two counter-rotating fields; only the co-rotating one is resonant. Dropping the other is the rotating-wave approximation, valid for <img class="m" src="m/3527006df5dce1503f089915c5f742aa5e85f142.svg" alt="\(\Omega\ll\omega_0\)" style="height:0.913em;vertical-align:-0.164em">.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="heisenberg-picture-and-ehrenfest-theorem.html"><span>← previous</span>Heisenberg picture and Ehrenfest's theorem</a><a rel="next" href="propagator-and-path-integral.html"><span>next →</span>The propagator and Feynman's path integral</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-mechanics--dynamics.pdf" title="PDF manual">Dynamics</a> · <a class="pdf" href="pdf/quantum-mechanics.pdf" title="PDF manual">Quantum Mechanics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exam practice: digital electronic circuits (solved) · Physics</title>
+<meta name="description" content="Ten problems in the format of the written exam (6 points each): NMOS loads with body effect, mirrors, CMOS VTC regions and noise margins, symmetric sizing for a delay target, complex-gate sizing, pseudo-NMOS fan-in, dynamic logic frequency, power, DRAM read and leakage, SRAM read stability.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/exam-practice-digital-electronics.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Exam practice: digital electronic circuits (solved) · Physics">
+<meta property="og:description" content="Ten problems in the format of the written exam (6 points each): NMOS loads with body effect, mirrors, CMOS VTC regions and noise margins, symmetric sizing for a delay target, complex-gate sizing, pseudo-NMOS fan-in, dynamic logic frequency, power, DRAM read and leakage, SRAM read stability.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/exam-practice-digital-electronics.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-revision">Revision</a> / <a rel="up" href="index.html#a-revision--exam-practice">Exam Practice</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">example · Revision · Exam Practice</p>
+<h1>Exam practice: digital electronic circuits (solved)</h1>
+<p class="summary">Ten problems in the format of the written exam (6 points each): NMOS loads with body effect, mirrors, CMOS VTC regions and noise margins, symmetric sizing for a delay target, complex-gate sizing, pseudo-NMOS fan-in, dynamic logic frequency, power, DRAM read and leakage, SRAM read stability.</p>
+<p class="rel"><span>needs</span> <a href="formula-sheet-electronics.html">Formula sheet: semiconductors, circuits and electronics</a>, <a href="dram-cell.html">The 1T1C DRAM cell</a>, <a href="sram-cell.html">The 6T SRAM cell</a>, <a href="pseudo-nmos-logic.html">Pseudo-NMOS logic</a>, <a href="latches-and-flip-flops.html">Latches and flip-flops</a></p>
+<p class="rel"><span>see also</span> <a href="exam-practice-circuits.html">Exam practice: circuit theory (solved)</a></p>
+<p class="rel"><span>mentioned in</span> <a href="physics-study-map.html">Physics: study map</a>, <a href="digital-electronics.html">Digital electronic circuits: the map of the subject</a></p>
+<details class="path"><summary>Learning path: 51 notes lead here, in study order</summary><ol><li><a href="physics-study-map.html">Physics: study map</a></li><li><a href="formula-sheet-electronics.html">Formula sheet: semiconductors, circuits and electronics</a></li><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="circuits.html">Circuit theory: the map of the subject</a></li><li><a href="kirchhoff-laws-and-network-theorems.html">Kirchhoff's laws and network theorems</a></li><li><a href="lti-systems-and-convolution.html">LTI systems, impulse response and first/second-order circuits</a></li><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></li><li><a href="spin-precession-and-rabi-oscillations.html">Spin precession and Rabi oscillations</a></li><li><a href="angular-momentum-algebra.html">Angular momentum: algebra and spectrum</a></li><li><a href="orbital-angular-momentum.html">Orbital angular momentum and spherical harmonics</a></li><li><a href="hydrogen-atom.html">The hydrogen atom</a></li><li><a href="addition-of-angular-momenta.html">Addition of angular momenta</a></li><li><a href="identical-particles-and-pauli-principle.html">Identical particles, bosons, fermions and Pauli's principle</a></li><li><a href="square-well-potentials.html">Square wells: particle in a box and finite well</a></li><li><a href="symmetries-and-conservation-laws.html">Symmetries, conservation laws and degeneracy</a></li><li><a href="solid-state.html">Semiconductor physics: the map of the subject</a></li><li><a href="bloch-theorem-and-energy-bands.html">Bloch's theorem and energy bands</a></li><li><a href="effective-mass-and-holes.html">Effective mass, group velocity and holes</a></li><li><a href="density-of-states-and-fermi-dirac.html">Density of states and Fermi–Dirac statistics</a></li><li><a href="intrinsic-and-doped-semiconductors.html">Intrinsic and doped semiconductors</a></li><li><a href="drift-diffusion-and-einstein-relation.html">Drift, diffusion and the Einstein relation</a></li><li><a href="pn-junction-electrostatics.html">The pn junction: built-in potential, depletion and capacitance</a></li><li><a href="digital-electronics.html">Digital electronic circuits: the map of the subject</a></li><li><a href="mosfet-operation-and-iv.html">The MOSFET: regions of operation and I–V model</a></li><li><a href="inverter-static-characteristics.html">Inverter static characteristics and noise margins</a></li><li><a href="nmos-inverters.html">NMOS inverters: resistive, saturated and depletion loads</a></li><li><a href="capacitance-and-laplace-equation.html">Poisson, Laplace and capacitance</a></li><li><a href="mosfet-capacitances-and-scaling.html">MOSFET capacitances and scaling</a></li><li><a href="cmos-inverter.html">The CMOS inverter: VTC, switching threshold and sizing</a></li><li><a href="cmos-propagation-delay.html">CMOS propagation delay</a></li><li><a href="static-cmos-logic-gates.html">Static CMOS logic gates and sizing</a></li><li><a href="pseudo-nmos-logic.html">Pseudo-NMOS logic</a></li><li><a href="cmos-power-dissipation.html">Power dissipation in CMOS</a></li><li><a href="dynamic-logic-and-pass-transistors.html">Dynamic logic and pass-transistor logic</a></li><li><a href="latches-and-flip-flops.html">Latches and flip-flops</a></li><li><a href="dram-cell.html">The 1T1C DRAM cell</a></li><li><a href="sram-cell.html">The 6T SRAM cell</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orge4cb204" class="outline-2">
+<h2 id="orge4cb204">Problem 1 — saturated-load inverter with body effect</h2>
+<div class="outline-text-2" id="text-orge4cb204">
+<p>
+<img class="m" src="m/043bbb7b9fd08ae0354b4a2b25dbed7371c646ad.svg" alt="\(K'_n=100\)" style="height:1.095em;vertical-align:-0.274em"> µA/V², <img class="m" src="m/2d8d6af1ced7cc317bb63b05665516423bb06857.svg" alt="\(W/L=5\)" style="height:1.096em;vertical-align:-0.274em"> both, <img class="m" src="m/a5e0475edf12dec624b363f0793528cbfb4dd5dc.svg" alt="\(V_{DD}=5\)" style="height:0.913em;vertical-align:-0.164em"> V, <img class="m" src="m/f692f7607a38e2faee04878ae3b11114799e96e8.svg" alt="\(V_{TO}=1\)" style="height:0.913em;vertical-align:-0.164em"> V, <img class="m" src="m/76134ab50a41fa83bb1bc0657efe21339e63bd31.svg" alt="\(V_I=3\)" style="height:0.913em;vertical-align:-0.164em"> V. Find <img class="m" src="m/d88d5721d7be7a434f7b76f997bee3cc9482c0c5.svg" alt="\(V_O\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/c36bb9d0d56473e54814eaa8a63b08776e05e3bf.svg" alt="\(I_D\)" style="height:0.913em;vertical-align:-0.164em"> for <img class="m" src="m/3b3e5596ccc1d70d6464472326182565e00ff9cd.svg" alt="\(\gamma=0\)" style="height:0.919em;vertical-align:-0.211em"> and for <img class="m" src="m/06baf8c3f5bb01f1d14399af41692de2b6cf6f9e.svg" alt="\(\gamma=0.5\sqrt{\mathrm V}\)" style="height:1.229em;vertical-align:-0.209em">, <img class="m" src="m/050ce9c1826349de10fb0fda53c4a97831af8bd9.svg" alt="\(2\phi_F=0.6\)" style="height:0.974em;vertical-align:-0.214em"> V.
+</p>
+</div>
+<div id="outline-container-org414c07a" class="outline-3">
+<h3 id="org414c07a">Solution</h3>
+<div class="outline-text-3" id="text-org414c07a">
+<p>
+<img class="m" src="m/3b3e5596ccc1d70d6464472326182565e00ff9cd.svg" alt="\(\gamma=0\)" style="height:0.919em;vertical-align:-0.211em">: load saturated, switch triode: <img class="m" src="m/297738100d20d63ee902fc8a3a143b6ef47370f3.svg" alt="\(0.5(2-V_O/2)V_O=0.25(4-V_O)^2\Rightarrow V_O^2-6V_O+8=0\Rightarrow V_O=2\)" style="height:1.194em;vertical-align:-0.298em"> V, <img class="m" src="m/c5638c3bf9e3470d13c1276ff7e6e0d04eab8ff9.svg" alt="\(I_D=0.5(2-1)\cdot2=1\)" style="height:1.096em;vertical-align:-0.274em"> mA. With body effect: <img class="m" src="m/ba4acd63653b2dbdc817ab52fd6a45fbc6499f23.svg" alt="\(V_{TNL}=1+0.5(\sqrt{V_O+0.6}-0.775)\)" style="height:1.207em;vertical-align:-0.278em">; solving numerically <img class="m" src="m/c49d22bfbc1989f3c0e1149c55f2103d5ec2d6ea.svg" alt="\(V_O\approx1.65\)" style="height:0.913em;vertical-align:-0.164em"> V (<img class="m" src="m/850640f5c5092ea25152956ce5ff11824ee2c030.svg" alt="\(V_{TNL}=1.36\)" style="height:0.913em;vertical-align:-0.164em"> V), <img class="m" src="m/21a13f0c82a45755176c87616bdde88e0cd81ad2.svg" alt="\(I_D=0.5(2-0.83)\cdot1.65\approx0.97\)" style="height:1.096em;vertical-align:-0.274em"> mA. The load is weakened, the output lower.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9641065" class="outline-2">
+<h2 id="org9641065">Problem 2 — current mirror with saturated load (exam July 2024)</h2>
+<div class="outline-text-2" id="text-org9641065">
+<p>
+See <a href="nmos-inverters.html">NMOS inverters</a>: <img class="m" src="m/c86cda31dc6ecf0494c23f6eec19fc4409fa27cb.svg" alt="\(V_{GS1}=1.6\)" style="height:0.913em;vertical-align:-0.164em"> V, <img class="m" src="m/f04419d98b002979092b8fe0eaf6c428d88e0dc2.svg" alt="\(I_{D2}=200\)" style="height:0.913em;vertical-align:-0.164em"> µA, <img class="m" src="m/5bb16056124b33eb6ee5917a58743c735231c992.svg" alt="\(V_{GS3}=3.43\)" style="height:0.913em;vertical-align:-0.164em"> V, <img class="m" src="m/e0e011e70c1026e15121388f44a370b372771455.svg" alt="\(V_{OUT}=1.37\)" style="height:0.913em;vertical-align:-0.164em"> V, <img class="m" src="m/fd0af2fc2c845f867ef83ddd62b07e59af39ffd3.svg" alt="\(M_2\)" style="height:0.913em;vertical-align:-0.164em"> saturated, <img class="m" src="m/0db02d0f1ee4a49636c87ed714a14da4fb9dd0ab.svg" alt="\(P=2\)" style="height:0.749em;vertical-align:-0.000em"> mW.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbb1a2f9" class="outline-2">
+<h2 id="orgbb1a2f9">Problem 3 — CMOS VTC regions and noise margins</h2>
+<div class="outline-text-2" id="text-orgbb1a2f9">
+<p>
+Given <img class="m" src="m/ea85c7a9d7d456609bbd7255a38833394f3ce5a9.svg" alt="\(V_{IL}=2.8\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/16f6752824d3e5e11c016e7642a8ca92583254a7.svg" alt="\(V_{OH}=4.6\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/c69796be387d8e7d827caa8831b4db1dff4740ab.svg" alt="\(V_{IH}=3.9\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/5e152d8393e93cb990e996b448a812daa199ba5f.svg" alt="\(V_{OL}=0.2\)" style="height:0.913em;vertical-align:-0.164em"> V (<img class="m" src="m/a5e0475edf12dec624b363f0793528cbfb4dd5dc.svg" alt="\(V_{DD}=5\)" style="height:0.913em;vertical-align:-0.164em">): noise margins and regions at <img class="m" src="m/1c386f5fffc76186e6b5739ff49af3de48fd79c4.svg" alt="\(v_I=3.4\)" style="height:0.871em;vertical-align:-0.165em"> V, <img class="m" src="m/2805e24a7f1e7b2c8ea2667679037b14e7a440c6.svg" alt="\(v_O=2.2\)" style="height:0.871em;vertical-align:-0.165em"> V.
+</p>
+</div>
+<div id="outline-container-orgd50b7e8" class="outline-3">
+<h3 id="orgd50b7e8">Solution</h3>
+<div class="outline-text-3" id="text-orgd50b7e8">
+<p>
+<img class="m" src="m/d8c6fb2af92834a69988d80b30beae725a35ac74.svg" alt="\(NM_H=0.7\)" style="height:0.913em;vertical-align:-0.164em"> V, <img class="m" src="m/791ab38ee08402dcc797c967ff2890d144f73129.svg" alt="\(NM_L=2.6\)" style="height:0.913em;vertical-align:-0.164em"> V. NMOS triode, PMOS saturated (see <a href="inverter-static-characteristics.html">static characteristics</a>).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org8597872" class="outline-2">
+<h2 id="org8597872">Problem 4 — symmetric CMOS inverter for a delay target</h2>
+<div class="outline-text-2" id="text-org8597872">
+<p>
+<img class="m" src="m/3a2909f37bcc0985ff90faa777606b6e4e2ab81a.svg" alt="\(V_{DD}=3\)" style="height:0.913em;vertical-align:-0.164em"> V, <img class="m" src="m/9c4e6bb250ad234993717bc9cd4d924e466bf2a6.svg" alt="\(V_{TN}=-V_{TP}=0.5\)" style="height:0.913em;vertical-align:-0.164em"> V, <img class="m" src="m/b1608e0fefb293c66391e64ad42f5639316e1245.svg" alt="\(K'_n=120\)" style="height:1.095em;vertical-align:-0.274em">, <img class="m" src="m/6651ecec46b37057e5a70049c85969bc401650cb.svg" alt="\(K'_p=50\)" style="height:1.244em;vertical-align:-0.423em"> µA/V², <img class="m" src="m/e544cc0abe9a19eaf81d740216c7af91c0daf920.svg" alt="\(C_L=200\)" style="height:0.913em;vertical-align:-0.164em"> fF, <img class="m" src="m/429611f266894e3f8ba45fa29693156df81fc010.svg" alt="\(\tau_P=150\)" style="height:0.871em;vertical-align:-0.165em"> ps. Size both devices.
+</p>
+</div>
+<div id="outline-container-org9a01fb3" class="outline-3">
+<h3 id="org9a01fb3">Solution</h3>
+<div class="outline-text-3" id="text-org9a01fb3">
+<p>
+<img class="m" src="m/da821ef0f4ce225e2705983e36459553a7c529bc.svg" alt="\(t_{PHL}=1.2R_{on}C\Rightarrow R_{on,n}=\frac{150}{1.2\cdot0.2}\)" style="height:1.304em;vertical-align:-0.378em"> Ω <img class="m" src="m/d1c936161654c31b173d72e410c8b8ee09f78bfd.svg" alt="\(=625\)" style="height:0.706em;vertical-align:-0.000em"> Ω → <img class="m" src="m/43d2cb6c9822d60e589898842a64b7653f5dc683.svg" alt="\(K_n=\frac{1}{625\cdot2.5}=640\)" style="height:1.304em;vertical-align:-0.378em"> µA/V² → <img class="m" src="m/f71dc4e79c79799ca926ef6af7eb9d6d6530ad59.svg" alt="\((W/L)_n=5.3\)" style="height:1.096em;vertical-align:-0.274em">; <img class="m" src="m/e02d1f8e5654a826b98e0ac5119866e7c87632e0.svg" alt="\((W/L)_p=5.3\cdot\frac{120}{50}=12.8\)" style="height:1.304em;vertical-align:-0.378em">.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org3d93999" class="outline-2">
+<h2 id="org3d93999">Problem 5 — complex gate sizing</h2>
+<div class="outline-text-2" id="text-org3d93999">
+<p>
+<img class="m" src="m/507b70d32de7d42aa491f023da845ed22749700c.svg" alt="\(Y=\overline{A(B+C)}\)" style="height:1.315em;vertical-align:-0.276em"> with reference <img class="m" src="m/243c24a7998bfc8717de9303620086e6b5f92b29.svg" alt="\((W/L)_n=2\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/d477af696dc961eae83625e8f1e577e2f4aaaaf9.svg" alt="\((W/L)_p=5\)" style="height:1.135em;vertical-align:-0.318em">.
+</p>
+</div>
+<div id="outline-container-orga7ce8b5" class="outline-3">
+<h3 id="orga7ce8b5">Solution</h3>
+<div class="outline-text-3" id="text-orga7ce8b5">
+<p>
+Pull-down: A in series with (B ∥ C) → worst path 2 in series: all NMOS <img class="m" src="m/832e1e34165cb8ee705e0f8cfd5692759ea883fa.svg" alt="\(4/1\)" style="height:1.096em;vertical-align:-0.274em">. Pull-up (dual): A ∥ (B series C): A alone <img class="m" src="m/ca951d971f97cea5083b5170bf80295b2ae56018.svg" alt="\(5/1\)" style="height:1.096em;vertical-align:-0.274em">, B and C <img class="m" src="m/6e24a22d84bbcb07244bdb2564729fd79acd1c31.svg" alt="\(10/1\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9c973fb" class="outline-2">
+<h2 id="org9c973fb">Problem 6 — pseudo-NMOS NAND fan-in (exam)</h2>
+<div class="outline-text-2" id="text-org9c973fb">
+<p>
+Result: <img class="m" src="m/639ba1cfa20aa8598cacb05b56e422b8496d2efe.svg" alt="\(I_p=25.35\)" style="height:1.062em;vertical-align:-0.319em"> µA, <img class="m" src="m/ac0d06272ca8ec3a709895948def6352b901de44.svg" alt="\((W/L)_{eq}=1/5.8\)" style="height:1.135em;vertical-align:-0.318em">, maximum 5 inputs (<a href="pseudo-nmos-logic.html">pseudo-NMOS</a>). Follow-up: static power with output low <img class="m" src="m/b1273684e0867e1be250675931f62437c94fe4ac.svg" alt="\(=1.8\cdot25.35\)" style="height:0.706em;vertical-align:-0.000em"> µW <img class="m" src="m/df3492cc732d804f373f8123a8c3d51e429a8cf1.svg" alt="\(=46\)" style="height:0.706em;vertical-align:-0.000em"> µW.
+</p>
+</div>
+</div>
+<div id="outline-container-org1e63b7a" class="outline-2">
+<h2 id="org1e63b7a">Problem 7 — dynamic gate maximum frequency (exam)</h2>
+<div class="outline-text-2" id="text-org1e63b7a">
+<p>
+Result: NMOS each <img class="m" src="m/6b702a12ee18105fa16463cc20b2e5f9ad4f27f2.svg" alt="\(1.88/1\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/27c7cc5833ea888efc8f7433afc1095846e2c78e.svg" alt="\(t_r=t_{PHL}=3.74\)" style="height:0.871em;vertical-align:-0.165em"> ns, <img class="m" src="m/b56b543ee017dab34219c744124a53699a991c5f.svg" alt="\(f_{max}=134\)" style="height:0.974em;vertical-align:-0.214em"> MHz (<a href="dynamic-logic-and-pass-transistors.html">dynamic logic</a>).
+</p>
+</div>
+</div>
+<div id="outline-container-orgd054247" class="outline-2">
+<h2 id="orgd054247">Problem 8 — CMOS NAND3 vs dynamic NAND3</h2>
+<div class="outline-text-2" id="text-orgd054247">
+<p>
+All transistors equal, 20 fF drain capacitance each. Which is slower?
+</p>
+</div>
+<div id="outline-container-org9583031" class="outline-3">
+<h3 id="org9583031">Solution</h3>
+<div class="outline-text-3" id="text-org9583031">
+<p>
+Static NAND3: output node sees 3 PMOS drains + 1 NMOS drain = 80 fF; pull-down 3 in series (<img class="m" src="m/e758ba85192f16a9502d6842f2ca96b7d696fb81.svg" alt="\(3R_n\)" style="height:0.913em;vertical-align:-0.164em">): <img class="m" src="m/120ae437e191b8afed4b75456583720207014526.svg" alt="\(t_{PHL}\propto3R_n\cdot80\)" style="height:0.913em;vertical-align:-0.164em"> fF plus internal nodes. Dynamic NAND3: output sees 1 PMOS + 1 NMOS drain = 40 fF, but pull-down has 4 in series (3 + foot): <img class="m" src="m/f66f44c7266188db47cbefffc724b4543567f3e5.svg" alt="\(4R_n\cdot40\)" style="height:0.913em;vertical-align:-0.164em"> fF = 160 vs 240 (×<img class="m" src="m/6149af2734a95d4b6beff2be89e8bfb032bdfe12.svg" alt="\(R_n\)" style="height:0.913em;vertical-align:-0.164em"> fF): the dynamic gate is faster and smaller (5 vs 6 transistors), at the price of clocking, charge sharing and precharge power.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcd7f3a9" class="outline-2">
+<h2 id="orgcd7f3a9">Problem 9 — DRAM (exam July 2024)</h2>
+<div class="outline-text-2" id="text-orgcd7f3a9">
+<p>
+Results: <img class="m" src="m/8fe9c8870ce47b8c8fe3ed5072e236acc0c7ff7d.svg" alt="\(V_{S,max}=0.8\)" style="height:1.062em;vertical-align:-0.319em"> V, <img class="m" src="m/8acca4580eef4d69d274e73e0850d8ee2da07a7b.svg" alt="\(V_{S,min}=0.62\)" style="height:1.062em;vertical-align:-0.319em"> V, <img class="m" src="m/3670379016a78a4dbeaaaafc41fccce1436a2355.svg" alt="\(I_{leak,max}=18\)" style="height:1.062em;vertical-align:-0.319em"> pA (<a href="dram-cell.html">DRAM cell</a>).
+</p>
+</div>
+</div>
+<div id="outline-container-org54b2b37" class="outline-2">
+<h2 id="org54b2b37">Problem 10 — SRAM read stability</h2>
+<div class="outline-text-2" id="text-org54b2b37">
+<p>
+<img class="m" src="m/6c7cfbb2937778c322dff65b743f220dfd258de8.svg" alt="\(V_{DD}=1\)" style="height:0.913em;vertical-align:-0.164em"> V, <img class="m" src="m/9528ba9579d33d3b70eebe015db27512181a9aad.svg" alt="\(V_{TN}=0.35\)" style="height:0.913em;vertical-align:-0.164em"> V. Minimum cell ratio so that the "0" node rises at most to 0.15 V during read.
+</p>
+</div>
+<div id="outline-container-org38732d5" class="outline-3">
+<h3 id="org38732d5">Solution</h3>
+<div class="outline-text-3" id="text-org38732d5">
+<p>
+<img class="m" src="m/1bc0ba74ddf24849e48ca4602417920023040253.svg" alt="\(\frac{K_{PD}}{K_A}=\frac{(1-0.15-0.35)^2/2}{(1-0.35-0.075)\cdot0.15}=\frac{0.125}{0.0863}=1.45\)" style="height:1.785em;vertical-align:-0.571em"> (<a href="sram-cell.html">SRAM</a>).
+</p>
+</div>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="exam-practice-circuits.html"><span>← previous</span>Exam practice: circuit theory (solved)</a><a rel="next" href="exam-practice-fields-and-optoelectronics.html"><span>next →</span>Exam practice: fields, optoelectronics and photonics (solved)</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/revision--exam-practice.pdf" title="PDF manual">Exam Practice</a> · <a class="pdf" href="pdf/revision.pdf" title="PDF manual">Revision</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

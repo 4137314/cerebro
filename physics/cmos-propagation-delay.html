@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CMOS propagation delay · Physics</title>
+<meta name="description" content="Switching an inverter discharges (charges) its load C through the NMOS (PMOS); modelling each device by R_{eq}=1.7R_{on}, R_{on}=\frac{1}{K(V_{DD}-|V_T|)}, gives t_{PHL}=0.69\cdot1.7R_{on,n}C=1.2R_{on,n}C, fall time t_f=2.2\cdot1.7R_{on,n}C=3.7R_{on,n}C, and the average \tau_P=\frac{t_{PHL}+t_{PLH}…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/cmos-propagation-delay.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="CMOS propagation delay · Physics">
+<meta property="og:description" content="Switching an inverter discharges (charges) its load C through the NMOS (PMOS); modelling each device by R_{eq}=1.7R_{on}, R_{on}=\frac{1}{K(V_{DD}-|V_T|)}, gives t_{PHL}=0.69\cdot1.7R_{on,n}C=1.2R_{on,n}C, fall time t_f=2.2\cdot1.7R_{on,n}C=3.7R_{on,n}C, and the average \tau_P=\frac{t_{PHL}+t_{PLH}…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/cmos-propagation-delay.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-digital-electronics">Digital Electronics</a> / <a rel="up" href="index.html#a-digital-electronics--inverters">Inverters</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Digital Electronics · Inverters</p>
+<h1>CMOS propagation delay</h1>
+<p class="summary">Switching an inverter discharges (charges) its load <img class="m" src="m/3e74ecac7a2e702d99fd47d620503b09985dd12f.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> through the NMOS (PMOS); modelling each device by <img class="m" src="m/0e1efa6e7598474fbf1d9c90301b0345645a5e21.svg" alt="\(R_{eq}=1.7R_{on}\)" style="height:1.062em;vertical-align:-0.319em">, <img class="m" src="m/ff556a1301a3f3a23f1118087a77766629225707.svg" alt="\(R_{on}=\frac{1}{K(V_{DD}-|V_T|)}\)" style="height:1.496em;vertical-align:-0.568em">, gives <img class="m" src="m/bab63ca85a6e2dc4a49c82b4bfa029efdeea259e.svg" alt="\(t_{PHL}=0.69\cdot1.7R_{on,n}C=1.2R_{on,n}C\)" style="height:1.062em;vertical-align:-0.319em">, fall time <img class="m" src="m/4aa187107bbda1d4bf022f2fb07a40286a3dad70.svg" alt="\(t_f=2.2\cdot1.7R_{on,n}C=3.7R_{on,n}C\)" style="height:1.062em;vertical-align:-0.319em">, and the average <img class="m" src="m/f71263a9c57cee12f6b20351fdaa71f8a44298bf.svg" alt="\(\tau_P=\frac{t_{PHL}+t_{PLH}}{2}\)" style="height:1.303em;vertical-align:-0.378em">; delay scales as <img class="m" src="m/29c1fd7283a3bf97e52906404cd70d4759ee1651.svg" alt="\(C/K\)" style="height:1.096em;vertical-align:-0.274em">, so wider transistors or smaller loads are faster.</p>
+<p class="rel"><span>needs</span> <a href="cmos-inverter.html">The CMOS inverter: VTC, switching threshold and sizing</a>, <a href="mosfet-capacitances-and-scaling.html">MOSFET capacitances and scaling</a>, <a href="lti-systems-and-convolution.html">LTI systems, impulse response and first/second-order circuits</a></p>
+<p class="rel"><span>unlocks</span> <a href="cmos-power-dissipation.html">Power dissipation in CMOS</a>, <a href="static-cmos-logic-gates.html">Static CMOS logic gates and sizing</a></p>
+<p class="rel"><span>see also</span> <a href="cmos-power-dissipation.html">Power dissipation in CMOS</a>, <a href="static-cmos-logic-gates.html">Static CMOS logic gates and sizing</a>, <a href="dynamic-logic-and-pass-transistors.html">Dynamic logic and pass-transistor logic</a></p>
+<p class="rel"><span>mentioned in</span> <a href="capacitance-and-laplace-equation.html">Poisson, Laplace and capacitance</a>, <a href="frequency-response-and-filters.html">Frequency response, Bode plots and filters</a></p>
+<details class="path"><summary>Learning path: 40 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="circuits.html">Circuit theory: the map of the subject</a></li><li><a href="kirchhoff-laws-and-network-theorems.html">Kirchhoff's laws and network theorems</a></li><li><a href="lti-systems-and-convolution.html">LTI systems, impulse response and first/second-order circuits</a></li><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></li><li><a href="spin-precession-and-rabi-oscillations.html">Spin precession and Rabi oscillations</a></li><li><a href="angular-momentum-algebra.html">Angular momentum: algebra and spectrum</a></li><li><a href="orbital-angular-momentum.html">Orbital angular momentum and spherical harmonics</a></li><li><a href="hydrogen-atom.html">The hydrogen atom</a></li><li><a href="addition-of-angular-momenta.html">Addition of angular momenta</a></li><li><a href="identical-particles-and-pauli-principle.html">Identical particles, bosons, fermions and Pauli's principle</a></li><li><a href="square-well-potentials.html">Square wells: particle in a box and finite well</a></li><li><a href="symmetries-and-conservation-laws.html">Symmetries, conservation laws and degeneracy</a></li><li><a href="solid-state.html">Semiconductor physics: the map of the subject</a></li><li><a href="bloch-theorem-and-energy-bands.html">Bloch's theorem and energy bands</a></li><li><a href="effective-mass-and-holes.html">Effective mass, group velocity and holes</a></li><li><a href="density-of-states-and-fermi-dirac.html">Density of states and Fermi–Dirac statistics</a></li><li><a href="intrinsic-and-doped-semiconductors.html">Intrinsic and doped semiconductors</a></li><li><a href="drift-diffusion-and-einstein-relation.html">Drift, diffusion and the Einstein relation</a></li><li><a href="pn-junction-electrostatics.html">The pn junction: built-in potential, depletion and capacitance</a></li><li><a href="digital-electronics.html">Digital electronic circuits: the map of the subject</a></li><li><a href="mosfet-operation-and-iv.html">The MOSFET: regions of operation and I–V model</a></li><li><a href="inverter-static-characteristics.html">Inverter static characteristics and noise margins</a></li><li><a href="capacitance-and-laplace-equation.html">Poisson, Laplace and capacitance</a></li><li><a href="mosfet-capacitances-and-scaling.html">MOSFET capacitances and scaling</a></li><li><a href="cmos-inverter.html">The CMOS inverter: VTC, switching threshold and sizing</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org11e04c4" class="outline-2">
+<h2 id="org11e04c4">Derivation</h2>
+<div class="outline-text-2" id="text-org11e04c4">
+<p>
+Ideal step input: for <img class="m" src="m/b53885af8536893c6d009599f192b3897eda334c.svg" alt="\(t&gt;0\)" style="height:0.749em;vertical-align:-0.045em"> the NMOS is on and the PMOS off; <img class="m" src="m/3e74ecac7a2e702d99fd47d620503b09985dd12f.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> discharges from <img class="m" src="m/381cd276bc6bc00abd2093b7bcce88173073c1d9.svg" alt="\(V_{DD}\)" style="height:0.913em;vertical-align:-0.164em">. The NMOS starts saturated (constant current) and enters triode at <img class="m" src="m/db7d37fc2c55d0aa556469bc538a3a84385406df.svg" alt="\(v_O=V_{DD}-V_{TN}\)" style="height:0.913em;vertical-align:-0.164em">; integrating <img class="m" src="m/96085fb46bf4e99895fae292d8166973e9284dae.svg" alt="\(C\dd v_O/\dd t=-i_D(v_O)\)" style="height:1.096em;vertical-align:-0.274em"> to <img class="m" src="m/090399bbb9834c10b0433fa88fc57263671cef5e.svg" alt="\(v_O=V_{DD}/2\)" style="height:1.096em;vertical-align:-0.274em"> gives a time equal to that of an RC discharge with an effective resistance <img class="m" src="m/f2d501555b82a9d9fa20bb34e6c9dd271c1c68d1.svg" alt="\(\approx1.7R_{on}\)" style="height:0.913em;vertical-align:-0.164em"> (for <img class="m" src="m/8eba52e8e549647e45c8cd6ff64fdc1030edb9be.svg" alt="\(V_{TN}\approx0.2\)" style="height:0.913em;vertical-align:-0.164em">–<img class="m" src="m/3f028440dc06082e48fb62bd97022c206344498b.svg" alt="\(0.25V_{DD}\)" style="height:0.913em;vertical-align:-0.164em">) <span class="cite">(<a class="ref" href="https://doi.org/10.1063/1.1697872" data-full="W. C. Elmore, “The transient response of damped linear networks with particular regard to wideband amplifiers”, Journal of Applied Physics 19, 55–63 (1948)." aria-label="W. C. Elmore, “The transient response of damped linear networks with particular regard to wideband amplifiers”, Journal of Applied Physics 19, 55–63 (1948).">Elmore 1948</a>)</span>. An RC reaches 50% in <img class="m" src="m/0a90e7e0e82c616c6880cc3f768a7bb0ba71f53d.svg" alt="\(0.69RC\)" style="height:0.749em;vertical-align:-0.000em"> and goes 90%→10% in <img class="m" src="m/f94ef32e55c3f54e72af3471861d68b66853667c.svg" alt="\(2.2RC\)" style="height:0.749em;vertical-align:-0.000em"> (<a href="lti-systems-and-convolution.html">first-order step response</a>).
+</p>
+</div>
+</div>
+<div id="outline-container-org15e3826" class="outline-2">
+<h2 id="org15e3826">Sizing rules</h2>
+<div class="outline-text-2" id="text-org15e3826">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">goal</th>
+<th scope="col" class="org-left">rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">equal t_PHL and t_PLH</td>
+<td class="org-left">K_p = K_n → (W/L)_p = (K'_n/K'_p)(W/L)_n</td>
+</tr>
+
+<tr>
+<td class="org-left">target delay τ with load C</td>
+<td class="org-left">K = 1.2C/(τ(V_DD − V_T)) for each device</td>
+</tr>
+
+<tr>
+<td class="org-left">n devices in series</td>
+<td class="org-left">each n times wider than the single equivalent</td>
+</tr>
+
+<tr>
+<td class="org-left">big load C_L from small gate</td>
+<td class="org-left">buffer chain, stage ratio ≈ e … 4, N ≈ ln(C_L/C_in)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org661cb1f" class="outline-2">
+<h2 id="org661cb1f">Worked example</h2>
+<div class="outline-text-2" id="text-org661cb1f">
+<p>
+<img class="m" src="m/ffec3001c77d4989f0cb5908cbb640eaa866e593.svg" alt="\(C=100\)" style="height:0.749em;vertical-align:-0.000em"> fF, <img class="m" src="m/b90cfbc13db4721e136c0efc9634dd2da9ae7718.svg" alt="\(V_{DD}=2.5\)" style="height:0.913em;vertical-align:-0.164em"> V, <img class="m" src="m/583fac7d8f7810c46e66c40c8a7f59e161461f8a.svg" alt="\(V_{TN}=-V_{TP}=0.6\)" style="height:0.913em;vertical-align:-0.164em"> V, <img class="m" src="m/043bbb7b9fd08ae0354b4a2b25dbed7371c646ad.svg" alt="\(K'_n=100\)" style="height:1.095em;vertical-align:-0.274em">, <img class="m" src="m/2d4412f89fc659ae6cd64c701fdf2806a4a373fd.svg" alt="\(K'_p=40\)" style="height:1.244em;vertical-align:-0.423em"> µA/V², target <img class="m" src="m/e862e5a69fb5f6257f35cbe71d3ed63c6828ac96.svg" alt="\(t_{PHL}=t_{PLH}=100\)" style="height:0.871em;vertical-align:-0.165em"> ps. <img class="m" src="m/faf6278a5b61471120d5f1ce33309e4ce0dd4cf0.svg" alt="\(R_{on,n}=\frac{100\text{ ps}}{1.2\cdot100\text{ fF}}=833\)" style="height:1.361em;vertical-align:-0.381em"> Ω → <img class="m" src="m/f4a6b35d8015f403fe287b5ba5ad5039d85a3ff2.svg" alt="\(K_n=\frac{1}{833\cdot1.9}=632\)" style="height:1.304em;vertical-align:-0.378em"> µA/V² → <img class="m" src="m/ada0d558d2092c4b0556b72590d6b2a312024ca7.svg" alt="\((W/L)_n=6.3\)" style="height:1.096em;vertical-align:-0.274em">; <img class="m" src="m/4609562226d00bc6406f004ebff2640ef1c3f89a.svg" alt="\((W/L)_p=6.3\cdot2.5=15.8\)" style="height:1.135em;vertical-align:-0.318em">. Fall time <img class="m" src="m/c6a3bd1ae4405cd7a91349620b839e59605392b0.svg" alt="\(t_f=3.7\cdot833\cdot100\)" style="height:1.020em;vertical-align:-0.316em"> fF <img class="m" src="m/741c3efcabc833127718438a652d132d6d182f4e.svg" alt="\(=308\)" style="height:0.706em;vertical-align:-0.000em"> ps.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd40ae8a" class="outline-2">
+<h2 id="orgd40ae8a">Engineering applications</h2>
+<div class="outline-text-2" id="text-orgd40ae8a">
+<p>
+Static timing analysis (gate delay ≈ intrinsic + <img class="m" src="m/baca5b6bb71e3ae92a25c47d1949bf6f4bc6995e.svg" alt="\(R\cdot C_{load}\)" style="height:0.913em;vertical-align:-0.164em">), standard-cell drive strengths (X1, X2, X4), clock-tree buffering, interconnect RC (Elmore delay <img class="m" src="m/b495758ff7b1dd9f0e5ff081b6cd2c5507db858e.svg" alt="\(\sum R_iC_{downstream}\)" style="height:1.096em;vertical-align:-0.274em">), logical-effort optimisation of critical paths.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd91e47f" class="outline-2">
+<h2 id="orgd91e47f">Pitfall</h2>
+<div class="outline-text-2" id="text-orgd91e47f">
+<p>
+Using <img class="m" src="m/693e9409d3caad7baa0612e42fa81779e5b1b3cc.svg" alt="\(R_{on}\)" style="height:0.913em;vertical-align:-0.164em"> (small-<img class="m" src="m/382bb184be9c0a49f63e63e9d71e750a62111f25.svg" alt="\(V_{DS}\)" style="height:0.913em;vertical-align:-0.164em"> resistance) without the factor 1.7 underestimates delay by ~40%; and the input slope matters: a slow input adds delay and short-circuit power.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="cmos-inverter.html"><span>← previous</span>The CMOS inverter: VTC, switching threshold and sizing</a><a rel="next" href="cmos-power-dissipation.html"><span>next →</span>Power dissipation in CMOS</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/digital-electronics--inverters.pdf" title="PDF manual">Inverters</a> · <a class="pdf" href="pdf/digital-electronics.pdf" title="PDF manual">Digital Electronics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

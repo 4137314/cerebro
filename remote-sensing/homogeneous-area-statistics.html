@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Statistics of homogeneous areas in optical images · Remote Sensing</title>
+<meta name="description" content="In images from passive sensors, the pixels of a physically homogeneous area still vary, because of detector thermal noise and natural variability of the spectral signature; many small independent effects add up, so the DNs of a class are well modelled by a Gaussian, multivariate across bands.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/homogeneous-area-statistics.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Statistics of homogeneous areas in optical images · Remote Sensing">
+<meta property="og:description" content="In images from passive sensors, the pixels of a physically homogeneous area still vary, because of detector thermal noise and natural variability of the spectral signature; many small independent effects add up, so the DNs of a class are well modelled by a Gaussian, multivariate across bands.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/homogeneous-area-statistics.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--sar-processing">Sar Processing</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Processing · Sar Processing</p>
+<h1>Statistics of homogeneous areas in optical images</h1>
+<p class="summary">In images from passive sensors, the pixels of a physically homogeneous area still vary, because of detector thermal noise and natural variability of the spectral signature; many small independent effects add up, so the DNs of a class are well modelled by a Gaussian, multivariate across bands.</p>
+<p class="rel"><span>needs</span> <a href="image-statistics.html">Image statistics: moments, mode, median</a>, <a href="spectral-signature.html">Spectral signature</a></p>
+<p class="rel"><span>unlocks</span> <a href="speckle-statistics.html">Speckle and its statistics</a>, <a href="image-segmentation.html">Image segmentation</a>, <a href="feature-space.html">Feature space and spectral classes</a>, <a href="gaussian-maximum-likelihood.html">Gaussian maximum-likelihood classifier</a></p>
+<p class="rel"><span>see also</span> <a href="speckle-statistics.html">Speckle and its statistics</a>, <a href="gaussian-maximum-likelihood.html">Gaussian maximum-likelihood classifier</a>, <a href="image-segmentation.html">Image segmentation</a>, <a href="feature-space.html">Feature space and spectral classes</a></p>
+<p class="rel"><span>mentioned in</span> <a href="sar-complex-image.html">SAR complex, amplitude and intensity images</a>, <a href="speckle-filtering.html">Speckle reduction</a></p>
+<details class="path"><summary>Learning path: 15 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="spectral-signature.html">Spectral signature</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li><li><a href="image-statistics.html">Image statistics: moments, mode, median</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgeebc696" class="outline-2">
+<h2 id="orgeebc696">Model</h2>
+<div class="outline-text-2" id="text-orgeebc696">
+<p>
+For a homogeneous region (e.g. one crop field), pixel values in band <img class="m" src="m/91708f0e0338a9a807ccfe3e469f248e0b04bbbe.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em">: <img class="m" src="m/f6939a1278c2292b987d600e8b81b19e620b3afc.svg" alt="\(x=\mu_b+n_{th}+n_{nat}\)" style="height:0.852em;vertical-align:-0.213em">, sum of the class mean, thermal noise and natural variability (moisture, leaf angle, local slope). By the central limit theorem
+<div class="mb"><img class="m" src="m/4235937301e469a93c57ab6c8c4980d2325dabac.svg" alt="\[ p(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\!\Big(-\frac{(x-\mu)^2}{2\sigma^2}\Big), \]" style="width:15.588em"></div>
+and for a pixel vector <img class="m" src="m/493bc393e943317c84beeb01613a4a3b5cdfad2c.svg" alt="\(\mathbf x\in\mathbb R^B\)" style="height:0.965em;vertical-align:-0.039em">
+<div class="mb"><img class="m" src="m/2faa63b43c1cd17776c6a5a6ea2079c781df3dc1.svg" alt="\[ p(\mathbf x)=\frac{1}{(2\pi)^{B/2}|\Sigma|^{1/2}}\exp\!\Big(-\tfrac12(\mathbf x-\boldsymbol\mu)^\top\Sigma^{-1}(\mathbf x-\boldsymbol\mu)\Big), \]" style="width:25.758em"></div>
+with covariance <img class="m" src="m/a31f938dbd4d8db0ea3e1c4cae67230c4487f91e.svg" alt="\(\Sigma\)" style="height:0.749em;vertical-align:-0.000em"> capturing the correlation between bands. Noise is <b>additive</b>: its <a href="image-statistics.html">variance</a> does not depend on the mean level.
+</p>
+</div>
+</div>
+<div id="outline-container-org910041c" class="outline-2">
+<h2 id="org910041c">Picture</h2>
+<div class="outline-text-2" id="text-org910041c">
+<figure class="fig"><img class="m" src="m/6d2de6688eacda749e23905032a39ca73412c062.svg" alt="figure" style="width:17.258em"><figcaption><span class="fl">Figure 1.</span> Histograms of digital numbers in homogeneous areas of water and of forest: each class is a narrow, roughly Gaussian distribution.</figcaption></figure>
+<p>
+Two homogeneous classes in one band: two Gaussians.
+</p>
+</div>
+</div>
+<div id="outline-container-org100d12e" class="outline-2">
+<h2 id="org100d12e">Intuition</h2>
+<div class="outline-text-2" id="text-org100d12e">
+<p>
+A field looks uniform to the eye and grainy to the sensor; the grain is many small random effects, and their sum is bell-shaped.
+</p>
+</div>
+</div>
+<div id="outline-container-org44c42b8" class="outline-2">
+<h2 id="org44c42b8">Pitfall</h2>
+<div class="outline-text-2" id="text-org44c42b8">
+<p>
+Real classes are often not one Gaussian (a "forest" mixes species and slopes): multimodal classes need several spectral subclasses or non-parametric classifiers.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="convolution-theorem.html"><span>← previous</span>The convolution theorem</a><a rel="next" href="speckle-statistics.html"><span>next →</span>Speckle and its statistics</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--sar-processing.pdf" title="PDF manual">Sar Processing</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

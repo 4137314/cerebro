@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exceptions in Java: checked, unchecked, finally · Computer Science</title>
+<meta name="description" content="Java exceptions are objects of subclasses of Throwable; checked exceptions (subclasses of Exception but not of RuntimeException) must be caught or declared with throws, unchecked ones need not; finally and try-with-resources guarantee clean-up.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/java-exceptions.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Exceptions in Java: checked, unchecked, finally · Computer Science">
+<meta property="og:description" content="Java exceptions are objects of subclasses of Throwable; checked exceptions (subclasses of Exception but not of RuntimeException) must be caught or declared with throws, unchecked ones need not; finally and try-with-resources guarantee clean-up.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/java-exceptions.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--java">Java</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Java</p>
+<h1>Exceptions in Java: checked, unchecked, finally</h1>
+<p class="summary">Java exceptions are objects of subclasses of <code>Throwable</code>; checked exceptions (subclasses of <code>Exception</code> but not of <code>RuntimeException</code>) must be caught or declared with <code>throws</code>, unchecked ones need not; <code>finally</code> and try-with-resources guarantee clean-up.</p>
+<p class="rel"><span>needs</span> <a href="exception-handling.html">Exceptions</a>, <a href="java-object-class.html">The class Object and final</a></p>
+<p class="rel"><span>unlocks</span> <a href="user-input.html">Reading and validating user input</a></p>
+<p class="rel"><span>see also</span> <a href="user-input.html">Reading and validating user input</a>, <a href="java-collections.html">The Java Collections Framework</a></p>
+<p class="rel"><span>mentioned in</span> <a href="casts-rtti.html">C++ named casts and RTTI</a>, <a href="exception-safety.html">Exception-safety guarantees</a>, <a href="comparable-comparator.html">Comparable and Comparator</a>, <a href="java-iterator.html">Iterators and for-each in Java</a>, <a href="java-generics.html">Java generics and type erasure</a>, <a href="java-references.html">Objects, references and garbage collection in Java</a>, <a href="java-platform.html">The Java platform</a>, <a href="wrapper-autoboxing.html">Wrapper classes and autoboxing</a>, <a href="java-monitors.html">Threads and monitors in Java</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="exception-handling.html">Exceptions</a></li><li><a href="java-platform.html">The Java platform</a></li><li><a href="java-references.html">Objects, references and garbage collection in Java</a></li><li><a href="java-object-class.html">The class Object and final</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org46878f4" class="outline-2">
+<h2 id="org46878f4">Definition</h2>
+<div class="outline-text-2" id="text-org46878f4">
+<figure class="listing lang-text"><figcaption><span class="lang">Text</span></figcaption><pre class="src"><code>Throwable
+├── Error                  unchecked: JVM problems
+│                          (OutOfMemoryError, StackOverflowError)
+└── Exception              checked
+    ├── IOException, ...   checked
+    └── RuntimeException   unchecked: programming errors
+                           (NullPointerException, ClassCastException,
+                            IllegalArgumentException, ...)</code></pre></figure>
+<p>
+The <b>catch-or-declare</b> rule: a method in which a checked exception can arise must either handle it with <code>try/catch</code> or list it in its signature, <code>void load() throws IOException</code>. So callers know from the interface which failures to expect. Run-time <a href="exception-handling.html">exceptions</a> signal programming errors and are exempt.
+</p>
+</div>
+</div>
+<div id="outline-container-org25af426" class="outline-2">
+<h2 id="org25af426">Example</h2>
+<div class="outline-text-2" id="text-org25af426">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">class</span> <span class="t">EmptyStackException</span> <span class="k">extends</span> <span class="t">RuntimeException</span> {}       <span class="c">// unchecked, by choice
+</span>
+<span class="k">static</span> <span class="t">List</span>&lt;<span class="t">String</span>&gt; <span class="f">read</span>(<span class="t">String</span> <span class="v">path</span>) <span class="k">throws</span> <span class="t">IOException</span> {  <span class="c">// declared
+</span>    <span class="c">// closed for us
+</span>    <span class="k">try</span> (<span class="t">BufferedReader</span> <span class="v">r</span> = <span class="k">new</span> <span class="t">BufferedReader</span>(<span class="k">new</span> <span class="t">FileReader</span>(path))) {
+        <span class="k">return</span> r.lines().toList();
+    }
+}
+<span class="k">try</span> {
+    read(<span class="s">"test.txt"</span>);
+} <span class="k">catch</span> (FileNotFoundException e) {     <span class="c">// more specific first
+</span>    System.err.println(<span class="s">"missing: "</span> + e.getMessage());
+} <span class="k">catch</span> (IOException e) {
+    e.printStackTrace();
+} <span class="k">finally</span> {
+    System.out.println(<span class="s">"always executed"</span>);
+}</code></pre></figure>
+<p>
+<code>finally</code> runs whether the block completes, throws or returns: the place for releasing resources, without duplicating code in every <code>catch</code>. Try-with-resources does it automatically for any <code>AutoCloseable</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc3a61a6" class="outline-2">
+<h2 id="orgc3a61a6">Intuition</h2>
+<div class="outline-text-2" id="text-orgc3a61a6">
+<p>
+Checked exceptions are part of the contract: the signature tells you what can go wrong that is not your fault.
+</p>
+</div>
+</div>
+<div id="outline-container-org03fb363" class="outline-2">
+<h2 id="org03fb363">Pitfall</h2>
+<div class="outline-text-2" id="text-org03fb363">
+<p>
+<code>catch (Exception e) {}</code> swallows every error, including bugs; catch the narrowest type you can handle. A <code>catch</code> of a superclass placed before its <a href="inheritance.html">subclass</a> makes the second unreachable: compile error.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="java-enum.html"><span>← previous</span>Enumerated types</a><a rel="next" href="java-collections.html"><span>next →</span>The Java Collections Framework</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--java.pdf" title="PDF manual">Java</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

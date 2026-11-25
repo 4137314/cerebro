@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sturm-Liouville problems and eigenfunction expansions · Mathematics</title>
+<meta name="description" content="Separating variables in a partial differential equation always produces the same kind of ordinary problem: a second-order operator on an interval with boundary conditions, whose eigenfunctions are then used as a basis. Sturm-Liouville theory is the statement that this is not luck – the operator is …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/sturm-liouville-problems-and-eigenfunction-expansions.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Sturm-Liouville problems and eigenfunction expansions · Mathematics">
+<meta property="og:description" content="Separating variables in a partial differential equation always produces the same kind of ordinary problem: a second-order operator on an interval with boundary conditions, whose eigenfunctions are then used as a basis. Sturm-Liouville theory is the statement that this is not luck – the operator is …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/sturm-liouville-problems-and-eigenfunction-expansions.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--ordinary-differential-equations">Ordinary Differential Equations</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Ordinary Differential Equations</p>
+<h1>Sturm-Liouville problems and eigenfunction expansions</h1>
+<p class="summary">Separating variables in a partial differential equation always produces the same kind of ordinary problem: a second-order operator on an interval with boundary conditions, whose eigenfunctions are then used as a basis. Sturm-Liouville theory is the statement that this is not luck &#x2013; the operator is symmetric for a suitable inner product, so the <a href="the-spectral-theorem-for-symmetric-operators.html">spectral theorem</a> applies in spirit, giving real eigenvalues and orthogonal eigenfunctions.</p>
+<p class="rel"><span>needs</span> <a href="existence-and-uniqueness-for-ordinary-differential-equations.html">Existence and uniqueness for ordinary differential equations</a>, <a href="fourier-series-fejers-theorem-and-parsevals-identity.html">Fourier series, Fejer's theorem and Parseval's identity</a>, <a href="inner-product-space.html">Inner product space</a>, <a href="integration-by-parts-and-substitution.html">Integration by parts and substitution</a>, <a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a>, <a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a>, <a href="the-derivative.html">The derivative</a></p>
+<p class="rel"><span>unlocks</span> <a href="the-heat-equation-separation-of-variables-and-the-maximum-principle.html">The heat equation: separation of variables and the maximum principle</a></p>
+<p class="rel"><span>mentioned in</span> <a href="analysis.html">Analysis</a>, <a href="partial-differential-equations.html">Partial differential equations</a>, <a href="the-hilbert-space-formalism-of-quantum-mechanics.html">The Hilbert space formalism of quantum mechanics</a></p>
+<details class="path"><summary>Learning path: 65 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-algebra-of-continuous-functions-and-composition.html">The algebra of continuous functions and composition</a></li><li><a href="one-sided-limits-and-the-discontinuities-of-a-monotone-function.html">One-sided limits and the discontinuities of a monotone function</a></li><li><a href="the-intermediate-value-theorem.html">The intermediate value theorem</a></li><li><a href="the-continuous-image-of-an-interval-and-the-continuous-inverse.html">The continuous image of an interval and the continuous inverse</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-rules-of-differentiation.html">The rules of differentiation</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="the-contraction-mapping-principle.html">The contraction mapping principle</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="the-fundamental-theorem-of-calculus.html">The fundamental theorem of calculus</a></li><li><a href="integration-by-parts-and-substitution.html">Integration by parts and substitution</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li><li><a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="the-baire-category-theorem.html">The Baire category theorem</a></li><li><a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></li><li><a href="convex-set.html">Convex set</a></li><li><a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a></li><li><a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a></li><li><a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a></li><li><a href="product-measures-and-the-theorems-of-tonelli-and-fubini.html">Product measures and the theorems of Tonelli and Fubini</a></li><li><a href="fourier-series-fejers-theorem-and-parsevals-identity.html">Fourier series, Fejer's theorem and Parseval's identity</a></li><li><a href="existence-and-uniqueness-for-ordinary-differential-equations.html">Existence and uniqueness for ordinary differential equations</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org71c78c8">
+<p>
+A <i>regular Sturm-Liouville problem</i> on <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em"> is
+<div class="mb"><img class="m" src="m/7a8a6c3c66c1a63cb1236841fe074b3016da7e5b.svg" alt="\[ -\bigl(p(x)y'\bigr)' + q(x)y = \lambda\, w(x)\, y, \]" style="width:14.641em"></div>
+with <img class="m" src="m/2397401012f7f5a84ec3dc0e3217da8240cf548a.svg" alt="\(p \in C^{1}\)" style="height:1.105em;vertical-align:-0.210em">, <img class="m" src="m/5b1c6e12b4d8b4df58f4a81d1f0dd964d979773f.svg" alt="\(q, w\)" style="height:0.685em;vertical-align:-0.212em"> continuous, <img class="m" src="m/223b46ec616a9359f1b022e3e4ddd063b9337da8.svg" alt="\(p&gt;0\)" style="height:0.919em;vertical-align:-0.211em"> and <img class="m" src="m/c834e71b3e9dd5e7bf6ee9e14e94dcf54f348aca.svg" alt="\(w&gt;0\)" style="height:0.749em;vertical-align:-0.045em"> on
+<img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em">, together with <i>separated</i> boundary conditions
+<img class="m" src="m/4773d8b1087180012277ff5223ae2b1e07f4d8b2.svg" alt="\(\alpha_{1}y(a)+\alpha_{2}y'(a) = 0\)" style="height:1.098em;vertical-align:-0.274em"> and
+<img class="m" src="m/f24cdcf754ab4c9fed293061d2136bc7cdb92300.svg" alt="\(\beta_{1}y(b)+\beta_{2}y'(b) = 0\)" style="height:1.098em;vertical-align:-0.274em">, the pairs not both zero. A
+<img class="m" src="m/bf732bcb08e251641d188904cbb646f8c7c05665.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em"> for which a non-zero solution exists is an <i>eigenvalue</i> and
+the solution an <i>eigenfunction</i>. The relevant inner product is
+<img class="m" src="m/a627d068b706c65acd40dd9ec64fd564b585c008.svg" alt="\(\inner{u}{v}_{w} = \int_{a}^{b}u\overline{v}\,w\,\dd x\)" style="height:1.534em;vertical-align:-0.384em">.
+</p>
+
+</div>
+
+<div class="lemma" id="orgb1602d5">
+<p>
+Write <img class="m" src="m/858b73a7cdce0e9776b19ffecf3627ee72af6430.svg" alt="\(Lu = -(pu')'+qu\)" style="height:1.098em;vertical-align:-0.274em">. For <img class="m" src="m/07d17ee7f989338466656d950783e64199a255cc.svg" alt="\(u, v\)" style="height:0.685em;vertical-align:-0.212em"> of class <img class="m" src="m/50c56d1e9783b96a5cc2b4f818a17d6fdcccb7d1.svg" alt="\(C^{2}\)" style="height:0.892em;vertical-align:-0.000em"> satisfying
+the boundary conditions,
+<img class="m" src="m/33753b7680620633c12fdc051cd45a0f58df49a7.svg" alt="\(\inner{Lu}{v}_{1} = \inner{u}{Lv}_{1}\)" style="height:1.096em;vertical-align:-0.274em">, where
+<img class="m" src="m/42fb060cacdda89e8bc98a19777c1ec282af6fdb.svg" alt="\(\inner{\cdot}{\cdot}_{1}\)" style="height:1.096em;vertical-align:-0.274em"> is the unweighted inner product; that is,
+<img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> is symmetric.
+</p>
+
+</div>
+
+<div class="proof" id="org2b9f366">
+<p>
+Integrating by parts twice,
+<div class="mb"><img class="m" src="m/6f7a51e5df589453f17bb8d40c9c0f97c8ffb54b.svg" alt="\[ \int_{a}^{b}\bigl(-(pu')'\overline{v} + (p\overline{v}')'u\bigr)\dd x = \bigl[\,p\,(u\overline{v}' - u'\overline{v})\,\bigr]_{a}^{b}. \]" style="width:21.911em"></div>
+At <img class="m" src="m/3cfd77e2486c76675b2434bd9169050b8695c7d1.svg" alt="\(x = a\)" style="height:0.472em;vertical-align:-0.000em"> the boundary conditions say that the vectors
+<img class="m" src="m/8734d6b17b759250aff6a6c4e56e7d49bbab0a3a.svg" alt="\((u(a),u'(a))\)" style="height:1.098em;vertical-align:-0.274em"> and <img class="m" src="m/0feea5c060dbc8f0894e4d24b063ef0f5aad5864.svg" alt="\((v(a),v'(a))\)" style="height:1.098em;vertical-align:-0.274em"> both lie in the line annihilated by
+<img class="m" src="m/92793179b20b553077f3e42684d18e4ab07d1917.svg" alt="\((\alpha_{1},\alpha_{2})\ne0\)" style="height:1.096em;vertical-align:-0.274em">, hence are proportional, so the
+determinant <img class="m" src="m/6a92a32ad06d50b09d67c7db56bc5b1de626056a.svg" alt="\(u(a)\overline{v}'(a)-u'(a)\overline{v}(a)\)" style="height:1.120em;vertical-align:-0.269em"> vanishes;
+likewise at <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em">. The <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> terms cancel, being symmetric.
+</p>
+
+</div>
+
+<div class="theorem" id="org60575e2">
+<p>
+The eigenvalues of a regular Sturm-Liouville problem are real,
+eigenfunctions for distinct eigenvalues are orthogonal for
+<img class="m" src="m/3666aeb8548ee0eed30624013f2220c631e8a0d7.svg" alt="\(\inner{\cdot}{\cdot}_{w}\)" style="height:1.096em;vertical-align:-0.274em">, and each eigenvalue has a one-dimensional
+eigenspace.
+</p>
+
+</div>
+
+<div class="proof" id="org9a6bf30">
+<p>
+Let <img class="m" src="m/7058ecb5e113102b8f29070f9863386d03e11a9e.svg" alt="\(Lu = \lambda w u\)" style="height:0.761em;vertical-align:-0.000em"> with <img class="m" src="m/cbd2270de67a34f1c883aaca755cbc103976d45e.svg" alt="\(u \ne 0\)" style="height:0.974em;vertical-align:-0.214em">. By the lemma,
+<img class="m" src="m/26710f1327ab3b53815f599bdf2ebb36d333c862.svg" alt="\(\inner{Lu}{u}_{1} = \inner{u}{Lu}_{1}\)" style="height:1.096em;vertical-align:-0.274em">, that is
+<img class="m" src="m/b408c2c889357fdaef235fee9716d85da7bf5ccd.svg" alt="\(\lambda\inner{wu}{u}_{1} = \overline{\lambda}\inner{u}{wu}_{1}\)" style="height:1.254em;vertical-align:-0.276em">;
+since <img class="m" src="m/c834e71b3e9dd5e7bf6ee9e14e94dcf54f348aca.svg" alt="\(w&gt;0\)" style="height:0.749em;vertical-align:-0.045em"> the common factor <img class="m" src="m/8069adf5960f010820e12ed1f132c3a87bda0686.svg" alt="\(\int\abs{u}^{2}w\)" style="height:1.227em;vertical-align:-0.331em"> is positive, so
+<img class="m" src="m/2580e7e844b6a81e6df21bc5a29283f5b303f714.svg" alt="\(\lambda = \overline{\lambda}\)" style="height:0.980em;vertical-align:-0.000em">.
+</p>
+
+<p>
+For <img class="m" src="m/8fc34e23b71b4cccc8a1362a4b089a9fc0a690ca.svg" alt="\(Lu = \lambda wu\)" style="height:0.761em;vertical-align:-0.000em"> and <img class="m" src="m/3c9c236eb9437bafa671cade7dc4c5788fe9b68a.svg" alt="\(Lv = \mu wv\)" style="height:0.962em;vertical-align:-0.212em"> with <img class="m" src="m/406d1d8d7f50bb198e058e8d8b1da6322e4ccb12.svg" alt="\(\lambda\ne\mu\)" style="height:0.974em;vertical-align:-0.214em">, the
+same identity gives
+<img class="m" src="m/82505b0a07c1a1d1719623219eedc04862567db4.svg" alt="\((\lambda-\mu)\int u\overline{v}\,w = 0\)" style="height:1.218em;vertical-align:-0.341em">, hence
+<img class="m" src="m/f07085f3bc8b3aa3a0d05b124e3c091a17c20f78.svg" alt="\(\inner{u}{v}_{w} = 0\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+For the multiplicity, two eigenfunctions for the same <img class="m" src="m/bf732bcb08e251641d188904cbb646f8c7c05665.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em"> both
+satisfy the same second-order linear equation and the boundary condition
+at <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">, which fixes <img class="m" src="m/b166a6a122adfc3ccfe2251a291c18fc5909a7d3.svg" alt="\((y(a),y'(a))\)" style="height:1.098em;vertical-align:-0.274em"> up to a scalar; by uniqueness for
+the initial value problem they are proportional.
+</p>
+
+</div>
+
+<div class="proposition" id="org5876f23">
+<p>
+The problem <img class="m" src="m/4bd1e9c44097c3311a82538a637e511eaffd0577.svg" alt="\(-y'' = \lambda y\)" style="height:1.037em;vertical-align:-0.218em"> on <img class="m" src="m/2e93d24be769af787ea0b7c8c6496ada8598048a.svg" alt="\([0,\pi]\)" style="height:1.096em;vertical-align:-0.274em"> with
+<img class="m" src="m/1c6307cfe53924df4965b06182c3cd4d2b388fd1.svg" alt="\(y(0) = y(\pi) = 0\)" style="height:1.096em;vertical-align:-0.274em"> is regular, its eigenvalues are <img class="m" src="m/51ba104b8071892b08468117721b3d7516d682e1.svg" alt="\(n^{2}\)" style="height:0.892em;vertical-align:-0.000em"> for
+<img class="m" src="m/28ea251ed83f5eb8039c604246b727a5afd15b88.svg" alt="\(n \ge 1\)" style="height:0.855em;vertical-align:-0.145em">, and its eigenfunctions <img class="m" src="m/43d3c1c09f8532806b044e1af6b9f0fa4da33836.svg" alt="\(\sin(nx)\)" style="height:1.096em;vertical-align:-0.274em"> form an orthogonal
+system in <img class="m" src="m/10dde2f4a01fa510010cad9239149fdb396f0fa3.svg" alt="\(L^{2}([0,\pi])\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+</div>
+
+<div class="proof" id="org3b69e59">
+<p>
+Take <img class="m" src="m/3dc8ee29aca7896ebfeeef49c0fa66296ce713a9.svg" alt="\(p = w = 1\)" style="height:0.919em;vertical-align:-0.211em"> and <img class="m" src="m/5297e9d2bac650db70275d40b0db4819ff165e57.svg" alt="\(q = 0\)" style="height:0.919em;vertical-align:-0.211em">, all admissible. For <img class="m" src="m/1314fc3a952b1547a3f71a594e748384bdaa7986.svg" alt="\(\lambda&lt;0\)" style="height:0.804em;vertical-align:-0.040em"> or
+<img class="m" src="m/525d2b7e8a13507d1e4e4dde5c52777d9f196eb7.svg" alt="\(\lambda = 0\)" style="height:0.761em;vertical-align:-0.000em"> the general solution is a combination of real
+exponentials or an affine function, and the two boundary conditions
+force it to vanish. For <img class="m" src="m/a5e710b61947c8a597810eb1edb89fb128d8cf75.svg" alt="\(\lambda = k^{2}&gt;0\)" style="height:0.935em;vertical-align:-0.047em"> the general solution is
+<img class="m" src="m/03cbbb26e9a5ee41e8c0a122ee9010282cf3f9c9.svg" alt="\(A\cos(kx)+B\sin(kx)\)" style="height:1.096em;vertical-align:-0.274em">; <img class="m" src="m/c0c4a38da7840393dc976f227ea7a5bc6b4b734f.svg" alt="\(y(0) = 0\)" style="height:1.096em;vertical-align:-0.274em"> gives <img class="m" src="m/1880506ad8c3562671c6c65069116d5c1be1a785.svg" alt="\(A = 0\)" style="height:0.749em;vertical-align:-0.000em">, and
+<img class="m" src="m/3cfa1db4e2a4a05ac9b546073e8b21c49f40c0cd.svg" alt="\(y(\pi) = 0\)" style="height:1.096em;vertical-align:-0.274em"> gives <img class="m" src="m/b024871e31855c734fd312bc1776a24734479b66.svg" alt="\(\sin(k\pi) = 0\)" style="height:1.096em;vertical-align:-0.274em">, that is <img class="m" src="m/aec605be88c1e12eb4c2906270ea520db4cf76aa.svg" alt="\(k \in \N\)" style="height:0.804em;vertical-align:-0.040em">.
+Orthogonality is the previous theorem, and it also follows from the
+computation for the trigonometric system.
+</p>
+
+</div>
+
+<div class="remark" id="orgc97be29">
+<p>
+What is proved here is the algebraic half: symmetry gives real
+eigenvalues, orthogonality and simplicity. The analytic half &#x2013; that the
+eigenvalues form an increasing sequence tending to infinity and that the
+eigenfunctions are <i>complete</i> in <img class="m" src="m/f3b131d6a772188adab030e30e89617ec918342f.svg" alt="\(L^{2}\)" style="height:0.892em;vertical-align:-0.000em"> &#x2013; is the substantial theorem
+and is not proved in this archive; it follows from compactness of the
+inverse operator and the spectral theorem for compact self-adjoint
+operators, neither of which is written yet. Completeness is what a
+separation-of-variables argument silently uses when it claims the
+resulting series solves the problem.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="existence-and-uniqueness-for-ordinary-differential-equations.html"><span>← previous</span>Existence and uniqueness for ordinary differential equations</a><a rel="next" href="first-order-equations-and-the-method-of-characteristics.html"><span>next →</span>First-order equations and the method of characteristics</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--ordinary-differential-equations.pdf" title="PDF manual">Ordinary Differential Equations</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>True and false colour composites · Remote Sensing</title>
+<meta name="description" content="Three bands are assigned to the red, green and blue channels of the display; with red, green and blue bands one gets a true-colour image, while any other assignment is a false-colour composite — the classic NIR-red-green to RGB makes vegetation bright red because of its high NIR reflectance.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/false-color-composite.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="True and false colour composites · Remote Sensing">
+<meta property="og:description" content="Three bands are assigned to the red, green and blue channels of the display; with red, green and blue bands one gets a true-colour image, while any other assignment is a false-colour composite — the classic NIR-red-green to RGB makes vegetation bright red because of its high NIR reflectance.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/false-color-composite.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--enhancement">Enhancement</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Processing · Enhancement</p>
+<h1>True and false colour composites</h1>
+<p class="summary">Three bands are assigned to the red, green and blue channels of the display; with red, green and blue bands one gets a true-colour image, while any other assignment is a false-colour composite — the classic NIR-red-green to RGB makes vegetation bright red because of its high NIR reflectance.</p>
+<p class="rel"><span>needs</span> <a href="contrast-stretching.html">Contrast stretching</a>, <a href="multispectral-hyperspectral-image.html">Multispectral and hyperspectral images</a></p>
+<p class="rel"><span>unlocks</span> <a href="photointerpretation.html">Photointerpretation</a></p>
+<p class="rel"><span>see also</span> <a href="scattergram.html">Scattergram</a>, <a href="photointerpretation.html">Photointerpretation</a>, <a href="ndvi.html">NDVI and normalised difference indices</a></p>
+<p class="rel"><span>mentioned in</span> <a href="sar-polarimetry.html">SAR polarimetry</a></p>
+<details class="path"><summary>Learning path: 18 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="spectral-signature.html">Spectral signature</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="sensor-resolutions.html">Geometric, radiometric, spectral and temporal resolution</a></li><li><a href="multispectral-hyperspectral-image.html">Multispectral and hyperspectral images</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li><li><a href="look-up-table.html">Look-up tables and visualization</a></li><li><a href="contrast-stretching.html">Contrast stretching</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org35c660e" class="outline-2">
+<h2 id="org35c660e">Definition</h2>
+<div class="outline-text-2" id="text-org35c660e">
+<p>
+A composite <img class="m" src="m/2f70e4a965f7d774db571576ba56f27caf3ea16e.svg" alt="\((b_R,b_G,b_B)\)" style="height:1.096em;vertical-align:-0.274em"> displays band <img class="m" src="m/6cf71a57f4b244a82dbf782fc78cc267cd8b587b.svg" alt="\(b_R\)" style="height:0.925em;vertical-align:-0.167em"> in red, <img class="m" src="m/1d9757df0928435702b9da41e2f8a7f77d6d717a.svg" alt="\(b_G\)" style="height:0.925em;vertical-align:-0.167em"> in green, <img class="m" src="m/13ed632917eb6764956c9d159b2e6e4183c1ccec.svg" alt="\(b_B\)" style="height:0.925em;vertical-align:-0.167em"> in blue, each through its own stretch (LUT).
+</p>
+<ul class="org-ul">
+<li><b>True colour</b>: (red, green, blue): as the eye would see, with haze in the blue.</li>
+<li><b>Colour infrared</b> (NIR, red, green): healthy vegetation red, <a href="remote-sensing-applications.html">urban areas</a> cyan-grey, water dark blue-black, bare soil brown.</li>
+<li><b>SWIR composites</b> (SWIR2, NIR, red or SWIR, NIR, green): burn scars, moisture, geology, snow (dark in SWIR) vs cloud (bright).</li>
+<li><b>SAR</b>: multi-polarization (VV, VH, VV/VH) or multi-temporal (date 1, date 2, date 1) composites show change as colour.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org03887a7" class="outline-2">
+<h2 id="org03887a7">Example</h2>
+<div class="outline-text-2" id="text-org03887a7">
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="k">def</span> <span class="f">stretch</span>(b):
+    <span class="v">lo</span>, <span class="v">hi</span> = np.percentile(b, [2, 98])
+    <span class="k">return</span> np.clip((b - lo) / (hi - lo), 0, 1)
+<span class="c"># Sentinel-2 B8, B4, B3
+</span><span class="v">cir</span> = np.dstack([stretch(nir), stretch(red), stretch(green)])
+plt.imshow(cir)</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org6342b49" class="outline-2">
+<h2 id="org6342b49">Intuition</h2>
+<div class="outline-text-2" id="text-org6342b49">
+<p>
+False colour translates invisible wavelengths into visible colours, so the eye can use its excellent <a href="recognition-system.html">pattern recognition</a> on information it cannot see.
+</p>
+</div>
+</div>
+<div id="outline-container-org1a5b49e" class="outline-2">
+<h2 id="org1a5b49e">Pitfall</h2>
+<div class="outline-text-2" id="text-org1a5b49e">
+<p>
+Colours in a false-colour image are not physical colours; interpretation requires knowing which band is in which channel and how each was stretched.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="principal-component-analysis.html"><span>← previous</span>Principal component analysis of multispectral images</a><a rel="next" href="geometric-distortions.html"><span>next →</span>Geometric distortions</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--enhancement.pdf" title="PDF manual">Enhancement</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

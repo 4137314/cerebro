@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Superconducting electronics: the map of the subject · Physics</title>
+<meta name="description" content="Superconductors carry current without resistance and quantise magnetic flux in units of \Phi_0=h/2e; Josephson junctions switch in picoseconds dissipating \sim10^{-19} J, so logic that stores and moves single flux quanta (SFQ) runs at tens of GHz with orders of magnitude less energy per operation t…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/superconducting-electronics.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Superconducting electronics: the map of the subject · Physics">
+<meta property="og:description" content="Superconductors carry current without resistance and quantise magnetic flux in units of \Phi_0=h/2e; Josephson junctions switch in picoseconds dissipating \sim10^{-19} J, so logic that stores and moves single flux quanta (SFQ) runs at tens of GHz with orders of magnitude less energy per operation t…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/superconducting-electronics.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-superconducting-electronics">Superconducting Electronics</a> / <a rel="up" href="index.html#a-superconducting-electronics--superconducting-electronics">Superconducting Electronics</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">overview · Superconducting Electronics · Superconducting Electronics</p>
+<h1>Superconducting electronics: the map of the subject</h1>
+<p class="summary">Superconductors carry current without resistance and quantise magnetic flux in units of <img class="m" src="m/7398269d537339c6ec6c3e4e3a60f625b9863391.svg" alt="\(\Phi_0=h/2e\)" style="height:1.096em;vertical-align:-0.274em">; Josephson junctions switch in picoseconds dissipating <img class="m" src="m/ea3860cbd034d82d1c529437d6c067c6c0f79f13.svg" alt="\(\sim10^{-19}\)" style="height:0.892em;vertical-align:-0.000em"> J, so logic that stores and moves single flux quanta (SFQ) runs at tens of GHz with orders of magnitude less energy per operation than CMOS — and it is the natural control electronics for superconducting qubits.</p>
+<p class="rel"><span>needs</span> <a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a>, <a href="digital-electronics.html">Digital electronic circuits: the map of the subject</a></p>
+<p class="rel"><span>unlocks</span> <a href="superconductivity-and-flux-quantization.html">Superconductivity and flux quantisation</a></p>
+<p class="rel"><span>see also</span> <a href="quantum-electrodynamics.html">Quantum electrodynamics: the map of the subject</a></p>
+<p class="rel"><span>mentioned in</span> <a href="physics-study-map.html">Physics: study map</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="circuits.html">Circuit theory: the map of the subject</a></li><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="solid-state.html">Semiconductor physics: the map of the subject</a></li><li><a href="digital-electronics.html">Digital electronic circuits: the map of the subject</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org9e473ae" class="outline-2">
+<h2 id="org9e473ae">Overview</h2>
+<div class="outline-text-2" id="text-org9e473ae">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">block</th>
+<th scope="col" class="org-left">notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">physics</td>
+<td class="org-left">superconductivity, London equations, flux quantisation</td>
+</tr>
+
+<tr>
+<td class="org-left">device</td>
+<td class="org-left">Josephson junction, RCSJ model, SQUID</td>
+</tr>
+
+<tr>
+<td class="org-left">logic</td>
+<td class="org-left">SFQ pulses, JTL, DFF, clocked gates, timing and biasing</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org6a68fb2" class="outline-2">
+<h2 id="org6a68fb2">Comparison with CMOS</h2>
+<div class="outline-text-2" id="text-org6a68fb2">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">quantity</th>
+<th scope="col" class="org-left">CMOS (≈ 5 nm)</th>
+<th scope="col" class="org-left">RSFQ / ERSFQ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">switching energy</td>
+<td class="org-left">≈ 10⁻¹⁶ J incl. wires</td>
+<td class="org-left">≈ 2×10⁻¹⁹ J (I_c·Φ₀)</td>
+</tr>
+
+<tr>
+<td class="org-left">clock</td>
+<td class="org-left">3–5 GHz</td>
+<td class="org-left">20–100 GHz demonstrated</td>
+</tr>
+
+<tr>
+<td class="org-left">interconnect</td>
+<td class="org-left">RC lines</td>
+<td class="org-left">ballistic microstrip</td>
+</tr>
+
+<tr>
+<td class="org-left">temperature</td>
+<td class="org-left">300 K</td>
+<td class="org-left">4.2 K (cooling overhead)</td>
+</tr>
+
+<tr>
+<td class="org-left">density</td>
+<td class="org-left">≈ 10⁸ gates/mm²</td>
+<td class="org-left">≈ 10⁵–10⁶ JJ/cm²</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgca93aaa" class="outline-2">
+<h2 id="orgca93aaa">Engineering applications</h2>
+<div class="outline-text-2" id="text-orgca93aaa">
+<p>
+Ultra-fast digital signal processing (RF digital receivers), cryogenic control and read-out of <a href="qubits-and-quantum-gates.html">qubits</a>, SQUID magnetometry (MEG brain imaging), voltage standards (Josephson arrays define the volt).
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="switching-converters.html"><span>← previous</span>Switching converters: buck, boost and losses</a><a rel="next" href="superconductivity-and-flux-quantization.html"><span>next →</span>Superconductivity and flux quantisation</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/superconducting-electronics--superconducting-electronics.pdf" title="PDF manual">Superconducting Electronics</a> · <a class="pdf" href="pdf/superconducting-electronics.pdf" title="PDF manual">Superconducting Electronics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

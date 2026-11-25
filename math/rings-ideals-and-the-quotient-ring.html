@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rings, ideals and the quotient ring · Mathematics</title>
+<meta name="description" content="\Z and the polynomials over a field carry two operations, and the theory of one operation – groups – does not see the interaction between them. A ring is the axiomatisation of that interaction, and the substitute for &quot;normal subgroup&quot; is not a subring but an ideal: the condition needed to divide ou…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/rings-ideals-and-the-quotient-ring.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Rings, ideals and the quotient ring · Mathematics">
+<meta property="og:description" content="\Z and the polynomials over a field carry two operations, and the theory of one operation – groups – does not see the interaction between them. A ring is the axiomatisation of that interaction, and the substitute for &quot;normal subgroup&quot; is not a subring but an ideal: the condition needed to divide ou…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/rings-ideals-and-the-quotient-ring.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--ring-theory">Ring Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Algebra · Ring Theory</p>
+<h1>Rings, ideals and the quotient ring</h1>
+<p class="summary"><img class="m" src="m/7dabe02ee97dbd1f64356da323fa6ec62fd0b242.svg" alt="\(\Z\)" style="height:0.755em;vertical-align:-0.000em"> and the polynomials over a field carry two operations, and the theory of one operation &#x2013; groups &#x2013; does not see the interaction between them. A ring is the axiomatisation of that interaction, and the substitute for "normal subgroup" is not a subring but an ideal: the condition needed to divide out is absorption under multiplication, and subrings do not have it.</p>
+<p class="rel"><span>needs</span> <a href="abelian-group.html">Abelian group</a>, <a href="binary-operation.html">Binary operation</a>, <a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a>, <a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a>, <a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></p>
+<p class="rel"><span>unlocks</span> <a href="boolean-algebras-and-stones-representation-theorem.html">Boolean algebras and Stone's representation theorem</a>, <a href="modules-quotients-and-exact-sequences.html">Modules, quotients and exact sequences</a>, <a href="finite-fields.html">Finite fields</a>, <a href="splitting-fields-and-their-uniqueness.html">Splitting fields and their uniqueness</a>, <a href="euclidean-domains-principal-ideals-and-unique-factorisation.html">Euclidean domains, principal ideals and unique factorisation</a>, <a href="integral-domains-fields-prime-and-maximal-ideals.html">Integral domains, fields, prime and maximal ideals</a>, <a href="noetherian-rings-and-the-hilbert-basis-theorem.html">Noetherian rings and the Hilbert basis theorem</a>, <a href="polynomial-rings-division-and-roots.html">Polynomial rings, division and roots</a>, <a href="the-chinese-remainder-theorem.html">The Chinese remainder theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="algebra.html">Algebra</a>, <a href="rings-and-commutative-algebra.html">Rings and commutative algebra</a></p>
+<details class="path"><summary>Learning path: 10 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org473fba9">
+<p>
+A <i>ring</i> is a set <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> with two operations <img class="m" src="m/99342f689e52b23c0a8e67be314201b776781e9d.svg" alt="\(+\)" style="height:0.731em;vertical-align:-0.088em"> and <img class="m" src="m/e27278d7494c5cb597b91aaabd0a6de79833e623.svg" alt="\(\cdot\)" style="height:0.487em;vertical-align:-0.000em"> such
+that <img class="m" src="m/09590432e934f69d1a53515be74797be1af47363.svg" alt="\((R, +)\)" style="height:1.096em;vertical-align:-0.274em"> is an <a href="abelian-group.html">abelian group</a> with neutral element <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">,
+multiplication is associative with a neutral element <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">, and the
+distributive laws <img class="m" src="m/68492e4098fad5edb07d0874ebe784bc10fee3bd.svg" alt="\(a(b+c) = ab+ac\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/c67520d5c3bb3c891d846b25247e229028d6474a.svg" alt="\((a+b)c = ac+bc\)" style="height:1.096em;vertical-align:-0.274em"> hold. The
+ring is <i>commutative</i> if <img class="m" src="m/9d6839a395824528fe73041e205a614b0fd68d3e.svg" alt="\(ab = ba\)" style="height:0.761em;vertical-align:-0.000em"> for all <img class="m" src="m/ca162e704d67d905e0f631dd3db96407aecabda4.svg" alt="\(a, b\)" style="height:0.974em;vertical-align:-0.214em">. A <i>unit</i> is an
+element with a two-sided multiplicative inverse.
+</p>
+
+</div>
+
+<div class="proposition" id="org5e4a638">
+<p>
+In any ring, <img class="m" src="m/a950cf594615782fd314e79e50962eedbe607140.svg" alt="\(0 \cdot a = a \cdot 0 = 0\)" style="height:0.706em;vertical-align:-0.000em"> and <img class="m" src="m/2b340ea5b0f85c799154e7bd700c20793d40f260.svg" alt="\((-a)b = -(ab)\)" style="height:1.096em;vertical-align:-0.274em">; and if
+<img class="m" src="m/4ca04b9666d7742cd89639428612470debfc44f6.svg" alt="\(1 = 0\)" style="height:0.706em;vertical-align:-0.000em"> then <img class="m" src="m/6b59f4de619da3de538c59c7d83eaed0d0b043e4.svg" alt="\(R = \set{0}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgbb7903f">
+<p>
+From <img class="m" src="m/a89382d2be2a8a77d84252b120a66d86722b070b.svg" alt="\(0 \cdot a = (0+0)a = 0\cdot a + 0 \cdot a\)" style="height:1.096em;vertical-align:-0.274em">, cancelling in the
+additive group gives <img class="m" src="m/0b5f3f11cc2a241825eeed02df5908c29331a2cd.svg" alt="\(0 \cdot a = 0\)" style="height:0.706em;vertical-align:-0.000em">; symmetrically <img class="m" src="m/cc3152d1586af8efae1f92a9f4cf9d6b360ec43a.svg" alt="\(a \cdot 0 = 0\)" style="height:0.706em;vertical-align:-0.000em">.
+Then <img class="m" src="m/ecd85e2d28874c07163c3154b15b46b5e8f5b008.svg" alt="\((-a)b + ab = (-a+a)b = 0 \cdot b = 0\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/2b340ea5b0f85c799154e7bd700c20793d40f260.svg" alt="\((-a)b = -(ab)\)" style="height:1.096em;vertical-align:-0.274em">. If
+<img class="m" src="m/4ca04b9666d7742cd89639428612470debfc44f6.svg" alt="\(1 = 0\)" style="height:0.706em;vertical-align:-0.000em"> then <img class="m" src="m/e70c66da9361f36ea6b555a835b87762c6be21bc.svg" alt="\(a = a \cdot 1 = a \cdot 0 = 0\)" style="height:0.706em;vertical-align:-0.000em"> for every <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="definition" id="org09876d7">
+<p>
+A subset <img class="m" src="m/7660a4587efa54c878562fa72bd473dc14a8479f.svg" alt="\(I \subseteq R\)" style="height:0.898em;vertical-align:-0.153em"> is a <i>left ideal</i> if it is a subgroup of
+<img class="m" src="m/1b2a76adcba10d0bbffa01b56f76b4fe5881b6c0.svg" alt="\((R,+)\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/c41030e55e7ac680591d2b15c5aecb31a6aedf92.svg" alt="\(r x \in I\)" style="height:0.792em;vertical-align:-0.040em"> for all <img class="m" src="m/8b82448e56b8fa989d29668f941652392576b4d9.svg" alt="\(r \in R\)" style="height:0.792em;vertical-align:-0.040em">, <img class="m" src="m/1b4ad7056988557d13e90ba97c702b593bae0e43.svg" alt="\(x \in I\)" style="height:0.792em;vertical-align:-0.040em">; a <i>right
+ideal</i> if instead <img class="m" src="m/0e4d14bc00a121bf7830bc35ef1e01056d1730e2.svg" alt="\(xr \in I\)" style="height:0.792em;vertical-align:-0.040em">; and a <i>two-sided ideal</i> (here simply an
+<i>ideal</i>) if both. For <img class="m" src="m/8ba126095cbfc73cd149ef736727ed54abad76e8.svg" alt="\(a \in R\)" style="height:0.792em;vertical-align:-0.040em"> commutative, <img class="m" src="m/0bb129067bb0ff9c0b4520be260cd0371250d515.svg" alt="\((a) = aR\)" style="height:1.096em;vertical-align:-0.274em"> is the
+<i>principal ideal</i> generated by <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org7d7bdc3">
+<p>
+Let <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> be a two-sided ideal of <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">. Then the additive quotient
+group <img class="m" src="m/34ee70cd4a72dc210c71d73e990c96c452605936.svg" alt="\(R/I\)" style="height:1.096em;vertical-align:-0.274em"> is a ring under <img class="m" src="m/78509c6945483434233069f92f48be4fb45a3190.svg" alt="\((a + I)(b + I) = ab + I\)" style="height:1.096em;vertical-align:-0.274em">, and
+<img class="m" src="m/974a605024d11ec72505143c0b79dec31ef1d027.svg" alt="\(\pi \colon R \to R/I\)" style="height:1.096em;vertical-align:-0.274em"> is a surjective ring homomorphism with kernel
+<img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org13c3f40">
+<p>
+<img class="m" src="m/1b2a76adcba10d0bbffa01b56f76b4fe5881b6c0.svg" alt="\((R,+)\)" style="height:1.096em;vertical-align:-0.274em"> is abelian, so <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> is a normal subgroup of it and <img class="m" src="m/34ee70cd4a72dc210c71d73e990c96c452605936.svg" alt="\(R/I\)" style="height:1.096em;vertical-align:-0.274em"> is
+an abelian group. For the product, suppose <img class="m" src="m/c071106da3ece5e91c5522db2c50f0ec5da5db89.svg" alt="\(a + I = a' + I\)" style="height:0.915em;vertical-align:-0.092em"> and
+<img class="m" src="m/ff8b6d2910e6647f85dead5385ac3cada2c1ad15.svg" alt="\(b + I = b' + I\)" style="height:0.915em;vertical-align:-0.092em">, say <img class="m" src="m/49e26fd049ecfc3e3547dd54852306b3e189a2ae.svg" alt="\(a' = a + x\)" style="height:0.915em;vertical-align:-0.092em"> and <img class="m" src="m/962e692a1fd499801547100692f3683b3cd34af7.svg" alt="\(b' = b + y\)" style="height:1.037em;vertical-align:-0.218em"> with
+<img class="m" src="m/824da3976e21ee6eb9b0b87583bc35ca25c495e9.svg" alt="\(x, y \in I\)" style="height:0.962em;vertical-align:-0.212em">. Then <img class="m" src="m/e14e1a111aa8560d60cfa00b5cd30f8b540205ad.svg" alt="\(a'b' = ab + xb + ay + xy\)" style="height:1.037em;vertical-align:-0.218em">, and each of
+<img class="m" src="m/11b7a105fac32086845876817f47f5287bec1f3f.svg" alt="\(xb, ay, xy\)" style="height:0.974em;vertical-align:-0.214em"> lies in <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> because <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> absorbs multiplication on
+both sides; hence <img class="m" src="m/88737b7fb58b4008a732c83da122cb4eb6033bdb.svg" alt="\(a'b' + I = ab + I\)" style="height:0.915em;vertical-align:-0.092em"> and the product is well defined.
+Associativity, distributivity and the identity <img class="m" src="m/a7d532d0b8aa2059e6619c9882febfbfbda41e80.svg" alt="\(1 + I\)" style="height:0.840em;vertical-align:-0.092em"> are inherited
+from <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> term by term. The projection preserves both operations by
+construction, and <img class="m" src="m/ecf77d2ecebc49e09f2ada3dcf46d742b67ffcb5.svg" alt="\(\pi(a) = I\)" style="height:1.096em;vertical-align:-0.274em"> says <img class="m" src="m/14c2759c749ffc674b11fd098d402a78d9d17ac0.svg" alt="\(a \in I\)" style="height:0.792em;vertical-align:-0.040em">.
+</p>
+
+</div>
+
+<div class="remark" id="org21c71da">
+<p>
+The proof shows precisely why a subring is not enough: well-definedness
+needed <img class="m" src="m/aec849a2366a3debd3d9f622d71c9fe75dbeb731.svg" alt="\(xb\)" style="height:0.761em;vertical-align:-0.000em"> and <img class="m" src="m/8dc0501eddf4986c49a9269d4930b6aa6d4935d4.svg" alt="\(ay\)" style="height:0.685em;vertical-align:-0.212em"> to lie in <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> for arbitrary <img class="m" src="m/5dc5e156fd7ededd3b4145087e9fbac84c9dc0a6.svg" alt="\(a, b \in R\)" style="height:0.974em;vertical-align:-0.214em">,
+which is absorption, not closure under multiplication. In <img class="m" src="m/7dabe02ee97dbd1f64356da323fa6ec62fd0b242.svg" alt="\(\Z\)" style="height:0.755em;vertical-align:-0.000em"> the
+subring is <img class="m" src="m/7dabe02ee97dbd1f64356da323fa6ec62fd0b242.svg" alt="\(\Z\)" style="height:0.755em;vertical-align:-0.000em"> itself and the ideals are the <img class="m" src="m/4f03d9e0b8bbcb3f853d8f9f55aaafee851aa01a.svg" alt="\(n\Z\)" style="height:0.755em;vertical-align:-0.000em"> &#x2013; and it is the
+latter that produce modular arithmetic.
+</p>
+
+</div>
+
+<div class="definition" id="orgc7f31d1">
+<p>
+A <i>ring homomorphism</i> is a map <img class="m" src="m/d1dc06ad2d66e61ebbfbf1840617fbbea37141fe.svg" alt="\(\varphi \colon R \to S\)" style="height:0.962em;vertical-align:-0.212em"> with
+<img class="m" src="m/dab03a80c7081ee43bd72b4c1962d453f419cc6a.svg" alt="\(\varphi(a+b) = \varphi(a)+\varphi(b)\)" style="height:1.096em;vertical-align:-0.274em">,
+<img class="m" src="m/2efeae05b34becdc16eb1ccba23529b5cbc512f2.svg" alt="\(\varphi(ab) = \varphi(a)\varphi(b)\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/423097a2925b28f50918bdef2c28c6f87a67ee78.svg" alt="\(\varphi(1) = 1\)" style="height:1.096em;vertical-align:-0.274em">. Its
+<i>kernel</i> is <img class="m" src="m/3baaa5ddb85af9bd34d504115b7503e07832733f.svg" alt="\(\ker\varphi = \setst{a}{\varphi(a) = 0}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgd168db2">
+<p>
+The kernel of a ring homomorphism is a two-sided ideal, and every
+two-sided ideal is such a kernel.
+</p>
+
+</div>
+
+<div class="proof" id="org4521e39">
+<p>
+The kernel is a subgroup of <img class="m" src="m/1b2a76adcba10d0bbffa01b56f76b4fe5881b6c0.svg" alt="\((R,+)\)" style="height:1.096em;vertical-align:-0.274em"> because <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> is additive,
+and if <img class="m" src="m/338b07fd74cb84057c436ad11471927aa72875f7.svg" alt="\(\varphi(x) = 0\)" style="height:1.096em;vertical-align:-0.274em"> then
+<img class="m" src="m/8b7903d83c539223b05ca2e07c079dfe6c64b4e0.svg" alt="\(\varphi(rx) = \varphi(r)\varphi(x) = 0\)" style="height:1.096em;vertical-align:-0.274em"> and likewise
+<img class="m" src="m/1bc92603fbd0758cacad2f27dd04dec60cf51312.svg" alt="\(\varphi(xr) = 0\)" style="height:1.096em;vertical-align:-0.274em">; so it absorbs on both sides. Conversely an ideal
+<img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> is the kernel of <img class="m" src="m/974a605024d11ec72505143c0b79dec31ef1d027.svg" alt="\(\pi \colon R \to R/I\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org033e365">
+<p>
+For a ring homomorphism <img class="m" src="m/d1dc06ad2d66e61ebbfbf1840617fbbea37141fe.svg" alt="\(\varphi \colon R \to S\)" style="height:0.962em;vertical-align:-0.212em">, the image
+<img class="m" src="m/5e3ca7e69b4a910418065b4470aafc51938d902b.svg" alt="\(\varphi(R)\)" style="height:1.096em;vertical-align:-0.274em"> is a subring of <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> and
+<img class="m" src="m/e64961e31cceb596e4762edd7ed9c584a985684f.svg" alt="\(R/\ker\varphi \iso \varphi(R)\)" style="height:1.096em;vertical-align:-0.274em"> as rings, via
+<img class="m" src="m/7d745eee318804a58e5878662a63ccbb904531e0.svg" alt="\(a + \ker\varphi \mapsto \varphi(a)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org60b7908">
+<p>
+The image contains <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em"> and is closed under sums, negatives and
+products because <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> preserves them, so it is a subring. By the
+first isomorphism theorem for the additive groups, the stated map is a
+well-defined isomorphism of abelian groups onto <img class="m" src="m/5e3ca7e69b4a910418065b4470aafc51938d902b.svg" alt="\(\varphi(R)\)" style="height:1.096em;vertical-align:-0.274em">, the
+cosets of <img class="m" src="m/afa7f58567b75dbf6225aeba310d00f5c768a9bd.svg" alt="\(\ker\varphi\)" style="height:0.974em;vertical-align:-0.214em"> being the fibres of <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">. It is
+multiplicative and unital because
+<img class="m" src="m/da9ae1750a7ddcca9eebd86b3b0be77be3a03d1a.svg" alt="\(\bar{\varphi}((a+I)(b+I)) = \varphi(ab) = \varphi(a)\varphi(b)\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/f741b38213e7e398f0461587556c8581f5d3af20.svg" alt="\(\bar{\varphi}(1 + I) = 1\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="group-theory.html"><span>← previous</span>Group theory</a><a rel="next" href="modules-quotients-and-exact-sequences.html"><span>next →</span>Modules, quotients and exact sequences</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--ring-theory.pdf" title="PDF manual">Ring Theory</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

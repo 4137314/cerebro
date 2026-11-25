@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Invariance of generics and wildcards · Computer Science</title>
+<meta name="description" content="If B is a subtype of A, G&lt;B&gt; is not a subtype of G&lt;A&gt;, because a List&lt;A&gt; view would allow inserting an A into a list of B; wildcards recover flexibility: G&lt;? extends A&gt; is read-only covariant, G&lt;? super A&gt; write-only contravariant.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/generic-invariance.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Invariance of generics and wildcards · Computer Science">
+<meta property="og:description" content="If B is a subtype of A, G&lt;B&gt; is not a subtype of G&lt;A&gt;, because a List&lt;A&gt; view would allow inserting an A into a list of B; wildcards recover flexibility: G&lt;? extends A&gt; is read-only covariant, G&lt;? super A&gt; write-only contravariant.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/generic-invariance.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--java">Java</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Programming · Java</p>
+<h1>Invariance of generics and wildcards</h1>
+<p class="summary">If B is a subtype of A, <code>G&lt;B&gt;</code> is not a subtype of <code>G&lt;A&gt;</code>, because a <code>List&lt;A&gt;</code> view would allow inserting an A into a list of B; wildcards recover flexibility: <code>G&lt;? extends A&gt;</code> is read-only covariant, <code>G&lt;? super A&gt;</code> write-only contravariant.</p>
+<p class="rel"><span>needs</span> <a href="java-generics.html">Java generics and type erasure</a>, <a href="liskov-substitution.html">Liskov substitution principle</a></p>
+<p class="rel"><span>see also</span> <a href="casting-instanceof.html">Casts, instanceof and array covariance</a>, <a href="java-collections.html">The Java Collections Framework</a></p>
+<p class="rel"><span>mentioned in</span> <a href="casting-instanceof.html">Casts, instanceof and array covariance</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li><li><a href="liskov-substitution.html">Liskov substitution principle</a></li><li><a href="generic-programming.html">Generic programming</a></li><li><a href="casting-instanceof.html">Casts, instanceof and array covariance</a></li><li><a href="java-generics.html">Java generics and type erasure</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org3c68dde" class="outline-2">
+<h2 id="org3c68dde">Statement</h2>
+<div class="outline-text-2" id="text-org3c68dde">
+<p>
+For a generic type <img class="m" src="m/180274e8dececeaf4752e06f20174c8834e7e03d.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/e8a467d7501c022d5064bd6d5583df9b781284cb.svg" alt="\(B&lt;:A\)" style="height:0.792em;vertical-align:-0.040em">, neither <img class="m" src="m/00fb3d4e1a3ce24254b2878784465cf28a9b33a9.svg" alt="\(G\langle B\rangle&lt;:G\langle A\rangle\)" style="height:1.096em;vertical-align:-0.274em"> nor the converse holds: generics are <b>invariant</b>. With wildcards,
+<div class="mb"><img class="m" src="m/779059523b1e22496df94a4ba0bfeaf22ca56f49.svg" alt="\[ G\langle B\rangle &lt;: G\langle ?\ \text{extends}\ A\rangle, \qquad G\langle A\rangle &lt;: G\langle ?\ \text{super}\ B\rangle, \]" style="width:25.508em"></div>
+<div class="mb"><img class="m" src="m/ddfbe1f489470cbf967ea5b2182431de06f5a3f0.svg" alt="\[ G\langle T\rangle &lt;: G\langle ?\rangle. \]" style="width:6.808em"></div>
+</p>
+</div>
+</div>
+<div id="outline-container-org67a13c3" class="outline-2">
+<h2 id="org67a13c3">Derivation</h2>
+<div class="outline-text-2" id="text-org67a13c3">
+<p>
+Suppose <code>List&lt;Integer&gt;</code> were a subtype of <code>List&lt;Number&gt;</code>:
+</p>
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="t">List</span>&lt;<span class="t">Integer</span>&gt; <span class="v">ints</span> = <span class="k">new</span> <span class="t">ArrayList</span>&lt;&gt;();
+<span class="t">List</span>&lt;<span class="t">Number</span>&gt; <span class="v">nums</span> = ints;        <span class="c">// (if it were allowed)
+</span>nums.add(3.14);                  <span class="c">// a Double in a list of Integer
+</span><span class="t">Integer</span> <span class="v">i</span> = ints.get(0);         <span class="c">// ClassCastException</span></code></pre></figure>
+<p>
+Erasure leaves no run-time check (unlike <a href="casting-instanceof.html">arrays</a>), so the compiler must forbid the assignment. With <code>List&lt;? extends Number&gt;</code> reading gives a <code>Number</code> (safe) and adding is forbidden (the actual element type is unknown); with <code>List&lt;? super Integer&gt;</code> adding an <code>Integer</code> is safe and reading gives only <code>Object</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org931ccea" class="outline-2">
+<h2 id="org931ccea">Example</h2>
+<div class="outline-text-2" id="text-org931ccea">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">static</span> <span class="t">double</span> <span class="f">sum</span>(<span class="t">Collection</span>&lt;? <span class="k">extends</span> <span class="t">Number</span>&gt; <span class="v">c</span>) {      <span class="c">// producer: extends
+</span>    <span class="t">double</span> <span class="v">s</span> = 0; <span class="k">for</span> (<span class="t">Number</span> <span class="v">n</span> : c) s += n.doubleValue(); <span class="k">return</span> s;
+}
+<span class="k">static</span> <span class="t">void</span> <span class="f">fill</span>(<span class="t">List</span>&lt;? <span class="k">super</span> <span class="t">Integer</span>&gt; <span class="v">l</span>) { l.add(1); }  <span class="c">// consumer: super
+</span>sum(List.of(1, 2)); sum(List.of(1.5, 2.5));              <span class="c">// both accepted</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orgac194ac" class="outline-2">
+<h2 id="orgac194ac">Intuition</h2>
+<div class="outline-text-2" id="text-orgac194ac">
+<p>
+PECS: Producer Extends, Consumer Super. If you only take things out, accept any subtype; if you only put things in, accept any supertype.
+</p>
+</div>
+</div>
+<div id="outline-container-org6eb4d9e" class="outline-2">
+<h2 id="org6eb4d9e">Pitfall</h2>
+<div class="outline-text-2" id="text-org6eb4d9e">
+<p>
+<code>List&lt;Object&gt;</code> is not "a list of anything": it does not accept a <code>List&lt;String&gt;</code>. The type that accepts every list is <code>List&lt;?&gt;</code>.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="java-immutability.html"><span>← previous</span>Immutable objects</a><a rel="next" href="java-iterator.html"><span>next →</span>Iterators and for-each in Java</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--java.pdf" title="PDF manual">Java</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

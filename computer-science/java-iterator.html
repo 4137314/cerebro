@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iterators and for-each in Java · Computer Science</title>
+<meta name="description" content="Every Collection&lt;E&gt; gives an Iterator&lt;E&gt; with hasNext(), next() and remove(); any Iterable can be scanned with the for-each loop, which is compiled into an iterator; the iterator is the only safe way to remove elements while scanning.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/java-iterator.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Iterators and for-each in Java · Computer Science">
+<meta property="og:description" content="Every Collection&lt;E&gt; gives an Iterator&lt;E&gt; with hasNext(), next() and remove(); any Iterable can be scanned with the for-each loop, which is compiled into an iterator; the iterator is the only safe way to remove elements while scanning.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/java-iterator.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--java">Java</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Java</p>
+<h1>Iterators and for-each in Java</h1>
+<p class="summary">Every <code>Collection&lt;E&gt;</code> gives an <code>Iterator&lt;E&gt;</code> with <code>hasNext()</code>, <code>next()</code> and <code>remove()</code>; any <code>Iterable</code> can be scanned with the for-each loop, which is compiled into an iterator; the iterator is the only safe way to remove elements while scanning.</p>
+<p class="rel"><span>needs</span> <a href="java-collections.html">The Java Collections Framework</a></p>
+<p class="rel"><span>see also</span> <a href="stl-iterators.html">Iterators</a></p>
+<p class="rel"><span>mentioned in</span> <a href="generic-programming.html">Generic programming</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li><li><a href="generic-programming.html">Generic programming</a></li><li><a href="casting-instanceof.html">Casts, instanceof and array covariance</a></li><li><a href="java-generics.html">Java generics and type erasure</a></li><li><a href="java-collections.html">The Java Collections Framework</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgc831f9c" class="outline-2">
+<h2 id="orgc831f9c">Definition</h2>
+<div class="outline-text-2" id="text-orgc831f9c">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">public</span> <span class="k">interface</span> <span class="t">Iterator</span>&lt;<span class="t">E</span>&gt; {
+    <span class="t">boolean</span> <span class="f">hasNext</span>();
+    <span class="t">E</span> <span class="f">next</span>();
+    <span class="k">default</span> <span class="t">void</span> <span class="f">remove</span>() { <span class="k">throw</span> <span class="k">new</span> <span class="t">UnsupportedOperationException</span>(); }
+}
+<span class="k">public</span> <span class="k">interface</span> <span class="t">Iterable</span>&lt;<span class="t">T</span>&gt; { <span class="t">Iterator</span>&lt;<span class="t">T</span>&gt; <span class="f">iterator</span>(); }</code></pre></figure>
+<p>
+<code>for (E x : c) body</code> is translated to
+</p>
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">for</span> (<span class="t">Iterator</span>&lt;<span class="t">E</span>&gt; <span class="v">it</span> = c.iterator(); it.hasNext(); ) { <span class="t">E</span> <span class="v">x</span> = it.next(); body }</code></pre></figure>
+<p>
+and works for arrays and for every class implementing <code>Iterable</code>, including your own.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc8d453d" class="outline-2">
+<h2 id="orgc8d453d">Example: removing while scanning</h2>
+<div class="outline-text-2" id="text-orgc8d453d">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">for</span> (<span class="t">Iterator</span>&lt;<span class="t">String</span>&gt; <span class="v">it</span> = words.iterator(); it.hasNext(); )
+    <span class="k">if</span> (it.next().isEmpty()) it.remove();       <span class="c">// correct
+</span>words.removeIf(String::isEmpty);                <span class="c">// the same, since Java 8</span></code></pre></figure>
+<p>
+The code is polymorphic: it works for any <code>Collection&lt;String&gt;</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb95ac45" class="outline-2">
+<h2 id="orgb95ac45">Intuition</h2>
+<div class="outline-text-2" id="text-orgb95ac45">
+<p>
+An iterator is a cursor that knows the structure it walks; for-each hides it when you only need to read.
+</p>
+</div>
+</div>
+<div id="outline-container-org0810ffd" class="outline-2">
+<h2 id="org0810ffd">Pitfall</h2>
+<div class="outline-text-2" id="text-org0810ffd">
+<p>
+Calling <code>words.remove(w)</code> inside a for-each over <code>words</code> changes the collection behind the iterator's back: the next <code>next()</code> <a href="java-exceptions.html">throws</a> <code>ConcurrentModificationException</code>.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="generic-invariance.html"><span>← previous</span>Invariance of generics and wildcards</a><a rel="next" href="java-streams.html"><span>next →</span>Java streams and method references</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--java.pdf" title="PDF manual">Java</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

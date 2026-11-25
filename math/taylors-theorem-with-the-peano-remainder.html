@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taylor's theorem with the Peano remainder · Mathematics</title>
+<meta name="description" content="The Lagrange remainder is an identity with an unknown point in it, and it asks for one more derivative than the polynomial uses. The Peano form asks for no extra derivative and gives no identity – only the rate at which the error vanishes. That is weaker, and it is the form every limit computation …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/taylors-theorem-with-the-peano-remainder.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Taylor's theorem with the Peano remainder · Mathematics">
+<meta property="og:description" content="The Lagrange remainder is an identity with an unknown point in it, and it asks for one more derivative than the polynomial uses. The Peano form asks for no extra derivative and gives no identity – only the rate at which the error vanishes. That is weaker, and it is the form every limit computation …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/taylors-theorem-with-the-peano-remainder.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Analysis · Real Analysis</p>
+<h1>Taylor's theorem with the Peano remainder</h1>
+<p class="summary">The Lagrange remainder is an identity with an unknown point in it, and it asks for one more derivative than the polynomial uses. The Peano form asks for no extra derivative and gives no identity &#x2013; only the rate at which the error vanishes. That is weaker, and it is the form every limit computation and every local extremum test actually needs.</p>
+<p class="rel"><span>needs</span> <a href="cauchys-mean-value-theorem-and-de-lhopitals-rule.html">Cauchy's mean value theorem and de l'Hopital's rule</a>, <a href="one-sided-limits-and-the-discontinuities-of-a-monotone-function.html">One-sided limits and the discontinuities of a monotone function</a>, <a href="taylors-theorem-with-the-lagrange-remainder.html">Taylor's theorem with the Lagrange remainder</a>, <a href="the-mean-value-theorem.html">The mean value theorem</a></p>
+<p class="rel"><span>unlocks</span> <a href="extrema-in-several-variables-and-the-second-differential.html">Extrema in several variables and the second differential</a>, <a href="characteristic-functions.html">Characteristic functions</a>, <a href="small-oscillations-and-normal-modes.html">Small oscillations and normal modes</a>, <a href="flows-equilibria-and-linearisation.html">Flows, equilibria and linearisation</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 14 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="one-sided-limits-and-the-discontinuities-of-a-monotone-function.html">One-sided limits and the discontinuities of a monotone function</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="cauchys-mean-value-theorem-and-de-lhopitals-rule.html">Cauchy's mean value theorem and de l'Hopital's rule</a></li><li><a href="taylors-theorem-with-the-lagrange-remainder.html">Taylor's theorem with the Lagrange remainder</a></li></ol></details>
+</header>
+<main class="note">
+<div class="theorem" id="org6a901b3">
+<p>
+Let <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> be <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> times differentiable at <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">, with <img class="m" src="m/7624e8d483fc08508370e2a2b4fe8a4e77785f54.svg" alt="\(f^{(n-1)}\)" style="height:1.186em;vertical-align:-0.214em">
+defined on a neighbourhood of <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">. Then
+<div class="mb"><img class="m" src="m/92b9c2b7f4ac8cf1837cfbf6cc2a31355a6f917e.svg" alt="\[ \lim_{x \to a} \frac{f(x) - T_{n}(x)}{(x - a)^{n}} = 0, \]" style="width:10.793em"></div>
+where <img class="m" src="m/08ec1627eb8a4dac270ce15cba5cb503666f1f2a.svg" alt="\(T_{n}\)" style="height:0.913em;vertical-align:-0.164em"> is the Taylor polynomial of order <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> at <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org5587aab">
+<p>
+Put <img class="m" src="m/d3515153a4b34598ca666153cd5d060670d9d9c8.svg" alt="\(r(x) = f(x) - T_{n}(x)\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/6c91527ef2581e3d2ed8c3cdc8934fc189759e7c.svg" alt="\(q(x) = (x - a)^{n}\)" style="height:1.096em;vertical-align:-0.274em">. By
+construction <img class="m" src="m/3f49068f8d442d915ae38951d1039c1d19c2d468.svg" alt="\(r^{(k)}(a) = 0\)" style="height:1.247em;vertical-align:-0.274em"> for <img class="m" src="m/b97f329e51d26151465801958371d69d9c0764a7.svg" alt="\(k = 0, 1, \dots, n\)" style="height:0.974em;vertical-align:-0.214em">, and
+<img class="m" src="m/bd6b6d11610d06f66fedcc53b950aaaac455913e.svg" alt="\(q^{(k)}(a) = 0\)" style="height:1.247em;vertical-align:-0.274em"> for <img class="m" src="m/128bbac655b48441e722df3e2a8135191fbe1b2d.svg" alt="\(k &lt; n\)" style="height:0.804em;vertical-align:-0.040em"> while <img class="m" src="m/65404b9055ede8b5f74fba857982cab055601edd.svg" alt="\(q^{(n)} \equiv n!\)" style="height:1.186em;vertical-align:-0.214em">.
+</p>
+
+<p>
+Work on one side of <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> at a time; the two-sided limit then follows
+from the characterisation of a limit by its one-sided limits. On
+<img class="m" src="m/abb826d09cfaf20bba17fab53651023ddf3e2412.svg" alt="\((a, a + \delta)\)" style="height:1.096em;vertical-align:-0.274em">, apply de l'Hopital's rule <img class="m" src="m/572f4d9f2759255018073f5c42b14c1ace08c27e.svg" alt="\(n - 1\)" style="height:0.798em;vertical-align:-0.088em"> times: at each
+stage the numerator <img class="m" src="m/8191452fb8b1e5f2f2a9bcb62b1a036c0434705f.svg" alt="\(r^{(k)}\)" style="height:0.973em;vertical-align:-0.000em"> and the denominator <img class="m" src="m/96da102e76521071fd1fbb00685b621d3e5fe426.svg" alt="\(q^{(k)}\)" style="height:1.186em;vertical-align:-0.214em"> both
+tend to <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> at <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">, and <img class="m" src="m/0e56db7b9f6103d42071791efd855d6939812547.svg" alt="\(q^{(k+1)}\)" style="height:1.186em;vertical-align:-0.214em"> is a non-zero multiple of
+<img class="m" src="m/10368acc8963937ea58de6134d349c5b5bc885f1.svg" alt="\((x - a)^{n - k - 1}\)" style="height:1.204em;vertical-align:-0.277em">, which does not vanish for <img class="m" src="m/3aa4b6ff419d559e85ebaea2a33609bb0ab3e249.svg" alt="\(x \ne a\)" style="height:0.974em;vertical-align:-0.214em">. This
+reduces the claim to
+<div class="mb"><img class="m" src="m/d5d1e32b07237673c780d7d8bd7674e7abbfc4de.svg" alt="\[ \lim_{x \to a} \frac{r^{(n-1)}(x)}{n! \, (x - a)} = \lim_{x \to a} \frac{1}{n!} \cdot \frac{r^{(n-1)}(x) - r^{(n-1)}(a)}{x - a} = \frac{r^{(n)}(a)}{n!} = 0, \]" style="width:29.985em"></div>
+using <img class="m" src="m/b378f58ca84ba0fb92004d606904a49aade0861c.svg" alt="\(r^{(n-1)}(a) = 0\)" style="height:1.247em;vertical-align:-0.274em">; the middle expression is exactly the
+difference quotient defining <img class="m" src="m/5cc6fff9e27fa6fd9912b9d21ee4d40d78054b0f.svg" alt="\(r^{(n)}(a)\)" style="height:1.247em;vertical-align:-0.274em">, which exists by hypothesis
+and vanishes. The argument on <img class="m" src="m/7c60dbd02f87829ead874505ee8b89064a7df588.svg" alt="\((a - \delta, a)\)" style="height:1.096em;vertical-align:-0.274em"> is identical.
+</p>
+
+</div>
+
+<div class="corollary" id="org6ca7227">
+<p>
+Let <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> be twice differentiable at an interior point <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> with
+<img class="m" src="m/3d82e46bcd4ceeefd1bcfc53217c3f31f6efd15a.svg" alt="\(f'(c) = 0\)" style="height:1.098em;vertical-align:-0.274em">. If <img class="m" src="m/3854c78c1f850571fb066679d33cc640a6332234.svg" alt="\(f''(c) &gt; 0\)" style="height:1.098em;vertical-align:-0.274em"> then <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> has a strict local minimum
+at <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em">; if <img class="m" src="m/110c5cb0f4e7939bd84ed75fbf872a37c0362ac2.svg" alt="\(f''(c) &lt; 0\)" style="height:1.098em;vertical-align:-0.274em">, a strict local maximum.
+</p>
+
+</div>
+
+<div class="proof" id="org01da541">
+<p>
+Suppose <img class="m" src="m/3854c78c1f850571fb066679d33cc640a6332234.svg" alt="\(f''(c) &gt; 0\)" style="height:1.098em;vertical-align:-0.274em">. The Taylor polynomial of order two at <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> is
+<img class="m" src="m/589e77f9138fca6cbd66526b0b5997a74c664a50.svg" alt="\(T_{2}(x) = f(c) + \tfrac{1}{2} f''(c) (x - c)^{2}\)" style="height:1.304em;vertical-align:-0.378em">, since
+<img class="m" src="m/3d82e46bcd4ceeefd1bcfc53217c3f31f6efd15a.svg" alt="\(f'(c) = 0\)" style="height:1.098em;vertical-align:-0.274em">, so the theorem gives a function <img class="m" src="m/a1b54939210c3b11c7045471f72745425f4ff660.svg" alt="\(\eta\)" style="height:0.685em;vertical-align:-0.212em"> with
+<img class="m" src="m/2625d6e63e5fe7fb44464845c63619c7dd660e46.svg" alt="\(\eta(x) \to 0\)" style="height:1.096em;vertical-align:-0.274em"> and
+<div class="mb"><img class="m" src="m/eb0213a1bde4b55a79b414d5ae48ac2c47fc6dfd.svg" alt="\[ f(x) - f(c) = \Bigl( \frac{f''(c)}{2} + \eta(x) \Bigr) (x - c)^{2}. \]" style="width:18.518em"></div>
+Choose <img class="m" src="m/2834db4da57323bf6f47d0a640028cc90f572412.svg" alt="\(\delta &gt; 0\)" style="height:0.804em;vertical-align:-0.040em"> with <img class="m" src="m/13eb3dd8f90982cc0c9332e878eccf167a1e332f.svg" alt="\(\abs{\eta(x)} &lt; f''(c)/2\)" style="height:1.098em;vertical-align:-0.274em"> for
+<img class="m" src="m/75b355a715e008fd7b405acd9366ccbe30e7751c.svg" alt="\(0 &lt; \abs{x - c} &lt; \delta\)" style="height:1.096em;vertical-align:-0.274em">; the bracket is then positive, and
+<img class="m" src="m/a2e9818e0591e01dba8bb0430c13844be8700081.svg" alt="\((x-c)^{2} &gt; 0\)" style="height:1.166em;vertical-align:-0.268em">, so <img class="m" src="m/adf0d8fe823573295fe0d7ebe3215a3d43dd8a08.svg" alt="\(f(x) &gt; f(c)\)" style="height:1.096em;vertical-align:-0.274em"> on that punctured
+neighbourhood. The case <img class="m" src="m/110c5cb0f4e7939bd84ed75fbf872a37c0362ac2.svg" alt="\(f''(c) &lt; 0\)" style="height:1.098em;vertical-align:-0.274em"> follows by applying this to
+<img class="m" src="m/260f963332ff7cc2fa4c5efa180922c4739a327e.svg" alt="\(-f\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="remark" id="org4607ee4">
+<p>
+The test says nothing when <img class="m" src="m/7a1290de0d938d55fc4b1e05f059ad7923aa50f3.svg" alt="\(f''(c) = 0\)" style="height:1.098em;vertical-align:-0.274em">, and cannot: <img class="m" src="m/7444f669843b174996f45df856f221b2a4553799.svg" alt="\(x^{4}\)" style="height:0.892em;vertical-align:-0.000em">,
+<img class="m" src="m/2c4e6a94328d957848ea09e841e5ebe6796daa7d.svg" alt="\(-x^{4}\)" style="height:0.983em;vertical-align:-0.089em"> and <img class="m" src="m/c4db70ba683d598f6bbb311020211d0e249bd077.svg" alt="\(x^{3}\)" style="height:0.892em;vertical-align:-0.000em"> all have vanishing first and second
+derivatives at the origin, with a minimum, a maximum and neither. What
+decides those cases is the first non-vanishing higher derivative, and
+the Peano form gives that argument verbatim with <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> in place of
+<img class="m" src="m/682209d80cc07f86795f987ad28681d443268af8.svg" alt="\(2\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="taylors-theorem-with-the-lagrange-remainder.html"><span>← previous</span>Taylor's theorem with the Lagrange remainder</a><a rel="next" href="extrema-in-several-variables-and-the-second-differential.html"><span>next →</span>Extrema in several variables and the second differential</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

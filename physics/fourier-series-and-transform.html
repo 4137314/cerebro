@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fourier series and Fourier transform · Physics</title>
+<meta name="description" content="A periodic signal is x(t)=\sum_nc_ne^{jn\omega_0t}, c_n=\frac1T\int_Tx\,e^{-jn\omega_0t}\dd t; an aperiodic one X(\omega)=\int x(t)e^{-j\omega t}\dd t; through an LTI system each component is multiplied by H(j\omega) (convolution theorem), and energy is preserved (Parseval).">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/fourier-series-and-transform.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Fourier series and Fourier transform · Physics">
+<meta property="og:description" content="A periodic signal is x(t)=\sum_nc_ne^{jn\omega_0t}, c_n=\frac1T\int_Tx\,e^{-jn\omega_0t}\dd t; an aperiodic one X(\omega)=\int x(t)e^{-j\omega t}\dd t; through an LTI system each component is multiplied by H(j\omega) (convolution theorem), and energy is preserved (Parseval).">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/fourier-series-and-transform.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-circuits">Circuits</a> / <a rel="up" href="index.html#a-circuits--transforms">Transforms</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Circuits · Transforms</p>
+<h1>Fourier series and Fourier transform</h1>
+<p class="summary">A periodic signal is <img class="m" src="m/a1c9b4c46831a085b8b907e72cbab1c8a899f9e4.svg" alt="\(x(t)=\sum_nc_ne^{jn\omega_0t}\)" style="height:1.234em;vertical-align:-0.333em">, <img class="m" src="m/4e0d86bf1cd7d1d35fc067c8609ba973f05d6af5.svg" alt="\(c_n=\frac1T\int_Tx\,e^{-jn\omega_0t}\dd t\)" style="height:1.316em;vertical-align:-0.395em">; an aperiodic one <img class="m" src="m/9127138459c6dd0fc13c0b1f8317f1186f8a96d6.svg" alt="\(X(\omega)=\int x(t)e^{-j\omega t}\dd t\)" style="height:1.240em;vertical-align:-0.335em">; through an LTI system each component is multiplied by <img class="m" src="m/f5a40429a2c2d4df230a3893da8ff587914bd507.svg" alt="\(H(j\omega)\)" style="height:1.096em;vertical-align:-0.274em"> (convolution theorem), and energy is preserved (Parseval).</p>
+<p class="rel"><span>needs</span> <a href="complex-numbers-and-phasors.html">Complex numbers and phasors</a></p>
+<p class="rel"><span>unlocks</span> <a href="frequency-response-and-filters.html">Frequency response, Bode plots and filters</a>, <a href="laplace-transform-and-transients.html">The Laplace transform and circuit transients</a></p>
+<p class="rel"><span>see also</span> <a href="frequency-response-and-filters.html">Frequency response, Bode plots and filters</a>, <a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a>, <a href="diffraction-and-gratings.html">Diffraction and diffraction gratings</a>, <a href="coherence-of-light.html">Temporal and spatial coherence</a></p>
+<p class="rel"><span>mentioned in</span> <a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a>, <a href="diffraction-and-gratings.html">Diffraction and diffraction gratings</a></p>
+<details class="path"><summary>Learning path: 10 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="circuits.html">Circuit theory: the map of the subject</a></li><li><a href="kirchhoff-laws-and-network-theorems.html">Kirchhoff's laws and network theorems</a></li><li><a href="lti-systems-and-convolution.html">LTI systems, impulse response and first/second-order circuits</a></li><li><a href="complex-numbers-and-phasors.html">Complex numbers and phasors</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org30faa44" class="outline-2">
+<h2 id="org30faa44">Series</h2>
+<div class="outline-text-2" id="text-org30faa44">
+<p>
+Orthogonality <img class="m" src="m/ac2cd8dd7c055a86e4ed2ccf35a73ac90600376b.svg" alt="\(\frac1T\int_Te^{j(n-m)\omega_0t}\dd t=\delta_{nm}\)" style="height:1.363em;vertical-align:-0.395em"> gives the coefficients <span class="cite">(<a class="ref" href="references.html#ref-fourier1822" data-full="J. Fourier, Théorie analytique de la chaleur (Firmin Didot, Paris, 1822)." aria-label="J. Fourier, Théorie analytique de la chaleur (Firmin Didot, Paris, 1822).">Fourier 1822</a>)</span>. Real form: <img class="m" src="m/1e345768d0bb2286825a63628fa2005cedb19eb4.svg" alt="\(a_0+\sum(a_n\cos n\omega_0t+b_n\sin n\omega_0t)\)" style="height:1.096em;vertical-align:-0.274em">. Square wave of amplitude ±A: <img class="m" src="m/a3fb1df60d030c2b715b5d151fa362b91f21cd1f.svg" alt="\(x=\frac{4A}{\pi}\sum_{n\text{ odd}}\frac{\sin n\omega_0t}{n}\)" style="height:1.343em;vertical-align:-0.376em"> — harmonics fall as <img class="m" src="m/d556e80fb6ac4dc43e02bc5005b6cc8993df8d5d.svg" alt="\(1/n\)" style="height:1.096em;vertical-align:-0.274em"> (jump discontinuity); a triangle wave as <img class="m" src="m/fa89a97a5b33b9d89e4608e4dd08298e84ff504d.svg" alt="\(1/n^2\)" style="height:1.166em;vertical-align:-0.268em">. Partial sums overshoot by 9% at jumps (Gibbs). Parseval: <img class="m" src="m/f8a5d5fac6c954b0473cbc06ebe99c4a2021508f.svg" alt="\(\frac1T\int|x|^2=\sum|c_n|^2\)" style="height:1.304em;vertical-align:-0.378em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf5c02bc" class="outline-2">
+<h2 id="orgf5c02bc">Transform and properties</h2>
+<div class="outline-text-2" id="text-orgf5c02bc">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">property</th>
+<th scope="col" class="org-left">time</th>
+<th scope="col" class="org-left">frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">shift</td>
+<td class="org-left">x(t − t₀)</td>
+<td class="org-left">e<sup>−jωt₀</sup> X(ω)</td>
+</tr>
+
+<tr>
+<td class="org-left">modulation</td>
+<td class="org-left">e<sup>jω₀t</sup> x(t)</td>
+<td class="org-left">X(ω − ω₀)</td>
+</tr>
+
+<tr>
+<td class="org-left">derivative</td>
+<td class="org-left">dx/dt</td>
+<td class="org-left">jω X(ω)</td>
+</tr>
+
+<tr>
+<td class="org-left">convolution</td>
+<td class="org-left">(h * x)(t)</td>
+<td class="org-left">H(ω) X(ω)</td>
+</tr>
+
+<tr>
+<td class="org-left">product</td>
+<td class="org-left">x(t) y(t)</td>
+<td class="org-left">(1/2π) X * Y</td>
+</tr>
+
+<tr>
+<td class="org-left">scaling</td>
+<td class="org-left">x(at)</td>
+<td class="org-left">X(ω/a)/⎮a⎮</td>
+</tr>
+</tbody>
+</table>
+<p>
+Pairs: rectangle of width <img class="m" src="m/2bffecead559fb3898499352afcaae1e4a188f0b.svg" alt="\(\tau\)" style="height:0.472em;vertical-align:-0.000em"> ↔ <img class="m" src="m/e99b2ba8d4dcb3d54e2a7fed0ee908a86b98ed43.svg" alt="\(\tau\,\mathrm{sinc}(\omega\tau/2)\)" style="height:1.096em;vertical-align:-0.274em">; Gaussian ↔ Gaussian; <img class="m" src="m/d53d59bbdfff9c34eccc9a40989a5866bd0c291a.svg" alt="\(\delta(t)\)" style="height:1.096em;vertical-align:-0.274em"> ↔ 1; <img class="m" src="m/23adc774158a391f35614a02227c23697b201fed.svg" alt="\(e^{-at}u(t)\)" style="height:1.147em;vertical-align:-0.275em"> ↔ <img class="m" src="m/23a5b3ed54f3070730ecc0ad351b135c738837d4.svg" alt="\(\frac1{a+j\omega}\)" style="height:1.453em;vertical-align:-0.523em">. Duration × bandwidth <img class="m" src="m/7fd230fc392dfbe6752159e791fbe1dab5853de0.svg" alt="\(\gtrsim1\)" style="height:1.051em;vertical-align:-0.252em">: the same uncertainty as <a href="uncertainty-relation.html">Heisenberg</a> and <a href="diffraction-and-gratings.html">diffraction</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org1a02da3" class="outline-2">
+<h2 id="org1a02da3">Worked example</h2>
+<div class="outline-text-2" id="text-org1a02da3">
+<p>
+1 kHz square wave (±1 V) into an RC low-pass with <img class="m" src="m/816090b7ac742a19c50dee3b28bfd84a82efb055.svg" alt="\(f_c=1\)" style="height:0.974em;vertical-align:-0.214em"> kHz: fundamental amplitude <img class="m" src="m/4304578620aafbbe251f51bf15e719b6aa2f2d4c.svg" alt="\(4/\pi=1.27\)" style="height:1.096em;vertical-align:-0.274em"> V attenuated by <img class="m" src="m/609373e8e8bcdcc9a6a3a3932baa2b630807694c.svg" alt="\(1/\sqrt2\)" style="height:1.268em;vertical-align:-0.279em"> → 0.90 V; 3rd harmonic <img class="m" src="m/99c221891e360c0de26a35d0c9a0e80a2d6cc4e2.svg" alt="\(0.42\)" style="height:0.706em;vertical-align:-0.000em"> V × <img class="m" src="m/463650d2bee3c5649c86b7770cd8b436cc22e16c.svg" alt="\(1/\sqrt{10}\)" style="height:1.268em;vertical-align:-0.279em"> → 0.134 V; 5th <img class="m" src="m/bc91789860a99d19f1edd70a1a9404fabb8c8b05.svg" alt="\(0.255/\sqrt{26}=0.05\)" style="height:1.268em;vertical-align:-0.279em"> V. The output is nearly sinusoidal: low-pass filtering removes harmonics.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbd2c097" class="outline-2">
+<h2 id="orgbd2c097">Sampling</h2>
+<div class="outline-text-2" id="text-orgbd2c097">
+<p>
+Sampling at <img class="m" src="m/6bb6df29ac54455353e2445541b04a9e67a1df0b.svg" alt="\(f_s\)" style="height:0.974em;vertical-align:-0.214em"> replicates the spectrum every <img class="m" src="m/6bb6df29ac54455353e2445541b04a9e67a1df0b.svg" alt="\(f_s\)" style="height:0.974em;vertical-align:-0.214em">: no aliasing if <img class="m" src="m/3599fe93dd81346042299bba43561f6fcec480a6.svg" alt="\(f_s&gt;2f_{max}\)" style="height:0.974em;vertical-align:-0.214em"> (Nyquist–Shannon); reconstruction by sinc interpolation.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfb28284" class="outline-2">
+<h2 id="orgfb28284">Engineering applications</h2>
+<div class="outline-text-2" id="text-orgfb28284">
+<p>
+Spectrum analysis and EMC (harmonics of clocks), THD of amplifiers, OFDM in Wi-Fi/5G (orthogonal subcarriers), filters, image processing, optical Fourier transforms by lenses, FFT-based solvers.
+</p>
+</div>
+</div>
+<div id="outline-container-orgab25d8f" class="outline-2">
+<h2 id="orgab25d8f">Pitfall</h2>
+<div class="outline-text-2" id="text-orgab25d8f">
+<p>
+<img class="m" src="m/e4891c4be689e29794f8ebb746d6bdf2c5516db2.svg" alt="\(2\pi\)" style="height:0.706em;vertical-align:-0.000em"> conventions: with <img class="m" src="m/f85699bdb60055e88fcf156e64e12cb824191b0a.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> instead of <img class="m" src="m/6f82683b85c04ff62db49f40d5190a83749239dd.svg" alt="\(\omega\)" style="height:0.472em;vertical-align:-0.000em">, <img class="m" src="m/5b20f7f3fbb6d37c63228bb6cb31032aa833ed79.svg" alt="\(X(f)=\int xe^{-j2\pi ft}\dd t\)" style="height:1.265em;vertical-align:-0.329em"> and the inverse has no <img class="m" src="m/d1917cea767522498b2d83f1a6e4b4c0536496f9.svg" alt="\(1/2\pi\)" style="height:1.096em;vertical-align:-0.274em">. Mixing conventions breaks Parseval by <img class="m" src="m/e4891c4be689e29794f8ebb746d6bdf2c5516db2.svg" alt="\(2\pi\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="ac-power-and-power-factor.html"><span>← previous</span>AC power and power factor</a><a rel="next" href="laplace-transform-and-transients.html"><span>next →</span>The Laplace transform and circuit transients</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/circuits--transforms.pdf" title="PDF manual">Transforms</a> · <a class="pdf" href="pdf/circuits.pdf" title="PDF manual">Circuits</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Lebesgue integral and the convergence theorems · Mathematics</title>
+<meta name="description" content="The integral is built in three steps – indicator functions, then finite non-negative combinations of them, then suprema – and each step is forced by the one before. What the construction buys is the exchange of limit and integral under hypotheses that are about the functions rather than about the c…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-lebesgue-integral-and-the-convergence-theorems.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The Lebesgue integral and the convergence theorems · Mathematics">
+<meta property="og:description" content="The integral is built in three steps – indicator functions, then finite non-negative combinations of them, then suprema – and each step is forced by the one before. What the construction buys is the exchange of limit and integral under hypotheses that are about the functions rather than about the c…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-lebesgue-integral-and-the-convergence-theorems.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--measure-theory">Measure Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Measure Theory</p>
+<h1>The Lebesgue integral and the convergence theorems</h1>
+<p class="summary">The integral is built in three steps &#x2013; indicator functions, then finite non-negative combinations of them, then suprema &#x2013; and each step is forced by the one before. What the construction buys is the exchange of limit and integral under hypotheses that are about the functions rather than about the convergence being uniform, and those three theorems are the reason the Lebesgue integral replaced the Riemann one.</p>
+<p class="rel"><span>needs</span> <a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a>, <a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a>, <a href="supremum-and-infimum.html">Supremum and infimum</a>, <a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></p>
+<p class="rel"><span>unlocks</span> <a href="product-measures-and-the-theorems-of-tonelli-and-fubini.html">Product measures and the theorems of Tonelli and Fubini</a>, <a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a>, <a href="the-fourier-transform-inversion-and-plancherel.html">The Fourier transform, inversion and Plancherel</a>, <a href="characteristic-functions.html">Characteristic functions</a>, <a href="expectation-the-transfer-theorem-and-jensens-inequality.html">Expectation, the transfer theorem and Jensen's inequality</a></p>
+<p class="rel"><span>mentioned in</span> <a href="mathematics.html">Mathematics</a>, <a href="analysis.html">Analysis</a></p>
+<details class="path"><summary>Learning path: 18 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgecdedef">
+<p>
+A <i>simple function</i> on a measure space is a measurable
+<img class="m" src="m/03c235e4037f8f9ddd0acf985e66220dc124ae0d.svg" alt="\(s \colon X \to [0,\infty)\)" style="height:1.096em;vertical-align:-0.274em"> taking finitely many values; writing
+<img class="m" src="m/68454457f163633aa257674421d66bfef2285679.svg" alt="\(s = \sum_{k=1}^{n}c_{k}\indicator_{A_{k}}\)" style="height:1.210em;vertical-align:-0.327em"> with the <img class="m" src="m/d940c8b28ebf990a67a392fc5da6db830b60bfb7.svg" alt="\(A_{k}\)" style="height:0.913em;vertical-align:-0.164em">
+disjoint measurable and <img class="m" src="m/faf7b05d676118ed0bcc1c7c888ab56bcfc56f25.svg" alt="\(c_{k}\)" style="height:0.636em;vertical-align:-0.165em"> its distinct values, its integral is
+<img class="m" src="m/c1229d3d42f2b2355a64266cefa784305ea9aade.svg" alt="\(\int s \dd\mu = \sum_{k}c_{k}\mu(A_{k})\)" style="height:1.218em;vertical-align:-0.341em">, with the convention
+<img class="m" src="m/c3df84c37a249719f74a145767c2956aa9d77012.svg" alt="\(0\cdot\infty = 0\)" style="height:0.706em;vertical-align:-0.000em">. For measurable <img class="m" src="m/a9ea5b39d0f5d8942d7b47b39c53b9c347ad82ab.svg" alt="\(f \ge 0\)" style="height:0.974em;vertical-align:-0.214em">,
+<div class="mb"><img class="m" src="m/39fc5a5634a601308e8522c5324848cd24b74db7.svg" alt="\[ \int f \dd\mu = \sup\Bigl\{\int s\dd\mu \;\Big\vert\; s \text{ simple}, \ 0 \le s \le f\Bigr\}. \]" style="width:21.534em"></div>
+For a measurable <img class="m" src="m/af428b55ddf829e9044704887ce1bde83bdc2a14.svg" alt="\(E\)" style="height:0.749em;vertical-align:-0.000em"> one writes
+<img class="m" src="m/baaa27192e4d7896d1be52bc98a3ade26d9b9dda.svg" alt="\(\int_{E}f\dd\mu = \int f\,\indicator_{E}\dd\mu\)" style="height:1.272em;vertical-align:-0.394em">, and <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is
+<i>integrable</i> when <img class="m" src="m/10e4ed68564a1eda500bbffab7b67b7ab8df7693.svg" alt="\(\int\abs{f}\dd\mu&lt;\infty\)" style="height:1.218em;vertical-align:-0.341em">, in which case
+<img class="m" src="m/4de94cc6d63814286fb66cc4122ccf32ae6b2d93.svg" alt="\(\int f = \int f^{+} - \int f^{-}\)" style="height:1.218em;vertical-align:-0.341em"> with
+<img class="m" src="m/14829037373f5befc601106b06c2d8b27b663426.svg" alt="\(f^{\pm} = \max(\pm f, 0)\)" style="height:1.147em;vertical-align:-0.275em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org859de09">
+<p>
+For every measurable <img class="m" src="m/a9ea5b39d0f5d8942d7b47b39c53b9c347ad82ab.svg" alt="\(f \ge 0\)" style="height:0.974em;vertical-align:-0.214em"> there are simple functions
+<img class="m" src="m/1a940d8178ac1ef4cf96fba2c9e64d960d2029ad.svg" alt="\(s_{1}\le s_{2}\le\cdots\)" style="height:0.861em;vertical-align:-0.164em"> with <img class="m" src="m/1b9b10d6d075c127c6b31e48459473049242d1bb.svg" alt="\(s_{n}\to f\)" style="height:0.974em;vertical-align:-0.214em"> pointwise; the
+convergence is uniform where <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is bounded.
+</p>
+
+</div>
+
+<div class="proof" id="org5b11a93">
+<p>
+Put <img class="m" src="m/8d04c2ee312f52d6f7129d697416aaf2e2cb0c8e.svg" alt="\(s_{n} = \sum_{k=0}^{n2^{n}-1}\frac{k}{2^{n}}\indicator_{A_{n,k}} + n\,\indicator_{\setst{x}{f(x)\ge n}}\)" style="height:1.507em;vertical-align:-0.392em">,
+where <img class="m" src="m/fa36814447bfc80be6c143d218cbcc81ff12e5c5.svg" alt="\(A_{n,k} = \setst{x}{k2^{-n}\le f(x)&lt;(k+1)2^{-n}}\)" style="height:1.186em;vertical-align:-0.308em">, a measurable
+set. Each <img class="m" src="m/73cbc7ce2d93ac4cb0ecffdf006a36850d553e5b.svg" alt="\(s_{n}\)" style="height:0.636em;vertical-align:-0.165em"> is simple, and <img class="m" src="m/b7ab01bd849b781c0a540beae7b02783f7b59973.svg" alt="\(s_{n}\le s_{n+1}\)" style="height:0.953em;vertical-align:-0.257em"> because
+refining the dyadic grid can only raise the approximation from below.
+If <img class="m" src="m/b3d8043986c309e85fe9d180456c3df67f6301e9.svg" alt="\(f(x)&lt;\infty\)" style="height:1.096em;vertical-align:-0.274em"> then for <img class="m" src="m/2b88a33fc2cff6394f3f3fc51bc8897d8b107dd6.svg" alt="\(n&gt;f(x)\)" style="height:1.096em;vertical-align:-0.274em"> we have
+<img class="m" src="m/8c6f95a77a0e18025c6442ee68d09f4d793b5c27.svg" alt="\(0 \le f(x)-s_{n}(x)&lt;2^{-n}\)" style="height:1.147em;vertical-align:-0.275em">, and if <img class="m" src="m/161d916b27b158c8f3c7caeeac6668feee6e1977.svg" alt="\(f(x)=\infty\)" style="height:1.096em;vertical-align:-0.274em"> then
+<img class="m" src="m/096b5c5d4284701020be561a0ce648c19785aede.svg" alt="\(s_{n}(x) = n\to\infty\)" style="height:1.096em;vertical-align:-0.274em">. Where <img class="m" src="m/728c238bb0bb266ac4caeb9c1575bf5e084356f6.svg" alt="\(f\le M\)" style="height:0.974em;vertical-align:-0.214em">, the bound <img class="m" src="m/af60d24e4ca606a5e7724f34199330e8f130fc62.svg" alt="\(2^{-n}\)" style="height:0.873em;vertical-align:-0.000em"> is
+uniform for <img class="m" src="m/f3cf0f4dae31ab6c7e27b81b574d6ee1457e476b.svg" alt="\(n&gt;M\)" style="height:0.792em;vertical-align:-0.040em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org3585a6e">
+<p>
+Let <img class="m" src="m/bb084aa28f4ac90ff9cbce2289bbcc707ecd1eb5.svg" alt="\(0 \le f_{1}\le f_{2}\le\cdots\)" style="height:0.974em;vertical-align:-0.214em"> be measurable with
+<img class="m" src="m/d8a7f916e8a19ab8b6bade30d1bcaed8a19afa75.svg" alt="\(f_{n}\to f\)" style="height:0.974em;vertical-align:-0.214em"> pointwise. Then <img class="m" src="m/301484c391342c20fd3a0ed3aa42b1947ed6eec1.svg" alt="\(\int f_{n}\dd\mu \to \int f\dd\mu\)" style="height:1.218em;vertical-align:-0.341em">.
+</p>
+
+</div>
+
+<div class="proof" id="org4036681">
+<p>
+The integrals increase and are bounded by <img class="m" src="m/911f7cff0917e52c141434d3d015289cd557c9fb.svg" alt="\(\int f\)" style="height:1.218em;vertical-align:-0.341em">, since
+<img class="m" src="m/cffde2aac70c22316e1fbe9509ee110e2e09330f.svg" alt="\(f_{n}\le f\)" style="height:0.974em;vertical-align:-0.214em">; let <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> be their limit, so <img class="m" src="m/ea5e887a7a2f569e178969f82b3fa38ea0d18f51.svg" alt="\(L \le \int f\)" style="height:1.218em;vertical-align:-0.341em">.
+</p>
+
+<p>
+For the converse, fix a simple <img class="m" src="m/5f2cc0c85254cca52bfdace6271a37ef1f2647f0.svg" alt="\(0 \le s \le f\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/cb674878636b310b4489594c8428b449c63fbe55.svg" alt="\(c \in (0,1)\)" style="height:1.096em;vertical-align:-0.274em">,
+and put <img class="m" src="m/8b628bf91f0444af6dcc1f1ae8db8d34b6e5eff7.svg" alt="\(E_{n} = \setst{x}{f_{n}(x)\ge c\,s(x)}\)" style="height:1.096em;vertical-align:-0.274em">, a measurable set.
+The <img class="m" src="m/1c5ba540265082fcc8b7c237a25bb9ec693da081.svg" alt="\(E_{n}\)" style="height:0.913em;vertical-align:-0.164em"> increase, and their union is <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">: where <img class="m" src="m/3b6664eba9a9e3003a1293d2304a9dea446d59a2.svg" alt="\(s(x)=0\)" style="height:1.096em;vertical-align:-0.274em"> this
+is clear, and where <img class="m" src="m/a4ffac1bdc3d66705059a45e99c11049c2614606.svg" alt="\(s(x)&gt;0\)" style="height:1.096em;vertical-align:-0.274em"> we have <img class="m" src="m/668f96600ed58050608bba3e9ee32329a277bcd2.svg" alt="\(f(x)\ge s(x)&gt;c\,s(x)\)" style="height:1.096em;vertical-align:-0.274em">, so
+<img class="m" src="m/8aee10094d5e49bddfbcf4dd00dc5fc58596db0a.svg" alt="\(f_{n}(x)\)" style="height:1.096em;vertical-align:-0.274em"> eventually exceeds <img class="m" src="m/6f320e4ecf718df9621ae72682a5c1e0ade902e0.svg" alt="\(c\,s(x)\)" style="height:1.096em;vertical-align:-0.274em">. Now
+<img class="m" src="m/dae2a61e349a681c87ce660c63237e33298483e2.svg" alt="\(\int f_{n} \ge \int_{E_{n}} f_{n} \ge c\int_{E_{n}}s = c\sum_{k}c_{k}\mu(A_{k}\cap E_{n})\)" style="height:1.382em;vertical-align:-0.498em">,
+and by continuity from below each <img class="m" src="m/d7c48f0dd5a006926d4f25e88dff2b6d7bb25d7d.svg" alt="\(\mu(A_{k}\cap E_{n})\to\mu(A_{k})\)" style="height:1.096em;vertical-align:-0.274em">.
+Letting <img class="m" src="m/b7678314609aa8e59a817d9e879e68c76d6b30be.svg" alt="\(n\to\infty\)" style="height:0.472em;vertical-align:-0.000em"> gives <img class="m" src="m/b65e150ef3626831cc227dd4b214b350f723398e.svg" alt="\(L \ge c\int s\dd\mu\)" style="height:1.218em;vertical-align:-0.341em">, and then
+<img class="m" src="m/afa5630c2d588c1d1cbebc860d8934c83eeaeea6.svg" alt="\(c \to 1\)" style="height:0.706em;vertical-align:-0.000em"> and the supremum over <img class="m" src="m/42d2c35f20f2c22043ef0eb42920ada193d61639.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> give <img class="m" src="m/5c61d3f2897c6fdc4353e37984efcff22dd4f955.svg" alt="\(L \ge \int f\)" style="height:1.218em;vertical-align:-0.341em">.
+</p>
+
+</div>
+
+<div class="corollary" id="orgb22251d">
+<p>
+For measurable <img class="m" src="m/a4f7b11d6aa7db804aa77314a86424247ed7ef69.svg" alt="\(f,g\ge0\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/8f59d3ecd369a82f31ea6433bfd4709d06d6e1e4.svg" alt="\(\lambda \ge 0\)" style="height:0.910em;vertical-align:-0.146em">,
+<img class="m" src="m/e0a0f235d1b361cdcbbebcbbfdaa7849c90658e2.svg" alt="\(\int(f+g) = \int f + \int g\)" style="height:1.218em;vertical-align:-0.341em"> and <img class="m" src="m/a0cb7a7423999e6bf102adbf9a910541ec5a1690.svg" alt="\(\int \lambda f = \lambda\int f\)" style="height:1.218em;vertical-align:-0.341em">;
+and <img class="m" src="m/16613a320678fc68dfbb16bbefcb74a2873f6607.svg" alt="\(f \le g\)" style="height:0.974em;vertical-align:-0.214em"> implies <img class="m" src="m/d0b528bdf0650de35244bc91ee3ae6ddb3e5be13.svg" alt="\(\int f \le \int g\)" style="height:1.218em;vertical-align:-0.341em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgddfd4c1">
+<p>
+For simple functions both identities are finite sums over the common
+refinement of the two partitions, using additivity of <img class="m" src="m/5602b42c49566a683e5183a144a93b453d1accef.svg" alt="\(\mu\)" style="height:0.685em;vertical-align:-0.212em"> on
+disjoint sets. In general take increasing simple <img class="m" src="m/1b9b10d6d075c127c6b31e48459473049242d1bb.svg" alt="\(s_{n}\to f\)" style="height:0.974em;vertical-align:-0.214em"> and
+<img class="m" src="m/555c8edae164fb521a4aa4c01d88beeac0bc2ea6.svg" alt="\(t_{n}\to g\)" style="height:0.887em;vertical-align:-0.213em">; then <img class="m" src="m/7bd9e2bcabb965daad048ca08df34bb406c1adf3.svg" alt="\(s_{n}+t_{n}\)" style="height:0.838em;vertical-align:-0.168em"> is simple, increases and converges
+to <img class="m" src="m/844a17751c5ec34fc4ddd2892d16f6618ac9b83c.svg" alt="\(f+g\)" style="height:0.974em;vertical-align:-0.214em">, so monotone convergence applied three times gives the
+additivity. Monotonicity is immediate from the definition as a
+supremum, every simple function below <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> being below <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="lemma" id="org0861aa3">
+<p>
+For measurable <img class="m" src="m/1ae3eb45419fdeb40fbb9fc89e39a042d69f168f.svg" alt="\(f_{n}\ge0\)" style="height:0.974em;vertical-align:-0.214em">,
+<img class="m" src="m/a341431accdfad90d21f91afc1637c33e3390896.svg" alt="\(\int \liminf_{n} f_{n}\dd\mu \le \liminf_{n}\int f_{n}\dd\mu\)" style="height:1.218em;vertical-align:-0.341em">.
+</p>
+
+</div>
+
+<div class="proof" id="org02c5644">
+<p>
+Put <img class="m" src="m/50b344ba7b71120fe2dca62025b9aab2661afe1c.svg" alt="\(g_{N} = \inf_{n\ge N}f_{n}\)" style="height:1.068em;vertical-align:-0.310em">, measurable and increasing with
+<img class="m" src="m/b2d0ff52af66f33d2031cf4331f125d04a4b39e7.svg" alt="\(g_{N}\to\liminf_{n}f_{n}\)" style="height:0.974em;vertical-align:-0.214em">. By monotone convergence
+<img class="m" src="m/2e5747a74c79722072d1ad66d42cc9cc5fa175a1.svg" alt="\(\int g_{N}\to\int\liminf_{n}f_{n}\)" style="height:1.218em;vertical-align:-0.341em">. And <img class="m" src="m/08b2bb9dad988b7d5a5908bf7608f2c51a64545e.svg" alt="\(g_{N}\le f_{n}\)" style="height:0.974em;vertical-align:-0.214em"> for every
+<img class="m" src="m/e3a7f6df845655195bb1fcfe91670525ec99e1e5.svg" alt="\(n \ge N\)" style="height:0.898em;vertical-align:-0.153em">, so <img class="m" src="m/b1bc96e81cdfac49ac32fa8ca9e5e2a28f1a0aa0.svg" alt="\(\int g_{N}\le\inf_{n\ge N}\int f_{n}\)" style="height:1.218em;vertical-align:-0.341em">; taking
+<img class="m" src="m/61e4cffb7c2fed4748c4d4769c53cfacec38d7b5.svg" alt="\(N\to\infty\)" style="height:0.749em;vertical-align:-0.000em"> on both sides gives the claim.
+</p>
+
+</div>
+
+<div class="theorem" id="org5cd9641">
+<p>
+Let <img class="m" src="m/49a40127e0e33313f413f93580d0f462ef6ac7d2.svg" alt="\(f_{n}\)" style="height:0.974em;vertical-align:-0.214em"> be measurable with <img class="m" src="m/d8a7f916e8a19ab8b6bade30d1bcaed8a19afa75.svg" alt="\(f_{n}\to f\)" style="height:0.974em;vertical-align:-0.214em"> pointwise and
+<img class="m" src="m/8491a2f98063d31c410cad72a30fb64009ba6973.svg" alt="\(\abs{f_{n}}\le g\)" style="height:1.096em;vertical-align:-0.274em"> for a measurable <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> with
+<img class="m" src="m/0547dc168d7787ac3a14dbf401ebe59ccb0b392a.svg" alt="\(\int g\dd\mu&lt;\infty\)" style="height:1.218em;vertical-align:-0.341em">. Then <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is integrable and
+<img class="m" src="m/dda78e65bee87037103c020b63c7a9c4e17fae53.svg" alt="\(\int f_{n}\dd\mu\to\int f\dd\mu\)" style="height:1.218em;vertical-align:-0.341em">; indeed
+<img class="m" src="m/6eecc73b4252c335a51fc44488e0d466e45af2ab.svg" alt="\(\int\abs{f_{n}-f}\dd\mu\to0\)" style="height:1.218em;vertical-align:-0.341em">.
+</p>
+
+</div>
+
+<div class="proof" id="org4259c47">
+<p>
+<img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is measurable as a pointwise limit and <img class="m" src="m/daf31e0eed09223d5547d18c949ebc9c24112723.svg" alt="\(\abs{f}\le g\)" style="height:1.096em;vertical-align:-0.274em">, so
+<img class="m" src="m/c0b636931689d086db41a1b352361da340afa79d.svg" alt="\(\int\abs{f}\le\int g&lt;\infty\)" style="height:1.218em;vertical-align:-0.341em">. The functions
+<img class="m" src="m/d31de2a9f83eed7f3d9548780bb87792c17f0f9d.svg" alt="\(h_{n} = 2g - \abs{f_{n}-f}\)" style="height:1.096em;vertical-align:-0.274em"> are non-negative, since
+<img class="m" src="m/7444b7ce8faa6a6d23a650f5d76212c44897d65f.svg" alt="\(\abs{f_{n}-f}\le\abs{f_{n}}+\abs{f}\le2g\)" style="height:1.096em;vertical-align:-0.274em">, and converge pointwise to
+<img class="m" src="m/f5f22571374cc1eb23a7254012776c0c58ec8216.svg" alt="\(2g\)" style="height:0.919em;vertical-align:-0.211em">. Fatou's lemma gives
+<img class="m" src="m/9f43a8ab73d2738dbc8c189b7a8c857e5b4f07bd.svg" alt="\(\int 2g \le \liminf_{n}\int(2g-\abs{f_{n}-f}) = \int 2g - \limsup_{n}\int\abs{f_{n}-f}\)" style="height:1.218em;vertical-align:-0.341em">,
+using additivity and the finiteness of <img class="m" src="m/b3381d9dd9b89d48e2502deb50f9227b5933a62d.svg" alt="\(\int 2g\)" style="height:1.218em;vertical-align:-0.341em"> to split the
+integral. Hence <img class="m" src="m/b88119c344dca694bd87dd7e090859b5b38584d6.svg" alt="\(\limsup_{n}\int\abs{f_{n}-f}\le0\)" style="height:1.218em;vertical-align:-0.341em">, so that integral
+tends to <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">, and
+<img class="m" src="m/98f82a911802f4985c49d9b4607bf414a5837012.svg" alt="\(\abs{\int f_{n}-\int f}\le\int\abs{f_{n}-f}\to0\)" style="height:1.218em;vertical-align:-0.341em">.
+</p>
+
+</div>
+
+<div class="remark" id="org0dcc16b">
+<p>
+Domination is what fails in the standard counterexample &#x2013; the moving
+spikes <img class="m" src="m/89b173285282fa7c614024508efce918b7386348.svg" alt="\(n\,\indicator_{(0,1/n)}\)" style="height:1.096em;vertical-align:-0.395em"> converge pointwise to <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> with
+integral <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em"> throughout &#x2013; and Fatou's inequality is exactly what
+survives without it. Note also which hypothesis has disappeared compared
+with the theorem on integrating a uniform limit: nothing here is
+uniform, which is the entire gain.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="sigma-algebras-measures-and-measurable-functions.html"><span>← previous</span>Sigma-algebras, measures and measurable functions</a><a rel="next" href="square-integrable-functions-and-the-completeness-of-l2.html"><span>next →</span>Square-integrable functions and the completeness of L2</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--measure-theory.pdf" title="PDF manual">Measure Theory</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

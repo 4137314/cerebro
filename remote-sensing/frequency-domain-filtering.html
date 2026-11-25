@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filtering in the frequency domain · Remote Sensing</title>
+<meta name="description" content="Multiplying the DFT by a transfer function H(k_y,k_x) and transforming back filters the image: a low-pass filter keeps smooth variations (blur), a high-pass filter keeps details and edges, a notch filter removes periodic noise; multiplication in frequency is convolution in space.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/frequency-domain-filtering.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Filtering in the frequency domain · Remote Sensing">
+<meta property="og:description" content="Multiplying the DFT by a transfer function H(k_y,k_x) and transforming back filters the image: a low-pass filter keeps smooth variations (blur), a high-pass filter keeps details and edges, a notch filter removes periodic noise; multiplication in frequency is convolution in space.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/frequency-domain-filtering.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--filtering">Filtering</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Processing · Filtering</p>
+<h1>Filtering in the frequency domain</h1>
+<p class="summary">Multiplying the DFT by a transfer function <img class="m" src="m/f977e4558e302c31934b7b43ef8487aeb2a7b822.svg" alt="\(H(k_y,k_x)\)" style="height:1.135em;vertical-align:-0.318em"> and transforming back filters the image: a low-pass filter keeps smooth variations (blur), a high-pass filter keeps details and edges, a notch filter removes periodic noise; multiplication in frequency is convolution in space.</p>
+<p class="rel"><span>needs</span> <a href="discrete-fourier-transform.html">Two-dimensional discrete Fourier transform</a></p>
+<p class="rel"><span>see also</span> <a href="moving-window-filters.html">Moving-window (convolution) filters</a>, <a href="edge-detection.html">Edge detection and directional filters</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="discrete-fourier-transform.html">Two-dimensional discrete Fourier transform</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org4f69cd0" class="outline-2">
+<h2 id="org4f69cd0">Method</h2>
+<div class="outline-text-2" id="text-org4f69cd0">
+<p>
+<div class="mb"><img class="m" src="m/cb16655848517c5c43705fec055ab57319593a3f.svg" alt="\[ I_{out}=\mathrm{IDFT}\big\{H\cdot\mathrm{DFT}\{I\}\big\},\qquad H\cdot I_F\ \leftrightarrow\ h\ast I. \]" style="width:23.751em"></div>
+With <img class="m" src="m/2a7ea9c4e88bbf71b65938571bff07c57972df2d.svg" alt="\(D=\sqrt{k_x^2+k_y^2}\)" style="height:2.016em;vertical-align:-0.746em"> the distance from the (centred) origin and cut-off <img class="m" src="m/e5aafb22c8ea36a8a78a903842ca168b442b3278.svg" alt="\(D_0\)" style="height:0.913em;vertical-align:-0.164em">:
+</p>
+<ul class="org-ul">
+<li><b>ideal low-pass</b>: <img class="m" src="m/12a55a9cf01e970e4e4d5034f629dff5a7ab087d.svg" alt="\(H=1\)" style="height:0.749em;vertical-align:-0.000em"> if <img class="m" src="m/b5b3b164619aea5acc5ff578961e5ef61862802a.svg" alt="\(D\le D_0\)" style="height:0.913em;vertical-align:-0.164em">, else 0; <b>ideal high-pass</b>: <img class="m" src="m/9efb94efe5685526bcc6b5f75e6b11041a91dd2b.svg" alt="\(1-H_{LP}\)" style="height:0.913em;vertical-align:-0.164em">;</li>
+<li><b>Gaussian</b>: <img class="m" src="m/24daa0c67ecdd3f7a47cae6b3cec8dda0e1abb75.svg" alt="\(H=e^{-D^2/2D_0^2}\)" style="height:1.082em;vertical-align:-0.000em">, no ringing;</li>
+<li><b>notch / band-stop</b>: zero small neighbourhoods around the peaks of periodic noise (<a href="radiometric-correction.html">striping</a>).</li>
+</ul>
+<p>
+Every image equals its low-pass plus its high-pass part.
+</p>
+</div>
+</div>
+<div id="outline-container-org075aa3f" class="outline-2">
+<h2 id="org075aa3f">Picture</h2>
+<div class="outline-text-2" id="text-org075aa3f">
+<figure class="fig"><img class="m" src="m/c14a3290939fbe7c74a78d68302a371fa8169433.svg" alt="figure" style="width:22.121em"><figcaption><span class="fl">Figure 1.</span> Transfer functions <img class="m" src="m/3e1b474a81ecc9a88e470c0437a34ab2b6821cc1.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> versus distance <img class="m" src="m/d116f56cbd07caf0c126c18577221b41377aa27e.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> from the origin of the spectrum: ideal and Gaussian low-pass, and Gaussian high-pass.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-orgf445afd" class="outline-2">
+<h2 id="orgf445afd">Example</h2>
+<div class="outline-text-2" id="text-orgf445afd">
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="v">F</span> = np.fft.fftshift(np.fft.fft2(band))
+<span class="v">ky</span>, <span class="v">kx</span> = np.indices(band.shape)
+<span class="v">D</span> = np.hypot(ky - band.shape[0] / 2, kx - band.shape[1] / 2)
+<span class="v">H</span> = np.exp(-D**2 / (2 * 30**2))
+<span class="v">low</span> = np.real(np.fft.ifft2(np.fft.ifftshift(H * F)))
+<span class="v">high</span> = band - low</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orgf8bd62f" class="outline-2">
+<h2 id="orgf8bd62f">Intuition</h2>
+<div class="outline-text-2" id="text-orgf8bd62f">
+<p>
+Decide which stripe sizes to keep: big stripes are the landscape, small ones are the details and the noise.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd4a9cf3" class="outline-2">
+<h2 id="orgd4a9cf3">Pitfall</h2>
+<div class="outline-text-2" id="text-orgd4a9cf3">
+<p>
+The sharp cut of the ideal filter produces ringing (ripples near edges), because its spatial kernel is a sinc; smooth transfer functions avoid it.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="discrete-fourier-transform.html"><span>← previous</span>Two-dimensional discrete Fourier transform</a><a rel="next" href="sampling-aliasing.html"><span>next →</span>Sampling theorem and aliasing</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--filtering.pdf" title="PDF manual">Filtering</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Probability · Mathematics</title>
+<meta name="description" content="Probability is measure theory with a normalisation and two extra ideas. The normalisation – total mass one – buys the finiteness that makes every measure continuous from above and every bounded function integrable. The two ideas are independence and conditioning, and neither is measure-theoretic: t…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/probability.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Probability · Mathematics">
+<meta property="og:description" content="Probability is measure theory with a normalisation and two extra ideas. The normalisation – total mass one – buys the finiteness that makes every measure continuous from above and every bounded function integrable. The two ideas are independence and conditioning, and neither is measure-theoretic: t…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/probability.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-probability">Probability</a> / <a rel="up" href="index.html#a-probability--probability-theory">Probability Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">overview · Probability · Probability Theory</p>
+<h1>Probability</h1>
+<p class="summary">Probability is <a href="sigma-algebras-measures-and-measurable-functions.html">measure theory</a> with a normalisation and two extra ideas. The normalisation &#x2013; total mass one &#x2013; buys the finiteness that makes every measure continuous from above and every bounded function integrable. The two ideas are independence and conditioning, and neither is measure-theoretic: they are hypotheses about how information is distributed, and every theorem below is one of them applied to a sequence.</p>
+<p class="rel"><span>mentioned in</span> <a href="mathematics.html">Mathematics</a>, <a href="analysis.html">Analysis</a>, <a href="product-measures-and-the-theorems-of-tonelli-and-fubini.html">Product measures and the theorems of Tonelli and Fubini</a>, <a href="statistics.html">Statistics</a>, <a href="dynamical-systems.html">Dynamical systems</a></p>
+</header>
+<main class="note">
+<p>
+Part of <a href="mathematics.html">Mathematics</a>.
+</p>
+<div id="outline-container-org279525c" class="outline-2">
+<h2 id="org279525c">Setting up</h2>
+<div class="outline-text-2" id="text-org279525c">
+<p>
+<a href="probability-spaces-conditioning-and-independence.html">Probability spaces, conditioning and independence</a> and
+<a href="random-variables-laws-and-distribution-functions.html">random variables, laws and distribution functions</a>. The move that
+defines the subject's style is in the second: the underlying space is
+never described again, and everything is said about the measure a random
+variable pushes onto the line.
+</p>
+
+<p>
+<a href="expectation-the-transfer-theorem-and-jensens-inequality.html">Expectation, the transfer theorem and Jensen's inequality</a> makes that
+precise &#x2013; an expectation is an integral on <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em"> against the law &#x2013;
+and <a href="variance-covariance-and-the-markov-and-chebyshev-inequalities.html">variance, covariance and the Markov and Chebyshev inequalities</a>
+supplies the one bound the rest of the subject spends.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbba97b8" class="outline-2">
+<h2 id="orgbba97b8">The limit theorems</h2>
+<div class="outline-text-2" id="text-orgbba97b8">
+<p>
+Three notes, in increasing strength, all about the same sum:
+</p>
+
+<ol class="org-ol">
+<li><a href="modes-of-convergence-and-the-borel-cantelli-lemmas.html">Modes of convergence and the Borel-Cantelli lemmas</a> &#x2013; four
+inequivalent notions of convergence, and the lemma that upgrades a
+summable bound on probabilities into a statement about almost every
+outcome.</li>
+<li><a href="the-weak-and-strong-laws-of-large-numbers.html">The weak and strong laws of large numbers</a> &#x2013; the average converges
+to the mean, in probability by one application of Chebyshev, almost
+surely by Borel-Cantelli.</li>
+<li><a href="the-central-limit-theorem.html">The central limit theorem</a> &#x2013; the error of that convergence,
+rescaled, has a limit that forgets everything except the first two
+moments. It is proved through
+<a href="characteristic-functions.html">characteristic functions</a>, which turn convolution into
+multiplication.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orge679017" class="outline-2">
+<h2 id="orge679017">Conditioning done properly</h2>
+<div class="outline-text-2" id="text-orge679017">
+<p>
+<a href="conditional-expectation-as-an-orthogonal-projection.html">Conditional expectation as an orthogonal projection</a> is where the
+subject needs <a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert space</a> theory: conditioning on an event of
+probability zero has no elementary meaning, and the construction that
+works is the projection onto the square-integrable variables measurable
+with respect to the given information. <a href="square-integrable-functions-and-the-completeness-of-l2.html">The completeness of <img class="m" src="m/f3b131d6a772188adab030e30e89617ec918342f.svg" alt="\(L^{2}\)" style="height:0.892em;vertical-align:-0.000em"></a> is
+what makes that projection exist.
+</p>
+</div>
+</div>
+<div id="outline-container-org621100a" class="outline-2">
+<h2 id="org621100a">What is assumed and not proved</h2>
+<div class="outline-text-2" id="text-org621100a">
+<p>
+Two theorems are used and marked <code>assumed</code>: the uniqueness of a law
+given its <a href="characteristic-functions.html">characteristic function</a>, and Levy's continuity theorem. Both
+need Fubini's theorem, which this archive does not have. That is the
+only debt in the area, and <code>cerebro results open</code> reports it.
+</p>
+</div>
+</div>
+<div id="outline-container-org1a6f836" class="outline-2">
+<h2 id="org1a6f836">What is missing</h2>
+<div class="outline-text-2" id="text-org1a6f836">
+<p>
+<a href="statistics.html">Statistics</a> is the applied half and has its own hub. Absent from the
+theory: product measures and Fubini, hence any construction of an
+infinite sequence of independent variables; conditional expectation for
+merely integrable variables, which needs Radon-Nikodym; martingales and
+their convergence theorem; stochastic processes of any kind, Brownian
+motion in particular; and large deviations, of which only the
+elementary <a href="variance-covariance-and-the-markov-and-chebyshev-inequalities.html">Markov bound</a> is present.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="conditional-expectation-as-an-orthogonal-projection.html"><span>← previous</span>Conditional expectation as an orthogonal projection</a><a rel="next" href="the-central-limit-theorem.html"><span>next →</span>The central limit theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/probability--probability-theory.pdf" title="PDF manual">Probability Theory</a> · <a class="pdf" href="pdf/probability.pdf" title="PDF manual">Probability</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

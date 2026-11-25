@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Complex numbers and phasors · Physics</title>
+<meta name="description" content="A sinusoid v(t)=V_m\cos(\omega t+\theta)=\mathrm{Re}[\mathbf Ve^{j\omega t}] is represented by the phasor \mathbf V=V_me^{j\theta}; differentiation becomes multiplication by j\omega, so linear ODEs in sinusoidal steady state become algebraic equations in complex numbers.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/complex-numbers-and-phasors.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Complex numbers and phasors · Physics">
+<meta property="og:description" content="A sinusoid v(t)=V_m\cos(\omega t+\theta)=\mathrm{Re}[\mathbf Ve^{j\omega t}] is represented by the phasor \mathbf V=V_me^{j\theta}; differentiation becomes multiplication by j\omega, so linear ODEs in sinusoidal steady state become algebraic equations in complex numbers.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/complex-numbers-and-phasors.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-circuits">Circuits</a> / <a rel="up" href="index.html#a-circuits--ac-circuits">Ac Circuits</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Circuits · Ac Circuits</p>
+<h1>Complex numbers and phasors</h1>
+<p class="summary">A sinusoid <img class="m" src="m/90d4b0338683aaf91c4efafe4da532b034d4402e.svg" alt="\(v(t)=V_m\cos(\omega t+\theta)=\mathrm{Re}[\mathbf Ve^{j\omega t}]\)" style="height:1.179em;vertical-align:-0.271em"> is represented by the phasor <img class="m" src="m/1a8daccf762beb53c3d6345db61a34327b730f55.svg" alt="\(\mathbf V=V_me^{j\theta}\)" style="height:1.095em;vertical-align:-0.164em">; differentiation becomes multiplication by <img class="m" src="m/66456952acf245be348a1a3b5da8863362f5eafa.svg" alt="\(j\omega\)" style="height:0.936em;vertical-align:-0.215em">, so linear ODEs in sinusoidal steady state become algebraic equations in complex numbers.</p>
+<p class="rel"><span>needs</span> <a href="lti-systems-and-convolution.html">LTI systems, impulse response and first/second-order circuits</a></p>
+<p class="rel"><span>unlocks</span> <a href="impedance-and-ac-circuit-analysis.html">Impedance and the symbolic method</a>, <a href="fourier-series-and-transform.html">Fourier series and Fourier transform</a></p>
+<p class="rel"><span>see also</span> <a href="impedance-and-ac-circuit-analysis.html">Impedance and the symbolic method</a>, <a href="maxwell-equations.html">Maxwell's equations</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="circuits.html">Circuit theory: the map of the subject</a></li><li><a href="kirchhoff-laws-and-network-theorems.html">Kirchhoff's laws and network theorems</a></li><li><a href="lti-systems-and-convolution.html">LTI systems, impulse response and first/second-order circuits</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgefab330" class="outline-2">
+<h2 id="orgefab330">Complex numbers</h2>
+<div class="outline-text-2" id="text-orgefab330">
+<p>
+<img class="m" src="m/09d280d2c39165890b3d7f296b1f069e00f3e5da.svg" alt="\(z=x+jy=|z|e^{j\varphi}\)" style="height:1.179em;vertical-align:-0.271em">, <img class="m" src="m/756825944b0201e7cc8dd61b09b59aa3c57563f8.svg" alt="\(|z|=\sqrt{x^2+y^2}\)" style="height:1.359em;vertical-align:-0.313em">, <img class="m" src="m/ce20c7193d3240dc69bef6822b3cdcc1c2508989.svg" alt="\(\varphi=\mathrm{atan2}(y,x)\)" style="height:1.096em;vertical-align:-0.274em">; Euler <img class="m" src="m/29ddff19066564c619ff77ccb011752765b6c346.svg" alt="\(e^{j\varphi}=\cos\varphi+j\sin\varphi\)" style="height:1.118em;vertical-align:-0.212em">. Products multiply moduli and add arguments; <img class="m" src="m/60bea145af0f6271f440526a16ed7a781badbc8e.svg" alt="\(1/j=-j\)" style="height:1.096em;vertical-align:-0.274em">; <img class="m" src="m/efafae10490b19ae757cd8de92af7e6d90f02e0c.svg" alt="\(z\bar z=|z|^2\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc5414f1" class="outline-2">
+<h2 id="orgc5414f1">Method</h2>
+<div class="outline-text-2" id="text-orgc5414f1">
+<ol class="org-ol">
+<li>Check that the circuit is LTI and driven by sinusoids of one frequency, in steady state.</li>
+<li>Replace each source by its phasor (choose cos or sin as reference and stay consistent) <span class="cite">(<a class="ref" href="references.html#ref-steinmetz1893" data-full="C. P. Steinmetz, “Complex quantities and their use in electrical engineering”, Proceedings of the International Electrical Congress, Chicago, 640–648 (1893)." aria-label="C. P. Steinmetz, “Complex quantities and their use in electrical engineering”, Proceedings of the International Electrical Congress, Chicago, 640–648 (1893).">Steinmetz 1893</a>)</span>.</li>
+<li>Since <img class="m" src="m/23ecec8f13d8ed74a964a05ec9ce4bbfe3c7667a.svg" alt="\(\frac{\dd}{\dd t}\mathrm{Re}[\mathbf Ve^{j\omega t}]=\mathrm{Re}[j\omega\mathbf Ve^{j\omega t}]\)" style="height:1.342em;vertical-align:-0.376em">, each derivative is <img class="m" src="m/66456952acf245be348a1a3b5da8863362f5eafa.svg" alt="\(j\omega\)" style="height:0.936em;vertical-align:-0.215em">.</li>
+<li>Solve algebraically; return to time domain with <img class="m" src="m/33fd14fe4719097b6178e4d8c994a56fe9109c11.svg" alt="\(v(t)=|\mathbf V|\cos(\omega t+\arg\mathbf V)\)" style="height:1.096em;vertical-align:-0.274em">.</li>
+</ol>
+<p>
+Linearity of Re and of the circuit justifies it; it fails for nonlinear elements or different frequencies at once (use superposition per frequency).
+</p>
+</div>
+</div>
+<div id="outline-container-orge7772c8" class="outline-2">
+<h2 id="orge7772c8">RMS values</h2>
+<div class="outline-text-2" id="text-orge7772c8">
+<p>
+<img class="m" src="m/a6b602ce2c2817b0cfbc460af04a18e0574f2d3e.svg" alt="\(V_{rms}=\sqrt{\frac1T\int_0^Tv^2\dd t}=V_m/\sqrt2\)" style="height:2.016em;vertical-align:-0.565em"> for a sinusoid. Mains 230 V rms → 325 V peak.
+</p>
+</div>
+</div>
+<div id="outline-container-org49f4610" class="outline-2">
+<h2 id="org49f4610">Worked example</h2>
+<div class="outline-text-2" id="text-org49f4610">
+<p>
+<img class="m" src="m/d29efcff5e0c6dec4062a41572d31fb31b370cd8.svg" alt="\(RC\dot v+v=v_s\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/1a911de13a9af90912eca1c27a412e1a60fffb2a.svg" alt="\(v_s=10\cos(1000t)\)" style="height:1.096em;vertical-align:-0.274em"> V, <img class="m" src="m/d690b4896fb4ea8b796c5e42765d075e348d2bc4.svg" alt="\(R=1\)" style="height:0.749em;vertical-align:-0.000em"> kΩ, <img class="m" src="m/94ed8e8c13bdc75e27259cf020840daf808787f4.svg" alt="\(C=1\)" style="height:0.749em;vertical-align:-0.000em"> µF: <img class="m" src="m/c8c0174f9e4be2e6c6b1d7ce7bc366b80eb88c4f.svg" alt="\((1+j\omega RC)\mathbf V=10\Rightarrow\mathbf V=\frac{10}{1+j}=7.07e^{-j45^\circ}\)" style="height:1.526em;vertical-align:-0.534em">. So <img class="m" src="m/9fa3623b891b924fe9f73b276ecc8e4b1c9499a5.svg" alt="\(v(t)=7.07\cos(1000t-45^\circ)\)" style="height:1.096em;vertical-align:-0.274em"> V: at the corner frequency, −3 dB and −45°.
+</p>
+</div>
+</div>
+<div id="outline-container-org576890a" class="outline-2">
+<h2 id="org576890a">Engineering applications</h2>
+<div class="outline-text-2" id="text-org576890a">
+<p>
+AC power systems, RF and audio circuit design, the <img class="m" src="m/4df40f0403b7c15b711d880a78a096ea3685331f.svg" alt="\(e^{j\omega t}\)" style="height:0.905em;vertical-align:-0.000em"> convention of <a href="maxwell-equations.html">time-harmonic fields</a>, I/Q signals in communications (a complex baseband is a phasor that slowly varies).
+</p>
+</div>
+</div>
+<div id="outline-container-orgc561e2f" class="outline-2">
+<h2 id="orgc561e2f">Pitfall</h2>
+<div class="outline-text-2" id="text-orgc561e2f">
+<p>
+Phasors with peak amplitude vs rms amplitude: power formulas differ by a factor 2 (<img class="m" src="m/62840ef6d1e85913d70516ef8b1806ce5bc345d5.svg" alt="\(P=\tfrac12\mathrm{Re}(\mathbf V\mathbf I^*)\)" style="height:1.304em;vertical-align:-0.378em"> with peak, <img class="m" src="m/c59a77c4b0034967952761ca8e51f9cfbe483ffd.svg" alt="\(\mathrm{Re}(\mathbf V\mathbf I^*)\)" style="height:1.096em;vertical-align:-0.274em"> with rms). State which one you use.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="lti-systems-and-convolution.html"><span>← previous</span>LTI systems, impulse response and first/second-order circuits</a><a rel="next" href="impedance-and-ac-circuit-analysis.html"><span>next →</span>Impedance and the symbolic method</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/circuits--ac-circuits.pdf" title="PDF manual">Ac Circuits</a> · <a class="pdf" href="pdf/circuits.pdf" title="PDF manual">Circuits</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

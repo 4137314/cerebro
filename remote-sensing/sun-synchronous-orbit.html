@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sun-synchronous polar orbits and revisit time · Remote Sensing</title>
+<meta name="description" content="Most Earth-observation satellites fly near-polar orbits at 600–800 km whose plane precesses 360° a year, so they pass over every latitude at the same local solar time and similar illumination; the revisit time over a site depends on orbit, swath and pointing, and is shortened by constellations.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/sun-synchronous-orbit.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Sun-synchronous polar orbits and revisit time · Remote Sensing">
+<meta property="og:description" content="Most Earth-observation satellites fly near-polar orbits at 600–800 km whose plane precesses 360° a year, so they pass over every latitude at the same local solar time and similar illumination; the revisit time over a site depends on orbit, swath and pointing, and is shortened by constellations.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/sun-synchronous-orbit.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-acquisition">Acquisition</a> / <a rel="up" href="index.html#a-acquisition--orbits">Orbits</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Acquisition · Orbits</p>
+<h1>Sun-synchronous polar orbits and revisit time</h1>
+<p class="summary">Most Earth-observation satellites fly near-polar orbits at 600–800 km whose plane precesses 360° a year, so they pass over every latitude at the same local solar time and similar illumination; the revisit time over a site depends on orbit, swath and pointing, and is shortened by constellations.</p>
+<p class="rel"><span>needs</span> <a href="satellite-orbits.html">Satellite orbits</a></p>
+<p class="rel"><span>unlocks</span> <a href="earth-observation-missions.html">Main Earth-observation missions</a></p>
+<p class="rel"><span>see also</span> <a href="earth-observation-missions.html">Main Earth-observation missions</a>, <a href="copernicus-sentinel.html">Copernicus and the Sentinel missions</a>, <a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></p>
+<p class="rel"><span>mentioned in</span> <a href="sensor-resolutions.html">Geometric, radiometric, spectral and temporal resolution</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgf9f92f1" class="outline-2">
+<h2 id="orgf9f92f1">Definition</h2>
+<div class="outline-text-2" id="text-orgf9f92f1">
+<ul class="org-ul">
+<li><b>Polar orbit</b>: <a href="satellite-orbits.html">inclination</a> close to 90°, so the Earth rotates under the orbit and every latitude is reached.</li>
+<li><b>Sun-synchronous</b>: the nodal precession caused by the Earth's oblateness, <img class="m" src="m/ba70e454bf98cac89816fb18ee7240742962022d.svg" alt="\(\dot\Omega\propto-\cos i/a^{7/2}\)" style="height:1.283em;vertical-align:-0.269em">, is tuned to <img class="m" src="m/e303e67e3aa4745736fe5c929a42d55e5eac243a.svg" alt="\(+360^\circ\)" style="height:0.846em;vertical-align:-0.093em">/year (<img class="m" src="m/f92a8b4a14cafb75f0f24934ed71c821a85413be.svg" alt="\(i\approx98^\circ\)" style="height:0.755em;vertical-align:-0.000em"> at 700 km, slightly retrograde). The angle between orbital plane and Sun stays constant: fixed local time at the nodes (e.g. 10:30 descending node for <a href="copernicus-sentinel.html">Sentinel-2</a>).</li>
+<li><b>Revisit time</b>: interval between two observations of the same area; the <b>repeat cycle</b> is the time after which the ground track repeats exactly.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org783e63c" class="outline-2">
+<h2 id="org783e63c">Derivation</h2>
+<div class="outline-text-2" id="text-org783e63c">
+<p>
+At ~14.5 orbits a day, successive tracks at the equator are <img class="m" src="m/66453b7d2f5f731431a7a31e032caf7c0e95a7ce.svg" alt="\(360^\circ/14.5\approx25^\circ\)" style="height:1.096em;vertical-align:-0.274em"> of longitude apart (≈2750 km). A swath of 290 km (Sentinel-2) covers the equator in about 10 days with one satellite, 5 days with two satellites phased 180° apart. Wider swaths, off-nadir pointing and higher latitudes (converging tracks) shorten the revisit.
+</p>
+</div>
+</div>
+<div id="outline-container-org52723d4" class="outline-2">
+<h2 id="org52723d4">Intuition</h2>
+<div class="outline-text-2" id="text-org52723d4">
+<p>
+The satellite is always late morning wherever it passes: shadows and illumination are comparable from one image to the next, which makes <a href="change-detection.html">change detection</a> possible.
+</p>
+</div>
+</div>
+<div id="outline-container-org12d871b" class="outline-2">
+<h2 id="org12d871b">Pitfall</h2>
+<div class="outline-text-2" id="text-org12d871b">
+<p>
+Fixed local time also means a fixed bias: phenomena that happen in the afternoon (convective clouds, peak temperature) are never seen by a morning satellite.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="geostationary-orbit.html"><span>← previous</span>Geostationary orbit</a><a rel="next" href="telecom-satellite-orbits.html"><span>next →</span>Orbits of telecommunication satellites</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/acquisition--orbits.pdf" title="PDF manual">Orbits</a> · <a class="pdf" href="pdf/acquisition.pdf" title="PDF manual">Acquisition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

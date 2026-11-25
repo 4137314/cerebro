@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Algebraic (weak) division · Computer Science</title>
+<meta name="description" content="Treating a sum of products as a polynomial, f=q\cdot d+r with the quotient q=f/d the largest expression whose product with d uses only cubes of f; algebraic division ignores Boolean identities such as x\bar x=0, which makes it fast and the basis of extraction, substitution and factoring.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/algebraic-division.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Algebraic (weak) division · Computer Science">
+<meta property="og:description" content="Treating a sum of products as a polynomial, f=q\cdot d+r with the quotient q=f/d the largest expression whose product with d uses only cubes of f; algebraic division ignores Boolean identities such as x\bar x=0, which makes it fast and the basis of extraction, substitution and factoring.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/algebraic-division.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--logic-synthesis">Logic Synthesis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Hardware · Logic Synthesis</p>
+<h1>Algebraic (weak) division</h1>
+<p class="summary">Treating a sum of products as a polynomial, <img class="m" src="m/a14b47e0bb6df593e1b7f568cad94121098eec15.svg" alt="\(f=q\cdot d+r\)" style="height:0.974em;vertical-align:-0.214em"> with the quotient <img class="m" src="m/325ca994b23c901928c9eee9935eb6ccebcaed04.svg" alt="\(q=f/d\)" style="height:1.096em;vertical-align:-0.274em"> the largest expression whose product with <img class="m" src="m/9ebc774c2af2128831b85f4a54f6ceb82b3ea827.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em"> uses only cubes of <img class="m" src="m/c1ed5a3ca52156eb9911941034a69236922afca1.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">; algebraic division ignores Boolean identities such as <img class="m" src="m/4e7c8fc441e87b45f17267af74faa83214a2dada.svg" alt="\(x\bar x=0\)" style="height:0.706em;vertical-align:-0.000em">, which makes it fast and the basis of extraction, substitution and factoring.</p>
+<p class="rel"><span>unlocks</span> <a href="multilevel-logic-optimization.html">Multi-level logic optimization</a></p>
+<p class="rel"><span>see also</span> <a href="multilevel-logic-optimization.html">Multi-level logic optimization</a>, <a href="boolean-difference.html">Shannon cofactors and the Boolean difference</a></p>
+</header>
+<main class="note">
+<div id="outline-container-org590fc68" class="outline-2">
+<h2 id="org590fc68">Method</h2>
+<div class="outline-text-2" id="text-org590fc68">
+<p>
+In <b>algebraic</b> manipulation an expression is a polynomial in literals (<img class="m" src="m/c1cb305e0744a841c0171151eaf770796c623d6f.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/5d41ac60c29a86007f27eb451307aa90a7b79a94.svg" alt="\(\bar x\)" style="height:0.622em;vertical-align:-0.000em"> are different variables), with no <img class="m" src="m/2d7491556c38c2a34bf321ba563b96230498eadf.svg" alt="\(xx=x\)" style="height:0.472em;vertical-align:-0.000em"> or <img class="m" src="m/4e7c8fc441e87b45f17267af74faa83214a2dada.svg" alt="\(x\bar x=0\)" style="height:0.706em;vertical-align:-0.000em">. Weak division of <img class="m" src="m/c1ed5a3ca52156eb9911941034a69236922afca1.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> by <img class="m" src="m/105450d6ab00f8b3dbaf8ff862ed042f9b794052.svg" alt="\(d=\sum_i d_i\)" style="height:1.151em;vertical-align:-0.334em">:
+</p>
+<ol class="org-ol">
+<li>for each cube <img class="m" src="m/52e12f6f959c01f49ab87e690c8b0ff6cfcf17ea.svg" alt="\(d_i\)" style="height:0.925em;vertical-align:-0.167em"> of <img class="m" src="m/9ebc774c2af2128831b85f4a54f6ceb82b3ea827.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em">, <img class="m" src="m/9d74f4eaeaa33be9d07f85fc00236fc5f453737d.svg" alt="\(q_i=\{c/d_i : c\in f,\ d_i\subseteq c\}\)" style="height:1.096em;vertical-align:-0.274em"> (remove the literals of <img class="m" src="m/52e12f6f959c01f49ab87e690c8b0ff6cfcf17ea.svg" alt="\(d_i\)" style="height:0.925em;vertical-align:-0.167em"> from the cubes of <img class="m" src="m/c1ed5a3ca52156eb9911941034a69236922afca1.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> that contain them);</li>
+<li><img class="m" src="m/d9aee0cb51308d059687ccc1ff4c2ba6c5d1aac9.svg" alt="\(q=\bigcap_i q_i\)" style="height:1.151em;vertical-align:-0.334em">;</li>
+<li><img class="m" src="m/dd78f727290975f21ac68d0206c3b09e521a690b.svg" alt="\(r=f-q\,d\)" style="height:0.974em;vertical-align:-0.214em"> (the cubes of <img class="m" src="m/c1ed5a3ca52156eb9911941034a69236922afca1.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> not produced by <img class="m" src="m/611aad326688bdd2269b90e5fa07756ee5d75a90.svg" alt="\(q\,d\)" style="height:0.974em;vertical-align:-0.214em">).</li>
+</ol>
+<p>
+<b>Boolean</b> division uses identities and don't-cares too; it finds more but is far more expensive.
+</p>
+</div>
+</div>
+<div id="outline-container-orgab3e88a" class="outline-2">
+<h2 id="orgab3e88a">Example</h2>
+<div class="outline-text-2" id="text-orgab3e88a">
+<p>
+<img class="m" src="m/7a6913acafb704dd2502e27b8fac4d8ba770108e.svg" alt="\(f=ac+ad+bc+bd+e\)" style="height:0.974em;vertical-align:-0.214em">, <img class="m" src="m/873ef25b7380ba92aa8ffda4779af4ee11a58d65.svg" alt="\(d=a+b\)" style="height:0.852em;vertical-align:-0.094em">: <img class="m" src="m/f1312b13aa21358a52c383d4b066f86cb20d900f.svg" alt="\(q_a=\{c,d\}\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/b80cd18c889a360914a5ef299e9f615e0ec847af.svg" alt="\(q_b=\{c,d\}\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/c730a066bc73ff66bd038a4fa2eeea4a70cb1271.svg" alt="\(q=c+d\)" style="height:0.974em;vertical-align:-0.214em">, <img class="m" src="m/13452e51a973435766d6d38ecdc402afa75befd7.svg" alt="\(r=e\)" style="height:0.472em;vertical-align:-0.000em">. So <img class="m" src="m/c473bb70bd983bab4da7dedd47872a5ce0e7a943.svg" alt="\(f=(a+b)(c+d)+e\)" style="height:1.096em;vertical-align:-0.274em">: 9 literals become 5.
+</p>
+</div>
+</div>
+<div id="outline-container-orga192866" class="outline-2">
+<h2 id="orga192866">Kernels</h2>
+<div class="outline-text-2" id="text-orga192866">
+<p>
+A <b>kernel</b> of <img class="m" src="m/c1ed5a3ca52156eb9911941034a69236922afca1.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is a cube-free quotient <img class="m" src="m/3e729249f9da9d659091a770229561b26add6e87.svg" alt="\(f/c\)" style="height:1.096em;vertical-align:-0.274em"> by a cube <img class="m" src="m/b89f22107378b842f1c34383ec5fd8b764c4d3aa.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> (the co-kernel); two functions sharing a kernel, or a kernel intersection, share a common sub-expression that can be extracted once. <img class="m" src="m/c7a19d8f9a96ab00531290f4b241803e33a15013.svg" alt="\(f=ace+bce+de+g\)" style="height:0.974em;vertical-align:-0.214em">: <img class="m" src="m/76ed4c8e1684300fe981a69f3c981adb07a11f95.svg" alt="\(f/ce=a+b\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/7a47c3a82e75bfe5f794b7f0799dd00063381e50.svg" alt="\(f/e=ac+bc+d\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org04ce7c3" class="outline-2">
+<h2 id="org04ce7c3">Intuition</h2>
+<div class="outline-text-2" id="text-org04ce7c3">
+<p>
+It is long division of polynomials applied to logic: factor out what the terms have in common, without using the special rules of Boolean algebra.
+</p>
+</div>
+</div>
+<div id="outline-container-org72afe8b" class="outline-2">
+<h2 id="org72afe8b">Pitfall</h2>
+<div class="outline-text-2" id="text-org72afe8b">
+<p>
+Algebraic division misses Boolean factorisations: <img class="m" src="m/2478670609a71c3a46d43ddba9df3663d67a8a14.svg" alt="\(f=a\bar b+\bar a b+\dots\)" style="height:1.125em;vertical-align:-0.214em"> does not factor algebraically through <img class="m" src="m/53272dc57fc46a9cde6059e885dfd10ce5e6e06b.svg" alt="\(a\oplus b\)" style="height:0.852em;vertical-align:-0.094em">, and <img class="m" src="m/6ea2c9fe77490b82328e88a1df5800ce218e9e57.svg" alt="\((a+b)(a+c)=a+bc\)" style="height:1.096em;vertical-align:-0.274em"> is invisible to it.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="pipelining.html"><span>← previous</span>Pipelining</a><a rel="next" href="boolean-difference.html"><span>next →</span>Shannon cofactors and the Boolean difference</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--logic-synthesis.pdf" title="PDF manual">Logic Synthesis</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

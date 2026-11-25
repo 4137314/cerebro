@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parameter passing · Computer Science</title>
+<meta name="description" content="By value the callee gets a copy and cannot change the caller's variable; by address (pointer) or by reference it reaches the caller's variable; Java passes everything by value, but the value of an object variable is a reference.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/parameter-passing.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Parameter passing · Computer Science">
+<meta property="og:description" content="By value the callee gets a copy and cannot change the caller's variable; by address (pointer) or by reference it reaches the caller's variable; Java passes everything by value, but the value of an object variable is a reference.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/parameter-passing.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--memory">Memory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Memory</p>
+<h1>Parameter passing</h1>
+<p class="summary">By value the callee gets a copy and cannot change the caller's variable; by address (pointer) or by reference it reaches the caller's variable; Java passes everything by value, but the value of an object variable is a reference.</p>
+<p class="rel"><span>needs</span> <a href="call-stack.html">Memory model: static area, stack and heap</a></p>
+<p class="rel"><span>see also</span> <a href="pointers-references.html">Pointers, references and dynamic memory in C++</a>, <a href="java-references.html">Objects, references and garbage collection in Java</a>, <a href="cpp-special-members.html">Special member functions and RAII</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org904f040" class="outline-2">
+<h2 id="org904f040">Definition</h2>
+<div class="outline-text-2" id="text-org904f040">
+<ul class="org-ul">
+<li><b>By value</b>: the actual parameter is copied into the frame of the callee. Changes stay local.</li>
+<li><b>By address</b> (C, C++): the caller passes <code>&amp;x</code>; the callee works on <code>*p</code>.</li>
+<li><b>By reference</b> (C++ <code>T&amp;</code>): the parameter is another name for the caller's variable. <code>const T&amp;</code> avoids the copy of a large object without allowing changes.</li>
+<li><b>Java</b>: always by value. For primitives the value is the number; for objects it is the reference, so the callee can change the object but not make the caller's variable point to another one.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4e62528" class="outline-2">
+<h2 id="org4e62528">Example</h2>
+<div class="outline-text-2" id="text-org4e62528">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="t">void</span> <span class="f">byValue</span>(<span class="t">int</span> <span class="v">x</span>)      { x = 1; }      <span class="c">// caller unchanged
+</span><span class="t">void</span> <span class="f">byAddress</span>(<span class="t">int</span>* <span class="v">p</span>)   { *p = 1; }     <span class="c">// caller changed
+</span><span class="t">void</span> <span class="f">byReference</span>(<span class="t">int</span>&amp; <span class="v">r</span>) { r = 1; }      <span class="c">// caller changed
+</span><span class="t">void</span> <span class="f">read</span>(<span class="k">const</span> <span class="n">std</span>::<span class="t">vector</span>&lt;<span class="t">int</span>&gt;&amp; <span class="v">v</span>);    <span class="c">// no copy, no change</span></code></pre></figure>
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">static</span> <span class="t">void</span> <span class="f">f</span>(<span class="t">StringBuilder</span> <span class="v">s</span>) { s.append(<span class="s">"!"</span>); s = <span class="k">new</span> <span class="t">StringBuilder</span>(); }
+<span class="c">// the caller sees the "!", but still holds the old object</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orgb60f6c9" class="outline-2">
+<h2 id="orgb60f6c9">Intuition</h2>
+<div class="outline-text-2" id="text-orgb60f6c9">
+<p>
+Ask what is copied: the value, or a way to reach it. A copied address still leads to the same house.
+</p>
+</div>
+</div>
+<div id="outline-container-org9008058" class="outline-2">
+<h2 id="org9008058">Pitfall</h2>
+<div class="outline-text-2" id="text-org9008058">
+<p>
+In C++ passing an object by value calls its <a href="cpp-special-members.html">copy constructor</a>: for a class that owns memory without a <a href="shallow-deep-copy.html">deep copy</a>, the copy shares the memory and the destructor of the copy frees it under the caller's feet.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="call-stack.html"><span>← previous</span>Memory model: static area, stack and heap</a><a rel="next" href="object-oriented-programming.html"><span>next →</span>Object-oriented programming</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--memory.pdf" title="PDF manual">Memory</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Synthetic aperture radar (SAR) · Remote Sensing</title>
+<meta name="description" content="A small antenna moving along the track illuminates each target during a whole stretch of path L_s=\lambda R/L; recording amplitude and phase of all echoes and combining them coherently synthesizes an antenna of length L_s, whose resolution is r_A=L/2: finer for smaller antennas and independent of r…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/synthetic-aperture-radar.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Synthetic aperture radar (SAR) · Remote Sensing">
+<meta property="og:description" content="A small antenna moving along the track illuminates each target during a whole stretch of path L_s=\lambda R/L; recording amplitude and phase of all echoes and combining them coherently synthesizes an antenna of length L_s, whose resolution is r_A=L/2: finer for smaller antennas and independent of r…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/synthetic-aperture-radar.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-acquisition">Acquisition</a> / <a rel="up" href="index.html#a-acquisition--radar">Radar</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Acquisition · Radar</p>
+<h1>Synthetic aperture radar (SAR)</h1>
+<p class="summary">A small antenna moving along the track illuminates each target during a whole stretch of path <img class="m" src="m/e5cf61a1162851c02946dad64dca03cdb2ec597e.svg" alt="\(L_s=\lambda R/L\)" style="height:1.096em;vertical-align:-0.274em">; recording amplitude and phase of all echoes and combining them coherently synthesizes an antenna of length <img class="m" src="m/a971f2dc3dcd40d31a7faa46d057ec713dbebaa3.svg" alt="\(L_s\)" style="height:0.913em;vertical-align:-0.164em">, whose resolution is <img class="m" src="m/2150c3ae3693f04c5ee51ef1247051b906198c03.svg" alt="\(r_A=L/2\)" style="height:1.096em;vertical-align:-0.274em">: finer for smaller antennas and independent of range and wavelength.</p>
+<p class="rel"><span>needs</span> <a href="azimuth-resolution.html">Azimuth resolution of a real-aperture radar</a>, <a href="chirp-pulse-compression.html">Chirp and pulse compression</a></p>
+<p class="rel"><span>unlocks</span> <a href="sar-complex-image.html">SAR complex, amplitude and intensity images</a>, <a href="earth-observation-missions.html">Main Earth-observation missions</a></p>
+<p class="rel"><span>see also</span> <a href="sar-complex-image.html">SAR complex, amplitude and intensity images</a>, <a href="speckle-statistics.html">Speckle and its statistics</a>, <a href="earth-observation-missions.html">Main Earth-observation missions</a>, <a href="copernicus-sentinel.html">Copernicus and the Sentinel missions</a></p>
+<p class="rel"><span>mentioned in</span> <a href="radar-equation.html">Radar principle and radar equation</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="radar-equation.html">Radar principle and radar equation</a></li><li><a href="side-looking-radar.html">Side-looking radar geometry</a></li><li><a href="azimuth-resolution.html">Azimuth resolution of a real-aperture radar</a></li><li><a href="range-resolution.html">Range resolution</a></li><li><a href="chirp-pulse-compression.html">Chirp and pulse compression</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org62bce8f" class="outline-2">
+<h2 id="org62bce8f">Construction</h2>
+<div class="outline-text-2" id="text-org62bce8f">
+<p>
+A target T is in the beam while the antenna travels from A to B, a distance equal to the real beam footprint <img class="m" src="m/e5cf61a1162851c02946dad64dca03cdb2ec597e.svg" alt="\(L_s=\lambda R/L\)" style="height:1.096em;vertical-align:-0.274em">: this is the synthetic antenna. During that time its range <img class="m" src="m/6f09855203873c11770d58908259d7d9c5282cc2.svg" alt="\(R(t)\)" style="height:1.096em;vertical-align:-0.274em"> varies quadratically and the echo phase <img class="m" src="m/ccce6223a9ad4564732c96b9a085a2a75957c41d.svg" alt="\(4\pi R(t)/\lambda\)" style="height:1.096em;vertical-align:-0.274em"> gives a Doppler history (a chirp in <a href="side-looking-radar.html">azimuth</a>) unique to the target's along-track position. Correlating with the expected history (azimuth compression, the azimuth analogue of <a href="chirp-pulse-compression.html">pulse compression</a>) focuses the target. A synthetic antenna of length <img class="m" src="m/a971f2dc3dcd40d31a7faa46d057ec713dbebaa3.svg" alt="\(L_s\)" style="height:0.913em;vertical-align:-0.164em"> with two-way phase has <a href="azimuth-resolution.html">beamwidth</a> <img class="m" src="m/9c4a3a58c831b20dfb78d8d16652b9ed0a22101e.svg" alt="\(\lambda/(2L_s)\)" style="height:1.096em;vertical-align:-0.274em">, so
+<div class="mb"><img class="m" src="m/046542140ff14ce6fd4b47d0a3b7788a64e7227c.svg" alt="\[ r_A=\frac{\lambda}{2L_s}\,R=\frac{\lambda R}{2}\cdot\frac{L}{\lambda R}=\frac{L}{2}. \]" style="width:14.231em"></div>
+</p>
+</div>
+</div>
+<div id="outline-container-org2a66563" class="outline-2">
+<h2 id="org2a66563">Picture</h2>
+<div class="outline-text-2" id="text-org2a66563">
+<figure class="fig"><img class="m" src="m/2f8e899119fb24bf696caa35b550d6978498be7f.svg" alt="figure" style="width:21.467em"><figcaption><span class="fl">Figure 1.</span> Synthetic aperture: a target T stays in the beam from A to B, and processing the echoes along this path synthesises an antenna of length <img class="m" src="m/e5cf61a1162851c02946dad64dca03cdb2ec597e.svg" alt="\(L_s=\lambda R/L\)" style="height:1.096em;vertical-align:-0.274em">.</figcaption></figure>
+<p>
+T is seen from every antenna position between A and B.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd390f10" class="outline-2">
+<h2 id="orgd390f10">Consequences</h2>
+<div class="outline-text-2" id="text-orgd390f10">
+<ul class="org-ul">
+<li>resolution independent of range: the farther the target, the longer the synthetic antenna;</li>
+<li>smaller antennas give finer resolution, but need higher pulse repetition frequency and give narrower swaths (ambiguity constraints);</li>
+<li>both amplitude and phase must be recorded: the product is a <a href="sar-complex-image.html">complex image</a>;</li>
+<li>modes: stripmap, spotlight (beam steered to stay on a target: longer <img class="m" src="m/a971f2dc3dcd40d31a7faa46d057ec713dbebaa3.svg" alt="\(L_s\)" style="height:0.913em;vertical-align:-0.164em">, finer resolution), ScanSAR/TOPS (bursts across sub-swaths: wide swath, coarser resolution).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc025d96" class="outline-2">
+<h2 id="orgc025d96">Intuition</h2>
+<div class="outline-text-2" id="text-orgc025d96">
+<p>
+Instead of one huge antenna, take many snapshots with a small one while moving, and add them up as if they had been taken at once.
+</p>
+</div>
+</div>
+<div id="outline-container-org435843d" class="outline-2">
+<h2 id="org435843d">Pitfall</h2>
+<div class="outline-text-2" id="text-org435843d">
+<p>
+Coherent focusing assumes a still scene: moving targets (ships, cars) are displaced in azimuth or blurred ("train off the tracks").
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="radar-bands.html"><span>← previous</span>Radar frequency bands</a><a rel="next" href="sar-complex-image.html"><span>next →</span>SAR complex, amplitude and intensity images</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/acquisition--radar.pdf" title="PDF manual">Radar</a> · <a class="pdf" href="pdf/acquisition.pdf" title="PDF manual">Acquisition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

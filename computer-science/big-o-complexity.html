@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Computational complexity and big-O · Computer Science</title>
+<meta name="description" content="f(n)=O(g(n)) if f(n)\le c\,g(n) for some c&gt;0 and all n\ge n_0: the growth rate of the number of operations (time) or memory cells (space) as the size n of the problem grows, ignoring constants; polynomial is tractable, exponential is not.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/big-o-complexity.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Computational complexity and big-O · Computer Science">
+<meta property="og:description" content="f(n)=O(g(n)) if f(n)\le c\,g(n) for some c&gt;0 and all n\ge n_0: the growth rate of the number of operations (time) or memory cells (space) as the size n of the problem grows, ignoring constants; polynomial is tractable, exponential is not.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/big-o-complexity.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--complexity">Complexity</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Hardware · Complexity</p>
+<h1>Computational complexity and big-O</h1>
+<p class="summary"><img class="m" src="m/bb911ebb49bc69813c280054b48f1d8dcd6ab00e.svg" alt="\(f(n)=O(g(n))\)" style="height:1.096em;vertical-align:-0.274em"> if <img class="m" src="m/18440a7635ed11d665db9b26c35b887902a3594a.svg" alt="\(f(n)\le c\,g(n)\)" style="height:1.096em;vertical-align:-0.274em"> for some <img class="m" src="m/3273d2b52c703573453fe7344b50908e0ba0a325.svg" alt="\(c&gt;0\)" style="height:0.749em;vertical-align:-0.045em"> and all <img class="m" src="m/328fad2fdfb26b8e8ec1a6e7e4f3080ad35180e6.svg" alt="\(n\ge n_0\)" style="height:0.861em;vertical-align:-0.164em">: the growth rate of the number of operations (time) or memory cells (space) as the size <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> of the problem grows, ignoring constants; polynomial is tractable, exponential is not.</p>
+<p class="rel"><span>unlocks</span> <a href="np-hard-optimization.html">Hard optimization problems and heuristics</a>, <a href="event-driven-simulation.html">Event-driven logic simulation</a>, <a href="static-timing-analysis.html">Static timing analysis</a>, <a href="technology-mapping.html">Technology mapping by tree covering</a></p>
+<p class="rel"><span>see also</span> <a href="np-hard-optimization.html">Hard optimization problems and heuristics</a>, <a href="static-timing-analysis.html">Static timing analysis</a>, <a href="event-driven-simulation.html">Event-driven logic simulation</a>, <a href="stl-algorithms.html">STL algorithms</a>, <a href="template-metaprogramming.html">Template metaprogramming</a>, <a href="technology-mapping.html">Technology mapping by tree covering</a></p>
+</header>
+<main class="note">
+<div id="outline-container-org0b17451" class="outline-2">
+<h2 id="org0b17451">Definition</h2>
+<div class="outline-text-2" id="text-org0b17451">
+<p>
+<div class="mb"><img class="m" src="m/22fcb107aea0c07e52f8b99392a0aea449e8dcda.svg" alt="\[ f(n)=O(g(n)) \iff \exists\, c&gt;0,\ n_0&gt;0:\ f(n)\le c\,g(n)\ \ \forall n\ge n_0 . \]" style="width:30.475em"></div>
+Equivalently, when the limit exists, <img class="m" src="m/7776590527e90a678c115ef604815e8eabbc8b3c.svg" alt="\(\lim_{n\to\infty} f(n)/g(n)=c&lt;\infty\)" style="height:1.096em;vertical-align:-0.274em">. Two kinds:
+</p>
+<ul class="org-ul">
+<li><b>time complexity</b>: elementary steps (additions, comparisons, jumps);</li>
+<li><b>space complexity</b>: memory locations (bits, words).</li>
+</ul>
+<p>
+Classes, from slow to fast growth: <img class="m" src="m/db232d0cd832a3fae3e6b6755f176b14153e936b.svg" alt="\(O(1)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/66ddf3bcf31dc141ffc1f3be703fe5e8f1db2803.svg" alt="\(O(\log n)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/75759c7342019bc0f32aba564d0313818f7efb7a.svg" alt="\(O(n)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/97e1e39e776ec7a09228b9dbb54c0b49d831e225.svg" alt="\(O(n\log n)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/5fea73671d3ae72ee0076fde82572e0496f1e777.svg" alt="\(O(n^2)\)" style="height:1.166em;vertical-align:-0.268em">, <img class="m" src="m/b9bb9439d30af0cdc064e8244fbe6963183c38f2.svg" alt="\(O(n^k)\)" style="height:1.204em;vertical-align:-0.277em"> polynomial, <img class="m" src="m/ad7f36028604ff062c5239af445d1922abadaf72.svg" alt="\(O(2^n)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/2c628d78d207a9e43dea2896c2977c263600ef32.svg" alt="\(O(n!)\)" style="height:1.096em;vertical-align:-0.274em"> exponential.
+</p>
+</div>
+</div>
+<div id="outline-container-org5288a46" class="outline-2">
+<h2 id="org5288a46">Derivation</h2>
+<div class="outline-text-2" id="text-org5288a46">
+<p>
+Count operations through the algorithm. Shifting every component of a circuit by one position is one operation each: <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> operations, and doubling <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> doubles the time. Comparing every pair of components is <img class="m" src="m/fae095a8fb0fa9b171f0f476c5c9c9fb542151f2.svg" alt="\(n(n-1)/2=O(n^2)\)" style="height:1.166em;vertical-align:-0.268em">: doubling <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> quadruples the time, tripling it multiplies by nine. Trying every subset of <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> gates is <img class="m" src="m/c26a7f26d15dab5c1c6e5096f2fb7c0c2fafc477.svg" alt="\(2^n\)" style="height:0.728em;vertical-align:-0.000em">: adding one gate doubles the time. Rules: <img class="m" src="m/b1dedb33589d39c3a2f4b4069a94c1feec61c312.svg" alt="\(O(f)+O(g)=O(\max(f,g))\)" style="height:1.096em;vertical-align:-0.274em"> along a sequence, <img class="m" src="m/27d46eb564ee264edb3b83ccbba509d21d533a6a.svg" alt="\(O(f)\cdot O(g)=O(fg)\)" style="height:1.096em;vertical-align:-0.274em"> for nested loops, constants disappear: <img class="m" src="m/bc59e320bad4f6aef09a7dd744fcc50e2c5c64e5.svg" alt="\(O(3n^2+5n)=O(n^2)\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org27f5a8b" class="outline-2">
+<h2 id="org27f5a8b">Picture</h2>
+<div class="outline-text-2" id="text-org27f5a8b">
+<figure class="fig"><img class="m" src="m/ef90d286f54c388450543f6fce32bf13eb26272f.svg" alt="figure" style="width:22.441em"><figcaption><span class="fl">Figure 1.</span> Operation counts of <img class="m" src="m/a2c18a020c3ead565af5e885500f88f778d5ce36.svg" alt="\(n\log n\)" style="height:0.974em;vertical-align:-0.214em">, <img class="m" src="m/aa7be960c4472ec2e64b2ba67094743100a0c4e7.svg" alt="\(n^2\)" style="height:0.892em;vertical-align:-0.000em">, <img class="m" src="m/60973925654054c843e2ab069f63c393aabc17bd.svg" alt="\(n^3\)" style="height:0.892em;vertical-align:-0.000em"> and <img class="m" src="m/c26a7f26d15dab5c1c6e5096f2fb7c0c2fafc477.svg" alt="\(2^n\)" style="height:0.728em;vertical-align:-0.000em"> algorithms versus input size <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">: the exponential overtakes every polynomial.</figcaption></figure>
+<p>
+For small <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> the constants matter; for large <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> only the class does.
+</p>
+</div>
+</div>
+<div id="outline-container-orga4d07fb" class="outline-2">
+<h2 id="orga4d07fb">Intuition</h2>
+<div class="outline-text-2" id="text-orga4d07fb">
+<p>
+Big-O answers "what happens if the circuit is ten times bigger?". Design tools must handle millions of gates, so only near-linear algorithms survive on full chips.
+</p>
+</div>
+</div>
+<div id="outline-container-orgab9f88a" class="outline-2">
+<h2 id="orgab9f88a">Pitfall</h2>
+<div class="outline-text-2" id="text-orgab9f88a">
+<p>
+<img class="m" src="m/c95e43a41a1b8092c7dde3eb262d87291968fc91.svg" alt="\(O\)" style="height:0.749em;vertical-align:-0.000em"> is an upper bound and hides constants: an <img class="m" src="m/5fea73671d3ae72ee0076fde82572e0496f1e777.svg" alt="\(O(n^2)\)" style="height:1.166em;vertical-align:-0.268em"> method with a tiny constant can beat an <img class="m" src="m/97e1e39e776ec7a09228b9dbb54c0b49d831e225.svg" alt="\(O(n\log n)\)" style="height:1.096em;vertical-align:-0.274em"> one at the sizes that matter. Worst case and average case can differ widely.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="vending-machine-design.html"><span>← previous</span>Worked design: a vending-machine controller</a><a rel="next" href="digital-design-flow.html"><span>next →</span>Digital design flow and abstraction levels</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--complexity.pdf" title="PDF manual">Complexity</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

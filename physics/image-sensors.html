@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Image sensors: CCD and CMOS · Physics</title>
+<meta name="description" content="An image sensor integrates photo-generated charge in each pixel during the exposure (N_e=\eta\frac{P\,t_{exp}}{h\nu}); a CCD moves the charge packets pixel to pixel to one output amplifier with clocked MOS gates, a CMOS active-pixel sensor converts charge to voltage inside each pixel and reads rows…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/image-sensors.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Image sensors: CCD and CMOS · Physics">
+<meta property="og:description" content="An image sensor integrates photo-generated charge in each pixel during the exposure (N_e=\eta\frac{P\,t_{exp}}{h\nu}); a CCD moves the charge packets pixel to pixel to one output amplifier with clocked MOS gates, a CMOS active-pixel sensor converts charge to voltage inside each pixel and reads rows…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/image-sensors.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-optoelectronics">Optoelectronics</a> / <a rel="up" href="index.html#a-optoelectronics--photodetectors">Photodetectors</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Optoelectronics · Photodetectors</p>
+<h1>Image sensors: CCD and CMOS</h1>
+<p class="summary">An image sensor integrates photo-generated charge in each pixel during the exposure (<img class="m" src="m/df1a8d0e338f3e095b2d5addd3003e42232e2278.svg" alt="\(N_e=\eta\frac{P\,t_{exp}}{h\nu}\)" style="height:1.458em;vertical-align:-0.379em">); a CCD moves the charge packets pixel to pixel to one output amplifier with clocked MOS gates, a CMOS active-pixel sensor converts charge to voltage inside each pixel and reads rows through switches; performance is set by quantum efficiency, full-well capacity <img class="m" src="m/f2c9d1d4d9c91187a37fbc473e9bba54df11e8c8.svg" alt="\(N_{sat}\)" style="height:0.913em;vertical-align:-0.164em">, read noise <img class="m" src="m/4fccfee7803e99f42e83ba302698d99fd9c019d3.svg" alt="\(\sigma_r\)" style="height:0.636em;vertical-align:-0.165em"> (dynamic range <img class="m" src="m/2f948a762f61c6a48d0ef689fc3e58a1dde75460.svg" alt="\(20\log\frac{N_{sat}}{\sigma_r}\)" style="height:1.461em;vertical-align:-0.482em">) and photon shot noise (<img class="m" src="m/6606089c5ad64f892ba99365e8a70be2604edd41.svg" alt="\(\mathrm{SNR}=\frac{N_e}{\sqrt{N_e+\sigma_r^2}}\)" style="height:1.905em;vertical-align:-0.933em">).</p>
+<p class="rel"><span>needs</span> <a href="photodetectors.html">Photodetectors: pn, pin and avalanche photodiodes</a>, <a href="noise-in-photodetectors.html">Noise in photodetection and receiver sensitivity</a></p>
+<p class="rel"><span>see also</span> <a href="photodiode-circuits-and-bandwidth.html">Photodiode circuits, equivalent circuit and speed</a>, <a href="semiconductor-optical-properties.html">Optical absorption and emission in semiconductors</a></p>
+<p class="rel"><span>mentioned in</span> <a href="exam-practice-optoelectronics-syllabus.html">Exam practice: optoelectronics over the whole programme (30 solved problems)</a>, <a href="optoelectronics.html">Optoelectronics: the map of the subject</a></p>
+<details class="path"><summary>Learning path: 43 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></li><li><a href="spin-precession-and-rabi-oscillations.html">Spin precession and Rabi oscillations</a></li><li><a href="angular-momentum-algebra.html">Angular momentum: algebra and spectrum</a></li><li><a href="orbital-angular-momentum.html">Orbital angular momentum and spherical harmonics</a></li><li><a href="hydrogen-atom.html">The hydrogen atom</a></li><li><a href="addition-of-angular-momenta.html">Addition of angular momenta</a></li><li><a href="identical-particles-and-pauli-principle.html">Identical particles, bosons, fermions and Pauli's principle</a></li><li><a href="square-well-potentials.html">Square wells: particle in a box and finite well</a></li><li><a href="symmetries-and-conservation-laws.html">Symmetries, conservation laws and degeneracy</a></li><li><a href="solid-state.html">Semiconductor physics: the map of the subject</a></li><li><a href="bloch-theorem-and-energy-bands.html">Bloch's theorem and energy bands</a></li><li><a href="effective-mass-and-holes.html">Effective mass, group velocity and holes</a></li><li><a href="density-of-states-and-fermi-dirac.html">Density of states and Fermi–Dirac statistics</a></li><li><a href="intrinsic-and-doped-semiconductors.html">Intrinsic and doped semiconductors</a></li><li><a href="drift-diffusion-and-einstein-relation.html">Drift, diffusion and the Einstein relation</a></li><li><a href="pn-junction-electrostatics.html">The pn junction: built-in potential, depletion and capacitance</a></li><li><a href="potentials-and-gauges.html">Potentials, gauges and retarded potentials</a></li><li><a href="quantum-harmonic-oscillator.html">The quantum harmonic oscillator</a></li><li><a href="time-independent-perturbation-theory.html">Time-independent perturbation theory</a></li><li><a href="time-dependent-perturbation-and-golden-rule.html">Time-dependent perturbation theory and Fermi's golden rule</a></li><li><a href="generation-recombination-and-continuity.html">Generation, recombination and the continuity equation</a></li><li><a href="semiconductor-optical-properties.html">Optical absorption and emission in semiconductors</a></li><li><a href="photodetectors.html">Photodetectors: pn, pin and avalanche photodiodes</a></li><li><a href="quantum-optics.html">Quantum optics: the map of the subject</a></li><li><a href="quantization-of-the-electromagnetic-field.html">Quantisation of the electromagnetic field</a></li><li><a href="fock-states.html">Fock states and thermal light</a></li><li><a href="coherent-states.html">Coherent states</a></li><li><a href="noise-in-photodetectors.html">Noise in photodetection and receiver sensitivity</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgee5ba3b" class="outline-2">
+<h2 id="orgee5ba3b">CCD: charge transfer</h2>
+<div class="outline-text-2" id="text-orgee5ba3b">
+<p>
+Each pixel is a MOS capacitor biased into deep depletion: a potential well that collects electrons. In a three-phase CCD every pixel has three gates; raising the voltage of the next gate while lowering the current one moves the well — and its charge packet — one gate along <span class="cite">(<a class="ref" href="https://doi.org/10.1002/j.1538-7305.1970.tb01790.x" data-full="W. S. Boyle and G. E. Smith, “Charge coupled semiconductor devices”, Bell System Technical Journal 49, 587–593 (1970)." aria-label="W. S. Boyle and G. E. Smith, “Charge coupled semiconductor devices”, Bell System Technical Journal 49, 587–593 (1970).">Boyle and Smith 1970</a>)</span>. Rows shift into a serial register that shifts to a single charge amplifier. Charge transfer efficiency must be &gt; 0.99999 per transfer (a 4000-column CCD makes ~12 000 transfers). Advantages: uniformity, very low noise, 100% fill factor; drawbacks: high clock voltages and power, slow serial readout, blooming and smear.
+</p>
+</div>
+</div>
+<div id="outline-container-org22b53c6" class="outline-2">
+<h2 id="org22b53c6">Picture: three-phase transfer</h2>
+<div class="outline-text-2" id="text-org22b53c6">
+<figure class="fig"><img class="m" src="m/f85f3c68fd26db9404953ea0c66ddb5f017c874d.svg" alt="figure" style="width:30.838em"><figcaption><span class="fl">Figure 1.</span> Three-phase charge transfer in a CCD: raising the next gate's potential well moves the charge packet <img class="m" src="m/bacb144e40b701a8ee522e840210fcde663b0d8c.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> one electrode along between <img class="m" src="m/40d82684257c5e9e14b43ae28a50f3d0b3898461.svg" alt="\(t_1\)" style="height:0.838em;vertical-align:-0.168em"> and <img class="m" src="m/6b4bdda47a11b498fa40882b42ed455b195bf41f.svg" alt="\(t_2\)" style="height:0.838em;vertical-align:-0.168em">.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org20c57c0" class="outline-2">
+<h2 id="org20c57c0">CMOS active-pixel sensor</h2>
+<div class="outline-text-2" id="text-org20c57c0">
+<p>
+Each pixel holds a pinned photodiode and 3–4 transistors: reset, transfer gate (4T), source follower (in-pixel buffer) and row select; columns share amplifiers and ADCs. Correlated double sampling (read reset level, then signal, subtract) cancels kTC and offset noise: read noise ≈ 1–2 e⁻. Advantages: low power, on-chip logic and ADCs, random access, speed; drawbacks historically fill factor (transistors take area — solved by microlenses and back-side illumination) and rolling-shutter distortion of moving objects (global-shutter pixels store charge). CMOS now dominates phones, cars and most scientific cameras; CCDs survive in niche astronomy and spectroscopy <span class="cite">(<a class="ref" href="https://doi.org/10.1109/16.628824" data-full="E. R. Fossum, “CMOS image sensors: electronic camera-on-a-chip”, IEEE Transactions on Electron Devices 44, 1689–1698 (1997)." aria-label="E. R. Fossum, “CMOS image sensors: electronic camera-on-a-chip”, IEEE Transactions on Electron Devices 44, 1689–1698 (1997).">Fossum 1997</a>)</span>.
+</p>
+
+<figure class="fig"><img class="m" src="m/61f45b36be27bd8274efd5da34b558b63aae371a.svg" alt="figure" style="width:30.151em"><figcaption><span class="fl">Figure 2.</span> A four-transistor CMOS active pixel: pinned photodiode, transfer gate, floating diffusion, source-follower buffer, reset and row-select switches on a shared column line.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org460e09e" class="outline-2">
+<h2 id="org460e09e">Figures of merit</h2>
+<div class="outline-text-2" id="text-org460e09e">
+<p>
+QE (Si: up to 90% with BSI and AR coating, falls in the blue and beyond 900 nm, <a href="semiconductor-optical-properties.html">absorption</a>); full-well capacity <img class="m" src="m/f2c9d1d4d9c91187a37fbc473e9bba54df11e8c8.svg" alt="\(N_{sat}\)" style="height:0.913em;vertical-align:-0.164em"> (≈ 5000 e⁻ for 1 µm phone pixels, <img class="m" src="m/1e9a4de537a0d464f58fa61b1ad0f11541818faa.svg" alt="\(10^5\)" style="height:0.892em;vertical-align:-0.000em"> for 10 µm pixels); read noise; dark current (doubles every ≈ 7 K: cooled sensors for astronomy); dynamic range <img class="m" src="m/6e9155de112c1ef92e2e382a7271c690aec29adb.svg" alt="\(20\log(N_{sat}/\sigma_r)\)" style="height:1.096em;vertical-align:-0.274em">; colour by a Bayer mosaic (RGGB) and demosaicing. At high light the SNR is shot-noise limited, <img class="m" src="m/ca3704c74c272ea5deacae0dc3ed1b679bcef44a.svg" alt="\(\sqrt{N_e}\)" style="height:1.140em;vertical-align:-0.205em">, maximum <img class="m" src="m/48bc70d01b8e0610edf297412031451009e21763.svg" alt="\(\sqrt{N_{sat}}\)" style="height:1.140em;vertical-align:-0.205em"> — larger pixels give cleaner images.
+</p>
+</div>
+</div>
+<div id="outline-container-org0018d32" class="outline-2">
+<h2 id="org0018d32">Worked examples</h2>
+<div class="outline-text-2" id="text-org0018d32">
+<ol class="org-ol">
+<li><b>Signal</b>: 3 µm pixel (<img class="m" src="m/d3ff93c2513103c2a007d26ab14548e190655957.svg" alt="\(9\times10^{-12}\)" style="height:0.983em;vertical-align:-0.089em"> m²), irradiance 10 mW/m² at 550 nm: <img class="m" src="m/e853af93587791e9d6273d0fe9a9ddeb48baf00a.svg" alt="\(9\times10^{-14}\)" style="height:0.983em;vertical-align:-0.089em"> W → <img class="m" src="m/292ca9a07c1443f9d78ec3d10d4708a9540b9bab.svg" alt="\(2.5\times10^5\)" style="height:0.983em;vertical-align:-0.089em"> photons/s; QE 0.6, 10 ms exposure: <img class="m" src="m/dfbee432242aae125bbfd1f2c6af0a83f71450fe.svg" alt="\(N_e=1.5\times10^3\)" style="height:1.056em;vertical-align:-0.169em"> e⁻; SNR <img class="m" src="m/5d11d309ebb8889e291701ac74f1e93df628775c.svg" alt="\(=\sqrt{1500}=39\)" style="height:1.140em;vertical-align:-0.148em"> (31.7 dB); a 3 e⁻ read noise changes it to 38.6.</li>
+<li><b>Dynamic range</b>: <img class="m" src="m/0256468de58e20cb5d6266b93ecd3b062adb7e09.svg" alt="\(N_{sat}=10^4\)" style="height:1.056em;vertical-align:-0.169em">, <img class="m" src="m/e813ee4993c15fe995fd444b9bfc9362a01da394.svg" alt="\(\sigma_r=3\)" style="height:0.871em;vertical-align:-0.165em"> e⁻: DR <img class="m" src="m/2fff2a6415d289dc373d5eae6c330f8026cb8636.svg" alt="\(=20\log3333=70.5\)" style="height:0.974em;vertical-align:-0.214em"> dB; best SNR <img class="m" src="m/3e80994e5421b67a5fccc08d51347d4284d7b328.svg" alt="\(=\sqrt{10^4}=100\)" style="height:1.140em;vertical-align:-0.091em"> (40 dB).</li>
+<li><b>Transfer efficiency</b>: CTE 0.99999 over 12 000 transfers keeps <img class="m" src="m/ea9403b3e8026a3041b0c5ecd7706cd58912e5ca.svg" alt="\(0.99999^{12000}=89\%\)" style="height:0.953em;vertical-align:-0.057em"> of the charge of the farthest pixel; 0.9999 would keep only 30%.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orga7522c3" class="outline-2">
+<h2 id="orga7522c3">Engineering applications</h2>
+<div class="outline-text-2" id="text-orga7522c3">
+<p>
+Phone and automotive cameras (CMOS, HDR by multiple exposures), machine vision, astronomy (large cooled CCD and CMOS mosaics), X-ray flat-panel detectors (active-matrix TFT readout of photodiodes under a scintillator), time-of-flight depth sensors, SPAD arrays for LiDAR.
+</p>
+</div>
+</div>
+<div id="outline-container-org2dd2003" class="outline-2">
+<h2 id="org2dd2003">Exam-style exercise</h2>
+<div class="outline-text-2" id="text-org2dd2003">
+<p>
+A CMOS sensor has 1.4 µm pixels, QE 0.7 at 530 nm, full well 6000 e⁻, read noise 2 e⁻, dark current 5 e⁻/s. (a) Dynamic range. (b) Exposure that fills the well at 0.1 W/m². (c) SNR at 1% of full well, including read and dark noise for a 30 ms exposure.
+</p>
+</div>
+<div id="outline-container-orgff4fdd7" class="outline-3">
+<h3 id="orgff4fdd7">Solution</h3>
+<div class="outline-text-3" id="text-orgff4fdd7">
+<p>
+(a) <img class="m" src="m/13feb206cdd4289c9359bf661c61333c04be6b57.svg" alt="\(20\log(6000/2)=69.5\)" style="height:1.096em;vertical-align:-0.274em"> dB. (b) Pixel power <img class="m" src="m/ca56f3b008930bf8c9968b7906512e01be6726a7.svg" alt="\(0.1\cdot1.96\times10^{-12}=1.96\times10^{-13}\)" style="height:0.983em;vertical-align:-0.089em"> W → <img class="m" src="m/c36d82cfbfb7852943b6daabd5d591d38e5cd7f2.svg" alt="\(5.2\times10^5\)" style="height:0.983em;vertical-align:-0.089em"> photons/s → <img class="m" src="m/e110997e1d7f288c1d722a0d9ab02c073c4c785a.svg" alt="\(3.7\times10^5\)" style="height:0.983em;vertical-align:-0.089em"> e⁻/s: full in 16 ms. (c) <img class="m" src="m/daf64a22a07da7a72f2fa50e633b1b9f38e29a5c.svg" alt="\(N_e=60\)" style="height:0.913em;vertical-align:-0.164em">, dark 0.15 e⁻: <img class="m" src="m/811bf9de6bc0254eb2793ed95d0cc38decf868fa.svg" alt="\(\mathrm{SNR}=\frac{60}{\sqrt{60+0.15+4}}=7.5\)" style="height:1.522em;vertical-align:-0.594em"> (17.5 dB); shot noise of the signal still dominates.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org6d7704c" class="outline-2">
+<h2 id="org6d7704c">Pitfall</h2>
+<div class="outline-text-2" id="text-org6d7704c">
+<p>
+Pixel SNR is not the "dynamic range": DR compares the largest and smallest signals in one exposure, SNR the signal to its own noise; at full well the SNR (≈ 40 dB) is far below the DR (≈ 70 dB).
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="avalanche-photodiodes.html"><span>← previous</span>Avalanche photodiodes</a><a rel="next" href="photoconductors-and-phototransistors.html"><span>next →</span>Photoconductors, phototransistors and Schottky photodiodes</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/optoelectronics--photodetectors.pdf" title="PDF manual">Photodetectors</a> · <a class="pdf" href="pdf/optoelectronics.pdf" title="PDF manual">Optoelectronics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

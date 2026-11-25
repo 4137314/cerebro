@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Backpropagation · Remote Sensing</title>
+<meta name="description" content="An MLP is trained by gradient descent on an error (squared error or cross-entropy) between outputs and target labels; the chain rule lets the gradient be computed layer by layer backwards, each neuron's error \delta_j being its activation derivative times the weighted errors of the neurons it feeds…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/backpropagation.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Backpropagation · Remote Sensing">
+<meta property="og:description" content="An MLP is trained by gradient descent on an error (squared error or cross-entropy) between outputs and target labels; the chain rule lets the gradient be computed layer by layer backwards, each neuron's error \delta_j being its activation derivative times the weighted errors of the neurons it feeds…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/backpropagation.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-recognition">Recognition</a> / <a rel="up" href="index.html#a-recognition--neural-networks">Neural Networks</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Recognition · Neural Networks</p>
+<h1>Backpropagation</h1>
+<p class="summary">An MLP is trained by gradient descent on an error (squared error or cross-entropy) between outputs and target labels; the chain rule lets the gradient be computed layer by layer backwards, each neuron's error <img class="m" src="m/1355c6e624931896f582fb0bf138c79128559209.svg" alt="\(\delta_j\)" style="height:1.075em;vertical-align:-0.312em"> being its activation derivative times the weighted errors of the neurons it feeds, and every weight moves by <img class="m" src="m/465b840cfb3fb92cbd97a0a4e5c62a461a4e2e6c.svg" alt="\(-\eta\,\delta_j\,h_i\)" style="height:1.075em;vertical-align:-0.312em">.</p>
+<p class="rel"><span>needs</span> <a href="multilayer-perceptron.html">Multilayer perceptron</a></p>
+<p class="rel"><span>unlocks</span> <a href="convolutional-neural-network.html">Convolutional neural networks and deep learning</a></p>
+<p class="rel"><span>see also</span> <a href="convolutional-neural-network.html">Convolutional neural networks and deep learning</a></p>
+<p class="rel"><span>mentioned in</span> <a href="perceptron.html">Perceptron algorithm</a>, <a href="training-validation.html">Training, validation and test samples</a></p>
+<details class="path"><summary>Learning path: 23 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="spectral-signature.html">Spectral signature</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li><li><a href="image-statistics.html">Image statistics: moments, mode, median</a></li><li><a href="homogeneous-area-statistics.html">Statistics of homogeneous areas in optical images</a></li><li><a href="recognition-system.html">Recognition systems</a></li><li><a href="feature-extraction.html">Feature extraction</a></li><li><a href="feature-space.html">Feature space and spectral classes</a></li><li><a href="discriminant-functions.html">Discriminant functions and decision regions</a></li><li><a href="perceptron.html">Perceptron algorithm</a></li><li><a href="artificial-neuron.html">Artificial neuron and machine learning</a></li><li><a href="multilayer-perceptron.html">Multilayer perceptron</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org6ee3ba5" class="outline-2">
+<h2 id="org6ee3ba5">Method</h2>
+<div class="outline-text-2" id="text-org6ee3ba5">
+<p>
+Error for one sample, squared form: <img class="m" src="m/0e6197faffafa0474fc4ab5a04971e676a14a938.svg" alt="\(E=\tfrac12\sum_c(y_c-t_c)^2\)" style="height:1.304em;vertical-align:-0.378em">. With <img class="m" src="m/2e85cb9611a7abd42e4bff598e4d0fd8d127e3ed.svg" alt="\(a_j=\sum_iw_{ji}h_i\)" style="height:1.151em;vertical-align:-0.334em">, <img class="m" src="m/854d4b5c9a57375a3fb7f87cbde9221844566ed3.svg" alt="\(h_j=g(a_j)\)" style="height:1.135em;vertical-align:-0.318em">:
+<div class="mb"><img class="m" src="m/924fc0c46372f14ee9afe130ea2144bb6018b0af.svg" alt="\[ \frac{\partial E}{\partial w_{ji}}=\delta_j\,h_i, \]" style="width:6.355em"></div>
+<div class="mb"><img class="m" src="m/f4ca7108fff7d92593bdf4627ac728bda9f2803f.svg" alt="\[ \delta_j=\begin{cases}g'(a_j)\,(y_j-t_j) &amp; j \text{ output}\\[2pt] g'(a_j)\sum_kw_{kj}\delta_k &amp; j \text{ hidden}\end{cases} \]" style="width:16.207em"></div>
+Update <img class="m" src="m/90ae881388dd3abd73bb728c7f64476da574f48a.svg" alt="\(w_{ji}\gets w_{ji}-\eta\,\delta_jh_i\)" style="height:1.075em;vertical-align:-0.312em"> (plus momentum). With <a href="multilayer-perceptron.html">softmax</a> and cross-entropy the output error simplifies to <img class="m" src="m/b4d01b7195d98bf434f05757b96c282fd965635d.svg" alt="\(\delta_j=y_j-t_j\)" style="height:1.075em;vertical-align:-0.312em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org601b549" class="outline-2">
+<h2 id="org601b549">Algorithm</h2>
+<div class="outline-text-2" id="text-org601b549">
+<figure class="fig"><img class="m" src="m/d6ae908945f392f4e0b2e4d39799b306d9714648.svg" alt="figure" style="width:40.714em"><figcaption><span class="fl">Algorithm 1.</span> Backpropagation: for each sample or mini-batch, propagate forward, propagate the output error backward through the layers, and update every weight against its gradient.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org301df3e" class="outline-2">
+<h2 id="org301df3e">Intuition</h2>
+<div class="outline-text-2" id="text-org301df3e">
+<p>
+Blame flows backwards: each neuron receives a share of the output error proportional to how much it contributed, and adjusts its weights accordingly.
+</p>
+</div>
+</div>
+<div id="outline-container-org738ec2f" class="outline-2">
+<h2 id="org738ec2f">Pitfall</h2>
+<div class="outline-text-2" id="text-org738ec2f">
+<p>
+Gradient descent finds local minima and is sensitive to the <a href="perceptron.html">learning rate</a> and to feature scaling; sigmoid networks with many layers suffer vanishing gradients, one reason deep networks use ReLU.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="multilayer-perceptron.html"><span>← previous</span>Multilayer perceptron</a><a rel="next" href="convolutional-neural-network.html"><span>next →</span>Convolutional neural networks and deep learning</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/recognition--neural-networks.pdf" title="PDF manual">Neural Networks</a> · <a class="pdf" href="pdf/recognition.pdf" title="PDF manual">Recognition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

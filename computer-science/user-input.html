@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading and validating user input · Computer Science</title>
+<meta name="description" content="From the console a Scanner on System.in reads tokens, and hasNextInt() checks the type before nextInt() consumes it; in a GUI the text of a field or dialog is parsed with Integer.parseInt, catching NumberFormatException; in both cases invalid input is rejected and asked again.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/user-input.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Reading and validating user input · Computer Science">
+<meta property="og:description" content="From the console a Scanner on System.in reads tokens, and hasNextInt() checks the type before nextInt() consumes it; in a GUI the text of a field or dialog is parsed with Integer.parseInt, catching NumberFormatException; in both cases invalid input is rejected and asked again.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/user-input.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--java">Java</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">example · Programming · Java</p>
+<h1>Reading and validating user input</h1>
+<p class="summary">From the console a <code>Scanner</code> on <code>System.in</code> reads tokens, and <code>hasNextInt()</code> checks the type before <code>nextInt()</code> consumes it; in a GUI the text of a field or dialog is parsed with <code>Integer.parseInt</code>, catching <code>NumberFormatException</code>; in both cases invalid input is rejected and asked again.</p>
+<p class="rel"><span>needs</span> <a href="java-exceptions.html">Exceptions in Java: checked, unchecked, finally</a></p>
+<p class="rel"><span>see also</span> <a href="event-handling.html">Event-driven programming and event handlers</a>, <a href="wrapper-autoboxing.html">Wrapper classes and autoboxing</a></p>
+<details class="path"><summary>Learning path: 10 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="exception-handling.html">Exceptions</a></li><li><a href="java-platform.html">The Java platform</a></li><li><a href="java-references.html">Objects, references and garbage collection in Java</a></li><li><a href="java-object-class.html">The class Object and final</a></li><li><a href="java-exceptions.html">Exceptions in Java: checked, unchecked, finally</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org030ff92" class="outline-2">
+<h2 id="org030ff92">Example: console</h2>
+<div class="outline-text-2" id="text-org030ff92">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="t">Scanner</span> <span class="v">in</span> = <span class="k">new</span> <span class="t">Scanner</span>(System.in);
+System.out.println(<span class="s">"Name: "</span>);
+<span class="t">String</span> <span class="v">name</span> = in.next();
+<span class="t">int</span> <span class="v">age</span> = 0; <span class="t">boolean</span> <span class="v">ok</span> = <span class="n">false</span>;
+<span class="k">while</span> (<span class="k">!</span>ok) {
+    System.out.println(<span class="s">"Age: "</span>);
+    <span class="k">if</span> (in.hasNextInt()) { age = in.nextInt(); ok = <span class="n">true</span>; }
+    <span class="c">// discard the token
+</span>    <span class="k">else</span> { System.out.println(<span class="s">"The age must be an integer!"</span>); in.next(); }
+}
+in.close();</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org4a9f0da" class="outline-2">
+<h2 id="org4a9f0da">Example: JavaFX</h2>
+<div class="outline-text-2" id="text-org4a9f0da">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="t">TextInputDialog</span> <span class="v">d</span> = <span class="k">new</span> <span class="t">TextInputDialog</span>();
+d.setHeaderText(<span class="s">"Age"</span>);
+d.showAndWait().ifPresent(text -&gt; {
+    <span class="k">try</span> {
+        <span class="t">int</span> <span class="v">age</span> = Integer.parseInt(text.trim());
+        label.setText(<span class="s">"Age: "</span> + age);
+    } <span class="k">catch</span> (NumberFormatException e) {
+        <span class="k">new</span> <span class="t">Alert</span>(<span class="n">Alert</span>.<span class="n">AlertType</span>.ERROR, <span class="s">"Not an integer: "</span> + text).showAndWait();
+    }
+});</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org3e6c986" class="outline-2">
+<h2 id="org3e6c986">Intuition</h2>
+<div class="outline-text-2" id="text-org3e6c986">
+<p>
+Input is untrusted data: check it, convert it, and decide what happens when it is wrong, before using it.
+</p>
+</div>
+</div>
+<div id="outline-container-org5a12354" class="outline-2">
+<h2 id="org5a12354">Pitfall</h2>
+<div class="outline-text-2" id="text-org5a12354">
+<p>
+Without the <code>in.next()</code> that discards the bad token, <code>hasNextInt()</code> keeps looking at the same token and the loop never ends.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="java-packages.html"><span>← previous</span>Packages</a><a rel="next" href="stack-and-queue.html"><span>next →</span>Stack and queue as classes</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--java.pdf" title="PDF manual">Java</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

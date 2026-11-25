@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Differentiability in several variables · Mathematics</title>
+<meta name="description" content="In one variable the derivative can be defined as a limit of quotients because dividing by h is available. In several it is not, and the definition that survives is the one that was really meant all along: f is differentiable at c when it is approximated near c by a linear map, with an error small c…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/differentiability-in-several-variables.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Differentiability in several variables · Mathematics">
+<meta property="og:description" content="In one variable the derivative can be defined as a limit of quotients because dividing by h is available. In several it is not, and the definition that survives is the one that was really meant all along: f is differentiable at c when it is approximated near c by a linear map, with an error small c…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/differentiability-in-several-variables.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Real Analysis</p>
+<h1>Differentiability in several variables</h1>
+<p class="summary">In one variable the derivative can be defined as a limit of quotients because dividing by <img class="m" src="m/6c6a7c0f65b6e5eec3c9e58e95f4608590dbb80f.svg" alt="\(h\)" style="height:0.761em;vertical-align:-0.000em"> is available. In several it is not, and the definition that survives is the one that was really meant all along: <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is differentiable at <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> when it is approximated near <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> by a <b>linear map</b>, with an error small compared to the displacement. Partial derivatives are then a consequence, not the definition &#x2013; and the gap between the two is where every counterexample in the subject lives.</p>
+<p class="rel"><span>needs</span> <a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a>, <a href="the-derivative.html">The derivative</a>, <a href="the-mean-value-theorem.html">The mean value theorem</a></p>
+<p class="rel"><span>unlocks</span> <a href="constrained-extrema-and-lagrange-multipliers.html">Constrained extrema and Lagrange multipliers</a>, <a href="extrema-in-several-variables-and-the-second-differential.html">Extrema in several variables and the second differential</a>, <a href="line-integrals-exact-forms-and-greens-theorem.html">Line integrals, exact forms and Green's theorem</a>, <a href="surface-integrals-the-divergence-theorem-and-stokes-theorem.html">Surface integrals, the divergence theorem and Stokes' theorem</a>, <a href="the-inverse-and-implicit-function-theorems.html">The inverse and implicit function theorems</a>, <a href="holomorphic-functions-and-the-cauchy-riemann-equations.html">Holomorphic functions and the Cauchy-Riemann equations</a>, <a href="first-order-equations-and-the-method-of-characteristics.html">First-order equations and the method of characteristics</a>, <a href="harmonic-functions-the-mean-value-property-and-the-dirichlet-problem.html">Harmonic functions, the mean value property and the Dirichlet problem</a>, <a href="the-heat-equation-separation-of-variables-and-the-maximum-principle.html">The heat equation: separation of variables and the maximum principle</a>, <a href="the-wave-equation-dalemberts-formula-and-energy.html">The wave equation: d'Alembert's formula and energy</a>, <a href="smooth-manifolds-smooth-maps-and-the-tangent-space.html">Smooth manifolds, smooth maps and the tangent space</a>, <a href="regular-curves-arc-length-and-curvature.html">Regular curves, arc length and curvature</a>, <a href="surfaces-the-two-fundamental-forms-and-gauss-curvature.html">Surfaces: the two fundamental forms and Gauss curvature</a>, <a href="canonical-transformations-and-liouvilles-theorem.html">Canonical transformations and Liouville's theorem</a>, <a href="central-forces-the-two-body-problem-and-keplers-laws.html">Central forces, the two-body problem and Kepler's laws</a>, <a href="constraints-virtual-work-and-the-lagrange-equations.html">Constraints, virtual work and the Lagrange equations</a>, <a href="noethers-theorem.html">Noether's theorem</a>, <a href="poisson-brackets.html">Poisson brackets</a>, <a href="flows-equilibria-and-linearisation.html">Flows, equilibria and linearisation</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 13 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orge9add36">
+<p>
+Let <img class="m" src="m/55c556b7d9b8197a38ae10b7bba45e1907c0df5c.svg" alt="\(U \subseteq \R^{n}\)" style="height:0.904em;vertical-align:-0.145em"> be open, <img class="m" src="m/3d70e334be63f1e6301519c1e51a1d071d60baeb.svg" alt="\(f \colon U \to \R^{m}\)" style="height:0.974em;vertical-align:-0.214em"> and
+<img class="m" src="m/57661b7e40d5418cfc6b3826dfcf3193b718778e.svg" alt="\(c \in U\)" style="height:0.792em;vertical-align:-0.040em">. Then <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is <i>differentiable at</i> <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> if there is a
+linear map <img class="m" src="m/ec0a5ece828d6172354923ad781b325cc19f0c8f.svg" alt="\(A \colon \R^{n} \to \R^{m}\)" style="height:0.755em;vertical-align:-0.000em"> with
+<div class="mb"><img class="m" src="m/8e5066ed44e23fbc4239de9f13a518fde543c8ea.svg" alt="\[ \lim_{h \to 0} \frac{\norm{f(c + h) - f(c) - A h}}{\norm{h}} = 0. \]" style="width:15.744em"></div>
+The map <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is the <i>differential</i> <img class="m" src="m/bdfd7a729bb3f06aaf6f7ec6ab95bc03544ea73a.svg" alt="\(Df(c)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org4655dbe">
+<p>
+There is at most one such <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgc2ab28f">
+<p>
+Suppose <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> both work and put <img class="m" src="m/120f9b557c5e49814f791140a1b2c8c59337f9be.svg" alt="\(C = A - B\)" style="height:0.840em;vertical-align:-0.092em">. For fixed
+<img class="m" src="m/8605ad4a39064be56858f06c79cfb196fb260c60.svg" alt="\(v \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/9191f9655b3184ae0c6ed0e760a48c3fec873595.svg" alt="\(t &gt; 0\)" style="height:0.749em;vertical-align:-0.045em">, taking <img class="m" src="m/614198842ec0c2dda04ce92c89788c89be39352a.svg" alt="\(h = tv\)" style="height:0.761em;vertical-align:-0.000em"> in the difference of the
+two limits gives <img class="m" src="m/cdd9af76140c43cfe7aede4c627ca9e87a26724a.svg" alt="\(\norm{C(tv)}/\norm{tv} \to 0\)" style="height:1.096em;vertical-align:-0.274em"> as <img class="m" src="m/a2b17e7583e24bb0de27015cdc9b9b0c8a662855.svg" alt="\(t \to 0\)" style="height:0.706em;vertical-align:-0.000em">; but
+by linearity that quotient equals <img class="m" src="m/badc9f3e1dc2288eef9cd89599ff201d0b0835da.svg" alt="\(\norm{Cv}/\norm{v}\)" style="height:1.096em;vertical-align:-0.274em">, a constant.
+Hence <img class="m" src="m/312f4379ecc06c931fb2ab8fcbdf80277793ef9c.svg" alt="\(Cv = 0\)" style="height:0.749em;vertical-align:-0.000em"> for every <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em">, so <img class="m" src="m/cf578c10ebba35b69043f345cc5d60727d560d6e.svg" alt="\(C = 0\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org2a5179f">
+<p>
+If <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is differentiable at <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> then it is continuous at <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em">, and
+every directional derivative exists, with
+<img class="m" src="m/c9e64fc7689d4f77adf10e912357940a1be11a79.svg" alt="\(\partial_{v} f(c) = Df(c) v\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org56cb84b">
+<p>
+Write <img class="m" src="m/e5e09bbeb598dad723d2b05d00b88c0af3229f06.svg" alt="\(f(c+h) - f(c) = Df(c)h + r(h)\)" style="height:1.096em;vertical-align:-0.274em"> with
+<img class="m" src="m/586a4c9581fd8c4882be96b47b7ecaa72898337c.svg" alt="\(\norm{r(h)}/\norm{h} \to 0\)" style="height:1.096em;vertical-align:-0.274em">. Both terms tend to <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> as
+<img class="m" src="m/c426deaa6ffc363f109fe5ec8bb1590b496350cf.svg" alt="\(h \to 0\)" style="height:0.761em;vertical-align:-0.000em">, giving continuity. For a direction <img class="m" src="m/8605ad4a39064be56858f06c79cfb196fb260c60.svg" alt="\(v \ne 0\)" style="height:0.974em;vertical-align:-0.214em">, take
+<img class="m" src="m/614198842ec0c2dda04ce92c89788c89be39352a.svg" alt="\(h = tv\)" style="height:0.761em;vertical-align:-0.000em">: dividing by <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> gives
+<img class="m" src="m/b9f3c84affe7c107e5f5b5e8d3b8ead9f42180bf.svg" alt="\((f(c + tv) - f(c))/t = Df(c)v + r(tv)/t\)" style="height:1.096em;vertical-align:-0.274em">, and
+<img class="m" src="m/ab5640b1c097777e196a8f9ee0074471d5b6056b.svg" alt="\(\norm{r(tv)/t} = \norm{v} \norm{r(tv)}/\norm{tv} \to 0\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="remark" id="org2f0121f">
+<p>
+The converse fails, and that is the content of the definition rather
+than a defect of it. Every directional derivative of a function can
+exist at a point while the function is not even continuous there:
+existence of directional derivatives is a family of <b>one-dimensional</b>
+statements, each blind to what happens off its own line, and
+differentiability is a statement about the whole neighbourhood at once.
+</p>
+
+</div>
+
+<div class="theorem" id="orgb7ddf24">
+<p>
+If all partial derivatives of <img class="m" src="m/4986bfc0dc2077e46a8409dc39c45026cbf3f31b.svg" alt="\(f \colon U \to \R\)" style="height:0.974em;vertical-align:-0.214em"> exist on a
+neighbourhood of <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> and are continuous at <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em">, then <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is
+differentiable at <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org857dedd">
+<p>
+Take <img class="m" src="m/c91b1a3350344fbe3d0bc2565532d899d4a624c5.svg" alt="\(n = 2\)" style="height:0.706em;vertical-align:-0.000em">; the general case is the same argument with more terms.
+Write <img class="m" src="m/04d84c7ddcd198c6b79423c6eca1b1b2d54fe176.svg" alt="\(h = (h_{1}, h_{2})\)" style="height:1.096em;vertical-align:-0.274em"> and split the increment through a corner:
+<div class="mb"><img class="m" src="m/64faf80ed2fed6f18c1f166ed87963d6b6438b45.svg" alt="\[ f(c + h) - f(c) = \bigl( f(c_{1}+h_{1}, c_{2}+h_{2}) - f(c_{1}, c_{2}+h_{2}) \bigr) + \bigl( f(c_{1}, c_{2}+h_{2}) - f(c_{1}, c_{2}) \bigr). \]" style="width:40.618em"></div>
+Each bracket varies one coordinate only, so the mean value theorem in
+one variable applies: the first equals
+<img class="m" src="m/31bd74fe5213444d53dc512f11e80b466eaf57bd.svg" alt="\(\partial_{1} f(\xi_{1}, c_{2}+h_{2}) h_{1}\)" style="height:1.096em;vertical-align:-0.274em"> and the second
+<img class="m" src="m/02023300999d65d55dbb0d8a4664a91ddef330e7.svg" alt="\(\partial_{2} f(c_{1}, \xi_{2}) h_{2}\)" style="height:1.096em;vertical-align:-0.274em">, with <img class="m" src="m/12c405b95461d02e98276af5e498371d5ea1553f.svg" alt="\(\xi_{i}\)" style="height:0.974em;vertical-align:-0.214em"> between the
+endpoints. Subtracting
+<img class="m" src="m/544d303bca41346e489c7ed1b0e54d80da06ddb9.svg" alt="\(\partial_{1}f(c) h_{1} + \partial_{2}f(c) h_{2}\)" style="height:1.096em;vertical-align:-0.274em"> and using continuity
+of the partials at <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em">, each coefficient differs from its value at
+<img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> by a quantity tending to <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> as <img class="m" src="m/c426deaa6ffc363f109fe5ec8bb1590b496350cf.svg" alt="\(h \to 0\)" style="height:0.761em;vertical-align:-0.000em">; since
+<img class="m" src="m/2ca6639412d10c982457f6bd0bdac89d31d44167.svg" alt="\(\abs{h_{i}} \le \norm{h}\)" style="height:1.096em;vertical-align:-0.274em">, the whole error divided by <img class="m" src="m/8ee35664b743f3ca5ee7a73a94c6b1cfce7c399d.svg" alt="\(\norm{h}\)" style="height:1.096em;vertical-align:-0.274em">
+tends to <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="remark" id="orgacd560f">
+<p>
+So continuity of the partials is <b>sufficient</b> and not necessary, and
+differentiability is strictly between "the partials exist" and "the
+partials are continuous". Naming the middle condition is the reason the
+linear-map definition is the right one: it is the weakest hypothesis
+under which the chain rule holds.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="cauchys-mean-value-theorem-and-de-lhopitals-rule.html"><span>← previous</span>Cauchy's mean value theorem and de l'Hopital's rule</a><a rel="next" href="the-inverse-and-implicit-function-theorems.html"><span>next →</span>The inverse and implicit function theorems</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The action functional and the first variation · Mathematics</title>
+<meta name="description" content="Mechanics can be stated as a differential law – a second-order equation for each coordinate – or as a variational one: among all paths joining two configurations, the physical one makes a certain integral stationary. The second formulation is the one that generalises, because it is coordinate-free:…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-action-functional-and-the-first-variation.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The action functional and the first variation · Mathematics">
+<meta property="og:description" content="Mechanics can be stated as a differential law – a second-order equation for each coordinate – or as a variational one: among all paths joining two configurations, the physical one makes a certain integral stationary. The second formulation is the one that generalises, because it is coordinate-free:…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-action-functional-and-the-first-variation.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-physics">Physics</a> / <a rel="up" href="index.html#a-physics--calculus-of-variations">Calculus Of Variations</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Physics · Calculus Of Variations</p>
+<h1>The action functional and the first variation</h1>
+<p class="summary">Mechanics can be stated as a differential law &#x2013; a second-order equation for each coordinate &#x2013; or as a <b>variational</b> one: among all paths joining two configurations, the physical one makes a certain integral stationary. The second formulation is the one that generalises, because it is coordinate-free: the integral does not know which chart it is written in, so the equations it produces transform correctly by construction.</p>
+<p class="rel"><span>needs</span> <a href="the-derivative.html">The derivative</a>, <a href="the-riemann-integral.html">The Riemann integral</a></p>
+<p class="rel"><span>unlocks</span> <a href="constraints-virtual-work-and-the-lagrange-equations.html">Constraints, virtual work and the Lagrange equations</a>, <a href="noethers-theorem.html">Noether's theorem</a>, <a href="the-euler-lagrange-equations.html">The Euler-Lagrange equations</a></p>
+<p class="rel"><span>mentioned in</span> <a href="analysis.html">Analysis</a>, <a href="mathematical-physics.html">Mathematical physics</a></p>
+<details class="path"><summary>Learning path: 11 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org147a50f">
+<p>
+Let <img class="m" src="m/9fd3eef1dc669936dc711c96f4398f0f061cab02.svg" alt="\(L \colon \R^{n} \times \R^{n} \times \R \to \R\)" style="height:0.846em;vertical-align:-0.093em"> be twice
+continuously differentiable &#x2013; the <i>Lagrangian</i>, written
+<img class="m" src="m/81de1a8773323818684cbd1413faa11590f6be37.svg" alt="\(L(q, \dot q, t)\)" style="height:1.096em;vertical-align:-0.274em">. For a continuously differentiable path
+<img class="m" src="m/c87aa75635d1c27199c3077a0c31d3185b6969d8.svg" alt="\(q \colon [t_{0}, t_{1}] \to \R^{n}\)" style="height:1.096em;vertical-align:-0.274em">, the <i>action</i> is
+<div class="mb"><img class="m" src="m/c1f2d083368312f69e03c71a750ec7579936ebb7.svg" alt="\[ S[q] = \int_{t_{0}}^{t_{1}} L\bigl( q(t), \dot q(t), t \bigr) \dd t. \]" style="width:13.408em"></div>
+</p>
+
+</div>
+
+<div class="definition" id="org78c7133">
+<p>
+A <i>variation</i> of <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> with fixed endpoints is a family
+<img class="m" src="m/0582478bfeba703b36e84fd3b62753164dc66b72.svg" alt="\(q_{\eps} = q + \eps \eta\)" style="height:0.852em;vertical-align:-0.213em">, where
+<img class="m" src="m/f0d524d93ae3d3f5bb388413eea75b64cb6b23e7.svg" alt="\(\eta \colon [t_{0}, t_{1}] \to \R^{n}\)" style="height:1.096em;vertical-align:-0.274em"> is continuously
+differentiable with <img class="m" src="m/f55516464da94f698d367a5073348c4769ffd1b9.svg" alt="\(\eta(t_{0}) = \eta(t_{1}) = 0\)" style="height:1.096em;vertical-align:-0.274em">. The path <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> is
+<i>stationary</i> for <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> if
+<div class="mb"><img class="m" src="m/ed128a86c954e3dbc8dd22c6cf6b2fae9c83e5c5.svg" alt="\[ \left. \frac{\dd}{\dd \eps} S[q + \eps \eta] \right|_{\eps = 0} = 0 \]" style="width:9.774em"></div>
+for every such <img class="m" src="m/a1b54939210c3b11c7045471f72745425f4ff660.svg" alt="\(\eta\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="lemma" id="org7245512">
+<p>
+Let <img class="m" src="m/8d66b4e46b44f5b5b612a0ec094a8f88ddd218c7.svg" alt="\(g \colon [t_{0}, t_{1}] \to \R^{n}\)" style="height:1.096em;vertical-align:-0.274em"> be continuous and satisfy
+<img class="m" src="m/f3c611368219149c518a9c755270cf5bc31a3e64.svg" alt="\(\int_{t_{0}}^{t_{1}} g(t) \cdot \eta(t) \dd t = 0\)" style="height:1.583em;vertical-align:-0.507em"> for every
+continuously differentiable <img class="m" src="m/a1b54939210c3b11c7045471f72745425f4ff660.svg" alt="\(\eta\)" style="height:0.685em;vertical-align:-0.212em"> vanishing at both endpoints. Then
+<img class="m" src="m/e4922392ca198a42ae806093ad2f39ba6b2c5747.svg" alt="\(g \equiv 0\)" style="height:0.919em;vertical-align:-0.211em">.
+</p>
+
+</div>
+
+<div class="proof" id="org407f7ef">
+<p>
+Suppose some component satisfies <img class="m" src="m/5800d6177624c26d69095ccc0ed3f95e2c50f992.svg" alt="\(g_{i}(\tau) \ne 0\)" style="height:1.096em;vertical-align:-0.274em">, say
+<img class="m" src="m/e095404965060d622db1ce87ed38ee9a40f89ac5.svg" alt="\(g_{i}(\tau) &gt; 0\)" style="height:1.096em;vertical-align:-0.274em">, at an interior <img class="m" src="m/f3778496560b26955f4102ffc056c53509a2cafc.svg" alt="\(\tau\)" style="height:0.472em;vertical-align:-0.000em">. By continuity there is
+<img class="m" src="m/922ee3686a7b5216d879411b382265d93b5131de.svg" alt="\([\alpha, \beta] \subseteq (t_{0}, t_{1})\)" style="height:1.096em;vertical-align:-0.274em"> containing <img class="m" src="m/f3778496560b26955f4102ffc056c53509a2cafc.svg" alt="\(\tau\)" style="height:0.472em;vertical-align:-0.000em"> on
+which <img class="m" src="m/08d67390f310b21fcad056f92b8fcab1466593a0.svg" alt="\(g_{i} &gt; g_{i}(\tau)/2\)" style="height:1.096em;vertical-align:-0.274em">. Take <img class="m" src="m/a1b54939210c3b11c7045471f72745425f4ff660.svg" alt="\(\eta\)" style="height:0.685em;vertical-align:-0.212em"> with <img class="m" src="m/820a2ed5b51be608772286616d5575a49dd61525.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em">-th component
+<img class="m" src="m/00af0905e0910c5cfb9fc66d097d3152ad7eb276.svg" alt="\((t - \alpha)^{2}(\beta - t)^{2}\)" style="height:1.166em;vertical-align:-0.268em"> on <img class="m" src="m/41e03e650ac1308bc99891db4cbd79120024088e.svg" alt="\([\alpha, \beta]\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">
+elsewhere, other components zero; it is continuously differentiable and
+vanishes at the endpoints. The integral is then strictly positive,
+contradicting the hypothesis. By continuity the conclusion extends to
+the endpoints.
+</p>
+
+</div>
+
+<div class="remark" id="org985b5c6">
+<p>
+The lemma is what converts a statement quantified over <b>all</b> variations
+into a pointwise equation, and it is the only place the arbitrariness of
+<img class="m" src="m/a1b54939210c3b11c7045471f72745425f4ff660.svg" alt="\(\eta\)" style="height:0.685em;vertical-align:-0.212em"> is spent. Everything after this is calculus.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-legendre-transform.html"><span>← previous</span>The Legendre transform</a><a rel="next" href="canonical-transformations-and-liouvilles-theorem.html"><span>next →</span>Canonical transformations and Liouville's theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/physics--calculus-of-variations.pdf" title="PDF manual">Calculus Of Variations</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">Physics</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>I²C · Computer Science</title>
+<meta name="description" content="A two-wire, half-duplex, multi-device bus: SDA (data) and SCL (clock) are open-drain lines with pull-ups, so any device can pull them low; SDA changes only while SCL is low, except for START (SDA falls with SCL high) and STOP (SDA rises with SCL high); each byte is followed by an acknowledge bit dr…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/i2c.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="I²C · Computer Science">
+<meta property="og:description" content="A two-wire, half-duplex, multi-device bus: SDA (data) and SCL (clock) are open-drain lines with pull-ups, so any device can pull them low; SDA changes only while SCL is low, except for START (SDA falls with SCL high) and STOP (SDA rises with SCL high); each byte is followed by an acknowledge bit dr…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/i2c.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--interfaces">Interfaces</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Hardware · Interfaces</p>
+<h1>I²C</h1>
+<p class="summary">A two-wire, half-duplex, multi-device bus: SDA (data) and SCL (clock) are open-drain lines with pull-ups, so any device can pull them low; SDA changes only while SCL is low, except for START (SDA falls with SCL high) and STOP (SDA rises with SCL high); each byte is followed by an acknowledge bit driven by the receiver.</p>
+<p class="rel"><span>needs</span> <a href="serial-communication.html">Serial communication</a>, <a href="std-logic.html">std_logic: nine-valued logic and resolution</a>, <a href="finite-state-machine.html">Finite-state machines</a></p>
+<p class="rel"><span>see also</span> <a href="spi.html">SPI</a></p>
+<details class="path"><summary>Learning path: 16 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li><li><a href="sr-latch.html">SR latch and D latch</a></li><li><a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></li><li><a href="fsm-analysis.html">Analysis of synchronous sequential circuits</a></li><li><a href="fsm-synthesis.html">Synthesis of finite-state machines</a></li><li><a href="digital-design-flow.html">Digital design flow and abstraction levels</a></li><li><a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a></li><li><a href="std-logic.html">std_logic: nine-valued logic and resolution</a></li><li><a href="vhdl-concurrent-assignments.html">Concurrent assignments: when–else and with–select</a></li><li><a href="vhdl-process.html">Processes and sequential statements</a></li><li><a href="sequential-logic.html">Flip-flops and registers in VHDL</a></li><li><a href="finite-state-machine.html">Finite-state machines</a></li><li><a href="serial-communication.html">Serial communication</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orge8bbcb5" class="outline-2">
+<h2 id="orge8bbcb5">Construction</h2>
+<div class="outline-text-2" id="text-orge8bbcb5">
+<p>
+Transaction:
+</p>
+<ol class="org-ol">
+<li><b>START</b>: SDA <img class="m" src="m/09fe1647689d8510cbd7766463c7551c33171b3a.svg" alt="\(1\to0\)" style="height:0.706em;vertical-align:-0.000em"> while SCL = 1.</li>
+<li><b>Address</b>: 7 bits, MSB first, plus R/<img class="m" src="m/04bac579a63a6f9ca472273e63d08a4609ba2e42.svg" alt="\(\overline{W}\)" style="height:0.968em;vertical-align:-0.000em"> (1 = read).</li>
+<li><b>ACK</b>: the master releases SDA during the ninth clock; the addressed slave pulls it to 0.</li>
+<li><b>Data bytes</b>: 8 bits + ACK each; when reading, the master acknowledges each byte and sends NACK (SDA left high) after the last.</li>
+<li><b>STOP</b>: SDA <img class="m" src="m/46ca94db446d2aa728edccb2440738b6df8928df.svg" alt="\(0\to1\)" style="height:0.706em;vertical-align:-0.000em"> while SCL = 1. A <b>repeated START</b> instead of STOP keeps the bus to switch direction (write a register address, then read).</li>
+</ol>
+<p>
+Slaves can hold SCL low to slow the master (clock stretching).
+</p>
+</div>
+</div>
+<div id="outline-container-orgf5a2af8" class="outline-2">
+<h2 id="orgf5a2af8">VHDL: open-drain lines</h2>
+<div class="outline-text-2" id="text-orgf5a2af8">
+<figure class="listing lang-vhdl"><figcaption><span class="lang">VHDL</span></figcaption><pre class="src"><code><span class="c">-- drive only 0, release with 'Z'; the external pull-up makes it 'H'
+</span>sda &lt;= <span class="s">'0'</span> <span class="k">when</span> sda_drive_low = <span class="s">'1'</span> <span class="k">else</span> <span class="s">'Z'</span>;
+scl &lt;= <span class="s">'0'</span> <span class="k">when</span> scl_drive_low = <span class="s">'1'</span> <span class="k">else</span> <span class="s">'Z'</span>;
+sda_in &lt;= to_X01(sda);        <span class="c">-- read back the resolved line ('H' -&gt; '1')</span></code></pre></figure>
+<p>
+In a testbench, <code>sda &lt;</code> 'H';= models the pull-up; <a href="std-logic.html">resolution</a> gives <code>0</code> when a device drives low.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfd1e8bb" class="outline-2">
+<h2 id="orgfd1e8bb">Picture</h2>
+<div class="outline-text-2" id="text-orgfd1e8bb">
+<figure class="fig"><img class="m" src="m/2767f919433d42f5969f51e99c33387a363be5b2.svg" alt="figure" style="width:22.809em"><figcaption><span class="fl">Figure 1.</span> I²C bus signals: a START condition (SDA falls while SCL is high), data bits sampled on SCL high, and a STOP condition (SDA rises while SCL is high).</figcaption></figure>
+<p>
+START and STOP are the only SDA edges allowed while SCL is high.
+</p>
+</div>
+</div>
+<div id="outline-container-org7e48ad1" class="outline-2">
+<h2 id="org7e48ad1">Intuition</h2>
+<div class="outline-text-2" id="text-org7e48ad1">
+<p>
+A party line: everyone listens, anyone can say "no" by pulling the wire down, and the address decides who answers.
+</p>
+</div>
+</div>
+<div id="outline-container-org41d2be5" class="outline-2">
+<h2 id="org41d2be5">Pitfall</h2>
+<div class="outline-text-2" id="text-org41d2be5">
+<p>
+Driving SDA or SCL high actively (<code>'1'</code> instead of <code>'Z'</code>) fights the device pulling low: a short circuit on real hardware and an <code>X</code> in simulation.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="serial-communication.html"><span>← previous</span>Serial communication</a><a rel="next" href="spi.html"><span>next →</span>SPI</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--interfaces.pdf" title="PDF manual">Interfaces</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

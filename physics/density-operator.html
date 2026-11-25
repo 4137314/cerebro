@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The density operator: pure and mixed states · Physics</title>
+<meta name="description" content="An ensemble with weights w_i of states \ket{\psi_i} is the operator \rho=\sum_i w_i\ket{\psi_i}\bra{\psi_i}: positive, trace one, \braket A=\Tr(\rho A); it is pure iff \Tr\rho^2=1, and for a qubit \rho=\tfrac12(1+\mathbf r\cdot\boldsymbol\sigma) with |\mathbf r|\le1.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/density-operator.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The density operator: pure and mixed states · Physics">
+<meta property="og:description" content="An ensemble with weights w_i of states \ket{\psi_i} is the operator \rho=\sum_i w_i\ket{\psi_i}\bra{\psi_i}: positive, trace one, \braket A=\Tr(\rho A); it is pure iff \Tr\rho^2=1, and for a qubit \rho=\tfrac12(1+\mathbf r\cdot\boldsymbol\sigma) with |\mathbf r|\le1.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/density-operator.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-mechanics">Quantum Mechanics</a> / <a rel="up" href="index.html#a-quantum-mechanics--quantum-information">Quantum Information</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Quantum Mechanics · Quantum Information</p>
+<h1>The density operator: pure and mixed states</h1>
+<p class="summary">An ensemble with weights <img class="m" src="m/42bbda6d9d0bd80cfc65486754f0b0deb248fcac.svg" alt="\(w_i\)" style="height:0.636em;vertical-align:-0.165em"> of states <img class="m" src="m/7f6c6b53ca9b6f29e58e3a6a55793c5d006e60ac.svg" alt="\(\ket{\psi_i}\)" style="height:1.096em;vertical-align:-0.274em"> is the operator <img class="m" src="m/ffc8618f27f164a0532ecc114eb21be342d59ec0.svg" alt="\(\rho=\sum_i w_i\ket{\psi_i}\bra{\psi_i}\)" style="height:1.151em;vertical-align:-0.334em">: positive, trace one, <img class="m" src="m/1b1c0ceb9a02516da8b65562ed5cb845a913416c.svg" alt="\(\braket A=\Tr(\rho A)\)" style="height:1.096em;vertical-align:-0.274em">; it is pure iff <img class="m" src="m/50ddd8dadee7fabf18418c091b8aa7db23497811.svg" alt="\(\Tr\rho^2=1\)" style="height:1.105em;vertical-align:-0.210em">, and for a qubit <img class="m" src="m/12ae6e060ba277f4414b35effa736400e0cb41e6.svg" alt="\(\rho=\tfrac12(1+\mathbf r\cdot\boldsymbol\sigma)\)" style="height:1.304em;vertical-align:-0.378em"> with <img class="m" src="m/a8238abeb00f28cf87170976f94117043e45b864.svg" alt="\(|\mathbf r|\le1\)" style="height:1.096em;vertical-align:-0.274em">.</p>
+<p class="rel"><span>needs</span> <a href="measurement-postulate.html">Measurement: Born rule and collapse</a></p>
+<p class="rel"><span>unlocks</span> <a href="entanglement-and-bell-inequalities.html">Entanglement and Bell inequalities</a>, <a href="algebraic-quantum-theory.html">Algebraic quantum theory: C*-algebras, GNS and Gleason</a>, <a href="master-equation-and-open-systems.html">Master equations and open quantum systems</a></p>
+<p class="rel"><span>see also</span> <a href="entanglement-and-bell-inequalities.html">Entanglement and Bell inequalities</a>, <a href="master-equation-and-open-systems.html">Master equations and open quantum systems</a>, <a href="algebraic-quantum-theory.html">Algebraic quantum theory: C*-algebras, GNS and Gleason</a></p>
+<p class="rel"><span>mentioned in</span> <a href="formula-sheet-quantum.html">Formula sheet: quantum mechanics, quantum optics and QED</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgbcbfccd" class="outline-2">
+<h2 id="orgbcbfccd">Definition</h2>
+<div class="outline-text-2" id="text-orgbcbfccd">
+<p>
+<img class="m" src="m/06479b23540b987e86795de034e0bf7079988043.svg" alt="\(\rho=\sum_iw_i\ket{\psi_i}\bra{\psi_i}\)" style="height:1.151em;vertical-align:-0.334em">, <img class="m" src="m/68e63b40276e13f82e2a6d7d219676d1e9989319.svg" alt="\(w_i\ge0\)" style="height:0.871em;vertical-align:-0.165em">, <img class="m" src="m/ea3ed6a504bd223a755849c290b01c29b5fbe221.svg" alt="\(\sum w_i=1\)" style="height:1.096em;vertical-align:-0.274em"> <span class="cite">(<a class="ref" href="references.html#ref-neumann1927" data-full="J. von Neumann, “Wahrscheinlichkeitstheoretischer Aufbau der Quantenmechanik”, Nachrichten von der Gesellschaft der Wissenschaften zu Göttingen, Mathematisch-Physikalische Klasse, 245–272 (1927)." aria-label="J. von Neumann, “Wahrscheinlichkeitstheoretischer Aufbau der Quantenmechanik”, Nachrichten von der Gesellschaft der Wissenschaften zu Göttingen, Mathematisch-Physikalische Klasse, 245–272 (1927).">von Neumann 1927</a>)</span>. Properties: <img class="m" src="m/f44dd478860fe0c8a1500f26b30d6a367aa881be.svg" alt="\(\rho=\rho^\dagger\)" style="height:1.144em;vertical-align:-0.217em">, <img class="m" src="m/88486c42354c7f6bb03c86b33b12fd6f55183be4.svg" alt="\(\rho\ge0\)" style="height:0.919em;vertical-align:-0.211em">, <img class="m" src="m/c1b6607022ac9cc8de1bc9871a7179420c7e1d21.svg" alt="\(\Tr\rho=1\)" style="height:0.962em;vertical-align:-0.212em">. Expectation: <img class="m" src="m/a5b0fa9611b5ec4c81cbfd1fb9672dbb93e1bc52.svg" alt="\(\braket A=\sum_iw_i\bra{\psi_i}A\ket{\psi_i}=\Tr(\rho A)\)" style="height:1.151em;vertical-align:-0.334em">. Evolution: <img class="m" src="m/45ad8ad65fa7c7a20a1800094bdfae48878c56c7.svg" alt="\(i\hbar\,\dot\rho=[H,\rho]\)" style="height:1.096em;vertical-align:-0.274em"> (von Neumann). Measurement of <img class="m" src="m/a8cfe9079fe989303b56be54d2b47f265d286d9d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">: <img class="m" src="m/8ee92c123b96eb7a045c013aed52d9e837cbfba1.svg" alt="\(p(a)=\Tr(\rho P_a)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/b84690f34135574fde5b706efbf4390911a35f3a.svg" alt="\(\rho\to P_a\rho P_a/p(a)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org03f50d4" class="outline-2">
+<h2 id="org03f50d4">Purity and entropy</h2>
+<div class="outline-text-2" id="text-org03f50d4">
+<p>
+<img class="m" src="m/4874875b179906aa8906efe9196368bb52de0e69.svg" alt="\(\Tr\rho^2=\sum_iw_i^2\le1\)" style="height:1.221em;vertical-align:-0.330em"> in an eigenbasis, with equality iff one weight is 1 (pure state). Von Neumann entropy <img class="m" src="m/a934834784cae339031d12df56d7f4866bce10f4.svg" alt="\(S=-\Tr\rho\ln\rho\ge0\)" style="height:0.974em;vertical-align:-0.214em">, zero only for pure states, maximal <img class="m" src="m/48e097756dc5e9aa0d93550c04c8913b889037a4.svg" alt="\(\ln N\)" style="height:0.761em;vertical-align:-0.000em"> for <img class="m" src="m/73febc18fd57bd8df4b393da720706c8626345fb.svg" alt="\(\rho=1/N\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd15b75f" class="outline-2">
+<h2 id="orgd15b75f">Qubit: the Bloch ball</h2>
+<div class="outline-text-2" id="text-orgd15b75f">
+<p>
+Any <img class="m" src="m/dc90a6bc60cc79dcff09bccf36cfc12d1c59b62c.svg" alt="\(2\times2\)" style="height:0.798em;vertical-align:-0.088em"> Hermitian matrix of trace 1 is <img class="m" src="m/12ae6e060ba277f4414b35effa736400e0cb41e6.svg" alt="\(\rho=\tfrac12(1+\mathbf r\cdot\boldsymbol\sigma)\)" style="height:1.304em;vertical-align:-0.378em">; its eigenvalues are <img class="m" src="m/634c618986173c65bd1307db81a95e7b50532164.svg" alt="\(\tfrac12(1\pm|\mathbf r|)\)" style="height:1.304em;vertical-align:-0.378em">, so positivity means <img class="m" src="m/a8238abeb00f28cf87170976f94117043e45b864.svg" alt="\(|\mathbf r|\le1\)" style="height:1.096em;vertical-align:-0.274em">. Pure states lie on the sphere, <img class="m" src="m/9365be925d6ef01e3f95a09093cb24dce56a10ed.svg" alt="\(\braket{\boldsymbol\sigma}=\mathbf r\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org0585508" class="outline-2">
+<h2 id="org0585508">Partial trace</h2>
+<div class="outline-text-2" id="text-org0585508">
+<p>
+For <img class="m" src="m/8b0cc875dad70e659bacd23fac3b5f4484416b1d.svg" alt="\(\rho_{AB}\)" style="height:0.685em;vertical-align:-0.212em"> on <img class="m" src="m/3092b73069efb60f1c2453061fc042795732a54e.svg" alt="\(\mathcal H_A\otimes\mathcal H_B\)" style="height:0.913em;vertical-align:-0.164em">, the reduced state is <img class="m" src="m/ba594852ceb88fa4084c11ea16ff0f022aea936c.svg" alt="\(\rho_A=\Tr_B\rho_{AB}=\sum_j\bra{j_B}\rho_{AB}\ket{j_B}\)" style="height:1.300em;vertical-align:-0.481em">; it gives all statistics of observables <img class="m" src="m/2c44022ca662186668a89ade0a68455e550d1b03.svg" alt="\(A\otimes1\)" style="height:0.840em;vertical-align:-0.092em">. For the singlet, <img class="m" src="m/eccacaed4c7264bebc35b6819f83590b2770a7ff.svg" alt="\(\rho_A=1/2\)" style="height:1.096em;vertical-align:-0.274em">: a pure global state can have maximally mixed parts (<a href="entanglement-and-bell-inequalities.html">entanglement</a>) <span class="cite">(<a class="ref" href="https://doi.org/10.1007/bf01343064" data-full="L. Landau, “Das Dämpfungsproblem in der Wellenmechanik”, Zeitschrift für Physik 45, 430–441 (1927)." aria-label="L. Landau, “Das Dämpfungsproblem in der Wellenmechanik”, Zeitschrift für Physik 45, 430–441 (1927).">Landau 1927</a>)</span>.
+</p>
+</div>
+</div>
+<div id="outline-container-org493a1fa" class="outline-2">
+<h2 id="org493a1fa">Thermal state</h2>
+<div class="outline-text-2" id="text-org493a1fa">
+<p>
+<img class="m" src="m/c93d4bfdc8d582d67c2ecacb6a2ab5a2218a3123.svg" alt="\(\rho=e^{-\beta H}/Z\)" style="height:1.204em;vertical-align:-0.277em">, <img class="m" src="m/3ab07ec678aef9ea56c42aaef085e4d99320080d.svg" alt="\(Z=\Tr e^{-\beta H}\)" style="height:0.930em;vertical-align:-0.000em">, maximises <img class="m" src="m/8d9e31581230de0c901f82e969c2d53867593fcc.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> at fixed <img class="m" src="m/6c10e6df9a355ee1ac63353f97fd5fec36a2e71a.svg" alt="\(\braket H\)" style="height:1.096em;vertical-align:-0.274em">. Example: spin ½ in <img class="m" src="m/dbd1afe88bf4081fd40a4dbf60833903c85e2630.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/326efcb2658e418b86617b76e62eda92e810c0b3.svg" alt="\(H=-\mu B\sigma_z\)" style="height:0.962em;vertical-align:-0.212em">: <img class="m" src="m/acc7ff657fdcbc86fcd197b87f7351b1a60935a2.svg" alt="\(\braket{\sigma_z}=\tanh(\beta\mu B)\)" style="height:1.096em;vertical-align:-0.274em">, Curie paramagnetism.
+</p>
+</div>
+</div>
+<div id="outline-container-org7252697" class="outline-2">
+<h2 id="org7252697">Worked example</h2>
+<div class="outline-text-2" id="text-org7252697">
+<p>
+Unpolarised beam: <img class="m" src="m/4befddb95e7fb84c63fa9f72c75dc7c487f936a8.svg" alt="\(\rho=\tfrac12(\ket+\bra++\ket-\bra-)=1/2\)" style="height:1.304em;vertical-align:-0.378em">. A 50/50 mixture of <img class="m" src="m/bcebe1751cb94d56019afd0e1d542b2b6c733512.svg" alt="\(S_x\pm\)" style="height:0.913em;vertical-align:-0.164em"> gives the <b>same</b> <img class="m" src="m/779d1be5c66415989d53bcdef24e23c6d8decb2e.svg" alt="\(\rho\)" style="height:0.685em;vertical-align:-0.212em">: ensembles with equal <img class="m" src="m/779d1be5c66415989d53bcdef24e23c6d8decb2e.svg" alt="\(\rho\)" style="height:0.685em;vertical-align:-0.212em"> are physically indistinguishable. Compare with the pure <img class="m" src="m/20b002fa7db248cb9223c325513eace10ef57251.svg" alt="\(\ket{S_x;+}\)" style="height:1.096em;vertical-align:-0.274em">: <img class="m" src="m/6132d80187bb24c9d2456d17f3591c51397e7466.svg" alt="\(\rho=\tfrac12\begin{pmatrix}1&amp;1\\1&amp;1\end{pmatrix}\)" style="height:2.630em;vertical-align:-1.052em">; the off-diagonal "coherences" are what distinguishes superposition from mixture.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdc307c7" class="outline-2">
+<h2 id="orgdc307c7">Engineering applications</h2>
+<div class="outline-text-2" id="text-orgdc307c7">
+<p>
+Decoherence of qubits is the decay of off-diagonal elements (time <img class="m" src="m/4050c24ede44eef0d5866c8e00b94383273b1e81.svg" alt="\(T_2\)" style="height:0.913em;vertical-align:-0.164em">) and relaxation of populations (<img class="m" src="m/53dbeff6a09c7fe960f22f5d9cee4174e6a7124e.svg" alt="\(T_1\)" style="height:0.913em;vertical-align:-0.164em">); NMR, laser rate equations and <a href="master-equation-and-open-systems.html">master equations</a> are all written for <img class="m" src="m/779d1be5c66415989d53bcdef24e23c6d8decb2e.svg" alt="\(\rho\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgcca825f" class="outline-2">
+<h2 id="orgcca825f">Pitfall</h2>
+<div class="outline-text-2" id="text-orgcca825f">
+<p>
+A mixture is not a superposition: <img class="m" src="m/a219ba744f516aa860a1a474aea60596c2c0dfeb.svg" alt="\(\tfrac12(\ket+\bra++\ket-\bra-)\neq\ket{S_x;+}\bra{S_x;+}\)" style="height:1.304em;vertical-align:-0.378em">, and measuring <img class="m" src="m/9537c2564e49c92ca2446dd52e7b82403b5e2fc7.svg" alt="\(S_x\)" style="height:0.913em;vertical-align:-0.164em"> tells them apart.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="scattering-and-born-approximation.html"><span>← previous</span>Scattering theory and the Born approximation</a><a rel="next" href="entanglement-and-bell-inequalities.html"><span>next →</span>Entanglement and Bell inequalities</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-mechanics--quantum-information.pdf" title="PDF manual">Quantum Information</a> · <a class="pdf" href="pdf/quantum-mechanics.pdf" title="PDF manual">Quantum Mechanics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

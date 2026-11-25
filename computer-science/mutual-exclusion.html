@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atomics and mutual exclusion · Computer Science</title>
+<meta name="description" content="A data race is removed either by making the operation indivisible (std::atomic) or by enclosing the accesses in a critical section protected by a std::mutex, preferably locked through the RAII guard std::lock_guard so that it is released on every exit path.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/mutual-exclusion.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Atomics and mutual exclusion · Computer Science">
+<meta property="og:description" content="A data race is removed either by making the operation indivisible (std::atomic) or by enclosing the accesses in a critical section protected by a std::mutex, preferably locked through the RAII guard std::lock_guard so that it is released on every exit path.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/mutual-exclusion.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--concurrency">Concurrency</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Programming · Concurrency</p>
+<h1>Atomics and mutual exclusion</h1>
+<p class="summary">A data race is removed either by making the operation indivisible (<code>std::atomic</code>) or by enclosing the accesses in a critical section protected by a <code>std::mutex</code>, preferably locked through the RAII guard <code>std::lock_guard</code> so that it is released on every exit path.</p>
+<p class="rel"><span>needs</span> <a href="threads-data-race.html">Threads and data races</a></p>
+<p class="rel"><span>unlocks</span> <a href="condition-variable.html">Condition variables and the producer–consumer problem</a>, <a href="deadlock-starvation.html">Deadlock and starvation</a></p>
+<p class="rel"><span>see also</span> <a href="deadlock-starvation.html">Deadlock and starvation</a>, <a href="cpp-special-members.html">Special member functions and RAII</a>, <a href="condition-variable.html">Condition variables and the producer–consumer problem</a></p>
+<details class="path"><summary>Learning path: 2 notes lead here, in study order</summary><ol><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="threads-data-race.html">Threads and data races</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgf15141a" class="outline-2">
+<h2 id="orgf15141a">Method</h2>
+<div class="outline-text-2" id="text-orgf15141a">
+<ul class="org-ul">
+<li><b>Atomic variables</b> (<code>&lt;atomic&gt;</code>): <code>std::atomic&lt;int&gt; counter;</code> makes <code>++counter</code>, <code>fetch_add</code>, <code>load</code>, <code>store</code> indivisible. Good for single variables.</li>
+<li><b>Mutex</b> (<code>&lt;mutex&gt;</code>): <code>m.lock()</code> enters the critical section, waiting if another thread is inside; <code>m.unlock()</code> leaves it. At most one thread runs the section at a time.</li>
+<li><code>std::lock_guard&lt;std::mutex&gt; g(m);</code> locks in the constructor and unlocks in the destructor: the mutex is released even when an exception leaves the block.</li>
+<li><code>std::recursive_mutex</code> can be locked again by the thread that holds it (nested functions locking the same mutex).</li>
+<li><code>std::lock(m1, m2)</code> (or <code>std::scoped_lock g(m1, m2);</code>) acquires several mutexes without deadlock.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgec6007b" class="outline-2">
+<h2 id="orgec6007b">Example</h2>
+<div class="outline-text-2" id="text-orgec6007b">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="n">std</span>::<span class="t">mutex</span> <span class="v">m</span>;
+<span class="t">long</span> <span class="v">total</span> = 0;
+<span class="t">void</span> <span class="f">add</span>(<span class="t">long</span> <span class="v">x</span>) {
+  <span class="n">std</span>::<span class="t">lock_guard</span>&lt;<span class="n">std</span>::<span class="t">mutex</span>&gt; <span class="v">g</span>(m);   <span class="c">// critical section starts
+</span>  total += x;
+}                                     <span class="c">// and ends here, always</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org7a5c983" class="outline-2">
+<h2 id="org7a5c983">Intuition</h2>
+<div class="outline-text-2" id="text-org7a5c983">
+<p>
+A mutex is the key of a single bathroom: whoever holds it is alone inside. The guard is a door that locks behind you and unlocks when you leave, however you leave.
+</p>
+</div>
+</div>
+<div id="outline-container-org457f535" class="outline-2">
+<h2 id="org457f535">Pitfall</h2>
+<div class="outline-text-2" id="text-org457f535">
+<p>
+Locks only work if every access takes them: one unprotected read reintroduces the race. Holding a lock while calling unknown code invites <a href="deadlock-starvation.html">deadlock</a>.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="threads-data-race.html"><span>← previous</span>Threads and data races</a><a rel="next" href="condition-variable.html"><span>next →</span>Condition variables and the producer–consumer problem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--concurrency.pdf" title="PDF manual">Concurrency</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

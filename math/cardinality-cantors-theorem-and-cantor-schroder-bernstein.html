@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein · Mathematics</title>
+<meta name="description" content="Counting a finite set means putting it in bijection with an initial segment of \N. Dropping &quot;finite&quot; from that sentence leaves a definition that still works, and the two theorems below are what make it behave like a notion of size: comparison by injections is antisymmetric, and the scale it measure…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein · Mathematics">
+<meta property="og:description" content="Counting a finite set means putting it in bijection with an initial segment of \N. Dropping &quot;finite&quot; from that sentence leaves a definition that still works, and the two theorems below are what make it behave like a notion of size: comparison by injections is antisymmetric, and the scale it measure…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-foundations">Foundations</a> / <a rel="up" href="index.html#a-foundations--set-theory">Set Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Foundations · Set Theory</p>
+<h1>Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</h1>
+<p class="summary">Counting a finite set means putting it in bijection with an initial segment of <img class="m" src="m/d36edebe5171c584e95c5e3966023a2f078fce29.svg" alt="\(\N\)" style="height:0.755em;vertical-align:-0.000em">. Dropping "finite" from that sentence leaves a definition that still works, and the two theorems below are what make it behave like a notion of size: comparison by injections is antisymmetric, and the scale it measures has no top.</p>
+<p class="rel"><span>needs</span> <a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a>, <a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a>, <a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></p>
+<p class="rel"><span>unlocks</span> <a href="elementary-substructures-and-the-lowenheim-skolem-theorems.html">Elementary substructures and the Lowenheim-Skolem theorems</a>, <a href="computability-the-halting-problem-and-rices-theorem.html">Computability, the halting problem and Rice's theorem</a>, <a href="the-baire-category-theorem.html">The Baire category theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="set-theory.html">Set theory</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org1ccec68">
+<p>
+Sets <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/82d9b7c5c94f297586981fdbe7ca67b30095b73a.svg" alt="\(Y\)" style="height:0.749em;vertical-align:-0.000em"> are <i>equinumerous</i>, written <img class="m" src="m/5dc8f997b5a89eaab8bc9c47db86fd76f33c885b.svg" alt="\(X \approx Y\)" style="height:0.749em;vertical-align:-0.000em">, if
+there is a bijection <img class="m" src="m/225937443b58b3943cb1e275f30a909240092923.svg" alt="\(X \to Y\)" style="height:0.749em;vertical-align:-0.000em">; one writes <img class="m" src="m/02a04caff670f80dc4dc5513b370400f5c50133d.svg" alt="\(X \preceq Y\)" style="height:0.898em;vertical-align:-0.153em"> if there is
+an injection <img class="m" src="m/225937443b58b3943cb1e275f30a909240092923.svg" alt="\(X \to Y\)" style="height:0.749em;vertical-align:-0.000em">. A set is <i>countable</i> if it is equinumerous
+with a subset of <img class="m" src="m/d36edebe5171c584e95c5e3966023a2f078fce29.svg" alt="\(\N\)" style="height:0.755em;vertical-align:-0.000em">, and <i>uncountable</i> otherwise.
+</p>
+
+</div>
+
+<div class="theorem" id="org792c0e9">
+<p>
+For every set <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> there is no surjection from <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> onto its power set
+<img class="m" src="m/58ab87667c03fe737f55a43b6c42c8aedded73e4.svg" alt="\(\mathcal{P}(X)\)" style="height:1.096em;vertical-align:-0.274em">. In particular <img class="m" src="m/5426e18305cf486a299b1ab8724220bdd263b913.svg" alt="\(X \not\approx \mathcal{P}(X)\)" style="height:1.096em;vertical-align:-0.274em">,
+while <img class="m" src="m/77f091868b7c098b1359953987cb736a3f124cd7.svg" alt="\(x \mapsto \set{x}\)" style="height:1.096em;vertical-align:-0.274em"> gives <img class="m" src="m/b7df6ce696c023f4f8d40786b2aef7d56a180b64.svg" alt="\(X \preceq \mathcal{P}(X)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgefe7faa">
+<p>
+Let <img class="m" src="m/5a652f83c16563a31b60bf6449247dafcc94f43c.svg" alt="\(f \colon X \to \mathcal{P}(X)\)" style="height:1.096em;vertical-align:-0.274em"> be any map and put
+<img class="m" src="m/445cf230220d02cfba04fd5cadbd10bae53d2324.svg" alt="\(D = \setst{x \in X}{x \notin f(x)}\)" style="height:1.096em;vertical-align:-0.274em">. If <img class="m" src="m/120ea08d6c806553888258cb8326bd020f80d44e.svg" alt="\(D = f(a)\)" style="height:1.096em;vertical-align:-0.274em"> for some
+<img class="m" src="m/ef1adc50041594e716c6320b6627f6be97419e16.svg" alt="\(a \in X\)" style="height:0.792em;vertical-align:-0.040em">, then <img class="m" src="m/08a86ed941e0fdffecb526a800d86f8a7637e5dc.svg" alt="\(a \in D\)" style="height:0.792em;vertical-align:-0.040em"> is by definition <img class="m" src="m/d778784144272f01545a656fcd21de6751797bab.svg" alt="\(a \notin f(a) = D\)" style="height:1.096em;vertical-align:-0.274em">, a
+contradiction either way. So <img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> is not in the image and <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is not
+surjective. The map <img class="m" src="m/77f091868b7c098b1359953987cb736a3f124cd7.svg" alt="\(x \mapsto \set{x}\)" style="height:1.096em;vertical-align:-0.274em"> is injective because
+<img class="m" src="m/234c24e22f54c26367463d10ade9b285821ff354.svg" alt="\(\set{x} = \set{y}\)" style="height:1.096em;vertical-align:-0.274em"> forces <img class="m" src="m/b166a59ca53644d0d6f1d624a0065569398239d2.svg" alt="\(x = y\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="remark" id="orgc465306">
+<p>
+The proof uses nothing about <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">, so there is no largest set and no
+largest cardinality: the scale is unbounded. Applied to <img class="m" src="m/12459917f3dbcb11a257a662829cc6ef6620d711.svg" alt="\(X = \N\)" style="height:0.755em;vertical-align:-0.000em"> it
+says <img class="m" src="m/d153e620b216f127e7adbfba3bd6d707690b5428.svg" alt="\(\mathcal{P}(\N)\)" style="height:1.096em;vertical-align:-0.274em"> is uncountable, which is the same argument as
+the diagonal one for the real numbers, with the binary expansion
+removed.
+</p>
+
+</div>
+
+<div class="theorem" id="orgfef67f8">
+<p>
+If <img class="m" src="m/02a04caff670f80dc4dc5513b370400f5c50133d.svg" alt="\(X \preceq Y\)" style="height:0.898em;vertical-align:-0.153em"> and <img class="m" src="m/c3537b01d551c32ab35135adfed1d8b9a05b497c.svg" alt="\(Y \preceq X\)" style="height:0.898em;vertical-align:-0.153em"> then <img class="m" src="m/5dc8f997b5a89eaab8bc9c47db86fd76f33c885b.svg" alt="\(X \approx Y\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org0bab096">
+<p>
+Let <img class="m" src="m/d7c0c93f2d459ca20e4f53c81d24a704a65c7b84.svg" alt="\(f \colon X \to Y\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/238f96f435dd377c0bf4777e2b4c936f1cb6abe6.svg" alt="\(g \colon Y \to X\)" style="height:0.962em;vertical-align:-0.212em"> be injections. On the
+power set <img class="m" src="m/58ab87667c03fe737f55a43b6c42c8aedded73e4.svg" alt="\(\mathcal{P}(X)\)" style="height:1.096em;vertical-align:-0.274em">, ordered by inclusion, every subset has a
+supremum (its union), so it is a complete lattice. The map
+<div class="mb"><img class="m" src="m/af6d877e0a8de17cd4f4f9f466c926bc3cbcdb07.svg" alt="\[ \Phi(A) = X \setminus g\bigl(Y \setminus f(A)\bigr) \]" style="width:11.766em"></div>
+is monotone: enlarging <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> enlarges <img class="m" src="m/fc1135e8f1ae0aed119819fb40e957cab254cb74.svg" alt="\(f(A)\)" style="height:1.096em;vertical-align:-0.274em">, shrinks
+<img class="m" src="m/37ae36a4a9ba96666b91850faed4cb09a407498e.svg" alt="\(Y \setminus f(A)\)" style="height:1.096em;vertical-align:-0.274em"> and its image under <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em">, and so enlarges the
+complement. By the Knaster-Tarski theorem there is <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> with
+<img class="m" src="m/822a23993845a9d31c00aa8803d5b33b86df1579.svg" alt="\(\Phi(A) = A\)" style="height:1.096em;vertical-align:-0.274em">, that is <img class="m" src="m/a6e0515f5e0d4face10b5ef1cd9ba383b8213cf1.svg" alt="\(X \setminus A = g(Y \setminus f(A))\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+Define <img class="m" src="m/14554afed59ae0ffebe06e1ac144aa66cac20b52.svg" alt="\(h \colon X \to Y\)" style="height:0.761em;vertical-align:-0.000em"> by <img class="m" src="m/b4ffc878759cdbd4b6e92516054c796bd91d1ea7.svg" alt="\(h(x) = f(x)\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/67cfd0662406b4a66864b7834697edf23e0b7194.svg" alt="\(x \in A\)" style="height:0.792em;vertical-align:-0.040em"> and
+<img class="m" src="m/363cc6292d4c5bfe60fcc3b207172d9e34f8ec41.svg" alt="\(h(x) = g^{-1}(x)\)" style="height:1.166em;vertical-align:-0.268em"> for <img class="m" src="m/3ff669c32efeb91bc988d50d04b67841a72e7762.svg" alt="\(x \notin A\)" style="height:0.865em;vertical-align:-0.043em">, the latter being defined and
+single-valued because <img class="m" src="m/838155eff2ed262cba650c82552be8b48a81dec5.svg" alt="\(x \in X \setminus A\)" style="height:1.096em;vertical-align:-0.274em"> lies in the image of the
+injective <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em">. It is surjective: a point of <img class="m" src="m/fc1135e8f1ae0aed119819fb40e957cab254cb74.svg" alt="\(f(A)\)" style="height:1.096em;vertical-align:-0.274em"> is hit by the
+first clause, and a point <img class="m" src="m/fe30f724a8a86297254371d80414c75d0c861130.svg" alt="\(y \in Y \setminus f(A)\)" style="height:1.096em;vertical-align:-0.274em"> satisfies
+<img class="m" src="m/51b7a085d4378d2769211044d71d9d7938b97f20.svg" alt="\(g(y) \notin A\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/55f18d5911b3a9c436bcc7aea0696207e20f0193.svg" alt="\(h(g(y)) = y\)" style="height:1.096em;vertical-align:-0.274em">. It is injective: <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> and
+<img class="m" src="m/f14acd7df725b615265b67cbcdbac36f95c3bd7b.svg" alt="\(g^{-1}\)" style="height:1.105em;vertical-align:-0.210em"> are injective on their domains, and their images
+<img class="m" src="m/fc1135e8f1ae0aed119819fb40e957cab254cb74.svg" alt="\(f(A)\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/37ae36a4a9ba96666b91850faed4cb09a407498e.svg" alt="\(Y \setminus f(A)\)" style="height:1.096em;vertical-align:-0.274em"> are disjoint.
+</p>
+
+</div>
+
+<div class="proposition" id="orga9ead5b">
+<p>
+A countable union of countable sets is countable.
+</p>
+
+</div>
+
+<div class="proof" id="org67a77ad">
+<p>
+Let <img class="m" src="m/83a6b1030180e96e15aae5a73f0d64db1b281a93.svg" alt="\(X = \bigcup_{n \in \N} X_{n}\)" style="height:1.209em;vertical-align:-0.387em"> with each <img class="m" src="m/b7855569d56cf394a1f732b3814af96d4cef24ca.svg" alt="\(X_{n}\)" style="height:0.913em;vertical-align:-0.164em"> countable.
+Choose, for each <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">, an injection <img class="m" src="m/de869758710ecd7c46c05bf7fdea1085c06fb948.svg" alt="\(e_{n} \colon X_{n} \to \N\)" style="height:0.919em;vertical-align:-0.165em"> &#x2013;
+this is a choice from the non-empty set of such injections, one for
+each <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">. Define <img class="m" src="m/6a747d73558409218d7faf6355cabe8896367f26.svg" alt="\(F \colon X \to \N \times \N\)" style="height:0.846em;vertical-align:-0.093em"> by sending <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> to
+<img class="m" src="m/78ccf3fc53e4d3867ca59d3a4c510492ce644ee8.svg" alt="\((n, e_{n}(x))\)" style="height:1.096em;vertical-align:-0.274em"> where <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> is least with <img class="m" src="m/1bc6fa008d53136e76413d228dcebbf464bb3770.svg" alt="\(x \in X_{n}\)" style="height:0.913em;vertical-align:-0.164em">. It is
+injective: the first coordinate recovers <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">, and <img class="m" src="m/319b1206caa9ea0616178088a35b4655142335b3.svg" alt="\(e_{n}\)" style="height:0.636em;vertical-align:-0.165em"> is
+injective on <img class="m" src="m/b7855569d56cf394a1f732b3814af96d4cef24ca.svg" alt="\(X_{n}\)" style="height:0.913em;vertical-align:-0.164em">. Since
+<img class="m" src="m/b042b21d39a0f52a21233f5865f49be7b1fef448.svg" alt="\((n,m) \mapsto 2^{n} 3^{m}\)" style="height:1.096em;vertical-align:-0.274em"> is injective by unique factorisation,
+<img class="m" src="m/792105c634854eccf44b349ab00a739f37139835.svg" alt="\(\N \times \N\)" style="height:0.846em;vertical-align:-0.093em"> is countable, hence so is <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="remark" id="orgddc51e9">
+<p>
+The choice of the injections is not decoration: without some form of the
+axiom of choice the statement is not provable, because "each <img class="m" src="m/b7855569d56cf394a1f732b3814af96d4cef24ca.svg" alt="\(X_{n}\)" style="height:0.913em;vertical-align:-0.164em">
+is countable" gives, for each <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">, a non-empty set of enumerations and
+no way to name one. It is the cleanest place in this archive where a
+familiar-looking statement turns out to rest on choice.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="filters-ultrafilters-and-the-ultrafilter-lemma.html"><span>← previous</span>Filters, ultrafilters and the ultrafilter lemma</a><a rel="next" href="ordinals-and-definition-by-transfinite-recursion.html"><span>next →</span>Ordinals and definition by transfinite recursion</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/foundations--set-theory.pdf" title="PDF manual">Set Theory</a> · <a class="pdf" href="pdf/foundations.pdf" title="PDF manual">Foundations</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

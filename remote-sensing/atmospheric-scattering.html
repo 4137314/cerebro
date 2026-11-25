@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atmospheric scattering: Rayleigh and Mie · Remote Sensing</title>
+<meta name="description" content="Besides absorbing, the atmosphere scatters radiation: particles much smaller than \lambda give Rayleigh scattering, proportional to \lambda^{-4} (blue light is scattered most); particles comparable to or larger than \lambda (aerosol, smoke, cloud droplets) give Mie and non-selective scattering, wea…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/atmospheric-scattering.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Atmospheric scattering: Rayleigh and Mie · Remote Sensing">
+<meta property="og:description" content="Besides absorbing, the atmosphere scatters radiation: particles much smaller than \lambda give Rayleigh scattering, proportional to \lambda^{-4} (blue light is scattered most); particles comparable to or larger than \lambda (aerosol, smoke, cloud droplets) give Mie and non-selective scattering, wea…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/atmospheric-scattering.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-physics">Physics</a> / <a rel="up" href="index.html#a-physics--atmosphere">Atmosphere</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Physics · Atmosphere</p>
+<h1>Atmospheric scattering: Rayleigh and Mie</h1>
+<p class="summary">Besides absorbing, the atmosphere scatters radiation: particles much smaller than <img class="m" src="m/623ed6fe71f30e4d5681590495eb1e0754aae1f3.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em"> give Rayleigh scattering, proportional to <img class="m" src="m/a68b74e47092f045915b2e831d05fbe506303aee.svg" alt="\(\lambda^{-4}\)" style="height:0.892em;vertical-align:-0.000em"> (blue light is scattered most); particles comparable to or larger than <img class="m" src="m/623ed6fe71f30e4d5681590495eb1e0754aae1f3.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em"> (aerosol, smoke, cloud droplets) give Mie and non-selective scattering, weakly dependent on <img class="m" src="m/623ed6fe71f30e4d5681590495eb1e0754aae1f3.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em">.</p>
+<p class="rel"><span>needs</span> <a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></p>
+<p class="rel"><span>unlocks</span> <a href="toa-reflectance.html">From DN to top-of-atmosphere and surface reflectance</a>, <a href="radiometric-correction.html">Radiometric errors and corrections</a></p>
+<p class="rel"><span>see also</span> <a href="radiometric-correction.html">Radiometric errors and corrections</a>, <a href="toa-reflectance.html">From DN to top-of-atmosphere and surface reflectance</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgd5c076c" class="outline-2">
+<h2 id="orgd5c076c">Definition</h2>
+<div class="outline-text-2" id="text-orgd5c076c">
+<ul class="org-ul">
+<li><b>Rayleigh</b>: scatterers (molecules) much smaller than <img class="m" src="m/623ed6fe71f30e4d5681590495eb1e0754aae1f3.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em">; intensity <img class="m" src="m/425858d37f3ce58efa6548ff8c33cb2320bf0949.svg" alt="\(\propto\lambda^{-4}\)" style="height:0.892em;vertical-align:-0.000em">. Blue (0.45 µm) is scattered about <img class="m" src="m/5dcaf24e26824baf4f7469715ab5f38efbca808d.svg" alt="\((0.7/0.45)^4\approx5.8\)" style="height:1.166em;vertical-align:-0.268em"> times more than red (0.7 µm): blue sky, bluish haze in images.</li>
+<li><b>Mie</b>: scatterers of size comparable to <img class="m" src="m/623ed6fe71f30e4d5681590495eb1e0754aae1f3.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em"> (aerosol, smoke, dust); dependence on <img class="m" src="m/623ed6fe71f30e4d5681590495eb1e0754aae1f3.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em"> weaker, forward scattering.</li>
+<li><b>Non-selective</b>: scatterers much larger than <img class="m" src="m/623ed6fe71f30e4d5681590495eb1e0754aae1f3.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em"> (cloud droplets): all visible wavelengths equally, so clouds look white.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcaf45a8" class="outline-2">
+<h2 id="orgcaf45a8">Effect on the measurement</h2>
+<div class="outline-text-2" id="text-orgcaf45a8">
+<p>
+The radiance at the sensor is
+<div class="mb"><img class="m" src="m/16673fecff0bc6c5e1b12d26994a05fefabe4491.svg" alt="\[ L_s=\tau_a\,\frac{\rho\,E_{\downarrow}}{\pi}+L_p, \]" style="width:9.089em"></div>
+where <img class="m" src="m/eb80d6ac078e8098f3b55693bb0ecd409169733b.svg" alt="\(L_p\)" style="height:1.062em;vertical-align:-0.319em"> is <b>path radiance</b>: light scattered into the line of sight without touching the target. It adds an offset, larger in the blue, that reduces contrast; scattered skylight also illuminates shadows.
+</p>
+</div>
+</div>
+<div id="outline-container-org236c45e" class="outline-2">
+<h2 id="org236c45e">Intuition</h2>
+<div class="outline-text-2" id="text-org236c45e">
+<p>
+Scattering is fog in the image: it adds light that carries no information about the ground, mostly at short wavelengths.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdbb67d3" class="outline-2">
+<h2 id="orgdbb67d3">Pitfall</h2>
+<div class="outline-text-2" id="text-orgdbb67d3">
+<p>
+Because scattering is strongest in the blue, the blue band of a <a href="multispectral-hyperspectral-image.html">multispectral image</a> has the largest offset and the lowest contrast; dark-object subtraction exploits exactly this (see <a href="radiometric-correction.html">corrections</a>).
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="atmospheric-windows.html"><span>← previous</span>Atmospheric transmittance and windows</a><a rel="next" href="toa-reflectance.html"><span>next →</span>From DN to top-of-atmosphere and surface reflectance</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/physics--atmosphere.pdf" title="PDF manual">Atmosphere</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">Physics</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

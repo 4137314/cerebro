@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stone's theorem and the Stone–von Neumann theorem · Physics</title>
+<meta name="description" content="Strongly continuous unitary groups U(t) are exactly e^{-itA} with A self-adjoint (Stone), which justifies the Hamiltonian as generator of dynamics; irreducible representations of the Weyl form of [x,p]=i\hbar are all unitarily equivalent to the Schrödinger representation (Stone–von Neumann), so wav…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/stone-and-stone-von-neumann-theorems.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Stone's theorem and the Stone–von Neumann theorem · Physics">
+<meta property="og:description" content="Strongly continuous unitary groups U(t) are exactly e^{-itA} with A self-adjoint (Stone), which justifies the Hamiltonian as generator of dynamics; irreducible representations of the Weyl form of [x,p]=i\hbar are all unitarily equivalent to the Schrödinger representation (Stone–von Neumann), so wav…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/stone-and-stone-von-neumann-theorems.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-mechanics">Quantum Mechanics</a> / <a rel="up" href="index.html#a-quantum-mechanics--mathematical-foundations">Mathematical Foundations</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Quantum Mechanics · Mathematical Foundations</p>
+<h1>Stone's theorem and the Stone–von Neumann theorem</h1>
+<p class="summary">Strongly continuous unitary groups <img class="m" src="m/135e3a111474d02d76296b709a366c99e73013e1.svg" alt="\(U(t)\)" style="height:1.096em;vertical-align:-0.274em"> are exactly <img class="m" src="m/13f918a4853490ab6d9395b4905f248a7f9bb5d1.svg" alt="\(e^{-itA}\)" style="height:0.922em;vertical-align:-0.000em"> with <img class="m" src="m/ab4d5b3604e572aae8418bc873e1b717a85a3c2b.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> self-adjoint (Stone), which justifies the Hamiltonian as generator of dynamics; irreducible representations of the Weyl form of <img class="m" src="m/aac29b6f6725bd6ad211015ca463c62d09cdd19b.svg" alt="\([x,p]=i\hbar\)" style="height:1.096em;vertical-align:-0.274em"> are all unitarily equivalent to the Schrödinger representation (Stone–von Neumann), so wave mechanics is not a choice.</p>
+<p class="rel"><span>needs</span> <a href="self-adjoint-operators-and-spectral-theorem.html">Self-adjoint operators and the spectral theorem</a>, <a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></p>
+<p class="rel"><span>unlocks</span> <a href="algebraic-quantum-theory.html">Algebraic quantum theory: C*-algebras, GNS and Gleason</a>, <a href="group-representations-and-spin.html">Group representations, Wigner's theorem and spin</a></p>
+<p class="rel"><span>see also</span> <a href="group-representations-and-spin.html">Group representations, Wigner's theorem and spin</a>, <a href="algebraic-quantum-theory.html">Algebraic quantum theory: C*-algebras, GNS and Gleason</a></p>
+<details class="path"><summary>Learning path: 10 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="self-adjoint-operators-and-spectral-theorem.html">Self-adjoint operators and the spectral theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org5295810" class="outline-2">
+<h2 id="org5295810">Stone's theorem</h2>
+<div class="outline-text-2" id="text-org5295810">
+<p>
+Let <img class="m" src="m/135e3a111474d02d76296b709a366c99e73013e1.svg" alt="\(U(t)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/22ad3444a1591a6585329635b45698f6c6ad8879.svg" alt="\(t\in\mathbb R\)" style="height:0.798em;vertical-align:-0.040em">, be unitary with <img class="m" src="m/6bf0c279b8c11a1d8f82effcdb8d1fc0560aa108.svg" alt="\(U(t+s)=U(t)U(s)\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/06286ed567baf1901ebbc066fb74e997dcbcc93c.svg" alt="\(t\mapsto U(t)\psi\)" style="height:1.096em;vertical-align:-0.274em"> continuous for every <img class="m" src="m/80680388fec8fcb230d8bb37c57a45b5d3781994.svg" alt="\(\psi\)" style="height:0.974em;vertical-align:-0.214em"> <span class="cite">(<a class="ref" href="https://doi.org/10.2307/1968538" data-full="M. H. Stone, “On one-parameter unitary groups in Hilbert space”, Annals of Mathematics 33, 643–648 (1932)." aria-label="M. H. Stone, “On one-parameter unitary groups in Hilbert space”, Annals of Mathematics 33, 643–648 (1932).">Stone 1932</a>)</span>. Then there is a unique self-adjoint <img class="m" src="m/ab4d5b3604e572aae8418bc873e1b717a85a3c2b.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/101946bc87d1beab9c753aed47abd927e3be182a.svg" alt="\(U(t)=e^{-itA}\)" style="height:1.196em;vertical-align:-0.275em">, defined by the spectral theorem, and <span class="cite">(<a class="ref" href="https://doi.org/10.1007/bf01457956" data-full="J. von Neumann, “Die Eindeutigkeit der Schrödingerschen Operatoren”, Mathematische Annalen 104, 570–578 (1931)." aria-label="J. von Neumann, “Die Eindeutigkeit der Schrödingerschen Operatoren”, Mathematische Annalen 104, 570–578 (1931).">von Neumann 1931</a>)</span>
+<div class="mb"><img class="m" src="m/daa6bda3567def9c0f7203a9c40711268547d270.svg" alt="\[ D(A)=\left\{\psi:\lim_{t\to0}\frac{U(t)\psi-\psi}{t}\text{ exists}\right\},\qquad A\psi=i\lim_{t\to0}\frac{U(t)\psi-\psi}{t}. \]" style="width:31.269em"></div>
+Conversely each self-adjoint <img class="m" src="m/ab4d5b3604e572aae8418bc873e1b717a85a3c2b.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> generates such a group. Hence: unitary time evolution ⇔ self-adjoint <img class="m" src="m/42c5c23db9555d1fd6049261e23079da0bfbff51.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em">; unitary translations ⇔ self-adjoint <img class="m" src="m/b6d7ad69879c68e00b20371d2b8069a669f8fbd1.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org2b70cbd" class="outline-2">
+<h2 id="org2b70cbd">Proof idea</h2>
+<div class="outline-text-2" id="text-org2b70cbd">
+<p>
+Converse: <img class="m" src="m/63a30beb562db64d764b5bf50e0b903403911f9c.svg" alt="\(e^{-itA}=\int e^{-it\lambda}\dd P(\lambda)\)" style="height:1.265em;vertical-align:-0.329em"> is unitary and continuous by dominated convergence. Direct: <img class="m" src="m/ab4d5b3604e572aae8418bc873e1b717a85a3c2b.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> as defined is symmetric; its domain is dense because the smoothed vectors <img class="m" src="m/3d395789f87b0f802e00aa7316540618b057d4c1.svg" alt="\(\int f(t)U(t)\psi\,\dd t\)" style="height:1.218em;vertical-align:-0.341em">, <img class="m" src="m/443974118c3342b0585dcea374e43178811295d5.svg" alt="\(f\in C_c^\infty\)" style="height:1.032em;vertical-align:-0.268em">, lie in it; deficiency indices vanish because <img class="m" src="m/b58161045f05c10f29fcd6ee9a7fc70329b6e779.svg" alt="\(\pm i\)" style="height:0.814em;vertical-align:-0.090em"> eigenvectors of <img class="m" src="m/6a46819ddd648c4ae9382556f8566a2b636d5b19.svg" alt="\(A^*\)" style="height:0.755em;vertical-align:-0.000em"> would grow like <img class="m" src="m/e8be59080fcc24ddc7d4e669702bc4a36adee80f.svg" alt="\(e^{\pm t}\)" style="height:0.873em;vertical-align:-0.000em"> under a unitary group.
+</p>
+</div>
+</div>
+<div id="outline-container-org1a49938" class="outline-2">
+<h2 id="org1a49938">Weyl relations and uniqueness</h2>
+<div class="outline-text-2" id="text-org1a49938">
+<p>
+<img class="m" src="m/aac29b6f6725bd6ad211015ca463c62d09cdd19b.svg" alt="\([x,p]=i\hbar\)" style="height:1.096em;vertical-align:-0.274em"> cannot hold for bounded operators (take traces in finite dimension: <img class="m" src="m/aed71e5d2eee751fddf077c88f0a47b29cd329e2.svg" alt="\(0=i\hbar n\)" style="height:0.755em;vertical-align:-0.000em">). The Weyl form avoids domains: with <img class="m" src="m/e06d897ccc98655eab315e3d1002fc4f4356ec75.svg" alt="\(U(a)=e^{iap/\hbar}\)" style="height:1.247em;vertical-align:-0.274em">, <img class="m" src="m/c6eafe9a6c0d10979523b5b4e7239a4471a01b1b.svg" alt="\(V(b)=e^{ibx}\)" style="height:1.204em;vertical-align:-0.277em">,
+<div class="mb"><img class="m" src="m/3ef1343c377214747b7732e7f4b4956357b247e5.svg" alt="\[ U(a)V(b)=e^{iab}V(b)U(a). \]" style="width:12.511em"></div>
+<b>Stone–von Neumann</b>: every irreducible strongly continuous representation of these relations (finitely many degrees of freedom) is unitarily equivalent to <img class="m" src="m/65bdb86dbc6ca8803366cad1a173257d25dc8f2c.svg" alt="\(L^2(\mathbb R^n)\)" style="height:1.166em;vertical-align:-0.268em"> with <img class="m" src="m/258dcb04caf8c3d82dd7028e1c60cad8a941e7d5.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> multiplication and <img class="m" src="m/be54696a50ed44e904ce9784430f48da28720aca.svg" alt="\(p=-i\hbar\nabla\)" style="height:0.968em;vertical-align:-0.213em">. Heisenberg's matrices and Schrödinger's waves are the same theory.
+</p>
+</div>
+</div>
+<div id="outline-container-orga340047" class="outline-2">
+<h2 id="orga340047">Worked example</h2>
+<div class="outline-text-2" id="text-orga340047">
+<p>
+Translations on <img class="m" src="m/2873a9d7927c59863bbf3f41c5f00ee5205a7214.svg" alt="\(L^2(\mathbb R)\)" style="height:1.166em;vertical-align:-0.268em">: <img class="m" src="m/1e5d4d8e48f3418518456351aee0c6f19e3ea785.svg" alt="\((U(a)\psi)(x)=\psi(x+a)\)" style="height:1.096em;vertical-align:-0.274em"> is strongly continuous; its generator is <img class="m" src="m/58e107efbd88dc7392246cc73fc5f49955a7eae4.svg" alt="\(\frac{1}{i}\dd/\dd x\)" style="height:1.304em;vertical-align:-0.378em"> on the Sobolev space <img class="m" src="m/7ed8efc35da9db49d55da846c303f66375778bec.svg" alt="\(H^1\)" style="height:0.892em;vertical-align:-0.000em">, i.e. <img class="m" src="m/62ce8a1ad8637e05161a41e255c8ff12cb9c4fdc.svg" alt="\(p/\hbar\)" style="height:1.096em;vertical-align:-0.274em">. The harmonic-oscillator ladder representation is equivalent to it via Hermite functions.
+</p>
+</div>
+</div>
+<div id="outline-container-orgae92b41" class="outline-2">
+<h2 id="orgae92b41">Engineering applications</h2>
+<div class="outline-text-2" id="text-orgae92b41">
+<p>
+The theorem fails for infinitely many degrees of freedom: quantum fields admit inequivalent representations (different vacua), which is the mathematical root of phase transitions, superconductivity (<a href="superconductivity-and-flux-quantization.html">BCS</a>) and of renormalisation in <a href="radiative-corrections-and-renormalization.html">QED</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-orge8587d2" class="outline-2">
+<h2 id="orge8587d2">Pitfall</h2>
+<div class="outline-text-2" id="text-orge8587d2">
+<p>
+Formal commutators on a common domain do not imply the Weyl relations (Nelson's counterexamples); uniqueness needs the exponentiated form.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="self-adjoint-operators-and-spectral-theorem.html"><span>← previous</span>Self-adjoint operators and the spectral theorem</a><a rel="next" href="algebraic-quantum-theory.html"><span>next →</span>Algebraic quantum theory: C*-algebras, GNS and Gleason</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-mechanics--mathematical-foundations.pdf" title="PDF manual">Mathematical Foundations</a> · <a class="pdf" href="pdf/quantum-mechanics.pdf" title="PDF manual">Quantum Mechanics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iterative magnitude comparator · Computer Science</title>
+<meta name="description" content="Comparing two n-bit unsigned numbers bit by bit from the most significant end, each cell passes &quot;already greater / already less&quot; downwards and decides only if everything above was equal: G_i=G_{i+1}+E_{i+1}a_i\bar b_i, L_i=L_{i+1}+E_{i+1}\bar a_ib_i, E=\overline{G+L}; the structure is the ripple-ca…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/magnitude-comparator.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Iterative magnitude comparator · Computer Science">
+<meta property="og:description" content="Comparing two n-bit unsigned numbers bit by bit from the most significant end, each cell passes &quot;already greater / already less&quot; downwards and decides only if everything above was equal: G_i=G_{i+1}+E_{i+1}a_i\bar b_i, L_i=L_{i+1}+E_{i+1}\bar a_ib_i, E=\overline{G+L}; the structure is the ripple-ca…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/magnitude-comparator.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--arithmetic">Arithmetic</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Hardware · Arithmetic</p>
+<h1>Iterative magnitude comparator</h1>
+<p class="summary">Comparing two <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">-bit unsigned numbers bit by bit from the most significant end, each cell passes "already greater / already less" downwards and decides only if everything above was equal: <img class="m" src="m/65c0e34de5a7cb6b0170f2af079244fc521d6dc7.svg" alt="\(G_i=G_{i+1}+E_{i+1}a_i\bar b_i\)" style="height:1.167em;vertical-align:-0.257em">, <img class="m" src="m/870209bef64861f3af161d35ce6c241d901a14fc.svg" alt="\(L_i=L_{i+1}+E_{i+1}\bar a_ib_i\)" style="height:1.017em;vertical-align:-0.254em">, <img class="m" src="m/6f5ac589abaf89fb3c25c724bb555ba97db4bf64.svg" alt="\(E=\overline{G+L}\)" style="height:1.059em;vertical-align:-0.095em">; the structure is the ripple-carry adder's, with the same linear delay and the same look-ahead tricks.</p>
+<p class="rel"><span>needs</span> <a href="ripple-carry-adder.html">Full adder and ripple-carry adder</a></p>
+<p class="rel"><span>see also</span> <a href="twos-complement.html">Binary numbers and two's complement</a>, <a href="rtl-design.html">The RTL design method: datapath and control unit</a>, <a href="datapath-subsystems.html">Datapath subsystems: detectors, shifters, counters</a>, <a href="alu-design.html">Arithmetic logic unit</a></p>
+<p class="rel"><span>mentioned in</span> <a href="rtl-design.html">The RTL design method: datapath and control unit</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="ripple-carry-adder.html">Full adder and ripple-carry adder</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org021b04f" class="outline-2">
+<h2 id="org021b04f">Construction</h2>
+<div class="outline-text-2" id="text-org021b04f">
+<p>
+<b>Half comparator</b> (one bit): <img class="m" src="m/48ea00fa5c5a4544ac97cfd8b454d8f8a390744b.svg" alt="\(g=a\bar b\)" style="height:1.125em;vertical-align:-0.214em"> (<img class="m" src="m/bcb2602c9c907b0411ff6d2ba24b93cc2a806c3a.svg" alt="\(a&gt;b\)" style="height:0.804em;vertical-align:-0.040em">), <img class="m" src="m/baab0860ef0af9027b1d4b3d7dd641c19e3c582d.svg" alt="\(l=\bar ab\)" style="height:0.761em;vertical-align:-0.000em"> (<img class="m" src="m/2bcfff7d54348a04f2b851acbcfe1d0fa5a2b936.svg" alt="\(a&lt;b\)" style="height:0.804em;vertical-align:-0.040em">), <img class="m" src="m/00af7c700bbd13dbb973f18f4b3ac5283d02932c.svg" alt="\(e=\overline{a\oplus b}\)" style="height:1.072em;vertical-align:-0.096em"> (equal). Three cases, two output bits suffice (<img class="m" src="m/cbfd70ffaffa5e4825877f523d36e306ae2a1bc1.svg" alt="\(e=\bar g\bar l\)" style="height:1.125em;vertical-align:-0.214em">).
+<b>Iterative cell</b> <img class="m" src="m/a67e954bf39c79e3b911cbed8c1a65db21940e5a.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em">, fed by the cell above (<img class="m" src="m/04e8799c070bf149e8c20bc265323aca9f1cbe64.svg" alt="\(i+1\)" style="height:0.814em;vertical-align:-0.090em">) with <img class="m" src="m/83b2ac9dc5546a6032c9896fda029b1fa72b2a0b.svg" alt="\(G_n=L_n=0\)" style="height:0.913em;vertical-align:-0.164em">:
+<div class="mb"><img class="m" src="m/8ab339433eebe267b9becac8f0992dc32e15ee97.svg" alt="\[ G_i=G_{i+1}+\overline{G_{i+1}+L_{i+1}}\;a_i\bar b_i,\qquad L_i=L_{i+1}+\overline{G_{i+1}+L_{i+1}}\;\bar a_ib_i. \]" style="width:31.437em"></div>
+Outputs at the end: <img class="m" src="m/6e7d25310d70013be1fdf1d900bad6c20c68f89f.svg" alt="\(A&gt;B=G_0\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/4a266864894c330bee721a3fa3b77c0d70384d85.svg" alt="\(A&lt;B=L_0\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/169101c250e18a5fe7cef0270b91c9f49e0dc9f3.svg" alt="\(A=B=\overline{G_0+L_0}\)" style="height:1.132em;vertical-align:-0.170em">. A decision taken by a higher bit is never overridden, like a carry that is generated and then propagated.
+The LSB-first version is the adder's carry chain: <img class="m" src="m/1e52a8b2ba8b0031a7f6e53994ccf8024fde5184.svg" alt="\(\mathit{gt}_{i+1}=a_i\bar b_i+\overline{a_i\oplus b_i}\,\mathit{gt}_i\)" style="height:1.339em;vertical-align:-0.362em"> — "greater so far" is generated by <img class="m" src="m/c4c5338899db853af32665f39988e37ebcde9585.svg" alt="\(a_i\bar b_i\)" style="height:1.076em;vertical-align:-0.161em"> and propagated when the bits are equal.
+Alternatives: <img class="m" src="m/d9ee5f608799dfa22a98c0590ab8d31a3e0077a1.svg" alt="\(A&lt;B\)" style="height:0.792em;vertical-align:-0.040em"> is the borrow of <img class="m" src="m/b7949105e1d2d2bc69e74c895470886ccfe83f69.svg" alt="\(A-B\)" style="height:0.840em;vertical-align:-0.092em">, i.e. <img class="m" src="m/260e8663613e5e2698048a8a41c6ea5a7e9e716e.svg" alt="\(\overline{c_n}\)" style="height:0.855em;vertical-align:-0.163em"> of <img class="m" src="m/3a8742b5694c6d0d91d4a2e3d95244f3abd7ae24.svg" alt="\(A+\bar B+1\)" style="height:0.991em;vertical-align:-0.089em"> on an existing <a href="ripple-carry-adder.html">adder</a>; equality alone is a tree of XNORs and an AND.
+</p>
+</div>
+</div>
+<div id="outline-container-org11a6eac" class="outline-2">
+<h2 id="org11a6eac">Example</h2>
+<div class="outline-text-2" id="text-org11a6eac">
+<p>
+<img class="m" src="m/ecb25867f93872f8b03c4ecd445510774864a95f.svg" alt="\(A=1011\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/ca44bfa5c707ab61386beba132eb4915b5c21dcc.svg" alt="\(B=1001\)" style="height:0.749em;vertical-align:-0.000em">. Bit 3: <img class="m" src="m/28468304852cffd51ff3cb2b33e432b4e1ab6a4d.svg" alt="\(1,1\)" style="height:0.919em;vertical-align:-0.211em"> equal, <img class="m" src="m/3b64982e1be72a0ff437b55baa2a09deeb16d51c.svg" alt="\(G=L=0\)" style="height:0.749em;vertical-align:-0.000em">. Bit 2: <img class="m" src="m/a32649a7fdc53e6d8e2762888539f08f5006781d.svg" alt="\(0,0\)" style="height:0.919em;vertical-align:-0.211em"> equal. Bit 1: <img class="m" src="m/6e1926ec20cb47bcb23e38d9e263390d1321f1b2.svg" alt="\(1,0\)" style="height:0.919em;vertical-align:-0.211em">: <img class="m" src="m/1740d8a0c3f8cd8cfd8d266106b6ff0bc6e0e328.svg" alt="\(G_1=1\)" style="height:0.913em;vertical-align:-0.164em">. Bit 0: <img class="m" src="m/28468304852cffd51ff3cb2b33e432b4e1ab6a4d.svg" alt="\(1,1\)" style="height:0.919em;vertical-align:-0.211em">, but <img class="m" src="m/180274e8dececeaf4752e06f20174c8834e7e03d.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> is already 1 and stays: <img class="m" src="m/1cdb84932b2b5cbfe655ce64cfc9f3ab0478e643.svg" alt="\(A&gt;B\)" style="height:0.792em;vertical-align:-0.040em">.
+BCD comparators work digit by digit in the same way, each cell comparing two 4-bit digits.
+</p>
+</div>
+</div>
+<div id="outline-container-orge234443" class="outline-2">
+<h2 id="orge234443">Intuition</h2>
+<div class="outline-text-2" id="text-orge234443">
+<p>
+Reading two numbers from the left, the first position where they differ decides; everything after it is irrelevant.
+</p>
+</div>
+</div>
+<div id="outline-container-org9cc62f3" class="outline-2">
+<h2 id="org9cc62f3">Pitfall</h2>
+<div class="outline-text-2" id="text-org9cc62f3">
+<p>
+For two's-complement operands the sign bit has the opposite weight: compare the MSBs inverted (or flip both sign bits) before using the unsigned comparator.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="fixed-point-arithmetic.html"><span>← previous</span>Fixed-point arithmetic</a><a rel="next" href="booth-recoding.html"><span>next →</span>Radix-4 Booth recoding</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--arithmetic.pdf" title="PDF manual">Arithmetic</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

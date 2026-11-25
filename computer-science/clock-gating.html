@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clock gating and operand isolation · Computer Science</title>
+<meta name="description" content="Registers that keep their value still burn power on every clock edge (clock tree, flip-flop internals); clock gating stops the clock of a register bank when its enable is off, using a latch plus AND cell so the gated clock has no glitches; operand isolation similarly freezes the inputs of unit whos…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/clock-gating.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Clock gating and operand isolation · Computer Science">
+<meta property="og:description" content="Registers that keep their value still burn power on every clock edge (clock tree, flip-flop internals); clock gating stops the clock of a register bank when its enable is off, using a latch plus AND cell so the gated clock has no glitches; operand isolation similarly freezes the inputs of unit whos…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/clock-gating.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--power">Power</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Hardware · Power</p>
+<h1>Clock gating and operand isolation</h1>
+<p class="summary">Registers that keep their value still burn power on every clock edge (clock tree, flip-flop internals); clock gating stops the clock of a register bank when its enable is off, using a latch plus AND cell so the gated clock has no glitches; operand isolation similarly freezes the inputs of unit whose result is not used.</p>
+<p class="rel"><span>needs</span> <a href="cmos-power.html">Power dissipation in CMOS</a>, <a href="sequential-logic.html">Flip-flops and registers in VHDL</a></p>
+<p class="rel"><span>unlocks</span> <a href="power-gating.html">Power gating and leakage reduction</a></p>
+<p class="rel"><span>see also</span> <a href="low-power-encoding.html">Encodings and orderings for low power</a>, <a href="dvfs-parallelism.html">Voltage scaling, DVFS and parallel datapaths</a>, <a href="power-gating.html">Power gating and leakage reduction</a>, <a href="registers-shift-registers.html">Registers and shift registers</a></p>
+<p class="rel"><span>mentioned in</span> <a href="registers-shift-registers.html">Registers and shift registers</a>, <a href="clock-skew-jitter.html">Clock skew and jitter</a></p>
+<details class="path"><summary>Learning path: 14 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li><li><a href="sr-latch.html">SR latch and D latch</a></li><li><a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></li><li><a href="digital-design-flow.html">Digital design flow and abstraction levels</a></li><li><a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a></li><li><a href="std-logic.html">std_logic: nine-valued logic and resolution</a></li><li><a href="vhdl-concurrent-assignments.html">Concurrent assignments: when–else and with–select</a></li><li><a href="vhdl-process.html">Processes and sequential statements</a></li><li><a href="sequential-logic.html">Flip-flops and registers in VHDL</a></li><li><a href="gate-delay-model.html">Gate and wire delay models</a></li><li><a href="cmos-power.html">Power dissipation in CMOS</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org05d0275" class="outline-2">
+<h2 id="org05d0275">Construction</h2>
+<div class="outline-text-2" id="text-org05d0275">
+<p>
+A register with enable is normally a <a href="vhdl-concurrent-assignments.html">multiplexer</a> feeding back <img class="m" src="m/f78dea4673ec2de60b306367cfb4dd352230f14f.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> (<code>if en = '1' then q &lt;</code> d;=): the clock still toggles every flip-flop. With gating, <img class="m" src="m/50d3fa2ea6d8392c174d7ae86bb1b09455d87262.svg" alt="\(\mathrm{gclk}=\mathrm{clk}\land \mathrm{en}_L\)" style="height:0.974em;vertical-align:-0.214em">, where <img class="m" src="m/5805356ccb8d96487aa66c87e622da9d13eacf01.svg" alt="\(\mathrm{en}_L\)" style="height:0.636em;vertical-align:-0.165em"> is the enable latched while the clock is low: since it can only change while <code>clk</code> is 0, the AND output cannot glitch. The mux disappears, and the whole bank and its local <a href="clock-skew-jitter.html">clock tree</a> stop switching.
+</p>
+</div>
+</div>
+<div id="outline-container-org2d3f5a6" class="outline-2">
+<h2 id="org2d3f5a6">When to gate</h2>
+<div class="outline-text-2" id="text-org2d3f5a6">
+<ul class="org-ul">
+<li>the enable is off often (wait states, idle units, FSM states where a register is not loaded);</li>
+<li>the gated group is large enough (≥ 8–16 flip-flops) to pay for the cell;</li>
+<li>tools insert it automatically from the enable patterns in the RTL.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd298a06" class="outline-2">
+<h2 id="orgd298a06">Operand isolation</h2>
+<div class="outline-text-2" id="text-orgd298a06">
+<p>
+A combinational unit (multiplier, ALU) whose output is not used in a cycle still switches when its inputs change. Forcing its inputs constant (AND gates with the select, or registers with enable) when the result is discarded removes that activity.
+</p>
+</div>
+</div>
+<div id="outline-container-org040142f" class="outline-2">
+<h2 id="org040142f">Picture</h2>
+<div class="outline-text-2" id="text-org040142f">
+<figure class="fig"><img class="m" src="m/d48c968a29925b5bf33621180cba3acf0c7c05f2.svg" alt="figure" style="width:17.276em"><figcaption><span class="fl">Figure 1.</span> Clock gating: the gated clock gclk pulses only when the enable en is high, so idle registers stop switching.</figcaption></figure>
+<p>
+Clock pulses reach the registers only while the enable is on.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc9c55d1" class="outline-2">
+<h2 id="orgc9c55d1">Intuition</h2>
+<div class="outline-text-2" id="text-orgc9c55d1">
+<p>
+Do not wind a clock nobody is looking at.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbc5b210" class="outline-2">
+<h2 id="orgbc5b210">Pitfall</h2>
+<div class="outline-text-2" id="text-orgbc5b210">
+<p>
+A plain AND of clock and an unlatched enable glitches whenever the enable changes while the clock is high, producing spurious edges. Gating also adds skew that timing analysis must account for.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="cmos-power.html"><span>← previous</span>Power dissipation in CMOS</a><a rel="next" href="switching-activity.html"><span>next →</span>Signal and transition probabilities</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--power.pdf" title="PDF manual">Power</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

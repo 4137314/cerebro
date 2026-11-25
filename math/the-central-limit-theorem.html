@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The central limit theorem · Mathematics</title>
+<meta name="description" content="The law of large numbers says the average converges to the mean and says nothing about how. The central limit theorem answers that: the error, rescaled by \sqrt{n}, converges to one law, the same law whatever the summands were. Only the first two moments survive, which is why the normal distributio…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-central-limit-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The central limit theorem · Mathematics">
+<meta property="og:description" content="The law of large numbers says the average converges to the mean and says nothing about how. The central limit theorem answers that: the error, rescaled by \sqrt{n}, converges to one law, the same law whatever the summands were. Only the first two moments survive, which is why the normal distributio…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-central-limit-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-probability">Probability</a> / <a rel="up" href="index.html#a-probability--probability-theory">Probability Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Probability · Probability Theory</p>
+<h1>The central limit theorem</h1>
+<p class="summary">The <a href="the-weak-and-strong-laws-of-large-numbers.html">law of large numbers</a> says the average converges to the mean and says nothing about how. The central limit theorem answers that: the error, rescaled by <img class="m" src="m/1057190ea66b29a8baaa0260548ec8c2b0a8a92f.svg" alt="\(\sqrt{n}\)" style="height:1.140em;vertical-align:-0.262em">, converges to one law, the same law whatever the summands were. Only the first two moments survive, which is why the normal distribution is the one that keeps appearing in statements that mention no normal distribution.</p>
+<p class="rel"><span>needs</span> <a href="characteristic-functions.html">Characteristic functions</a>, <a href="random-variables-laws-and-distribution-functions.html">Random variables, laws and distribution functions</a>, <a href="variance-covariance-and-the-markov-and-chebyshev-inequalities.html">Variance, covariance and the Markov and Chebyshev inequalities</a></p>
+<p class="rel"><span>mentioned in</span> <a href="probability.html">Probability</a></p>
+<details class="path"><summary>Learning path: 65 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="one-sided-limits-and-the-discontinuities-of-a-monotone-function.html">One-sided limits and the discontinuities of a monotone function</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="cauchys-mean-value-theorem-and-de-lhopitals-rule.html">Cauchy's mean value theorem and de l'Hopital's rule</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="convex-functions-and-the-second-derivative.html">Convex functions and the second derivative</a></li><li><a href="taylors-theorem-with-the-lagrange-remainder.html">Taylor's theorem with the Lagrange remainder</a></li><li><a href="taylors-theorem-with-the-peano-remainder.html">Taylor's theorem with the Peano remainder</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li><li><a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="the-baire-category-theorem.html">The Baire category theorem</a></li><li><a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></li><li><a href="convex-set.html">Convex set</a></li><li><a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a></li><li><a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a></li><li><a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a></li><li><a href="probability-spaces-conditioning-and-independence.html">Probability spaces, conditioning and independence</a></li><li><a href="random-variables-laws-and-distribution-functions.html">Random variables, laws and distribution functions</a></li><li><a href="expectation-the-transfer-theorem-and-jensens-inequality.html">Expectation, the transfer theorem and Jensen's inequality</a></li><li><a href="variance-covariance-and-the-markov-and-chebyshev-inequalities.html">Variance, covariance and the Markov and Chebyshev inequalities</a></li><li><a href="modes-of-convergence-and-the-borel-cantelli-lemmas.html">Modes of convergence and the Borel-Cantelli lemmas</a></li><li><a href="characteristic-functions.html">Characteristic functions</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org3c4299e">
+<p>
+The <i>standard normal</i> law is the probability measure on <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em"> with
+density <img class="m" src="m/6a40ee49a3027d1f127c4028f40771a79445d224.svg" alt="\(t \mapsto (2\pi)^{-1/2}e^{-t^{2}/2}\)" style="height:1.355em;vertical-align:-0.271em"> with respect to Lebesgue
+measure; a random variable with that law is written <img class="m" src="m/7c4b861f7a604d8d12b3c250305352daee8e7002.svg" alt="\(Z\)" style="height:0.749em;vertical-align:-0.000em">, and its
+characteristic function is <img class="m" src="m/586c9c2d4a0b1a6b4a668a3244a99a75009d434d.svg" alt="\(\varphi_{Z}(t) = e^{-t^{2}/2}\)" style="height:1.355em;vertical-align:-0.271em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org3203372">
+<p>
+Let <img class="m" src="m/507ed3dbca6b010d0bdadcbae50578d44a3e7efd.svg" alt="\(X_{1},\dots,X_{n}\)" style="height:0.962em;vertical-align:-0.212em"> be independent, identically distributed and
+square-integrable, with mean <img class="m" src="m/5602b42c49566a683e5183a144a93b453d1accef.svg" alt="\(\mu\)" style="height:0.685em;vertical-align:-0.212em">, variance <img class="m" src="m/cc39eec126fb458f6dfab3c56e18062269cf2da4.svg" alt="\(\sigma^{2}&gt;0\)" style="height:0.935em;vertical-align:-0.047em">, and
+<img class="m" src="m/5a0d25b987dcbbf83572f385c7b931c7aa840954.svg" alt="\(S_{n} = X_{1}+\cdots+X_{n}\)" style="height:0.913em;vertical-align:-0.164em">. Put
+<img class="m" src="m/9714c5a21e2cab462806a4d3d76950adbc5c6e10.svg" alt="\(Z_{n} = (S_{n}-n\mu)/(\sigma\sqrt{n})\)" style="height:1.151em;vertical-align:-0.276em">. Then <img class="m" src="m/e879c8b493aa21dc2afc6359758a2932e79754ea.svg" alt="\(\E[Z_{n}] = 0\)" style="height:1.096em;vertical-align:-0.274em">,
+<img class="m" src="m/af06783ba48f85de122600bd6fc6eff01d8ea00a.svg" alt="\(\Var(Z_{n}) = 1\)" style="height:1.096em;vertical-align:-0.274em">, and
+<img class="m" src="m/3d141eaef30a1ebf70b25e1628b268917793ef8e.svg" alt="\(\varphi_{Z_{n}}(t) = \varphi_{Y}(t/(\sigma\sqrt{n}))^{n}\)" style="height:1.151em;vertical-align:-0.276em">, where
+<img class="m" src="m/41f005d72f4e227fd97c1e1168d1a81da2302050.svg" alt="\(Y = X_{1}-\mu\)" style="height:0.962em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgde86dfc">
+<p>
+Centring and scaling give the mean and the variance by linearity and by
+<img class="m" src="m/7ddb31ee68a48578249c6e677942994ac9ae57c2.svg" alt="\(\Var(aX) = a^{2}\Var(X)\)" style="height:1.166em;vertical-align:-0.268em">, the variance of <img class="m" src="m/8ac92dccea20d5f4d0eb823b3b1087cc09e295fe.svg" alt="\(S_{n}\)" style="height:0.913em;vertical-align:-0.164em"> being
+<img class="m" src="m/058aa49282d492ccfbbe66f7539ee1c3387089fc.svg" alt="\(n\sigma^{2}\)" style="height:0.892em;vertical-align:-0.000em"> by independence. For the characteristic function,
+<img class="m" src="m/9df307891be7069afc03d5a612d9d9ebf0bc5444.svg" alt="\(Z_{n} = \sum_{i}(X_{i}-\mu)/(\sigma\sqrt{n})\)" style="height:1.206em;vertical-align:-0.326em"> is a sum of <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">
+independent variables each distributed as
+<img class="m" src="m/e16fa6c6c7d2a9c87ec3fa5435f0306866c875c3.svg" alt="\(Y/(\sigma\sqrt{n})\)" style="height:1.151em;vertical-align:-0.276em">, so its characteristic function is the product
+of the <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> equal factors <img class="m" src="m/c50db37dc291f6fc2a2add67fdc1ecb0f84c580f.svg" alt="\(\varphi_{Y}(t/(\sigma\sqrt{n}))\)" style="height:1.151em;vertical-align:-0.276em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org3436003">
+<p>
+With the notation above, <img class="m" src="m/748f1b51602104a6424ee9fee8a431b0d2560418.svg" alt="\(Z_{n} \to Z\)" style="height:0.913em;vertical-align:-0.164em"> in distribution: for every
+<img class="m" src="m/276f9d8e23083b442e81017db4ae8963a55538d2.svg" alt="\(t \in \R\)" style="height:0.798em;vertical-align:-0.040em">,
+<div class="mb"><img class="m" src="m/8c9df0841eda4dc581a339163a57523c6b340fd3.svg" alt="\[ \Prob\Bigl(\frac{S_{n}-n\mu}{\sigma\sqrt{n}} \le t\Bigr) \longrightarrow \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{t}e^{-s^{2}/2}\dd s. \]" style="width:19.779em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="org5d56341">
+<p>
+Let <img class="m" src="m/41f005d72f4e227fd97c1e1168d1a81da2302050.svg" alt="\(Y = X_{1}-\mu\)" style="height:0.962em;vertical-align:-0.212em">, so <img class="m" src="m/3de542a16175aae82cac4f9a2d56663a70e7f5c6.svg" alt="\(\E[Y] = 0\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/9047f8a7e28b54cb8d9c2685bbca4fbeea59a112.svg" alt="\(\E[Y^{2}] = \sigma^{2}\)" style="height:1.166em;vertical-align:-0.268em">.
+By the expansion at zero,
+<img class="m" src="m/f98741976508c4aa44694c5610ac86840367019e.svg" alt="\(\varphi_{Y}(u) = 1 - \tfrac{1}{2}\sigma^{2}u^{2} + r(u)\)" style="height:1.304em;vertical-align:-0.378em"> with
+<img class="m" src="m/f39e8f5b54038d35be3ba57f5b1ee16d56031dd2.svg" alt="\(r(u)/u^{2}\to0\)" style="height:1.166em;vertical-align:-0.268em"> as <img class="m" src="m/f088e3384415791af1482fe32260d057276304f8.svg" alt="\(u \to 0\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+
+<p>
+Fix <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> and put <img class="m" src="m/684d300b4dc2e06b1e7308de1efee50f5e4162e7.svg" alt="\(u_{n} = t/(\sigma\sqrt{n})\)" style="height:1.151em;vertical-align:-0.276em">, so <img class="m" src="m/eaa666c0c67322c7a2e0ea445063c20c23e3ba24.svg" alt="\(u_{n}\to0\)" style="height:0.871em;vertical-align:-0.165em">. By
+the previous proposition,
+<div class="mb"><img class="m" src="m/e41275b73c52a66187aed7dc0ed19561ef5e9ea5.svg" alt="\[ \varphi_{Z_{n}}(t) = \Bigl(1 - \frac{t^{2}}{2n} + r(u_{n})\Bigr)^{n}. \]" style="width:14.122em"></div>
+Write <img class="m" src="m/478d2dfca2719a193fd5ce9acb71d3128686f801.svg" alt="\(c_{n} = -t^{2}/2 + n\,r(u_{n})\)" style="height:1.166em;vertical-align:-0.268em">, so that the bracket is
+<img class="m" src="m/d9c6f16c44a86773ecd519f0ffe3c1c674fde7ab.svg" alt="\(1 + c_{n}/n\)" style="height:1.096em;vertical-align:-0.274em">; then <img class="m" src="m/7e98e878b846144cfe0020d58465c8e78b12a2c6.svg" alt="\(n\,r(u_{n}) = (t^{2}/\sigma^{2})\,r(u_{n})/u_{n}^{2} \to 0\)" style="height:1.166em;vertical-align:-0.268em">,
+so <img class="m" src="m/e36eceab09889af0edc51e71d3ef07b5833afb25.svg" alt="\(c_{n}\to -t^{2}/2\)" style="height:1.166em;vertical-align:-0.268em">. For complex <img class="m" src="m/87393643314e6c89a5f99ba0bc5b1905d3820998.svg" alt="\(c_{n}\to c\)" style="height:0.636em;vertical-align:-0.165em"> one has
+<img class="m" src="m/ad78efb341f3de078264901b5bc4e4c5659edd37.svg" alt="\((1+c_{n}/n)^{n}\to e^{c}\)" style="height:1.096em;vertical-align:-0.274em"> &#x2013; taking logarithms of the principal
+branch, which is legitimate for large <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> since <img class="m" src="m/9b83236a16bfc844304e60c1df115cb805915033.svg" alt="\(c_{n}/n \to 0\)" style="height:1.096em;vertical-align:-0.274em">, and
+using <img class="m" src="m/53eb932f6a809e288949d302ee4d98efd12ff7eb.svg" alt="\(\log(1+z) = z + O(\abs{z}^{2})\)" style="height:1.166em;vertical-align:-0.268em">. Hence
+<img class="m" src="m/c1e4c2982c1c7958ce2be46029291adf51adb755.svg" alt="\(\varphi_{Z_{n}}(t) \to e^{-t^{2}/2} = \varphi_{Z}(t)\)" style="height:1.355em;vertical-align:-0.271em"> for every
+<img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em">.
+</p>
+
+<p>
+The limit is continuous at <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">, so Levy's continuity theorem gives
+<img class="m" src="m/da5424a1cacb4ba1e0307b0a9d14e48c0382bb91.svg" alt="\(Z_{n}\to Z\)" style="height:0.913em;vertical-align:-0.164em"> in distribution, which is the displayed convergence at
+every <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> &#x2013; the distribution function of <img class="m" src="m/7c4b861f7a604d8d12b3c250305352daee8e7002.svg" alt="\(Z\)" style="height:0.749em;vertical-align:-0.000em"> being continuous
+everywhere.
+</p>
+
+</div>
+
+<div class="corollary" id="org71c648a">
+<p>
+Under the hypotheses above, for every <img class="m" src="m/b85172f77366842e683def45887fc9bad2f47530.svg" alt="\(a&gt;0\)" style="height:0.749em;vertical-align:-0.045em">,
+<img class="m" src="m/5b889d8412bc68e23e2dd0a024b37bff8cf1e0df.svg" alt="\(\Prob(\abs{S_{n}-n\mu} \ge a\sigma\sqrt{n}) \to \Prob(\abs{Z}\ge a)\)" style="height:1.151em;vertical-align:-0.276em">,
+whereas Chebyshev's inequality gives only the bound <img class="m" src="m/efbc39d5fbb8f110a965c8b33b09698d709b458e.svg" alt="\(1/a^{2}\)" style="height:1.166em;vertical-align:-0.268em"> for
+every <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgc085532">
+<p>
+The event is <img class="m" src="m/a511e583b84f74425a24a4960d7f8f5971b2762c.svg" alt="\(\abs{Z_{n}}\ge a\)" style="height:1.096em;vertical-align:-0.274em">, and its probability is
+<img class="m" src="m/7cf5cd8065f6459279cf5083dc7bf3a55e4f7aaf.svg" alt="\(1 - F_{Z_{n}}(a) + F_{Z_{n}}(-a)\)" style="height:1.096em;vertical-align:-0.274em"> up to the boundary points, which
+have probability <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> in the limit because <img class="m" src="m/42643c1831f8e691db6aa4d7422e8b38eceb6392.svg" alt="\(F_{Z}\)" style="height:0.913em;vertical-align:-0.164em"> is continuous;
+convergence in distribution at the continuity points <img class="m" src="m/0d01fd4543be5852afeb53518bafb48625822923.svg" alt="\(\pm a\)" style="height:0.731em;vertical-align:-0.088em"> gives the
+limit. The Chebyshev bound is the previous note's inequality applied to
+<img class="m" src="m/4dd96ebeca475158508ae818d1421faea6eddc03.svg" alt="\(S_{n}/n\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/53ee408d9780d9f5ba764123623daabcaca0d989.svg" alt="\(\eps = a\sigma/\sqrt{n}\)" style="height:1.151em;vertical-align:-0.276em">.
+</p>
+
+</div>
+
+<div class="remark" id="orgfc366ff">
+<p>
+Two hypotheses are doing all the work and neither is decorative. Finite
+variance is necessary &#x2013; with heavier tails the correct scaling is not
+<img class="m" src="m/1057190ea66b29a8baaa0260548ec8c2b0a8a92f.svg" alt="\(\sqrt{n}\)" style="height:1.140em;vertical-align:-0.262em"> and the limit is not normal &#x2013; and identical distribution
+can be weakened but not dropped, the honest condition being Lindeberg's.
+What is <i>not</i> needed is any assumption on the shape of the law of
+<img class="m" src="m/e0933ecc5dc52fd4ab9569cd8141d43bb9be03d3.svg" alt="\(X_{1}\)" style="height:0.913em;vertical-align:-0.164em">, and that is the content of the theorem: the limit forgets
+everything except the first two moments.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="probability.html"><span>← previous</span>Probability</a><a rel="next" href="the-weak-and-strong-laws-of-large-numbers.html"><span>next →</span>The weak and strong laws of large numbers</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/probability--probability-theory.pdf" title="PDF manual">Probability Theory</a> · <a class="pdf" href="pdf/probability.pdf" title="PDF manual">Probability</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

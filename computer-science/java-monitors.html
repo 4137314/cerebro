@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Threads and monitors in Java · Computer Science</title>
+<meta name="description" content="Every Java object has an intrinsic lock and a wait set, i.e. it is a monitor: synchronized methods or blocks acquire the lock (mutual exclusion), wait() releases it and sleeps until notify()=/=notifyAll(), volatile guarantees visibility of single variables; higher-level tools live in java.util.conc…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/java-monitors.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Threads and monitors in Java · Computer Science">
+<meta property="og:description" content="Every Java object has an intrinsic lock and a wait set, i.e. it is a monitor: synchronized methods or blocks acquire the lock (mutual exclusion), wait() releases it and sleeps until notify()=/=notifyAll(), volatile guarantees visibility of single variables; higher-level tools live in java.util.conc…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/java-monitors.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--concurrency">Concurrency</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Concurrency</p>
+<h1>Threads and monitors in Java</h1>
+<p class="summary">Every Java object has an intrinsic lock and a wait set, i.e. it is a monitor: <code>synchronized</code> methods or blocks acquire the lock (mutual exclusion), <code>wait()</code> releases it and sleeps until <code>notify()=/=notifyAll()</code>, <code>volatile</code> guarantees visibility of single variables; higher-level tools live in <code>java.util.concurrent</code>.</p>
+<p class="rel"><span>needs</span> <a href="threads-data-race.html">Threads and data races</a>, <a href="java-references.html">Objects, references and garbage collection in Java</a></p>
+<p class="rel"><span>see also</span> <a href="condition-variable.html">Condition variables and the producer–consumer problem</a>, <a href="mutual-exclusion.html">Atomics and mutual exclusion</a>, <a href="deadlock-starvation.html">Deadlock and starvation</a>, <a href="java-immutability.html">Immutable objects</a></p>
+<p class="rel"><span>mentioned in</span> <a href="deadlock-starvation.html">Deadlock and starvation</a></p>
+<details class="path"><summary>Learning path: 4 notes lead here, in study order</summary><ol><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="java-platform.html">The Java platform</a></li><li><a href="java-references.html">Objects, references and garbage collection in Java</a></li><li><a href="threads-data-race.html">Threads and data races</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org895b5a4" class="outline-2">
+<h2 id="org895b5a4">Definition</h2>
+<div class="outline-text-2" id="text-org895b5a4">
+<ul class="org-ul">
+<li><b>Creating threads</b>: <code>new Thread(runnable).start()</code>, or better an <code>ExecutorService</code> that reuses a pool: <code>pool.submit(() -&gt; work())</code> returns a <code>Future</code>.</li>
+<li><code>synchronized void m()</code> locks <code>this</code> (<code>static synchronized</code> locks the <code>Class</code> object); <code>synchronized (obj) { ... }</code> locks <code>obj</code>. Locks are reentrant: a thread holding a lock can enter other blocks synchronised on it.</li>
+<li><code>wait()</code> (only while holding the lock) releases it and suspends the thread; <code>notify()</code> wakes one waiter, <code>notifyAll()</code> all of them; the woken thread re-acquires the lock before returning from <code>wait</code>.</li>
+<li><code>volatile</code> fields: every read sees the latest write (no caching in registers), but <code>count++</code> on a volatile is still a race — use <code>AtomicInteger</code>.</li>
+<li><code>java.util.concurrent</code>: <code>ReentrantLock</code> and <code>Condition</code> (C++-like), <code>ConcurrentHashMap</code>, <code>BlockingQueue</code> (ready-made producer–consumer), <code>CountDownLatch</code>, <code>AtomicLong</code>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc0d4272" class="outline-2">
+<h2 id="orgc0d4272">Example</h2>
+<div class="outline-text-2" id="text-orgc0d4272">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">public</span> <span class="k">class</span> <span class="t">Counter</span> {
+    <span class="k">private</span> <span class="t">int</span> <span class="v">value</span>;
+    <span class="k">public</span> <span class="k">synchronized</span> <span class="t">void</span> <span class="f">inc</span>() { value++; }
+    <span class="k">public</span> <span class="k">synchronized</span> <span class="t">int</span> <span class="f">get</span>() { <span class="k">return</span> value; }
+}
+<span class="k">public</span> <span class="k">class</span> <span class="t">Box</span>&lt;<span class="t">T</span>&gt; {                       <span class="c">// one-slot buffer with wait/notify
+</span>    <span class="k">private</span> <span class="t">T</span> <span class="v">item</span>;
+    <span class="k">public</span> <span class="k">synchronized</span> <span class="t">void</span> <span class="f">put</span>(<span class="t">T</span> <span class="v">x</span>) <span class="k">throws</span> <span class="t">InterruptedException</span> {
+        <span class="k">while</span> (item != <span class="n">null</span>) wait();       <span class="c">// while, not if
+</span>        item = x; notifyAll();
+    }
+    <span class="k">public</span> <span class="k">synchronized</span> <span class="t">T</span> <span class="f">take</span>() <span class="k">throws</span> <span class="t">InterruptedException</span> {
+        <span class="k">while</span> (item == <span class="n">null</span>) wait();
+        <span class="t">T</span> <span class="v">x</span> = item; item = <span class="n">null</span>; notifyAll(); <span class="k">return</span> x;
+    }
+}</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org28ffda8" class="outline-2">
+<h2 id="org28ffda8">Intuition</h2>
+<div class="outline-text-2" id="text-org28ffda8">
+<p>
+In Java the lock comes with the object: you do not create mutexes, you decide which object guards which data.
+</p>
+</div>
+</div>
+<div id="outline-container-org8d192c7" class="outline-2">
+<h2 id="org8d192c7">Pitfall</h2>
+<div class="outline-text-2" id="text-org8d192c7">
+<p>
+Synchronising on different objects for the same data protects nothing. And calling <code>wait</code> or <code>notify</code> without holding the object's lock <a href="java-exceptions.html">throws</a> <code>IllegalMonitorStateException</code>.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="deadlock-starvation.html"><span>← previous</span>Deadlock and starvation</a><a rel="next" href="javafx-scene-graph.html"><span>next →</span>JavaFX: stage, scene and the node tree</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--concurrency.pdf" title="PDF manual">Concurrency</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

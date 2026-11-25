@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Image histogram · Remote Sensing</title>
+<meta name="description" content="The histogram h(k) counts, normalised by the number of pixels, how often each DN k occurs; it approximates the probability density of the image values and ignores where pixels are; its running sum, the cumulative histogram, approximates the distribution function.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/image-histogram.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Image histogram · Remote Sensing">
+<meta property="og:description" content="The histogram h(k) counts, normalised by the number of pixels, how often each DN k occurs; it approximates the probability density of the image values and ignores where pixels are; its running sum, the cumulative histogram, approximates the distribution function.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/image-histogram.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--images">Images</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Processing · Images</p>
+<h1>Image histogram</h1>
+<p class="summary">The histogram <img class="m" src="m/f826d951816c0d50813d832e72981f558c4349c3.svg" alt="\(h(k)\)" style="height:1.096em;vertical-align:-0.274em"> counts, normalised by the number of pixels, how often each DN <img class="m" src="m/ffba2bd3deca9ae12b2f58d5d12739b5efaff0ec.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> occurs; it approximates the probability density of the image values and ignores where pixels are; its running sum, the cumulative histogram, approximates the distribution function.</p>
+<p class="rel"><span>needs</span> <a href="digital-image.html">Digital images</a></p>
+<p class="rel"><span>unlocks</span> <a href="image-statistics.html">Image statistics: moments, mode, median</a>, <a href="contrast-stretching.html">Contrast stretching</a>, <a href="image-thresholding.html">Histogram thresholding</a></p>
+<p class="rel"><span>see also</span> <a href="image-statistics.html">Image statistics: moments, mode, median</a>, <a href="contrast-stretching.html">Contrast stretching</a>, <a href="histogram-equalization.html">Histogram equalization</a>, <a href="image-thresholding.html">Histogram thresholding</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orge15541d" class="outline-2">
+<h2 id="orge15541d">Definition</h2>
+<div class="outline-text-2" id="text-orge15541d">
+<p>
+For an image of <img class="m" src="m/0e8e82651ed36b202ecd75aeacca9209ca6dac32.svg" alt="\(NM\)" style="height:0.749em;vertical-align:-0.000em"> pixels:
+<div class="mb"><img class="m" src="m/737441d78d5f11de091b7cb5663dd1c96407b63f.svg" alt="\[ h(k)=\frac{\#\{(y,x):I(y,x)=k\}}{NM},\qquad \sum_k h(k)=1,\qquad H(k)=\sum_{j\le k}h(j). \]" style="width:33.662em"></div>
+<img class="m" src="m/3e1b474a81ecc9a88e470c0437a34ab2b6821cc1.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> is non-decreasing and reaches 1. <img class="m" src="m/8b3da72536db2dfc56f146266fdfd48802e5907f.svg" alt="\(h\)" style="height:0.761em;vertical-align:-0.000em"> is associated with the probability density of the DNs, <img class="m" src="m/3e1b474a81ecc9a88e470c0437a34ab2b6821cc1.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> with the cumulative distribution, an approximation since DNs are discrete.
+</p>
+</div>
+</div>
+<div id="outline-container-orge3f6ce7" class="outline-2">
+<h2 id="orge3f6ce7">Picture</h2>
+<div class="outline-text-2" id="text-orge3f6ce7">
+<figure class="fig"><img class="m" src="m/dbe6d24fbc078b6390947a2c739eacf4923c65bc.svg" alt="figure" style="width:18.574em"><figcaption><span class="fl">Figure 1.</span> Histogram <img class="m" src="m/8b3da72536db2dfc56f146266fdfd48802e5907f.svg" alt="\(h\)" style="height:0.761em;vertical-align:-0.000em"> of an image: the number of pixels at each digital number (DN).</figcaption></figure>
+<p>
+A bimodal histogram: two populations of pixels, e.g. water and land.
+</p>
+</div>
+</div>
+<div id="outline-container-org9141ebd" class="outline-2">
+<h2 id="org9141ebd">Uses</h2>
+<div class="outline-text-2" id="text-org9141ebd">
+<ul class="org-ul">
+<li>choosing stretch limits and LUTs;</li>
+<li><a href="histogram-equalization.html">equalisation</a> through <img class="m" src="m/3e1b474a81ecc9a88e470c0437a34ab2b6821cc1.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em">;</li>
+<li>thresholds between modes for <a href="image-thresholding.html">segmentation</a>;</li>
+<li>detecting saturation (peaks at 0 or <img class="m" src="m/ba0b8690937752e5b95c10943f4e9ea0d499e598.svg" alt="\(2^Q-1\)" style="height:1.013em;vertical-align:-0.091em">) and <a href="digital-number.html">quantization</a> gaps.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org11082c7" class="outline-2">
+<h2 id="org11082c7">Worked example</h2>
+<div class="outline-text-2" id="text-org11082c7">
+<p>
+A <img class="m" src="m/c411439156da22705d972c30dc8ef23831e1b76e.svg" alt="\(4\times4\)" style="height:0.798em;vertical-align:-0.088em"> image with values <img class="m" src="m/ab3199913745bac92bae82ecdc42bd4312a07780.svg" alt="\(\{0,0,1,1,1,2,2,2,2,2,3,3,6,6,7,7\}\)" style="height:1.096em;vertical-align:-0.274em"> (3-bit, 16 pixels): <img class="m" src="m/214e97289c2d187294260ee272f54537a0283d91.svg" alt="\(h=(2,3,5,2,0,0,2,2)/16\)" style="height:1.096em;vertical-align:-0.274em">, cumulative <img class="m" src="m/6eaaf0a01d6629e1b6b8fd61f7a5c4a8bfc1510d.svg" alt="\(H=(0.125,0.31,0.63,0.75,0.75,0.75,0.88,1)\)" style="height:1.096em;vertical-align:-0.274em">. Equalisation to 8 levels maps <img class="m" src="m/44d22f158e895b32822257bab0571a34823e012f.svg" alt="\(k\mapsto\mathrm{round}(7H(k))=(1,2,4,5,5,5,6,7)\)" style="height:1.096em;vertical-align:-0.274em">: the crowded levels 0–3 are spread over 1–5.
+</p>
+</div>
+</div>
+<div id="outline-container-org9efb772" class="outline-2">
+<h2 id="org9efb772">Intuition</h2>
+<div class="outline-text-2" id="text-org9efb772">
+<p>
+The histogram is the image with its geometry thrown away: it tells what values occur and how often, not where.
+</p>
+</div>
+</div>
+<div id="outline-container-org362bb3d" class="outline-2">
+<h2 id="org362bb3d">Pitfall</h2>
+<div class="outline-text-2" id="text-org362bb3d">
+<p>
+Two very different images can have the same histogram (shuffle the pixels): histogram-based operations are blind to spatial structure.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="digital-image.html"><span>← previous</span>Digital images</a><a rel="next" href="image-statistics.html"><span>next →</span>Image statistics: moments, mode, median</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--images.pdf" title="PDF manual">Images</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

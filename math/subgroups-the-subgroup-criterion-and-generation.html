@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Subgroups, the subgroup criterion and generation · Mathematics</title>
+<meta name="description" content="A group is rarely met alone: what one has is a group together with the subsets of it that are again groups, and almost every construction below – cosets, kernels, generated subgroups, orbits – produces one of those. Two small results make the supply manageable: a one-line test for being a subgroup,…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/subgroups-the-subgroup-criterion-and-generation.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Subgroups, the subgroup criterion and generation · Mathematics">
+<meta property="og:description" content="A group is rarely met alone: what one has is a group together with the subsets of it that are again groups, and almost every construction below – cosets, kernels, generated subgroups, orbits – produces one of those. Two small results make the supply manageable: a one-line test for being a subgroup,…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/subgroups-the-subgroup-criterion-and-generation.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--group-theory">Group Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Algebra · Group Theory</p>
+<h1>Subgroups, the subgroup criterion and generation</h1>
+<p class="summary">A <a href="group.html">group</a> is rarely met alone: what one has is a group together with the subsets of it that are again groups, and almost every construction below &#x2013; cosets, kernels, generated subgroups, orbits &#x2013; produces one of those. Two small results make the supply manageable: a one-line test for being a subgroup, and the fact that subgroups are closed under intersection, which is what allows "the smallest subgroup containing <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">" to be defined without ever building it.</p>
+<p class="rel"><span>needs</span> <a href="group.html">Group</a>, <a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></p>
+<p class="rel"><span>unlocks</span> <a href="cauchys-theorem-and-the-sylow-theorems.html">Cauchy's theorem and the Sylow theorems</a>, <a href="cosets-the-index-and-lagranges-theorem.html">Cosets, the index and Lagrange's theorem</a>, <a href="free-groups-and-presentations.html">Free groups and presentations</a>, <a href="group-actions-orbits-and-the-orbit-stabiliser-theorem.html">Group actions, orbits and the orbit-stabiliser theorem</a>, <a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a>, <a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a>, <a href="the-order-of-an-element-and-cyclic-groups.html">The order of an element and cyclic groups</a>, <a href="isometries-of-euclidean-space-and-the-orthogonal-group.html">Isometries of Euclidean space and the orthogonal group</a></p>
+<p class="rel"><span>mentioned in</span> <a href="group-theory.html">Group theory</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org85639c2">
+<p>
+A subset <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> of a group <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> is a <i>subgroup</i>, written <img class="m" src="m/e6240680439cedf4d545e91634fbb7d91deadc06.svg" alt="\(H \le G\)" style="height:0.898em;vertical-align:-0.153em">, if
+it contains the identity, is closed under the operation, and contains
+the inverse of each of its elements. It is then a group under the
+restricted operation.
+</p>
+
+</div>
+
+<div class="proposition" id="org05821a6">
+<p>
+A non-empty subset <img class="m" src="m/8d36f61a04d9b1c42f3a2d0b1ea4bc0fb4839b3f.svg" alt="\(H \subseteq G\)" style="height:0.898em;vertical-align:-0.153em"> is a subgroup if and only if
+<img class="m" src="m/e53929f98f0118e65dca2083bc1e29ca334f96f7.svg" alt="\(a b^{-1} \in H\)" style="height:0.935em;vertical-align:-0.047em"> for all <img class="m" src="m/65d12a036c293d15c14f56d3fc668ebe4778f818.svg" alt="\(a, b \in H\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="proof" id="org47e681f">
+<p>
+If <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> is a subgroup the condition is immediate. Conversely, take
+<img class="m" src="m/6158f9aff5d1288b5d4f295b814b19019481ca72.svg" alt="\(a \in H\)" style="height:0.792em;vertical-align:-0.040em">, which exists since <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> is non-empty. Then
+<img class="m" src="m/0c8b9987d096db5c12e9cb163abd86a0c0f56c45.svg" alt="\(e = a a^{-1} \in H\)" style="height:0.935em;vertical-align:-0.047em">; for <img class="m" src="m/ae32e713570045230f450598b4020350b3582c5c.svg" alt="\(b \in H\)" style="height:0.804em;vertical-align:-0.040em">, <img class="m" src="m/b0399d2209d3ec41f144ec608d9082ef11010187.svg" alt="\(b^{-1} = e b^{-1} \in H\)" style="height:0.935em;vertical-align:-0.047em">;
+and for <img class="m" src="m/65d12a036c293d15c14f56d3fc668ebe4778f818.svg" alt="\(a, b \in H\)" style="height:0.974em;vertical-align:-0.214em">, <img class="m" src="m/3643bbfac43bd7156f8fa68746e2271904b2fba4.svg" alt="\(ab = a (b^{-1})^{-1} \in H\)" style="height:1.166em;vertical-align:-0.268em">. The identity of
+<img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> is the identity of <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">, which by the uniqueness of an identity
+element is the only candidate.
+</p>
+
+</div>
+
+<div class="proposition" id="org3ef21d0">
+<p>
+The intersection of any non-empty family of subgroups of <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> is a
+subgroup of <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org1290fc4">
+<p>
+Each member contains <img class="m" src="m/09798e3cb5ef8291c7239dd012807e66ef0eccaf.svg" alt="\(e\)" style="height:0.472em;vertical-align:-0.000em">, so the intersection does and is non-empty.
+If <img class="m" src="m/ca162e704d67d905e0f631dd3db96407aecabda4.svg" alt="\(a, b\)" style="height:0.974em;vertical-align:-0.214em"> lie in every <img class="m" src="m/7a2b58547657308f1dd963978a3fb189de07440f.svg" alt="\(H_{i}\)" style="height:0.913em;vertical-align:-0.164em">, then <img class="m" src="m/b32b5bff88c0fd53232677025c711b25eac0bbee.svg" alt="\(ab^{-1}\)" style="height:0.892em;vertical-align:-0.000em"> lies in every
+<img class="m" src="m/7a2b58547657308f1dd963978a3fb189de07440f.svg" alt="\(H_{i}\)" style="height:0.913em;vertical-align:-0.164em"> since each is a subgroup; the criterion applies.
+</p>
+
+</div>
+
+<div class="definition" id="org1f1019b">
+<p>
+For <img class="m" src="m/8cc1e417f2ac5f15c02c4d50fb6a441a6dec8d1c.svg" alt="\(S \subseteq G\)" style="height:0.898em;vertical-align:-0.153em">, the <i>subgroup generated by</i> <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">, written
+<img class="m" src="m/69081846de1cd3245a12a92e4238da1290eae854.svg" alt="\(\langle S \rangle\)" style="height:1.096em;vertical-align:-0.274em">, is the intersection of all subgroups of <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">
+containing <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> &#x2013; a subgroup by the previous proposition, and by
+construction the smallest one containing <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">. A group is <i>finitely
+generated</i> if it is <img class="m" src="m/69081846de1cd3245a12a92e4238da1290eae854.svg" alt="\(\langle S \rangle\)" style="height:1.096em;vertical-align:-0.274em"> for some finite <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgdcf997a">
+<p>
+<img class="m" src="m/69081846de1cd3245a12a92e4238da1290eae854.svg" alt="\(\langle S \rangle\)" style="height:1.096em;vertical-align:-0.274em"> is the set <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em"> of all finite products
+<img class="m" src="m/973e63e1dafbf15ee3a249e6188cd00367b50527.svg" alt="\(s_{1}^{\eps_{1}} \cdots s_{k}^{\eps_{k}}\)" style="height:1.155em;vertical-align:-0.335em"> with <img class="m" src="m/9bb310d08fa4ec8d76450df0fb40c05c9831d5ae.svg" alt="\(k \ge 0\)" style="height:0.910em;vertical-align:-0.146em">,
+<img class="m" src="m/a5c2920a5a0352b375b3145a6659aaeb27a006cd.svg" alt="\(s_{i} \in S\)" style="height:0.913em;vertical-align:-0.164em"> and <img class="m" src="m/31a883ad727f885819f297e4aeed0d0b4b658ede.svg" alt="\(\eps_{i} \in \set{1, -1}\)" style="height:1.096em;vertical-align:-0.274em"> (the empty product
+being <img class="m" src="m/09798e3cb5ef8291c7239dd012807e66ef0eccaf.svg" alt="\(e\)" style="height:0.472em;vertical-align:-0.000em">).
+</p>
+
+</div>
+
+<div class="proof" id="org64a5289">
+<p>
+<img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em"> is a subgroup: it contains <img class="m" src="m/09798e3cb5ef8291c7239dd012807e66ef0eccaf.svg" alt="\(e\)" style="height:0.472em;vertical-align:-0.000em">, it is closed under
+multiplication by concatenation of words, and the inverse of
+<img class="m" src="m/973e63e1dafbf15ee3a249e6188cd00367b50527.svg" alt="\(s_{1}^{\eps_{1}} \cdots s_{k}^{\eps_{k}}\)" style="height:1.155em;vertical-align:-0.335em"> is
+<img class="m" src="m/989c5c4bfe2344d1baa84c5d6adc4d5f8c6a85ff.svg" alt="\(s_{k}^{-\eps_{k}} \cdots s_{1}^{-\eps_{1}}\)" style="height:1.299em;vertical-align:-0.325em">, again such a product. It
+contains <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">, so <img class="m" src="m/165493a461cae82893f2473d4433873a373a985c.svg" alt="\(\langle S \rangle \subseteq W\)" style="height:1.096em;vertical-align:-0.274em">. Conversely any
+subgroup containing <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> is closed under products and inverses, hence
+contains every such word, so <img class="m" src="m/3e3d556ece5a10181686b2f10b99a351658586b4.svg" alt="\(W \subseteq \langle S \rangle\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="remark" id="org5b5972e">
+<p>
+The two descriptions are used for opposite purposes and it is worth
+keeping both: the intersection definition proves things about
+<img class="m" src="m/69081846de1cd3245a12a92e4238da1290eae854.svg" alt="\(\langle S \rangle\)" style="height:1.096em;vertical-align:-0.274em"> with no computation ("it is contained in every
+subgroup containing <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">"), while the word description is what one
+computes with. The same pair of definitions reappears for generated
+ideals, spans of vectors, generated topologies and closures.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="uniqueness-of-the-identity-element.html"><span>← previous</span>Uniqueness of the identity element</a><a rel="next" href="normal-subgroups-and-the-quotient-group.html"><span>next →</span>Normal subgroups and the quotient group</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--group-theory.pdf" title="PDF manual">Group Theory</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

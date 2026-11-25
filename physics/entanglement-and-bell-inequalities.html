@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entanglement and Bell inequalities · Physics</title>
+<meta name="description" content="A pure state of two systems is entangled if it is not a product; local hidden-variable theories obey the CHSH bound |S|\le2, whereas the singlet gives correlations E(\mathbf a,\mathbf b)=-\mathbf a\cdot\mathbf b and |S|=2\sqrt2, confirmed by loophole-free experiments.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/entanglement-and-bell-inequalities.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Entanglement and Bell inequalities · Physics">
+<meta property="og:description" content="A pure state of two systems is entangled if it is not a product; local hidden-variable theories obey the CHSH bound |S|\le2, whereas the singlet gives correlations E(\mathbf a,\mathbf b)=-\mathbf a\cdot\mathbf b and |S|=2\sqrt2, confirmed by loophole-free experiments.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/entanglement-and-bell-inequalities.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-mechanics">Quantum Mechanics</a> / <a rel="up" href="index.html#a-quantum-mechanics--quantum-information">Quantum Information</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Quantum Mechanics · Quantum Information</p>
+<h1>Entanglement and Bell inequalities</h1>
+<p class="summary">A pure state of two systems is entangled if it is not a product; local hidden-variable theories obey the CHSH bound <img class="m" src="m/9c97b65ae2e9a1b33ee56858cfe0c4f0a1b7fe0a.svg" alt="\(|S|\le2\)" style="height:1.096em;vertical-align:-0.274em">, whereas the singlet gives correlations <img class="m" src="m/58644ca12e10353f504ec1e890233044a4a321d8.svg" alt="\(E(\mathbf a,\mathbf b)=-\mathbf a\cdot\mathbf b\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/201b5f70a66c33431900cb7e05bf2319b753bca6.svg" alt="\(|S|=2\sqrt2\)" style="height:1.268em;vertical-align:-0.279em">, confirmed by loophole-free experiments.</p>
+<p class="rel"><span>needs</span> <a href="density-operator.html">The density operator: pure and mixed states</a>, <a href="addition-of-angular-momenta.html">Addition of angular momenta</a></p>
+<p class="rel"><span>unlocks</span> <a href="exam-practice-quantum-mechanics.html">Exam practice: quantum mechanics (solved)</a>, <a href="qubits-and-quantum-gates.html">Qubits and quantum gates</a></p>
+<p class="rel"><span>see also</span> <a href="qubits-and-quantum-gates.html">Qubits and quantum gates</a>, <a href="beam-splitter-and-hong-ou-mandel.html">The quantum beam splitter and Hong–Ou–Mandel interference</a></p>
+<details class="path"><summary>Learning path: 14 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></li><li><a href="spin-precession-and-rabi-oscillations.html">Spin precession and Rabi oscillations</a></li><li><a href="angular-momentum-algebra.html">Angular momentum: algebra and spectrum</a></li><li><a href="addition-of-angular-momenta.html">Addition of angular momenta</a></li><li><a href="density-operator.html">The density operator: pure and mixed states</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org5b32510" class="outline-2">
+<h2 id="org5b32510">Definitions</h2>
+<div class="outline-text-2" id="text-org5b32510">
+<ul class="org-ul">
+<li><b>Product</b> state <img class="m" src="m/0bc712cab8cfeaceb7a1560d9742b407cad168ed.svg" alt="\(\ket\psi=\ket\alpha_A\otimes\ket\beta_B\)" style="height:1.151em;vertical-align:-0.334em">; otherwise <b>entangled</b> <span class="cite">(<a class="ref" href="https://doi.org/10.1103/physicsphysiquefizika.1.195" data-full="J. S. Bell, “On the Einstein Podolsky Rosen paradox”, Physics Physique Fizika 1, 195–200 (1964)." aria-label="J. S. Bell, “On the Einstein Podolsky Rosen paradox”, Physics Physique Fizika 1, 195–200 (1964).">Bell 1964</a>)</span>.</li>
+<li><b>Schmidt decomposition</b>: <img class="m" src="m/2ee66fb74beac3368882e96d7c76c7399e1c30b8.svg" alt="\(\ket\psi=\sum_i\sqrt{\lambda_i}\ket{i_A}\ket{i_B}\)" style="height:1.268em;vertical-align:-0.330em"> (SVD of the coefficient matrix). Entangled iff more than one <img class="m" src="m/ddc94f48d421bd6118d5b7aa132eabd53ff4aea8.svg" alt="\(\lambda_i\neq0\)" style="height:0.974em;vertical-align:-0.214em">; entanglement entropy <img class="m" src="m/a0c7f84ddd669b7fbb3ed622e83e129b5e615b3a.svg" alt="\(S(\rho_A)=-\sum\lambda_i\ln\lambda_i\)" style="height:1.096em;vertical-align:-0.274em">.</li>
+<li><b>Singlet</b>: <img class="m" src="m/58308b02225eb6b6efa75b831837aee3c4f7e084.svg" alt="\(\ket{\psi^-}=\tfrac1{\sqrt2}(\ket{\uparrow\downarrow}-\ket{\downarrow\uparrow})\)" style="height:1.522em;vertical-align:-0.594em">, rotationally invariant, <img class="m" src="m/eccacaed4c7264bebc35b6819f83590b2770a7ff.svg" alt="\(\rho_A=1/2\)" style="height:1.096em;vertical-align:-0.274em">.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org857f9a2" class="outline-2">
+<h2 id="org857f9a2">Quantum correlation</h2>
+<div class="outline-text-2" id="text-org857f9a2">
+<p>
+Measuring <img class="m" src="m/4b0b16b40fb2bbf6619446476f14b8171ca4f516.svg" alt="\(\boldsymbol\sigma\cdot\mathbf a\)" style="height:0.487em;vertical-align:-0.000em"> on A and <img class="m" src="m/593b07ea7dc178bde51b541e51bcc6d14703bfe9.svg" alt="\(\boldsymbol\sigma\cdot\mathbf b\)" style="height:0.761em;vertical-align:-0.000em"> on B in the singlet: <img class="m" src="m/80c7963b8d6c9788f57a3dbdf5af07735e5a66cd.svg" alt="\(E(\mathbf a,\mathbf b)=\bra{\psi^-}(\boldsymbol\sigma\cdot\mathbf a)\otimes(\boldsymbol\sigma\cdot\mathbf b)\ket{\psi^-}=-\mathbf a\cdot\mathbf b=-\cos\theta_{ab}\)" style="height:1.147em;vertical-align:-0.275em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org2bee838" class="outline-2">
+<h2 id="org2bee838">CHSH inequality (proof)</h2>
+<div class="outline-text-2" id="text-org2bee838">
+<p>
+Local realism: outcomes <img class="m" src="m/28d6ad6b2dcfa55f05c6730cd3d50fd665d261f0.svg" alt="\(A(\mathbf a,\lambda),B(\mathbf b,\lambda)=\pm1\)" style="height:1.096em;vertical-align:-0.274em">, with <img class="m" src="m/19ca88436300a6eca46a9eb0e3ff8d300f789b52.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em"> distributed by <img class="m" src="m/dcf18eeb8311b18e347d2e05db46fa20a65bb13b.svg" alt="\(\rho(\lambda)\)" style="height:1.096em;vertical-align:-0.274em"> independent of the settings <span class="cite">(<a class="ref" href="https://doi.org/10.1103/physrev.47.777" data-full="A. Einstein, B. Podolsky and N. Rosen, “Can quantum-mechanical description of physical reality be considered complete?”, Physical Review 47, 777–780 (1935)." aria-label="A. Einstein, B. Podolsky and N. Rosen, “Can quantum-mechanical description of physical reality be considered complete?”, Physical Review 47, 777–780 (1935).">Einstein et al. 1935</a>; <a class="ref" href="https://doi.org/10.1103/physrevlett.23.880" data-full="J. F. Clauser, M. A. Horne, A. Shimony and R. A. Holt, “Proposed experiment to test local hidden-variable theories”, Physical Review Letters 23, 880–884 (1969)." aria-label="J. F. Clauser, M. A. Horne, A. Shimony and R. A. Holt, “Proposed experiment to test local hidden-variable theories”, Physical Review Letters 23, 880–884 (1969).">Clauser et al. 1969</a>)</span>. For each <img class="m" src="m/19ca88436300a6eca46a9eb0e3ff8d300f789b52.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em">,
+<div class="mb"><img class="m" src="m/f9d7364e249212cd1793defbfd6c5fc20bd59b1b.svg" alt="\[ A(a)[B(b)+B(b')]+A(a')[B(b)-B(b')]=\pm2, \]" style="width:22.667em"></div>
+because one bracket is 0 and the other <img class="m" src="m/24ce151591394929315c48f93ce5b1dbab75ffd9.svg" alt="\(\pm2\)" style="height:0.798em;vertical-align:-0.088em">. Averaging: <img class="m" src="m/96e0f9c0312d8e01f445035d07b661c0455f45ab.svg" alt="\(|S|=|E(a,b)+E(a,b')+E(a',b)-E(a',b')|\le2\)" style="height:1.098em;vertical-align:-0.274em">.
+Quantum: <img class="m" src="m/af391f5bd2b20853594739e1fe43447087e128bc.svg" alt="\(a=0^\circ,a'=90^\circ,b=45^\circ,b'=-45^\circ\)" style="height:1.037em;vertical-align:-0.218em"> give <img class="m" src="m/1f4a3b254a95c940d9addfcdaa8f860864b4808b.svg" alt="\(|S|=4\cos45^\circ=2\sqrt2\)" style="height:1.268em;vertical-align:-0.279em"> (Tsirelson's maximum) <span class="cite">(<a class="ref" href="https://doi.org/10.1103/physrevlett.49.1804" data-full="A. Aspect, J. Dalibard and G. Roger, “Experimental test of Bell's inequalities using time-varying analyzers”, Physical Review Letters 49, 1804–1807 (1982)." aria-label="A. Aspect, J. Dalibard and G. Roger, “Experimental test of Bell's inequalities using time-varying analyzers”, Physical Review Letters 49, 1804–1807 (1982).">Aspect et al. 1982</a>)</span>.
+</p>
+</div>
+</div>
+<div id="outline-container-org6c11f61" class="outline-2">
+<h2 id="org6c11f61">Worked example</h2>
+<div class="outline-text-2" id="text-org6c11f61">
+<p>
+Photon pairs from type-II SPDC in the state <img class="m" src="m/fc96b4cc08fd2a73904c54e1f9df6e8ca9373fcb.svg" alt="\(\tfrac1{\sqrt2}(\ket{HV}-\ket{VH})\)" style="height:1.522em;vertical-align:-0.594em">: polariser correlations <img class="m" src="m/140087bbe33dcd1943cb5a19f359a09fc6ec7958.svg" alt="\(E=-\cos2(\theta_a-\theta_b)\)" style="height:1.096em;vertical-align:-0.274em">, so optimal angles are halved: 0°, 45°, 22.5°, −22.5°. Experiments measure <img class="m" src="m/c0df22c6c2f264afc9ef99954d4d9dc8ec33605e.svg" alt="\(S\approx2.7\pm0.02\)" style="height:0.840em;vertical-align:-0.092em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org1e86543" class="outline-2">
+<h2 id="org1e86543">No-cloning and no-signalling</h2>
+<div class="outline-text-2" id="text-org1e86543">
+<p>
+No unitary <img class="m" src="m/98df5aee77428ca1c741fccae1beb48648a691ab.svg" alt="\(U\ket\psi\ket0=\ket\psi\ket\psi\)" style="height:1.096em;vertical-align:-0.274em"> for all <img class="m" src="m/c29b9b42d43b4bd37e971cfd1111435c131b433f.svg" alt="\(\ket\psi\)" style="height:1.096em;vertical-align:-0.274em"> (linearity contradiction). Alice's choice of measurement does not change <img class="m" src="m/9408cc7ed39983b6ed316899645e6361b2152ecd.svg" alt="\(\rho_B\)" style="height:0.685em;vertical-align:-0.212em">: entanglement cannot transmit information faster than light.
+</p>
+</div>
+</div>
+<div id="outline-container-orgefaf6ce" class="outline-2">
+<h2 id="orgefaf6ce">Engineering applications</h2>
+<div class="outline-text-2" id="text-orgefaf6ce">
+<p>
+Entanglement-based QKD (E91, device-independent security certified by CHSH violation), quantum teleportation and repeaters, entangled-photon sources (SPDC in PPKTP or silicon waveguides), quantum sensing beyond the standard quantum limit.
+</p>
+</div>
+</div>
+<div id="outline-container-org0868ad6" class="outline-2">
+<h2 id="org0868ad6">Pitfall</h2>
+<div class="outline-text-2" id="text-org0868ad6">
+<p>
+Correlation is not signalling: each side alone sees random 50/50 outcomes; the correlation appears only when results are compared over a classical channel.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="density-operator.html"><span>← previous</span>The density operator: pure and mixed states</a><a rel="next" href="qubits-and-quantum-gates.html"><span>next →</span>Qubits and quantum gates</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-mechanics--quantum-information.pdf" title="PDF manual">Quantum Information</a> · <a class="pdf" href="pdf/quantum-mechanics.pdf" title="PDF manual">Quantum Mechanics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The MOSFET: regions of operation and I–V model · Physics</title>
+<meta name="description" content="A gate voltage above threshold inverts the surface and forms a channel of charge C_{ox}(V_{GS}-V_{TN}); gradual-channel integration gives I_D=K_n\left(V_{GS}-V_{TN}-\frac{V_{DS}}2\right)V_{DS} in triode and I_D=\frac{K_n}2(V_{GS}-V_{TN})^2(1+\lambda V_{DS}) in saturation, with K_n=\mu_nC_{ox}\frac …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/mosfet-operation-and-iv.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The MOSFET: regions of operation and I–V model · Physics">
+<meta property="og:description" content="A gate voltage above threshold inverts the surface and forms a channel of charge C_{ox}(V_{GS}-V_{TN}); gradual-channel integration gives I_D=K_n\left(V_{GS}-V_{TN}-\frac{V_{DS}}2\right)V_{DS} in triode and I_D=\frac{K_n}2(V_{GS}-V_{TN})^2(1+\lambda V_{DS}) in saturation, with K_n=\mu_nC_{ox}\frac …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/mosfet-operation-and-iv.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-digital-electronics">Digital Electronics</a> / <a rel="up" href="index.html#a-digital-electronics--mos-devices">Mos Devices</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Digital Electronics · Mos Devices</p>
+<h1>The MOSFET: regions of operation and I–V model</h1>
+<p class="summary">A gate voltage above threshold inverts the surface and forms a channel of charge <img class="m" src="m/d0f3dc4b317534643b7469b71191516ec0eaa3e8.svg" alt="\(C_{ox}(V_{GS}-V_{TN})\)" style="height:1.096em;vertical-align:-0.274em">; gradual-channel integration gives <img class="m" src="m/a662847d7a7f6db7424ccde31e8b96b00bce20fb.svg" alt="\(I_D=K_n\left(V_{GS}-V_{TN}-\frac{V_{DS}}2\right)V_{DS}\)" style="height:1.358em;vertical-align:-0.380em"> in triode and <img class="m" src="m/633f1ef232f386816057c9a9d9fa0703f1e864f5.svg" alt="\(I_D=\frac{K_n}2(V_{GS}-V_{TN})^2(1+\lambda V_{DS})\)" style="height:1.351em;vertical-align:-0.378em"> in saturation, with <img class="m" src="m/756ebe91dea4f6a02a28ef11ab8427cb46940d23.svg" alt="\(K_n=\mu_nC_{ox}\frac WL\)" style="height:1.334em;vertical-align:-0.373em">; the source–bulk voltage raises <img class="m" src="m/7d51de13a5f7c3e31870137c8b2ac9b27328ee3c.svg" alt="\(V_{TN}\)" style="height:0.913em;vertical-align:-0.164em"> (body effect).</p>
+<p class="rel"><span>needs</span> <a href="digital-electronics.html">Digital electronic circuits: the map of the subject</a>, <a href="pn-junction-electrostatics.html">The pn junction: built-in potential, depletion and capacitance</a>, <a href="drift-diffusion-and-einstein-relation.html">Drift, diffusion and the Einstein relation</a></p>
+<p class="rel"><span>unlocks</span> <a href="mosfet-capacitances-and-scaling.html">MOSFET capacitances and scaling</a>, <a href="inverter-static-characteristics.html">Inverter static characteristics and noise margins</a>, <a href="power-mosfets-and-igbts.html">Power MOSFETs and IGBTs</a></p>
+<p class="rel"><span>see also</span> <a href="mosfet-capacitances-and-scaling.html">MOSFET capacitances and scaling</a>, <a href="nmos-inverters.html">NMOS inverters: resistive, saturated and depletion loads</a>, <a href="cmos-inverter.html">The CMOS inverter: VTC, switching threshold and sizing</a></p>
+<p class="rel"><span>mentioned in</span> <a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a>, <a href="operational-amplifier-circuits.html">Operational-amplifier circuits</a></p>
+<details class="path"><summary>Learning path: 30 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="circuits.html">Circuit theory: the map of the subject</a></li><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></li><li><a href="spin-precession-and-rabi-oscillations.html">Spin precession and Rabi oscillations</a></li><li><a href="angular-momentum-algebra.html">Angular momentum: algebra and spectrum</a></li><li><a href="orbital-angular-momentum.html">Orbital angular momentum and spherical harmonics</a></li><li><a href="hydrogen-atom.html">The hydrogen atom</a></li><li><a href="addition-of-angular-momenta.html">Addition of angular momenta</a></li><li><a href="identical-particles-and-pauli-principle.html">Identical particles, bosons, fermions and Pauli's principle</a></li><li><a href="square-well-potentials.html">Square wells: particle in a box and finite well</a></li><li><a href="symmetries-and-conservation-laws.html">Symmetries, conservation laws and degeneracy</a></li><li><a href="solid-state.html">Semiconductor physics: the map of the subject</a></li><li><a href="bloch-theorem-and-energy-bands.html">Bloch's theorem and energy bands</a></li><li><a href="effective-mass-and-holes.html">Effective mass, group velocity and holes</a></li><li><a href="density-of-states-and-fermi-dirac.html">Density of states and Fermi–Dirac statistics</a></li><li><a href="intrinsic-and-doped-semiconductors.html">Intrinsic and doped semiconductors</a></li><li><a href="drift-diffusion-and-einstein-relation.html">Drift, diffusion and the Einstein relation</a></li><li><a href="pn-junction-electrostatics.html">The pn junction: built-in potential, depletion and capacitance</a></li><li><a href="digital-electronics.html">Digital electronic circuits: the map of the subject</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgd3d5ff6" class="outline-2">
+<h2 id="orgd3d5ff6">Physics</h2>
+<div class="outline-text-2" id="text-orgd3d5ff6">
+<p>
+Increasing <img class="m" src="m/e9c72ce5712e4c1435f47ec6e51044a3c6cebcbd.svg" alt="\(V_{GS}\)" style="height:0.913em;vertical-align:-0.164em">: accumulation → depletion → <b>strong inversion</b> when the surface potential reaches <img class="m" src="m/670da3968663c67725c9904a2bc692b2a0a4db7d.svg" alt="\(2\phi_F\)" style="height:0.974em;vertical-align:-0.214em">, <img class="m" src="m/eec8d05ef169e879e7db275aa59fc44537029c2e.svg" alt="\(\phi_F=\frac{k_BT}{q}\ln\frac{N_A}{n_i}\)" style="height:1.510em;vertical-align:-0.528em">. Threshold <img class="m" src="m/f6677b5926b1a28125dfc5a99ebc29a37357ca76.svg" alt="\(V_{TN}=V_{FB}+2\phi_F+\frac{\sqrt{2q\epsilon_sN_A(2\phi_F+V_{SB})}}{C_{ox}}\)" style="height:1.967em;vertical-align:-0.492em"> — the last term grows with <img class="m" src="m/978a7c57c012ff577ed518060113d830ac9d8667.svg" alt="\(V_{SB}\)" style="height:0.913em;vertical-align:-0.164em">: body effect <img class="m" src="m/0b8f5b903219b9c7ea242aa720f2fc83d988be14.svg" alt="\(V_{TN}=V_{TO}+\gamma\left(\sqrt{V_{SB}+2\phi_F}-\sqrt{2\phi_F}\right)\)" style="height:1.315em;vertical-align:-0.381em">, <img class="m" src="m/08c181fa56ea30fcbda3b53fb3b75f90d99041b2.svg" alt="\(\gamma=\sqrt{2q\epsilon_sN_A}/C_{ox}\)" style="height:1.183em;vertical-align:-0.272em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org5bb6e4e" class="outline-2">
+<h2 id="org5bb6e4e">Derivation (gradual channel)</h2>
+<div class="outline-text-2" id="text-org5bb6e4e">
+<p>
+Channel charge per area at position <img class="m" src="m/57fe999ea7074581150c51d3d5953f9516dd3cf7.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em">: <img class="m" src="m/2a2623167d0e274c5fa7a4c420d9c8deadb96662.svg" alt="\(Q_n(y)=-C_{ox}(V_{GS}-V(y)-V_{TN})\)" style="height:1.096em;vertical-align:-0.274em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1109/jrproc.1952.273964" data-full="W. Shockley, “A unipolar &quot;field-effect&quot; transistor”, Proceedings of the IRE 40, 1365–1376 (1952)." aria-label="W. Shockley, “A unipolar &quot;field-effect&quot; transistor”, Proceedings of the IRE 40, 1365–1376 (1952).">Shockley 1952</a>)</span>. Drift current <img class="m" src="m/919bcb51052cfa19089e7240a230105f10f3967a.svg" alt="\(I_D=-W\mu_nQ_n\frac{\dd V}{\dd y}\)" style="height:1.491em;vertical-align:-0.522em">. Integrate from <img class="m" src="m/5fc1b354a94accb86e170a2568409143298c2521.svg" alt="\(V=0\)" style="height:0.749em;vertical-align:-0.000em"> (source) to <img class="m" src="m/382bb184be9c0a49f63e63e9d71e750a62111f25.svg" alt="\(V_{DS}\)" style="height:0.913em;vertical-align:-0.164em"> (drain) over length <img class="m" src="m/eb0200e826c9a3cb1998e695fad1695c59dd0eb3.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">:
+<div class="mb"><img class="m" src="m/b6fe5c64b965c5c26385200b0f43796b31067410.svg" alt="\[ I_D=\mu_nC_{ox}\frac WL\left(V_{GS}-V_{TN}-\frac{V_{DS}}{2}\right)V_{DS}. \]" style="width:20.528em"></div>
+Maximum at <img class="m" src="m/c23acce5da6f5eefd3fe37a9eb54dd6e53b469b2.svg" alt="\(V_{DS}=V_{GS}-V_{TN}\)" style="height:0.913em;vertical-align:-0.164em"> (channel <b>pinch-off</b> at the drain); beyond it the current saturates: <img class="m" src="m/3ca9edd95dc1feb5b5f0a4993b409235e21416eb.svg" alt="\(I_D=\frac{K_n}{2}(V_{GS}-V_{TN})^2\)" style="height:1.351em;vertical-align:-0.378em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1109/t-ed.1964.15336" data-full="C. T. Sah, “Characteristics of the metal-oxide-semiconductor transistors”, IEEE Transactions on Electron Devices 11, 324–345 (1964)." aria-label="C. T. Sah, “Characteristics of the metal-oxide-semiconductor transistors”, IEEE Transactions on Electron Devices 11, 324–345 (1964).">Sah 1964</a>)</span>. Channel-length modulation adds <img class="m" src="m/8cd52f268c3a3b3a76d28fabec7ec26fa337d577.svg" alt="\((1+\lambda V_{DS})\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org1f72781" class="outline-2">
+<h2 id="org1f72781">Regions (NMOS; PMOS with all signs reversed)</h2>
+<div class="outline-text-2" id="text-org1f72781">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">region</th>
+<th scope="col" class="org-left">condition</th>
+<th scope="col" class="org-left">I_D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">cutoff</td>
+<td class="org-left">V_GS ≤ V_TN</td>
+<td class="org-left">0 (subthreshold leakage)</td>
+</tr>
+
+<tr>
+<td class="org-left">triode</td>
+<td class="org-left">V_GS &gt; V_TN and V_DS &lt; V_GS − V_TN</td>
+<td class="org-left">Kn(V_GS − V_TN − V_DS/2)V_DS</td>
+</tr>
+
+<tr>
+<td class="org-left">saturation</td>
+<td class="org-left">V_GS &gt; V_TN and V_DS ≥ V_GS − V_TN</td>
+<td class="org-left">(Kn/2)(V_GS − V_TN)²(1 + λV_DS)</td>
+</tr>
+</tbody>
+</table>
+<p>
+Small-signal: <img class="m" src="m/f17c5cea5c0a61de0d239d76c0e07dfa82584330.svg" alt="\(g_m=\sqrt{2K_nI_D}\)" style="height:1.146em;vertical-align:-0.218em">, <img class="m" src="m/95408303ce58804e0763150e9bec2f09f1cc9a9a.svg" alt="\(r_o=1/\lambda I_D\)" style="height:1.096em;vertical-align:-0.274em">. For small <img class="m" src="m/382bb184be9c0a49f63e63e9d71e750a62111f25.svg" alt="\(V_{DS}\)" style="height:0.913em;vertical-align:-0.164em">: <img class="m" src="m/473a625d3d64747721e1a68aae1fb957a11dcb51.svg" alt="\(R_{on}=\frac{1}{K_n(V_{GS}-V_{TN})}\)" style="height:1.496em;vertical-align:-0.568em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org22fbfe9" class="outline-2">
+<h2 id="org22fbfe9">Picture</h2>
+<div class="outline-text-2" id="text-org22fbfe9">
+<figure class="fig"><img class="m" src="m/0f30af6f9033ce380dd933166e1d0f451b9f584a.svg" alt="figure" style="width:24.023em"><figcaption><span class="fl">Figure 1.</span> Output characteristics of an n-MOSFET for <img class="m" src="m/97d10006413a871e956891a84bd45656e0a6e014.svg" alt="\(V_{GS}=2\)" style="height:0.913em;vertical-align:-0.164em">, 3 and 4 V; the dashed parabola <img class="m" src="m/c23acce5da6f5eefd3fe37a9eb54dd6e53b469b2.svg" alt="\(V_{DS}=V_{GS}-V_{TN}\)" style="height:0.913em;vertical-align:-0.164em"> separates the triode and saturation regions.</figcaption></figure>
+<p>
+<img class="m" src="m/6c9cbf21dc4794ad609936181a3a7f121cfa0f3b.svg" alt="\(K_n=0.5\)" style="height:0.913em;vertical-align:-0.164em"> mA/V², <img class="m" src="m/b4bf83111fa57a696e9dc81bfaa043ecba98d200.svg" alt="\(V_{TN}=1\)" style="height:0.913em;vertical-align:-0.164em"> V; dashed: boundary between triode and saturation.
+</p>
+</div>
+</div>
+<div id="outline-container-orge7b4ded" class="outline-2">
+<h2 id="orge7b4ded">Worked example</h2>
+<div class="outline-text-2" id="text-orge7b4ded">
+<p>
+Two NMOS in series as an inverter with saturated load: <img class="m" src="m/6c9cbf21dc4794ad609936181a3a7f121cfa0f3b.svg" alt="\(K_n=0.5\)" style="height:0.913em;vertical-align:-0.164em"> mA/V² for both, <img class="m" src="m/f692f7607a38e2faee04878ae3b11114799e96e8.svg" alt="\(V_{TO}=1\)" style="height:0.913em;vertical-align:-0.164em"> V, <img class="m" src="m/a5e0475edf12dec624b363f0793528cbfb4dd5dc.svg" alt="\(V_{DD}=5\)" style="height:0.913em;vertical-align:-0.164em"> V, <img class="m" src="m/76134ab50a41fa83bb1bc0657efe21339e63bd31.svg" alt="\(V_I=3\)" style="height:0.913em;vertical-align:-0.164em"> V, <img class="m" src="m/3b3e5596ccc1d70d6464472326182565e00ff9cd.svg" alt="\(\gamma=0\)" style="height:0.919em;vertical-align:-0.211em">. Load saturated (<img class="m" src="m/d597090f2a41f80ca1050b1a10b42dee7cd94256.svg" alt="\(V_{GS}=V_{DS}\)" style="height:0.913em;vertical-align:-0.164em">), switch in triode: <img class="m" src="m/cd78b4f296d30ee4e826329197f3b2e60dfbd3ca.svg" alt="\(0.5\left(2-\frac{V_O}2\right)V_O=0.25(4-V_O)^2\Rightarrow V_O^2-6V_O+8=0\Rightarrow V_O=2\)" style="height:1.358em;vertical-align:-0.380em"> V (4 V violates triode), <img class="m" src="m/67b4f14d1098335e538b859833678989a6b5dc99.svg" alt="\(I_D=1\)" style="height:0.913em;vertical-align:-0.164em"> mA. With <img class="m" src="m/06baf8c3f5bb01f1d14399af41692de2b6cf6f9e.svg" alt="\(\gamma=0.5\sqrt{\mathrm V}\)" style="height:1.229em;vertical-align:-0.209em">, <img class="m" src="m/050ce9c1826349de10fb0fda53c4a97831af8bd9.svg" alt="\(2\phi_F=0.6\)" style="height:0.974em;vertical-align:-0.214em"> V, the load threshold rises with <img class="m" src="m/3b4c15e2991db89fd39763f8f9b54250ce5437c3.svg" alt="\(V_{SB}=V_O\)" style="height:0.913em;vertical-align:-0.164em"> and <img class="m" src="m/d88d5721d7be7a434f7b76f997bee3cc9482c0c5.svg" alt="\(V_O\)" style="height:0.913em;vertical-align:-0.164em"> drops to ≈ 1.65 V (solve numerically): see <a href="nmos-inverters.html">NMOS inverters</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org2f1a3a7" class="outline-2">
+<h2 id="org2f1a3a7">Engineering applications</h2>
+<div class="outline-text-2" id="text-org2f1a3a7">
+<p>
+All digital CMOS, analog amplifiers (current mirrors, differential pairs), power MOSFETs (<a href="power-mosfets-and-igbts.html">power devices</a>), image sensors, flash memory (floating gate shifts <img class="m" src="m/215c039eb990595c2590c3eb1d4c3889a1c4d74c.svg" alt="\(V_T\)" style="height:0.913em;vertical-align:-0.164em">).
+</p>
+</div>
+</div>
+<div id="outline-container-org7a712d0" class="outline-2">
+<h2 id="org7a712d0">Pitfall</h2>
+<div class="outline-text-2" id="text-org7a712d0">
+<p>
+The saturation condition is on <img class="m" src="m/382bb184be9c0a49f63e63e9d71e750a62111f25.svg" alt="\(V_{DS}\)" style="height:0.913em;vertical-align:-0.164em"> <b>and</b> <img class="m" src="m/e9c72ce5712e4c1435f47ec6e51044a3c6cebcbd.svg" alt="\(V_{GS}\)" style="height:0.913em;vertical-align:-0.164em">: <img class="m" src="m/87425da0876c05448178ad45a93f8c299db016d1.svg" alt="\(V_{DS}\ge V_{GS}-V_{TN}\)" style="height:0.913em;vertical-align:-0.164em">. A diode-connected MOS (<img class="m" src="m/d597090f2a41f80ca1050b1a10b42dee7cd94256.svg" alt="\(V_{GS}=V_{DS}\)" style="height:0.913em;vertical-align:-0.164em">) is always saturated when on — use it to shortcut exam problems.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="digital-electronics.html"><span>← previous</span>Digital electronic circuits: the map of the subject</a><a rel="next" href="mosfet-capacitances-and-scaling.html"><span>next →</span>MOSFET capacitances and scaling</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/digital-electronics--mos-devices.pdf" title="PDF manual">Mos Devices</a> · <a class="pdf" href="pdf/digital-electronics.pdf" title="PDF manual">Digital Electronics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

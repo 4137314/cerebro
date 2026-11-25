@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The inverse and implicit function theorems · Mathematics</title>
+<meta name="description" content="Differentiability says a map is approximated by a linear one; these two theorems say that where the linear approximation is invertible, so is the map, locally. They are the licence for every coordinate change in analysis and geometry – a chart on a manifold, a change of variables in an integral, a …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-inverse-and-implicit-function-theorems.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The inverse and implicit function theorems · Mathematics">
+<meta property="og:description" content="Differentiability says a map is approximated by a linear one; these two theorems say that where the linear approximation is invertible, so is the map, locally. They are the licence for every coordinate change in analysis and geometry – a chart on a manifold, a change of variables in an integral, a …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-inverse-and-implicit-function-theorems.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Real Analysis</p>
+<h1>The inverse and implicit function theorems</h1>
+<p class="summary">Differentiability says a map is approximated by a linear one; these two theorems say that where the linear approximation is invertible, so is the map, locally. They are the licence for every coordinate change in analysis and geometry &#x2013; a chart on a manifold, a change of variables in an integral, a constraint solved for one variable &#x2013; and both are the <a href="the-contraction-mapping-principle.html">contraction principle</a> with the derivative used to build the contraction.</p>
+<p class="rel"><span>needs</span> <a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a>, <a href="differentiability-in-several-variables.html">Differentiability in several variables</a>, <a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a>, <a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a>, <a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a>, <a href="the-contraction-mapping-principle.html">The contraction mapping principle</a>, <a href="the-mean-value-theorem.html">The mean value theorem</a></p>
+<p class="rel"><span>unlocks</span> <a href="constrained-extrema-and-lagrange-multipliers.html">Constrained extrema and Lagrange multipliers</a>, <a href="first-order-equations-and-the-method-of-characteristics.html">First-order equations and the method of characteristics</a>, <a href="constraints-virtual-work-and-the-lagrange-equations.html">Constraints, virtual work and the Lagrange equations</a></p>
+<p class="rel"><span>mentioned in</span> <a href="analysis.html">Analysis</a>, <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 38 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="differentiability-in-several-variables.html">Differentiability in several variables</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="the-contraction-mapping-principle.html">The contraction mapping principle</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgb5aec28">
+<p>
+A map <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> on an open <img class="m" src="m/55c556b7d9b8197a38ae10b7bba45e1907c0df5c.svg" alt="\(U \subseteq \R^{n}\)" style="height:0.904em;vertical-align:-0.145em"> is of class <img class="m" src="m/137c7a7820d2ce9b6547f412208e261180f342ab.svg" alt="\(C^{1}\)" style="height:0.892em;vertical-align:-0.000em"> if
+it is differentiable with <img class="m" src="m/3b55d3535a570fdc019c2c0dfc02a81976606f7b.svg" alt="\(x \mapsto Df(x)\)" style="height:1.096em;vertical-align:-0.274em"> continuous into the
+linear maps, normed by the operator norm. It is a <i>diffeomorphism</i> of
+<img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> onto <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> if it is a bijection and both it and its inverse are
+<img class="m" src="m/137c7a7820d2ce9b6547f412208e261180f342ab.svg" alt="\(C^{1}\)" style="height:0.892em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgecff344">
+<p>
+Let <img class="m" src="m/994d4cf345771cf0fbb7fea318eb4883dc603397.svg" alt="\(f \colon U \to \R^{n}\)" style="height:0.974em;vertical-align:-0.214em"> be <img class="m" src="m/137c7a7820d2ce9b6547f412208e261180f342ab.svg" alt="\(C^{1}\)" style="height:0.892em;vertical-align:-0.000em"> on an open
+<img class="m" src="m/55c556b7d9b8197a38ae10b7bba45e1907c0df5c.svg" alt="\(U \subseteq \R^{n}\)" style="height:0.904em;vertical-align:-0.145em">, and let <img class="m" src="m/90a002673272e0e0bed5ef77ae6e8a2ce3134c5c.svg" alt="\(a \in U\)" style="height:0.792em;vertical-align:-0.040em"> with <img class="m" src="m/8b4b352aa34bfbe5c21ef668821ac6a5e094ba0d.svg" alt="\(Df(a)\)" style="height:1.096em;vertical-align:-0.274em"> invertible.
+Then there are open sets <img class="m" src="m/f3618bd2081e7a021bf3f4c825bf31d5dd3959f5.svg" alt="\(A \ni a\)" style="height:0.792em;vertical-align:-0.040em"> and <img class="m" src="m/64b2aea1057ae1dd93836a28e6fc238415be972f.svg" alt="\(B \ni f(a)\)" style="height:1.096em;vertical-align:-0.274em"> such that <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">
+is a diffeomorphism of <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> onto <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">, and
+<img class="m" src="m/12d3ce7cdb1afba33b752f6056e18fb0a9dc764b.svg" alt="\(D(f^{-1})(f(x)) = Df(x)^{-1}\)" style="height:1.166em;vertical-align:-0.268em"> for <img class="m" src="m/67cfd0662406b4a66864b7834697edf23e0b7194.svg" alt="\(x \in A\)" style="height:0.792em;vertical-align:-0.040em">.
+</p>
+
+</div>
+
+<div class="proof" id="org4eee249">
+<p>
+Write <img class="m" src="m/3493ea6e0b8cfc663b9e39cef6df8fa13c5772e2.svg" alt="\(T = Df(a)\)" style="height:1.096em;vertical-align:-0.274em">. Replacing <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> by <img class="m" src="m/12a299cac733fbcc248a441787e3a3587e728220.svg" alt="\(T^{-1}\circ f\)" style="height:1.105em;vertical-align:-0.210em">, which changes
+neither the hypothesis nor the conclusion, assume <img class="m" src="m/26651fcf1a20b4bed650571477b8a5053141c09c.svg" alt="\(T = I\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+<p>
+By continuity of <img class="m" src="m/8bb34f60dc5327e92964fa6d46b5b446f7fdd432.svg" alt="\(Df\)" style="height:0.974em;vertical-align:-0.214em"> choose a closed ball <img class="m" src="m/208fd37abf901b7e174dd1c243348ae22b3471bd.svg" alt="\(\overline{B}(a,r)
+\subseteq U\)" style="height:1.242em;vertical-align:-0.273em"> on which <img class="m" src="m/15038ea32896fb075ae0b5f1c08cacc784bd8880.svg" alt="\(\norm{Df(x)-I}\le\tfrac{1}{2}\)" style="height:1.304em;vertical-align:-0.378em">. For
+<img class="m" src="m/b9912c6afc1d8e1a0b25fc367312f31633485db0.svg" alt="\(y \in \R^{n}\)" style="height:0.968em;vertical-align:-0.213em"> define <img class="m" src="m/a38f70e5895145c14ba8a9fad4bc7622a9146a56.svg" alt="\(\varphi_{y}(x) = x - f(x) + y\)" style="height:1.135em;vertical-align:-0.318em">; then
+<img class="m" src="m/1e7593ad9e131869526c0e8a5f7491fe7d0908b5.svg" alt="\(D\varphi_{y}(x) = I - Df(x)\)" style="height:1.135em;vertical-align:-0.318em"> has norm at most <img class="m" src="m/29a5998bc550aea5fc1f800530f1d12166463f16.svg" alt="\(\tfrac{1}{2}\)" style="height:1.304em;vertical-align:-0.378em"> there.
+Hence <img class="m" src="m/9fcd251022554bed51d1a0c90a2edc10fa3abd30.svg" alt="\(\norm{\varphi_{y}(x)-\varphi_{y}(x')} \le \tfrac{1}{2}\norm{x-x'}\)" style="height:1.304em;vertical-align:-0.378em">
+on the ball: for a unit vector <img class="m" src="m/43f1d6c46cc02af73d5390471e1c8c127d40b707.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em">, the real function
+<img class="m" src="m/ee6390bf2ece708dd4cd38d97c6a5e27df60b12d.svg" alt="\(t \mapsto \inner{\varphi_{y}(x'+t(x-x'))}{u}\)" style="height:1.137em;vertical-align:-0.318em"> on <img class="m" src="m/b40f419d16d54b95652910807100bb67f190c2b6.svg" alt="\([0,1]\)" style="height:1.096em;vertical-align:-0.274em"> has
+derivative <img class="m" src="m/444ce0fdb7998faa101f45d2a1da35011859db8f.svg" alt="\(\inner{D\varphi_{y}(\cdot)(x-x')}{u}\)" style="height:1.137em;vertical-align:-0.318em">, bounded in modulus
+by <img class="m" src="m/396a8ecf67d9ca755ad262e77df0a2c484844a4c.svg" alt="\(\tfrac{1}{2}\norm{x-x'}\)" style="height:1.304em;vertical-align:-0.378em"> by Cauchy-Schwarz, so the mean value
+theorem bounds its increment; taking <img class="m" src="m/43f1d6c46cc02af73d5390471e1c8c127d40b707.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em"> along
+<img class="m" src="m/6f3c7a61b52d873bfe3efe1cefeba137b6e97417.svg" alt="\(\varphi_{y}(x)-\varphi_{y}(x')\)" style="height:1.137em;vertical-align:-0.318em"> gives the claim, the ball being
+convex so that the segment stays in it. A fixed point of <img class="m" src="m/201c8aec28b8cc3603168e244f82b5b97587d16a.svg" alt="\(\varphi_{y}\)" style="height:0.785em;vertical-align:-0.314em"> is exactly a solution of
+<img class="m" src="m/a549c98d2eb0ef1b189b95cf6ce4c1cbbc5eeccf.svg" alt="\(f(x) = y\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+If <img class="m" src="m/4d07379d198426f4f203f26e3a5a87349c68c351.svg" alt="\(\norm{y - f(a)} &lt; r/2\)" style="height:1.096em;vertical-align:-0.274em"> then <img class="m" src="m/201c8aec28b8cc3603168e244f82b5b97587d16a.svg" alt="\(\varphi_{y}\)" style="height:0.785em;vertical-align:-0.314em"> maps
+<img class="m" src="m/c573c6e0da68d2fac88ae88c17ea52b007a96e11.svg" alt="\(\overline{B}(a,r)\)" style="height:1.242em;vertical-align:-0.273em"> into itself:
+<img class="m" src="m/84f16dd340c61848eae9095573974337849ff045.svg" alt="\(\norm{\varphi_{y}(x)-a} \le \norm{\varphi_{y}(x)-\varphi_{y}(a)} + \norm{y-f(a)} \le \tfrac{1}{2}\norm{x-a}+r/2 \le r\)" style="height:1.304em;vertical-align:-0.378em">.
+The ball is a closed subset of the complete <img class="m" src="m/b33f2adf960aeb722adafbfc0479a5f92fd75b05.svg" alt="\(\R^{n}\)" style="height:0.755em;vertical-align:-0.000em">, hence complete,
+so the contraction principle gives a unique fixed point. Therefore
+<img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is injective on <img class="m" src="m/c573c6e0da68d2fac88ae88c17ea52b007a96e11.svg" alt="\(\overline{B}(a,r)\)" style="height:1.242em;vertical-align:-0.273em"> and its image contains
+<img class="m" src="m/9bec5d593ec5bc428c4634bc2c5a93cd5fd4eba0.svg" alt="\(B(f(a),r/2)\)" style="height:1.096em;vertical-align:-0.274em">. Put <img class="m" src="m/c55a7be70b1198a1991888f04c0b11f874c80d78.svg" alt="\(B = B(f(a),r/2)\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/2edb2d0c86b18d436ba93fcbb919ff9249bc64b6.svg" alt="\(A = B(a,r)\cap f^{-1}(B)\)" style="height:1.166em;vertical-align:-0.268em">, both open.
+</p>
+
+<p>
+The inverse <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> is continuous: from
+<img class="m" src="m/5aef6c7e23beed73a5f3fea53205f972ffa4b875.svg" alt="\(\norm{x-x'} \le \norm{f(x)-f(x')} + \norm{\varphi_{0}(x)-\varphi_{0}(x')} \le \norm{f(x)-f(x')}+\tfrac{1}{2}\norm{x-x'}\)" style="height:1.304em;vertical-align:-0.378em">
+we get <img class="m" src="m/c47e1bfde9e7dfc7a0f377d4837cc05d21d336b6.svg" alt="\(\norm{g(y)-g(y')} \le 2\norm{y-y'}\)" style="height:1.098em;vertical-align:-0.274em">. It is differentiable:
+with <img class="m" src="m/68594eb2da28666fbc646263b2ba09dee29128d6.svg" alt="\(S = Df(x)^{-1}\)" style="height:1.166em;vertical-align:-0.268em">, which exists for <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> near <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> since the
+invertible maps form an open set, write
+<img class="m" src="m/2a51cd4029d4ec2360fda7d2a8fa28c8c7881368.svg" alt="\(g(y+k)-g(y) = h\)" style="height:1.096em;vertical-align:-0.274em"> so that <img class="m" src="m/c963d713fb7ab185cf18ec155b46cdaa042f459a.svg" alt="\(k = f(x+h)-f(x) = Df(x)h + o(\norm{h})\)" style="height:1.096em;vertical-align:-0.274em">;
+applying <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> gives <img class="m" src="m/87b52ae0d37832b7482d20fc1c55d6893e07cdb3.svg" alt="\(h - Sk = -S\,o(\norm{h})\)" style="height:1.096em;vertical-align:-0.274em">, and
+<img class="m" src="m/955e492f1de10861589246d85d8ac3329c4603d5.svg" alt="\(\norm{h}\le2\norm{k}\)" style="height:1.096em;vertical-align:-0.274em"> converts <img class="m" src="m/f24a77e3f9a561b2295d5ec427666fc3172f1380.svg" alt="\(o(\norm{h})\)" style="height:1.096em;vertical-align:-0.274em"> into <img class="m" src="m/b7d1f41219a47306f877b0d1723aaf45a5b142b7.svg" alt="\(o(\norm{k})\)" style="height:1.096em;vertical-align:-0.274em">.
+Hence <img class="m" src="m/08551d13fab628bae89748bb5dcc7b43520874f1.svg" alt="\(Dg(y) = Df(g(y))^{-1}\)" style="height:1.166em;vertical-align:-0.268em">, which is continuous in <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> because
+matrix inversion is.
+</p>
+
+</div>
+
+<div class="theorem" id="org459bae7">
+<p>
+Let <img class="m" src="m/788fcd470dfb808f600fd57592d802bfaf9c3250.svg" alt="\(F \colon U \to \R^{m}\)" style="height:0.755em;vertical-align:-0.000em"> be <img class="m" src="m/137c7a7820d2ce9b6547f412208e261180f342ab.svg" alt="\(C^{1}\)" style="height:0.892em;vertical-align:-0.000em"> on an open
+<img class="m" src="m/84ef70b894f9bdfd8939d2dd973232b36ce5b5d0.svg" alt="\(U \subseteq \R^{n}\times\R^{m}\)" style="height:0.904em;vertical-align:-0.145em">, let <img class="m" src="m/a167093430c7bc9e11772771caa827ac0fc0d658.svg" alt="\(F(a,b) = 0\)" style="height:1.096em;vertical-align:-0.274em">, and suppose the
+partial differential <img class="m" src="m/e146090fd4cea6f01b50dc3c97b25d59e100ecbf.svg" alt="\(D_{y}F(a,b)\)" style="height:1.135em;vertical-align:-0.318em">, the block acting on the second
+group of variables, is invertible. Then there are open <img class="m" src="m/f3618bd2081e7a021bf3f4c825bf31d5dd3959f5.svg" alt="\(A \ni a\)" style="height:0.792em;vertical-align:-0.040em">,
+<img class="m" src="m/749af2eb34c7cf53ea9fdbc7d6a5ed14e00d3157.svg" alt="\(B \ni b\)" style="height:0.804em;vertical-align:-0.040em"> and a unique <img class="m" src="m/137c7a7820d2ce9b6547f412208e261180f342ab.svg" alt="\(C^{1}\)" style="height:0.892em;vertical-align:-0.000em"> map <img class="m" src="m/6f2b84d949169d97ecf2718b0080bea14bc5c3b6.svg" alt="\(g \colon A \to B\)" style="height:0.962em;vertical-align:-0.212em"> with
+<img class="m" src="m/578a0cc54357342297b80b79e8e42bc9fcb5ed86.svg" alt="\(g(a) = b\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/501a51536bca24077413877a5a061141401cdb23.svg" alt="\(F(x,g(x)) = 0\)" style="height:1.096em;vertical-align:-0.274em"> for all <img class="m" src="m/67cfd0662406b4a66864b7834697edf23e0b7194.svg" alt="\(x \in A\)" style="height:0.792em;vertical-align:-0.040em">; moreover
+<img class="m" src="m/24dfc0ec78af395da88a6d2153d517eecdd3b4ae.svg" alt="\(Dg(x) = -D_{y}F(x,g(x))^{-1}D_{x}F(x,g(x))\)" style="height:1.206em;vertical-align:-0.313em">.
+</p>
+
+</div>
+
+<div class="proof" id="org887e514">
+<p>
+Let <img class="m" src="m/44475be8cba52e379b3a50e9deec0c132341a023.svg" alt="\(\Phi(x,y) = (x, F(x,y))\)" style="height:1.096em;vertical-align:-0.274em">, a <img class="m" src="m/137c7a7820d2ce9b6547f412208e261180f342ab.svg" alt="\(C^{1}\)" style="height:0.892em;vertical-align:-0.000em"> map into
+<img class="m" src="m/c9c7dba72b96d14940854f2da99c8e748eca3f73.svg" alt="\(\R^{n}\times\R^{m}\)" style="height:0.846em;vertical-align:-0.093em">. Its differential at <img class="m" src="m/f9627dcf18914d532e44ebadb4f9ec6dcae0ab6c.svg" alt="\((a,b)\)" style="height:1.096em;vertical-align:-0.274em"> sends
+<img class="m" src="m/65db1a1efd59d2988997b4bfc58b92a676773ae2.svg" alt="\((u,v)\)" style="height:1.096em;vertical-align:-0.274em"> to <img class="m" src="m/ca99f09847babeb29049daf603e4b7b1a1781118.svg" alt="\((u, D_{x}F u + D_{y}F v)\)" style="height:1.135em;vertical-align:-0.318em">, which is invertible: given
+<img class="m" src="m/d8dd4794733a2530c455da66bb86bdb8eb0541c7.svg" alt="\((p,q)\)" style="height:1.096em;vertical-align:-0.274em">, take <img class="m" src="m/d8bf0c71ff85ce895a1e8c9483072b0f5a61b1b1.svg" alt="\(u = p\)" style="height:0.685em;vertical-align:-0.212em"> and <img class="m" src="m/46de3ae7430645677d7ae51c4b3f0b5545c344c1.svg" alt="\(v = D_{y}F^{-1}(q - D_{x}F p)\)" style="height:1.206em;vertical-align:-0.313em">,
+uniquely.
+</p>
+
+<p>
+By the inverse function theorem <img class="m" src="m/fa487ac7b42c8b2ef4b61263ca81e5c6f295f32f.svg" alt="\(\Phi\)" style="height:0.749em;vertical-align:-0.000em"> is a diffeomorphism of a
+neighbourhood of <img class="m" src="m/f9627dcf18914d532e44ebadb4f9ec6dcae0ab6c.svg" alt="\((a,b)\)" style="height:1.096em;vertical-align:-0.274em"> onto a neighbourhood of <img class="m" src="m/6b82ae2cfc15cea05543377869039c11581f6a96.svg" alt="\((a,0)\)" style="height:1.096em;vertical-align:-0.274em">. Its
+inverse has the form <img class="m" src="m/01991a4b1c353d6eff75e6b6e8fa1b77f9876fc2.svg" alt="\(\Psi(x,z) = (x, \psi(x,z))\)" style="height:1.096em;vertical-align:-0.274em">, since <img class="m" src="m/fa487ac7b42c8b2ef4b61263ca81e5c6f295f32f.svg" alt="\(\Phi\)" style="height:0.749em;vertical-align:-0.000em">
+preserves the first coordinate; put <img class="m" src="m/d0c52b6bdec0d02aabf7022f3bdefdcb634bb55e.svg" alt="\(g(x) = \psi(x,0)\)" style="height:1.096em;vertical-align:-0.274em">, which is
+<img class="m" src="m/137c7a7820d2ce9b6547f412208e261180f342ab.svg" alt="\(C^{1}\)" style="height:0.892em;vertical-align:-0.000em"> and satisfies <img class="m" src="m/501a51536bca24077413877a5a061141401cdb23.svg" alt="\(F(x,g(x)) = 0\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/578a0cc54357342297b80b79e8e42bc9fcb5ed86.svg" alt="\(g(a) = b\)" style="height:1.096em;vertical-align:-0.274em">. Uniqueness
+is the injectivity of <img class="m" src="m/fa487ac7b42c8b2ef4b61263ca81e5c6f295f32f.svg" alt="\(\Phi\)" style="height:0.749em;vertical-align:-0.000em"> on that neighbourhood.
+</p>
+
+<p>
+Differentiating <img class="m" src="m/501a51536bca24077413877a5a061141401cdb23.svg" alt="\(F(x,g(x)) = 0\)" style="height:1.096em;vertical-align:-0.274em"> by the chain rule gives
+<img class="m" src="m/73b129a943b922ba2111cd0be7c1feea037809fe.svg" alt="\(D_{x}F + D_{y}F\,Dg = 0\)" style="height:1.062em;vertical-align:-0.319em">, which is the stated formula.
+</p>
+
+</div>
+
+<div class="remark" id="orgfaa39f7">
+<p>
+Both theorems are local and cannot be made global: the map
+<img class="m" src="m/3e5cfb5e091a22a08500dcb02d95e680a543092c.svg" alt="\(z \mapsto z^{2}\)" style="height:0.892em;vertical-align:-0.000em"> on the punctured plane has everywhere invertible
+differential and is not injective. What the proof actually produces is
+quantitative &#x2013; the neighbourhood is where <img class="m" src="m/aadbeb8b05ddbd3410e10bbee16cdd3721023e31.svg" alt="\(\norm{Df(x)-Df(a)}\)" style="height:1.096em;vertical-align:-0.274em"> stays
+below half &#x2013; and that is the form used when a bound on the size of the
+chart matters.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="differentiability-in-several-variables.html"><span>← previous</span>Differentiability in several variables</a><a rel="next" href="constrained-extrema-and-lagrange-multipliers.html"><span>next →</span>Constrained extrema and Lagrange multipliers</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

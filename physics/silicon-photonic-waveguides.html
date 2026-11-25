@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Silicon photonic waveguides · Physics</title>
+<meta name="description" content="SOI strip (500×220 nm) and rib waveguides are single-mode at 1550 nm with n_{eff}\approx2.4, n_g\approx4.2; loss of 1–3 dB/cm comes mainly from sidewall roughness (scattering \propto\Delta n^2); the huge index contrast allows bends of a few µm; compact model n_{eff}(\lambda)\approx n_1+n_2(\lambda-…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/silicon-photonic-waveguides.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Silicon photonic waveguides · Physics">
+<meta property="og:description" content="SOI strip (500×220 nm) and rib waveguides are single-mode at 1550 nm with n_{eff}\approx2.4, n_g\approx4.2; loss of 1–3 dB/cm comes mainly from sidewall roughness (scattering \propto\Delta n^2); the huge index contrast allows bends of a few µm; compact model n_{eff}(\lambda)\approx n_1+n_2(\lambda-…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/silicon-photonic-waveguides.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-photonics">Photonics</a> / <a rel="up" href="index.html#a-photonics--silicon-photonics">Silicon Photonics</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Photonics · Silicon Photonics</p>
+<h1>Silicon photonic waveguides</h1>
+<p class="summary">SOI strip (500×220 nm) and rib waveguides are single-mode at 1550 nm with <img class="m" src="m/2c26c25b90c788a4a9a74255405010f19b37e6e5.svg" alt="\(n_{eff}\approx2.4\)" style="height:1.020em;vertical-align:-0.316em">, <img class="m" src="m/d58204cca4b671c26766d55361a553d13913dd4c.svg" alt="\(n_g\approx4.2\)" style="height:1.020em;vertical-align:-0.316em">; loss of 1–3 dB/cm comes mainly from sidewall roughness (scattering <img class="m" src="m/9ad88638ea12608e4fe209c7b41f1bde14ca4a38.svg" alt="\(\propto\Delta n^2\)" style="height:0.892em;vertical-align:-0.000em">); the huge index contrast allows bends of a few µm; compact model <img class="m" src="m/9f0ba740aa7e5cef8b11dfac1e384572ebf5248c.svg" alt="\(n_{eff}(\lambda)\approx n_1+n_2(\lambda-\lambda_0)+n_3(\lambda-\lambda_0)^2\)" style="height:1.206em;vertical-align:-0.313em">.</p>
+<p class="rel"><span>needs</span> <a href="effective-index-method.html">The effective index method</a>, <a href="dispersion-and-group-velocity.html">Dispersion, group velocity and group index</a></p>
+<p class="rel"><span>unlocks</span> <a href="directional-couplers.html">Directional couplers and coupled-mode theory</a></p>
+<p class="rel"><span>see also</span> <a href="directional-couplers.html">Directional couplers and coupled-mode theory</a>, <a href="ring-resonators.html">Ring resonators</a>, <a href="scattering-parameters.html">Scattering parameters</a></p>
+<p class="rel"><span>mentioned in</span> <a href="scattering-parameters.html">Scattering parameters</a>, <a href="dielectric-slab-waveguide.html">The dielectric slab waveguide</a></p>
+<details class="path"><summary>Learning path: 16 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="poynting-theorem.html">Poynting's theorem and electromagnetic power</a></li><li><a href="plane-waves-in-media.html">Plane waves in lossless and lossy media</a></li><li><a href="optoelectronics.html">Optoelectronics: the map of the subject</a></li><li><a href="dispersion-and-group-velocity.html">Dispersion, group velocity and group index</a></li><li><a href="reflection-and-transmission-at-interfaces.html">Reflection and transmission: Snell, Fresnel, Brewster and total internal reflection</a></li><li><a href="gaussian-beams.html">Gaussian beams</a></li><li><a href="interference-and-fabry-perot.html">Interference and the Fabry–Perot resonator</a></li><li><a href="dielectric-slab-waveguide.html">The dielectric slab waveguide</a></li><li><a href="photonics.html">Integrated photonics: the map of the subject</a></li><li><a href="effective-index-method.html">The effective index method</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org59a6cfc" class="outline-2">
+<h2 id="org59a6cfc">Model</h2>
+<div class="outline-text-2" id="text-org59a6cfc">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">type</th>
+<th scope="col" class="org-left">geometry</th>
+<th scope="col" class="org-left">features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">strip</td>
+<td class="org-left">500 × 220 nm, full etch</td>
+<td class="org-left">tight bends (2–5 µm), higher loss</td>
+</tr>
+
+<tr>
+<td class="org-left">rib</td>
+<td class="org-left">500 × 220, 90 nm slab</td>
+<td class="org-left">lower loss, electrical contact (doping)</td>
+</tr>
+
+<tr>
+<td class="org-left">slot</td>
+<td class="org-left">two rails, 100 nm gap</td>
+<td class="org-left">field in the gap: sensing, nonlinear</td>
+</tr>
+
+<tr>
+<td class="org-left">SiN</td>
+<td class="org-left">1 µm × 400 nm</td>
+<td class="org-left">low loss, low contrast, visible light</td>
+</tr>
+</tbody>
+</table>
+<p>
+Compact model: <img class="m" src="m/db2e7f3c5ca67b8bff96ddf1fd966380e8bf674d.svg" alt="\(\beta(\lambda)=\frac{2\pi}{\lambda}n_{eff}(\lambda)\)" style="height:1.304em;vertical-align:-0.378em">, loss <img class="m" src="m/31ca852864b086cdcfaadc360e1c9b3ed8ab2102.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> (field amplitude <img class="m" src="m/899c50ea59c32799a20e6c20737210627c2ebba8.svg" alt="\(e^{-\alpha L/2}\)" style="height:0.973em;vertical-align:-0.000em"> for power loss <img class="m" src="m/31ca852864b086cdcfaadc360e1c9b3ed8ab2102.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em">) <span class="cite">(<a class="ref" href="https://doi.org/10.1109/jqe.1986.1073057" data-full="R. A. Soref and J. P. Lorenzo, “All-silicon active and passive guided-wave components for λ = 1.3 and 1.6 µm”, IEEE Journal of Quantum Electronics 22, 873–879 (1986)." aria-label="R. A. Soref and J. P. Lorenzo, “All-silicon active and passive guided-wave components for λ = 1.3 and 1.6 µm”, IEEE Journal of Quantum Electronics 22, 873–879 (1986).">Soref and Lorenzo 1986</a>)</span>. <img class="m" src="m/e819c038d5c79f7603f12b72b079455cd7997960.svg" alt="\(n_g=n_1-\lambda_0n_2\)" style="height:1.075em;vertical-align:-0.312em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org4c16253" class="outline-2">
+<h2 id="org4c16253">Loss mechanisms</h2>
+<div class="outline-text-2" id="text-org4c16253">
+<p>
+Sidewall roughness (σ ≈ 1–3 nm): scattering <img class="m" src="m/f405d8cab04a7b2c56c2a7f7cff641112d453e2f.svg" alt="\(\alpha\propto\sigma^2(n_1^2-n_2^2)^2\)" style="height:1.166em;vertical-align:-0.268em">/width-dependent field at the wall — wider waveguides and rib geometry reduce it. Bending loss falls exponentially with radius. Two-photon absorption and free-carrier absorption at high power. Substrate leakage if the BOX is too thin.
+</p>
+</div>
+</div>
+<div id="outline-container-org6ccb3fd" class="outline-2">
+<h2 id="org6ccb3fd">Worked example</h2>
+<div class="outline-text-2" id="text-org6ccb3fd">
+<p>
+Delay line for 100 ps: <img class="m" src="m/5941e88044fe1ea7396dd0b5b8d58d967d96598d.svg" alt="\(L=\frac{c\,\Delta t}{n_g}=\frac{3\times10^8\cdot10^{-10}}{4.2}=7.1\)" style="height:1.722em;vertical-align:-0.603em"> mm, loss at 2 dB/cm ≈ 1.4 dB. Width sensitivity: <img class="m" src="m/02cf2fc59991328fec938ab7ba12714e886aea65.svg" alt="\(\dd n_{eff}/\dd w\approx2\times10^{-3}\)" style="height:1.206em;vertical-align:-0.313em"> nm<img class="m" src="m/6174f00c281084cf5eb1be35c3830ee14666a0c8.svg" alt="\(^{-1}\)" style="height:0.892em;vertical-align:-0.000em">: a 5 nm width error shifts a ring resonance by <img class="m" src="m/4469bbba345f795a50fb9ab3fb110adc203ef34a.svg" alt="\(\Delta\lambda=\lambda\frac{\Delta n_{eff}}{n_g}=1550\cdot\frac{0.01}{4.2}\approx3.7\)" style="height:1.681em;vertical-align:-0.588em"> nm — why thermal tuning is needed.
+</p>
+</div>
+</div>
+<div id="outline-container-org6ffb777" class="outline-2">
+<h2 id="org6ffb777">Engineering applications</h2>
+<div class="outline-text-2" id="text-org6ffb777">
+<p>
+Every PIC component; spiral delay lines; low-loss SiN for LiDAR and biophotonics; slot guides for sensing and hybrid electro-optic polymers.
+</p>
+</div>
+</div>
+<div id="outline-container-org1a524db" class="outline-2">
+<h2 id="org1a524db">Pitfall</h2>
+<div class="outline-text-2" id="text-org1a524db">
+<p>
+<img class="m" src="m/e54fd00ebef6552ac3007c1e5b63ccfde6f9fb78.svg" alt="\(n_g\)" style="height:0.785em;vertical-align:-0.314em">, not <img class="m" src="m/dc33acf7f86fdcdde14f3273093563f7f68f3063.svg" alt="\(n_{eff}\)" style="height:0.785em;vertical-align:-0.314em">, sets delays and FSRs; <img class="m" src="m/dc33acf7f86fdcdde14f3273093563f7f68f3063.svg" alt="\(n_{eff}\)" style="height:0.785em;vertical-align:-0.314em"> sets phase and resonance positions. Confusing them is the most common error in PIC design exercises.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="effective-index-method.html"><span>← previous</span>The effective index method</a><a rel="next" href="directional-couplers.html"><span>next →</span>Directional couplers and coupled-mode theory</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/photonics--silicon-photonics.pdf" title="PDF manual">Silicon Photonics</a> · <a class="pdf" href="pdf/photonics.pdf" title="PDF manual">Photonics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

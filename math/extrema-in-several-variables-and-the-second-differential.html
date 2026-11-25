@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Extrema in several variables and the second differential · Mathematics</title>
+<meta name="description" content="The one-variable story – a vanishing derivative at an interior extremum, a sign condition on the second derivative to decide which – survives verbatim, with the second derivative replaced by a quadratic form. The new phenomenon is that a form can be neither positive nor negative definite, and the p…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/extrema-in-several-variables-and-the-second-differential.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Extrema in several variables and the second differential · Mathematics">
+<meta property="og:description" content="The one-variable story – a vanishing derivative at an interior extremum, a sign condition on the second derivative to decide which – survives verbatim, with the second derivative replaced by a quadratic form. The new phenomenon is that a form can be neither positive nor negative definite, and the p…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/extrema-in-several-variables-and-the-second-differential.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Analysis · Real Analysis</p>
+<h1>Extrema in several variables and the second differential</h1>
+<p class="summary">The one-variable story &#x2013; a vanishing derivative at an interior extremum, a sign condition on the second derivative to decide which &#x2013; survives verbatim, with the second derivative replaced by a <b>quadratic form</b>. The new phenomenon is that a form can be neither positive nor negative definite, and the point is then neither a maximum nor a minimum: a possibility with no one-dimensional analogue.</p>
+<p class="rel"><span>needs</span> <a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a>, <a href="differentiability-in-several-variables.html">Differentiability in several variables</a>, <a href="taylors-theorem-with-the-peano-remainder.html">Taylor's theorem with the Peano remainder</a>, <a href="the-mean-value-theorem.html">The mean value theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 18 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="one-sided-limits-and-the-discontinuities-of-a-monotone-function.html">One-sided limits and the discontinuities of a monotone function</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="cauchys-mean-value-theorem-and-de-lhopitals-rule.html">Cauchy's mean value theorem and de l'Hopital's rule</a></li><li><a href="differentiability-in-several-variables.html">Differentiability in several variables</a></li><li><a href="taylors-theorem-with-the-lagrange-remainder.html">Taylor's theorem with the Lagrange remainder</a></li><li><a href="taylors-theorem-with-the-peano-remainder.html">Taylor's theorem with the Peano remainder</a></li></ol></details>
+</header>
+<main class="note">
+<div class="proposition" id="org4e1a26a">
+<p>
+If <img class="m" src="m/4986bfc0dc2077e46a8409dc39c45026cbf3f31b.svg" alt="\(f \colon U \to \R\)" style="height:0.974em;vertical-align:-0.214em"> is differentiable at an interior point <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> at
+which it has a local extremum, then <img class="m" src="m/a3ea480d9a3efeefbcd68bf2bcce60f8cd26f2a7.svg" alt="\(Df(c) = 0\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgebeaaef">
+<p>
+For each direction <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> the function <img class="m" src="m/18c503a1b58dc57eeb0d492612462a75abda1215.svg" alt="\(t \mapsto f(c + tv)\)" style="height:1.096em;vertical-align:-0.274em"> is
+defined near <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">, differentiable there with derivative
+<img class="m" src="m/30b655ea3c5f01d977d57e07a0bc1403d8512fd1.svg" alt="\(Df(c)v\)" style="height:1.096em;vertical-align:-0.274em">, and has a local extremum at <img class="m" src="m/7278f3bf5413cf4c4cfb52dab1ed9a4378258c69.svg" alt="\(t = 0\)" style="height:0.706em;vertical-align:-0.000em">. By the interior
+extremum lemma in one variable its derivative vanishes, so
+<img class="m" src="m/4c5bf23f5f6fea9e8263aed74f3e698c190e79a9.svg" alt="\(Df(c)v = 0\)" style="height:1.096em;vertical-align:-0.274em"> for every <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="definition" id="orgfe395c7">
+<p>
+Let <img class="m" src="m/4986bfc0dc2077e46a8409dc39c45026cbf3f31b.svg" alt="\(f \colon U \to \R\)" style="height:0.974em;vertical-align:-0.214em"> have continuous second partial derivatives.
+Its <i>second differential</i> at <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> is the quadratic form
+<div class="mb"><img class="m" src="m/55ebce86cbef45cafb0c0bf8ac2497b51bfd424e.svg" alt="\[ D^{2}f(c)[h] = \sum_{i,j} \partial_{i}\partial_{j} f(c) \, h_{i} h_{j}, \]" style="width:14.425em"></div>
+which is symmetric in <img class="m" src="m/820a2ed5b51be608772286616d5575a49dd61525.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em"> and <img class="m" src="m/3368b211f5038907d6dc36c5bec32916d1755948.svg" alt="\(j\)" style="height:0.936em;vertical-align:-0.215em">. The form is <i>positive definite</i>
+if <img class="m" src="m/5963bccd45b602beec552d002d1d2fa6068c0033.svg" alt="\(D^{2}f(c)[h] &gt; 0\)" style="height:1.166em;vertical-align:-0.268em"> for every <img class="m" src="m/8e1ed53c7ce5370c669e545d1b5ce38936492105.svg" alt="\(h \ne 0\)" style="height:0.974em;vertical-align:-0.214em">, <i>negative definite</i> if
+the reverse, and <i>indefinite</i> if it takes both signs.
+</p>
+
+</div>
+
+<div class="theorem" id="org26d6769">
+<p>
+Let <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> have continuous second partials near a stationary point
+<img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em">. If <img class="m" src="m/29595f2b443f1158cd26edd61e4d0ab60c4d4f7b.svg" alt="\(D^{2}f(c)\)" style="height:1.166em;vertical-align:-0.268em"> is positive definite then <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> is a strict
+local minimum; if negative definite, a strict local maximum; if
+indefinite, neither.
+</p>
+
+</div>
+
+<div class="proof" id="org9c7dad4">
+<p>
+Suppose <img class="m" src="m/29595f2b443f1158cd26edd61e4d0ab60c4d4f7b.svg" alt="\(D^{2}f(c)\)" style="height:1.166em;vertical-align:-0.268em"> is positive definite. The unit sphere is closed
+and bounded, and <img class="m" src="m/fea82b4e3e7c146e64d4cdd7255ea2efd8cd9a76.svg" alt="\(h \mapsto D^{2}f(c)[h]\)" style="height:1.166em;vertical-align:-0.268em"> is continuous, so by the
+extreme value theorem the form attains a minimum <img class="m" src="m/22bdd1abef12a7df4d5966044da6750e3676c259.svg" alt="\(\mu &gt; 0\)" style="height:0.919em;vertical-align:-0.211em"> on it;
+by homogeneity <img class="m" src="m/d6efbf1b0a9f1cda7c119e91b7c2d98ef881678f.svg" alt="\(D^{2}f(c)[h] \ge \mu \norm{h}^{2}\)" style="height:1.166em;vertical-align:-0.268em"> for all <img class="m" src="m/6c6a7c0f65b6e5eec3c9e58e95f4608590dbb80f.svg" alt="\(h\)" style="height:0.761em;vertical-align:-0.000em">.
+Taylor's theorem with the Peano remainder, applied to
+<img class="m" src="m/0b9cbbe80926cd84fba3d78b7b3230f5d5a019d6.svg" alt="\(t \mapsto f(c + th)\)" style="height:1.096em;vertical-align:-0.274em"> and using <img class="m" src="m/a3ea480d9a3efeefbcd68bf2bcce60f8cd26f2a7.svg" alt="\(Df(c) = 0\)" style="height:1.096em;vertical-align:-0.274em">, gives
+<div class="mb"><img class="m" src="m/677cdc2eb78e9e6f29acbdc03c3901e84d17d7e4.svg" alt="\[ f(c + h) - f(c) = \tfrac{1}{2} D^{2}f(c)[h] + \eta(h) \norm{h}^{2}, \qquad \eta(h) \to 0. \]" style="width:27.013em"></div>
+Choosing <img class="m" src="m/8ee35664b743f3ca5ee7a73a94c6b1cfce7c399d.svg" alt="\(\norm{h}\)" style="height:1.096em;vertical-align:-0.274em"> small enough that <img class="m" src="m/cb892fb72c1315e4c1c3ddbdd21fc0843587d37a.svg" alt="\(\abs{\eta(h)} &lt; \mu/4\)" style="height:1.096em;vertical-align:-0.274em"> makes
+the right-hand side at least <img class="m" src="m/d6a0f6c63eb3a34292922d3bb43a869d24c5571e.svg" alt="\((\mu/4)\norm{h}^{2} &gt; 0\)" style="height:1.166em;vertical-align:-0.268em">. The negative
+definite case is this applied to <img class="m" src="m/260f963332ff7cc2fa4c5efa180922c4739a327e.svg" alt="\(-f\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+<p>
+If the form is indefinite, pick <img class="m" src="m/43f1d6c46cc02af73d5390471e1c8c127d40b707.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em"> with <img class="m" src="m/7c6c6ef8cbcf5336a41f4eea5a9fa29e41e6e5f5.svg" alt="\(D^{2}f(c)[u] &gt; 0\)" style="height:1.166em;vertical-align:-0.268em"> and
+<img class="m" src="m/969e77e7e1813d23233baff7c36f4a9c8b08dca7.svg" alt="\(w\)" style="height:0.472em;vertical-align:-0.000em"> with <img class="m" src="m/2470a713c9a603bc0e34488e0f0e735223c0677d.svg" alt="\(D^{2}f(c)[w] &lt; 0\)" style="height:1.166em;vertical-align:-0.268em">. The same expansion along <img class="m" src="m/04d9b1713094ea63eecfbeef3c536e2728c9f281.svg" alt="\(tu\)" style="height:0.674em;vertical-align:-0.000em"> makes
+<img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> exceed <img class="m" src="m/2dd7d9d53090fc6d023c1fc6ad0281b0af33dca1.svg" alt="\(f(c)\)" style="height:1.096em;vertical-align:-0.274em"> for small <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em">, and along <img class="m" src="m/94fabda4b44d7c52691ad2d6a14ec5513dd06ab0.svg" alt="\(tw\)" style="height:0.674em;vertical-align:-0.000em"> fall below it,
+so <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> is neither.
+</p>
+
+</div>
+
+<div class="remark" id="org178badd">
+<p>
+The test says nothing when the form is positive <b>semi</b>-definite and
+singular, and cannot: the behaviour is then decided by higher-order
+terms, exactly as <img class="m" src="m/3789272538d8b25f9bf6e6bfbbc84f598b338707.svg" alt="\(f'' (c) = 0\)" style="height:1.098em;vertical-align:-0.274em"> leaves the one-variable test silent.
+What is genuinely new in several variables is the indefinite case &#x2013;
+a saddle &#x2013; which is not a failure of the test but a verdict.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="taylors-theorem-with-the-peano-remainder.html"><span>← previous</span>Taylor's theorem with the Peano remainder</a><a rel="next" href="uniform-continuity-and-the-heine-cantor-theorem.html"><span>next →</span>Uniform continuity and the Heine&#x2013;Cantor theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frequency response, Bode plots and filters · Physics</title>
+<meta name="description" content="H(j\omega) is plotted as 20\log|H| and \arg H vs \log\omega (Bode); each real pole bends the magnitude by −20 dB/decade and the phase by −90°, each zero the opposite; first-order RC sections give f_c=1/2\pi RC, second-order sections add resonance with Q.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/frequency-response-and-filters.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Frequency response, Bode plots and filters · Physics">
+<meta property="og:description" content="H(j\omega) is plotted as 20\log|H| and \arg H vs \log\omega (Bode); each real pole bends the magnitude by −20 dB/decade and the phase by −90°, each zero the opposite; first-order RC sections give f_c=1/2\pi RC, second-order sections add resonance with Q.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/frequency-response-and-filters.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-circuits">Circuits</a> / <a rel="up" href="index.html#a-circuits--transforms">Transforms</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Circuits · Transforms</p>
+<h1>Frequency response, Bode plots and filters</h1>
+<p class="summary"><img class="m" src="m/f5a40429a2c2d4df230a3893da8ff587914bd507.svg" alt="\(H(j\omega)\)" style="height:1.096em;vertical-align:-0.274em"> is plotted as <img class="m" src="m/1624c8ac6b0568bf099b19d3843cc74de1159cc6.svg" alt="\(20\log|H|\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/e9ab9b4a5bdbd6b44fd41aa1a74c1155d202c3ef.svg" alt="\(\arg H\)" style="height:0.962em;vertical-align:-0.212em"> vs <img class="m" src="m/a38fd871e13caed93d91a7173551585fc20517e8.svg" alt="\(\log\omega\)" style="height:0.974em;vertical-align:-0.214em"> (Bode); each real pole bends the magnitude by −20 dB/decade and the phase by −90°, each zero the opposite; first-order RC sections give <img class="m" src="m/21294fd79e8411c4fab4bd8325798954993cf820.svg" alt="\(f_c=1/2\pi RC\)" style="height:1.096em;vertical-align:-0.274em">, second-order sections add resonance with <img class="m" src="m/bacb144e40b701a8ee522e840210fcde663b0d8c.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em">.</p>
+<p class="rel"><span>needs</span> <a href="impedance-and-ac-circuit-analysis.html">Impedance and the symbolic method</a>, <a href="fourier-series-and-transform.html">Fourier series and Fourier transform</a></p>
+<p class="rel"><span>unlocks</span> <a href="operational-amplifier-circuits.html">Operational-amplifier circuits</a></p>
+<p class="rel"><span>see also</span> <a href="laplace-transform-and-transients.html">The Laplace transform and circuit transients</a>, <a href="operational-amplifier-circuits.html">Operational-amplifier circuits</a></p>
+<details class="path"><summary>Learning path: 12 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="circuits.html">Circuit theory: the map of the subject</a></li><li><a href="kirchhoff-laws-and-network-theorems.html">Kirchhoff's laws and network theorems</a></li><li><a href="lti-systems-and-convolution.html">LTI systems, impulse response and first/second-order circuits</a></li><li><a href="complex-numbers-and-phasors.html">Complex numbers and phasors</a></li><li><a href="fourier-series-and-transform.html">Fourier series and Fourier transform</a></li><li><a href="impedance-and-ac-circuit-analysis.html">Impedance and the symbolic method</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org073a504" class="outline-2">
+<h2 id="org073a504">Method (Bode asymptotes)</h2>
+<div class="outline-text-2" id="text-org073a504">
+<p>
+Factor <img class="m" src="m/d682502021d4ba70d32ba32cc4c37b5235640379.svg" alt="\(H(j\omega)=K\frac{\prod(1+j\omega/z_i)}{\prod(1+j\omega/p_k)}\)" style="height:1.677em;vertical-align:-0.570em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1002/j.1538-7305.1940.tb00839.x" data-full="H. W. Bode, “Relations between attenuation and phase in feedback amplifier design”, Bell System Technical Journal 19, 421–454 (1940)." aria-label="H. W. Bode, “Relations between attenuation and phase in feedback amplifier design”, Bell System Technical Journal 19, 421–454 (1940).">Bode 1940</a>)</span>. Magnitude in dB is a sum: each factor is 0 dB below its corner and ±20 dB/dec above (exact error −3 dB at the corner). Phase: each factor contributes ±45° at its corner, ±90° asymptotically, transitions over one decade each side.
+</p>
+</div>
+</div>
+<div id="outline-container-org1c6c946" class="outline-2">
+<h2 id="org1c6c946">Standard filters</h2>
+<div class="outline-text-2" id="text-org1c6c946">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">filter</th>
+<th scope="col" class="org-left">H(jω)</th>
+<th scope="col" class="org-left">behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">RC low-pass</td>
+<td class="org-left">1/(1 + jωRC)</td>
+<td class="org-left">−20 dB/dec above f_c</td>
+</tr>
+
+<tr>
+<td class="org-left">CR high-pass</td>
+<td class="org-left">jωRC/(1 + jωRC)</td>
+<td class="org-left">+20 dB/dec below f_c</td>
+</tr>
+
+<tr>
+<td class="org-left">RLC band-pass</td>
+<td class="org-left">1/(1 + jQ(ω/ω₀ − ω₀/ω))</td>
+<td class="org-left">peak at ω₀, bandwidth ω₀/Q</td>
+</tr>
+
+<tr>
+<td class="org-left">2nd-order LP</td>
+<td class="org-left">ω₀²/(ω₀² − ω² + jωω₀/Q)</td>
+<td class="org-left">−40 dB/dec, peaking if Q&gt;0.707</td>
+</tr>
+</tbody>
+</table>
+<p>
+Butterworth (<img class="m" src="m/59cffd596df11b355bb97f55f7b06ca7502f589b.svg" alt="\(Q=0.707\)" style="height:0.962em;vertical-align:-0.212em">) is maximally flat <span class="cite">(<a class="ref" href="references.html#ref-butterworth1930" data-full="S. Butterworth, “On the theory of filter amplifiers”, Experimental Wireless and the Wireless Engineer 7, 536–541 (1930)." aria-label="S. Butterworth, “On the theory of filter amplifiers”, Experimental Wireless and the Wireless Engineer 7, 536–541 (1930).">Butterworth 1930</a>)</span>.
+</p>
+</div>
+</div>
+<div id="outline-container-org135c898" class="outline-2">
+<h2 id="org135c898">Picture</h2>
+<div class="outline-text-2" id="text-org135c898">
+<figure class="fig"><img class="m" src="m/20ddd1786fb42de49bfd581824c44624fa74f7bc.svg" alt="figure" style="width:23.973em"><figcaption><span class="fl">Figure 1.</span> Magnitude responses of low-pass filters: a first-order section, a Butterworth response and a peaked second-order response with <img class="m" src="m/cc7134aadcf80429e4ca609c0149e9d5ee75fa9d.svg" alt="\(Q=3\)" style="height:0.962em;vertical-align:-0.212em">.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org17b0000" class="outline-2">
+<h2 id="org17b0000">Worked example</h2>
+<div class="outline-text-2" id="text-org17b0000">
+<p>
+Anti-aliasing for a 48 kHz ADC wanting ≥ 40 dB rejection at 24 kHz with a passband to 4 kHz: first order gives only <img class="m" src="m/ecff73be6199078bc8d779245682fd6f898151ae.svg" alt="\(20\log(24/4)=15.6\)" style="height:1.096em;vertical-align:-0.274em"> dB; 4th-order Butterworth with <img class="m" src="m/894da5862b548a0f651b15e06886dd83a8146b4d.svg" alt="\(f_c=8\)" style="height:0.974em;vertical-align:-0.214em"> kHz gives <img class="m" src="m/8840da7ddc165b4ca60e8a1ed68fb3da703ebb16.svg" alt="\(80\log(3)=38\)" style="height:1.096em;vertical-align:-0.274em"> dB at 24 kHz — close; use 5th order or oversampling.
+</p>
+</div>
+</div>
+<div id="outline-container-org0052137" class="outline-2">
+<h2 id="org0052137">Engineering applications</h2>
+<div class="outline-text-2" id="text-org0052137">
+<p>
+Audio equalisers, anti-aliasing and reconstruction filters, loop stability (gain/phase margins of op-amps and PLLs), EMI filters, the frequency response of <a href="photodetectors.html">photoreceivers</a> and of <a href="cmos-propagation-delay.html">interconnects</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc311c79" class="outline-2">
+<h2 id="orgc311c79">Pitfall</h2>
+<div class="outline-text-2" id="text-orgc311c79">
+<p>
+dB of voltage ratios is <img class="m" src="m/6fd7a933d0988ad3bf025e58b79671bc7d4faac4.svg" alt="\(20\log\)" style="height:0.974em;vertical-align:-0.214em">, of power ratios <img class="m" src="m/5d6c9282c1f5178d330cc1125d15b72b191cd7d2.svg" alt="\(10\log\)" style="height:0.974em;vertical-align:-0.214em">; the "−3 dB" frequency is where <b>power</b> halves, i.e. <img class="m" src="m/9b308ac1cea4259db208e47a7b9aa1adf5f23ec5.svg" alt="\(|H|=1/\sqrt2\)" style="height:1.268em;vertical-align:-0.279em">.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="laplace-transform-and-transients.html"><span>← previous</span>The Laplace transform and circuit transients</a><a rel="next" href="transformer.html"><span>next →</span>The transformer</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/circuits--transforms.pdf" title="PDF manual">Transforms</a> · <a class="pdf" href="pdf/circuits.pdf" title="PDF manual">Circuits</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

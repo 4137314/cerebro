@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Synchronous counters · Computer Science</title>
+<meta name="description" content="A counter is a register stepping through a prescribed sequence on each clock edge (with no inputs the transitions are unconditional); a mod-16 binary counter has next-state equations D_d=\bar d, D_c=c\oplus d, … or simply a register fed by an incrementer; a BCD counter treats codes 10–15 as don't-c…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/counters.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Synchronous counters · Computer Science">
+<meta property="og:description" content="A counter is a register stepping through a prescribed sequence on each clock edge (with no inputs the transitions are unconditional); a mod-16 binary counter has next-state equations D_d=\bar d, D_c=c\oplus d, … or simply a register fed by an incrementer; a BCD counter treats codes 10–15 as don't-c…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/counters.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--sequential">Sequential</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Hardware · Sequential</p>
+<h1>Synchronous counters</h1>
+<p class="summary">A counter is a register stepping through a prescribed sequence on each clock edge (with no inputs the transitions are unconditional); a mod-16 binary counter has next-state equations <img class="m" src="m/667a06ea8a0d21074d82bb64918ee564a8c4f3e0.svg" alt="\(D_d=\bar d\)" style="height:1.076em;vertical-align:-0.161em">, <img class="m" src="m/663fc67c55b91c4fc985cdb70d2b36a0e46cd5e5.svg" alt="\(D_c=c\oplus d\)" style="height:0.925em;vertical-align:-0.167em">, … or simply a register fed by an incrementer; a BCD counter treats codes 10–15 as don't-cares; terminal count and enable let counters be cascaded into clocks and timers.</p>
+<p class="rel"><span>needs</span> <a href="registers-shift-registers.html">Registers and shift registers</a>, <a href="fsm-synthesis.html">Synthesis of finite-state machines</a></p>
+<p class="rel"><span>unlocks</span> <a href="fsm-patterns.html">Recurring state-machine patterns</a></p>
+<p class="rel"><span>see also</span> <a href="flip-flop-types.html">D, T, JK and SR flip-flops: characteristic and excitation tables</a>, <a href="bcd-adder.html">BCD adder</a>, <a href="seven-segment-decoder.html">7-segment decoder: don't-cares and joint minimization</a>, <a href="fsm-patterns.html">Recurring state-machine patterns</a>, <a href="datapath-subsystems.html">Datapath subsystems: detectors, shifters, counters</a></p>
+<details class="path"><summary>Learning path: 10 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="multiplexer.html">Multiplexer and demultiplexer</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li><li><a href="sr-latch.html">SR latch and D latch</a></li><li><a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></li><li><a href="fsm-analysis.html">Analysis of synchronous sequential circuits</a></li><li><a href="fsm-synthesis.html">Synthesis of finite-state machines</a></li><li><a href="registers-shift-registers.html">Registers and shift registers</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org9be7a86" class="outline-2">
+<h2 id="org9be7a86">Construction</h2>
+<div class="outline-text-2" id="text-org9be7a86">
+<p>
+<b>Mod-16</b> (<img class="m" src="m/d675b691baa1b2e839a2bd2554f70290c570db69.svg" alt="\(abcd\)" style="height:0.761em;vertical-align:-0.000em">, <img class="m" src="m/36ad57d0b9b05e12447762c553bda3a072bc992d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> MSB), state = count = output. From the table "state + 1":
+<div class="mb"><img class="m" src="m/419c977d445d8d6c68d97b1d2b8098ed89504159.svg" alt="\[ D_a=a\bar b+a\bar c+a\bar d+\bar abcd,\quad D_b=b\bar c+b\bar d+\bar bcd,\quad D_c=\bar cd+c\bar d,\quad D_d=\bar d. \]" style="width:35.998em"></div>
+In words: bit <img class="m" src="m/a67e954bf39c79e3b911cbed8c1a65db21940e5a.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em"> toggles when all lower bits are 1 (<img class="m" src="m/ce492d504d9676b5eafa14b4b84c0565c9fce05b.svg" alt="\(T_i=Q_{i-1}\cdots Q_0\)" style="height:1.005em;vertical-align:-0.251em"> with <a href="flip-flop-types.html">T flip-flops</a>). Equivalent: a register whose input is an incrementer (an adder with constant 1, ripple or look-ahead as speed requires).
+<b>Frequency divider</b>: <img class="m" src="m/9ebc774c2af2128831b85f4a54f6ceb82b3ea827.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em"> toggles at <img class="m" src="m/737720536402255bf3325507e84011e94a51cff0.svg" alt="\(f/2\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/b89f22107378b842f1c34383ec5fd8b764c4d3aa.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> at <img class="m" src="m/af358f5cb5db3fa728a2a98bfa98abb06bc67baa.svg" alt="\(f/4\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/9a9e478ff943a309ecb17df71ac414cc09c1be96.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em"> at <img class="m" src="m/3c4c2829dc3a0596e4be7c79d9aba3d3000f2ece.svg" alt="\(f/8\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/36ad57d0b9b05e12447762c553bda3a072bc992d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> at <img class="m" src="m/e56a60059f699a9d9cd84318d346b2472fe30e0a.svg" alt="\(f/16\)" style="height:1.096em;vertical-align:-0.274em">.
+<b>Mod-10 (BCD)</b>: same encoding, codes 1010–1111 never occur → don't-cares:
+<div class="mb"><img class="m" src="m/54ba9ecb1fd479625d7f641ca63fd004a0b5ad2f.svg" alt="\[ D_a=a\bar d+bcd,\quad D_b=b\bar c+b\bar d+\bar bcd,\quad D_c=\bar a\bar cd+c\bar d,\quad D_d=\bar d. \]" style="width:31.216em"></div>
+<b>Count enable</b> <img class="m" src="m/68027ece3728c58714b102dd8f76d2f5945a376f.svg" alt="\(E\)" style="height:0.749em;vertical-align:-0.000em">: synchronous, the counter advances only if <img class="m" src="m/563be8e0b0b9ff92c29d1ee2b6bad2f11ad4cc39.svg" alt="\(E=1\)" style="height:0.749em;vertical-align:-0.000em"> (a mux or an AND in the toggle condition). <b>Terminal count</b> <img class="m" src="m/309c72a45be88f6cf409bad1d4634de8179f20ab.svg" alt="\(TC\)" style="height:0.749em;vertical-align:-0.000em">: 1 in the cycle in which the counter is at its last value (15, or 9 for BCD); a Moore output.
+<b>Cascade</b>: <img class="m" src="m/6ae54069c48ca04ab3bbe451d6280b97ba0d5513.svg" alt="\(E_{k+1}=E_k\cdot TC_k\)" style="height:1.005em;vertical-align:-0.251em"> — the tens digit advances in the cycle in which the units are at 9 and enabled. Variants: up/down (adder–subtractor), parallel load (mux in front, <img class="m" src="m/309c72a45be88f6cf409bad1d4634de8179f20ab.svg" alt="\(TC\)" style="height:0.749em;vertical-align:-0.000em"> disabled while loading), modulo selected by an input, arbitrary sequences from a state diagram.
+</p>
+</div>
+</div>
+<div id="outline-container-org2e0f5fc" class="outline-2">
+<h2 id="org2e0f5fc">Example</h2>
+<div class="outline-text-2" id="text-org2e0f5fc">
+<p>
+Stopwatch seconds 00–59: units BCD counter enabled by the 1 Hz tick; tens counter mod 6 enabled by <img class="m" src="m/b25363db09ed492ca30d12a4187a89b1b9fcad31.svg" alt="\(tick\cdot TC_{units}\)" style="height:0.925em;vertical-align:-0.167em">; minutes enabled by <img class="m" src="m/75a35fc9d22198e2501582a31fb28b4d2a80fb94.svg" alt="\(tick\cdot TC_{units}\cdot TC_{tens}\)" style="height:0.925em;vertical-align:-0.167em">. At 09 → 10 the units roll to 0 and the tens step in the same edge.
+Counter mod 3 or 5 chosen by input <img class="m" src="m/5335de0d909d8e1d862a33da5a946c26a60965d6.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em">: 5 states need 3 bits; <img class="m" src="m/5335de0d909d8e1d862a33da5a946c26a60965d6.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> is an input of the next-state table (or kept as a "map-entered variable" inside the cells).
+</p>
+</div>
+</div>
+<div id="outline-container-org990642b" class="outline-2">
+<h2 id="org990642b">Intuition</h2>
+<div class="outline-text-2" id="text-org990642b">
+<p>
+A counter is the simplest FSM with no inputs at all: its diagram is a single ring, and its state is its output.
+</p>
+</div>
+</div>
+<div id="outline-container-orgde8b9dc" class="outline-2">
+<h2 id="orgde8b9dc">Pitfall</h2>
+<div class="outline-text-2" id="text-orgde8b9dc">
+<p>
+Cascading with <img class="m" src="m/89d11b4cc44ff884a2205480484b31ae9a9bf662.svg" alt="\(E_{k+1}=TC_k\)" style="height:1.005em;vertical-align:-0.251em"> alone (without the enable of the lower stage) makes the upper digit count every cycle in which the lower one sits at 9 while stopped. A <b>ripple counter</b> (each flip-flop clocked by the previous output) is smaller but asynchronous: its bits change at different times and decoding them glitches.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="registers-shift-registers.html"><span>← previous</span>Registers and shift registers</a><a rel="next" href="fsm-patterns.html"><span>next →</span>Recurring state-machine patterns</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--sequential.pdf" title="PDF manual">Sequential</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nets and convergence in topological spaces · Mathematics</title>
+<meta name="description" content="Sequences describe the closure in a metric space and fail in general, because \N is the wrong index set: what a limit argument needs is not countability but the ability to go further in every direction at once. A net is a family indexed by a directed set, and with that single change every sequentia…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/nets-and-convergence-in-topological-spaces.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Nets and convergence in topological spaces · Mathematics">
+<meta property="og:description" content="Sequences describe the closure in a metric space and fail in general, because \N is the wrong index set: what a limit argument needs is not countability but the ability to go further in every direction at once. A net is a family indexed by a directed set, and with that single change every sequentia…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/nets-and-convergence-in-topological-spaces.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-topology">Topology</a> / <a rel="up" href="index.html#a-topology--general-topology">General Topology</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Topology · General Topology</p>
+<h1>Nets and convergence in topological spaces</h1>
+<p class="summary">Sequences describe the closure in a metric space and fail in general, because <img class="m" src="m/d36edebe5171c584e95c5e3966023a2f078fce29.svg" alt="\(\N\)" style="height:0.755em;vertical-align:-0.000em"> is the wrong index set: what a limit argument needs is not countability but the ability to go further in every direction at once. A net is a family indexed by a directed set, and with that single change every sequential characterisation of the metric theory becomes true again, word for word.</p>
+<p class="rel"><span>needs</span> <a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a>, <a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a>, <a href="filters-ultrafilters-and-the-ultrafilter-lemma.html">Filters, ultrafilters and the ultrafilter lemma</a>, <a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a>, <a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a>, <a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a>, <a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></p>
+<p class="rel"><span>unlocks</span> <a href="complex-integration-and-cauchys-theorem.html">Complex integration and Cauchy's theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="topology.html">Topology</a>, <a href="general-topology.html">General topology</a></p>
+<details class="path"><summary>Learning path: 22 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="filters-ultrafilters-and-the-ultrafilter-lemma.html">Filters, ultrafilters and the ultrafilter lemma</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orga78313d">
+<p>
+A <i>directed set</i> is a non-empty set <img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> with a reflexive, transitive
+relation <img class="m" src="m/1b248c11c728b8e48c49f9f268e80d588d1a5b08.svg" alt="\(\le\)" style="height:0.846em;vertical-align:-0.152em"> such that any two elements have a common upper bound. A
+<i>net</i> in a space <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is a map <img class="m" src="m/eaf74be6ec6f0815c08c8527daca5488febb44f8.svg" alt="\(x \colon D \to X\)" style="height:0.749em;vertical-align:-0.000em">, written
+<img class="m" src="m/f5507c3456a269c0d44eec141371231dc78ba6ee.svg" alt="\((x_{d})_{d\in D}\)" style="height:1.096em;vertical-align:-0.274em">; it is <i>eventually</i> in <img class="m" src="m/8cf713af0820812531d65e982303553bcc04428e.svg" alt="\(A \subseteq X\)" style="height:0.898em;vertical-align:-0.153em"> if
+<img class="m" src="m/59a7e8ae1d5a4b2f7c1c587a67b143a9b9b8b717.svg" alt="\(x_{d}\in A\)" style="height:0.913em;vertical-align:-0.164em"> for all <img class="m" src="m/666db56629e3d243eedfc754fc65a873d2fe09e0.svg" alt="\(d \ge d_{0}\)" style="height:0.925em;vertical-align:-0.167em">, for some <img class="m" src="m/48f65ad810a4f8355a42e1bcb9a7c90e71fe72c4.svg" alt="\(d_{0}\)" style="height:0.925em;vertical-align:-0.167em">, and
+<i>frequently</i> in <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> if for every <img class="m" src="m/ad855e27454841e8ad2eca7f08dfc4eb67657f15.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em"> there is <img class="m" src="m/2e2f2640e4d42f51f5c3d59d8296099d225e33d3.svg" alt="\(e \ge d\)" style="height:0.910em;vertical-align:-0.146em"> with
+<img class="m" src="m/b8f3bb3b1596dfb60d8c0dce3ddeceebf4fb3778.svg" alt="\(x_{e}\in A\)" style="height:0.913em;vertical-align:-0.164em">.
+</p>
+
+</div>
+
+<div class="definition" id="orgbed1764">
+<p>
+A net <img class="m" src="m/8259c218bbbfde88deb9b13648aae68a2c04cfa0.svg" alt="\((x_{d})\)" style="height:1.096em;vertical-align:-0.274em"> <i>converges</i> to <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, written <img class="m" src="m/5e93424820a42e9c5ae75ca45b9791a38eefe651.svg" alt="\(x_{d}\to x\)" style="height:0.636em;vertical-align:-0.165em">, if it is
+eventually in every neighbourhood of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">; it <i>clusters</i> at <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> if it
+is frequently in every neighbourhood of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">. A <i>subnet</i> of
+<img class="m" src="m/f5507c3456a269c0d44eec141371231dc78ba6ee.svg" alt="\((x_{d})_{d\in D}\)" style="height:1.096em;vertical-align:-0.274em"> is a net <img class="m" src="m/faca7a70512bdd5cf1c6da09b5d1fdfe1f60c8dc.svg" alt="\((x_{h(e)})_{e\in E}\)" style="height:1.212em;vertical-align:-0.388em"> with <img class="m" src="m/af428b55ddf829e9044704887ce1bde83bdc2a14.svg" alt="\(E\)" style="height:0.749em;vertical-align:-0.000em"> directed
+and <img class="m" src="m/7570cdf40f4ab440b3546c15a10a4ecac6f7587e.svg" alt="\(h \colon E \to D\)" style="height:0.761em;vertical-align:-0.000em"> such that for every <img class="m" src="m/335e04c87381d2d63c1f82cbcc75fa5075c06c98.svg" alt="\(d\in D\)" style="height:0.804em;vertical-align:-0.040em"> there is
+<img class="m" src="m/ae84470f1471afbefb876e2576434a836198279b.svg" alt="\(e_{0}\)" style="height:0.636em;vertical-align:-0.165em"> with <img class="m" src="m/bde6b189b57d4b37a87ed88f1a7a669570690e8b.svg" alt="\(h(e)\ge d\)" style="height:1.096em;vertical-align:-0.274em"> for all <img class="m" src="m/17b98d7ae16665c15a9f39303c951f707f88e27a.svg" alt="\(e \ge e_{0}\)" style="height:0.861em;vertical-align:-0.164em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org2d4a832">
+<p>
+For <img class="m" src="m/8cf713af0820812531d65e982303553bcc04428e.svg" alt="\(A \subseteq X\)" style="height:0.898em;vertical-align:-0.153em">, <img class="m" src="m/f082329d7cf44a97a473d3af4fe4675892dd9a5f.svg" alt="\(x \in \overline{A}\)" style="height:1.011em;vertical-align:-0.040em"> if and only if some net in
+<img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> converges to <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">. Hence <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is closed exactly when it contains
+the limit of every convergent net of its points.
+</p>
+
+</div>
+
+<div class="proof" id="orgee154d8">
+<p>
+If <img class="m" src="m/5e93424820a42e9c5ae75ca45b9791a38eefe651.svg" alt="\(x_{d}\to x\)" style="height:0.636em;vertical-align:-0.165em"> with all <img class="m" src="m/59a7e8ae1d5a4b2f7c1c587a67b143a9b9b8b717.svg" alt="\(x_{d}\in A\)" style="height:0.913em;vertical-align:-0.164em">, every neighbourhood of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">
+eventually contains some <img class="m" src="m/988fe0ff9bbb68c60962d9bf8ac4b5d17d55ca6f.svg" alt="\(x_{d} \in A\)" style="height:0.913em;vertical-align:-0.164em">, so it meets <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> and
+<img class="m" src="m/f082329d7cf44a97a473d3af4fe4675892dd9a5f.svg" alt="\(x \in \overline{A}\)" style="height:1.011em;vertical-align:-0.040em">.
+</p>
+
+<p>
+Conversely let <img class="m" src="m/f082329d7cf44a97a473d3af4fe4675892dd9a5f.svg" alt="\(x \in \overline{A}\)" style="height:1.011em;vertical-align:-0.040em"> and let <img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> be the set of
+neighbourhoods of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, directed by reverse inclusion &#x2013; two
+neighbourhoods have their intersection as a common upper bound. Each
+<img class="m" src="m/bc7b7db31c5236674b34102373f4e8ded28f5b8a.svg" alt="\(N \in D\)" style="height:0.792em;vertical-align:-0.040em"> meets <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">; choose <img class="m" src="m/f3f4fc0121851ee6bb92a7744321f8c840c224a2.svg" alt="\(x_{N} \in N \cap A\)" style="height:0.913em;vertical-align:-0.164em">. Given a
+neighbourhood <img class="m" src="m/d60d5f2cf0e21cceeb753411f39e02a62c14e7f8.svg" alt="\(N_{0}\)" style="height:0.913em;vertical-align:-0.164em">, every <img class="m" src="m/7020f83cb50d6d7cabbba2b784aaf3749124bbb0.svg" alt="\(N \ge N_{0}\)" style="height:0.913em;vertical-align:-0.164em"> satisfies
+<img class="m" src="m/ff6a4565d244299faba202a4a9affe8a32ab3e97.svg" alt="\(N \subseteq N_{0}\)" style="height:0.913em;vertical-align:-0.164em">, so <img class="m" src="m/ae7df065046db3bb94db5ab72f8996669d27a5ac.svg" alt="\(x_{N}\in N_{0}\)" style="height:0.913em;vertical-align:-0.164em">: the net converges to
+<img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org783175e">
+<p>
+<img class="m" src="m/d7c0c93f2d459ca20e4f53c81d24a704a65c7b84.svg" alt="\(f \colon X \to Y\)" style="height:0.974em;vertical-align:-0.214em"> is continuous at <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> if and only if
+<img class="m" src="m/5e93424820a42e9c5ae75ca45b9791a38eefe651.svg" alt="\(x_{d}\to x\)" style="height:0.636em;vertical-align:-0.165em"> implies <img class="m" src="m/19fba4b02b0d62862a5b92a4c6eca0c47bd61c58.svg" alt="\(f(x_{d})\to f(x)\)" style="height:1.096em;vertical-align:-0.274em"> for every net.
+</p>
+
+</div>
+
+<div class="proof" id="orgfb7d557">
+<p>
+Suppose <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is continuous at <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/5e93424820a42e9c5ae75ca45b9791a38eefe651.svg" alt="\(x_{d}\to x\)" style="height:0.636em;vertical-align:-0.165em">. Given a
+neighbourhood <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> of <img class="m" src="m/e5ceae42d20882b9a191c5a7061083f903b09df0.svg" alt="\(f(x)\)" style="height:1.096em;vertical-align:-0.274em">, some neighbourhood <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> has
+<img class="m" src="m/097226d9cc289c41683e7e12de48b11afcbe18b1.svg" alt="\(f(U)\subseteq V\)" style="height:1.096em;vertical-align:-0.274em">, and <img class="m" src="m/8259c218bbbfde88deb9b13648aae68a2c04cfa0.svg" alt="\((x_{d})\)" style="height:1.096em;vertical-align:-0.274em"> is eventually in <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">, hence
+<img class="m" src="m/30b6ed7002506e5a4ea390426ac541f0fbab112a.svg" alt="\((f(x_{d}))\)" style="height:1.096em;vertical-align:-0.274em"> is eventually in <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+<p>
+Conversely, suppose <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is not continuous at <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">: some neighbourhood
+<img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> of <img class="m" src="m/e5ceae42d20882b9a191c5a7061083f903b09df0.svg" alt="\(f(x)\)" style="height:1.096em;vertical-align:-0.274em"> contains no <img class="m" src="m/5206853425118261d58ef12fd983daa1c0a5f664.svg" alt="\(f(U)\)" style="height:1.096em;vertical-align:-0.274em">. Directing the neighbourhoods of
+<img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> by reverse inclusion, choose for each <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> a point
+<img class="m" src="m/cd95307c8859eb2aa125c3b15f0315904966b1e4.svg" alt="\(x_{U}\in U\)" style="height:0.913em;vertical-align:-0.164em"> with <img class="m" src="m/ab5cc87192fd16911a8be6c3bca3c975881e6f4b.svg" alt="\(f(x_{U})\notin V\)" style="height:1.096em;vertical-align:-0.274em">. Then <img class="m" src="m/36d69b2530f2c16fb641dbe01607c784103b7685.svg" alt="\(x_{U}\to x\)" style="height:0.636em;vertical-align:-0.165em"> as above,
+while <img class="m" src="m/611e5c72f83a4d992d531d5d33f9251764e7c5b6.svg" alt="\((f(x_{U}))\)" style="height:1.096em;vertical-align:-0.274em"> is never in <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">, so it does not converge to
+<img class="m" src="m/e5ceae42d20882b9a191c5a7061083f903b09df0.svg" alt="\(f(x)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org75f4118">
+<p>
+<img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is Hausdorff if and only if every net in <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> has at most one
+limit.
+</p>
+
+</div>
+
+<div class="proof" id="org2984700">
+<p>
+In a Hausdorff space, a net converging to <img class="m" src="m/d8bbcaa55606851960ee0c534f69095478c4801d.svg" alt="\(x \ne y\)" style="height:0.974em;vertical-align:-0.214em"> would be
+eventually in each of two disjoint neighbourhoods, which is impossible
+since a directed set has upper bounds.
+</p>
+
+<p>
+Conversely, suppose <img class="m" src="m/d8bbcaa55606851960ee0c534f69095478c4801d.svg" alt="\(x \ne y\)" style="height:0.974em;vertical-align:-0.214em"> cannot be separated. Direct the pairs
+<img class="m" src="m/aead97e2773d9546e7adc143e8e7512c206c0fc3.svg" alt="\((U,V)\)" style="height:1.096em;vertical-align:-0.274em"> of neighbourhoods of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> and of <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> by reverse inclusion
+in both entries, and choose <img class="m" src="m/dbe780811e11fda743028f01652ece70e5554f58.svg" alt="\(z_{(U,V)} \in U \cap V\)" style="height:1.139em;vertical-align:-0.387em">, non-empty by
+assumption. This net converges to <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> and to <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org71845aa">
+<p>
+A space is compact if and only if every net in it has a cluster point,
+if and only if every net has a convergent subnet.
+</p>
+
+</div>
+
+<div class="proof" id="org8cf9ed0">
+<p>
+Let <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> be compact and <img class="m" src="m/ed2f383d4a08d5436c36f5a7a9e427d8eb32e684.svg" alt="\((x_{d})_{d \in D}\)" style="height:1.096em;vertical-align:-0.274em"> a net with no cluster
+point. Then each <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> has an open <img class="m" src="m/f4dae6025cefded56a77c81c79008f0bfce2d0be.svg" alt="\(U_{x}\)" style="height:0.913em;vertical-align:-0.164em"> that the net is not
+frequently in, so it is eventually outside <img class="m" src="m/f4dae6025cefded56a77c81c79008f0bfce2d0be.svg" alt="\(U_{x}\)" style="height:0.913em;vertical-align:-0.164em">: there is
+<img class="m" src="m/673d2c04d66faac1846e60968b94b207d34cd10e.svg" alt="\(d_{x}\)" style="height:0.925em;vertical-align:-0.167em"> with <img class="m" src="m/707d814d00c363c212a0bd4c200a06b46df12366.svg" alt="\(x_{e}\notin U_{x}\)" style="height:0.986em;vertical-align:-0.168em"> for <img class="m" src="m/a1ad60416922dec6355c381837fe0228af837e36.svg" alt="\(e \ge d_{x}\)" style="height:0.925em;vertical-align:-0.167em">. Finitely many
+<img class="m" src="m/b49d75c29ae421ddf47ec149efb34ebb5d55a7fa.svg" alt="\(U_{x_{1}},\dots,U_{x_{k}}\)" style="height:1.030em;vertical-align:-0.278em"> cover <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">; taking <img class="m" src="m/09798e3cb5ef8291c7239dd012807e66ef0eccaf.svg" alt="\(e\)" style="height:0.472em;vertical-align:-0.000em"> above all the
+<img class="m" src="m/d0ebd9b7524b2e1bbe15af238543e94da89fde81.svg" alt="\(d_{x_{i}}\)" style="height:1.035em;vertical-align:-0.269em">, which is possible by directedness, puts <img class="m" src="m/cb2a3e2ee570ff42fc6b562ab5b01a730c2702ca.svg" alt="\(x_{e}\)" style="height:0.636em;vertical-align:-0.165em"> outside
+every <img class="m" src="m/1aa0eb8e108067e79f08bb315cb9b86c1aee495b.svg" alt="\(U_{x_{i}}\)" style="height:1.023em;vertical-align:-0.276em"> &#x2013; absurd.
+</p>
+
+<p>
+Conversely, suppose every net clusters and let <img class="m" src="m/cd053a42dc6593a0d14dc4a0625b55838bea74c4.svg" alt="\(\mathcal{C}\)" style="height:0.749em;vertical-align:-0.000em"> be a
+family of closed sets with the finite intersection property. Direct the
+finite subfamilies by inclusion and choose a point <img class="m" src="m/c851f742a71c01019e3fc101cd4eb2fb1056b865.svg" alt="\(x_{F}\)" style="height:0.636em;vertical-align:-0.165em"> in the
+intersection of each; a cluster point <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> of this net lies in every
+<img class="m" src="m/17ea4222ec7325f86748b97e6a1b3540f7bd75f6.svg" alt="\(C \in \mathcal{C}\)" style="height:0.792em;vertical-align:-0.040em">, because the net is frequently in every
+neighbourhood of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> and eventually inside <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> once <img class="m" src="m/ed04c9725c681a28a239c9c6f234da006cc85281.svg" alt="\(F \ni C\)" style="height:0.792em;vertical-align:-0.040em">, so
+every neighbourhood of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> meets <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">, which is closed. Hence
+<img class="m" src="m/56f79bce27b9d6d5a899001c11abd7a513890c8d.svg" alt="\(\bigcap\mathcal{C}\ne\emptyset\)" style="height:1.096em;vertical-align:-0.274em">, which is compactness.
+</p>
+
+<p>
+Finally, <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> is a cluster point of <img class="m" src="m/8259c218bbbfde88deb9b13648aae68a2c04cfa0.svg" alt="\((x_{d})\)" style="height:1.096em;vertical-align:-0.274em"> exactly when some
+subnet converges to <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">: given such an <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, let <img class="m" src="m/af428b55ddf829e9044704887ce1bde83bdc2a14.svg" alt="\(E\)" style="height:0.749em;vertical-align:-0.000em"> be the set of
+pairs <img class="m" src="m/ab3d2f39c6a0dba5ce021cf16fa31d8faa49c6ad.svg" alt="\((d,N)\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/b8a860ac246147dc05026eb779dc41fc0117c8b6.svg" alt="\(x_{d}\in N\)" style="height:0.913em;vertical-align:-0.164em"> a neighbourhood of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, directed
+by <img class="m" src="m/b3bbdf78df4385eea6c8cd670c500e3b0ee14d06.svg" alt="\(\ge\)" style="height:0.846em;vertical-align:-0.152em"> in <img class="m" src="m/ad855e27454841e8ad2eca7f08dfc4eb67657f15.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em"> and reverse inclusion in <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">, and
+<img class="m" src="m/0b4faffa105cef2e89973cfa1a5ede21789c9792.svg" alt="\(h(d,N) = d\)" style="height:1.096em;vertical-align:-0.274em">; this is a subnet converging to <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">. Conversely a
+subnet converging to <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> is frequently in every neighbourhood.
+</p>
+
+</div>
+
+<div class="remark" id="org3058259">
+<p>
+Sequences are the nets indexed by <img class="m" src="m/d36edebe5171c584e95c5e3966023a2f078fce29.svg" alt="\(\N\)" style="height:0.755em;vertical-align:-0.000em">, and the metric theory is the
+case in which they suffice, because the neighbourhoods of a point are
+directed by a countable subfamily. Nets and filters are two languages
+for the same content &#x2013; the net constructed above from the
+neighbourhoods is the filter of neighbourhoods in disguise &#x2013; and which
+to use is a matter of whether one prefers to index or to collect.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="connectedness-components-and-path-connectedness.html"><span>← previous</span>Connectedness, components and path-connectedness</a><a rel="next" href="uniform-continuity-extension-and-the-completion-of-a-metric-space.html"><span>next →</span>Uniform continuity, extension and the completion of a metric space</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/topology--general-topology.pdf" title="PDF manual">General Topology</a> · <a class="pdf" href="pdf/topology.pdf" title="PDF manual">Topology</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

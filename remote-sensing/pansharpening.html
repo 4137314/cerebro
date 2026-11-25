@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pansharpening · Remote Sensing</title>
+<meta name="description" content="Sensors pair a fine panchromatic band with coarser multispectral bands; pansharpening injects the spatial detail of the pan band into the co-registered, upsampled multispectral image — by component substitution (IHS, PCA, Gram–Schmidt) or by adding the pan's high-pass detail — trading some spectral…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/pansharpening.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Pansharpening · Remote Sensing">
+<meta property="og:description" content="Sensors pair a fine panchromatic band with coarser multispectral bands; pansharpening injects the spatial detail of the pan band into the co-registered, upsampled multispectral image — by component substitution (IHS, PCA, Gram–Schmidt) or by adding the pan's high-pass detail — trading some spectral…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/pansharpening.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--enhancement">Enhancement</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Processing · Enhancement</p>
+<h1>Pansharpening</h1>
+<p class="summary">Sensors pair a fine panchromatic band with coarser multispectral bands; pansharpening injects the spatial detail of the pan band into the co-registered, upsampled multispectral image — by component substitution (IHS, PCA, Gram–Schmidt) or by adding the pan's high-pass detail — trading some spectral fidelity for resolution.</p>
+<p class="rel"><span>needs</span> <a href="sensor-resolutions.html">Geometric, radiometric, spectral and temporal resolution</a>, <a href="geometric-correction.html">Geometric correction, geocoding and registration</a></p>
+<p class="rel"><span>see also</span> <a href="principal-component-analysis.html">Principal component analysis of multispectral images</a>, <a href="false-color-composite.html">True and false colour composites</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="sensor-resolutions.html">Geometric, radiometric, spectral and temporal resolution</a></li><li><a href="geometric-distortions.html">Geometric distortions</a></li><li><a href="geometric-correction.html">Geometric correction, geocoding and registration</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org65adfe5" class="outline-2">
+<h2 id="org65adfe5">Method</h2>
+<div class="outline-text-2" id="text-org65adfe5">
+<p>
+Co-register and resample the multispectral bands <img class="m" src="m/8888293cbd212f34d21570a6c6b9ce37632bb77a.svg" alt="\(M_b\)" style="height:0.913em;vertical-align:-0.164em"> to the pan grid.
+</p>
+<ul class="org-ul">
+<li><b>Brovey</b>: <img class="m" src="m/2bd95b86f75934aa9503257dad316d3bddb1587c.svg" alt="\(\hat M_b=M_b\,\dfrac{P}{\frac1B\sum_kM_k}\)" style="height:2.673em;vertical-align:-1.176em">: each band rescaled by the ratio of pan to mean intensity.</li>
+<li><b>IHS substitution</b> (3 bands): transform RGB to intensity–hue–saturation, replace <img class="m" src="m/359856221a58245028abe6d46139a7427663403e.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> with the pan (histogram-matched), transform back. Equivalent to <img class="m" src="m/566e8beaa089e3284d9c192dfbb1a8c211f96fb8.svg" alt="\(\hat M_b=M_b+(P-I)\)" style="height:1.312em;vertical-align:-0.276em">.</li>
+<li><b>PCA / Gram–Schmidt</b>: replace the first component (or a synthetic low-resolution pan) with the pan.</li>
+<li><b>High-pass injection</b>: <img class="m" src="m/01870036fd86fa05c72939eb186975c149218c19.svg" alt="\(\hat M_b=M_b+g_b\,(P-P_{LP})\)" style="height:1.312em;vertical-align:-0.276em">, where <img class="m" src="m/1dffb3b348c89b614acbd7fca6a97376a7f9350b.svg" alt="\(P_{LP}\)" style="height:0.913em;vertical-align:-0.164em"> is the pan blurred to the multispectral resolution: only detail is added, preserving the spectra.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbf2c4ac" class="outline-2">
+<h2 id="orgbf2c4ac">Example</h2>
+<div class="outline-text-2" id="text-orgbf2c4ac">
+<p>
+WorldView-3: pan 0.31 m, multispectral 1.24 m: pansharpened RGB at 0.31 m. Quality is assessed spectrally (spectral angle, ERGAS against degraded references) and spatially (correlation of high-pass details with the pan).
+</p>
+</div>
+</div>
+<div id="outline-container-orgffe0021" class="outline-2">
+<h2 id="orgffe0021">Intuition</h2>
+<div class="outline-text-2" id="text-orgffe0021">
+<p>
+Take the colours from the blurry photo and the sharpness from the black-and-white one.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfb25221" class="outline-2">
+<h2 id="orgfb25221">Pitfall</h2>
+<div class="outline-text-2" id="text-orgfb25221">
+<p>
+The pan band's spectral range does not match the sum of the multispectral bands (it often extends into the NIR): substitution methods then distort colours, especially of vegetation. Sharpened products are for viewing and object delineation; radiometric analysis should use the original bands.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="histogram-equalization.html"><span>← previous</span>Histogram equalization</a><a rel="next" href="principal-component-analysis.html"><span>next →</span>Principal component analysis of multispectral images</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--enhancement.pdf" title="PDF manual">Enhancement</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

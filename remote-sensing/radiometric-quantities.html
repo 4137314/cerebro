@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radiometric quantities · Remote Sensing</title>
+<meta name="description" content="Radiant energy [J], flux [W], exitance and irradiance (flux leaving or reaching a surface per unit area, W m^{-2}), intensity (flux per solid angle, W sr^{-1}) and radiance (flux per unit projected area and solid angle, W m^{-2} sr^{-1}): radiance is what a sensor measures, and it does not change w…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/radiometric-quantities.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Radiometric quantities · Remote Sensing">
+<meta property="og:description" content="Radiant energy [J], flux [W], exitance and irradiance (flux leaving or reaching a surface per unit area, W m^{-2}), intensity (flux per solid angle, W sr^{-1}) and radiance (flux per unit projected area and solid angle, W m^{-2} sr^{-1}): radiance is what a sensor measures, and it does not change w…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/radiometric-quantities.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-physics">Physics</a> / <a rel="up" href="index.html#a-physics--radiation">Radiation</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Physics · Radiation</p>
+<h1>Radiometric quantities</h1>
+<p class="summary">Radiant energy [J], flux [W], exitance and irradiance (flux leaving or reaching a surface per unit area, W m<img class="m" src="m/e42e9bee0e7100a19c8ae0eb4fbd16105910a93e.svg" alt="\(^{-2}\)" style="height:0.892em;vertical-align:-0.000em">), intensity (flux per solid angle, W sr<img class="m" src="m/af83f4fda75cfae92fbea92bca01ba797c9487f4.svg" alt="\(^{-1}\)" style="height:0.892em;vertical-align:-0.000em">) and radiance (flux per unit projected area and solid angle, W m<img class="m" src="m/e42e9bee0e7100a19c8ae0eb4fbd16105910a93e.svg" alt="\(^{-2}\)" style="height:0.892em;vertical-align:-0.000em"> sr<img class="m" src="m/af83f4fda75cfae92fbea92bca01ba797c9487f4.svg" alt="\(^{-1}\)" style="height:0.892em;vertical-align:-0.000em">): radiance is what a sensor measures, and it does not change with distance in a lossless medium.</p>
+<p class="rel"><span>needs</span> <a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></p>
+<p class="rel"><span>unlocks</span> <a href="planck-law.html">Black body and Planck's law</a>, <a href="lambertian-surface.html">Lambertian surfaces and the BRDF</a></p>
+<p class="rel"><span>see also</span> <a href="planck-law.html">Black body and Planck's law</a>, <a href="digital-number.html">Detector, quantization and digital numbers</a>, <a href="atmospheric-windows.html">Atmospheric transmittance and windows</a>, <a href="lambertian-surface.html">Lambertian surfaces and the BRDF</a></p>
+<p class="rel"><span>mentioned in</span> <a href="brightness-temperature.html">Brightness temperature and surface temperature</a>, <a href="sun-earth-radiation.html">The Sun and the Earth as sources</a>, <a href="toa-reflectance.html">From DN to top-of-atmosphere and surface reflectance</a></p>
+<details class="path"><summary>Learning path: 2 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org9084f1e" class="outline-2">
+<h2 id="org9084f1e">Definition</h2>
+<div class="outline-text-2" id="text-org9084f1e">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">quantity</th>
+<th scope="col" class="org-left">definition</th>
+<th scope="col" class="org-left">unit</th>
+<th scope="col" class="org-left">meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">energy</td>
+<td class="org-left">Q</td>
+<td class="org-left">J</td>
+<td class="org-left">energy of the wave</td>
+</tr>
+
+<tr>
+<td class="org-left">flux</td>
+<td class="org-left">Φ = dQ/dt</td>
+<td class="org-left">W</td>
+<td class="org-left">power emitted or received</td>
+</tr>
+
+<tr>
+<td class="org-left">exitance</td>
+<td class="org-left">M = dΦ/dA</td>
+<td class="org-left">W m⁻²</td>
+<td class="org-left">flux leaving a surface</td>
+</tr>
+
+<tr>
+<td class="org-left">irradiance</td>
+<td class="org-left">E = dΦ/dA</td>
+<td class="org-left">W m⁻²</td>
+<td class="org-left">flux reaching a surface</td>
+</tr>
+
+<tr>
+<td class="org-left">intensity</td>
+<td class="org-left">I = dΦ/dΩ</td>
+<td class="org-left">W sr⁻¹</td>
+<td class="org-left">flux per solid angle</td>
+</tr>
+
+<tr>
+<td class="org-left">radiance</td>
+<td class="org-left">L = d²Φ/(dA cosθ dΩ)</td>
+<td class="org-left">W m⁻² sr⁻¹</td>
+<td class="org-left">per projected area and angle</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Spectral versions are per unit wavelength (W m<img class="m" src="m/e42e9bee0e7100a19c8ae0eb4fbd16105910a93e.svg" alt="\(^{-2}\)" style="height:0.892em;vertical-align:-0.000em"> sr<img class="m" src="m/af83f4fda75cfae92fbea92bca01ba797c9487f4.svg" alt="\(^{-1}\)" style="height:0.892em;vertical-align:-0.000em"> µm<img class="m" src="m/af83f4fda75cfae92fbea92bca01ba797c9487f4.svg" alt="\(^{-1}\)" style="height:0.892em;vertical-align:-0.000em">). <b>Reflectance</b> <img class="m" src="m/daf650277a2d22e7524af3c4ccab0c81e5424e21.svg" alt="\(\rho=E_r/E_i\)" style="height:1.096em;vertical-align:-0.274em"> is a dimensionless ratio, the physical property of the surface that the <a href="spectral-signature.html">spectral signature</a> describes.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdbf9cb3" class="outline-2">
+<h2 id="orgdbf9cb3">Derivation</h2>
+<div class="outline-text-2" id="text-orgdbf9cb3">
+<p>
+A detector with area <img class="m" src="m/e3fc9aa0cbdb710ca79c1402192e1986079ca8ba.svg" alt="\(A_d\)" style="height:0.913em;vertical-align:-0.164em"> behind optics of solid angle <img class="m" src="m/a6c3f4a959ec67ee8a3daa33ea97fb6b287e0e25.svg" alt="\(\Omega\)" style="height:0.749em;vertical-align:-0.000em"> collects <img class="m" src="m/b7f0d98c1afa6375be337aff602ea3d0e3fb0f0b.svg" alt="\(\Phi\approx L\,A_d\,\Omega\)" style="height:0.913em;vertical-align:-0.164em">. Moving the sensor away from a uniform surface, the ground area seen grows as <img class="m" src="m/edceb78658aedf9e28ccfe633a13e7a29f5eccfe.svg" alt="\(R^2\)" style="height:0.892em;vertical-align:-0.000em"> while the solid angle of each ground element shrinks as <img class="m" src="m/dde4c52ef19194d9d2c1aff4dd0e63d5c00c22f6.svg" alt="\(R^{-2}\)" style="height:0.892em;vertical-align:-0.000em">: the collected flux, hence the measured radiance, does not depend on distance.
+</p>
+</div>
+</div>
+<div id="outline-container-org4f2243c" class="outline-2">
+<h2 id="org4f2243c">Intuition</h2>
+<div class="outline-text-2" id="text-org4f2243c">
+<p>
+Irradiance is how much light falls on a surface; radiance is how bright that surface looks from a given direction — the quantity a camera pixel records.
+</p>
+</div>
+</div>
+<div id="outline-container-org2f9ce3f" class="outline-2">
+<h2 id="org2f9ce3f">Pitfall</h2>
+<div class="outline-text-2" id="text-org2f9ce3f">
+<p>
+Radiance depends on the viewing and illumination geometry; reflectance does not (for a <a href="lambertian-surface.html">Lambertian surface</a>). Comparing images taken at different sun angles requires converting <a href="toa-reflectance.html">radiance to reflectance</a>.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="electromagnetic-spectrum.html"><span>← previous</span>Electromagnetic spectrum and spectral regions</a><a rel="next" href="planck-law.html"><span>next →</span>Black body and Planck's law</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/physics--radiation.pdf" title="PDF manual">Radiation</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">Physics</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

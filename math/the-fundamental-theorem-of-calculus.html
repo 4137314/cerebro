@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The fundamental theorem of calculus · Mathematics</title>
+<meta name="description" content="Differentiation and integration were defined independently, by limits of difference quotients and by limits of sums. The two theorems below say they undo each other – which is what makes the integral computable at all.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-fundamental-theorem-of-calculus.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The fundamental theorem of calculus · Mathematics">
+<meta property="og:description" content="Differentiation and integration were defined independently, by limits of difference quotients and by limits of sums. The two theorems below say they undo each other – which is what makes the integral computable at all.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-fundamental-theorem-of-calculus.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Analysis · Real Analysis</p>
+<h1>The fundamental theorem of calculus</h1>
+<p class="summary">Differentiation and integration were defined independently, by limits of difference quotients and by limits of sums. The two theorems below say they undo each other &#x2013; which is what makes the integral computable at all.</p>
+<p class="rel"><span>needs</span> <a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a>, <a href="the-derivative.html">The derivative</a>, <a href="the-mean-value-theorem.html">The mean value theorem</a>, <a href="the-riemann-integral.html">The Riemann integral</a></p>
+<p class="rel"><span>unlocks</span> <a href="integration-by-parts-and-substitution.html">Integration by parts and substitution</a>, <a href="line-integrals-exact-forms-and-greens-theorem.html">Line integrals, exact forms and Green's theorem</a>, <a href="surface-integrals-the-divergence-theorem-and-stokes-theorem.html">Surface integrals, the divergence theorem and Stokes' theorem</a>, <a href="existence-and-uniqueness-for-ordinary-differential-equations.html">Existence and uniqueness for ordinary differential equations</a>, <a href="the-wave-equation-dalemberts-formula-and-energy.html">The wave equation: d'Alembert's formula and energy</a>, <a href="smooth-manifolds-smooth-maps-and-the-tangent-space.html">Smooth manifolds, smooth maps and the tangent space</a>, <a href="regular-curves-arc-length-and-curvature.html">Regular curves, arc length and curvature</a></p>
+<p class="rel"><span>mentioned in</span> <a href="analysis.html">Analysis</a>, <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 14 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li></ol></details>
+</header>
+<main class="note">
+<div class="theorem" id="org0487801">
+<p>
+Let <img class="m" src="m/ea7523ee0e750ece60b78b197c477d8b9d00d721.svg" alt="\(f \colon [a,b] \to \R\)" style="height:1.096em;vertical-align:-0.274em"> be continuous and define
+<img class="m" src="m/f823a74611b8af83f2b7fa7ee6843a19a2cdb3ec.svg" alt="\(F(x) = \int_{a}^{x} f(t) \dd t\)" style="height:1.332em;vertical-align:-0.386em">. Then <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em"> is differentiable on
+<img class="m" src="m/f9627dcf18914d532e44ebadb4f9ec6dcae0ab6c.svg" alt="\((a,b)\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/5896d8f8eb5143b783414e711673ccd5ea3072e2.svg" alt="\(F' = f\)" style="height:1.037em;vertical-align:-0.218em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgfae5e9c">
+<p>
+Fix <img class="m" src="m/a06fa0a34dda64070d269dda53ddf998f417b711.svg" alt="\(c \in (a,b)\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em">. By continuity at <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> there is
+<img class="m" src="m/2834db4da57323bf6f47d0a640028cc90f572412.svg" alt="\(\delta &gt; 0\)" style="height:0.804em;vertical-align:-0.040em"> with <img class="m" src="m/b694d6e29ae586c6e74ec982a63c426f73f1be1e.svg" alt="\(\abs{f(t) - f(c)} &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em"> for
+<img class="m" src="m/1577dc90914a6c7be59be34260e13a0274ca6042.svg" alt="\(\abs{t - c} &lt; \delta\)" style="height:1.096em;vertical-align:-0.274em">. For <img class="m" src="m/51fef5b7ff86183269823b17176e7968feab9510.svg" alt="\(0 &lt; \abs{h} &lt; \delta\)" style="height:1.096em;vertical-align:-0.274em">, additivity of
+the integral gives <img class="m" src="m/fb2bd3d081bf9a710ee36200e94379c6c99278de.svg" alt="\(F(c + h) - F(c) = \int_{c}^{c+h} f(t) \dd t\)" style="height:1.534em;vertical-align:-0.384em">,
+hence
+<div class="mb"><img class="m" src="m/31f8574e66f8501bed68da8024c45210033651d6.svg" alt="\[ \Bigl| \frac{F(c+h) - F(c)}{h} - f(c) \Bigr| = \Bigl| \frac{1}{h} \int_{c}^{c+h} (f(t) - f(c)) \dd t \Bigr| \le \eps, \]" style="width:27.345em"></div>
+since the integrand is bounded by <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em"> on an interval of length
+<img class="m" src="m/16406e642d08bd75f2ece8a49cf0ecd43d0a6b70.svg" alt="\(\abs{h}\)" style="height:1.096em;vertical-align:-0.274em">. As <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em"> was arbitrary, <img class="m" src="m/3ad15c4348f39ec28fb2f6e4a00a979aab0eab6e.svg" alt="\(F'(c) = f(c)\)" style="height:1.098em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgfb344c6">
+<p>
+Let <img class="m" src="m/ea7523ee0e750ece60b78b197c477d8b9d00d721.svg" alt="\(f \colon [a,b] \to \R\)" style="height:1.096em;vertical-align:-0.274em"> be continuous and let <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> be any
+antiderivative of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> on <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em">. Then
+<div class="mb"><img class="m" src="m/ef702d09995499ce8c39cbc799214d917bdfe9ae.svg" alt="\[ \int_{a}^{b} f(x) \dd x = G(b) - G(a). \]" style="width:12.670em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="org85df3d9">
+<p>
+Let <img class="m" src="m/50ca00b1cc3553950af8fbd5730978598f6cede0.svg" alt="\(F(x) = \int_{a}^{x} f\)" style="height:1.332em;vertical-align:-0.386em">. By the first part <img class="m" src="m/07de5e857b87134733a87cb56031a16812c264c0.svg" alt="\(F' = f = G'\)" style="height:1.037em;vertical-align:-0.218em"> on
+<img class="m" src="m/f9627dcf18914d532e44ebadb4f9ec6dcae0ab6c.svg" alt="\((a,b)\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/b71e1416a8e3cdad195b7e6bb0ae5b16a238de49.svg" alt="\(F - G\)" style="height:0.840em;vertical-align:-0.092em"> is constant, say <img class="m" src="m/d7b962558926ff1561d0d2c59c31e0abbd3a5570.svg" alt="\(F - G \equiv k\)" style="height:0.852em;vertical-align:-0.094em">, by the
+corollary to the mean value theorem. Since <img class="m" src="m/071da47c16c708de2381d634e2a32668b0a8c62f.svg" alt="\(F(a) = 0\)" style="height:1.096em;vertical-align:-0.274em"> we get
+<img class="m" src="m/7a26a2864589eeb136a2f98d64b31c8932fdb699.svg" alt="\(k = -G(a)\)" style="height:1.096em;vertical-align:-0.274em">, and evaluating at <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em"> gives
+<img class="m" src="m/3bc7aa87e3ee843b176251e2cca78074f1793021.svg" alt="\(\int_{a}^{b} f = F(b) = G(b) - G(a)\)" style="height:1.534em;vertical-align:-0.384em">.
+</p>
+
+</div>
+
+<div class="remark" id="org7c31bc6">
+<p>
+The second statement is what one computes with, and it needs an
+antiderivative to exist; the first statement is what guarantees one
+does, for every continuous integrand. Neither is a definition: the
+integral was already defined, by Darboux sums, before either was proved.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="linearity-additivity-and-monotonicity-of-the-integral.html"><span>← previous</span>Linearity, additivity and monotonicity of the integral</a><a rel="next" href="integration-by-parts-and-substitution.html"><span>next →</span>Integration by parts and substitution</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

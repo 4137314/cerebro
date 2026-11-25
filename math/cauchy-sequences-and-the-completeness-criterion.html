@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cauchy sequences and the completeness criterion · Mathematics</title>
+<meta name="description" content="The definition of convergence names the limit, so it cannot be used to prove that a limit exists without producing a candidate first. The Cauchy condition removes that obstacle: it speaks only about the terms of the sequence, and in \R it is equivalent to convergence.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/cauchy-sequences-and-the-completeness-criterion.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Cauchy sequences and the completeness criterion · Mathematics">
+<meta property="og:description" content="The definition of convergence names the limit, so it cannot be used to prove that a limit exists without producing a candidate first. The Cauchy condition removes that obstacle: it speaks only about the terms of the sequence, and in \R it is equivalent to convergence.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/cauchy-sequences-and-the-completeness-criterion.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Real Analysis</p>
+<h1>Cauchy sequences and the completeness criterion</h1>
+<p class="summary">The definition of convergence names the limit, so it cannot be used to <i>prove</i> that a limit exists without producing a candidate first. The Cauchy condition removes that obstacle: it speaks only about the terms of the sequence, and in <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em"> it is equivalent to convergence.</p>
+<p class="rel"><span>needs</span> <a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a>, <a href="limit-of-a-sequence.html">Limit of a sequence</a></p>
+<p class="rel"><span>unlocks</span> <a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a>, <a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a>, <a href="the-cauchy-criterion-for-series-the-harmonic-series-and-condensation.html">The Cauchy criterion for series, the harmonic series and condensation</a>, <a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a>, <a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a>, <a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a>, <a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a>, <a href="uniform-continuity-extension-and-the-completion-of-a-metric-space.html">Uniform continuity, extension and the completion of a metric space</a></p>
+<p class="rel"><span>mentioned in</span> <a href="analysis.html">Analysis</a>, <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgbedf3ca">
+<p>
+A sequence <img class="m" src="m/61f9283fe1503c8d1cecd228c646c41f111be43f.svg" alt="\((a_{n})\)" style="height:1.096em;vertical-align:-0.274em"> of real numbers is a <i>Cauchy sequence</i> if for
+every <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> there is <img class="m" src="m/40b525411501a83fadbff38de7a8a95864926a3c.svg" alt="\(N \in \N\)" style="height:0.798em;vertical-align:-0.040em"> such that
+<img class="m" src="m/e39ce25b2c723c7fa712949df030b91d1f7cc97a.svg" alt="\(\abs{a_{n} - a_{m}} &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em"> for all <img class="m" src="m/4ffacc8372a96c01501ce258d5b37d6d9dc538e3.svg" alt="\(n, m \ge N\)" style="height:0.962em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org10c38e3">
+<p>
+Every convergent sequence is a Cauchy sequence, and every Cauchy
+sequence is bounded.
+</p>
+
+</div>
+
+<div class="proof" id="org417419d">
+<p>
+If <img class="m" src="m/c8741f428cd231298f1f92c14d48bc3dea3042ed.svg" alt="\(a_{n} \to L\)" style="height:0.913em;vertical-align:-0.164em">, fix <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> and choose <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> with
+<img class="m" src="m/32c0ca8aa193fd0f0e421055913a090a16ea446d.svg" alt="\(\abs{a_{n} - L} &lt; \eps/2\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/e3a7f6df845655195bb1fcfe91670525ec99e1e5.svg" alt="\(n \ge N\)" style="height:0.898em;vertical-align:-0.153em">; then for <img class="m" src="m/4ffacc8372a96c01501ce258d5b37d6d9dc538e3.svg" alt="\(n, m \ge N\)" style="height:0.962em;vertical-align:-0.212em">,
+<img class="m" src="m/54e96987a4d432f8975641e550d46fe4a60ea3e0.svg" alt="\(\abs{a_{n} - a_{m}} \le \abs{a_{n} - L} + \abs{L - a_{m}} &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em">.
+For boundedness, take <img class="m" src="m/f9736e1b9e44e4892d908499544f368dbaaf7d27.svg" alt="\(\eps = 1\)" style="height:0.706em;vertical-align:-0.000em"> in the Cauchy condition and let <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">
+be as given: for <img class="m" src="m/e3a7f6df845655195bb1fcfe91670525ec99e1e5.svg" alt="\(n \ge N\)" style="height:0.898em;vertical-align:-0.153em"> one has
+<img class="m" src="m/6fcea8738540c001d81874837e68feb20d21dffd.svg" alt="\(\abs{a_{n}} \le \abs{a_{N}} + 1\)" style="height:1.096em;vertical-align:-0.274em">, so
+<img class="m" src="m/6dc15322ac6a15d8cccdc2df71371dcb9e82792a.svg" alt="\(C = \max(\abs{a_{1}}, \dots, \abs{a_{N-1}}, \abs{a_{N}} + 1)\)" style="height:1.096em;vertical-align:-0.274em"> bounds
+every term.
+</p>
+
+</div>
+
+<div class="theorem" id="org14d2367">
+<p>
+A sequence of real numbers converges if and only if it is a Cauchy
+sequence.
+</p>
+
+</div>
+
+<div class="proof" id="org3cb9d37">
+<p>
+One direction is the proposition above. Conversely, let <img class="m" src="m/61f9283fe1503c8d1cecd228c646c41f111be43f.svg" alt="\((a_{n})\)" style="height:1.096em;vertical-align:-0.274em"> be
+Cauchy. It is bounded, so by Bolzano&#x2013;Weierstrass some subsequence
+<img class="m" src="m/9cbc08495ea677a895d8f644a0fbc19f7aa3c9ac.svg" alt="\((a_{n_{k}})\)" style="height:1.103em;vertical-align:-0.276em"> converges, say to <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">. Fix <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> and choose
+<img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/820fc2194d55c588de2c6526abc3a811cd92ad74.svg" alt="\(\abs{a_{n} - a_{m}} &lt; \eps/2\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/4ffacc8372a96c01501ce258d5b37d6d9dc538e3.svg" alt="\(n, m \ge N\)" style="height:0.962em;vertical-align:-0.212em">, and then
+<img class="m" src="m/5ec5e3b2fda230219e6719c59682076f93242498.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> with <img class="m" src="m/b3021ea16f808e849a5a35c14b5c6766900e5be7.svg" alt="\(n_{k} \ge N\)" style="height:0.913em;vertical-align:-0.164em"> and <img class="m" src="m/a5cc03c25d68f6a455f6d7dc1644c0faea86a9a3.svg" alt="\(\abs{a_{n_{k}} - L} &lt; \eps/2\)" style="height:1.103em;vertical-align:-0.276em">. For
+every <img class="m" src="m/e3a7f6df845655195bb1fcfe91670525ec99e1e5.svg" alt="\(n \ge N\)" style="height:0.898em;vertical-align:-0.153em">,
+<div class="mb"><img class="m" src="m/26c5eb950920e5738edf70fcbaf0b376c312017a.svg" alt="\[ \abs{a_{n} - L} \le \abs{a_{n} - a_{n_{k}}} + \abs{a_{n_{k}} - L} &lt; \eps, \]" style="width:18.075em"></div>
+so <img class="m" src="m/c8741f428cd231298f1f92c14d48bc3dea3042ed.svg" alt="\(a_{n} \to L\)" style="height:0.913em;vertical-align:-0.164em">.
+</p>
+
+</div>
+
+<div class="remark" id="org01f9d9e">
+<p>
+This is the point at which <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em"> and <img class="m" src="m/83349875d2551503beeb2426480fe7a04427bf34.svg" alt="\(\Q\)" style="height:0.938em;vertical-align:-0.178em"> part company for the second
+time: the sequence of decimal truncations of <img class="m" src="m/8a822d2966717a59cdcab25b99f7393e8932fa7e.svg" alt="\(\sqrt{2}\)" style="height:1.140em;vertical-align:-0.148em"> is Cauchy in
+<img class="m" src="m/83349875d2551503beeb2426480fe7a04427bf34.svg" alt="\(\Q\)" style="height:0.938em;vertical-align:-0.178em"> and converges to nothing there. Completeness, stated as an axiom
+about suprema, has just been shown to imply completeness in the metric
+sense.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="continuous-functions-on-a-compact-interval.html"><span>← previous</span>Continuous functions on a compact interval</a><a rel="next" href="the-algebra-of-limits.html"><span>next →</span>The algebra of limits</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

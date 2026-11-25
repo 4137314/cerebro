@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poynting's theorem and electromagnetic power · Physics</title>
+<meta name="description" content="-\oint(\mathbf E\times\mathbf H)\cdot\dd\mathbf S=\frac{\dd}{\dd t}\int\left(\tfrac12\epsilon E^2+\tfrac12\mu H^2\right)\dd V+\int\mathbf J\cdot\mathbf E\,\dd V: power entering a volume is stored or dissipated; \mathbf S=\mathbf E\times\mathbf H is the power flux, time average \tfrac12\mathrm{Re}(\…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/poynting-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Poynting's theorem and electromagnetic power · Physics">
+<meta property="og:description" content="-\oint(\mathbf E\times\mathbf H)\cdot\dd\mathbf S=\frac{\dd}{\dd t}\int\left(\tfrac12\epsilon E^2+\tfrac12\mu H^2\right)\dd V+\int\mathbf J\cdot\mathbf E\,\dd V: power entering a volume is stored or dissipated; \mathbf S=\mathbf E\times\mathbf H is the power flux, time average \tfrac12\mathrm{Re}(\…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/poynting-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-electromagnetic-fields">Electromagnetic Fields</a> / <a rel="up" href="index.html#a-electromagnetic-fields--maxwell">Maxwell</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Electromagnetic Fields · Maxwell</p>
+<h1>Poynting's theorem and electromagnetic power</h1>
+<p class="summary"><img class="m" src="m/e2c84552c3116a098af140301de3868b5ed90a96.svg" alt="\(-\oint(\mathbf E\times\mathbf H)\cdot\dd\mathbf S=\frac{\dd}{\dd t}\int\left(\tfrac12\epsilon E^2+\tfrac12\mu H^2\right)\dd V+\int\mathbf J\cdot\mathbf E\,\dd V\)" style="height:1.348em;vertical-align:-0.377em">: power entering a volume is stored or dissipated; <img class="m" src="m/fde76eab79595910fd71fc28d970cc87ca175d90.svg" alt="\(\mathbf S=\mathbf E\times\mathbf H\)" style="height:0.843em;vertical-align:-0.093em"> is the power flux, time average <img class="m" src="m/c3e4eb5e6cf9884aa02e12d8d50a75e65f478b30.svg" alt="\(\tfrac12\mathrm{Re}(\mathbf E\times\mathbf H^*)\)" style="height:1.304em;vertical-align:-0.378em"> in phasors.</p>
+<p class="rel"><span>needs</span> <a href="maxwell-equations.html">Maxwell's equations</a></p>
+<p class="rel"><span>unlocks</span> <a href="plane-waves-in-media.html">Plane waves in lossless and lossy media</a>, <a href="antennas-and-radiation.html">Antennas and radiation</a></p>
+<p class="rel"><span>see also</span> <a href="plane-waves-in-media.html">Plane waves in lossless and lossy media</a>, <a href="antennas-and-radiation.html">Antennas and radiation</a>, <a href="ac-power-and-power-factor.html">AC power and power factor</a></p>
+<details class="path"><summary>Learning path: 6 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org5f6401d" class="outline-2">
+<h2 id="org5f6401d">Proof</h2>
+<div class="outline-text-2" id="text-org5f6401d">
+<p>
+Using <img class="m" src="m/69252cb2d72937ef22d86bf5f1e2bf4e3d43f408.svg" alt="\(\nabla\cdot(\mathbf E\times\mathbf H)=\mathbf H\cdot\nabla\times\mathbf E-\mathbf E\cdot\nabla\times\mathbf H\)" style="height:1.096em;vertical-align:-0.274em"> and Maxwell <span class="cite">(<a class="ref" href="https://doi.org/10.1098/rstl.1884.0016" data-full="J. H. Poynting, “On the transfer of energy in the electromagnetic field”, Philosophical Transactions of the Royal Society of London 175, 343–361 (1884)." aria-label="J. H. Poynting, “On the transfer of energy in the electromagnetic field”, Philosophical Transactions of the Royal Society of London 175, 343–361 (1884).">Poynting 1884</a>)</span>:
+<div class="mb"><img class="m" src="m/0c7d53825da6c3c1fb77ef28ec5eba823fe2bc9d.svg" alt="\[ \nabla\cdot(\mathbf E\times\mathbf H)=-\mathbf H\cdot\partial_t\mathbf B-\mathbf E\cdot\mathbf J-\mathbf E\cdot\partial_t\mathbf D=-\partial_t\left(\tfrac12\epsilon E^2+\tfrac12\mu H^2\right)-\mathbf J\cdot\mathbf E. \]" style="width:35.252em"></div>
+Integrate over <img class="m" src="m/b1823c2844011c3351ca12a680a0432837e249b6.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> and apply the divergence theorem.
+</p>
+</div>
+</div>
+<div id="outline-container-org0a04ee0" class="outline-2">
+<h2 id="org0a04ee0">Time-harmonic fields</h2>
+<div class="outline-text-2" id="text-org0a04ee0">
+<p>
+<img class="m" src="m/8a43bb49101ad3fe43bc35d962c1c6b479524f15.svg" alt="\(\braket{\mathbf S}=\tfrac12\mathrm{Re}(\mathbf E\times\mathbf H^*)\)" style="height:1.304em;vertical-align:-0.378em">. The complex theorem: <img class="m" src="m/8f293c29b0f381e128c0d4ef17c86c0069c42811.svg" alt="\(-\oint\tfrac12\mathbf E\times\mathbf H^*\cdot\dd\mathbf S=P_{loss}+2j\omega(W_m-W_e)\)" style="height:1.304em;vertical-align:-0.378em">: the imaginary part is reactive power, the same split as <img class="m" src="m/2f253cf35eb2861b091e45b88e004689e1e0e9e3.svg" alt="\(P+jQ\)" style="height:0.962em;vertical-align:-0.212em"> in <a href="ac-power-and-power-factor.html">AC circuits</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org5260bd3" class="outline-2">
+<h2 id="org5260bd3">Worked example: power in a wire</h2>
+<div class="outline-text-2" id="text-org5260bd3">
+<p>
+DC current <img class="m" src="m/73fd835259e2461e2dcb61a22504c2c30198389d.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> in a wire of radius <img class="m" src="m/a8cfe9079fe989303b56be54d2b47f265d286d9d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">, resistance per length <img class="m" src="m/21e59f9cbaf533f85745a9832d6fac56f81809be.svg" alt="\(R'\)" style="height:0.824em;vertical-align:-0.000em">: at the surface <img class="m" src="m/823cbf5e125cdcdea397a391e31c8f32e513e0cb.svg" alt="\(E=IR'\)" style="height:0.824em;vertical-align:-0.000em"> along the wire, <img class="m" src="m/93a1eb1bc100d2792d902911d47a6960ba38f769.svg" alt="\(H=I/2\pi a\)" style="height:1.096em;vertical-align:-0.274em"> around it. <img class="m" src="m/be85176b102add04baf38712ea7787cdee3f9d66.svg" alt="\(\mathbf S\)" style="height:0.752em;vertical-align:-0.000em"> points <b>radially inward</b> with magnitude <img class="m" src="m/55b55a06d11de3e96e8b20dd51337dea968bc7d2.svg" alt="\(EH\)" style="height:0.749em;vertical-align:-0.000em">; through the surface of length <img class="m" src="m/699caa85e8a041d95144d901545cc2c2e96ea7d6.svg" alt="\(\ell\)" style="height:0.761em;vertical-align:-0.000em">: <img class="m" src="m/6fe96b6461aafad49d2836c668cbc701be9390a5.svg" alt="\(EH\cdot2\pi a\ell=I^2R'\ell\)" style="height:0.892em;vertical-align:-0.000em">. The energy dissipated in the wire flows in from the surrounding field, not along the copper.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd94e812" class="outline-2">
+<h2 id="orgd94e812">Plane-wave intensity</h2>
+<div class="outline-text-2" id="text-orgd94e812">
+<p>
+In free space <img class="m" src="m/9dcaaf4d8d2eb11eb3dc88303b02ff0a775df433.svg" alt="\(E/H=\eta_0=377\)" style="height:1.096em;vertical-align:-0.274em"> Ω, <img class="m" src="m/e40c21c04ee2dd682e0928a52c5d07909350c0f2.svg" alt="\(I=\frac{E_0^2}{2\eta_0}\)" style="height:1.770em;vertical-align:-0.531em">. Sunlight 1 kW/m²: <img class="m" src="m/764d2038ca4e947ea234f2e6ccce1ee975ef5c95.svg" alt="\(E_0=\sqrt{2\cdot377\cdot1000}=870\)" style="height:1.159em;vertical-align:-0.162em"> V/m. Radiation pressure <img class="m" src="m/b335f8448c1adc86d0f812b399bb4d63e3c8bcbe.svg" alt="\(I/c=3.3\)" style="height:1.096em;vertical-align:-0.274em"> µPa (absorbed).
+</p>
+</div>
+</div>
+<div id="outline-container-orga96417a" class="outline-2">
+<h2 id="orga96417a">Engineering applications</h2>
+<div class="outline-text-2" id="text-orga96417a">
+<p>
+Link budgets and power density limits (RF exposure in W/m²), antenna radiated power, laser intensity and damage thresholds, power flow in transmission lines and coax (<img class="m" src="m/be85176b102add04baf38712ea7787cdee3f9d66.svg" alt="\(\mathbf S\)" style="height:0.752em;vertical-align:-0.000em"> concentrated in the dielectric), solar sails.
+</p>
+</div>
+</div>
+<div id="outline-container-org004ae88" class="outline-2">
+<h2 id="org004ae88">Pitfall</h2>
+<div class="outline-text-2" id="text-org004ae88">
+<p>
+<img class="m" src="m/0ce319852dd2eaf15261cc9622b7af9843a29ad4.svg" alt="\(\mathbf E\times\mathbf H\)" style="height:0.843em;vertical-align:-0.093em"> is defined up to a curl; only its flux through closed surfaces is unambiguous. A static charge next to a magnet has <img class="m" src="m/3104f1aa998a715e1b3042befc8f7fda6a2bfcd4.svg" alt="\(\mathbf S\neq0\)" style="height:0.974em;vertical-align:-0.214em"> but no net energy flow.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="potentials-and-gauges.html"><span>← previous</span>Potentials, gauges and retarded potentials</a><a rel="next" href="plane-waves-in-media.html"><span>next →</span>Plane waves in lossless and lossy media</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/electromagnetic-fields--maxwell.pdf" title="PDF manual">Maxwell</a> · <a class="pdf" href="pdf/electromagnetic-fields.pdf" title="PDF manual">Electromagnetic Fields</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

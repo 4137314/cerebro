@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scattering parameters · Physics</title>
+<meta name="description" content="For an N-port, incident and reflected waves a_i=V_i^+/\sqrt{Z_0}, b_i=V_i^-/\sqrt{Z_0} are related by \mathbf b=S\mathbf a; |S_{11}| is the input reflection, |S_{21}|^2 the transmitted power fraction; reciprocal networks have S=S^T, lossless ones S^\dagger S=1.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/scattering-parameters.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Scattering parameters · Physics">
+<meta property="og:description" content="For an N-port, incident and reflected waves a_i=V_i^+/\sqrt{Z_0}, b_i=V_i^-/\sqrt{Z_0} are related by \mathbf b=S\mathbf a; |S_{11}| is the input reflection, |S_{21}|^2 the transmitted power fraction; reciprocal networks have S=S^T, lossless ones S^\dagger S=1.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/scattering-parameters.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-electromagnetic-fields">Electromagnetic Fields</a> / <a rel="up" href="index.html#a-electromagnetic-fields--transmission-lines">Transmission Lines</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Electromagnetic Fields · Transmission Lines</p>
+<h1>Scattering parameters</h1>
+<p class="summary">For an N-port, incident and reflected waves <img class="m" src="m/6c87642edde8cee13910ddb33ad7abaa91cd1724.svg" alt="\(a_i=V_i^+/\sqrt{Z_0}\)" style="height:1.249em;vertical-align:-0.300em">, <img class="m" src="m/1ca77da701b78783d8ebac924c53f2e231003ac0.svg" alt="\(b_i=V_i^-/\sqrt{Z_0}\)" style="height:1.249em;vertical-align:-0.300em"> are related by <img class="m" src="m/4834309969d8413617629a7e55633d4f39c45f0d.svg" alt="\(\mathbf b=S\mathbf a\)" style="height:0.761em;vertical-align:-0.000em">; <img class="m" src="m/663a2f592f21b7d19c044281038f3adfc0c803fd.svg" alt="\(|S_{11}|\)" style="height:1.096em;vertical-align:-0.274em"> is the input reflection, <img class="m" src="m/aa0e4d070c0ad7d1ddfb102331b5858ec71d722a.svg" alt="\(|S_{21}|^2\)" style="height:1.166em;vertical-align:-0.268em"> the transmitted power fraction; reciprocal networks have <img class="m" src="m/82b5683281787aa2f45e11d50fbffcab97d1e1a7.svg" alt="\(S=S^T\)" style="height:0.922em;vertical-align:-0.000em">, lossless ones <img class="m" src="m/794efb7365781e99315dbe7b6393e38612d36248.svg" alt="\(S^\dagger S=1\)" style="height:0.930em;vertical-align:-0.000em">.</p>
+<p class="rel"><span>needs</span> <a href="smith-chart-and-impedance-matching.html">The Smith chart and impedance matching</a></p>
+<p class="rel"><span>see also</span> <a href="directional-couplers.html">Directional couplers and coupled-mode theory</a>, <a href="s-matrix-and-cross-sections.html">The S matrix, cross sections and decay rates</a></p>
+<p class="rel"><span>mentioned in</span> <a href="photonics.html">Integrated photonics: the map of the subject</a></p>
+<details class="path"><summary>Learning path: 11 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="capacitance-and-laplace-equation.html">Poisson, Laplace and capacitance</a></li><li><a href="poynting-theorem.html">Poynting's theorem and electromagnetic power</a></li><li><a href="plane-waves-in-media.html">Plane waves in lossless and lossy media</a></li><li><a href="transmission-lines.html">Transmission lines</a></li><li><a href="smith-chart-and-impedance-matching.html">The Smith chart and impedance matching</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org5baadb9" class="outline-2">
+<h2 id="org5baadb9">Definition</h2>
+<div class="outline-text-2" id="text-org5baadb9">
+<p>
+<img class="m" src="m/385a7b6b0916041a33f39e6ea0ba6e4f394bce82.svg" alt="\(S_{ij}=\left.\frac{b_i}{a_j}\right|_{a_k=0,\,k\neq j}\)" style="height:2.177em;vertical-align:-0.914em">: drive port <img class="m" src="m/991aeaa8f2d2a1550b651c69bc2001fd1ca55107.svg" alt="\(j\)" style="height:0.936em;vertical-align:-0.215em">, terminate every other port in <img class="m" src="m/4a3ab7b93af2cd898c4ef01883c7d3100fa9c745.svg" alt="\(Z_0\)" style="height:0.913em;vertical-align:-0.164em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1109/tmtt.1965.1125964" data-full="K. Kurokawa, “Power waves and the scattering matrix”, IEEE Transactions on Microwave Theory and Techniques 13, 194–202 (1965)." aria-label="K. Kurokawa, “Power waves and the scattering matrix”, IEEE Transactions on Microwave Theory and Techniques 13, 194–202 (1965).">Kurokawa 1965</a>)</span>. Power in the waves: <img class="m" src="m/c778d0615136715a582af41cd65e0e9a4b32dc00.svg" alt="\(|a|^2/2\)" style="height:1.166em;vertical-align:-0.268em"> (peak phasors). Return loss <img class="m" src="m/11fe79d69a78033fbdf9ab44d124347aa52e6716.svg" alt="\(-20\log|S_{11}|\)" style="height:1.096em;vertical-align:-0.274em">, insertion loss <img class="m" src="m/14028bd5ee7b4a0174765165f3e0392e0e4ae8e0.svg" alt="\(-20\log|S_{21}|\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org029f730" class="outline-2">
+<h2 id="org029f730">Properties (proof sketch)</h2>
+<div class="outline-text-2" id="text-org029f730">
+<ul class="org-ul">
+<li><b>Reciprocity</b> (<img class="m" src="m/1304123fc86b1ea0c5d8047ed3f8d8c6bb42cfcf.svg" alt="\(\epsilon,\mu\)" style="height:0.685em;vertical-align:-0.212em"> symmetric tensors, no ferrites or active bias): Lorentz reciprocity theorem gives <img class="m" src="m/bd44f20b3891e33f09b7c921ee169aa603488c3e.svg" alt="\(S_{ij}=S_{ji}\)" style="height:1.062em;vertical-align:-0.319em">.</li>
+<li><b>Losslessness</b>: total outgoing power equals incoming for every <img class="m" src="m/846967b23ea2ea11770048af6751a66725ce0b0a.svg" alt="\(\mathbf a\)" style="height:0.487em;vertical-align:-0.000em">: <img class="m" src="m/abb884d802a39662144b5652d67ec3c858d387da.svg" alt="\(\mathbf a^\dagger\mathbf a=\mathbf b^\dagger\mathbf b=\mathbf a^\dagger S^\dagger S\mathbf a\Rightarrow S^\dagger S=1\)" style="height:0.930em;vertical-align:-0.000em">. Columns are orthonormal: e.g. a lossless reciprocal 3-port cannot be matched at all ports (hence resistive power dividers or circulators).</li>
+<li>Same structure as the quantum <a href="s-matrix-and-cross-sections.html">S matrix</a> and the <a href="beam-splitter-and-hong-ou-mandel.html">beam splitter</a> unitary.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org787cc3e" class="outline-2">
+<h2 id="org787cc3e">Conversions</h2>
+<div class="outline-text-2" id="text-org787cc3e">
+<p>
+Shifting reference planes by <img class="m" src="m/9571b03867a62c3aea5e37e87a8fae52cc265e7d.svg" alt="\(\theta_i=\beta\ell_i\)" style="height:0.974em;vertical-align:-0.214em">: <img class="m" src="m/5c2265941c5bee378336c588e0dde2712f9379fb.svg" alt="\(S'_{ij}=S_{ij}e^{-j(\theta_i+\theta_j)}\)" style="height:1.407em;vertical-align:-0.436em">. Cascades are easier with ABCD or T-matrices; <img class="m" src="m/133b31b81b37df0309458e7660ce0e8ccf3c70a8.svg" alt="\(S_{21}=\frac{2}{A+B/Z_0+CZ_0+D}\)" style="height:1.496em;vertical-align:-0.568em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org6b8237a" class="outline-2">
+<h2 id="org6b8237a">Worked example</h2>
+<div class="outline-text-2" id="text-org6b8237a">
+<p>
+Ideal 3 dB 90° hybrid: <img class="m" src="m/78fd3b07fe34ae5e988eca3b5782932a449ae924.svg" alt="\(S=\frac{-1}{\sqrt2}\begin{pmatrix}0&amp;j&amp;1&amp;0\\j&amp;0&amp;0&amp;1\\1&amp;0&amp;0&amp;j\\0&amp;1&amp;j&amp;0\end{pmatrix}\)" style="height:5.260em;vertical-align:-2.367em">. Check unitarity: each column has two entries of magnitude <img class="m" src="m/609373e8e8bcdcc9a6a3a3932baa2b630807694c.svg" alt="\(1/\sqrt2\)" style="height:1.268em;vertical-align:-0.279em">, and columns 1, 2 are orthogonal: <img class="m" src="m/d378d1ceb1db57281f5abba18e55b49aaa290471.svg" alt="\(\bar{(j)}\cdot0+\dots=0\)" style="height:1.246em;vertical-align:-0.274em">. Port 1 splits equally to ports 2 and 3 with 90° phase difference; port 4 is isolated — the microwave twin of the optical <a href="directional-couplers.html">directional coupler</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org062d1d3" class="outline-2">
+<h2 id="org062d1d3">Engineering applications</h2>
+<div class="outline-text-2" id="text-org062d1d3">
+<p>
+Vector network analyser measurement and calibration (SOLT, TRL), amplifier stability (<img class="m" src="m/8827d9a622081ee1381bd688967f88276b19f910.svg" alt="\(K&gt;1\)" style="height:0.792em;vertical-align:-0.040em">, <img class="m" src="m/590ad495bdb02f21c48a65d3d75b3c7a15c23913.svg" alt="\(|\Delta|&lt;1\)" style="height:1.096em;vertical-align:-0.274em">) and gain circles, filters and duplexers, Touchstone files for SPICE/EM co-simulation, photonic circuit simulation (same formalism in <a href="silicon-photonic-waveguides.html">silicon photonics</a>).
+</p>
+</div>
+</div>
+<div id="outline-container-orgbb770b0" class="outline-2">
+<h2 id="orgbb770b0">Pitfall</h2>
+<div class="outline-text-2" id="text-orgbb770b0">
+<p>
+S-parameters are defined for a reference impedance; changing <img class="m" src="m/4a3ab7b93af2cd898c4ef01883c7d3100fa9c745.svg" alt="\(Z_0\)" style="height:0.913em;vertical-align:-0.164em"> (e.g. 50 → 75 Ω) changes every <img class="m" src="m/02306d87595fdcec58cf040b154c3f21c0ec75a0.svg" alt="\(S_{ij}\)" style="height:1.062em;vertical-align:-0.319em">, even though the device is the same.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="smith-chart-and-impedance-matching.html"><span>← previous</span>The Smith chart and impedance matching</a><a rel="next" href="rectangular-waveguides.html"><span>next →</span>Rectangular metallic waveguides and cavities</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/electromagnetic-fields--transmission-lines.pdf" title="PDF manual">Transmission Lines</a> · <a class="pdf" href="pdf/electromagnetic-fields.pdf" title="PDF manual">Electromagnetic Fields</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

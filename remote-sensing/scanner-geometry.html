@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scanner geometry: IFOV, GIFOV, swath · Remote Sensing</title>
+<meta name="description" content="A detector of size w behind optics of focal length f sees the angle \mathrm{IFOV}=w/f; from altitude H this is a ground cell \mathrm{GIFOV}=H\,w/f, the geometric resolution; the image is built line by line by a rotating mirror (whiskbroom) or by a linear array of detectors (pushbroom) while the pla…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/scanner-geometry.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Scanner geometry: IFOV, GIFOV, swath · Remote Sensing">
+<meta property="og:description" content="A detector of size w behind optics of focal length f sees the angle \mathrm{IFOV}=w/f; from altitude H this is a ground cell \mathrm{GIFOV}=H\,w/f, the geometric resolution; the image is built line by line by a rotating mirror (whiskbroom) or by a linear array of detectors (pushbroom) while the pla…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/scanner-geometry.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-acquisition">Acquisition</a> / <a rel="up" href="index.html#a-acquisition--optical-sensors">Optical Sensors</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Acquisition · Optical Sensors</p>
+<h1>Scanner geometry: IFOV, GIFOV, swath</h1>
+<p class="summary">A detector of size <img class="m" src="m/760d5951105b1fc1d1d6cd12eb2c180f8d9b3a0d.svg" alt="\(w\)" style="height:0.472em;vertical-align:-0.000em"> behind optics of focal length <img class="m" src="m/87af0e9592a0469a757729d3689ca6bfc569f7d3.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> sees the angle <img class="m" src="m/a2e3c47517c722470f012df2723681eb1e36ceb9.svg" alt="\(\mathrm{IFOV}=w/f\)" style="height:1.096em;vertical-align:-0.274em">; from altitude <img class="m" src="m/3e1b474a81ecc9a88e470c0437a34ab2b6821cc1.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> this is a ground cell <img class="m" src="m/a4cdce66f3f22a9e2abc5ae24c4e5990ae79fd65.svg" alt="\(\mathrm{GIFOV}=H\,w/f\)" style="height:1.096em;vertical-align:-0.274em">, the geometric resolution; the image is built line by line by a rotating mirror (whiskbroom) or by a linear array of detectors (pushbroom) while the platform moves.</p>
+<p class="rel"><span>needs</span> <a href="passive-active-sensors.html">Passive and active sensors</a>, <a href="satellite-orbits.html">Satellite orbits</a></p>
+<p class="rel"><span>unlocks</span> <a href="digital-number.html">Detector, quantization and digital numbers</a>, <a href="sensor-resolutions.html">Geometric, radiometric, spectral and temporal resolution</a>, <a href="geometric-distortions.html">Geometric distortions</a></p>
+<p class="rel"><span>see also</span> <a href="sensor-resolutions.html">Geometric, radiometric, spectral and temporal resolution</a>, <a href="digital-number.html">Detector, quantization and digital numbers</a>, <a href="point-spread-function.html">Point spread function and spectral response</a>, <a href="geometric-distortions.html">Geometric distortions</a></p>
+<p class="rel"><span>mentioned in</span> <a href="satellite-data-transmission.html">Satellite data transmission</a>, <a href="image-formats.html">Image storage formats: BSQ, BIL, BIP</a>, <a href="radiometric-snr.html">Signal-to-noise ratio and noise-equivalent quantities</a>, <a href="radiometric-correction.html">Radiometric errors and corrections</a></p>
+<details class="path"><summary>Learning path: 4 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgde4e0d4" class="outline-2">
+<h2 id="orgde4e0d4">Definition</h2>
+<div class="outline-text-2" id="text-orgde4e0d4">
+<ul class="org-ul">
+<li><img class="m" src="m/a2e3c47517c722470f012df2723681eb1e36ceb9.svg" alt="\(\mathrm{IFOV}=w/f\)" style="height:1.096em;vertical-align:-0.274em"> (rad): intrinsic to the instrument.</li>
+<li><img class="m" src="m/76f992121273e285a6b5d2f8fafdbd32b54369a6.svg" alt="\(\mathrm{GIFOV}=2H\tan(\mathrm{IFOV}/2)\approx H\,w/f\)" style="height:1.096em;vertical-align:-0.274em">: depends on altitude.</li>
+<li><b>GSI</b> (ground sample interval): distance on the ground between neighbouring pixel centres; usually equal to the GIFOV, sometimes smaller along the scan (overlapping cells, better sampling).</li>
+<li><b>Swath</b>: width of the imaged strip; <b>FOV</b> the total angle of view.</li>
+<li><b>Whiskbroom</b> (across-track): a rotating or oscillating mirror sweeps one or few detectors across the track (<a href="earth-observation-missions.html">Landsat</a> TM). <b>Pushbroom</b> (along-track): a linear array with one detector per across-track pixel images a whole line at once; the platform motion provides the second dimension (SPOT, <a href="copernicus-sentinel.html">Sentinel-2</a>). Pushbrooms have longer <a href="radiometric-snr.html">dwell time</a> per pixel, hence better SNR, and no moving parts, but must calibrate thousands of detectors.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcc8eb75" class="outline-2">
+<h2 id="orgcc8eb75">Derivation</h2>
+<div class="outline-text-2" id="text-orgcc8eb75">
+<p>
+For <img class="m" src="m/62deaefaa8e487972e3b2dc5f9d693a2473a2453.svg" alt="\(H=700\)" style="height:0.749em;vertical-align:-0.000em"> km, <img class="m" src="m/b30219e23e5c1da123c2687630b024b57182f2e9.svg" alt="\(f=1\)" style="height:0.974em;vertical-align:-0.214em"> m and <img class="m" src="m/8522f64f54fea83c48a88af49fdf553408e77b0f.svg" alt="\(w=10\)" style="height:0.706em;vertical-align:-0.000em"> µm: <img class="m" src="m/5f9fd1ef11d8e20cf6025f05dfa0c635dcc34692.svg" alt="\(\mathrm{GIFOV}=700\times10^3\cdot10^{-5}=7\)" style="height:0.983em;vertical-align:-0.089em"> m. Halving the altitude or doubling the focal length halves the pixel.
+</p>
+</div>
+</div>
+<div id="outline-container-org0d551d7" class="outline-2">
+<h2 id="org0d551d7">Picture</h2>
+<div class="outline-text-2" id="text-org0d551d7">
+<figure class="fig"><img class="m" src="m/2759391f83df4ea87db614d26183d20d416afcd0.svg" alt="figure" style="width:17.507em"><figcaption><span class="fl">Figure 1.</span> Scanner geometry: a detector of size <img class="m" src="m/760d5951105b1fc1d1d6cd12eb2c180f8d9b3a0d.svg" alt="\(w\)" style="height:0.472em;vertical-align:-0.000em"> behind optics of focal length <img class="m" src="m/87af0e9592a0469a757729d3689ca6bfc569f7d3.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> at altitude <img class="m" src="m/3e1b474a81ecc9a88e470c0437a34ab2b6821cc1.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> sees a ground footprint GIFOV <img class="m" src="m/c52a967317949a0768f23b3841453623fb9e80df.svg" alt="\(=Hw/f\)" style="height:1.096em;vertical-align:-0.274em">.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org400a718" class="outline-2">
+<h2 id="org400a718">Intuition</h2>
+<div class="outline-text-2" id="text-org400a718">
+<p>
+The pixel on the ground is the detector projected through a lens from very high up: shrink the detector, lengthen the lens or fly lower to see finer detail.
+</p>
+</div>
+</div>
+<div id="outline-container-org5dd4cd2" class="outline-2">
+<h2 id="org5dd4cd2">Pitfall</h2>
+<div class="outline-text-2" id="text-org5dd4cd2">
+<p>
+The GIFOV grows off nadir (the line of sight is longer and oblique): pixels at the edge of a wide swath cover more ground than at the centre — the <a href="geometric-distortions.html">panoramic distortion</a> of wide-angle scanners.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="passive-active-sensors.html"><span>← previous</span>Passive and active sensors</a><a rel="next" href="digital-number.html"><span>next →</span>Detector, quantization and digital numbers</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/acquisition--optical-sensors.pdf" title="PDF manual">Optical Sensors</a> · <a class="pdf" href="pdf/acquisition.pdf" title="PDF manual">Acquisition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

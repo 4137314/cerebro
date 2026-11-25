@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Transmission lines · Physics</title>
+<meta name="description" content="Distributed R,L,G,C per metre give the telegrapher equations with waves V^\pm e^{\mp\gamma z}, Z_0=\sqrt{\frac{R+j\omega L}{G+j\omega C}}; a load reflects \Gamma_L=\frac{Z_L-Z_0}{Z_L+Z_0} and a lossless line of length \ell transforms it into Z_{in}=Z_0\frac{Z_L+jZ_0\tan\beta\ell}{Z_0+jZ_L\tan\beta\…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/transmission-lines.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Transmission lines · Physics">
+<meta property="og:description" content="Distributed R,L,G,C per metre give the telegrapher equations with waves V^\pm e^{\mp\gamma z}, Z_0=\sqrt{\frac{R+j\omega L}{G+j\omega C}}; a load reflects \Gamma_L=\frac{Z_L-Z_0}{Z_L+Z_0} and a lossless line of length \ell transforms it into Z_{in}=Z_0\frac{Z_L+jZ_0\tan\beta\ell}{Z_0+jZ_L\tan\beta\…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/transmission-lines.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-electromagnetic-fields">Electromagnetic Fields</a> / <a rel="up" href="index.html#a-electromagnetic-fields--transmission-lines">Transmission Lines</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Electromagnetic Fields · Transmission Lines</p>
+<h1>Transmission lines</h1>
+<p class="summary">Distributed <img class="m" src="m/c15e77ba465005969241626aabba99340eb762b8.svg" alt="\(R,L,G,C\)" style="height:0.962em;vertical-align:-0.212em"> per metre give the telegrapher equations with waves <img class="m" src="m/7ef187c7dc343488fbc1daa1ec1d128ad84599c8.svg" alt="\(V^\pm e^{\mp\gamma z}\)" style="height:0.873em;vertical-align:-0.000em">, <img class="m" src="m/be996f4d9bea4d4695143ef4b903aaa488d486d4.svg" alt="\(Z_0=\sqrt{\frac{R+j\omega L}{G+j\omega C}}\)" style="height:2.016em;vertical-align:-0.686em">; a load reflects <img class="m" src="m/29672c642475f1e9473ff8753884629d95788852.svg" alt="\(\Gamma_L=\frac{Z_L-Z_0}{Z_L+Z_0}\)" style="height:1.462em;vertical-align:-0.483em"> and a lossless line of length <img class="m" src="m/699caa85e8a041d95144d901545cc2c2e96ea7d6.svg" alt="\(\ell\)" style="height:0.761em;vertical-align:-0.000em"> transforms it into <img class="m" src="m/27a26b4874c8d8b20de7e95f65ca0b897d7179cd.svg" alt="\(Z_{in}=Z_0\frac{Z_L+jZ_0\tan\beta\ell}{Z_0+jZ_L\tan\beta\ell}\)" style="height:1.549em;vertical-align:-0.527em">.</p>
+<p class="rel"><span>needs</span> <a href="plane-waves-in-media.html">Plane waves in lossless and lossy media</a>, <a href="capacitance-and-laplace-equation.html">Poisson, Laplace and capacitance</a></p>
+<p class="rel"><span>unlocks</span> <a href="smith-chart-and-impedance-matching.html">The Smith chart and impedance matching</a>, <a href="rectangular-waveguides.html">Rectangular metallic waveguides and cavities</a></p>
+<p class="rel"><span>see also</span> <a href="smith-chart-and-impedance-matching.html">The Smith chart and impedance matching</a>, <a href="scattering-parameters.html">Scattering parameters</a>, <a href="reflection-and-transmission-at-interfaces.html">Reflection and transmission: Snell, Fresnel, Brewster and total internal reflection</a></p>
+<p class="rel"><span>mentioned in</span> <a href="reflection-and-transmission-at-interfaces.html">Reflection and transmission: Snell, Fresnel, Brewster and total internal reflection</a>, <a href="circuits.html">Circuit theory: the map of the subject</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="capacitance-and-laplace-equation.html">Poisson, Laplace and capacitance</a></li><li><a href="poynting-theorem.html">Poynting's theorem and electromagnetic power</a></li><li><a href="plane-waves-in-media.html">Plane waves in lossless and lossy media</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org5b5f364" class="outline-2">
+<h2 id="org5b5f364">Derivation</h2>
+<div class="outline-text-2" id="text-org5b5f364">
+<p>
+KVL and KCL on a section <img class="m" src="m/ab0c10b055f2a93dc4b26fcb9aa4baa388e9ec0f.svg" alt="\(\dd z\)" style="height:0.761em;vertical-align:-0.000em">: <img class="m" src="m/3fd6b24399dd4d0f46c9de73e26a8a0ad3fe2189.svg" alt="\(-\partial_zv=Ri+L\partial_ti\)" style="height:0.925em;vertical-align:-0.167em">, <img class="m" src="m/902555975be573ce0d10332cc86d90c18fb3fcb0.svg" alt="\(-\partial_zi=Gv+C\partial_tv\)" style="height:0.925em;vertical-align:-0.167em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1098/rspl.1854.0093" data-full="W. Thomson, “On the theory of the electric telegraph”, Proceedings of the Royal Society of London 7, 382–399 (1855)." aria-label="W. Thomson, “On the theory of the electric telegraph”, Proceedings of the Royal Society of London 7, 382–399 (1855).">Thomson 1855</a>)</span>. Phasors: <img class="m" src="m/be779f1ed13fec46c71d664ea11856546fbe57cc.svg" alt="\(\frac{\dd^2V}{\dd z^2}=\gamma^2V\)" style="height:1.493em;vertical-align:-0.373em">, <img class="m" src="m/411515f8a907b884909b2287fe1e6e2883df5b2e.svg" alt="\(\gamma=\sqrt{(R+j\omega L)(G+j\omega C)}\)" style="height:1.359em;vertical-align:-0.340em">. Solution
+<div class="mb"><img class="m" src="m/cbbd367b4f926789dc026284cbc881e2f8d4150c.svg" alt="\[ V(z)=V_0^+e^{-\gamma z}+V_0^-e^{\gamma z},\qquad I(z)=\frac{V_0^+e^{-\gamma z}-V_0^-e^{\gamma z}}{Z_0}. \]" style="width:27.045em"></div>
+At the load (<img class="m" src="m/4f125d90b15515fb397ab76b721c0905ffe27a8d.svg" alt="\(z=0\)" style="height:0.706em;vertical-align:-0.000em">): <img class="m" src="m/ba4330735d9254e028b56939eefcd45ab6666e33.svg" alt="\(V_0^-/V_0^+=\Gamma_L\)" style="height:1.236em;vertical-align:-0.297em">. At distance <img class="m" src="m/699caa85e8a041d95144d901545cc2c2e96ea7d6.svg" alt="\(\ell\)" style="height:0.761em;vertical-align:-0.000em"> from the load the impedance formula above follows by dividing <img class="m" src="m/b1823c2844011c3351ca12a680a0432837e249b6.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> by <img class="m" src="m/73fd835259e2461e2dcb61a22504c2c30198389d.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb651137" class="outline-2">
+<h2 id="orgb651137">Key results (lossless)</h2>
+<div class="outline-text-2" id="text-orgb651137">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">quantity</th>
+<th scope="col" class="org-left">formula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">phase velocity</td>
+<td class="org-left">1/√(LC) = c/√ε_eff</td>
+</tr>
+
+<tr>
+<td class="org-left">VSWR</td>
+<td class="org-left">(1 + ⎮Γ⎮)/(1 − ⎮Γ⎮)</td>
+</tr>
+
+<tr>
+<td class="org-left">return loss</td>
+<td class="org-left">−20 log⎮Γ⎮ dB</td>
+</tr>
+
+<tr>
+<td class="org-left">short, length ℓ</td>
+<td class="org-left">Z_in = jZ₀ tan βℓ (inductive if βℓ&lt;π/2)</td>
+</tr>
+
+<tr>
+<td class="org-left">open, length ℓ</td>
+<td class="org-left">Z_in = −jZ₀ cot βℓ</td>
+</tr>
+
+<tr>
+<td class="org-left">quarter-wave</td>
+<td class="org-left">Z_in = Z₀²/Z_L</td>
+</tr>
+
+<tr>
+<td class="org-left">half-wave</td>
+<td class="org-left">Z_in = Z_L</td>
+</tr>
+</tbody>
+</table>
+<p>
+Power to the load <img class="m" src="m/9be58df0f7288afc30165b05ff42067b5e8a9b63.svg" alt="\(P=\frac{|V_0^+|^2}{2Z_0}(1-|\Gamma|^2)\)" style="height:1.786em;vertical-align:-0.482em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgef59860" class="outline-2">
+<h2 id="orgef59860">Transients</h2>
+<div class="outline-text-2" id="text-orgef59860">
+<p>
+A step <img class="m" src="m/750ce2cf8219ec28fcdf3652248cc118692d42bb.svg" alt="\(V_s\)" style="height:0.913em;vertical-align:-0.164em"> through <img class="m" src="m/276a87eaa7d41fe1817cf7b78104c1147cd48598.svg" alt="\(R_s\)" style="height:0.913em;vertical-align:-0.164em"> launches <img class="m" src="m/e5f584de6c7f5c49704e996c85f70c3178d8f2c6.svg" alt="\(V^+=V_s\frac{Z_0}{R_s+Z_0}\)" style="height:1.461em;vertical-align:-0.482em">; it bounces with <img class="m" src="m/4f9fd1b754fcf73a0db78c30976c7a6c7add4e07.svg" alt="\(\Gamma_L\)" style="height:0.913em;vertical-align:-0.164em"> and <img class="m" src="m/d00ac51f9a77d8fdc1aa4160b75d31a6302085e5.svg" alt="\(\Gamma_s\)" style="height:0.913em;vertical-align:-0.164em"> (bounce diagram), converging to the DC value. Time-domain reflectometry reads <img class="m" src="m/90535bec7648d96b5bb1452266dd4d13d617ddd9.svg" alt="\(\Gamma(t)\)" style="height:1.096em;vertical-align:-0.274em"> to locate discontinuities at <img class="m" src="m/4de1510ffed06b0879ad3b4c6ab54de38134b8e0.svg" alt="\(d=v\,t/2\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf52f78b" class="outline-2">
+<h2 id="orgf52f78b">Worked example</h2>
+<div class="outline-text-2" id="text-orgf52f78b">
+<p>
+<img class="m" src="m/1f9318b31be6a6c42710aae988fa8bb5dc1ef452.svg" alt="\(Z_0=50\)" style="height:0.913em;vertical-align:-0.164em"> Ω, <img class="m" src="m/f0a714e7bbcffcb9abcd626a14872e1c69ae9900.svg" alt="\(Z_L=100+j50\)" style="height:0.962em;vertical-align:-0.212em"> Ω: <img class="m" src="m/6df216dfe7616cde87988b1b92f4708c225df1f4.svg" alt="\(\Gamma_L=\frac{50+j50}{150+j50}=0.447\angle26.6^\circ\)" style="height:1.524em;vertical-align:-0.533em">, VSWR <img class="m" src="m/3cb228292e31a026f494b833a6bec5e06e7f6459.svg" alt="\(=2.62\)" style="height:0.706em;vertical-align:-0.000em">, return loss 7 dB, 20% of the power reflected. A quarter-wave transformer for a 100 Ω resistive load needs <img class="m" src="m/bc8923789ff523b77007f6f607cdc304bd675969.svg" alt="\(Z_1=\sqrt{50\cdot100}=70.7\)" style="height:1.159em;vertical-align:-0.162em"> Ω.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb2e5309" class="outline-2">
+<h2 id="orgb2e5309">Engineering applications</h2>
+<div class="outline-text-2" id="text-orgb2e5309">
+<p>
+PCB traces and connectors (signal integrity: ringing, reflections when rise time <img class="m" src="m/a226720526243ba5595e0cfc6390012921065d13.svg" alt="\(&lt;2\times\)" style="height:0.798em;vertical-align:-0.088em"> delay), coax and twisted pair, on-chip interconnect at multi-GHz, RF matching networks, TDR cable fault location, the lumped-element limit of <a href="circuits.html">circuit theory</a> (<img class="m" src="m/1116f5ed8b1464c633caccc07fb0c3f2c7ff268c.svg" alt="\(\ell\ll\lambda\)" style="height:0.804em;vertical-align:-0.040em">).
+</p>
+</div>
+</div>
+<div id="outline-container-org8044768" class="outline-2">
+<h2 id="org8044768">Pitfall</h2>
+<div class="outline-text-2" id="text-org8044768">
+<p>
+Lumped circuit analysis fails when line length exceeds roughly <img class="m" src="m/1d7f209fbc975866e52c48e111522a7cf0985352.svg" alt="\(\lambda/10\)" style="height:1.096em;vertical-align:-0.274em"> or the edge travel distance: a 10 cm FR-4 trace (<img class="m" src="m/94717229ec2e6ecbfd2f83eee5480f98e352e727.svg" alt="\(v\approx c/2\)" style="height:1.096em;vertical-align:-0.274em">) has 0.67 ns delay, longer than a 100 ps edge.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="reflection-and-transmission-at-interfaces.html"><span>← previous</span>Reflection and transmission: Snell, Fresnel, Brewster and total internal reflection</a><a rel="next" href="smith-chart-and-impedance-matching.html"><span>next →</span>The Smith chart and impedance matching</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/electromagnetic-fields--transmission-lines.pdf" title="PDF manual">Transmission Lines</a> · <a class="pdf" href="pdf/electromagnetic-fields.pdf" title="PDF manual">Electromagnetic Fields</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

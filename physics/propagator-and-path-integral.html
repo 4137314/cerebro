@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The propagator and Feynman's path integral · Physics</title>
+<meta name="description" content="The amplitude to go from x_0 at t_0 to x at t is K(x,t;x_0,t_0)=\bra xU(t,t_0)\ket{x_0}, so \psi(x,t)=\int K\psi(x_0,t_0)\dd x_0; splitting time into slices gives K=\int\mathcal Dx\,e^{iS[x]/\hbar}, a sum over all paths weighted by the classical action.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/propagator-and-path-integral.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The propagator and Feynman's path integral · Physics">
+<meta property="og:description" content="The amplitude to go from x_0 at t_0 to x at t is K(x,t;x_0,t_0)=\bra xU(t,t_0)\ket{x_0}, so \psi(x,t)=\int K\psi(x_0,t_0)\dd x_0; splitting time into slices gives K=\int\mathcal Dx\,e^{iS[x]/\hbar}, a sum over all paths weighted by the classical action.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/propagator-and-path-integral.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-mechanics">Quantum Mechanics</a> / <a rel="up" href="index.html#a-quantum-mechanics--dynamics">Dynamics</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Quantum Mechanics · Dynamics</p>
+<h1>The propagator and Feynman's path integral</h1>
+<p class="summary">The amplitude to go from <img class="m" src="m/9fcebffa6876831f2d90bd47825edb9bdb8893f1.svg" alt="\(x_0\)" style="height:0.636em;vertical-align:-0.165em"> at <img class="m" src="m/490b184bdc79b1a3f190c06303ae58d0b311b86d.svg" alt="\(t_0\)" style="height:0.838em;vertical-align:-0.168em"> to <img class="m" src="m/258dcb04caf8c3d82dd7028e1c60cad8a941e7d5.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> at <img class="m" src="m/35667e44f401ec8e9c1d76417ab6c6c6667dd3c9.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> is <img class="m" src="m/5ba57a52e3a74de54d79d3573d0dab406feaa934.svg" alt="\(K(x,t;x_0,t_0)=\bra xU(t,t_0)\ket{x_0}\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/9f1096fc069864632c833eb04aef5a3b411a80c7.svg" alt="\(\psi(x,t)=\int K\psi(x_0,t_0)\dd x_0\)" style="height:1.218em;vertical-align:-0.341em">; splitting time into slices gives <img class="m" src="m/fc5a668167637631126474aed5e04a5409fdecc2.svg" alt="\(K=\int\mathcal Dx\,e^{iS[x]/\hbar}\)" style="height:1.308em;vertical-align:-0.340em">, a sum over all paths weighted by the classical action.</p>
+<p class="rel"><span>needs</span> <a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></p>
+<p class="rel"><span>unlocks</span> <a href="electromagnetic-potentials-and-gauge-invariance.html">Electromagnetic potentials and gauge invariance</a>, <a href="green-functions-and-feynman-propagator.html">Green's functions and the Feynman propagator</a></p>
+<p class="rel"><span>see also</span> <a href="green-functions-and-feynman-propagator.html">Green's functions and the Feynman propagator</a>, <a href="tunnelling-and-wkb.html">Tunnelling and the WKB approximation</a></p>
+<details class="path"><summary>Learning path: 10 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org2ce25ea" class="outline-2">
+<h2 id="org2ce25ea">Statement</h2>
+<div class="outline-text-2" id="text-org2ce25ea">
+<p>
+<div class="mb"><img class="m" src="m/bd3aa64ba0c2bc3a85c506277aba12fa9f0dac4d.svg" alt="\[ \psi(x,t)=\int\dd x_0\,K(x,t;x_0,t_0)\,\psi(x_0,t_0),\qquad K=\sum_E\braket{x|E}\braket{E|x_0}e^{-iE(t-t_0)/\hbar}. \]" style="width:37.421em"></div>
+<img class="m" src="m/26e72310fb70009ecf2c4e960e8fe4d95b383749.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> solves the Schrödinger equation in <img class="m" src="m/b967837f61f23ab824d01940050e4201917d0698.svg" alt="\((x,t)\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/1b572ff88da4149c19f65001fe6036dfa5d37d0b.svg" alt="\(K\to\delta(x-x_0)\)" style="height:1.096em;vertical-align:-0.274em"> as <img class="m" src="m/911adf82751043c0f889e52403ca9f78e3ebaa49.svg" alt="\(t\to t_0\)" style="height:0.838em;vertical-align:-0.168em">. Free particle:
+<div class="mb"><img class="m" src="m/51dfc1ab9a8b49394a98f58c943078b9e7a0bc70.svg" alt="\[ K=\sqrt{\frac{m}{2\pi i\hbar(t-t_0)}}\exp\!\left[\frac{im(x-x_0)^2}{2\hbar(t-t_0)}\right]. \]" style="width:19.017em"></div>
+Multiplying by <img class="m" src="m/7cd8479ef935c682db62464905d4eace43ec0c79.svg" alt="\(\theta(t-t_0)\)" style="height:1.096em;vertical-align:-0.274em"> gives the retarded Green's function: <img class="m" src="m/bc2941057d84c7bb506ef8f3f1198323a42c30a5.svg" alt="\(\left(i\hbar\partial_t-H\right)G=i\hbar\,\delta(x-x_0)\delta(t-t_0)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org9f4a776" class="outline-2">
+<h2 id="org9f4a776">Derivation of the path integral</h2>
+<div class="outline-text-2" id="text-org9f4a776">
+<p>
+Split <img class="m" src="m/10439587666a890f2b1404946c12a96e7a6c0608.svg" alt="\(t-t_0=N\varepsilon\)" style="height:0.913em;vertical-align:-0.164em"> and insert <img class="m" src="m/a43d4d02fb2c6854c0bf0bd484b42c2b65476d0f.svg" alt="\(N-1\)" style="height:0.840em;vertical-align:-0.092em"> position completeness relations <span class="cite">(<a class="ref" href="https://doi.org/10.1103/revmodphys.20.367" data-full="R. P. Feynman, “Space-time approach to non-relativistic quantum mechanics”, Reviews of Modern Physics 20, 367–387 (1948)." aria-label="R. P. Feynman, “Space-time approach to non-relativistic quantum mechanics”, Reviews of Modern Physics 20, 367–387 (1948).">Feynman 1948</a>)</span>. For a short step <img class="m" src="m/fd3e6a5fb6459759cfc95202f2de1569c9f5eba0.svg" alt="\(\bra{x_{k+1}}e^{-iH\varepsilon/\hbar}\ket{x_k}\approx\sqrt{\frac{m}{2\pi i\hbar\varepsilon}}\exp\left[\frac{i\varepsilon}\hbar\left(\frac m2\frac{(x_{k+1}-x_k)^2}{\varepsilon^2}-V(x_k)\right)\right]\)" style="height:1.973em;vertical-align:-0.710em"> (Trotter). The exponent is <img class="m" src="m/c24048779b2b543b737ceeac4eabeadd38fcf73c.svg" alt="\(i/\hbar\)" style="height:1.096em;vertical-align:-0.274em"> times the discretised action, so
+<div class="mb"><img class="m" src="m/786e26475426bdc67f8c368f13c8a1949e4275aa.svg" alt="\[ K=\lim_{N\to\infty}\left(\frac{m}{2\pi i\hbar\varepsilon}\right)^{N/2}\int\prod_{k=1}^{N-1}\dd x_k\,e^{iS/\hbar}\equiv\int\mathcal Dx\,e^{iS[x(t)]/\hbar}. \]" style="width:28.057em"></div>
+</p>
+</div>
+</div>
+<div id="outline-container-org3d79dfb" class="outline-2">
+<h2 id="org3d79dfb">Classical limit</h2>
+<div class="outline-text-2" id="text-org3d79dfb">
+<p>
+When <img class="m" src="m/f37fecf34497acd4e745b4a04255d96b26dec9f6.svg" alt="\(S\gg\hbar\)" style="height:0.798em;vertical-align:-0.040em">, the phases of neighbouring paths cancel except near the path with <img class="m" src="m/0a54d5cd4a18deb114b5aa767514ee1a8e05762d.svg" alt="\(\delta S=0\)" style="height:0.761em;vertical-align:-0.000em">: Hamilton's principle emerges by stationary phase. Semiclassical (WKB) propagators keep this path plus Gaussian fluctuations <span class="cite">(<a class="ref" href="https://doi.org/10.1017/s0305004100021162" data-full="P. A. M. Dirac, “A new notation for quantum mechanics”, Mathematical Proceedings of the Cambridge Philosophical Society 35, 416–418 (1939)." aria-label="P. A. M. Dirac, “A new notation for quantum mechanics”, Mathematical Proceedings of the Cambridge Philosophical Society 35, 416–418 (1939).">Dirac 1939</a>)</span>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbfcb59c" class="outline-2">
+<h2 id="orgbfcb59c">Worked example</h2>
+<div class="outline-text-2" id="text-orgbfcb59c">
+<p>
+Free propagator check: at <img class="m" src="m/99d712ab611d4f50379bfb055d9d0d387dfda1c4.svg" alt="\(t-t_0\to0\)" style="height:0.871em;vertical-align:-0.165em"> the Gaussian <img class="m" src="m/3e2dfbfb150b89e4172a76483e628def7041145d.svg" alt="\(\propto e^{im(x-x_0)^2/2\hbar\tau}\)" style="height:1.082em;vertical-align:-0.000em"> has width <img class="m" src="m/32c4d08024e0d0fb68c89dfecb29838094f8fdec.svg" alt="\(\sqrt{\hbar\tau/m}\to0\)" style="height:1.359em;vertical-align:-0.340em"> and unit integral, so <img class="m" src="m/57bcf79cce1f19139ab229c8bc1ccf161949e4c6.svg" alt="\(K\to\delta\)" style="height:0.761em;vertical-align:-0.000em">. For an electron and <img class="m" src="m/a4172863411fc5e7d541a0f21e56dd4cc6c0da45.svg" alt="\(\tau=1\)" style="height:0.706em;vertical-align:-0.000em"> fs, the spreading scale is <img class="m" src="m/8e4d3456c152a60f36e88377e2858d663be55b40.svg" alt="\(\sqrt{\hbar\tau/m}\approx0.34\)" style="height:1.359em;vertical-align:-0.340em"> nm.
+</p>
+</div>
+</div>
+<div id="outline-container-org5723f6a" class="outline-2">
+<h2 id="org5723f6a">Engineering applications</h2>
+<div class="outline-text-2" id="text-org5723f6a">
+<p>
+Path integrals underpin the Feynman diagrams of <a href="feynman-rules-of-qed.html">QED</a>, quantum Monte Carlo in imaginary time (materials simulation), instanton tunnelling rates, and the Aharonov–Bohm phase <img class="m" src="m/3b6cbb25bd89001439fa81b332f80650a3d208a7.svg" alt="\(e^{i(q/\hbar)\int\mathbf A\cdot\dd\mathbf l}\)" style="height:1.016em;vertical-align:-0.000em"> used in SQUIDs.
+</p>
+</div>
+</div>
+<div id="outline-container-org0346242" class="outline-2">
+<h2 id="org0346242">Pitfall</h2>
+<div class="outline-text-2" id="text-org0346242">
+<p>
+The "measure" <img class="m" src="m/437fe1cf53b4b7ca57c0ec4bcde14d40bca425c7.svg" alt="\(\mathcal Dx\)" style="height:0.749em;vertical-align:-0.000em"> is not a true measure on paths in real time; the expression is defined as the limit of the time-sliced integrals (rigorous in imaginary time: Feynman–Kac).
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="spin-precession-and-rabi-oscillations.html"><span>← previous</span>Spin precession and Rabi oscillations</a><a rel="next" href="electromagnetic-potentials-and-gauge-invariance.html"><span>next →</span>Electromagnetic potentials and gauge invariance</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-mechanics--dynamics.pdf" title="PDF manual">Dynamics</a> · <a class="pdf" href="pdf/quantum-mechanics.pdf" title="PDF manual">Quantum Mechanics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

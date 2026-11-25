@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>First-order equations and the method of characteristics · Mathematics</title>
+<meta name="description" content="A first-order partial differential equation constrains the derivative of the unknown along one direction at each point. Following that direction turns the equation into an ordinary one, so the whole theory is the existence theorem for ordinary equations transported along a family of curves – and th…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/first-order-equations-and-the-method-of-characteristics.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="First-order equations and the method of characteristics · Mathematics">
+<meta property="og:description" content="A first-order partial differential equation constrains the derivative of the unknown along one direction at each point. Following that direction turns the equation into an ordinary one, so the whole theory is the existence theorem for ordinary equations transported along a family of curves – and th…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/first-order-equations-and-the-method-of-characteristics.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--partial-differential-equations">Partial Differential Equations</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Partial Differential Equations</p>
+<h1>First-order equations and the method of characteristics</h1>
+<p class="summary">A first-order partial differential equation constrains the derivative of the unknown along one direction at each point. Following that direction turns the equation into an ordinary one, so the whole theory is the <a href="existence-and-uniqueness-for-ordinary-differential-equations.html">existence theorem for ordinary equations</a> transported along a family of curves &#x2013; and the failures of the method, where characteristics cross or run along the data, are the failures of the problem itself.</p>
+<p class="rel"><span>needs</span> <a href="differentiability-in-several-variables.html">Differentiability in several variables</a>, <a href="existence-and-uniqueness-for-ordinary-differential-equations.html">Existence and uniqueness for ordinary differential equations</a>, <a href="regular-curves-arc-length-and-curvature.html">Regular curves, arc length and curvature</a>, <a href="the-inverse-and-implicit-function-theorems.html">The inverse and implicit function theorems</a>, <a href="the-rules-of-differentiation.html">The rules of differentiation</a></p>
+<p class="rel"><span>unlocks</span> <a href="the-wave-equation-dalemberts-formula-and-energy.html">The wave equation: d'Alembert's formula and energy</a></p>
+<p class="rel"><span>mentioned in</span> <a href="partial-differential-equations.html">Partial differential equations</a></p>
+<details class="path"><summary>Learning path: 55 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-algebra-of-continuous-functions-and-composition.html">The algebra of continuous functions and composition</a></li><li><a href="one-sided-limits-and-the-discontinuities-of-a-monotone-function.html">One-sided limits and the discontinuities of a monotone function</a></li><li><a href="the-intermediate-value-theorem.html">The intermediate value theorem</a></li><li><a href="the-continuous-image-of-an-interval-and-the-continuous-inverse.html">The continuous image of an interval and the continuous inverse</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-rules-of-differentiation.html">The rules of differentiation</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="differentiability-in-several-variables.html">Differentiability in several variables</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="the-contraction-mapping-principle.html">The contraction mapping principle</a></li><li><a href="the-inverse-and-implicit-function-theorems.html">The inverse and implicit function theorems</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="the-fundamental-theorem-of-calculus.html">The fundamental theorem of calculus</a></li><li><a href="integration-by-parts-and-substitution.html">Integration by parts and substitution</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="regular-curves-arc-length-and-curvature.html">Regular curves, arc length and curvature</a></li><li><a href="existence-and-uniqueness-for-ordinary-differential-equations.html">Existence and uniqueness for ordinary differential equations</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgef21ace">
+<p>
+A <i>linear first-order equation</i> on an open <img class="m" src="m/003133b3b3cda96f786e007944ce1d4f4cd012d0.svg" alt="\(U\subseteq\R^{n}\)" style="height:0.904em;vertical-align:-0.145em"> is
+<div class="mb"><img class="m" src="m/4a64de9f4e016fc8a4615cc244519be7bf7bd7e1.svg" alt="\[ \sum_{i=1}^{n} a_{i}(x)\,\partial_{i}u(x) = c(x)\,u(x) + d(x), \]" style="width:16.819em"></div>
+with <img class="m" src="m/67d2f1f31f76f6289a55db7c3e6cd93754fc7fcc.svg" alt="\(a = (a_{i})\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em">, <img class="m" src="m/ad855e27454841e8ad2eca7f08dfc4eb67657f15.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em"> of class <img class="m" src="m/137c7a7820d2ce9b6547f412208e261180f342ab.svg" alt="\(C^{1}\)" style="height:0.892em;vertical-align:-0.000em">. The
+<i>characteristic curves</i> are the solutions of the ordinary system
+<img class="m" src="m/2907ed44d25569b44e5d82cafa9b7ef3e84b29ac.svg" alt="\(\dot{x}(s) = a(x(s))\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org363c9b4">
+<p>
+Let <img class="m" src="m/43f1d6c46cc02af73d5390471e1c8c127d40b707.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em"> be a <img class="m" src="m/137c7a7820d2ce9b6547f412208e261180f342ab.svg" alt="\(C^{1}\)" style="height:0.892em;vertical-align:-0.000em"> solution and <img class="m" src="m/1d66f07901314cf1af7acf0895c8ee0cbc96a561.svg" alt="\(x(s)\)" style="height:1.096em;vertical-align:-0.274em"> a characteristic. Then
+<img class="m" src="m/a1ace73166f8b47b42fc154fd1885b84006459a9.svg" alt="\(z(s) = u(x(s))\)" style="height:1.096em;vertical-align:-0.274em"> satisfies the ordinary differential equation
+<img class="m" src="m/f03ab614ca78121d9790096358f749ffdc9b8728.svg" alt="\(\dot{z} = c(x(s))z + d(x(s))\)" style="height:1.096em;vertical-align:-0.274em">; conversely, if <img class="m" src="m/43f1d6c46cc02af73d5390471e1c8c127d40b707.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em"> is <img class="m" src="m/137c7a7820d2ce9b6547f412208e261180f342ab.svg" alt="\(C^{1}\)" style="height:0.892em;vertical-align:-0.000em"> and
+this holds along every characteristic, <img class="m" src="m/43f1d6c46cc02af73d5390471e1c8c127d40b707.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em"> solves the equation.
+</p>
+
+</div>
+
+<div class="proof" id="orgfb1395b">
+<p>
+By the chain rule
+<img class="m" src="m/4d82e6909664cb3d4dfac97f7f957396cb1a8f7c.svg" alt="\(\dot{z}(s) = \inner{\nabla u(x(s))}{\dot{x}(s)} = \sum_{i}a_{i}(x(s))\partial_{i}u(x(s))\)" style="height:1.151em;vertical-align:-0.334em">,
+which the equation identifies with <img class="m" src="m/e1e1766d3740a5089866093f5f79a720a3d1983d.svg" alt="\(c u + d\)" style="height:0.852em;vertical-align:-0.094em"> at that point. Since
+through every point there passes a characteristic &#x2013; the ordinary system
+has a solution with that initial condition, its right-hand side being
+<img class="m" src="m/137c7a7820d2ce9b6547f412208e261180f342ab.svg" alt="\(C^{1}\)" style="height:0.892em;vertical-align:-0.000em"> hence locally Lipschitz &#x2013; the converse holds pointwise.
+</p>
+
+</div>
+
+<div class="theorem" id="org425b186">
+<p>
+Let <img class="m" src="m/5796c634d462ef24fe68177451a21e2de90be21e.svg" alt="\(S \subseteq U\)" style="height:0.898em;vertical-align:-0.153em"> be a <img class="m" src="m/137c7a7820d2ce9b6547f412208e261180f342ab.svg" alt="\(C^{1}\)" style="height:0.892em;vertical-align:-0.000em"> hypersurface and <img class="m" src="m/57443f34544959e1bc117a067718cac8b808b96d.svg" alt="\(u_{0}\)" style="height:0.636em;vertical-align:-0.165em"> a
+<img class="m" src="m/137c7a7820d2ce9b6547f412208e261180f342ab.svg" alt="\(C^{1}\)" style="height:0.892em;vertical-align:-0.000em"> function on <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">. If <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> is nowhere tangent to <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> &#x2013;
+<img class="m" src="m/d359012975a4312a37a3146eb53bb99ca047243c.svg" alt="\(\inner{a(x)}{\nu(x)}\ne0\)" style="height:1.096em;vertical-align:-0.274em"> for the normal <img class="m" src="m/2e821535866477279e66ecec52ddffa7b864b1d3.svg" alt="\(\nu\)" style="height:0.472em;vertical-align:-0.000em"> at each <img class="m" src="m/aa5e9b66b05ad8372d01b950834a60169cc40839.svg" alt="\(x \in S\)" style="height:0.792em;vertical-align:-0.040em">
+&#x2013; then the Cauchy problem "<img class="m" src="m/43f1d6c46cc02af73d5390471e1c8c127d40b707.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em"> solves the equation and <img class="m" src="m/948863965a61b3891f8e9ab932eb33923cab3afb.svg" alt="\(u = u_{0}\)" style="height:0.636em;vertical-align:-0.165em">
+on <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">" has exactly one <img class="m" src="m/137c7a7820d2ce9b6547f412208e261180f342ab.svg" alt="\(C^{1}\)" style="height:0.892em;vertical-align:-0.000em"> solution on a neighbourhood of
+<img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org6c2753c">
+<p>
+Parametrise <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> locally by <img class="m" src="m/b5ae4ab748660714f7495dbb4c968ec582653b57.svg" alt="\(y \mapsto \gamma(y)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> in an open
+subset of <img class="m" src="m/ad21f79e3689b99b446463bd0d8ed9ca37bf0700.svg" alt="\(\R^{n-1}\)" style="height:0.892em;vertical-align:-0.000em">. Solve the characteristic system with initial
+value <img class="m" src="m/cf363a0919496322f904a491f8cbf1ec57992e7b.svg" alt="\(\gamma(y)\)" style="height:1.096em;vertical-align:-0.274em">, obtaining <img class="m" src="m/84582f49e420ebacd3d659ff1d36f47b097133f2.svg" alt="\(X(s,y)\)" style="height:1.096em;vertical-align:-0.274em">, and solve the ordinary
+equation of the previous proposition with initial value <img class="m" src="m/a226abddc4bc285c5548b810447263a18238e468.svg" alt="\(u_{0}(\gamma(y))\)" style="height:1.096em;vertical-align:-0.274em">,
+obtaining <img class="m" src="m/c6a750b2caf144337beb7cedc1f4bd60076520d8.svg" alt="\(Z(s,y)\)" style="height:1.096em;vertical-align:-0.274em">; both depend smoothly on the data by the existence
+and uniqueness theorem.
+</p>
+
+<p>
+The map <img class="m" src="m/32a71b77bc98ec9a680c025a7fda1b6bacb494cb.svg" alt="\((s,y)\mapsto X(s,y)\)" style="height:1.096em;vertical-align:-0.274em"> has differential at <img class="m" src="m/6c1b1804e2d6c961fa4300f145c82c956bc1ce13.svg" alt="\(s = 0\)" style="height:0.706em;vertical-align:-0.000em"> with
+columns <img class="m" src="m/5ff67e6f788bd4e6807ab256366d42bb8c15e062.svg" alt="\(a(\gamma(y))\)" style="height:1.096em;vertical-align:-0.274em"> and the tangent vectors to <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">; by the
+transversality hypothesis these are independent, so the map is a local
+diffeomorphism by the inverse function theorem. Define
+<img class="m" src="m/1080dfac1c26a7863aef063c875531fb43fd3d79.svg" alt="\(u(X(s,y)) = Z(s,y)\)" style="height:1.096em;vertical-align:-0.274em">, which is therefore a well-defined <img class="m" src="m/137c7a7820d2ce9b6547f412208e261180f342ab.svg" alt="\(C^{1}\)" style="height:0.892em;vertical-align:-0.000em">
+function near <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">; by the proposition it solves the equation and it
+restricts to <img class="m" src="m/57443f34544959e1bc117a067718cac8b808b96d.svg" alt="\(u_{0}\)" style="height:0.636em;vertical-align:-0.165em"> at <img class="m" src="m/6c1b1804e2d6c961fa4300f145c82c956bc1ce13.svg" alt="\(s = 0\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+
+<p>
+Uniqueness: any solution must satisfy the ordinary equation along each
+characteristic with the prescribed initial value, and the solution of
+that ordinary problem is unique.
+</p>
+
+</div>
+
+<div class="corollary" id="org7eb30a2">
+<p>
+The equation <img class="m" src="m/c5ca40162338a10c5afb6a4b6792da01968976ad.svg" alt="\(\partial_{t}u + b\cdot\nabla_{x}u = 0\)" style="height:0.925em;vertical-align:-0.167em"> with constant
+<img class="m" src="m/451bc3b387d5e716be76177bbfca7e098292c82a.svg" alt="\(b \in \R^{n}\)" style="height:0.804em;vertical-align:-0.040em"> and data <img class="m" src="m/3f755cf7ceb0a1dd244af7f3e44813c5d10cae75.svg" alt="\(u(0,x) = u_{0}(x)\)" style="height:1.096em;vertical-align:-0.274em"> has the unique solution
+<img class="m" src="m/084c1f8ec7e124abb13cd5b8bbd2807136fa6181.svg" alt="\(u(t,x) = u_{0}(x-tb)\)" style="height:1.096em;vertical-align:-0.274em">: the data are transported at velocity <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em">
+without change of shape.
+</p>
+
+</div>
+
+<div class="proof" id="org4aee986">
+<p>
+The coefficient vector is <img class="m" src="m/ae2e4c665ebff5b217e471e191a2f3e94ed45f50.svg" alt="\((1,b)\)" style="height:1.096em;vertical-align:-0.274em"> in the variables <img class="m" src="m/b6c1f11e2ca2c93d993fad424040b32dc29ba1dc.svg" alt="\((t,x)\)" style="height:1.096em;vertical-align:-0.274em">, nowhere
+tangent to the hypersurface <img class="m" src="m/0f3512cb11f3ed79a7a660775f2bb8e9f1111670.svg" alt="\(\set{t=0}\)" style="height:1.096em;vertical-align:-0.274em">, whose normal is
+<img class="m" src="m/b5b5c5dca8a3278f1ad89ada63a4d70beb9d92fe.svg" alt="\((1,0)\)" style="height:1.096em;vertical-align:-0.274em">. The characteristics are <img class="m" src="m/ade6b4e9f0207f69a3b777feaa6c62bc161fc08d.svg" alt="\((t, x_{0}+tb)\)" style="height:1.096em;vertical-align:-0.274em">, along which the
+equation reads <img class="m" src="m/256970d986c8418e1b80a293a06506c171a4015b.svg" alt="\(\dot{z} = 0\)" style="height:0.732em;vertical-align:-0.000em">, so <img class="m" src="m/43f1d6c46cc02af73d5390471e1c8c127d40b707.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em"> is constant along them; its
+value is <img class="m" src="m/fced42bc9d6c55b377a8506fc533b934b310288e.svg" alt="\(u_{0}(x_{0})\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/5e84a0a3b2aebfa0d66b9db8b964255beaf10bdb.svg" alt="\(x_{0} = x - tb\)" style="height:0.925em;vertical-align:-0.167em">.
+</p>
+
+</div>
+
+<div class="remark" id="org9181fa1">
+<p>
+Transversality is not a technical convenience: where the data surface is
+characteristic, the equation prescribes the derivative of <img class="m" src="m/43f1d6c46cc02af73d5390471e1c8c127d40b707.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em"> <i>along</i>
+<img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">, so the problem is either overdetermined or has infinitely many
+solutions. That is the first instance of the theme running through the
+next three notes &#x2013; a partial differential equation is not solvable in
+the abstract, only relative to data placed where the equation lets
+information flow.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="sturm-liouville-problems-and-eigenfunction-expansions.html"><span>← previous</span>Sturm-Liouville problems and eigenfunction expansions</a><a rel="next" href="harmonic-functions-the-mean-value-property-and-the-dirichlet-problem.html"><span>next →</span>Harmonic functions, the mean value property and the Dirichlet problem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--partial-differential-equations.pdf" title="PDF manual">Partial Differential Equations</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

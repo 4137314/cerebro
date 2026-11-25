@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uniform boundedness, open mapping and closed graph · Mathematics</title>
+<meta name="description" content="Three theorems of Banach space theory have the same one-line proof scheme: cover the space by countably many closed sets, invoke the Baire category theorem to find one with interior, and translate that interior back to the origin by linearity. Completeness enters only through Baire, and each conclu…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/uniform-boundedness-open-mapping-and-closed-graph.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Uniform boundedness, open mapping and closed graph · Mathematics">
+<meta property="og:description" content="Three theorems of Banach space theory have the same one-line proof scheme: cover the space by countably many closed sets, invoke the Baire category theorem to find one with interior, and translate that interior back to the origin by linearity. Completeness enters only through Baire, and each conclu…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/uniform-boundedness-open-mapping-and-closed-graph.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--functional-analysis">Functional Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Functional Analysis</p>
+<h1>Uniform boundedness, open mapping and closed graph</h1>
+<p class="summary">Three theorems of Banach space theory have the same one-line proof scheme: cover the space by countably many closed sets, invoke the <a href="the-baire-category-theorem.html">Baire category theorem</a> to find one with interior, and translate that interior back to the origin by linearity. Completeness enters only through Baire, and each conclusion is a statement that pointwise information forces uniform information.</p>
+<p class="rel"><span>needs</span> <a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a>, <a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a>, <a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a>, <a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a>, <a href="the-baire-category-theorem.html">The Baire category theorem</a>, <a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></p>
+<p class="rel"><span>unlocks</span> <a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a>, <a href="the-hilbert-space-formalism-of-quantum-mechanics.html">The Hilbert space formalism of quantum mechanics</a></p>
+<p class="rel"><span>mentioned in</span> <a href="mathematics.html">Mathematics</a>, <a href="functional-analysis.html">Functional analysis</a></p>
+<details class="path"><summary>Learning path: 33 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="the-baire-category-theorem.html">The Baire category theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org9333cfb">
+<p>
+A linear map <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> between normed spaces is <i>bounded</i> if
+<img class="m" src="m/571b68346ed051f2f8f928f4ed7b0acf2c22a82f.svg" alt="\(\norm{T} = \sup_{\norm{x}\le1}\norm{Tx}\)" style="height:1.282em;vertical-align:-0.461em"> is finite; then
+<img class="m" src="m/dbbf496f86e89efb2dd1a6cd725718f28a2e1149.svg" alt="\(\norm{Tx}\le\norm{T}\norm{x}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org1c81f86">
+<p>
+A linear map between normed spaces is continuous if and only if it is
+bounded, if and only if it is continuous at <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org3b4c637">
+<p>
+If <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> is bounded then <img class="m" src="m/b05212d3b45edebe3a0574228b9c5d1798496792.svg" alt="\(\norm{Tx-Ty}\le\norm{T}\norm{x-y}\)" style="height:1.096em;vertical-align:-0.274em">, so
+<img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> is continuous. Continuity implies continuity at <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">. If <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> is
+continuous at <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">, there is <img class="m" src="m/722b00acf7aef71aba0503bbe9a32ea420a49689.svg" alt="\(\delta&gt;0\)" style="height:0.804em;vertical-align:-0.040em"> with <img class="m" src="m/b1ffcc8086bc47ac58691776a4f42d51cbe799ec.svg" alt="\(\norm{Tx}\le1\)" style="height:1.096em;vertical-align:-0.274em"> for
+<img class="m" src="m/d043026b4a37983a043e4e5c35cf01609cd150bd.svg" alt="\(\norm{x}\le\delta\)" style="height:1.096em;vertical-align:-0.274em">; then for <img class="m" src="m/85b575c7329fcef97e8120c92b21412f0d9ffb90.svg" alt="\(\norm{x}\le1\)" style="height:1.096em;vertical-align:-0.274em">,
+<img class="m" src="m/703c4890decbc5c53f0b223f35eed479c5e0f239.svg" alt="\(\norm{Tx} = \delta^{-1}\norm{T(\delta x)}\le\delta^{-1}\)" style="height:1.166em;vertical-align:-0.268em">, so <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> is
+bounded.
+</p>
+
+</div>
+
+<div class="theorem" id="orge30fc26">
+<p>
+Let <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> be a Banach space, <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em"> a normed space and <img class="m" src="m/d4978a0459c9e7c40623ca4491ab4ede1803f6f7.svg" alt="\(\mathcal{T}\)" style="height:0.749em;vertical-align:-0.000em"> a
+family of bounded operators <img class="m" src="m/7853574e8a8f08ec549ce5d8f18128e3cda64984.svg" alt="\(V \to W\)" style="height:0.749em;vertical-align:-0.000em"> with
+<img class="m" src="m/512c8f57d926315586e26001df153987dcba32ec.svg" alt="\(\sup_{T\in\mathcal{T}}\norm{Tx}&lt;\infty\)" style="height:1.148em;vertical-align:-0.321em"> for every <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">. Then
+<img class="m" src="m/0f03535ca4f4c7300adff562a6c32ada1140c32e.svg" alt="\(\sup_{T\in\mathcal{T}}\norm{T}&lt;\infty\)" style="height:1.148em;vertical-align:-0.321em">.
+</p>
+
+</div>
+
+<div class="proof" id="org9bf4c96">
+<p>
+Let <img class="m" src="m/b894a0bd211dbcfe9dd9d7a74d8c22cbc0d57788.svg" alt="\(A_{n} = \setst{x \in V}{\norm{Tx}\le n \text{ for all } T\in\mathcal{T}}\)" style="height:1.096em;vertical-align:-0.274em">.
+Each is closed, being an intersection of preimages of closed sets under
+continuous maps, and by the pointwise hypothesis
+<img class="m" src="m/e63c902c90763af6bd9cb1b4cfba6320ded83449.svg" alt="\(V = \bigcup_{n}A_{n}\)" style="height:1.151em;vertical-align:-0.334em">. By Baire some <img class="m" src="m/d0be415808466ac1360cf9274ab4337027491b49.svg" alt="\(A_{N}\)" style="height:0.913em;vertical-align:-0.164em"> has interior: it
+contains a ball <img class="m" src="m/8781691781df3185556ffe7b4d1bce7e687f980b.svg" alt="\(B(x_{0},r)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+For <img class="m" src="m/435abc4e67cf1a3eed5d6e816befca1c92d3b48d.svg" alt="\(\norm{y}\le r\)" style="height:1.096em;vertical-align:-0.274em"> and every <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em">,
+<img class="m" src="m/c6257e62e5ffa97d8390d039b3b5f743eb20f77f.svg" alt="\(\norm{Ty} \le \norm{T(x_{0}+y)} + \norm{Tx_{0}} \le 2N\)" style="height:1.096em;vertical-align:-0.274em">, since both
+<img class="m" src="m/daf5ac14de9b16df7fdcc2d51ee1822f65cad49a.svg" alt="\(x_{0}+y\)" style="height:0.852em;vertical-align:-0.213em"> and <img class="m" src="m/4f8246e7705a9c0df96e9d12bf2c596179c4d261.svg" alt="\(x_{0}\)" style="height:0.636em;vertical-align:-0.165em"> lie in <img class="m" src="m/d0be415808466ac1360cf9274ab4337027491b49.svg" alt="\(A_{N}\)" style="height:0.913em;vertical-align:-0.164em">. Hence
+<img class="m" src="m/28c9da66e14ffdee1feeb12af9560fcb90b8fded.svg" alt="\(\norm{T}\le 2N/r\)" style="height:1.096em;vertical-align:-0.274em"> for every <img class="m" src="m/661a2982f5211be037b3685eed6489c6bd66bc1c.svg" alt="\(T \in \mathcal{T}\)" style="height:0.792em;vertical-align:-0.040em">.
+</p>
+
+</div>
+
+<div class="corollary" id="orgf3cb94c">
+<p>
+If bounded operators <img class="m" src="m/d99a9bdb8ce3dd1ab4b2a20e8a5448de30766cbb.svg" alt="\(T_{n} \colon V \to W\)" style="height:0.913em;vertical-align:-0.164em"> on a Banach space
+converge pointwise to <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em">, then <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> is bounded and
+<img class="m" src="m/b54cca826fd0bde531eb29059be44d9c1e177486.svg" alt="\(\norm{T} \le \liminf_{n}\norm{T_{n}}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org417d6eb">
+<p>
+Each orbit <img class="m" src="m/23957532e721e2cef4f07e61b93c17bc4a5402d1.svg" alt="\((T_{n}x)\)" style="height:1.096em;vertical-align:-0.274em"> converges, hence is bounded, so the family is
+pointwise bounded and <img class="m" src="m/1877218bf24b4ac55b840a6040a5572f4cf0f3b8.svg" alt="\(\sup_{n}\norm{T_{n}} = M&lt;\infty\)" style="height:1.096em;vertical-align:-0.274em"> by the
+theorem. <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> is linear as a pointwise limit of linear maps, and
+<img class="m" src="m/0e37bd5cabd07ef2c98ffd96ff429dc35cdad53b.svg" alt="\(\norm{Tx} = \lim\norm{T_{n}x}\le M\norm{x}\)" style="height:1.096em;vertical-align:-0.274em">. The sharper bound
+follows by taking the limit inferior in <img class="m" src="m/c15e8c554db85cdd7c8576cf97462b46c0fdf57f.svg" alt="\(\norm{T_{n}x}\le\norm{T_{n}}\norm{x}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orge8c8231">
+<p>
+A surjective bounded operator <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> between Banach spaces is <i>open</i>: it
+maps open sets to open sets. Consequently a bijective bounded operator
+has a bounded inverse.
+</p>
+
+</div>
+
+<div class="proof" id="org09aa754">
+<p>
+Write <img class="m" src="m/e0bd9d3a1d0cb4a06169c4e2404b345b366e1802.svg" alt="\(B_{r}\)" style="height:0.913em;vertical-align:-0.164em"> for the open ball of radius <img class="m" src="m/6a662e32b188f7fd491c82ebcd46ddece8ed8644.svg" alt="\(r\)" style="height:0.472em;vertical-align:-0.000em"> about <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">. Since
+<img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> is surjective, <img class="m" src="m/5365aa1e03a576e9cb1642cd2f135b6181d9129c.svg" alt="\(W = \bigcup_{n}\overline{T(B_{n})}\)" style="height:1.370em;vertical-align:-0.329em">, so by Baire
+some <img class="m" src="m/6b082a59c87e2feed060aa4ee2b752a45be2136b.svg" alt="\(\overline{T(B_{n})}\)" style="height:1.315em;vertical-align:-0.276em"> has interior; scaling, <img class="m" src="m/c9312d39abcb90a9a9d48a4259813ba55143ec24.svg" alt="\(\overline{T(B_{1})}\)" style="height:1.315em;vertical-align:-0.276em">
+contains a ball <img class="m" src="m/4255798da39a2cfa7ed1bff2b81f1ee976ce2a82.svg" alt="\(B(y_{0},\rho)\)" style="height:1.096em;vertical-align:-0.274em">. By symmetry it also contains
+<img class="m" src="m/9094ca624f9ea7418633d577f99cd11d62b6212c.svg" alt="\(B(-y_{0},\rho)\)" style="height:1.096em;vertical-align:-0.274em">, and by convexity of <img class="m" src="m/c9312d39abcb90a9a9d48a4259813ba55143ec24.svg" alt="\(\overline{T(B_{1})}\)" style="height:1.315em;vertical-align:-0.276em"> &#x2013; the
+closure of a convex set is convex &#x2013; it contains <img class="m" src="m/8cff8e516f1fde03c4411e041c0f5195af30e300.svg" alt="\(B_{\rho}\)" style="height:1.062em;vertical-align:-0.319em">.
+</p>
+
+<p>
+Now remove the closure. Let <img class="m" src="m/cdebfdcac3ac20f289d6c2ba89d7f5153d1e9315.svg" alt="\(\norm{y}&lt;\rho/2\)" style="height:1.096em;vertical-align:-0.274em">. By the above,
+<img class="m" src="m/04a463aa5db941802c13a39e7c3d75262f6f9f98.svg" alt="\(y \in \overline{T(B_{1/2})}\)" style="height:1.431em;vertical-align:-0.386em">, so there is <img class="m" src="m/80b4ae26564277361e73d16530b6a263749be4fd.svg" alt="\(x_{1}\in B_{1/2}\)" style="height:1.139em;vertical-align:-0.387em"> with
+<img class="m" src="m/95512ab9bef9f26659407077685b76a48c9c6ad2.svg" alt="\(\norm{y - Tx_{1}}&lt;\rho/4\)" style="height:1.096em;vertical-align:-0.274em">; repeating with <img class="m" src="m/193c88f4ccb961f41c9f0e72560af1a6311437cb.svg" alt="\(y - Tx_{1}\)" style="height:0.962em;vertical-align:-0.212em"> in place of
+<img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em">, there is <img class="m" src="m/8804388b75f4b4e42b90b8a9f4d578413f3b1562.svg" alt="\(x_{2}\in B_{1/4}\)" style="height:1.139em;vertical-align:-0.387em"> with
+<img class="m" src="m/3386bd27e61a60b24616b105b64c08058525a9fc.svg" alt="\(\norm{y-Tx_{1}-Tx_{2}}&lt;\rho/8\)" style="height:1.096em;vertical-align:-0.274em">, and so on. The series
+<img class="m" src="m/ce25b339c643a9b2da4bd52c8d753444669bdbb1.svg" alt="\(\sum_{k}x_{k}\)" style="height:1.151em;vertical-align:-0.334em"> converges absolutely, hence converges in the Banach
+space <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> to some <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> with <img class="m" src="m/5a514447110541938b802af732f56118d9e3f6a8.svg" alt="\(\norm{x}&lt;1\)" style="height:1.096em;vertical-align:-0.274em">, and <img class="m" src="m/394a94e5a210ecc5c066ba34abfbd9d0d26670d6.svg" alt="\(Tx = y\)" style="height:0.962em;vertical-align:-0.212em"> by
+continuity. So <img class="m" src="m/2dc85e0a8dd8e7844799bffa2cc76dcb3ce7b821.svg" alt="\(T(B_{1}) \supseteq B_{\rho/2}\)" style="height:1.212em;vertical-align:-0.388em">.
+</p>
+
+<p>
+Openness follows: for <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> open and <img class="m" src="m/1edff0f8e5fc49cec2800fcd9e077e61498337b7.svg" alt="\(Tx \in T(U)\)" style="height:1.096em;vertical-align:-0.274em">, a ball
+<img class="m" src="m/5c540369bfaa8ec682bf64b92152c0a45f64deba.svg" alt="\(x + B_{r}\subseteq U\)" style="height:0.913em;vertical-align:-0.164em"> gives <img class="m" src="m/35f87eefb7c74a05893fd69470310b4bdc6bca5c.svg" alt="\(Tx + T(B_{r})\supseteq Tx + B_{r\rho/2}\)" style="height:1.212em;vertical-align:-0.388em">.
+A bijective <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> is then open, which is exactly continuity of
+<img class="m" src="m/654d00088bf3e768f9a0ffb3eafcf54faaa9c883.svg" alt="\(T^{-1}\)" style="height:0.892em;vertical-align:-0.000em">, and continuity of a linear map is boundedness.
+</p>
+
+</div>
+
+<div class="theorem" id="org2dcd43e">
+<p>
+Let <img class="m" src="m/7b6c6e4f0c5b4109f0b183ccb23f11a2aea677dd.svg" alt="\(T \colon V \to W\)" style="height:0.749em;vertical-align:-0.000em"> be linear between Banach spaces. If the graph
+<img class="m" src="m/6e4e3be21b9b9d096cffa2baa56d03c79a729b75.svg" alt="\(\Gamma = \setst{(x,Tx)}{x\in V}\)" style="height:1.096em;vertical-align:-0.274em"> is closed in <img class="m" src="m/a33ab04023a26eec93e4ace64c18e8b1f6fc5836.svg" alt="\(V\times W\)" style="height:0.840em;vertical-align:-0.092em">, then
+<img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> is bounded.
+</p>
+
+</div>
+
+<div class="proof" id="org85905a4">
+<p>
+<img class="m" src="m/ecb88cc495311bb90b9d4355305ea31f6c926ec1.svg" alt="\(V \times W\)" style="height:0.840em;vertical-align:-0.092em"> with the norm <img class="m" src="m/93de116e08deea6e00dc105da2d7685d534fc7f0.svg" alt="\(\norm{(x,y)} = \norm{x}+\norm{y}\)" style="height:1.096em;vertical-align:-0.274em"> is a
+Banach space, and <img class="m" src="m/9996b41dee40a937bfa74ff3e706a1a74354fc13.svg" alt="\(\Gamma\)" style="height:0.749em;vertical-align:-0.000em"> is a closed subspace of it, hence complete.
+The projection <img class="m" src="m/521538336109e09388de3afa84d09057f71508e2.svg" alt="\(\pi_{1}\colon\Gamma\to V\)" style="height:0.913em;vertical-align:-0.164em"> is linear, bounded and
+bijective &#x2013; injective because <img class="m" src="m/a175fdac414827e61610503ecd2cb270f629af6d.svg" alt="\(Tx\)" style="height:0.749em;vertical-align:-0.000em"> is determined by <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, surjective
+by definition. By the open mapping theorem its inverse
+<img class="m" src="m/fe0c786fe5b398c0ac5f030c72872be00bfca271.svg" alt="\(x \mapsto (x,Tx)\)" style="height:1.096em;vertical-align:-0.274em"> is bounded, so
+<img class="m" src="m/9a953e94f15f9d624cf8e91cf16c7f21076b99f3.svg" alt="\(\norm{x}+\norm{Tx}\le C\norm{x}\)" style="height:1.096em;vertical-align:-0.274em">, giving <img class="m" src="m/8991750d1448c6b0236ce1f3a196420992521d6d.svg" alt="\(\norm{Tx}\le C\norm{x}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="remark" id="orgadca5a5">
+<p>
+The closed graph theorem replaces the two conditions "<img class="m" src="m/5596eb585c5bcbe579f0496441432f575c7f2c22.svg" alt="\(x_{n}\to x\)" style="height:0.636em;vertical-align:-0.165em"> and
+<img class="m" src="m/c65fa75eab226dc740345abfc5a72b6b2fee9e1e.svg" alt="\(Tx_{n}\to y\)" style="height:0.962em;vertical-align:-0.212em"> imply <img class="m" src="m/e5c6dbb8649b5b534ed71056e344a0525e32850f.svg" alt="\(y = Tx\)" style="height:0.962em;vertical-align:-0.212em">" by the single condition of continuity
+&#x2013; it says one may assume the limit <img class="m" src="m/c5aff3c16947ae3978fc13a305eb164745925776.svg" alt="\(Tx_{n}\)" style="height:0.913em;vertical-align:-0.164em"> exists. That is a
+genuine simplification in practice, and it is false without
+completeness of both spaces, which is where Baire was used.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html"><span>← previous</span>Normed spaces and the equivalence of norms in finite dimension</a><a rel="next" href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html"><span>next →</span>Hilbert spaces: projection, Riesz representation and orthonormal bases</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--functional-analysis.pdf" title="PDF manual">Functional Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

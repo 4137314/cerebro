@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Observables, eigenvalues and spectral decomposition · Physics</title>
+<meta name="description" content="A Hermitian operator A=A^\dagger has real eigenvalues and orthogonal eigenkets that form a basis, so A=\sum_a a\ket a\bra a; two such bases are connected by a unitary U, and trace and eigenvalues are basis independent.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/observables-and-spectral-decomposition.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Observables, eigenvalues and spectral decomposition · Physics">
+<meta property="og:description" content="A Hermitian operator A=A^\dagger has real eigenvalues and orthogonal eigenkets that form a basis, so A=\sum_a a\ket a\bra a; two such bases are connected by a unitary U, and trace and eigenvalues are basis independent.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/observables-and-spectral-decomposition.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-mechanics">Quantum Mechanics</a> / <a rel="up" href="index.html#a-quantum-mechanics--postulates">Postulates</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Quantum Mechanics · Postulates</p>
+<h1>Observables, eigenvalues and spectral decomposition</h1>
+<p class="summary">A Hermitian operator <img class="m" src="m/0e13f4ea7b3f16c7e65b6e219c544b124c1fd4bf.svg" alt="\(A=A^\dagger\)" style="height:0.930em;vertical-align:-0.000em"> has real eigenvalues and orthogonal eigenkets that form a basis, so <img class="m" src="m/3b4413e366759845c2c233668e0c917b8eb7e39a.svg" alt="\(A=\sum_a a\ket a\bra a\)" style="height:1.151em;vertical-align:-0.334em">; two such bases are connected by a unitary <img class="m" src="m/a9ab64b8eaca50a512ea62d72ab16d1984c820de.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">, and trace and eigenvalues are basis independent.</p>
+<p class="rel"><span>needs</span> <a href="kets-bras-and-operators.html">Kets, bras and operators</a></p>
+<p class="rel"><span>unlocks</span> <a href="measurement-postulate.html">Measurement: Born rule and collapse</a>, <a href="time-independent-perturbation-theory.html">Time-independent perturbation theory</a>, <a href="self-adjoint-operators-and-spectral-theorem.html">Self-adjoint operators and the spectral theorem</a></p>
+<p class="rel"><span>see also</span> <a href="self-adjoint-operators-and-spectral-theorem.html">Self-adjoint operators and the spectral theorem</a>, <a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org30a7a07" class="outline-2">
+<h2 id="org30a7a07">Theorem</h2>
+<div class="outline-text-2" id="text-org30a7a07">
+<p>
+Let <img class="m" src="m/0e13f4ea7b3f16c7e65b6e219c544b124c1fd4bf.svg" alt="\(A=A^\dagger\)" style="height:0.930em;vertical-align:-0.000em"> on a finite-dimensional <img class="m" src="m/2ae09b62384d6cf4e9cc03a18473979fbb21ceed.svg" alt="\(\mathcal H\)" style="height:0.749em;vertical-align:-0.000em"> (the infinite case is in <a href="self-adjoint-operators-and-spectral-theorem.html">the spectral theorem</a>) <span class="cite">(<a class="ref" href="references.html#ref-neumann1932" data-full="J. von Neumann, Mathematische Grundlagen der Quantenmechanik (Springer, Berlin, 1932)." aria-label="J. von Neumann, Mathematische Grundlagen der Quantenmechanik (Springer, Berlin, 1932).">von Neumann 1932</a>)</span>.
+</p>
+<ol class="org-ol">
+<li>Its eigenvalues are real.</li>
+<li>Eigenkets of distinct eigenvalues are orthogonal.</li>
+<li>The normalised eigenkets can be chosen to form an orthonormal basis and <img class="m" src="m/92dedaffe5ef021bbf2b0dc7b8ebda58e934d1c0.svg" alt="\(A=\sum_a a\,\ket a\bra a\)" style="height:1.151em;vertical-align:-0.334em">.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org30e822e" class="outline-2">
+<h2 id="org30e822e">Proof</h2>
+<div class="outline-text-2" id="text-org30e822e">
+<p>
+From <img class="m" src="m/8791ddf36319b0b54e7b3cd79853d0517658f9b8.svg" alt="\(A\ket{a'}=a'\ket{a'}\)" style="height:1.098em;vertical-align:-0.274em"> and the adjoint of <img class="m" src="m/e1017c0b60bb8660c3cb7c0c9198028a219c0c42.svg" alt="\(A\ket{a''}=a''\ket{a''}\)" style="height:1.098em;vertical-align:-0.274em">, namely <img class="m" src="m/cb3177213d1f898dcb6237d35d82ac520c547b9f.svg" alt="\(\bra{a''}A=\bar a''\bra{a''}\)" style="height:1.098em;vertical-align:-0.274em">, sandwich:
+<div class="mb"><img class="m" src="m/983c785568a5fc86480eb4968a42af8f11b798c1.svg" alt="\[ \bra{a''}A\ket{a'}=a'\braket{a''|a'}=\bar a''\braket{a''|a'}\;\Rightarrow\;(a'-\bar a'')\braket{a''|a'}=0. \]" style="width:28.565em"></div>
+With <img class="m" src="m/70ad2f3f3d8280bcdadc201cd10d47ba698dbe15.svg" alt="\(a''=a'\)" style="height:0.824em;vertical-align:-0.000em"> and <img class="m" src="m/af0c2ee59b62149005f190cbeb2b0c66788e9db6.svg" alt="\(\braket{a'|a'}&gt;0\)" style="height:1.098em;vertical-align:-0.274em">: <img class="m" src="m/aee27d5b0693f2d308adc42015273641104d7553.svg" alt="\(a'=\bar a'\)" style="height:0.824em;vertical-align:-0.000em">, eigenvalues are real. With <img class="m" src="m/4069220cc09300757ebbb2f4aaa4e8fcd6b1811b.svg" alt="\(a'\neq a''\)" style="height:1.037em;vertical-align:-0.218em">: <img class="m" src="m/c118a5414522d218c016928c598d408e743fa799.svg" alt="\(\braket{a''|a'}=0\)" style="height:1.098em;vertical-align:-0.274em">. For completeness: the eigenspace <img class="m" src="m/b1823c2844011c3351ca12a680a0432837e249b6.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> of one eigenvalue is invariant, and so is <img class="m" src="m/97a3362ab2e1b69e0420cbf6e7d7445bc5171a2b.svg" alt="\(V^\perp\)" style="height:0.930em;vertical-align:-0.000em"> (if <img class="m" src="m/87a9124498540a7d4311a8e9cb923f5660ac5bec.svg" alt="\(w\perp V\)" style="height:0.761em;vertical-align:-0.000em">, <img class="m" src="m/cad0026fce07806fda4d34490f9608a6d06d4069.svg" alt="\(\braket{v|Aw}=\braket{Av|w}=a\braket{v|w}=0\)" style="height:1.096em;vertical-align:-0.274em">); induction on dimension on <img class="m" src="m/97a3362ab2e1b69e0420cbf6e7d7445bc5171a2b.svg" alt="\(V^\perp\)" style="height:0.930em;vertical-align:-0.000em"> gives a basis.
+</p>
+</div>
+</div>
+<div id="outline-container-org451787f" class="outline-2">
+<h2 id="org451787f">Change of basis</h2>
+<div class="outline-text-2" id="text-org451787f">
+<p>
+If <img class="m" src="m/2020b1201a24c4412268915af8ec7d1a8e4d80df.svg" alt="\(\{\ket{a}\}\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/e79d6b56c99168531de677570f765f207fdb5623.svg" alt="\(\{\ket{b}\}\)" style="height:1.096em;vertical-align:-0.274em"> are two orthonormal bases, <img class="m" src="m/f219fe1c58f579ebe126295926c2d9353a42d24d.svg" alt="\(U=\sum_k\ket{b^{(k)}}\bra{a^{(k)}}\)" style="height:1.302em;vertical-align:-0.325em"> is unitary, <img class="m" src="m/950df7edc6fc9c5a1785d2ad1e683a091694e8d4.svg" alt="\(U^\dagger U=1\)" style="height:0.930em;vertical-align:-0.000em">. Matrix elements transform as <img class="m" src="m/6b9a18d9237377f4cf50b5c2215bb4bb56ad4c22.svg" alt="\(X'=U^\dagger XU\)" style="height:0.930em;vertical-align:-0.000em">. Trace <img class="m" src="m/4a25a7917d0221350938a3283e1c43d437d7d6a8.svg" alt="\(\Tr X=\sum_a\bra aX\ket a\)" style="height:1.151em;vertical-align:-0.334em"> and the eigenvalues are invariant, since <img class="m" src="m/8cead7e03ac958f152f5414096ab9def13cf5f7f.svg" alt="\(\det(U^\dagger XU-\lambda)=\det(X-\lambda)\)" style="height:1.204em;vertical-align:-0.277em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org78306e4" class="outline-2">
+<h2 id="org78306e4">Worked example</h2>
+<div class="outline-text-2" id="text-org78306e4">
+<p>
+Diagonalise <img class="m" src="m/a0356fb61a19e1c5090c2b884cc8b27df18de507.svg" alt="\(\mathbf S\cdot\hat n\)" style="height:0.761em;vertical-align:-0.000em"> for <img class="m" src="m/3e841e9e0d7bf37612fe849c01f883582cecb12b.svg" alt="\(\hat n=(\sin\theta\cos\phi,\sin\theta\sin\phi,\cos\theta)\)" style="height:1.096em;vertical-align:-0.274em">:
+<div class="mb"><img class="m" src="m/c321d178638f281ff080721a162cdf79d6a84f1e.svg" alt="\[ \mathbf S\cdot\hat n=\frac\hbar2\begin{pmatrix}\cos\theta&amp;\sin\theta e^{-i\phi}\\ \sin\theta e^{i\phi}&amp;-\cos\theta\end{pmatrix},\quad \ket{\hat n;+}=\cos\tfrac\theta2\ket++e^{i\phi}\sin\tfrac\theta2\ket-. \]" style="width:32.476em"></div>
+Eigenvalues <img class="m" src="m/5d131ea71ca4d810a35e5cb6f2144c6f68fc3c23.svg" alt="\(\pm\hbar/2\)" style="height:1.096em;vertical-align:-0.274em"> for every direction: the trace is 0 and the determinant <img class="m" src="m/dce4cf28220cd5502c6251dc9631288de09d860b.svg" alt="\(-\hbar^2/4\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org94f5456" class="outline-2">
+<h2 id="org94f5456">Engineering applications</h2>
+<div class="outline-text-2" id="text-org94f5456">
+<p>
+Every measurable quantity of a device — qubit energy, spin, photon number, polarisation — is modelled by a Hermitian matrix; numerically, finding allowed energies of a quantum well or of a waveguide mode is an eigenvalue problem for a Hermitian matrix.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc834226" class="outline-2">
+<h2 id="orgc834226">Pitfall</h2>
+<div class="outline-text-2" id="text-orgc834226">
+<p>
+"Hermitian" in finite dimension is enough; in infinite dimension (position, momentum) one needs <b>self-adjoint</b> with the right domain, otherwise eigenvalues may be complex or the decomposition may fail.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="kets-bras-and-operators.html"><span>← previous</span>Kets, bras and operators</a><a rel="next" href="measurement-postulate.html"><span>next →</span>Measurement: Born rule and collapse</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-mechanics--postulates.pdf" title="PDF manual">Postulates</a> · <a class="pdf" href="pdf/quantum-mechanics.pdf" title="PDF manual">Quantum Mechanics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

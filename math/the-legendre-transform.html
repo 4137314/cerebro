@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Legendre transform · Mathematics</title>
+<meta name="description" content="Passing from the Lagrangian to the Hamiltonian is not a change of notation: it is a change of variable, from velocity to momentum, and what makes it invertible is convexity. Stated for a convex function of one variable first, because that is where the hypothesis is visible and the geometry – a func…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-legendre-transform.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The Legendre transform · Mathematics">
+<meta property="og:description" content="Passing from the Lagrangian to the Hamiltonian is not a change of notation: it is a change of variable, from velocity to momentum, and what makes it invertible is convexity. Stated for a convex function of one variable first, because that is where the hypothesis is visible and the geometry – a func…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-legendre-transform.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-physics">Physics</a> / <a rel="up" href="index.html#a-physics--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Physics · Real Analysis</p>
+<h1>The Legendre transform</h1>
+<p class="summary">Passing from the Lagrangian to the Hamiltonian is not a change of notation: it is a change of <b>variable</b>, from velocity to momentum, and what makes it invertible is convexity. Stated for a convex function of one variable first, because that is where the hypothesis is visible and the geometry &#x2013; a function recovered from the family of its tangent lines &#x2013; is the whole idea.</p>
+<p class="rel"><span>needs</span> <a href="convex-functions-and-the-second-derivative.html">Convex functions and the second derivative</a>, <a href="monotonicity-and-the-sign-of-the-derivative.html">Monotonicity and the sign of the derivative</a>, <a href="supremum-and-infimum.html">Supremum and infimum</a>, <a href="the-mean-value-theorem.html">The mean value theorem</a></p>
+<p class="rel"><span>unlocks</span> <a href="hamiltons-equations.html">Hamilton's equations</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a>, <a href="mathematical-physics.html">Mathematical physics</a></p>
+<details class="path"><summary>Learning path: 13 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="convex-functions-and-the-second-derivative.html">Convex functions and the second derivative</a></li><li><a href="monotonicity-and-the-sign-of-the-derivative.html">Monotonicity and the sign of the derivative</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgbbfcc0c">
+<p>
+Let <img class="m" src="m/ea7cbe3a1ac1b86df4949f780357da235bbf67e5.svg" alt="\(f \colon \R \to \R\)" style="height:0.974em;vertical-align:-0.214em"> be convex. Its <i>Legendre transform</i> is
+<div class="mb"><img class="m" src="m/5360e5bb9ec6a0ea35f740b7904234c92ae7dc49.svg" alt="\[ f^{*}(p) = \sup_{v \in \R} \bigl( p v - f(v) \bigr), \]" style="width:11.521em"></div>
+defined for those <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> where the supremum is finite.
+</p>
+
+</div>
+
+<div class="proposition" id="org3f5e9e8">
+<p>
+<img class="m" src="m/1a8c4e7532f8417e6a8d6446deaed5cfbdbafa4d.svg" alt="\(f^{*}\)" style="height:0.974em;vertical-align:-0.214em"> is convex on the set where it is finite.
+</p>
+
+</div>
+
+<div class="proof" id="org765f162">
+<p>
+For each fixed <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> the map <img class="m" src="m/eb39e73e8a72281905971bf25523f7733e50747e.svg" alt="\(p \mapsto pv - f(v)\)" style="height:1.096em;vertical-align:-0.274em"> is affine, hence
+convex. A supremum of convex functions is convex: for
+<img class="m" src="m/287123b2b17be141543c61a1e6381aef1be78088.svg" alt="\(\lambda \in [0,1]\)" style="height:1.096em;vertical-align:-0.274em">,
+<img class="m" src="m/d62529f327925ffb751558586ad8cb9ff69ecf62.svg" alt="\(\lambda g_{v}(p) + (1-\lambda) g_{v}(p') \ge g_{v}(\lambda p + (1-\lambda)p')\)" style="height:1.098em;vertical-align:-0.274em">
+for every <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em">, and taking the supremum on the left over <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> &#x2013;
+which only increases it &#x2013; preserves the inequality.
+</p>
+
+</div>
+
+<div class="theorem" id="orgdb395e6">
+<p>
+Let <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> be twice continuously differentiable with <img class="m" src="m/aa24b43787c130a24f33c6ce5ec2207bb11db1ca.svg" alt="\(f'' &gt; 0\)" style="height:1.037em;vertical-align:-0.218em">. Then
+for each <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> in the range of <img class="m" src="m/fcd248f8faa113603c50440935779dfa8223591a.svg" alt="\(f'\)" style="height:1.037em;vertical-align:-0.218em"> the supremum defining
+<img class="m" src="m/9e6133bd4a83e5c0243fd90142b21622792180fa.svg" alt="\(f^{*}(p)\)" style="height:1.096em;vertical-align:-0.274em"> is attained at the unique <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> with <img class="m" src="m/7ad4468a79334cc5b50b609bf779c5083d795765.svg" alt="\(f'(v) = p\)" style="height:1.098em;vertical-align:-0.274em">, and
+<div class="mb"><img class="m" src="m/03c40c7258c8c7a540df2ec8ea5caf980212e255.svg" alt="\[ f^{*}(p) = p v - f(v), \qquad (f^{*})'(p) = v. \]" style="width:17.299em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="orgcac20d6">
+<p>
+Fix <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> and put <img class="m" src="m/d18b140f1652d27e7332e3a68bae4cf57891d4a2.svg" alt="\(g(v) = pv - f(v)\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/d25ca895c6192dd615c7a8d525541c39c6cc607a.svg" alt="\(g'(v) = p - f'(v)\)" style="height:1.098em;vertical-align:-0.274em"> and
+<img class="m" src="m/71179ec2d232a384ca98265ac2fbfb944aa23c63.svg" alt="\(g'' = -f'' &lt; 0\)" style="height:1.037em;vertical-align:-0.218em">. Since <img class="m" src="m/aa24b43787c130a24f33c6ce5ec2207bb11db1ca.svg" alt="\(f'' &gt; 0\)" style="height:1.037em;vertical-align:-0.218em">, <img class="m" src="m/fcd248f8faa113603c50440935779dfa8223591a.svg" alt="\(f'\)" style="height:1.037em;vertical-align:-0.218em"> is strictly increasing, so
+<img class="m" src="m/f4fbcb48b235ccb81b53490477f71f9205dcd2c8.svg" alt="\(g'\)" style="height:1.037em;vertical-align:-0.218em"> vanishes at exactly one <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em">, and <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> increases before it and
+decreases after: that <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> is the unique maximum, so the supremum is
+attained there and equals <img class="m" src="m/d8f69eebec225ba11beb0bc9e69968e29a9bb87b.svg" alt="\(pv - f(v)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+For the derivative, let <img class="m" src="m/5bf9a7a614f3ad6ae0d2039ab596b10f4ef3ae12.svg" alt="\(v(p)\)" style="height:1.096em;vertical-align:-0.274em"> denote that unique point. Then
+<img class="m" src="m/770095ffdb02c4ae0d62874dd647fc96d80b0963.svg" alt="\(f^{*}(p) = p \, v(p) - f(v(p))\)" style="height:1.096em;vertical-align:-0.274em">, and differentiating,
+<div class="mb"><img class="m" src="m/2424bd91b06762c925902f5a6299295fbcaace81.svg" alt="\[ (f^{*})'(p) = v(p) + p \, v'(p) - f'(v(p)) v'(p) = v(p), \]" style="width:22.662em"></div>
+because <img class="m" src="m/14bead4eb848666efdfdd778cdbcb2b7b36b5b8e.svg" alt="\(f'(v(p)) = p\)" style="height:1.098em;vertical-align:-0.274em"> makes the last two terms cancel.
+</p>
+
+</div>
+
+<div class="remark" id="org80b2579">
+<p>
+The transform is an involution on strictly convex functions &#x2013; the
+derivative of <img class="m" src="m/1a8c4e7532f8417e6a8d6446deaed5cfbdbafa4d.svg" alt="\(f^{*}\)" style="height:0.974em;vertical-align:-0.214em"> inverts the derivative of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> &#x2013; and that is
+why the passage to the Hamiltonian loses nothing. Convexity of <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> in
+<img class="m" src="m/bc670cf5a33990613b474b2ba0db4e5f18254d7f.svg" alt="\(\dot q\)" style="height:0.945em;vertical-align:-0.217em"> is therefore not a technical convenience: it is the exact
+condition under which velocity and momentum determine each other.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-rao-blackwell-theorem.html"><span>← previous</span>The Rao-Blackwell theorem</a><a rel="next" href="the-action-functional-and-the-first-variation.html"><span>next →</span>The action functional and the first variation</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/physics--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">Physics</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

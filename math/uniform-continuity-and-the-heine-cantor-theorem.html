@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uniform continuity and the Heine--Cantor theorem · Mathematics</title>
+<meta name="description" content="Continuity allows \delta to depend on the point; uniform continuity does not. The distinction is invisible on a closed bounded interval – that is the theorem below – and decisive everywhere else: 1/x on (0,1] is continuous and not uniformly so.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/uniform-continuity-and-the-heine-cantor-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Uniform continuity and the Heine--Cantor theorem · Mathematics">
+<meta property="og:description" content="Continuity allows \delta to depend on the point; uniform continuity does not. The distinction is invisible on a closed bounded interval – that is the theorem below – and decisive everywhere else: 1/x on (0,1] is continuous and not uniformly so.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/uniform-continuity-and-the-heine-cantor-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Real Analysis</p>
+<h1>Uniform continuity and the Heine&#x2013;Cantor theorem</h1>
+<p class="summary">Continuity allows <img class="m" src="m/ae9908b1dd9140d114827a466a957908d1672568.svg" alt="\(\delta\)" style="height:0.761em;vertical-align:-0.000em"> to depend on the point; uniform continuity does not. The distinction is invisible on a closed bounded interval &#x2013; that is the theorem below &#x2013; and decisive everywhere else: <img class="m" src="m/282c1053ab67016f61f96b348b3fbe2090838106.svg" alt="\(1/x\)" style="height:1.096em;vertical-align:-0.274em"> on <img class="m" src="m/567ffe96ce52fb1227e476aaa24b411bd4d4db38.svg" alt="\((0,1]\)" style="height:1.096em;vertical-align:-0.274em"> is continuous and not uniformly so.</p>
+<p class="rel"><span>needs</span> <a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a>, <a href="limits-and-continuity.html">Limits and continuity</a></p>
+<p class="rel"><span>unlocks</span> <a href="the-riemann-integral.html">The Riemann integral</a>, <a href="equicontinuity-and-the-arzela-ascoli-theorem.html">Equicontinuity and the Arzela-Ascoli theorem</a>, <a href="fourier-series-fejers-theorem-and-parsevals-identity.html">Fourier series, Fejer's theorem and Parseval's identity</a>, <a href="the-weierstrass-approximation-theorem.html">The Weierstrass approximation theorem</a>, <a href="uniform-continuity-extension-and-the-completion-of-a-metric-space.html">Uniform continuity, extension and the completion of a metric space</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgdcfa813">
+<p>
+A function <img class="m" src="m/979c6360e64657e99af847a4effa6b30bfc2c4d0.svg" alt="\(f \colon D \to \R\)" style="height:0.974em;vertical-align:-0.214em"> is <i>uniformly continuous</i> if for every
+<img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> there is <img class="m" src="m/2834db4da57323bf6f47d0a640028cc90f572412.svg" alt="\(\delta &gt; 0\)" style="height:0.804em;vertical-align:-0.040em"> such that
+<img class="m" src="m/1db32cd90c9bafa010dae0c4ca1e88c6a2d855f7.svg" alt="\(\abs{f(x) - f(y)} &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em"> for all <img class="m" src="m/326a9be82df790be63c5cb396ae9537e2d8aec8c.svg" alt="\(x, y \in D\)" style="height:0.962em;vertical-align:-0.212em"> with
+<img class="m" src="m/13468d6554da3c0a2aadb7ba716275a61dd78cc4.svg" alt="\(\abs{x - y} &lt; \delta\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org825a35c">
+<p>
+A continuous function on a closed bounded interval <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em"> is
+uniformly continuous.
+</p>
+
+</div>
+
+<div class="proof" id="orgccc7f5d">
+<p>
+Suppose not. Then there is <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> such that for every <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> the
+choice <img class="m" src="m/6967469a957ad65420e2f839ae17e075b16f5367.svg" alt="\(\delta = 1/n\)" style="height:1.096em;vertical-align:-0.274em"> fails: there are <img class="m" src="m/1dd64820e6aad46f0047564a02295c9c0b4e183e.svg" alt="\(x_{n}, y_{n} \in [a,b]\)" style="height:1.096em;vertical-align:-0.274em"> with
+<img class="m" src="m/76873cdc39b1cc3785105f061af15513d38e3cdc.svg" alt="\(\abs{x_{n} - y_{n}} &lt; 1/n\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/7d6b0d6c30ccd2ac0cf8bfe88e37ff3aeae67c79.svg" alt="\(\abs{f(x_{n}) - f(y_{n})} \ge \eps\)" style="height:1.096em;vertical-align:-0.274em">. The sequence <img class="m" src="m/b7cb63ac317cdbd63367cfc4bd393717cb0e6e21.svg" alt="\((x_{n})\)" style="height:1.096em;vertical-align:-0.274em"> is
+bounded, so by Bolzano&#x2013;Weierstrass a subsequence <img class="m" src="m/607f9d4b95a97e39a6a06d0542ccd023d908b3e5.svg" alt="\(x_{n_{k}} \to c\)" style="height:0.753em;vertical-align:-0.278em">,
+and <img class="m" src="m/0bf7096054fe5b8aa2944f6c6543b720ad75dd27.svg" alt="\(c \in [a,b]\)" style="height:1.096em;vertical-align:-0.274em"> because the interval is closed. Since
+<img class="m" src="m/c7d81d749b60fb62537abdd6734ee2739e45ae8e.svg" alt="\(\abs{x_{n_{k}} - y_{n_{k}}} \to 0\)" style="height:1.103em;vertical-align:-0.276em">, also <img class="m" src="m/1bb61d2e9ccbe34cff41b5a4178d518e765d0b5a.svg" alt="\(y_{n_{k}} \to c\)" style="height:0.753em;vertical-align:-0.278em">.
+Continuity at <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> gives <img class="m" src="m/5189cb9b05b2de911eec6805f5014d63ff40d577.svg" alt="\(f(x_{n_{k}}) \to f(c)\)" style="height:1.103em;vertical-align:-0.276em"> and
+<img class="m" src="m/726a59497a12ef915bb2bb1aaf813589ee1f7abe.svg" alt="\(f(y_{n_{k}}) \to f(c)\)" style="height:1.103em;vertical-align:-0.276em">, so
+<img class="m" src="m/9bbd87ac52ed91d26c1cc20509e4b94ca79f8de5.svg" alt="\(\abs{f(x_{n_{k}}) - f(y_{n_{k}})} \to 0\)" style="height:1.103em;vertical-align:-0.276em">, contradicting that it is at
+least <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em"> for every <img class="m" src="m/5ec5e3b2fda230219e6719c59682076f93242498.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em">.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="extrema-in-several-variables-and-the-second-differential.html"><span>← previous</span>Extrema in several variables and the second differential</a><a rel="next" href="the-riemann-integral.html"><span>next →</span>The Riemann integral</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The mean value theorem · Mathematics</title>
+<meta name="description" content="Everything a first course deduces from the derivative – monotonicity, constancy, Taylor's remainder, the sign tests – goes through the mean value theorem, and the mean value theorem goes through Rolle. Three short proofs, in order of dependence.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-mean-value-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The mean value theorem · Mathematics">
+<meta property="og:description" content="Everything a first course deduces from the derivative – monotonicity, constancy, Taylor's remainder, the sign tests – goes through the mean value theorem, and the mean value theorem goes through Rolle. Three short proofs, in order of dependence.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-mean-value-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Analysis · Real Analysis</p>
+<h1>The mean value theorem</h1>
+<p class="summary">Everything a first course deduces from the derivative &#x2013; monotonicity, constancy, Taylor's remainder, the sign tests &#x2013; goes through the mean value theorem, and the mean value theorem goes through Rolle. Three short proofs, in order of dependence.</p>
+<p class="rel"><span>needs</span> <a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a>, <a href="the-derivative.html">The derivative</a></p>
+<p class="rel"><span>unlocks</span> <a href="cauchys-mean-value-theorem-and-de-lhopitals-rule.html">Cauchy's mean value theorem and de l'Hopital's rule</a>, <a href="constrained-extrema-and-lagrange-multipliers.html">Constrained extrema and Lagrange multipliers</a>, <a href="convex-functions-and-the-second-derivative.html">Convex functions and the second derivative</a>, <a href="differentiability-in-several-variables.html">Differentiability in several variables</a>, <a href="extrema-in-several-variables-and-the-second-differential.html">Extrema in several variables and the second differential</a>, <a href="monotonicity-and-the-sign-of-the-derivative.html">Monotonicity and the sign of the derivative</a>, <a href="taylors-theorem-with-the-lagrange-remainder.html">Taylor's theorem with the Lagrange remainder</a>, <a href="taylors-theorem-with-the-peano-remainder.html">Taylor's theorem with the Peano remainder</a>, <a href="the-fundamental-theorem-of-calculus.html">The fundamental theorem of calculus</a>, <a href="the-inverse-and-implicit-function-theorems.html">The inverse and implicit function theorems</a>, <a href="the-heat-equation-separation-of-variables-and-the-maximum-principle.html">The heat equation: separation of variables and the maximum principle</a>, <a href="regular-curves-arc-length-and-curvature.html">Regular curves, arc length and curvature</a>, <a href="the-legendre-transform.html">The Legendre transform</a>, <a href="equilibria-stability-and-the-lagrange-dirichlet-theorem.html">Equilibria, stability and the Lagrange-Dirichlet theorem</a>, <a href="hamiltons-equations.html">Hamilton's equations</a>, <a href="noethers-theorem.html">Noether's theorem</a>, <a href="the-euler-lagrange-equations.html">The Euler-Lagrange equations</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 10 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-derivative.html">The derivative</a></li></ol></details>
+</header>
+<main class="note">
+<div class="lemma" id="orge793977">
+<p>
+Let <img class="m" src="m/0161523f9df16e8afc4d4f08c53cc974de97ec72.svg" alt="\(f \colon (a,b) \to \R\)" style="height:1.096em;vertical-align:-0.274em"> be differentiable at an interior point
+<img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> at which <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> attains a local maximum or minimum. Then
+<img class="m" src="m/3d82e46bcd4ceeefd1bcfc53217c3f31f6efd15a.svg" alt="\(f'(c) = 0\)" style="height:1.098em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org4e3db5c">
+<p>
+Say <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> is a local maximum, so <img class="m" src="m/b00ac1d9aeb3fb77f0536422694bdf53396f8c2f.svg" alt="\(f(c + h) \le f(c)\)" style="height:1.096em;vertical-align:-0.274em"> for all small
+<img class="m" src="m/16406e642d08bd75f2ece8a49cf0ecd43d0a6b70.svg" alt="\(\abs{h}\)" style="height:1.096em;vertical-align:-0.274em">. For <img class="m" src="m/a850844b405d688a7f175705e4c94c8cc5b2067a.svg" alt="\(h &gt; 0\)" style="height:0.804em;vertical-align:-0.040em"> the quotient
+<img class="m" src="m/050861cdaafcd76bf6c49853c8630ddd85a8c86d.svg" alt="\((f(c+h) - f(c))/h\)" style="height:1.096em;vertical-align:-0.274em"> is <img class="m" src="m/7b67dd94485e9e31e17746ca2d331076a711abde.svg" alt="\(\le 0\)" style="height:0.855em;vertical-align:-0.145em">, so its limit <img class="m" src="m/9d6462634ffb8ee13ab7983a6ecd186804618504.svg" alt="\(f'(c) \le 0\)" style="height:1.098em;vertical-align:-0.274em">; for
+<img class="m" src="m/127f8d26036aa1987dbac526be0a534e46c1d370.svg" alt="\(h &lt; 0\)" style="height:0.804em;vertical-align:-0.040em"> the quotient is <img class="m" src="m/dec95da3b58f820bd5c53a977156c02a0399432a.svg" alt="\(\ge 0\)" style="height:0.855em;vertical-align:-0.145em">, so <img class="m" src="m/6992eb928924b91e4725ad569ebebdad8c5ec52f.svg" alt="\(f'(c) \ge 0\)" style="height:1.098em;vertical-align:-0.274em">. Hence
+<img class="m" src="m/3d82e46bcd4ceeefd1bcfc53217c3f31f6efd15a.svg" alt="\(f'(c) = 0\)" style="height:1.098em;vertical-align:-0.274em">. For a local minimum, apply this to <img class="m" src="m/260f963332ff7cc2fa4c5efa180922c4739a327e.svg" alt="\(-f\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgc8aaa87">
+<p>
+Let <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> be continuous on <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em">, differentiable on <img class="m" src="m/f9627dcf18914d532e44ebadb4f9ec6dcae0ab6c.svg" alt="\((a,b)\)" style="height:1.096em;vertical-align:-0.274em">, with
+<img class="m" src="m/99cb9eb0ced4639fe0632396fceffbc18533094b.svg" alt="\(f(a) = f(b)\)" style="height:1.096em;vertical-align:-0.274em">. Then <img class="m" src="m/3d82e46bcd4ceeefd1bcfc53217c3f31f6efd15a.svg" alt="\(f'(c) = 0\)" style="height:1.098em;vertical-align:-0.274em"> for some <img class="m" src="m/a06fa0a34dda64070d269dda53ddf998f417b711.svg" alt="\(c \in (a,b)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org91959ba">
+<p>
+By the extreme value theorem <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> attains a maximum and a minimum on
+<img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em">. If both are attained at the endpoints then, since
+<img class="m" src="m/99cb9eb0ced4639fe0632396fceffbc18533094b.svg" alt="\(f(a) = f(b)\)" style="height:1.096em;vertical-align:-0.274em">, the maximum equals the minimum and <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is constant,
+so <img class="m" src="m/fcd248f8faa113603c50440935779dfa8223591a.svg" alt="\(f'\)" style="height:1.037em;vertical-align:-0.218em"> vanishes throughout <img class="m" src="m/f9627dcf18914d532e44ebadb4f9ec6dcae0ab6c.svg" alt="\((a,b)\)" style="height:1.096em;vertical-align:-0.274em">. Otherwise one of them is
+attained at an interior point <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em">, and the lemma gives <img class="m" src="m/3d82e46bcd4ceeefd1bcfc53217c3f31f6efd15a.svg" alt="\(f'(c) = 0\)" style="height:1.098em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org29bb397">
+<p>
+Let <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> be continuous on <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em"> and differentiable on <img class="m" src="m/f9627dcf18914d532e44ebadb4f9ec6dcae0ab6c.svg" alt="\((a,b)\)" style="height:1.096em;vertical-align:-0.274em">.
+Then there is <img class="m" src="m/a06fa0a34dda64070d269dda53ddf998f417b711.svg" alt="\(c \in (a,b)\)" style="height:1.096em;vertical-align:-0.274em"> with
+<div class="mb"><img class="m" src="m/ebd3e9c9e2891db08453871ed09601ee07fc0161.svg" alt="\[ f'(c) = \frac{f(b) - f(a)}{b - a}. \]" style="width:9.720em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="org8b3a1f8">
+<p>
+Apply Rolle's theorem to
+<img class="m" src="m/26e6550812ce4b9a16f7ff0e040d3b61cdb16488.svg" alt="\(g(x) = f(x) - f(a) - \frac{f(b) - f(a)}{b - a}(x - a)\)" style="height:1.576em;vertical-align:-0.473em">, which is
+continuous on <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em">, differentiable on <img class="m" src="m/f9627dcf18914d532e44ebadb4f9ec6dcae0ab6c.svg" alt="\((a,b)\)" style="height:1.096em;vertical-align:-0.274em">, and satisfies
+<img class="m" src="m/3e1bf5dfc603c56c67564dd335fbcfc8f13fd5ad.svg" alt="\(g(a) = g(b) = 0\)" style="height:1.096em;vertical-align:-0.274em">. A point <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> with <img class="m" src="m/7b1e6ecf815995cca7b3ba387cf84973847f4e3e.svg" alt="\(g'(c) = 0\)" style="height:1.098em;vertical-align:-0.274em"> is a point with
+<img class="m" src="m/ea1d637109fb8f1b074360b425000c37b71fa9be.svg" alt="\(f'(c) = (f(b) - f(a))/(b-a)\)" style="height:1.098em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="corollary" id="orgf62b66d">
+<p>
+If <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is differentiable on an interval <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/167f3ae3e884ff7e470030b35f6e4e6ad9adb379.svg" alt="\(f' \equiv 0\)" style="height:1.037em;vertical-align:-0.218em">,
+then <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is constant. Consequently two functions with the same
+derivative on <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> differ by a constant.
+</p>
+
+</div>
+
+<div class="proof" id="orge7b106b">
+<p>
+Let <img class="m" src="m/cd381fb892d8b86197abf6604b87376f8fee3a18.svg" alt="\(x &lt; y\)" style="height:0.804em;vertical-align:-0.217em"> in <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em">. By the mean value theorem on <img class="m" src="m/3340d0b0aa4ac2520adc0f98255cac2026207738.svg" alt="\([x,y]\)" style="height:1.096em;vertical-align:-0.274em"> there is
+<img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> with <img class="m" src="m/ba8a0bc1f6dc21a413210180faa4d511575a9983.svg" alt="\(f(y) - f(x) = f'(c)(y - x) = 0\)" style="height:1.098em;vertical-align:-0.274em">, so <img class="m" src="m/e51be17cf720479fed264acaf5d8c61b443a8040.svg" alt="\(f(y) = f(x)\)" style="height:1.096em;vertical-align:-0.274em">. For
+the consequence, apply this to the difference of the two functions.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="absolute-convergence-and-the-comparison-test.html"><span>← previous</span>Absolute convergence and the comparison test</a><a rel="next" href="cauchys-mean-value-theorem-and-de-lhopitals-rule.html"><span>next →</span>Cauchy's mean value theorem and de l'Hopital's rule</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

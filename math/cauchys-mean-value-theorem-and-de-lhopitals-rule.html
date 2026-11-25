@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cauchy's mean value theorem and de l'Hopital's rule · Mathematics</title>
+<meta name="description" content="The mean value theorem compares a function with the identity. Cauchy's version compares two functions with each other, and that single change of viewpoint is what makes an indeterminate quotient tractable: the ratio of the increments becomes the ratio of the derivatives at one common point. De l'Ho…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/cauchys-mean-value-theorem-and-de-lhopitals-rule.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Cauchy's mean value theorem and de l'Hopital's rule · Mathematics">
+<meta property="og:description" content="The mean value theorem compares a function with the identity. Cauchy's version compares two functions with each other, and that single change of viewpoint is what makes an indeterminate quotient tractable: the ratio of the increments becomes the ratio of the derivatives at one common point. De l'Ho…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/cauchys-mean-value-theorem-and-de-lhopitals-rule.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Analysis · Real Analysis</p>
+<h1>Cauchy's mean value theorem and de l'Hopital's rule</h1>
+<p class="summary">The mean value theorem compares a function with the identity. Cauchy's version compares two functions with each other, and that single change of viewpoint is what makes an indeterminate quotient tractable: the ratio of the increments becomes the ratio of the derivatives at one common point. De l'Hopital's rule is that observation with a limit taken.</p>
+<p class="rel"><span>needs</span> <a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a>, <a href="the-mean-value-theorem.html">The mean value theorem</a></p>
+<p class="rel"><span>unlocks</span> <a href="taylors-theorem-with-the-peano-remainder.html">Taylor's theorem with the Peano remainder</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 11 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="theorem" id="org8838d9e">
+<p>
+Let <img class="m" src="m/52fffc9055064e5c85f3c1e5957d19079fc01ab2.svg" alt="\(f, g\)" style="height:0.974em;vertical-align:-0.214em"> be continuous on <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em"> and differentiable on
+<img class="m" src="m/f9627dcf18914d532e44ebadb4f9ec6dcae0ab6c.svg" alt="\((a,b)\)" style="height:1.096em;vertical-align:-0.274em">. Then there is <img class="m" src="m/a06fa0a34dda64070d269dda53ddf998f417b711.svg" alt="\(c \in (a,b)\)" style="height:1.096em;vertical-align:-0.274em"> with
+<div class="mb"><img class="m" src="m/b62e028a3b041d532063ad3306cd170afa1c858f.svg" alt="\[ \bigl( f(b) - f(a) \bigr) g'(c) = \bigl( g(b) - g(a) \bigr) f'(c). \]" style="width:18.880em"></div>
+If moreover <img class="m" src="m/f4fbcb48b235ccb81b53490477f71f9205dcd2c8.svg" alt="\(g'\)" style="height:1.037em;vertical-align:-0.218em"> never vanishes on <img class="m" src="m/f9627dcf18914d532e44ebadb4f9ec6dcae0ab6c.svg" alt="\((a,b)\)" style="height:1.096em;vertical-align:-0.274em">, then <img class="m" src="m/df9b729933e764828fc80ac1cdf9945d2ffc4962.svg" alt="\(g(b) \ne g(a)\)" style="height:1.096em;vertical-align:-0.274em">
+and the conclusion may be written as a ratio.
+</p>
+
+</div>
+
+<div class="proof" id="org83abf6a">
+<p>
+Put <img class="m" src="m/c2c67a273a69f23ec5405c8daf174ddf842b12ed.svg" alt="\(h(x) = (f(b) - f(a)) g(x) - (g(b) - g(a)) f(x)\)" style="height:1.096em;vertical-align:-0.274em">. It is
+continuous on <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em">, differentiable on <img class="m" src="m/f9627dcf18914d532e44ebadb4f9ec6dcae0ab6c.svg" alt="\((a,b)\)" style="height:1.096em;vertical-align:-0.274em">, and
+<div class="mb"><img class="m" src="m/f62cf444edfb138891d2bf7bf7842747a85b5a9b.svg" alt="\[ h(a) = f(b) g(a) - f(a) g(b) = h(b), \]" style="width:16.525em"></div>
+as a direct expansion of both sides shows. Rolle's theorem gives
+<img class="m" src="m/a06fa0a34dda64070d269dda53ddf998f417b711.svg" alt="\(c \in (a,b)\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/a944deb21ba463283ffe02b242d69f38da07ea9f.svg" alt="\(h'(c) = 0\)" style="height:1.098em;vertical-align:-0.274em">, which is the claim. If <img class="m" src="m/f4fbcb48b235ccb81b53490477f71f9205dcd2c8.svg" alt="\(g'\)" style="height:1.037em;vertical-align:-0.218em"> never
+vanishes then <img class="m" src="m/59d19ff84c3964762ff41862e6c8f52c76629ca4.svg" alt="\(g(b) = g(a)\)" style="height:1.096em;vertical-align:-0.274em"> would give, by Rolle applied to <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em">, a
+zero of <img class="m" src="m/f4fbcb48b235ccb81b53490477f71f9205dcd2c8.svg" alt="\(g'\)" style="height:1.037em;vertical-align:-0.218em">; so <img class="m" src="m/df9b729933e764828fc80ac1cdf9945d2ffc4962.svg" alt="\(g(b) \ne g(a)\)" style="height:1.096em;vertical-align:-0.274em"> and one may divide.
+</p>
+
+</div>
+
+<div class="theorem" id="orgbdec5bc">
+<p>
+Let <img class="m" src="m/52fffc9055064e5c85f3c1e5957d19079fc01ab2.svg" alt="\(f, g\)" style="height:0.974em;vertical-align:-0.214em"> be differentiable on <img class="m" src="m/7d225fdbd3ac27019419d0acc73760c6ffb90ae9.svg" alt="\((a, b)\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/f4fbcb48b235ccb81b53490477f71f9205dcd2c8.svg" alt="\(g'\)" style="height:1.037em;vertical-align:-0.218em"> nowhere zero
+there, and suppose <img class="m" src="m/7e313ffb78deb936eb63b1b40a370eb89dda2738.svg" alt="\(f(x) \to 0\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/4326c4a9566668734938f8a0cfceeaf3dd01a324.svg" alt="\(g(x) \to 0\)" style="height:1.096em;vertical-align:-0.274em"> as
+<img class="m" src="m/2a8c24b983ebd31240ef364d46a006b86c00fd14.svg" alt="\(x \to a^{+}\)" style="height:0.873em;vertical-align:-0.000em">. If <img class="m" src="m/97c8b6ef6122139392c5e112f8c6e483c68d0475.svg" alt="\(f'(x)/g'(x) \to L\)" style="height:1.098em;vertical-align:-0.274em"> as <img class="m" src="m/2a8c24b983ebd31240ef364d46a006b86c00fd14.svg" alt="\(x \to a^{+}\)" style="height:0.873em;vertical-align:-0.000em">, then
+<div class="mb"><img class="m" src="m/e5560feebef6e504a0456cde39d02b23a91e9f92.svg" alt="\[ \lim_{x \to a^{+}} \frac{f(x)}{g(x)} = L. \]" style="width:7.554em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="orgbb500fa">
+<p>
+Extend <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> to <img class="m" src="m/5b4fb0603e0a112f287f89ad3e2f1af75b3e2099.svg" alt="\([a,b)\)" style="height:1.096em;vertical-align:-0.274em"> by setting <img class="m" src="m/ace0687be8011343bc78346c806ff07c0f526d77.svg" alt="\(f(a) = g(a) = 0\)" style="height:1.096em;vertical-align:-0.274em">;
+the hypothesis on the limits makes both extensions continuous at
+<img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">. Let <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> and choose <img class="m" src="m/2834db4da57323bf6f47d0a640028cc90f572412.svg" alt="\(\delta &gt; 0\)" style="height:0.804em;vertical-align:-0.040em"> with
+<img class="m" src="m/5c84d234f2a9d50f276df3fcb603df2efa0fd4f2.svg" alt="\(\abs{f'(t)/g'(t) - L} &lt; \eps\)" style="height:1.098em;vertical-align:-0.274em"> for <img class="m" src="m/758a03d23508869556e4419c15ca97770e736264.svg" alt="\(a &lt; t &lt; a + \delta\)" style="height:0.852em;vertical-align:-0.094em">. Fix <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">
+with <img class="m" src="m/8adbb40053ec704b3ef0b9879c1b3f1ca7c483c4.svg" alt="\(a &lt; x &lt; a + \delta\)" style="height:0.852em;vertical-align:-0.094em">. On <img class="m" src="m/532497499a8b4c6c4b1e85058709a856f43f6e6f.svg" alt="\([a, x]\)" style="height:1.096em;vertical-align:-0.274em"> the Cauchy mean value
+theorem applies and produces <img class="m" src="m/c60c95fe732096297693d1d096a64995e4828dc9.svg" alt="\(c \in (a, x)\)" style="height:1.096em;vertical-align:-0.274em"> with
+<div class="mb"><img class="m" src="m/bf5482608f122af0aef159474a9800ddb1374306.svg" alt="\[ \frac{f(x)}{g(x)} = \frac{f(x) - f(a)}{g(x) - g(a)} = \frac{f'(c)}{g'(c)}, \]" style="width:13.996em"></div>
+the denominators being non-zero because <img class="m" src="m/f4fbcb48b235ccb81b53490477f71f9205dcd2c8.svg" alt="\(g'\)" style="height:1.037em;vertical-align:-0.218em"> does not vanish. Since
+<img class="m" src="m/2bc608742491343a6f109332a29a0f014beffa70.svg" alt="\(c \in (a, a + \delta)\)" style="height:1.096em;vertical-align:-0.274em">, the right-hand side is within <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em"> of
+<img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">, hence so is <img class="m" src="m/19aa560e0e5942ab613dcd92cb6ae46bcd3f4c25.svg" alt="\(f(x)/g(x)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="remark" id="orgf4045a5">
+<p>
+Two hypotheses are load-bearing and routinely dropped. First, the rule
+concludes <i>from</i> the limit of <img class="m" src="m/e42740bacf56acba5f42e36b066451fb4f29a9b1.svg" alt="\(f'/g'\)" style="height:1.098em;vertical-align:-0.274em">, so its failing to exist says
+nothing: with <img class="m" src="m/d7bc63c5abb93578c72291e5baae25acb5635ef5.svg" alt="\(f(x) = x^{2} \sin(1/x)\)" style="height:1.166em;vertical-align:-0.268em"> and <img class="m" src="m/05ceb7f90808e351b71164fa4b4116b7786b09ed.svg" alt="\(g(x) = x\)" style="height:1.096em;vertical-align:-0.274em"> at the
+origin, <img class="m" src="m/9dcde527d29a88f3525dbcfb6ffb2c5a2c56be80.svg" alt="\(f/g \to 0\)" style="height:1.096em;vertical-align:-0.274em"> while <img class="m" src="m/e42740bacf56acba5f42e36b066451fb4f29a9b1.svg" alt="\(f'/g'\)" style="height:1.098em;vertical-align:-0.274em"> oscillates. Second, <img class="m" src="m/f4fbcb48b235ccb81b53490477f71f9205dcd2c8.svg" alt="\(g'\)" style="height:1.037em;vertical-align:-0.218em"> must
+not vanish, which is what lets a single <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> serve both increments.
+The rule is a consequence of Cauchy's theorem, not a definition of the
+quotient, and treating it as an algorithm is what produces the circular
+proof that <img class="m" src="m/665fcc92b883adcacdc7ddea555f49447f39d0ae.svg" alt="\(\sin(x)/x \to 1\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-mean-value-theorem.html"><span>← previous</span>The mean value theorem</a><a rel="next" href="differentiability-in-several-variables.html"><span>next →</span>Differentiability in several variables</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Push, pull, JIT and Kanban · Business</title>
+<meta name="description" content="JIT synchronizes production with demand; push plans work on forecasts, pull triggers it from actual consumption; Kanban signals authorize upstream production; lower inventory exposes problems and speeds defect detection.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/business/pull-and-kanban.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Push, pull, JIT and Kanban · Business">
+<meta property="og:description" content="JIT synchronizes production with demand; push plans work on forecasts, pull triggers it from actual consumption; Kanban signals authorize upstream production; lower inventory exposes problems and speeds defect detection.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/business/pull-and-kanban.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Business</a> / <a href="index.html#d-operations">Operations</a> / <a rel="up" href="index.html#a-operations--lean">Lean</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Operations · Lean</p>
+<h1>Push, pull, JIT and Kanban</h1>
+<p class="summary">JIT synchronizes production with demand; push plans work on forecasts, pull triggers it from actual consumption; Kanban signals authorize upstream production; lower inventory exposes problems and speeds defect detection.</p>
+<p class="rel"><span>needs</span> <a href="lean-management.html">Lean, waste and value-stream mapping</a>, <a href="order-fulfilment.html">The order decoupling point, BOM, MRP and ERP</a></p>
+<p class="rel"><span>see also</span> <a href="supply-chain-management.html">Supply-chain integration and global performance</a>, <a href="business-map.html">Business Organization and Management: study map</a></p>
+<p class="rel"><span>mentioned in</span> <a href="sourcing-strategies.html">Single, sole, dual and multiple sourcing</a>, <a href="business-map.html">Business Organization and Management: study map</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="organization-and-performance.html">Organizations, resources and performance</a></li><li><a href="business-processes.html">Processes and coordination</a></li><li><a href="operations-objectives.html">Operations, the four Vs and performance objectives</a></li><li><a href="volume-variety-processes.html">The volume-variety matrix</a></li><li><a href="order-fulfilment.html">The order decoupling point, BOM, MRP and ERP</a></li><li><a href="quality-management.html">Quality, service gaps and quality costs</a></li><li><a href="lean-management.html">Lean, waste and value-stream mapping</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgdff3c45" class="outline-2">
+<h2 id="orgdff3c45">Definition</h2>
+<div class="outline-text-2" id="text-orgdff3c45">
+<p>
+<b>Just-in-time</b>: synchronize the production flow with demand — produce at the
+pace of customer demand, mixed-model (heijunka), small lots and short set-ups
+(SMED), pull instead of push, Kanban, make to order. Minimizes inventory and
+<b>exposes quality and process problems</b>.
+</p>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Push</th>
+<th scope="col" class="org-left">Pull</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">based on forecasts, before real demand</td>
+<td class="org-left">based on actual demand, after seeing it</td>
+</tr>
+
+<tr>
+<td class="org-left">work planned and pushed through each</td>
+<td class="org-left">work pulled through the system by real</td>
+</tr>
+
+<tr>
+<td class="org-left">stage in anticipation of orders</td>
+<td class="org-left">orders for final products</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org6050b45" class="outline-2">
+<h2 id="org6050b45">Model</h2>
+<div class="outline-text-2" id="text-org6050b45">
+</div>
+<div id="outline-container-org42f06e6" class="outline-3">
+<h3 id="org42f06e6">Kanban</h3>
+<div class="outline-text-3" id="text-org42f06e6">
+<p>
+Visual signal (card, container, digital) controlling flow with pull logic:
+</p>
+<ol class="org-ol">
+<li>the downstream process (assembly) consumes a part;</li>
+<li>this generates a Kanban signal;</li>
+<li>the signal goes upstream;</li>
+<li>upstream produces only the quantity requested;</li>
+<li>repeat.</li>
+</ol>
+<p>
+Aims: avoid over-production, reduce WIP, improve flow, make problems visible.
+Production is triggered by real consumption, not forecasts.
+Number of Kanbans (common sizing rule):
+<div class="mb"><img class="m" src="m/b33a3ae068100a325c2bdc24cfa011dd835b1cce.svg" alt="\[ N = \frac{D \times L \times (1 + s)}{C} \]" style="width:10.340em"></div>
+D demand rate, L lead time, s safety factor, C container size.
+</p>
+</div>
+</div>
+<div id="outline-container-org0075f23" class="outline-3">
+<h3 id="org0075f23">Lower inventory means better quality</h3>
+<div class="outline-text-3" id="text-org0075f23">
+<p>
+Eight units in the queue between two stations: a defect is discovered after
+7 minutes (information turnaround time ITAT = 7 × 1 min). With two units:
+ITAT = 2 minutes → fewer defective units produced before feedback.
+<b>River-and-rocks</b>: inventory is the water level; lowering it reveals the rocks —
+machine breakdowns, out-of-spec materials, quality problems, workload
+imbalances, worker absenteeism, material shortages.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgad3c3aa" class="outline-2">
+<h2 id="orgad3c3aa">Worked example</h2>
+<div class="outline-text-2" id="text-orgad3c3aa">
+<p>
+D = 400 parts/day, L = 0.5 day, s = 10%, C = 20 parts:
+<img class="m" src="m/3c78af2f2410a5b9b1470f8fcdb21344f202e77e.svg" alt="\( N = 400 \times 0.5 \times 1.1 / 20 = 11 \)" style="height:1.096em;vertical-align:-0.274em"> cards. Cutting lead time to 0.25 day
+halves the cards (and WIP) to 5.5 → 6.
+</p>
+</div>
+</div>
+<div id="outline-container-org68155a9" class="outline-2">
+<h2 id="org68155a9">Pitfall</h2>
+<div class="outline-text-2" id="text-org68155a9">
+<p>
+Pull does not mean "no forecast at all" for capacity planning; it means
+execution is triggered by consumption. Removing stock without fixing the rocks
+just stops the line.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb06a7a9" class="outline-2">
+<h2 id="orgb06a7a9">Recall</h2>
+<div class="outline-text-2" id="text-orgb06a7a9">
+<p>
+Contrast push and pull; explain Kanban's five steps; compute ITAT for two queue
+sizes; draw the river and rocks.
+</p>
+</div>
+</div>
+<div id="outline-container-org57623a8" class="outline-2">
+<h2 id="org57623a8">Picture</h2>
+<div class="outline-text-2" id="text-org57623a8">
+<figure class="fig"><img class="m" src="m/6e541b8d1e0a0ef41780987da85058641ea70611.svg" alt="figure" style="width:21.871em"><figcaption><span class="fl">Figure 1.</span> Pull production with kanban: the downstream station's consumption sends a card upstream, which authorises producing the next unit.</figcaption></figure>
+<p>
+Material flows downstream; authorization flows upstream.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="five-s-and-leveling.html"><span>← previous</span>5S, production leveling and improvement routines</a><a rel="next" href="digital-decision-making.html"><span>next →</span>Bounded rationality and digital transformation</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/operations--lean.pdf" title="PDF manual">Lean</a> · <a class="pdf" href="pdf/operations.pdf" title="PDF manual">Operations</a> · <a class="pdf" href="pdf/business.pdf" title="PDF manual">whole Business</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

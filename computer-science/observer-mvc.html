@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Observer pattern and model–view–controller · Computer Science</title>
+<meta name="description" content="In the observer pattern a subject keeps a list of observers and notifies them when it changes, so it does not depend on who is listening; MVC builds GUIs on it: the model holds the data and notifies, views display it, controllers translate user events into model changes — in JavaFX, properties and …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/observer-mvc.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Observer pattern and model–view–controller · Computer Science">
+<meta property="og:description" content="In the observer pattern a subject keeps a list of observers and notifies them when it changes, so it does not depend on who is listening; MVC builds GUIs on it: the model holds the data and notifies, views display it, controllers translate user events into model changes — in JavaFX, properties and …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/observer-mvc.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--gui">Gui</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Programming · Gui</p>
+<h1>Observer pattern and model–view–controller</h1>
+<p class="summary">In the observer pattern a subject keeps a list of observers and notifies them when it changes, so it does not depend on who is listening; MVC builds GUIs on it: the model holds the data and notifies, views display it, controllers translate user events into model changes — in JavaFX, properties and bindings implement the pattern.</p>
+<p class="rel"><span>needs</span> <a href="event-handling.html">Event-driven programming and event handlers</a></p>
+<p class="rel"><span>see also</span> <a href="java-inner-classes.html">Nested, inner and anonymous classes</a>, <a href="abstract-class-interface.html">Abstract classes and interfaces</a>, <a href="javafx-layout.html">JavaFX layout panes</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li><li><a href="abstract-class-interface.html">Abstract classes and interfaces</a></li><li><a href="java-platform.html">The Java platform</a></li><li><a href="javafx-scene-graph.html">JavaFX: stage, scene and the node tree</a></li><li><a href="event-handling.html">Event-driven programming and event handlers</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org35e8bdd" class="outline-2">
+<h2 id="org35e8bdd">Model</h2>
+<div class="outline-text-2" id="text-org35e8bdd">
+<ul class="org-ul">
+<li><b>Subject</b>: <code>addListener(l)</code>, <code>removeListener(l)</code>, and on every change calls <code>l.changed(...)</code> on each registered observer.</li>
+<li><b>Observer</b>: an interface with one <a href="function-objects.html">callback</a>; event handlers are observers of controls.</li>
+<li><b>MVC</b>: Model (state and rules, no GUI code) → notifies → View (renders) ; View → user events → <a href="finite-state-machine.html">Controller</a> → updates the Model. The model can be tested without a GUI and shown by several views at once.</li>
+<li><b><a href="javafx-scene-graph.html">JavaFX</a> properties</b>: <code>IntegerProperty</code>, <code>StringProperty</code> are observable; <code>label.textProperty().bind(model.nameProperty())</code> keeps the view in sync automatically.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgac66d12" class="outline-2">
+<h2 id="orgac66d12">Picture</h2>
+<div class="outline-text-2" id="text-orgac66d12">
+<figure class="fig"><img class="m" src="m/33cab149638f7716355a231dfe6c41de22197521.svg" alt="figure" style="width:20.434em"><figcaption><span class="fl">Figure 1.</span> Model–view–controller: the controller turns user events into updates of the model, which notifies its views (the observer pattern).</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org357f82d" class="outline-2">
+<h2 id="org357f82d">Example</h2>
+<div class="outline-text-2" id="text-org357f82d">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">public</span> <span class="k">class</span> <span class="t">Counter</span> {                                    <span class="c">// model
+</span>    <span class="k">private</span> <span class="k">final</span> <span class="t">IntegerProperty</span> <span class="v">value</span> = <span class="k">new</span> <span class="t">SimpleIntegerProperty</span>(0);
+    <span class="k">public</span> <span class="t">IntegerProperty</span> <span class="f">valueProperty</span>() { <span class="k">return</span> value; }
+    <span class="k">public</span> <span class="t">void</span> <span class="f">inc</span>() { value.set(value.get() + 1); }
+}
+<span class="t">Counter</span> <span class="v">model</span> = <span class="k">new</span> <span class="t">Counter</span>();
+<span class="t">Label</span> <span class="v">view</span> = <span class="k">new</span> <span class="t">Label</span>(); <span class="t">Button</span> <span class="v">plus</span> = <span class="k">new</span> <span class="t">Button</span>(<span class="s">"+"</span>);
+view.textProperty().bind(model.valueProperty().asString());   <span class="c">// view observes model
+</span>plus.setOnAction(e -&gt; model.inc());                            <span class="c">// controller</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org6cf459e" class="outline-2">
+<h2 id="org6cf459e">Intuition</h2>
+<div class="outline-text-2" id="text-org6cf459e">
+<p>
+The data does not know who is watching; it just announces "I changed", and every interested window redraws itself.
+</p>
+</div>
+</div>
+<div id="outline-container-orgce53f1b" class="outline-2">
+<h2 id="orgce53f1b">Pitfall</h2>
+<div class="outline-text-2" id="text-orgce53f1b">
+<p>
+Observers that are never removed keep the subject from being garbage collected and receive updates for windows long closed; register and unregister symmetrically.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="javafx-layout.html"><span>← previous</span>JavaFX layout panes</a><a rel="next" href="boolean-algebra.html"><span>next →</span>Boolean algebra: axioms, theorems, complete operator sets</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--gui.pdf" title="PDF manual">Gui</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sigma-algebras, measures and measurable functions · Mathematics</title>
+<meta name="description" content="The Riemann integral partitions the domain, which forces the integrand to be nearly continuous and makes limits fragile: a pointwise limit of Riemann integrable functions need not be integrable. Measure theory partitions the range instead, and to do so needs a notion of size for the preimages – a s…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/sigma-algebras-measures-and-measurable-functions.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Sigma-algebras, measures and measurable functions · Mathematics">
+<meta property="og:description" content="The Riemann integral partitions the domain, which forces the integrand to be nearly continuous and makes limits fragile: a pointwise limit of Riemann integrable functions need not be integrable. Measure theory partitions the range instead, and to do so needs a notion of size for the preimages – a s…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/sigma-algebras-measures-and-measurable-functions.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--measure-theory">Measure Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Measure Theory</p>
+<h1>Sigma-algebras, measures and measurable functions</h1>
+<p class="summary">The <a href="the-riemann-integral.html">Riemann integral</a> partitions the domain, which forces the integrand to be nearly continuous and makes limits fragile: a pointwise limit of Riemann integrable functions need not be integrable. Measure theory partitions the <i>range</i> instead, and to do so needs a notion of size for the preimages &#x2013; a set function that is countably additive on a family closed under countable operations. Everything else follows from those two words.</p>
+<p class="rel"><span>needs</span> <a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a>, <a href="limit-of-a-sequence.html">Limit of a sequence</a>, <a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a>, <a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a>, <a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a>, <a href="supremum-and-infimum.html">Supremum and infimum</a>, <a href="the-algebra-of-limits.html">The algebra of limits</a>, <a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></p>
+<p class="rel"><span>unlocks</span> <a href="product-measures-and-the-theorems-of-tonelli-and-fubini.html">Product measures and the theorems of Tonelli and Fubini</a>, <a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a>, <a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a>, <a href="the-fourier-transform-inversion-and-plancherel.html">The Fourier transform, inversion and Plancherel</a>, <a href="extreme-points-and-minkowskis-theorem-on-convex-bodies.html">Extreme points and Minkowski's theorem on convex bodies</a>, <a href="conditional-expectation-as-an-orthogonal-projection.html">Conditional expectation as an orthogonal projection</a>, <a href="modes-of-convergence-and-the-borel-cantelli-lemmas.html">Modes of convergence and the Borel-Cantelli lemmas</a>, <a href="probability-spaces-conditioning-and-independence.html">Probability spaces, conditioning and independence</a>, <a href="random-variables-laws-and-distribution-functions.html">Random variables, laws and distribution functions</a>, <a href="rigid-body-kinematics-and-the-inertia-tensor.html">Rigid body kinematics and the inertia tensor</a></p>
+<p class="rel"><span>mentioned in</span> <a href="analysis.html">Analysis</a>, <a href="real-analysis.html">Real analysis</a>, <a href="functional-analysis.html">Functional analysis</a>, <a href="probability.html">Probability</a></p>
+<details class="path"><summary>Learning path: 17 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org1ae41e2">
+<p>
+A <i><img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-algebra</i> on a set <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is a family <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em"> of
+subsets containing <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> and closed under complement and countable
+union. The pair <img class="m" src="m/ca4e7903d813257803c2ef72ed3af29f8849b465.svg" alt="\((X,\mathcal{A})\)" style="height:1.096em;vertical-align:-0.274em"> is a <i>measurable space</i> and the
+members of <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em"> are <i>measurable</i>.
+</p>
+
+</div>
+
+<div class="proposition" id="org822aee5">
+<p>
+A <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-algebra contains <img class="m" src="m/b9fcf2ccae8d3515975b71b2e2ab3c4479b2d3d5.svg" alt="\(\emptyset\)" style="height:0.883em;vertical-align:-0.062em"> and is closed under
+countable intersections and set differences. The intersection of any
+non-empty family of <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-algebras on <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is one, so for every
+family <img class="m" src="m/823d458118978517887306921d56d285d07cc9d5.svg" alt="\(\mathcal{S}\)" style="height:0.749em;vertical-align:-0.000em"> of subsets there is a smallest <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-algebra
+<img class="m" src="m/01cbf2fe870c4845aef0d6da7dc01e85d676d78d.svg" alt="\(\sigma(\mathcal{S})\)" style="height:1.096em;vertical-align:-0.274em"> containing it.
+</p>
+
+</div>
+
+<div class="proof" id="org96d3252">
+<p>
+<img class="m" src="m/98c91c90579884bdf0fbc81483bac530eab9ed7a.svg" alt="\(\emptyset = X^{c}\)" style="height:0.883em;vertical-align:-0.062em">; <img class="m" src="m/019a2fefe737a3136bfae02d2526530a9b2d9c83.svg" alt="\(\bigcap_{n}A_{n} = (\bigcup_{n}A_{n}^{c})^{c}\)" style="height:1.151em;vertical-align:-0.334em">;
+<img class="m" src="m/52b0cf2a34cafe37667468b2186ebf810ab639cd.svg" alt="\(A \setminus B = A \cap B^{c}\)" style="height:1.096em;vertical-align:-0.274em">. The three closure conditions each hold
+in an intersection of <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-algebras because they hold in every
+member. The family of <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-algebras containing <img class="m" src="m/823d458118978517887306921d56d285d07cc9d5.svg" alt="\(\mathcal{S}\)" style="height:0.749em;vertical-align:-0.000em"> is
+non-empty, the power set being one, so their intersection is the
+smallest.
+</p>
+
+</div>
+
+<div class="definition" id="org829114a">
+<p>
+The <i>Borel <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-algebra</i> of a topological space is the
+<img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-algebra generated by the open sets. Its members are the
+<i>Borel sets</i>.
+</p>
+
+</div>
+
+<div class="definition" id="orgf51f99d">
+<p>
+A <i>measure</i> on <img class="m" src="m/ca4e7903d813257803c2ef72ed3af29f8849b465.svg" alt="\((X,\mathcal{A})\)" style="height:1.096em;vertical-align:-0.274em"> is a map
+<img class="m" src="m/665c322fcaaa7929274341e9aa13b6a59ccab517.svg" alt="\(\mu \colon \mathcal{A}\to[0,+\infty]\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/6b97a12f2e4d5ac8dfbe36e5054efe694d4c87d7.svg" alt="\(\mu(\emptyset)=0\)" style="height:1.096em;vertical-align:-0.274em"> that
+is <i>countably additive</i>: <img class="m" src="m/46e2f59423c5708e406549c6fd3b197589223542.svg" alt="\(\mu(\bigcup_{n}A_{n}) = \sum_{n}\mu(A_{n})\)" style="height:1.151em;vertical-align:-0.334em">
+for every sequence of pairwise disjoint measurable sets. The triple
+<img class="m" src="m/a495fb0b06668bc69963146325a107091594f3a7.svg" alt="\((X,\mathcal{A},\mu)\)" style="height:1.096em;vertical-align:-0.274em"> is a <i>measure space</i>, and <img class="m" src="m/5602b42c49566a683e5183a144a93b453d1accef.svg" alt="\(\mu\)" style="height:0.685em;vertical-align:-0.212em"> is <i>finite</i> if
+<img class="m" src="m/c4c36ed51577f00c4f9a4589afe2aeee8967cd8f.svg" alt="\(\mu(X)&lt;\infty\)" style="height:1.096em;vertical-align:-0.274em">, <i>probability</i> if <img class="m" src="m/41b7d8783180ba403dafdba71baed663350a813a.svg" alt="\(\mu(X)=1\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org2c2107e">
+<p>
+Let <img class="m" src="m/5602b42c49566a683e5183a144a93b453d1accef.svg" alt="\(\mu\)" style="height:0.685em;vertical-align:-0.212em"> be a measure. Then <img class="m" src="m/5602b42c49566a683e5183a144a93b453d1accef.svg" alt="\(\mu\)" style="height:0.685em;vertical-align:-0.212em"> is monotone
+(<img class="m" src="m/a83124005db110f9040575d4472108fce7a71b59.svg" alt="\(A\subseteq B\)" style="height:0.898em;vertical-align:-0.153em"> implies <img class="m" src="m/74cb9e4694231a0a75d8a31100022777eb2027d7.svg" alt="\(\mu(A)\le\mu(B)\)" style="height:1.096em;vertical-align:-0.274em">), countably subadditive
+(<img class="m" src="m/bd49883d1b78a73ffe57ae7a5889e398c23bbc30.svg" alt="\(\mu(\bigcup_{n}A_{n})\le\sum_{n}\mu(A_{n})\)" style="height:1.151em;vertical-align:-0.334em"> with no disjointness),
+continuous from below (<img class="m" src="m/d4cfa9f003816316be6d1c3b4e979a0d09865ff2.svg" alt="\(A_{n}\uparrow A\)" style="height:0.974em;vertical-align:-0.214em"> implies
+<img class="m" src="m/df52aa525c8e5445aeb6c9df79e87dabecda75d6.svg" alt="\(\mu(A_{n})\to\mu(A)\)" style="height:1.096em;vertical-align:-0.274em">) and continuous from above when
+<img class="m" src="m/f68fc30d453d811a4bdc218e32cdacb70e4ae5fb.svg" alt="\(\mu(A_{1})&lt;\infty\)" style="height:1.096em;vertical-align:-0.274em"> (<img class="m" src="m/71e29f51aa82363c79ed3bd6498a2aa39e802a03.svg" alt="\(A_{n}\downarrow A\)" style="height:0.974em;vertical-align:-0.214em"> implies
+<img class="m" src="m/df52aa525c8e5445aeb6c9df79e87dabecda75d6.svg" alt="\(\mu(A_{n})\to\mu(A)\)" style="height:1.096em;vertical-align:-0.274em">).
+</p>
+
+</div>
+
+<div class="proof" id="org84cba3f">
+<p>
+Monotonicity: <img class="m" src="m/91e208659f7a768d6f3d8ef83164f751c5c84600.svg" alt="\(\mu(B) = \mu(A)+\mu(B\setminus A)\ge\mu(A)\)" style="height:1.096em;vertical-align:-0.274em">, by
+additivity on the disjoint pair.
+</p>
+
+<p>
+Continuity from below: put <img class="m" src="m/886047426a659e12260976d915735e62fe67f500.svg" alt="\(B_{1}=A_{1}\)" style="height:0.913em;vertical-align:-0.164em"> and
+<img class="m" src="m/e30738c05de3b335b86ebb9edd6aa69ee01eead4.svg" alt="\(B_{n} = A_{n}\setminus A_{n-1}\)" style="height:1.096em;vertical-align:-0.274em">, pairwise disjoint with
+<img class="m" src="m/5715b5be011b7468c67770ecea2c38f1c0d10f5f.svg" alt="\(\bigcup_{k\le n}B_{k} = A_{n}\)" style="height:1.293em;vertical-align:-0.465em"> and <img class="m" src="m/42549fd853e9835e5ce40dd522e79a424b874daa.svg" alt="\(\bigcup_{k}B_{k} = A\)" style="height:1.151em;vertical-align:-0.334em">. Then
+<img class="m" src="m/f5894424da0c6716fccd4b6fa71276bd92bfad05.svg" alt="\(\mu(A) = \sum_{k}\mu(B_{k}) = \lim_{n}\sum_{k\le n}\mu(B_{k}) = \lim_{n}\mu(A_{n})\)" style="height:1.293em;vertical-align:-0.465em">.
+</p>
+
+<p>
+Subadditivity: with <img class="m" src="m/add22c87449f1dbd499c01705e0999d38271c984.svg" alt="\(C_{n} = A_{n}\setminus\bigcup_{k&lt;n}A_{k}\)" style="height:1.209em;vertical-align:-0.387em">,
+disjoint with the same union and <img class="m" src="m/c07bd54d3445dc1029b4ed359672c14e54897aa0.svg" alt="\(C_{n}\subseteq A_{n}\)" style="height:0.913em;vertical-align:-0.164em">,
+<img class="m" src="m/e6a8586bebe6b700d254e7b5d5b35d0e48abf45f.svg" alt="\(\mu(\bigcup_{n}A_{n}) = \sum_{n}\mu(C_{n}) \le \sum_{n}\mu(A_{n})\)" style="height:1.151em;vertical-align:-0.334em">.
+</p>
+
+<p>
+Continuity from above: <img class="m" src="m/bc0998a5c98e0998d28a69f5648fd093374827a6.svg" alt="\(A_{1}\setminus A_{n}\)" style="height:1.096em;vertical-align:-0.274em"> increases to
+<img class="m" src="m/e45562d60c7ea1f5d985f480188c64fd204e023b.svg" alt="\(A_{1}\setminus A\)" style="height:1.096em;vertical-align:-0.274em">, so
+<img class="m" src="m/7c0213f1b1d9e72dee1e683f7f8baf775cc17983.svg" alt="\(\mu(A_{1})-\mu(A_{n}) \to \mu(A_{1})-\mu(A)\)" style="height:1.096em;vertical-align:-0.274em"> by the first part and
+additivity, the finiteness of <img class="m" src="m/29a625d29c2fc66c61383fb3b34c3d9235e30d68.svg" alt="\(\mu(A_{1})\)" style="height:1.096em;vertical-align:-0.274em"> making the subtraction
+legitimate.
+</p>
+
+</div>
+
+<div class="definition" id="orgbd2ba82">
+<p>
+A function <img class="m" src="m/1f72f324fe864b0de3686fb63345bf63b28dbf01.svg" alt="\(f \colon X \to \R\)" style="height:0.974em;vertical-align:-0.214em"> on a measurable space is <i>measurable</i>
+if <img class="m" src="m/0baa33dbe74d3a0125ccafc747cfa9fa54401a0d.svg" alt="\(f^{-1}(B)\in\mathcal{A}\)" style="height:1.166em;vertical-align:-0.268em"> for every Borel set <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">; functions with
+values in <img class="m" src="m/0b079e2fcb6db2ddf8ee8cf6dc9cb3086ddcaee2.svg" alt="\([-\infty,+\infty]\)" style="height:1.096em;vertical-align:-0.274em"> are measurable if in addition the
+preimages of <img class="m" src="m/11da4967deab16e9dbd550bc9725da149ae02d75.svg" alt="\(\pm\infty\)" style="height:0.731em;vertical-align:-0.088em"> are measurable.
+</p>
+
+</div>
+
+<div class="proposition" id="org62387c8">
+<p>
+<img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is measurable if and only if <img class="m" src="m/52d13be69cc8132e81320b4363ea02b8d22d41bf.svg" alt="\(\setst{x}{f(x)&gt;a}\)" style="height:1.096em;vertical-align:-0.274em"> is measurable
+for every <img class="m" src="m/a9ec870d6988847f26f663276ab611505993e119.svg" alt="\(a \in \R\)" style="height:0.798em;vertical-align:-0.040em">. Continuous functions on a topological space are
+Borel measurable.
+</p>
+
+</div>
+
+<div class="proof" id="org4a2618d">
+<p>
+The family <img class="m" src="m/a04fe6b68994ae21ff3f65778afdc7a08e8e4ec5.svg" alt="\(\setst{B}{f^{-1}(B)\in\mathcal{A}}\)" style="height:1.166em;vertical-align:-0.268em"> is a
+<img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-algebra, preimage commuting with complements and unions. If
+it contains every ray <img class="m" src="m/5c75b77835e6cb9e3d24d0f7c294e71fea96e4bd.svg" alt="\((a,\infty)\)" style="height:1.096em;vertical-align:-0.274em"> it contains the
+<img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-algebra they generate, which is the Borel one &#x2013; every open
+subset of <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em"> is a countable union of open intervals, and an interval
+is a difference of two rays. The converse is immediate, a ray being
+Borel. For a continuous <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">, preimages of open sets are open, hence
+Borel.
+</p>
+
+</div>
+
+<div class="theorem" id="orgdd3b3c4">
+<p>
+If <img class="m" src="m/52fffc9055064e5c85f3c1e5957d19079fc01ab2.svg" alt="\(f, g\)" style="height:0.974em;vertical-align:-0.214em"> are measurable so are <img class="m" src="m/844a17751c5ec34fc4ddd2892d16f6618ac9b83c.svg" alt="\(f+g\)" style="height:0.974em;vertical-align:-0.214em">, <img class="m" src="m/32ed46e9ed1dbb3ed096181dacbcd70b881f1189.svg" alt="\(fg\)" style="height:0.974em;vertical-align:-0.214em">, <img class="m" src="m/2aeac56be656e1980256b1b31fa628725465236c.svg" alt="\(\abs{f}\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/4f398d0fb8aec5cf4cfd8f9a1dd7e4d7d727dcde.svg" alt="\(\max(f,g)\)" style="height:1.096em;vertical-align:-0.274em">; and if <img class="m" src="m/cb4b078f4edc982173ab433e99a2c27552e4210e.svg" alt="\((f_{n})\)" style="height:1.096em;vertical-align:-0.274em"> are measurable so are
+<img class="m" src="m/529b15a3c942d8da3fae24f76b3b8220e7b5c552.svg" alt="\(\sup_{n}f_{n}\)" style="height:1.029em;vertical-align:-0.268em">, <img class="m" src="m/6e0a2120ebfe5c7b31db152fb1a2a03b5fce7104.svg" alt="\(\inf_{n}f_{n}\)" style="height:0.974em;vertical-align:-0.214em">, <img class="m" src="m/79b0597be884d95ac651779c3926e3a9a601b098.svg" alt="\(\limsup_{n}f_{n}\)" style="height:1.029em;vertical-align:-0.268em"> and
+<img class="m" src="m/5136e9ec08ee444ea882560647959e840c8bf223.svg" alt="\(\liminf_{n}f_{n}\)" style="height:0.974em;vertical-align:-0.214em">, as functions into <img class="m" src="m/0b079e2fcb6db2ddf8ee8cf6dc9cb3086ddcaee2.svg" alt="\([-\infty,+\infty]\)" style="height:1.096em;vertical-align:-0.274em">. In
+particular a pointwise limit of measurable functions is measurable.
+</p>
+
+</div>
+
+<div class="proof" id="orgd54d03d">
+<p>
+For the supremum, <img class="m" src="m/33295f34ed99e46173074a41d338bfa5e88eeed9.svg" alt="\(\setst{x}{\sup_{n}f_{n}(x)&gt;a} = \bigcup_{n}\setst{x}{f_{n}(x)&gt;a}\)" style="height:1.151em;vertical-align:-0.334em">,
+a countable union of measurable sets; the infimum is the supremum of
+the <img class="m" src="m/370efbc4782120a2de7f280f6385de80698f1596.svg" alt="\(-f_{n}\)" style="height:0.974em;vertical-align:-0.214em">, and
+<img class="m" src="m/4a6001c37d2680c00c1f161d9b5a82a06f64874a.svg" alt="\(\limsup_{n}f_{n} = \inf_{N}\sup_{n\ge N}f_{n}\)" style="height:1.171em;vertical-align:-0.410em"> combines the two.
+</p>
+
+<p>
+For sums, <img class="m" src="m/0f3366314b2b2eab370ca80b19e65cc45213dec0.svg" alt="\(\setst{x}{f(x)+g(x)&gt;a} = \bigcup_{q\in\Q}\bigl(\setst{x}{f(x)&gt;q}\cap\setst{x}{g(x)&gt;a-q}\bigr)\)" style="height:1.409em;vertical-align:-0.479em">,
+a countable union, since a real sum exceeds <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> exactly when a
+rational separates the terms appropriately. Writing
+<img class="m" src="m/4318e983e6eaabbd0e5a433389dbd761cb5b28dc.svg" alt="\(E_{h,a} = \setst{x}{h(x)&gt;a}\)" style="height:1.135em;vertical-align:-0.318em">, the function <img class="m" src="m/2aeac56be656e1980256b1b31fa628725465236c.svg" alt="\(\abs{f}\)" style="height:1.096em;vertical-align:-0.274em"> is measurable
+because <img class="m" src="m/0f8d04ee8f54474e086031f0712fc4cff52ed87e.svg" alt="\(E_{\abs{f},a}\)" style="height:1.139em;vertical-align:-0.387em"> is <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> for <img class="m" src="m/99e20f975bd0635c7f3a159c49d1ef8de63efd44.svg" alt="\(a&lt;0\)" style="height:0.749em;vertical-align:-0.045em"> and
+<img class="m" src="m/a158db0306ad9f0bbbba3928fdbf615789663151.svg" alt="\(E_{f,a}\cup E_{-f,a}\)" style="height:1.062em;vertical-align:-0.319em"> otherwise; <img class="m" src="m/4f398d0fb8aec5cf4cfd8f9a1dd7e4d7d727dcde.svg" alt="\(\max(f,g)\)" style="height:1.096em;vertical-align:-0.274em"> because
+<img class="m" src="m/088ce975153b456b6446cd700dbe1acd47232f1c.svg" alt="\(E_{\max(f,g),a} = E_{f,a}\cup E_{g,a}\)" style="height:1.139em;vertical-align:-0.387em">; and <img class="m" src="m/32ed46e9ed1dbb3ed096181dacbcd70b881f1189.svg" alt="\(fg\)" style="height:0.974em;vertical-align:-0.214em"> from
+<img class="m" src="m/4483bb13a8e259173cc557383fd6db54015dd2fc.svg" alt="\(fg = \tfrac{1}{4}\bigl((f+g)^{2}-(f-g)^{2}\bigr)\)" style="height:1.315em;vertical-align:-0.381em"> once <img class="m" src="m/19158b1b9ab5a4be82c7ec8c8497e1ffb93d39d6.svg" alt="\(h^{2}\)" style="height:0.892em;vertical-align:-0.000em"> is
+known measurable, which holds since <img class="m" src="m/6cbf71a96bc191eb8e875661fa4fe3b06c58cde6.svg" alt="\(E_{h^{2},a}\)" style="height:1.093em;vertical-align:-0.339em"> is <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> for
+<img class="m" src="m/99e20f975bd0635c7f3a159c49d1ef8de63efd44.svg" alt="\(a&lt;0\)" style="height:0.749em;vertical-align:-0.045em"> and <img class="m" src="m/e155f7b3dd90feaaccbd5a8ba0c206a58bbd4b4c.svg" alt="\(E_{h,\sqrt{a}}\cup E_{-h,\sqrt{a}}\)" style="height:1.176em;vertical-align:-0.423em"> for <img class="m" src="m/38f14eb21189fccf420ccda2728f6fef8c44215b.svg" alt="\(a \ge 0\)" style="height:0.855em;vertical-align:-0.145em">.
+</p>
+
+</div>
+
+<div class="remark" id="orgb81b60b">
+<p>
+The last theorem is the whole point. The measurable functions are closed
+under every countable limiting operation, which the Riemann integrable
+ones are not, and that closure is what makes the convergence theorems of
+the next note possible. The price is that no explicit description of a
+general measurable set exists &#x2013; <img class="m" src="m/01cbf2fe870c4845aef0d6da7dc01e85d676d78d.svg" alt="\(\sigma(\mathcal{S})\)" style="height:1.096em;vertical-align:-0.274em"> is defined from
+above, by intersection, exactly like a generated subgroup or an ideal.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-residue-theorem-and-the-argument-principle.html"><span>← previous</span>The residue theorem and the argument principle</a><a rel="next" href="the-lebesgue-integral-and-the-convergence-theorems.html"><span>next →</span>The Lebesgue integral and the convergence theorems</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--measure-theory.pdf" title="PDF manual">Measure Theory</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

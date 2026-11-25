@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Path homotopy and the fundamental group · Mathematics</title>
+<meta name="description" content="Connectedness distinguishes spaces by whether they can be cut; it cannot distinguish a disc from an annulus. The first invariant that can is built by asking which loops can be contracted, and the answer is not a set but a group – concatenation of loops is associative and invertible only after loops…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/path-homotopy-and-the-fundamental-group.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Path homotopy and the fundamental group · Mathematics">
+<meta property="og:description" content="Connectedness distinguishes spaces by whether they can be cut; it cannot distinguish a disc from an annulus. The first invariant that can is built by asking which loops can be contracted, and the answer is not a set but a group – concatenation of loops is associative and invertible only after loops…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/path-homotopy-and-the-fundamental-group.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-topology">Topology</a> / <a rel="up" href="index.html#a-topology--algebraic-topology">Algebraic Topology</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Topology · Algebraic Topology</p>
+<h1>Path homotopy and the fundamental group</h1>
+<p class="summary">Connectedness distinguishes spaces by whether they can be cut; it cannot distinguish a disc from an annulus. The first invariant that can is built by asking which loops can be contracted, and the answer is not a set but a group &#x2013; concatenation of loops is associative and invertible only after loops that deform into one another are identified, which is precisely what makes the construction work.</p>
+<p class="rel"><span>needs</span> <a href="connectedness-components-and-path-connectedness.html">Connectedness, components and path-connectedness</a>, <a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a>, <a href="group.html">Group</a>, <a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a>, <a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></p>
+<p class="rel"><span>unlocks</span> <a href="covering-spaces-and-the-fundamental-group-of-the-circle.html">Covering spaces and the fundamental group of the circle</a>, <a href="homotopy-equivalence-retracts-and-contractible-spaces.html">Homotopy equivalence, retracts and contractible spaces</a></p>
+<p class="rel"><span>mentioned in</span> <a href="topology.html">Topology</a>, <a href="algebraic-topology.html">Algebraic topology</a></p>
+<details class="path"><summary>Learning path: 18 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="connectedness-components-and-path-connectedness.html">Connectedness, components and path-connectedness</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org5c21971">
+<p>
+Let <img class="m" src="m/3911941dd30a341a824eec89e86066d7b6f36420.svg" alt="\(\alpha, \beta \colon [0,1] \to X\)" style="height:1.096em;vertical-align:-0.274em"> be paths with the same
+endpoints, <img class="m" src="m/7e6f76b3d947606b53e4daaff9cda86b0d008e96.svg" alt="\(\alpha(0)=\beta(0)=x\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/a24b3e1403b0d8c81f0ed155a67040333dcbc18b.svg" alt="\(\alpha(1)=\beta(1)=y\)" style="height:1.096em;vertical-align:-0.274em">. A
+<i>path homotopy</i> from <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> to <img class="m" src="m/65ed198e156bf7d35f2bcbce00232479bbe853b2.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em"> is a continuous
+<img class="m" src="m/d16d525f6b8d72477ff7c4999df4a32994ee0874.svg" alt="\(H \colon [0,1]\times[0,1] \to X\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/e609e4cba9da8c90deacecc745451229757bd885.svg" alt="\(H(s,0) = \alpha(s)\)" style="height:1.096em;vertical-align:-0.274em">,
+<img class="m" src="m/d0b903549836e6c3a8a6973e085169a801132088.svg" alt="\(H(s,1) = \beta(s)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/1c679a3e6fa85f2cd40cec107a2f35cb449b1eb9.svg" alt="\(H(0,t) = x\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/da582a4ba9ae3b12493ce704311af9e8bbcdffae.svg" alt="\(H(1,t) = y\)" style="height:1.096em;vertical-align:-0.274em"> for all
+<img class="m" src="m/e0bd8ed2bdf6dbc14f012fa244f2d87ce3ba5c0d.svg" alt="\(s,t\)" style="height:0.887em;vertical-align:-0.213em">. One writes <img class="m" src="m/755b77380a26d52edaea827ef1fe84d7830c6ca4.svg" alt="\(\alpha \simeq \beta\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org5fc4c78">
+<p>
+Path homotopy is an equivalence relation on the set of paths from <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">
+to <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em">. The class of <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> is written <img class="m" src="m/c4fd0849851e7251fae8476ddc25ea577adbd549.svg" alt="\([\alpha]\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org915d7e7">
+<p>
+Reflexivity: <img class="m" src="m/83a886fe24a036f230d077a1fee49307f82118c6.svg" alt="\(H(s,t) = \alpha(s)\)" style="height:1.096em;vertical-align:-0.274em">. Symmetry: replace <img class="m" src="m/9f083ea9ec27689142c31780f057933a22a93145.svg" alt="\(H(s,t)\)" style="height:1.096em;vertical-align:-0.274em"> by
+<img class="m" src="m/f9f7d44367d36c1c3590510b03ba1f9e88777caa.svg" alt="\(H(s,1-t)\)" style="height:1.096em;vertical-align:-0.274em">. Transitivity: given <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> from <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> to <img class="m" src="m/65ed198e156bf7d35f2bcbce00232479bbe853b2.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em"> and
+<img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> from <img class="m" src="m/65ed198e156bf7d35f2bcbce00232479bbe853b2.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em"> to <img class="m" src="m/a7557905dfe0cbb9ed8efb67df67b1b7128d6a76.svg" alt="\(\gamma\)" style="height:0.685em;vertical-align:-0.212em">, set <img class="m" src="m/9aeefc5cbdeefbb199bc4e23c2335fa9624a0374.svg" alt="\(L(s,t) = H(s,2t)\)" style="height:1.096em;vertical-align:-0.274em"> for
+<img class="m" src="m/da0dd49e46b5db87c84e2354b519860c7cd140d4.svg" alt="\(t \le 1/2\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/8f405b48931ffaa20ce0651eb7b804e5b01f1814.svg" alt="\(L(s,t) = K(s,2t-1)\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/b466428463e05f1410442e7c67599736466d054c.svg" alt="\(t \ge 1/2\)" style="height:1.096em;vertical-align:-0.274em">; the two
+definitions agree on the closed set <img class="m" src="m/2ec8019ce2fd125b7eafc098c0a86da3e507dd76.svg" alt="\(t = 1/2\)" style="height:1.096em;vertical-align:-0.274em">, both giving
+<img class="m" src="m/a8ee073cd036609469772ff28b96becec796bbd1.svg" alt="\(\beta(s)\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> is continuous by the pasting lemma and is a path
+homotopy from <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> to <img class="m" src="m/a7557905dfe0cbb9ed8efb67df67b1b7128d6a76.svg" alt="\(\gamma\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="definition" id="orgaec1718">
+<p>
+For paths <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> from <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> to <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> and <img class="m" src="m/65ed198e156bf7d35f2bcbce00232479bbe853b2.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em"> from <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> to
+<img class="m" src="m/a3dcfa6c97b29682527f7556e1c40cc9580c366a.svg" alt="\(z\)" style="height:0.472em;vertical-align:-0.000em">, the <i>concatenation</i> <img class="m" src="m/de7b77213a87fd096e82de27eac7370be6345086.svg" alt="\(\alpha \cdot \beta\)" style="height:0.974em;vertical-align:-0.214em"> is the path
+<img class="m" src="m/314dec3ac12d08fe9087551f0e4b1dccc1b50297.svg" alt="\((\alpha\cdot\beta)(s) = \alpha(2s)\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/ad65dad20c6d7e75f24779f6c0b0b0a355659150.svg" alt="\(s \le 1/2\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/3f3e08c32b178dfa22dfc1167a3563c54b048679.svg" alt="\(\beta(2s-1)\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/6ef18eeff8fda0ee7bbe5cd56f798a48a9a94b4b.svg" alt="\(s \ge 1/2\)" style="height:1.096em;vertical-align:-0.274em">; the <i>reverse</i> is
+<img class="m" src="m/d46fabc48f9d568249b6a79d3e3ce23a53802072.svg" alt="\(\overline{\alpha}(s) = \alpha(1-s)\)" style="height:1.096em;vertical-align:-0.274em">, and <img class="m" src="m/648b50cad4832b9baf8e0ccd14b4ae1704dc856d.svg" alt="\(c_{x}\)" style="height:0.636em;vertical-align:-0.165em"> denotes the
+constant path at <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="lemma" id="orgedd0871">
+<p>
+Let <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> be a path and <img class="m" src="m/a28221aeb748639a45b0b3359fa71c9e17610ef0.svg" alt="\(\varphi \colon [0,1]\to[0,1]\)" style="height:1.096em;vertical-align:-0.274em"> continuous
+with <img class="m" src="m/15f0212d9bd6e7419d0e887fe4ad1128490d3e90.svg" alt="\(\varphi(0) = 0\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/423097a2925b28f50918bdef2c28c6f87a67ee78.svg" alt="\(\varphi(1) = 1\)" style="height:1.096em;vertical-align:-0.274em">. Then
+<img class="m" src="m/ab6889dba0377e02103c7663d2c813a6db43b623.svg" alt="\(\alpha \circ \varphi \simeq \alpha\)" style="height:0.721em;vertical-align:-0.216em">. Moreover, if
+<img class="m" src="m/6f02a24020ff29ddd4137f715152ae3026e15f8c.svg" alt="\(\alpha\simeq\alpha'\)" style="height:0.824em;vertical-align:-0.000em"> and <img class="m" src="m/7bfecb7e3ee29ab3721a262f658cc39647ade2f9.svg" alt="\(\beta\simeq\beta'\)" style="height:1.037em;vertical-align:-0.218em"> with matching
+endpoints, then <img class="m" src="m/6271706cd4c01919123eb8d4cddfd108bb099bc5.svg" alt="\(\alpha\cdot\beta \simeq \alpha'\cdot\beta'\)" style="height:1.037em;vertical-align:-0.218em">.
+</p>
+
+</div>
+
+<div class="proof" id="org9d605bf">
+<p>
+For the first claim put <img class="m" src="m/648708ac8180b00af2aaf1109814601d7564223c.svg" alt="\(H(s,t) = \alpha\bigl((1-t)\varphi(s) + t s\bigr)\)" style="height:1.315em;vertical-align:-0.381em">.
+It is continuous as a composition, equals <img class="m" src="m/0016abf7ed49d1ebf431395a6491fef5a196b3d5.svg" alt="\(\alpha\circ\varphi\)" style="height:0.700em;vertical-align:-0.210em"> at
+<img class="m" src="m/446398eb140d9f80b808e26642b8551f1bf3c2f0.svg" alt="\(t=0\)" style="height:0.706em;vertical-align:-0.000em"> and <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> at <img class="m" src="m/79a32473f72fb9c6c196caaec41e691c1ac40387.svg" alt="\(t=1\)" style="height:0.706em;vertical-align:-0.000em">, and at <img class="m" src="m/12f122babeb7f046ee7fad328c1326f9afcdf485.svg" alt="\(s = 0, 1\)" style="height:0.919em;vertical-align:-0.211em"> the argument is
+constantly <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">, respectively <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">, because <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> fixes both.
+</p>
+
+<p>
+For the second, let <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> be path homotopies and set
+<img class="m" src="m/85abcdfa14d0034a7a26df38e454d8a4d8db12fb.svg" alt="\(H(s,t) = F(2s,t)\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/ad65dad20c6d7e75f24779f6c0b0b0a355659150.svg" alt="\(s \le 1/2\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/4811d459efd4957514112a28e9cf1a2bf20e5e95.svg" alt="\(H(s,t) = G(2s-1,t)\)" style="height:1.096em;vertical-align:-0.274em"> for
+<img class="m" src="m/6ef18eeff8fda0ee7bbe5cd56f798a48a9a94b4b.svg" alt="\(s \ge 1/2\)" style="height:1.096em;vertical-align:-0.274em">. At <img class="m" src="m/4fc38c858cd615ba428b60d39932a727de968951.svg" alt="\(s = 1/2\)" style="height:1.096em;vertical-align:-0.274em"> both give the common endpoint, so <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> is
+continuous by the pasting lemma; it restricts to
+<img class="m" src="m/155340720fd88249e8d956ccbb37f5c1eab22525.svg" alt="\(\alpha\cdot\beta\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/ca740ca1d44d9dcb33c6332861347153ae5ed692.svg" alt="\(\alpha'\cdot\beta'\)" style="height:1.037em;vertical-align:-0.218em"> at <img class="m" src="m/d044686508218dc2d2bc5e32341717fc2bace26b.svg" alt="\(t = 0, 1\)" style="height:0.919em;vertical-align:-0.211em"> and is
+constant at <img class="m" src="m/3bd5acde1daaaff94e6842e673196f115ef7e453.svg" alt="\(s = 0,1\)" style="height:0.919em;vertical-align:-0.211em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org5b291ba">
+<p>
+Let <img class="m" src="m/57e362fdc71d939b48d17a2c64fe7429b4cf1d36.svg" alt="\(x_{0} \in X\)" style="height:0.913em;vertical-align:-0.164em">. The set <img class="m" src="m/4ef775b323e938855613bf00847f680a82cb629b.svg" alt="\(\pi_{1}(X, x_{0})\)" style="height:1.096em;vertical-align:-0.274em"> of path-homotopy
+classes of loops at <img class="m" src="m/4f8246e7705a9c0df96e9d12bf2c596179c4d261.svg" alt="\(x_{0}\)" style="height:0.636em;vertical-align:-0.165em"> is a group under
+<img class="m" src="m/ddd77a53b7630dad3fa9eac54a87636f261973e2.svg" alt="\([\alpha][\beta] = [\alpha\cdot\beta]\)" style="height:1.096em;vertical-align:-0.274em">, with identity <img class="m" src="m/7a5eebdd8d3d0c654fa9038d3864b0f575ba14d2.svg" alt="\([c_{x_{0}}]\)" style="height:1.096em;vertical-align:-0.274em">
+and <img class="m" src="m/48a41d095c075a08279f40ee1c285926bdf4974c.svg" alt="\([\alpha]^{-1} = [\overline{\alpha}]\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+</div>
+
+<div class="proof" id="org4074e6c">
+<p>
+The product is well defined by the second part of the lemma.
+</p>
+
+<p>
+<b>Associativity.</b> A direct check gives
+<img class="m" src="m/f5dbd83b53806a439964bae7ca477fb472fce619.svg" alt="\((\alpha\cdot\beta)\cdot\gamma = \bigl(\alpha\cdot(\beta\cdot\gamma)\bigr)\circ\varphi\)" style="height:1.315em;vertical-align:-0.381em">
+for the piecewise-linear <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> taking <img class="m" src="m/a0374b69bb51041aed3bdec313368e796b9913c7.svg" alt="\(0, 1/4, 1/2, 1\)" style="height:1.096em;vertical-align:-0.274em"> to
+<img class="m" src="m/e4ec895f4c6c8b747beb626774dbe04be405cb7e.svg" alt="\(0, 1/2, 3/4, 1\)" style="height:1.096em;vertical-align:-0.274em">; since <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> is continuous and fixes the
+endpoints, the reparametrisation lemma makes the two sides homotopic.
+</p>
+
+<p>
+<b>Identity.</b> <img class="m" src="m/3897a5bf28dc36d8183258ce1c11f4e540ea50e1.svg" alt="\(c_{x_{0}}\cdot\alpha = \alpha\circ\varphi\)" style="height:0.761em;vertical-align:-0.274em"> with
+<img class="m" src="m/c126878f35edb06d79beed9bcf39426720e3c472.svg" alt="\(\varphi(s) = 0\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/ad65dad20c6d7e75f24779f6c0b0b0a355659150.svg" alt="\(s \le 1/2\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/df6b532e8de61a8e7dcf7bce94c8e6dc330348a8.svg" alt="\(2s-1\)" style="height:0.798em;vertical-align:-0.088em"> for <img class="m" src="m/6ef18eeff8fda0ee7bbe5cd56f798a48a9a94b4b.svg" alt="\(s \ge 1/2\)" style="height:1.096em;vertical-align:-0.274em">,
+again continuous and fixing the endpoints; so
+<img class="m" src="m/c460f08c8798581fc8e88f5304cf36365c70229c.svg" alt="\(c_{x_{0}}\cdot\alpha\simeq\alpha\)" style="height:0.782em;vertical-align:-0.274em">, and symmetrically
+<img class="m" src="m/6ff366df6580e7f4c6af4586d25407d83d616942.svg" alt="\(\alpha\cdot c_{x_{0}}\simeq\alpha\)" style="height:0.782em;vertical-align:-0.274em">.
+</p>
+
+<p>
+<b>Inverses.</b> Define <img class="m" src="m/ffa16a9851a85c1637d02bfd91a5c14da5ee2585.svg" alt="\(H(s,t) = \alpha(2s(1-t))\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/ad65dad20c6d7e75f24779f6c0b0b0a355659150.svg" alt="\(s \le 1/2\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/4affa83a3e28aaca396051c4f38ec925fd91eb87.svg" alt="\(H(s,t) = \alpha(2(1-s)(1-t))\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/6ef18eeff8fda0ee7bbe5cd56f798a48a9a94b4b.svg" alt="\(s \ge 1/2\)" style="height:1.096em;vertical-align:-0.274em">. Both formulas give
+<img class="m" src="m/b1e034b8d977234074d5bfdbeec8e0ffe7a50269.svg" alt="\(\alpha(1-t)\)" style="height:1.096em;vertical-align:-0.274em"> at <img class="m" src="m/4fc38c858cd615ba428b60d39932a727de968951.svg" alt="\(s = 1/2\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> is continuous; at <img class="m" src="m/7278f3bf5413cf4c4cfb52dab1ed9a4378258c69.svg" alt="\(t = 0\)" style="height:0.706em;vertical-align:-0.000em"> it
+is <img class="m" src="m/5257ff0d232f317efe9b8a80764671cd60390b35.svg" alt="\(\alpha\cdot\overline{\alpha}\)" style="height:0.691em;vertical-align:-0.000em">, at <img class="m" src="m/17252df70913d4a1f8db13600c07087394411c3b.svg" alt="\(t = 1\)" style="height:0.706em;vertical-align:-0.000em"> it is constantly
+<img class="m" src="m/36074bbeb7f8db889730179541e386df1dc1b624.svg" alt="\(\alpha(0) = x_{0}\)" style="height:1.096em;vertical-align:-0.274em">, and at <img class="m" src="m/12f122babeb7f046ee7fad328c1326f9afcdf485.svg" alt="\(s = 0, 1\)" style="height:0.919em;vertical-align:-0.211em"> it is <img class="m" src="m/4f8246e7705a9c0df96e9d12bf2c596179c4d261.svg" alt="\(x_{0}\)" style="height:0.636em;vertical-align:-0.165em">. Hence
+<img class="m" src="m/dd2a78f1cfbb92a34e97c21e66b78bb2625b4dde.svg" alt="\([\alpha][\overline{\alpha}] = [c_{x_{0}}]\)" style="height:1.096em;vertical-align:-0.274em">, and the same argument
+applied to <img class="m" src="m/11f557f83db7fc1e19db672cdad9f423621fa52c.svg" alt="\(\overline{\alpha}\)" style="height:0.691em;vertical-align:-0.000em"> gives the other side.
+</p>
+
+</div>
+
+<div class="proposition" id="orge351c4e">
+<p>
+If <img class="m" src="m/a7557905dfe0cbb9ed8efb67df67b1b7128d6a76.svg" alt="\(\gamma\)" style="height:0.685em;vertical-align:-0.212em"> is a path from <img class="m" src="m/4f8246e7705a9c0df96e9d12bf2c596179c4d261.svg" alt="\(x_{0}\)" style="height:0.636em;vertical-align:-0.165em"> to <img class="m" src="m/a78629c10c264cf8b12e1bb7daf5b30534395c3f.svg" alt="\(x_{1}\)" style="height:0.636em;vertical-align:-0.165em">, then
+<img class="m" src="m/7f36602ae98b944c419a2e250a024c377202c769.svg" alt="\([\alpha] \mapsto [\overline{\gamma}\cdot\alpha\cdot\gamma]\)" style="height:1.096em;vertical-align:-0.274em"> is an
+isomorphism <img class="m" src="m/853b7080879d0d1c97ee3c14a4ec06ceaa415aa9.svg" alt="\(\pi_{1}(X,x_{0}) \to \pi_{1}(X,x_{1})\)" style="height:1.096em;vertical-align:-0.274em">. So in a
+path-connected space the fundamental group does not depend on the
+basepoint, up to isomorphism.
+</p>
+
+</div>
+
+<div class="proof" id="org64e4e39">
+<p>
+The map is well defined by the lemma and is a homomorphism, since
+<img class="m" src="m/18a78652bd5d4d806581a377e81a71ce8fa14171.svg" alt="\(\overline{\gamma}\cdot\alpha\cdot\gamma\cdot\overline{\gamma}\cdot\beta\cdot\gamma
+\simeq \overline{\gamma}\cdot\alpha\cdot\beta\cdot\gamma\)" style="height:0.974em;vertical-align:-0.214em"> using
+<img class="m" src="m/45048cebcfe47f4492dec9e573435443f8cb5fcb.svg" alt="\(\gamma\cdot\overline{\gamma}\simeq c\)" style="height:0.904em;vertical-align:-0.217em"> and the group laws just
+proved. The map induced by <img class="m" src="m/c55802889066edc0c24b15e3cb3e2b8188dcbca6.svg" alt="\(\overline{\gamma}\)" style="height:0.904em;vertical-align:-0.217em"> is a two-sided inverse
+for the same reason.
+</p>
+
+</div>
+
+<div class="proposition" id="org506de19">
+<p>
+A continuous <img class="m" src="m/d7c0c93f2d459ca20e4f53c81d24a704a65c7b84.svg" alt="\(f \colon X \to Y\)" style="height:0.974em;vertical-align:-0.214em"> with <img class="m" src="m/1e129ec3789605f7ba06e5e17ed9d4e92ae0d85b.svg" alt="\(f(x_{0}) = y_{0}\)" style="height:1.096em;vertical-align:-0.274em"> induces a
+homomorphism
+<img class="m" src="m/fa170f5784f1e1f47859496f43cc5cb8d3d63da6.svg" alt="\(f_{*} \colon \pi_{1}(X,x_{0}) \to \pi_{1}(Y,y_{0})\)" style="height:1.096em;vertical-align:-0.274em">,
+<img class="m" src="m/0894f5ee45eb6a63aab6d5b8348e2d6c67565324.svg" alt="\(f_{*}[\alpha] = [f\circ\alpha]\)" style="height:1.096em;vertical-align:-0.274em">; moreover
+<img class="m" src="m/01d570d1341d43d486ebd8c26df02b45bb40b2b6.svg" alt="\((g\circ f)_{*} = g_{*}\circ f_{*}\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/093238166030076d03ed63ff7a5536d6d48dd05b.svg" alt="\((\id_{X})_{*} = \id\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgb72c959">
+<p>
+If <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> is a path homotopy from <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> to <img class="m" src="m/65ed198e156bf7d35f2bcbce00232479bbe853b2.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em">, then
+<img class="m" src="m/b17593a10689d3e3c9beaceb89459fc5a8afe212.svg" alt="\(f \circ H\)" style="height:0.974em;vertical-align:-0.214em"> is one from <img class="m" src="m/cf2b9f96a9a629a360ef5345af6167ad9b498583.svg" alt="\(f\circ\alpha\)" style="height:0.974em;vertical-align:-0.214em"> to <img class="m" src="m/24273b63e61e90261fcf4f6fea640327d18a319c.svg" alt="\(f\circ\beta\)" style="height:0.974em;vertical-align:-0.214em">, so
+<img class="m" src="m/71d93a8092fa4769d6e34fe1215a4697688c85a8.svg" alt="\(f_{*}\)" style="height:0.974em;vertical-align:-0.214em"> is well defined; and
+<img class="m" src="m/15162391727c7f1f1ab03c09233dab1cc9d558a7.svg" alt="\(f\circ(\alpha\cdot\beta) = (f\circ\alpha)\cdot(f\circ\beta)\)" style="height:1.096em;vertical-align:-0.274em">
+directly from the definition of concatenation, so <img class="m" src="m/71d93a8092fa4769d6e34fe1215a4697688c85a8.svg" alt="\(f_{*}\)" style="height:0.974em;vertical-align:-0.214em"> is a
+homomorphism. The two functoriality identities hold before passing to
+classes.
+</p>
+
+</div>
+
+<div class="corollary" id="orgcece9fd">
+<p>
+A homeomorphism <img class="m" src="m/d7c0c93f2d459ca20e4f53c81d24a704a65c7b84.svg" alt="\(f \colon X \to Y\)" style="height:0.974em;vertical-align:-0.214em"> induces an isomorphism
+<img class="m" src="m/3f5b66098e6328f7e59c3c924bb9efb2f718994c.svg" alt="\(\pi_{1}(X,x_{0}) \iso \pi_{1}(Y, f(x_{0}))\)" style="height:1.096em;vertical-align:-0.274em">. Two path-connected
+spaces with non-isomorphic fundamental groups are not homeomorphic.
+</p>
+
+</div>
+
+<div class="proof" id="org9aead53">
+<p>
+Functoriality applied to <img class="m" src="m/b12894340b77b59bd5b02aeb9a1c10b9dd8c1de9.svg" alt="\(f^{-1}\circ f = \id_{X}\)" style="height:1.105em;vertical-align:-0.210em"> and
+<img class="m" src="m/8919a03e0a791392fb5d1bd5f7a9f2ae3384f0a3.svg" alt="\(f\circ f^{-1} = \id_{Y}\)" style="height:1.105em;vertical-align:-0.210em"> gives
+<img class="m" src="m/9f5093983df3c775a3199054426b0612d91f010e.svg" alt="\((f^{-1})_{*}\circ f_{*} = \id\)" style="height:1.166em;vertical-align:-0.268em"> and <img class="m" src="m/50c51f971b9af478379c35fe481667b0abf1d95e.svg" alt="\(f_{*}\circ (f^{-1})_{*} = \id\)" style="height:1.166em;vertical-align:-0.268em">,
+so <img class="m" src="m/71d93a8092fa4769d6e34fe1215a4697688c85a8.svg" alt="\(f_{*}\)" style="height:0.974em;vertical-align:-0.214em"> is an isomorphism of groups. The second statement is its
+contrapositive, the basepoint being immaterial by the change-of-basepoint
+proposition.
+</p>
+
+</div>
+
+<div class="remark" id="org399e0f3">
+<p>
+The group is defined for every space and computed for almost none of
+them by this construction alone: even <img class="m" src="m/474142ad5654bd8d6584be24f6d560b6d4f0136f.svg" alt="\(\pi_{1}\)" style="height:0.636em;vertical-align:-0.165em"> of the circle requires
+a covering-space argument. What the corollary gives immediately is the
+form of every later application &#x2013; an invariant that is a group, so that
+two spaces can be told apart by an algebraic computation rather than a
+geometric one.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="algebraic-topology.html"><span>← previous</span>Algebraic topology</a><a rel="next" href="homotopy-equivalence-retracts-and-contractible-spaces.html"><span>next →</span>Homotopy equivalence, retracts and contractible spaces</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/topology--algebraic-topology.pdf" title="PDF manual">Algebraic Topology</a> · <a class="pdf" href="pdf/topology.pdf" title="PDF manual">Topology</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

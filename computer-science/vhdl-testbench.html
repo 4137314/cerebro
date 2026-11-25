@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Testbenches · Computer Science</title>
+<meta name="description" content="A testbench is an entity without ports that instantiates the design under test, drives its inputs from processes with wait for delays, generates the clock, and checks the outputs with assert ... report ... severity; it uses non-synthesisable VHDL and exists only for simulation.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/vhdl-testbench.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Testbenches · Computer Science">
+<meta property="og:description" content="A testbench is an entity without ports that instantiates the design under test, drives its inputs from processes with wait for delays, generates the clock, and checks the outputs with assert ... report ... severity; it uses non-synthesisable VHDL and exists only for simulation.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/vhdl-testbench.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--vhdl">Vhdl</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Hardware · Vhdl</p>
+<h1>Testbenches</h1>
+<p class="summary">A testbench is an entity without ports that instantiates the design under test, drives its inputs from processes with <code>wait for</code> delays, generates the clock, and checks the outputs with <code>assert ... report ... severity</code>; it uses non-synthesisable VHDL and exists only for simulation.</p>
+<p class="rel"><span>needs</span> <a href="vhdl-process.html">Processes and sequential statements</a></p>
+<p class="rel"><span>see also</span> <a href="event-driven-simulation.html">Event-driven logic simulation</a>, <a href="vhdl-structural.html">Structural VHDL: components, port maps, generics</a></p>
+<p class="rel"><span>mentioned in</span> <a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="digital-design-flow.html">Digital design flow and abstraction levels</a></li><li><a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a></li><li><a href="std-logic.html">std_logic: nine-valued logic and resolution</a></li><li><a href="vhdl-concurrent-assignments.html">Concurrent assignments: when–else and with–select</a></li><li><a href="vhdl-process.html">Processes and sequential statements</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org3c5daba" class="outline-2">
+<h2 id="org3c5daba">Method</h2>
+<div class="outline-text-2" id="text-org3c5daba">
+<figure class="listing lang-vhdl"><figcaption><span class="lang">VHDL</span></figcaption><pre class="src"><code><span class="k">entity</span> <span class="f">tb_adder</span> <span class="k">is</span> <span class="k">end</span> <span class="k">entity</span>;                 <span class="c">-- no ports
+</span>
+<span class="k">architecture</span> <span class="f">sim</span> <span class="k">of</span> <span class="f">tb_adder</span> <span class="k">is</span>
+  <span class="k">signal</span> <span class="v">a</span>, <span class="v">b</span>, <span class="v">s</span> : <span class="t">std_logic_vector</span>(7 <span class="k">downto</span> 0);
+  <span class="k">signal</span> <span class="v">clk</span> : <span class="t">std_logic</span> := <span class="s">'0'</span>;
+<span class="k">begin</span>
+  <span class="f">dut</span> : <span class="k">entity</span> work.<span class="f">adder</span> <span class="k">generic</span> <span class="k">map</span> (<span class="v">N</span> =&gt; 8)
+    <span class="k">port</span> <span class="k">map</span> (<span class="v">a</span> =&gt; a, <span class="v">b</span> =&gt; b, <span class="v">cin</span> =&gt; <span class="s">'0'</span>, <span class="v">s</span> =&gt; s, <span class="v">cout</span> =&gt; <span class="k">open</span>);
+
+  clk &lt;= <span class="k">not</span> clk <span class="k">after</span> 5 ns;                   <span class="c">-- 100 MHz clock
+</span>
+  <span class="f">stim</span> : <span class="k">process</span>
+  <span class="k">begin</span>
+    <span class="k">for</span> <span class="v">i</span> <span class="k">in</span> 0 <span class="k">to</span> 255 <span class="k">loop</span>
+      a &lt;= <span class="t">std_logic_vector</span>(to_unsigned(i, 8));
+      b &lt;= <span class="t">std_logic_vector</span>(to_unsigned(3, 8));
+      <span class="k">wait</span> <span class="k">for</span> 10 ns;                          <span class="c">-- let the signals settle
+</span>      <span class="k">assert</span> to_integer(<span class="t">unsigned</span>(s)) = (i + 3) <span class="k">mod</span> 256
+        <span class="k">report</span> <span class="s">"wrong sum for i = "</span> &amp; <span class="t">integer</span>'image(i) <span class="k">severity</span> error;
+    <span class="k">end</span> <span class="k">loop</span>;
+    <span class="k">report</span> <span class="s">"done"</span>; <span class="k">wait</span>;                       <span class="c">-- suspend for ever
+</span>  <span class="k">end</span> <span class="k">process</span>;
+<span class="k">end</span> <span class="k">architecture</span>;</code></pre></figure>
+<p>
+Run with GHDL: <code>ghdl -a adder.vhd tb_adder.vhd; ghdl -e tb_adder; ghdl -r tb_adder --wave=tb.ghw --stop-time=3us</code>, then inspect with GTKWave.
+</p>
+</div>
+</div>
+<div id="outline-container-org9446e7d" class="outline-2">
+<h2 id="org9446e7d">Practices</h2>
+<div class="outline-text-2" id="text-org9446e7d">
+<ul class="org-ul">
+<li>self-checking: compare with a reference model in the testbench, not by eye;</li>
+<li>cover corner cases (0, maximum, overflow, reset in the middle of an operation);</li>
+<li>apply inputs away from the active clock edge and sample outputs before the next one.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org983a4f2" class="outline-2">
+<h2 id="org983a4f2">Intuition</h2>
+<div class="outline-text-2" id="text-org983a4f2">
+<p>
+The design is the chip; the testbench is the laboratory bench around it — signal generators, a clock, and an oscilloscope that complains.
+</p>
+</div>
+</div>
+<div id="outline-container-org9e2c50c" class="outline-2">
+<h2 id="org9e2c50c">Pitfall</h2>
+<div class="outline-text-2" id="text-org9e2c50c">
+<p>
+A process without <a href="vhdl-process.html">sensitivity list</a> and without <code>wait</code> loops for ever at time zero and hangs the simulator; the final <code>wait;</code> is mandatory.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="vhdl-structural.html"><span>← previous</span>Structural VHDL: components, port maps, generics</a><a rel="next" href="event-driven-simulation.html"><span>next →</span>Event-driven logic simulation</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--vhdl.pdf" title="PDF manual">Vhdl</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

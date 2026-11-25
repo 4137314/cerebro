@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASAP and ALAP scheduling, mobility · Computer Science</title>
+<meta name="description" content="Without resource limits, ASAP starts each operation as soon as its predecessors finish, giving the minimum latency \lambda; ALAP starts it as late as possible within \lambda; the mobility t^L_i-t^S_i of an operation says how much freedom it has, and zero-mobility operations form the critical path.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/asap-alap-scheduling.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="ASAP and ALAP scheduling, mobility · Computer Science">
+<meta property="og:description" content="Without resource limits, ASAP starts each operation as soon as its predecessors finish, giving the minimum latency \lambda; ALAP starts it as late as possible within \lambda; the mobility t^L_i-t^S_i of an operation says how much freedom it has, and zero-mobility operations form the critical path.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/asap-alap-scheduling.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--high-level-synthesis">High Level Synthesis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Hardware · High Level Synthesis</p>
+<h1>ASAP and ALAP scheduling, mobility</h1>
+<p class="summary">Without resource limits, ASAP starts each operation as soon as its predecessors finish, giving the minimum latency <img class="m" src="m/5067a545dd3104cfa4de6b429a318645de9a25d9.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em">; ALAP starts it as late as possible within <img class="m" src="m/5067a545dd3104cfa4de6b429a318645de9a25d9.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em">; the mobility <img class="m" src="m/6a12e39aaf6e77fc1043944aa0d7ef794d21b403.svg" alt="\(t^L_i-t^S_i\)" style="height:1.207em;vertical-align:-0.290em"> of an operation says how much freedom it has, and zero-mobility operations form the critical path.</p>
+<p class="rel"><span>needs</span> <a href="data-flow-graph.html">Data-flow graphs and architectural synthesis</a></p>
+<p class="rel"><span>unlocks</span> <a href="list-scheduling.html">List scheduling</a></p>
+<p class="rel"><span>see also</span> <a href="list-scheduling.html">List scheduling</a>, <a href="static-timing-analysis.html">Static timing analysis</a></p>
+<details class="path"><summary>Learning path: 2 notes lead here, in study order</summary><ol><li><a href="digital-design-flow.html">Digital design flow and abstraction levels</a></li><li><a href="data-flow-graph.html">Data-flow graphs and architectural synthesis</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org97c94ee" class="outline-2">
+<h2 id="org97c94ee">Method</h2>
+<div class="outline-text-2" id="text-org97c94ee">
+<p>
+With <img class="m" src="m/52e12f6f959c01f49ab87e690c8b0ff6cfcf17ea.svg" alt="\(d_i\)" style="height:0.925em;vertical-align:-0.167em"> the execution delay (cycles) of operation <img class="m" src="m/02187d3ccc2e9853f15a4895d85f3bffa60ee462.svg" alt="\(v_i\)" style="height:0.636em;vertical-align:-0.165em">:
+</p>
+<ul class="org-ul">
+<li><b>ASAP</b>: <img class="m" src="m/1d75670e27c24b6acf724185ac689f53885005d5.svg" alt="\(t^S_{source}=1\)" style="height:1.193em;vertical-align:-0.274em">; <img class="m" src="m/a67da0fe8f2235ea67c998af8ec1dca1c3f8c555.svg" alt="\(t^S_i=\max_{j\to i}\big(t^S_j+d_j\big)\)" style="height:1.366em;vertical-align:-0.437em">, in topological order. The latency is <img class="m" src="m/6c4dd5c5080c4439dd2244cfb27d6d00e60be5ca.svg" alt="\(\lambda=t^S_{sink}-1\)" style="height:1.232em;vertical-align:-0.308em">.</li>
+<li><b>ALAP</b> for a bound <img class="m" src="m/2d649ee244892de8520ffe9f7b5b2d62669471aa.svg" alt="\(\bar\lambda\ge\lambda\)" style="height:1.060em;vertical-align:-0.148em">: <img class="m" src="m/d07627412827d79bf9e1d357137508e9c03db413.svg" alt="\(t^L_{sink}=\bar\lambda+1\)" style="height:1.232em;vertical-align:-0.308em">; <img class="m" src="m/f2556f5219f2902b557a9f2c1361667c9671893c.svg" alt="\(t^L_i=\min_{i\to k}\,t^L_k-d_i\)" style="height:1.232em;vertical-align:-0.308em">, in reverse topological order (select a vertex whose successors are all scheduled).</li>
+<li><b>Mobility</b>: <img class="m" src="m/ccc71dcedb893adda1e680e9e5bd17f9ae99625c.svg" alt="\(\mu_i=t^L_i-t^S_i\ge0\)" style="height:1.207em;vertical-align:-0.290em">. With <img class="m" src="m/a766f5bcd2b023aee17c747634a6c8ef7b2b69e3.svg" alt="\(\bar\lambda=\lambda\)" style="height:0.911em;vertical-align:-0.000em">, operations with <img class="m" src="m/d5983cc0f96789f90a3ad0215708a7f1c34b92dd.svg" alt="\(\mu_i=0\)" style="height:0.919em;vertical-align:-0.211em"> are critical.</li>
+</ul>
+<p>
+These are the arrival and required times of <a href="static-timing-analysis.html">timing analysis</a>, counted in cycles.
+</p>
+</div>
+</div>
+<div id="outline-container-org90e7d40" class="outline-2">
+<h2 id="org90e7d40">Example</h2>
+<div class="outline-text-2" id="text-org90e7d40">
+<p>
+The <a href="data-flow-graph.html">solver graph</a> with all delays 1, <img class="m" src="m/192735cfa4b15b3b43447972e28e9dc939b69fd6.svg" alt="\(\bar\lambda=4\)" style="height:0.911em;vertical-align:-0.000em">:
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">op</th>
+<th scope="col" class="org-right">v1</th>
+<th scope="col" class="org-right">v2</th>
+<th scope="col" class="org-right">v3</th>
+<th scope="col" class="org-right">v4</th>
+<th scope="col" class="org-right">v5</th>
+<th scope="col" class="org-right">v6</th>
+<th scope="col" class="org-right">v7</th>
+<th scope="col" class="org-right">v8</th>
+<th scope="col" class="org-right">v9</th>
+<th scope="col" class="org-right">v10</th>
+<th scope="col" class="org-right">v11</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">ASAP</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-right">3</td>
+<td class="org-right">4</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-left">ALAP</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">2</td>
+<td class="org-right">3</td>
+<td class="org-right">3</td>
+<td class="org-right">3</td>
+<td class="org-right">4</td>
+<td class="org-right">4</td>
+<td class="org-right">3</td>
+<td class="org-right">4</td>
+</tr>
+
+<tr>
+<td class="org-left">mobility</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">2</td>
+<td class="org-right">2</td>
+<td class="org-right">2</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+The critical path is v1, v2 → v3 → v7 → v8 (mobility 0). ASAP needs four multipliers in cycle 1; the mobility of v4, v5, v6 is exactly the freedom a <a href="list-scheduling.html">resource-constrained scheduler</a> uses to spread them.
+</p>
+</div>
+</div>
+<div id="outline-container-org2ff6326" class="outline-2">
+<h2 id="org2ff6326">Picture</h2>
+<div class="outline-text-2" id="text-org2ff6326">
+<figure class="fig"><img class="m" src="m/6790c8432261b4e53eb670b907bd708fa49d5321.svg" alt="figure" style="width:19.141em"><figcaption><span class="fl">Figure 1.</span> ASAP and ALAP schedules of a data-flow graph: an operation's mobility <img class="m" src="m/ceefe90f81bce991584f83deac10b27a81dc6ad3.svg" alt="\(\mu\)" style="height:0.685em;vertical-align:-0.212em"> is the number of cycles between its earliest and latest start (here <img class="m" src="m/089752da450f57eeab2820cb5e1d1c386890d05d.svg" alt="\(\mu=2\)" style="height:0.919em;vertical-align:-0.211em">).</figcaption></figure>
+<p>
+The addition can move from its ASAP cycle to its ALAP cycle without increasing the latency.
+</p>
+</div>
+</div>
+<div id="outline-container-orgac4a09e" class="outline-2">
+<h2 id="orgac4a09e">Intuition</h2>
+<div class="outline-text-2" id="text-orgac4a09e">
+<p>
+ASAP and ALAP are the two extremes; everything a real scheduler does happens between them.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd30705a" class="outline-2">
+<h2 id="orgd30705a">Pitfall</h2>
+<div class="outline-text-2" id="text-orgd30705a">
+<p>
+ASAP is optimal for latency only with unlimited resources: it puts all multiplications in the first cycle, which may need far more multipliers than the design can afford.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="data-flow-graph.html"><span>← previous</span>Data-flow graphs and architectural synthesis</a><a rel="next" href="list-scheduling.html"><span>next →</span>List scheduling</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--high-level-synthesis.pdf" title="PDF manual">High Level Synthesis</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

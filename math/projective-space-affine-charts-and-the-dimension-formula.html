@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projective space, affine charts and the dimension formula · Mathematics</title>
+<meta name="description" content="Two lines in a plane meet in a point, unless they are parallel. The exception is not a fact about lines but about the plane: adding one point per direction removes it, and the resulting space is the set of lines through the origin of a vector space one dimension higher. Every statement about inters…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/projective-space-affine-charts-and-the-dimension-formula.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Projective space, affine charts and the dimension formula · Mathematics">
+<meta property="og:description" content="Two lines in a plane meet in a point, unless they are parallel. The exception is not a fact about lines but about the plane: adding one point per direction removes it, and the resulting space is the set of lines through the origin of a vector space one dimension higher. Every statement about inters…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/projective-space-affine-charts-and-the-dimension-formula.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-geometry">Geometry</a> / <a rel="up" href="index.html#a-geometry--algebraic-geometry">Algebraic Geometry</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Geometry · Algebraic Geometry</p>
+<h1>Projective space, affine charts and the dimension formula</h1>
+<p class="summary">Two lines in a plane meet in a point, unless they are parallel. The exception is not a fact about lines but about the plane: adding one point per direction removes it, and the resulting space is the set of lines through the origin of a vector space one dimension higher. Every statement about intersections then becomes the Grassmann formula.</p>
+<p class="rel"><span>needs</span> <a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a>, <a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a>, <a href="vector-space.html">Vector space</a></p>
+<p class="rel"><span>unlocks</span> <a href="conics-and-quadrics-classification-by-signature.html">Conics and quadrics: classification by signature</a>, <a href="projective-transformations-and-the-cross-ratio.html">Projective transformations and the cross-ratio</a></p>
+<p class="rel"><span>mentioned in</span> <a href="geometry.html">Geometry</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org3c0dfcf">
+<p>
+Let <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> be a vector space over a field <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">. The <i>projective space</i>
+<img class="m" src="m/6f8f65d24d57fecf27481f4d0a7348e3b1a6521a.svg" alt="\(\PP(V)\)" style="height:1.096em;vertical-align:-0.274em"> is the set of one-dimensional subspaces of <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">;
+equivalently <img class="m" src="m/9184bd94a6db37d35a2f919386e7778cf9f4edd5.svg" alt="\((V \setminus \set{0})/{\sim}\)" style="height:1.096em;vertical-align:-0.274em"> where <img class="m" src="m/2ef6920f43c91024e48b3c81a35684227da405bf.svg" alt="\(v \sim w\)" style="height:0.472em;vertical-align:-0.000em"> means
+<img class="m" src="m/295015cd7a06210b82a21664fca78897f9c16338.svg" alt="\(w = \lambda v\)" style="height:0.761em;vertical-align:-0.000em"> for some <img class="m" src="m/fa23cb32862961446017ef06f6628bb6f51898df.svg" alt="\(\lambda \ne 0\)" style="height:0.974em;vertical-align:-0.214em">. One writes
+<img class="m" src="m/1263cc7e9ceffcabd3d2eb474fefa6cdb8082ac8.svg" alt="\(\PP^{n}(K) = \PP(K^{n+1})\)" style="height:1.166em;vertical-align:-0.268em">, and <img class="m" src="m/6362d5a93e2fded136bdf1cf1502afc69795a5ee.svg" alt="\([x_{0} : \cdots : x_{n}]\)" style="height:1.096em;vertical-align:-0.274em"> for the
+class of <img class="m" src="m/3841280ccaf9aea25a9e7ceff34f4ee3d47de30e.svg" alt="\((x_{0},\dots,x_{n})\)" style="height:1.096em;vertical-align:-0.274em"> &#x2013; its <i>homogeneous coordinates</i>. The
+dimension of <img class="m" src="m/6f8f65d24d57fecf27481f4d0a7348e3b1a6521a.svg" alt="\(\PP(V)\)" style="height:1.096em;vertical-align:-0.274em"> is <img class="m" src="m/4857355f498c5a17120a2c67ee36c30c91e39744.svg" alt="\(\dim V - 1\)" style="height:0.852em;vertical-align:-0.094em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgac422a6">
+<p>
+The relation <img class="m" src="m/2ef6920f43c91024e48b3c81a35684227da405bf.svg" alt="\(v \sim w\)" style="height:0.472em;vertical-align:-0.000em"> above is an equivalence relation on
+<img class="m" src="m/e5c70917a09dcd3ea580b2113fbe1f9a19495034.svg" alt="\(V \setminus \set{0}\)" style="height:1.096em;vertical-align:-0.274em">, and its classes are exactly the sets
+<img class="m" src="m/cff87051c24bcc4cda12d8faa619a41ec3d38cb8.svg" alt="\(L \setminus \set{0}\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> a one-dimensional subspace; so the two
+descriptions in the definition agree.
+</p>
+
+</div>
+
+<div class="proof" id="orga0103af">
+<p>
+Reflexivity uses <img class="m" src="m/62d324b2e5a3344b9b264e8a8062865f7a338e52.svg" alt="\(\lambda = 1\)" style="height:0.761em;vertical-align:-0.000em">, symmetry <img class="m" src="m/1d0d15346bf57c4535199047a3179d8394178009.svg" alt="\(\lambda^{-1}\)" style="height:0.892em;vertical-align:-0.000em">, and
+transitivity the product of the two scalars &#x2013; all available since
+<img class="m" src="m/effdb426fd34e62cb963d51f0d1762ea8640f76a.svg" alt="\(K \setminus \set{0}\)" style="height:1.096em;vertical-align:-0.274em"> is a group under multiplication. The class of
+<img class="m" src="m/8605ad4a39064be56858f06c79cfb196fb260c60.svg" alt="\(v \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> is <img class="m" src="m/9f3975f5cbf598fdff0147880e1af09878047207.svg" alt="\(\setst{\lambda v}{\lambda \ne 0} = \Span\set{v} \setminus \set{0}\)" style="height:1.096em;vertical-align:-0.274em">,
+and every one-dimensional subspace is <img class="m" src="m/482bee80d0614d00c062391678417b518cacb1a6.svg" alt="\(\Span\set{v}\)" style="height:1.096em;vertical-align:-0.274em"> for such a <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orga7ea38c">
+<p>
+For each <img class="m" src="m/820a2ed5b51be608772286616d5575a49dd61525.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em"> let <img class="m" src="m/47630eefb7f48f5bc36b29bf1c91d1523ab1df64.svg" alt="\(U_{i} = \setst{[x_{0}:\cdots:x_{n}]}{x_{i} \ne 0}\)" style="height:1.096em;vertical-align:-0.274em">.
+Then the <img class="m" src="m/a562c7cdcf67e22ae80bce9ef8a7a99fe4abb681.svg" alt="\(U_{i}\)" style="height:0.913em;vertical-align:-0.164em"> cover <img class="m" src="m/4acd2e5dc74948cfd09aa93c2348711553f5b96b.svg" alt="\(\PP^{n}(K)\)" style="height:1.096em;vertical-align:-0.274em">, and
+<div class="mb"><img class="m" src="m/91c1522f54fd0e55dbe74889ab94690fd9584845.svg" alt="\[ \varphi_{i} \colon U_{i} \to K^{n}, \qquad [x_{0}:\cdots:x_{n}] \mapsto (x_{0}/x_{i}, \dots, x_{i-1}/x_{i}, x_{i+1}/x_{i}, \dots, x_{n}/x_{i}) \]" style="width:35.656em"></div>
+is a well-defined bijection &#x2013; the <img class="m" src="m/820a2ed5b51be608772286616d5575a49dd61525.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em">-th entry, which is always
+<img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">, being omitted. Moreover <img class="m" src="m/04e0fb79e31c624eab673c543c83ae8004ab94d2.svg" alt="\(\PP^{n}(K) \setminus U_{n}\)" style="height:1.096em;vertical-align:-0.274em"> is a copy
+of <img class="m" src="m/dc3b424d622a1d80f7229091dcef848253333013.svg" alt="\(\PP^{n-1}(K)\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+</div>
+
+<div class="proof" id="org3f34286">
+<p>
+Every non-zero vector has some non-zero coordinate, so the <img class="m" src="m/a562c7cdcf67e22ae80bce9ef8a7a99fe4abb681.svg" alt="\(U_{i}\)" style="height:0.913em;vertical-align:-0.164em">
+cover. The formula is well defined because replacing <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> by
+<img class="m" src="m/e2ad86bd50b7270de364c65db75f05098cab0886.svg" alt="\(\lambda x\)" style="height:0.761em;vertical-align:-0.000em"> multiplies numerator and denominator alike. It is
+injective: from the image one recovers the point as
+<img class="m" src="m/68eaa58365d2f0b78d35f8e8cc835a436ebef155.svg" alt="\([y_{0}:\cdots:1:\cdots:y_{n}]\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em"> in position <img class="m" src="m/820a2ed5b51be608772286616d5575a49dd61525.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em">, and this
+is a preimage, so it is also surjective. Finally <img class="m" src="m/238f79e30610d077659892b838d756f3d75524c3.svg" alt="\(x_{n} = 0\)" style="height:0.871em;vertical-align:-0.165em"> cuts out
+the classes of non-zero vectors of the hyperplane
+<img class="m" src="m/81c2162f963ed56e256a72861d5c4142e525bc00.svg" alt="\(\setst{x}{x_{n}=0} \iso K^{n}\)" style="height:1.096em;vertical-align:-0.274em">, which is <img class="m" src="m/dc3b424d622a1d80f7229091dcef848253333013.svg" alt="\(\PP^{n-1}(K)\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+</div>
+
+<div class="definition" id="org8216460">
+<p>
+A <i>projective subspace</i> of <img class="m" src="m/6f8f65d24d57fecf27481f4d0a7348e3b1a6521a.svg" alt="\(\PP(V)\)" style="height:1.096em;vertical-align:-0.274em"> is <img class="m" src="m/e6dde5930a18d39222db39dc20def1cf7eb9d0d2.svg" alt="\(\PP(W)\)" style="height:1.096em;vertical-align:-0.274em"> for a linear
+subspace <img class="m" src="m/a940c012608e1a3f073a1738a046d24187c153d9.svg" alt="\(W \subseteq V\)" style="height:0.898em;vertical-align:-0.153em">; its dimension is <img class="m" src="m/23d1b8b29f01467d35510bac57291f3713cd1262.svg" alt="\(\dim W - 1\)" style="height:0.852em;vertical-align:-0.094em">. Subspaces
+of dimension <img class="m" src="m/955f1ad2aea7ee0c6b43b278ad6276831bc0acc3.svg" alt="\(0, 1, 2\)" style="height:0.919em;vertical-align:-0.211em"> are <i>points</i>, <i>lines</i> and <i>planes</i>, and one of
+dimension <img class="m" src="m/af712c8b4df1ccf9359c29f3206a3070aea1e1ff.svg" alt="\(\dim\PP(V) - 1\)" style="height:1.096em;vertical-align:-0.274em"> is a <i>hyperplane</i>.
+</p>
+
+</div>
+
+<div class="theorem" id="org9f70132">
+<p>
+Let <img class="m" src="m/93d2e4eb1fd9aad060ee07860f5a9f05f771235f.svg" alt="\(\PP(U)\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/e6dde5930a18d39222db39dc20def1cf7eb9d0d2.svg" alt="\(\PP(W)\)" style="height:1.096em;vertical-align:-0.274em"> be projective subspaces of <img class="m" src="m/6f8f65d24d57fecf27481f4d0a7348e3b1a6521a.svg" alt="\(\PP(V)\)" style="height:1.096em;vertical-align:-0.274em"> with
+<img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> finite-dimensional. Then
+<div class="mb"><img class="m" src="m/5bc8cf4d70455477ed9835da378edafdcaeaae50.svg" alt="\[ \dim \PP(U \cap W) = \dim\PP(U) + \dim\PP(W) - \dim\PP(U + W), \]" style="width:27.291em"></div>
+with the convention <img class="m" src="m/3b2c30bf4bedc576f9e7d2da45ff4d3080adab2b.svg" alt="\(\dim\PP(\set{0}) = -1\)" style="height:1.096em;vertical-align:-0.274em">. In particular, in
+<img class="m" src="m/3c46615f8b8c2724b15aa092adef5db517268ad8.svg" alt="\(\PP^{2}(K)\)" style="height:1.166em;vertical-align:-0.268em"> any two distinct lines meet in exactly one point.
+</p>
+
+</div>
+
+<div class="proof" id="orga79a8b7">
+<p>
+Subtracting <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em"> from each term, the identity is exactly the Grassmann
+formula <img class="m" src="m/abe843e26a0a8f09b5fbca2ac9f52c53ba3102dd.svg" alt="\(\dim(U\cap W) = \dim U + \dim W - \dim(U+W)\)" style="height:1.096em;vertical-align:-0.274em">. For two
+distinct lines in <img class="m" src="m/3c46615f8b8c2724b15aa092adef5db517268ad8.svg" alt="\(\PP^{2}(K)\)" style="height:1.166em;vertical-align:-0.268em">: they are <img class="m" src="m/93d2e4eb1fd9aad060ee07860f5a9f05f771235f.svg" alt="\(\PP(U)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/e6dde5930a18d39222db39dc20def1cf7eb9d0d2.svg" alt="\(\PP(W)\)" style="height:1.096em;vertical-align:-0.274em"> with
+<img class="m" src="m/47fbb82c98b2c0016812f6142dd832a3492e5b5f.svg" alt="\(\dim U = \dim W = 2\)" style="height:0.761em;vertical-align:-0.000em"> inside <img class="m" src="m/45b7f871915b5ea1915bf3d5f1f6ba6931553ba1.svg" alt="\(\dim V = 3\)" style="height:0.761em;vertical-align:-0.000em">, and <img class="m" src="m/e7ccdcb12450b9aefd7ccde40395f851cc74ee41.svg" alt="\(U + W\)" style="height:0.840em;vertical-align:-0.092em"> has
+dimension <img class="m" src="m/609ebe8005b8ec6e21b03709a5b35665fb7adcb3.svg" alt="\(3\)" style="height:0.706em;vertical-align:-0.000em">, being strictly larger than <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">; so
+<img class="m" src="m/43979ff287bf7ed17fd37b3f18049fd15ecfb62b.svg" alt="\(\dim(U \cap W) = 2 + 2 - 3 = 1\)" style="height:1.096em;vertical-align:-0.274em"> and the intersection is a single
+projective point.
+</p>
+
+</div>
+
+<div class="remark" id="orgf2b8b8c">
+<p>
+The parallel case has not been handled separately anywhere above, and
+that is the point of the construction: in the affine chart <img class="m" src="m/a4a2e720c75d4fa72763c9c5eec0becee354a04f.svg" alt="\(U_{2}\)" style="height:0.913em;vertical-align:-0.164em"> the
+two lines may fail to meet, and the missing intersection is a point of
+the hyperplane at infinity <img class="m" src="m/041f6ff31e67c3ed66e49eff2dc4703ba995a208.svg" alt="\(\PP^{1}(K)\)" style="height:1.166em;vertical-align:-0.268em">, which the formula counts like
+any other. Removing exceptions from statements is what compactifying a
+space is for.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="surfaces-the-two-fundamental-forms-and-gauss-curvature.html"><span>← previous</span>Surfaces: the two fundamental forms and Gauss curvature</a><a rel="next" href="projective-transformations-and-the-cross-ratio.html"><span>next →</span>Projective transformations and the cross-ratio</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/geometry--algebraic-geometry.pdf" title="PDF manual">Algebraic Geometry</a> · <a class="pdf" href="pdf/geometry.pdf" title="PDF manual">Geometry</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

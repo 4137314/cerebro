@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uniform continuity, extension and the completion of a metric space · Mathematics</title>
+<meta name="description" content="The construction of \R from \Q by Cauchy sequences is usually presented as a fact about the real numbers. It is not: the same construction completes any metric space, and what is special about \Q is only that its completion happens to be a field one wants a name for. Uniform continuity is the notio…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/uniform-continuity-extension-and-the-completion-of-a-metric-space.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Uniform continuity, extension and the completion of a metric space · Mathematics">
+<meta property="og:description" content="The construction of \R from \Q by Cauchy sequences is usually presented as a fact about the real numbers. It is not: the same construction completes any metric space, and what is special about \Q is only that its completion happens to be a field one wants a name for. Uniform continuity is the notio…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/uniform-continuity-extension-and-the-completion-of-a-metric-space.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-topology">Topology</a> / <a rel="up" href="index.html#a-topology--general-topology">General Topology</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Topology · General Topology</p>
+<h1>Uniform continuity, extension and the completion of a metric space</h1>
+<p class="summary">The construction of <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em"> from <img class="m" src="m/83349875d2551503beeb2426480fe7a04427bf34.svg" alt="\(\Q\)" style="height:0.938em;vertical-align:-0.178em"> by Cauchy sequences is usually presented as a fact about the real numbers. It is not: the same construction completes any metric space, and what is special about <img class="m" src="m/83349875d2551503beeb2426480fe7a04427bf34.svg" alt="\(\Q\)" style="height:0.938em;vertical-align:-0.178em"> is only that its completion happens to be a field one wants a name for. Uniform continuity is the notion of map that survives the construction, and that is why it is the right hypothesis for extension.</p>
+<p class="rel"><span>needs</span> <a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a>, <a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a>, <a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a>, <a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a>, <a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></p>
+<p class="rel"><span>unlocks</span> <a href="equicontinuity-and-the-arzela-ascoli-theorem.html">Equicontinuity and the Arzela-Ascoli theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="general-topology.html">General topology</a></p>
+<details class="path"><summary>Learning path: 17 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgf6e1c51">
+<p>
+A map <img class="m" src="m/d7c0c93f2d459ca20e4f53c81d24a704a65c7b84.svg" alt="\(f \colon X \to Y\)" style="height:0.974em;vertical-align:-0.214em"> between metric spaces is <i>uniformly
+continuous</i> if for every <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> there is <img class="m" src="m/2834db4da57323bf6f47d0a640028cc90f572412.svg" alt="\(\delta &gt; 0\)" style="height:0.804em;vertical-align:-0.040em"> with
+<img class="m" src="m/65d81e4c73130d49e7ca5f6f6f429951578b97b2.svg" alt="\(d(f(x),f(x')) &lt; \eps\)" style="height:1.098em;vertical-align:-0.274em"> whenever <img class="m" src="m/0a5108f9c8af4b57781b94c5043c65c8ff71cf4d.svg" alt="\(d(x,x') &lt; \delta\)" style="height:1.098em;vertical-align:-0.274em"> &#x2013; the same
+<img class="m" src="m/ae9908b1dd9140d114827a466a957908d1672568.svg" alt="\(\delta\)" style="height:0.761em;vertical-align:-0.000em"> for every pair. It is an <i>isometric embedding</i> if
+<img class="m" src="m/bbd8753bc2c3a83f82165b8479fa98e8704537d1.svg" alt="\(d(f(x),f(x')) = d(x,x')\)" style="height:1.098em;vertical-align:-0.274em"> for all <img class="m" src="m/ad6cc1b321b1147e209bb85c8fa4d73f344463d9.svg" alt="\(x, x'\)" style="height:1.037em;vertical-align:-0.218em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org2b9e5fa">
+<p>
+A uniformly continuous map sends Cauchy sequences to Cauchy sequences.
+A merely continuous map need not.
+</p>
+
+</div>
+
+<div class="proof" id="org14e75c3">
+<p>
+Let <img class="m" src="m/b7cb63ac317cdbd63367cfc4bd393717cb0e6e21.svg" alt="\((x_{n})\)" style="height:1.096em;vertical-align:-0.274em"> be Cauchy and <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em">; take <img class="m" src="m/ae9908b1dd9140d114827a466a957908d1672568.svg" alt="\(\delta\)" style="height:0.761em;vertical-align:-0.000em"> from uniform
+continuity and <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/f82d91a28ec2e4641fc32a4a8887bc5f2b61a26c.svg" alt="\(d(x_{n},x_{m}) &lt; \delta\)" style="height:1.096em;vertical-align:-0.274em"> for
+<img class="m" src="m/0c8df14d0def566e651f6b0b025013fd964f0be0.svg" alt="\(n,m \ge N\)" style="height:0.962em;vertical-align:-0.212em">. Then <img class="m" src="m/2685cd0cccfacbc098fdff5173e4350b119760ec.svg" alt="\(d(f(x_{n}),f(x_{m})) &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/0c8df14d0def566e651f6b0b025013fd964f0be0.svg" alt="\(n,m \ge N\)" style="height:0.962em;vertical-align:-0.212em">.
+For the second sentence, <img class="m" src="m/d6e37b0d23171f574eea6c3969ccdc0ac39675a0.svg" alt="\(x \mapsto 1/x\)" style="height:1.096em;vertical-align:-0.274em"> on <img class="m" src="m/a47594394d27aac449c552ecb9f8de03dc976afd.svg" alt="\((0,1)\)" style="height:1.096em;vertical-align:-0.274em"> is continuous
+and sends the Cauchy sequence <img class="m" src="m/f2962ec0efa913f687f26a23cf9a0fa944b356cb.svg" alt="\((1/n)\)" style="height:1.096em;vertical-align:-0.274em"> to <img class="m" src="m/273882439d9fceffa4eb47a66ca622ca7b71250e.svg" alt="\((n)\)" style="height:1.096em;vertical-align:-0.274em">, which is not Cauchy.
+</p>
+
+</div>
+
+<div class="theorem" id="orgf67bb15">
+<p>
+Let <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> be dense in a metric space <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">, let <img class="m" src="m/82d9b7c5c94f297586981fdbe7ca67b30095b73a.svg" alt="\(Y\)" style="height:0.749em;vertical-align:-0.000em"> be complete, and
+let <img class="m" src="m/fe7c35c5119acd47ae923be82ad22ebfc6969c60.svg" alt="\(f \colon A \to Y\)" style="height:0.974em;vertical-align:-0.214em"> be uniformly continuous. Then <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> extends to
+a uniformly continuous <img class="m" src="m/591c73e6ce5a3d757710637de155d51564c302ad.svg" alt="\(F \colon X \to Y\)" style="height:0.749em;vertical-align:-0.000em">, and to exactly one
+continuous map on <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">. If <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is an isometric embedding, so is
+<img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org949a5cc">
+<p>
+For <img class="m" src="m/94eaa1f197d2485b6086400fc7bd6537a638d7d8.svg" alt="\(x \in X\)" style="height:0.792em;vertical-align:-0.040em"> choose <img class="m" src="m/a9173e0e5831622a39652b6e4f1f82de2cb2df5c.svg" alt="\(a_{n} \in A\)" style="height:0.913em;vertical-align:-0.164em"> with <img class="m" src="m/cfa70737993204fc9ec62e9cdec15ae5bf1f6a59.svg" alt="\(a_{n}\to x\)" style="height:0.636em;vertical-align:-0.165em">; the
+sequence is Cauchy, so <img class="m" src="m/e4ad924b63d7f92f1afc80c45e92d36d3d665f54.svg" alt="\((f(a_{n}))\)" style="height:1.096em;vertical-align:-0.274em"> is Cauchy and converges in <img class="m" src="m/82d9b7c5c94f297586981fdbe7ca67b30095b73a.svg" alt="\(Y\)" style="height:0.749em;vertical-align:-0.000em">.
+The limit does not depend on the sequence chosen: interleaving two such
+sequences gives another sequence converging to <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, whose image
+converges, so the two limits agree. Define <img class="m" src="m/1204a5b0cf5b7893247c450b4a9b70eb654454c3.svg" alt="\(F(x)\)" style="height:1.096em;vertical-align:-0.274em"> to be that limit;
+for <img class="m" src="m/67cfd0662406b4a66864b7834697edf23e0b7194.svg" alt="\(x \in A\)" style="height:0.792em;vertical-align:-0.040em"> the constant sequence gives <img class="m" src="m/5e8326c98d344fe09602bd96a069a31758d36ffb.svg" alt="\(F(x) = f(x)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+<img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em"> is uniformly continuous: given <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em">, take <img class="m" src="m/ae9908b1dd9140d114827a466a957908d1672568.svg" alt="\(\delta\)" style="height:0.761em;vertical-align:-0.000em"> for
+<img class="m" src="m/df0110242d2cd25c16e4b8556ca98dac4ace96fd.svg" alt="\(\eps/3\)" style="height:1.096em;vertical-align:-0.274em"> in the uniform continuity of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">. If
+<img class="m" src="m/79b999c27625ce9aa3700904c8357dbc52b66a69.svg" alt="\(d(x,x') &lt; \delta/3\)" style="height:1.098em;vertical-align:-0.274em">, choose <img class="m" src="m/cfa70737993204fc9ec62e9cdec15ae5bf1f6a59.svg" alt="\(a_{n}\to x\)" style="height:0.636em;vertical-align:-0.165em"> and <img class="m" src="m/56b421afa2e657295b23c6b7820ac1dba6943cc5.svg" alt="\(a_{n}'\to x'\)" style="height:1.095em;vertical-align:-0.274em"> in
+<img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">; for large <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">, <img class="m" src="m/c3e147754ffd5cb0250587af5d2a1795415a0f8b.svg" alt="\(d(a_{n},a_{n}') &lt; \delta\)" style="height:1.098em;vertical-align:-0.274em">, so
+<img class="m" src="m/768e835d6208527fb6b8bfa05eb48f3439d5ad52.svg" alt="\(d(f(a_{n}),f(a_{n}')) \le \eps/3\)" style="height:1.098em;vertical-align:-0.274em">, and passing to the limit gives
+<img class="m" src="m/61772ece614a18788b946ddbbaba89c5b467dbab.svg" alt="\(d(F(x),F(x')) \le \eps/3 &lt; \eps\)" style="height:1.098em;vertical-align:-0.274em">.
+</p>
+
+<p>
+Uniqueness: two continuous extensions agree on the dense set <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, and
+each point of <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is a limit of points of <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, so they agree
+everywhere by sequential continuity and uniqueness of limits. Finally,
+if <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> preserves distances then so does <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em">, the distance function
+being continuous and the identity <img class="m" src="m/15ce8aa95cb1912209429e034473c12ceb453291.svg" alt="\(d(F(x),F(x')) = d(x,x')\)" style="height:1.098em;vertical-align:-0.274em"> passing to
+the limit.
+</p>
+
+</div>
+
+<div class="theorem" id="orgd2d3def">
+<p>
+Every metric space <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> admits a <i>completion</i>: a complete metric space
+<img class="m" src="m/1bdccf8c36dbd4bf6e83432640edc8af3c983f91.svg" alt="\(\hat{X}\)" style="height:1.038em;vertical-align:-0.000em"> together with an isometric embedding
+<img class="m" src="m/811aee80e1fc620ece74daa45a295e5087d59dc8.svg" alt="\(\iota \colon X \to \hat{X}\)" style="height:1.038em;vertical-align:-0.000em"> whose image is dense. It is unique up to
+a unique isometry commuting with the embeddings.
+</p>
+
+</div>
+
+<div class="proof" id="orge0fdbd1">
+<p>
+<b>Construction.</b> Let <img class="m" src="m/cd053a42dc6593a0d14dc4a0625b55838bea74c4.svg" alt="\(\mathcal{C}\)" style="height:0.749em;vertical-align:-0.000em"> be the set of Cauchy sequences in
+<img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> and put <img class="m" src="m/76be488d3917dac85f8fb10a1a81842c1a42ba65.svg" alt="\((x_{n}) \sim (y_{n})\)" style="height:1.096em;vertical-align:-0.274em"> when <img class="m" src="m/e64c278d3fa798691154a2837fbe2e038496a60b.svg" alt="\(d(x_{n},y_{n})\to 0\)" style="height:1.096em;vertical-align:-0.274em">; this
+is an equivalence relation, transitivity following from the triangle
+inequality. For Cauchy sequences the real sequence <img class="m" src="m/0276413c4cb63e7c72359cd295f153f7f0d3fdbf.svg" alt="\(d(x_{n},y_{n})\)" style="height:1.096em;vertical-align:-0.274em"> is
+Cauchy, since
+<img class="m" src="m/1d4ae43961454d47cd8122217dcc0f4693b7d7e9.svg" alt="\(\abs{d(x_{n},y_{n}) - d(x_{m},y_{m})} \le d(x_{n},x_{m}) + d(y_{n},y_{m})\)" style="height:1.096em;vertical-align:-0.274em">,
+hence convergent; define <img class="m" src="m/935384e5d81fe2bc5504289c4051fe9dc1f6f2bc.svg" alt="\(\hat{d}([x_{n}],[y_{n}]) = \lim_{n} d(x_{n},y_{n})\)" style="height:1.324em;vertical-align:-0.278em">,
+which is well defined by the same estimate. Symmetry and the triangle
+inequality pass to the limit, and <img class="m" src="m/0b1bfaa326c069a46c3b6e1b4ad73dfde5078a8a.svg" alt="\(\hat{d} = 0\)" style="height:1.050em;vertical-align:-0.000em"> is exactly the
+relation <img class="m" src="m/779b6cb1ed8d5286b8611ae528e6e9511312e005.svg" alt="\(\sim\)" style="height:0.402em;vertical-align:-0.000em">, so <img class="m" src="m/6e276ba12133ed5ed99f40a3e91a51e90ebbd514.svg" alt="\(\hat{d}\)" style="height:1.050em;vertical-align:-0.000em"> is a metric on
+<img class="m" src="m/0265f88e3d17988bdb8ba64143b97eb6648206b6.svg" alt="\(\hat{X} = \mathcal{C}/{\sim}\)" style="height:1.312em;vertical-align:-0.276em">. Let <img class="m" src="m/029daa4d47e3d185a657b76a699c2bcab0783f9c.svg" alt="\(\iota(x)\)" style="height:1.096em;vertical-align:-0.274em"> be the class of the
+constant sequence: it is isometric, and its image is dense because
+<img class="m" src="m/31073c2f7f5f1ffeed58c3a103340afe42ae17ec.svg" alt="\(\hat{d}([x_{n}], \iota(x_{N})) = \lim_{n} d(x_{n},x_{N})\)" style="height:1.324em;vertical-align:-0.278em"> is small for
+large <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+<p>
+<b>Completeness.</b> Let <img class="m" src="m/691140eef3a207b193230c1e808f3fbf65ee4ef8.svg" alt="\((\xi_{k})\)" style="height:1.096em;vertical-align:-0.274em"> be Cauchy in <img class="m" src="m/1bdccf8c36dbd4bf6e83432640edc8af3c983f91.svg" alt="\(\hat{X}\)" style="height:1.038em;vertical-align:-0.000em">. By density
+pick <img class="m" src="m/c0e4e53dc0aadf4e9ee6b71b1d45990986db54d4.svg" alt="\(z_{k} \in X\)" style="height:0.913em;vertical-align:-0.164em"> with <img class="m" src="m/ba5850cb8b8c3226686b25158dc0d898ef09742f.svg" alt="\(\hat{d}(\xi_{k},\iota(z_{k})) &lt; 1/k\)" style="height:1.324em;vertical-align:-0.278em">. Then
+<img class="m" src="m/3340b3e50dc3db96d3ee89fa7dd0f80649d2b8ab.svg" alt="\((\iota(z_{k}))\)" style="height:1.096em;vertical-align:-0.274em"> is Cauchy, so <img class="m" src="m/7f18453900f8010cbb51f7bbc2cf3f90070e51ba.svg" alt="\((z_{k})\)" style="height:1.096em;vertical-align:-0.274em"> is Cauchy in <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> and
+defines <img class="m" src="m/3b65c427cc6b5cfb80bcc6336bb866fa6c8749c4.svg" alt="\(\xi = [z_{k}] \in \hat{X}\)" style="height:1.312em;vertical-align:-0.276em">. Now
+<img class="m" src="m/7c7cd228005ac4237b579230cbc713cbe60ae764.svg" alt="\(\hat{d}(\xi, \iota(z_{k})) = \lim_{j} d(z_{j}, z_{k})\)" style="height:1.364em;vertical-align:-0.314em"> tends to <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">
+as <img class="m" src="m/b138f9dc9bf57d9a5323538bd466a2d45c40b893.svg" alt="\(k \to \infty\)" style="height:0.761em;vertical-align:-0.000em">, so <img class="m" src="m/26d7830c83a0b4cb8f6ef0c94364f365bcd51d26.svg" alt="\(\iota(z_{k}) \to \xi\)" style="height:1.096em;vertical-align:-0.274em"> and therefore
+<img class="m" src="m/fddd44e2f63408ac39c74d6a55d296badf6a38c0.svg" alt="\(\xi_{k}\to\xi\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+<p>
+<b>Uniqueness.</b> Let <img class="m" src="m/d3d21b31b19578f5fc2831dc2e9f45b83bba8195.svg" alt="\(\iota' \colon X \to \hat{X}'\)" style="height:1.038em;vertical-align:-0.000em"> be another such
+embedding. The isometry <img class="m" src="m/efe173201f741df08eec8da2d1eefd89f2a65591.svg" alt="\(\iota'\circ\iota^{-1}\)" style="height:0.892em;vertical-align:-0.000em">, defined on the dense
+subspace <img class="m" src="m/d7d84b5b32501110382e33b81e020dec9a6c0ea9.svg" alt="\(\iota(X)\)" style="height:1.096em;vertical-align:-0.274em">, is uniformly continuous into the complete space
+<img class="m" src="m/c7677e2d86388350e35522f9b99339a15cd3a76d.svg" alt="\(\hat{X}'\)" style="height:1.038em;vertical-align:-0.000em">, so it extends uniquely to an isometric
+<img class="m" src="m/683114cc4a252298e316ce7a119d59f2a7317616.svg" alt="\(\Phi \colon \hat{X}\to\hat{X}'\)" style="height:1.038em;vertical-align:-0.000em"> with <img class="m" src="m/4b37a27fe99ec7611535aa874da612afabdbf78b.svg" alt="\(\Phi\circ\iota = \iota'\)" style="height:0.824em;vertical-align:-0.000em">.
+Symmetrically there is <img class="m" src="m/4c7c96da72925c450ca29d41b4f7b3109404bd1a.svg" alt="\(\Psi\)" style="height:0.749em;vertical-align:-0.000em"> the other way, and <img class="m" src="m/06037aa1895d2460f41c5e0ada8785fce6e473e6.svg" alt="\(\Psi\circ\Phi\)" style="height:0.749em;vertical-align:-0.000em"> is
+a continuous map fixing the dense set <img class="m" src="m/d7d84b5b32501110382e33b81e020dec9a6c0ea9.svg" alt="\(\iota(X)\)" style="height:1.096em;vertical-align:-0.274em">, hence the identity
+by the uniqueness clause of the extension theorem; likewise
+<img class="m" src="m/205eb3f983ac24deb8dffba0e8ae29f70bba300e.svg" alt="\(\Phi\circ\Psi\)" style="height:0.749em;vertical-align:-0.000em">. So <img class="m" src="m/fa487ac7b42c8b2ef4b61263ca81e5c6f295f32f.svg" alt="\(\Phi\)" style="height:0.749em;vertical-align:-0.000em"> is a bijective isometry, and it is unique
+because it is determined on <img class="m" src="m/d7d84b5b32501110382e33b81e020dec9a6c0ea9.svg" alt="\(\iota(X)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="remark" id="orgd445a1a">
+<p>
+The construction never uses anything about <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> beyond its metric, so
+"the reals are the completion of the rationals" is a special case rather
+than a definition &#x2013; and the field operations on <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em"> are then obtained
+from the extension theorem, since addition and multiplication are
+uniformly continuous on bounded sets. That is also the reason
+completeness of <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em"> is an axiom in this archive and a theorem
+elsewhere: which one it is depends on where the construction is entered.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="nets-and-convergence-in-topological-spaces.html"><span>← previous</span>Nets and convergence in topological spaces</a><a rel="next" href="general-topology.html"><span>next →</span>General topology</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/topology--general-topology.pdf" title="PDF manual">General Topology</a> · <a class="pdf" href="pdf/topology.pdf" title="PDF manual">Topology</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

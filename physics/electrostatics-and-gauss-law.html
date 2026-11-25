@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Electrostatics and Gauss's law · Physics</title>
+<meta name="description" content="Static charges produce \mathbf E=-\nabla V with \nabla\cdot\mathbf D=\rho, \mathbf D=\epsilon\mathbf E=\epsilon_0\mathbf E+\mathbf P; Gauss's law \oint\mathbf D\cdot\dd\mathbf S=Q_{enc} solves symmetric problems in one line, and the stored energy is \tfrac12\int\mathbf D\cdot\mathbf E\,\dd V.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/electrostatics-and-gauss-law.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Electrostatics and Gauss's law · Physics">
+<meta property="og:description" content="Static charges produce \mathbf E=-\nabla V with \nabla\cdot\mathbf D=\rho, \mathbf D=\epsilon\mathbf E=\epsilon_0\mathbf E+\mathbf P; Gauss's law \oint\mathbf D\cdot\dd\mathbf S=Q_{enc} solves symmetric problems in one line, and the stored energy is \tfrac12\int\mathbf D\cdot\mathbf E\,\dd V.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/electrostatics-and-gauss-law.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-electromagnetic-fields">Electromagnetic Fields</a> / <a rel="up" href="index.html#a-electromagnetic-fields--static-fields">Static Fields</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Electromagnetic Fields · Static Fields</p>
+<h1>Electrostatics and Gauss's law</h1>
+<p class="summary">Static charges produce <img class="m" src="m/6b976482fa4ae900398864080419edc8660a9d41.svg" alt="\(\mathbf E=-\nabla V\)" style="height:0.843em;vertical-align:-0.093em"> with <img class="m" src="m/61b5f1c30bed3e599290c70b5e97322cc84df209.svg" alt="\(\nabla\cdot\mathbf D=\rho\)" style="height:0.965em;vertical-align:-0.212em">, <img class="m" src="m/278ecfbd50795a40e7d67d15f53d1b67261fda73.svg" alt="\(\mathbf D=\epsilon\mathbf E=\epsilon_0\mathbf E+\mathbf P\)" style="height:0.916em;vertical-align:-0.165em">; Gauss's law <img class="m" src="m/c3f440d313d993df20ee611baac6c9ee622f21c9.svg" alt="\(\oint\mathbf D\cdot\dd\mathbf S=Q_{enc}\)" style="height:1.218em;vertical-align:-0.341em"> solves symmetric problems in one line, and the stored energy is <img class="m" src="m/7de938ae75f13a026895afc145f66e0352b0a426.svg" alt="\(\tfrac12\int\mathbf D\cdot\mathbf E\,\dd V\)" style="height:1.304em;vertical-align:-0.378em">.</p>
+<p class="rel"><span>needs</span> <a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></p>
+<p class="rel"><span>unlocks</span> <a href="capacitance-and-laplace-equation.html">Poisson, Laplace and capacitance</a>, <a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a>, <a href="pn-junction-electrostatics.html">The pn junction: built-in potential, depletion and capacitance</a></p>
+<p class="rel"><span>see also</span> <a href="capacitance-and-laplace-equation.html">Poisson, Laplace and capacitance</a>, <a href="pn-junction-electrostatics.html">The pn junction: built-in potential, depletion and capacitance</a></p>
+<details class="path"><summary>Learning path: 2 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org46d69a0" class="outline-2">
+<h2 id="org46d69a0">Statement</h2>
+<div class="outline-text-2" id="text-org46d69a0">
+<p>
+Coulomb: <img class="m" src="m/c7559fc8e4d3679a1bbc222a9ec46082df867f8f.svg" alt="\(\mathbf E=\frac{Q}{4\pi\epsilon_0R^2}\hat R\)" style="height:1.526em;vertical-align:-0.488em">. Superposition and the divergence theorem give
+<div class="mb"><img class="m" src="m/69cbce6217ee8d037a2f91d6b00cc43b3ca994b2.svg" alt="\[ \nabla\cdot\mathbf D=\rho_v,\qquad \nabla\times\mathbf E=0,\qquad \mathbf E=-\nabla V,\qquad V(\mathbf r)=\int\frac{\rho_v\,\dd V'}{4\pi\epsilon|\mathbf r-\mathbf r'|}. \]" style="width:33.613em"></div>
+In matter, bound charges <img class="m" src="m/a24528e61560cacf095dd9fe93a14cd2798a32a1.svg" alt="\(\rho_b=-\nabla\cdot\mathbf P\)" style="height:0.965em;vertical-align:-0.212em">; for linear media <img class="m" src="m/7e51098c5c4f78c699e317733232f9de9c53a2a1.svg" alt="\(\mathbf P=\epsilon_0\chi_e\mathbf E\)" style="height:0.965em;vertical-align:-0.212em">, <img class="m" src="m/f3b8e00199824ea46f57e9be2877207781ed600b.svg" alt="\(\epsilon_r=1+\chi_e\)" style="height:0.919em;vertical-align:-0.211em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org42bbec7" class="outline-2">
+<h2 id="org42bbec7">Derivation: standard symmetric fields</h2>
+<div class="outline-text-2" id="text-org42bbec7">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">source</th>
+<th scope="col" class="org-left">field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">point charge Q</td>
+<td class="org-left">Q/(4πεR²)</td>
+</tr>
+
+<tr>
+<td class="org-left">infinite line, ρ_l</td>
+<td class="org-left">ρ_l/(2πεr)</td>
+</tr>
+
+<tr>
+<td class="org-left">infinite sheet, ρ_s</td>
+<td class="org-left">ρ_s/(2ε), each side</td>
+</tr>
+
+<tr>
+<td class="org-left">uniform sphere, inside (r &lt; a)</td>
+<td class="org-left">ρ r/(3ε)</td>
+</tr>
+</tbody>
+</table>
+<p>
+Each follows by choosing a Gaussian surface on which <img class="m" src="m/3cece403764fa39b3cba7cc26a2285546ca5989b.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> is constant and normal. <span class="cite">(<a class="ref" href="https://doi.org/10.1098/rstl.1865.0008" data-full="J. C. Maxwell, “A dynamical theory of the electromagnetic field”, Philosophical Transactions of the Royal Society of London 155, 459–512 (1865)." aria-label="J. C. Maxwell, “A dynamical theory of the electromagnetic field”, Philosophical Transactions of the Royal Society of London 155, 459–512 (1865).">Maxwell 1865</a>)</span>
+</p>
+</div>
+</div>
+<div id="outline-container-org7e9f7be" class="outline-2">
+<h2 id="org7e9f7be">Boundary conditions and energy</h2>
+<div class="outline-text-2" id="text-org7e9f7be">
+<p>
+Across an interface: <img class="m" src="m/727853694eb6da0488b02569c2f55d54e64d64da.svg" alt="\(E_{t1}=E_{t2}\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/fab3cf6f305ff1099436b47bfe68e65c4a23b341.svg" alt="\(D_{n1}-D_{n2}=\rho_s\)" style="height:0.962em;vertical-align:-0.212em">. Conductors: <img class="m" src="m/e939dfb51e6b5b4440f8650d15e53abf6e4c5ff4.svg" alt="\(\mathbf E=0\)" style="height:0.752em;vertical-align:-0.000em"> inside, surface field <img class="m" src="m/fb343d8edb29f9f98d287cd6b6fdd839df193548.svg" alt="\(\rho_s/\epsilon\)" style="height:1.096em;vertical-align:-0.274em"> normal. Energy <img class="m" src="m/07b5e935d8c837265bb02b8477273eb29798cf9d.svg" alt="\(W=\tfrac12\int\rho V\,\dd V=\tfrac12\int\epsilon E^2\,\dd V\)" style="height:1.304em;vertical-align:-0.378em">; force by virtual work <img class="m" src="m/601f583ef3f0cbc21c9be48bab1065f3e1041df1.svg" alt="\(F=-\partial W/\partial x|_Q\)" style="height:1.135em;vertical-align:-0.318em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org007d88f" class="outline-2">
+<h2 id="org007d88f">Worked example</h2>
+<div class="outline-text-2" id="text-org007d88f">
+<p>
+Gate oxide 2 nm SiO<img class="m" src="m/c9902f14814473fee6466a89ce3a2722ca89432d.svg" alt="\(_2\)" style="height:0.494em;vertical-align:-0.163em"> (<img class="m" src="m/2d4d1238174f16a782b563726ebc8b43db5ba037.svg" alt="\(\epsilon_r=3.9\)" style="height:0.871em;vertical-align:-0.165em">) at 1 V: <img class="m" src="m/681713d425e5b5d23fbc5ab811d6fdcbf2a2f3b2.svg" alt="\(E=V/d=1/(2\times10^{-9})=5\times10^8\)" style="height:1.166em;vertical-align:-0.268em"> V/m, i.e. 5 MV/cm, half the breakdown field of SiO<img class="m" src="m/c9902f14814473fee6466a89ce3a2722ca89432d.svg" alt="\(_2\)" style="height:0.494em;vertical-align:-0.163em"> (~10 MV/cm). Charge density <img class="m" src="m/9f8a9dfbc1118a8bdc16934c82de2b94af8b4697.svg" alt="\(\rho_s=\epsilon E=3.9\cdot8.85\times10^{-12}\cdot5\times10^8=1.7\times10^{-2}\)" style="height:1.105em;vertical-align:-0.210em"> C/m² ≈ <img class="m" src="m/b5bc8e9f6328745f3fc59fd9e68c957c95cf4a54.svg" alt="\(1.1\times10^{13}\)" style="height:0.983em;vertical-align:-0.089em"> electrons/cm² — the inversion charge of a MOSFET (<a href="mosfet-operation-and-iv.html">MOSFET</a>).
+</p>
+</div>
+</div>
+<div id="outline-container-org717543c" class="outline-2">
+<h2 id="org717543c">Engineering applications</h2>
+<div class="outline-text-2" id="text-org717543c">
+<p>
+Capacitive touch screens and MEMS accelerometers, ESD and high-voltage insulation design (field crowding at sharp edges), electrostatic precipitators, depletion regions of <a href="pn-junction-electrostatics.html">pn junctions</a> (Poisson's equation with dopant charge).
+</p>
+</div>
+</div>
+<div id="outline-container-orgcbdf983" class="outline-2">
+<h2 id="orgcbdf983">Pitfall</h2>
+<div class="outline-text-2" id="text-orgcbdf983">
+<p>
+Gauss's law is always true but only <b>useful</b> with symmetry: for a finite line or a square plate the field is not constant on any simple surface.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="vector-calculus-and-field-theorems.html"><span>← previous</span>Vector calculus and the field theorems</a><a rel="next" href="magnetostatics-and-ampere-law.html"><span>next →</span>Magnetostatics: Biot–Savart, Ampère and inductance</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/electromagnetic-fields--static-fields.pdf" title="PDF manual">Static Fields</a> · <a class="pdf" href="pdf/electromagnetic-fields.pdf" title="PDF manual">Electromagnetic Fields</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

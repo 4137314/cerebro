@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two-dimensional discrete Fourier transform · Remote Sensing</title>
+<meta name="description" content="The 2-D DFT writes an N\times M image as a sum of sinusoidal patterns, I_F(k_y,k_x)=\sum_{y,x}I(y,x)\,e^{-j2\pi(k_yy/N+k_xx/M)}; it is periodic, Hermitian-symmetric for real images, its value at the origin is NM times the mean, low frequencies hold smooth variations and high frequencies edges and d…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/discrete-fourier-transform.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Two-dimensional discrete Fourier transform · Remote Sensing">
+<meta property="og:description" content="The 2-D DFT writes an N\times M image as a sum of sinusoidal patterns, I_F(k_y,k_x)=\sum_{y,x}I(y,x)\,e^{-j2\pi(k_yy/N+k_xx/M)}; it is periodic, Hermitian-symmetric for real images, its value at the origin is NM times the mean, low frequencies hold smooth variations and high frequencies edges and d…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/discrete-fourier-transform.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--filtering">Filtering</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Processing · Filtering</p>
+<h1>Two-dimensional discrete Fourier transform</h1>
+<p class="summary">The 2-D DFT writes an <img class="m" src="m/c2020d094abe9d1a37eb094d5c801771a17e64d1.svg" alt="\(N\times M\)" style="height:0.840em;vertical-align:-0.092em"> image as a sum of sinusoidal patterns, <img class="m" src="m/fee55628d9c381fb4f55bfd7e532ce85286f9f1a.svg" alt="\(I_F(k_y,k_x)=\sum_{y,x}I(y,x)\,e^{-j2\pi(k_yy/N+k_xx/M)}\)" style="height:1.451em;vertical-align:-0.479em">; it is periodic, Hermitian-symmetric for real images, its value at the origin is <img class="m" src="m/0e8e82651ed36b202ecd75aeacca9209ca6dac32.svg" alt="\(NM\)" style="height:0.749em;vertical-align:-0.000em"> times the mean, low frequencies hold smooth variations and high frequencies edges and details.</p>
+<p class="rel"><span>needs</span> <a href="digital-image.html">Digital images</a></p>
+<p class="rel"><span>unlocks</span> <a href="frequency-domain-filtering.html">Filtering in the frequency domain</a>, <a href="sampling-aliasing.html">Sampling theorem and aliasing</a>, <a href="convolution-theorem.html">The convolution theorem</a></p>
+<p class="rel"><span>see also</span> <a href="frequency-domain-filtering.html">Filtering in the frequency domain</a>, <a href="moving-window-filters.html">Moving-window (convolution) filters</a>, <a href="point-spread-function.html">Point spread function and spectral response</a>, <a href="convolution-theorem.html">The convolution theorem</a>, <a href="sampling-aliasing.html">Sampling theorem and aliasing</a></p>
+<p class="rel"><span>mentioned in</span> <a href="point-spread-function.html">Point spread function and spectral response</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgef1afb6" class="outline-2">
+<h2 id="orgef1afb6">Definition</h2>
+<div class="outline-text-2" id="text-orgef1afb6">
+<p>
+1-D: <img class="m" src="m/13b60c8ddfde59de9ef24717080d07b137fd3119.svg" alt="\(D(k)=\sum_{x=0}^{M-1}d(x)e^{-j2\pi kx/M}\)" style="height:1.404em;vertical-align:-0.323em">, <img class="m" src="m/e2dea86ebdfef67fd1bde40dc7aa1e76a993982f.svg" alt="\(d(x)=\frac1M\sum_k D(k)e^{j2\pi kx/M}\)" style="height:1.351em;vertical-align:-0.378em">, periodic with period <img class="m" src="m/c4fd2f6a2a637a717d5252e439e3977d6c881168.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">; the largest representable frequency (<a href="sampling-aliasing.html">Nyquist</a>) is <img class="m" src="m/f3aea5beda4811931009700e8db8aa982346c397.svg" alt="\(k=M/2\)" style="height:1.096em;vertical-align:-0.274em">.
+2-D:
+<div class="mb"><img class="m" src="m/9aa02211baf50d9869c3f13d45c69fa81721ef22.svg" alt="\[ I_F(k_y,k_x)=\sum_{y=0}^{N-1}\sum_{x=0}^{M-1}I(y,x)\,e^{-j2\pi\left(\frac{k_yy}{N}+\frac{k_xx}{M}\right)}, \]" style="width:21.674em"></div>
+<div class="mb"><img class="m" src="m/e893870509130d7563c9561ec4b93c97c6d1ead0.svg" alt="\[ I(y,x)=\frac{1}{NM}\sum_{k_y,k_x}I_F(k_y,k_x)\,e^{j2\pi\left(\frac{k_yy}{N}+\frac{k_xx}{M}\right)}. \]" style="width:21.653em"></div>
+Properties: separable (rows then columns, <img class="m" src="m/e6cb3306ca06d15007d96905bb61b25d3e7db56d.svg" alt="\(O(NM\log NM)\)" style="height:1.096em;vertical-align:-0.274em"> with the FFT); periodic in both indices (the image is implicitly tiled); <img class="m" src="m/fe11ec05fdf221f7b04b818d5374653463c81829.svg" alt="\(I_F(0,0)=NM\,\mu\)" style="height:1.096em;vertical-align:-0.274em">; for real images <img class="m" src="m/4ae15c5cab09507eb833ff802852ce2768b9d022.svg" alt="\(I_F(-k_y,-k_x)=I_F^*(k_y,k_x)\)" style="height:1.135em;vertical-align:-0.318em">. Usually displayed as <img class="m" src="m/cb70d28d2834ee84b157271ab4bcf706fdb26122.svg" alt="\(\log(1+|I_F|)\)" style="height:1.096em;vertical-align:-0.274em">, shifted so the origin is centred.
+</p>
+</div>
+</div>
+<div id="outline-container-org48b46e4" class="outline-2">
+<h2 id="org48b46e4">Spatial structures</h2>
+<div class="outline-text-2" id="text-org48b46e4">
+<ul class="org-ul">
+<li>periodic patterns (field rows, waves) give isolated peaks at their frequency, perpendicular to their stripes;</li>
+<li>straight linear features (roads, edges) give a line through the origin perpendicular to them;</li>
+<li>irregular natural textures give diffuse spectra.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd165317" class="outline-2">
+<h2 id="orgd165317">Example</h2>
+<div class="outline-text-2" id="text-orgd165317">
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="v">F</span> = np.fft.fftshift(np.fft.fft2(band))
+plt.imshow(np.log1p(np.<span class="b">abs</span>(F)), cmap=<span class="s">"gray"</span>)</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org9275c68" class="outline-2">
+<h2 id="org9275c68">Intuition</h2>
+<div class="outline-text-2" id="text-org9275c68">
+<p>
+The DFT re-expresses the image as a recipe of stripes: how much of each stripe width and orientation it contains.
+</p>
+</div>
+</div>
+<div id="outline-container-org22bcf85" class="outline-2">
+<h2 id="org22bcf85">Pitfall</h2>
+<div class="outline-text-2" id="text-org22bcf85">
+<p>
+The magnitude alone does not determine the image: the phase carries the positions of the structures, and swapping the phases of two images swaps what they look like.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="edge-detection.html"><span>← previous</span>Edge detection and directional filters</a><a rel="next" href="frequency-domain-filtering.html"><span>next →</span>Filtering in the frequency domain</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--filtering.pdf" title="PDF manual">Filtering</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

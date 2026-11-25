@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Value categories and rvalue references · Computer Science</title>
+<meta name="description" content="An lvalue names an object with an address that persists (it can stand left of ); an rvalue is a temporary about to die (=3, a + b, a returned value); C++11's T&amp;&amp; binds only to rvalues, so a function can tell &quot;a copy is needed&quot; from &quot;the source can be plundered&quot;.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/value-categories.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Value categories and rvalue references · Computer Science">
+<meta property="og:description" content="An lvalue names an object with an address that persists (it can stand left of ); an rvalue is a temporary about to die (=3, a + b, a returned value); C++11's T&amp;&amp; binds only to rvalues, so a function can tell &quot;a copy is needed&quot; from &quot;the source can be plundered&quot;.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/value-categories.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--cpp">Cpp</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Cpp</p>
+<h1>Value categories and rvalue references</h1>
+<p class="summary">An lvalue names an object with an address that persists (it can stand left of <code>); an rvalue is a temporary about to die (=3</code>, <code>a + b</code>, a returned value); C++11's <code>T&amp;&amp;</code> binds only to rvalues, so a function can tell "a copy is needed" from "the source can be plundered".</p>
+<p class="rel"><span>needs</span> <a href="pointers-references.html">Pointers, references and dynamic memory in C++</a></p>
+<p class="rel"><span>unlocks</span> <a href="move-semantics.html">Move semantics and the rule of five</a></p>
+<p class="rel"><span>see also</span> <a href="move-semantics.html">Move semantics and the rule of five</a></p>
+<p class="rel"><span>mentioned in</span> <a href="perfect-forwarding.html">Forwarding references and perfect forwarding</a>, <a href="copy-and-swap.html">The copy-and-swap idiom</a></p>
+<details class="path"><summary>Learning path: 2 notes lead here, in study order</summary><ol><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="pointers-references.html">Pointers, references and dynamic memory in C++</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org8cc801f" class="outline-2">
+<h2 id="org8cc801f">Definition</h2>
+<div class="outline-text-2" id="text-org8cc801f">
+<p>
+Every expression has a type and, orthogonally, a value category.
+</p>
+<ul class="org-ul">
+<li><b>lvalue</b>: designates a persistent object; it can appear on the left of an assignment: <code>x</code>, <code>*p</code>, <code>v[i]</code>.</li>
+<li><b>rvalue</b>: a temporary value: literals, <code>x + y</code>, the result of a function returning by value.</li>
+</ul>
+<p>
+C++11 refines them into lvalue, xvalue ("expiring", e.g. <code>std::move(x)</code>) and prvalue; glvalue = lvalue or xvalue, rvalue = xvalue or prvalue.
+</p>
+
+<p>
+Reference binding:
+</p>
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="t">int</span> <span class="v">x</span> = 1;
+<span class="t">int</span>&amp; <span class="v">a</span> = x;         <span class="c">// lvalue reference to an lvalue: ok
+</span><span class="t">int</span>&amp; <span class="v">b</span> = 6;         <span class="c">// error: non-const lvalue reference to an rvalue
+</span><span class="k">const</span> <span class="t">int</span>&amp; <span class="v">c</span> = 6;   <span class="c">// ok: lifetime of the temporary extended
+</span><span class="t">int</span>&amp;&amp; <span class="v">d</span> = 7;        <span class="c">// rvalue reference to an rvalue: ok
+</span><span class="t">int</span>&amp;&amp; <span class="v">e</span> = x;        <span class="c">// error
+</span><span class="t">int</span>&amp;&amp; <span class="v">f</span> = <span class="n">std</span>::move(x);   <span class="c">// ok: std::move casts x to an xvalue</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orgb268235" class="outline-2">
+<h2 id="orgb268235">Temporaries</h2>
+<div class="outline-text-2" id="text-orgb268235">
+<p>
+<code>A operator+(const A&amp;, const A&amp;)</code> builds a local <code>A temp</code>, returns it by value: the caller receives a temporary that will be destroyed at the end of the full expression. Copying from it is wasteful, because nobody will look at it again.
+</p>
+</div>
+</div>
+<div id="outline-container-org35b0ead" class="outline-2">
+<h2 id="org35b0ead">Intuition</h2>
+<div class="outline-text-2" id="text-org35b0ead">
+<p>
+An lvalue has a name and a future; an rvalue has neither. Overloading on <code>&amp;&amp;</code> lets code steal from things without a future.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfe408ba" class="outline-2">
+<h2 id="orgfe408ba">Pitfall</h2>
+<div class="outline-text-2" id="text-orgfe408ba">
+<p>
+A named rvalue reference is itself an lvalue: inside <code>A(A&amp;&amp; a)</code>, <code>a</code> has a name, so passing it on requires <code>std::move(a)</code> again.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="shallow-deep-copy.html"><span>← previous</span>Shallow and deep copy, rule of three</a><a rel="next" href="move-semantics.html"><span>next →</span>Move semantics and the rule of five</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--cpp.pdf" title="PDF manual">Cpp</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Threads and data races · Computer Science</title>
+<meta name="description" content="Threads are flows of execution of one process that share its heap and globals but each have their own stack; because the scheduler can preempt a thread between any two machine instructions, unsynchronised read–modify–write on shared data gives results that depend on the interleaving: a data race.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/threads-data-race.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Threads and data races · Computer Science">
+<meta property="og:description" content="Threads are flows of execution of one process that share its heap and globals but each have their own stack; because the scheduler can preempt a thread between any two machine instructions, unsynchronised read–modify–write on shared data gives results that depend on the interleaving: a data race.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/threads-data-race.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--concurrency">Concurrency</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Concurrency</p>
+<h1>Threads and data races</h1>
+<p class="summary">Threads are flows of execution of one process that share its heap and globals but each have their own stack; because the scheduler can preempt a thread between any two machine instructions, unsynchronised read–modify–write on shared data gives results that depend on the interleaving: a data race.</p>
+<p class="rel"><span>needs</span> <a href="call-stack.html">Memory model: static area, stack and heap</a></p>
+<p class="rel"><span>unlocks</span> <a href="mutual-exclusion.html">Atomics and mutual exclusion</a>, <a href="java-monitors.html">Threads and monitors in Java</a></p>
+<p class="rel"><span>see also</span> <a href="mutual-exclusion.html">Atomics and mutual exclusion</a>, <a href="lambda-expressions.html">Lambda expressions</a>, <a href="event-handling.html">Event-driven programming and event handlers</a>, <a href="java-monitors.html">Threads and monitors in Java</a></p>
+<p class="rel"><span>mentioned in</span> <a href="deadlock-starvation.html">Deadlock and starvation</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org4312cb3" class="outline-2">
+<h2 id="org4312cb3">Definition</h2>
+<div class="outline-text-2" id="text-org4312cb3">
+<p>
+<code>std::thread t(f, args...);</code> starts <code>f(args...)</code> concurrently; <code>t.join()</code> waits for it to end (a joinable thread destroyed without <code>join</code> or <code>detach</code> terminates the program). Threads share memory, so they communicate cheaply, and interfere easily.
+</p>
+
+<p>
+A <b>data race</b> occurs when two threads access the same memory location concurrently, at least one access is a write, and nothing orders them. In C++ a data race is undefined behaviour.
+</p>
+</div>
+</div>
+<div id="outline-container-org8917a1f" class="outline-2">
+<h2 id="org8917a1f">Derivation</h2>
+<div class="outline-text-2" id="text-org8917a1f">
+<p>
+<code>++counter</code> is three steps: load, add, store. Two threads, each incrementing once, starting from 0:
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">thread A</th>
+<th scope="col" class="org-left">thread B</th>
+<th scope="col" class="org-right">counter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">load 0</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">load 0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-left">add, store 1</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">add, store 1</td>
+<td class="org-right">1</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+One increment is lost. With <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> increments per thread the final value can be anything between <img class="m" src="m/a15a9999e9da81ef850257428fed58893c1e8a4b.svg" alt="\(2\)" style="height:0.706em;vertical-align:-0.000em"> and <img class="m" src="m/5f98754e3c1c18de03f8a3765caa9a1288a9a236.svg" alt="\(2n\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf02fd48" class="outline-2">
+<h2 id="orgf02fd48">Example</h2>
+<div class="outline-text-2" id="text-orgf02fd48">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="t">int</span> <span class="v">counter</span> = 0;
+<span class="t">void</span> <span class="f">work</span>() { <span class="k">for</span> (<span class="t">int</span> <span class="v">k</span> = 0; k &lt; 1000000; ++k) ++counter; }
+<span class="t">int</span> <span class="f">main</span>() {
+  <span class="n">std</span>::<span class="t">thread</span> <span class="v">a</span>(work), <span class="v">b</span>(work);
+  a.join(); b.join();
+  <span class="n">std</span>::cout &lt;&lt; counter;          <span class="c">// rarely 2000000
+</span>}</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org5870022" class="outline-2">
+<h2 id="org5870022">Intuition</h2>
+<div class="outline-text-2" id="text-org5870022">
+<p>
+Preemption can happen anywhere, so any sequence of steps that must not be split has to be protected explicitly (see <a href="mutual-exclusion.html">mutual exclusion</a>).
+</p>
+</div>
+</div>
+<div id="outline-container-orge28ba36" class="outline-2">
+<h2 id="orge28ba36">Pitfall</h2>
+<div class="outline-text-2" id="text-orge28ba36">
+<p>
+A race may never show up in testing, and appear only under load or on another machine. Absence of wrong output is not evidence of correctness.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="wrapper-autoboxing.html"><span>← previous</span>Wrapper classes and autoboxing</a><a rel="next" href="mutual-exclusion.html"><span>next →</span>Atomics and mutual exclusion</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--concurrency.pdf" title="PDF manual">Concurrency</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

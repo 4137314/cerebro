@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projective transformations and the cross-ratio · Mathematics</title>
+<meta name="description" content="A projective transformation can move any three points of a line to any other three, so no function of three points is invariant. Four points have exactly one invariant, the cross-ratio, and it is therefore the only quantity projective geometry can measure – which is precisely why it is the quantity…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/projective-transformations-and-the-cross-ratio.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Projective transformations and the cross-ratio · Mathematics">
+<meta property="og:description" content="A projective transformation can move any three points of a line to any other three, so no function of three points is invariant. Four points have exactly one invariant, the cross-ratio, and it is therefore the only quantity projective geometry can measure – which is precisely why it is the quantity…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/projective-transformations-and-the-cross-ratio.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-geometry">Geometry</a> / <a rel="up" href="index.html#a-geometry--algebraic-geometry">Algebraic Geometry</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Geometry · Algebraic Geometry</p>
+<h1>Projective transformations and the cross-ratio</h1>
+<p class="summary">A projective transformation can move any three points of a line to any other three, so no function of three points is invariant. Four points have exactly one invariant, the cross-ratio, and it is therefore the only quantity projective geometry can measure &#x2013; which is precisely why it is the quantity that perspective drawings preserve.</p>
+<p class="rel"><span>needs</span> <a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a>, <a href="projective-space-affine-charts-and-the-dimension-formula.html">Projective space, affine charts and the dimension formula</a>, <a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></p>
+<p class="rel"><span>mentioned in</span> <a href="geometry.html">Geometry</a></p>
+<details class="path"><summary>Learning path: 12 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="projective-space-affine-charts-and-the-dimension-formula.html">Projective space, affine charts and the dimension formula</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orge3a8ffb">
+<p>
+Let <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> be a vector space over <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">. An invertible linear
+<img class="m" src="m/9be60623662d4eef020e86510800ced3facecd2d.svg" alt="\(A \colon V \to V\)" style="height:0.749em;vertical-align:-0.000em"> induces a map <img class="m" src="m/51a379328572788120d5ee0005cbd9c720866c52.svg" alt="\(\PP(A)\colon \PP(V)\to\PP(V)\)" style="height:1.096em;vertical-align:-0.274em">,
+<img class="m" src="m/3eb12396e5bbe9e8e1cb10e91bcf880dc8e060ad.svg" alt="\([v]\mapsto[Av]\)" style="height:1.096em;vertical-align:-0.274em">; such maps are the <i>projective transformations</i>, and
+they form a group <img class="m" src="m/c9b8a7ad24345e01e51e45ed5f33c57f3eeac0ac.svg" alt="\(\PGL(V)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org7540e68">
+<p>
+<img class="m" src="m/a37e44bc4772aaafecd0dd8abe109abe641cc1f6.svg" alt="\(\PP(A)\)" style="height:1.096em;vertical-align:-0.274em"> is well defined and bijective, <img class="m" src="m/44f136eddc37440994ad093e705a317470d97aa1.svg" alt="\(\PP(AB) = \PP(A)\PP(B)\)" style="height:1.096em;vertical-align:-0.274em">,
+and <img class="m" src="m/7e2e8962d1ee8daabd129127b46b6fbb9bd4dab4.svg" alt="\(\PP(A) = \PP(B)\)" style="height:1.096em;vertical-align:-0.274em"> if and only if <img class="m" src="m/79032f47cc5487d08b25bf69f7c88adbf7606376.svg" alt="\(B = \lambda A\)" style="height:0.761em;vertical-align:-0.000em"> for some
+<img class="m" src="m/fa23cb32862961446017ef06f6628bb6f51898df.svg" alt="\(\lambda \ne 0\)" style="height:0.974em;vertical-align:-0.214em">. Hence <img class="m" src="m/b8ab6130255f9fb8eca54af553c46e45d3cad7bc.svg" alt="\(\PGL(V) \iso \GL(V)/K^{\times}\)" style="height:1.147em;vertical-align:-0.275em">.
+</p>
+
+</div>
+
+<div class="proof" id="org56a09df">
+<p>
+Well-definedness: <img class="m" src="m/cf8dda4fad5383e483d3c414ab861c37557a905a.svg" alt="\(A(\lambda v) = \lambda Av\)" style="height:1.096em;vertical-align:-0.274em">, and <img class="m" src="m/81e70499de83059254fca855627926aea74ac091.svg" alt="\(Av \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> for
+<img class="m" src="m/8605ad4a39064be56858f06c79cfb196fb260c60.svg" alt="\(v \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> by invertibility. Functoriality is immediate, and
+<img class="m" src="m/1f76f9d87cdc29c47cb23f38761e7bb9b7f430cf.svg" alt="\(\PP(A^{-1})\)" style="height:1.166em;vertical-align:-0.268em"> inverts <img class="m" src="m/a37e44bc4772aaafecd0dd8abe109abe641cc1f6.svg" alt="\(\PP(A)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+If <img class="m" src="m/79032f47cc5487d08b25bf69f7c88adbf7606376.svg" alt="\(B = \lambda A\)" style="height:0.761em;vertical-align:-0.000em"> the induced maps agree. Conversely, suppose they
+agree: for every <img class="m" src="m/8605ad4a39064be56858f06c79cfb196fb260c60.svg" alt="\(v \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> there is <img class="m" src="m/80e3e37ec0be6f36a28a03b9b2905b34834db240.svg" alt="\(\mu(v)\)" style="height:1.096em;vertical-align:-0.274em"> with
+<img class="m" src="m/0484a26758b801b73a5862dda891a8e7dd05abe8.svg" alt="\(Bv = \mu(v)Av\)" style="height:1.096em;vertical-align:-0.274em">. For independent <img class="m" src="m/871e49bbbcc3c25e3939a8e3369d77f5ddca611d.svg" alt="\(v, w\)" style="height:0.685em;vertical-align:-0.212em">,
+<img class="m" src="m/eb456f1fed883b30efd961c66fa86926fb8b613d.svg" alt="\(\mu(v+w)(Av+Aw) = B(v+w) = \mu(v)Av+\mu(w)Aw\)" style="height:1.096em;vertical-align:-0.274em">, and <img class="m" src="m/c5248b75074f1d2ecb36afe3077c375ac9aab5e9.svg" alt="\(Av, Aw\)" style="height:0.962em;vertical-align:-0.212em"> are
+independent, so <img class="m" src="m/db22592faf81c3221687567d839bea432bde220d.svg" alt="\(\mu(v) = \mu(v+w) = \mu(w)\)" style="height:1.096em;vertical-align:-0.274em">. For dependent non-zero
+<img class="m" src="m/fde9b50aeee1585e22151403572a827267f1a9e2.svg" alt="\(v,w\)" style="height:0.685em;vertical-align:-0.212em"> the values agree because <img class="m" src="m/e784afd6abeebfa4c9372d7885c34ee2eca6a062.svg" alt="\(\mu(\lambda v) = \mu(v)\)" style="height:1.096em;vertical-align:-0.274em">. So
+<img class="m" src="m/5602b42c49566a683e5183a144a93b453d1accef.svg" alt="\(\mu\)" style="height:0.685em;vertical-align:-0.212em"> is a constant <img class="m" src="m/bf732bcb08e251641d188904cbb646f8c7c05665.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em">, and <img class="m" src="m/79032f47cc5487d08b25bf69f7c88adbf7606376.svg" alt="\(B = \lambda A\)" style="height:0.761em;vertical-align:-0.000em">. The last
+statement is the homomorphism <img class="m" src="m/b34503e9cb246df5d43ea27c654ccd685b4568fd.svg" alt="\(\GL(V)\to\PGL(V)\)" style="height:1.096em;vertical-align:-0.274em">, surjective by
+definition with kernel the non-zero scalars.
+</p>
+
+</div>
+
+<div class="theorem" id="orgb28eb0a">
+<p>
+Given two triples of pairwise distinct points of <img class="m" src="m/041f6ff31e67c3ed66e49eff2dc4703ba995a208.svg" alt="\(\PP^{1}(K)\)" style="height:1.166em;vertical-align:-0.268em">, there
+is exactly one projective transformation carrying the first to the
+second, in order.
+</p>
+
+</div>
+
+<div class="proof" id="orga60ec58">
+<p>
+It suffices to send an arbitrary triple <img class="m" src="m/91e8d214772f4315354af1b78242eec1068efd2b.svg" alt="\((P_{0},P_{1},P_{2})\)" style="height:1.096em;vertical-align:-0.274em"> to
+<img class="m" src="m/104dcfdcf96d14d9bcd41556199f258716a2f7f2.svg" alt="\(([1:0],[0:1],[1:1])\)" style="height:1.096em;vertical-align:-0.274em">, uniquely. Choose representatives
+<img class="m" src="m/b0ccab9a2da1fcb3eb025281e9b2ef86e16a7f4c.svg" alt="\(v_{0},v_{1}\)" style="height:0.685em;vertical-align:-0.212em"> of <img class="m" src="m/366427203b1d41ae72694a63a78c604c48c3ddfe.svg" alt="\(P_{0},P_{1}\)" style="height:0.962em;vertical-align:-0.212em">; they are independent, since the
+points differ, hence a basis of <img class="m" src="m/d3b2c4437c477e34c0c3a337d6eadb51f39c1cf1.svg" alt="\(K^{2}\)" style="height:0.892em;vertical-align:-0.000em">. A representative <img class="m" src="m/a7d174b083dd4c99ad3575ef2c92cec3999ed9a0.svg" alt="\(v_{2}\)" style="height:0.636em;vertical-align:-0.165em"> of
+<img class="m" src="m/b0902dad148876b9e0e218718e95b3497bc88964.svg" alt="\(P_{2}\)" style="height:0.913em;vertical-align:-0.164em"> is <img class="m" src="m/bc023105bcc5629269f8468dcf87c1c9a825284f.svg" alt="\(\alpha v_{0}+\beta v_{1}\)" style="height:0.974em;vertical-align:-0.214em"> with <img class="m" src="m/3cde6b1d168b4ad89139734558aab2df64ce4fb5.svg" alt="\(\alpha,\beta\ne0\)" style="height:0.974em;vertical-align:-0.214em">,
+because <img class="m" src="m/b0902dad148876b9e0e218718e95b3497bc88964.svg" alt="\(P_{2}\)" style="height:0.913em;vertical-align:-0.164em"> differs from the first two. The linear map sending
+<img class="m" src="m/7d7d48d87cb80b1dc77a6996662037b0bc2a2c96.svg" alt="\(\alpha v_{0}\mapsto e_{0}\)" style="height:0.636em;vertical-align:-0.165em"> and <img class="m" src="m/b52f6fde8b5f93ea19c0f0f20659f6178260ba85.svg" alt="\(\beta v_{1}\mapsto e_{1}\)" style="height:0.974em;vertical-align:-0.214em"> is
+invertible and carries the triple to the required one.
+</p>
+
+<p>
+Uniqueness: if <img class="m" src="m/a37e44bc4772aaafecd0dd8abe109abe641cc1f6.svg" alt="\(\PP(A)\)" style="height:1.096em;vertical-align:-0.274em"> fixes the three standard points, then
+<img class="m" src="m/ef59db06c4285decd21e00862f91674057131901.svg" alt="\(Ae_{0} = \lambda e_{0}\)" style="height:0.925em;vertical-align:-0.167em">, <img class="m" src="m/7df31c9297a692e5b0c96b9f2082ab33ef417517.svg" alt="\(Ae_{1} = \mu e_{1}\)" style="height:0.962em;vertical-align:-0.212em"> and
+<img class="m" src="m/c89ccff548a07ce2553a0d457044f0aca998816c.svg" alt="\(A(e_{0}+e_{1}) = \nu(e_{0}+e_{1})\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/88a89543753e923c6a91ce142a507e7b0c65e1b9.svg" alt="\(\lambda = \nu = \mu\)" style="height:0.974em;vertical-align:-0.214em"> and
+<img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is a scalar, that is <img class="m" src="m/5c806bbd7266a003ef3abb6a847579aa539b0bd9.svg" alt="\(\PP(A) = \id\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="definition" id="org6bc025c">
+<p>
+For four pairwise distinct points <img class="m" src="m/22f55bc5abf2c155b65f63b38134ebe42ee76d4c.svg" alt="\(P_{1},P_{2},P_{3},P_{4}\)" style="height:0.962em;vertical-align:-0.212em"> of
+<img class="m" src="m/041f6ff31e67c3ed66e49eff2dc4703ba995a208.svg" alt="\(\PP^{1}(K)\)" style="height:1.166em;vertical-align:-0.268em">, the <i>cross-ratio</i> <img class="m" src="m/54e36265344bdb9984e614f4d7965df865ccb243.svg" alt="\((P_{1},P_{2};P_{3},P_{4})\)" style="height:1.096em;vertical-align:-0.274em"> is the
+image of <img class="m" src="m/230eb4cbc164acb30a0bebf74574b90a2c5accf4.svg" alt="\(P_{4}\)" style="height:0.913em;vertical-align:-0.164em"> under the unique projective transformation sending
+<img class="m" src="m/bc27983cd6190aa2cc4ebffd6e16eed48f43bd56.svg" alt="\(P_{1},P_{2},P_{3}\)" style="height:0.962em;vertical-align:-0.212em"> to <img class="m" src="m/601a4f6d63edc998c3ff0ef2a337356f16d23969.svg" alt="\([0:1],[1:0],[1:1]\)" style="height:1.096em;vertical-align:-0.274em">, read in the affine
+coordinate <img class="m" src="m/9226836f3b5ba3fe8e29bb190ed443374b584c24.svg" alt="\(z = x_{0}/x_{1}\)" style="height:1.096em;vertical-align:-0.274em"> &#x2013; so that the three reference points
+become <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">, <img class="m" src="m/d39b5f2320262e1ac5f34b7db7f5d688cd9df10d.svg" alt="\(\infty\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgd8ffb70">
+<p>
+The cross-ratio is invariant under every projective transformation, and
+in the affine coordinate it is
+<div class="mb"><img class="m" src="m/59c54be386643ff8cfe92851173a029c74f730c1.svg" alt="\[ (z_{1},z_{2};z_{3},z_{4}) = \frac{(z_{4}-z_{1})(z_{3}-z_{2})}{(z_{4}-z_{2})(z_{3}-z_{1})}. \]" style="width:16.736em"></div>
+Two quadruples of distinct points are related by a projective
+transformation if and only if they have the same cross-ratio.
+</p>
+
+</div>
+
+<div class="proof" id="org4e1effe">
+<p>
+Let <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> be a projective transformation and <img class="m" src="m/6c6a7c0f65b6e5eec3c9e58e95f4608590dbb80f.svg" alt="\(h\)" style="height:0.761em;vertical-align:-0.000em"> the unique one
+sending <img class="m" src="m/bc27983cd6190aa2cc4ebffd6e16eed48f43bd56.svg" alt="\(P_{1},P_{2},P_{3}\)" style="height:0.962em;vertical-align:-0.212em"> to the standard triple. Then
+<img class="m" src="m/10fdd204b3a8d3763d8fa4793a5393c3c416ebff.svg" alt="\(h g^{-1}\)" style="height:1.105em;vertical-align:-0.210em"> sends <img class="m" src="m/30f4c3b80f850b3971685e39095444adf8a7ea52.svg" alt="\(gP_{1},gP_{2},gP_{3}\)" style="height:0.962em;vertical-align:-0.212em"> to the standard triple, so
+it is the transformation defining the cross-ratio of the image
+quadruple, whose value is <img class="m" src="m/89d8a56e609ef018c49f9162a16b6208698fd66f.svg" alt="\(hg^{-1}(gP_{4}) = h(P_{4})\)" style="height:1.166em;vertical-align:-0.268em"> &#x2013; the same as
+before. This is invariance.
+</p>
+
+<p>
+For the formula, the map
+<img class="m" src="m/68987489884f94de435c82b82c7ff6dffdfd50ed.svg" alt="\(z \mapsto \frac{(z-z_{1})(z_{3}-z_{2})}{(z-z_{2})(z_{3}-z_{1})}\)" style="height:1.677em;vertical-align:-0.570em"> is
+induced by an invertible matrix &#x2013; its determinant is a non-zero
+multiple of <img class="m" src="m/d270e16e21f359344d296add22ada50a0c507b57.svg" alt="\((z_{1}-z_{2})(z_{3}-z_{1})(z_{3}-z_{2})\)" style="height:1.096em;vertical-align:-0.274em"> &#x2013; and it sends
+<img class="m" src="m/04711330c537c4d132abc042b1fc5b54c0a1c3d7.svg" alt="\(z_{1},z_{2},z_{3}\)" style="height:0.685em;vertical-align:-0.212em"> to <img class="m" src="m/913b3e9c3f04670b18f5f5561bd97792b8e19270.svg" alt="\(0,\infty,1\)" style="height:0.919em;vertical-align:-0.211em">, that is to
+<img class="m" src="m/601a4f6d63edc998c3ff0ef2a337356f16d23969.svg" alt="\([0:1],[1:0],[1:1]\)" style="height:1.096em;vertical-align:-0.274em">; by uniqueness it is the transformation of the
+definition, and evaluating it at <img class="m" src="m/49a6944356d1c720341a59aaebbeffb8b5720002.svg" alt="\(z_{4}\)" style="height:0.636em;vertical-align:-0.165em"> gives the displayed
+expression.
+</p>
+
+<p>
+Finally, if two quadruples have the same cross-ratio, composing the two
+normalising transformations carries one to the other; the converse is
+invariance.
+</p>
+
+</div>
+
+<div class="remark" id="org011feea">
+<p>
+Over <img class="m" src="m/b3978a2148f10adddc8688f3fa9f4c003935cbc7.svg" alt="\(K = \R\)" style="height:0.755em;vertical-align:-0.000em"> the cross-ratio explains why a photograph of a railway
+distorts every length and yet determines the geometry: lengths and
+ratios of lengths are not projective invariants, but the ratio of ratios
+is. Over <img class="m" src="m/e8f65c7275ac2cafbdfc42a9c2165cebe4f1dac3.svg" alt="\(K = \C\)" style="height:0.755em;vertical-align:-0.000em"> the same formula, applied to points of the Riemann
+sphere, is what makes the cross-ratio real exactly for concyclic
+quadruples &#x2013; the projective statement of a classical theorem in
+circles.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="projective-space-affine-charts-and-the-dimension-formula.html"><span>← previous</span>Projective space, affine charts and the dimension formula</a><a rel="next" href="probability-spaces-conditioning-and-independence.html"><span>next →</span>Probability spaces, conditioning and independence</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/geometry--algebraic-geometry.pdf" title="PDF manual">Algebraic Geometry</a> · <a class="pdf" href="pdf/geometry.pdf" title="PDF manual">Geometry</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

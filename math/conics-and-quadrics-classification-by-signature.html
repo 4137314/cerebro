@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conics and quadrics: classification by signature · Mathematics</title>
+<meta name="description" content="An ellipse, a hyperbola and a pair of lines are given by equations of the same shape and are told apart by no property of the equation that survives a change of coordinates – except one. Sylvester's law supplies it: the signature of the associated symmetric form is a complete invariant, so the clas…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/conics-and-quadrics-classification-by-signature.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Conics and quadrics: classification by signature · Mathematics">
+<meta property="og:description" content="An ellipse, a hyperbola and a pair of lines are given by equations of the same shape and are told apart by no property of the equation that survives a change of coordinates – except one. Sylvester's law supplies it: the signature of the associated symmetric form is a complete invariant, so the clas…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/conics-and-quadrics-classification-by-signature.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-geometry">Geometry</a> / <a rel="up" href="index.html#a-geometry--linear-algebra">Linear Algebra</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Geometry · Linear Algebra</p>
+<h1>Conics and quadrics: classification by signature</h1>
+<p class="summary">An ellipse, a hyperbola and a pair of lines are given by equations of the same shape and are told apart by no property of the equation that survives a change of coordinates &#x2013; except one. Sylvester's law supplies it: the signature of the associated symmetric form is a complete invariant, so the classification of quadrics is linear algebra with a homogenisation in front of it.</p>
+<p class="rel"><span>needs</span> <a href="affine-spaces-affine-subspaces-and-affine-maps.html">Affine spaces, affine subspaces and affine maps</a>, <a href="bilinear-forms-quadratic-forms-and-sylvesters-law-of-inertia.html">Bilinear forms, quadratic forms and Sylvester's law of inertia</a>, <a href="projective-space-affine-charts-and-the-dimension-formula.html">Projective space, affine charts and the dimension formula</a></p>
+<p class="rel"><span>unlocks</span> <a href="central-forces-the-two-body-problem-and-keplers-laws.html">Central forces, the two-body problem and Kepler's laws</a></p>
+<p class="rel"><span>mentioned in</span> <a href="mathematics.html">Mathematics</a>, <a href="linear-algebra.html">Linear algebra</a>, <a href="geometry.html">Geometry</a></p>
+<details class="path"><summary>Learning path: 22 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="bilinear-forms-quadratic-forms-and-sylvesters-law-of-inertia.html">Bilinear forms, quadratic forms and Sylvester's law of inertia</a></li><li><a href="the-order-of-an-element-and-cyclic-groups.html">The order of an element and cyclic groups</a></li><li><a href="cosets-the-index-and-lagranges-theorem.html">Cosets, the index and Lagrange's theorem</a></li><li><a href="group-actions-orbits-and-the-orbit-stabiliser-theorem.html">Group actions, orbits and the orbit-stabiliser theorem</a></li><li><a href="affine-spaces-affine-subspaces-and-affine-maps.html">Affine spaces, affine subspaces and affine maps</a></li><li><a href="projective-space-affine-charts-and-the-dimension-formula.html">Projective space, affine charts and the dimension formula</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org04be45d">
+<p>
+Let <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> be a field of characteristic <img class="m" src="m/52e3a49b19fd138c316b243276e62e4cd9afd964.svg" alt="\(\ne 2\)" style="height:0.974em;vertical-align:-0.214em">. A <i>quadric</i> in
+<img class="m" src="m/4acd2e5dc74948cfd09aa93c2348711553f5b96b.svg" alt="\(\PP^{n}(K)\)" style="height:1.096em;vertical-align:-0.274em"> is the zero set
+<img class="m" src="m/9a9c5d0c8807f2353bd5ff169290502dd7e2672d.svg" alt="\(Q = \setst{[x] \in \PP^{n}(K)}{q(x) = 0}\)" style="height:1.096em;vertical-align:-0.274em"> of a non-zero quadratic
+form <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> on <img class="m" src="m/aba44027fc76ab350afcb2281a19e940a80902e4.svg" alt="\(K^{n+1}\)" style="height:0.892em;vertical-align:-0.000em">; an <i>affine quadric</i> in <img class="m" src="m/639528af6de2a393f0541c586e3d01968db87d2a.svg" alt="\(K^{n}\)" style="height:0.749em;vertical-align:-0.000em"> is the zero
+set of a polynomial of degree <img class="m" src="m/682209d80cc07f86795f987ad28681d443268af8.svg" alt="\(2\)" style="height:0.706em;vertical-align:-0.000em">. The quadric is <i>non-degenerate</i> if
+the associated symmetric bilinear form is.
+</p>
+
+</div>
+
+<div class="proposition" id="org67218a2">
+<p>
+The condition <img class="m" src="m/4339d5ddfe1ab24bc995aefb28adf2c3cfeb6bcc.svg" alt="\(q(x) = 0\)" style="height:1.096em;vertical-align:-0.274em"> does not depend on the representative of
+<img class="m" src="m/c4af271efab35e2ba2d80bf467f32ee1ae6af8ef.svg" alt="\([x]\)" style="height:1.096em;vertical-align:-0.274em">, so a quadric is a well-defined subset of projective space; and
+two proportional forms define the same quadric.
+</p>
+
+</div>
+
+<div class="proof" id="org25bd0f9">
+<p>
+<img class="m" src="m/0c1bbdbe1def3dabc6bd936ed54abb87a285daa4.svg" alt="\(q(\lambda x) = \lambda^{2}q(x)\)" style="height:1.166em;vertical-align:-0.268em"> by bilinearity of the associated
+form, and <img class="m" src="m/fa23cb32862961446017ef06f6628bb6f51898df.svg" alt="\(\lambda \ne 0\)" style="height:0.974em;vertical-align:-0.214em">, so <img class="m" src="m/eff3d3240c84e28e66eb3846e966d85c7f05043a.svg" alt="\(q(\lambda x) = 0\)" style="height:1.096em;vertical-align:-0.274em"> exactly when
+<img class="m" src="m/4339d5ddfe1ab24bc995aefb28adf2c3cfeb6bcc.svg" alt="\(q(x) = 0\)" style="height:1.096em;vertical-align:-0.274em">. Multiplying <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> by a non-zero scalar does not change its
+zero set.
+</p>
+
+</div>
+
+<div class="theorem" id="org013ddba">
+<p>
+Over <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em">, every quadric in <img class="m" src="m/c4bca54224f581abec0827ad04ffbc6706b3326d.svg" alt="\(\PP^{n}(\R)\)" style="height:1.096em;vertical-align:-0.274em"> is, in suitable
+homogeneous coordinates,
+<img class="m" src="m/43c77fad1e27c0eaf8037ec308ca6789b948237a.svg" alt="\(x_{0}^{2}+\cdots+x_{p-1}^{2} - x_{p}^{2}-\cdots-x_{p+m-1}^{2} = 0\)" style="height:1.313em;vertical-align:-0.420em">
+with <img class="m" src="m/95c950e23b5a38289edbdd1844d7b2a564b01e41.svg" alt="\(p \ge m\)" style="height:0.910em;vertical-align:-0.209em"> and <img class="m" src="m/429c8fe36a24ea5bde0be534c7cb17199ed48a95.svg" alt="\(p + m \le n+1\)" style="height:0.919em;vertical-align:-0.211em">; and the pair <img class="m" src="m/94f606c5b85a1fd9e740a7cc9298426c259c7a3c.svg" alt="\((p,m)\)" style="height:1.096em;vertical-align:-0.274em">, up to
+exchanging the two entries, is determined by the quadric together with
+its defining form. Over an algebraically closed field the normal form is
+<img class="m" src="m/d9de1e43b9f374a739823b2a2aaa317c4bd455b0.svg" alt="\(x_{0}^{2}+\cdots+x_{r-1}^{2} = 0\)" style="height:1.255em;vertical-align:-0.364em">, with <img class="m" src="m/6a662e32b188f7fd491c82ebcd46ddece8ed8644.svg" alt="\(r\)" style="height:0.472em;vertical-align:-0.000em"> the rank.
+</p>
+
+</div>
+
+<div class="proof" id="org397f39a">
+<p>
+A change of homogeneous coordinates is an invertible linear change on
+<img class="m" src="m/aba44027fc76ab350afcb2281a19e940a80902e4.svg" alt="\(K^{n+1}\)" style="height:0.892em;vertical-align:-0.000em">, so by the diagonalisation theorem <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> becomes a sum of
+squares with coefficients, and over <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em"> rescaling brings those to
+<img class="m" src="m/12808e3498c5dcf33c6c397fc3c3fdbffc049d91.svg" alt="\(\pm1\)" style="height:0.798em;vertical-align:-0.088em">; Sylvester's law says <img class="m" src="m/94f606c5b85a1fd9e740a7cc9298426c259c7a3c.svg" alt="\((p,m)\)" style="height:1.096em;vertical-align:-0.274em"> does not depend on the
+diagonalising basis. Replacing <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> by <img class="m" src="m/74b5b6afe82568b0155e4c3744064107f72edb46.svg" alt="\(-q\)" style="height:0.852em;vertical-align:-0.213em">, which defines the same
+quadric, exchanges <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> and <img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em">, and one may then assume
+<img class="m" src="m/95c950e23b5a38289edbdd1844d7b2a564b01e41.svg" alt="\(p \ge m\)" style="height:0.910em;vertical-align:-0.209em">. Over an algebraically closed field every non-zero
+coefficient has a square root, so all of them can be scaled to <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">,
+and only the rank <img class="m" src="m/1a055f5933d40006242430f6678f6fecaa9006df.svg" alt="\(r = p+m\)" style="height:0.852em;vertical-align:-0.213em"> remains.
+</p>
+
+</div>
+
+<div class="theorem" id="org905c935">
+<p>
+Every affine conic in <img class="m" src="m/59450e0244c469289978f029dbf559d7c5e7b7f3.svg" alt="\(\R^{2}\)" style="height:0.892em;vertical-align:-0.000em"> is, after an affine change of
+coordinates, one of: <img class="m" src="m/806307a543ef299499aad140df801ee9fc613bb5.svg" alt="\(x^{2}+y^{2}=1\)" style="height:1.105em;vertical-align:-0.210em">, <img class="m" src="m/a462b175fcf0d7d0ddd184b84426f455a4f42526.svg" alt="\(x^{2}-y^{2}=1\)" style="height:1.105em;vertical-align:-0.210em">,
+<img class="m" src="m/73dcda877ca0645dc907a2a59bc68da285834f60.svg" alt="\(y = x^{2}\)" style="height:1.105em;vertical-align:-0.210em">, <img class="m" src="m/7761e30426aa66ec2d9a0ceef837a1c959f99744.svg" alt="\(x^{2}+y^{2}=0\)" style="height:1.105em;vertical-align:-0.210em">, <img class="m" src="m/9527ae52aa227fb48420b11242869bc5f60db5b3.svg" alt="\(x^{2}-y^{2}=0\)" style="height:1.105em;vertical-align:-0.210em">, <img class="m" src="m/e3d009b14ed1920eb77afa0ec22db7746605e264.svg" alt="\(x^{2}=1\)" style="height:0.892em;vertical-align:-0.000em">,
+<img class="m" src="m/cd61790b35efe9d963aca1cebb2cffc1bda6f820.svg" alt="\(x^{2}=0\)" style="height:0.892em;vertical-align:-0.000em">, or the empty set <img class="m" src="m/ccdd07475457bd1a3472e0a3a1414ca8800bb5b6.svg" alt="\(x^{2}+y^{2}=-1\)" style="height:1.105em;vertical-align:-0.210em">.
+</p>
+
+</div>
+
+<div class="proof" id="org5296df4">
+<p>
+Write the equation as <img class="m" src="m/cdf8325b035407758777c6f2c5b233764fcb0487.svg" alt="\(q(v) + \ell(v) + c\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> a quadratic
+form, <img class="m" src="m/07a36ad20d0536a3700d1a70cc39a959945a8918.svg" alt="\(\ell\)" style="height:0.761em;vertical-align:-0.000em"> linear and <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> constant. By the diagonalisation
+theorem, a linear change of coordinates makes <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> diagonal with
+entries in <img class="m" src="m/133ec4d55fc87e4d169cd59a94f0578b1d44dfa8.svg" alt="\(\set{1,-1,0}\)" style="height:1.096em;vertical-align:-0.274em">. In each coordinate where the coefficient of
+the square is non-zero, completing the square absorbs the corresponding
+linear term into a translation; this leaves an equation in which the
+linear part involves only the coordinates absent from <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+
+<p>
+If <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> has rank <img class="m" src="m/682209d80cc07f86795f987ad28681d443268af8.svg" alt="\(2\)" style="height:0.706em;vertical-align:-0.000em"> the linear part is gone and, rescaling, the
+equation is <img class="m" src="m/e756508e42e0e96d38e191a3962ee2cadd29eeb4.svg" alt="\(\pm x^{2}\pm y^{2} = c\)" style="height:1.105em;vertical-align:-0.210em"> with <img class="m" src="m/4502b5b3dd7aa449c574cbf0b7e65ae7b0abafad.svg" alt="\(c \in \set{1,0,-1}\)" style="height:1.096em;vertical-align:-0.274em"> after
+dividing by <img class="m" src="m/0c88cda01a799b95898639ca902c9a37d7a6d312.svg" alt="\(\abs{c}\)" style="height:1.096em;vertical-align:-0.274em"> when <img class="m" src="m/8749744ab5b15a61a1fb7960ab5071af0adf406f.svg" alt="\(c \ne 0\)" style="height:0.974em;vertical-align:-0.214em">; the listed cases are what
+remains after exchanging the roles of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> and multiplying by
+<img class="m" src="m/57cc80c3f3402407b1ad11bd691da3ac1beb4037.svg" alt="\(-1\)" style="height:0.798em;vertical-align:-0.088em">. If <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> has rank <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">, say <img class="m" src="m/ebad56eb694345740eccd961181eded5874ad40b.svg" alt="\(q = x^{2}\)" style="height:1.105em;vertical-align:-0.210em">, the surviving linear
+term is <img class="m" src="m/0a42da0e479e8a042bc6f260d4be152db318b102.svg" alt="\(\beta y\)" style="height:0.974em;vertical-align:-0.214em">: for <img class="m" src="m/6ba7faf4994cae6b82aac0d1587896a34305c2d1.svg" alt="\(\beta \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> a translation and a rescaling
+of <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> give <img class="m" src="m/73dcda877ca0645dc907a2a59bc68da285834f60.svg" alt="\(y = x^{2}\)" style="height:1.105em;vertical-align:-0.210em">, and for <img class="m" src="m/4b3b06b1701eb0fa77a829a2ca90ca69eb481c51.svg" alt="\(\beta = 0\)" style="height:0.974em;vertical-align:-0.214em"> the equation is
+<img class="m" src="m/69b4d513e3e6b6deb84a319ca785510a5453b8f9.svg" alt="\(x^{2} = c\)" style="height:0.892em;vertical-align:-0.000em">, giving <img class="m" src="m/e3d009b14ed1920eb77afa0ec22db7746605e264.svg" alt="\(x^{2}=1\)" style="height:0.892em;vertical-align:-0.000em"> or <img class="m" src="m/cd61790b35efe9d963aca1cebb2cffc1bda6f820.svg" alt="\(x^{2}=0\)" style="height:0.892em;vertical-align:-0.000em"> after rescaling (the
+case <img class="m" src="m/6efdeb1f7232eb1e127cbf698a7909725824d2be.svg" alt="\(c&lt;0\)" style="height:0.749em;vertical-align:-0.045em"> being empty and already listed). The form <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> is non-zero
+by hypothesis, so its rank is not <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="remark" id="orgcbfa21d">
+<p>
+Projectively the list collapses: ellipse, parabola and hyperbola are the
+same non-degenerate conic, and they differ only in how the line at
+infinity meets it &#x2013; not at all, tangentially, or in two points. That is
+the standard demonstration that a classification depends on which group
+of transformations is allowed, and the affine list above is the
+projective one refined by the choice of a line to call infinite.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="affine-spaces-affine-subspaces-and-affine-maps.html"><span>← previous</span>Affine spaces, affine subspaces and affine maps</a><a rel="next" href="isometries-of-euclidean-space-and-the-orthogonal-group.html"><span>next →</span>Isometries of Euclidean space and the orthogonal group</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/geometry--linear-algebra.pdf" title="PDF manual">Linear Algebra</a> · <a class="pdf" href="pdf/geometry.pdf" title="PDF manual">Geometry</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JavaFX layout panes · Computer Science</title>
+<meta name="description" content="Instead of positioning nodes by coordinates, one puts them in layout panes that compute positions and sizes automatically and recompute them when the window is resized: HBox/VBox in a row or column, BorderPane in five regions, GridPane in a grid, StackPane on top of each other.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/javafx-layout.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="JavaFX layout panes · Computer Science">
+<meta property="og:description" content="Instead of positioning nodes by coordinates, one puts them in layout panes that compute positions and sizes automatically and recompute them when the window is resized: HBox/VBox in a row or column, BorderPane in five regions, GridPane in a grid, StackPane on top of each other.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/javafx-layout.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--gui">Gui</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Gui</p>
+<h1>JavaFX layout panes</h1>
+<p class="summary">Instead of positioning nodes by coordinates, one puts them in layout panes that compute positions and sizes automatically and recompute them when the window is resized: HBox/VBox in a row or column, BorderPane in five regions, GridPane in a grid, StackPane on top of each other.</p>
+<p class="rel"><span>needs</span> <a href="javafx-scene-graph.html">JavaFX: stage, scene and the node tree</a></p>
+<p class="rel"><span>see also</span> <a href="event-handling.html">Event-driven programming and event handlers</a></p>
+<details class="path"><summary>Learning path: 6 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="java-platform.html">The Java platform</a></li><li><a href="javafx-scene-graph.html">JavaFX: stage, scene and the node tree</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org0cd3b3e" class="outline-2">
+<h2 id="org0cd3b3e">Definition</h2>
+<div class="outline-text-2" id="text-org0cd3b3e">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">pane</th>
+<th scope="col" class="org-left">arrangement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">HBox, VBox</td>
+<td class="org-left">a row, a column (spacing, padding, alignment)</td>
+</tr>
+
+<tr>
+<td class="org-left">StackPane</td>
+<td class="org-left">children on top of each other, centred</td>
+</tr>
+
+<tr>
+<td class="org-left">FlowPane</td>
+<td class="org-left">flows and wraps, like text</td>
+</tr>
+
+<tr>
+<td class="org-left">TilePane</td>
+<td class="org-left">grid of equal cells</td>
+</tr>
+
+<tr>
+<td class="org-left">BorderPane</td>
+<td class="org-left">top, bottom, left, right, centre</td>
+</tr>
+
+<tr>
+<td class="org-left">GridPane</td>
+<td class="org-left">rows and columns with spans: add(node, col, row)</td>
+</tr>
+
+<tr>
+<td class="org-left">AnchorPane</td>
+<td class="org-left">children anchored at distances from the edges</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Panes nest: a <code>BorderPane</code> with a <code>VBox</code> of buttons on the left and a <code>GridPane</code> in the centre. Manual adjustments remain possible: <code>setLayoutX</code> or <code>setTranslateX</code> move a node, <code>setPrefWidth</code>, <code>setMinWidth</code>, <code>setMaxWidth</code> constrain its size.
+</p>
+</div>
+</div>
+<div id="outline-container-orge6bce06" class="outline-2">
+<h2 id="orge6bce06">Example</h2>
+<div class="outline-text-2" id="text-orge6bce06">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="t">GridPane</span> <span class="v">form</span> = <span class="k">new</span> <span class="t">GridPane</span>();
+form.setHgap(8); form.setVgap(8);
+form.add(<span class="k">new</span> <span class="t">Label</span>(<span class="s">"Name"</span>), 0, 0);  form.add(<span class="k">new</span> <span class="t">TextField</span>(), 1, 0);
+form.add(<span class="k">new</span> <span class="t">Label</span>(<span class="s">"Age"</span>), 0, 1);   form.add(<span class="k">new</span> <span class="t">TextField</span>(), 1, 1);
+<span class="t">BorderPane</span> <span class="v">root</span> = <span class="k">new</span> <span class="t">BorderPane</span>(form);              <span class="c">// form in the centre
+</span>root.setBottom(<span class="k">new</span> <span class="t">HBox</span>(10, <span class="k">new</span> <span class="t">Button</span>(<span class="s">"OK"</span>), <span class="k">new</span> <span class="t">Button</span>(<span class="s">"Cancel"</span>)));</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org8380954" class="outline-2">
+<h2 id="org8380954">Intuition</h2>
+<div class="outline-text-2" id="text-org8380954">
+<p>
+Describe relations ("these in a row, that at the bottom") and let the pane do arithmetic; the result survives resizing and different screens.
+</p>
+</div>
+</div>
+<div id="outline-container-org73853bc" class="outline-2">
+<h2 id="org73853bc">Pitfall</h2>
+<div class="outline-text-2" id="text-org73853bc">
+<p>
+A node can have one parent only: adding it to a second pane removes it from the first, silently.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="event-handling.html"><span>← previous</span>Event-driven programming and event handlers</a><a rel="next" href="observer-mvc.html"><span>next →</span>Observer pattern and model–view–controller</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--gui.pdf" title="PDF manual">Gui</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

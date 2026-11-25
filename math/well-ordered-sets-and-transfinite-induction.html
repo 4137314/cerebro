@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Well-ordered sets and transfinite induction · Mathematics</title>
+<meta name="description" content="Induction on \N works because every non-empty set of natural numbers has a least element – not because the elements are numbers. Isolating that property gives a principle of induction available on any set that can be well ordered, which by the well-ordering theorem is every set. This is what allows…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/well-ordered-sets-and-transfinite-induction.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Well-ordered sets and transfinite induction · Mathematics">
+<meta property="og:description" content="Induction on \N works because every non-empty set of natural numbers has a least element – not because the elements are numbers. Isolating that property gives a principle of induction available on any set that can be well ordered, which by the well-ordering theorem is every set. This is what allows…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/well-ordered-sets-and-transfinite-induction.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-foundations">Foundations</a> / <a rel="up" href="index.html#a-foundations--set-theory">Set Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Foundations · Set Theory</p>
+<h1>Well-ordered sets and transfinite induction</h1>
+<p class="summary">Induction on <img class="m" src="m/d36edebe5171c584e95c5e3966023a2f078fce29.svg" alt="\(\N\)" style="height:0.755em;vertical-align:-0.000em"> works because every non-empty set of natural numbers has a least element &#x2013; not because the elements are numbers. Isolating that property gives a principle of induction available on any set that can be well ordered, which by the well-ordering theorem is every set. This is what allows a construction to run "along" an arbitrary set rather than along a sequence.</p>
+<p class="rel"><span>needs</span> <a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></p>
+<p class="rel"><span>unlocks</span> <a href="ordinals-and-definition-by-transfinite-recursion.html">Ordinals and definition by transfinite recursion</a>, <a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></p>
+<p class="rel"><span>see also</span> <a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></p>
+<p class="rel"><span>mentioned in</span> <a href="set-theory.html">Set theory</a></p>
+<details class="path"><summary>Learning path: 2 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org00678a9">
+<p>
+A <i>well order</i> on a set <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em"> is a total order in which every non-empty
+subset has a least element. An <i>initial segment</i> of <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em"> is a subset
+<img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> such that <img class="m" src="m/b26a85e76062af51d59c690e6a90bddcfaccd4c2.svg" alt="\(y \le x\)" style="height:0.910em;vertical-align:-0.209em"> and <img class="m" src="m/aa5e9b66b05ad8372d01b950834a60169cc40839.svg" alt="\(x \in S\)" style="height:0.792em;vertical-align:-0.040em"> imply <img class="m" src="m/cbed7c00e07d15af802903743f11b65cf5f333af.svg" alt="\(y \in S\)" style="height:0.962em;vertical-align:-0.212em">; for
+<img class="m" src="m/d046393ffe5b43aaf9ed04b1c4ea259af3d54b2b.svg" alt="\(x \in W\)" style="height:0.792em;vertical-align:-0.040em"> the set <img class="m" src="m/bde4bef784b1d2e788bf6ebee2b9b8cb2847fde6.svg" alt="\(W_{&lt;x} = \setst{y \in W}{y &lt; x}\)" style="height:1.096em;vertical-align:-0.274em"> is the initial
+segment <i>determined by</i> <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org5f56ef4">
+<p>
+Every initial segment <img class="m" src="m/3e2f87b5590506317f791f777aa59b31921ad647.svg" alt="\(S \subsetneq W\)" style="height:0.898em;vertical-align:-0.153em"> of a well-ordered set is
+<img class="m" src="m/0fa23ac8df3f63083f08363ef1d0ff6c7c752b00.svg" alt="\(W_{&lt;x}\)" style="height:0.971em;vertical-align:-0.223em"> for exactly one <img class="m" src="m/d046393ffe5b43aaf9ed04b1c4ea259af3d54b2b.svg" alt="\(x \in W\)" style="height:0.792em;vertical-align:-0.040em">.
+</p>
+
+</div>
+
+<div class="proof" id="org5bd82b8">
+<p>
+The complement <img class="m" src="m/0f0c5894128a71b3f99118b1b8e7412cebee4334.svg" alt="\(W \setminus S\)" style="height:1.096em;vertical-align:-0.274em"> is non-empty, so it has a least
+element <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">. If <img class="m" src="m/4b20ec7a0fc3be110750230eb685230e7093d6f4.svg" alt="\(y &lt; x\)" style="height:0.804em;vertical-align:-0.217em"> then <img class="m" src="m/da5fbebc75b8a4d83a59ab4526d6aa8ac194cd1d.svg" alt="\(y \notin W \setminus S\)" style="height:1.096em;vertical-align:-0.274em"> by
+minimality, so <img class="m" src="m/cbed7c00e07d15af802903743f11b65cf5f333af.svg" alt="\(y \in S\)" style="height:0.962em;vertical-align:-0.212em">; conversely if <img class="m" src="m/cbed7c00e07d15af802903743f11b65cf5f333af.svg" alt="\(y \in S\)" style="height:0.962em;vertical-align:-0.212em"> then <img class="m" src="m/4b20ec7a0fc3be110750230eb685230e7093d6f4.svg" alt="\(y &lt; x\)" style="height:0.804em;vertical-align:-0.217em">,
+since <img class="m" src="m/d94309484f38385dee49201865eb603f525e8d85.svg" alt="\(y \ge x\)" style="height:0.910em;vertical-align:-0.209em"> would put <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> in <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> because <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> is initial.
+Hence <img class="m" src="m/1b30ace440bdb2863eeecb725ae3df278e31fac5.svg" alt="\(S = W_{&lt;x}\)" style="height:0.971em;vertical-align:-0.223em">. If also <img class="m" src="m/b33eb7ef6de492c07083beeb9c32639869576144.svg" alt="\(S = W_{&lt;x'}\)" style="height:0.971em;vertical-align:-0.223em"> then <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/9c1e79b9c89d5f20c9bc897101756b64fad2c3cd.svg" alt="\(x'\)" style="height:0.824em;vertical-align:-0.000em"> are
+both the least element of the complement, so they are equal.
+</p>
+
+</div>
+
+<div class="theorem" id="orgb590a00">
+<p>
+Let <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em"> be well ordered and <img class="m" src="m/e82ce7047a751f573fc5143106b57ed00d198b89.svg" alt="\(S \subseteq W\)" style="height:0.898em;vertical-align:-0.153em"> be such that
+<img class="m" src="m/5ebcf4f4756d6d58e9e4528da288c724bb0a398c.svg" alt="\(W_{&lt;x} \subseteq S\)" style="height:0.971em;vertical-align:-0.223em"> implies <img class="m" src="m/aa5e9b66b05ad8372d01b950834a60169cc40839.svg" alt="\(x \in S\)" style="height:0.792em;vertical-align:-0.040em">, for every <img class="m" src="m/d046393ffe5b43aaf9ed04b1c4ea259af3d54b2b.svg" alt="\(x \in W\)" style="height:0.792em;vertical-align:-0.040em">. Then
+<img class="m" src="m/40c9fd9ccad7fbf6704f8b66bf70aefae14639b1.svg" alt="\(S = W\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org688f108">
+<p>
+Suppose <img class="m" src="m/0f0c5894128a71b3f99118b1b8e7412cebee4334.svg" alt="\(W \setminus S\)" style="height:1.096em;vertical-align:-0.274em"> is non-empty and let <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> be its least
+element. Every <img class="m" src="m/4b20ec7a0fc3be110750230eb685230e7093d6f4.svg" alt="\(y &lt; x\)" style="height:0.804em;vertical-align:-0.217em"> then lies in <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">, that is
+<img class="m" src="m/5ebcf4f4756d6d58e9e4528da288c724bb0a398c.svg" alt="\(W_{&lt;x} \subseteq S\)" style="height:0.971em;vertical-align:-0.223em">, so <img class="m" src="m/aa5e9b66b05ad8372d01b950834a60169cc40839.svg" alt="\(x \in S\)" style="height:0.792em;vertical-align:-0.040em"> by hypothesis &#x2013; a contradiction.
+</p>
+
+</div>
+
+<div class="remark" id="orgdd432b1">
+<p>
+Ordinary induction on <img class="m" src="m/d36edebe5171c584e95c5e3966023a2f078fce29.svg" alt="\(\N\)" style="height:0.755em;vertical-align:-0.000em"> is this theorem for the usual order, and
+the familiar two-case form (base case, successor step) is an artefact
+of <img class="m" src="m/d36edebe5171c584e95c5e3966023a2f078fce29.svg" alt="\(\N\)" style="height:0.755em;vertical-align:-0.000em">: every non-zero natural number has an immediate predecessor.
+A general well order has limit points, where nothing is inherited from
+"the previous element" because there is none, and the hypothesis above
+is exactly the one that covers both situations at once.
+</p>
+
+</div>
+
+<div class="theorem" id="org8ef08aa">
+<p>
+Every set admits a well order.
+</p>
+
+</div>
+
+<div class="proof" id="org9aad8aa">
+<p>
+Let <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> be a set and let <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> be the set of pairs <img class="m" src="m/76277cd45b1317154fdd35dea3f677ec1c62d082.svg" alt="\((A, \le_{A})\)" style="height:1.096em;vertical-align:-0.274em">
+with <img class="m" src="m/8cf713af0820812531d65e982303553bcc04428e.svg" alt="\(A \subseteq X\)" style="height:0.898em;vertical-align:-0.153em"> and <img class="m" src="m/e918d5616eaf79d03104eb4552ea9b1b1cb038b9.svg" alt="\(\le_{A}\)" style="height:0.861em;vertical-align:-0.164em"> a well order on <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, ordered by
+<img class="m" src="m/5b195d9d6d23f14c8da61eec9102a1ba5a124e82.svg" alt="\((A, \le_{A}) \preceq (B, \le_{B})\)" style="height:1.096em;vertical-align:-0.274em"> when <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is an initial segment
+of <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/56a2ff11c8d0233d2d468a93a149b50fb7bf68db.svg" alt="\(\le_{B}\)" style="height:0.861em;vertical-align:-0.164em"> restricts to <img class="m" src="m/e918d5616eaf79d03104eb4552ea9b1b1cb038b9.svg" alt="\(\le_{A}\)" style="height:0.861em;vertical-align:-0.164em"> on <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">. This is a
+partial order, and <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> is non-empty since the empty order qualifies.
+</p>
+
+<p>
+A chain <img class="m" src="m/cd053a42dc6593a0d14dc4a0625b55838bea74c4.svg" alt="\(\mathcal{C}\)" style="height:0.749em;vertical-align:-0.000em"> in <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> has an upper bound: let <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> be the
+union of the underlying sets, ordered by <img class="m" src="m/44382724e9829f69d3dcf3bdaf4a26edc0a16e6a.svg" alt="\(x \le y\)" style="height:0.910em;vertical-align:-0.209em"> whenever this holds
+in some member of the chain (consistent, because any two members are
+comparable and the smaller is an initial segment of the larger). The
+order is total, and it is a well order: a non-empty <img class="m" src="m/5796c634d462ef24fe68177451a21e2de90be21e.svg" alt="\(S \subseteq U\)" style="height:0.898em;vertical-align:-0.153em">
+meets some <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, and the <img class="m" src="m/e918d5616eaf79d03104eb4552ea9b1b1cb038b9.svg" alt="\(\le_{A}\)" style="height:0.861em;vertical-align:-0.164em">-least element of <img class="m" src="m/18afa6b7bc20de8f75a3bada1b437d2ab3e111c0.svg" alt="\(S \cap A\)" style="height:0.749em;vertical-align:-0.000em"> is
+least in <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">, because any element of <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> below it already lies in
+the initial segment <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">. Each member of the chain is an initial
+segment of <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">, so <img class="m" src="m/cd5338366a38ca45d3e9264d1e4130559381ea54.svg" alt="\((U, \le)\)" style="height:1.096em;vertical-align:-0.274em"> is an upper bound.
+</p>
+
+<p>
+By Zorn's lemma <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> has a maximal element <img class="m" src="m/37fc59e19717be1c16dc1043f2a6e4e1c46b4754.svg" alt="\((M, \le_{M})\)" style="height:1.096em;vertical-align:-0.274em">. If some
+<img class="m" src="m/3c7cb6557f86e070ed23dd2ed2d94dd7ec75390b.svg" alt="\(x \in X \setminus M\)" style="height:1.096em;vertical-align:-0.274em"> existed, extending <img class="m" src="m/86cc953fa7c286d5a5d3dfaa782d6fb969cf1eb6.svg" alt="\(\le_{M}\)" style="height:0.861em;vertical-align:-0.164em"> to
+<img class="m" src="m/6ca4640117bd0c3701d6808523dc57ad9a91ce1d.svg" alt="\(M \cup \set{x}\)" style="height:1.096em;vertical-align:-0.274em"> by declaring <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> larger than everything in <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">
+would again be a well order &#x2013; a non-empty subset either meets <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">, and
+has its least element there, or is <img class="m" src="m/173deeed5f4f0d932101b756011d0da71018a4a2.svg" alt="\(\set{x}\)" style="height:1.096em;vertical-align:-0.274em"> &#x2013; with <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> as an
+initial segment, contradicting maximality. Hence <img class="m" src="m/97fd5e26a2bdd62711fa41fb86c94a4b49ef0800.svg" alt="\(M = X\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="partial-orders-lattices-and-the-knaster-tarski-theorem.html"><span>← previous</span>Partial orders, lattices and the Knaster-Tarski theorem</a><a rel="next" href="the-axiom-of-choice-and-zorns-lemma.html"><span>next →</span>The axiom of choice and Zorn's lemma</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/foundations--set-theory.pdf" title="PDF manual">Set Theory</a> · <a class="pdf" href="pdf/foundations.pdf" title="PDF manual">Foundations</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

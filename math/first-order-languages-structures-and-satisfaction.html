@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>First-order languages, structures and satisfaction · Mathematics</title>
+<meta name="description" content="A group, a ring, an ordered field and a graph are the same kind of object seen four times: a set with named operations and relations. Once that is said precisely, &quot;G satisfies the group axioms&quot; becomes a mathematical statement about a pair (a structure, a set of formulas) rather than a description …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/first-order-languages-structures-and-satisfaction.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="First-order languages, structures and satisfaction · Mathematics">
+<meta property="og:description" content="A group, a ring, an ordered field and a graph are the same kind of object seen four times: a set with named operations and relations. Once that is said precisely, &quot;G satisfies the group axioms&quot; becomes a mathematical statement about a pair (a structure, a set of formulas) rather than a description …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/first-order-languages-structures-and-satisfaction.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-foundations">Foundations</a> / <a rel="up" href="index.html#a-foundations--model-theory">Model Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Foundations · Model Theory</p>
+<h1>First-order languages, structures and satisfaction</h1>
+<p class="summary">A group, a ring, an ordered field and a graph are the same kind of object seen four times: a set with named operations and relations. Once that is said precisely, "<img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> satisfies the group axioms" becomes a mathematical statement about a pair (a structure, a set of formulas) rather than a description of what is written on the page &#x2013; and statements about <b>all</b> structures satisfying a set of axioms become available.</p>
+<p class="rel"><span>unlocks</span> <a href="elementary-substructures-and-the-lowenheim-skolem-theorems.html">Elementary substructures and the Lowenheim-Skolem theorems</a>, <a href="ultraproducts-and-the-theorem-of-los.html">Ultraproducts and the theorem of Los</a></p>
+<p class="rel"><span>mentioned in</span> <a href="logic.html">Logic</a></p>
+</header>
+<main class="note">
+<div class="definition" id="org2ad6fa6">
+<p>
+A <i>language</i> (or signature) <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> consists of a set of <i>constant
+symbols</i>, a set of <i>function symbols</i> and a set of <i>relation symbols</i>,
+each function and relation symbol carrying an <i>arity</i> in
+<img class="m" src="m/61a6a4500eb7745b0d094c74c550117bdf338a1c.svg" alt="\(\N \setminus \set{0}\)" style="height:1.096em;vertical-align:-0.274em">. The <i>terms</i> of <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> form the smallest set
+containing the variables <img class="m" src="m/8b4a6c432261ee94bc59c886f775da6a7054cf26.svg" alt="\(x_{0}, x_{1}, \dots\)" style="height:0.685em;vertical-align:-0.212em"> and the constant
+symbols and closed under <img class="m" src="m/a30df7d0ee949a0b1fbcdd97214605c1a4524945.svg" alt="\(t_{1}, \dots, t_{n} \mapsto F(t_{1}, \dots, t_{n})\)" style="height:1.096em;vertical-align:-0.274em">
+for each <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">-ary function symbol <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em">. The <i>formulas</i> of <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> form
+the smallest set containing the <i>atomic</i> ones &#x2013; <img class="m" src="m/aed6e773dadcea8f6bcd403d5cf4878290ae8dbc.svg" alt="\(t_{1} = t_{2}\)" style="height:0.838em;vertical-align:-0.168em"> and
+<img class="m" src="m/5639ab57c8ac378332bf161c33a4b92ca82f38c0.svg" alt="\(R(t_{1}, \dots, t_{n})\)" style="height:1.096em;vertical-align:-0.274em"> for an <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">-ary relation symbol <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> &#x2013;
+and closed under <img class="m" src="m/51fa503915268efad3b3a6093a9201a828e59ba7.svg" alt="\(\varphi \mapsto \neg \varphi\)" style="height:0.685em;vertical-align:-0.212em">,
+<img class="m" src="m/dfa05aba3ce38c0950a79066544afd6d42372f38.svg" alt="\((\varphi, \psi) \mapsto (\varphi \wedge \psi)\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/52cd9b814f430934635d4e4f42ffa180e95c042b.svg" alt="\(\varphi \mapsto \exists x_{i} \, \varphi\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="definition" id="orgea235e4">
+<p>
+An <i><img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">-structure</i> <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em"> is a non-empty set <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, its
+<i>domain</i>, together with an element <img class="m" src="m/26e6b43762465cb57946b52c63359df2b9e98efc.svg" alt="\(c^{\mathcal{A}} \in A\)" style="height:0.965em;vertical-align:-0.039em"> for each
+constant symbol <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em">, a map
+<img class="m" src="m/9c3bc611f4b3aeaacb8f038b46721f731905aba9.svg" alt="\(F^{\mathcal{A}} \colon A^{n} \to A\)" style="height:0.922em;vertical-align:-0.000em"> for each <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">-ary function
+symbol <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em">, and a subset <img class="m" src="m/8d34a9d57563be0908e18ec4bff43f49c897a897.svg" alt="\(R^{\mathcal{A}} \subseteq A^{n}\)" style="height:1.071em;vertical-align:-0.150em"> for each
+<img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">-ary relation symbol <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="definition" id="orgce7fa02">
+<p>
+Let <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em"> be an <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">-structure. An <i>assignment</i> is a map
+<img class="m" src="m/65ed198e156bf7d35f2bcbce00232479bbe853b2.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em"> from the variables to <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">; it extends to terms by
+<img class="m" src="m/2c2309d3dcf26cf36df0149b97f2576f8b98f24c.svg" alt="\(\beta(c) = c^{\mathcal{A}}\)" style="height:1.196em;vertical-align:-0.275em"> and
+<img class="m" src="m/884da8227b14b82fc7fa0294aedbabccd3dc9d91.svg" alt="\(\beta(F(t_{1},\dots,t_{n})) = F^{\mathcal{A}}(\beta(t_{1}), \dots, \beta(t_{n}))\)" style="height:1.196em;vertical-align:-0.275em">.
+<i>Satisfaction</i> <img class="m" src="m/9853ff544ba659a1037b4a63f9d89fcd34d482fd.svg" alt="\(\mathcal{A} \models \varphi[\beta]\)" style="height:1.096em;vertical-align:-0.274em"> is defined by
+induction on <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">:
+</p>
+<ol class="org-ol">
+<li><img class="m" src="m/5083160ab7e55589e5a6794de6825bb5b5b3a3c0.svg" alt="\(\mathcal{A} \models (t_{1} = t_{2})[\beta]\)" style="height:1.096em;vertical-align:-0.274em"> iff <img class="m" src="m/0e33472f9029354fcd559070ddbe886cacd0a81a.svg" alt="\(\beta(t_{1}) = \beta(t_{2})\)" style="height:1.096em;vertical-align:-0.274em">;</li>
+<li><img class="m" src="m/247cc42c6e0df55c7ce165a723611a92759e64b2.svg" alt="\(\mathcal{A} \models R(t_{1},\dots,t_{n})[\beta]\)" style="height:1.096em;vertical-align:-0.274em"> iff <img class="m" src="m/ca1c227f55968bf552e46e460ac71f416dd7c7da.svg" alt="\((\beta(t_{1}),\dots,\beta(t_{n})) \in R^{\mathcal{A}}\)" style="height:1.196em;vertical-align:-0.275em">;</li>
+<li><img class="m" src="m/2f9195ef78f6ab76dab8574e9afa06e56abc2a5a.svg" alt="\(\mathcal{A} \models \neg\varphi[\beta]\)" style="height:1.096em;vertical-align:-0.274em"> iff not <img class="m" src="m/9853ff544ba659a1037b4a63f9d89fcd34d482fd.svg" alt="\(\mathcal{A} \models \varphi[\beta]\)" style="height:1.096em;vertical-align:-0.274em">;</li>
+<li><img class="m" src="m/7aa28e2b4164c2b812b62112a01e3744ed2213c3.svg" alt="\(\mathcal{A} \models (\varphi \wedge \psi)[\beta]\)" style="height:1.096em;vertical-align:-0.274em"> iff both hold;</li>
+<li><img class="m" src="m/c730c5ac8e3e64cfb802fc91edb1c26d5ad2c8e0.svg" alt="\(\mathcal{A} \models \exists x_{i}\, \varphi[\beta]\)" style="height:1.096em;vertical-align:-0.274em"> iff <img class="m" src="m/990689faeea998e6ee300941b41997ce951c52da.svg" alt="\(\mathcal{A} \models \varphi[\beta']\)" style="height:1.098em;vertical-align:-0.274em"> for some <img class="m" src="m/273ca84a19990e521336d52866139476b895a652.svg" alt="\(\beta'\)" style="height:1.037em;vertical-align:-0.218em"> agreeing with <img class="m" src="m/65ed198e156bf7d35f2bcbce00232479bbe853b2.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em"> off <img class="m" src="m/e7f9de506eae7e9e89a3fd163d8879dedf6a9c2b.svg" alt="\(x_{i}\)" style="height:0.636em;vertical-align:-0.165em">.</li>
+</ol>
+<p>
+A variable occurrence not inside the scope of a quantifier binding it is
+<i>free</i>; a formula with no free variables is a <i>sentence</i>.
+</p>
+
+</div>
+
+<div class="proposition" id="org7a38005">
+<p>
+If assignments <img class="m" src="m/65ed198e156bf7d35f2bcbce00232479bbe853b2.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/a7557905dfe0cbb9ed8efb67df67b1b7128d6a76.svg" alt="\(\gamma\)" style="height:0.685em;vertical-align:-0.212em"> agree on every variable free in
+<img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">, then <img class="m" src="m/9853ff544ba659a1037b4a63f9d89fcd34d482fd.svg" alt="\(\mathcal{A} \models \varphi[\beta]\)" style="height:1.096em;vertical-align:-0.274em"> if and only if
+<img class="m" src="m/53cdb7bb0a7f0df15857ab873fa6a0c3e3fcbdb2.svg" alt="\(\mathcal{A} \models \varphi[\gamma]\)" style="height:1.096em;vertical-align:-0.274em">. In particular, whether a
+sentence holds in <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em"> does not depend on any assignment.
+</p>
+
+</div>
+
+<div class="proof" id="org8bce941">
+<p>
+First, if <img class="m" src="m/65ed198e156bf7d35f2bcbce00232479bbe853b2.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/a7557905dfe0cbb9ed8efb67df67b1b7128d6a76.svg" alt="\(\gamma\)" style="height:0.685em;vertical-align:-0.212em"> agree on the variables occurring in a
+term <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em">, then <img class="m" src="m/01b1edaf462661dcbc48a04897873f957fdc701b.svg" alt="\(\beta(t) = \gamma(t)\)" style="height:1.096em;vertical-align:-0.274em">: true for variables and
+constants, and preserved by the clause for <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em">, so it holds for all
+terms by induction on terms.
+</p>
+
+<p>
+Now induct on <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">. For atomic formulas the claim follows from
+the statement about terms, since every variable of an atomic formula is
+free in it. The cases of <img class="m" src="m/d98ea9123f192051780bfe031476f329b80f970c.svg" alt="\(\neg\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/590201a38380e9fc74a8481a0e767f0242b1deb3.svg" alt="\(\wedge\)" style="height:0.609em;vertical-align:-0.000em"> are immediate from the
+induction hypothesis, the free variables of the compound formula being
+those of its parts. For <img class="m" src="m/cc9990e8c6465a3ae03027f7c211574dbbea35a0.svg" alt="\(\exists x_{i} \, \varphi\)" style="height:0.974em;vertical-align:-0.214em">: the free variables
+of <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> are those of <img class="m" src="m/21c961d0cbce5021d879c9b174c99ca938c0f5ac.svg" alt="\(\exists x_{i}\,\varphi\)" style="height:0.974em;vertical-align:-0.214em"> together with
+possibly <img class="m" src="m/e7f9de506eae7e9e89a3fd163d8879dedf6a9c2b.svg" alt="\(x_{i}\)" style="height:0.636em;vertical-align:-0.165em">. If <img class="m" src="m/990689faeea998e6ee300941b41997ce951c52da.svg" alt="\(\mathcal{A} \models \varphi[\beta']\)" style="height:1.098em;vertical-align:-0.274em"> with
+<img class="m" src="m/273ca84a19990e521336d52866139476b895a652.svg" alt="\(\beta'\)" style="height:1.037em;vertical-align:-0.218em"> agreeing with <img class="m" src="m/65ed198e156bf7d35f2bcbce00232479bbe853b2.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em"> off <img class="m" src="m/e7f9de506eae7e9e89a3fd163d8879dedf6a9c2b.svg" alt="\(x_{i}\)" style="height:0.636em;vertical-align:-0.165em">, let <img class="m" src="m/4e1c29597c343d3ea2d43913c56baee44809ec73.svg" alt="\(\gamma'\)" style="height:1.037em;vertical-align:-0.218em"> agree
+with <img class="m" src="m/a7557905dfe0cbb9ed8efb67df67b1b7128d6a76.svg" alt="\(\gamma\)" style="height:0.685em;vertical-align:-0.212em"> off <img class="m" src="m/e7f9de506eae7e9e89a3fd163d8879dedf6a9c2b.svg" alt="\(x_{i}\)" style="height:0.636em;vertical-align:-0.165em"> and take the same value as <img class="m" src="m/273ca84a19990e521336d52866139476b895a652.svg" alt="\(\beta'\)" style="height:1.037em;vertical-align:-0.218em"> at
+<img class="m" src="m/e7f9de506eae7e9e89a3fd163d8879dedf6a9c2b.svg" alt="\(x_{i}\)" style="height:0.636em;vertical-align:-0.165em">. Then <img class="m" src="m/273ca84a19990e521336d52866139476b895a652.svg" alt="\(\beta'\)" style="height:1.037em;vertical-align:-0.218em"> and <img class="m" src="m/4e1c29597c343d3ea2d43913c56baee44809ec73.svg" alt="\(\gamma'\)" style="height:1.037em;vertical-align:-0.218em"> agree on all free variables
+of <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">, so <img class="m" src="m/fa49523b8e18c17155e090e5bd40d0c2c87dfb29.svg" alt="\(\mathcal{A} \models \varphi[\gamma']\)" style="height:1.098em;vertical-align:-0.274em"> by
+induction, whence <img class="m" src="m/3e22aa4ae9ccd017ff894dbba6125ebd26951d75.svg" alt="\(\mathcal{A} \models \exists x_{i}\,\varphi[\gamma]\)" style="height:1.096em;vertical-align:-0.274em">.
+The converse is symmetric.
+</p>
+
+</div>
+
+<div class="definition" id="orgaccf01a">
+<p>
+An <i><img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">-theory</i> is a set <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> of <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">-sentences; a structure
+<img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em"> is a <i>model</i> of <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em">, written
+<img class="m" src="m/0c70b65f93663eac942a98c7cb1304cf77f93b5c.svg" alt="\(\mathcal{A} \models T\)" style="height:1.096em;vertical-align:-0.274em">, if it satisfies every sentence of <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em">. A
+sentence <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em"> is a <i>consequence</i> of <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em">, written
+<img class="m" src="m/3f87bb316c983585614dbcb9d6ffd7c416c60a0a.svg" alt="\(T \models \sigma\)" style="height:1.096em;vertical-align:-0.274em">, if every model of <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> satisfies <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="definition" id="org001a609">
+<p>
+<img class="m" src="m/6d40145d26458af58776ea3bb7d3688a443c67b2.svg" alt="\(\mathcal{B}\)" style="height:0.749em;vertical-align:-0.000em"> is a <i>substructure</i> of <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em"> if
+<img class="m" src="m/4b483e309bbb2371beb1974f929774956656d938.svg" alt="\(B \subseteq A\)" style="height:0.898em;vertical-align:-0.153em">, <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> contains every <img class="m" src="m/878a070378460a5c92bf38c2cf4e1925ae98589a.svg" alt="\(c^{\mathcal{A}}\)" style="height:0.922em;vertical-align:-0.000em"> and is
+closed under every <img class="m" src="m/2f5723ee6594bf848b8c105de161b35c7791d98b.svg" alt="\(F^{\mathcal{A}}\)" style="height:0.922em;vertical-align:-0.000em">, and the interpretations of
+<img class="m" src="m/6d40145d26458af58776ea3bb7d3688a443c67b2.svg" alt="\(\mathcal{B}\)" style="height:0.749em;vertical-align:-0.000em"> are the restrictions:
+<img class="m" src="m/277069fb815b290ffb0f9e25aadf34662d827ea6.svg" alt="\(F^{\mathcal{B}} = F^{\mathcal{A}}\restrict{B^{n}}\)" style="height:1.370em;vertical-align:-0.438em"> and
+<img class="m" src="m/43447a27eec7ddd4d109e7d5a6b80e0d94ac4cb8.svg" alt="\(R^{\mathcal{B}} = R^{\mathcal{A}} \cap B^{n}\)" style="height:0.922em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orge531f1d">
+<p>
+Let <img class="m" src="m/6d40145d26458af58776ea3bb7d3688a443c67b2.svg" alt="\(\mathcal{B}\)" style="height:0.749em;vertical-align:-0.000em"> be a substructure of <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/65ed198e156bf7d35f2bcbce00232479bbe853b2.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em">
+an assignment with values in <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">. Then for every quantifier-free
+<img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">, <img class="m" src="m/58b988f431f2d2740ece168a673698e0e184c7e5.svg" alt="\(\mathcal{B} \models \varphi[\beta]\)" style="height:1.096em;vertical-align:-0.274em"> if and only if
+<img class="m" src="m/9853ff544ba659a1037b4a63f9d89fcd34d482fd.svg" alt="\(\mathcal{A} \models \varphi[\beta]\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orga9a1ea5">
+<p>
+For a term <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> with variables assigned in <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">, induction on terms
+gives <img class="m" src="m/29b12a1f7be761358ab38f5481c543eee5d936f0.svg" alt="\(\beta^{\mathcal{B}}(t) = \beta^{\mathcal{A}}(t)\)" style="height:1.196em;vertical-align:-0.275em">: the constants
+agree, and <img class="m" src="m/4d0df8dae1e5307457e40b916cf4a9906c4bdf65.svg" alt="\(F^{\mathcal{B}}\)" style="height:0.922em;vertical-align:-0.000em"> is the restriction of
+<img class="m" src="m/2f5723ee6594bf848b8c105de161b35c7791d98b.svg" alt="\(F^{\mathcal{A}}\)" style="height:0.922em;vertical-align:-0.000em">, which is where closure of <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> is used. Atomic
+formulas then agree because equality is the same relation and
+<img class="m" src="m/43447a27eec7ddd4d109e7d5a6b80e0d94ac4cb8.svg" alt="\(R^{\mathcal{B}} = R^{\mathcal{A}} \cap B^{n}\)" style="height:0.922em;vertical-align:-0.000em">, and the clauses for
+<img class="m" src="m/d98ea9123f192051780bfe031476f329b80f970c.svg" alt="\(\neg\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/590201a38380e9fc74a8481a0e767f0242b1deb3.svg" alt="\(\wedge\)" style="height:0.609em;vertical-align:-0.000em"> preserve the equivalence.
+</p>
+
+</div>
+
+<div class="remark" id="org1aaec0e">
+<p>
+The proposition fails at the first quantifier, and that failure is the
+subject: <img class="m" src="m/19ff68afbd9b5061940eb32fbd4ce3042e34ded0.svg" alt="\(\exists\)" style="height:0.761em;vertical-align:-0.000em"> ranges over the domain, so a substructure can lose
+witnesses. The two-line proof marks exactly the boundary between the
+statements that are inherited by substructures &#x2013; the equational axioms
+of algebra among them &#x2013; and those that are not.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="set-theory.html"><span>← previous</span>Set theory</a><a rel="next" href="ultraproducts-and-the-theorem-of-los.html"><span>next →</span>Ultraproducts and the theorem of Los</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/foundations--model-theory.pdf" title="PDF manual">Model Theory</a> · <a class="pdf" href="pdf/foundations.pdf" title="PDF manual">Foundations</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

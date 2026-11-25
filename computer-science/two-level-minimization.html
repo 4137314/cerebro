@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two-level minimization: prime implicants and covers · Computer Science</title>
+<meta name="description" content="A minimum sum of products is a cover of the on-set by prime implicants (cubes that cannot be enlarged without hitting the off-set); Quine–McCluskey generates all primes by merging cubes differing in one variable, essential primes are taken first, and the rest is a set-cover problem — NP-hard in gen…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/two-level-minimization.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Two-level minimization: prime implicants and covers · Computer Science">
+<meta property="og:description" content="A minimum sum of products is a cover of the on-set by prime implicants (cubes that cannot be enlarged without hitting the off-set); Quine–McCluskey generates all primes by merging cubes differing in one variable, essential primes are taken first, and the rest is a set-cover problem — NP-hard in gen…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/two-level-minimization.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--logic-synthesis">Logic Synthesis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Hardware · Logic Synthesis</p>
+<h1>Two-level minimization: prime implicants and covers</h1>
+<p class="summary">A minimum sum of products is a cover of the on-set by prime implicants (cubes that cannot be enlarged without hitting the off-set); Quine–McCluskey generates all primes by merging cubes differing in one variable, essential primes are taken first, and the rest is a set-cover problem — NP-hard in general, solved heuristically by Espresso.</p>
+<p class="rel"><span>needs</span> <a href="karnaugh-maps.html">Karnaugh maps</a></p>
+<p class="rel"><span>see also</span> <a href="pla-pal.html">PLA and PAL</a>, <a href="multilevel-logic-optimization.html">Multi-level logic optimization</a>, <a href="boolean-difference.html">Shannon cofactors and the Boolean difference</a>, <a href="np-hard-optimization.html">Hard optimization problems and heuristics</a></p>
+<p class="rel"><span>mentioned in</span> <a href="seven-segment-decoder.html">7-segment decoder: don't-cares and joint minimization</a>, <a href="rom-as-logic.html">Logic functions as memories</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org3e5109c" class="outline-2">
+<h2 id="org3e5109c">Method</h2>
+<div class="outline-text-2" id="text-org3e5109c">
+<ol class="org-ol">
+<li><b>Implicant</b>: a cube <img class="m" src="m/b89f22107378b842f1c34383ec5fd8b764c4d3aa.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> (product of literals) with <img class="m" src="m/075bc61a0c1058a26c826759c231a4dd929c826a.svg" alt="\(c\Rightarrow f\)" style="height:0.974em;vertical-align:-0.214em">. <b>Prime</b>: no literal can be removed keeping <img class="m" src="m/075bc61a0c1058a26c826759c231a4dd929c826a.svg" alt="\(c\Rightarrow f\)" style="height:0.974em;vertical-align:-0.214em">. Every minimum SOP uses only primes.</li>
+<li><b>Generate primes</b> (Quine–McCluskey): list minterms (and don't-cares) by number of ones; merge pairs differing in exactly one bit (<img class="m" src="m/c71d1d815eb9724506d678d455d1065a21980eb0.svg" alt="\(x\bar y z+xyz=xz\)" style="height:0.852em;vertical-align:-0.213em">); repeat on the merged cubes; cubes never merged are prime.</li>
+<li><b>Prime implicant chart</b>: rows = primes, columns = minterms (not don't-cares). A minterm covered by a single prime makes that prime <b>essential</b>.</li>
+<li><b>Cover</b> the remaining minterms with the fewest (cheapest) primes: row/column dominance, then branching (Petrick's method) — exponential in the worst case.</li>
+</ol>
+<p>
+A Karnaugh map does the same by eye for up to 4–5 variables: largest power-of-two rectangles of ones, wrapping at the edges.
+</p>
+</div>
+</div>
+<div id="outline-container-org95b6fd7" class="outline-2">
+<h2 id="org95b6fd7">Example</h2>
+<div class="outline-text-2" id="text-org95b6fd7">
+<p>
+<img class="m" src="m/e88d3331333fc36aa22d7bcbd7c8d10e59d00239.svg" alt="\(f(a,b,c)=\sum m(0,1,2,5,6,7)\)" style="height:1.096em;vertical-align:-0.274em">. Merging: <img class="m" src="m/d4783f2e2344fa2904f154da3d8f34dd4ddd8a73.svg" alt="\(000+001=\bar a\bar b\)" style="height:1.003em;vertical-align:-0.090em">, <img class="m" src="m/278ec43f96c05becee6df0a97e392a2973e2f578.svg" alt="\(000+010=\bar a\bar c\)" style="height:0.798em;vertical-align:-0.088em">, <img class="m" src="m/9c034ae8f03895726cb207804d45156f155ab19d.svg" alt="\(001+101=\bar bc\)" style="height:1.003em;vertical-align:-0.090em">, <img class="m" src="m/f093aa366fb8f075abbc5ae15ed449a39768ad8e.svg" alt="\(010+110=b\bar c\)" style="height:0.852em;vertical-align:-0.094em">, <img class="m" src="m/76c04cf53ad9bd92bbf23e992d20e1574bc76092.svg" alt="\(101+111=ac\)" style="height:0.798em;vertical-align:-0.088em">, <img class="m" src="m/352e99025e7a289af06f8cb3e3a16b3b7e83bab5.svg" alt="\(110+111=ab\)" style="height:0.852em;vertical-align:-0.094em">. No further merges: six primes. Every minterm is covered by two primes, none essential (a cyclic cover). Minimum covers have three primes: <img class="m" src="m/44869fb3d21db8856aacc827a8cd8351b6d16350.svg" alt="\(f=\bar a\bar b+b\bar c+ac\)" style="height:1.125em;vertical-align:-0.214em"> or <img class="m" src="m/db6826663d7b5413afef985d539df746b0be27db.svg" alt="\(f=\bar a\bar c+\bar bc+ab\)" style="height:1.125em;vertical-align:-0.214em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orge56c53d" class="outline-2">
+<h2 id="orge56c53d">Picture</h2>
+<div class="outline-text-2" id="text-orge56c53d">
+<figure class="fig"><img class="m" src="m/20a5a977a861b3fc353857a47f2eb8bf4cfef675.svg" alt="figure" style="width:17.757em"><figcaption><span class="fl">Figure 1.</span> A three-variable Karnaugh map with its prime implicants: the minimum cover is <img class="m" src="m/edbd1d56b404a291df15449711afcc630962ad28.svg" alt="\(\bar a\bar b+b\bar c+ac\)" style="height:1.003em;vertical-align:-0.090em">.</figcaption></figure>
+<p>
+Three prime rectangles cover the six ones.
+</p>
+</div>
+</div>
+<div id="outline-container-orga161697" class="outline-2">
+<h2 id="orga161697">Intuition</h2>
+<div class="outline-text-2" id="text-orga161697">
+<p>
+Make every product as large as possible (prime), then pick the fewest large products that together touch every one.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfbcf0cc" class="outline-2">
+<h2 id="orgfbcf0cc">Pitfall</h2>
+<div class="outline-text-2" id="text-orgfbcf0cc">
+<p>
+Greedy "take the biggest prime first" is not optimal on cyclic charts; and two-level minimality says nothing about multilevel area or delay — it is only the first step of synthesis.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="timing-driven-mapping.html"><span>← previous</span>Technology mapping for delay</a><a rel="next" href="cmos-power.html"><span>next →</span>Power dissipation in CMOS</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--logic-synthesis.pdf" title="PDF manual">Logic Synthesis</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

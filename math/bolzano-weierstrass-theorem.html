@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bolzano--Weierstrass theorem · Mathematics</title>
+<meta name="description" content="Boundedness alone gives no limit: (-1)^{n} is bounded and does not converge. What it does give is a subsequence that converges, and that is enough for almost every compactness argument in a first course.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/bolzano-weierstrass-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Bolzano--Weierstrass theorem · Mathematics">
+<meta property="og:description" content="Boundedness alone gives no limit: (-1)^{n} is bounded and does not converge. What it does give is a subsequence that converges, and that is enough for almost every compactness argument in a first course.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/bolzano-weierstrass-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Real Analysis</p>
+<h1>Bolzano&#x2013;Weierstrass theorem</h1>
+<p class="summary">Boundedness alone gives no limit: <img class="m" src="m/834628a677feadf9b0cd4335a4df2a71bfe4cb57.svg" alt="\((-1)^{n}\)" style="height:1.096em;vertical-align:-0.274em"> is bounded and does not converge. What it does give is a <i>subsequence</i> that converges, and that is enough for almost every compactness argument in a first course.</p>
+<p class="rel"><span>needs</span> <a href="limit-of-a-sequence.html">Limit of a sequence</a>, <a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></p>
+<p class="rel"><span>unlocks</span> <a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a>, <a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a>, <a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a>, <a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a>, <a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a>, <a href="convex-hulls-and-caratheodorys-theorem.html">Convex hulls and Caratheodory's theorem</a>, <a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="analysis.html">Analysis</a>, <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 4 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org5a3a67b">
+<p>
+Let <img class="m" src="m/c491f3183a7204ff5d9c737f20c6b6e18be33b91.svg" alt="\((a_{n})_{n \in \N}\)" style="height:1.096em;vertical-align:-0.274em"> be a sequence and let
+<img class="m" src="m/c0e67adce45bf7727b1b908e89558de12d49ab03.svg" alt="\(n_{1} &lt; n_{2} &lt; n_{3} &lt; \cdots\)" style="height:0.755em;vertical-align:-0.166em"> be a strictly increasing sequence of
+indices. The sequence <img class="m" src="m/e3c93627665205f375c77ca70e7b932bf50ace05.svg" alt="\((a_{n_{k}})_{k \in \N}\)" style="height:1.103em;vertical-align:-0.276em"> is a <i>subsequence</i> of
+<img class="m" src="m/61f9283fe1503c8d1cecd228c646c41f111be43f.svg" alt="\((a_{n})\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="lemma" id="org865c6fd">
+<p>
+Every sequence of real numbers has a monotone subsequence.
+</p>
+
+</div>
+
+<div class="proof" id="orge187bef">
+<p>
+Call an index <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> a <i>peak</i> of <img class="m" src="m/61f9283fe1503c8d1cecd228c646c41f111be43f.svg" alt="\((a_{n})\)" style="height:1.096em;vertical-align:-0.274em"> if <img class="m" src="m/b219046bfaaa6c44cc1b192f3181c47da5abe4eb.svg" alt="\(a_{m} \le a_{n}\)" style="height:0.861em;vertical-align:-0.164em"> for
+every <img class="m" src="m/1f46581864565efe713573419ee62c02eb8e586e.svg" alt="\(m &gt; n\)" style="height:0.634em;vertical-align:-0.044em">. If there are infinitely many peaks
+<img class="m" src="m/d1cfda7332be664db27ff908cb55734105d8543a.svg" alt="\(n_{1} &lt; n_{2} &lt; \cdots\)" style="height:0.755em;vertical-align:-0.166em">, then <img class="m" src="m/9cbc08495ea677a895d8f644a0fbc19f7aa3c9ac.svg" alt="\((a_{n_{k}})\)" style="height:1.103em;vertical-align:-0.276em"> is decreasing by the
+definition of a peak. If there are only finitely many, let <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> exceed
+them all. Since <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> is not a peak there is <img class="m" src="m/75038abbddeb588aede086f5eb49cae6a874713c.svg" alt="\(n_{1} &gt; N\)" style="height:0.913em;vertical-align:-0.164em"> with
+<img class="m" src="m/61648f6c06927433010239c852daced49123de25.svg" alt="\(a_{n_{1}} &gt; a_{N}\)" style="height:0.865em;vertical-align:-0.277em">; since <img class="m" src="m/6a2aa05b855e5a6beb69b1aa42c25fce06f9442f.svg" alt="\(n_{1}\)" style="height:0.636em;vertical-align:-0.165em"> is not a peak either there is
+<img class="m" src="m/90e34db0c2c8edc41b121b906cc687179d422a9e.svg" alt="\(n_{2} &gt; n_{1}\)" style="height:0.755em;vertical-align:-0.166em"> with <img class="m" src="m/c0e138d8162233a98845a9a2d7f4398ec20ca392.svg" alt="\(a_{n_{2}} &gt; a_{n_{1}}\)" style="height:0.865em;vertical-align:-0.277em">, and inductively one
+obtains a strictly increasing subsequence.
+</p>
+
+</div>
+
+<div class="theorem" id="org7e863d7">
+<p>
+Every bounded sequence of real numbers has a convergent subsequence.
+</p>
+
+</div>
+
+<div class="proof" id="orgb42f6ee">
+<p>
+Let <img class="m" src="m/61f9283fe1503c8d1cecd228c646c41f111be43f.svg" alt="\((a_{n})\)" style="height:1.096em;vertical-align:-0.274em"> be bounded. By the lemma it has a monotone subsequence
+<img class="m" src="m/9cbc08495ea677a895d8f644a0fbc19f7aa3c9ac.svg" alt="\((a_{n_{k}})\)" style="height:1.103em;vertical-align:-0.276em">, which is bounded because <img class="m" src="m/61f9283fe1503c8d1cecd228c646c41f111be43f.svg" alt="\((a_{n})\)" style="height:1.096em;vertical-align:-0.274em"> is. A bounded
+monotone sequence converges, by the monotone convergence theorem, so
+<img class="m" src="m/9cbc08495ea677a895d8f644a0fbc19f7aa3c9ac.svg" alt="\((a_{n_{k}})\)" style="height:1.103em;vertical-align:-0.276em"> converges.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="monotone-convergence-theorem.html"><span>← previous</span>Monotone convergence theorem</a><a rel="next" href="the-absolute-value-and-the-triangle-inequality.html"><span>next →</span>The absolute value and the triangle inequality</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

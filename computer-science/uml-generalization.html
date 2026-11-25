@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generalization (is-a) · Computer Science</title>
+<meta name="description" content="A generalization makes every instance of a subclass an instance of its superclass, so the subclass inherits all attributes and associations; a family of subclasses can be disjoint and/or complete.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/uml-generalization.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Generalization (is-a) · Computer Science">
+<meta property="og:description" content="A generalization makes every instance of a subclass an instance of its superclass, so the subclass inherits all attributes and associations; a family of subclasses can be disjoint and/or complete.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/uml-generalization.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--uml">Uml</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Uml</p>
+<h1>Generalization (is-a)</h1>
+<p class="summary">A generalization makes every instance of a subclass an instance of its superclass, so the subclass inherits all attributes and associations; a family of subclasses can be disjoint and/or complete.</p>
+<p class="rel"><span>needs</span> <a href="uml-class-diagram.html">UML class diagram</a></p>
+<p class="rel"><span>unlocks</span> <a href="inheritance.html">Inheritance and overriding</a></p>
+<p class="rel"><span>see also</span> <a href="inheritance.html">Inheritance and overriding</a>, <a href="abstract-class-interface.html">Abstract classes and interfaces</a>, <a href="liskov-substitution.html">Liskov substitution principle</a></p>
+<p class="rel"><span>mentioned in</span> <a href="abstract-class-interface.html">Abstract classes and interfaces</a>, <a href="object-oriented-programming.html">Object-oriented programming</a>, <a href="multiple-inheritance.html">Multiple inheritance and the diamond</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org0e6081e" class="outline-2">
+<h2 id="org0e6081e">Definition</h2>
+<div class="outline-text-2" id="text-org0e6081e">
+<p>
+A generalization relates a <a href="inheritance.html">superclass</a> to one or more subclasses (hollow triangle on the superclass). Every instance of a subclass is an instance of the superclass: <img class="m" src="m/87831e707521784685fda5b4f8a69520e64a9c1f.svg" alt="\(\mathrm{ext}(\text{Sub})\subseteq\mathrm{ext}(\text{Super})\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<ul class="org-ul">
+<li><b>Inheritance principle</b>: every property (attribute, operation, <a href="uml-association.html">association</a>) of the superclass is a property of the subclass, and is not repeated in the diagram.</li>
+<li><b>Disjoint</b> <code>{disjoint}</code>: the subclasses share no instance.</li>
+<li><b>Complete</b> <code>{complete}</code>: the union of the subclasses is the whole superclass.</li>
+<li>One superclass can have several independent generalizations, one per criterion (occupation: student/worker; role: doctor/patient).</li>
+<li><b><a href="multiple-inheritance.html">Multiple inheritance</a></b>: two non-disjoint subclasses can share instances only through an explicit common subclass (<code>WorkingStudent</code>), so that every object keeps one most specific class.</li>
+<li><b><a href="cpp-templates.html">Specialization</a></b>: a subclass can restrict an inherited attribute (<code>Age: 0..120</code> in Person, <code>Age: 70..120</code> in Elder).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcb80b2e" class="outline-2">
+<h2 id="orgcb80b2e">Derivation</h2>
+<div class="outline-text-2" id="text-orgcb80b2e">
+<p>
+From "every Book has a Title" and "every HistoricalBook is a Book" it follows that every HistoricalBook has a Title. Inheritance is the transitivity of inclusion: if <img class="m" src="m/aa288c38fe28b232ed8c1aa44c97e280f7329fee.svg" alt="\(x\in\mathrm{ext}(\text{Sub})\subseteq\mathrm{ext}(\text{Super})\)" style="height:1.096em;vertical-align:-0.274em"> and every element of <img class="m" src="m/7808f072a634ffd4ad55b67f0fff493c88746e83.svg" alt="\(\mathrm{ext}(\text{Super})\)" style="height:1.096em;vertical-align:-0.274em"> has the property, so does <img class="m" src="m/c1cb305e0744a841c0171151eaf770796c623d6f.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org595c598" class="outline-2">
+<h2 id="org595c598">Picture</h2>
+<div class="outline-text-2" id="text-org595c598">
+<figure class="fig"><img class="m" src="m/a383a8ad69e10cf9dd14a494f2d2562a92ba194e.svg" alt="figure" style="width:20.000em"><figcaption><span class="fl">Figure 1.</span> Generalisation in UML: Student and Worker are kinds of Person, and WorkingStudent is both.</figcaption></figure>
+<p>
+A non-disjoint generalization and the common subclass that holds the shared instances.
+</p>
+</div>
+</div>
+<div id="outline-container-orga5dcddf" class="outline-2">
+<h2 id="orga5dcddf">Intuition</h2>
+<div class="outline-text-2" id="text-orga5dcddf">
+<p>
+"is-a" must be true of every instance, forever. A square is-a rectangle in geometry, but not in a program where rectangles can be stretched.
+</p>
+</div>
+</div>
+<div id="outline-container-org129f106" class="outline-2">
+<h2 id="org129f106">Pitfall</h2>
+<div class="outline-text-2" id="text-org129f106">
+<p>
+Use generalization for classification, not for reuse of code: a Stack is not-a List even if it can be built from one (see <a href="liskov-substitution.html">substitutability</a>).
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="aggregation-composition.html"><span>← previous</span>Aggregation and composition</a><a rel="next" href="call-stack.html"><span>next →</span>Memory model: static area, stack and heap</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--uml.pdf" title="PDF manual">Uml</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

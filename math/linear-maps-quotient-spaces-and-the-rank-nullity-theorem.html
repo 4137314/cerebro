@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linear maps, quotient spaces and the rank-nullity theorem · Mathematics</title>
+<meta name="description" content="For groups, a homomorphism is measured by one subgroup, its kernel. For vector spaces the same is true and, because dimension exists, the measurement becomes a number: what the map loses plus what it keeps is what it started with. Rank-nullity is the first isomorphism theorem with a dimension count…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Linear maps, quotient spaces and the rank-nullity theorem · Mathematics">
+<meta property="og:description" content="For groups, a homomorphism is measured by one subgroup, its kernel. For vector spaces the same is true and, because dimension exists, the measurement becomes a number: what the map loses plus what it keeps is what it started with. Rank-nullity is the first isomorphism theorem with a dimension count…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--linear-algebra">Linear Algebra</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Algebra · Linear Algebra</p>
+<h1>Linear maps, quotient spaces and the rank-nullity theorem</h1>
+<p class="summary">For groups, a homomorphism is measured by one subgroup, its kernel. For vector spaces the same is true and, because dimension exists, the measurement becomes a number: what the map loses plus what it keeps is what it started with. Rank-nullity is the first isomorphism theorem with a dimension count attached.</p>
+<p class="rel"><span>needs</span> <a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a>, <a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a>, <a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a>, <a href="vector-space.html">Vector space</a></p>
+<p class="rel"><span>unlocks</span> <a href="bilinear-forms-quadratic-forms-and-sylvesters-law-of-inertia.html">Bilinear forms, quadratic forms and Sylvester's law of inertia</a>, <a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a>, <a href="eigenvalues-the-characteristic-polynomial-and-cayley-hamilton.html">Eigenvalues, the characteristic polynomial and Cayley-Hamilton</a>, <a href="the-determinant-as-the-alternating-multilinear-form.html">The determinant as the alternating multilinear form</a>, <a href="the-spectral-theorem-for-symmetric-operators.html">The spectral theorem for symmetric operators</a>, <a href="modules-quotients-and-exact-sequences.html">Modules, quotients and exact sequences</a>, <a href="constrained-extrema-and-lagrange-multipliers.html">Constrained extrema and Lagrange multipliers</a>, <a href="the-inverse-and-implicit-function-theorems.html">The inverse and implicit function theorems</a>, <a href="the-hahn-banach-theorem.html">The Hahn-Banach theorem</a>, <a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a>, <a href="affine-spaces-affine-subspaces-and-affine-maps.html">Affine spaces, affine subspaces and affine maps</a>, <a href="isometries-of-euclidean-space-and-the-orthogonal-group.html">Isometries of Euclidean space and the orthogonal group</a>, <a href="smooth-manifolds-smooth-maps-and-the-tangent-space.html">Smooth manifolds, smooth maps and the tangent space</a>, <a href="projective-transformations-and-the-cross-ratio.html">Projective transformations and the cross-ratio</a>, <a href="least-squares-and-the-gauss-markov-theorem.html">Least squares and the Gauss-Markov theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="algebra.html">Algebra</a>, <a href="linear-algebra.html">Linear algebra</a></p>
+<details class="path"><summary>Learning path: 10 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org8330206">
+<p>
+A map <img class="m" src="m/9bf3de8129d5fc439bec609ad53ed1e53de44ca3.svg" alt="\(f \colon V \to W\)" style="height:0.974em;vertical-align:-0.214em"> between vector spaces over <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> is <i>linear</i>
+if <img class="m" src="m/0fde465dfc248867449efb1cf1c71bdfb25b0e64.svg" alt="\(f(u + v) = f(u) + f(v)\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/2d73abf8aaa742636079465868c075457bdb6ae8.svg" alt="\(f(\lambda v) = \lambda f(v)\)" style="height:1.096em;vertical-align:-0.274em">. Its
+<i>kernel</i> is <img class="m" src="m/c77b6bb634bb98421e20703d6ebc6a0a52f13fd8.svg" alt="\(\ker f = \setst{v \in V}{f(v) = 0}\)" style="height:1.096em;vertical-align:-0.274em"> and its <i>image</i> is
+<img class="m" src="m/6eaae38e6b0ab9f390940eedff22b355147b7f0f.svg" alt="\(\im f = f(V)\)" style="height:1.096em;vertical-align:-0.274em">; the <i>rank</i> of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is <img class="m" src="m/255c58d948079c4ce91c86543ee5c86edc57b44c.svg" alt="\(\dim \im f\)" style="height:0.974em;vertical-align:-0.214em"> and its
+<i>nullity</i> is <img class="m" src="m/ba037b63a7acc242f1d538f6b36b29456c9dcae1.svg" alt="\(\dim \ker f\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgfd360cc">
+<p>
+<img class="m" src="m/910cad29da40b81a62d85ddc46f55269e2e2a12d.svg" alt="\(\ker f\)" style="height:0.974em;vertical-align:-0.214em"> is a subspace of <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/e707f0327e5c1ff843d65171acb3c88d255b5869.svg" alt="\(\im f\)" style="height:0.974em;vertical-align:-0.214em"> is a subspace of <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em">;
+and <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is injective if and only if <img class="m" src="m/b988f8295cd6f9351a5e7ac9f7e970d2e4f44396.svg" alt="\(\ker f = \set{0}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgea0f523">
+<p>
+Both contain <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> and are closed under sums and scalar multiples, by
+linearity. If <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is injective and <img class="m" src="m/75e8b068f8f76f846fee6b58adb6f62e0bab79c1.svg" alt="\(f(v) = 0 = f(0)\)" style="height:1.096em;vertical-align:-0.274em"> then <img class="m" src="m/290024883a7aa0451ecc34d2183a8d1914d1429e.svg" alt="\(v = 0\)" style="height:0.706em;vertical-align:-0.000em">;
+conversely if the kernel is trivial and <img class="m" src="m/6a4177c7e8e5ff76fd9b983249178d8c85cb0a8b.svg" alt="\(f(u) = f(v)\)" style="height:1.096em;vertical-align:-0.274em"> then
+<img class="m" src="m/29e5427e922fb403fd53fa370b5a58a774b7579a.svg" alt="\(f(u - v) = 0\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/eed2c791474b945ddd9b00d2f11d7c3aace09a9a.svg" alt="\(u = v\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgbec403a">
+<p>
+Let <img class="m" src="m/3d144c285324701d566ca43314370e2b89b5fede.svg" alt="\(U \subseteq V\)" style="height:0.898em;vertical-align:-0.153em"> be a subspace. The quotient group <img class="m" src="m/93b36013c791be7013d053ec5ce0bebb61cf8457.svg" alt="\(V/U\)" style="height:1.096em;vertical-align:-0.274em"> is a
+vector space under <img class="m" src="m/0f43d4828fb37d37f135a018f1aa9e10e19c9a58.svg" alt="\(\lambda(v + U) = \lambda v + U\)" style="height:1.096em;vertical-align:-0.274em">, the projection
+<img class="m" src="m/0487ed15a0a22b01ea730de3091aa6913a97e901.svg" alt="\(\pi \colon V \to V/U\)" style="height:1.096em;vertical-align:-0.274em"> is linear with kernel <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">, and every linear
+<img class="m" src="m/9bf3de8129d5fc439bec609ad53ed1e53de44ca3.svg" alt="\(f \colon V \to W\)" style="height:0.974em;vertical-align:-0.214em"> vanishing on <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> factors uniquely as
+<img class="m" src="m/a6ea9dcc15582c8eb623cf6b2e7ae65e21f55d13.svg" alt="\(f = \bar{f} \circ \pi\)" style="height:1.125em;vertical-align:-0.214em"> with <img class="m" src="m/ae93336ca48a9cff141c82f3f3a98d51896a0035.svg" alt="\(\bar{f}\)" style="height:1.125em;vertical-align:-0.214em"> linear.
+</p>
+
+</div>
+
+<div class="proof" id="orgeefefec">
+<p>
+Scalar multiplication is well defined: if <img class="m" src="m/c86965cca8b500a07016e113c4a49bb1087a8348.svg" alt="\(v + U = v' + U\)" style="height:0.915em;vertical-align:-0.092em"> then
+<img class="m" src="m/c73f32c1af34f163380aa3fb3ff2fe93eb304dbd.svg" alt="\(v - v' \in U\)" style="height:0.915em;vertical-align:-0.092em">, so <img class="m" src="m/f5aa466816218f09af62ad0b105b00ab7ca5d8e1.svg" alt="\(\lambda v - \lambda v' \in U\)" style="height:0.915em;vertical-align:-0.092em">. The vector space
+axioms are inherited coset by coset, and <img class="m" src="m/b1e3c27a225dba8050e88d2182ad88a60344ed21.svg" alt="\(\pi\)" style="height:0.472em;vertical-align:-0.000em"> is linear with kernel
+<img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> by construction. If <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> vanishes on <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> it is constant on
+cosets, so the universal property of the quotient set gives a unique
+<img class="m" src="m/ae93336ca48a9cff141c82f3f3a98d51896a0035.svg" alt="\(\bar{f}\)" style="height:1.125em;vertical-align:-0.214em"> with <img class="m" src="m/4ade4a36e4730440ad7fe8b816e1d982ba6209ce.svg" alt="\(\bar{f}\circ\pi = f\)" style="height:1.125em;vertical-align:-0.214em">; it is linear because
+<img class="m" src="m/dd9692f3977ebed4a473d0cd2ad6f1fc28a31ef4.svg" alt="\(\bar{f}(\lambda(v+U) + (v'+U)) = f(\lambda v + v') = \lambda \bar{f}(v+U) + \bar{f}(v'+U)\)" style="height:1.185em;vertical-align:-0.273em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org4959b92">
+<p>
+Let <img class="m" src="m/9bf3de8129d5fc439bec609ad53ed1e53de44ca3.svg" alt="\(f \colon V \to W\)" style="height:0.974em;vertical-align:-0.214em"> be linear with <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> finite-dimensional. Then
+<img class="m" src="m/8c9e762724ce490a2016e539133a861cc2f9549b.svg" alt="\(V/\ker f \iso \im f\)" style="height:1.096em;vertical-align:-0.274em"> and
+<div class="mb"><img class="m" src="m/b826101598840f1a6e27ac8fc9a87ed45467e028.svg" alt="\[ \dim \ker f + \dim \im f = \dim V. \]" style="width:14.189em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="orgb54b7cc">
+<p>
+The induced <img class="m" src="m/9f320b18c92f58ee929834deb79bff3c13a7c690.svg" alt="\(\bar{f} \colon V/\ker f \to \im f\)" style="height:1.185em;vertical-align:-0.273em"> is linear, surjective
+by construction, and injective because <img class="m" src="m/62aa57156c93c7b28e7398ade9c2dcfbdccbc00c.svg" alt="\(\bar{f}(v + \ker f) = 0\)" style="height:1.185em;vertical-align:-0.273em"> means
+<img class="m" src="m/73813c278a3b5e5302a8ee19b4a824848356ffeb.svg" alt="\(v \in \ker f\)" style="height:0.974em;vertical-align:-0.214em">; so it is an isomorphism.
+</p>
+
+<p>
+For the count, take a basis <img class="m" src="m/e0624bdbfaefd15ab57621d7bbc72adc1ca88f65.svg" alt="\(u_{1}, \dots, u_{k}\)" style="height:0.685em;vertical-align:-0.212em"> of <img class="m" src="m/910cad29da40b81a62d85ddc46f55269e2e2a12d.svg" alt="\(\ker f\)" style="height:0.974em;vertical-align:-0.214em"> and
+extend it to a basis <img class="m" src="m/67782dc0ccf9852b1c88c33037944ba24df4b36a.svg" alt="\(u_{1},\dots,u_{k},v_{1},\dots,v_{r}\)" style="height:0.685em;vertical-align:-0.212em"> of <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">.
+The vectors <img class="m" src="m/0a412bdfb8c8f938bc81f66d5455fab888a35b2e.svg" alt="\(f(v_{1}), \dots, f(v_{r})\)" style="height:1.096em;vertical-align:-0.274em"> span <img class="m" src="m/e707f0327e5c1ff843d65171acb3c88d255b5869.svg" alt="\(\im f\)" style="height:0.974em;vertical-align:-0.214em">, since the
+<img class="m" src="m/ef8334082e24aeec0d3061a8a75f9482c9fa1b19.svg" alt="\(u_{i}\)" style="height:0.636em;vertical-align:-0.165em"> contribute nothing; and they are independent, because
+<img class="m" src="m/9e616f3aaa5dbebed95a381b60a5dfbd81ca5bce.svg" alt="\(\sum \lambda_{j} f(v_{j}) = 0\)" style="height:1.135em;vertical-align:-0.318em"> puts <img class="m" src="m/f0335a80369a274eaa21508532a37d16c33c5b28.svg" alt="\(\sum \lambda_{j} v_{j}\)" style="height:1.135em;vertical-align:-0.318em"> in
+<img class="m" src="m/910cad29da40b81a62d85ddc46f55269e2e2a12d.svg" alt="\(\ker f\)" style="height:0.974em;vertical-align:-0.214em">, hence expresses it in the <img class="m" src="m/ef8334082e24aeec0d3061a8a75f9482c9fa1b19.svg" alt="\(u_{i}\)" style="height:0.636em;vertical-align:-0.165em">, and independence of the
+full basis forces every <img class="m" src="m/d4cc598d782d2f2bcdccf3fdd7d30975afe81d35.svg" alt="\(\lambda_{j} = 0\)" style="height:1.075em;vertical-align:-0.312em">. So
+<img class="m" src="m/a1e3ea55543b43fa15ee0fc0b017b4854312a47b.svg" alt="\(\dim \im f = r = \dim V - k\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="corollary" id="orgf884f8d">
+<p>
+Let <img class="m" src="m/a75a8ab6f03d49aef6b2b00c4830c8d84a2c79a9.svg" alt="\(f \colon V \to V\)" style="height:0.974em;vertical-align:-0.214em"> be linear with <img class="m" src="m/7139688cdd77c78b2d71fd11f23f48234f04009e.svg" alt="\(\dim V = n\)" style="height:0.761em;vertical-align:-0.000em"> finite. Then
+<img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is injective if and only if it is surjective, if and only if it is
+an isomorphism.
+</p>
+
+</div>
+
+<div class="proof" id="org23e7d09">
+<p>
+Injectivity is <img class="m" src="m/ed94ab7bb425b4ac624e19cba3c0793376ed7ac6.svg" alt="\(\dim\ker f = 0\)" style="height:0.974em;vertical-align:-0.214em">, which by rank-nullity is
+<img class="m" src="m/1bf2d7a38d392c937cef4b1fe222593f1eee5e5e.svg" alt="\(\dim \im f = n\)" style="height:0.974em;vertical-align:-0.214em">, which for a subspace of <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> means
+<img class="m" src="m/c64e6044c53bb5065e17e58cdd0fe44649b93137.svg" alt="\(\im f = V\)" style="height:0.974em;vertical-align:-0.214em">, that is surjectivity. A bijective linear map has a
+linear inverse: the set-theoretic inverse <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> satisfies
+<img class="m" src="m/f9df68e12cee8d6de560a3d7727acfb49ef6b340.svg" alt="\(f(g(u)+g(v)) = u+v = f(g(u+v))\)" style="height:1.096em;vertical-align:-0.274em">, and <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is injective, so <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> is
+additive; homogeneity is the same argument.
+</p>
+
+</div>
+
+<div class="remark" id="org7182588">
+<p>
+The corollary is false in infinite dimensions &#x2013; the shift
+<img class="m" src="m/0e4cc1f456bc5e1eb4e1bb2811fa2a28d8d5f9fd.svg" alt="\((a_{1}, a_{2}, \dots) \mapsto (0, a_{1}, a_{2}, \dots)\)" style="height:1.096em;vertical-align:-0.274em"> is injective
+and not surjective &#x2013; and the failure is not a curiosity: it is why
+operator theory exists as a subject separate from linear algebra, and
+why the spectrum of an operator is more than its set of eigenvalues.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="span-linear-independence-bases-and-dimension.html"><span>← previous</span>Span, linear independence, bases and dimension</a><a rel="next" href="bilinear-forms-quadratic-forms-and-sylvesters-law-of-inertia.html"><span>next →</span>Bilinear forms, quadratic forms and Sylvester's law of inertia</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--linear-algebra.pdf" title="PDF manual">Linear Algebra</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

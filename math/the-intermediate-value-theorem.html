@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The intermediate value theorem · Mathematics</title>
+<meta name="description" content="The first theorem of the course whose content is genuinely topological: it says that a continuous function on an interval skips no value, and it is false over \Q for the same reason everything else in analysis is.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-intermediate-value-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The intermediate value theorem · Mathematics">
+<meta property="og:description" content="The first theorem of the course whose content is genuinely topological: it says that a continuous function on an interval skips no value, and it is false over \Q for the same reason everything else in analysis is.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-intermediate-value-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Analysis · Real Analysis</p>
+<h1>The intermediate value theorem</h1>
+<p class="summary">The first theorem of the course whose content is genuinely topological: it says that a continuous function on an interval skips no value, and it is false over <img class="m" src="m/83349875d2551503beeb2426480fe7a04427bf34.svg" alt="\(\Q\)" style="height:0.938em;vertical-align:-0.178em"> for the same reason everything else in analysis is.</p>
+<p class="rel"><span>needs</span> <a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a>, <a href="limits-and-continuity.html">Limits and continuity</a>, <a href="supremum-and-infimum.html">Supremum and infimum</a></p>
+<p class="rel"><span>unlocks</span> <a href="monotone-functions-are-integrable-and-the-mean-value-theorem-for-integrals.html">Monotone functions are integrable, and the mean value theorem for integrals</a>, <a href="the-continuous-image-of-an-interval-and-the-continuous-inverse.html">The continuous image of an interval and the continuous inverse</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a>, <a href="connectedness-components-and-path-connectedness.html">Connectedness, components and path-connectedness</a></p>
+<details class="path"><summary>Learning path: 4 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li></ol></details>
+</header>
+<main class="note">
+<div class="theorem" id="org2fd575a">
+<p>
+Let <img class="m" src="m/ea7523ee0e750ece60b78b197c477d8b9d00d721.svg" alt="\(f \colon [a,b] \to \R\)" style="height:1.096em;vertical-align:-0.274em"> be continuous and let <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> lie between
+<img class="m" src="m/c1b5d0555357931046ec6e26eb22e2d93d82a1e2.svg" alt="\(f(a)\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/f5b066bb12354ecc70e0d1caf36015debb85fba3.svg" alt="\(f(b)\)" style="height:1.096em;vertical-align:-0.274em">. Then <img class="m" src="m/ce6c2c940049e23b4e786257c4d9717c635c9319.svg" alt="\(f(c) = y\)" style="height:1.096em;vertical-align:-0.274em"> for some <img class="m" src="m/0bf7096054fe5b8aa2944f6c6543b720ad75dd27.svg" alt="\(c \in [a,b]\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org59d65f6">
+<p>
+Assume <img class="m" src="m/26370f9cf04880c9600cee51ba597ca6575e0a6a.svg" alt="\(f(a) &lt; y &lt; f(b)\)" style="height:1.096em;vertical-align:-0.274em"> (otherwise replace <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> by <img class="m" src="m/260f963332ff7cc2fa4c5efa180922c4739a327e.svg" alt="\(-f\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em">
+by <img class="m" src="m/b0ee637ab522538ac415c2cb02b88a561fdc4c93.svg" alt="\(-y\)" style="height:0.852em;vertical-align:-0.213em">). The set <img class="m" src="m/fca0258666088778c23804816248bf68f4385d66.svg" alt="\(S = \setst{x \in [a,b]}{f(x) &lt; y}\)" style="height:1.096em;vertical-align:-0.274em"> is non-empty,
+since <img class="m" src="m/dd921609a30157ec54468dbc7d942aa91f99971e.svg" alt="\(a \in S\)" style="height:0.792em;vertical-align:-0.040em">, and bounded above by <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em">, so <img class="m" src="m/6640f01896edf3c767cb24231457dc67b454f55d.svg" alt="\(c = \sup S\)" style="height:0.962em;vertical-align:-0.212em"> exists
+by completeness and lies in <img class="m" src="m/0a90b3bc64f7c9d00490784b86efd520680b7522.svg" alt="\([a,b]\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+If <img class="m" src="m/49d12de906574e88fd3c8ab6ccb6ed27547962a0.svg" alt="\(f(c) &lt; y\)" style="height:1.096em;vertical-align:-0.274em">, continuity at <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> with <img class="m" src="m/d0d1ad887cc1a9a91bd0353f0e9b61e6ddc27f79.svg" alt="\(\eps = y - f(c) &gt; 0\)" style="height:1.096em;vertical-align:-0.274em"> gives
+<img class="m" src="m/2834db4da57323bf6f47d0a640028cc90f572412.svg" alt="\(\delta &gt; 0\)" style="height:0.804em;vertical-align:-0.040em"> such that <img class="m" src="m/4845e7a466344de67e71d448611c6e815f95a727.svg" alt="\(f(x) &lt; y\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/e1abde1a085c88b1d3a4096c2f415c1a139fa827.svg" alt="\(x \in [a,b]\)" style="height:1.096em;vertical-align:-0.274em"> with
+<img class="m" src="m/9c1e6802e27976650486ad456a07d9cab39245b4.svg" alt="\(\abs{x - c} &lt; \delta\)" style="height:1.096em;vertical-align:-0.274em">; since <img class="m" src="m/d02751dbebd85b6920dc6a37db9ebf8b5e5742a7.svg" alt="\(f(b) &gt; y\)" style="height:1.096em;vertical-align:-0.274em"> we have <img class="m" src="m/8f891270c2e0dd6d41168b5d70b5351095565d2d.svg" alt="\(c &lt; b\)" style="height:0.804em;vertical-align:-0.040em">, so some
+point to the right of <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> lies in <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">, contradicting that <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> is an
+upper bound. If <img class="m" src="m/1ab8a6285c218dae983103dfed5690c86b1c2fe5.svg" alt="\(f(c) &gt; y\)" style="height:1.096em;vertical-align:-0.274em">, continuity with <img class="m" src="m/10205bb19b7888a56dfff1261c4cbede9aa9893d.svg" alt="\(\eps = f(c) - y\)" style="height:1.096em;vertical-align:-0.274em"> gives
+<img class="m" src="m/2834db4da57323bf6f47d0a640028cc90f572412.svg" alt="\(\delta &gt; 0\)" style="height:0.804em;vertical-align:-0.040em"> with <img class="m" src="m/e999685804f56d12bb0765e175ae07d71607bfb4.svg" alt="\(f(x) &gt; y\)" style="height:1.096em;vertical-align:-0.274em"> on <img class="m" src="m/ceeee48c4478f91a5403dfd205c8f4f96bc692df.svg" alt="\((c - \delta, c] \cap [a,b]\)" style="height:1.096em;vertical-align:-0.274em">, so
+<img class="m" src="m/c0ebc0a1a13bcfdc3c0214f6f19c1c5114d2b053.svg" alt="\(c - \delta\)" style="height:0.852em;vertical-align:-0.094em"> is an upper bound of <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> smaller than <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em">,
+contradicting leastness. Hence <img class="m" src="m/ce6c2c940049e23b4e786257c4d9717c635c9319.svg" alt="\(f(c) = y\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="corollary" id="org171bf42">
+<p>
+Every <img class="m" src="m/4436c88221b9c01bc1070acc5d225a9d749b0ceb.svg" alt="\(y &gt; 0\)" style="height:0.919em;vertical-align:-0.211em"> has a positive square root: there is <img class="m" src="m/79472c14cb21d0b83c052a92a6a272c8dab17d6a.svg" alt="\(c &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> with
+<img class="m" src="m/2f2f8c59d6d2b3710084e9b303b1fda5d42e1b38.svg" alt="\(c^{2} = y\)" style="height:1.105em;vertical-align:-0.210em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgaaff5ee">
+<p>
+Apply the theorem to the continuous function <img class="m" src="m/54c2f9c9ccb3a0387aec3c821a8f2669aee93791.svg" alt="\(f(x) = x^{2}\)" style="height:1.166em;vertical-align:-0.268em"> on
+<img class="m" src="m/f1cde949e5ff1b686fb3aa689060b5c6e9d970d6.svg" alt="\([0, 1 + y]\)" style="height:1.096em;vertical-align:-0.274em">. Since <img class="m" src="m/610921cf883918394e9528094aad53a464961cbd.svg" alt="\(f(0) = 0 \le y\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/62c1a562924df44f2c2a0d189ede4cceaadb183f.svg" alt="\(f(1 + y) = (1+y)^{2} &gt; y\)" style="height:1.166em;vertical-align:-0.268em">, there is <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> in the interval with
+<img class="m" src="m/2f2f8c59d6d2b3710084e9b303b1fda5d42e1b38.svg" alt="\(c^{2} = y\)" style="height:1.105em;vertical-align:-0.210em">, and <img class="m" src="m/79472c14cb21d0b83c052a92a6a272c8dab17d6a.svg" alt="\(c &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> because <img class="m" src="m/4436c88221b9c01bc1070acc5d225a9d749b0ceb.svg" alt="\(y &gt; 0\)" style="height:0.919em;vertical-align:-0.211em">.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="one-sided-limits-and-the-discontinuities-of-a-monotone-function.html"><span>← previous</span>One-sided limits and the discontinuities of a monotone function</a><a rel="next" href="the-continuous-image-of-an-interval-and-the-continuous-inverse.html"><span>next →</span>The continuous image of an interval and the continuous inverse</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

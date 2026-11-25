@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A non-pipelined RISC-V processor · Computer Science</title>
+<meta name="description" content="Each instruction goes through fetch (read the instruction at PC), decode (read rs1, rs2, build the immediate), execute (ALU, branch comparison, target address), memory (load or store) and write back (to rd, next PC); on an FPGA a small FSM sequences these steps around synchronous block RAMs.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/risc-v-datapath.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="A non-pipelined RISC-V processor · Computer Science">
+<meta property="og:description" content="Each instruction goes through fetch (read the instruction at PC), decode (read rs1, rs2, build the immediate), execute (ALU, branch comparison, target address), memory (load or store) and write back (to rd, next PC); on an FPGA a small FSM sequences these steps around synchronous block RAMs.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/risc-v-datapath.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--processors">Processors</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Hardware · Processors</p>
+<h1>A non-pipelined RISC-V processor</h1>
+<p class="summary">Each instruction goes through fetch (read the instruction at PC), decode (read <img class="m" src="m/c877d8579d8e5e2f956acd335c599422548aa134.svg" alt="\(rs1\)" style="height:0.706em;vertical-align:-0.000em">, <img class="m" src="m/93348614e51f5ac30a4e2cd87a02ae6d92f26fac.svg" alt="\(rs2\)" style="height:0.706em;vertical-align:-0.000em">, build the immediate), execute (ALU, branch comparison, target address), memory (load or store) and write back (to <img class="m" src="m/de7392457fdb916eb8e69b784549981224e9b885.svg" alt="\(rd\)" style="height:0.761em;vertical-align:-0.000em">, next PC); on an FPGA a small FSM sequences these steps around synchronous block RAMs.</p>
+<p class="rel"><span>needs</span> <a href="risc-v-isa.html">The RISC-V base instruction set (RV32I)</a>, <a href="finite-state-machine.html">Finite-state machines</a>, <a href="alu-design.html">Arithmetic logic unit</a></p>
+<p class="rel"><span>unlocks</span> <a href="pipeline-hazards.html">Pipeline hazards</a></p>
+<p class="rel"><span>see also</span> <a href="fpga-architecture.html">FPGA architecture</a>, <a href="pipelining.html">Pipelining</a>, <a href="datapath-control.html">Datapath and control unit</a>, <a href="pipeline-hazards.html">Pipeline hazards</a></p>
+<p class="rel"><span>mentioned in</span> <a href="datapath-control.html">Datapath and control unit</a></p>
+<details class="path"><summary>Learning path: 20 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li><li><a href="sr-latch.html">SR latch and D latch</a></li><li><a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></li><li><a href="fsm-analysis.html">Analysis of synchronous sequential circuits</a></li><li><a href="fsm-synthesis.html">Synthesis of finite-state machines</a></li><li><a href="digital-design-flow.html">Digital design flow and abstraction levels</a></li><li><a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a></li><li><a href="std-logic.html">std_logic: nine-valued logic and resolution</a></li><li><a href="vhdl-concurrent-assignments.html">Concurrent assignments: when–else and with–select</a></li><li><a href="vhdl-process.html">Processes and sequential statements</a></li><li><a href="sequential-logic.html">Flip-flops and registers in VHDL</a></li><li><a href="finite-state-machine.html">Finite-state machines</a></li><li><a href="ripple-carry-adder.html">Full adder and ripple-carry adder</a></li><li><a href="datapath-subsystems.html">Datapath subsystems: detectors, shifters, counters</a></li><li><a href="datapath-control.html">Datapath and control unit</a></li><li><a href="alu-design.html">Arithmetic logic unit</a></li><li><a href="risc-v-isa.html">The RISC-V base instruction set (RV32I)</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orga2e6561" class="outline-2">
+<h2 id="orga2e6561">Construction</h2>
+<div class="outline-text-2" id="text-orga2e6561">
+<ul class="org-ul">
+<li><b>Fetch</b>: <code>instr &lt;</code> imem(pc)=; with a synchronous BRAM the instruction is available one cycle after the address.</li>
+<li><b>Decode</b>: <a href="datapath-control.html">register file</a> read (distributed RAM, asynchronous read or latched output); immediate generator by format; opcode decoded into control signals.</li>
+<li><b>Execute</b>: ALU on (rs1, rs2 or imm); comparator for branches (<code>beq</code>, <code>bne</code>, <code>blt</code>, <code>bge</code>, unsigned variants); branch target <img class="m" src="m/e684ad7f4360a4f04340fe71e631c25cd4a21f69.svg" alt="\(pc+imm_B\)" style="height:0.936em;vertical-align:-0.215em">, jump targets <img class="m" src="m/d92bb0d907d01ea2ee1b9c0bb0ed4942da857513.svg" alt="\(pc+imm_J\)" style="height:0.936em;vertical-align:-0.215em"> (<code>jal</code>) and <img class="m" src="m/93c5d1c9982adcf4d297c8c84bb5549ed34d4571.svg" alt="\((rs1+imm_I)\,\&amp;\,\sim1\)" style="height:1.096em;vertical-align:-0.274em"> (<code>jalr</code>).</li>
+<li><b>Memory</b>: loads read <code>dmem(rs1+imm)</code> (with byte/half selection and sign extension), stores write <code>rs2</code>.</li>
+<li><b>Write back</b>: <img class="m" src="m/5322e971aecc2c839b60de9aa9d01e0b97fe3ef6.svg" alt="\(rd\gets\)" style="height:0.761em;vertical-align:-0.000em"> ALU result, loaded value, <img class="m" src="m/b75c8f97c5962e37d7777c73a704916c868e18dd.svg" alt="\(pc+4\)" style="height:0.919em;vertical-align:-0.211em"> (jumps) or immediate (<code>lui</code>), unless <img class="m" src="m/6f62c9b8e8f2e7be6b2e631048616c59a5692dd5.svg" alt="\(rd=x0\)" style="height:0.761em;vertical-align:-0.000em">.</li>
+<li><b>Next PC</b>: <img class="m" src="m/b75c8f97c5962e37d7777c73a704916c868e18dd.svg" alt="\(pc+4\)" style="height:0.919em;vertical-align:-0.211em">, branch target if taken, jump target.</li>
+</ul>
+<p>
+A control FSM (FETCH → DECODE → EXECUTE → MEM → WB) handles the BRAM latencies: loads and jumps take extra states.
+</p>
+</div>
+</div>
+<div id="outline-container-org3085e46" class="outline-2">
+<h2 id="org3085e46">Picture</h2>
+<div class="outline-text-2" id="text-org3085e46">
+<figure class="fig"><img class="m" src="m/062a64c996eadc5674634375edc8e80e798ed85e.svg" alt="figure" style="width:29.376em"><figcaption><span class="fl">Figure 1.</span> A single-cycle RISC-V datapath: fetch, decode, execute, memory and write-back in one clock, with the next-PC logic closing the loop.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-orga0be5a9" class="outline-2">
+<h2 id="orga0be5a9">Verification</h2>
+<div class="outline-text-2" id="text-orga0be5a9">
+<p>
+Assemble small programs, load their hex into the instruction memory, and compare register and memory contents after simulation with the expected values; test every format and the corner cases (<code>x0</code> as destination, negative immediates, taken and not-taken branches).
+</p>
+</div>
+</div>
+<div id="outline-container-org41ec11d" class="outline-2">
+<h2 id="org41ec11d">Intuition</h2>
+<div class="outline-text-2" id="text-org41ec11d">
+<p>
+Five questions per instruction: what is it, what are its operands, what does it compute, does it touch memory, where does the result go — and where is the next instruction.
+</p>
+</div>
+</div>
+<div id="outline-container-org5861c55" class="outline-2">
+<h2 id="org5861c55">Pitfall</h2>
+<div class="outline-text-2" id="text-org5861c55">
+<p>
+Synchronous <a href="fpga-architecture.html">block RAM</a> returns data one cycle after the address: a design that expects the instruction or the loaded word in the same cycle works in a zero-delay mental model and fails in simulation and hardware.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="risc-v-isa.html"><span>← previous</span>The RISC-V base instruction set (RV32I)</a><a rel="next" href="pipeline-hazards.html"><span>next →</span>Pipeline hazards</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--processors.pdf" title="PDF manual">Processors</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

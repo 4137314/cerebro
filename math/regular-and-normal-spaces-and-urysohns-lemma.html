@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regular and normal spaces, and Urysohn's lemma · Mathematics</title>
+<meta name="description" content="A topology may have far too few continuous real functions: on an indiscrete space the only ones are the constants. Urysohn's lemma is the theorem that separation by open sets is enough to produce them – in a normal space, any two disjoint closed sets are separated by a function. That is what makes …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/regular-and-normal-spaces-and-urysohns-lemma.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Regular and normal spaces, and Urysohn's lemma · Mathematics">
+<meta property="og:description" content="A topology may have far too few continuous real functions: on an indiscrete space the only ones are the constants. Urysohn's lemma is the theorem that separation by open sets is enough to produce them – in a normal space, any two disjoint closed sets are separated by a function. That is what makes …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/regular-and-normal-spaces-and-urysohns-lemma.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-topology">Topology</a> / <a rel="up" href="index.html#a-topology--general-topology">General Topology</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Topology · General Topology</p>
+<h1>Regular and normal spaces, and Urysohn's lemma</h1>
+<p class="summary">A topology may have far too few continuous real functions: on an indiscrete space the only ones are the constants. Urysohn's lemma is the theorem that separation by open sets is enough to produce them &#x2013; in a normal space, any two disjoint closed sets are separated by a function. That is what makes a topological space accessible to analysis at all.</p>
+<p class="rel"><span>needs</span> <a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a>, <a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a>, <a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a>, <a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a>, <a href="the-archimedean-property-and-the-density-of-the-rationals.html">The Archimedean property and the density of the rationals</a>, <a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></p>
+<p class="rel"><span>unlocks</span> <a href="the-tietze-extension-theorem.html">The Tietze extension theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="topology.html">Topology</a>, <a href="general-topology.html">General topology</a></p>
+<details class="path"><summary>Learning path: 17 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="the-archimedean-property-and-the-density-of-the-rationals.html">The Archimedean property and the density of the rationals</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org6900b88">
+<p>
+A topological space in which points are closed is <i>regular</i> if a point
+and a closed set not containing it have disjoint open neighbourhoods,
+and <i>normal</i> if any two disjoint closed sets do.
+</p>
+
+</div>
+
+<div class="proposition" id="org95cfb01">
+<p>
+A space with closed points is normal if and only if for every closed
+<img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> and open <img class="m" src="m/484fdb5241103e1a63d39be59e07107b42b4564d.svg" alt="\(U \supseteq C\)" style="height:0.898em;vertical-align:-0.153em"> there is an open <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> with
+<img class="m" src="m/91e3eebabdb6725c2b39cd1794f0a8fd39e4ac7f.svg" alt="\(C \subseteq V \subseteq \overline{V}\subseteq U\)" style="height:1.117em;vertical-align:-0.145em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgbd6d99c">
+<p>
+Assume normality and let <img class="m" src="m/ce7e4f40dce0dded08a140d9cfd7a180b3c6d112.svg" alt="\(C \subseteq U\)" style="height:0.898em;vertical-align:-0.153em">. Then <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> and
+<img class="m" src="m/002ed70ca93c9e966495a74763fae8e9be6c2efa.svg" alt="\(X \setminus U\)" style="height:1.096em;vertical-align:-0.274em"> are disjoint closed sets, so they have disjoint open
+neighbourhoods <img class="m" src="m/f1c834fbc4b3b37d25e59e74800f2009763fa547.svg" alt="\(V \supseteq C\)" style="height:0.898em;vertical-align:-0.153em"> and <img class="m" src="m/1904e291f0952e333415b2758a69f8b09d8a9025.svg" alt="\(W \supseteq X\setminus U\)" style="height:1.096em;vertical-align:-0.274em">. Since
+<img class="m" src="m/59e5317d9dcffc239a161b2eadada07dc45cd674.svg" alt="\(V \cap W = \emptyset\)" style="height:0.883em;vertical-align:-0.062em">, <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> is contained in the closed set
+<img class="m" src="m/1c7d506bb24b6906f0fd50b1223404ca19434b00.svg" alt="\(X\setminus W\)" style="height:1.096em;vertical-align:-0.274em">, hence so is <img class="m" src="m/2feed9530a2ff360ca7dd84e7b6274265bd8dec6.svg" alt="\(\overline{V}\)" style="height:0.968em;vertical-align:-0.000em">, and
+<img class="m" src="m/9a78e941b72bc2f4685f0f6e45e1b8271bb6139b.svg" alt="\(X \setminus W \subseteq U\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+Conversely, given disjoint closed <img class="m" src="m/7c0147e82008e033f35b97b8ae51bbba1467f3da.svg" alt="\(C, D\)" style="height:0.962em;vertical-align:-0.212em">, apply the hypothesis to
+<img class="m" src="m/a6ba1cf87c632232da2eb8781cc5bfd14931fb8d.svg" alt="\(C \subseteq X \setminus D\)" style="height:1.096em;vertical-align:-0.274em"> to get <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> with
+<img class="m" src="m/0d45768a19192138b4d80d6938470c64160bebc7.svg" alt="\(\overline{V}\subseteq X\setminus D\)" style="height:1.242em;vertical-align:-0.273em">; then <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> and
+<img class="m" src="m/28986b59b678ca196ae53fac1ff3bff25314afd2.svg" alt="\(X\setminus\overline{V}\)" style="height:1.242em;vertical-align:-0.273em"> are disjoint open sets containing <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> and
+<img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org9e86a2b">
+<p>
+Every metric space is normal, and every compact Hausdorff space is
+normal.
+</p>
+
+</div>
+
+<div class="proof" id="orgeceb89b">
+<p>
+In a metric space, let <img class="m" src="m/7c0147e82008e033f35b97b8ae51bbba1467f3da.svg" alt="\(C, D\)" style="height:0.962em;vertical-align:-0.212em"> be disjoint and closed and put
+<img class="m" src="m/d5ada6925b0269c80c476bfefd51c0da83e52e42.svg" alt="\(f(x) = \dist(x,C) - \dist(x,D)\)" style="height:1.096em;vertical-align:-0.274em">, where
+<img class="m" src="m/db04c22e069b19fb86410d4262051322ec4815d2.svg" alt="\(\dist(x,A) = \inf_{a\in A}d(x,a)\)" style="height:1.096em;vertical-align:-0.274em"> satisfies
+<img class="m" src="m/aa9207f1375bf76b15fd2dc20474dc6733e91978.svg" alt="\(\abs{\dist(x,A)-\dist(y,A)}\le d(x,y)\)" style="height:1.096em;vertical-align:-0.274em"> and vanishes exactly on
+<img class="m" src="m/583955cc3615dbf38f19d4187ceb351e86f8aad5.svg" alt="\(\overline{A}\)" style="height:0.968em;vertical-align:-0.000em">. Then <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is continuous, negative on <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> and
+positive on <img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em">, so <img class="m" src="m/cf720a87575b815daf34c9dc35f09c4dc0bedf18.svg" alt="\(\setst{x}{f(x)&lt;0}\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/795b74e5366ab218ceece6387d4e9bd9afb338c4.svg" alt="\(\setst{x}{f(x)&gt;0}\)" style="height:1.096em;vertical-align:-0.274em">
+separate them.
+</p>
+
+<p>
+In a compact Hausdorff space, the argument separating a point from a
+compact set gives, for each <img class="m" src="m/12e228f37a45df605a07429ef64a6d06808fbedb.svg" alt="\(x \in C\)" style="height:0.792em;vertical-align:-0.040em">, disjoint open <img class="m" src="m/1c18a91b70dc68ef85c44d162fe464c7bcde71bf.svg" alt="\(U_{x}\ni x\)" style="height:0.913em;vertical-align:-0.164em">
+and <img class="m" src="m/c90cb5e8e6a12c8a2ce4e31be1ae431f59747c9c.svg" alt="\(W_{x}\supseteq D\)" style="height:0.913em;vertical-align:-0.164em">, since <img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> is compact as a closed subset.
+The <img class="m" src="m/f4dae6025cefded56a77c81c79008f0bfce2d0be.svg" alt="\(U_{x}\)" style="height:0.913em;vertical-align:-0.164em"> cover the compact <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">; take a finite subcover and
+intersect the corresponding <img class="m" src="m/baaa321e09815e169d9a9ad7de28cbd5370c1679.svg" alt="\(W_{x}\)" style="height:0.913em;vertical-align:-0.164em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orga6839ad">
+<p>
+Let <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> be normal and <img class="m" src="m/7c0147e82008e033f35b97b8ae51bbba1467f3da.svg" alt="\(C, D\)" style="height:0.962em;vertical-align:-0.212em"> disjoint closed subsets. Then there is
+a continuous <img class="m" src="m/eee9950536f0bc8723432d9d92f3ca5c8aa3b674.svg" alt="\(f \colon X \to [0,1]\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/2ac1b5c312405f8513b8d8ceb2435a262bc287c1.svg" alt="\(f \equiv 0\)" style="height:0.974em;vertical-align:-0.214em"> on <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> and
+<img class="m" src="m/b280b65ebd4b79aaafbec1b73c06f58d2932d033.svg" alt="\(f\equiv1\)" style="height:0.974em;vertical-align:-0.214em"> on <img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org7425917">
+<p>
+Enumerate the rationals of <img class="m" src="m/b40f419d16d54b95652910807100bb67f190c2b6.svg" alt="\([0,1]\)" style="height:1.096em;vertical-align:-0.274em"> as <img class="m" src="m/04cc2c26db6b6ca8ad1dc1861befa2441cba4555.svg" alt="\(q_{0}=0\)" style="height:0.919em;vertical-align:-0.211em">, <img class="m" src="m/c1f60a5a02c4a6a35e19593428e82d61a1583199.svg" alt="\(q_{1}=1\)" style="height:0.919em;vertical-align:-0.211em">,
+<img class="m" src="m/e5bffc2ad681122782ed10dc9ee187478bfc353e.svg" alt="\(q_{2},\dots\)" style="height:0.685em;vertical-align:-0.212em">. We construct open sets <img class="m" src="m/8e960c6eabe6ee6c20798ed203ce87a6498426da.svg" alt="\(U_{q}\)" style="height:1.062em;vertical-align:-0.319em"> with
+<img class="m" src="m/2e956a590e1bcbaf23c3efcb085af03d294ec968.svg" alt="\(\overline{U_{p}}\subseteq U_{q}\)" style="height:1.282em;vertical-align:-0.308em"> whenever <img class="m" src="m/95787e5682d9ddb2a8a8cbd26c7804870a65dd72.svg" alt="\(p&lt;q\)" style="height:0.804em;vertical-align:-0.217em">. Put
+<img class="m" src="m/beb312bc35a6d64b571245cbdfb84fdb1c082ea0.svg" alt="\(U_{1} = X\setminus D\)" style="height:1.096em;vertical-align:-0.274em"> and, by the shrinking criterion applied to
+<img class="m" src="m/7c3ce16932b1ac83d61402fd74c08aece73a7abd.svg" alt="\(C \subseteq U_{1}\)" style="height:0.913em;vertical-align:-0.164em">, choose <img class="m" src="m/7dfeaea754b510bc6804fa2d51e7602ef7dc8845.svg" alt="\(U_{0}\)" style="height:0.913em;vertical-align:-0.164em"> open with
+<img class="m" src="m/03559861c7d117c9651ffafc8ba308ea584b7074.svg" alt="\(C \subseteq U_{0}\subseteq\overline{U_{0}}\subseteq U_{1}\)" style="height:1.132em;vertical-align:-0.170em">.
+Recursively, given <img class="m" src="m/8e960c6eabe6ee6c20798ed203ce87a6498426da.svg" alt="\(U_{q}\)" style="height:1.062em;vertical-align:-0.319em"> for <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> among <img class="m" src="m/6785b317abe9a82d09d798292f56177b07a51030.svg" alt="\(q_{0},\dots,q_{n}\)" style="height:0.685em;vertical-align:-0.212em">, let
+<img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> and <img class="m" src="m/6a662e32b188f7fd491c82ebcd46ddece8ed8644.svg" alt="\(r\)" style="height:0.472em;vertical-align:-0.000em"> be the largest and smallest of those below and above
+<img class="m" src="m/51cf0a39170e18878314cef20972bbb814b1206a.svg" alt="\(q_{n+1}\)" style="height:0.728em;vertical-align:-0.255em">; since <img class="m" src="m/55db0e059cc2b876a42e7e756226e5f171789d61.svg" alt="\(\overline{U_{p}}\subseteq U_{r}\)" style="height:1.282em;vertical-align:-0.308em">, the criterion
+gives <img class="m" src="m/d7385f9e42f36a621f00ed5c5647d11108b0765e.svg" alt="\(U_{q_{n+1}}\)" style="height:1.114em;vertical-align:-0.368em"> with
+<img class="m" src="m/ed4f171706b0de55a8dbed9c57bf057325a32fab.svg" alt="\(\overline{U_{p}}\subseteq U_{q_{n+1}}\subseteq\overline{U_{q_{n+1}}}\subseteq U_{r}\)" style="height:1.333em;vertical-align:-0.360em">.
+</p>
+
+<p>
+Define <img class="m" src="m/909590f59523dca559abafee5742041c720c7719.svg" alt="\(f(x) = \inf\setst{q}{x \in U_{q}}\)" style="height:1.135em;vertical-align:-0.318em">, with <img class="m" src="m/e3e3210962dd3fe919eda81be3d75c49e2233910.svg" alt="\(f(x)=1\)" style="height:1.096em;vertical-align:-0.274em"> when the
+set is empty. Then <img class="m" src="m/13235348a6c9dc7eeecf7b70455cac3dd6d936e9.svg" alt="\(f = 0\)" style="height:0.974em;vertical-align:-0.214em"> on <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/3a2b11a0e8994ca06e703fc6baa44c7a3b8712a6.svg" alt="\(f = 1\)" style="height:0.974em;vertical-align:-0.214em"> on <img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+<p>
+Continuity: it suffices to check that the preimages of <img class="m" src="m/9ba2fb7479ce64ee0ff2bd61b834ab7ff2dbb082.svg" alt="\([0,a)\)" style="height:1.096em;vertical-align:-0.274em"> and of
+<img class="m" src="m/5082ea96837473e759fe6c3efed04568d84961be.svg" alt="\((a,1]\)" style="height:1.096em;vertical-align:-0.274em"> are open, these forming a subbasis of <img class="m" src="m/b40f419d16d54b95652910807100bb67f190c2b6.svg" alt="\([0,1]\)" style="height:1.096em;vertical-align:-0.274em">. Now
+<img class="m" src="m/cb0a6a08f10b61a0cc6b0657df2ee5e029b91b04.svg" alt="\(f(x)&lt;a\)" style="height:1.096em;vertical-align:-0.274em"> exactly when <img class="m" src="m/ed0af65a775a03d52cbe118b219ec19754fe5204.svg" alt="\(x \in U_{q}\)" style="height:1.062em;vertical-align:-0.319em"> for some <img class="m" src="m/34663eb5085498bed6d62c532b4cc80e9815c8d0.svg" alt="\(q&lt;a\)" style="height:0.804em;vertical-align:-0.217em">, so
+<img class="m" src="m/2ed113565b6814da2c0459223372cde6deaa89dd.svg" alt="\(f^{-1}([0,a)) = \bigcup_{q&lt;a}U_{q}\)" style="height:1.370em;vertical-align:-0.479em"> is open. And <img class="m" src="m/3d05f226399b7909925648016a469b2fe52cd51f.svg" alt="\(f(x)&gt;a\)" style="height:1.096em;vertical-align:-0.274em"> exactly
+when there is <img class="m" src="m/c7dec920054eacbb5ab0d9e20e8d790c81e07eef.svg" alt="\(q&gt;a\)" style="height:0.804em;vertical-align:-0.217em"> with <img class="m" src="m/6e2350254ce30af37117b326008c40b23e505505.svg" alt="\(x \notin \overline{U_{q}}\)" style="height:1.282em;vertical-align:-0.308em">: if
+<img class="m" src="m/3d05f226399b7909925648016a469b2fe52cd51f.svg" alt="\(f(x)&gt;a\)" style="height:1.096em;vertical-align:-0.274em">, pick rationals <img class="m" src="m/6a5cd3609ff18dcbcc8d7b451d2aba0edf95c897.svg" alt="\(a&lt;q&lt;r&lt;f(x)\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/7f9415aeb130198db95f32c59975c037be5f9ec1.svg" alt="\(x\notin U_{r}\)" style="height:0.986em;vertical-align:-0.168em"> and
+hence <img class="m" src="m/1ba3e79b6310804d99dfeee6217e4c1347ef6c0b.svg" alt="\(x \notin\overline{U_{q}}\)" style="height:1.282em;vertical-align:-0.308em">; conversely
+<img class="m" src="m/bca8ce043ca1e22f7d9378a7171c7efd3f12c5b0.svg" alt="\(x\notin\overline{U_{q}}\)" style="height:1.282em;vertical-align:-0.308em"> gives <img class="m" src="m/26abbf084da9f1d3921b545ea7fb682fc00407e1.svg" alt="\(x \notin U_{p}\)" style="height:1.135em;vertical-align:-0.318em"> for all <img class="m" src="m/95787e5682d9ddb2a8a8cbd26c7804870a65dd72.svg" alt="\(p&lt;q\)" style="height:0.804em;vertical-align:-0.217em">,
+so <img class="m" src="m/88d6ecabc909fec59f6b5f4bd897a1e8c670d596.svg" alt="\(f(x)\ge q&gt;a\)" style="height:1.096em;vertical-align:-0.274em">. Hence
+<img class="m" src="m/5f6d0db9f55a205e2f954717b6792930e0c642a4.svg" alt="\(f^{-1}((a,1]) = \bigcup_{q&gt;a}(X\setminus\overline{U_{q}})\)" style="height:1.446em;vertical-align:-0.477em"> is open.
+</p>
+
+</div>
+
+<div class="remark" id="org711f3d2">
+<p>
+The lemma is the reason normality, rather than the Hausdorff property,
+is the hypothesis of the metrisation and extension theorems: it is
+exactly the amount of separation that produces functions. Note also what
+it does <i>not</i> give &#x2013; the function need not be non-zero only on <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">,
+and strengthening it to that ("perfect normality") is a genuinely
+stronger axiom.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="local-compactness-and-the-one-point-compactification.html"><span>← previous</span>Local compactness and the one-point compactification</a><a rel="next" href="the-tietze-extension-theorem.html"><span>next →</span>The Tietze extension theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/topology--general-topology.pdf" title="PDF manual">General Topology</a> · <a class="pdf" href="pdf/topology.pdf" title="PDF manual">Topology</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

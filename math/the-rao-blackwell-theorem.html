@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Rao-Blackwell theorem · Mathematics</title>
+<meta name="description" content="Given any unbiased estimator, however crude, conditioning it on a sufficient statistic produces another unbiased estimator that is never worse and is usually strictly better. The proof is the variance decomposition of conditional expectation – Pythagoras, in the space of square-integrable random va…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-rao-blackwell-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The Rao-Blackwell theorem · Mathematics">
+<meta property="og:description" content="Given any unbiased estimator, however crude, conditioning it on a sufficient statistic produces another unbiased estimator that is never worse and is usually strictly better. The proof is the variance decomposition of conditional expectation – Pythagoras, in the space of square-integrable random va…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-rao-blackwell-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-probability">Probability</a> / <a rel="up" href="index.html#a-probability--statistics">Statistics</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Probability · Statistics</p>
+<h1>The Rao-Blackwell theorem</h1>
+<p class="summary">Given any unbiased estimator, however crude, conditioning it on a sufficient statistic produces another unbiased estimator that is never worse and is usually strictly better. The proof is the variance decomposition of <a href="conditional-expectation-as-an-orthogonal-projection.html">conditional expectation</a> &#x2013; Pythagoras, in the space of square-integrable random variables &#x2013; and sufficiency is used exactly once, to guarantee that the result is a statistic at all.</p>
+<p class="rel"><span>needs</span> <a href="conditional-expectation-as-an-orthogonal-projection.html">Conditional expectation as an orthogonal projection</a>, <a href="statistical-models-estimators-and-consistency.html">Statistical models, estimators and consistency</a>, <a href="sufficiency-and-the-factorisation-theorem.html">Sufficiency and the factorisation theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="fisher-information-and-the-cramer-rao-bound.html">Fisher information and the Cramer-Rao bound</a>, <a href="statistics.html">Statistics</a></p>
+<details class="path"><summary>Learning path: 64 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="convex-functions-and-the-second-derivative.html">Convex functions and the second derivative</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li><li><a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="the-baire-category-theorem.html">The Baire category theorem</a></li><li><a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></li><li><a href="convex-set.html">Convex set</a></li><li><a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a></li><li><a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a></li><li><a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a></li><li><a href="probability-spaces-conditioning-and-independence.html">Probability spaces, conditioning and independence</a></li><li><a href="random-variables-laws-and-distribution-functions.html">Random variables, laws and distribution functions</a></li><li><a href="expectation-the-transfer-theorem-and-jensens-inequality.html">Expectation, the transfer theorem and Jensen's inequality</a></li><li><a href="variance-covariance-and-the-markov-and-chebyshev-inequalities.html">Variance, covariance and the Markov and Chebyshev inequalities</a></li><li><a href="modes-of-convergence-and-the-borel-cantelli-lemmas.html">Modes of convergence and the Borel-Cantelli lemmas</a></li><li><a href="conditional-expectation-as-an-orthogonal-projection.html">Conditional expectation as an orthogonal projection</a></li><li><a href="the-weak-and-strong-laws-of-large-numbers.html">The weak and strong laws of large numbers</a></li><li><a href="statistical-models-estimators-and-consistency.html">Statistical models, estimators and consistency</a></li><li><a href="sufficiency-and-the-factorisation-theorem.html">Sufficiency and the factorisation theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="proposition" id="orga63cdf8">
+<p>
+Let <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> be sufficient and <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> a square-integrable estimator. Then
+<img class="m" src="m/fc5459b31ddf46e3f6cae08198ab24b7df8874c0.svg" alt="\(\E_{\theta}[U \mid T]\)" style="height:1.096em;vertical-align:-0.274em"> does not depend on <img class="m" src="m/346f66be96cb38ba0680cfd40867d9bf1796163d.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em">, so it is a
+statistic; write it <img class="m" src="m/43bb2a6a07a64538508abc1a224ecb423aac9df3.svg" alt="\(U^{*}\)" style="height:0.755em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org1a070a9">
+<p>
+On a countable sample space the conditional expectation given <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> is
+computed from the conditional probabilities:
+<img class="m" src="m/d59e12cce67cf86299b6d90ddf37102886cb8faf.svg" alt="\(\E_{\theta}[U\mid T=t] = \sum_{x}U(x)\Prob_{\theta}(X=x\mid T=t)\)" style="height:1.151em;vertical-align:-0.334em">.
+By sufficiency each weight is free of <img class="m" src="m/346f66be96cb38ba0680cfd40867d9bf1796163d.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em">, hence so is the sum,
+and the resulting function of <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> is measurable with respect to the
+<img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-algebra generated by <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org46d2328">
+<p>
+Let <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> be a square-integrable unbiased estimator of <img class="m" src="m/f968bfe4183545cdfaaeda4f42d39bb6857267b1.svg" alt="\(g(\theta)\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> sufficient. Then <img class="m" src="m/6fbc2209fdf94d5fe7a6b2114c8b3d7d1726564b.svg" alt="\(U^{*} = \E[U\mid T]\)" style="height:1.096em;vertical-align:-0.274em"> is an unbiased estimator
+of <img class="m" src="m/f968bfe4183545cdfaaeda4f42d39bb6857267b1.svg" alt="\(g(\theta)\)" style="height:1.096em;vertical-align:-0.274em"> and
+<div class="mb"><img class="m" src="m/93afdf1cba77d755b48b59e79c4c58d2ed6bb589.svg" alt="\[ \Var_{\theta}(U^{*}) \le \Var_{\theta}(U) \qquad \text{for every } \theta, \]" style="width:17.426em"></div>
+with equality if and only if <img class="m" src="m/509885265090c976fb0bf9f9d6c1424e6d2e0486.svg" alt="\(U = U^{*}\)" style="height:0.755em;vertical-align:-0.000em"> almost surely under
+<img class="m" src="m/45c1143de6e05e65f9de9f66da540605f3f29893.svg" alt="\(\Prob_{\theta}\)" style="height:0.919em;vertical-align:-0.165em">.
+</p>
+
+</div>
+
+<div class="proof" id="org1b73bbd">
+<p>
+<img class="m" src="m/43bb2a6a07a64538508abc1a224ecb423aac9df3.svg" alt="\(U^{*}\)" style="height:0.755em;vertical-align:-0.000em"> is a statistic by the previous proposition, and it is
+unbiased because <img class="m" src="m/2fd03338217cd4324efb40d5aaf13ce543cdb7a9.svg" alt="\(\E_{\theta}[U^{*}] = \E_{\theta}[U] = g(\theta)\)" style="height:1.096em;vertical-align:-0.274em"> by
+the tower property with the trivial <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-algebra.
+</p>
+
+<p>
+For the variances, the decomposition of the previous note applied under
+<img class="m" src="m/45c1143de6e05e65f9de9f66da540605f3f29893.svg" alt="\(\Prob_{\theta}\)" style="height:0.919em;vertical-align:-0.165em"> with <img class="m" src="m/acd48386bed6623392c384251f279b0db5e0bf4d.svg" alt="\(\mathcal{G}\)" style="height:0.855em;vertical-align:-0.103em"> the <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-algebra generated
+by <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> gives
+<img class="m" src="m/588a60d97d1820220d8c609a28f8684ad39bcd8b.svg" alt="\(\Var_{\theta}(U) = \Var_{\theta}(U^{*}) + \E_{\theta}[(U-U^{*})^{2}]\)" style="height:1.166em;vertical-align:-0.268em">.
+The last term is non-negative, giving the inequality, and it vanishes
+exactly when <img class="m" src="m/509885265090c976fb0bf9f9d6c1424e6d2e0486.svg" alt="\(U = U^{*}\)" style="height:0.755em;vertical-align:-0.000em"> almost surely. Since both estimators are
+unbiased, the same comparison holds for the mean squared errors.
+</p>
+
+</div>
+
+<div class="corollary" id="org9c200e8">
+<p>
+If an unbiased estimator has smallest variance among all unbiased
+estimators, then it is almost surely a function of every sufficient
+statistic.
+</p>
+
+</div>
+
+<div class="proof" id="org832ee40">
+<p>
+Let <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> be such an estimator and <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> sufficient. Then <img class="m" src="m/43bb2a6a07a64538508abc1a224ecb423aac9df3.svg" alt="\(U^{*}\)" style="height:0.755em;vertical-align:-0.000em"> is
+unbiased with <img class="m" src="m/56815cd147365e6de804dcdabb4397e55f2b4135.svg" alt="\(\Var_{\theta}(U^{*})\le\Var_{\theta}(U)\)" style="height:1.096em;vertical-align:-0.274em">, and
+minimality forces equality; by the equality case <img class="m" src="m/509885265090c976fb0bf9f9d6c1424e6d2e0486.svg" alt="\(U = U^{*}\)" style="height:0.755em;vertical-align:-0.000em"> almost
+surely, and <img class="m" src="m/43bb2a6a07a64538508abc1a224ecb423aac9df3.svg" alt="\(U^{*}\)" style="height:0.755em;vertical-align:-0.000em"> is a function of <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> by construction.
+</p>
+
+</div>
+
+<div class="remark" id="org3693815">
+<p>
+The theorem says where to look for a good estimator and not how to
+recognise the best one: two different unbiased functions of the same
+sufficient statistic are not compared by it. What settles that is
+completeness of the statistic, under which the conditioned estimator is
+unique and hence optimal &#x2013; the Lehmann-Scheffe theorem, which is the
+natural next note and is not written yet.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="sufficiency-and-the-factorisation-theorem.html"><span>← previous</span>Sufficiency and the factorisation theorem</a><a rel="next" href="the-legendre-transform.html"><span>next →</span>The Legendre transform</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/probability--statistics.pdf" title="PDF manual">Statistics</a> · <a class="pdf" href="pdf/probability.pdf" title="PDF manual">Probability</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

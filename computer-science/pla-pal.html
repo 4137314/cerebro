@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PLA and PAL · Computer Science</title>
+<meta name="description" content="Two-level programmable logic: a programmable AND plane forms product terms of the inputs and their complements, an OR plane sums them into the outputs; a PLA programs both planes, a PAL only the AND plane with a fixed number of products per output.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/pla-pal.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="PLA and PAL · Computer Science">
+<meta property="og:description" content="Two-level programmable logic: a programmable AND plane forms product terms of the inputs and their complements, an OR plane sums them into the outputs; a PLA programs both planes, a PAL only the AND plane with a fixed number of products per output.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/pla-pal.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--programmable-logic">Programmable Logic</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Hardware · Programmable Logic</p>
+<h1>PLA and PAL</h1>
+<p class="summary">Two-level programmable logic: a programmable AND plane forms product terms of the inputs and their complements, an OR plane sums them into the outputs; a PLA programs both planes, a PAL only the AND plane with a fixed number of products per output.</p>
+<p class="rel"><span>needs</span> <a href="rom-as-logic.html">Logic functions as memories</a></p>
+<p class="rel"><span>unlocks</span> <a href="fpga-architecture.html">FPGA architecture</a></p>
+<p class="rel"><span>see also</span> <a href="programming-technologies.html">Programming technologies</a>, <a href="fpga-architecture.html">FPGA architecture</a>, <a href="multilevel-logic-optimization.html">Multi-level logic optimization</a></p>
+<p class="rel"><span>mentioned in</span> <a href="np-hard-optimization.html">Hard optimization problems and heuristics</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="rom-as-logic.html">Logic functions as memories</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org92e6589" class="outline-2">
+<h2 id="org92e6589">Construction</h2>
+<div class="outline-text-2" id="text-org92e6589">
+<p>
+Every input enters the AND plane in true and complemented form. Each AND line computes a product term (a cube); each output is the OR of selected products.
+</p>
+<ul class="org-ul">
+<li><b>PROM</b>: AND plane fixed (all <img class="m" src="m/c26a7f26d15dab5c1c6e5096f2fb7c0c2fafc477.svg" alt="\(2^n\)" style="height:0.728em;vertical-align:-0.000em"> minterms), OR plane programmable — the <a href="rom-as-logic.html">memory</a> case.</li>
+<li><b>PLA</b>: both planes programmable. Products are shared among outputs, so the number of AND lines is the number of distinct cubes of a minimised multi-output cover. Slower (two programmable planes).</li>
+<li><b>PAL</b>: AND plane programmable, OR plane fixed — each output ORs a fixed group of, say, 7 products. Faster and cheaper; products cannot be shared. Outputs fed back as inputs implement multilevel functions, at the cost of extra delay through the array; registered outputs make sequential circuits (GAL, 22V10).</li>
+<li><b>CPLD</b>: several PAL-like blocks connected by a programmable interconnect.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org78f6e6b" class="outline-2">
+<h2 id="org78f6e6b">Picture</h2>
+<div class="outline-text-2" id="text-org78f6e6b">
+<figure class="fig"><img class="m" src="m/13e45ef489a0abb0add3886831871f701307d199.svg" alt="figure" style="width:18.910em"><figcaption><span class="fl">Figure 1.</span> Structure of a PLA: a programmable AND plane forms the product terms <img class="m" src="m/3cade6c1ac7f679e8fffa24560909aaab6440868.svg" alt="\(P_k\)" style="height:0.913em;vertical-align:-0.164em"> and a programmable OR plane sums them into the outputs <img class="m" src="m/1ef107adcc41a87a9988f5700149aaeb20751856.svg" alt="\(f_j\)" style="height:1.075em;vertical-align:-0.312em">; a PAL fixes the OR plane.</figcaption></figure>
+<p>
+<img class="m" src="m/d26d2649a6afa8e7dce1f6a7e71d4e9e139226ed.svg" alt="\(P_0=x_0\bar x_1\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/4f1a92b8beabca5f727d732648439981c3dfe6f0.svg" alt="\(P_1=\bar x_0x_1\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/a47e01133cc2dd313c73a89db71f8eeea07c67a1.svg" alt="\(P_2=x_0x_1\)" style="height:0.913em;vertical-align:-0.164em">; <img class="m" src="m/199d4dd9b5597527737d2fc63bd1556e815f9af0.svg" alt="\(f_0=P_0+P_2\)" style="height:0.974em;vertical-align:-0.214em">, <img class="m" src="m/36bda0c41cf5cf8c5e887f3df24f05671dd35ef2.svg" alt="\(f_1=P_1+P_2\)" style="height:0.974em;vertical-align:-0.214em">: <img class="m" src="m/fefabf6aa5575941cd116d154d9f7055dc5a07db.svg" alt="\(P_2\)" style="height:0.913em;vertical-align:-0.164em"> is shared, which a PLA allows.
+</p>
+</div>
+</div>
+<div id="outline-container-org1cd34e0" class="outline-2">
+<h2 id="org1cd34e0">Example</h2>
+<div class="outline-text-2" id="text-org1cd34e0">
+<p>
+A <a href="ripple-carry-adder.html">full adder</a>: <img class="m" src="m/f08f15167de7fc71b418eb82cdb029658bd0d257.svg" alt="\(s=a\oplus b\oplus c\)" style="height:0.852em;vertical-align:-0.094em"> needs four products (its four odd minterms), <img class="m" src="m/be08cbcb27fcc4b2e4ab6c0eaec25195f0fef6f5.svg" alt="\(c_{out}=ab+ac+bc\)" style="height:0.925em;vertical-align:-0.167em"> three. A PLA with 7 AND lines and 2 outputs <a href="abstract-class-interface.html">implements</a> it; a PAL needs at least 4 products per output.
+</p>
+</div>
+</div>
+<div id="outline-container-org0721428" class="outline-2">
+<h2 id="org0721428">Intuition</h2>
+<div class="outline-text-2" id="text-org0721428">
+<p>
+A PLA is a minimised truth table in hardware: only the product terms you need, wired to the outputs that need them.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfe2afa0" class="outline-2">
+<h2 id="orgfe2afa0">Pitfall</h2>
+<div class="outline-text-2" id="text-orgfe2afa0">
+<p>
+Two-level forms of some functions are huge: the <a href="uart.html">parity</a> of <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> bits needs <img class="m" src="m/597ed70d1853adaaa2022905143846101729e52d.svg" alt="\(2^{n-1}\)" style="height:0.892em;vertical-align:-0.000em"> products. Such functions belong in multilevel logic.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="rom-as-logic.html"><span>← previous</span>Logic functions as memories</a><a rel="next" href="programming-technologies.html"><span>next →</span>Programming technologies</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--programmable-logic.pdf" title="PDF manual">Programmable Logic</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

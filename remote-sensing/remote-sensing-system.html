@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Remote sensing system · Remote Sensing</title>
+<meta name="description" content="Remote sensing acquires information about an object without contact, by measuring the electromagnetic field it emits or reflects; a remote sensing system chains a source, the atmosphere, the surface, a sensor on a platform, a transmission link and a ground segment where images are processed and rec…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/remote-sensing-system.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Remote sensing system · Remote Sensing">
+<meta property="og:description" content="Remote sensing acquires information about an object without contact, by measuring the electromagnetic field it emits or reflects; a remote sensing system chains a source, the atmosphere, the surface, a sensor on a platform, a transmission link and a ground segment where images are processed and rec…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/remote-sensing-system.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-physics">Physics</a> / <a rel="up" href="index.html#a-physics--systems">Systems</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Physics · Systems</p>
+<h1>Remote sensing system</h1>
+<p class="summary">Remote sensing acquires information about an object without contact, by measuring the electromagnetic field it emits or reflects; a remote sensing system chains a source, the atmosphere, the surface, a sensor on a platform, a transmission link and a ground segment where images are processed and recognised.</p>
+<p class="rel"><span>unlocks</span> <a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a>, <a href="acquisition-platforms.html">Acquisition platforms</a>, <a href="passive-active-sensors.html">Passive and active sensors</a>, <a href="recognition-system.html">Recognition systems</a></p>
+<p class="rel"><span>see also</span> <a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a>, <a href="passive-active-sensors.html">Passive and active sensors</a>, <a href="acquisition-platforms.html">Acquisition platforms</a>, <a href="recognition-system.html">Recognition systems</a>, <a href="remote-sensing-applications.html">Applications of remote sensing</a></p>
+<p class="rel"><span>mentioned in</span> <a href="satellite-architecture.html">Satellite system architecture</a>, <a href="radar-equation.html">Radar principle and radar equation</a>, <a href="perceptron.html">Perceptron algorithm</a></p>
+</header>
+<main class="note">
+<div id="outline-container-org92bf190" class="outline-2">
+<h2 id="org92bf190">Definition</h2>
+<div class="outline-text-2" id="text-org92bf190">
+<ul class="org-ul">
+<li><b>General</b>: acquisition of information about an object with a sensor not in contact with it.</li>
+<li><b>Operational</b>: acquisition of information about an object by detecting and measuring the electromagnetic field emitted and/or reflected/scattered by it.</li>
+</ul>
+<p>
+It began with photography and today works in the visible, infrared and <a href="electromagnetic-spectrum.html">microwave</a> regions.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfb0a830" class="outline-2">
+<h2 id="orgfb0a830">Model</h2>
+<div class="outline-text-2" id="text-orgfb0a830">
+<p>
+Passive scenario: the Sun irradiates the surface through the atmosphere (<a href="atmospheric-windows.html">transmittance</a>); the surface absorbs, transmits and reflects according to its <a href="spectral-signature.html">spectral signature</a>; the reflected radiance crosses the atmosphere again and reaches the sensor. Active scenario: the sensor (radar, lidar) is its own source.
+</p>
+
+<p>
+Three phases:
+</p>
+<ol class="org-ol">
+<li><b>acquisition</b>: platform, sensor, on-board storage and data transmission;</li>
+<li><b>processing</b>: improving data quality (radiometric and geometric corrections, enhancement, filtering);</li>
+<li><b>recognition</b>: extracting information (thematic maps, change maps, bio/geo-physical parameters, risk maps, 3-D models).</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgef2919f" class="outline-2">
+<h2 id="orgef2919f">Picture</h2>
+<div class="outline-text-2" id="text-orgef2919f">
+<figure class="fig"><img class="m" src="m/bfdad268163e7c9a1e6baffc5242d681a0fda3fd.svg" alt="figure" style="width:26.365em"><figcaption><span class="fl">Figure 1.</span> A passive remote sensing system: sunlight crosses the atmosphere, is reflected by the surface, crosses it again to the sensor, and the data go down to a ground station.</figcaption></figure>
+<p>
+Source, two passes through the atmosphere, surface interaction, sensor, <a href="satellite-architecture.html">downlink</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgcd6d4fd" class="outline-2">
+<h2 id="orgcd6d4fd">Why from space</h2>
+<div class="outline-text-2" id="text-orgcd6d4fd">
+<p>
+Synoptic view at local and global scale, regular revisits, homogeneous measurements over areas with no access. Applications range from urban growth and deforestation to ozone monitoring, civil protection, agriculture, meteorology and <a href="remote-sensing-applications.html">planetary exploration</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb8c895e" class="outline-2">
+<h2 id="orgb8c895e">Intuition</h2>
+<div class="outline-text-2" id="text-orgb8c895e">
+<p>
+A remote sensing image is a physical measurement before it is a picture: every pixel is radiance integrated over a patch of ground, a band of wavelengths and a short time.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd00f4be" class="outline-2">
+<h2 id="orgd00f4be">Pitfall</h2>
+<div class="outline-text-2" id="text-orgd00f4be">
+<p>
+The sensor sees surface and atmosphere together: separating the two contributions is a problem of its own, solved by <a href="radiometric-correction.html">corrections</a>, not by the sensor.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><span></span><a rel="next" href="electromagnetic-spectrum.html"><span>next →</span>Electromagnetic spectrum and spectral regions</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/physics--systems.pdf" title="PDF manual">Systems</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">Physics</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

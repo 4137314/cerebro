@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Power pin diodes: blocking, conduction and reverse recovery · Physics</title>
+<meta name="description" content="A lightly doped drift region n^- of width W between p^+ and n^+ blocks V_{BR}\approx\frac{\epsilon E_c^2}{2qN_D} (non-punch-through) with W\gtrsim\frac{2V_{BR}}{E_c}; in forward conduction high-level injection floods the drift region (conductivity modulation), keeping V_F near 1 V, but the stored c…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/power-diodes.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Power pin diodes: blocking, conduction and reverse recovery · Physics">
+<meta property="og:description" content="A lightly doped drift region n^- of width W between p^+ and n^+ blocks V_{BR}\approx\frac{\epsilon E_c^2}{2qN_D} (non-punch-through) with W\gtrsim\frac{2V_{BR}}{E_c}; in forward conduction high-level injection floods the drift region (conductivity modulation), keeping V_F near 1 V, but the stored c…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/power-diodes.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-power-electronics">Power Electronics</a> / <a rel="up" href="index.html#a-power-electronics--power-devices">Power Devices</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Power Electronics · Power Devices</p>
+<h1>Power pin diodes: blocking, conduction and reverse recovery</h1>
+<p class="summary">A lightly doped drift region <img class="m" src="m/8ddd917024ebb05c8754707b5c89d3c2dd0429ec.svg" alt="\(n^-\)" style="height:0.873em;vertical-align:-0.000em"> of width <img class="m" src="m/d217e35d2b5cadd5999f20534c4bfa40f8e274f8.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em"> between p<img class="m" src="m/7711cc26538c3a6d74285016670921b01681455e.svg" alt="\(^+\)" style="height:0.873em;vertical-align:-0.000em"> and n<img class="m" src="m/7711cc26538c3a6d74285016670921b01681455e.svg" alt="\(^+\)" style="height:0.873em;vertical-align:-0.000em"> blocks <img class="m" src="m/20af8099207637ce3c2ec561f3422bb2a712223e.svg" alt="\(V_{BR}\approx\frac{\epsilon E_c^2}{2qN_D}\)" style="height:1.770em;vertical-align:-0.531em"> (non-punch-through) with <img class="m" src="m/3f5dad6042435e58d45038351047ea4a63002daf.svg" alt="\(W\gtrsim\frac{2V_{BR}}{E_c}\)" style="height:1.462em;vertical-align:-0.482em">; in forward conduction high-level injection floods the drift region (conductivity modulation), keeping <img class="m" src="m/11f83810145e37f5946abf61d73dfb0b5a9a20f8.svg" alt="\(V_F\)" style="height:0.913em;vertical-align:-0.164em"> near 1 V, but the stored charge <img class="m" src="m/89e5d6207d6d514af4132a2c40943036b8713680.svg" alt="\(Q_s=\tau I_F\)" style="height:0.962em;vertical-align:-0.212em"> must be removed at turn-off, producing a reverse-recovery current peak and loss.</p>
+<p class="rel"><span>needs</span> <a href="power-electronics.html">Power semiconductor devices: the map of the subject</a>, <a href="pn-junction-diode-current.html">The diode current: Shockley's equation</a>, <a href="pn-junction-electrostatics.html">The pn junction: built-in potential, depletion and capacitance</a></p>
+<p class="rel"><span>unlocks</span> <a href="power-mosfets-and-igbts.html">Power MOSFETs and IGBTs</a></p>
+<p class="rel"><span>see also</span> <a href="power-mosfets-and-igbts.html">Power MOSFETs and IGBTs</a>, <a href="switching-converters.html">Switching converters: buck, boost and losses</a></p>
+<p class="rel"><span>mentioned in</span> <a href="wide-bandgap-power-devices.html">Wide-bandgap power devices: SiC and GaN</a></p>
+<details class="path"><summary>Learning path: 32 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="circuits.html">Circuit theory: the map of the subject</a></li><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></li><li><a href="spin-precession-and-rabi-oscillations.html">Spin precession and Rabi oscillations</a></li><li><a href="angular-momentum-algebra.html">Angular momentum: algebra and spectrum</a></li><li><a href="orbital-angular-momentum.html">Orbital angular momentum and spherical harmonics</a></li><li><a href="hydrogen-atom.html">The hydrogen atom</a></li><li><a href="addition-of-angular-momenta.html">Addition of angular momenta</a></li><li><a href="identical-particles-and-pauli-principle.html">Identical particles, bosons, fermions and Pauli's principle</a></li><li><a href="square-well-potentials.html">Square wells: particle in a box and finite well</a></li><li><a href="symmetries-and-conservation-laws.html">Symmetries, conservation laws and degeneracy</a></li><li><a href="solid-state.html">Semiconductor physics: the map of the subject</a></li><li><a href="bloch-theorem-and-energy-bands.html">Bloch's theorem and energy bands</a></li><li><a href="effective-mass-and-holes.html">Effective mass, group velocity and holes</a></li><li><a href="density-of-states-and-fermi-dirac.html">Density of states and Fermi–Dirac statistics</a></li><li><a href="intrinsic-and-doped-semiconductors.html">Intrinsic and doped semiconductors</a></li><li><a href="drift-diffusion-and-einstein-relation.html">Drift, diffusion and the Einstein relation</a></li><li><a href="pn-junction-electrostatics.html">The pn junction: built-in potential, depletion and capacitance</a></li><li><a href="generation-recombination-and-continuity.html">Generation, recombination and the continuity equation</a></li><li><a href="pn-junction-diode-current.html">The diode current: Shockley's equation</a></li><li><a href="power-electronics.html">Power semiconductor devices: the map of the subject</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org4cd732f" class="outline-2">
+<h2 id="org4cd732f">Blocking (derivation)</h2>
+<div class="outline-text-2" id="text-org4cd732f">
+<p>
+One-sided junction, triangular field (<a href="pn-junction-electrostatics.html">pn electrostatics</a>); avalanche when <img class="m" src="m/0f4f92b003a0eee15a7e7b489a940cf507f49eb7.svg" alt="\(E_{max}=E_c\)" style="height:0.913em;vertical-align:-0.164em"> (Si <img class="m" src="m/dfa6309657d030399b5598e279631468b1ba20ed.svg" alt="\(\approx2\)" style="height:0.706em;vertical-align:-0.000em">–<img class="m" src="m/fab81fe96af4fe8db601d98998f965253ab9c3eb.svg" alt="\(3\times10^5\)" style="height:0.983em;vertical-align:-0.089em"> V/cm, weakly doping-dependent) <span class="cite">(<a class="ref" href="https://doi.org/10.1109/jrproc.1952.273990" data-full="R. N. Hall, “Power rectifiers and transistors”, Proceedings of the IRE 40, 1512–1518 (1952)." aria-label="R. N. Hall, “Power rectifiers and transistors”, Proceedings of the IRE 40, 1512–1518 (1952).">Hall 1952</a>)</span>. <img class="m" src="m/8216d7f93a5ae08bee871b2d381cb66ec37efd96.svg" alt="\(V_{BR}=\frac{\epsilon E_c^2}{2qN_D}\)" style="height:1.770em;vertical-align:-0.531em">, depletion width at breakdown <img class="m" src="m/39c7e756797a8d5389d6019d1e11dde681914602.svg" alt="\(W=\frac{2V_{BR}}{E_c}\)" style="height:1.462em;vertical-align:-0.482em">. Punch-through design: the field reaches the n<img class="m" src="m/7711cc26538c3a6d74285016670921b01681455e.svg" alt="\(^+\)" style="height:0.873em;vertical-align:-0.000em"> region and becomes trapezoidal: thinner drift region for the same voltage, lower <img class="m" src="m/11f83810145e37f5946abf61d73dfb0b5a9a20f8.svg" alt="\(V_F\)" style="height:0.913em;vertical-align:-0.164em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org860890d" class="outline-2">
+<h2 id="org860890d">Conduction</h2>
+<div class="outline-text-2" id="text-org860890d">
+<p>
+Electrons and holes injected into the drift region at density <img class="m" src="m/208ea6854b0cb826100ad30c50f9fbfaca1ed36f.svg" alt="\(n\approx p\gg N_D\)" style="height:0.962em;vertical-align:-0.212em">: resistance falls (conductivity modulation). <img class="m" src="m/9f957d7d5dc7b9330f5a1a7cb504269d58c0336d.svg" alt="\(V_F\approx\frac{2k_BT}{q}\ln\frac{n}{n_i}+V_{drift}\)" style="height:1.510em;vertical-align:-0.528em">, and <img class="m" src="m/69dbdf7e38b4e1430c5f2f9f8a70a7830bfac6b7.svg" alt="\(V_{drift}\)" style="height:1.062em;vertical-align:-0.319em"> depends on <img class="m" src="m/34951b3eec788dfedcc34a4b53df297f86140885.svg" alt="\(W/L_a\)" style="height:1.096em;vertical-align:-0.274em"> (ambipolar diffusion length): minimal when <img class="m" src="m/25fe4a3906c734ace241ea3de397d46cbdd406ec.svg" alt="\(W\approx2L_a\)" style="height:0.913em;vertical-align:-0.164em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org9af74b8" class="outline-2">
+<h2 id="org9af74b8">Reverse recovery</h2>
+<div class="outline-text-2" id="text-org9af74b8">
+<p>
+Commutating at <img class="m" src="m/d79b6661db8a437f00f49dfe5ade4817fe5aa1c5.svg" alt="\(\dd i/\dd t=-a\)" style="height:1.096em;vertical-align:-0.274em">: current crosses zero and goes negative while stored charge is extracted; peak <img class="m" src="m/8157b19467762ba4a2465d268fda96762a9ee1af.svg" alt="\(I_{RRM}\approx\sqrt{\frac{2Q_{rr}a}{1+s}}\)" style="height:2.016em;vertical-align:-0.665em">, <img class="m" src="m/5c7e5eac36e2e7afda2c7959bd41d9b72521119c.svg" alt="\(t_{rr}\)" style="height:0.838em;vertical-align:-0.168em">, softness <img class="m" src="m/e68ddf67e734ac91fe71c836a2e4f058624a34b3.svg" alt="\(s=t_b/t_a\)" style="height:1.096em;vertical-align:-0.274em">. Loss <img class="m" src="m/0ee7275bd77b765b3466b5cb08a8b288aa5f4755.svg" alt="\(\approx Q_{rr}V_Rf\)" style="height:0.974em;vertical-align:-0.214em"> in the diode plus extra turn-on loss in the switch. Lifetime control (Pt, e<img class="m" src="m/4aea3c9c3a8dec83dfcc525b7ccfd3d7eca86739.svg" alt="\(^-\)" style="height:0.873em;vertical-align:-0.000em">/He irradiation) trades <img class="m" src="m/11f83810145e37f5946abf61d73dfb0b5a9a20f8.svg" alt="\(V_F\)" style="height:0.913em;vertical-align:-0.164em"> for <img class="m" src="m/f58c42d63fffe0ff2f110971f3541b4310680f9a.svg" alt="\(Q_{rr}\)" style="height:0.962em;vertical-align:-0.212em">. Schottky and SiC Schottky diodes have no stored minority charge.
+</p>
+</div>
+</div>
+<div id="outline-container-org2533c47" class="outline-2">
+<h2 id="org2533c47">Worked example</h2>
+<div class="outline-text-2" id="text-org2533c47">
+<p>
+1.2 kV diode, Si with <img class="m" src="m/2abb20da6c56609350fe1f2a74e51653afc8bb83.svg" alt="\(E_c=2.5\times10^5\)" style="height:1.056em;vertical-align:-0.169em"> V/cm: <img class="m" src="m/70290d86de814980f4efaefafe4ddc4e9885c337.svg" alt="\(N_D=\frac{1.04\times10^{-12}\cdot6.25\times10^{10}}{2\cdot1.6\times10^{-19}\cdot1200}=1.7\times10^{14}\)" style="height:1.597em;vertical-align:-0.463em"> cm<img class="m" src="m/ac2ff62a574b36f76540f5b9e5af09e2c7527b73.svg" alt="\(^{-3}\)" style="height:0.892em;vertical-align:-0.000em">, <img class="m" src="m/60959664f6cc1fc8205b33a24a19e1c77443b5bf.svg" alt="\(W=\frac{2400}{2.5\times10^5}=96\)" style="height:1.395em;vertical-align:-0.474em"> µm. With <img class="m" src="m/221344bd04d96810412e97b80789d0a6c323797b.svg" alt="\(Q_{rr}=2\)" style="height:0.962em;vertical-align:-0.212em"> µC, <img class="m" src="m/859121e8e4dcc2dc608bb19c7ac130e02f450579.svg" alt="\(V_R=600\)" style="height:0.913em;vertical-align:-0.164em"> V, <img class="m" src="m/fe24b75f649d5126a2898e1479144708db128286.svg" alt="\(f=20\)" style="height:0.974em;vertical-align:-0.214em"> kHz: <img class="m" src="m/915b443ed7c7ebb9f4d3af4a79173f09bed02b1f.svg" alt="\(P\approx Q_{rr}V_Rf=24\)" style="height:0.974em;vertical-align:-0.214em"> W of recovery-related loss — why fast-recovery or SiC diodes are used.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf8d0416" class="outline-2">
+<h2 id="orgf8d0416">Engineering applications</h2>
+<div class="outline-text-2" id="text-orgf8d0416">
+<p>
+Freewheeling diodes in inverters, rectifiers, snubbers, PFC boost diodes (SiC Schottky), HV stacks.
+</p>
+</div>
+</div>
+<div id="outline-container-org3f210cd" class="outline-2">
+<h2 id="org3f210cd">Pitfall</h2>
+<div class="outline-text-2" id="text-org3f210cd">
+<p>
+A fast but "snappy" diode (abrupt end of recovery) produces large <img class="m" src="m/1e826332880e3305468045f713f685ef71ad25c4.svg" alt="\(L\,\dd i/\dd t\)" style="height:1.096em;vertical-align:-0.274em"> overvoltages and EMI; softness matters as much as <img class="m" src="m/5c7e5eac36e2e7afda2c7959bd41d9b72521119c.svg" alt="\(t_{rr}\)" style="height:0.838em;vertical-align:-0.168em">.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="power-electronics.html"><span>← previous</span>Power semiconductor devices: the map of the subject</a><a rel="next" href="power-mosfets-and-igbts.html"><span>next →</span>Power MOSFETs and IGBTs</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/power-electronics--power-devices.pdf" title="PDF manual">Power Devices</a> · <a class="pdf" href="pdf/power-electronics.pdf" title="PDF manual">Power Electronics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

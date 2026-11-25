@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Principal component analysis of multispectral images · Remote Sensing</title>
+<meta name="description" content="Adjacent bands are strongly correlated; rotating pixel vectors onto the eigenvectors of the band covariance matrix, \mathbf y=W^\top(\mathbf x-\boldsymbol\mu), gives uncorrelated components ordered by variance — the first few hold almost all the information, the last ones mostly noise — used for co…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/principal-component-analysis.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Principal component analysis of multispectral images · Remote Sensing">
+<meta property="og:description" content="Adjacent bands are strongly correlated; rotating pixel vectors onto the eigenvectors of the band covariance matrix, \mathbf y=W^\top(\mathbf x-\boldsymbol\mu), gives uncorrelated components ordered by variance — the first few hold almost all the information, the last ones mostly noise — used for co…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/principal-component-analysis.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--enhancement">Enhancement</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Processing · Enhancement</p>
+<h1>Principal component analysis of multispectral images</h1>
+<p class="summary">Adjacent bands are strongly correlated; rotating pixel vectors onto the eigenvectors of the band covariance matrix, <img class="m" src="m/18d02e5217f188b1ed0fc459b99519221338b8b0.svg" alt="\(\mathbf y=W^\top(\mathbf x-\boldsymbol\mu)\)" style="height:1.204em;vertical-align:-0.277em">, gives uncorrelated components ordered by variance — the first few hold almost all the information, the last ones mostly noise — used for compression, visualisation, feature reduction and change detection.</p>
+<p class="rel"><span>needs</span> <a href="multispectral-hyperspectral-image.html">Multispectral and hyperspectral images</a>, <a href="image-statistics.html">Image statistics: moments, mode, median</a></p>
+<p class="rel"><span>see also</span> <a href="feature-extraction.html">Feature extraction</a>, <a href="hughes-phenomenon.html">Hughes phenomenon (curse of dimensionality)</a>, <a href="pansharpening.html">Pansharpening</a>, <a href="change-detection.html">Change detection</a></p>
+<p class="rel"><span>mentioned in</span> <a href="sar-interferometry.html">SAR interferometry (InSAR and DInSAR)</a>, <a href="hughes-phenomenon.html">Hughes phenomenon (curse of dimensionality)</a></p>
+<details class="path"><summary>Learning path: 17 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="spectral-signature.html">Spectral signature</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="sensor-resolutions.html">Geometric, radiometric, spectral and temporal resolution</a></li><li><a href="multispectral-hyperspectral-image.html">Multispectral and hyperspectral images</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li><li><a href="image-statistics.html">Image statistics: moments, mode, median</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orge715c42" class="outline-2">
+<h2 id="orge715c42">Method</h2>
+<div class="outline-text-2" id="text-orge715c42">
+<ol class="org-ol">
+<li>covariance <img class="m" src="m/47077d072b14d5d8dd85bfa908df3cf8f5bcc4d1.svg" alt="\(\Sigma=\frac1{n-1}\sum(\mathbf x-\boldsymbol\mu)(\mathbf x-\boldsymbol\mu)^\top\)" style="height:1.400em;vertical-align:-0.476em"> over the pixels;</li>
+<li>eigen-decomposition <img class="m" src="m/c76fdb1f5e74aab32ea700b956f697c0ae67f449.svg" alt="\(\Sigma=W\Lambda W^\top\)" style="height:0.930em;vertical-align:-0.000em">, <img class="m" src="m/00513c1870d013e4f592e4b001d5232533cd5161.svg" alt="\(\lambda_1\ge\dots\ge\lambda_B\)" style="height:0.925em;vertical-align:-0.167em">;</li>
+<li>components <img class="m" src="m/18d02e5217f188b1ed0fc459b99519221338b8b0.svg" alt="\(\mathbf y=W^\top(\mathbf x-\boldsymbol\mu)\)" style="height:1.204em;vertical-align:-0.277em">: <img class="m" src="m/1c94739b00a650edb82c43cf25eb609cf2d13ad8.svg" alt="\(\mathrm{Cov}(\mathbf y)=\Lambda\)" style="height:1.096em;vertical-align:-0.274em"> diagonal;</li>
+<li>keep the first <img class="m" src="m/ffba2bd3deca9ae12b2f58d5d12739b5efaff0ec.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> with <img class="m" src="m/391df429e9b1205e3e9fb5cd2df25ef548c08562.svg" alt="\(\sum_{i\le k}\lambda_i/\sum_i\lambda_i\ge\)" style="height:1.293em;vertical-align:-0.465em"> e.g. 99%.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org4e08f17" class="outline-2">
+<h2 id="org4e08f17">Derivation</h2>
+<div class="outline-text-2" id="text-org4e08f17">
+<p>
+Maximise the <a href="image-statistics.html">variance</a> of a projection <img class="m" src="m/0a7779a3599cc46872453a73edc7ca247dd5b05f.svg" alt="\(\mathbf w^\top\mathbf x\)" style="height:0.930em;vertical-align:-0.000em">, <img class="m" src="m/cde75cffb0be2d834ee9f5c4776c28db9b5d1efb.svg" alt="\(\mathrm{Var}=\mathbf w^\top\Sigma\mathbf w\)" style="height:0.930em;vertical-align:-0.000em">, with <img class="m" src="m/84bc0d5621f31328691495cd00bb2ac695080ec4.svg" alt="\(\|\mathbf w\|=1\)" style="height:1.096em;vertical-align:-0.274em">. The Lagrangian <img class="m" src="m/fd7133408395d9f910837867019a78813b3f85b6.svg" alt="\(\mathbf w^\top\Sigma\mathbf w-\lambda(\mathbf w^\top\mathbf w-1)\)" style="height:1.204em;vertical-align:-0.277em"> gives <img class="m" src="m/1c69ba76795e66b0a6972bd0deece2d1e3929cb9.svg" alt="\(\Sigma\mathbf w=\lambda\mathbf w\)" style="height:0.761em;vertical-align:-0.000em">: the optimum is the eigenvector of the largest eigenvalue, and the variance equals <img class="m" src="m/623ed6fe71f30e4d5681590495eb1e0754aae1f3.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em">. Repeating orthogonally to the previous directions gives the other components.
+</p>
+</div>
+</div>
+<div id="outline-container-org76a67a2" class="outline-2">
+<h2 id="org76a67a2">Example</h2>
+<div class="outline-text-2" id="text-org76a67a2">
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="v">X</span> = cube.reshape(B, -1).T.astype(<span class="b">float</span>)           <span class="c"># pixels x bands
+</span><span class="v">Xc</span> = X - X.mean(0)
+<span class="v">lam</span>, <span class="v">W</span> = np.linalg.eigh(np.cov(Xc.T)); <span class="v">order</span> = lam.argsort()[::-1]
+<span class="v">lam</span>, <span class="v">W</span> = lam[order], W[:, order]
+<span class="v">pcs</span> = (Xc @ W).T.reshape(B, rows, cols)
+<span class="b">print</span>(np.cumsum(lam) / lam.<span class="b">sum</span>())                 <span class="c"># e.g. 0.91, 0.98, 0.995, ...</span></code></pre></figure>
+<p>
+For a 6-band image PC1 is roughly overall brightness, PC2 the contrast between visible and NIR (vegetation), later components noise and <a href="radiometric-correction.html">striping</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org47a392a" class="outline-2">
+<h2 id="org47a392a">Picture</h2>
+<div class="outline-text-2" id="text-org47a392a">
+<figure class="fig"><img class="m" src="m/7e6b68ca1540e048e9ae330da8eb8eecc43436a1.svg" alt="figure" style="width:17.522em"><figcaption><span class="fl">Figure 1.</span> Principal components of two correlated bands: PC1 lies along the direction of maximum variance and PC2 orthogonal to it.</figcaption></figure>
+<p>
+Correlated bands form an elongated cloud; PC1 runs along it, PC2 across.
+</p>
+</div>
+</div>
+<div id="outline-container-org37bcec3" class="outline-2">
+<h2 id="org37bcec3">Intuition</h2>
+<div class="outline-text-2" id="text-org37bcec3">
+<p>
+Turn the axes of the <a href="feature-space.html">feature space</a> until they line up with the shape of the data cloud: then each new axis says something the others do not.
+</p>
+</div>
+</div>
+<div id="outline-container-orgba8e9bf" class="outline-2">
+<h2 id="orgba8e9bf">Pitfall</h2>
+<div class="outline-text-2" id="text-orgba8e9bf">
+<p>
+PCA ranks by variance, not by class separability: a small but discriminant signal (a rare crop, a subtle change) may sit in a low-variance component that gets discarded.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="pansharpening.html"><span>← previous</span>Pansharpening</a><a rel="next" href="false-color-composite.html"><span>next →</span>True and false colour composites</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--enhancement.pdf" title="PDF manual">Enhancement</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

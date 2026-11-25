@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The limit of a function and its sequential characterisation · Mathematics</title>
+<meta name="description" content="The limit of a function is the same idea as the limit of a sequence with the index replaced by a continuous variable, and the proposition below says so precisely. It is the bridge that lets every theorem about sequences be spent on functions.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-limit-of-a-function-and-its-sequential-characterisation.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The limit of a function and its sequential characterisation · Mathematics">
+<meta property="og:description" content="The limit of a function is the same idea as the limit of a sequence with the index replaced by a continuous variable, and the proposition below says so precisely. It is the bridge that lets every theorem about sequences be spent on functions.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-limit-of-a-function-and-its-sequential-characterisation.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Real Analysis</p>
+<h1>The limit of a function and its sequential characterisation</h1>
+<p class="summary">The limit of a function is the same idea as the limit of a sequence with the index replaced by a continuous variable, and the proposition below says so precisely. It is the bridge that lets every theorem about sequences be spent on functions.</p>
+<p class="rel"><span>needs</span> <a href="limit-of-a-sequence.html">Limit of a sequence</a></p>
+<p class="rel"><span>unlocks</span> <a href="cauchys-mean-value-theorem-and-de-lhopitals-rule.html">Cauchy's mean value theorem and de l'Hopital's rule</a>, <a href="one-sided-limits-and-the-discontinuities-of-a-monotone-function.html">One-sided limits and the discontinuities of a monotone function</a>, <a href="the-algebra-of-continuous-functions-and-composition.html">The algebra of continuous functions and composition</a>, <a href="the-derivative.html">The derivative</a>, <a href="zeros-the-identity-theorem-and-the-maximum-principle.html">Zeros, the identity theorem and the maximum principle</a>, <a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orga3df377">
+<p>
+Let <img class="m" src="m/c5f23dbcba971a9703b43b10b3c576167fa55567.svg" alt="\(D \subseteq \R\)" style="height:0.904em;vertical-align:-0.145em">. A point <img class="m" src="m/da9e870e458675a8a5e2e315e3a8dabb0310a6fa.svg" alt="\(c \in \R\)" style="height:0.798em;vertical-align:-0.040em"> is an <i>accumulation point</i>
+of <img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> if every interval <img class="m" src="m/6485301d13b802f2c40af2b9631ca8367ceaac07.svg" alt="\((c - \delta, c + \delta)\)" style="height:1.096em;vertical-align:-0.274em"> with
+<img class="m" src="m/2834db4da57323bf6f47d0a640028cc90f572412.svg" alt="\(\delta &gt; 0\)" style="height:0.804em;vertical-align:-0.040em"> contains a point of <img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> other than <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="definition" id="orgbcf6ee2">
+<p>
+Let <img class="m" src="m/979c6360e64657e99af847a4effa6b30bfc2c4d0.svg" alt="\(f \colon D \to \R\)" style="height:0.974em;vertical-align:-0.214em"> and let <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> be an accumulation point of
+<img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em">. One writes <img class="m" src="m/8a980bc50f833dc20b5626208b22a61e02330305.svg" alt="\(\lim_{x \to c} f(x) = L\)" style="height:1.096em;vertical-align:-0.274em"> if for every <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em">
+there is <img class="m" src="m/2834db4da57323bf6f47d0a640028cc90f572412.svg" alt="\(\delta &gt; 0\)" style="height:0.804em;vertical-align:-0.040em"> such that <img class="m" src="m/191827bda4893b3cdc178ed568ffe50690d03f23.svg" alt="\(\abs{f(x) - L} &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em"> for every
+<img class="m" src="m/ee3f11d646a6e332199b0bf4674c6135b2566e0d.svg" alt="\(x \in D\)" style="height:0.792em;vertical-align:-0.040em"> with <img class="m" src="m/75b355a715e008fd7b405acd9366ccbe30e7751c.svg" alt="\(0 &lt; \abs{x - c} &lt; \delta\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org7768ab5">
+<p>
+Let <img class="m" src="m/979c6360e64657e99af847a4effa6b30bfc2c4d0.svg" alt="\(f \colon D \to \R\)" style="height:0.974em;vertical-align:-0.214em"> and let <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> be an accumulation point of
+<img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em">. Then <img class="m" src="m/8a980bc50f833dc20b5626208b22a61e02330305.svg" alt="\(\lim_{x \to c} f(x) = L\)" style="height:1.096em;vertical-align:-0.274em"> if and only if
+<img class="m" src="m/64fe6f639f69d514f7f00ad120e8e30fd4bd5e29.svg" alt="\(f(x_{n}) \to L\)" style="height:1.096em;vertical-align:-0.274em"> for every sequence <img class="m" src="m/b7cb63ac317cdbd63367cfc4bd393717cb0e6e21.svg" alt="\((x_{n})\)" style="height:1.096em;vertical-align:-0.274em"> in
+<img class="m" src="m/410c795efe2391bf32a6a25ce45cec31338f5b9e.svg" alt="\(D \setminus \set{c}\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/be51cc17adc20f1d28bde40ef3b294c3292d02c8.svg" alt="\(x_{n} \to c\)" style="height:0.636em;vertical-align:-0.165em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgca99547">
+<p>
+Suppose the limit is <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> and let <img class="m" src="m/be51cc17adc20f1d28bde40ef3b294c3292d02c8.svg" alt="\(x_{n} \to c\)" style="height:0.636em;vertical-align:-0.165em"> with
+<img class="m" src="m/8f967eabe7e22579d3953acb972a426f5db5c5c6.svg" alt="\(x_{n} \in D \setminus \set{c}\)" style="height:1.096em;vertical-align:-0.274em">. Given <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em">, take <img class="m" src="m/ae9908b1dd9140d114827a466a957908d1672568.svg" alt="\(\delta\)" style="height:0.761em;vertical-align:-0.000em">
+from the definition and then <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/fdaa075ab9555e0460b1961512b2cd327938254e.svg" alt="\(\abs{x_{n} - c} &lt; \delta\)" style="height:1.096em;vertical-align:-0.274em"> for
+<img class="m" src="m/e3a7f6df845655195bb1fcfe91670525ec99e1e5.svg" alt="\(n \ge N\)" style="height:0.898em;vertical-align:-0.153em">; since <img class="m" src="m/5fdf0cf2d3011e2aabf10f93381d5ed1266b3c0d.svg" alt="\(x_{n} \ne c\)" style="height:0.974em;vertical-align:-0.214em">, this gives
+<img class="m" src="m/5f2a3c8dbbd1c43f780b74aa9f67946ffce5cff6.svg" alt="\(\abs{f(x_{n}) - L} &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/e3a7f6df845655195bb1fcfe91670525ec99e1e5.svg" alt="\(n \ge N\)" style="height:0.898em;vertical-align:-0.153em">.
+</p>
+
+<p>
+Conversely, suppose the limit is not <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">. Then some <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em">
+admits no <img class="m" src="m/ae9908b1dd9140d114827a466a957908d1672568.svg" alt="\(\delta\)" style="height:0.761em;vertical-align:-0.000em">, so for every <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> the choice
+<img class="m" src="m/6967469a957ad65420e2f839ae17e075b16f5367.svg" alt="\(\delta = 1/n\)" style="height:1.096em;vertical-align:-0.274em"> produces <img class="m" src="m/a104fc82231a2a8f0f5dbecd894b8eba208e281b.svg" alt="\(x_{n} \in D\)" style="height:0.913em;vertical-align:-0.164em"> with
+<img class="m" src="m/a94955223c3b899a884419aa7ed58cae376d62ad.svg" alt="\(0 &lt; \abs{x_{n} - c} &lt; 1/n\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/75cc313daf963b071e3028fec6e45c2bc2e137d6.svg" alt="\(\abs{f(x_{n}) - L} \ge \eps\)" style="height:1.096em;vertical-align:-0.274em">. This
+sequence lies in <img class="m" src="m/410c795efe2391bf32a6a25ce45cec31338f5b9e.svg" alt="\(D \setminus \set{c}\)" style="height:1.096em;vertical-align:-0.274em"> and converges to <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em">, while
+<img class="m" src="m/a87b85116871b3f8bcee5da57022164296bbcb59.svg" alt="\(f(x_{n})\)" style="height:1.096em;vertical-align:-0.274em"> does not converge to <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="remark" id="org61c596e">
+<p>
+The second half is the useful one in practice: to show a limit does <i>not</i>
+exist, produce two sequences approaching <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> along which <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> tends to
+different values.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-algebra-of-limits.html"><span>← previous</span>The algebra of limits</a><a rel="next" href="the-algebra-of-continuous-functions-and-composition.html"><span>next →</span>The algebra of continuous functions and composition</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

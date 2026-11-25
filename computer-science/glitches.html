@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glitches · Computer Science</title>
+<meta name="description" content="When the inputs of a gate arrive at different times, its output can make spurious transitions before settling; glitches waste dynamic power (up to a large fraction in arithmetic circuits) and can corrupt asynchronous signals; balancing path delays, adding redundant terms and registering signals red…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/glitches.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Glitches · Computer Science">
+<meta property="og:description" content="When the inputs of a gate arrive at different times, its output can make spurious transitions before settling; glitches waste dynamic power (up to a large fraction in arithmetic circuits) and can corrupt asynchronous signals; balancing path delays, adding redundant terms and registering signals red…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/glitches.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--power">Power</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Hardware · Power</p>
+<h1>Glitches</h1>
+<p class="summary">When the inputs of a gate arrive at different times, its output can make spurious transitions before settling; glitches waste dynamic power (up to a large fraction in arithmetic circuits) and can corrupt asynchronous signals; balancing path delays, adding redundant terms and registering signals reduce them.</p>
+<p class="rel"><span>needs</span> <a href="switching-activity.html">Signal and transition probabilities</a>, <a href="gate-delay-model.html">Gate and wire delay models</a></p>
+<p class="rel"><span>see also</span> <a href="event-driven-simulation.html">Event-driven logic simulation</a>, <a href="tree-height-reduction.html">Tree height reduction</a>, <a href="cmos-power.html">Power dissipation in CMOS</a>, <a href="logic-hazards.html">Timing diagrams and static hazards</a></p>
+<p class="rel"><span>mentioned in</span> <a href="logic-hazards.html">Timing diagrams and static hazards</a>, <a href="event-driven-simulation.html">Event-driven logic simulation</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="gate-delay-model.html">Gate and wire delay models</a></li><li><a href="cmos-power.html">Power dissipation in CMOS</a></li><li><a href="switching-activity.html">Signal and transition probabilities</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgbbe87c4" class="outline-2">
+<h2 id="orgbbe87c4">Definition</h2>
+<div class="outline-text-2" id="text-orgbbe87c4">
+<p>
+A <b>glitch</b> is a transition of a node that is not needed by its final value in the cycle. A <b>static <a href="pipeline-hazards.html">hazard</a></b> is a glitch on an output that should stay constant (<img class="m" src="m/3dd34a58e155cf65fb223d124a6efeee1707c905.svg" alt="\(1\to0\to1\)" style="height:0.706em;vertical-align:-0.000em">); a <b>dynamic hazard</b> is multiple transitions on an output that changes once. Cause: different delays on reconverging paths.
+</p>
+</div>
+</div>
+<div id="outline-container-orgce950af" class="outline-2">
+<h2 id="orgce950af">Example</h2>
+<div class="outline-text-2" id="text-orgce950af">
+<p>
+<img class="m" src="m/b149b77b35909730ea3d7c29fdfc156d2b55d0f5.svg" alt="\(f=ab+\bar a c\)" style="height:0.974em;vertical-align:-0.214em"> with <img class="m" src="m/8b5eafab4cada60be5fb5360d0661e34a68901bc.svg" alt="\(b=c=1\)" style="height:0.761em;vertical-align:-0.000em">: <img class="m" src="m/f105860b874a534aee19ec311b58613d580e6282.svg" alt="\(f=1\)" style="height:0.974em;vertical-align:-0.214em"> whatever <img class="m" src="m/36ad57d0b9b05e12447762c553bda3a072bc992d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">. When <img class="m" src="m/36ad57d0b9b05e12447762c553bda3a072bc992d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> falls, the term <img class="m" src="m/cce5bfb78b077db7ba05b4616fbc1e486a1fe702.svg" alt="\(ab\)" style="height:0.761em;vertical-align:-0.000em"> turns off immediately while <img class="m" src="m/af662cc9572373fdbafb4449e58e72c6853731ee.svg" alt="\(\bar a c\)" style="height:0.622em;vertical-align:-0.000em"> turns on only after the inverter delay: <img class="m" src="m/c1ed5a3ca52156eb9911941034a69236922afca1.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> dips to 0 for one inverter delay. The redundant consensus term <img class="m" src="m/6b63d93f47ab37f793aaf3882fb17102f7c34233.svg" alt="\(bc\)" style="height:0.761em;vertical-align:-0.000em"> holds <img class="m" src="m/f105860b874a534aee19ec311b58613d580e6282.svg" alt="\(f=1\)" style="height:0.974em;vertical-align:-0.214em"> and removes the hazard.
+</p>
+</div>
+</div>
+<div id="outline-container-org2d09c34" class="outline-2">
+<h2 id="org2d09c34">Picture</h2>
+<div class="outline-text-2" id="text-org2d09c34">
+<figure class="fig"><img class="m" src="m/41e4effc086d1a18beee63e7bab268df43223ebe.svg" alt="figure" style="width:24.624em"><figcaption><span class="fl">Figure 1.</span> A static-1 glitch in <img class="m" src="m/b149b77b35909730ea3d7c29fdfc156d2b55d0f5.svg" alt="\(f=ab+\bar a c\)" style="height:0.974em;vertical-align:-0.214em"> with <img class="m" src="m/8b5eafab4cada60be5fb5360d0661e34a68901bc.svg" alt="\(b=c=1\)" style="height:0.761em;vertical-align:-0.000em">: when <img class="m" src="m/36ad57d0b9b05e12447762c553bda3a072bc992d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> falls, <img class="m" src="m/cce5bfb78b077db7ba05b4616fbc1e486a1fe702.svg" alt="\(ab\)" style="height:0.761em;vertical-align:-0.000em"> drops before <img class="m" src="m/af662cc9572373fdbafb4449e58e72c6853731ee.svg" alt="\(\bar a c\)" style="height:0.622em;vertical-align:-0.000em"> rises and the output briefly goes to 0.</figcaption></figure>
+<p>
+The output dips while <img class="m" src="m/ae65f2d8194d55228906c4bef206e92c0e57cc45.svg" alt="\(\bar a\)" style="height:0.622em;vertical-align:-0.000em"> is still catching up.
+</p>
+</div>
+</div>
+<div id="outline-container-org411e246" class="outline-2">
+<h2 id="org411e246">Coping with glitches</h2>
+<div class="outline-text-2" id="text-org411e246">
+<ul class="org-ul">
+<li>balance path delays (logic restructuring, <a href="tree-height-reduction.html">balanced trees</a>, delay insertion);</li>
+<li>add redundant (consensus) terms for static hazards;</li>
+<li>register intermediate results: a synchronous design samples after settling, so glitches cost power but not correctness;</li>
+<li>never use combinational outputs as clocks or asynchronous resets.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcbdf4ae" class="outline-2">
+<h2 id="orgcbdf4ae">Intuition</h2>
+<div class="outline-text-2" id="text-orgcbdf4ae">
+<p>
+Signals racing along paths of different length disagree for a moment; the gate reports the disagreement, and every report costs energy.
+</p>
+</div>
+</div>
+<div id="outline-container-org19da394" class="outline-2">
+<h2 id="org19da394">Pitfall</h2>
+<div class="outline-text-2" id="text-org19da394">
+<p>
+Zero-delay simulation and probability-based estimates see no glitches at all; power estimation needs timing-aware simulation.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="low-power-encoding.html"><span>← previous</span>Encodings and orderings for low power</a><a rel="next" href="power-gating.html"><span>next →</span>Power gating and leakage reduction</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--power.pdf" title="PDF manual">Power</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

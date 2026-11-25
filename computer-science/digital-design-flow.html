@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digital design flow and abstraction levels · Computer Science</title>
+<meta name="description" content="A digital system is designed top-down through levels of abstraction — system, architecture (register transfer), logic, circuit, layout — each refined into the next by synthesis tools and checked by simulation and timing analysis, while trading off area, delay and power.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/digital-design-flow.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Digital design flow and abstraction levels · Computer Science">
+<meta property="og:description" content="A digital system is designed top-down through levels of abstraction — system, architecture (register transfer), logic, circuit, layout — each refined into the next by synthesis tools and checked by simulation and timing analysis, while trading off area, delay and power.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/digital-design-flow.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--complexity">Complexity</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Hardware · Complexity</p>
+<h1>Digital design flow and abstraction levels</h1>
+<p class="summary">A digital system is designed top-down through levels of abstraction — system, architecture (register transfer), logic, circuit, layout — each refined into the next by synthesis tools and checked by simulation and timing analysis, while trading off area, delay and power.</p>
+<p class="rel"><span>unlocks</span> <a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a>, <a href="data-flow-graph.html">Data-flow graphs and architectural synthesis</a></p>
+<p class="rel"><span>see also</span> <a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a>, <a href="fpga-architecture.html">FPGA architecture</a>, <a href="static-timing-analysis.html">Static timing analysis</a>, <a href="cmos-power.html">Power dissipation in CMOS</a>, <a href="data-flow-graph.html">Data-flow graphs and architectural synthesis</a>, <a href="np-hard-optimization.html">Hard optimization problems and heuristics</a></p>
+</header>
+<main class="note">
+<div id="outline-container-orga2fb419" class="outline-2">
+<h2 id="orga2fb419">Model</h2>
+<div class="outline-text-2" id="text-orga2fb419">
+<p>
+Levels, with their basic objects:
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">level</th>
+<th scope="col" class="org-left">objects</th>
+<th scope="col" class="org-left">tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">system / behaviour</td>
+<td class="org-left">algorithms, data-flow graphs</td>
+<td class="org-left">high-level synthesis</td>
+</tr>
+
+<tr>
+<td class="org-left">architecture (RTL)</td>
+<td class="org-left">registers, ALUs, muxes, FSMs</td>
+<td class="org-left">VHDL, simulation</td>
+</tr>
+
+<tr>
+<td class="org-left">logic</td>
+<td class="org-left">gates, flip-flops</td>
+<td class="org-left">logic synthesis, mapping</td>
+</tr>
+
+<tr>
+<td class="org-left">circuit</td>
+<td class="org-left">transistors</td>
+<td class="org-left">circuit simulation</td>
+</tr>
+
+<tr>
+<td class="org-left">layout</td>
+<td class="org-left">cells, wires, polygons</td>
+<td class="org-left">place and route</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+A typical flow: specification → HDL description at RTL → functional simulation → logic synthesis (optimisation + mapping to a library or to FPGA LUTs) → static timing analysis → place and route → timing and power sign-off → fabrication or <a href="fpga-architecture.html">bitstream</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgaa0a2e5" class="outline-2">
+<h2 id="orgaa0a2e5">What to optimize</h2>
+<div class="outline-text-2" id="text-orgaa0a2e5">
+<ul class="org-ul">
+<li><b>area</b>: cost (silicon or FPGA resources);</li>
+<li><b>delay</b>: <a href="setup-hold-time.html">clock period</a> <img class="m" src="m/197fb2e6904fdaa6194048653a7de0a3a5fffc10.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em">, latency (cycles × <img class="m" src="m/197fb2e6904fdaa6194048653a7de0a3a5fffc10.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em">), throughput;</li>
+<li><b>power</b>: dynamic and static, decisive for battery-powered and dense chips.</li>
+</ul>
+<p>
+They conflict: a faster circuit is bigger, a lower-power circuit is slower. Design is choosing a point on the <a href="timing-driven-mapping.html">Pareto front</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf9f1f38" class="outline-2">
+<h2 id="orgf9f1f38">Picture</h2>
+<div class="outline-text-2" id="text-orgf9f1f38">
+<figure class="fig"><img class="m" src="m/884ccbf3909d1c3bc44825a5a37067375373e08f.svg" alt="figure" style="width:21.824em"><figcaption><span class="fl">Figure 1.</span> The digital design flow: specification, RTL in VHDL, logic synthesis, technology mapping and place and route, checked along the way by simulation and timing analysis.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org58dae80" class="outline-2">
+<h2 id="org58dae80">Intuition</h2>
+<div class="outline-text-2" id="text-org58dae80">
+<p>
+Every level hides the details of the one below. Designers think in registers and operations; tools turn them into gates and wires.
+</p>
+</div>
+</div>
+<div id="outline-container-orgaea38bb" class="outline-2">
+<h2 id="orgaea38bb">Pitfall</h2>
+<div class="outline-text-2" id="text-orgaea38bb">
+<p>
+Decisions at higher levels have larger effect: no gate-level optimisation recovers an architecture that does too much work per cycle.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="big-o-complexity.html"><span>← previous</span>Computational complexity and big-O</a><a rel="next" href="np-hard-optimization.html"><span>next →</span>Hard optimization problems and heuristics</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--complexity.pdf" title="PDF manual">Complexity</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

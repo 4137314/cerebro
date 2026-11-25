@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Objects, references and garbage collection in Java · Computer Science</title>
+<meta name="description" content="Java variables hold either a primitive value (int, double, boolean, …) or a reference to an object on the heap; objects are created only with new and never freed explicitly: the garbage collector reclaims those no longer reachable.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/java-references.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Objects, references and garbage collection in Java · Computer Science">
+<meta property="og:description" content="Java variables hold either a primitive value (int, double, boolean, …) or a reference to an object on the heap; objects are created only with new and never freed explicitly: the garbage collector reclaims those no longer reachable.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/java-references.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--java">Java</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Java</p>
+<h1>Objects, references and garbage collection in Java</h1>
+<p class="summary">Java variables hold either a primitive value (<code>int</code>, <code>double</code>, <code>boolean</code>, …) or a reference to an object on the heap; objects are created only with <code>new</code> and never freed explicitly: the garbage collector reclaims those no longer reachable.</p>
+<p class="rel"><span>needs</span> <a href="java-platform.html">The Java platform</a>, <a href="call-stack.html">Memory model: static area, stack and heap</a></p>
+<p class="rel"><span>unlocks</span> <a href="java-packages.html">Packages</a>, <a href="stack-and-queue.html">Stack and queue as classes</a>, <a href="java-object-class.html">The class Object and final</a>, <a href="wrapper-autoboxing.html">Wrapper classes and autoboxing</a>, <a href="java-monitors.html">Threads and monitors in Java</a></p>
+<p class="rel"><span>see also</span> <a href="parameter-passing.html">Parameter passing</a>, <a href="pointers-references.html">Pointers, references and dynamic memory in C++</a>, <a href="equals-hashcode.html">The equals–hashCode contract</a>, <a href="wrapper-autoboxing.html">Wrapper classes and autoboxing</a>, <a href="java-packages.html">Packages</a>, <a href="java-object-class.html">The class Object and final</a>, <a href="stack-and-queue.html">Stack and queue as classes</a>, <a href="java-monitors.html">Threads and monitors in Java</a></p>
+<p class="rel"><span>mentioned in</span> <a href="object-oriented-programming.html">Object-oriented programming</a></p>
+<details class="path"><summary>Learning path: 2 notes lead here, in study order</summary><ol><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="java-platform.html">The Java platform</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org0d08dd5" class="outline-2">
+<h2 id="org0d08dd5">Definition</h2>
+<div class="outline-text-2" id="text-org0d08dd5">
+<ul class="org-ul">
+<li><b>Primitive types</b>: <code>byte short int long float double char boolean</code>, held by value.</li>
+<li><b>Reference types</b>: classes, interfaces, arrays. A variable holds a reference (or <code>null</code>); assignment copies the reference, not the object.</li>
+<li><b>Creation</b>: <code>new C(args)</code> allocates on the heap and runs a constructor. If no constructor is written, the compiler provides a no-argument one; writing any constructor removes it.</li>
+<li><b>Destruction</b>: none in the language. The garbage collector frees objects unreachable from the roots (stack variables, static fields). <code>finalize()</code> is not a destructor (deprecated); resources are released explicitly with <code>close()</code> and <a href="java-exceptions.html">try-with-resources</a>.</li>
+<li><b>static</b>: a field or method of the class, not of the instances (<code>Math.sqrt</code>, <code>System.out</code>). A static method has no <code>this</code> and can call only static members directly.</li>
+<li><b>final</b>: a variable assigned once; <code>static final</code> gives constants.</li>
+<li><b>Arrays</b> are objects: <code>int[] a = new int[n];</code> with <code>a.length</code>; copying uses <code>System.arraycopy</code> or <code>Arrays.copyOf</code>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgba88b59" class="outline-2">
+<h2 id="orgba88b59">Example</h2>
+<div class="outline-text-2" id="text-orgba88b59">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="t">Person</span> <span class="v">p</span> = <span class="k">new</span> <span class="t">Person</span>(<span class="s">"Ada"</span>);
+<span class="t">Person</span> <span class="v">q</span> = p;             <span class="c">// same object
+</span>q.setName(<span class="s">"Grace"</span>);       <span class="c">// p.getName() is "Grace" too
+</span>p = <span class="n">null</span>; q = <span class="n">null</span>;       <span class="c">// the object is now unreachable: eligible for collection</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org9d5ab8d" class="outline-2">
+<h2 id="org9d5ab8d">Picture</h2>
+<div class="outline-text-2" id="text-org9d5ab8d">
+<figure class="fig"><img class="m" src="m/8f80a445c0051f122f83e414c45b36abbbe8e34e.svg" alt="figure" style="width:14.298em"><figcaption><span class="fl">Figure 1.</span> Java references: variables p and q on the stack refer to the same Person object on the heap.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org94b8541" class="outline-2">
+<h2 id="org94b8541">Intuition</h2>
+<div class="outline-text-2" id="text-org94b8541">
+<p>
+In Java every object variable is a pointer that you cannot do arithmetic on and never have to free.
+</p>
+</div>
+</div>
+<div id="outline-container-org323c617" class="outline-2">
+<h2 id="org323c617">Pitfall</h2>
+<div class="outline-text-2" id="text-org323c617">
+<p>
+<code>==</code> on references compares identity, not content: two distinct <code>String</code> objects with the same characters are not <code>==</code>; content comparison is <code>equals</code> (see <a href="equals-hashcode.html">equals and hashCode</a>).
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="java-platform.html"><span>← previous</span>The Java platform</a><a rel="next" href="java-object-class.html"><span>next →</span>The class Object and final</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--java.pdf" title="PDF manual">Java</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

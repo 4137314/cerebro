@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BCD adder · Computer Science</title>
+<meta name="description" content="BCD codes each decimal digit in 4 bits (codes 1010–1111 unused); a 4-bit binary adder gives the right digit only when the sum is at most 9, so a correction stage adds 6 and emits a decimal carry when C_4+z_3z_2+z_3z_1=1; cascading one such cell per digit adds multi-digit decimal numbers.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/bcd-adder.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="BCD adder · Computer Science">
+<meta property="og:description" content="BCD codes each decimal digit in 4 bits (codes 1010–1111 unused); a 4-bit binary adder gives the right digit only when the sum is at most 9, so a correction stage adds 6 and emits a decimal carry when C_4+z_3z_2+z_3z_1=1; cascading one such cell per digit adds multi-digit decimal numbers.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/bcd-adder.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--arithmetic">Arithmetic</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Hardware · Arithmetic</p>
+<h1>BCD adder</h1>
+<p class="summary">BCD codes each decimal digit in 4 bits (codes 1010–1111 unused); a 4-bit binary adder gives the right digit only when the sum is at most 9, so a correction stage adds 6 and emits a decimal carry when <img class="m" src="m/6d4806a9fbde9ea00c788cf48e10f18d51de3955.svg" alt="\(C_4+z_3z_2+z_3z_1=1\)" style="height:0.913em;vertical-align:-0.164em">; cascading one such cell per digit adds multi-digit decimal numbers.</p>
+<p class="rel"><span>needs</span> <a href="ripple-carry-adder.html">Full adder and ripple-carry adder</a></p>
+<p class="rel"><span>see also</span> <a href="counters.html">Synchronous counters</a>, <a href="seven-segment-decoder.html">7-segment decoder: don't-cares and joint minimization</a>, <a href="twos-complement.html">Binary numbers and two's complement</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="ripple-carry-adder.html">Full adder and ripple-carry adder</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org47f8ca5" class="outline-2">
+<h2 id="org47f8ca5">Construction</h2>
+<div class="outline-text-2" id="text-org47f8ca5">
+<p>
+BCD: <img class="m" src="m/745e64c54815c8c8b790fa54477649eaf59d8041.svg" alt="\(29=0010\,1001\)" style="height:0.706em;vertical-align:-0.000em">. 8 bits cover only <img class="m" src="m/cd8f97c6b91552182105a65cb7863ae8d5829ea7.svg" alt="\(0\dots99\)" style="height:0.706em;vertical-align:-0.000em"> instead of <img class="m" src="m/19ab96044cda83d3a3201d59db5c0fcc000909b5.svg" alt="\(0\dots255\)" style="height:0.706em;vertical-align:-0.000em">: less efficient than binary, but decoding to a display is per digit.
+Per digit: <img class="m" src="m/a9a37513dcefd8f2d9d1b5b9726fc73d50ce0973.svg" alt="\(Z=A+B+c_{in}\)" style="height:0.913em;vertical-align:-0.164em"> with a binary 4-bit adder, <img class="m" src="m/a8749766b60e8c708bdd31d5ab14107cb53c7f6a.svg" alt="\(0\le Z\le9+9+1=19\)" style="height:0.898em;vertical-align:-0.153em">. If <img class="m" src="m/6c77215d3613d5b56c633b72b36211fd95790d1d.svg" alt="\(Z\le9\)" style="height:0.898em;vertical-align:-0.153em"> it is already the digit. If <img class="m" src="m/104a1f9f3d5a13e41f904cea50c2f45ce721f783.svg" alt="\(Z\ge10\)" style="height:0.898em;vertical-align:-0.153em">, the correct digit is <img class="m" src="m/2baf5814e8acee24829922dbe066fcad4ff1eb71.svg" alt="\(Z-10\)" style="height:0.840em;vertical-align:-0.092em"> with a decimal carry; on 4 bits <img class="m" src="m/794619b6cfa5a95709b3a4cd97b2023908c8e64a.svg" alt="\(Z-10\equiv Z+6\pmod{16}\)" style="height:1.096em;vertical-align:-0.274em">, so a second adder adds <img class="m" src="m/4294f26366acbb890edc9bc8704be094e37fd2be.svg" alt="\(0110\)" style="height:0.706em;vertical-align:-0.000em">.
+Correction condition: <img class="m" src="m/104a1f9f3d5a13e41f904cea50c2f45ce721f783.svg" alt="\(Z\ge10\)" style="height:0.898em;vertical-align:-0.153em"> iff the binary carry <img class="m" src="m/911b4624bf6e8f4eb84913dd4bd8e48af791b077.svg" alt="\(C_4=1\)" style="height:0.913em;vertical-align:-0.164em"> (<img class="m" src="m/337097776d4e755e92de304550c8f32358882f70.svg" alt="\(Z\ge16\)" style="height:0.898em;vertical-align:-0.153em">) or <img class="m" src="m/b2a50f301feb2a9058cf8d23a0641311d432bd4d.svg" alt="\(Z_{3..0}\in\{1010,\dots,1111\}\)" style="height:1.096em;vertical-align:-0.274em">:
+<div class="mb"><img class="m" src="m/9343405c67414c27e4a88de4147de88825cafe71.svg" alt="\[ K=C_4+z_3z_2+z_3z_1. \]" style="width:10.734em"></div>
+<img class="m" src="m/3ca4d6cca1314e4ecbbb2d1feb74a62824f5ec5c.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> is the decimal carry to the next digit and drives the second adder's operand <img class="m" src="m/d4b65f81532ed28439d638dad4736fa142c3c598.svg" alt="\(0KK0\)" style="height:0.749em;vertical-align:-0.000em">. A 3-digit adder is three such cells chained through <img class="m" src="m/3ca4d6cca1314e4ecbbb2d1feb74a62824f5ec5c.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc9c7640" class="outline-2">
+<h2 id="orgc9c7640">Example</h2>
+<div class="outline-text-2" id="text-orgc9c7640">
+<ul class="org-ul">
+<li><img class="m" src="m/7e260885557cb746de098b6120e570eca82e712a.svg" alt="\(3+6=9\)" style="height:0.798em;vertical-align:-0.088em">: <img class="m" src="m/dd8665384171c28d3237cd69303c58709335a6df.svg" alt="\(Z=1001\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/8d006fd3b9872571ba3be4a0d565540a77d0cfbb.svg" alt="\(K=0\)" style="height:0.749em;vertical-align:-0.000em">, no correction.</li>
+<li><img class="m" src="m/6ed803760aa5ecc6f02ed3530fd2d1e6e6d056a7.svg" alt="\(2+8=10\)" style="height:0.798em;vertical-align:-0.088em">: <img class="m" src="m/059f6bf734c00d98974e786952d75e1bec92ba11.svg" alt="\(Z=1010\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/61468311c6bd2b7ca6b4085a7b8174878a6285e7.svg" alt="\(K=1\)" style="height:0.749em;vertical-align:-0.000em"> (<img class="m" src="m/3df651cee9422745ff4e7deb91d245be7622678f.svg" alt="\(z_3z_1\)" style="height:0.636em;vertical-align:-0.165em">); <img class="m" src="m/e5a79962330e52403b0867ced5793252c8a294a1.svg" alt="\(1010+0110=1\,0000\)" style="height:0.798em;vertical-align:-0.088em">: digit 0, carry 1 → "10".</li>
+<li><img class="m" src="m/a47fa8e75fcbbf1101b3cf6bc0859f7b6d131414.svg" alt="\(7+8=15\)" style="height:0.798em;vertical-align:-0.088em">: <img class="m" src="m/c5d6e30ca47b8e99c3e61ce1c34b7a99d7416cf9.svg" alt="\(Z=1111\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/61468311c6bd2b7ca6b4085a7b8174878a6285e7.svg" alt="\(K=1\)" style="height:0.749em;vertical-align:-0.000em">; <img class="m" src="m/4b36274b5015c18ff722b0f8a9f8c790c77c6211.svg" alt="\(1111+0110=1\,0101\)" style="height:0.798em;vertical-align:-0.088em">: digit 5, carry 1.</li>
+<li><img class="m" src="m/8df60b14a1e06735bff571746b32919108644fd9.svg" alt="\(9+9=18\)" style="height:0.798em;vertical-align:-0.088em">: <img class="m" src="m/4b08fdeb3da5cc13f78561bcb734481ded2336e3.svg" alt="\(Z=1\,0010\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/f60c5911550c522db6e4fde95c2f4e25bb27af71.svg" alt="\(C_4=1\Rightarrow K=1\)" style="height:0.913em;vertical-align:-0.164em">; <img class="m" src="m/485d4152b8449c65ae91a29d5225fc10e21afc08.svg" alt="\(0010+0110=1000\)" style="height:0.798em;vertical-align:-0.088em">: digit 8, carry 1.</li>
+</ul>
+<p>
+The carry out of the correction adder is ignored: <img class="m" src="m/3ca4d6cca1314e4ecbbb2d1feb74a62824f5ec5c.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> already carries the information.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd0958ff" class="outline-2">
+<h2 id="orgd0958ff">Intuition</h2>
+<div class="outline-text-2" id="text-orgd0958ff">
+<p>
+A binary nibble counts to 15, a decimal digit to 9: adding 6 skips the six codes that BCD never uses.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf40607a" class="outline-2">
+<h2 id="orgf40607a">Pitfall</h2>
+<div class="outline-text-2" id="text-orgf40607a">
+<p>
+Testing only <img class="m" src="m/eeeff7003fd3e84e708767ab1a235adb387f200f.svg" alt="\(C_4\)" style="height:0.913em;vertical-align:-0.164em"> misses sums 10–15, which do not overflow 4 bits; testing only the code <img class="m" src="m/a3a6ea085d0b6554dfbf97be9995a56c36747066.svg" alt="\(\ge1010\)" style="height:0.855em;vertical-align:-0.145em"> misses 16–19, whose 4-bit result looks valid (<img class="m" src="m/55a5d2074efadad9aa328b2fbc1ed9fd5dee8630.svg" alt="\(9+9\)" style="height:0.798em;vertical-align:-0.088em"> gives <img class="m" src="m/26584aa5e17c559072dc4b8fa05dbd74040c67db.svg" alt="\(0010\)" style="height:0.706em;vertical-align:-0.000em">).
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="ripple-carry-adder.html"><span>← previous</span>Full adder and ripple-carry adder</a><a rel="next" href="twos-complement.html"><span>next →</span>Binary numbers and two's complement</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--arithmetic.pdf" title="PDF manual">Arithmetic</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

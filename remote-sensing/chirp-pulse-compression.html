@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chirp and pulse compression · Remote Sensing</title>
+<meta name="description" content="Instead of a very short, very powerful pulse, radars transmit a long linear-frequency-modulated pulse (chirp) of bandwidth B and correlate the echo with a replica (matched filter); the output peak has width \approx1/B, so the range resolution becomes c/(2B), independent of the pulse duration.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/chirp-pulse-compression.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Chirp and pulse compression · Remote Sensing">
+<meta property="og:description" content="Instead of a very short, very powerful pulse, radars transmit a long linear-frequency-modulated pulse (chirp) of bandwidth B and correlate the echo with a replica (matched filter); the output peak has width \approx1/B, so the range resolution becomes c/(2B), independent of the pulse duration.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/chirp-pulse-compression.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-acquisition">Acquisition</a> / <a rel="up" href="index.html#a-acquisition--radar">Radar</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Acquisition · Radar</p>
+<h1>Chirp and pulse compression</h1>
+<p class="summary">Instead of a very short, very powerful pulse, radars transmit a long linear-frequency-modulated pulse (chirp) of bandwidth <img class="m" src="m/930bceceff5ba504b5eefacfc24da37e501bf942.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> and correlate the echo with a replica (matched filter); the output peak has width <img class="m" src="m/3b9e91023098cf04e0436d93eec27db2d0a1dc46.svg" alt="\(\approx1/B\)" style="height:1.096em;vertical-align:-0.274em">, so the range resolution becomes <img class="m" src="m/0b3e88f701a3d9bc8fa4c31a1590c71564739236.svg" alt="\(c/(2B)\)" style="height:1.096em;vertical-align:-0.274em">, independent of the pulse duration.</p>
+<p class="rel"><span>needs</span> <a href="range-resolution.html">Range resolution</a></p>
+<p class="rel"><span>unlocks</span> <a href="synthetic-aperture-radar.html">Synthetic aperture radar (SAR)</a></p>
+<p class="rel"><span>see also</span> <a href="synthetic-aperture-radar.html">Synthetic aperture radar (SAR)</a></p>
+<p class="rel"><span>mentioned in</span> <a href="radar-equation.html">Radar principle and radar equation</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="radar-equation.html">Radar principle and radar equation</a></li><li><a href="side-looking-radar.html">Side-looking radar geometry</a></li><li><a href="range-resolution.html">Range resolution</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org1d34196" class="outline-2">
+<h2 id="org1d34196">Construction</h2>
+<div class="outline-text-2" id="text-org1d34196">
+<p>
+Chirp of duration <img class="m" src="m/f6dbecc239e450f53af45d107f726afd4b4df40b.svg" alt="\(\tau\)" style="height:0.472em;vertical-align:-0.000em"> and rate <img class="m" src="m/ffba2bd3deca9ae12b2f58d5d12739b5efaff0ec.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em">: <img class="m" src="m/f3cd6dff89a6cda81df97ebec059aa4a4c42a4c4.svg" alt="\(s(t)=\mathrm{rect}(t/\tau)\cos\!\big(2\pi f_0t+\pi k t^2\big)\)" style="height:1.315em;vertical-align:-0.381em">, instantaneous frequency <img class="m" src="m/447432f40cd031c7f37939c3895764d82d72663c.svg" alt="\(f_0+kt\)" style="height:0.974em;vertical-align:-0.214em">, bandwidth <img class="m" src="m/71b93049c4a5d4f4e9e2cf63039081654c1cc48c.svg" alt="\(B=k\tau\)" style="height:0.761em;vertical-align:-0.000em">. The matched filter (correlation with <img class="m" src="m/00b2155e971309b645bdf0b1b3b3b5c55cdf37d3.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em">) compresses the echo into a sinc-like peak of width <img class="m" src="m/355aaa1ab1c8e45edd4720ce321c2bc8b226bad0.svg" alt="\(1/B\)" style="height:1.096em;vertical-align:-0.274em">:
+<div class="mb"><img class="m" src="m/00ce860a79f1f39d38743b4d8ad748896f91e0a4.svg" alt="\[ r_{SR}=\frac{c}{2B},\qquad r_{GR}=\frac{c}{2B\sin\theta}. \]" style="width:15.245em"></div>
+The compression ratio <img class="m" src="m/99fddfc5e2bfa66ea1c25f1255b872d8c2d29043.svg" alt="\(\tau B\)" style="height:0.749em;vertical-align:-0.000em"> (time–bandwidth product, typically 100–1000) is the gain in peak-to-energy ratio.
+</p>
+</div>
+</div>
+<div id="outline-container-org71ad432" class="outline-2">
+<h2 id="org71ad432">Picture</h2>
+<div class="outline-text-2" id="text-org71ad432">
+<figure class="fig"><img class="m" src="m/39b5a6f6a4417c2a727bc22f5433435508988c08.svg" alt="figure" style="width:18.875em"><figcaption><span class="fl">Figure 1.</span> A linear frequency-modulated pulse (chirp) <img class="m" src="m/1428f7fa027d2968d2bb33b767f97d905c1f440d.svg" alt="\(s(t)\)" style="height:1.096em;vertical-align:-0.274em">: its frequency sweeps over the bandwidth, which matched filtering compresses into a short pulse.</figcaption></figure>
+<p>
+A chirp: frequency grows linearly during the pulse.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd474390" class="outline-2">
+<h2 id="orgd474390">Example</h2>
+<div class="outline-text-2" id="text-orgd474390">
+<p>
+<a href="copernicus-sentinel.html">Sentinel-1</a> uses chirps of up to 100 MHz bandwidth: <img class="m" src="m/1230ff3f10f46c3e42213ba5ead7f41c28797bc6.svg" alt="\(c/(2B)=1.5\)" style="height:1.096em;vertical-align:-0.274em"> m in <a href="side-looking-radar.html">slant range</a>, a few metres on the ground, with pulses tens of microseconds long.
+</p>
+</div>
+</div>
+<div id="outline-container-orgcb7dbe7" class="outline-2">
+<h2 id="orgcb7dbe7">Intuition</h2>
+<div class="outline-text-2" id="text-orgcb7dbe7">
+<p>
+A long whistle that rises in pitch: each instant of the echo is labelled by its frequency, so the receiver can tell overlapping echoes apart and re-stack them into a sharp click.
+</p>
+</div>
+</div>
+<div id="outline-container-orge249f3d" class="outline-2">
+<h2 id="orge249f3d">Pitfall</h2>
+<div class="outline-text-2" id="text-orge249f3d">
+<p>
+Compression produces sidelobes around strong targets; they are reduced by weighting (windowing) the filter, at the cost of a slightly wider peak.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="range-resolution.html"><span>← previous</span>Range resolution</a><a rel="next" href="radar-geometric-distortions.html"><span>next →</span>Foreshortening, layover and shadow</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/acquisition--radar.pdf" title="PDF manual">Radar</a> · <a class="pdf" href="pdf/acquisition.pdf" title="PDF manual">Acquisition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

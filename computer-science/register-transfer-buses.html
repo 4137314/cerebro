@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Register transfers: multiplexers, buses, tri-state · Computer Science</title>
+<meta name="description" content="Data move between m registers of n bits through a dedicated mux per register (any set of transfers in one cycle, (m-1)n-input muxes, wiring explodes), a shared bus driven by one mux (one value per cycle, every register may load it) or a tri-state bus (registers drive the bus through enabled buffers…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/register-transfer-buses.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Register transfers: multiplexers, buses, tri-state · Computer Science">
+<meta property="og:description" content="Data move between m registers of n bits through a dedicated mux per register (any set of transfers in one cycle, (m-1)n-input muxes, wiring explodes), a shared bus driven by one mux (one value per cycle, every register may load it) or a tri-state bus (registers drive the bus through enabled buffers…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/register-transfer-buses.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--sequential">Sequential</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Hardware · Sequential</p>
+<h1>Register transfers: multiplexers, buses, tri-state</h1>
+<p class="summary">Data move between <img class="m" src="m/5f2d4f790b418da9d600db34c8fe8eb825040aa9.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em"> registers of <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> bits through a dedicated mux per register (any set of transfers in one cycle, <img class="m" src="m/9cd11bc25080c094e81770e2cc07d39eb6279d25.svg" alt="\((m-1)n\)" style="height:1.096em;vertical-align:-0.274em">-input muxes, wiring explodes), a shared bus driven by one mux (one value per cycle, every register may load it) or a tri-state bus (registers drive the bus through enabled buffers: same transfers as the mux bus, minimal wiring, best scalability, but at most one enable active at a time).</p>
+<p class="rel"><span>needs</span> <a href="rtl-design.html">The RTL design method: datapath and control unit</a></p>
+<p class="rel"><span>see also</span> <a href="multiplexer.html">Multiplexer and demultiplexer</a>, <a href="datapath-control.html">Datapath and control unit</a>, <a href="std-logic.html">std_logic: nine-valued logic and resolution</a>, <a href="alu-design.html">Arithmetic logic unit</a></p>
+<p class="rel"><span>mentioned in</span> <a href="multiplexer.html">Multiplexer and demultiplexer</a></p>
+<details class="path"><summary>Learning path: 15 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="multiplexer.html">Multiplexer and demultiplexer</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li><li><a href="sr-latch.html">SR latch and D latch</a></li><li><a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></li><li><a href="fsm-analysis.html">Analysis of synchronous sequential circuits</a></li><li><a href="fsm-synthesis.html">Synthesis of finite-state machines</a></li><li><a href="mealy-moore.html">Mealy versus Moore machines</a></li><li><a href="asm-chart.html">Algorithmic state machine (ASM) charts</a></li><li><a href="registers-shift-registers.html">Registers and shift registers</a></li><li><a href="counters.html">Synchronous counters</a></li><li><a href="fsm-patterns.html">Recurring state-machine patterns</a></li><li><a href="rtl-design.html">The RTL design method: datapath and control unit</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org378844a" class="outline-2">
+<h2 id="org378844a">Construction</h2>
+<div class="outline-text-2" id="text-org378844a">
+<p>
+<b>Dedicated multiplexers</b>: each register <img class="m" src="m/3818f9c5fe2d92208c003d9de59852ba4829e2f3.svg" alt="\(R_i\)" style="height:0.913em;vertical-align:-0.164em"> has a mux choosing among the others' outputs (select <img class="m" src="m/389ec890e06ac8525d91b74741c8630254c85935.svg" alt="\(S_i\)" style="height:0.913em;vertical-align:-0.164em">) and a load <img class="m" src="m/d3da5f723fdc67a3abeee865e38f4b947d6a21c9.svg" alt="\(L_i\)" style="height:0.913em;vertical-align:-0.164em">. Any permutation in one cycle, even a swap <img class="m" src="m/9ed43d96fafd4af3f4ac687f95f0aecd8a3c0a5d.svg" alt="\(R_0\gets R_1, R_1\gets R_0\)" style="height:0.962em;vertical-align:-0.212em"> — it works because all registers sample at the same edge. Cost: <img class="m" src="m/dec0dedc93b53e419521d987b791cc7227ae2009.svg" alt="\(m\cdot n\)" style="height:0.487em;vertical-align:-0.000em"> wires back to every mux, each mux with <img class="m" src="m/9cd11bc25080c094e81770e2cc07d39eb6279d25.svg" alt="\((m-1)n\)" style="height:1.096em;vertical-align:-0.274em"> inputs; adding a register changes every mux.
+<b>Mux bus</b>: one mux selects one register onto a bus wired to all register inputs; loads choose who stores it. One source per cycle: <img class="m" src="m/790fe36e4c93743e7c0f29dc3316168d716939e6.svg" alt="\(R_0\gets R_2, R_1\gets R_0\)" style="height:0.962em;vertical-align:-0.212em"> needs two cycles, in the right order (first save <img class="m" src="m/bb94451f51e79c3d344361ad85263bd68fd92f85.svg" alt="\(R_0\)" style="height:0.913em;vertical-align:-0.164em"> into <img class="m" src="m/d9a12797b2d99d554c3f46d03d5deb65336f573f.svg" alt="\(R_1\)" style="height:0.913em;vertical-align:-0.164em">, then overwrite <img class="m" src="m/bb94451f51e79c3d344361ad85263bd68fd92f85.svg" alt="\(R_0\)" style="height:0.913em;vertical-align:-0.164em">). One mux, wiring concentrated in one place, easier to extend.
+<b>Tri-state bus</b>: a tri-state buffer passes its input when enabled and otherwise disconnects (high impedance, <code>Z</code> in <a href="std-logic.html">std_logic</a>). Each register drives the bus through its own buffer (enable <img class="m" src="m/dc42e376222d9a64dc6aa3b52fe708edd7417687.svg" alt="\(E_i\)" style="height:0.913em;vertical-align:-0.164em">) and loads from it (<img class="m" src="m/d3da5f723fdc67a3abeee865e38f4b947d6a21c9.svg" alt="\(L_i\)" style="height:0.913em;vertical-align:-0.164em">): one line crosses all registers, no central component, lower loads, good speed, adding a register is attaching it. The control must guarantee that at most one <img class="m" src="m/dc42e376222d9a64dc6aa3b52fe708edd7417687.svg" alt="\(E_i\)" style="height:0.913em;vertical-align:-0.164em"> is 1 (a decoder on a source address does it); two drivers fighting short-circuit the bus.
+An ALU or shared adder sits on these structures: sharing saves hardware and serializes operations.
+</p>
+</div>
+</div>
+<div id="outline-container-org3f4e498" class="outline-2">
+<h2 id="org3f4e498">Example</h2>
+<div class="outline-text-2" id="text-org3f4e498">
+<p>
+Three registers, mux bus with select <img class="m" src="m/ec745d4aa51f8db4101b79ff5a3b2bb196801e5a.svg" alt="\(S_1S_0\)" style="height:0.913em;vertical-align:-0.164em"> (00→R0, 01→R1, 10→R2) and loads <img class="m" src="m/f87c7a7332937040aa626cc6a8f3181cecd875da.svg" alt="\(L_0L_1L_2\)" style="height:0.913em;vertical-align:-0.164em">:
+</p>
+<ul class="org-ul">
+<li><img class="m" src="m/eb688e60ccffd51290960e7bae9fcadfc18026d4.svg" alt="\(S=10\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/c4cb142e1b1e4e18bdc1558ff55f42f7775cc185.svg" alt="\(L=100\)" style="height:0.749em;vertical-align:-0.000em">: <img class="m" src="m/902bb63ed76c80243a6a5cb591b700ad2c9d3100.svg" alt="\(R_0\gets R_2\)" style="height:0.913em;vertical-align:-0.164em">.</li>
+<li><img class="m" src="m/4f47ff0df2b439ba598ba51bb5f98eafc4f294cd.svg" alt="\(S=01\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/ccac5f9652a16b5efd34cadc119238c4b0d3ea26.svg" alt="\(L=101\)" style="height:0.749em;vertical-align:-0.000em">: <img class="m" src="m/71126d54296958ade85874cefb9b4029fe0a5b44.svg" alt="\(R_0\gets R_1\)" style="height:0.913em;vertical-align:-0.164em"> and <img class="m" src="m/d6749657f3283fe2263ac19e01659e6fab106d1d.svg" alt="\(R_2\gets R_1\)" style="height:0.913em;vertical-align:-0.164em"> (one source, many destinations: fine).</li>
+<li><img class="m" src="m/902bb63ed76c80243a6a5cb591b700ad2c9d3100.svg" alt="\(R_0\gets R_2\)" style="height:0.913em;vertical-align:-0.164em"> and <img class="m" src="m/ac1584b10fb418ad583857594f4238f37df2d95e.svg" alt="\(R_1\gets R_0\)" style="height:0.913em;vertical-align:-0.164em"> together: impossible; cycle 1 <img class="m" src="m/9a1bd9f67248151b1dfc55b6238e90fc1ea76997.svg" alt="\(S=00, L=010\)" style="height:0.962em;vertical-align:-0.212em"> (<img class="m" src="m/ac1584b10fb418ad583857594f4238f37df2d95e.svg" alt="\(R_1\gets R_0\)" style="height:0.913em;vertical-align:-0.164em">), cycle 2 <img class="m" src="m/06f930231f65d3075dbda521fde03d8924099233.svg" alt="\(S=10, L=100\)" style="height:0.962em;vertical-align:-0.212em"> (<img class="m" src="m/902bb63ed76c80243a6a5cb591b700ad2c9d3100.svg" alt="\(R_0\gets R_2\)" style="height:0.913em;vertical-align:-0.164em">).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org69782aa" class="outline-2">
+<h2 id="org69782aa">Intuition</h2>
+<div class="outline-text-2" id="text-org69782aa">
+<p>
+Point-to-point roads let everyone travel at once but cover the map with asphalt; a bus is one road with a traffic light.
+</p>
+</div>
+</div>
+<div id="outline-container-orgacaf299" class="outline-2">
+<h2 id="orgacaf299">Pitfall</h2>
+<div class="outline-text-2" id="text-orgacaf299">
+<p>
+On FPGAs internal tri-states usually do not exist: synthesis turns them into multiplexers. And during the cycle in which the enables switch, two drivers can overlap briefly — real designs leave a gap or use a mux.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="rtl-design.html"><span>← previous</span>The RTL design method: datapath and control unit</a><a rel="next" href="state-minimization.html"><span>next →</span>State minimization</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--sequential.pdf" title="PDF manual">Sequential</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

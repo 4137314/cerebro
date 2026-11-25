@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shallow and deep copy, rule of three · Computer Science</title>
+<meta name="description" content="The generated copy copies pointers, not what they point to, so two objects end up sharing (and both deleting) one heap object; a class that owns memory must define destructor, copy constructor and copy assignment together.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/shallow-deep-copy.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Shallow and deep copy, rule of three · Computer Science">
+<meta property="og:description" content="The generated copy copies pointers, not what they point to, so two objects end up sharing (and both deleting) one heap object; a class that owns memory must define destructor, copy constructor and copy assignment together.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/shallow-deep-copy.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--cpp">Cpp</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Programming · Cpp</p>
+<h1>Shallow and deep copy, rule of three</h1>
+<p class="summary">The generated copy copies pointers, not what they point to, so two objects end up sharing (and both deleting) one heap object; a class that owns memory must define destructor, copy constructor and copy assignment together.</p>
+<p class="rel"><span>needs</span> <a href="cpp-special-members.html">Special member functions and RAII</a>, <a href="aggregation-composition.html">Aggregation and composition</a></p>
+<p class="rel"><span>unlocks</span> <a href="move-semantics.html">Move semantics and the rule of five</a>, <a href="copy-and-swap.html">The copy-and-swap idiom</a></p>
+<p class="rel"><span>see also</span> <a href="move-semantics.html">Move semantics and the rule of five</a>, <a href="smart-pointers.html">Smart pointers: unique_ptr, shared_ptr, weak_ptr</a>, <a href="equals-hashcode.html">The equals–hashCode contract</a>, <a href="copy-and-swap.html">The copy-and-swap idiom</a></p>
+<p class="rel"><span>mentioned in</span> <a href="parameter-passing.html">Parameter passing</a>, <a href="pointers-references.html">Pointers, references and dynamic memory in C++</a>, <a href="stack-and-queue.html">Stack and queue as classes</a>, <a href="java-object-class.html">The class Object and final</a></p>
+<details class="path"><summary>Learning path: 6 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-association.html">Association, links and multiplicity</a></li><li><a href="aggregation-composition.html">Aggregation and composition</a></li><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="pointers-references.html">Pointers, references and dynamic memory in C++</a></li><li><a href="cpp-special-members.html">Special member functions and RAII</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orge520471" class="outline-2">
+<h2 id="orge520471">Statement</h2>
+<div class="outline-text-2" id="text-orge520471">
+<p>
+<b>Shallow copy</b>: copy the members' values; for a pointer member, the address. <b>Deep copy</b>: copy the pointed object too, so the copy owns its own.
+</p>
+
+<p>
+<b>Rule of three</b>: if a class needs a user-defined destructor, copy constructor or copy assignment, it needs all three. (Rule of five with the two move operations.)
+</p>
+</div>
+</div>
+<div id="outline-container-orgbaa93f4" class="outline-2">
+<h2 id="orgbaa93f4">Derivation</h2>
+<div class="outline-text-2" id="text-orgbaa93f4">
+<p>
+Take <code>class A { int i; B* pb; };</code> with <code>pb</code> owning a heap <code>B</code>. The generated <a href="cpp-special-members.html">copy constructor</a> copies <code>pb</code>: after <code>A a2(a);</code> both point to one <code>B</code>. Changing <code>a2</code>'s <code>B</code> changes <code>a</code>'s; when both die, <code>~A</code> deletes the same <code>B</code> twice. Defining the copy to allocate a new <code>B</code> restores one <code>B</code> per <code>A</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdb3b15c" class="outline-2">
+<h2 id="orgdb3b15c">Picture</h2>
+<div class="outline-text-2" id="text-orgdb3b15c">
+<figure class="fig"><img class="m" src="m/805373ffe93eaf589bfff763c23989b1fa3efe54.svg" alt="figure" style="width:24.795em"><figcaption><span class="fl">Figure 1.</span> Shallow copy shares the buffer B between a and a2, so both point to it; deep copy gives each object its own buffer.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org310fa0a" class="outline-2">
+<h2 id="org310fa0a">Construction</h2>
+<div class="outline-text-2" id="text-org310fa0a">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="n">A</span>::<span class="f">A</span>(<span class="k">const</span> <span class="t">A</span>&amp; <span class="v">a</span>) : i(a.i), pb(a.pb ? <span class="k">new</span> <span class="t">B</span>(*a.pb) : <span class="n">nullptr</span>) {}
+
+<span class="t">A</span>&amp; <span class="n">A</span>::<span class="k">operator</span>=(<span class="k">const</span> <span class="t">A</span>&amp; <span class="v">a</span>) {
+  <span class="k">if</span> (<span class="k">this</span> == &amp;a) <span class="k">return</span> *<span class="k">this</span>;          <span class="c">// self-assignment
+</span>  i = a.i;
+  <span class="k">if</span> (<span class="k">!</span>a.pb)      { <span class="k">delete</span> pb; pb = <span class="n">nullptr</span>; }
+  <span class="k">else</span> <span class="k">if</span> (pb)    { *pb = *a.pb; }       <span class="c">// reuse the B we already own
+</span>  <span class="k">else</span>            { pb = <span class="k">new</span> <span class="t">B</span>(*a.pb); }
+  <span class="k">return</span> *<span class="k">this</span>;
+}
+
+<span class="n">A</span>::~<span class="f">A</span>() { <span class="k">delete</span> pb; }                   <span class="c">// deleting nullptr is a no-op</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orgf33634d" class="outline-2">
+<h2 id="orgf33634d">Intuition</h2>
+<div class="outline-text-2" id="text-orgf33634d">
+<p>
+Copying a house key is not copying the house. If each object is supposed to have its own house, the copy has to build one.
+</p>
+</div>
+</div>
+<div id="outline-container-orgcb745e1" class="outline-2">
+<h2 id="orgcb745e1">Pitfall</h2>
+<div class="outline-text-2" id="text-orgcb745e1">
+<p>
+Java has the same distinction: assignment copies references, <code>clone()</code> is shallow by default, and a deep copy must be written by hand.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="exception-safety.html"><span>← previous</span>Exception-safety guarantees</a><a rel="next" href="value-categories.html"><span>next →</span>Value categories and rvalue references</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--cpp.pdf" title="PDF manual">Cpp</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hard optimization problems and heuristics · Computer Science</title>
+<meta name="description" content="Most design-automation problems — minimum logic cover, placement, state encoding, scheduling under resource constraints — ask for the cheapest legal configuration among exponentially many; they are NP-hard, so tools use exact algorithms only on small or special instances and heuristics elsewhere.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/np-hard-optimization.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Hard optimization problems and heuristics · Computer Science">
+<meta property="og:description" content="Most design-automation problems — minimum logic cover, placement, state encoding, scheduling under resource constraints — ask for the cheapest legal configuration among exponentially many; they are NP-hard, so tools use exact algorithms only on small or special instances and heuristics elsewhere.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/np-hard-optimization.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--complexity">Complexity</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Hardware · Complexity</p>
+<h1>Hard optimization problems and heuristics</h1>
+<p class="summary">Most design-automation problems — minimum logic cover, placement, state encoding, scheduling under resource constraints — ask for the cheapest legal configuration among exponentially many; they are NP-hard, so tools use exact algorithms only on small or special instances and heuristics elsewhere.</p>
+<p class="rel"><span>needs</span> <a href="big-o-complexity.html">Computational complexity and big-O</a></p>
+<p class="rel"><span>unlocks</span> <a href="list-scheduling.html">List scheduling</a></p>
+<p class="rel"><span>see also</span> <a href="technology-mapping.html">Technology mapping by tree covering</a>, <a href="list-scheduling.html">List scheduling</a>, <a href="multilevel-logic-optimization.html">Multi-level logic optimization</a>, <a href="digital-design-flow.html">Digital design flow and abstraction levels</a></p>
+<p class="rel"><span>mentioned in</span> <a href="fsm-state-encoding.html">State encoding of FSMs</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="big-o-complexity.html">Computational complexity and big-O</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org50c2013" class="outline-2">
+<h2 id="org50c2013">Definition</h2>
+<div class="outline-text-2" id="text-org50c2013">
+<p>
+An <b>optimization problem</b> asks for a legal configuration of a finite number of elements with minimum (or maximum) cost:
+</p>
+<ul class="org-ul">
+<li>an expression: the smallest equivalent <a href="pla-pal.html">sum of products</a>;</li>
+<li>gates connected by wires: a placement minimising total wire length;</li>
+<li>a finite-state machine: a binary <a href="fsm-state-encoding.html">state encoding</a> with the fastest <a href="finite-state-machine.html">next-state logic</a>;</li>
+<li>a <a href="data-flow-graph.html">data-flow graph</a>: a schedule with minimum latency for a given number of units.</li>
+</ul>
+<p>
+With finitely many configurations, trying all of them solves the problem, but their number is exponential in the size.
+</p>
+
+<p>
+<b>P</b> is the class of decision problems solvable in polynomial time; <b>NP</b> those whose solutions can be checked in polynomial time. A problem is <b>NP-hard</b> if every NP problem reduces to it in polynomial time; no polynomial algorithm is known for any of them.
+</p>
+</div>
+</div>
+<div id="outline-container-org1a72aa6" class="outline-2">
+<h2 id="org1a72aa6">Derivation</h2>
+<div class="outline-text-2" id="text-org1a72aa6">
+<p>
+Encoding <img class="m" src="m/a6b3b959e1474b87242b0106c5fd9e3d5416e924.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> states with <img class="m" src="m/9f9f94e2b49b5b04887f1911139076198c1b9568.svg" alt="\(\lceil\log_2 s\rceil\)" style="height:1.096em;vertical-align:-0.274em"> bits admits <img class="m" src="m/c125844f7ebbd2b39f8ed758a76cd7e878ec68e6.svg" alt="\(2^{b}!/(2^{b}-s)!\)" style="height:1.204em;vertical-align:-0.277em"> assignments: for 8 states in 3 bits, <img class="m" src="m/258646e98dfeea6c9223fc3e62c56a92494186dc.svg" alt="\(8!=40320\)" style="height:0.761em;vertical-align:-0.000em">; for 16 states in 4 bits, <img class="m" src="m/0da42463cffbf2dda89765eae15b3b176b086f9a.svg" alt="\(16!\approx2\times10^{13}\)" style="height:0.983em;vertical-align:-0.089em">. Exhaustive search is hopeless already at modest sizes, so one accepts good, not optimal, solutions.
+</p>
+</div>
+</div>
+<div id="outline-container-org1b44924" class="outline-2">
+<h2 id="org1b44924">Strategies</h2>
+<div class="outline-text-2" id="text-org1b44924">
+<ul class="org-ul">
+<li>exact algorithms on restricted cases: <a href="technology-mapping.html">tree covering</a> by dynamic programming is optimal and linear on trees;</li>
+<li>greedy heuristics with priorities: <a href="list-scheduling.html">list scheduling</a>;</li>
+<li>local improvement: iterative rewriting of <a href="multilevel-logic-optimization.html">logic networks</a>, simulated annealing for placement;</li>
+<li>decomposition: split the problem (tree partition of a DAG) and solve each part well.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5c16d3a" class="outline-2">
+<h2 id="org5c16d3a">Intuition</h2>
+<div class="outline-text-2" id="text-org5c16d3a">
+<p>
+When perfection costs exponential time, engineering is the art of being good enough quickly.
+</p>
+</div>
+</div>
+<div id="outline-container-orga8ca643" class="outline-2">
+<h2 id="orga8ca643">Pitfall</h2>
+<div class="outline-text-2" id="text-orga8ca643">
+<p>
+NP-hard is about the worst case: many practical instances are easy. And a heuristic's result has no guarantee: compare against bounds before trusting it.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="digital-design-flow.html"><span>← previous</span>Digital design flow and abstraction levels</a><a rel="next" href="rom-as-logic.html"><span>next →</span>Logic functions as memories</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--complexity.pdf" title="PDF manual">Complexity</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

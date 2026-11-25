@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Limit superior and limit inferior · Mathematics</title>
+<meta name="description" content="A bounded sequence need not converge, but two numbers are always attached to it, and they exist without any hypothesis at all. That is their point: \limsup and \liminf turn &quot;does this converge?&quot; into an equation between two quantities that are already there, which is what the root test and every la…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/limit-superior-and-limit-inferior.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Limit superior and limit inferior · Mathematics">
+<meta property="og:description" content="A bounded sequence need not converge, but two numbers are always attached to it, and they exist without any hypothesis at all. That is their point: \limsup and \liminf turn &quot;does this converge?&quot; into an equation between two quantities that are already there, which is what the root test and every la…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/limit-superior-and-limit-inferior.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Analysis · Real Analysis</p>
+<h1>Limit superior and limit inferior</h1>
+<p class="summary">A bounded sequence need not converge, but two numbers are always attached to it, and they exist without any hypothesis at all. That is their point: <img class="m" src="m/597ef37e6b3d74f87a2d6a4a2396b5ad801df1eb.svg" alt="\(\limsup\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/e2801b80e5852463091c75e040a1b82b9358329e.svg" alt="\(\liminf\)" style="height:0.761em;vertical-align:-0.000em"> turn "does this converge?" into an equation between two quantities that are already there, which is what the root test and every later oscillation argument need.</p>
+<p class="rel"><span>needs</span> <a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a>, <a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a>, <a href="limit-of-a-sequence.html">Limit of a sequence</a>, <a href="supremum-and-infimum.html">Supremum and infimum</a>, <a href="the-algebra-of-limits.html">The algebra of limits</a></p>
+<p class="rel"><span>unlocks</span> <a href="power-series-and-the-radius-of-convergence.html">Power series and the radius of convergence</a>, <a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a>, <a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li></ol></details>
+</header>
+<main class="note">
+<div class="proposition" id="org0040e6d">
+<p>
+If <img class="m" src="m/c8741f428cd231298f1f92c14d48bc3dea3042ed.svg" alt="\(a_{n} \to L\)" style="height:0.913em;vertical-align:-0.164em">, then every subsequence of <img class="m" src="m/61f9283fe1503c8d1cecd228c646c41f111be43f.svg" alt="\((a_{n})\)" style="height:1.096em;vertical-align:-0.274em"> converges to
+<img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org9356ea9">
+<p>
+Let <img class="m" src="m/9cbc08495ea677a895d8f644a0fbc19f7aa3c9ac.svg" alt="\((a_{n_{k}})\)" style="height:1.103em;vertical-align:-0.276em"> be a subsequence and <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em">. Choose <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> with
+<img class="m" src="m/92fef27f1a8aa31ecf821eafd3a4e950b8f5f4bb.svg" alt="\(\abs{a_{n} - L} &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/e3a7f6df845655195bb1fcfe91670525ec99e1e5.svg" alt="\(n \ge N\)" style="height:0.898em;vertical-align:-0.153em">. Since the indices are
+strictly increasing, <img class="m" src="m/8e30b15da710a573b81ad589f2d3e1000f68e181.svg" alt="\(n_{k} \ge k\)" style="height:0.925em;vertical-align:-0.167em"> for every <img class="m" src="m/5ec5e3b2fda230219e6719c59682076f93242498.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em">, so <img class="m" src="m/211c3ab573d86ece5b3ab70784d310eb20d8265e.svg" alt="\(k \ge N\)" style="height:0.910em;vertical-align:-0.146em">
+gives <img class="m" src="m/b3021ea16f808e849a5a35c14b5c6766900e5be7.svg" alt="\(n_{k} \ge N\)" style="height:0.913em;vertical-align:-0.164em"> and hence <img class="m" src="m/119295b131dc164151fe16fbc9fe3ef1e09d18fa.svg" alt="\(\abs{a_{n_{k}} - L} &lt; \eps\)" style="height:1.103em;vertical-align:-0.276em">.
+</p>
+
+</div>
+
+<div class="definition" id="org21620c6">
+<p>
+Let <img class="m" src="m/61f9283fe1503c8d1cecd228c646c41f111be43f.svg" alt="\((a_{n})\)" style="height:1.096em;vertical-align:-0.274em"> be a bounded sequence. The sequences
+<img class="m" src="m/52c3553374660a146df538e0bd3c6fe86579878d.svg" alt="\(s_{N} = \sup_{n \ge N} a_{n}\)" style="height:0.882em;vertical-align:-0.415em"> and <img class="m" src="m/520cf3fafd3704fb44af5584933d90e9099c6aae.svg" alt="\(t_{N} = \inf_{n \ge N} a_{n}\)" style="height:1.068em;vertical-align:-0.310em">
+are well defined by completeness, decreasing and increasing
+respectively, and bounded. Their limits
+<div class="mb"><img class="m" src="m/5fa0ff0f334aa48b9671d1d42bcacce18d54eae3.svg" alt="\[ \limsup_{n \to \infty} a_{n} = \lim_{N \to \infty} s_{N} = \inf_{N} \sup_{n \ge N} a_{n}, \qquad \liminf_{n \to \infty} a_{n} = \lim_{N \to \infty} t_{N} = \sup_{N} \inf_{n \ge N} a_{n} \]" style="width:35.689em"></div>
+are the <i>limit superior</i> and <i>limit inferior</i> of <img class="m" src="m/61f9283fe1503c8d1cecd228c646c41f111be43f.svg" alt="\((a_{n})\)" style="height:1.096em;vertical-align:-0.274em">. Always
+<img class="m" src="m/92f460c28a97cb6ae6d7e0385157cb20963fc1c9.svg" alt="\(\liminf a_{n} \le \limsup a_{n}\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org398fdc0">
+<p>
+Let <img class="m" src="m/61f9283fe1503c8d1cecd228c646c41f111be43f.svg" alt="\((a_{n})\)" style="height:1.096em;vertical-align:-0.274em"> be bounded and <img class="m" src="m/21ef21495e19499c303423ad2dc75f4ec943ff41.svg" alt="\(L = \limsup a_{n}\)" style="height:0.974em;vertical-align:-0.214em">. Then for every
+<img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> we have <img class="m" src="m/a290bd87b7c4e695249da5e7a032a3b713e516e6.svg" alt="\(a_{n} &lt; L + \eps\)" style="height:0.913em;vertical-align:-0.164em"> for all but finitely many
+<img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">, and <img class="m" src="m/cff7e2018f0baeccd04b53f26dd54553af225a52.svg" alt="\(a_{n} &gt; L - \eps\)" style="height:0.913em;vertical-align:-0.164em"> for infinitely many <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org59e4fb4">
+<p>
+Fix <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em">. Since <img class="m" src="m/71f9582659ca08eba707d4f7ab54c5e30e94ea67.svg" alt="\(s_{N} \to L\)" style="height:0.913em;vertical-align:-0.164em"> and <img class="m" src="m/04ae89a2276ee5e86bf57e57df6b0f1360a5ae74.svg" alt="\((s_{N})\)" style="height:1.096em;vertical-align:-0.274em"> is decreasing,
+there is <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/9e0ed99a445e6bce39b9d2293cab27fca507bfc8.svg" alt="\(s_{N} &lt; L + \eps\)" style="height:0.913em;vertical-align:-0.164em">, that is <img class="m" src="m/a290bd87b7c4e695249da5e7a032a3b713e516e6.svg" alt="\(a_{n} &lt; L + \eps\)" style="height:0.913em;vertical-align:-0.164em">
+for every <img class="m" src="m/e3a7f6df845655195bb1fcfe91670525ec99e1e5.svg" alt="\(n \ge N\)" style="height:0.898em;vertical-align:-0.153em">; only the finitely many terms before <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> can
+fail it. For the second claim, note <img class="m" src="m/9cb20de31864a669a55a9add9891eeea6b2cb0df.svg" alt="\(s_{N} \ge L\)" style="height:0.913em;vertical-align:-0.164em"> for every <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">
+because <img class="m" src="m/04ae89a2276ee5e86bf57e57df6b0f1360a5ae74.svg" alt="\((s_{N})\)" style="height:1.096em;vertical-align:-0.274em"> decreases to <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">. Given <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">, the
+characterisation of the supremum applied to
+<img class="m" src="m/52c3553374660a146df538e0bd3c6fe86579878d.svg" alt="\(s_{N} = \sup_{n \ge N} a_{n}\)" style="height:0.882em;vertical-align:-0.415em"> produces <img class="m" src="m/e3a7f6df845655195bb1fcfe91670525ec99e1e5.svg" alt="\(n \ge N\)" style="height:0.898em;vertical-align:-0.153em"> with
+<img class="m" src="m/0a42f728823818a89fc992195a938d31f3288b81.svg" alt="\(a_{n} &gt; s_{N} - \eps \ge L - \eps\)" style="height:0.913em;vertical-align:-0.164em">. As <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> was arbitrary, such
+<img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> occur arbitrarily late.
+</p>
+
+</div>
+
+<div class="theorem" id="orgb753cf8">
+<p>
+A bounded sequence <img class="m" src="m/61f9283fe1503c8d1cecd228c646c41f111be43f.svg" alt="\((a_{n})\)" style="height:1.096em;vertical-align:-0.274em"> converges if and only if
+<img class="m" src="m/7130e08c813faf377e47ebec8624964bb30d9d4a.svg" alt="\(\liminf a_{n} = \limsup a_{n}\)" style="height:0.974em;vertical-align:-0.214em">, and then the common value is the
+limit.
+</p>
+
+</div>
+
+<div class="proof" id="org81c255d">
+<p>
+Write <img class="m" src="m/520cf3fafd3704fb44af5584933d90e9099c6aae.svg" alt="\(t_{N} = \inf_{n \ge N} a_{n}\)" style="height:1.068em;vertical-align:-0.310em"> and
+<img class="m" src="m/52c3553374660a146df538e0bd3c6fe86579878d.svg" alt="\(s_{N} = \sup_{n \ge N} a_{n}\)" style="height:0.882em;vertical-align:-0.415em">, so that
+<img class="m" src="m/f6f24f962789f5424923e3c1904fe8a52fc16b11.svg" alt="\(t_{N} \le a_{N} \le s_{N}\)" style="height:0.861em;vertical-align:-0.164em"> for every <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">. If the
+two limits agree, the squeeze theorem gives <img class="m" src="m/f298e5175ac4a9e846971e9f5a22074543b81de5.svg" alt="\(a_{N} \to\)" style="height:0.636em;vertical-align:-0.165em"> that common
+value.
+</p>
+
+<p>
+Conversely let <img class="m" src="m/c8741f428cd231298f1f92c14d48bc3dea3042ed.svg" alt="\(a_{n} \to L\)" style="height:0.913em;vertical-align:-0.164em"> and <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em">. Choose <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> with
+<img class="m" src="m/166310faa698357bb292285491ab20b152653809.svg" alt="\(L - \eps &lt; a_{n} &lt; L + \eps\)" style="height:0.913em;vertical-align:-0.164em"> for <img class="m" src="m/e3a7f6df845655195bb1fcfe91670525ec99e1e5.svg" alt="\(n \ge N\)" style="height:0.898em;vertical-align:-0.153em">. Then
+<img class="m" src="m/d02173d3ea19d90ddc013e88a8be7f238205cbc2.svg" alt="\(L - \eps \le t_{N}\)" style="height:0.913em;vertical-align:-0.164em"> and <img class="m" src="m/935a8eb0489ac8a6c485199a59b780f43603fbab.svg" alt="\(s_{N} \le L + \eps\)" style="height:0.913em;vertical-align:-0.164em">, so both
+<img class="m" src="m/4a7f8a4fec95ab7b0a8414a3f41febe59feadb2e.svg" alt="\(\liminf a_{n}\)" style="height:0.925em;vertical-align:-0.167em"> and <img class="m" src="m/0126ecc0c2e864c91676ebad855f7068ebcb42c3.svg" alt="\(\limsup a_{n}\)" style="height:0.974em;vertical-align:-0.214em"> lie in
+<img class="m" src="m/bee787047b30b46e0fb3470e17a6345d5332b7c7.svg" alt="\([L - \eps, L + \eps]\)" style="height:1.096em;vertical-align:-0.274em">. As <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em"> was arbitrary they both equal
+<img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="remark" id="org2a3af2e">
+<p>
+The first half of the characterisation is the form used in practice:
+<img class="m" src="m/70214efc1c19ab96c67ce632f63449d59ae31eb5.svg" alt="\(\limsup a_{n} &lt; 1\)" style="height:0.974em;vertical-align:-0.214em"> means the terms are eventually below some
+<img class="m" src="m/718d867f17ffe705b8d4c7674cd6e8a4028bdf3f.svg" alt="\(r &lt; 1\)" style="height:0.749em;vertical-align:-0.045em">, which is exactly the hypothesis the root test wants. Stating
+the root test with <img class="m" src="m/bdd99d090d0153c9f115f17268a26b5e640931c6.svg" alt="\(\limsup \abs{a_{n}}^{1/n}\)" style="height:1.247em;vertical-align:-0.274em"> instead of a limit
+therefore costs nothing and drops the assumption that the limit exists.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="integration-by-parts-and-substitution.html"><span>← previous</span>Integration by parts and substitution</a><a rel="next" href="pointwise-and-uniform-convergence.html"><span>next →</span>Pointwise and uniform convergence</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

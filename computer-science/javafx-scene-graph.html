@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JavaFX: stage, scene and the node tree · Computer Science</title>
+<meta name="description" content="A JavaFX application extends Application and builds, in start(Stage), a tree of Node objects: the window is the Stage, which shows one Scene, whose root is a Parent (a node with children); leaves are shapes, images, text and controls.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/javafx-scene-graph.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="JavaFX: stage, scene and the node tree · Computer Science">
+<meta property="og:description" content="A JavaFX application extends Application and builds, in start(Stage), a tree of Node objects: the window is the Stage, which shows one Scene, whose root is a Parent (a node with children); leaves are shapes, images, text and controls.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/javafx-scene-graph.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--gui">Gui</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Programming · Gui</p>
+<h1>JavaFX: stage, scene and the node tree</h1>
+<p class="summary">A JavaFX application extends <code>Application</code> and builds, in <code>start(Stage)</code>, a tree of <code>Node</code> objects: the window is the <code>Stage</code>, which shows one <code>Scene</code>, whose root is a <code>Parent</code> (a node with children); leaves are shapes, images, text and controls.</p>
+<p class="rel"><span>needs</span> <a href="inheritance.html">Inheritance and overriding</a>, <a href="java-platform.html">The Java platform</a></p>
+<p class="rel"><span>unlocks</span> <a href="event-handling.html">Event-driven programming and event handlers</a>, <a href="javafx-layout.html">JavaFX layout panes</a></p>
+<p class="rel"><span>see also</span> <a href="event-handling.html">Event-driven programming and event handlers</a>, <a href="javafx-layout.html">JavaFX layout panes</a>, <a href="abstract-class-interface.html">Abstract classes and interfaces</a></p>
+<p class="rel"><span>mentioned in</span> <a href="observer-mvc.html">Observer pattern and model–view–controller</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="java-platform.html">The Java platform</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org35374f9" class="outline-2">
+<h2 id="org35374f9">Model</h2>
+<div class="outline-text-2" id="text-org35374f9">
+<ul class="org-ul">
+<li><code>Stage</code>: the window (title, size, position: <code>setX</code>, <code>setY</code>). The primary stage is passed to <code>start</code>.</li>
+<li><code>Scene</code>: the content of a stage; it has one root.</li>
+<li><code>Node</code>: anything that can be drawn. Every node has one parent; subclasses:
+<ul class="org-ul">
+<li><code>Parent</code>: a node with children — <code>Group</code> (no layout), <code>Region</code> (an area with size, background, layout: the <a href="javafx-layout.html">panes</a> and the <code>Control</code> widgets <code>Button</code>, <code>Label</code>, <code>TextField</code>, …), <code>WebView</code>;</li>
+<li><code>Shape</code>: <code>Line</code>, <code>Polyline</code>, <code>Polygon</code>, <code>Rectangle</code>, <code>Circle</code>, <code>Ellipse</code>, <code>Arc</code>, <code>QuadCurve</code>, <code>CubicCurve</code>, <code>Text</code>, <code>SVGPath</code>;</li>
+<li><code>Canvas</code>, <code>ImageView</code>, <code>MediaView</code>.</li>
+</ul></li>
+</ul>
+<p>
+JavaFX replaced Swing, which had replaced AWT; it is used mostly for desktop applications.
+</p>
+</div>
+</div>
+<div id="outline-container-org086bb33" class="outline-2">
+<h2 id="org086bb33">Example</h2>
+<div class="outline-text-2" id="text-org086bb33">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">public</span> <span class="k">class</span> <span class="t">Hello</span> <span class="k">extends</span> <span class="t">Application</span> {
+    @Override <span class="k">public</span> <span class="t">void</span> <span class="f">start</span>(<span class="t">Stage</span> <span class="v">stage</span>) {
+        <span class="t">Button</span> <span class="v">btn</span> = <span class="k">new</span> <span class="t">Button</span>(<span class="s">"Say hello"</span>);
+        btn.setOnAction(e -&gt; System.out.println(<span class="s">"Hello"</span>));
+        <span class="t">StackPane</span> <span class="v">root</span> = <span class="k">new</span> <span class="t">StackPane</span>(btn, <span class="k">new</span> <span class="t">Circle</span>(40, <span class="n">Color</span>.CYAN));
+        stage.setScene(<span class="k">new</span> <span class="t">Scene</span>(root, 300, 200));
+        stage.setTitle(<span class="s">"Hello"</span>);
+        stage.show();
+    }
+    <span class="k">public</span> <span class="k">static</span> <span class="t">void</span> <span class="f">main</span>(<span class="t">String</span>[] <span class="v">args</span>) { launch(args); }
+}</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orgdd48c76" class="outline-2">
+<h2 id="orgdd48c76">Picture</h2>
+<div class="outline-text-2" id="text-orgdd48c76">
+<figure class="fig"><img class="m" src="m/32fe8bc74af5d37fa9c60eb43393e0699c8409cd.svg" alt="figure" style="width:10.812em"><figcaption><span class="fl">Figure 1.</span> The JavaFX scene graph: a Stage holds a Scene, whose root StackPane contains a Button and a Circle.</figcaption></figure>
+<p>
+Window, content, container, leaves.
+</p>
+</div>
+</div>
+<div id="outline-container-orgff4bc6b" class="outline-2">
+<h2 id="orgff4bc6b">Intuition</h2>
+<div class="outline-text-2" id="text-orgff4bc6b">
+<p>
+A GUI is a tree of boxes; the library draws the tree and routes the user's actions to its nodes.
+</p>
+</div>
+</div>
+<div id="outline-container-org781ff44" class="outline-2">
+<h2 id="org781ff44">Pitfall</h2>
+<div class="outline-text-2" id="text-org781ff44">
+<p>
+Class names collide with other libraries (<code>javafx.scene.shape.Rectangle</code> vs <code>java.awt.Rectangle</code>): check the imports. The JavaFX process stays alive while a window is open; <code>Platform.exit()</code> ends it.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="java-monitors.html"><span>← previous</span>Threads and monitors in Java</a><a rel="next" href="event-handling.html"><span>next →</span>Event-driven programming and event handlers</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--gui.pdf" title="PDF manual">Gui</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

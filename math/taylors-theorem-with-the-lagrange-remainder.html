@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taylor's theorem with the Lagrange remainder · Mathematics</title>
+<meta name="description" content="A polynomial that matches n derivatives at a point is easy to write down; what makes it useful is a formula for the error, and Taylor's theorem gives one that is exact, at an unknown point.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/taylors-theorem-with-the-lagrange-remainder.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Taylor's theorem with the Lagrange remainder · Mathematics">
+<meta property="og:description" content="A polynomial that matches n derivatives at a point is easy to write down; what makes it useful is a formula for the error, and Taylor's theorem gives one that is exact, at an unknown point.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/taylors-theorem-with-the-lagrange-remainder.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Real Analysis</p>
+<h1>Taylor's theorem with the Lagrange remainder</h1>
+<p class="summary">A polynomial that matches <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> derivatives at a point is easy to write down; what makes it useful is a formula for the error, and Taylor's theorem gives one that is exact, at an unknown point.</p>
+<p class="rel"><span>needs</span> <a href="the-derivative.html">The derivative</a>, <a href="the-mean-value-theorem.html">The mean value theorem</a></p>
+<p class="rel"><span>unlocks</span> <a href="taylors-theorem-with-the-peano-remainder.html">Taylor's theorem with the Peano remainder</a>, <a href="uniform-bounds-on-the-taylor-remainder.html">Uniform bounds on the Taylor remainder</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 11 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org72b1b56">
+<p>
+Let <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> be <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> times differentiable at <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">. Its <i>Taylor polynomial
+of order</i> <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> at <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> is
+<div class="mb"><img class="m" src="m/b1c778b286b94fda99e9e93f63f9714bb582561f.svg" alt="\[ T_{n}(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!} (x - a)^{k}. \]" style="width:13.768em"></div>
+</p>
+
+</div>
+
+<div class="theorem" id="org440d4c0">
+<p>
+Let <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> be <img class="m" src="m/8667d4ccbeefcc1a86781878d6b636f39c49c68a.svg" alt="\(n+1\)" style="height:0.798em;vertical-align:-0.088em"> times differentiable on an open interval containing
+<img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">. Then there is <img class="m" src="m/a63871ebf2397ca84d940081566b2aaf597facad.svg" alt="\(\xi\)" style="height:0.974em;vertical-align:-0.214em"> strictly between <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">
+with
+<div class="mb"><img class="m" src="m/101e04e2bc6290e0f7952ed86cc9d47c5f5c6ba1.svg" alt="\[ f(x) - T_{n}(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} (x - a)^{n+1}. \]" style="width:17.748em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="org237cd20">
+<p>
+Fix <img class="m" src="m/3aa4b6ff419d559e85ebaea2a33609bb0ab3e249.svg" alt="\(x \ne a\)" style="height:0.974em;vertical-align:-0.214em"> and choose <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> so that
+<img class="m" src="m/9c1a9590e03ea2071d8e8bc2e6b2f3e43037453a.svg" alt="\(f(x) - T_{n}(x) = M (x - a)^{n+1}\)" style="height:1.166em;vertical-align:-0.268em">. Define, for <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> between <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">
+and <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">,
+<div class="mb"><img class="m" src="m/acb7fa9cf06f3f50124806542ac4cae96aa4893a.svg" alt="\[ g(t) = f(x) - \sum_{k=0}^{n} \frac{f^{(k)}(t)}{k!} (x - t)^{k} - M (x - t)^{n+1}. \]" style="width:23.410em"></div>
+Then <img class="m" src="m/e7f6b2b3b4911edd43b1a7ab0f5256b48d96bec3.svg" alt="\(g(x) = 0\)" style="height:1.096em;vertical-align:-0.274em"> by construction and <img class="m" src="m/a07623bea2e4ec553eb0f6d847d59edf8e36c89a.svg" alt="\(g(a) = 0\)" style="height:1.096em;vertical-align:-0.274em"> by the choice of
+<img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">. The sum telescopes on differentiation: all terms cancel in pairs
+except the last, giving
+<div class="mb"><img class="m" src="m/b5d5f7848fafc443077ae24180e8667cc5398786.svg" alt="\[ g'(t) = -\frac{f^{(n+1)}(t)}{n!} (x - t)^{n} + (n+1) M (x - t)^{n}. \]" style="width:22.833em"></div>
+By Rolle's theorem there is <img class="m" src="m/a63871ebf2397ca84d940081566b2aaf597facad.svg" alt="\(\xi\)" style="height:0.974em;vertical-align:-0.214em"> strictly between <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">
+with <img class="m" src="m/b2062667cebf8749e50e5d5db33a0b157793cf60.svg" alt="\(g'(\xi) = 0\)" style="height:1.098em;vertical-align:-0.274em">, and since <img class="m" src="m/81e4a522f9206833f8c86a57b2dd783d685674bb.svg" alt="\((x - \xi)^{n} \ne 0\)" style="height:1.096em;vertical-align:-0.274em"> this forces
+<img class="m" src="m/d946056431e5ce3c815461293a91a6b1519dc07a.svg" alt="\(M = f^{(n+1)}(\xi)/(n+1)!\)" style="height:1.247em;vertical-align:-0.274em">, which is the claim.
+</p>
+
+</div>
+
+<div class="remark" id="orgab1865c">
+<p>
+The remainder is stated with an existential <img class="m" src="m/a63871ebf2397ca84d940081566b2aaf597facad.svg" alt="\(\xi\)" style="height:0.974em;vertical-align:-0.214em"> that is never
+computed. What one uses is a bound on <img class="m" src="m/ac700906b7632d1acd5fd50ae2bec6aedd7f9afa.svg" alt="\(f^{(n+1)}\)" style="height:1.186em;vertical-align:-0.214em"> over the interval,
+which turns the identity into the estimate that actually appears in
+applications.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="convex-functions-and-the-second-derivative.html"><span>← previous</span>Convex functions and the second derivative</a><a rel="next" href="taylors-theorem-with-the-peano-remainder.html"><span>next →</span>Taylor's theorem with the Peano remainder</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

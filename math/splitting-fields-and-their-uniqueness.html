@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Splitting fields and their uniqueness · Mathematics</title>
+<meta name="description" content="A polynomial with no root can be given one, by a construction that costs nothing: quotient the polynomial ring by an irreducible factor. Iterating produces a field in which the polynomial factors completely, and the substance of this note is that the field so produced does not depend on the choices…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/splitting-fields-and-their-uniqueness.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Splitting fields and their uniqueness · Mathematics">
+<meta property="og:description" content="A polynomial with no root can be given one, by a construction that costs nothing: quotient the polynomial ring by an irreducible factor. Iterating produces a field in which the polynomial factors completely, and the substance of this note is that the field so produced does not depend on the choices…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/splitting-fields-and-their-uniqueness.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--field-theory">Field Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Algebra · Field Theory</p>
+<h1>Splitting fields and their uniqueness</h1>
+<p class="summary">A polynomial with no root can be given one, by a construction that costs nothing: quotient the polynomial ring by an irreducible factor. Iterating produces a field in which the polynomial factors completely, and the substance of this note is that the field so produced does not depend on the choices made &#x2013; which is what makes "the" splitting field, and with it the Galois group, well defined.</p>
+<p class="rel"><span>needs</span> <a href="field-extensions-the-tower-law-and-minimal-polynomials.html">Field extensions, the tower law and minimal polynomials</a>, <a href="integral-domains-fields-prime-and-maximal-ideals.html">Integral domains, fields, prime and maximal ideals</a>, <a href="rings-ideals-and-the-quotient-ring.html">Rings, ideals and the quotient ring</a></p>
+<p class="rel"><span>unlocks</span> <a href="finite-fields.html">Finite fields</a></p>
+<p class="rel"><span>mentioned in</span> <a href="mathematics.html">Mathematics</a>, <a href="algebra.html">Algebra</a>, <a href="field-theory.html">Field theory</a></p>
+<details class="path"><summary>Learning path: 20 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li><li><a href="rings-ideals-and-the-quotient-ring.html">Rings, ideals and the quotient ring</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="integral-domains-fields-prime-and-maximal-ideals.html">Integral domains, fields, prime and maximal ideals</a></li><li><a href="polynomial-rings-division-and-roots.html">Polynomial rings, division and roots</a></li><li><a href="euclidean-domains-principal-ideals-and-unique-factorisation.html">Euclidean domains, principal ideals and unique factorisation</a></li><li><a href="field-extensions-the-tower-law-and-minimal-polynomials.html">Field extensions, the tower law and minimal polynomials</a></li></ol></details>
+</header>
+<main class="note">
+<div class="theorem" id="orgb16a74d">
+<p>
+Let <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> be a field and <img class="m" src="m/b740df5ae51e661a275e77b12dc2c5c49daf8f21.svg" alt="\(f \in K[x]\)" style="height:1.096em;vertical-align:-0.274em"> non-constant. Then there is an
+extension <img class="m" src="m/0f03fe3ae136b76c8c7f0cc2bc04d588838d7ae1.svg" alt="\(L/K\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/6723dbcd3db3539b35899f17199e1abf5de8aefa.svg" alt="\([L:K] \le \deg f\)" style="height:1.096em;vertical-align:-0.274em"> in which <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> has a root.
+</p>
+
+</div>
+
+<div class="proof" id="orgc67923c">
+<p>
+Let <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> be an irreducible factor of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">, which exists because
+<img class="m" src="m/af650f35ded7a794d389ff310327aaedc266a5d4.svg" alt="\(K[x]\)" style="height:1.096em;vertical-align:-0.274em"> is a unique factorisation domain. The ideal <img class="m" src="m/d0e3bd81ddbe4d46425ac01817ca93096f315d9f.svg" alt="\((p)\)" style="height:1.096em;vertical-align:-0.274em"> is maximal,
+so <img class="m" src="m/73bf06f906e18aa09abc4d11ae8b73a2bbd6f14d.svg" alt="\(L = K[x]/(p)\)" style="height:1.096em;vertical-align:-0.274em"> is a field; the composite <img class="m" src="m/044cbb7275b553086fae3c9d0b8c48d3f3b88dfa.svg" alt="\(K \to K[x] \to L\)" style="height:1.096em;vertical-align:-0.274em"> is a
+ring homomorphism between fields, hence injective, so <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> is an
+extension of <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">. The class <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> satisfies
+<img class="m" src="m/15147f9eaf5806a433d8ec9bd7dac6c836d237e2.svg" alt="\(p(\alpha) = 0\)" style="height:1.096em;vertical-align:-0.274em">, hence <img class="m" src="m/d1d5975c7ee99c1009fecba067de135d97cd6b5d.svg" alt="\(f(\alpha) = 0\)" style="height:1.096em;vertical-align:-0.274em">, and
+<img class="m" src="m/33f2a465fa95482c698f491b95a2d80f673261c1.svg" alt="\([L:K] = \deg p \le \deg f\)" style="height:1.096em;vertical-align:-0.274em"> by the description of a simple algebraic
+extension.
+</p>
+
+</div>
+
+<div class="definition" id="org23ebb36">
+<p>
+Let <img class="m" src="m/b740df5ae51e661a275e77b12dc2c5c49daf8f21.svg" alt="\(f \in K[x]\)" style="height:1.096em;vertical-align:-0.274em"> be non-constant. An extension <img class="m" src="m/0f03fe3ae136b76c8c7f0cc2bc04d588838d7ae1.svg" alt="\(L/K\)" style="height:1.096em;vertical-align:-0.274em"> is a
+<i>splitting field</i> of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> over <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> if <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> factors into linear
+factors in <img class="m" src="m/126dcaefffbf0b850b4d6f59b548fa4b4fd8a43c.svg" alt="\(L[x]\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> is generated over <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> by the roots of
+<img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org52c160a">
+<p>
+Every non-constant <img class="m" src="m/b740df5ae51e661a275e77b12dc2c5c49daf8f21.svg" alt="\(f \in K[x]\)" style="height:1.096em;vertical-align:-0.274em"> has a splitting field <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">, with
+<img class="m" src="m/18d2b7aa5e19e55f23e5d507b08d7b457220e33f.svg" alt="\([L:K] \le (\deg f)!\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org8190b0e">
+<p>
+Induct on <img class="m" src="m/616c01a4e23c9ed6db7e2c17f4951c6d727ddb6a.svg" alt="\(n = \deg f\)" style="height:0.974em;vertical-align:-0.214em">. For <img class="m" src="m/93fb0c073e69b99f07381b1392b509c4c466ae6d.svg" alt="\(n = 1\)" style="height:0.706em;vertical-align:-0.000em">, <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> itself works. Otherwise
+Kronecker's theorem gives <img class="m" src="m/9ceff8fd2865a4a6d6e637c2a88bd12a26075e5a.svg" alt="\(K_{1} = K(\alpha)\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/d1d5975c7ee99c1009fecba067de135d97cd6b5d.svg" alt="\(f(\alpha) = 0\)" style="height:1.096em;vertical-align:-0.274em">
+and <img class="m" src="m/bbcc36ae3ff04f57079eafbb7ce0dfdb205051a0.svg" alt="\([K_{1}:K]\le n\)" style="height:1.096em;vertical-align:-0.274em">; in <img class="m" src="m/e4c7bbcecda7d19aca3e95c21d4ada4b509cacca.svg" alt="\(K_{1}[x]\)" style="height:1.096em;vertical-align:-0.274em"> we may write
+<img class="m" src="m/36fd204ef7b530b0446bda3107e4775a6c833b65.svg" alt="\(f = (x-\alpha)g\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/8c7e71c3d7c3a7cc3eff91f828a598fc8477074c.svg" alt="\(\deg g = n - 1\)" style="height:0.974em;vertical-align:-0.214em">, by the factor theorem. By
+induction <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> has a splitting field <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> over <img class="m" src="m/fe5ed367674ffceae920f306bf177737dd2dcaf3.svg" alt="\(K_{1}\)" style="height:0.913em;vertical-align:-0.164em"> with
+<img class="m" src="m/a44d2ce4c35e4938df1e19f56539508647da2c8f.svg" alt="\([L:K_{1}] \le (n-1)!\)" style="height:1.096em;vertical-align:-0.274em">. Then <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> splits in <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">, and <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> is
+generated over <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> by <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> and the roots of <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em">, which are the
+roots of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">. The tower law gives <img class="m" src="m/1ea3d387c59a0f6f45c4ac1352e80e899fc2f0e3.svg" alt="\([L:K] \le n \cdot (n-1)! = n!\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="lemma" id="org0a59076">
+<p>
+Let <img class="m" src="m/b11c8f5a24cd9564fe41ca9492690444c595f325.svg" alt="\(\sigma \colon K \to K'\)" style="height:0.824em;vertical-align:-0.000em"> be a field isomorphism, extended to
+<img class="m" src="m/1c5bc7a8d27d72be0154f7ca9221be3be488f8a9.svg" alt="\(K[x]\to K'[x]\)" style="height:1.098em;vertical-align:-0.274em"> coefficientwise, let <img class="m" src="m/d35e44d22fd435daea7d063733136aa9c276bde3.svg" alt="\(p \in K[x]\)" style="height:1.096em;vertical-align:-0.274em"> be irreducible and
+<img class="m" src="m/c2e02fddd65494f8342fbde4673ef1b8f5578606.svg" alt="\(p' = \sigma(p)\)" style="height:1.098em;vertical-align:-0.274em">. If <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> is a root of <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> in some extension
+of <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/bfe7d0d1c8d3ee6819636cc119349e56379e2ecf.svg" alt="\(\alpha'\)" style="height:0.824em;vertical-align:-0.000em"> a root of <img class="m" src="m/3dabb78687636df0a556f02e450b613e8736b0c9.svg" alt="\(p'\)" style="height:1.037em;vertical-align:-0.218em"> in some extension of <img class="m" src="m/8f5bf0da021af353fe7c91e2578d6db369647a3c.svg" alt="\(K'\)" style="height:0.824em;vertical-align:-0.000em">,
+then <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em"> extends to an isomorphism
+<img class="m" src="m/cfe6e7c6074a0e8ed4285b1f73e219298a6df803.svg" alt="\(K(\alpha)\to K'(\alpha')\)" style="height:1.098em;vertical-align:-0.274em"> sending <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> to <img class="m" src="m/bfe7d0d1c8d3ee6819636cc119349e56379e2ecf.svg" alt="\(\alpha'\)" style="height:0.824em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org492464b">
+<p>
+The coefficientwise map is a ring isomorphism <img class="m" src="m/1c5bc7a8d27d72be0154f7ca9221be3be488f8a9.svg" alt="\(K[x]\to K'[x]\)" style="height:1.098em;vertical-align:-0.274em"> carrying
+<img class="m" src="m/d0e3bd81ddbe4d46425ac01817ca93096f315d9f.svg" alt="\((p)\)" style="height:1.096em;vertical-align:-0.274em"> onto <img class="m" src="m/bd4462e0015624926b1e468b03f5e3cff74e2e15.svg" alt="\((p')\)" style="height:1.098em;vertical-align:-0.274em">, so it induces an isomorphism
+<img class="m" src="m/ec6809a5e1b1d5aeff759f52848abb488ec30bb2.svg" alt="\(K[x]/(p) \to K'[x]/(p')\)" style="height:1.098em;vertical-align:-0.274em"> of the quotients. By the description of a
+simple algebraic extension, <img class="m" src="m/10da5bf930df7bd7b1d5aed88c674df87d2d9d8a.svg" alt="\(K[x]/(p) \iso K(\alpha)\)" style="height:1.096em;vertical-align:-0.274em"> by sending the
+class of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> to <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em">, and likewise on the other side. Composing
+the three isomorphisms gives the claim; it restricts to <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em"> on
+<img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> and sends <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> to <img class="m" src="m/bfe7d0d1c8d3ee6819636cc119349e56379e2ecf.svg" alt="\(\alpha'\)" style="height:0.824em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org77844dd">
+<p>
+Let <img class="m" src="m/96e50a737abe58a7e8804030dac27b4103bafb0d.svg" alt="\(\sigma \colon K\to K'\)" style="height:0.824em;vertical-align:-0.000em"> be an isomorphism, <img class="m" src="m/b740df5ae51e661a275e77b12dc2c5c49daf8f21.svg" alt="\(f \in K[x]\)" style="height:1.096em;vertical-align:-0.274em">
+non-constant and <img class="m" src="m/ea2c0049b0cbb4c8ed36dad234aaa0ec30a028ce.svg" alt="\(f' = \sigma(f)\)" style="height:1.098em;vertical-align:-0.274em">. Any splitting field <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">
+over <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> and any splitting field <img class="m" src="m/728f7136e84a02e6c5b5aaba57ee5495b80002a5.svg" alt="\(L'\)" style="height:0.824em;vertical-align:-0.000em"> of <img class="m" src="m/fcd248f8faa113603c50440935779dfa8223591a.svg" alt="\(f'\)" style="height:1.037em;vertical-align:-0.218em"> over <img class="m" src="m/8f5bf0da021af353fe7c91e2578d6db369647a3c.svg" alt="\(K'\)" style="height:0.824em;vertical-align:-0.000em"> are
+isomorphic by an isomorphism extending <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">. In particular the
+splitting field of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> over <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> is unique up to a <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">-isomorphism.
+</p>
+
+</div>
+
+<div class="proof" id="org1e9502d">
+<p>
+Induct on <img class="m" src="m/023ac537ab8fc5ce71cacf4a4e103c64cb6dbebd.svg" alt="\([L:K]\)" style="height:1.096em;vertical-align:-0.274em">. If <img class="m" src="m/32a5be0209992195e9d90704e177fd930302b1ea.svg" alt="\([L:K] = 1\)" style="height:1.096em;vertical-align:-0.274em"> then <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> already splits in
+<img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">, so <img class="m" src="m/fcd248f8faa113603c50440935779dfa8223591a.svg" alt="\(f'\)" style="height:1.037em;vertical-align:-0.218em"> splits in <img class="m" src="m/8f5bf0da021af353fe7c91e2578d6db369647a3c.svg" alt="\(K'\)" style="height:0.824em;vertical-align:-0.000em"> and <img class="m" src="m/21aa8efd56e2be9db87b3ba43faa80ae40112e9f.svg" alt="\(L' = K'\)" style="height:0.824em;vertical-align:-0.000em">; <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em"> itself
+serves.
+</p>
+
+<p>
+Otherwise some irreducible factor <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> in <img class="m" src="m/af650f35ded7a794d389ff310327aaedc266a5d4.svg" alt="\(K[x]\)" style="height:1.096em;vertical-align:-0.274em"> has degree
+at least <img class="m" src="m/682209d80cc07f86795f987ad28681d443268af8.svg" alt="\(2\)" style="height:0.706em;vertical-align:-0.000em">. Let <img class="m" src="m/60c71202484b693b485720fb5dd49142d1b3e72c.svg" alt="\(\alpha \in L\)" style="height:0.792em;vertical-align:-0.040em"> be a root of <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> and
+<img class="m" src="m/d7301243d115dcf53dc0cc348fbbefa1224c763b.svg" alt="\(\alpha'\in L'\)" style="height:0.867em;vertical-align:-0.043em"> a root of <img class="m" src="m/c2e02fddd65494f8342fbde4673ef1b8f5578606.svg" alt="\(p' = \sigma(p)\)" style="height:1.098em;vertical-align:-0.274em">, which exists because
+<img class="m" src="m/3dabb78687636df0a556f02e450b613e8736b0c9.svg" alt="\(p'\)" style="height:1.037em;vertical-align:-0.218em"> divides <img class="m" src="m/fcd248f8faa113603c50440935779dfa8223591a.svg" alt="\(f'\)" style="height:1.037em;vertical-align:-0.218em"> and <img class="m" src="m/fcd248f8faa113603c50440935779dfa8223591a.svg" alt="\(f'\)" style="height:1.037em;vertical-align:-0.218em"> splits in <img class="m" src="m/728f7136e84a02e6c5b5aaba57ee5495b80002a5.svg" alt="\(L'\)" style="height:0.824em;vertical-align:-0.000em">. By the lemma
+<img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em"> extends to <img class="m" src="m/cee7490c36dc138f82489c135e8ddcb781a1d298.svg" alt="\(\tau \colon K(\alpha)\to K'(\alpha')\)" style="height:1.098em;vertical-align:-0.274em">. Now
+<img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> is a splitting field of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> over <img class="m" src="m/86f9a92a2f902103827dad3b340b4c5b44d357ca.svg" alt="\(K(\alpha)\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/728f7136e84a02e6c5b5aaba57ee5495b80002a5.svg" alt="\(L'\)" style="height:0.824em;vertical-align:-0.000em"> one of
+<img class="m" src="m/fcd248f8faa113603c50440935779dfa8223591a.svg" alt="\(f'\)" style="height:1.037em;vertical-align:-0.218em"> over <img class="m" src="m/9254de12bb2d8d9799c305d240bed2840338a063.svg" alt="\(K'(\alpha')\)" style="height:1.098em;vertical-align:-0.274em">, while
+<img class="m" src="m/94dbad6355205465059753c955ce2793921536a8.svg" alt="\([L : K(\alpha)] = [L:K]/\deg p &lt; [L:K]\)" style="height:1.096em;vertical-align:-0.274em"> by the tower law. The
+induction hypothesis extends <img class="m" src="m/f3778496560b26955f4102ffc056c53509a2cafc.svg" alt="\(\tau\)" style="height:0.472em;vertical-align:-0.000em"> to an isomorphism
+<img class="m" src="m/138263e725f61c9037d98a4b573ced0a644adbc4.svg" alt="\(L \to L'\)" style="height:0.824em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="remark" id="orgf2986a7">
+<p>
+The same induction, run with <img class="m" src="m/8996a5c92b09a08be93513d91a57d55ed3b4f6cf.svg" alt="\(K = K'\)" style="height:0.824em;vertical-align:-0.000em"> and <img class="m" src="m/8fe83c53581c7ec7865d120fef233ae25f0c76dd.svg" alt="\(\sigma = \id\)" style="height:0.761em;vertical-align:-0.000em">, counts the
+<img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">-automorphisms of <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">: at each step the extension can send
+<img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> to any root of its minimal polynomial, so the number of
+automorphisms is <img class="m" src="m/023ac537ab8fc5ce71cacf4a4e103c64cb6dbebd.svg" alt="\([L:K]\)" style="height:1.096em;vertical-align:-0.274em"> exactly when every such polynomial has
+distinct roots. That condition is separability, and the count is the
+first half of the Galois correspondence.
+</p>
+
+<p>
+Iterating the construction over all polynomials at once produces an
+algebraically closed extension &#x2013; an algebraic closure &#x2013; but the
+iteration is transfinite and needs Zorn's lemma, since there is no
+bound on the degrees involved.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="field-theory.html"><span>← previous</span>Field theory</a><a rel="next" href="finite-fields.html"><span>next →</span>Finite fields</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--field-theory.pdf" title="PDF manual">Field Theory</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

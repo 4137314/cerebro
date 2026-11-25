@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Span, linear independence, bases and dimension · Mathematics</title>
+<meta name="description" content="A vector space has no distinguished elements, so everything one can say about it must be said through the subsets that generate it. That a number can be attached to the space at all – the same for every basis – is the one substantive theorem here, and it rests on a single exchange argument. Everyth…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/span-linear-independence-bases-and-dimension.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Span, linear independence, bases and dimension · Mathematics">
+<meta property="og:description" content="A vector space has no distinguished elements, so everything one can say about it must be said through the subsets that generate it. That a number can be attached to the space at all – the same for every basis – is the one substantive theorem here, and it rests on a single exchange argument. Everyth…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/span-linear-independence-bases-and-dimension.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--linear-algebra">Linear Algebra</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Algebra · Linear Algebra</p>
+<h1>Span, linear independence, bases and dimension</h1>
+<p class="summary">A <a href="vector-space.html">vector space</a> has no distinguished elements, so everything one can say about it must be said through the subsets that generate it. That a number can be attached to the space at all &#x2013; the same for every basis &#x2013; is the one substantive theorem here, and it rests on a single exchange argument. Everything later that "counts dimensions" is spending it.</p>
+<p class="rel"><span>needs</span> <a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a>, <a href="vector-space.html">Vector space</a></p>
+<p class="rel"><span>unlocks</span> <a href="bilinear-forms-quadratic-forms-and-sylvesters-law-of-inertia.html">Bilinear forms, quadratic forms and Sylvester's law of inertia</a>, <a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a>, <a href="eigenvalues-the-characteristic-polynomial-and-cayley-hamilton.html">Eigenvalues, the characteristic polynomial and Cayley-Hamilton</a>, <a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a>, <a href="the-determinant-as-the-alternating-multilinear-form.html">The determinant as the alternating multilinear form</a>, <a href="modules-quotients-and-exact-sequences.html">Modules, quotients and exact sequences</a>, <a href="field-extensions-the-tower-law-and-minimal-polynomials.html">Field extensions, the tower law and minimal polynomials</a>, <a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a>, <a href="affine-spaces-affine-subspaces-and-affine-maps.html">Affine spaces, affine subspaces and affine maps</a>, <a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a>, <a href="smooth-manifolds-smooth-maps-and-the-tangent-space.html">Smooth manifolds, smooth maps and the tangent space</a>, <a href="convex-hulls-and-caratheodorys-theorem.html">Convex hulls and Caratheodory's theorem</a>, <a href="projective-space-affine-charts-and-the-dimension-formula.html">Projective space, affine charts and the dimension formula</a>, <a href="projective-transformations-and-the-cross-ratio.html">Projective transformations and the cross-ratio</a></p>
+<p class="rel"><span>mentioned in</span> <a href="mathematics.html">Mathematics</a>, <a href="foundations.html">Foundations</a>, <a href="linear-algebra.html">Linear algebra</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="vector-space.html">Vector space</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org8c46ffa">
+<p>
+Let <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> be a vector space over a field <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/658317256797398b56607720fc3ac740376d798c.svg" alt="\(S \subseteq V\)" style="height:0.898em;vertical-align:-0.153em">.
+The <i>span</i> <img class="m" src="m/b5e20ffddcd2d70dc35c210d688a338a113c6dde.svg" alt="\(\Span S\)" style="height:0.962em;vertical-align:-0.212em"> is the set of finite linear combinations
+<img class="m" src="m/8822e0694e58c28ac9194673354b7c2ce613a44f.svg" alt="\(\lambda_{1}v_{1} + \cdots + \lambda_{k}v_{k}\)" style="height:0.925em;vertical-align:-0.167em"> with
+<img class="m" src="m/7121ebac0de74ff5a0cf5a99feae3fdb3432f7d1.svg" alt="\(v_{i} \in S\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/139f190e7703615b9c4d1af1a2d9f0156ddeb923.svg" alt="\(\lambda_{i} \in K\)" style="height:0.925em;vertical-align:-0.167em"> (the empty combination being
+<img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">); <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> <i>spans</i> <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> if <img class="m" src="m/e5ebb47e8930d2bef9aab93a08c48e3fa88b188d.svg" alt="\(\Span S = V\)" style="height:0.962em;vertical-align:-0.212em">. The set <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> is
+<i>linearly independent</i> if the only finite combination of distinct
+elements of <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> equal to <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> is the one with all coefficients
+<img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">, and <i>dependent</i> otherwise. A <i>basis</i> is a linearly independent
+spanning set.
+</p>
+
+</div>
+
+<div class="proposition" id="org268f1b5">
+<p>
+<img class="m" src="m/50b9d54f45fa5fd40f6be994e95d6b9b31c065a2.svg" alt="\(B \subseteq V\)" style="height:0.898em;vertical-align:-0.153em"> is a basis if and only if every <img class="m" src="m/ba2e9b5e96dc17618ab910ebb475abda08f82d6a.svg" alt="\(v \in V\)" style="height:0.792em;vertical-align:-0.040em"> is a
+finite linear combination of elements of <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> in exactly one way (up to
+zero coefficients).
+</p>
+
+</div>
+
+<div class="proof" id="orgb17e50e">
+<p>
+Let <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> be a basis. Existence of a representation is spanning; if
+<img class="m" src="m/2e5ff3c5ed071826efcf8b91037b042e21c90d3a.svg" alt="\(\sum \lambda_{i}b_{i} = \sum \mu_{i}b_{i}\)" style="height:1.096em;vertical-align:-0.274em"> over a common finite set
+of distinct <img class="m" src="m/1e7b43e17a2a038101a0a838d1b86720f9a02fbe.svg" alt="\(b_{i}\)" style="height:0.925em;vertical-align:-0.167em">, subtracting gives
+<img class="m" src="m/43dbad3a0633a8fdc1c87df8d1ef6264607321ab.svg" alt="\(\sum (\lambda_{i} - \mu_{i}) b_{i} = 0\)" style="height:1.096em;vertical-align:-0.274em">, so all coefficients agree by
+independence. Conversely, uniqueness applied to <img class="m" src="m/290024883a7aa0451ecc34d2183a8d1914d1429e.svg" alt="\(v = 0\)" style="height:0.706em;vertical-align:-0.000em"> says the only
+combination giving <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> is trivial, which is independence, and
+existence is spanning.
+</p>
+
+</div>
+
+<div class="lemma" id="orgc9c7a3e">
+<p>
+Let <img class="m" src="m/80bbee07aab08785b80afa81725e51808964fc0d.svg" alt="\(v_{1}, \dots, v_{m}\)" style="height:0.685em;vertical-align:-0.212em"> be linearly independent in <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> and let
+<img class="m" src="m/8e21e1e4606557faa45f349edf85acc506cf6f1c.svg" alt="\(w_{1}, \dots, w_{n}\)" style="height:0.685em;vertical-align:-0.212em"> span <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">. Then <img class="m" src="m/15054a3c1eea69ffc00181aebe52aaacecf7a68b.svg" alt="\(m \le n\)" style="height:0.846em;vertical-align:-0.152em">, and after
+renumbering the <img class="m" src="m/3948d48c4bfcc7449fc502471053f5652045a71a.svg" alt="\(w_{j}\)" style="height:0.785em;vertical-align:-0.314em"> the set
+<img class="m" src="m/f37771ce75d0b809df538f0016825a5bf48d9456.svg" alt="\(\set{v_{1}, \dots, v_{m}, w_{m+1}, \dots, w_{n}}\)" style="height:1.096em;vertical-align:-0.274em"> spans <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgc2b7e8f">
+<p>
+Induct on <img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em">. For <img class="m" src="m/fc07e92a46c62e2f01af380ef3cab56010b226a0.svg" alt="\(m = 0\)" style="height:0.706em;vertical-align:-0.000em"> there is nothing to prove. Assume the
+statement for <img class="m" src="m/7173d31db4ef07f4bc0e42afe3a12ab281fbcb6a.svg" alt="\(m-1\)" style="height:0.798em;vertical-align:-0.088em">: so <img class="m" src="m/0fb5c1b856733918ecc07d70df9c780f2b9abc77.svg" alt="\(m - 1 \le n\)" style="height:0.855em;vertical-align:-0.145em"> and, after renumbering,
+<img class="m" src="m/4802869003a55ec52d105305d98434adfd93746a.svg" alt="\(\set{v_{1}, \dots, v_{m-1}, w_{m}, \dots, w_{n}}\)" style="height:1.096em;vertical-align:-0.274em"> spans <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">. Write
+<div class="mb"><img class="m" src="m/894ffb95b9239041d3e8d38ba0c2adc80880815e.svg" alt="\[ v_{m} = \lambda_{1}v_{1} + \cdots + \lambda_{m-1}v_{m-1} + \mu_{m}w_{m} + \cdots + \mu_{n}w_{n}. \]" style="width:25.364em"></div>
+Not every <img class="m" src="m/ec8aea548efebd572be8a1d4b1a013eac1721ac3.svg" alt="\(\mu_{j}\)" style="height:0.785em;vertical-align:-0.314em"> is zero: otherwise <img class="m" src="m/742a4237c4de9d7ed42ee8171f47f31d63a5b644.svg" alt="\(v_{m}\)" style="height:0.636em;vertical-align:-0.165em"> would be a
+combination of <img class="m" src="m/c7a8e1f0f8223e96ee9d245437a325acd118744b.svg" alt="\(v_{1}, \dots, v_{m-1}\)" style="height:0.728em;vertical-align:-0.255em">, contradicting independence. In
+particular the list <img class="m" src="m/36d58f39371b994e2b03649b501d33279bb435a1.svg" alt="\(w_{m}, \dots, w_{n}\)" style="height:0.685em;vertical-align:-0.212em"> is not empty, so
+<img class="m" src="m/15054a3c1eea69ffc00181aebe52aaacecf7a68b.svg" alt="\(m \le n\)" style="height:0.846em;vertical-align:-0.152em">. Renumber so that <img class="m" src="m/50e154745fc2207a7ed9d9823488e01f89d8e894.svg" alt="\(\mu_{m} \ne 0\)" style="height:0.974em;vertical-align:-0.214em">; solving for <img class="m" src="m/0c7ff15e58039f5437b016accc819becd333577f.svg" alt="\(w_{m}\)" style="height:0.636em;vertical-align:-0.165em">
+expresses it as a combination of <img class="m" src="m/80bbee07aab08785b80afa81725e51808964fc0d.svg" alt="\(v_{1}, \dots, v_{m}\)" style="height:0.685em;vertical-align:-0.212em"> and
+<img class="m" src="m/de9fcb6fe595eff44e1fdbe8bb4b4567368e8140.svg" alt="\(w_{m+1}, \dots, w_{n}\)" style="height:0.728em;vertical-align:-0.255em">. Hence every vector spanned by the old list is
+spanned by <img class="m" src="m/f37771ce75d0b809df538f0016825a5bf48d9456.svg" alt="\(\set{v_{1}, \dots, v_{m}, w_{m+1}, \dots, w_{n}}\)" style="height:1.096em;vertical-align:-0.274em">, which
+therefore spans <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgaf7faaf">
+<p>
+If <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> has a finite basis, then any two bases of <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> are finite with
+the same number of elements. That number is the <i>dimension</i>
+<img class="m" src="m/197d9dffcaf7d362180e934dc08743f9ee9fac72.svg" alt="\(\dim V\)" style="height:0.761em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org96b6f45">
+<p>
+Let <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> be a basis with <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> elements and <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> any other basis. Any
+<img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em"> distinct elements of <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> are independent and <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> spans, so
+<img class="m" src="m/15054a3c1eea69ffc00181aebe52aaacecf7a68b.svg" alt="\(m \le n\)" style="height:0.846em;vertical-align:-0.152em"> by the exchange lemma; hence <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> is finite with
+<img class="m" src="m/8c5917c7024260e116e559ba12e8167366e83e17.svg" alt="\(\abs{C} \le n\)" style="height:1.096em;vertical-align:-0.274em">. Exchanging the roles of <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> gives
+<img class="m" src="m/8a4a6edcf9d74e9d63c82d151af8d87286e1f7cd.svg" alt="\(n \le \abs{C}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgbfe88ea">
+<p>
+Every vector space has a basis; more precisely, every linearly
+independent subset is contained in one.
+</p>
+
+</div>
+
+<div class="proof" id="org24ceb6b">
+<p>
+Let <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> be independent and order by inclusion the family of
+independent subsets containing <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">; it contains <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">, so it is
+non-empty. The union <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> of a chain of independent sets is
+independent: a dependence involves finitely many vectors, which all lie
+in one member of the chain. Zorn's lemma gives a maximal independent
+<img class="m" src="m/0006fc9c26769903ad190e37c2c47e362c7fb925.svg" alt="\(B \supseteq S\)" style="height:0.898em;vertical-align:-0.153em">. If some <img class="m" src="m/3d8464d301b2beed7ef98e7b637b1b51b94b306b.svg" alt="\(v \notin \Span B\)" style="height:1.035em;vertical-align:-0.217em">, then
+<img class="m" src="m/bf21a7fe5cd55af045d5de28a82240aa0cb50581.svg" alt="\(B \cup \set{v}\)" style="height:1.096em;vertical-align:-0.274em"> would be independent &#x2013; a dependence involving <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em">
+could be solved for <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em">, putting it in <img class="m" src="m/c6dc9d0660865b35843d6e3f646521de3f85dc0b.svg" alt="\(\Span B\)" style="height:0.962em;vertical-align:-0.212em"> &#x2013; contradicting
+maximality. So <img class="m" src="m/7efb83c2687bb8aa6c78e60f2ed1f64014a5202f.svg" alt="\(\Span B = V\)" style="height:0.962em;vertical-align:-0.212em"> and <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> is a basis.
+</p>
+
+</div>
+
+<div class="corollary" id="org0e4aea4">
+<p>
+Let <img class="m" src="m/7139688cdd77c78b2d71fd11f23f48234f04009e.svg" alt="\(\dim V = n\)" style="height:0.761em;vertical-align:-0.000em"> and let <img class="m" src="m/80bbee07aab08785b80afa81725e51808964fc0d.svg" alt="\(v_{1}, \dots, v_{m}\)" style="height:0.685em;vertical-align:-0.212em"> be independent. Then
+<img class="m" src="m/15054a3c1eea69ffc00181aebe52aaacecf7a68b.svg" alt="\(m \le n\)" style="height:0.846em;vertical-align:-0.152em">, the list extends to a basis of <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">, and it is already a
+basis if <img class="m" src="m/c3110d75caacc90bfe7ac20d6eadb41f6c3f1f44.svg" alt="\(m = n\)" style="height:0.472em;vertical-align:-0.000em">. Every subspace <img class="m" src="m/a940c012608e1a3f073a1738a046d24187c153d9.svg" alt="\(W \subseteq V\)" style="height:0.898em;vertical-align:-0.153em"> satisfies
+<img class="m" src="m/39e238e6dd3420b1d1c94e94f9dfa1df2d60cd36.svg" alt="\(\dim W \le n\)" style="height:0.910em;vertical-align:-0.146em">, with equality only for <img class="m" src="m/b8e8361296be98eb64081455fb98bee47bb06e66.svg" alt="\(W = V\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgb6dc809">
+<p>
+Apply the exchange lemma with a basis <img class="m" src="m/8e21e1e4606557faa45f349edf85acc506cf6f1c.svg" alt="\(w_{1}, \dots, w_{n}\)" style="height:0.685em;vertical-align:-0.212em"> of <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">:
+<img class="m" src="m/15054a3c1eea69ffc00181aebe52aaacecf7a68b.svg" alt="\(m \le n\)" style="height:0.846em;vertical-align:-0.152em"> and <img class="m" src="m/990bf8d3ccbb49f3b8830896323b0b79a13a4b11.svg" alt="\(\set{v_{1},\dots,v_{m},w_{m+1},\dots,w_{n}}\)" style="height:1.096em;vertical-align:-0.274em"> spans
+<img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">. This spanning set has at most <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> elements and contains an
+independent spanning subset &#x2013; discard, one at a time, any vector lying
+in the span of the others &#x2013; which is then a basis, of exactly <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">
+elements by the previous theorem; so nothing was discarded and the list
+itself is a basis containing the <img class="m" src="m/79c5a96d8bc6866bd8bdd744a17e794b667c0782.svg" alt="\(v_{i}\)" style="height:0.636em;vertical-align:-0.165em">. If <img class="m" src="m/c3110d75caacc90bfe7ac20d6eadb41f6c3f1f44.svg" alt="\(m = n\)" style="height:0.472em;vertical-align:-0.000em"> the extension
+adds nothing. For a subspace, an independent subset of <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em"> is
+independent in <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">, so a basis of <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em"> has at most <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> elements;
+if it has <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">, it is a basis of <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> by what precedes, so
+<img class="m" src="m/b8e8361296be98eb64081455fb98bee47bb06e66.svg" alt="\(W = V\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgf47bab9">
+<p>
+For subspaces <img class="m" src="m/4fc52010a829d2c7250c670cc691251c3037f176.svg" alt="\(U, W\)" style="height:0.962em;vertical-align:-0.212em"> of a finite-dimensional <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">,
+<div class="mb"><img class="m" src="m/4639e6662551839d451429ad2a582dffe892e34a.svg" alt="\[ \dim(U + W) + \dim(U \cap W) = \dim U + \dim W, \]" style="width:22.360em"></div>
+where <img class="m" src="m/47d6e66f70439d2d4f4322a720e024d979b279e7.svg" alt="\(U + W = \setst{u + w}{u \in U, w \in W}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org896b36a">
+<p>
+Take a basis <img class="m" src="m/70b938335d3c1e3c0c7efce883a0b9e6a05c5e8b.svg" alt="\(z_{1}, \dots, z_{k}\)" style="height:0.685em;vertical-align:-0.212em"> of <img class="m" src="m/5bce41d394523f0b13b4bb2de820f5e2783d8f94.svg" alt="\(U \cap W\)" style="height:0.749em;vertical-align:-0.000em"> and extend it to a
+basis <img class="m" src="m/8e7014b8999125eb99267dd8a14a17feee2c8829.svg" alt="\(z_{1},\dots,z_{k},u_{1},\dots,u_{p}\)" style="height:0.785em;vertical-align:-0.314em"> of <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> and to a basis
+<img class="m" src="m/04a3f85d036961c51e4612ed84191e20285b9b58.svg" alt="\(z_{1},\dots,z_{k},w_{1},\dots,w_{q}\)" style="height:0.785em;vertical-align:-0.314em"> of <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em">. The union
+<img class="m" src="m/189bd7ab7f4fa6da4b189b7f3d22e157505cd01c.svg" alt="\(z_{i}, u_{j}, w_{l}\)" style="height:0.785em;vertical-align:-0.314em"> spans <img class="m" src="m/e7ccdcb12450b9aefd7ccde40395f851cc74ee41.svg" alt="\(U + W\)" style="height:0.840em;vertical-align:-0.092em">. It is independent: from
+<img class="m" src="m/74c4680398af9cf42c2e013559c10d510504da50.svg" alt="\(\sum \alpha_{i}z_{i} + \sum \beta_{j}u_{j} + \sum \gamma_{l}w_{l} = 0\)" style="height:1.135em;vertical-align:-0.318em">,
+the vector <img class="m" src="m/9aff9a590634fb8a23a7a66680a94789a8f11844.svg" alt="\(y = \sum \gamma_{l}w_{l}\)" style="height:1.096em;vertical-align:-0.274em"> equals
+<img class="m" src="m/aa00787b7cfe0482ac2f0ca91e714a76be654395.svg" alt="\(-\sum \alpha_{i}z_{i} - \sum \beta_{j}u_{j} \in U\)" style="height:1.135em;vertical-align:-0.318em"> and lies in <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em">,
+so <img class="m" src="m/91e970adf3eda05577e86025fd2748e6ebf68d3b.svg" alt="\(y \in U \cap W\)" style="height:0.962em;vertical-align:-0.212em">; writing <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> in the basis <img class="m" src="m/786f0aa953ca560bbb9186b631d4994d789ccc73.svg" alt="\(z_{i}\)" style="height:0.636em;vertical-align:-0.165em"> and
+comparing with <img class="m" src="m/e3b4aa5df6f087a25948d077a9a3f45d26bf5f1a.svg" alt="\(\sum \gamma_{l}w_{l}\)" style="height:1.096em;vertical-align:-0.274em"> forces all <img class="m" src="m/74c3919b61ab2abaeb283409183a6608e4aeca7d.svg" alt="\(\gamma_{l} = 0\)" style="height:0.919em;vertical-align:-0.211em"> by
+independence in <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em">, and then all <img class="m" src="m/bce8cedb7316985a3d48227e42680bc421354d4c.svg" alt="\(\alpha_{i}, \beta_{j}\)" style="height:1.075em;vertical-align:-0.312em"> vanish by
+independence in <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">. Counting, <img class="m" src="m/034766e1ecfb17acbfdcbd51f69b0f4f34abb448.svg" alt="\(\dim(U+W) = k + p + q\)" style="height:1.096em;vertical-align:-0.274em"> while
+<img class="m" src="m/417ac915400087f1b9901acdaa610278bdf48b8b.svg" alt="\(\dim U + \dim W = (k+p) + (k+q)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="remark" id="org4315f83">
+<p>
+That a basis exists at all in the infinite-dimensional case is a Zorn
+argument and nothing less: there is no way to write down a basis of
+<img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em"> as a vector space over <img class="m" src="m/83349875d2551503beeb2426480fe7a04427bf34.svg" alt="\(\Q\)" style="height:0.938em;vertical-align:-0.178em">, yet one exists. Dimension in that
+generality is the cardinality of a basis, and its independence of the
+basis chosen is proved by the same exchange argument transfinitely.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="vector-space.html"><span>← previous</span>Vector space</a><a rel="next" href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html"><span>next →</span>Linear maps, quotient spaces and the rank-nullity theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--linear-algebra.pdf" title="PDF manual">Linear Algebra</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C++ named casts and RTTI · Computer Science</title>
+<meta name="description" content="C++98 replaced C casts with four named ones: static_cast (conversions checked at compile time, including unchecked downcasts), dynamic_cast (checked downcast of polymorphic types, nullptr or std::bad_cast on failure), const_cast (add or remove const) and reinterpret_cast (reinterpret the bits); typ…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/casts-rtti.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="C++ named casts and RTTI · Computer Science">
+<meta property="og:description" content="C++98 replaced C casts with four named ones: static_cast (conversions checked at compile time, including unchecked downcasts), dynamic_cast (checked downcast of polymorphic types, nullptr or std::bad_cast on failure), const_cast (add or remove const) and reinterpret_cast (reinterpret the bits); typ…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/casts-rtti.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--cpp">Cpp</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Cpp</p>
+<h1>C++ named casts and RTTI</h1>
+<p class="summary">C++98 replaced C casts with four named ones: <code>static_cast</code> (conversions checked at compile time, including unchecked downcasts), <code>dynamic_cast</code> (checked downcast of polymorphic types, <code>nullptr</code> or <code>std::bad_cast</code> on failure), <code>const_cast</code> (add or remove <code>const</code>) and <code>reinterpret_cast</code> (reinterpret the bits); <code>typeid</code> gives the dynamic type.</p>
+<p class="rel"><span>needs</span> <a href="virtual-functions.html">Virtual functions and the virtual table</a></p>
+<p class="rel"><span>see also</span> <a href="casting-instanceof.html">Casts, instanceof and array covariance</a>, <a href="implicit-conversion.html">Converting constructors and explicit</a>, <a href="multiple-inheritance.html">Multiple inheritance and the diamond</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li><li><a href="information-hiding.html">Information hiding and visibility</a></li><li><a href="cpp-inheritance-visibility.html">Public, protected and private inheritance in C++</a></li><li><a href="virtual-functions.html">Virtual functions and the virtual table</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org4512097" class="outline-2">
+<h2 id="org4512097">Definition</h2>
+<div class="outline-text-2" id="text-org4512097">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">cast</th>
+<th scope="col" class="org-left">checked when</th>
+<th scope="col" class="org-left">typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">static_cast</td>
+<td class="org-left">compile time</td>
+<td class="org-left">numeric conversions, upcasts, known downcasts</td>
+</tr>
+
+<tr>
+<td class="org-left">dynamic_cast</td>
+<td class="org-left">run time</td>
+<td class="org-left">safe downcast in a polymorphic hierarchy</td>
+</tr>
+
+<tr>
+<td class="org-left">const_cast</td>
+<td class="org-left">compile time</td>
+<td class="org-left">call legacy APIs that forgot const</td>
+</tr>
+
+<tr>
+<td class="org-left">reinterpret_cast</td>
+<td class="org-left">never</td>
+<td class="org-left">pointer ↔ integer, raw memory, hardware access</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li><code>dynamic_cast&lt;D*&gt;(b)</code> returns <code>nullptr</code> if <code>*b</code> is not a <code>D</code>; <code>dynamic_cast&lt;D&amp;&gt;(b)</code> <a href="java-exceptions.html">throws</a> <code>std::bad_cast</code>. It needs at least one virtual function in the base (it reads the type information reachable from the <a href="virtual-functions.html">vtable</a>).</li>
+<li><code>typeid(*b).name()</code> names the <a href="polymorphism.html">dynamic type</a>; <code>typeid(b)</code> on a pointer gives the static pointer type.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org701943f" class="outline-2">
+<h2 id="org701943f">Example</h2>
+<div class="outline-text-2" id="text-org701943f">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="t">void</span> <span class="f">play</span>(<span class="t">Character</span>* <span class="v">c</span>) {
+  <span class="k">if</span> (<span class="k">auto</span>* <span class="v">w</span> = <span class="k">dynamic_cast</span>&lt;<span class="t">Wizard</span>*&gt;(c)) w-&gt;castSpell();   <span class="c">// only wizards
+</span>  c-&gt;act();                                                  <span class="c">// everyone
+</span>}
+<span class="t">double</span> <span class="v">avg</span> = <span class="k">static_cast</span>&lt;<span class="t">double</span>&gt;(sum) / n;                   <span class="c">// no integer division</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org7d8dda6" class="outline-2">
+<h2 id="org7d8dda6">Intuition</h2>
+<div class="outline-text-2" id="text-org7d8dda6">
+<p>
+Each cast says what kind of promise you make: "the compiler can check this", "check it at run time", "I know it is not really const", "trust me, these are just bits".
+</p>
+</div>
+</div>
+<div id="outline-container-orga1e3eeb" class="outline-2">
+<h2 id="orga1e3eeb">Pitfall</h2>
+<div class="outline-text-2" id="text-orga1e3eeb">
+<p>
+A chain of <code>dynamic_cast</code> tests is usually a missing virtual function: let the object decide (polymorphism) instead of asking it what it is. A <code>static_cast</code> <a href="casting-instanceof.html">downcast</a> to the wrong type is undefined behaviour, not an error.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="virtual-functions.html"><span>← previous</span>Virtual functions and the virtual table</a><a rel="next" href="pointers-references.html"><span>next →</span>Pointers, references and dynamic memory in C++</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--cpp.pdf" title="PDF manual">Cpp</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product measures and the theorems of Tonelli and Fubini · Mathematics</title>
+<meta name="description" content="Computing a double integral by integrating one variable at a time is the most-used manoeuvre in analysis and the one most often performed without justification. It is a theorem, it is false without hypotheses, and the hypotheses come in two flavours: non-negativity, which is Tonelli, and integrabil…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/product-measures-and-the-theorems-of-tonelli-and-fubini.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Product measures and the theorems of Tonelli and Fubini · Mathematics">
+<meta property="og:description" content="Computing a double integral by integrating one variable at a time is the most-used manoeuvre in analysis and the one most often performed without justification. It is a theorem, it is false without hypotheses, and the hypotheses come in two flavours: non-negativity, which is Tonelli, and integrabil…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/product-measures-and-the-theorems-of-tonelli-and-fubini.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--measure-theory">Measure Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Measure Theory</p>
+<h1>Product measures and the theorems of Tonelli and Fubini</h1>
+<p class="summary">Computing a double integral by integrating one variable at a time is the most-used manoeuvre in analysis and the one most often performed without justification. It is a theorem, it is false without hypotheses, and the hypotheses come in two flavours: non-negativity, which is Tonelli, and integrability, which is Fubini and is checked <i>by</i> Tonelli. The proof is a monotone class argument, and that argument is worth isolating because it is how almost every statement about a <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-algebra defined by generation gets proved.</p>
+<p class="rel"><span>needs</span> <a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a>, <a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a>, <a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></p>
+<p class="rel"><span>unlocks</span> <a href="line-integrals-exact-forms-and-greens-theorem.html">Line integrals, exact forms and Green's theorem</a>, <a href="surface-integrals-the-divergence-theorem-and-stokes-theorem.html">Surface integrals, the divergence theorem and Stokes' theorem</a>, <a href="fourier-series-fejers-theorem-and-parsevals-identity.html">Fourier series, Fejer's theorem and Parseval's identity</a>, <a href="the-fourier-transform-inversion-and-plancherel.html">The Fourier transform, inversion and Plancherel</a>, <a href="the-wave-equation-dalemberts-formula-and-energy.html">The wave equation: d'Alembert's formula and energy</a>, <a href="rigid-body-kinematics-and-the-inertia-tensor.html">Rigid body kinematics and the inertia tensor</a></p>
+<p class="rel"><span>mentioned in</span> <a href="analysis.html">Analysis</a>, <a href="real-analysis.html">Real analysis</a>, <a href="partial-differential-equations.html">Partial differential equations</a></p>
+<details class="path"><summary>Learning path: 52 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li><li><a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="the-baire-category-theorem.html">The Baire category theorem</a></li><li><a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></li><li><a href="convex-set.html">Convex set</a></li><li><a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a></li><li><a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a></li><li><a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org684a2a4">
+<p>
+A family <img class="m" src="m/8859a04a0051970e583dc76c75fbfc25d3cc50ad.svg" alt="\(\mathcal{P}\)" style="height:0.749em;vertical-align:-0.000em"> of subsets of <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is a <i><img class="m" src="m/b1e3c27a225dba8050e88d2182ad88a60344ed21.svg" alt="\(\pi\)" style="height:0.472em;vertical-align:-0.000em">-system</i> if it
+is closed under finite intersections. A family <img class="m" src="m/4d9a299847d291b46d2d8863605b36588fee1db1.svg" alt="\(\mathcal{L}\)" style="height:0.749em;vertical-align:-0.000em"> is a
+<i><img class="m" src="m/bf732bcb08e251641d188904cbb646f8c7c05665.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em">-system</i> if <img class="m" src="m/30c8e6fc64c603c2e4bd1b784f99ef321191a956.svg" alt="\(X \in \mathcal{L}\)" style="height:0.792em;vertical-align:-0.040em">, it is closed under proper
+differences (<img class="m" src="m/7fd84bf71d959083a5f910ebcb4f07bbeaeacbbc.svg" alt="\(A \subseteq B\)" style="height:0.898em;vertical-align:-0.153em"> in <img class="m" src="m/4d9a299847d291b46d2d8863605b36588fee1db1.svg" alt="\(\mathcal{L}\)" style="height:0.749em;vertical-align:-0.000em"> implies
+<img class="m" src="m/220703c36f104c8a12a0aa4aed3dbf8318781adc.svg" alt="\(B\setminus A \in \mathcal{L}\)" style="height:1.096em;vertical-align:-0.274em">), and it is closed under increasing
+countable unions.
+</p>
+
+</div>
+
+<div class="theorem" id="org9dac8c3">
+<p>
+If a <img class="m" src="m/bf732bcb08e251641d188904cbb646f8c7c05665.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em">-system contains a <img class="m" src="m/b1e3c27a225dba8050e88d2182ad88a60344ed21.svg" alt="\(\pi\)" style="height:0.472em;vertical-align:-0.000em">-system <img class="m" src="m/8859a04a0051970e583dc76c75fbfc25d3cc50ad.svg" alt="\(\mathcal{P}\)" style="height:0.749em;vertical-align:-0.000em">, it
+contains <img class="m" src="m/bbc2e62c80547467b11dc5c8335c6b93f7a76c1c.svg" alt="\(\sigma(\mathcal{P})\)" style="height:1.096em;vertical-align:-0.274em">. Consequently two measures that agree
+on a <img class="m" src="m/b1e3c27a225dba8050e88d2182ad88a60344ed21.svg" alt="\(\pi\)" style="height:0.472em;vertical-align:-0.000em">-system generating <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em">, and are finite with the
+same total mass, agree on <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org733de7e">
+<p>
+An intersection of <img class="m" src="m/bf732bcb08e251641d188904cbb646f8c7c05665.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em">-systems is one, so let <img class="m" src="m/4d9a299847d291b46d2d8863605b36588fee1db1.svg" alt="\(\mathcal{L}\)" style="height:0.749em;vertical-align:-0.000em"> be
+the smallest <img class="m" src="m/bf732bcb08e251641d188904cbb646f8c7c05665.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em">-system containing <img class="m" src="m/8859a04a0051970e583dc76c75fbfc25d3cc50ad.svg" alt="\(\mathcal{P}\)" style="height:0.749em;vertical-align:-0.000em">; it suffices
+to show <img class="m" src="m/4d9a299847d291b46d2d8863605b36588fee1db1.svg" alt="\(\mathcal{L}\)" style="height:0.749em;vertical-align:-0.000em"> is a <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-algebra, since a
+<img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-algebra containing <img class="m" src="m/8859a04a0051970e583dc76c75fbfc25d3cc50ad.svg" alt="\(\mathcal{P}\)" style="height:0.749em;vertical-align:-0.000em"> contains
+<img class="m" src="m/bbc2e62c80547467b11dc5c8335c6b93f7a76c1c.svg" alt="\(\sigma(\mathcal{P})\)" style="height:1.096em;vertical-align:-0.274em">, and a <img class="m" src="m/bf732bcb08e251641d188904cbb646f8c7c05665.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em">-system closed under finite
+intersections is a <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-algebra &#x2013; complements are proper
+differences from <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">, and a countable union is the increasing union of
+finite ones, each a complement of an intersection of complements.
+</p>
+
+<p>
+So it is enough that <img class="m" src="m/4d9a299847d291b46d2d8863605b36588fee1db1.svg" alt="\(\mathcal{L}\)" style="height:0.749em;vertical-align:-0.000em"> be closed under intersections. Fix
+<img class="m" src="m/48e3c331c813dfdd8bf5f3b710623212278544a0.svg" alt="\(A \in \mathcal{P}\)" style="height:0.792em;vertical-align:-0.040em"> and let
+<img class="m" src="m/d058e036b5d05a5f7e02dacc0aa80eb62b9392c8.svg" alt="\(\mathcal{L}_{A} = \setst{B \in \mathcal{L}}{A \cap B \in \mathcal{L}}\)" style="height:1.096em;vertical-align:-0.274em">.
+It is a <img class="m" src="m/bf732bcb08e251641d188904cbb646f8c7c05665.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em">-system &#x2013; the three defining operations commute with
+intersecting by <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> &#x2013; and it contains <img class="m" src="m/8859a04a0051970e583dc76c75fbfc25d3cc50ad.svg" alt="\(\mathcal{P}\)" style="height:0.749em;vertical-align:-0.000em">, because
+<img class="m" src="m/8859a04a0051970e583dc76c75fbfc25d3cc50ad.svg" alt="\(\mathcal{P}\)" style="height:0.749em;vertical-align:-0.000em"> is closed under intersections; by minimality
+<img class="m" src="m/5aa28df8225ac40d430311fc214d22834a43004a.svg" alt="\(\mathcal{L}_{A} = \mathcal{L}\)" style="height:0.913em;vertical-align:-0.164em">. Now fix <img class="m" src="m/25c78db09592ef6556020550928334a16eb77a8d.svg" alt="\(B \in \mathcal{L}\)" style="height:0.792em;vertical-align:-0.040em"> and put
+<img class="m" src="m/961b3dfae31a6e9b3d79b6ce67b3080306765de2.svg" alt="\(\mathcal{L}_{B} = \setst{C\in\mathcal{L}}{B\cap C\in\mathcal{L}}\)" style="height:1.096em;vertical-align:-0.274em">;
+the previous step shows <img class="m" src="m/9295e1bed13ca77fb0f54e99a9944827666eafd4.svg" alt="\(\mathcal{P}\subseteq\mathcal{L}_{B}\)" style="height:0.913em;vertical-align:-0.164em">, and
+<img class="m" src="m/2f50429b0d5290210fcfe2177beff5809dd035fa.svg" alt="\(\mathcal{L}_{B}\)" style="height:0.913em;vertical-align:-0.164em"> is again a <img class="m" src="m/bf732bcb08e251641d188904cbb646f8c7c05665.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em">-system, so it is all of
+<img class="m" src="m/4d9a299847d291b46d2d8863605b36588fee1db1.svg" alt="\(\mathcal{L}\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+<p>
+For the uniqueness statement, the sets where two such measures agree
+form a <img class="m" src="m/bf732bcb08e251641d188904cbb646f8c7c05665.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em">-system: closure under proper differences and
+increasing unions are additivity and continuity from below, and <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is
+in it by the equal total mass.
+</p>
+
+</div>
+
+<div class="definition" id="org092b81e">
+<p>
+Given measurable spaces <img class="m" src="m/ca4e7903d813257803c2ef72ed3af29f8849b465.svg" alt="\((X,\mathcal{A})\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/c4b3e6e1ea6006604ab7a8297920e75a9f197807.svg" alt="\((Y,\mathcal{B})\)" style="height:1.096em;vertical-align:-0.274em">, the
+<i>product <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-algebra</i> <img class="m" src="m/0788fb9faa58a42f54a8822979a2fad64fd4c865.svg" alt="\(\mathcal{A}\otimes\mathcal{B}\)" style="height:0.840em;vertical-align:-0.092em"> is
+generated by the <i>rectangles</i> <img class="m" src="m/5f37d00068ed9794f7cf1570900306aceeccaadb.svg" alt="\(A \times B\)" style="height:0.840em;vertical-align:-0.092em">, <img class="m" src="m/5ac554fc3a7777f2681e2176e6690e73e4c55ad7.svg" alt="\(A\in\mathcal{A}\)" style="height:0.792em;vertical-align:-0.040em">,
+<img class="m" src="m/dfefe912a2ca0984c38a2b621d19dc81fdeb6629.svg" alt="\(B\in\mathcal{B}\)" style="height:0.792em;vertical-align:-0.040em">. For <img class="m" src="m/8dd1c3f05af903f70ed297081af76b75f4e93a8c.svg" alt="\(E \subseteq X\times Y\)" style="height:0.898em;vertical-align:-0.153em"> the <i>sections</i> are
+<img class="m" src="m/74195f7b7e8254e1fb9dbfd2fa50bd6bf167f389.svg" alt="\(E_{x} = \setst{y}{(x,y)\in E}\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/bdbbda0bd1a5097561e6919c07d1d3bdd6dcf8d8.svg" alt="\(E^{y} = \setst{x}{(x,y)\in E}\)" style="height:1.096em;vertical-align:-0.274em">.
+A measure is <i><img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-finite</i> if the space is a countable union of
+sets of finite measure.
+</p>
+
+</div>
+
+<div class="lemma" id="org3f9be8e">
+<p>
+For <img class="m" src="m/654f4dafa011204f905533b8086902039197292b.svg" alt="\(E \in \mathcal{A}\otimes\mathcal{B}\)" style="height:0.840em;vertical-align:-0.092em">, every section <img class="m" src="m/6e7c12462f20496ab82d1750ee6d15567bf84d58.svg" alt="\(E_{x}\)" style="height:0.913em;vertical-align:-0.164em"> is
+in <img class="m" src="m/6d40145d26458af58776ea3bb7d3688a443c67b2.svg" alt="\(\mathcal{B}\)" style="height:0.749em;vertical-align:-0.000em"> and every <img class="m" src="m/54945d740cfa047518da003613da8f5fe56256ba.svg" alt="\(E^{y}\)" style="height:0.749em;vertical-align:-0.000em"> is in <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em">. If the
+measures are <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-finite, the function
+<img class="m" src="m/49c7c69daf606be1472f62b71d4b9353e92e2393.svg" alt="\(x \mapsto \nu(E_{x})\)" style="height:1.096em;vertical-align:-0.274em"> is <img class="m" src="m/4eff67566114e347f850b18c3d52a495baab5238.svg" alt="\(\mathcal{A}\)" style="height:0.749em;vertical-align:-0.000em">-measurable, and
+<div class="mb"><img class="m" src="m/a87e24cd363a637a8502f44202e6454205dc1f6c.svg" alt="\[ (\mu\otimes\nu)(E) = \int_{X}\nu(E_{x})\dd\mu(x) = \int_{Y}\mu(E^{y})\dd\nu(y) \]" style="width:22.417em"></div>
+defines a measure on <img class="m" src="m/0788fb9faa58a42f54a8822979a2fad64fd4c865.svg" alt="\(\mathcal{A}\otimes\mathcal{B}\)" style="height:0.840em;vertical-align:-0.092em">, the unique one
+assigning <img class="m" src="m/514bef578960dd6c4b4830e674de29b639789ef4.svg" alt="\(\mu(A)\nu(B)\)" style="height:1.096em;vertical-align:-0.274em"> to a rectangle.
+</p>
+
+</div>
+
+<div class="proof" id="orgfd4a9a6">
+<p>
+The sets whose sections are all measurable form a <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-algebra &#x2013;
+sectioning commutes with complements and unions &#x2013; and it contains the
+rectangles, since <img class="m" src="m/0573ac963115900767ccebbb60278c08674b7ddf.svg" alt="\((A\times B)_{x}\)" style="height:1.096em;vertical-align:-0.274em"> is <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> or <img class="m" src="m/b9fcf2ccae8d3515975b71b2e2ab3c4479b2d3d5.svg" alt="\(\emptyset\)" style="height:0.883em;vertical-align:-0.062em">. Hence it
+is everything.
+</p>
+
+<p>
+Assume first <img class="m" src="m/50f76fc1b0042d6b47caa4494b8d8e1eb0c90d26.svg" alt="\(\mu,\nu\)" style="height:0.685em;vertical-align:-0.212em"> finite. Let <img class="m" src="m/4d9a299847d291b46d2d8863605b36588fee1db1.svg" alt="\(\mathcal{L}\)" style="height:0.749em;vertical-align:-0.000em"> be the family of
+<img class="m" src="m/af428b55ddf829e9044704887ce1bde83bdc2a14.svg" alt="\(E\)" style="height:0.749em;vertical-align:-0.000em"> for which <img class="m" src="m/50ac7827155bf237d73f8fdfebc0eb80ff4234a7.svg" alt="\(x\mapsto\nu(E_{x})\)" style="height:1.096em;vertical-align:-0.274em"> is measurable and the two
+iterated integrals agree. It contains the rectangles, on which both
+integrals give <img class="m" src="m/514bef578960dd6c4b4830e674de29b639789ef4.svg" alt="\(\mu(A)\nu(B)\)" style="height:1.096em;vertical-align:-0.274em">, and the rectangles form a
+<img class="m" src="m/b1e3c27a225dba8050e88d2182ad88a60344ed21.svg" alt="\(\pi\)" style="height:0.472em;vertical-align:-0.000em">-system. It is a <img class="m" src="m/bf732bcb08e251641d188904cbb646f8c7c05665.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em">-system: for <img class="m" src="m/7fd84bf71d959083a5f910ebcb4f07bbeaeacbbc.svg" alt="\(A \subseteq B\)" style="height:0.898em;vertical-align:-0.153em"> the
+sections satisfy <img class="m" src="m/6cbaad6e73c1287b752fbae6493ee16a1ac3be52.svg" alt="\(\nu((B\setminus A)_{x}) = \nu(B_{x})-\nu(A_{x})\)" style="height:1.096em;vertical-align:-0.274em">,
+finite, so measurability and the equality pass to differences; and for
+an increasing union, continuity from below gives
+<img class="m" src="m/70c2df36e1f91f24965ae0961aac266b82134152.svg" alt="\(\nu((\bigcup_{n}E_{n})_{x}) = \lim_{n}\nu((E_{n})_{x})\)" style="height:1.151em;vertical-align:-0.334em">, a pointwise
+limit of measurable functions, with the integrals converging by monotone
+convergence. Dynkin's theorem gives <img class="m" src="m/6e02ff737dfb698ff36ac06ab2f78bb098886973.svg" alt="\(\mathcal{L} = \mathcal{A}\otimes\mathcal{B}\)" style="height:0.840em;vertical-align:-0.092em">.
+</p>
+
+<p>
+Countable additivity of the resulting set function is monotone
+convergence applied to the sections. The <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-finite case follows
+by exhausting <img class="m" src="m/0f4d13db6c4c3d16e3bc636b9aa9a7f131fdfde7.svg" alt="\(X\times Y\)" style="height:0.840em;vertical-align:-0.092em"> with an increasing sequence of rectangles of
+finite measure and passing to the limit; uniqueness on rectangles is the
+second half of Dynkin's theorem, applied on each piece.
+</p>
+
+</div>
+
+<div class="theorem" id="org27a6769">
+<p>
+Let <img class="m" src="m/50f76fc1b0042d6b47caa4494b8d8e1eb0c90d26.svg" alt="\(\mu,\nu\)" style="height:0.685em;vertical-align:-0.212em"> be <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-finite and <img class="m" src="m/a9ea5b39d0f5d8942d7b47b39c53b9c347ad82ab.svg" alt="\(f \ge 0\)" style="height:0.974em;vertical-align:-0.214em"> measurable on
+<img class="m" src="m/6fd302d3d1bacc81663712e6064568af01745808.svg" alt="\(X \times Y\)" style="height:0.840em;vertical-align:-0.092em">. Then <img class="m" src="m/c8b6c12ee9c71f024bebcc5e0612b65e3baa9aa4.svg" alt="\(x \mapsto \int_{Y}f(x,y)\dd\nu(y)\)" style="height:1.272em;vertical-align:-0.394em"> is
+measurable and
+<div class="mb"><img class="m" src="m/7872ad0fcf384acd0f035430e2927597118dc169.svg" alt="\[ \int_{X\times Y} f \dd(\mu\otimes\nu) = \int_{X}\Bigl(\int_{Y}f(x,y)\dd\nu(y)\Bigr)\dd\mu(x) = \int_{Y}\Bigl(\int_{X}f(x,y)\dd\mu(x)\Bigr)\dd\nu(y). \]" style="width:36.756em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="org97f2326">
+<p>
+For <img class="m" src="m/d87a0c6880655dac59070f0da127966d027ccdf1.svg" alt="\(f = \indicator_{E}\)" style="height:0.974em;vertical-align:-0.214em"> the statement is the lemma. By linearity it
+holds for non-negative simple functions. For general <img class="m" src="m/a9ea5b39d0f5d8942d7b47b39c53b9c347ad82ab.svg" alt="\(f \ge 0\)" style="height:0.974em;vertical-align:-0.214em"> take
+simple <img class="m" src="m/bc02b50e902e2301c63a3bf2f88ea8ee44975078.svg" alt="\(s_{n}\uparrow f\)" style="height:0.974em;vertical-align:-0.214em">; each inner integral increases to the inner
+integral of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> by monotone convergence, so the outer integrands
+converge monotonically, and a second application of monotone convergence
+transfers the equality to the limit.
+</p>
+
+</div>
+
+<div class="theorem" id="orgad6aea9">
+<p>
+Let <img class="m" src="m/50f76fc1b0042d6b47caa4494b8d8e1eb0c90d26.svg" alt="\(\mu,\nu\)" style="height:0.685em;vertical-align:-0.212em"> be <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">-finite and <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> integrable on
+<img class="m" src="m/0f4d13db6c4c3d16e3bc636b9aa9a7f131fdfde7.svg" alt="\(X\times Y\)" style="height:0.840em;vertical-align:-0.092em">. Then <img class="m" src="m/2b8c0a7d8994e796836611c678968f1167dbc834.svg" alt="\(f(x,\cdot)\)" style="height:1.096em;vertical-align:-0.274em"> is integrable for almost every
+<img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, the almost-everywhere defined function
+<img class="m" src="m/c8b6c12ee9c71f024bebcc5e0612b65e3baa9aa4.svg" alt="\(x \mapsto \int_{Y}f(x,y)\dd\nu(y)\)" style="height:1.272em;vertical-align:-0.394em"> is integrable, and the two
+iterated integrals both equal <img class="m" src="m/3dff354c1b0fa8ca18e230a03b6ac421b0451b57.svg" alt="\(\int f \dd(\mu\otimes\nu)\)" style="height:1.218em;vertical-align:-0.341em">.
+</p>
+
+</div>
+
+<div class="proof" id="org6543335">
+<p>
+Apply Tonelli to <img class="m" src="m/2aeac56be656e1980256b1b31fa628725465236c.svg" alt="\(\abs{f}\)" style="height:1.096em;vertical-align:-0.274em">: the iterated integral of <img class="m" src="m/2aeac56be656e1980256b1b31fa628725465236c.svg" alt="\(\abs{f}\)" style="height:1.096em;vertical-align:-0.274em"> is
+finite, so <img class="m" src="m/4b0f6e486757fc32ce3ec63bcc3559f92302ff7e.svg" alt="\(\int_{Y}\abs{f(x,y)}\dd\nu(y)&lt;\infty\)" style="height:1.272em;vertical-align:-0.394em"> for almost every
+<img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> &#x2013; a non-negative measurable function with finite integral is
+finite almost everywhere. Splitting <img class="m" src="m/ea7a68ad8e49f7f93b7987c477b770ddb9b2f8f6.svg" alt="\(f = f^{+}-f^{-}\)" style="height:1.086em;vertical-align:-0.217em">, Tonelli applies
+to each part with finite value, and subtracting the two identities gives
+the claim; the difference is defined for almost every <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, which is
+where both parts are finite.
+</p>
+
+</div>
+
+<div class="remark" id="org8d826cb">
+<p>
+Integrability is not a technicality that Fubini could do without: for a
+function that is not absolutely integrable the two iterated integrals can
+both exist and differ. The standard use is therefore always in one
+order &#x2013; Tonelli on <img class="m" src="m/2aeac56be656e1980256b1b31fa628725465236c.svg" alt="\(\abs{f}\)" style="height:1.096em;vertical-align:-0.274em"> to check the hypothesis, Fubini on <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">
+to exchange &#x2013; and writing it the other way round is the usual error.
+</p>
+
+<p>
+This note also pays part of a debt recorded in <a href="probability.html">probability</a>: the
+inversion formula for characteristic functions is a Fubini computation,
+so one of the two assumed theorems there is now within reach.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="square-integrable-functions-and-the-completeness-of-l2.html"><span>← previous</span>Square-integrable functions and the completeness of L2</a><a rel="next" href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html"><span>next →</span>Normed spaces and the equivalence of norms in finite dimension</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--measure-theory.pdf" title="PDF manual">Measure Theory</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

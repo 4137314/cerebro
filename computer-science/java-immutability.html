@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Immutable objects · Computer Science</title>
+<meta name="description" content="An immutable object cannot change after construction: all fields final and private, no setters, the class final, and defensive copies of mutable inputs and outputs; such objects are thread-safe without locks, safe as map keys and freely shareable — String, the wrappers and Java records are the stan…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/java-immutability.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Immutable objects · Computer Science">
+<meta property="og:description" content="An immutable object cannot change after construction: all fields final and private, no setters, the class final, and defensive copies of mutable inputs and outputs; such objects are thread-safe without locks, safe as map keys and freely shareable — String, the wrappers and Java records are the stan…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/java-immutability.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--java">Java</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Java</p>
+<h1>Immutable objects</h1>
+<p class="summary">An immutable object cannot change after construction: all fields <code>final</code> and private, no setters, the class <code>final</code>, and defensive copies of mutable inputs and outputs; such objects are thread-safe without locks, safe as map keys and freely shareable — <code>String</code>, the wrappers and Java records are the standard examples.</p>
+<p class="rel"><span>needs</span> <a href="java-object-class.html">The class Object and final</a></p>
+<p class="rel"><span>see also</span> <a href="equals-hashcode.html">The equals–hashCode contract</a>, <a href="shallow-deep-copy.html">Shallow and deep copy, rule of three</a>, <a href="java-monitors.html">Threads and monitors in Java</a>, <a href="wrapper-autoboxing.html">Wrapper classes and autoboxing</a></p>
+<p class="rel"><span>mentioned in</span> <a href="wrapper-autoboxing.html">Wrapper classes and autoboxing</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="java-platform.html">The Java platform</a></li><li><a href="java-references.html">Objects, references and garbage collection in Java</a></li><li><a href="java-object-class.html">The class Object and final</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org2fba320" class="outline-2">
+<h2 id="org2fba320">Definition</h2>
+<div class="outline-text-2" id="text-org2fba320">
+<p>
+Recipe:
+</p>
+<ol class="org-ol">
+<li>declare the class <code>final</code> (no subclass can add mutable state);</li>
+<li>make every field <code>private final</code>;</li>
+<li>provide no method that modifies the state ("wither" methods return a new object instead);</li>
+<li>copy mutable arguments in the constructor and mutable fields in getters (defensive copies).</li>
+</ol>
+<p>
+Java 16 <code>record Point(int x, int y) {}</code> generates such a class with constructor, accessors, <code>equals</code>, <code>hashCode</code> and <code>toString</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org8ef18d7" class="outline-2">
+<h2 id="org8ef18d7">Example</h2>
+<div class="outline-text-2" id="text-org8ef18d7">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">public</span> <span class="k">final</span> <span class="k">class</span> <span class="t">Period</span> {
+    <span class="c">// LocalDate is immutable itself
+</span>    <span class="k">private</span> <span class="k">final</span> <span class="t">LocalDate</span> <span class="v">start</span>, <span class="v">end</span>;
+    <span class="k">private</span> <span class="k">final</span> <span class="t">List</span>&lt;<span class="t">String</span>&gt; <span class="v">tags</span>;
+    <span class="k">public</span> <span class="f">Period</span>(<span class="t">LocalDate</span> <span class="v">s</span>, <span class="t">LocalDate</span> <span class="v">e</span>, <span class="t">List</span>&lt;<span class="t">String</span>&gt; <span class="v">tags</span>) {
+        <span class="k">if</span> (s.isAfter(e)) <span class="k">throw</span> <span class="k">new</span> <span class="t">IllegalArgumentException</span>(<span class="s">"start after end"</span>);
+        <span class="k">this</span>.start = s; <span class="k">this</span>.end = e;
+        <span class="c">// defensive, unmodifiable copy
+</span>        <span class="k">this</span>.tags = List.copyOf(tags);
+    }
+    <span class="k">public</span> <span class="t">Period</span> <span class="f">withEnd</span>(<span class="t">LocalDate</span> <span class="v">e</span>) { <span class="k">return</span> <span class="k">new</span> <span class="t">Period</span>(start, e, tags); }
+    <span class="k">public</span> <span class="t">List</span>&lt;<span class="t">String</span>&gt; <span class="f">tags</span>() { <span class="k">return</span> tags; }         <span class="c">// already unmodifiable
+</span>}
+<span class="t">String</span> <span class="v">s</span> = <span class="s">"abc"</span>; <span class="t">String</span> <span class="v">t</span> = s.toUpperCase();          <span class="c">// s unchanged: a new String</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orgf45d27c" class="outline-2">
+<h2 id="orgf45d27c">Intuition</h2>
+<div class="outline-text-2" id="text-orgf45d27c">
+<p>
+If nothing can change, nothing needs protecting: no race conditions, no hidden aliasing, no stale hash <a href="hashmap-internals.html">buckets</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org7244a2d" class="outline-2">
+<h2 id="org7244a2d">Pitfall</h2>
+<div class="outline-text-2" id="text-org7244a2d">
+<p>
+<code>final</code> on a reference does not make the referenced object immutable: a <code>final List</code> can still be modified. Building long strings with <code>s +</code> x= in a loop creates a new <code>String</code> each time (<img class="m" src="m/5fea73671d3ae72ee0076fde82572e0496f1e777.svg" alt="\(O(n^2)\)" style="height:1.166em;vertical-align:-0.268em">); use <code>StringBuilder</code>.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="hashmap-internals.html"><span>← previous</span>How a hash table works (HashMap)</a><a rel="next" href="generic-invariance.html"><span>next →</span>Invariance of generics and wildcards</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--java.pdf" title="PDF manual">Java</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

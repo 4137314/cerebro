@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The CMOS inverter: VTC, switching threshold and sizing · Physics</title>
+<meta name="description" content="An NMOS pull-down and a PMOS pull-up with common gate: rail-to-rail outputs (V_{OH}=V_{DD}, V_{OL}=0), no static current, and switching threshold V_M=\frac{V_{TN}+\sqrt{K_p/K_n}\,(V_{DD}+V_{TP})}{1+\sqrt{K_p/K_n}}; a symmetric inverter (V_M=V_{DD}/2, equal rise/fall) needs K_p=K_n, i.e. (W/L)_p=\fr…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/cmos-inverter.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The CMOS inverter: VTC, switching threshold and sizing · Physics">
+<meta property="og:description" content="An NMOS pull-down and a PMOS pull-up with common gate: rail-to-rail outputs (V_{OH}=V_{DD}, V_{OL}=0), no static current, and switching threshold V_M=\frac{V_{TN}+\sqrt{K_p/K_n}\,(V_{DD}+V_{TP})}{1+\sqrt{K_p/K_n}}; a symmetric inverter (V_M=V_{DD}/2, equal rise/fall) needs K_p=K_n, i.e. (W/L)_p=\fr…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/cmos-inverter.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-digital-electronics">Digital Electronics</a> / <a rel="up" href="index.html#a-digital-electronics--inverters">Inverters</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Digital Electronics · Inverters</p>
+<h1>The CMOS inverter: VTC, switching threshold and sizing</h1>
+<p class="summary">An NMOS pull-down and a PMOS pull-up with common gate: rail-to-rail outputs (<img class="m" src="m/8729417d1e833fee6ca94d45e42731308b58e782.svg" alt="\(V_{OH}=V_{DD}\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/0dc855a59746faa72627d19d82a344a6a4819b4e.svg" alt="\(V_{OL}=0\)" style="height:0.913em;vertical-align:-0.164em">), no static current, and switching threshold <img class="m" src="m/2f15eadf143d6859876513dc0950c9e51adfd103.svg" alt="\(V_M=\frac{V_{TN}+\sqrt{K_p/K_n}\,(V_{DD}+V_{TP})}{1+\sqrt{K_p/K_n}}\)" style="height:2.411em;vertical-align:-0.940em">; a symmetric inverter (<img class="m" src="m/237328574f7d5eb3d4a1222f6fb9c9d7791a2946.svg" alt="\(V_M=V_{DD}/2\)" style="height:1.096em;vertical-align:-0.274em">, equal rise/fall) needs <img class="m" src="m/60590f7626e88db75ae491ad2b3fd827fe1835f9.svg" alt="\(K_p=K_n\)" style="height:1.062em;vertical-align:-0.319em">, i.e. <img class="m" src="m/93c33623179f6e3a8ef208b36ebf1134d96256e6.svg" alt="\((W/L)_p=\frac{K'_n}{K'_p}(W/L)_n\approx2\)" style="height:1.898em;vertical-align:-0.702em">–<img class="m" src="m/19934bfde3b78ae94624b6ba79f20051949b8314.svg" alt="\(2.5\times\)" style="height:0.798em;vertical-align:-0.088em">.</p>
+<p class="rel"><span>needs</span> <a href="inverter-static-characteristics.html">Inverter static characteristics and noise margins</a>, <a href="effective-mass-and-holes.html">Effective mass, group velocity and holes</a></p>
+<p class="rel"><span>unlocks</span> <a href="cmos-propagation-delay.html">CMOS propagation delay</a>, <a href="latches-and-flip-flops.html">Latches and flip-flops</a></p>
+<p class="rel"><span>see also</span> <a href="cmos-propagation-delay.html">CMOS propagation delay</a>, <a href="cmos-power-dissipation.html">Power dissipation in CMOS</a>, <a href="static-cmos-logic-gates.html">Static CMOS logic gates and sizing</a></p>
+<details class="path"><summary>Learning path: 32 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="circuits.html">Circuit theory: the map of the subject</a></li><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></li><li><a href="spin-precession-and-rabi-oscillations.html">Spin precession and Rabi oscillations</a></li><li><a href="angular-momentum-algebra.html">Angular momentum: algebra and spectrum</a></li><li><a href="orbital-angular-momentum.html">Orbital angular momentum and spherical harmonics</a></li><li><a href="hydrogen-atom.html">The hydrogen atom</a></li><li><a href="addition-of-angular-momenta.html">Addition of angular momenta</a></li><li><a href="identical-particles-and-pauli-principle.html">Identical particles, bosons, fermions and Pauli's principle</a></li><li><a href="square-well-potentials.html">Square wells: particle in a box and finite well</a></li><li><a href="symmetries-and-conservation-laws.html">Symmetries, conservation laws and degeneracy</a></li><li><a href="solid-state.html">Semiconductor physics: the map of the subject</a></li><li><a href="bloch-theorem-and-energy-bands.html">Bloch's theorem and energy bands</a></li><li><a href="effective-mass-and-holes.html">Effective mass, group velocity and holes</a></li><li><a href="density-of-states-and-fermi-dirac.html">Density of states and Fermi–Dirac statistics</a></li><li><a href="intrinsic-and-doped-semiconductors.html">Intrinsic and doped semiconductors</a></li><li><a href="drift-diffusion-and-einstein-relation.html">Drift, diffusion and the Einstein relation</a></li><li><a href="pn-junction-electrostatics.html">The pn junction: built-in potential, depletion and capacitance</a></li><li><a href="digital-electronics.html">Digital electronic circuits: the map of the subject</a></li><li><a href="mosfet-operation-and-iv.html">The MOSFET: regions of operation and I–V model</a></li><li><a href="inverter-static-characteristics.html">Inverter static characteristics and noise margins</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org44f3a17" class="outline-2">
+<h2 id="org44f3a17">Derivation of <img class="m" src="m/b723466d7a18a48f1082f815f790e03a6594ce29.svg" alt="\(V_M\)" style="height:0.913em;vertical-align:-0.164em"></h2>
+<div class="outline-text-2" id="text-org44f3a17">
+<p>
+At <img class="m" src="m/fbf0ba47171e2d5861bd7006e37ffc03cea9fa85.svg" alt="\(v_I=v_O=V_M\)" style="height:0.913em;vertical-align:-0.164em"> both transistors are saturated; equate <img class="m" src="m/7f0510ecc4616cf4cb5d7e2a5ddaf5594cfce185.svg" alt="\(\frac{K_n}2(V_M-V_{TN})^2=\frac{K_p}2(V_{DD}-V_M+V_{TP})^2\)" style="height:1.458em;vertical-align:-0.379em"> (<img class="m" src="m/6954df5c61d358fbc8b9c89baa620e52fe12b27d.svg" alt="\(V_{TP}&lt;0\)" style="height:0.913em;vertical-align:-0.164em">). Taking square roots: <img class="m" src="m/470490bb21df86a2e22151bae7c89508cc8470dd.svg" alt="\(\sqrt{K_n}(V_M-V_{TN})=\sqrt{K_p}(V_{DD}-V_M+V_{TP})\)" style="height:1.359em;vertical-align:-0.394em">, which gives the formula above. Gain at <img class="m" src="m/b723466d7a18a48f1082f815f790e03a6594ce29.svg" alt="\(V_M\)" style="height:0.913em;vertical-align:-0.164em"> is infinite in the square-law model (finite with <img class="m" src="m/19ca88436300a6eca46a9eb0e3ff8d300f789b52.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em">): a nearly ideal VTC <span class="cite">(<a class="ref" href="https://doi.org/10.1109/isscc.1963.1157450" data-full="F. M. Wanlass and C. T. Sah, “Nanowatt logic using field-effect metal-oxide semiconductor triodes”, IEEE International Solid-State Circuits Conference, Digest of Technical Papers 6, 32–33 (1963)." aria-label="F. M. Wanlass and C. T. Sah, “Nanowatt logic using field-effect metal-oxide semiconductor triodes”, IEEE International Solid-State Circuits Conference, Digest of Technical Papers 6, 32–33 (1963).">Wanlass and Sah 1963</a>)</span>.
+</p>
+</div>
+</div>
+<div id="outline-container-org0a2c7f5" class="outline-2">
+<h2 id="org0a2c7f5">Regions along the VTC</h2>
+<div class="outline-text-2" id="text-org0a2c7f5">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">v_I range</th>
+<th scope="col" class="org-left">NMOS</th>
+<th scope="col" class="org-left">PMOS</th>
+<th scope="col" class="org-left">v_O</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">0 … V_TN</td>
+<td class="org-left">cutoff</td>
+<td class="org-left">triode</td>
+<td class="org-left">V_DD</td>
+</tr>
+
+<tr>
+<td class="org-left">V_TN … V_M</td>
+<td class="org-left">saturation</td>
+<td class="org-left">triode</td>
+<td class="org-left">high, falling</td>
+</tr>
+
+<tr>
+<td class="org-left">V_M</td>
+<td class="org-left">saturation</td>
+<td class="org-left">saturation</td>
+<td class="org-left">steep drop</td>
+</tr>
+
+<tr>
+<td class="org-left">V_M … V_DD + V_TP</td>
+<td class="org-left">triode</td>
+<td class="org-left">saturation</td>
+<td class="org-left">low, falling</td>
+</tr>
+
+<tr>
+<td class="org-left">V_DD + V_TP … V_DD</td>
+<td class="org-left">triode</td>
+<td class="org-left">cutoff</td>
+<td class="org-left">0</td>
+</tr>
+</tbody>
+</table>
+<p>
+Noise margins for a symmetric inverter (square law): <img class="m" src="m/860fcb10ad9f450d6996f425718f8ec9e5a6e9cc.svg" alt="\(V_{IL}=\frac{3V_{DD}+2V_{TN}}{8}\)" style="height:1.352em;vertical-align:-0.379em">, <img class="m" src="m/28205a9923c20d9981ef5d44be5464da691a22d0.svg" alt="\(NM_L=NM_H=\frac{3V_{DD}+2V_{TN}}{8}\)" style="height:1.352em;vertical-align:-0.379em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org09a6b27" class="outline-2">
+<h2 id="org09a6b27">Worked example</h2>
+<div class="outline-text-2" id="text-org09a6b27">
+<p>
+<img class="m" src="m/b90cfbc13db4721e136c0efc9634dd2da9ae7718.svg" alt="\(V_{DD}=2.5\)" style="height:0.913em;vertical-align:-0.164em"> V, <img class="m" src="m/583fac7d8f7810c46e66c40c8a7f59e161461f8a.svg" alt="\(V_{TN}=-V_{TP}=0.6\)" style="height:0.913em;vertical-align:-0.164em"> V, <img class="m" src="m/043bbb7b9fd08ae0354b4a2b25dbed7371c646ad.svg" alt="\(K'_n=100\)" style="height:1.095em;vertical-align:-0.274em">, <img class="m" src="m/2d4412f89fc659ae6cd64c701fdf2806a4a373fd.svg" alt="\(K'_p=40\)" style="height:1.244em;vertical-align:-0.423em"> µA/V², <img class="m" src="m/346d975347f391e7ee9e766dc96d73522f86384f.svg" alt="\((W/L)_n=2/1\)" style="height:1.096em;vertical-align:-0.274em">. Symmetric: <img class="m" src="m/1b2532285fda2f0dcc603759831ac5479bbccb8a.svg" alt="\((W/L)_p=5/1\)" style="height:1.135em;vertical-align:-0.318em">. With <img class="m" src="m/6a10cdf05acbc9a0ef2c5a04e72101dbecf83235.svg" alt="\((W/L)_p=2/1\)" style="height:1.135em;vertical-align:-0.318em"> instead: <img class="m" src="m/55e27f95f83665ad5ff0aefc4d148ad00aa44d3d.svg" alt="\(\sqrt{K_p/K_n}=0.632\)" style="height:1.359em;vertical-align:-0.353em">, <img class="m" src="m/089c66455fad32fc293dfc2ee3c30d47bf3f0db6.svg" alt="\(V_M=\frac{0.6+0.632\cdot1.9}{1.632}=1.10\)" style="height:1.304em;vertical-align:-0.378em"> V (&lt; 1.25 V: weak PMOS shifts the threshold down). Noise margins symmetric case: <img class="m" src="m/8ad83836a863230fa537fb4ee47dd41ee24999f6.svg" alt="\(\frac{7.5+1.2}{8}=1.09\)" style="height:1.304em;vertical-align:-0.378em"> V.
+</p>
+</div>
+</div>
+<div id="outline-container-orge595807" class="outline-2">
+<h2 id="orge595807">Engineering applications</h2>
+<div class="outline-text-2" id="text-orge595807">
+<p>
+The universal building block: buffers, clock trees, ring oscillators (process monitors), level restoration; a biased CMOS inverter is also a simple high-gain amplifier.
+</p>
+</div>
+</div>
+<div id="outline-container-org4c652ed" class="outline-2">
+<h2 id="org4c652ed">Pitfall</h2>
+<div class="outline-text-2" id="text-org4c652ed">
+<p>
+Equal <img class="m" src="m/8e55a0dc4548cec48542ea4a9c51d0ca8b039320.svg" alt="\(W/L\)" style="height:1.096em;vertical-align:-0.274em"> for N and P does <b>not</b> give a symmetric inverter: holes are ~2–3 times less mobile (<a href="effective-mass-and-holes.html">hole effective mass</a>).
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="nmos-inverters.html"><span>← previous</span>NMOS inverters: resistive, saturated and depletion loads</a><a rel="next" href="cmos-propagation-delay.html"><span>next →</span>CMOS propagation delay</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/digital-electronics--inverters.pdf" title="PDF manual">Inverters</a> · <a class="pdf" href="pdf/digital-electronics.pdf" title="PDF manual">Digital Electronics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

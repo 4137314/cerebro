@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nested, inner and anonymous classes · Computer Science</title>
+<meta name="description" content="Java classes can be declared inside other classes: static nested classes are ordinary classes in the outer namespace, inner classes carry a hidden reference to an outer instance and see its fields, local and anonymous classes live in a method and capture its effectively final variables; a lambda is…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/java-inner-classes.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Nested, inner and anonymous classes · Computer Science">
+<meta property="og:description" content="Java classes can be declared inside other classes: static nested classes are ordinary classes in the outer namespace, inner classes carry a hidden reference to an outer instance and see its fields, local and anonymous classes live in a method and capture its effectively final variables; a lambda is…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/java-inner-classes.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--java">Java</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Java</p>
+<h1>Nested, inner and anonymous classes</h1>
+<p class="summary">Java classes can be declared inside other classes: static nested classes are ordinary classes in the outer namespace, inner classes carry a hidden reference to an outer instance and see its fields, local and anonymous classes live in a method and capture its effectively final variables; a lambda is a compact anonymous implementation of a functional interface.</p>
+<p class="rel"><span>needs</span> <a href="java-object-class.html">The class Object and final</a>, <a href="abstract-class-interface.html">Abstract classes and interfaces</a></p>
+<p class="rel"><span>see also</span> <a href="event-handling.html">Event-driven programming and event handlers</a>, <a href="lambda-expressions.html">Lambda expressions</a>, <a href="java-streams.html">Java streams and method references</a>, <a href="observer-mvc.html">Observer pattern and model–view–controller</a></p>
+<p class="rel"><span>mentioned in</span> <a href="lambda-expressions.html">Lambda expressions</a></p>
+<details class="path"><summary>Learning path: 10 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li><li><a href="abstract-class-interface.html">Abstract classes and interfaces</a></li><li><a href="java-platform.html">The Java platform</a></li><li><a href="java-references.html">Objects, references and garbage collection in Java</a></li><li><a href="java-object-class.html">The class Object and final</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgb0e7e5f" class="outline-2">
+<h2 id="orgb0e7e5f">Definition</h2>
+<div class="outline-text-2" id="text-orgb0e7e5f">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">kind</th>
+<th scope="col" class="org-left">declared in</th>
+<th scope="col" class="org-left">outer instance</th>
+<th scope="col" class="org-left">typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">static nested</td>
+<td class="org-left">the class</td>
+<td class="org-left">no</td>
+<td class="org-left">helpers: Map.Entry, Builder</td>
+</tr>
+
+<tr>
+<td class="org-left">inner</td>
+<td class="org-left">the class</td>
+<td class="org-left">yes, Outer.this</td>
+<td class="org-left">iterators, views on outer data</td>
+</tr>
+
+<tr>
+<td class="org-left">local</td>
+<td class="org-left">a method</td>
+<td class="org-left">if non-static</td>
+<td class="org-left">one-off helper with a name</td>
+</tr>
+
+<tr>
+<td class="org-left">anonymous</td>
+<td class="org-left">an expression</td>
+<td class="org-left">if non-static</td>
+<td class="org-left">listeners, comparators</td>
+</tr>
+
+<tr>
+<td class="org-left">lambda</td>
+<td class="org-left">an expression</td>
+<td class="org-left">captures only</td>
+<td class="org-left">one-method interfaces</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Local, anonymous classes and lambdas can use local variables of the enclosing method only if they are <b>effectively final</b> (never reassigned): the value is copied into the object.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf4e9499" class="outline-2">
+<h2 id="orgf4e9499">Example</h2>
+<div class="outline-text-2" id="text-orgf4e9499">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">public</span> <span class="k">class</span> <span class="t">Stack</span>&lt;<span class="t">T</span>&gt; <span class="k">implements</span> <span class="t">Iterable</span>&lt;<span class="t">T</span>&gt; {
+    <span class="k">private</span> <span class="t">Object</span>[] <span class="v">data</span> = <span class="k">new</span> <span class="t">Object</span>[16]; <span class="k">private</span> <span class="t">int</span> <span class="v">size</span>;
+    <span class="k">public</span> <span class="t">Iterator</span>&lt;<span class="t">T</span>&gt; <span class="f">iterator</span>() {
+        <span class="k">return</span> <span class="k">new</span> <span class="t">Iterator</span>&lt;<span class="t">T</span>&gt;() {                  <span class="c">// anonymous inner class
+</span>            <span class="k">private</span> <span class="t">int</span> <span class="v">i</span> = size;                    <span class="c">// reads Stack.this.size
+</span>            <span class="k">public</span> <span class="t">boolean</span> <span class="f">hasNext</span>() { <span class="k">return</span> i &gt; 0; }
+            @SuppressWarnings(<span class="s">"unchecked"</span>) <span class="k">public</span> <span class="t">T</span> <span class="f">next</span>() { <span class="k">return</span> (<span class="t">T</span>) data[--i]; }
+        };
+    }
+}
+<span class="t">int</span> <span class="v">threshold</span> = 10;
+<span class="c">// lambda, threshold effectively final
+</span>list.removeIf(x -&gt; x &lt; threshold);</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org6e51e00" class="outline-2">
+<h2 id="org6e51e00">Intuition</h2>
+<div class="outline-text-2" id="text-org6e51e00">
+<p>
+An inner object is born attached to its outer object and can read its private parts; a static nested class is just a class with a longer name.
+</p>
+</div>
+</div>
+<div id="outline-container-org5df2f50" class="outline-2">
+<h2 id="org5df2f50">Pitfall</h2>
+<div class="outline-text-2" id="text-org5df2f50">
+<p>
+An inner (non-static) instance keeps its outer instance alive: storing a listener or iterator for long can leak a whole window or data structure. Prefer static nested classes when the outer state is not needed.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="java-streams.html"><span>← previous</span>Java streams and method references</a><a rel="next" href="java-packages.html"><span>next →</span>Packages</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--java.pdf" title="PDF manual">Java</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

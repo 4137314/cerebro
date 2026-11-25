@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signal-to-noise ratio and noise-equivalent quantities · Remote Sensing</title>
+<meta name="description" content="Radiometric resolution is limited by noise: the noise-equivalent radiance difference (NEΔL) or temperature difference (NEΔT) is the change that produces a signal equal to the noise; with photon (shot) noise \mathrm{SNR}\propto\sqrt{N_{photons}}, so longer dwell time, larger optics or wider bands im…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/radiometric-snr.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Signal-to-noise ratio and noise-equivalent quantities · Remote Sensing">
+<meta property="og:description" content="Radiometric resolution is limited by noise: the noise-equivalent radiance difference (NEΔL) or temperature difference (NEΔT) is the change that produces a signal equal to the noise; with photon (shot) noise \mathrm{SNR}\propto\sqrt{N_{photons}}, so longer dwell time, larger optics or wider bands im…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/radiometric-snr.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-acquisition">Acquisition</a> / <a rel="up" href="index.html#a-acquisition--optical-sensors">Optical Sensors</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Acquisition · Optical Sensors</p>
+<h1>Signal-to-noise ratio and noise-equivalent quantities</h1>
+<p class="summary">Radiometric resolution is limited by noise: the noise-equivalent radiance difference (NEΔL) or temperature difference (NEΔT) is the change that produces a signal equal to the noise; with photon (shot) noise <img class="m" src="m/4775e8ceeb4d8eb5e71e68e35fa08c9d34a02684.svg" alt="\(\mathrm{SNR}\propto\sqrt{N_{photons}}\)" style="height:1.359em;vertical-align:-0.394em">, so longer dwell time, larger optics or wider bands improve it.</p>
+<p class="rel"><span>needs</span> <a href="sensor-resolutions.html">Geometric, radiometric, spectral and temporal resolution</a></p>
+<p class="rel"><span>see also</span> <a href="digital-number.html">Detector, quantization and digital numbers</a>, <a href="homogeneous-area-statistics.html">Statistics of homogeneous areas in optical images</a>, <a href="speckle-statistics.html">Speckle and its statistics</a></p>
+<p class="rel"><span>mentioned in</span> <a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="sensor-resolutions.html">Geometric, radiometric, spectral and temporal resolution</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgb487a6e" class="outline-2">
+<h2 id="orgb487a6e">Definition</h2>
+<div class="outline-text-2" id="text-orgb487a6e">
+<p>
+<img class="m" src="m/eb0a6e97931f47dcfc8ddb4a0bea9e5fa5f67767.svg" alt="\(\mathrm{SNR}=\bar S/\sigma_n\)" style="height:1.173em;vertical-align:-0.270em">. Noise sources: photon shot noise (<img class="m" src="m/566b6e938d2832886386ebe33676798be33344e8.svg" alt="\(\sigma=\sqrt N\)" style="height:1.140em;vertical-align:-0.125em"> for <img class="m" src="m/0b5ebb9337a8adeadec859c3b646bacae4ce15c3.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> collected electrons), dark current, read-out noise, quantization (<img class="m" src="m/9760601e8e42b372db0956c3b27236ecfab42101.svg" alt="\(\sigma_q=\Delta/\sqrt{12}\)" style="height:1.308em;vertical-align:-0.314em"> for step <img class="m" src="m/1e90f64226b18015baa037574831b1baba4fdb30.svg" alt="\(\Delta\)" style="height:0.749em;vertical-align:-0.000em">).
+</p>
+<ul class="org-ul">
+<li><img class="m" src="m/b9762feb26874b72abb053b5a9ee53ca1a9b1f27.svg" alt="\(\mathrm{NE\Delta L}=\sigma_n/(\partial S/\partial L)\)" style="height:1.096em;vertical-align:-0.274em">: the radiance change equal to one noise <a href="image-statistics.html">standard deviation</a>.</li>
+<li><img class="m" src="m/2fbdafe4a4d0f020d75b4f94aa8ecbd23faf80c5.svg" alt="\(\mathrm{NE\Delta T}=\mathrm{NE\Delta L}/(\partial L/\partial T)\)" style="height:1.096em;vertical-align:-0.274em"> for thermal bands (typical 0.05–0.1 K).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgab79347" class="outline-2">
+<h2 id="orgab79347">Derivation</h2>
+<div class="outline-text-2" id="text-orgab79347">
+<p>
+Collected photo-electrons <img class="m" src="m/1711400286d58e6da1d4c76196ea88ee19c9a825.svg" alt="\(N\propto L\,\Delta\lambda\,A_{optics}\,\Omega_{pixel}\,t_{dwell}\,\eta\)" style="height:1.075em;vertical-align:-0.312em">. With shot noise only, <img class="m" src="m/6a49994a88b24cc0516d60986ff871026430d5bc.svg" alt="\(\mathrm{SNR}=N/\sqrt N=\sqrt N\)" style="height:1.289em;vertical-align:-0.271em">. A pushbroom has dwell time equal to the line time (ground pixel / ground speed), a <a href="scanner-geometry.html">whiskbroom</a> only that divided by the number of pixels per line: for 6000 pixels per line the pushbroom collects 6000 times more photons, <img class="m" src="m/83326ce4255ac0911561c59f28bd52aef0463401.svg" alt="\(\sqrt{6000}\approx77\)" style="height:1.140em;vertical-align:-0.148em"> times better SNR.
+</p>
+</div>
+</div>
+<div id="outline-container-org63f4e89" class="outline-2">
+<h2 id="org63f4e89">Intuition</h2>
+<div class="outline-text-2" id="text-org63f4e89">
+<p>
+Measurement precision is a photon count: the more photons per pixel, the smaller their random fluctuation relative to the signal.
+</p>
+</div>
+</div>
+<div id="outline-container-org23a863f" class="outline-2">
+<h2 id="org23a863f">Pitfall</h2>
+<div class="outline-text-2" id="text-org23a863f">
+<p>
+Quantizing with more bits than the SNR supports only records noise more finely; conversely a sensor with excellent SNR but 8-bit <a href="digital-number.html">quantization</a> wastes it.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="point-spread-function.html"><span>← previous</span>Point spread function and spectral response</a><a rel="next" href="radar-equation.html"><span>next →</span>Radar principle and radar equation</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/acquisition--optical-sensors.pdf" title="PDF manual">Optical Sensors</a> · <a class="pdf" href="pdf/acquisition.pdf" title="PDF manual">Acquisition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

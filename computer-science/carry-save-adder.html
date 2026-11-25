@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carry-save adders and adder trees · Computer Science</title>
+<meta name="description" content="A row of full adders with no carry chain reduces three n-bit operands to two (a sum word and a carry word shifted left) in the delay of one full adder; a tree of such 3:2 compressors reduces k operands to two in O(\log k) levels, and only the last addition needs a carry-propagate adder.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/carry-save-adder.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Carry-save adders and adder trees · Computer Science">
+<meta property="og:description" content="A row of full adders with no carry chain reduces three n-bit operands to two (a sum word and a carry word shifted left) in the delay of one full adder; a tree of such 3:2 compressors reduces k operands to two in O(\log k) levels, and only the last addition needs a carry-propagate adder.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/carry-save-adder.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--arithmetic">Arithmetic</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Hardware · Arithmetic</p>
+<h1>Carry-save adders and adder trees</h1>
+<p class="summary">A row of full adders with no carry chain reduces three <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">-bit operands to two (a sum word and a carry word shifted left) in the delay of one full adder; a tree of such 3:2 compressors reduces <img class="m" src="m/ab474955bf3a453be6c3259db9214b4a610e4bf7.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> operands to two in <img class="m" src="m/a7d6a9196fc0627d73adb7450b59794b15c15bd7.svg" alt="\(O(\log k)\)" style="height:1.096em;vertical-align:-0.274em"> levels, and only the last addition needs a carry-propagate adder.</p>
+<p class="rel"><span>needs</span> <a href="ripple-carry-adder.html">Full adder and ripple-carry adder</a></p>
+<p class="rel"><span>unlocks</span> <a href="array-multiplier.html">Multipliers</a></p>
+<p class="rel"><span>see also</span> <a href="array-multiplier.html">Multipliers</a>, <a href="fir-filter.html">FIR filter architectures</a>, <a href="tree-height-reduction.html">Tree height reduction</a>, <a href="pipelining.html">Pipelining</a></p>
+<p class="rel"><span>mentioned in</span> <a href="fir-filter.html">FIR filter architectures</a>, <a href="booth-recoding.html">Radix-4 Booth recoding</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="ripple-carry-adder.html">Full adder and ripple-carry adder</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgaccb609" class="outline-2">
+<h2 id="orgaccb609">Construction</h2>
+<div class="outline-text-2" id="text-orgaccb609">
+<p>
+For operands <img class="m" src="m/e75d458da9c3ce52b597ffcd2dbebec8d7109fdc.svg" alt="\(x,y,z\)" style="height:0.685em;vertical-align:-0.212em">, bit <img class="m" src="m/a67e954bf39c79e3b911cbed8c1a65db21940e5a.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em">: <img class="m" src="m/ff505119df7b6ed77f42caf460f3120729d38e65.svg" alt="\(s_i=x_i\oplus y_i\oplus z_i\)" style="height:0.852em;vertical-align:-0.213em">, <img class="m" src="m/3a8932a6b3380578b4708bb7d2b718be375a7057.svg" alt="\(c_{i+1}=\mathrm{maj}(x_i,y_i,z_i)\)" style="height:1.096em;vertical-align:-0.274em">. Then
+<div class="mb"><img class="m" src="m/c9d4075f44139fac38851db79a807bccf05baaae.svg" alt="\[ x+y+z=S+2C, \]" style="width:9.628em"></div>
+with <img class="m" src="m/6f4db0e1ff6e2b1f1526e36c0753ef1671195a76.svg" alt="\(S=(s_i)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/92e634f28267108bb4187ca4174f774912ea9bbe.svg" alt="\(C=(c_i)\)" style="height:1.096em;vertical-align:-0.274em">: the sum is kept in <b>redundant</b> form (two words), and no carry propagates. Delay: one <a href="ripple-carry-adder.html">full adder</a>, independent of <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+<p>
+<b>Adder trees</b>: <img class="m" src="m/ab474955bf3a453be6c3259db9214b4a610e4bf7.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> operands need <img class="m" src="m/54a045ad3eddf9c9d628e7120b2801e1c3e246d1.svg" alt="\(k-2\)" style="height:0.852em;vertical-align:-0.094em"> CSA rows. In a chain they cost <img class="m" src="m/54a045ad3eddf9c9d628e7120b2801e1c3e246d1.svg" alt="\(k-2\)" style="height:0.852em;vertical-align:-0.094em"> full-adder delays; in a <b>Wallace tree</b> each level reduces the count by a factor <img class="m" src="m/c624ebcf7a89f233f5ee60e06f15735dffb2e308.svg" alt="\(3/2\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/bf5400eb01838a526ac0dfbed2239ce5d0e16c6b.svg" alt="\(\approx\log_{3/2}(k/2)\)" style="height:1.282em;vertical-align:-0.461em"> levels. A final carry-propagate adder (ripple or lookahead) gives the result. A plain tree of carry-propagate adders would cost <img class="m" src="m/d1d3c29cd42ee74ec23c7edb469179d1b366b218.svg" alt="\(\lceil\log_2k\rceil\)" style="height:1.096em;vertical-align:-0.274em"> full additions instead.
+</p>
+</div>
+</div>
+<div id="outline-container-org5e16d69" class="outline-2">
+<h2 id="org5e16d69">Picture</h2>
+<div class="outline-text-2" id="text-org5e16d69">
+<figure class="fig"><img class="m" src="m/e653ff9deeb3f6530c462fdc218b010c3ae54ded.svg" alt="figure" style="width:12.560em"><figcaption><span class="fl">Figure 1.</span> A carry-save adder tree reducing six operands: layers of CSAs turn three numbers into two without propagating carries, and one carry-propagate adder (CPA) finishes the sum.</figcaption></figure>
+<p>
+Six operands, three CSA levels, one carry-propagate adder at the end.
+</p>
+</div>
+</div>
+<div id="outline-container-orgad90402" class="outline-2">
+<h2 id="orgad90402">Intuition</h2>
+<div class="outline-text-2" id="text-orgad90402">
+<p>
+Postpone the carries: keep the result as "sum plus carries" while more numbers keep coming, and settle the carries once at the end.
+</p>
+</div>
+</div>
+<div id="outline-container-org5ae1e06" class="outline-2">
+<h2 id="org5ae1e06">Pitfall</h2>
+<div class="outline-text-2" id="text-org5ae1e06">
+<p>
+The redundant form <img class="m" src="m/5c9d196c919769c1002e8f20af3e9ad16cd2ff4a.svg" alt="\((S,C)\)" style="height:1.096em;vertical-align:-0.274em"> cannot be compared or sign-tested directly; any decision on the value needs the final carry-propagate addition.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="carry-lookahead-adder.html"><span>← previous</span>Carry-lookahead and prefix adders</a><a rel="next" href="cordic.html"><span>next →</span>CORDIC</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--arithmetic.pdf" title="PDF manual">Arithmetic</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

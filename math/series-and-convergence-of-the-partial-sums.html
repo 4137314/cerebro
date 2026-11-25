@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Series and convergence of the partial sums · Mathematics</title>
+<meta name="description" content="A series is not a new object: it is a sequence, the sequence of its partial sums, and every statement about series is a statement about that sequence. Keeping this in view is what makes the convergence tests proofs rather than recipes.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/series-and-convergence-of-the-partial-sums.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Series and convergence of the partial sums · Mathematics">
+<meta property="og:description" content="A series is not a new object: it is a sequence, the sequence of its partial sums, and every statement about series is a statement about that sequence. Keeping this in view is what makes the convergence tests proofs rather than recipes.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/series-and-convergence-of-the-partial-sums.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Real Analysis</p>
+<h1>Series and convergence of the partial sums</h1>
+<p class="summary">A series is not a new object: it is a sequence, the sequence of its partial sums, and every statement about series is a statement about that sequence. Keeping this in view is what makes the convergence tests proofs rather than recipes.</p>
+<p class="rel"><span>needs</span> <a href="limit-of-a-sequence.html">Limit of a sequence</a></p>
+<p class="rel"><span>unlocks</span> <a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a>, <a href="power-series-and-the-radius-of-convergence.html">Power series and the radius of convergence</a>, <a href="the-alternating-series-test.html">The alternating series test</a>, <a href="the-cauchy-criterion-for-series-the-harmonic-series-and-condensation.html">The Cauchy criterion for series, the harmonic series and condensation</a>, <a href="the-ratio-and-root-tests.html">The ratio and root tests</a>, <a href="the-cauchy-integral-formula-and-analyticity.html">The Cauchy integral formula and analyticity</a>, <a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a>, <a href="the-contraction-mapping-principle.html">The contraction mapping principle</a>, <a href="modes-of-convergence-and-the-borel-cantelli-lemmas.html">Modes of convergence and the Borel-Cantelli lemmas</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org9f46862">
+<p>
+Given a sequence <img class="m" src="m/3c5849e60e95347a43696b92eaf370101e7c4546.svg" alt="\((a_{n})_{n \ge 1}\)" style="height:1.129em;vertical-align:-0.305em"> of real numbers, its <i>partial
+sums</i> are <img class="m" src="m/241a463ff8bc9d778684fbcfc19aa93775d9ab19.svg" alt="\(s_{N} = \sum_{n=1}^{N} a_{n}\)" style="height:1.404em;vertical-align:-0.323em">. The <i>series</i>
+<img class="m" src="m/3cbaf2111d9cd1fc1a0e7f3a0c9d620965457457.svg" alt="\(\sum_{n \ge 1} a_{n}\)" style="height:1.293em;vertical-align:-0.465em"> <i>converges</i> to <img class="m" src="m/ed3e25396bcce44c9645bbcd18304902c8d38937.svg" alt="\(s \in \R\)" style="height:0.798em;vertical-align:-0.040em"> if
+<img class="m" src="m/e5ed8eed61fcc303e33ba1c4e65586dbaa33f2ad.svg" alt="\(s_{N} \to s\)" style="height:0.636em;vertical-align:-0.165em">, and <i>diverges</i> otherwise.
+</p>
+
+</div>
+
+<div class="proposition" id="orgdb0484f">
+<p>
+If <img class="m" src="m/3cbaf2111d9cd1fc1a0e7f3a0c9d620965457457.svg" alt="\(\sum_{n \ge 1} a_{n}\)" style="height:1.293em;vertical-align:-0.465em"> converges, then <img class="m" src="m/2937bd0c0d9cfb3375b532672b9b105de44b20e6.svg" alt="\(a_{n} \to 0\)" style="height:0.871em;vertical-align:-0.165em">.
+</p>
+
+</div>
+
+<div class="proof" id="org1cc7f61">
+<p>
+Let <img class="m" src="m/e5ed8eed61fcc303e33ba1c4e65586dbaa33f2ad.svg" alt="\(s_{N} \to s\)" style="height:0.636em;vertical-align:-0.165em">. Then <img class="m" src="m/6a4917406ba8ba8a1b6b13bcc28669630137966b.svg" alt="\(a_{N} = s_{N} - s_{N-1} \to s - s = 0\)" style="height:0.962em;vertical-align:-0.260em">.
+</p>
+
+</div>
+
+<div class="remark" id="orgee82ba7">
+<p>
+The converse fails, and failing to notice this is the standard first
+error: the harmonic series <img class="m" src="m/63e0a1bc66a8125628a6c06482b51599fcf89a4c.svg" alt="\(\sum 1/n\)" style="height:1.096em;vertical-align:-0.274em"> has terms tending to <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> and
+diverges, since <img class="m" src="m/4ea6447440459e064a19aa6aeecd15f24857dfc4.svg" alt="\(s_{2^{k}} \ge 1 + k/2\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgc489e1d">
+<p>
+Let <img class="m" src="m/890016787d2a340064af4ce431b55b34a9dd3628.svg" alt="\(x \in \R\)" style="height:0.798em;vertical-align:-0.040em">. The series <img class="m" src="m/d14c416aab2a93281e4eb1fca08335551c10cd83.svg" alt="\(\sum_{n \ge 0} x^{n}\)" style="height:1.293em;vertical-align:-0.465em"> converges if and
+only if <img class="m" src="m/a568a0c9fda398eca63eaaf44921a194fe8f515b.svg" alt="\(\abs{x} &lt; 1\)" style="height:1.096em;vertical-align:-0.274em">, and then
+<div class="mb"><img class="m" src="m/b18bcad03f521797c8d707eb1810c4fc0c621793.svg" alt="\[ \sum_{n = 0}^{\infty} x^{n} = \frac{1}{1 - x}. \]" style="width:7.599em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="orgb5c85dd">
+<p>
+For <img class="m" src="m/76d57616b200505c27dc986e86fea27997b38de4.svg" alt="\(x \ne 1\)" style="height:0.974em;vertical-align:-0.214em"> the partial sums satisfy
+<img class="m" src="m/6bd9d8f2c1f13ccb7171df2ea124535a043ca96c.svg" alt="\((1 - x) s_{N} = 1 - x^{N+1}\)" style="height:1.196em;vertical-align:-0.275em">, hence
+<img class="m" src="m/96153602a2f57a70f3dcf1264e36bd6b1a5e20d9.svg" alt="\(s_{N} = (1 - x^{N+1})/(1 - x)\)" style="height:1.196em;vertical-align:-0.275em">. If <img class="m" src="m/a568a0c9fda398eca63eaaf44921a194fe8f515b.svg" alt="\(\abs{x} &lt; 1\)" style="height:1.096em;vertical-align:-0.274em"> then
+<img class="m" src="m/c156c3a4d253e03ced6651c82599e83273b9b18f.svg" alt="\(x^{N+1} \to 0\)" style="height:0.922em;vertical-align:-0.000em">, so <img class="m" src="m/9781a7bd104a37da252e7dcdfddb618671491b6b.svg" alt="\(s_{N} \to 1/(1-x)\)" style="height:1.096em;vertical-align:-0.274em">. If <img class="m" src="m/4aee31a2812bfff09f3e3114f207910a3baf1bc8.svg" alt="\(\abs{x} \ge 1\)" style="height:1.096em;vertical-align:-0.274em"> then
+<img class="m" src="m/297de93fe0a4e0b27a1407ee86504b6d27e8417e.svg" alt="\(\abs{x^{n}} \ge 1\)" style="height:1.096em;vertical-align:-0.274em"> for every <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">, so the terms do not tend to
+<img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> and the series diverges by the term test; for <img class="m" src="m/4c1a6e6b697cee144442160fa37913bb28d92fc4.svg" alt="\(x = 1\)" style="height:0.706em;vertical-align:-0.000em"> the
+partial sums are <img class="m" src="m/18c147bf9fb6e7c02e3f7f3ce99f95b1ea801230.svg" alt="\(N + 1\)" style="height:0.840em;vertical-align:-0.092em"> directly.
+</p>
+
+</div>
+
+<div class="remark" id="org1fbfd76">
+<p>
+This is the comparison object the ratio and root tests are calibrated
+against: both work by dominating a series eventually by a geometric one
+with ratio <img class="m" src="m/718d867f17ffe705b8d4c7674cd6e8a4028bdf3f.svg" alt="\(r &lt; 1\)" style="height:0.749em;vertical-align:-0.045em">, so everything they can prove is a consequence of
+this identity.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-rules-of-differentiation.html"><span>← previous</span>The rules of differentiation</a><a rel="next" href="absolute-convergence-and-the-comparison-test.html"><span>next →</span>Absolute convergence and the comparison test</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

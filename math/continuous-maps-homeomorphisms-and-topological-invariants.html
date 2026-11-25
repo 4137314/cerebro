@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Continuous maps, homeomorphisms and topological invariants · Mathematics</title>
+<meta name="description" content="Continuity was defined with \eps and \delta, then shown to mean that preimages of open sets are open. Only the second formulation survives the loss of the metric, so it becomes the definition – and it is a better one, because it makes continuity manifestly about the two topologies and nothing else.…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/continuous-maps-homeomorphisms-and-topological-invariants.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Continuous maps, homeomorphisms and topological invariants · Mathematics">
+<meta property="og:description" content="Continuity was defined with \eps and \delta, then shown to mean that preimages of open sets are open. Only the second formulation survives the loss of the metric, so it becomes the definition – and it is a better one, because it makes continuity manifestly about the two topologies and nothing else.…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/continuous-maps-homeomorphisms-and-topological-invariants.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-topology">Topology</a> / <a rel="up" href="index.html#a-topology--general-topology">General Topology</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Topology · General Topology</p>
+<h1>Continuous maps, homeomorphisms and topological invariants</h1>
+<p class="summary">Continuity was defined with <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/ae9908b1dd9140d114827a466a957908d1672568.svg" alt="\(\delta\)" style="height:0.761em;vertical-align:-0.000em">, then shown to mean that preimages of open sets are open. Only the second formulation survives the loss of the metric, so it becomes the definition &#x2013; and it is a better one, because it makes continuity manifestly about the two topologies and nothing else. A homeomorphism is then the notion of sameness the subject is organised around.</p>
+<p class="rel"><span>needs</span> <a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a>, <a href="limits-and-continuity.html">Limits and continuity</a>, <a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a>, <a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></p>
+<p class="rel"><span>unlocks</span> <a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a>, <a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a>, <a href="connectedness-components-and-path-connectedness.html">Connectedness, components and path-connectedness</a>, <a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a>, <a href="nets-and-convergence-in-topological-spaces.html">Nets and convergence in topological spaces</a>, <a href="regular-and-normal-spaces-and-urysohns-lemma.html">Regular and normal spaces, and Urysohn's lemma</a>, <a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a>, <a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a>, <a href="covering-spaces-and-the-fundamental-group-of-the-circle.html">Covering spaces and the fundamental group of the circle</a>, <a href="homotopy-equivalence-retracts-and-contractible-spaces.html">Homotopy equivalence, retracts and contractible spaces</a>, <a href="path-homotopy-and-the-fundamental-group.html">Path homotopy and the fundamental group</a>, <a href="smooth-manifolds-smooth-maps-and-the-tangent-space.html">Smooth manifolds, smooth maps and the tangent space</a></p>
+<p class="rel"><span>mentioned in</span> <a href="topology.html">Topology</a>, <a href="general-topology.html">General topology</a></p>
+<details class="path"><summary>Learning path: 13 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org8f9e7e6">
+<p>
+A map <img class="m" src="m/d7c0c93f2d459ca20e4f53c81d24a704a65c7b84.svg" alt="\(f \colon X \to Y\)" style="height:0.974em;vertical-align:-0.214em"> between topological spaces is <i>continuous</i> if
+<img class="m" src="m/593f9a35e05d595bf002193bc4a8063fd9bf37a3.svg" alt="\(f^{-1}(V)\)" style="height:1.166em;vertical-align:-0.268em"> is open in <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> for every open <img class="m" src="m/306ac08d6f2bc50c377d3c62f07587b2769bcff6.svg" alt="\(V \subseteq Y\)" style="height:0.898em;vertical-align:-0.153em">, and
+<i>continuous at</i> <img class="m" src="m/94eaa1f197d2485b6086400fc7bd6537a638d7d8.svg" alt="\(x \in X\)" style="height:0.792em;vertical-align:-0.040em"> if for every neighbourhood <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> of
+<img class="m" src="m/e5ceae42d20882b9a191c5a7061083f903b09df0.svg" alt="\(f(x)\)" style="height:1.096em;vertical-align:-0.274em"> there is a neighbourhood <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> with
+<img class="m" src="m/fcc9b5bb40e58c0dd46b0f207b0a7a4f86924543.svg" alt="\(f(U) \subseteq V\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgccae338">
+<p>
+For <img class="m" src="m/d7c0c93f2d459ca20e4f53c81d24a704a65c7b84.svg" alt="\(f \colon X \to Y\)" style="height:0.974em;vertical-align:-0.214em"> the following are equivalent: (i) <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is
+continuous; (ii) <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is continuous at every point; (iii) the preimage
+of every closed set is closed; (iv)
+<img class="m" src="m/49863fda98ea0c78701075d984c764adaf7ddcf6.svg" alt="\(f(\overline{A}) \subseteq \overline{f(A)}\)" style="height:1.315em;vertical-align:-0.276em"> for every
+<img class="m" src="m/8cf713af0820812531d65e982303553bcc04428e.svg" alt="\(A \subseteq X\)" style="height:0.898em;vertical-align:-0.153em">.
+</p>
+
+</div>
+
+<div class="proof" id="org3733e82">
+<p>
+(i) implies (ii): given <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> a neighbourhood of <img class="m" src="m/e5ceae42d20882b9a191c5a7061083f903b09df0.svg" alt="\(f(x)\)" style="height:1.096em;vertical-align:-0.274em">, take an open
+<img class="m" src="m/1388a85e8a71d8fbebd9fbf22679cae9f01f0735.svg" alt="\(V_{0}\)" style="height:0.913em;vertical-align:-0.164em"> with <img class="m" src="m/e274f7963ca53937a5c8d641545b7fbfd1a6dfb8.svg" alt="\(f(x) \in V_{0} \subseteq V\)" style="height:1.096em;vertical-align:-0.274em">; then
+<img class="m" src="m/004d580a62869603c952bd74ecdb56a379e67576.svg" alt="\(U = f^{-1}(V_{0})\)" style="height:1.166em;vertical-align:-0.268em"> is open, contains <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, and
+<img class="m" src="m/fcc9b5bb40e58c0dd46b0f207b0a7a4f86924543.svg" alt="\(f(U) \subseteq V\)" style="height:1.096em;vertical-align:-0.274em">. (ii) implies (i): let <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> be open and
+<img class="m" src="m/5d9439adf02c51e00fb4adf63cc2b3b29de3c9f9.svg" alt="\(x \in f^{-1}(V)\)" style="height:1.166em;vertical-align:-0.268em">; continuity at <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> gives a neighbourhood <img class="m" src="m/f4dae6025cefded56a77c81c79008f0bfce2d0be.svg" alt="\(U_{x}\)" style="height:0.913em;vertical-align:-0.164em">
+of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> with <img class="m" src="m/82cea9701cbc6c37dd6ebe0f5351a506f1541ef2.svg" alt="\(f(U_{x}) \subseteq V\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/593f9a35e05d595bf002193bc4a8063fd9bf37a3.svg" alt="\(f^{-1}(V)\)" style="height:1.166em;vertical-align:-0.268em"> contains an
+open set around each of its points and is therefore open.
+</p>
+
+<p>
+(i) is equivalent to (iii) because <img class="m" src="m/7e800c7e3ccad75cbe12a889ce37d52744f6ae4b.svg" alt="\(f^{-1}(Y\setminus C) = X \setminus f^{-1}(C)\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+<p>
+(iii) implies (iv): <img class="m" src="m/61fe95d428a5bc2d2f0af09d4b0fbf3c71f5d144.svg" alt="\(f^{-1}(\overline{f(A)})\)" style="height:1.315em;vertical-align:-0.276em"> is closed and contains
+<img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, hence contains <img class="m" src="m/583955cc3615dbf38f19d4187ceb351e86f8aad5.svg" alt="\(\overline{A}\)" style="height:0.968em;vertical-align:-0.000em">, which is (iv). (iv) implies
+(iii): let <img class="m" src="m/7f7fb515d31de6764b7b095ffad006ec111748f9.svg" alt="\(C \subseteq Y\)" style="height:0.898em;vertical-align:-0.153em"> be closed and <img class="m" src="m/218d7ce0b7f9d25b02891531a696dbe69726eed7.svg" alt="\(A = f^{-1}(C)\)" style="height:1.166em;vertical-align:-0.268em">. Then
+<img class="m" src="m/57091e41838e8bbd836f82d65e3ee8bf941b3fa9.svg" alt="\(f(\overline{A}) \subseteq \overline{f(A)} \subseteq \overline{C} = C\)" style="height:1.315em;vertical-align:-0.276em">,
+so <img class="m" src="m/def41f75442daf28bcc1ebe9556a8ada3169f8db.svg" alt="\(\overline{A} \subseteq f^{-1}(C) = A\)" style="height:1.242em;vertical-align:-0.273em"> and <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is closed.
+</p>
+
+</div>
+
+<div class="proposition" id="org0bde097">
+<p>
+If <img class="m" src="m/823d458118978517887306921d56d285d07cc9d5.svg" alt="\(\mathcal{S}\)" style="height:0.749em;vertical-align:-0.000em"> is a subbasis of the topology of <img class="m" src="m/82d9b7c5c94f297586981fdbe7ca67b30095b73a.svg" alt="\(Y\)" style="height:0.749em;vertical-align:-0.000em">, then <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is
+continuous as soon as <img class="m" src="m/fcf78e20882beb90610bcd7fbe2eac4b9ec3e923.svg" alt="\(f^{-1}(S)\)" style="height:1.166em;vertical-align:-0.268em"> is open for every
+<img class="m" src="m/059b2982c887bfffbfdcd1de4593d3e24adeeeeb.svg" alt="\(S \in \mathcal{S}\)" style="height:0.792em;vertical-align:-0.040em">.
+</p>
+
+</div>
+
+<div class="proof" id="org0c77424">
+<p>
+Preimage commutes with unions and intersections:
+<img class="m" src="m/2facb5cd1531add0d630561cb208a3cfbef729be.svg" alt="\(f^{-1}(\bigcup_{i}V_{i}) = \bigcup_{i}f^{-1}(V_{i})\)" style="height:1.221em;vertical-align:-0.330em"> and likewise for
+intersections. Every open set of <img class="m" src="m/82d9b7c5c94f297586981fdbe7ca67b30095b73a.svg" alt="\(Y\)" style="height:0.749em;vertical-align:-0.000em"> is a union of finite
+intersections of members of <img class="m" src="m/823d458118978517887306921d56d285d07cc9d5.svg" alt="\(\mathcal{S}\)" style="height:0.749em;vertical-align:-0.000em">, so its preimage is a union
+of finite intersections of open sets, hence open.
+</p>
+
+</div>
+
+<div class="proposition" id="org26b137d">
+<p>
+A composition of continuous maps is continuous, and every constant map
+and every identity map is continuous.
+</p>
+
+</div>
+
+<div class="proof" id="org473d696">
+<p>
+<img class="m" src="m/117e233df73be22d990488bb45af05df1d5495a6.svg" alt="\((g\circ f)^{-1}(W) = f^{-1}(g^{-1}(W))\)" style="height:1.166em;vertical-align:-0.268em">, open as the preimage under
+<img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> of an open set. For a constant map the preimage of any set is
+<img class="m" src="m/b9fcf2ccae8d3515975b71b2e2ab3c4479b2d3d5.svg" alt="\(\emptyset\)" style="height:0.883em;vertical-align:-0.062em"> or <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">; for the identity it is the set itself.
+</p>
+
+</div>
+
+<div class="proposition" id="orgec15acc">
+<p>
+Let <img class="m" src="m/af278f042140192f99d12119be04725d6f58160e.svg" alt="\(X = C_{1}\cup C_{2}\)" style="height:0.913em;vertical-align:-0.164em"> with <img class="m" src="m/a1aface08c7b82e951eb7fd98c844357cecc6a2b.svg" alt="\(C_{1}, C_{2}\)" style="height:0.962em;vertical-align:-0.212em"> closed, and let
+<img class="m" src="m/f6645ea08741dcea3445283fe5c7ecfbc1ee7826.svg" alt="\(f_{i} \colon C_{i} \to Y\)" style="height:0.974em;vertical-align:-0.214em"> be continuous and agree on
+<img class="m" src="m/fd2e9f9ef408aeceb3ee8ce69c320b3d3be819dc.svg" alt="\(C_{1}\cap C_{2}\)" style="height:0.913em;vertical-align:-0.164em">. Then the map <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> they define on <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is
+continuous.
+</p>
+
+</div>
+
+<div class="proof" id="orgbe66d28">
+<p>
+The two restrictions agree on the overlap, so <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is well defined. For
+<img class="m" src="m/7f7fb515d31de6764b7b095ffad006ec111748f9.svg" alt="\(C \subseteq Y\)" style="height:0.898em;vertical-align:-0.153em"> closed,
+<img class="m" src="m/a200d12a848a0f6b808c5bd27de3de1b7535a676.svg" alt="\(f^{-1}(C) = f_{1}^{-1}(C) \cup f_{2}^{-1}(C)\)" style="height:1.255em;vertical-align:-0.289em">. Each <img class="m" src="m/f253f0fe186a3813079378f8a1e43c7092fa3f21.svg" alt="\(f_{i}^{-1}(C)\)" style="height:1.269em;vertical-align:-0.304em">
+is closed in <img class="m" src="m/2dd610d28c2c0de7aef53a8fea45c6b40f4a41aa.svg" alt="\(C_{i}\)" style="height:0.913em;vertical-align:-0.164em">, hence closed in <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> because <img class="m" src="m/2dd610d28c2c0de7aef53a8fea45c6b40f4a41aa.svg" alt="\(C_{i}\)" style="height:0.913em;vertical-align:-0.164em"> is; so
+<img class="m" src="m/e981e67e154b3a069a4374db8546d069ed21fb1b.svg" alt="\(f^{-1}(C)\)" style="height:1.166em;vertical-align:-0.268em"> is closed as a union of two closed sets, and <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is
+continuous.
+</p>
+
+</div>
+
+<div class="definition" id="orgcdefa71">
+<p>
+A <i>homeomorphism</i> is a continuous bijection whose inverse is
+continuous; two spaces are <i>homeomorphic</i> if one exists between them. A
+property of spaces preserved by homeomorphism is a <i>topological
+invariant</i>.
+</p>
+
+</div>
+
+<div class="proposition" id="org96ea2a6">
+<p>
+A continuous bijection <img class="m" src="m/d7c0c93f2d459ca20e4f53c81d24a704a65c7b84.svg" alt="\(f \colon X \to Y\)" style="height:0.974em;vertical-align:-0.214em"> is a homeomorphism if and
+only if it is <i>open</i> (images of open sets are open), if and only if it
+is <i>closed</i> (images of closed sets are closed). Being homeomorphic is an
+equivalence relation on any set of spaces.
+</p>
+
+</div>
+
+<div class="proof" id="org57b6493">
+<p>
+For a bijection, the image under <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> of a set equals its preimage
+under <img class="m" src="m/d5c9f1f6eab9425c92aa1fd6ec3d95f466f8979b.svg" alt="\(f^{-1}\)" style="height:1.105em;vertical-align:-0.210em">; so continuity of <img class="m" src="m/d5c9f1f6eab9425c92aa1fd6ec3d95f466f8979b.svg" alt="\(f^{-1}\)" style="height:1.105em;vertical-align:-0.210em"> is exactly the statement
+that <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> maps open sets to open sets, and by complementation that it
+maps closed sets to closed sets. The identity is a homeomorphism, the
+inverse of one is one, and a composition of two is one by the previous
+proposition &#x2013; reflexivity, symmetry and transitivity.
+</p>
+
+</div>
+
+<div class="remark" id="orgc50f1da">
+<p>
+A continuous bijection need not be a homeomorphism, and the failure is
+not pathological: the identity from a set with the discrete topology to
+the same set with any coarser one is continuous and bijective in one
+direction only. Compactness plus the Hausdorff property is the standard
+hypothesis that rules this out, which is why so many theorems end
+"&#x2026;hence a homeomorphism" after checking those two.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="interior-closure-boundary-and-density.html"><span>← previous</span>Interior, closure, boundary and density</a><a rel="next" href="subspace-product-and-quotient-topologies.html"><span>next →</span>Subspace, product and quotient topologies</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/topology--general-topology.pdf" title="PDF manual">General Topology</a> · <a class="pdf" href="pdf/topology.pdf" title="PDF manual">Topology</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

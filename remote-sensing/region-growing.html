@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Region growing · Remote Sensing</title>
+<meta name="description" content="Starting from seed pixels or small atomic regions, each region repeatedly absorbs adjacent pixels that satisfy the homogeneity criterion with respect to it (e.g. difference from the region mean below a tolerance), until no region can grow; seeds come from user clicks, local minima of variance or a …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/region-growing.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Region growing · Remote Sensing">
+<meta property="og:description" content="Starting from seed pixels or small atomic regions, each region repeatedly absorbs adjacent pixels that satisfy the homogeneity criterion with respect to it (e.g. difference from the region mean below a tolerance), until no region can grow; seeds come from user clicks, local minima of variance or a …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/region-growing.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--segmentation">Segmentation</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Processing · Segmentation</p>
+<h1>Region growing</h1>
+<p class="summary">Starting from seed pixels or small atomic regions, each region repeatedly absorbs adjacent pixels that satisfy the homogeneity criterion with respect to it (e.g. difference from the region mean below a tolerance), until no region can grow; seeds come from user clicks, local minima of variance or a regular grid.</p>
+<p class="rel"><span>needs</span> <a href="image-segmentation.html">Image segmentation</a></p>
+<p class="rel"><span>see also</span> <a href="split-and-merge.html">Split and merge segmentation</a>, <a href="feature-extraction.html">Feature extraction</a></p>
+<details class="path"><summary>Learning path: 17 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="spectral-signature.html">Spectral signature</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li><li><a href="image-statistics.html">Image statistics: moments, mode, median</a></li><li><a href="homogeneous-area-statistics.html">Statistics of homogeneous areas in optical images</a></li><li><a href="image-segmentation.html">Image segmentation</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgcaaf5d0" class="outline-2">
+<h2 id="orgcaaf5d0">Algorithm</h2>
+<div class="outline-text-2" id="text-orgcaaf5d0">
+<figure class="fig"><img class="m" src="m/1316d8e063b771a8e2b84dbd6d1412f33b6ef6c8.svg" alt="figure" style="width:33.907em"><figcaption><span class="fl">Algorithm 1.</span> Region growing: from seed pixels, each region repeatedly absorbs unlabelled neighbours whose value is within <img class="m" src="m/9520fa8e2a7b42120059104154677514ce5a4ef7.svg" alt="\(\delta\)" style="height:0.761em;vertical-align:-0.000em"> of the region's mean.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-orgdf62796" class="outline-2">
+<h2 id="orgdf62796">Choices</h2>
+<div class="outline-text-2" id="text-orgdf62796">
+<ul class="org-ul">
+<li>initialisation: manual seeds, pixels with the lowest local <a href="image-statistics.html">variance</a>, or <a href="split-and-merge.html">atomic regions</a> from a split step;</li>
+<li>criterion: distance from the region mean (optical), ratio to the region mean (SAR), multiband distance;</li>
+<li>connectivity: 4- or 8-neighbours.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9176646" class="outline-2">
+<h2 id="org9176646">Intuition</h2>
+<div class="outline-text-2" id="text-org9176646">
+<p>
+Drop ink on a few points and let each blot spread over pixels similar to it, stopping at edges.
+</p>
+</div>
+</div>
+<div id="outline-container-orga514eb4" class="outline-2">
+<h2 id="orga514eb4">Pitfall</h2>
+<div class="outline-text-2" id="text-orga514eb4">
+<p>
+Updating the mean as the region grows lets it drift: a slow gradient (a field darkening towards a ditch) can be absorbed step by step into one region that spans very different values.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="morphological-operations.html"><span>← previous</span>Mathematical morphology</a><a rel="next" href="split-and-merge.html"><span>next →</span>Split and merge segmentation</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--segmentation.pdf" title="PDF manual">Segmentation</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

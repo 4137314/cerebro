@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modules, quotients and exact sequences · Mathematics</title>
+<meta name="description" content="A module is a vector space over a ring, and dropping the field is not a small change: without inverses one cannot divide, so a spanning set need not contain a basis and dimension does not exist. What survives is everything formal – submodules, quotients, homomorphism theorems – and what replaces di…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/modules-quotients-and-exact-sequences.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Modules, quotients and exact sequences · Mathematics">
+<meta property="og:description" content="A module is a vector space over a ring, and dropping the field is not a small change: without inverses one cannot divide, so a spanning set need not contain a basis and dimension does not exist. What survives is everything formal – submodules, quotients, homomorphism theorems – and what replaces di…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/modules-quotients-and-exact-sequences.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--ring-theory">Ring Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Algebra · Ring Theory</p>
+<h1>Modules, quotients and exact sequences</h1>
+<p class="summary">A module is a vector space over a ring, and dropping the field is not a small change: without inverses one cannot divide, so a spanning set need not contain a basis and dimension does not exist. What survives is everything formal &#x2013; submodules, quotients, homomorphism theorems &#x2013; and what replaces dimension is the language of exact sequences, which measures how far a module is from being free by recording the maps around it.</p>
+<p class="rel"><span>needs</span> <a href="abelian-group.html">Abelian group</a>, <a href="direct-and-semidirect-products.html">Direct and semidirect products</a>, <a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a>, <a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a>, <a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a>, <a href="rings-ideals-and-the-quotient-ring.html">Rings, ideals and the quotient ring</a>, <a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a>, <a href="vector-space.html">Vector space</a></p>
+<p class="rel"><span>mentioned in</span> <a href="algebra.html">Algebra</a>, <a href="rings-and-commutative-algebra.html">Rings and commutative algebra</a></p>
+<details class="path"><summary>Learning path: 22 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li><li><a href="rings-ideals-and-the-quotient-ring.html">Rings, ideals and the quotient ring</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="the-order-of-an-element-and-cyclic-groups.html">The order of an element and cyclic groups</a></li><li><a href="cosets-the-index-and-lagranges-theorem.html">Cosets, the index and Lagrange's theorem</a></li><li><a href="group-actions-orbits-and-the-orbit-stabiliser-theorem.html">Group actions, orbits and the orbit-stabiliser theorem</a></li><li><a href="cauchys-theorem-and-the-sylow-theorems.html">Cauchy's theorem and the Sylow theorems</a></li><li><a href="direct-and-semidirect-products.html">Direct and semidirect products</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org0fabe24">
+<p>
+Let <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> be a ring. A <i>left <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">-module</i> is an abelian group
+<img class="m" src="m/83201b8b7475039611434b866b858be66e1ca447.svg" alt="\((M,+)\)" style="height:1.096em;vertical-align:-0.274em"> with a map <img class="m" src="m/cbe4cd64b76b55a61bfca7eab5e16acd629e7c10.svg" alt="\(R \times M \to M\)" style="height:0.840em;vertical-align:-0.092em"> satisfying
+<img class="m" src="m/c1370fb25cae3c0f8159aea09edc4fbb81aff5d3.svg" alt="\(r(m+n) = rm+rn\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/0efdc356173d53c389465897fa604e8887f86210.svg" alt="\((r+s)m = rm+sm\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/bd6fe86e61295ea1b069046b814bd15d1beb9685.svg" alt="\((rs)m = r(sm)\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/d2e7751a6b6d4d437bf2c03565ada474e66aaa53.svg" alt="\(1m = m\)" style="height:0.706em;vertical-align:-0.000em">. A <i>submodule</i> is a subgroup closed under the action; a
+<i>homomorphism</i> is an additive map with <img class="m" src="m/8a62e2804d5798a6280fbb8dd4cca018f37a7189.svg" alt="\(f(rm) = rf(m)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgd97815e">
+<p>
+Let <img class="m" src="m/834192205fdc437d9715e3b4c6238115e21b879b.svg" alt="\(N \subseteq M\)" style="height:0.898em;vertical-align:-0.153em"> be a submodule. The quotient group <img class="m" src="m/6f8b1bb6b9af8de291a5ba784020db0bab168bbc.svg" alt="\(M/N\)" style="height:1.096em;vertical-align:-0.274em"> is an
+<img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">-module under <img class="m" src="m/c0fcb0f33e8892a2ab2447f48b9372b17c4aec92.svg" alt="\(r(m+N) = rm + N\)" style="height:1.096em;vertical-align:-0.274em">, the projection is a
+homomorphism with kernel <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">, and every homomorphism
+<img class="m" src="m/f3d6f1ff68f00b03ede28d8fac87812aacfe9cd0.svg" alt="\(f \colon M \to P\)" style="height:0.974em;vertical-align:-0.214em"> vanishing on <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> factors uniquely through it.
+Consequently <img class="m" src="m/13c234738e3a6ff0ced3b912e5bfb21f179bc918.svg" alt="\(M/\ker f \iso \im f\)" style="height:1.096em;vertical-align:-0.274em"> for every homomorphism <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="proof" id="org4ff5716">
+<p>
+The action is well defined: <img class="m" src="m/92a5c2dcc037a5c594f40fe228f723dfa0576585.svg" alt="\(m - m' \in N\)" style="height:0.915em;vertical-align:-0.092em"> gives
+<img class="m" src="m/a4d929add673e1c86cf87382146cdcab68c9200c.svg" alt="\(rm - rm' = r(m-m') \in N\)" style="height:1.098em;vertical-align:-0.274em">. The axioms are inherited coset by coset.
+The kernel and image of a homomorphism are submodules, by the same
+computation as for subgroups plus closure under the action. The
+factorisation is the universal property of the quotient set, and the
+induced map is a homomorphism because the operations are defined
+representative-wise; applied to <img class="m" src="m/d81c53d0163faa6979e67b5a7675ab4f2f59c469.svg" alt="\(N = \ker f\)" style="height:0.974em;vertical-align:-0.214em"> it is bijective onto
+<img class="m" src="m/e707f0327e5c1ff843d65171acb3c88d255b5869.svg" alt="\(\im f\)" style="height:0.974em;vertical-align:-0.214em">, exactly as in the group case.
+</p>
+
+</div>
+
+<div class="definition" id="org10ec64a">
+<p>
+An <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">-module <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> is <i>free on a set <img class="m" src="m/b4a1a4584914b58c9538c43d8739f45bd08e9abd.svg" alt="\(S \subseteq M\)" style="height:0.898em;vertical-align:-0.153em"></i> if every
+element of <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> is uniquely a finite combination <img class="m" src="m/5f765a8ab521b69b4be012a58867fde4003cd73a.svg" alt="\(\sum_{i}r_{i}s_{i}\)" style="height:1.151em;vertical-align:-0.334em">
+with <img class="m" src="m/fd35e2e19fe192d3cf5d4c2159868c15eb20328a.svg" alt="\(s_{i}\in S\)" style="height:0.913em;vertical-align:-0.164em"> distinct. The module <img class="m" src="m/73f7e7a3c9f6b6d5aca4787523cbcca7ab509504.svg" alt="\(R^{(S)}\)" style="height:0.973em;vertical-align:-0.000em"> of finitely
+supported families <img class="m" src="m/c999a1e0bea359385a0ce9b42fda1572cf26e195.svg" alt="\((r_{s})_{s\in S}\)" style="height:1.096em;vertical-align:-0.274em"> is free on the standard family.
+</p>
+
+</div>
+
+<div class="theorem" id="orga67c449">
+<p>
+Let <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> be free on <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">. For every <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">-module <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> and every map
+<img class="m" src="m/cd8171fac44b9c4d9a8415f2376c791b03079924.svg" alt="\(f \colon S \to P\)" style="height:0.974em;vertical-align:-0.214em"> there is exactly one homomorphism
+<img class="m" src="m/473d28710cf0409abdeb9c830c5691f9335643a7.svg" alt="\(\bar{f}\colon M \to P\)" style="height:1.125em;vertical-align:-0.214em"> extending <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">. Consequently every module is
+a quotient of a free module.
+</p>
+
+</div>
+
+<div class="proof" id="orgc1a1d16">
+<p>
+Uniqueness is forced: a homomorphism is determined on
+<img class="m" src="m/7cba74cafb400d42c8da0c8b10fe625abc2e455e.svg" alt="\(\sum r_{i}s_{i}\)" style="height:1.096em;vertical-align:-0.274em"> by <img class="m" src="m/d82a99862a0c212bca52fc5cd25c4f87394f1fae.svg" alt="\(\sum r_{i}f(s_{i})\)" style="height:1.096em;vertical-align:-0.274em">. That formula is well
+defined precisely because the representation is unique, and it is
+additive and <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">-linear by collecting coefficients.
+</p>
+
+<p>
+For the last claim take <img class="m" src="m/be35820cdd74a81a1f55f5dc6484dcfd5deef6cf.svg" alt="\(S = M\)" style="height:0.749em;vertical-align:-0.000em"> and the free module <img class="m" src="m/759c721568eeb5fa7c642741bf9729cdaaa96815.svg" alt="\(R^{(M)}\)" style="height:0.973em;vertical-align:-0.000em">; the
+homomorphism extending the identity is surjective, so <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> is
+isomorphic to <img class="m" src="m/759c721568eeb5fa7c642741bf9729cdaaa96815.svg" alt="\(R^{(M)}\)" style="height:0.973em;vertical-align:-0.000em"> modulo its kernel.
+</p>
+
+</div>
+
+<div class="definition" id="org6555ace">
+<p>
+A sequence of module homomorphisms
+<img class="m" src="m/2082458f9e1f1eadbd914743444a0a84e8e50932.svg" alt="\(\cdots \to M_{i-1}\xrightarrow{f_{i}} M_{i}\xrightarrow{f_{i+1}}M_{i+1}\to\cdots\)" style="height:1.623em;vertical-align:-0.260em">
+is <i>exact at <img class="m" src="m/2625d3f5461a614269df4bb1caf1ac8fb752a6e7.svg" alt="\(M_{i}\)" style="height:0.913em;vertical-align:-0.164em"></i> if <img class="m" src="m/67ae8452ab40cb2d92c4ac8e84d45fcce6243205.svg" alt="\(\im f_{i} = \ker f_{i+1}\)" style="height:1.017em;vertical-align:-0.254em">, and <i>exact</i> if
+it is exact everywhere. A <i>short exact sequence</i> is an exact
+<img class="m" src="m/21ec8f9b95501f6f184cbe6ae7704671ff34b361.svg" alt="\(0 \to A \xrightarrow{f} B \xrightarrow{g} C \to 0\)" style="height:1.315em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgd93df54">
+<p>
+<img class="m" src="m/62d494934c135fdac2d324043a9b838a90bd4549.svg" alt="\(0\to A\xrightarrow{f}B\xrightarrow{g}C\to0\)" style="height:1.315em;vertical-align:-0.000em"> is exact if and only if
+<img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is injective, <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> is surjective and <img class="m" src="m/a2cd3b9a0d188f5eacc5b4573c7229e81adc73fb.svg" alt="\(\im f = \ker g\)" style="height:0.974em;vertical-align:-0.214em">; and then
+<img class="m" src="m/eb2508364aaf594fc7c4f4a3bb3d7e8112be67e5.svg" alt="\(C \iso B/f(A)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgfcf5517">
+<p>
+Exactness at <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> says <img class="m" src="m/910cad29da40b81a62d85ddc46f55269e2e2a12d.svg" alt="\(\ker f\)" style="height:0.974em;vertical-align:-0.214em"> is the image of the zero map, that is
+<img class="m" src="m/648cb049d115da6065c68bcfd248a0186190ad13.svg" alt="\(\ker f = 0\)" style="height:0.974em;vertical-align:-0.214em">, which is injectivity; at <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> it says
+<img class="m" src="m/1fa10030235734b4336ef8fa9a9352b5e701bf93.svg" alt="\(\im g = \ker(C \to 0) = C\)" style="height:1.096em;vertical-align:-0.274em">, which is surjectivity; at <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> it is the
+stated equality. The isomorphism is the homomorphism theorem applied to
+<img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em">, whose kernel is <img class="m" src="m/fc1135e8f1ae0aed119819fb40e957cab254cb74.svg" alt="\(f(A)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgc94c143">
+<p>
+For a short exact sequence as above, the following are equivalent:
+there is <img class="m" src="m/57c464e72cf729a83f365ff7f1a77ce99ca317c3.svg" alt="\(s \colon C \to B\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/9da8cec606ad4e635e4f3f25f4208b83c073e5d9.svg" alt="\(g \circ s = \id_{C}\)" style="height:0.974em;vertical-align:-0.214em">; there is
+<img class="m" src="m/86aaa92e7ed2e86692bc101acefcb02bda6c7907.svg" alt="\(p \colon B \to A\)" style="height:0.962em;vertical-align:-0.212em"> with <img class="m" src="m/9d487d7cae88450b07e04a26ca5b67bd8978afea.svg" alt="\(p \circ f = \id_{A}\)" style="height:0.974em;vertical-align:-0.214em">; and
+<img class="m" src="m/b28901b3fa2e708110e752a1c7921e0094ef2a89.svg" alt="\(B \iso A \oplus C\)" style="height:0.840em;vertical-align:-0.092em"> by an isomorphism carrying <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> to the
+inclusion and the projection.
+</p>
+
+</div>
+
+<div class="proof" id="org885995a">
+<p>
+Given <img class="m" src="m/42d2c35f20f2c22043ef0eb42920ada193d61639.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em">: every <img class="m" src="m/7d4b2793865f7c4a0af9fae46f96c63d7dd72b6d.svg" alt="\(b \in B\)" style="height:0.804em;vertical-align:-0.040em"> is <img class="m" src="m/bf27a4688e4ca65d10fb803617ac895800c4d87b.svg" alt="\(\bigl(b - s(g(b))\bigr) + s(g(b))\)" style="height:1.315em;vertical-align:-0.381em">,
+where the first summand lies in <img class="m" src="m/fdde3b17f1e3247be4e76cbab00563c26953eb87.svg" alt="\(\ker g = \im f\)" style="height:0.974em;vertical-align:-0.214em">; and
+<img class="m" src="m/f096891bfae39fbba2134ae6537724cb26e5a8ca.svg" alt="\(\im f \cap \im s = 0\)" style="height:0.974em;vertical-align:-0.214em">, since <img class="m" src="m/d4b20ebc0fa210f3aa830820bef175dc0c861b9c.svg" alt="\(f(a) = s(c)\)" style="height:1.096em;vertical-align:-0.274em"> gives
+<img class="m" src="m/deb514670c8a9f9eb5d996e1c32fd5bd1aa2b7a6.svg" alt="\(0 = g(f(a)) = c\)" style="height:1.096em;vertical-align:-0.274em">. So <img class="m" src="m/1f10512485d39761c6042ef672fa5a0392c345cb.svg" alt="\(B = \im f \oplus \im s\)" style="height:0.974em;vertical-align:-0.214em">, and <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">, <img class="m" src="m/42d2c35f20f2c22043ef0eb42920ada193d61639.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> are
+injective, giving <img class="m" src="m/b28901b3fa2e708110e752a1c7921e0094ef2a89.svg" alt="\(B \iso A \oplus C\)" style="height:0.840em;vertical-align:-0.092em"> with the stated compatibility;
+the projection onto <img class="m" src="m/e707f0327e5c1ff843d65171acb3c88d255b5869.svg" alt="\(\im f\)" style="height:0.974em;vertical-align:-0.214em"> followed by <img class="m" src="m/d5c9f1f6eab9425c92aa1fd6ec3d95f466f8979b.svg" alt="\(f^{-1}\)" style="height:1.105em;vertical-align:-0.210em"> is a <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+
+<p>
+Given <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">: put <img class="m" src="m/1a37d24551475e0b400c35d3425a322bad351418.svg" alt="\(B' = \ker p\)" style="height:1.037em;vertical-align:-0.218em">. For <img class="m" src="m/7d4b2793865f7c4a0af9fae46f96c63d7dd72b6d.svg" alt="\(b \in B\)" style="height:0.804em;vertical-align:-0.040em">,
+<img class="m" src="m/5d05f71c46fdfbb4ce767848a25001bb4739ca43.svg" alt="\(b - f(p(b)) \in \ker p\)" style="height:1.096em;vertical-align:-0.274em">, and <img class="m" src="m/27613cc812645695df024c5ccf18f1b3c8c87d71.svg" alt="\(\im f \cap \ker p = 0\)" style="height:0.974em;vertical-align:-0.214em"> because
+<img class="m" src="m/a2320ba393c9906484ad998265ffebcb8589b902.svg" alt="\(p(f(a)) = a\)" style="height:1.096em;vertical-align:-0.274em">. So <img class="m" src="m/876702788388cc25faf54975c14a3c61c1ab32f7.svg" alt="\(B = \im f \oplus \ker p\)" style="height:0.974em;vertical-align:-0.214em">, and <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> restricted to
+<img class="m" src="m/f6dec2ee404514d6c77e9fe92b7471e3a8de1057.svg" alt="\(\ker p\)" style="height:0.974em;vertical-align:-0.214em"> is injective &#x2013; its kernel is <img class="m" src="m/8d38f7cd77c78da8dbbe9d4fa40df351502516ac.svg" alt="\(\ker g \cap \ker p = \im f \cap \ker p = 0\)" style="height:0.974em;vertical-align:-0.214em">
+&#x2013; and surjective, since <img class="m" src="m/0b9101ffb26c9f0c88f1d38032772371e0003003.svg" alt="\(g(b) = g(b - f(p(b)))\)" style="height:1.096em;vertical-align:-0.274em">. Its inverse is an
+<img class="m" src="m/42d2c35f20f2c22043ef0eb42920ada193d61639.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em">. The third statement gives both maps directly.
+</p>
+
+</div>
+
+<div class="remark" id="orgfd19f05">
+<p>
+Over a field every short exact sequence splits, which is why linear
+algebra never mentions them: a subspace always has a complement. Over
+<img class="m" src="m/7dabe02ee97dbd1f64356da323fa6ec62fd0b242.svg" alt="\(\Z\)" style="height:0.755em;vertical-align:-0.000em"> the sequence <img class="m" src="m/3d7290b82ddb10caf10be077a0834af81092d134.svg" alt="\(0\to\Z\xrightarrow{2}\Z\to\Z/2\Z\to0\)" style="height:1.499em;vertical-align:-0.270em"> does not
+split, because <img class="m" src="m/7dabe02ee97dbd1f64356da323fa6ec62fd0b242.svg" alt="\(\Z\)" style="height:0.755em;vertical-align:-0.000em"> has no element of order <img class="m" src="m/682209d80cc07f86795f987ad28681d443268af8.svg" alt="\(2\)" style="height:0.706em;vertical-align:-0.000em"> &#x2013; and the
+obstruction is exactly what <img class="m" src="m/a5fcbc4c926fc4247628670c0372219d7acd3efa.svg" alt="\(\Ext\)" style="height:0.749em;vertical-align:-0.000em"> measures.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="rings-ideals-and-the-quotient-ring.html"><span>← previous</span>Rings, ideals and the quotient ring</a><a rel="next" href="rings-and-commutative-algebra.html"><span>next →</span>Rings and commutative algebra</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--ring-theory.pdf" title="PDF manual">Ring Theory</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

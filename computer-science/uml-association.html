@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Association, links and multiplicity · Computer Science</title>
+<meta name="description" content="An association between C_1 and C_2 is a relation A\subseteq \mathrm{ext}(C_1)\times\mathrm{ext}(C_2); its instances are links (pairs of objects), its ends carry roles and multiplicities, and it can have attributes of its own.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/uml-association.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Association, links and multiplicity · Computer Science">
+<meta property="og:description" content="An association between C_1 and C_2 is a relation A\subseteq \mathrm{ext}(C_1)\times\mathrm{ext}(C_2); its instances are links (pairs of objects), its ends carry roles and multiplicities, and it can have attributes of its own.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/uml-association.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--uml">Uml</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Uml</p>
+<h1>Association, links and multiplicity</h1>
+<p class="summary">An association between <img class="m" src="m/341ad6ae65295babbb9b1b95df78e73fe4b8ddab.svg" alt="\(C_1\)" style="height:0.913em;vertical-align:-0.164em"> and <img class="m" src="m/4d7cf810c4facd25984d4156a829bf3dd8aaad72.svg" alt="\(C_2\)" style="height:0.913em;vertical-align:-0.164em"> is a relation <img class="m" src="m/d84935cd525a4170f22c75340196635273aeed40.svg" alt="\(A\subseteq \mathrm{ext}(C_1)\times\mathrm{ext}(C_2)\)" style="height:1.096em;vertical-align:-0.274em">; its instances are links (pairs of objects), its ends carry roles and multiplicities, and it can have attributes of its own.</p>
+<p class="rel"><span>needs</span> <a href="uml-class-diagram.html">UML class diagram</a></p>
+<p class="rel"><span>unlocks</span> <a href="aggregation-composition.html">Aggregation and composition</a></p>
+<p class="rel"><span>see also</span> <a href="aggregation-composition.html">Aggregation and composition</a>, <a href="uml-generalization.html">Generalization (is-a)</a>, <a href="java-collections.html">The Java Collections Framework</a></p>
+<p class="rel"><span>mentioned in</span> <a href="uml-generalization.html">Generalization (is-a)</a>, <a href="vhdl-structural.html">Structural VHDL: components, port maps, generics</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgbe1fafb" class="outline-2">
+<h2 id="orgbe1fafb">Definition</h2>
+<div class="outline-text-2" id="text-orgbe1fafb">
+<p>
+Attributes model properties local to one class; associations model properties that involve several classes. An association <img class="m" src="m/fb7b9cf4487eeeade4739cf563e4c3e1dc8075c9.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> between classes <img class="m" src="m/341ad6ae65295babbb9b1b95df78e73fe4b8ddab.svg" alt="\(C_1\)" style="height:0.913em;vertical-align:-0.164em"> and <img class="m" src="m/4d7cf810c4facd25984d4156a829bf3dd8aaad72.svg" alt="\(C_2\)" style="height:0.913em;vertical-align:-0.164em"> is a mathematical relation between their sets of instances,
+<div class="mb"><img class="m" src="m/7b05e1212b327c2b4d07e60cdb6a37d303e6b1e5.svg" alt="\[ A \subseteq \mathrm{ext}(C_1)\times\mathrm{ext}(C_2), \]" style="width:11.165em"></div>
+and a <b>link</b> is one of its pairs <img class="m" src="m/d48c50f8d9547e4c9ca4b22354aa3b6cf9d94398.svg" alt="\((o_1,o_2)\)" style="height:1.096em;vertical-align:-0.274em">. Each end of the association can carry
+</p>
+<ul class="org-ul">
+<li>a <b>role</b>: the name of the part played by that class (<code>employee</code> in <code>works-in</code> between Person and Company); roles are needed when both ends are the same class (parent-child);</li>
+<li>a <b>multiplicity</b> <img class="m" src="m/379a341994bc7d7da30d16e1bb46a5b8f3f37a7c.svg" alt="\(m..n\)" style="height:0.472em;vertical-align:-0.000em">: every object of the other end takes part in between <img class="m" src="m/5f2d4f790b418da9d600db34c8fe8eb825040aa9.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> links (<code>0..1</code>, <code>1</code>, <code>0..*</code>, <code>1..*</code>);</li>
+<li><b>navigability</b>: an arrow saying which end can reach the other, which becomes a pointer or reference field in code.</li>
+</ul>
+
+<p>
+An <b>association attribute</b> belongs to the link, not to either object: the grade of an exam is a property of the pair (student, course).
+</p>
+</div>
+</div>
+<div id="outline-container-orgbd019f7" class="outline-2">
+<h2 id="orgbd019f7">Picture</h2>
+<div class="outline-text-2" id="text-orgbd019f7">
+<figure class="fig"><img class="m" src="m/9ec31ffd830980db993c72279fdb38c744e38440.svg" alt="figure" style="width:27.483em"><figcaption><span class="fl">Figure 1.</span> A UML association between Student and Course, with multiplicity 0..* at both ends and an association class Exam holding the grade.</figcaption></figure>
+<p>
+The grade is an attribute of the association: every link (student, course) has its own grade.
+</p>
+</div>
+</div>
+<div id="outline-container-org585999b" class="outline-2">
+<h2 id="org585999b">From diagram to code</h2>
+<div class="outline-text-2" id="text-org585999b">
+<p>
+A navigable end with multiplicity <code>0..1</code> becomes a pointer (C++) or a possibly-null reference (Java); <code>1</code> becomes a member or a non-null reference; <code>0..*</code> becomes a container (<code>std::vector</code>, <code>List&lt;T&gt;</code>). An association attribute becomes a class of its own (<code>Exam</code>) holding the two ends.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd55d5a2" class="outline-2">
+<h2 id="orgd55d5a2">Worked example</h2>
+<div class="outline-text-2" id="text-orgd55d5a2">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="k">class</span> <span class="t">Course</span>;
+<span class="k">class</span> <span class="t">Exam</span> { <span class="t">Student</span>* <span class="v">s</span>; <span class="t">Course</span>* <span class="v">c</span>; <span class="t">int</span> <span class="v">grade</span>; };          <span class="c">// association class
+</span><span class="k">class</span> <span class="t">Student</span> {
+  <span class="n">std</span>::<span class="t">string</span> <span class="v">name</span>; <span class="t">int</span> <span class="v">number</span>;
+  <span class="c">// 1   : enrolled-in (navigable)
+</span>  <span class="t">Programme</span>* <span class="v">programme</span>;
+  <span class="n">std</span>::<span class="t">vector</span>&lt;<span class="t">Exam</span>*&gt; <span class="v">exams</span>;                                <span class="c">// 0..*: exam
+</span>};</code></pre></figure>
+<p>
+Multiplicity 1 becomes a pointer that must never be null after construction, <img class="m" src="m/3a4157417623f86431269cbc0075bd9c4549e220.svg" alt="\(0..*\)" style="height:0.706em;vertical-align:-0.000em"> a container, the association attribute a class of its own holding both ends.
+</p>
+</div>
+</div>
+<div id="outline-container-org0a2d05d" class="outline-2">
+<h2 id="org0a2d05d">Intuition</h2>
+<div class="outline-text-2" id="text-org0a2d05d">
+<p>
+The multiplicities are the invariants the code must maintain. Writing them down first tells you which fields may be null and which collections may be empty.
+</p>
+</div>
+</div>
+<div id="outline-container-orgafe71b3" class="outline-2">
+<h2 id="orgafe71b3">Pitfall</h2>
+<div class="outline-text-2" id="text-orgafe71b3">
+<p>
+A link is a pair, so the same pair cannot appear twice in an association: a student who takes the same course twice needs a different model (an <code>Exam</code> class with a date) rather than two links.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="uml-class-diagram.html"><span>← previous</span>UML class diagram</a><a rel="next" href="aggregation-composition.html"><span>next →</span>Aggregation and composition</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--uml.pdf" title="PDF manual">Uml</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

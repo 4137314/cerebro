@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concurrent assignments: when–else and with–select · Computer Science</title>
+<meta name="description" content="Data-flow VHDL describes combinational logic with concurrent assignments: plain equations, conditional when ... else (a priority chain of conditions) and selected with ... select (a multiplexer on the values of one expression, all choices mutually exclusive and covered).">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/vhdl-concurrent-assignments.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Concurrent assignments: when–else and with–select · Computer Science">
+<meta property="og:description" content="Data-flow VHDL describes combinational logic with concurrent assignments: plain equations, conditional when ... else (a priority chain of conditions) and selected with ... select (a multiplexer on the values of one expression, all choices mutually exclusive and covered).">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/vhdl-concurrent-assignments.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--vhdl">Vhdl</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Hardware · Vhdl</p>
+<h1>Concurrent assignments: when–else and with–select</h1>
+<p class="summary">Data-flow VHDL describes combinational logic with concurrent assignments: plain equations, conditional <code>when ... else</code> (a priority chain of conditions) and selected <code>with ... select</code> (a multiplexer on the values of one expression, all choices mutually exclusive and covered).</p>
+<p class="rel"><span>needs</span> <a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a>, <a href="std-logic.html">std_logic: nine-valued logic and resolution</a></p>
+<p class="rel"><span>unlocks</span> <a href="vhdl-process.html">Processes and sequential statements</a>, <a href="event-driven-simulation.html">Event-driven logic simulation</a></p>
+<p class="rel"><span>see also</span> <a href="vhdl-process.html">Processes and sequential statements</a>, <a href="event-driven-simulation.html">Event-driven logic simulation</a>, <a href="datapath-subsystems.html">Datapath subsystems: detectors, shifters, counters</a></p>
+<p class="rel"><span>mentioned in</span> <a href="fpga-architecture.html">FPGA architecture</a>, <a href="generalized-bypass.html">Generalized bypass and select transforms</a>, <a href="clock-gating.html">Clock gating and operand isolation</a>, <a href="dvfs-parallelism.html">Voltage scaling, DVFS and parallel datapaths</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="digital-design-flow.html">Digital design flow and abstraction levels</a></li><li><a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a></li><li><a href="std-logic.html">std_logic: nine-valued logic and resolution</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orga022aec" class="outline-2">
+<h2 id="orga022aec">Definition</h2>
+<div class="outline-text-2" id="text-orga022aec">
+<figure class="listing lang-vhdl"><figcaption><span class="lang">VHDL</span></figcaption><pre class="src"><code><span class="c">-- equation
+</span>y &lt;= (a <span class="k">and</span> b) <span class="k">or</span> (<span class="k">not</span> c);
+
+<span class="c">-- conditional: priority, first true condition wins
+</span>code &lt;= <span class="s">"11"</span> <span class="k">when</span> req(3) = <span class="s">'1'</span> <span class="k">else</span>
+        <span class="s">"10"</span> <span class="k">when</span> req(2) = <span class="s">'1'</span> <span class="k">else</span>
+        <span class="s">"01"</span> <span class="k">when</span> req(1) = <span class="s">'1'</span> <span class="k">else</span>
+        <span class="s">"00"</span>;
+
+<span class="c">-- selected: one expression, exclusive choices
+</span><span class="k">with</span> sel <span class="k">select</span>
+  y &lt;= d0 <span class="k">when</span> <span class="s">"00"</span>,
+       d1 <span class="k">when</span> <span class="s">"01"</span>,
+       d2 <span class="k">when</span> <span class="s">"10"</span>,
+       d3 <span class="k">when</span> <span class="k">others</span>;</code></pre></figure>
+<p>
+Every concurrent assignment is re-evaluated whenever a signal on its right-hand side changes, like a gate reacting to its inputs.
+</p>
+</div>
+</div>
+<div id="outline-container-org328f8b0" class="outline-2">
+<h2 id="org328f8b0">Conditional versus selected</h2>
+<div class="outline-text-2" id="text-org328f8b0">
+<p>
+<code>when ... else</code> builds a chain of 2-to-1 multiplexers: the first condition has priority, conditions may overlap — natural for a priority encoder. <code>with ... select</code> builds one wide multiplexer: choices must be distinct constants and cover every value (<code>others</code> for the rest, including <code>U</code>, <code>X</code>, … of <code>std_logic</code>). The choices are values, not conditions.
+</p>
+</div>
+</div>
+<div id="outline-container-org04bc55d" class="outline-2">
+<h2 id="org04bc55d">Picture</h2>
+<div class="outline-text-2" id="text-org04bc55d">
+<figure class="fig"><img class="m" src="m/7651b40a8ec9fc8bea7ad844c73c57de0ba1aecb.svg" alt="figure" style="width:31.781em"><figcaption><span class="fl">Figure 1.</span> The hardware behind VHDL concurrent assignments: with–select builds a 4:1 multiplexer, while when–else builds a priority chain in which the first true condition wins.</figcaption></figure>
+<p>
+One balanced multiplexer for <code>with–select</code>; for <code>when–else</code> a chain of 2:1 multiplexers in which the first condition, <code>req(3)</code>, controls the multiplexer nearest to the output, so it has priority and the shortest path.
+</p>
+</div>
+</div>
+<div id="outline-container-org17c0267" class="outline-2">
+<h2 id="org17c0267">Intuition</h2>
+<div class="outline-text-2" id="text-org17c0267">
+<p>
+Equations are wires and gates; <code>with–select</code> is a switch with labelled positions; <code>when–else</code> is a list of rules read top-down.
+</p>
+</div>
+</div>
+<div id="outline-container-orge5886fc" class="outline-2">
+<h2 id="orge5886fc">Pitfall</h2>
+<div class="outline-text-2" id="text-orge5886fc">
+<p>
+A conditional assignment that reads its own target (<code>q &lt;</code> d when en = '1' else q;=) describes memory: synthesis infers a latch, almost never wanted in combinational logic.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="std-logic.html"><span>← previous</span>std_logic: nine-valued logic and resolution</a><a rel="next" href="vhdl-process.html"><span>next →</span>Processes and sequential statements</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--vhdl.pdf" title="PDF manual">Vhdl</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

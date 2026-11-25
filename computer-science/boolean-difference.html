@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shannon cofactors and the Boolean difference · Computer Science</title>
+<meta name="description" content="Every function splits as f=x f_x+\bar x f_{\bar x} (Shannon); the Boolean difference \partial f/\partial x=f_x\oplus f_{\bar x} is 1 exactly for the inputs where changing x changes f, so its complement gives the observability don't-cares used to simplify nodes.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/boolean-difference.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Shannon cofactors and the Boolean difference · Computer Science">
+<meta property="og:description" content="Every function splits as f=x f_x+\bar x f_{\bar x} (Shannon); the Boolean difference \partial f/\partial x=f_x\oplus f_{\bar x} is 1 exactly for the inputs where changing x changes f, so its complement gives the observability don't-cares used to simplify nodes.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/boolean-difference.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--logic-synthesis">Logic Synthesis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Hardware · Logic Synthesis</p>
+<h1>Shannon cofactors and the Boolean difference</h1>
+<p class="summary">Every function splits as <img class="m" src="m/6cf9b05a1100fd4f1ec2af0837b97223e4b40885.svg" alt="\(f=x f_x+\bar x f_{\bar x}\)" style="height:0.974em;vertical-align:-0.214em"> (Shannon); the Boolean difference <img class="m" src="m/019355d8e0eb8f71f8ed8727c7a47366ca24495f.svg" alt="\(\partial f/\partial x=f_x\oplus f_{\bar x}\)" style="height:1.096em;vertical-align:-0.274em"> is 1 exactly for the inputs where changing <img class="m" src="m/c1cb305e0744a841c0171151eaf770796c623d6f.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> changes <img class="m" src="m/c1ed5a3ca52156eb9911941034a69236922afca1.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">, so its complement gives the observability don't-cares used to simplify nodes.</p>
+<p class="rel"><span>unlocks</span> <a href="generalized-bypass.html">Generalized bypass and select transforms</a>, <a href="multilevel-logic-optimization.html">Multi-level logic optimization</a></p>
+<p class="rel"><span>see also</span> <a href="algebraic-division.html">Algebraic (weak) division</a>, <a href="multilevel-logic-optimization.html">Multi-level logic optimization</a>, <a href="switching-activity.html">Signal and transition probabilities</a>, <a href="generalized-bypass.html">Generalized bypass and select transforms</a>, <a href="canonical-forms.html">Shannon expansion and canonical forms</a></p>
+<p class="rel"><span>mentioned in</span> <a href="canonical-forms.html">Shannon expansion and canonical forms</a>, <a href="switching-activity.html">Signal and transition probabilities</a></p>
+</header>
+<main class="note">
+<div id="outline-container-org42ec413" class="outline-2">
+<h2 id="org42ec413">Definition</h2>
+<div class="outline-text-2" id="text-org42ec413">
+<p>
+Cofactors: <img class="m" src="m/47d68775750a44971ef84adb8e8eed181cb3bfdf.svg" alt="\(f_x=f|_{x=1}\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/d730dfd356df4ba3e3b0f7e7d3f57ed6ec16be87.svg" alt="\(f_{\bar x}=f|_{x=0}\)" style="height:1.096em;vertical-align:-0.274em">. Shannon expansion: <img class="m" src="m/e200ff88d504de1ca4e7a4d5dcc1d75ab9e88817.svg" alt="\(f=x\,f_x+\bar x\,f_{\bar x}\)" style="height:0.974em;vertical-align:-0.214em">. Boolean difference:
+<div class="mb"><img class="m" src="m/f2cb0f6c1b78c14f323ae0e0a60d8aaf103b5d31.svg" alt="\[ \frac{\partial f}{\partial x}=f_x\oplus f_{\bar x}. \]" style="width:6.842em"></div>
+</p>
+<ul class="org-ul">
+<li><img class="m" src="m/15cfb5be6bb729cc02e707d7f9c354526621e13f.svg" alt="\(\partial f/\partial x=1\)" style="height:1.096em;vertical-align:-0.274em">: <img class="m" src="m/c1cb305e0744a841c0171151eaf770796c623d6f.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> is observable at the output.</li>
+<li><img class="m" src="m/168a72b4d0a43844edf246123d5333de34be3cf7.svg" alt="\(\partial f/\partial x=0\)" style="height:1.096em;vertical-align:-0.274em">: the value of <img class="m" src="m/c1cb305e0744a841c0171151eaf770796c623d6f.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> does not matter, an observability don't-care for <img class="m" src="m/c1cb305e0744a841c0171151eaf770796c623d6f.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org25e057f" class="outline-2">
+<h2 id="org25e057f">Example</h2>
+<div class="outline-text-2" id="text-org25e057f">
+<p>
+<img class="m" src="m/2996017c8d339ab8dd6fddb27eba8152868b91af.svg" alt="\(f=xy+z\)" style="height:0.974em;vertical-align:-0.214em">: <img class="m" src="m/f7de97db13d0e7e6032f8dc8b7c571aad1c94a98.svg" alt="\(f_x=y+z\)" style="height:0.974em;vertical-align:-0.214em">, <img class="m" src="m/86a02e7a258129427ad71579b988df35d2c214a0.svg" alt="\(f_{\bar x}=z\)" style="height:0.974em;vertical-align:-0.214em">, <img class="m" src="m/d6dbb7e2b23084a4be8744f21114e231f2fbbb1b.svg" alt="\(\partial f/\partial x=(y+z)\oplus z=y\bar z\)" style="height:1.096em;vertical-align:-0.274em">. The value of <img class="m" src="m/c1cb305e0744a841c0171151eaf770796c623d6f.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> matters only when <img class="m" src="m/c4b6ffe44c92b0da1ad6a67a18ce5bdf222ecebf.svg" alt="\(y=1,z=0\)" style="height:0.919em;vertical-align:-0.211em">. In a network, if <img class="m" src="m/c1cb305e0744a841c0171151eaf770796c623d6f.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> is an internal node, its logic can be changed freely on the inputs where <img class="m" src="m/5c8730fa5284d2968765df47fee56867bd65fb33.svg" alt="\(y\bar z=0\)" style="height:0.919em;vertical-align:-0.211em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb5ac5ad" class="outline-2">
+<h2 id="orgb5ac5ad">Uses</h2>
+<div class="outline-text-2" id="text-orgb5ac5ad">
+<ul class="org-ul">
+<li>node <a href="multilevel-logic-optimization.html">simplification</a> in multilevel logic: don't-cares from the rest of the network;</li>
+<li>testing: a fault on <img class="m" src="m/c1cb305e0744a841c0171151eaf770796c623d6f.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> is detectable only where <img class="m" src="m/15cfb5be6bb729cc02e707d7f9c354526621e13f.svg" alt="\(\partial f/\partial x=1\)" style="height:1.096em;vertical-align:-0.274em">;</li>
+<li>power: transitions of <img class="m" src="m/c1cb305e0744a841c0171151eaf770796c623d6f.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> propagate to <img class="m" src="m/c1ed5a3ca52156eb9911941034a69236922afca1.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> with probability <img class="m" src="m/706eeb2d86a62979326eb953531b5604d43cac78.svg" alt="\(P(\partial f/\partial x=1)\)" style="height:1.096em;vertical-align:-0.274em">.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2b922a8" class="outline-2">
+<h2 id="org2b922a8">Intuition</h2>
+<div class="outline-text-2" id="text-org2b922a8">
+<p>
+The Boolean difference is the logic version of a derivative: "does the output move if this input moves?".
+</p>
+</div>
+</div>
+<div id="outline-container-org1262b19" class="outline-2">
+<h2 id="org1262b19">Pitfall</h2>
+<div class="outline-text-2" id="text-org1262b19">
+<p>
+Don't-cares derived for one node change when another node is modified with them: simplifying several nodes at once with their full don't-care sets can break the function. Tools use compatible subsets.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="algebraic-division.html"><span>← previous</span>Algebraic (weak) division</a><a rel="next" href="multilevel-logic-optimization.html"><span>next →</span>Multi-level logic optimization</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--logic-synthesis.pdf" title="PDF manual">Logic Synthesis</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

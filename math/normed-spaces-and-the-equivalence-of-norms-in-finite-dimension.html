@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Normed spaces and the equivalence of norms in finite dimension · Mathematics</title>
+<meta name="description" content="A norm is a metric compatible with the linear structure, and there are many of them on the same space. In finite dimension the choice turns out not to matter for anything topological – all norms are equivalent, so convergence, continuity and compactness are properties of the vector space alone. In …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Normed spaces and the equivalence of norms in finite dimension · Mathematics">
+<meta property="og:description" content="A norm is a metric compatible with the linear structure, and there are many of them on the same space. In finite dimension the choice turns out not to matter for anything topological – all norms are equivalent, so convergence, continuity and compactness are properties of the vector space alone. In …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--functional-analysis">Functional Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Functional Analysis</p>
+<h1>Normed spaces and the equivalence of norms in finite dimension</h1>
+<p class="summary">A norm is a metric compatible with the linear structure, and there are many of them on the same space. In finite dimension the choice turns out not to matter for anything topological &#x2013; all norms are equivalent, so convergence, continuity and compactness are properties of the vector space alone. In infinite dimension the statement is false, and its failure is the beginning of functional analysis.</p>
+<p class="rel"><span>needs</span> <a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a>, <a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a>, <a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a>, <a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a>, <a href="vector-space.html">Vector space</a></p>
+<p class="rel"><span>unlocks</span> <a href="the-inverse-and-implicit-function-theorems.html">The inverse and implicit function theorems</a>, <a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a>, <a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a>, <a href="the-hahn-banach-theorem.html">The Hahn-Banach theorem</a>, <a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></p>
+<p class="rel"><span>mentioned in</span> <a href="functional-analysis.html">Functional analysis</a></p>
+<details class="path"><summary>Learning path: 29 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgb320ebb">
+<p>
+A <i>norm</i> on a real or complex vector space <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> is a map
+<img class="m" src="m/e7e6dc55f7942e0b726d00514f35ef5fd1c4f8fb.svg" alt="\(\norm{\cdot} \colon V \to \R\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/be8dbb525a233d426504c6ad7eec4afb937d42be.svg" alt="\(\norm{v} \ge 0\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/2dbf346456049e52651b3b9635c1d6349e42b3b6.svg" alt="\(\norm{v} = 0\)" style="height:1.096em;vertical-align:-0.274em"> only for <img class="m" src="m/290024883a7aa0451ecc34d2183a8d1914d1429e.svg" alt="\(v = 0\)" style="height:0.706em;vertical-align:-0.000em">, <img class="m" src="m/e3742a8838802164cb47fd8b226f82baf9e7b992.svg" alt="\(\norm{\lambda v} = \abs{\lambda}\norm{v}\)" style="height:1.096em;vertical-align:-0.274em">,
+and <img class="m" src="m/1836f3cf679d892b584aad1020f1a44716576ef5.svg" alt="\(\norm{u+v} \le \norm{u}+\norm{v}\)" style="height:1.096em;vertical-align:-0.274em">. Two norms are <i>equivalent</i> if
+there are constants <img class="m" src="m/4c618ffbecf501a73d54c6a2b173d5bea7fabe68.svg" alt="\(0 &lt; m \le M\)" style="height:0.898em;vertical-align:-0.153em"> with
+<img class="m" src="m/19dc82518c697d31ef945628adbdb35ad5a53ae1.svg" alt="\(m\norm{v}_{1} \le \norm{v}_{2} \le M \norm{v}_{1}\)" style="height:1.096em;vertical-align:-0.274em"> for all <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org5f212f5">
+<p>
+<img class="m" src="m/da71e766f765145ff64151fcc3fd6d16a2bd314a.svg" alt="\(d(u,v) = \norm{u-v}\)" style="height:1.096em;vertical-align:-0.274em"> is a metric on <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">, invariant under
+translation and homogeneous of degree one. Equivalent norms induce the
+same open sets, hence the same convergent sequences and the same
+continuous maps. A <i>Banach space</i> is a normed space complete for this
+metric.
+</p>
+
+</div>
+
+<div class="proof" id="org101f98b">
+<p>
+Positivity and symmetry are immediate, the latter from
+<img class="m" src="m/9ef20cc5ab5b93926779d522d44f68eeaa3079a5.svg" alt="\(\norm{-w} = \norm{w}\)" style="height:1.096em;vertical-align:-0.274em">, and the triangle inequality for <img class="m" src="m/ad855e27454841e8ad2eca7f08dfc4eb67657f15.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em"> is that
+of the norm applied to <img class="m" src="m/4f8da77013705d5a74c5dabcb1411006b2959a6d.svg" alt="\((u-w)+(w-v)\)" style="height:1.096em;vertical-align:-0.274em">. If
+<img class="m" src="m/af03cedffd57834513d17c7775eb893caf39265d.svg" alt="\(m\norm{\cdot}_{1}\le\norm{\cdot}_{2}\le M\norm{\cdot}_{1}\)" style="height:1.096em;vertical-align:-0.274em">, then
+every ball for one norm contains a ball of proportional radius for the
+other, so the two collections of open sets coincide, and with them
+everything defined from them.
+</p>
+
+</div>
+
+<div class="theorem" id="orgc64cbd9">
+<p>
+On a finite-dimensional real vector space any two norms are equivalent.
+</p>
+
+</div>
+
+<div class="proof" id="org8c36a0e">
+<p>
+Fix a basis <img class="m" src="m/dced2b67f9b7f4d24247850b8be49b9b4ecb954a.svg" alt="\(e_{1},\dots,e_{n}\)" style="height:0.685em;vertical-align:-0.212em"> and let
+<img class="m" src="m/cc5cd77bc79e7b5741299bfb73bed256794c825e.svg" alt="\(\norm{x}_{1} = \sum_{i}\abs{x_{i}}\)" style="height:1.151em;vertical-align:-0.334em"> in the corresponding coordinates,
+a norm. It suffices to compare an arbitrary norm <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> with this one.
+</p>
+
+<p>
+First, <img class="m" src="m/67fb95850f5805ba4ecbce8744d2ad18604aa2a1.svg" alt="\(N(x) \le \sum_{i}\abs{x_{i}}N(e_{i}) \le C\norm{x}_{1}\)" style="height:1.151em;vertical-align:-0.334em"> with
+<img class="m" src="m/27ce92005094b5bc56fba7151de29e0f58ec7a8b.svg" alt="\(C = \max_{i}N(e_{i})\)" style="height:1.096em;vertical-align:-0.274em">, by the triangle inequality and homogeneity.
+Hence <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> is continuous for <img class="m" src="m/98d3c42b44b589aaae5250f254c51f6927121b0c.svg" alt="\(\norm{\cdot}_{1}\)" style="height:1.096em;vertical-align:-0.274em">, since
+<img class="m" src="m/99a6790246f4d9473987c9186f20ecd68ee268c2.svg" alt="\(\abs{N(x)-N(y)} \le N(x-y) \le C\norm{x-y}_{1}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+The set <img class="m" src="m/ce2274e6c8867c347a856b95db30f721771285eb.svg" alt="\(S = \setst{x}{\norm{x}_{1} = 1}\)" style="height:1.096em;vertical-align:-0.274em"> is closed and bounded in the
+coordinates, hence compact by Heine-Borel, and non-empty for
+<img class="m" src="m/28ea251ed83f5eb8039c604246b727a5afd15b88.svg" alt="\(n \ge 1\)" style="height:0.855em;vertical-align:-0.145em">. So the continuous function <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> attains a minimum <img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em"> on
+<img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">, at some <img class="m" src="m/4f8246e7705a9c0df96e9d12bf2c596179c4d261.svg" alt="\(x_{0}\)" style="height:0.636em;vertical-align:-0.165em"> with <img class="m" src="m/e8629942db732d0b9c058607a5abb6be015f1469.svg" alt="\(\norm{x_{0}}_{1} = 1\)" style="height:1.096em;vertical-align:-0.274em">, so
+<img class="m" src="m/77559eb8455f642fa60ef9a09f4fe904202c7d34.svg" alt="\(x_{0} \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/d95ab2e2955f8397888bd96ccefe2088eb1e66f6.svg" alt="\(m = N(x_{0}) &gt; 0\)" style="height:1.096em;vertical-align:-0.274em">. For arbitrary <img class="m" src="m/4e7895c335f752f5f9b36e3e08d847fa8de9ccf8.svg" alt="\(x \ne 0\)" style="height:0.974em;vertical-align:-0.214em">,
+applying this to <img class="m" src="m/37a18e3456be1ed7d2e1acb6caaed9c365bd7e52.svg" alt="\(x/\norm{x}_{1}\)" style="height:1.096em;vertical-align:-0.274em"> and using homogeneity gives
+<img class="m" src="m/665645a72bd01b4b40e4ac18037257d7d2295f99.svg" alt="\(m\norm{x}_{1} \le N(x) \le C\norm{x}_{1}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="corollary" id="org49fdd7a">
+<p>
+Every finite-dimensional normed space is a Banach space, and every
+finite-dimensional subspace of a normed space is closed.
+</p>
+
+</div>
+
+<div class="proof" id="org580e9a9">
+<p>
+Let <img class="m" src="m/7139688cdd77c78b2d71fd11f23f48234f04009e.svg" alt="\(\dim V = n\)" style="height:0.761em;vertical-align:-0.000em"> and identify <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/b33f2adf960aeb722adafbfc0479a5f92fd75b05.svg" alt="\(\R^{n}\)" style="height:0.755em;vertical-align:-0.000em"> through a basis.
+By the theorem the given norm is equivalent to the Euclidean one, so the
+two metrics have the same Cauchy sequences and the same limits;
+<img class="m" src="m/b33f2adf960aeb722adafbfc0479a5f92fd75b05.svg" alt="\(\R^{n}\)" style="height:0.755em;vertical-align:-0.000em"> is complete, hence so is <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">. If <img class="m" src="m/bd55345f79198927ef63ab1b470be790300770ce.svg" alt="\(W \subseteq Z\)" style="height:0.898em;vertical-align:-0.153em"> is a
+finite-dimensional subspace of a normed space, then <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em"> is complete
+for the restricted norm, and a complete subspace is closed, since the
+limit in <img class="m" src="m/7c4b861f7a604d8d12b3c250305352daee8e7002.svg" alt="\(Z\)" style="height:0.749em;vertical-align:-0.000em"> of a convergent sequence of points of <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em"> is also its
+limit in <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="remark" id="orge658cd5">
+<p>
+Every hypothesis is used exactly once, and dimension is used twice: to
+get a basis, and to get compactness of the unit sphere. Both fail in
+infinite dimension &#x2013; the sphere of an infinite-dimensional normed space
+is never compact &#x2013; and so does the conclusion: on the space of
+polynomials, the supremum norm on <img class="m" src="m/b40f419d16d54b95652910807100bb67f190c2b6.svg" alt="\([0,1]\)" style="height:1.096em;vertical-align:-0.274em"> and the sum of the absolute
+values of the coefficients are not equivalent.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="product-measures-and-the-theorems-of-tonelli-and-fubini.html"><span>← previous</span>Product measures and the theorems of Tonelli and Fubini</a><a rel="next" href="uniform-boundedness-open-mapping-and-closed-graph.html"><span>next →</span>Uniform boundedness, open mapping and closed graph</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--functional-analysis.pdf" title="PDF manual">Functional Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Square wells: particle in a box and finite well · Physics</title>
+<meta name="description" content="In an infinite well of width L, E_n=\frac{n^2\pi^2\hbar^2}{2mL^2} and \psi_n=\sqrt{2/L}\sin(n\pi x/L); a finite well of depth V_0 always has at least one bound state, with even and odd states found from k\tan(ka/2)=\kappa and -k\cot(ka/2)=\kappa.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/square-well-potentials.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Square wells: particle in a box and finite well · Physics">
+<meta property="og:description" content="In an infinite well of width L, E_n=\frac{n^2\pi^2\hbar^2}{2mL^2} and \psi_n=\sqrt{2/L}\sin(n\pi x/L); a finite well of depth V_0 always has at least one bound state, with even and odd states found from k\tan(ka/2)=\kappa and -k\cot(ka/2)=\kappa.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/square-well-potentials.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-mechanics">Quantum Mechanics</a> / <a rel="up" href="index.html#a-quantum-mechanics--one-dimensional-systems">One Dimensional Systems</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">example · Quantum Mechanics · One Dimensional Systems</p>
+<h1>Square wells: particle in a box and finite well</h1>
+<p class="summary">In an infinite well of width <img class="m" src="m/eb0200e826c9a3cb1998e695fad1695c59dd0eb3.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/420c5895e50a370c276d87c71d9daf71b248a87f.svg" alt="\(E_n=\frac{n^2\pi^2\hbar^2}{2mL^2}\)" style="height:1.493em;vertical-align:-0.373em"> and <img class="m" src="m/ab5eeca32870abc1393e0f328e0919b36ad2ef16.svg" alt="\(\psi_n=\sqrt{2/L}\sin(n\pi x/L)\)" style="height:1.359em;vertical-align:-0.340em">; a finite well of depth <img class="m" src="m/4463fd4cf01b100efb9f8698d9aef9a512e89927.svg" alt="\(V_0\)" style="height:0.913em;vertical-align:-0.164em"> always has at least one bound state, with even and odd states found from <img class="m" src="m/601dbbefced4b1918fb1159e404156ba042ace78.svg" alt="\(k\tan(ka/2)=\kappa\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/48492fe8ac71fd8d1391c675ed60ae65bef5efd7.svg" alt="\(-k\cot(ka/2)=\kappa\)" style="height:1.096em;vertical-align:-0.274em">.</p>
+<p class="rel"><span>needs</span> <a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></p>
+<p class="rel"><span>unlocks</span> <a href="tunnelling-and-wkb.html">Tunnelling and the WKB approximation</a>, <a href="bloch-theorem-and-energy-bands.html">Bloch's theorem and energy bands</a>, <a href="heterojunctions-and-quantum-wells.html">Heterojunctions and quantum wells</a></p>
+<p class="rel"><span>see also</span> <a href="tunnelling-and-wkb.html">Tunnelling and the WKB approximation</a>, <a href="heterojunctions-and-quantum-wells.html">Heterojunctions and quantum wells</a>, <a href="bloch-theorem-and-energy-bands.html">Bloch's theorem and energy bands</a></p>
+<p class="rel"><span>mentioned in</span> <a href="dielectric-slab-waveguide.html">The dielectric slab waveguide</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org7b828c8" class="outline-2">
+<h2 id="org7b828c8">Infinite well</h2>
+<div class="outline-text-2" id="text-org7b828c8">
+<p>
+<img class="m" src="m/5fc1b354a94accb86e170a2568409143298c2521.svg" alt="\(V=0\)" style="height:0.749em;vertical-align:-0.000em"> for <img class="m" src="m/eeb60ee66737f9a2140640e9a0575d0c26f9bc94.svg" alt="\(0&lt;x&lt;L\)" style="height:0.792em;vertical-align:-0.040em">, <img class="m" src="m/411e6c3c72258c70d9445590399fb44971e2ff91.svg" alt="\(\infty\)" style="height:0.472em;vertical-align:-0.000em"> elsewhere <span class="cite">(<a class="ref" href="https://doi.org/10.1002/andp.19263840404" data-full="E. Schrödinger, “Quantisierung als Eigenwertproblem”, Annalen der Physik 384, 361–376 (1926)." aria-label="E. Schrödinger, “Quantisierung als Eigenwertproblem”, Annalen der Physik 384, 361–376 (1926).">Schrödinger 1926</a>)</span>. Inside, <img class="m" src="m/c87f0d6f050d14032a982a7b5ca41525049a4261.svg" alt="\(\psi''=-k^2\psi\)" style="height:1.105em;vertical-align:-0.210em"> with <img class="m" src="m/705728f50add6aa91314ed9e983813f602f9c1ec.svg" alt="\(k^2=2mE/\hbar^2\)" style="height:1.166em;vertical-align:-0.268em">; boundary conditions <img class="m" src="m/f5a4e15983ec1b44eaeaa82ef7a5bba2c4668ec0.svg" alt="\(\psi(0)=\psi(L)=0\)" style="height:1.096em;vertical-align:-0.274em"> give <img class="m" src="m/ec39a73f8521b0e1771f99f263b80ecb58799b9f.svg" alt="\(kL=n\pi\)" style="height:0.761em;vertical-align:-0.000em">:
+<div class="mb"><img class="m" src="m/517d5e0d428fe9bcf71c2df79218b75d494eb65c.svg" alt="\[ E_n=\frac{\hbar^2\pi^2n^2}{2mL^2},\qquad \psi_n(x)=\sqrt{\frac2L}\sin\frac{n\pi x}{L},\quad n=1,2,\dots \]" style="width:26.707em"></div>
+<img class="m" src="m/941843e87a775e8df3b87e411582a4c441649df3.svg" alt="\(n-1\)" style="height:0.798em;vertical-align:-0.088em"> nodes; ground energy <img class="m" src="m/9edb2268e4dacd1f56ee8a6dd42a6415f899637d.svg" alt="\(&gt;0\)" style="height:0.749em;vertical-align:-0.045em"> (zero-point energy, consistent with the uncertainty relation).
+</p>
+</div>
+</div>
+<div id="outline-container-org50c81f9" class="outline-2">
+<h2 id="org50c81f9">Finite well</h2>
+<div class="outline-text-2" id="text-org50c81f9">
+<p>
+<img class="m" src="m/25a7ddb37c207a7d388999dbbaf5b210b0cf3c59.svg" alt="\(V=-V_0\)" style="height:0.913em;vertical-align:-0.164em"> for <img class="m" src="m/b49e790ce3c89f7b31d0520dd33831ef1f216b08.svg" alt="\(|x|&lt;a/2\)" style="height:1.096em;vertical-align:-0.274em">. Bound states <img class="m" src="m/b6ff1bb0b402ec25dbbc9f910183b1bda03cd1d0.svg" alt="\(-V_0&lt;E&lt;0\)" style="height:0.913em;vertical-align:-0.164em">. Inside: <img class="m" src="m/48898e6103be4a32c59ab3735d0ee8f7c16c07fc.svg" alt="\(k=\sqrt{2m(E+V_0)}/\hbar\)" style="height:1.359em;vertical-align:-0.340em">; outside: decaying <img class="m" src="m/d49ef3557b5d7bfa14570abdbc7c6426dea60270.svg" alt="\(e^{-\kappa|x|}\)" style="height:0.973em;vertical-align:-0.000em">, <img class="m" src="m/3f2257bb68d001fd24451856ae00ee2ee0c9fbeb.svg" alt="\(\kappa=\sqrt{-2mE}/\hbar\)" style="height:1.244em;vertical-align:-0.274em">. Continuity of <img class="m" src="m/80680388fec8fcb230d8bb37c57a45b5d3781994.svg" alt="\(\psi\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/5e61d22ced84c15c7cfbe136a3254957851dc79e.svg" alt="\(\psi'\)" style="height:1.037em;vertical-align:-0.218em"> at <img class="m" src="m/18c4d90189f00b2ea323615d780338f18223d4ed.svg" alt="\(x=a/2\)" style="height:1.096em;vertical-align:-0.274em">:
+<div class="mb"><img class="m" src="m/89a64f4496040363b1ff031df8cdf91d3656c613.svg" alt="\[ \text{even: } \kappa=k\tan\frac{ka}{2},\qquad \text{odd: } \kappa=-k\cot\frac{ka}{2},\qquad k^2+\kappa^2=\frac{2mV_0}{\hbar^2}\equiv k_0^2. \]" style="width:34.571em"></div>
+Graphically, with <img class="m" src="m/17853d4339331f9910596ef30ec86c9f8fd04bdf.svg" alt="\(u=ka/2\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/0667c6c067ef96670727d5d73907827fc452b4dd.svg" alt="\(v=\kappa a/2\)" style="height:1.096em;vertical-align:-0.274em">: intersections of <img class="m" src="m/2c989a02f079954c4bf7551e948ec4b0341a83b9.svg" alt="\(v=u\tan u\)" style="height:0.674em;vertical-align:-0.000em"> (or <img class="m" src="m/ebc21ee7dd6537dc6f26403b2979a3550ff2075d.svg" alt="\(-u\cot u\)" style="height:0.765em;vertical-align:-0.092em">) with the circle <img class="m" src="m/cc745091c9dfeb096bccd24273f155629cab4432.svg" alt="\(u^2+v^2=R^2\)" style="height:0.983em;vertical-align:-0.089em">, <img class="m" src="m/bfb4d3a6d6cfd6cc6684acdcdda836cb704438a7.svg" alt="\(R=k_0a/2\)" style="height:1.096em;vertical-align:-0.274em">. Number of bound states <img class="m" src="m/f51f35dcf938f1a71ce123836ac7bbcc0ad9666d.svg" alt="\(=\lceil 2R/\pi\rceil\)" style="height:1.096em;vertical-align:-0.274em">: at least one, however shallow.
+</p>
+</div>
+</div>
+<div id="outline-container-orge662224" class="outline-2">
+<h2 id="orge662224">Picture</h2>
+<div class="outline-text-2" id="text-orge662224">
+<figure class="fig"><img class="m" src="m/335a83a64c5f7690952119ede1fea219436a5cd9.svg" alt="figure" style="width:20.860em"><figcaption><span class="fl">Figure 1.</span> Bound states of a finite square well: the even and odd conditions intersect the circle of radius <img class="m" src="m/fc5b0c0cd279444b6762721a6a4e02b1b82732e5.svg" alt="\(R=4\)" style="height:0.749em;vertical-align:-0.000em">, set by the well's depth and width.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org6ff6c40" class="outline-2">
+<h2 id="org6ff6c40">Worked example</h2>
+<div class="outline-text-2" id="text-org6ff6c40">
+<p>
+GaAs quantum well in AlGaAs, width 10 nm, <img class="m" src="m/f5934f1468471bd33b58ff1901cbabada9bd7872.svg" alt="\(m^*=0.067m_e\)" style="height:0.919em;vertical-align:-0.165em">, treated as infinite: <img class="m" src="m/8dcc5e72f13f658ff110017e99f3bcdbe067874f.svg" alt="\(E_1=\hbar^2\pi^2/(2m^*L^2)=0.376/0.067\cdot 0.01\)" style="height:1.166em;vertical-align:-0.268em"> eV <img class="m" src="m/b8467b28746ac6015d6562edabd7ca94ea21348b.svg" alt="\(\approx56\)" style="height:0.706em;vertical-align:-0.000em"> meV. The optical transition shifts from the bulk gap 1.424 eV to <img class="m" src="m/ddf5b43251c42a462020b5948da92fc21e02a841.svg" alt="\(\approx1.424+0.056+E_{1h}\)" style="height:0.913em;vertical-align:-0.164em">: confinement tunes the laser wavelength (<a href="heterojunctions-and-quantum-wells.html">quantum-well lasers</a>).
+</p>
+</div>
+</div>
+<div id="outline-container-org0e3d372" class="outline-2">
+<h2 id="org0e3d372">Engineering applications</h2>
+<div class="outline-text-2" id="text-org0e3d372">
+<p>
+Quantum-well lasers and LEDs, quantum-cascade lasers, HEMT channels, quantum dots (colour set by size in QLED displays), the 2DEG of silicon MOSFET inversion layers.
+</p>
+</div>
+</div>
+<div id="outline-container-org679886c" class="outline-2">
+<h2 id="org679886c">Pitfall</h2>
+<div class="outline-text-2" id="text-org679886c">
+<p>
+In a finite well the wave function leaks into the barrier (<img class="m" src="m/d49ef3557b5d7bfa14570abdbc7c6426dea60270.svg" alt="\(e^{-\kappa|x|}\)" style="height:0.973em;vertical-align:-0.000em">): the effective width is larger, so energies are <b>lower</b> than in the infinite-well estimate.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="electromagnetic-potentials-and-gauge-invariance.html"><span>← previous</span>Electromagnetic potentials and gauge invariance</a><a rel="next" href="quantum-harmonic-oscillator.html"><span>next →</span>The quantum harmonic oscillator</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-mechanics--one-dimensional-systems.pdf" title="PDF manual">One Dimensional Systems</a> · <a class="pdf" href="pdf/quantum-mechanics.pdf" title="PDF manual">Quantum Mechanics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

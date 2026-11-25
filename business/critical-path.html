@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Critical path, float and crashing · Business</title>
+<meta name="description" content="CPM uses activities, durations and dependencies to compute earliest and latest times; the longest path is critical (zero float), float can level resources, and crashing buys time on critical activities at rising marginal cost.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/business/critical-path.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Critical path, float and crashing · Business">
+<meta property="og:description" content="CPM uses activities, durations and dependencies to compute earliest and latest times; the longest path is critical (zero float), float can level resources, and crashing buys time on critical activities at rising marginal cost.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/business/critical-path.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Business</a> / <a href="index.html#d-projects">Projects</a> / <a rel="up" href="index.html#a-projects--project-management">Project Management</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Projects · Project Management</p>
+<h1>Critical path, float and crashing</h1>
+<p class="summary">CPM uses activities, durations and dependencies to compute earliest and latest times; the longest path is critical (zero float), float can level resources, and crashing buys time on critical activities at rising marginal cost.</p>
+<p class="rel"><span>needs</span> <a href="project-foundations.html">Projects, planning and the WBS</a></p>
+<p class="rel"><span>unlocks</span> <a href="concept-comparisons.html">Distinctions to explain without notes</a>, <a href="numerical-practice.html">Numerical practice and worked answers</a></p>
+<p class="rel"><span>see also</span> <a href="earned-value.html">Earned value and project variances</a>, <a href="business-map.html">Business Organization and Management: study map</a></p>
+<p class="rel"><span>mentioned in</span> <a href="business-map.html">Business Organization and Management: study map</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="organization-and-performance.html">Organizations, resources and performance</a></li><li><a href="business-processes.html">Processes and coordination</a></li><li><a href="project-foundations.html">Projects, planning and the WBS</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org39292ad" class="outline-2">
+<h2 id="org39292ad">Method</h2>
+<div class="outline-text-2" id="text-org39292ad">
+<p>
+CPM requires: the list of activities (from the WBS), estimated durations,
+dependencies (a directed graph, drawn as arrow diagram or <b>activity-on-node</b>).
+For each node: EST (earliest start), EFT (earliest finish), LST (latest start),
+LFT (latest finish), D (duration), F (float).
+</p>
+<ul class="org-ul">
+<li>Forward pass: <img class="m" src="m/4e88326ea7926aacd5ab7e5e41acf8a75bcb6044.svg" alt="\( EST = \max(EFT \text{ of predecessors}) \)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/68cf6d53aac399d524e2dee798d9860939c540c7.svg" alt="\( EFT = EST + D \)" style="height:0.840em;vertical-align:-0.092em">.</li>
+<li>Backward pass from the project end: <img class="m" src="m/456d3bce4db70a0a1269f4c56f717882e3cf3d18.svg" alt="\( LFT = \min(LST \text{ of successors}) \)" style="height:1.096em;vertical-align:-0.274em">,
+<img class="m" src="m/8e0965d3b835758eb87704c71f98298acd2b086a.svg" alt="\( LST = LFT - D \)" style="height:0.840em;vertical-align:-0.092em">.</li>
+<li><img class="m" src="m/c8eaf0958bb86db325c4572db0953c77e92e85c1.svg" alt="\( \text{Float} = LST - EST \)" style="height:0.852em;vertical-align:-0.094em">.</li>
+</ul>
+<p>
+<b>Critical path</b>: the sequence with the longest total duration; zero float; any
+delay on it delays the project.
+</p>
+</div>
+</div>
+<div id="outline-container-org118b953" class="outline-2">
+<h2 id="org118b953">Worked example</h2>
+<div class="outline-text-2" id="text-org118b953">
+<p>
+<b>KM system for an insurer</b> (dependencies: a→c, a→d; b→e; d→e; c→f; e→f):
+</p>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Act.</th>
+<th scope="col" class="org-left">Description</th>
+<th scope="col" class="org-right">D</th>
+<th scope="col" class="org-right">EST</th>
+<th scope="col" class="org-right">EFT</th>
+<th scope="col" class="org-right">LST</th>
+<th scope="col" class="org-right">LFT</th>
+<th scope="col" class="org-right">Float</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">a</td>
+<td class="org-left">form and train user group</td>
+<td class="org-right">10</td>
+<td class="org-right">0</td>
+<td class="org-right">10</td>
+<td class="org-right">2</td>
+<td class="org-right">12</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-left">b</td>
+<td class="org-left">install systems</td>
+<td class="org-right">17</td>
+<td class="org-right">0</td>
+<td class="org-right">17</td>
+<td class="org-right">0</td>
+<td class="org-right">17</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-left">c</td>
+<td class="org-left">specify sales training</td>
+<td class="org-right">5</td>
+<td class="org-right">10</td>
+<td class="org-right">15</td>
+<td class="org-right">37</td>
+<td class="org-right">42</td>
+<td class="org-right">27</td>
+</tr>
+
+<tr>
+<td class="org-left">d</td>
+<td class="org-left">design initial screen interface</td>
+<td class="org-right">5</td>
+<td class="org-right">10</td>
+<td class="org-right">15</td>
+<td class="org-right">12</td>
+<td class="org-right">17</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-left">e</td>
+<td class="org-left">test interface in pilot area</td>
+<td class="org-right">25</td>
+<td class="org-right">17</td>
+<td class="org-right">42</td>
+<td class="org-right">17</td>
+<td class="org-right">42</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-left">f</td>
+<td class="org-left">modify interface</td>
+<td class="org-right">15</td>
+<td class="org-right">42</td>
+<td class="org-right">57</td>
+<td class="org-right">42</td>
+<td class="org-right">57</td>
+<td class="org-right">0</td>
+</tr>
+</tbody>
+</table>
+<p>
+Forward: e starts at max(b 17, d 15) = 17; f at max(c 15, e 42) = 42; end 57.
+Backward: d must finish by e's LST 17 → LST 12; a must finish by min(c 37,
+d 12) = 12 → LST 2. Critical path <b>b → e → f</b> = 57 days. Activity c can slip 27
+days; a and d share 2 days of float (using it on a consumes d's).
+</p>
+
+<p>
+Small case: A(3) → B(4), A → C(2), B and C → D(1): critical A–B–D = 8 days,
+C has 2 days float; if C grows to 5, A–C–D (9 days) becomes critical.
+</p>
+</div>
+<div id="outline-container-org5e8b6bd" class="outline-3">
+<h3 id="org5e8b6bd">Float and resource levelling</h3>
+<div class="outline-text-3" id="text-org5e8b6bd">
+<p>
+Float lets non-critical activities move to smooth resource peaks: in the KM
+example, delaying c within its 27-day float removes a peak in resource demand
+without changing the end date.
+</p>
+</div>
+</div>
+<div id="outline-container-org205901f" class="outline-3">
+<h3 id="org205901f">Crashing</h3>
+<div class="outline-text-3" id="text-org205901f">
+<p>
+Shorten duration by adding resources, typically on <b>critical</b> activities.
+Marginal cost rises: each further week costs more. Method: crash the critical
+activity with the lowest cost slope (EUR per week saved), recompute — another
+path may become critical — and stop when cost exceeds the benefit of earlier
+completion. Some activities cannot be accelerated by adding people.
+<div class="mb"><img class="m" src="m/7d01ba1d2320b279835d1ae45a0cbf5f64e241f3.svg" alt="\[ \text{cost slope} = \frac{\text{crash cost} - \text{normal cost}}{\text{normal time} - \text{crash time}} \]" style="width:18.583em"></div>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org765b5e9" class="outline-2">
+<h2 id="org765b5e9">Pitfall</h2>
+<div class="outline-text-2" id="text-org765b5e9">
+<p>
+Shortening a non-critical activity does not shorten the project. Float belongs
+to a path, not to one activity. CPM assumes fixed durations and unlimited
+resources.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb909c9f" class="outline-2">
+<h2 id="orgb909c9f">Recall</h2>
+<div class="outline-text-2" id="text-orgb909c9f">
+<p>
+Run forward and backward passes on the KM network; name the critical path;
+explain float sharing between a and d; define crashing and cost slope.
+</p>
+</div>
+</div>
+<div id="outline-container-org0d4b3a5" class="outline-2">
+<h2 id="org0d4b3a5">Picture</h2>
+<div class="outline-text-2" id="text-org0d4b3a5">
+<figure class="fig"><img class="m" src="m/316eb16e7209b844996cbb379340ff4381d441f7.svg" alt="figure" style="width:30.601em"><figcaption><span class="fl">Figure 1.</span> An activity network with durations in days: the critical path b–e–f takes 57 days and sets the project duration.</figcaption></figure>
+<p>
+The magenta path has zero float; c alone can slip 27 days.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="project-foundations.html"><span>← previous</span>Projects, planning and the WBS</a><a rel="next" href="earned-value.html"><span>next →</span>Earned value and project variances</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/projects--project-management.pdf" title="PDF manual">Project Management</a> · <a class="pdf" href="pdf/projects.pdf" title="PDF manual">Projects</a> · <a class="pdf" href="pdf/business.pdf" title="PDF manual">whole Business</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

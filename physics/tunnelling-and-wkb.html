@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tunnelling and the WKB approximation · Physics</title>
+<meta name="description" content="A particle of energy E&lt;V_0 crosses a barrier of width a with probability T=\left[1+\frac{V_0^2\sinh^2\kappa a}{4E(V_0-E)}\right]^{-1}\approx16\frac{E}{V_0}(1-\frac{E}{V_0})e^{-2\kappa a}; for smooth barriers WKB gives T\approx\exp\!\left(-\frac2\hbar\int\sqrt{2m(V-E)}\,\dd x\right).">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/tunnelling-and-wkb.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Tunnelling and the WKB approximation · Physics">
+<meta property="og:description" content="A particle of energy E&lt;V_0 crosses a barrier of width a with probability T=\left[1+\frac{V_0^2\sinh^2\kappa a}{4E(V_0-E)}\right]^{-1}\approx16\frac{E}{V_0}(1-\frac{E}{V_0})e^{-2\kappa a}; for smooth barriers WKB gives T\approx\exp\!\left(-\frac2\hbar\int\sqrt{2m(V-E)}\,\dd x\right).">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/tunnelling-and-wkb.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-mechanics">Quantum Mechanics</a> / <a rel="up" href="index.html#a-quantum-mechanics--one-dimensional-systems">One Dimensional Systems</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Quantum Mechanics · One Dimensional Systems</p>
+<h1>Tunnelling and the WKB approximation</h1>
+<p class="summary">A particle of energy <img class="m" src="m/e5690189a7f6a82a3663c6ec63635ab132dcd5ac.svg" alt="\(E&lt;V_0\)" style="height:0.913em;vertical-align:-0.164em"> crosses a barrier of width <img class="m" src="m/a8cfe9079fe989303b56be54d2b47f265d286d9d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> with probability <img class="m" src="m/e06c6fad3c63517ca620de22aabdc778aa126afb.svg" alt="\(T=\left[1+\frac{V_0^2\sinh^2\kappa a}{4E(V_0-E)}\right]^{-1}\approx16\frac{E}{V_0}(1-\frac{E}{V_0})e^{-2\kappa a}\)" style="height:2.196em;vertical-align:-0.703em">; for smooth barriers WKB gives <img class="m" src="m/6a35f71a8aa25c3c014f54d7964b74f8b6ffd683.svg" alt="\(T\approx\exp\!\left(-\frac2\hbar\int\sqrt{2m(V-E)}\,\dd x\right)\)" style="height:1.973em;vertical-align:-0.710em">.</p>
+<p class="rel"><span>needs</span> <a href="square-well-potentials.html">Square wells: particle in a box and finite well</a></p>
+<p class="rel"><span>unlocks</span> <a href="strong-field-qed-and-pair-creation.html">Strong-field QED: pair creation and the Euler–Heisenberg Lagrangian</a>, <a href="josephson-junction-and-rcsj-model.html">The Josephson junction and the RCSJ model</a></p>
+<p class="rel"><span>see also</span> <a href="josephson-junction-and-rcsj-model.html">The Josephson junction and the RCSJ model</a>, <a href="mosfet-operation-and-iv.html">The MOSFET: regions of operation and I–V model</a>, <a href="bloch-theorem-and-energy-bands.html">Bloch's theorem and energy bands</a></p>
+<p class="rel"><span>mentioned in</span> <a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a>, <a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a>, <a href="reflection-and-transmission-at-interfaces.html">Reflection and transmission: Snell, Fresnel, Brewster and total internal reflection</a>, <a href="bloch-theorem-and-energy-bands.html">Bloch's theorem and energy bands</a></p>
+<details class="path"><summary>Learning path: 10 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="square-well-potentials.html">Square wells: particle in a box and finite well</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org92223a6" class="outline-2">
+<h2 id="org92223a6">Statement: rectangular barrier</h2>
+<div class="outline-text-2" id="text-org92223a6">
+<p>
+<img class="m" src="m/490bf3ddcb935216fb8bcb44201540fb538b485c.svg" alt="\(V=V_0\)" style="height:0.913em;vertical-align:-0.164em"> for <img class="m" src="m/8ed94b0222af4d4a8dcd2172cad8e034a3ef503e.svg" alt="\(0&lt;x&lt;a\)" style="height:0.749em;vertical-align:-0.045em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1007/bf01343196" data-full="G. Gamow, “Zur Quantentheorie des Atomkernes”, Zeitschrift für Physik 51, 204–212 (1928)." aria-label="G. Gamow, “Zur Quantentheorie des Atomkernes”, Zeitschrift für Physik 51, 204–212 (1928).">Gamow 1928</a>; <a class="ref" href="https://doi.org/10.1038/122439a0" data-full="R. W. Gurney and E. U. Condon, “Wave mechanics and radioactive disintegration”, Nature 122, 439–439 (1928)." aria-label="R. W. Gurney and E. U. Condon, “Wave mechanics and radioactive disintegration”, Nature 122, 439–439 (1928).">Gurney and Condon 1928</a>)</span>. Incident from the left: <img class="m" src="m/fe8a84f9ceeb3018de1c4434303118eb655e551d.svg" alt="\(\psi=e^{ikx}+re^{-ikx}\)" style="height:1.144em;vertical-align:-0.217em">; inside <img class="m" src="m/c54177195390da06ca1401d259ebb4164ec8ff78.svg" alt="\(Ce^{\kappa x}+De^{-\kappa x}\)" style="height:0.964em;vertical-align:-0.087em">, <img class="m" src="m/e98d7b714c78e39cb5d929dcaf396efd8abe95b7.svg" alt="\(\kappa=\sqrt{2m(V_0-E)}/\hbar\)" style="height:1.359em;vertical-align:-0.340em">; right <img class="m" src="m/0f29edc539960dc5a7ae07dd0d40e175a29d7685.svg" alt="\(te^{ikx}\)" style="height:0.930em;vertical-align:-0.000em">. Matching <img class="m" src="m/850e4cb1e7df7ad86139c5d3796f9d5eefdf2a0b.svg" alt="\(\psi,\psi'\)" style="height:1.037em;vertical-align:-0.218em"> at both edges (4 equations, 4 unknowns) gives
+<div class="mb"><img class="m" src="m/aca7596d45be691c7617628e8af56a07bb115674.svg" alt="\[ T=|t|^2=\left[1+\frac{V_0^2\sinh^2(\kappa a)}{4E(V_0-E)}\right]^{-1}. \]" style="width:16.248em"></div>
+The current (<a href="schrodinger-equation-and-time-evolution.html">probability current</a>) is conserved: <img class="m" src="m/2b7074939ac40755e13e21bc555063c38731ad3f.svg" alt="\(R+T=1\)" style="height:0.840em;vertical-align:-0.092em">. For <img class="m" src="m/c570955ff2e8021a6cefc78cc1cab823171a2341.svg" alt="\(E&gt;V_0\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/f7081980a3e247be21a239838d2ffad71539ea9d.svg" alt="\(\sinh\to\sin\)" style="height:0.761em;vertical-align:-0.000em"> with real <img class="m" src="m/7e76a919e76743136b4900354a4f1f9ee3718881.svg" alt="\(k'\)" style="height:0.824em;vertical-align:-0.000em">: transmission resonances <img class="m" src="m/1463d1c2300c313266478977bb86b342e06811c8.svg" alt="\(T=1\)" style="height:0.749em;vertical-align:-0.000em"> when <img class="m" src="m/6e991ab285eff8cd83924c32eb26a8aa6c323db5.svg" alt="\(k'a=n\pi\)" style="height:0.824em;vertical-align:-0.000em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf5814b9" class="outline-2">
+<h2 id="orgf5814b9">WKB approximation</h2>
+<div class="outline-text-2" id="text-orgf5814b9">
+<p>
+Write <img class="m" src="m/8d465ca2bb318c40d25e3de71deac0887ce3231b.svg" alt="\(\psi=e^{iS(x)/\hbar}\)" style="height:1.186em;vertical-align:-0.214em"> and expand <img class="m" src="m/37eb2f878a33e34d2df8a5faff5348a89d519450.svg" alt="\(S=S_0+\hbar S_1+\dots\)" style="height:0.919em;vertical-align:-0.165em">: <img class="m" src="m/c8f8a4ac73db00bc322f2f769233d84d3e66e700.svg" alt="\(S_0'^2=2m(E-V)\)" style="height:1.166em;vertical-align:-0.268em">, <img class="m" src="m/73dbdb4d89e26df97014ca25a3f0df3a9cf77c50.svg" alt="\(S_1=\tfrac i2\ln S_0'\)" style="height:1.317em;vertical-align:-0.382em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1007/bf01397171" data-full="G. Wentzel, “Eine Verallgemeinerung der Quantenbedingungen für die Zwecke der Wellenmechanik”, Zeitschrift für Physik 38, 518–529 (1926)." aria-label="G. Wentzel, “Eine Verallgemeinerung der Quantenbedingungen für die Zwecke der Wellenmechanik”, Zeitschrift für Physik 38, 518–529 (1926).">Wentzel 1926</a>)</span>. Hence
+<div class="mb"><img class="m" src="m/b08ad6915146fadc2d5c870c7ef08f0310e2d157.svg" alt="\[ \psi(x)\approx\frac{C}{\sqrt{p(x)}}\exp\!\left(\pm\frac i\hbar\int^xp(x')\dd x'\right),\qquad p=\sqrt{2m(E-V)}, \]" style="width:29.884em"></div>
+valid when the local wavelength varies slowly: <img class="m" src="m/d72e5178fe4d7b340d5a62c03bbdbfc0f90a8c3a.svg" alt="\(|\dd\lambda/\dd x|\ll1\)" style="height:1.096em;vertical-align:-0.274em">. Connection formulas at turning points give <span class="cite">(<a class="ref" href="https://doi.org/10.1007/bf01451751" data-full="H. A. Kramers, “Wellenmechanik und halbzahlige Quantisierung”, Zeitschrift für Physik 39, 828–840 (1926)." aria-label="H. A. Kramers, “Wellenmechanik und halbzahlige Quantisierung”, Zeitschrift für Physik 39, 828–840 (1926).">Kramers 1926</a>)</span>
+</p>
+<ul class="org-ul">
+<li>tunnelling: <img class="m" src="m/3a67c25ec3a420adfbaa4c056244bdd95372365e.svg" alt="\(T\approx e^{-2\int_{x_1}^{x_2}\kappa(x)\dd x}\)" style="height:1.190em;vertical-align:-0.000em">;</li>
+<li>Bohr–Sommerfeld: <img class="m" src="m/e826194735f0dc7dd01f2895472fc27ac3a0b92f.svg" alt="\(\oint p\,\dd x=(n+\tfrac12)h\)" style="height:1.304em;vertical-align:-0.378em"> for bound states.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org01d94ad" class="outline-2">
+<h2 id="org01d94ad">Worked example</h2>
+<div class="outline-text-2" id="text-org01d94ad">
+<p>
+Electron, <img class="m" src="m/142ff5d106db4db16c718c5dea5d0796b0785e20.svg" alt="\(V_0-E=1\)" style="height:0.913em;vertical-align:-0.164em"> eV, <img class="m" src="m/c1a3cb702c001c95ac26ece4b24881448a81a72e.svg" alt="\(a=1\)" style="height:0.706em;vertical-align:-0.000em"> nm: <img class="m" src="m/59292a51b3c413f75122d405379fe1579f68ce48.svg" alt="\(\kappa=\sqrt{2\cdot9.11\times10^{-31}\cdot1.6\times10^{-19}}/1.055\times10^{-34}=5.1\)" style="height:1.275em;vertical-align:-0.268em"> nm<img class="m" src="m/6174f00c281084cf5eb1be35c3830ee14666a0c8.svg" alt="\(^{-1}\)" style="height:0.892em;vertical-align:-0.000em">, <img class="m" src="m/0eb78dc84923dbddec91a788db4ec1fc8f28aa0b.svg" alt="\(e^{-2\kappa a}=3.6\times10^{-5}\)" style="height:0.983em;vertical-align:-0.089em">. Thinning to 0.5 nm gives <img class="m" src="m/a5762b066fc7e997ad735031cb2b438a9b1accc9.svg" alt="\(6\times10^{-3}\)" style="height:0.983em;vertical-align:-0.089em">: two orders of magnitude for half a nanometre. This exponential sensitivity is why the STM resolves single atoms and why gate oxides below <img class="m" src="m/385a1c64b36079dc0146a67fa5a3880944d2df72.svg" alt="\(\sim\)" style="height:0.402em;vertical-align:-0.000em">1.5 nm leak.
+</p>
+</div>
+</div>
+<div id="outline-container-orga3be75b" class="outline-2">
+<h2 id="orga3be75b">Engineering applications</h2>
+<div class="outline-text-2" id="text-orga3be75b">
+<ul class="org-ul">
+<li><b>Scanning tunnelling microscope</b>: current <img class="m" src="m/70a321f84775eaf6888d7781cf0d7b983b47cb7a.svg" alt="\(\propto e^{-2\kappa d}\)" style="height:0.930em;vertical-align:-0.000em">, ~10× per Å.</li>
+<li><b>Flash memory</b>: Fowler–Nordheim tunnelling through a triangular barrier (WKB) charges the floating gate.</li>
+<li><b>Gate leakage</b> in thin oxides → high-k dielectrics.</li>
+<li><b>Tunnel diodes</b>, resonant tunnelling diodes, <a href="josephson-junction-and-rcsj-model.html">Josephson junctions</a>, alpha decay (Gamow factor).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1080e27" class="outline-2">
+<h2 id="org1080e27">Pitfall</h2>
+<div class="outline-text-2" id="text-org1080e27">
+<p>
+<img class="m" src="m/5987b4819521b0dec967905dc8708b9fbc1c42a5.svg" alt="\(T\approx e^{-2\kappa a}\)" style="height:0.892em;vertical-align:-0.000em"> uses <img class="m" src="m/2b4ece0264e280a329a0b3df879e3047951d007e.svg" alt="\(\kappa\)" style="height:0.472em;vertical-align:-0.000em"> of the <b>amplitude</b>; the factor 2 comes from <img class="m" src="m/b166ea18b3900594e1de77a98c0e077851041772.svg" alt="\(|t|^2\)" style="height:1.166em;vertical-align:-0.268em">. Do not use WKB near turning points or for abrupt barriers thinner than a wavelength.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="quantum-harmonic-oscillator.html"><span>← previous</span>The quantum harmonic oscillator</a><a rel="next" href="angular-momentum-algebra.html"><span>next →</span>Angular momentum: algebra and spectrum</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-mechanics--one-dimensional-systems.pdf" title="PDF manual">One Dimensional Systems</a> · <a class="pdf" href="pdf/quantum-mechanics.pdf" title="PDF manual">Quantum Mechanics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

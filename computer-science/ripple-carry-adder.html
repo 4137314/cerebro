@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Full adder and ripple-carry adder · Computer Science</title>
+<meta name="description" content="A full adder computes s=a\oplus b\oplus c and c_{out}=ab+c(a\oplus b); chaining n of them adds n-bit numbers with delay O(n), because the carry ripples through every stage; in two's complement the same circuit subtracts (a-b=a+\bar b+1).">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/ripple-carry-adder.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Full adder and ripple-carry adder · Computer Science">
+<meta property="og:description" content="A full adder computes s=a\oplus b\oplus c and c_{out}=ab+c(a\oplus b); chaining n of them adds n-bit numbers with delay O(n), because the carry ripples through every stage; in two's complement the same circuit subtracts (a-b=a+\bar b+1).">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/ripple-carry-adder.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--arithmetic">Arithmetic</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Hardware · Arithmetic</p>
+<h1>Full adder and ripple-carry adder</h1>
+<p class="summary">A full adder computes <img class="m" src="m/f08f15167de7fc71b418eb82cdb029658bd0d257.svg" alt="\(s=a\oplus b\oplus c\)" style="height:0.852em;vertical-align:-0.094em"> and <img class="m" src="m/705f6e9dd8c4682a677c1dc1c30d0c34aa594eea.svg" alt="\(c_{out}=ab+c(a\oplus b)\)" style="height:1.096em;vertical-align:-0.274em">; chaining <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> of them adds <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">-bit numbers with delay <img class="m" src="m/75759c7342019bc0f32aba564d0313818f7efb7a.svg" alt="\(O(n)\)" style="height:1.096em;vertical-align:-0.274em">, because the carry ripples through every stage; in two's complement the same circuit subtracts (<img class="m" src="m/834182e0ed423f0191d788bbeda5162ff2869990.svg" alt="\(a-b=a+\bar b+1\)" style="height:1.003em;vertical-align:-0.090em">).</p>
+<p class="rel"><span>unlocks</span> <a href="bcd-adder.html">BCD adder</a>, <a href="serial-arithmetic.html">Bit-serial arithmetic</a>, <a href="carry-lookahead-adder.html">Carry-lookahead and prefix adders</a>, <a href="carry-save-adder.html">Carry-save adders and adder trees</a>, <a href="cordic.html">CORDIC</a>, <a href="fixed-point-arithmetic.html">Fixed-point arithmetic</a>, <a href="magnitude-comparator.html">Iterative magnitude comparator</a>, <a href="alu-design.html">Arithmetic logic unit</a></p>
+<p class="rel"><span>see also</span> <a href="carry-lookahead-adder.html">Carry-lookahead and prefix adders</a>, <a href="carry-save-adder.html">Carry-save adders and adder trees</a>, <a href="vhdl-structural.html">Structural VHDL: components, port maps, generics</a>, <a href="alu-design.html">Arithmetic logic unit</a>, <a href="serial-arithmetic.html">Bit-serial arithmetic</a>, <a href="cordic.html">CORDIC</a>, <a href="fixed-point-arithmetic.html">Fixed-point arithmetic</a>, <a href="twos-complement.html">Binary numbers and two's complement</a>, <a href="magnitude-comparator.html">Iterative magnitude comparator</a>, <a href="bcd-adder.html">BCD adder</a></p>
+<p class="rel"><span>mentioned in</span> <a href="decoder-encoder.html">Decoders, encoders and priority encoders</a>, <a href="pla-pal.html">PLA and PAL</a>, <a href="vhdl-structural.html">Structural VHDL: components, port maps, generics</a>, <a href="low-power-encoding.html">Encodings and orderings for low power</a>, <a href="array-multiplier.html">Multipliers</a>, <a href="booth-recoding.html">Radix-4 Booth recoding</a></p>
+</header>
+<main class="note">
+<div id="outline-container-org3eb07e9" class="outline-2">
+<h2 id="org3eb07e9">Construction</h2>
+<div class="outline-text-2" id="text-org3eb07e9">
+<p>
+Per bit <img class="m" src="m/a67e954bf39c79e3b911cbed8c1a65db21940e5a.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em">: <b>generate</b> <img class="m" src="m/dc3c73de0ccb43b6f795ab67118aae40e7a09e1e.svg" alt="\(g_i=a_ib_i\)" style="height:0.974em;vertical-align:-0.214em"> (a carry is born), <b>propagate</b> <img class="m" src="m/e17ed8aca7eaac88840d825b7471daf6ad68880f.svg" alt="\(p_i=a_i\oplus b_i\)" style="height:0.974em;vertical-align:-0.214em"> (an incoming carry passes),
+<div class="mb"><img class="m" src="m/03346edff44829022fa445cf3fa3486acd819fbc.svg" alt="\[ s_i=p_i\oplus c_i,\qquad c_{i+1}=g_i+p_i\,c_i. \]" style="width:15.993em"></div>
+<img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> full adders in a chain, <img class="m" src="m/ae31654b08dbd69fcf9c77ced92c01c3bd31753c.svg" alt="\(c_0=c_{in}\)" style="height:0.636em;vertical-align:-0.165em">. Area <img class="m" src="m/75759c7342019bc0f32aba564d0313818f7efb7a.svg" alt="\(O(n)\)" style="height:1.096em;vertical-align:-0.274em">, delay <img class="m" src="m/785b62761a35765814a5c1937cbdadc27a72039b.svg" alt="\(\approx n\,t_{carry}\)" style="height:0.988em;vertical-align:-0.316em">.
+</p>
+
+<p>
+Two's complement: an <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">-bit word represents <img class="m" src="m/c28b7e0e3ba30bd8f9f6c74b3764e736e7f4c0c0.svg" alt="\(-a_{n-1}2^{n-1}+\sum_{i&lt;n-1}a_i2^i\)" style="height:1.325em;vertical-align:-0.424em">. Subtraction <img class="m" src="m/834182e0ed423f0191d788bbeda5162ff2869990.svg" alt="\(a-b=a+\bar b+1\)" style="height:1.003em;vertical-align:-0.090em">: invert <img class="m" src="m/9a9e478ff943a309ecb17df71ac414cc09c1be96.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em">, set <img class="m" src="m/9d821fb30a8a4ccd3fa75cf7d6e8c54157a0a0ba.svg" alt="\(c_0=1\)" style="height:0.871em;vertical-align:-0.165em">. Overflow (signed) when <img class="m" src="m/7dbd936662f548118a8f03f76f2944e7ac7d6b7b.svg" alt="\(c_n\ne c_{n-1}\)" style="height:1.017em;vertical-align:-0.254em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb49510e" class="outline-2">
+<h2 id="orgb49510e">Picture</h2>
+<div class="outline-text-2" id="text-orgb49510e">
+<figure class="fig"><img class="m" src="m/7d281b4b1276864eec4a61ddb52d4036a5671daa.svg" alt="figure" style="width:23.411em"><figcaption><span class="fl">Figure 1.</span> A 4-bit ripple-carry adder: four full adders (FA), each passing its carry to the next, from <img class="m" src="m/aee5d0a8fa77322dcfb69562876327530779f273.svg" alt="\(c_0\)" style="height:0.636em;vertical-align:-0.165em"> to <img class="m" src="m/2cb0535c18c3e75fc99210bc8d9aab81972d80a9.svg" alt="\(c_4\)" style="height:0.636em;vertical-align:-0.165em">.</figcaption></figure>
+<p>
+The carry (amber) crosses every stage: the <a href="static-timing-analysis.html">critical path</a> is linear in <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org12d5957" class="outline-2">
+<h2 id="org12d5957">Intuition</h2>
+<div class="outline-text-2" id="text-org12d5957">
+<p>
+Adding by hand, column by column, with the carry passed to the left: simple, small, and as slow as the number is long.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbc374ef" class="outline-2">
+<h2 id="orgbc374ef">Pitfall</h2>
+<div class="outline-text-2" id="text-orgbc374ef">
+<p>
+The worst case (<img class="m" src="m/2143a67b65ccc0bc3e5c2784961e4a44e500c384.svg" alt="\(p_i=1\)" style="height:0.919em;vertical-align:-0.211em"> in every position, e.g. <img class="m" src="m/37d6737728f5d12a4e3038b2cc6e0dd6c334fa90.svg" alt="\(0111\dots1+0000\dots1\)" style="height:0.798em;vertical-align:-0.088em">) is rare for random data but sets the <a href="setup-hold-time.html">clock period</a>, since timing analysis must assume it.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="resource-binding.html"><span>← previous</span>Resource sharing and binding</a><a rel="next" href="bcd-adder.html"><span>next →</span>BCD adder</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--arithmetic.pdf" title="PDF manual">Arithmetic</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

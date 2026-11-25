@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gaussian maximum-likelihood classifier · Remote Sensing</title>
+<meta name="description" content="Modelling each class as a multivariate Gaussian with mean \boldsymbol\mu_i and covariance \Sigma_i estimated from training pixels, the Bayes discriminant becomes g_i(\mathbf x)=-\tfrac12\ln|\Sigma_i|-\tfrac12(\mathbf x-\boldsymbol\mu_i)^\top\Sigma_i^{-1}(\mathbf x-\boldsymbol\mu_i)+\ln P(\omega_i):…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/gaussian-maximum-likelihood.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Gaussian maximum-likelihood classifier · Remote Sensing">
+<meta property="og:description" content="Modelling each class as a multivariate Gaussian with mean \boldsymbol\mu_i and covariance \Sigma_i estimated from training pixels, the Bayes discriminant becomes g_i(\mathbf x)=-\tfrac12\ln|\Sigma_i|-\tfrac12(\mathbf x-\boldsymbol\mu_i)^\top\Sigma_i^{-1}(\mathbf x-\boldsymbol\mu_i)+\ln P(\omega_i):…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/gaussian-maximum-likelihood.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-recognition">Recognition</a> / <a rel="up" href="index.html#a-recognition--classification">Classification</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Recognition · Classification</p>
+<h1>Gaussian maximum-likelihood classifier</h1>
+<p class="summary">Modelling each class as a multivariate Gaussian with mean <img class="m" src="m/b5b725aa8e7ea85d28ada70e5a622ef988f53c94.svg" alt="\(\boldsymbol\mu_i\)" style="height:0.700em;vertical-align:-0.210em"> and covariance <img class="m" src="m/aeabb112bb884b2361e960e451da80fa3243d2f4.svg" alt="\(\Sigma_i\)" style="height:0.913em;vertical-align:-0.164em"> estimated from training pixels, the Bayes discriminant becomes <img class="m" src="m/0690e405eb976a268b8b8f6408fd02c8c929c29a.svg" alt="\(g_i(\mathbf x)=-\tfrac12\ln|\Sigma_i|-\tfrac12(\mathbf x-\boldsymbol\mu_i)^\top\Sigma_i^{-1}(\mathbf x-\boldsymbol\mu_i)+\ln P(\omega_i)\)" style="height:1.341em;vertical-align:-0.376em">: quadratic boundaries that account for spread and correlation of each class.</p>
+<p class="rel"><span>needs</span> <a href="bayes-classifier.html">Bayes decision rule</a>, <a href="homogeneous-area-statistics.html">Statistics of homogeneous areas in optical images</a></p>
+<p class="rel"><span>unlocks</span> <a href="hughes-phenomenon.html">Hughes phenomenon (curse of dimensionality)</a></p>
+<p class="rel"><span>see also</span> <a href="minimum-distance-classifier.html">Minimum-distance classifier</a>, <a href="accuracy-assessment.html">Accuracy assessment and the confusion matrix</a>, <a href="hughes-phenomenon.html">Hughes phenomenon (curse of dimensionality)</a></p>
+<p class="rel"><span>mentioned in</span> <a href="minimum-distance-classifier.html">Minimum-distance classifier</a></p>
+<details class="path"><summary>Learning path: 21 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="spectral-signature.html">Spectral signature</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li><li><a href="image-statistics.html">Image statistics: moments, mode, median</a></li><li><a href="homogeneous-area-statistics.html">Statistics of homogeneous areas in optical images</a></li><li><a href="recognition-system.html">Recognition systems</a></li><li><a href="feature-extraction.html">Feature extraction</a></li><li><a href="feature-space.html">Feature space and spectral classes</a></li><li><a href="discriminant-functions.html">Discriminant functions and decision regions</a></li><li><a href="bayes-classifier.html">Bayes decision rule</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org3cc8e96" class="outline-2">
+<h2 id="org3cc8e96">Construction</h2>
+<div class="outline-text-2" id="text-org3cc8e96">
+<p>
+Training: <img class="m" src="m/379cd14eeae7b10a81eaac14bca402bfd4e7d9bc.svg" alt="\(\hat{\boldsymbol\mu}_i=\frac1{n_i}\sum\mathbf x\)" style="height:1.413em;vertical-align:-0.481em">, <img class="m" src="m/7505f16e9512178cd9e3ee3bc9e9e5e627bdc4b8.svg" alt="\(\hat\Sigma_i=\frac{1}{n_i-1}\sum(\mathbf x-\hat{\boldsymbol\mu}_i)(\mathbf x-\hat{\boldsymbol\mu}_i)^\top\)" style="height:1.526em;vertical-align:-0.488em">. Taking the log of <img class="m" src="m/c73473711e949d4b14932e1c9c7bb49b9c7ccde8.svg" alt="\(p(\mathbf x\mid\omega_i)P(\omega_i)\)" style="height:1.096em;vertical-align:-0.274em"> and dropping constants:
+<div class="mb"><img class="m" src="m/b63e36799275c8182c50ced6dd5476ff00c1d272.svg" alt="\[ g_i(\mathbf x)=-\tfrac12\ln|\Sigma_i|-\tfrac12(\mathbf x-\boldsymbol\mu_i)^\top\Sigma_i^{-1}(\mathbf x-\boldsymbol\mu_i)+\ln P(\omega_i). \]" style="width:26.699em"></div>
+Special cases: equal covariances <img class="m" src="m/2902b3aa2b98e8bab9efb258898bf3167990489d.svg" alt="\(\Sigma_i=\Sigma\)" style="height:0.913em;vertical-align:-0.164em"> → linear boundaries (Mahalanobis minimum distance); <img class="m" src="m/6458eb4182da0d2763be9be743c138df09ca56a8.svg" alt="\(\Sigma=\sigma^2I\)" style="height:0.892em;vertical-align:-0.000em"> and equal priors → Euclidean <a href="minimum-distance-classifier.html">minimum distance</a>. A threshold on the Mahalanobis distance rejects pixels unlike any class.
+</p>
+</div>
+</div>
+<div id="outline-container-orga41ef7b" class="outline-2">
+<h2 id="orga41ef7b">Example</h2>
+<div class="outline-text-2" id="text-orga41ef7b">
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="k">from</span> scipy.stats <span class="k">import</span> multivariate_normal
+<span class="k">def</span> <span class="f">fit</span>(c):
+    <span class="v">Xc</span> = F_train[y_train == c]
+    <span class="k">return</span> multivariate_normal(Xc.mean(0), np.cov(Xc.T))
+<span class="v">models</span> = [fit(c) <span class="k">for</span> c <span class="k">in</span> classes]
+<span class="v">logp</span> = np.stack([m.logpdf(F) + np.log(prior[c])
+                 <span class="k">for</span> c, m <span class="k">in</span> <span class="b">zip</span>(classes, models)], 1)
+<span class="v">labels</span> = classes[logp.argmax(1)]</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org94014a1" class="outline-2">
+<h2 id="org94014a1">Intuition</h2>
+<div class="outline-text-2" id="text-org94014a1">
+<p>
+Each class is an ellipsoid of probability; a pixel joins the class in whose ellipsoid it sits most comfortably, given how big and how tilted each one is.
+</p>
+</div>
+</div>
+<div id="outline-container-org4975f95" class="outline-2">
+<h2 id="org4975f95">Pitfall</h2>
+<div class="outline-text-2" id="text-org4975f95">
+<p>
+<img class="m" src="m/aeabb112bb884b2361e960e451da80fa3243d2f4.svg" alt="\(\Sigma_i\)" style="height:0.913em;vertical-align:-0.164em"> has <img class="m" src="m/3dbe40a7fec346331b3a76ea49708682fc25503b.svg" alt="\(p(p+1)/2\)" style="height:1.096em;vertical-align:-0.274em"> parameters: with hyperspectral data and a few dozen training pixels it is singular or unstable — regularise, reduce dimensionality, or use non-parametric classifiers.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="bayes-classifier.html"><span>← previous</span>Bayes decision rule</a><a rel="next" href="hughes-phenomenon.html"><span>next →</span>Hughes phenomenon (curse of dimensionality)</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/recognition--classification.pdf" title="PDF manual">Classification</a> · <a class="pdf" href="pdf/recognition.pdf" title="PDF manual">Recognition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

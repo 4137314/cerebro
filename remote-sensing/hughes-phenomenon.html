@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hughes phenomenon (curse of dimensionality) · Remote Sensing</title>
+<meta name="description" content="With a fixed number of training samples, classification accuracy first grows as features are added and then decreases, because the number of parameters to estimate (a Gaussian classifier needs p(p+3)/2 per class) grows faster than the information; hyperspectral data hit this peak quickly, hence fea…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/hughes-phenomenon.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Hughes phenomenon (curse of dimensionality) · Remote Sensing">
+<meta property="og:description" content="With a fixed number of training samples, classification accuracy first grows as features are added and then decreases, because the number of parameters to estimate (a Gaussian classifier needs p(p+3)/2 per class) grows faster than the information; hyperspectral data hit this peak quickly, hence fea…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/hughes-phenomenon.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-recognition">Recognition</a> / <a rel="up" href="index.html#a-recognition--classification">Classification</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Recognition · Classification</p>
+<h1>Hughes phenomenon (curse of dimensionality)</h1>
+<p class="summary">With a fixed number of training samples, classification accuracy first grows as features are added and then decreases, because the number of parameters to estimate (a Gaussian classifier needs <img class="m" src="m/e4f689cd1c7aaf188d1a9f16cb7477df97ac79c4.svg" alt="\(p(p+3)/2\)" style="height:1.096em;vertical-align:-0.274em"> per class) grows faster than the information; hyperspectral data hit this peak quickly, hence feature selection, extraction or classifiers with few parameters.</p>
+<p class="rel"><span>needs</span> <a href="feature-extraction.html">Feature extraction</a>, <a href="gaussian-maximum-likelihood.html">Gaussian maximum-likelihood classifier</a></p>
+<p class="rel"><span>see also</span> <a href="principal-component-analysis.html">Principal component analysis of multispectral images</a>, <a href="support-vector-machine.html">Support vector machines</a>, <a href="multispectral-hyperspectral-image.html">Multispectral and hyperspectral images</a></p>
+<p class="rel"><span>mentioned in</span> <a href="multispectral-hyperspectral-image.html">Multispectral and hyperspectral images</a>, <a href="recognition-system.html">Recognition systems</a></p>
+<details class="path"><summary>Learning path: 22 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="spectral-signature.html">Spectral signature</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li><li><a href="image-statistics.html">Image statistics: moments, mode, median</a></li><li><a href="homogeneous-area-statistics.html">Statistics of homogeneous areas in optical images</a></li><li><a href="recognition-system.html">Recognition systems</a></li><li><a href="feature-extraction.html">Feature extraction</a></li><li><a href="feature-space.html">Feature space and spectral classes</a></li><li><a href="discriminant-functions.html">Discriminant functions and decision regions</a></li><li><a href="bayes-classifier.html">Bayes decision rule</a></li><li><a href="gaussian-maximum-likelihood.html">Gaussian maximum-likelihood classifier</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org8a4f740" class="outline-2">
+<h2 id="org8a4f740">Statement</h2>
+<div class="outline-text-2" id="text-org8a4f740">
+<p>
+For a <a href="training-validation.html">training set</a> of size <img class="m" src="m/1a73ae0fb8f84dceb435c6a5104fde8ee543b317.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> per class, the expected test accuracy as a function of dimensionality <img class="m" src="m/8e1f2469eba85bb1b053a0b5e96cecec8e0a8566.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> has a maximum at a finite <img class="m" src="m/5431dbe4661fb5583613414cf08c164677e885cd.svg" alt="\(p^\ast(n)\)" style="height:1.096em;vertical-align:-0.274em"> that grows with <img class="m" src="m/1a73ae0fb8f84dceb435c6a5104fde8ee543b317.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">. With infinite samples, more features never hurt.
+</p>
+</div>
+</div>
+<div id="outline-container-org026c3b0" class="outline-2">
+<h2 id="org026c3b0">Derivation</h2>
+<div class="outline-text-2" id="text-org026c3b0">
+<p>
+A <a href="gaussian-maximum-likelihood.html">Gaussian maximum-likelihood classifier</a> estimates per class a mean (<img class="m" src="m/8e1f2469eba85bb1b053a0b5e96cecec8e0a8566.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> values) and a covariance (<img class="m" src="m/3dbe40a7fec346331b3a76ea49708682fc25503b.svg" alt="\(p(p+1)/2\)" style="height:1.096em;vertical-align:-0.274em">): <img class="m" src="m/e4f689cd1c7aaf188d1a9f16cb7477df97ac79c4.svg" alt="\(p(p+3)/2\)" style="height:1.096em;vertical-align:-0.274em"> parameters. For <img class="m" src="m/e3a6a1d66bd1d91d6477e34cbfe9f0df7116b721.svg" alt="\(p=200\)" style="height:0.919em;vertical-align:-0.211em"> bands that is 20 300 per class; with a few hundred samples <img class="m" src="m/5145c6b3663126e0d5494e19c23806c32c09a68f.svg" alt="\(\hat\Sigma\)" style="height:1.038em;vertical-align:-0.000em"> is singular (rank <img class="m" src="m/e4a0eb6fcf5757043b4a5472a5ebe1a2c03f369a.svg" alt="\(\le n-1\)" style="height:0.855em;vertical-align:-0.145em">) and its inverse meaningless. Estimation error grows with parameters/samples, while the <a href="feature-space.html">separability</a> gained by each new band shrinks: the two curves cross at the peak.
+</p>
+</div>
+</div>
+<div id="outline-container-org626b561" class="outline-2">
+<h2 id="org626b561">Picture</h2>
+<div class="outline-text-2" id="text-org626b561">
+<figure class="fig"><img class="m" src="m/5e226019ec114f195b22083ff189fd3336b016c9.svg" alt="figure" style="width:19.519em"><figcaption><span class="fl">Figure 1.</span> The Hughes phenomenon: classification accuracy versus number of features peaks and then falls, earlier with few training samples <img class="m" src="m/1a73ae0fb8f84dceb435c6a5104fde8ee543b317.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> than with many.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org427616e" class="outline-2">
+<h2 id="org427616e">Remedies</h2>
+<div class="outline-text-2" id="text-org427616e">
+<ul class="org-ul">
+<li><a href="feature-extraction.html">feature selection</a> (keep the most separable bands) or extraction (<a href="principal-component-analysis.html">PCA</a>, discriminant analysis);</li>
+<li>simpler models (common covariance, regularised <img class="m" src="m/74dd47bbd6532b14ce6253ea6439c6b849cdad21.svg" alt="\(\hat\Sigma+\epsilon I\)" style="height:1.129em;vertical-align:-0.090em">);</li>
+<li>classifiers that control complexity rather than dimension (<a href="support-vector-machine.html">SVM</a>);</li>
+<li>more labels: semi-supervised and active learning.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc27e495" class="outline-2">
+<h2 id="orgc27e495">Intuition</h2>
+<div class="outline-text-2" id="text-orgc27e495">
+<p>
+Each new feature is another question the classifier must learn to interpret; with few examples it learns to interpret noise.
+</p>
+</div>
+</div>
+<div id="outline-container-org0336433" class="outline-2">
+<h2 id="org0336433">Pitfall</h2>
+<div class="outline-text-2" id="text-org0336433">
+<p>
+The effect is invisible on the training set, whose accuracy keeps rising with <img class="m" src="m/8e1f2469eba85bb1b053a0b5e96cecec8e0a8566.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">: only independent test data reveal the peak.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="gaussian-maximum-likelihood.html"><span>← previous</span>Gaussian maximum-likelihood classifier</a><a rel="next" href="minimum-distance-classifier.html"><span>next →</span>Minimum-distance classifier</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/recognition--classification.pdf" title="PDF manual">Classification</a> · <a class="pdf" href="pdf/recognition.pdf" title="PDF manual">Recognition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

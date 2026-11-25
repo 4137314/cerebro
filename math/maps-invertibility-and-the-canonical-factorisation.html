@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maps, invertibility and the canonical factorisation · Mathematics</title>
+<meta name="description" content="Injectivity and surjectivity are usually introduced as two properties a map may happen to have. They are better read as the two halves of one statement: every map is a surjection followed by an injection, and the surjection is a quotient. The isomorphism theorems of algebra are that sentence, repea…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/maps-invertibility-and-the-canonical-factorisation.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Maps, invertibility and the canonical factorisation · Mathematics">
+<meta property="og:description" content="Injectivity and surjectivity are usually introduced as two properties a map may happen to have. They are better read as the two halves of one statement: every map is a surjection followed by an injection, and the surjection is a quotient. The isomorphism theorems of algebra are that sentence, repea…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/maps-invertibility-and-the-canonical-factorisation.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-foundations">Foundations</a> / <a rel="up" href="index.html#a-foundations--set-theory">Set Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Foundations · Set Theory</p>
+<h1>Maps, invertibility and the canonical factorisation</h1>
+<p class="summary">Injectivity and surjectivity are usually introduced as two properties a map may happen to have. They are better read as the two halves of one statement: every map is a surjection followed by an injection, and the surjection is a quotient. The isomorphism theorems of algebra are that sentence, repeated once per structure.</p>
+<p class="rel"><span>needs</span> <a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></p>
+<p class="rel"><span>unlocks</span> <a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a>, <a href="computability-the-halting-problem-and-rices-theorem.html">Computability, the halting problem and Rice's theorem</a>, <a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a>, <a href="cosets-the-index-and-lagranges-theorem.html">Cosets, the index and Lagrange's theorem</a>, <a href="group-actions-orbits-and-the-orbit-stabiliser-theorem.html">Group actions, orbits and the orbit-stabiliser theorem</a>, <a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a>, <a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></p>
+<p class="rel"><span>mentioned in</span> <a href="set-theory.html">Set theory</a>, <a href="algebra.html">Algebra</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org355a852">
+<p>
+A map <img class="m" src="m/d7c0c93f2d459ca20e4f53c81d24a704a65c7b84.svg" alt="\(f \colon X \to Y\)" style="height:0.974em;vertical-align:-0.214em"> is <i>injective</i> if <img class="m" src="m/0ecbe01e55d159722b552bc7439ad32ecfe4e52c.svg" alt="\(f(x) = f(x')\)" style="height:1.098em;vertical-align:-0.274em"> implies
+<img class="m" src="m/4a8fa00d367ed6a8502b50429738ad0a19f3f32e.svg" alt="\(x = x'\)" style="height:0.824em;vertical-align:-0.000em">, <i>surjective</i> if every <img class="m" src="m/5d744b55e502a4b150d559a46ba982fd749697d1.svg" alt="\(y \in Y\)" style="height:0.962em;vertical-align:-0.212em"> is <img class="m" src="m/e5ceae42d20882b9a191c5a7061083f903b09df0.svg" alt="\(f(x)\)" style="height:1.096em;vertical-align:-0.274em"> for some
+<img class="m" src="m/94eaa1f197d2485b6086400fc7bd6537a638d7d8.svg" alt="\(x \in X\)" style="height:0.792em;vertical-align:-0.040em">, and <i>bijective</i> if it is both. Its <i>image</i> is
+<img class="m" src="m/e7d3501fffb004e7a4a4922664b09986280b4077.svg" alt="\(f(X) = \setst{f(x)}{x \in X}\)" style="height:1.096em;vertical-align:-0.274em">, and the <i>fibre</i> over <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> is
+<img class="m" src="m/fd2453ece8be0bf5cebc434b91dd8849e733786f.svg" alt="\(f^{-1}(y) = \setst{x \in X}{f(x) = y}\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgbff7a9d">
+<p>
+A map <img class="m" src="m/d7c0c93f2d459ca20e4f53c81d24a704a65c7b84.svg" alt="\(f \colon X \to Y\)" style="height:0.974em;vertical-align:-0.214em"> is bijective if and only if there is a map
+<img class="m" src="m/238f96f435dd377c0bf4777e2b4c936f1cb6abe6.svg" alt="\(g \colon Y \to X\)" style="height:0.962em;vertical-align:-0.212em"> with <img class="m" src="m/bca80ed1fe39be19fddd10e06467cf4c68cfc620.svg" alt="\(g \circ f = \id_{X}\)" style="height:0.974em;vertical-align:-0.214em"> and
+<img class="m" src="m/32dc9d53ef5c97a524b98a5aa2fe64d26ff3e7bc.svg" alt="\(f \circ g = \id_{Y}\)" style="height:0.974em;vertical-align:-0.214em">, and then <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> is unique.
+</p>
+
+</div>
+
+<div class="proof" id="orgf7cfd99">
+<p>
+Let <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> be bijective. For <img class="m" src="m/5d744b55e502a4b150d559a46ba982fd749697d1.svg" alt="\(y \in Y\)" style="height:0.962em;vertical-align:-0.212em"> surjectivity provides some
+<img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> with <img class="m" src="m/a549c98d2eb0ef1b189b95cf6ce4c1cbbc5eeccf.svg" alt="\(f(x) = y\)" style="height:1.096em;vertical-align:-0.274em"> and injectivity makes it unique, so
+<img class="m" src="m/6c1841b3f4fa2922c2c8914eb2bf6f095d109e76.svg" alt="\(g(y) = x\)" style="height:1.096em;vertical-align:-0.274em"> defines a map; by construction <img class="m" src="m/7f28c078a74ed6073283471686412910fc6fb3da.svg" alt="\(f(g(y)) = y\)" style="height:1.096em;vertical-align:-0.274em">, and
+<img class="m" src="m/4933792fafffbd9de953439c363aeb295caf0191.svg" alt="\(g(f(x)) = x\)" style="height:1.096em;vertical-align:-0.274em"> because <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> is the unique preimage of <img class="m" src="m/e5ceae42d20882b9a191c5a7061083f903b09df0.svg" alt="\(f(x)\)" style="height:1.096em;vertical-align:-0.274em">.
+Conversely, given such a <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em">: if <img class="m" src="m/0ecbe01e55d159722b552bc7439ad32ecfe4e52c.svg" alt="\(f(x) = f(x')\)" style="height:1.098em;vertical-align:-0.274em"> then applying <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em">
+gives <img class="m" src="m/4a8fa00d367ed6a8502b50429738ad0a19f3f32e.svg" alt="\(x = x'\)" style="height:0.824em;vertical-align:-0.000em">, and every <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> equals <img class="m" src="m/cb11d86abba5ec5809a4a105f3b20152cfb31506.svg" alt="\(f(g(y))\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+For uniqueness, if <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> and <img class="m" src="m/6c6a7c0f65b6e5eec3c9e58e95f4608590dbb80f.svg" alt="\(h\)" style="height:0.761em;vertical-align:-0.000em"> both work then
+<img class="m" src="m/4d3fe0d6617255b47c469b04131edbb71172e484.svg" alt="\(g = g \circ (f \circ h) = (g \circ f) \circ h = h\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgbd3377b">
+<p>
+For any map <img class="m" src="m/d7c0c93f2d459ca20e4f53c81d24a704a65c7b84.svg" alt="\(f \colon X \to Y\)" style="height:0.974em;vertical-align:-0.214em">, the relation <img class="m" src="m/3c09c43404ff8cff2158e8ec450b7a56f6dcb2a3.svg" alt="\(x \sim_{f} x'\)" style="height:1.137em;vertical-align:-0.318em">
+defined by <img class="m" src="m/0ecbe01e55d159722b552bc7439ad32ecfe4e52c.svg" alt="\(f(x) = f(x')\)" style="height:1.098em;vertical-align:-0.274em"> is an equivalence relation, and its classes
+are exactly the non-empty fibres of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="proof" id="org1b48e79">
+<p>
+Reflexivity, symmetry and transitivity are those of equality in <img class="m" src="m/82d9b7c5c94f297586981fdbe7ca67b30095b73a.svg" alt="\(Y\)" style="height:0.749em;vertical-align:-0.000em">.
+The class of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> is <img class="m" src="m/1add4a14eb410d2e38e75e112308df689fc8ea85.svg" alt="\(\setst{x'}{f(x') = f(x)} = f^{-1}(f(x))\)" style="height:1.166em;vertical-align:-0.268em">, a
+fibre containing <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, and every non-empty fibre <img class="m" src="m/37277da33beed5c95d4b68bcae1ceda63c21a025.svg" alt="\(f^{-1}(y)\)" style="height:1.166em;vertical-align:-0.268em"> is of
+this form since <img class="m" src="m/b2226ccc2f9a25d79cfd7dd36a2caf040b2458fe.svg" alt="\(y = f(x)\)" style="height:1.096em;vertical-align:-0.274em"> for any of its elements.
+</p>
+
+</div>
+
+<div class="theorem" id="orgfc93ead">
+<p>
+Every map <img class="m" src="m/d7c0c93f2d459ca20e4f53c81d24a704a65c7b84.svg" alt="\(f \colon X \to Y\)" style="height:0.974em;vertical-align:-0.214em"> factors as
+<div class="mb"><img class="m" src="m/f3ea3964fd31654db9ef9852901e2eb431fa4061.svg" alt="\[ X \xrightarrow{\ \pi\ } X/{\sim_{f}} \xrightarrow{\ \bar{f}\ } f(X) \xrightarrow{\ \iota\ } Y, \]" style="width:14.858em"></div>
+where <img class="m" src="m/b1e3c27a225dba8050e88d2182ad88a60344ed21.svg" alt="\(\pi\)" style="height:0.472em;vertical-align:-0.000em"> is the canonical projection, <img class="m" src="m/216ccdeb0d6cab34c139363cb21ee8370f7770d4.svg" alt="\(\iota\)" style="height:0.472em;vertical-align:-0.000em"> the inclusion, and
+<img class="m" src="m/ae93336ca48a9cff141c82f3f3a98d51896a0035.svg" alt="\(\bar{f}\)" style="height:1.125em;vertical-align:-0.214em"> a bijection; and this factorisation is unique.
+</p>
+
+</div>
+
+<div class="proof" id="org28c89d4">
+<p>
+The map <img class="m" src="m/a96bd380989cfdf88e7e55cbd2b5ed60c8c00ea4.svg" alt="\(x \mapsto f(x)\)" style="height:1.096em;vertical-align:-0.274em">, viewed into <img class="m" src="m/54bc7085f15afe06df4b04598ea8549e334f1a89.svg" alt="\(f(X)\)" style="height:1.096em;vertical-align:-0.274em">, is constant on the
+classes of <img class="m" src="m/523a9f979ed5c37d1e9e02099326824bb51d8a27.svg" alt="\(\sim_{f}\)" style="height:0.716em;vertical-align:-0.315em"> by the definition of that relation, so the
+universal property of the quotient gives a unique
+<img class="m" src="m/e69b9621b797907cbe1b04c76de14ebf68ffed0f.svg" alt="\(\bar{f} \colon X/{\sim_{f}} \to f(X)\)" style="height:1.225em;vertical-align:-0.318em"> with <img class="m" src="m/c29593a0a422a5ac70d3684aa151aaae002b1efd.svg" alt="\(\bar{f} \circ \pi = f\)" style="height:1.125em;vertical-align:-0.214em">.
+It is surjective because <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is onto <img class="m" src="m/54bc7085f15afe06df4b04598ea8549e334f1a89.svg" alt="\(f(X)\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/b1e3c27a225dba8050e88d2182ad88a60344ed21.svg" alt="\(\pi\)" style="height:0.472em;vertical-align:-0.000em"> is
+surjective; it is injective because <img class="m" src="m/ad83ae9d8a21cf13571844fe7daf08f3ef800bf1.svg" alt="\(\bar{f}([x]) = \bar{f}([x'])\)" style="height:1.185em;vertical-align:-0.273em">
+says <img class="m" src="m/0ecbe01e55d159722b552bc7439ad32ecfe4e52c.svg" alt="\(f(x) = f(x')\)" style="height:1.098em;vertical-align:-0.274em">, which is exactly <img class="m" src="m/18d8e50dc8d458bb2efe2c4f4e5f96544768e132.svg" alt="\([x] = [x']\)" style="height:1.098em;vertical-align:-0.274em">. Composing with
+the inclusion gives the displayed factorisation.
+</p>
+
+<p>
+Uniqueness: in any such factorisation the middle map must satisfy
+<img class="m" src="m/366030761de30670115b1cc36a2b0da38d3fe1c2.svg" alt="\(\bar{f}(\pi(x)) = f(x)\)" style="height:1.185em;vertical-align:-0.273em">, and <img class="m" src="m/b1e3c27a225dba8050e88d2182ad88a60344ed21.svg" alt="\(\pi\)" style="height:0.472em;vertical-align:-0.000em"> is surjective, so <img class="m" src="m/ae93336ca48a9cff141c82f3f3a98d51896a0035.svg" alt="\(\bar{f}\)" style="height:1.125em;vertical-align:-0.214em"> is
+determined.
+</p>
+
+</div>
+
+<div class="remark" id="org360817c">
+<p>
+The three arrows are "forget what <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> cannot distinguish", "the
+bijection that is left", and "remember where the values live". Read in
+that order, the first isomorphism theorem for groups, for rings and for
+vector spaces are all this statement with the observation that
+<img class="m" src="m/523a9f979ed5c37d1e9e02099326824bb51d8a27.svg" alt="\(\sim_{f}\)" style="height:0.716em;vertical-align:-0.315em"> is compatible with the structure &#x2013; which for a
+homomorphism means its classes are the cosets of the kernel.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-axiom-of-choice-and-zorns-lemma.html"><span>← previous</span>The axiom of choice and Zorn's lemma</a><a rel="next" href="filters-ultrafilters-and-the-ultrafilter-lemma.html"><span>next →</span>Filters, ultrafilters and the ultrafilter lemma</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/foundations--set-theory.pdf" title="PDF manual">Set Theory</a> · <a class="pdf" href="pdf/foundations.pdf" title="PDF manual">Foundations</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Finite fields · Mathematics</title>
+<meta name="description" content="There is exactly one field with q elements for every prime power q, and none of any other size. That is an unusually complete classification, and every part of it comes from a single observation: in characteristic p the map a \mapsto a^{p} is a field homomorphism, so the equation x^{q} = x is linea…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/finite-fields.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Finite fields · Mathematics">
+<meta property="og:description" content="There is exactly one field with q elements for every prime power q, and none of any other size. That is an unusually complete classification, and every part of it comes from a single observation: in characteristic p the map a \mapsto a^{p} is a field homomorphism, so the equation x^{q} = x is linea…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/finite-fields.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--field-theory">Field Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Algebra · Field Theory</p>
+<h1>Finite fields</h1>
+<p class="summary">There is exactly one field with <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> elements for every prime power <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em">, and none of any other size. That is an unusually complete classification, and every part of it comes from a single observation: in characteristic <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> the map <img class="m" src="m/521b2436ce59a0ddea61e4e1fe634aa73f26f532.svg" alt="\(a \mapsto a^{p}\)" style="height:0.728em;vertical-align:-0.000em"> is a field homomorphism, so the equation <img class="m" src="m/08667178cc7fbfa85edc927904d9652eb10f1fa5.svg" alt="\(x^{q} = x\)" style="height:0.728em;vertical-align:-0.000em"> is linear-like and its solution set is a field.</p>
+<p class="rel"><span>needs</span> <a href="integral-domains-fields-prime-and-maximal-ideals.html">Integral domains, fields, prime and maximal ideals</a>, <a href="polynomial-rings-division-and-roots.html">Polynomial rings, division and roots</a>, <a href="rings-ideals-and-the-quotient-ring.html">Rings, ideals and the quotient ring</a>, <a href="splitting-fields-and-their-uniqueness.html">Splitting fields and their uniqueness</a>, <a href="the-order-of-an-element-and-cyclic-groups.html">The order of an element and cyclic groups</a></p>
+<p class="rel"><span>mentioned in</span> <a href="field-theory.html">Field theory</a></p>
+<details class="path"><summary>Learning path: 22 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li><li><a href="rings-ideals-and-the-quotient-ring.html">Rings, ideals and the quotient ring</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="the-order-of-an-element-and-cyclic-groups.html">The order of an element and cyclic groups</a></li><li><a href="integral-domains-fields-prime-and-maximal-ideals.html">Integral domains, fields, prime and maximal ideals</a></li><li><a href="polynomial-rings-division-and-roots.html">Polynomial rings, division and roots</a></li><li><a href="euclidean-domains-principal-ideals-and-unique-factorisation.html">Euclidean domains, principal ideals and unique factorisation</a></li><li><a href="field-extensions-the-tower-law-and-minimal-polynomials.html">Field extensions, the tower law and minimal polynomials</a></li><li><a href="splitting-fields-and-their-uniqueness.html">Splitting fields and their uniqueness</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orga830381">
+<p>
+The <i>characteristic</i> of a ring <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> is the least <img class="m" src="m/28ea251ed83f5eb8039c604246b727a5afd15b88.svg" alt="\(n \ge 1\)" style="height:0.855em;vertical-align:-0.145em"> with
+<img class="m" src="m/a1b9c20e5e173d04802300af3fa1b3b5bc5c066e.svg" alt="\(n \cdot 1 = 0\)" style="height:0.706em;vertical-align:-0.000em">, if there is one, and <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> otherwise. The <i>prime
+field</i> of a field is the subfield generated by <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orge79b016">
+<p>
+The characteristic of a field is <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> or a prime <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">; the prime field
+is <img class="m" src="m/83349875d2551503beeb2426480fe7a04427bf34.svg" alt="\(\Q\)" style="height:0.938em;vertical-align:-0.178em"> in the first case and <img class="m" src="m/ef928441f143f41aeb30bd1e7988f6833d103976.svg" alt="\(\F_{p} = \Z/p\Z\)" style="height:1.135em;vertical-align:-0.318em"> in the second. A
+finite field has <img class="m" src="m/05f4bf1d245fdd5a713de43200eda12ba99dc048.svg" alt="\(p^{n}\)" style="height:0.941em;vertical-align:-0.216em"> elements for some prime <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> and
+<img class="m" src="m/28ea251ed83f5eb8039c604246b727a5afd15b88.svg" alt="\(n \ge 1\)" style="height:0.855em;vertical-align:-0.145em">.
+</p>
+
+</div>
+
+<div class="proof" id="org2295c5a">
+<p>
+The map <img class="m" src="m/6967ff66861ec8fcccc1fc334a9b9d4ca1110631.svg" alt="\(\Z \to K\)" style="height:0.755em;vertical-align:-0.000em">, <img class="m" src="m/890968978942be3ac704b42583a0d898a652da6d.svg" alt="\(m \mapsto m\cdot1\)" style="height:0.706em;vertical-align:-0.000em">, is a ring homomorphism; its
+kernel is an ideal <img class="m" src="m/6db201c040a97cc1326512a5d9dc1405bfb184aa.svg" alt="\(c\Z\)" style="height:0.755em;vertical-align:-0.000em">, and <img class="m" src="m/eacb489ee99865efa71edd1d3327d2c075e74a7c.svg" alt="\(\Z/c\Z\)" style="height:1.096em;vertical-align:-0.274em"> embeds in the field <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">,
+hence is an integral domain, so <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> is <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> or prime. If <img class="m" src="m/b93a125c5c60c35abeafb8565b3ab8c3dfa3ea8b.svg" alt="\(c = 0\)" style="height:0.706em;vertical-align:-0.000em">
+the image is a copy of <img class="m" src="m/7dabe02ee97dbd1f64356da323fa6ec62fd0b242.svg" alt="\(\Z\)" style="height:0.755em;vertical-align:-0.000em"> and the subfield it generates is <img class="m" src="m/83349875d2551503beeb2426480fe7a04427bf34.svg" alt="\(\Q\)" style="height:0.938em;vertical-align:-0.178em">;
+if <img class="m" src="m/ee882b184253a71b90956164b68f0c2c390d1bb6.svg" alt="\(c = p\)" style="height:0.685em;vertical-align:-0.212em"> the image is <img class="m" src="m/5f3594d11e142ddbc15c5a7560b012437bd59025.svg" alt="\(\F_{p}\)" style="height:1.068em;vertical-align:-0.310em">, already a field.
+</p>
+
+<p>
+A finite field <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> has characteristic <img class="m" src="m/62d95cf033cb1d675097fed76aa3022ef95b6b9b.svg" alt="\(p &gt; 0\)" style="height:0.919em;vertical-align:-0.211em">, and it is a vector
+space over <img class="m" src="m/5f3594d11e142ddbc15c5a7560b012437bd59025.svg" alt="\(\F_{p}\)" style="height:1.068em;vertical-align:-0.310em"> of some finite dimension <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">; choosing a basis
+gives a bijection with <img class="m" src="m/3f456a40b1515d8318c9a4fdc6bf380d4b732eb7.svg" alt="\(\F_{p}^{n}\)" style="height:1.175em;vertical-align:-0.423em">, so <img class="m" src="m/1a905cf050a1d0ec3722f2f941b207e3605e4f06.svg" alt="\(\abs{K} = p^{n}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgbcd7840">
+<p>
+In a commutative ring of prime characteristic <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">, the map
+<img class="m" src="m/1262ea795aa207933e26a4945df06871fae2ac34.svg" alt="\(F(a) = a^{p}\)" style="height:1.096em;vertical-align:-0.274em"> is a ring homomorphism; on a finite field it is an
+automorphism.
+</p>
+
+</div>
+
+<div class="proof" id="orged77958">
+<p>
+Multiplicativity and <img class="m" src="m/5bdacba1d114c0097c5d3e7d8c393f60b142599d.svg" alt="\(F(1)=1\)" style="height:1.096em;vertical-align:-0.274em"> are clear. For additivity, the binomial
+theorem gives
+<img class="m" src="m/605917889c3df801fac1f3433240645b65ee328c.svg" alt="\((a+b)^{p} = \sum_{k}\binom{p}{k}a^{k}b^{p-k}\)" style="height:1.315em;vertical-align:-0.381em">, and for
+<img class="m" src="m/bf450d20083a5ef6652b131ae3f8716260035d47.svg" alt="\(0 &lt; k &lt; p\)" style="height:0.974em;vertical-align:-0.214em"> the integer <img class="m" src="m/76c0bfcd3351e91a619517b345f90316e3fcc571.svg" alt="\(\binom{p}{k} = p!/(k!(p-k)!)\)" style="height:1.315em;vertical-align:-0.381em"> is divisible
+by <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">, since <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> divides the numerator and not the denominator;
+those terms vanish in characteristic <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">. On a field <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em"> is
+injective, its kernel being an ideal not containing <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">, and an
+injective map of a finite set to itself is bijective.
+</p>
+
+</div>
+
+<div class="theorem" id="org651d832">
+<p>
+The multiplicative group of a finite field is cyclic.
+</p>
+
+</div>
+
+<div class="proof" id="orgd834e41">
+<p>
+Let <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> be a field with <img class="m" src="m/c6b577ce09c4df8aaf1dc1b5e9063297f4023d7a.svg" alt="\(\abs{K^{\times}} = m\)" style="height:1.147em;vertical-align:-0.275em">, and let <img class="m" src="m/ad855e27454841e8ad2eca7f08dfc4eb67657f15.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em"> be the
+largest order of an element of <img class="m" src="m/3d965a1815cca302c266043f4b5115ffbef5943e.svg" alt="\(K^{\times}\)" style="height:0.873em;vertical-align:-0.000em">; say <img class="m" src="m/b746ba8f947fc57c0397e28df46e74a852ba8051.svg" alt="\(\ord(a) = d\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+Every element satisfies <img class="m" src="m/e21eb414e0896114557e17a2e6ad59313cc9e487.svg" alt="\(x^{d} = 1\)" style="height:0.930em;vertical-align:-0.000em">. Indeed, if some <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em"> had order
+<img class="m" src="m/836e62e32c3d1271738746995c48bcb75285e966.svg" alt="\(e \nmid d\)" style="height:1.088em;vertical-align:-0.272em">, then some prime power <img class="m" src="m/99e5826b140b476c123221c3225e036f2327facb.svg" alt="\(\ell^{k}\)" style="height:0.930em;vertical-align:-0.000em"> divides <img class="m" src="m/09798e3cb5ef8291c7239dd012807e66ef0eccaf.svg" alt="\(e\)" style="height:0.472em;vertical-align:-0.000em"> and not
+<img class="m" src="m/ad855e27454841e8ad2eca7f08dfc4eb67657f15.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em">; writing <img class="m" src="m/760fee21890f9b3ee078d5afd72d4cb12142fafb.svg" alt="\(d = \ell^{j}d'\)" style="height:0.905em;vertical-align:-0.000em"> with <img class="m" src="m/22419d79a4fa90f1c4adf4b28d1f5bddf74b435d.svg" alt="\(\ell\nmid d'\)" style="height:1.099em;vertical-align:-0.275em"> and <img class="m" src="m/224bffdb6b64700768906924b2518e8d1cd66fb5.svg" alt="\(j&lt;k\)" style="height:0.974em;vertical-align:-0.214em">, the
+element <img class="m" src="m/943f482e7612009d6e29eef179cf8262f082d272.svg" alt="\(a^{\ell^{j}}b^{e/\ell^{k}}\)" style="height:1.109em;vertical-align:-0.000em"> has order <img class="m" src="m/ac1a10e2dbd5bc0989c1dbcb2d3225028dbbc279.svg" alt="\(d'\ell^{k} &gt; d\)" style="height:0.973em;vertical-align:-0.039em"> &#x2013;
+the two factors have coprime orders <img class="m" src="m/ab4899ad60e533a573b7ce7d9ead23552d4df9bc.svg" alt="\(d'\)" style="height:0.824em;vertical-align:-0.000em"> and <img class="m" src="m/99e5826b140b476c123221c3225e036f2327facb.svg" alt="\(\ell^{k}\)" style="height:0.930em;vertical-align:-0.000em">, and
+commuting elements of coprime orders <img class="m" src="m/c41d0aad279409aa4674cfae5d083af7a54e56ad.svg" alt="\(r, s\)" style="height:0.685em;vertical-align:-0.212em"> have order <img class="m" src="m/c3681d1fb570394efb892a373dff199b7e24e44e.svg" alt="\(rs\)" style="height:0.472em;vertical-align:-0.000em">, since
+<img class="m" src="m/48694f326e6bc91733bebbbe171ec9017a6e0938.svg" alt="\((xy)^{k} = 1\)" style="height:1.204em;vertical-align:-0.277em"> puts <img class="m" src="m/770c0442d489c296aa81208f5d346f5f50662b88.svg" alt="\(x^{k} = y^{-k}\)" style="height:1.144em;vertical-align:-0.217em"> in
+<img class="m" src="m/db7860de23f82d17e4123558e1e0d1d0fd50aca8.svg" alt="\(\langle x\rangle\cap\langle y\rangle = \set{1}\)" style="height:1.096em;vertical-align:-0.274em">, forcing <img class="m" src="m/28c98f432e467d4e7f2006073a4a91665d0e2a35.svg" alt="\(r \mid k\)" style="height:1.096em;vertical-align:-0.274em">
+and <img class="m" src="m/9f5079158b48ed789d0926151bc6b3d12e8863b4.svg" alt="\(s \mid k\)" style="height:1.096em;vertical-align:-0.274em">. This contradicts maximality of <img class="m" src="m/ad855e27454841e8ad2eca7f08dfc4eb67657f15.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em">.
+</p>
+
+<p>
+So all <img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em"> elements of <img class="m" src="m/3d965a1815cca302c266043f4b5115ffbef5943e.svg" alt="\(K^{\times}\)" style="height:0.873em;vertical-align:-0.000em"> are roots of <img class="m" src="m/54345a507d4c30610fa5a3d1b26246bfd2eef1bf.svg" alt="\(x^{d}-1\)" style="height:1.022em;vertical-align:-0.092em">, which
+has at most <img class="m" src="m/ad855e27454841e8ad2eca7f08dfc4eb67657f15.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em"> roots in a field; hence <img class="m" src="m/32a5389401523e0fda7bf6dd09a53ae4e75ad423.svg" alt="\(m \le d\)" style="height:0.910em;vertical-align:-0.146em">. As <img class="m" src="m/ad855e27454841e8ad2eca7f08dfc4eb67657f15.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em"> divides
+<img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em"> by Lagrange, <img class="m" src="m/1d8bde0c347a71fadb1496e2de5d8050b20fc31b.svg" alt="\(d = m\)" style="height:0.761em;vertical-align:-0.000em"> and <img class="m" src="m/f05b6bc466d45a07865191635e5d78fe17d66b94.svg" alt="\(\langle a\rangle = K^{\times}\)" style="height:1.147em;vertical-align:-0.275em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgbc35246">
+<p>
+For every prime <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> and <img class="m" src="m/28ea251ed83f5eb8039c604246b727a5afd15b88.svg" alt="\(n \ge 1\)" style="height:0.855em;vertical-align:-0.145em"> there is a field with <img class="m" src="m/b48bd670cf9c122ff39d89132ed72854db206832.svg" alt="\(q = p^{n}\)" style="height:0.941em;vertical-align:-0.216em">
+elements, namely the splitting field of <img class="m" src="m/eb43b6e2296537ee100d5463ba030809e93813e7.svg" alt="\(x^{q}-x\)" style="height:0.819em;vertical-align:-0.090em"> over <img class="m" src="m/5f3594d11e142ddbc15c5a7560b012437bd59025.svg" alt="\(\F_{p}\)" style="height:1.068em;vertical-align:-0.310em">, and
+any two fields with <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> elements are isomorphic.
+</p>
+
+</div>
+
+<div class="proof" id="orgb6bfcb1">
+<p>
+Let <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> be a splitting field of <img class="m" src="m/2eb1cfab1dd9e67cf196e0c6b510d60281a46045.svg" alt="\(f = x^{q}-x\)" style="height:0.974em;vertical-align:-0.214em"> over <img class="m" src="m/5f3594d11e142ddbc15c5a7560b012437bd59025.svg" alt="\(\F_{p}\)" style="height:1.068em;vertical-align:-0.310em"> and
+let <img class="m" src="m/13294da4afb70333807dae07a48f7a81e4771812.svg" alt="\(E = \setst{a \in L}{a^{q} = a}\)" style="height:1.096em;vertical-align:-0.274em">. Since <img class="m" src="m/564624417744459f0146de25b669606820ec4dd7.svg" alt="\(a \mapsto a^{q}\)" style="height:0.728em;vertical-align:-0.000em"> is the
+<img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">-th power of the Frobenius homomorphism, hence a homomorphism,
+<img class="m" src="m/af428b55ddf829e9044704887ce1bde83bdc2a14.svg" alt="\(E\)" style="height:0.749em;vertical-align:-0.000em"> is closed under sums, products and inverses of non-zero elements,
+and contains <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> and <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">: it is a subfield. It contains all roots of
+<img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">, so <img class="m" src="m/3295d5401de0129bff891d9014a6160ebc8457f3.svg" alt="\(L = E\)" style="height:0.749em;vertical-align:-0.000em"> by the generation clause in the definition of a
+splitting field.
+</p>
+
+<p>
+The roots are distinct: a repeated root would be a common root of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">
+and its derivative <img class="m" src="m/620b99a22257b24f7472b2313baec9ed5fdd19ff.svg" alt="\(qx^{q-1}-1 = -1\)" style="height:1.105em;vertical-align:-0.210em">, which has none. So <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> has
+exactly <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> roots and <img class="m" src="m/3954e1de4536a82f42d548ebe9bad603aabe0897.svg" alt="\(\abs{L} = q\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+Conversely let <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> be any field with <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> elements. Its
+multiplicative group has order <img class="m" src="m/a92021d5b387cd771887a08a6b0789bee77368d4.svg" alt="\(q-1\)" style="height:0.919em;vertical-align:-0.211em">, so <img class="m" src="m/a417b267d243ae54588d37bcbd9998b33e2f8693.svg" alt="\(a^{q-1} = 1\)" style="height:0.892em;vertical-align:-0.000em"> for
+<img class="m" src="m/fda79e8cee9043b343e5fc6d7337eb3dc0445815.svg" alt="\(a \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> by Lagrange, and therefore <img class="m" src="m/988b46d97aa2191b97f96cc861b786f4000d0277.svg" alt="\(a^{q} = a\)" style="height:0.728em;vertical-align:-0.000em"> for every
+<img class="m" src="m/2cef3ef8c0bef9523ec896bebbc757a20d08305d.svg" alt="\(a \in K\)" style="height:0.792em;vertical-align:-0.040em">. Thus all <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> elements are roots of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">, which has at
+most <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em">; so <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> splits in <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> is generated by its
+roots &#x2013; <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> is a splitting field of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> over its prime field
+<img class="m" src="m/5f3594d11e142ddbc15c5a7560b012437bd59025.svg" alt="\(\F_{p}\)" style="height:1.068em;vertical-align:-0.310em">. Uniqueness of splitting fields gives <img class="m" src="m/c9602aec40ae1d0787cbcf5afb3faefa23f3c31e.svg" alt="\(K \iso L\)" style="height:0.804em;vertical-align:-0.056em">.
+</p>
+
+</div>
+
+<div class="remark" id="org0d40877">
+<p>
+The argument uses the derivative of a polynomial as a formal operation
+on coefficients, with no limits involved: over an arbitrary field
+<img class="m" src="m/86187da12b17093bf933ec7e6a977d5546757e11.svg" alt="\(\sum k a_{k}x^{k-1}\)" style="height:1.204em;vertical-align:-0.277em"> is a definition, and "<img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> has a repeated root
+iff <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/fcd248f8faa113603c50440935779dfa8223591a.svg" alt="\(f'\)" style="height:1.037em;vertical-align:-0.218em"> share one" is an algebraic identity. That formal
+derivative is exactly what separability is defined by, and this proof is
+the first place it does real work.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="splitting-fields-and-their-uniqueness.html"><span>← previous</span>Splitting fields and their uniqueness</a><a rel="next" href="integral-domains-fields-prime-and-maximal-ideals.html"><span>next →</span>Integral domains, fields, prime and maximal ideals</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--field-theory.pdf" title="PDF manual">Field Theory</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

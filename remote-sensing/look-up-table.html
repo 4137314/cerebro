@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Look-up tables and visualization · Remote Sensing</title>
+<meta name="description" content="Screens show 256 gray levels per channel, while sensors deliver up to 2^{16} DNs; a look-up table is an associative memory \mathrm{GL}=\mathrm{LUT}(\mathrm{DN}) applied pixel by pixel, which converts (and enhances) the data for display without changing the stored values.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/look-up-table.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Look-up tables and visualization · Remote Sensing">
+<meta property="og:description" content="Screens show 256 gray levels per channel, while sensors deliver up to 2^{16} DNs; a look-up table is an associative memory \mathrm{GL}=\mathrm{LUT}(\mathrm{DN}) applied pixel by pixel, which converts (and enhances) the data for display without changing the stored values.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/look-up-table.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--images">Images</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Processing · Images</p>
+<h1>Look-up tables and visualization</h1>
+<p class="summary">Screens show 256 gray levels per channel, while sensors deliver up to <img class="m" src="m/3731eeaee0f97ee616ad1c307cf1a54c4ef1e646.svg" alt="\(2^{16}\)" style="height:0.892em;vertical-align:-0.000em"> DNs; a look-up table is an associative memory <img class="m" src="m/5f4bace40a033bfee0d06c390f862865664cdba8.svg" alt="\(\mathrm{GL}=\mathrm{LUT}(\mathrm{DN})\)" style="height:1.096em;vertical-align:-0.274em"> applied pixel by pixel, which converts (and enhances) the data for display without changing the stored values.</p>
+<p class="rel"><span>needs</span> <a href="digital-image.html">Digital images</a></p>
+<p class="rel"><span>unlocks</span> <a href="contrast-stretching.html">Contrast stretching</a></p>
+<p class="rel"><span>see also</span> <a href="contrast-stretching.html">Contrast stretching</a>, <a href="histogram-equalization.html">Histogram equalization</a>, <a href="false-color-composite.html">True and false colour composites</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org5f110c4" class="outline-2">
+<h2 id="org5f110c4">Definition</h2>
+<div class="outline-text-2" id="text-org5f110c4">
+<p>
+A LUT is a function <img class="m" src="m/48b5c4700d0b54089e80a4c33d9984f7bf1eee0c.svg" alt="\(f:\{0,\dots,2^Q-1\}\to\{0,\dots,255\}\)" style="height:1.196em;vertical-align:-0.275em">, stored as an array indexed by DN. Several DNs can map to the same GL. Linear LUT between chosen limits:
+<div class="mb"><img class="m" src="m/831f1a080a2b3f7541094fbb8303523d2aee6c1f.svg" alt="\[ \mathrm{GL}=\begin{cases}0 &amp; \mathrm{DN}&lt;\mathrm{DN}_{a}\\ \mathrm{round}\!\big(255\,\frac{\mathrm{DN}-\mathrm{DN}_a}{\mathrm{DN}_b-\mathrm{DN}_a}\big) &amp; \mathrm{DN}_a\le\mathrm{DN}\le\mathrm{DN}_b\\ 255 &amp; \mathrm{DN}&gt;\mathrm{DN}_b\end{cases} \]" style="width:23.972em"></div>
+the slope <img class="m" src="m/f41f38d26008492c1d1bf256999fa366f8d5720e.svg" alt="\(255/(\mathrm{DN}_b-\mathrm{DN}_a)\)" style="height:1.096em;vertical-align:-0.274em"> fixes the contrast.
+</p>
+</div>
+</div>
+<div id="outline-container-org3e36976" class="outline-2">
+<h2 id="org3e36976">Example</h2>
+<div class="outline-text-2" id="text-org3e36976">
+<p>
+<a href="copernicus-sentinel.html">Sentinel-2</a> delivers 16-bit data (<img class="m" src="m/acf4d1d6b402997a46a08e4e4af4f0be44c1be25.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">–<img class="m" src="m/28434b7a81a306ff9c922ac5b23ad2867aec14b0.svg" alt="\(65535\)" style="height:0.706em;vertical-align:-0.000em">); a natural scene occupies maybe <img class="m" src="m/acf4d1d6b402997a46a08e4e4af4f0be44c1be25.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">–<img class="m" src="m/ff8c489437c3377c0ba11d0a15dd9c707f59b39f.svg" alt="\(4000\)" style="height:0.706em;vertical-align:-0.000em">. Mapping the full 16-bit range to 256 levels would squeeze the scene into the first 16 gray levels: almost black. A LUT on <img class="m" src="m/8b0e5739539b566c3d6129c1a66431c373a2700a.svg" alt="\([\mathrm{DN}_a,\mathrm{DN}_b]=[0,3000]\)" style="height:1.096em;vertical-align:-0.274em"> uses the whole display range.
+</p>
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="v">lut</span> = np.clip(np.<span class="b">round</span>(255 * np.arange(65536) / 3000), 0, 255).astype(np.uint8)
+<span class="v">gl</span> = lut[img[3]]                      <span class="c"># one memory access per pixel</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org72d0cb5" class="outline-2">
+<h2 id="org72d0cb5">Intuition</h2>
+<div class="outline-text-2" id="text-org72d0cb5">
+<p>
+A LUT is the display's lens: it decides which part of the data's range gets the screen's limited shades.
+</p>
+</div>
+</div>
+<div id="outline-container-org9ea09e1" class="outline-2">
+<h2 id="org9ea09e1">Pitfall</h2>
+<div class="outline-text-2" id="text-org9ea09e1">
+<p>
+Visual enhancement must not be confused with data processing: classify and measure on the DNs (or reflectances), not on the stretched 8-bit display values.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="image-statistics.html"><span>← previous</span>Image statistics: moments, mode, median</a><a rel="next" href="contrast-stretching.html"><span>next →</span>Contrast stretching</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--images.pdf" title="PDF manual">Images</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Programming technologies · Computer Science</title>
+<meta name="description" content="A programmable connection is a fuse (blown to open), an antifuse (shorted to close), a floating-gate transistor whose threshold is shifted by trapped charge (EPROM, EEPROM, Flash) or a transistor driven by an SRAM cell; they differ in reprogrammability, volatility, area and speed.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/programming-technologies.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Programming technologies · Computer Science">
+<meta property="og:description" content="A programmable connection is a fuse (blown to open), an antifuse (shorted to close), a floating-gate transistor whose threshold is shifted by trapped charge (EPROM, EEPROM, Flash) or a transistor driven by an SRAM cell; they differ in reprogrammability, volatility, area and speed.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/programming-technologies.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--programmable-logic">Programmable Logic</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Hardware · Programmable Logic</p>
+<h1>Programming technologies</h1>
+<p class="summary">A programmable connection is a fuse (blown to open), an antifuse (shorted to close), a floating-gate transistor whose threshold is shifted by trapped charge (EPROM, EEPROM, Flash) or a transistor driven by an SRAM cell; they differ in reprogrammability, volatility, area and speed.</p>
+<p class="rel"><span>needs</span> <a href="rom-as-logic.html">Logic functions as memories</a></p>
+<p class="rel"><span>unlocks</span> <a href="fpga-architecture.html">FPGA architecture</a></p>
+<p class="rel"><span>see also</span> <a href="pla-pal.html">PLA and PAL</a>, <a href="fpga-architecture.html">FPGA architecture</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="rom-as-logic.html">Logic functions as memories</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org717b56c" class="outline-2">
+<h2 id="org717b56c">Definition</h2>
+<div class="outline-text-2" id="text-org717b56c">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">technology</th>
+<th scope="col" class="org-left">programmed by</th>
+<th scope="col" class="org-left">erase</th>
+<th scope="col" class="org-left">notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">fuse</td>
+<td class="org-left">current opens a link</td>
+<td class="org-left">never</td>
+<td class="org-left">old PROMs</td>
+</tr>
+
+<tr>
+<td class="org-left">antifuse</td>
+<td class="org-left">voltage shorts a dielectric</td>
+<td class="org-left">never</td>
+<td class="org-left">small, fast, rad-hard</td>
+</tr>
+
+<tr>
+<td class="org-left">EPROM</td>
+<td class="org-left">hot electrons charge a gate</td>
+<td class="org-left">UV light</td>
+<td class="org-left">quartz window</td>
+</tr>
+
+<tr>
+<td class="org-left">EEPROM, Flash</td>
+<td class="org-left">tunnelling charges a gate</td>
+<td class="org-left">in system</td>
+<td class="org-left">finite writes</td>
+</tr>
+
+<tr>
+<td class="org-left">SRAM</td>
+<td class="org-left">a cell drives a switch</td>
+<td class="org-left">any time</td>
+<td class="org-left">volatile, reload</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org3dc7724" class="outline-2">
+<h2 id="org3dc7724">Floating gate</h2>
+<div class="outline-text-2" id="text-org3dc7724">
+<p>
+A floating-gate transistor has a second gate, isolated by oxide, between the control gate and the channel. Electrons trapped on it raise the threshold voltage <img class="m" src="m/570499c5cb2b9edfc370bb026f8b9a56cda74e21.svg" alt="\(V_T\)" style="height:0.913em;vertical-align:-0.164em">: with the normal read voltage on the control gate the transistor no longer conducts. The charge stays for years without power. Erasing removes it: UV light (EPROM) or Fowler–Nordheim tunnelling with a reverse voltage (EEPROM, Flash, by blocks).
+</p>
+</div>
+</div>
+<div id="outline-container-org489ef11" class="outline-2">
+<h2 id="org489ef11">Intuition</h2>
+<div class="outline-text-2" id="text-org489ef11">
+<p>
+The choice is between switches you set once (fuses, antifuses), switches that remember (floating gates), and switches that forget when you switch off but can change at will (SRAM).
+</p>
+</div>
+</div>
+<div id="outline-container-orgd91acf3" class="outline-2">
+<h2 id="orgd91acf3">Pitfall</h2>
+<div class="outline-text-2" id="text-orgd91acf3">
+<p>
+SRAM-based devices must load their configuration from an external non-volatile memory at every power-up, which takes time and exposes the <a href="fpga-architecture.html">bitstream</a>.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="pla-pal.html"><span>← previous</span>PLA and PAL</a><a rel="next" href="fpga-architecture.html"><span>next →</span>FPGA architecture</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--programmable-logic.pdf" title="PDF manual">Programmable Logic</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

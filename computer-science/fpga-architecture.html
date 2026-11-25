@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FPGA architecture · Computer Science</title>
+<meta name="description" content="A field-programmable gate array is a grid of configurable logic blocks — lookup tables of 4–6 inputs plus flip-flops — surrounded by programmable routing (switch boxes) and I/O blocks, with hard blocks for memory (BRAM), arithmetic (DSP, carry chains) and clocks; all configured by SRAM cells loaded…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/fpga-architecture.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="FPGA architecture · Computer Science">
+<meta property="og:description" content="A field-programmable gate array is a grid of configurable logic blocks — lookup tables of 4–6 inputs plus flip-flops — surrounded by programmable routing (switch boxes) and I/O blocks, with hard blocks for memory (BRAM), arithmetic (DSP, carry chains) and clocks; all configured by SRAM cells loaded…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/fpga-architecture.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--programmable-logic">Programmable Logic</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Hardware · Programmable Logic</p>
+<h1>FPGA architecture</h1>
+<p class="summary">A field-programmable gate array is a grid of configurable logic blocks — lookup tables of 4–6 inputs plus flip-flops — surrounded by programmable routing (switch boxes) and I/O blocks, with hard blocks for memory (BRAM), arithmetic (DSP, carry chains) and clocks; all configured by SRAM cells loaded with a bitstream.</p>
+<p class="rel"><span>needs</span> <a href="pla-pal.html">PLA and PAL</a>, <a href="programming-technologies.html">Programming technologies</a></p>
+<p class="rel"><span>see also</span> <a href="technology-mapping.html">Technology mapping by tree covering</a>, <a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a>, <a href="risc-v-datapath.html">A non-pipelined RISC-V processor</a>, <a href="digital-design-flow.html">Digital design flow and abstraction levels</a></p>
+<p class="rel"><span>mentioned in</span> <a href="digital-design-flow.html">Digital design flow and abstraction levels</a>, <a href="risc-v-datapath.html">A non-pipelined RISC-V processor</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="rom-as-logic.html">Logic functions as memories</a></li><li><a href="pla-pal.html">PLA and PAL</a></li><li><a href="programming-technologies.html">Programming technologies</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgfce854d" class="outline-2">
+<h2 id="orgfce854d">Model</h2>
+<div class="outline-text-2" id="text-orgfce854d">
+<ul class="org-ul">
+<li><b>LUT</b>: a <img class="m" src="m/ab474955bf3a453be6c3259db9214b4a610e4bf7.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em">-input <a href="rom-as-logic.html">lookup table</a> is a <img class="m" src="m/ea012971b1552aed3682aa6f67abed487dc61e2d.svg" alt="\(2^k\)" style="height:0.930em;vertical-align:-0.000em">-bit memory read through a <a href="vhdl-concurrent-assignments.html">multiplexer</a> tree: any function of <img class="m" src="m/ab474955bf3a453be6c3259db9214b4a610e4bf7.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> inputs in one block, with the same delay.</li>
+<li><b>Logic block</b> (CLB, slice): several LUTs, flip-flops at their outputs, multiplexers to combine LUTs into wider functions, a fast carry chain for adders.</li>
+<li><b>Routing</b>: horizontal and vertical wire segments meeting at programmable switch boxes; connection boxes attach block pins to wires. Routing dominates area and delay.</li>
+<li><b>Hard blocks</b>: block RAM (synchronous, typically read data available on the clock edge after the address), DSP slices (multiply–accumulate), clock managers, high-speed transceivers.</li>
+<li><b>Configuration</b>: SRAM bits set every LUT, mux and switch; the bitstream is loaded at power-up.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org01372ab" class="outline-2">
+<h2 id="org01372ab">Picture</h2>
+<div class="outline-text-2" id="text-org01372ab">
+<figure class="fig"><img class="m" src="m/10bc594644e202a32da459734542c9b9a628d4ba.svg" alt="figure" style="width:16.258em"><figcaption><span class="fl">Figure 1.</span> Island-style FPGA: an array of configurable logic blocks (CLB) in a mesh of routing channels, joined by programmable switch boxes at the crossings.</figcaption></figure>
+<p>
+Logic blocks in a sea of routing; the switch boxes (amber) sit at the crossings.
+</p>
+</div>
+</div>
+<div id="outline-container-org6a7dccc" class="outline-2">
+<h2 id="org6a7dccc">Mapping a design</h2>
+<div class="outline-text-2" id="text-org6a7dccc">
+<p>
+Synthesis decomposes the logic into functions of at most <img class="m" src="m/ab474955bf3a453be6c3259db9214b4a610e4bf7.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> inputs (LUT mapping), packs LUTs and flip-flops into blocks, places them, routes the nets, and generates the bitstream. A <img class="m" src="m/ab474955bf3a453be6c3259db9214b4a610e4bf7.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em">-LUT has the same delay whatever function it holds, so FPGA mapping minimises the number of LUT levels.
+</p>
+</div>
+</div>
+<div id="outline-container-org6a1a8df" class="outline-2">
+<h2 id="org6a1a8df">Worked example</h2>
+<div class="outline-text-2" id="text-org6a1a8df">
+<p>
+A 4-bit equality comparator <img class="m" src="m/3544349e413203d7af1e5f8349d030780b7e1cb3.svg" alt="\(a=b\)" style="height:0.761em;vertical-align:-0.000em"> has 8 inputs.
+</p>
+<ul class="org-ul">
+<li>6-input LUTs: LUT1 computes <img class="m" src="m/a88e9c8edf5fb3c08ce94ad496ca40f8828774a1.svg" alt="\((a_0{=}b_0)(a_1{=}b_1)(a_2{=}b_2)\)" style="height:1.096em;vertical-align:-0.274em"> from 6 inputs; LUT2 ANDs it with <img class="m" src="m/56cd2dbddae72e38ae45175f35c5971e8ef256ea.svg" alt="\((a_3{=}b_3)\)" style="height:1.096em;vertical-align:-0.274em"> (3 inputs): 2 LUTs, 2 levels.</li>
+<li>4-input LUTs: LUT1 <img class="m" src="m/33787bdf6a0e9687464e7fa02ba89113b31e1c86.svg" alt="\(=(a_0{=}b_0)(a_1{=}b_1)\)" style="height:1.096em;vertical-align:-0.274em">, LUT2 <img class="m" src="m/bd6cf9ec1452509801e1394d88648a45cb44b85d.svg" alt="\(=(a_2{=}b_2)(a_3{=}b_3)\)" style="height:1.096em;vertical-align:-0.274em">, LUT3 ANDs them: 3 LUTs, 2 levels.</li>
+</ul>
+<p>
+Any function of up to <img class="m" src="m/ab474955bf3a453be6c3259db9214b4a610e4bf7.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> inputs costs one LUT, whatever its complexity: mapping counts inputs, not gates.
+</p>
+</div>
+</div>
+<div id="outline-container-org6d9aec2" class="outline-2">
+<h2 id="org6d9aec2">Intuition</h2>
+<div class="outline-text-2" id="text-org6d9aec2">
+<p>
+An FPGA is a sheet of tiny memories and wires whose connections are themselves memory: hardware you rewrite like software.
+</p>
+</div>
+</div>
+<div id="outline-container-orgca1d9b2" class="outline-2">
+<h2 id="orgca1d9b2">Pitfall</h2>
+<div class="outline-text-2" id="text-orgca1d9b2">
+<p>
+The flexibility costs roughly an order of magnitude in area, speed and power against an ASIC. Designs that ignore the hard blocks (writing a multiplier in LUTs, a RAM in flip-flops) waste most of the chip.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="programming-technologies.html"><span>← previous</span>Programming technologies</a><a rel="next" href="vhdl-entity-architecture.html"><span>next →</span>VHDL: entity and architecture</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--programmable-logic.pdf" title="PDF manual">Programmable Logic</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grating couplers · Physics</title>
+<meta name="description" content="A shallow grating diffracts the guided mode out of plane when n_{eff}-n_c\sin\theta=\frac{\lambda}{\Lambda} (first order); efficiency = directionality × overlap of the emitted profile with the fibre's Gaussian mode; typical SOI couplers reach −2 to −5 dB with ~30–40 nm 1 dB bandwidth, whereas edge …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/grating-couplers.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Grating couplers · Physics">
+<meta property="og:description" content="A shallow grating diffracts the guided mode out of plane when n_{eff}-n_c\sin\theta=\frac{\lambda}{\Lambda} (first order); efficiency = directionality × overlap of the emitted profile with the fibre's Gaussian mode; typical SOI couplers reach −2 to −5 dB with ~30–40 nm 1 dB bandwidth, whereas edge …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/grating-couplers.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-photonics">Photonics</a> / <a rel="up" href="index.html#a-photonics--silicon-photonics">Silicon Photonics</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Photonics · Silicon Photonics</p>
+<h1>Grating couplers</h1>
+<p class="summary">A shallow grating diffracts the guided mode out of plane when <img class="m" src="m/000850617d618c33c52194ddf13d100925d27d21.svg" alt="\(n_{eff}-n_c\sin\theta=\frac{\lambda}{\Lambda}\)" style="height:1.342em;vertical-align:-0.376em"> (first order); efficiency = directionality × overlap of the emitted profile with the fibre's Gaussian mode; typical SOI couplers reach −2 to −5 dB with ~30–40 nm 1 dB bandwidth, whereas edge couplers with inverse tapers are broadband and lower loss.</p>
+<p class="rel"><span>needs</span> <a href="bragg-gratings.html">Waveguide Bragg gratings</a>, <a href="diffraction-and-gratings.html">Diffraction and diffraction gratings</a>, <a href="gaussian-beams.html">Gaussian beams</a></p>
+<p class="rel"><span>see also</span> <a href="antennas-and-radiation.html">Antennas and radiation</a>, <a href="optical-fibers.html">Optical fibres: modes, numerical aperture and single-mode condition</a></p>
+<p class="rel"><span>mentioned in</span> <a href="antennas-and-radiation.html">Antennas and radiation</a></p>
+<details class="path"><summary>Learning path: 20 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="poynting-theorem.html">Poynting's theorem and electromagnetic power</a></li><li><a href="plane-waves-in-media.html">Plane waves in lossless and lossy media</a></li><li><a href="optoelectronics.html">Optoelectronics: the map of the subject</a></li><li><a href="dispersion-and-group-velocity.html">Dispersion, group velocity and group index</a></li><li><a href="reflection-and-transmission-at-interfaces.html">Reflection and transmission: Snell, Fresnel, Brewster and total internal reflection</a></li><li><a href="gaussian-beams.html">Gaussian beams</a></li><li><a href="interference-and-fabry-perot.html">Interference and the Fabry–Perot resonator</a></li><li><a href="dielectric-slab-waveguide.html">The dielectric slab waveguide</a></li><li><a href="photonics.html">Integrated photonics: the map of the subject</a></li><li><a href="effective-index-method.html">The effective index method</a></li><li><a href="silicon-photonic-waveguides.html">Silicon photonic waveguides</a></li><li><a href="directional-couplers.html">Directional couplers and coupled-mode theory</a></li><li><a href="diffraction-and-gratings.html">Diffraction and diffraction gratings</a></li><li><a href="bragg-gratings.html">Waveguide Bragg gratings</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org6e510af" class="outline-2">
+<h2 id="org6e510af">Model</h2>
+<div class="outline-text-2" id="text-org6e510af">
+<p>
+Phase matching along the grating: <img class="m" src="m/cabedecfd8bdc273be3f0db58ba4d64df20cb3eb.svg" alt="\(\beta-\frac{2\pi}{\Lambda}=k_0n_c\sin\theta\)" style="height:1.304em;vertical-align:-0.378em"> (<a href="diffraction-and-gratings.html">grating equation</a>) <span class="cite">(<a class="ref" href="https://doi.org/10.1063/1.1653091" data-full="M. L. Dakss, L. Kuhn, P. F. Heidrich and B. A. Scott, “Grating coupler for efficient excitation of optical guided waves in thin films”, Applied Physics Letters 16, 523–525 (1970)." aria-label="M. L. Dakss, L. Kuhn, P. F. Heidrich and B. A. Scott, “Grating coupler for efficient excitation of optical guided waves in thin films”, Applied Physics Letters 16, 523–525 (1970).">Dakss et al. 1970</a>)</span>. Coupling efficiency <img class="m" src="m/318a3575b9ec2aa002f937bcac0d3e9c1a11ab12.svg" alt="\(\eta=\eta_{dir}\,\eta_{overlap}\)" style="height:0.785em;vertical-align:-0.314em">: directionality (fraction going up rather than into the substrate, improved by BOX thickness choice or bottom mirrors), overlap <img class="m" src="m/96b549ce7679163e074a49522e94f80ed6d49c0e.svg" alt="\(\left|\int E_{grating}E_{fibre}^*\right|^2\)" style="height:2.196em;vertical-align:-0.703em"> (exponential decay profile vs Gaussian: max ≈ 80%; apodisation shapes it Gaussian). Fibres are tilted 8–12° to avoid second-order back-reflection.
+</p>
+</div>
+</div>
+<div id="outline-container-org7834fe6" class="outline-2">
+<h2 id="org7834fe6">Worked example</h2>
+<div class="outline-text-2" id="text-org7834fe6">
+<p>
+SOI, <img class="m" src="m/f8596d05ec42197b65cca75df2a78ac3025e3328.svg" alt="\(n_{eff}\approx2.85\)" style="height:1.020em;vertical-align:-0.316em"> in the partially etched region (≈ 2.7 average), <img class="m" src="m/2d5f6b5ac6e853de378ba97b6095e168f931ded8.svg" alt="\(\lambda=1550\)" style="height:0.761em;vertical-align:-0.000em"> nm, <img class="m" src="m/6a18a803c3b9c45d1710636331eeebf97c3cdd22.svg" alt="\(\theta=10^\circ\)" style="height:0.761em;vertical-align:-0.000em"> in air: <img class="m" src="m/e1b4d2c833084001c3f5f5b44629d6781889aa37.svg" alt="\(\Lambda=\frac{1.55}{2.7-\sin10^\circ}=\frac{1.55}{2.526}=614\)" style="height:1.395em;vertical-align:-0.474em"> nm. Bandwidth: <img class="m" src="m/84dacf37d792cb44b5cbfb9092004d0584126701.svg" alt="\(\frac{\dd\lambda}{\dd\theta}\)" style="height:1.342em;vertical-align:-0.376em"> and <img class="m" src="m/e54fd00ebef6552ac3007c1e5b63ccfde6f9fb78.svg" alt="\(n_g\)" style="height:0.785em;vertical-align:-0.314em"> set ≈ 35 nm (1 dB) — a fibre-angle error of 1° shifts the peak by ≈ 15 nm.
+</p>
+</div>
+</div>
+<div id="outline-container-org8cd447e" class="outline-2">
+<h2 id="org8cd447e">Engineering applications</h2>
+<div class="outline-text-2" id="text-org8cd447e">
+<p>
+Wafer-scale optical testing (no dicing), fibre arrays to transceiver chips, optical phased arrays for LiDAR (gratings as antennas, <a href="antennas-and-radiation.html">array factor</a>), free-space coupling to atoms and ions in quantum chips.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf517cc0" class="outline-2">
+<h2 id="orgf517cc0">Pitfall</h2>
+<div class="outline-text-2" id="text-orgf517cc0">
+<p>
+Grating couplers are polarisation selective (TE design rejects TM) and narrowband; edge couplers are preferred for broadband or polarisation-diverse products.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="bragg-gratings.html"><span>← previous</span>Waveguide Bragg gratings</a><a rel="next" href="mach-zehnder-interferometers.html"><span>next →</span>Mach–Zehnder interferometers on chip</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/photonics--silicon-photonics.pdf" title="PDF manual">Silicon Photonics</a> · <a class="pdf" href="pdf/photonics.pdf" title="PDF manual">Photonics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

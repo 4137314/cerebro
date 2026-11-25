@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cauchy-Schwarz inequality · Mathematics</title>
+<meta name="description" content="The Cauchy--Schwarz inequality is the one estimate that makes the geometry of an inner product space work: it is what lets one define the angle between two vectors and prove the triangle inequality.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/cauchy-schwarz-inequality.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Cauchy-Schwarz inequality · Mathematics">
+<meta property="og:description" content="The Cauchy--Schwarz inequality is the one estimate that makes the geometry of an inner product space work: it is what lets one define the angle between two vectors and prove the triangle inequality.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/cauchy-schwarz-inequality.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--linear-algebra">Linear Algebra</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Algebra · Linear Algebra</p>
+<h1>Cauchy-Schwarz inequality</h1>
+<p class="summary">The Cauchy&#x2013;Schwarz inequality is the one estimate that makes the geometry of an <a href="inner-product-space.html">inner product space</a> work: it is what lets one define the angle between two vectors and prove the triangle inequality.</p>
+<p class="rel"><span>needs</span> <a href="inner-product-space.html">Inner product space</a></p>
+<p class="rel"><span>unlocks</span> <a href="the-inverse-and-implicit-function-theorems.html">The inverse and implicit function theorems</a>, <a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a>, <a href="variance-covariance-and-the-markov-and-chebyshev-inequalities.html">Variance, covariance and the Markov and Chebyshev inequalities</a>, <a href="the-hilbert-space-formalism-of-quantum-mechanics.html">The Hilbert space formalism of quantum mechanics</a></p>
+<p class="rel"><span>mentioned in</span> <a href="linear-algebra.html">Linear algebra</a>, <a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="inner-product-space.html">Inner product space</a></li></ol></details>
+</header>
+<main class="note">
+<div class="theorem" id="org11a0538">
+<p>
+Let <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> be a real <a href="inner-product-space.html">inner product space</a>. For all <img class="m" src="m/966bb6cc376f617cf428889988f7bac384b63c5f.svg" alt="\(u, v \in V\)" style="height:0.962em;vertical-align:-0.212em">,
+<div class="mb"><img class="m" src="m/731df077dc644ac6965b56eb0fdab622855db367.svg" alt="\[
+  \abs{\inner{u}{v}} \le \norm{u}\, \norm{v},
+\]" style="width:8.484em"></div>
+with equality if and only if <img class="m" src="m/43f1d6c46cc02af73d5390471e1c8c127d40b707.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> are linearly dependent.
+</p>
+
+</div>
+
+<div class="proof" id="org1aeb618">
+<p>
+If <img class="m" src="m/290024883a7aa0451ecc34d2183a8d1914d1429e.svg" alt="\(v = 0\)" style="height:0.706em;vertical-align:-0.000em">, both sides vanish. Otherwise, for every <img class="m" src="m/276f9d8e23083b442e81017db4ae8963a55538d2.svg" alt="\(t \in \R\)" style="height:0.798em;vertical-align:-0.040em">,
+positive definiteness gives
+<div class="mb"><img class="m" src="m/f2094d7e08afc7160b3236d1b04cd7a3a8ad7c78.svg" alt="\[
+  0 \le \norm{u - t v}^{2} = \norm{u}^{2} - 2 t \inner{u}{v} + t^{2} \norm{v}^{2} .
+\]" style="width:19.715em"></div>
+The right-hand side is a quadratic in <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> that is never negative, so its
+discriminant is nonpositive:
+<div class="mb"><img class="m" src="m/fed41de17f47ed1090d1e7eb5d3c3a35004c12d1.svg" alt="\[
+  4 \inner{u}{v}^{2} - 4 \norm{u}^{2} \norm{v}^{2} \le 0 ,
+\]" style="width:12.151em"></div>
+which rearranges to <img class="m" src="m/db5d5fb10f171cc81a6b60f99a8d0b5519d84fef.svg" alt="\(\abs{\inner{u}{v}} \le \norm{u}\, \norm{v}\)" style="height:1.096em;vertical-align:-0.274em">.
+Equality makes the discriminant vanish, so <img class="m" src="m/062ed1b16bfe227f54a22d26ab8508f74688d2d4.svg" alt="\(\norm{u - t v} = 0\)" style="height:1.096em;vertical-align:-0.274em"> for some
+<img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em">, i.e. <img class="m" src="m/9018cac612a5d0cffc9ef611d65c99cc8f0518bd.svg" alt="\(u = t v\)" style="height:0.674em;vertical-align:-0.000em">.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="inner-product-space.html"><span>← previous</span>Inner product space</a><a rel="next" href="dual-spaces-annihilators-and-the-transpose.html"><span>next →</span>Dual spaces, annihilators and the transpose</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--linear-algebra.pdf" title="PDF manual">Linear Algebra</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

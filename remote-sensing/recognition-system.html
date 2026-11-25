@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recognition systems · Remote Sensing</title>
+<meta name="description" content="Recognition extracts information from the data — thematic maps, change maps, bio/geo-physical parameters, risk maps, 3-D models — either by photointerpretation or automatically; an automatic classifier chains pre-processing, feature extraction, a classifier trained on labelled samples (supervised) …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/recognition-system.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Recognition systems · Remote Sensing">
+<meta property="og:description" content="Recognition extracts information from the data — thematic maps, change maps, bio/geo-physical parameters, risk maps, 3-D models — either by photointerpretation or automatically; an automatic classifier chains pre-processing, feature extraction, a classifier trained on labelled samples (supervised) …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/recognition-system.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-recognition">Recognition</a> / <a rel="up" href="index.html#a-recognition--features">Features</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Recognition · Features</p>
+<h1>Recognition systems</h1>
+<p class="summary">Recognition extracts information from the data — thematic maps, change maps, bio/geo-physical parameters, risk maps, 3-D models — either by photointerpretation or automatically; an automatic classifier chains pre-processing, feature extraction, a classifier trained on labelled samples (supervised) or not (unsupervised), and post-processing, and is designed in a cycle of feature selection, model selection, training and validation.</p>
+<p class="rel"><span>needs</span> <a href="remote-sensing-system.html">Remote sensing system</a></p>
+<p class="rel"><span>unlocks</span> <a href="feature-extraction.html">Feature extraction</a>, <a href="photointerpretation.html">Photointerpretation</a>, <a href="accuracy-assessment.html">Accuracy assessment and the confusion matrix</a>, <a href="training-validation.html">Training, validation and test samples</a>, <a href="remote-sensing-applications.html">Applications of remote sensing</a></p>
+<p class="rel"><span>see also</span> <a href="photointerpretation.html">Photointerpretation</a>, <a href="feature-extraction.html">Feature extraction</a>, <a href="discriminant-functions.html">Discriminant functions and decision regions</a>, <a href="accuracy-assessment.html">Accuracy assessment and the confusion matrix</a>, <a href="change-detection.html">Change detection</a>, <a href="remote-sensing-applications.html">Applications of remote sensing</a>, <a href="training-validation.html">Training, validation and test samples</a></p>
+<p class="rel"><span>mentioned in</span> <a href="false-color-composite.html">True and false colour composites</a>, <a href="artificial-neuron.html">Artificial neuron and machine learning</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org6cc563b" class="outline-2">
+<h2 id="org6cc563b">Model</h2>
+<div class="outline-text-2" id="text-org6cc563b">
+<p>
+Architecture: scene → acquisition → pre-processing (corrections, registration) → <a href="feature-extraction.html">feature extraction</a> → classifier (with a supervisor providing training labels) → post-processing (majority filtering, merging) → thematic map.
+</p>
+
+<p>
+Design cycle: data acquisition → <a href="hughes-phenomenon.html">feature selection</a> → model selection (using prior knowledge) → classifier training → validation, iterating on any step whose results are inadequate.
+</p>
+
+<ul class="org-ul">
+<li><b>Supervised</b>: training samples with known labels (<a href="training-validation.html">ground truth</a> from field surveys or <a href="photointerpretation.html">photointerpretation</a>).</li>
+<li><b>Unsupervised</b>: no labels; the data are grouped into clusters (<a href="kmeans-clustering.html">clustering</a>) and the analyst names them afterwards.</li>
+<li><b>Photointerpretation vs automatic</b>: the human uses context and experience but is slow, qualitative and subjective; automatic recognition is fast, quantitative, objective, but cannot exploit all the perceptual knowledge of an expert.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org569cf60" class="outline-2">
+<h2 id="org569cf60">Picture</h2>
+<div class="outline-text-2" id="text-org569cf60">
+<figure class="fig"><img class="m" src="m/84977742a55442d4c18eebfc1479ce5e66c342e2.svg" alt="figure" style="width:26.824em"><figcaption><span class="fl">Figure 1.</span> A recognition system: pre-processing, feature extraction and a classifier trained on samples turn an image into a thematic map.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-orga734c22" class="outline-2">
+<h2 id="orga734c22">Intuition</h2>
+<div class="outline-text-2" id="text-orga734c22">
+<p>
+A classifier is a learned rule from "what the pixel measures" to "what the ground is"; everything before it shapes what it can learn, everything after it cleans its answers.
+</p>
+</div>
+</div>
+<div id="outline-container-orgeef36ad" class="outline-2">
+<h2 id="orgeef36ad">Pitfall</h2>
+<div class="outline-text-2" id="text-orgeef36ad">
+<p>
+Training and validation samples must be different and independent: evaluating on the training pixels (or on neighbouring pixels of the same fields) overstates accuracy.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="split-and-merge.html"><span>← previous</span>Split and merge segmentation</a><a rel="next" href="feature-extraction.html"><span>next →</span>Feature extraction</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/recognition--features.pdf" title="PDF manual">Features</a> · <a class="pdf" href="pdf/recognition.pdf" title="PDF manual">Recognition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

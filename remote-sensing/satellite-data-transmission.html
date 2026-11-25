@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Satellite data transmission · Remote Sensing</title>
+<meta name="description" content="Satellite links use regulated frequency bands (uplink above downlink, e.g. 6/4 GHz, 14/12 GHz, 30/20 GHz) and digital phase modulations (BPSK, QPSK) protected by forward error correction with convolutional codes; Earth-observation data are downlinked directly, stored on board until a station is vis…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/satellite-data-transmission.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Satellite data transmission · Remote Sensing">
+<meta property="og:description" content="Satellite links use regulated frequency bands (uplink above downlink, e.g. 6/4 GHz, 14/12 GHz, 30/20 GHz) and digital phase modulations (BPSK, QPSK) protected by forward error correction with convolutional codes; Earth-observation data are downlinked directly, stored on board until a station is vis…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/satellite-data-transmission.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-acquisition">Acquisition</a> / <a rel="up" href="index.html#a-acquisition--satellites">Satellites</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Acquisition · Satellites</p>
+<h1>Satellite data transmission</h1>
+<p class="summary">Satellite links use regulated frequency bands (uplink above downlink, e.g. 6/4 GHz, 14/12 GHz, 30/20 GHz) and digital phase modulations (BPSK, QPSK) protected by forward error correction with convolutional codes; Earth-observation data are downlinked directly, stored on board until a station is visible, or relayed through a telecommunication satellite.</p>
+<p class="rel"><span>needs</span> <a href="satellite-architecture.html">Satellite system architecture</a></p>
+<p class="rel"><span>see also</span> <a href="digital-number.html">Detector, quantization and digital numbers</a>, <a href="image-formats.html">Image storage formats: BSQ, BIL, BIP</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="telecom-satellite-orbits.html">Orbits of telecommunication satellites</a></li><li><a href="satellite-architecture.html">Satellite system architecture</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgbc2efe1" class="outline-2">
+<h2 id="orgbc2efe1">Definition</h2>
+<div class="outline-text-2" id="text-orgbc2efe1">
+<ul class="org-ul">
+<li><b>Bands</b>: commercial 5925–6425 MHz up / 3700–4200 MHz down (C), 14–14.5 / 11.7–12.2 GHz (Ku), 27.5–30.5 / 17.7–20.2 GHz (Ka); military 7.9–8.4 / 7.25–7.75 GHz (X). Earth-observation downlinks typically in <a href="radar-bands.html">X band</a> (8 GHz), increasingly Ka.</li>
+<li><b>Modulation</b>: BPSK carries 1 bit per symbol with phases <img class="m" src="m/ada6c11f9e9db34c9847383dad6462ef7b4aacc9.svg" alt="\(\{0,\pi\}\)" style="height:1.096em;vertical-align:-0.274em">; QPSK 2 bits per symbol with <img class="m" src="m/9230c90e643e8ca638f1c9979d7733fa5d33b34f.svg" alt="\(\{\pi/4,3\pi/4,\dots\}\)" style="height:1.096em;vertical-align:-0.274em">, double rate in the same bandwidth at the same bit error rate per bit.</li>
+<li><b>Channel coding</b>: forward error correction (convolutional codes, Viterbi decoding; today also LDPC and Reed–Solomon) lets the receiver correct errors without retransmission, essential with long delays and short passes.</li>
+<li><b>Paths</b>: direct satellite–ground link during a pass; <b>store and forward</b> with on-board memory; <b>relay</b> to a <a href="geostationary-orbit.html">geostationary</a> data-relay satellite (<a href="satellite-architecture.html">interlink</a>), which forwards to the ground almost in real time.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6dd9b79" class="outline-2">
+<h2 id="org6dd9b79">Derivation</h2>
+<div class="outline-text-2" id="text-org6dd9b79">
+<p>
+Data volume per orbit: a <a href="scanner-geometry.html">pushbroom</a> with <img class="m" src="m/0b5ebb9337a8adeadec859c3b646bacae4ce15c3.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> pixels across track, <img class="m" src="m/930bceceff5ba504b5eefacfc24da37e501bf942.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> bands, <img class="m" src="m/9ad268d57b6e822d73c6597fab83cab48a989c90.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> bits, ground speed <img class="m" src="m/9e815b01f57a01d4688160f751395cb98a8bc088.svg" alt="\(v\approx7\)" style="height:0.706em;vertical-align:-0.000em"> km/s and pixel <img class="m" src="m/1e90f64226b18015baa037574831b1baba4fdb30.svg" alt="\(\Delta\)" style="height:0.749em;vertical-align:-0.000em"> produces <img class="m" src="m/91cf72a4fe15789041593af156fc340db6011741.svg" alt="\(R=N\,B\,Q\,v/\Delta\)" style="height:1.096em;vertical-align:-0.274em"> bit/s. For Sentinel-2-like values (<img class="m" src="m/bc0d764cf4e2c99dcdbb01935ae9eb0dd4dc5d26.svg" alt="\(N=29\,000\)" style="height:0.749em;vertical-align:-0.000em"> at 10 m over 290 km, 4 bands of 10 m, 12 bits) <img class="m" src="m/2258b07463bd816184524d1fe974d8d1e97c5c92.svg" alt="\(R\approx29000\cdot4\cdot12\cdot700\approx1\)" style="height:0.749em;vertical-align:-0.000em"> Gbit/s before compression: why on-board compression and fast downlinks are needed.
+</p>
+</div>
+</div>
+<div id="outline-container-org3ecaaea" class="outline-2">
+<h2 id="org3ecaaea">Intuition</h2>
+<div class="outline-text-2" id="text-org3ecaaea">
+<p>
+The satellite sees far more than it can tell: transmission, not sensing, is the bottleneck.
+</p>
+</div>
+</div>
+<div id="outline-container-org650f0a1" class="outline-2">
+<h2 id="org650f0a1">Pitfall</h2>
+<div class="outline-text-2" id="text-org650f0a1">
+<p>
+Higher frequencies give more bandwidth but suffer more rain attenuation (Ka band), so link budgets need margins tied to the station's climate.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="satellite-architecture.html"><span>← previous</span>Satellite system architecture</a><a rel="next" href="passive-active-sensors.html"><span>next →</span>Passive and active sensors</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/acquisition--satellites.pdf" title="PDF manual">Satellites</a> · <a class="pdf" href="pdf/acquisition.pdf" title="PDF manual">Acquisition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

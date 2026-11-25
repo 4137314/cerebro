@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The equals–hashCode contract · Computer Science</title>
+<meta name="description" content="equals must be an equivalence relation (reflexive, symmetric, transitive), consistent over time and false for null; whoever overrides it must override hashCode so that equal objects have equal hashes, or hash-based collections will not find them.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/equals-hashcode.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The equals–hashCode contract · Computer Science">
+<meta property="og:description" content="equals must be an equivalence relation (reflexive, symmetric, transitive), consistent over time and false for null; whoever overrides it must override hashCode so that equal objects have equal hashes, or hash-based collections will not find them.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/equals-hashcode.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--java">Java</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Programming · Java</p>
+<h1>The equals–hashCode contract</h1>
+<p class="summary"><code>equals</code> must be an equivalence relation (reflexive, symmetric, transitive), consistent over time and false for <code>null</code>; whoever overrides it must override <code>hashCode</code> so that equal objects have equal hashes, or hash-based collections will not find them.</p>
+<p class="rel"><span>needs</span> <a href="java-object-class.html">The class Object and final</a>, <a href="casting-instanceof.html">Casts, instanceof and array covariance</a></p>
+<p class="rel"><span>unlocks</span> <a href="comparable-comparator.html">Comparable and Comparator</a>, <a href="hashmap-internals.html">How a hash table works (HashMap)</a></p>
+<p class="rel"><span>see also</span> <a href="comparable-comparator.html">Comparable and Comparator</a>, <a href="java-collections.html">The Java Collections Framework</a>, <a href="java-dynamic-binding.html">The Java method selection rule</a>, <a href="shallow-deep-copy.html">Shallow and deep copy, rule of three</a>, <a href="hashmap-internals.html">How a hash table works (HashMap)</a></p>
+<p class="rel"><span>mentioned in</span> <a href="java-references.html">Objects, references and garbage collection in Java</a>, <a href="java-collections.html">The Java Collections Framework</a></p>
+<details class="path"><summary>Learning path: 10 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li><li><a href="casting-instanceof.html">Casts, instanceof and array covariance</a></li><li><a href="java-platform.html">The Java platform</a></li><li><a href="java-references.html">Objects, references and garbage collection in Java</a></li><li><a href="java-object-class.html">The class Object and final</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org1d5a33f" class="outline-2">
+<h2 id="org1d5a33f">Statement</h2>
+<div class="outline-text-2" id="text-org1d5a33f">
+<p>
+For non-null references <img class="m" src="m/e75d458da9c3ce52b597ffcd2dbebec8d7109fdc.svg" alt="\(x,y,z\)" style="height:0.685em;vertical-align:-0.212em">:
+</p>
+<ol class="org-ol">
+<li>reflexive: <code>x.equals(x)</code>;</li>
+<li>symmetric: <code>x.equals(y)</code> iff <code>y.equals(x)</code>;</li>
+<li>transitive: <code>x.equals(y)</code> and <code>y.equals(z)</code> imply <code>x.equals(z)</code>;</li>
+<li>consistent: repeated calls give the same result while the objects do not change;</li>
+<li><code>x.equals(null)</code> is false.</li>
+</ol>
+<p>
+And <code>x.equals(y)</code> implies <code>x.hashCode() =</code> y.hashCode()=. The converse is not required: unequal objects may collide.
+</p>
+</div>
+</div>
+<div id="outline-container-org673a848" class="outline-2">
+<h2 id="org673a848">Derivation</h2>
+<div class="outline-text-2" id="text-org673a848">
+<p>
+A <a href="hashmap-internals.html">hash table</a> stores an element in bucket <img class="m" src="m/7b0da12b135668302e8bfcfd10f55366e0b3f095.svg" alt="\(h(x)\bmod m\)" style="height:1.096em;vertical-align:-0.274em"> and, to look it up, scans only that bucket with <code>equals</code>. If two equal objects had different hashes they would land in different buckets, so <code>contains</code> on one would not find the other, and a <code>HashSet</code> would hold "duplicates". Lookup costs <img class="m" src="m/db232d0cd832a3fae3e6b6755f176b14153e936b.svg" alt="\(O(1)\)" style="height:1.096em;vertical-align:-0.274em"> on average when the hash spreads the elements evenly.
+</p>
+</div>
+</div>
+<div id="outline-container-org37a39b9" class="outline-2">
+<h2 id="org37a39b9">Picture</h2>
+<div class="outline-text-2" id="text-org37a39b9">
+<figure class="fig"><img class="m" src="m/c96b6f92b63a2b970083be48a2d5b7a09bb899ab.svg" alt="figure" style="width:12.152em"><figcaption><span class="fl">Figure 1.</span> Buckets of a hash table: "ab" and "ba" have equal hash codes and share bucket 1, while "cd" goes elsewhere; equal objects must always land in the same bucket.</figcaption></figure>
+<p>
+A hash summing character codes puts <code>"ab"</code> and <code>"ba"</code> in the same bucket: a collision, resolved by <code>equals</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org5d35350" class="outline-2">
+<h2 id="org5d35350">Construction</h2>
+<div class="outline-text-2" id="text-org5d35350">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code>@Override <span class="k">public</span> <span class="t">boolean</span> <span class="f">equals</span>(<span class="t">Object</span> <span class="v">o</span>) {          <span class="c">// Object, not Point
+</span>    <span class="k">if</span> (<span class="k">this</span> == o) <span class="k">return</span> <span class="n">true</span>;
+    <span class="c">// or: !(o instanceof Point)
+</span>    <span class="k">if</span> (o == <span class="n">null</span> || getClass() != o.getClass()) <span class="k">return</span> <span class="n">false</span>;
+    <span class="t">Point</span> <span class="v">p</span> = (<span class="t">Point</span>) o;
+    <span class="k">return</span> x == p.x &amp;&amp; y == p.y;
+}
+<span class="c">// same fields as equals
+</span>@Override <span class="k">public</span> <span class="t">int</span> <span class="f">hashCode</span>() { <span class="k">return</span> Objects.hash(x, y); }</code></pre></figure>
+<p>
+<code>getClass()</code> makes a <code>Point</code> never equal to a <code>ColorPoint</code>; <code>instanceof</code> allows comparison with subclasses but endangers symmetry and transitivity if subclasses add fields. Which to use depends on the application.
+</p>
+</div>
+</div>
+<div id="outline-container-org9d6dfdb" class="outline-2">
+<h2 id="org9d6dfdb">Intuition</h2>
+<div class="outline-text-2" id="text-org9d6dfdb">
+<p>
+<code>equals</code> says when two objects are "the same thing"; <code>hashCode</code> is a quick, coarse test that must never contradict it.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd8e137d" class="outline-2">
+<h2 id="orgd8e137d">Pitfall</h2>
+<div class="outline-text-2" id="text-orgd8e137d">
+<p>
+Overloading <code>equals(Point p)</code> instead of overriding <code>equals(Object o)</code>: the collections call the inherited identity version (see <a href="java-dynamic-binding.html">the binding rule</a>).
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="java-object-class.html"><span>← previous</span>The class Object and final</a><a rel="next" href="comparable-comparator.html"><span>next →</span>Comparable and Comparator</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--java.pdf" title="PDF manual">Java</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

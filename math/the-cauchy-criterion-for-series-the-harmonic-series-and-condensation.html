@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Cauchy criterion for series, the harmonic series and condensation · Mathematics</title>
+<meta name="description" content="The term test says a convergent series has terms tending to zero, and says nothing about the converse. The harmonic series is the standard counterexample, and the condensation test is the clean way to see both it and the whole family \sum 1/n^{p} at once – the comparison objects every later test is…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-cauchy-criterion-for-series-the-harmonic-series-and-condensation.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The Cauchy criterion for series, the harmonic series and condensation · Mathematics">
+<meta property="og:description" content="The term test says a convergent series has terms tending to zero, and says nothing about the converse. The harmonic series is the standard counterexample, and the condensation test is the clean way to see both it and the whole family \sum 1/n^{p} at once – the comparison objects every later test is…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-cauchy-criterion-for-series-the-harmonic-series-and-condensation.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Analysis · Real Analysis</p>
+<h1>The Cauchy criterion for series, the harmonic series and condensation</h1>
+<p class="summary">The term test says a convergent series has terms tending to zero, and says nothing about the converse. The harmonic series is the standard counterexample, and the condensation test is the clean way to see both it and the whole family <img class="m" src="m/4a76546392acba8a5c918ce33f6aea0a66e7cc24.svg" alt="\(\sum 1/n^{p}\)" style="height:1.096em;vertical-align:-0.274em"> at once &#x2013; the comparison objects every later test is calibrated against.</p>
+<p class="rel"><span>needs</span> <a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a>, <a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a>, <a href="monotone-convergence-theorem.html">Monotone convergence theorem</a>, <a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></p>
+<p class="rel"><span>unlocks</span> <a href="the-alternating-series-test.html">The alternating series test</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li></ol></details>
+</header>
+<main class="note">
+<div class="theorem" id="orgb1564b5">
+<p>
+The series <img class="m" src="m/3cbaf2111d9cd1fc1a0e7f3a0c9d620965457457.svg" alt="\(\sum_{n \ge 1} a_{n}\)" style="height:1.293em;vertical-align:-0.465em"> converges if and only if for every
+<img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> there is <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> such that
+<div class="mb"><img class="m" src="m/5191ea8fdda23b92596d394adffefbe4940a0220.svg" alt="\[ \Bigl| \sum_{k=n+1}^{m} a_{k} \Bigr| &lt; \eps \qquad \text{for all } m &gt; n \ge N. \]" style="width:17.989em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="org02da0b1">
+<p>
+The displayed quantity is <img class="m" src="m/e03761f3d221b6528afd151e9b9e2902cdfaa760.svg" alt="\(\abs{s_{m} - s_{n}}\)" style="height:1.096em;vertical-align:-0.274em">, where <img class="m" src="m/04ae89a2276ee5e86bf57e57df6b0f1360a5ae74.svg" alt="\((s_{N})\)" style="height:1.096em;vertical-align:-0.274em"> is
+the sequence of partial sums. So the condition says exactly that
+<img class="m" src="m/04ae89a2276ee5e86bf57e57df6b0f1360a5ae74.svg" alt="\((s_{N})\)" style="height:1.096em;vertical-align:-0.274em"> is a Cauchy sequence, and by the Cauchy criterion for
+sequences that is equivalent to its convergence, which is the
+definition of the series converging.
+</p>
+
+</div>
+
+<div class="proposition" id="org353cb63">
+<p>
+The harmonic series <img class="m" src="m/bdc008353c097c7ef236a5545040ef49d6306a8b.svg" alt="\(\sum_{n \ge 1} 1/n\)" style="height:1.293em;vertical-align:-0.465em"> diverges.
+</p>
+
+</div>
+
+<div class="proof" id="orgd04c1e2">
+<p>
+Take <img class="m" src="m/0472ba404b58929a665b2fecadfb53359c0d6550.svg" alt="\(\eps = 1/2\)" style="height:1.096em;vertical-align:-0.274em">. For any <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">, put <img class="m" src="m/f31743217a21cac461908bef8a17339202729727.svg" alt="\(n = N\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/dbd1aa6b88eedc24ebe1f5866d7fc718489fd1ea.svg" alt="\(m = 2N\)" style="height:0.749em;vertical-align:-0.000em">: each
+of the <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> terms of <img class="m" src="m/cc784942f71c2baef933c91b357c6cd9a02dce1d.svg" alt="\(\sum_{k=N+1}^{2N} 1/k\)" style="height:1.495em;vertical-align:-0.419em"> is at least
+<img class="m" src="m/147b08f93b5e15e50d76fa306fcb3994bb1f4372.svg" alt="\(1/(2N)\)" style="height:1.096em;vertical-align:-0.274em">, so the sum is at least <img class="m" src="m/a5de9b1699fa78deb969db7c9dd4271eb5e6b63b.svg" alt="\(N \cdot 1/(2N) = 1/2\)" style="height:1.096em;vertical-align:-0.274em">. The Cauchy
+criterion therefore fails, and the series diverges.
+</p>
+
+</div>
+
+<div class="theorem" id="org6d7de17">
+<p>
+Let <img class="m" src="m/4e7334f685d8f07defded04cdcf897ba838535d4.svg" alt="\(a_{1} \ge a_{2} \ge \cdots \ge 0\)" style="height:0.871em;vertical-align:-0.165em">. Then <img class="m" src="m/3cbaf2111d9cd1fc1a0e7f3a0c9d620965457457.svg" alt="\(\sum_{n \ge 1} a_{n}\)" style="height:1.293em;vertical-align:-0.465em">
+converges if and only if <img class="m" src="m/8f313c4052ee3c26d5bc4dd0f46e8dbb9e17d8e1.svg" alt="\(\sum_{k \ge 0} 2^{k} a_{2^{k}}\)" style="height:1.401em;vertical-align:-0.476em"> converges.
+</p>
+
+</div>
+
+<div class="proof" id="orgdedd092">
+<p>
+Write <img class="m" src="m/241a463ff8bc9d778684fbcfc19aa93775d9ab19.svg" alt="\(s_{N} = \sum_{n=1}^{N} a_{n}\)" style="height:1.404em;vertical-align:-0.323em"> and
+<img class="m" src="m/e0a823664f3d8c235a41f34ff7479e8bd480787a.svg" alt="\(t_{K} = \sum_{k=0}^{K} 2^{k} a_{2^{k}}\)" style="height:1.404em;vertical-align:-0.323em">; both are increasing, so each
+converges exactly when it is bounded above.
+</p>
+
+<p>
+Grouping the terms of <img class="m" src="m/42d2c35f20f2c22043ef0eb42920ada193d61639.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> into blocks
+<img class="m" src="m/87e51d6aa0e827c16ea1ad4f17b777aea53f32ee.svg" alt="\(a_{2^{k}} + \cdots + a_{2^{k+1}-1}\)" style="height:0.953em;vertical-align:-0.314em"> of length <img class="m" src="m/4afdd035e4898d733cf936ccfea163271764e377.svg" alt="\(2^{k}\)" style="height:0.930em;vertical-align:-0.000em"> and using
+monotonicity of <img class="m" src="m/61f9283fe1503c8d1cecd228c646c41f111be43f.svg" alt="\((a_{n})\)" style="height:1.096em;vertical-align:-0.274em">, each block lies between
+<img class="m" src="m/a028e1d4036fb0553b69680d54f1702e03e53687.svg" alt="\(2^{k} a_{2^{k+1}}\)" style="height:1.153em;vertical-align:-0.219em"> and <img class="m" src="m/00cfb716216381b6cb997de22e2e31b9dd43b9b7.svg" alt="\(2^{k} a_{2^{k}}\)" style="height:1.153em;vertical-align:-0.219em">. Summing the upper
+estimate over <img class="m" src="m/67ab282959571c3aba30a9b39f952699b0a33eac.svg" alt="\(k \le K\)" style="height:0.910em;vertical-align:-0.146em"> gives <img class="m" src="m/5cb2ff6fe970fe09dd3fc019a8b8156346c139ee.svg" alt="\(s_{2^{K+1}-1} \le t_{K}\)" style="height:1.004em;vertical-align:-0.311em">, so <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em">
+bounded implies <img class="m" src="m/42d2c35f20f2c22043ef0eb42920ada193d61639.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> bounded. Summing the lower estimate gives
+<div class="mb"><img class="m" src="m/f3dc6343f40dd82392507dff0c31bcb0ef780875.svg" alt="\[ s_{2^{K+1}-1} \ge \sum_{k=0}^{K} 2^{k} a_{2^{k+1}} = \frac{1}{2} \bigl( t_{K+1} - a_{1} \bigr), \]" style="width:18.932em"></div>
+so <img class="m" src="m/42d2c35f20f2c22043ef0eb42920ada193d61639.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> bounded implies <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> bounded.
+</p>
+
+</div>
+
+<div class="corollary" id="org8d0f0eb">
+<p>
+For <img class="m" src="m/62d95cf033cb1d675097fed76aa3022ef95b6b9b.svg" alt="\(p &gt; 0\)" style="height:0.919em;vertical-align:-0.211em"> the series <img class="m" src="m/de5d6b48003d7d10f7085fa29db2c9171e3b25b9.svg" alt="\(\sum_{n \ge 1} 1/n^{p}\)" style="height:1.293em;vertical-align:-0.465em"> converges if and
+only if <img class="m" src="m/9c36f6ad1140992b26b12de2dc5ed99f3bb42f28.svg" alt="\(p &gt; 1\)" style="height:0.919em;vertical-align:-0.211em">.
+</p>
+
+</div>
+
+<div class="proof" id="orge84b8d2">
+<p>
+The terms are non-negative and decreasing, so condensation applies:
+<img class="m" src="m/1def42dcd1c3c087ca601ff395daa3903f29d5ed.svg" alt="\(2^{k} a_{2^{k}} = 2^{k} 2^{-kp} = (2^{1-p})^{k}\)" style="height:1.204em;vertical-align:-0.277em">. The condensed
+series is geometric with ratio <img class="m" src="m/9c52b5f6ba39089361b098f04283d660e860af12.svg" alt="\(2^{1-p}\)" style="height:0.892em;vertical-align:-0.000em">, which converges exactly
+when <img class="m" src="m/2a215411f6b4fa99c49e218e7e44b4f2a5199ef8.svg" alt="\(2^{1-p} &lt; 1\)" style="height:0.935em;vertical-align:-0.047em">, that is <img class="m" src="m/9c36f6ad1140992b26b12de2dc5ed99f3bb42f28.svg" alt="\(p &gt; 1\)" style="height:0.919em;vertical-align:-0.211em">.
+</p>
+
+</div>
+
+<div class="remark" id="org58ba7ab">
+<p>
+The harmonic series is the case <img class="m" src="m/047d7ea762ed52007e1846c06c979c4b3ee94e90.svg" alt="\(p = 1\)" style="height:0.919em;vertical-align:-0.211em">, and the proposition above is
+the one-line version of it; condensation is the reason <img class="m" src="m/047d7ea762ed52007e1846c06c979c4b3ee94e90.svg" alt="\(p = 1\)" style="height:0.919em;vertical-align:-0.211em"> is the
+threshold and not an accident. The blocks in that proof are the blocks
+of the classical estimate
+<div class="mb"><img class="m" src="m/0984d915b7b9700156fa9604e54f6be1fb2b86c0.svg" alt="\[ 1 + \frac{1}{2} + \Bigl( \frac{1}{3} + \frac{1}{4} \Bigr) + \cdots \ge 1 + \frac{1}{2} + \frac{1}{2} + \cdots, \]" style="width:20.524em"></div>
+stated once for every decreasing sequence instead of once per example.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="surface-integrals-the-divergence-theorem-and-stokes-theorem.html"><span>← previous</span>Surface integrals, the divergence theorem and Stokes' theorem</a><a rel="next" href="the-alternating-series-test.html"><span>next →</span>The alternating series test</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

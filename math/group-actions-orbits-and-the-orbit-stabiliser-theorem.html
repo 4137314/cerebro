@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Group actions, orbits and the orbit-stabiliser theorem · Mathematics</title>
+<meta name="description" content="A group was defined by axioms, but groups arise as symmetries: the axioms are what the invertible transformations of a set satisfy. An action is the bridge back – a homomorphism into a symmetric group – and it converts counting problems about a set into arithmetic in the group, because an orbit is …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/group-actions-orbits-and-the-orbit-stabiliser-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Group actions, orbits and the orbit-stabiliser theorem · Mathematics">
+<meta property="og:description" content="A group was defined by axioms, but groups arise as symmetries: the axioms are what the invertible transformations of a set satisfy. An action is the bridge back – a homomorphism into a symmetric group – and it converts counting problems about a set into arithmetic in the group, because an orbit is …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/group-actions-orbits-and-the-orbit-stabiliser-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--group-theory">Group Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Algebra · Group Theory</p>
+<h1>Group actions, orbits and the orbit-stabiliser theorem</h1>
+<p class="summary">A group was defined by axioms, but groups arise as symmetries: the axioms are what the invertible transformations of a set satisfy. An action is the bridge back &#x2013; a homomorphism into a symmetric group &#x2013; and it converts counting problems about a set into arithmetic in the group, because an orbit is a quotient by a subgroup.</p>
+<p class="rel"><span>needs</span> <a href="cosets-the-index-and-lagranges-theorem.html">Cosets, the index and Lagrange's theorem</a>, <a href="group.html">Group</a>, <a href="group-homomorphism.html">Group homomorphism</a>, <a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a>, <a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a>, <a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a>, <a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></p>
+<p class="rel"><span>unlocks</span> <a href="cauchys-theorem-and-the-sylow-theorems.html">Cauchy's theorem and the Sylow theorems</a>, <a href="direct-and-semidirect-products.html">Direct and semidirect products</a>, <a href="the-symmetric-group-and-the-sign-of-a-permutation.html">The symmetric group and the sign of a permutation</a>, <a href="affine-spaces-affine-subspaces-and-affine-maps.html">Affine spaces, affine subspaces and affine maps</a></p>
+<p class="rel"><span>mentioned in</span> <a href="algebra.html">Algebra</a>, <a href="group-theory.html">Group theory</a></p>
+<details class="path"><summary>Learning path: 11 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li><li><a href="the-order-of-an-element-and-cyclic-groups.html">The order of an element and cyclic groups</a></li><li><a href="cosets-the-index-and-lagranges-theorem.html">Cosets, the index and Lagrange's theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org97ba6d2">
+<p>
+An <i>action</i> of a group <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> on a set <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is a map
+<img class="m" src="m/d48e30f2ce791f1e25eb0ed771423d78e7d14732.svg" alt="\(G \times X \to X\)" style="height:0.840em;vertical-align:-0.092em">, <img class="m" src="m/dceaaab0c081e79053e599c09d43329385cd0290.svg" alt="\((g,x) \mapsto g \cdot x\)" style="height:1.096em;vertical-align:-0.274em">, such that
+<img class="m" src="m/e5c648af9a29f15fc2e0201f6cd648559f075156.svg" alt="\(e \cdot x = x\)" style="height:0.487em;vertical-align:-0.000em"> and <img class="m" src="m/3350384ab7795a5196d9fe46d32b7e4e2523e917.svg" alt="\(g \cdot (h \cdot x) = (gh) \cdot x\)" style="height:1.096em;vertical-align:-0.274em"> for all
+<img class="m" src="m/d71815393b3b4a367369a05edb3f3eb5c722594c.svg" alt="\(g, h \in G\)" style="height:0.974em;vertical-align:-0.214em">, <img class="m" src="m/94eaa1f197d2485b6086400fc7bd6537a638d7d8.svg" alt="\(x \in X\)" style="height:0.792em;vertical-align:-0.040em">. Equivalently, it is a homomorphism
+<img class="m" src="m/db0b4c39ef6bbbe5b74eb37f8618944011b8641e.svg" alt="\(G \to \Sym(X)\)" style="height:1.096em;vertical-align:-0.274em">, the group of bijections of <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> under composition.
+</p>
+
+</div>
+
+<div class="proposition" id="org2049052">
+<p>
+The two descriptions in the definition agree: for an action, each map
+<img class="m" src="m/1707269dbf830e13d70b09786373d02d7586f4f3.svg" alt="\(\sigma_{g} \colon x \mapsto g \cdot x\)" style="height:0.801em;vertical-align:-0.312em"> is a bijection of <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">, and
+<img class="m" src="m/746fcb2c25bb7d83562bf0f426d9e3858137030a.svg" alt="\(g \mapsto \sigma_{g}\)" style="height:0.785em;vertical-align:-0.314em"> is a homomorphism <img class="m" src="m/db0b4c39ef6bbbe5b74eb37f8618944011b8641e.svg" alt="\(G \to \Sym(X)\)" style="height:1.096em;vertical-align:-0.274em">;
+conversely every such homomorphism defines an action.
+</p>
+
+</div>
+
+<div class="proof" id="org97d25a1">
+<p>
+From the axioms, <img class="m" src="m/64329e1126ff4c6cad05a5e2d6e3803f52f79c16.svg" alt="\(\sigma_{g} \circ \sigma_{h} = \sigma_{gh}\)" style="height:0.801em;vertical-align:-0.312em"> and
+<img class="m" src="m/70e7d2ad2fe7a147108c02dec2f9926e326fb9d0.svg" alt="\(\sigma_{e} = \id_{X}\)" style="height:0.925em;vertical-align:-0.167em">. Hence
+<img class="m" src="m/c46a921b5a9c612acc696c62880282d5d85181bc.svg" alt="\(\sigma_{g} \circ \sigma_{g^{-1}} = \sigma_{e} = \id_{X}\)" style="height:1.117em;vertical-align:-0.358em"> and
+likewise in the other order, so <img class="m" src="m/4ed9c655de2f02596ee8f5e0b489c2c77698d13c.svg" alt="\(\sigma_{g}\)" style="height:0.785em;vertical-align:-0.314em"> is a bijection with
+inverse <img class="m" src="m/c7867dd823b675207ce66bfc24075cdfd14615f8.svg" alt="\(\sigma_{g^{-1}}\)" style="height:0.828em;vertical-align:-0.356em">, and <img class="m" src="m/746fcb2c25bb7d83562bf0f426d9e3858137030a.svg" alt="\(g \mapsto \sigma_{g}\)" style="height:0.785em;vertical-align:-0.314em"> is a
+homomorphism. Conversely, given a homomorphism <img class="m" src="m/183e6a1c54f452e32457484b282b63813d79eb6a.svg" alt="\(\rho\)" style="height:0.685em;vertical-align:-0.212em">, setting
+<img class="m" src="m/9b1ca2567497b653474b1177d61e5f184a60bcf0.svg" alt="\(g \cdot x = \rho(g)(x)\)" style="height:1.096em;vertical-align:-0.274em"> satisfies both axioms.
+</p>
+
+</div>
+
+<div class="definition" id="orgb182e3c">
+<p>
+For an action of <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> on <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/94eaa1f197d2485b6086400fc7bd6537a638d7d8.svg" alt="\(x \in X\)" style="height:0.792em;vertical-align:-0.040em">, the <i>orbit</i> is
+<img class="m" src="m/2e37b5923b96d0ea09069065d7fd4a2fdc88b495.svg" alt="\(G \cdot x = \setst{g \cdot x}{g \in G}\)" style="height:1.096em;vertical-align:-0.274em"> and the <i>stabiliser</i> is
+<img class="m" src="m/a846ac1a381be31d7072d27b1231f866e1b5da5a.svg" alt="\(G_{x} = \setst{g \in G}{g \cdot x = x}\)" style="height:1.096em;vertical-align:-0.274em">. The action is <i>transitive</i>
+if there is only one orbit.
+</p>
+
+</div>
+
+<div class="proposition" id="org49c03cd">
+<p>
+The orbits partition <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">, and each stabiliser <img class="m" src="m/2f1f6e0bc6d567bf4793a413022174d3586e165e.svg" alt="\(G_{x}\)" style="height:0.913em;vertical-align:-0.164em"> is a subgroup
+of <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org8c42640">
+<p>
+Let <img class="m" src="m/bc385f4801bccac61e052d4f5287342677f22f40.svg" alt="\(x \approx y\)" style="height:0.743em;vertical-align:-0.215em"> mean <img class="m" src="m/0699cc91ee387f317fd78b1531008ab25bd9f903.svg" alt="\(y = g \cdot x\)" style="height:0.700em;vertical-align:-0.210em"> for some <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em">. This is
+reflexive (<img class="m" src="m/09798e3cb5ef8291c7239dd012807e66ef0eccaf.svg" alt="\(e\)" style="height:0.472em;vertical-align:-0.000em">), symmetric (apply <img class="m" src="m/f14acd7df725b615265b67cbcdbac36f95c3bd7b.svg" alt="\(g^{-1}\)" style="height:1.105em;vertical-align:-0.210em">) and transitive
+(compose), so it is an equivalence relation whose classes are the
+orbits; classes partition <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">. For the stabiliser, <img class="m" src="m/b20b00feb628c21349ed5b11aa545eb04f9d3c9c.svg" alt="\(e \in G_{x}\)" style="height:0.913em;vertical-align:-0.164em">,
+and if <img class="m" src="m/47cac0b3dfe82336542253a97bf01f7b4de3464b.svg" alt="\(g, h\)" style="height:0.974em;vertical-align:-0.214em"> fix <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> then <img class="m" src="m/0711c9eb9901d5444e187f47e10398ac5d918a51.svg" alt="\(gh^{-1} \cdot x = g \cdot (h^{-1}\cdot x) = g \cdot x = x\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org7901039">
+<p>
+For every <img class="m" src="m/94eaa1f197d2485b6086400fc7bd6537a638d7d8.svg" alt="\(x \in X\)" style="height:0.792em;vertical-align:-0.040em"> the map <img class="m" src="m/7ed378f3c34bd4b5f7e87ce53efe5f078e1eaeb7.svg" alt="\(g G_{x} \mapsto g \cdot x\)" style="height:0.962em;vertical-align:-0.212em"> is a
+bijection from <img class="m" src="m/91d1a088b38024ae3326a763fa9e65b129fbb5b8.svg" alt="\(G/G_{x}\)" style="height:1.096em;vertical-align:-0.274em"> onto the orbit <img class="m" src="m/545068da12cd4d70ad2eebfebd36f30ca4813fd8.svg" alt="\(G \cdot x\)" style="height:0.749em;vertical-align:-0.000em">. In particular,
+for finite <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/72c9ec31de043b053560eef6a73950133cc156e4.svg" alt="\(\abs{G \cdot x} = [G : G_{x}] = \abs{G}/\abs{G_{x}}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org47f1bc8">
+<p>
+The map is well defined and injective at once:
+<img class="m" src="m/dd60d6eac4e2b6c3a02e71952b5e4e332b8a9da2.svg" alt="\(g \cdot x = h \cdot x\)" style="height:0.974em;vertical-align:-0.214em"> if and only if <img class="m" src="m/95e88c411c0acf6a33fc14ec8d8a83cab14020f2.svg" alt="\(h^{-1}g \cdot x = x\)" style="height:1.105em;vertical-align:-0.210em">, that
+is <img class="m" src="m/227f236a1aa29c26d2f579a29d71e1cf56dbca9e.svg" alt="\(h^{-1}g \in G_{x}\)" style="height:1.105em;vertical-align:-0.210em">, that is <img class="m" src="m/e12a88d08209bcfccb8d8a3f9af5a6ae2942122f.svg" alt="\(gG_{x} = hG_{x}\)" style="height:0.974em;vertical-align:-0.214em">. It is surjective
+onto the orbit by definition. The count follows from Lagrange's theorem.
+</p>
+
+</div>
+
+<div class="corollary" id="orgd5ff323">
+<p>
+Let <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> be a finite group acting on itself by conjugation,
+<img class="m" src="m/4c0180bf336917a0d0dcc029600618e84ad648ff.svg" alt="\(g \cdot a = gag^{-1}\)" style="height:1.105em;vertical-align:-0.210em">. Then
+<div class="mb"><img class="m" src="m/63a7f2ebd81232359b209e8733fd08d02b539b4c.svg" alt="\[ \abs{G} = \abs{Z(G)} + \sum_{i} [G : C_{G}(a_{i})], \]" style="width:15.008em"></div>
+where <img class="m" src="m/22259f2219526337d702dcf5d571c7e7a62f7b2f.svg" alt="\(Z(G)\)" style="height:1.096em;vertical-align:-0.274em"> is the set of elements whose orbit is a single point,
+<img class="m" src="m/60821d833dd94eda75b3c746e1f476120480ee88.svg" alt="\(C_{G}(a) = \setst{g}{ga = ag}\)" style="height:1.096em;vertical-align:-0.274em">, and the <img class="m" src="m/f3b3034bea9d8f34a1704f9f9adb6ba92535dbfb.svg" alt="\(a_{i}\)" style="height:0.636em;vertical-align:-0.165em"> are
+representatives of the orbits with more than one element.
+</p>
+
+</div>
+
+<div class="proof" id="orgac29e0d">
+<p>
+Conjugation is an action: <img class="m" src="m/7b0818bf2b8111f0f71184d71603f9a1c624bc98.svg" alt="\(e a e^{-1} = a\)" style="height:0.892em;vertical-align:-0.000em"> and
+<img class="m" src="m/05995b49b2d0b31f16e07db18409af34332679d7.svg" alt="\(g(hah^{-1})g^{-1} = (gh)a(gh)^{-1}\)" style="height:1.166em;vertical-align:-0.268em">. Its orbits partition <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">, so
+<img class="m" src="m/d3febd33fc47d5ed80e6f69e2edb4aaa89356598.svg" alt="\(\abs{G}\)" style="height:1.096em;vertical-align:-0.274em"> is the sum of the orbit sizes. An orbit is a single point
+exactly when <img class="m" src="m/7cb191916c0bd425cdbffbfb8368c0ba14762510.svg" alt="\(gag^{-1} = a\)" style="height:1.105em;vertical-align:-0.210em"> for all <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em">, that is when
+<img class="m" src="m/f2545d76fa0a23588fef9028fe92b4d41401c5ba.svg" alt="\(a \in Z(G)\)" style="height:1.096em;vertical-align:-0.274em">; every other orbit has size <img class="m" src="m/24a372271550c5876ff1f50569431b2259c67251.svg" alt="\([G : G_{a}]\)" style="height:1.096em;vertical-align:-0.274em"> by the
+orbit-stabiliser theorem, and the stabiliser of <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> under conjugation
+is <img class="m" src="m/7beba136220cf10be61915f13608a665aea4f0ca.svg" alt="\(C_{G}(a)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org962564d">
+<p>
+Every group <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> is isomorphic to a subgroup of <img class="m" src="m/29be1f830d0b53095305865518d60b6ae6458340.svg" alt="\(\Sym(G)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orga473727">
+<p>
+Let <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> act on itself by left multiplication, <img class="m" src="m/bf823d1d8fe2f20eb1a07c8f67849fac7bee69ec.svg" alt="\(g \cdot a = ga\)" style="height:0.700em;vertical-align:-0.210em">; the
+axioms hold by associativity and the identity law. The associated
+homomorphism <img class="m" src="m/7c230e95d343e0b7725e17e7e078aed89da3b4a3.svg" alt="\(\rho \colon G \to \Sym(G)\)" style="height:1.096em;vertical-align:-0.274em"> has kernel
+<img class="m" src="m/9e699f4ed776947d6795bfea5fbba190e7df0637.svg" alt="\(\setst{g}{ga = a \text{ for all } a}\)" style="height:1.096em;vertical-align:-0.274em">, which is <img class="m" src="m/142c5a13eb7f1903950c4b16b1724fd55f29364c.svg" alt="\(\set{e}\)" style="height:1.096em;vertical-align:-0.274em"> on taking
+<img class="m" src="m/8892551759ffdd44d68cc4fd1ecfd73d920628ee.svg" alt="\(a = e\)" style="height:0.472em;vertical-align:-0.000em">. So <img class="m" src="m/183e6a1c54f452e32457484b282b63813d79eb6a.svg" alt="\(\rho\)" style="height:0.685em;vertical-align:-0.212em"> is injective, and <img class="m" src="m/a719b717216b7c45cdfc9277c36cfe0cdcbc0783.svg" alt="\(G \iso \rho(G) \le \Sym(G)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="remark" id="org17a73c2">
+<p>
+Cayley's theorem is not a tool for computation &#x2013; the symmetric group it
+produces is far too large &#x2013; but a statement about what the axioms
+capture: nothing is lost by defining a group abstractly, since every
+abstract group is a group of symmetries of something. The useful actions
+are the small ones, on cosets and on conjugacy classes, and the class
+equation is the first result to extract arithmetic from them.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="cosets-the-index-and-lagranges-theorem.html"><span>← previous</span>Cosets, the index and Lagrange's theorem</a><a rel="next" href="the-symmetric-group-and-the-sign-of-a-permutation.html"><span>next →</span>The symmetric group and the sign of a permutation</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--group-theory.pdf" title="PDF manual">Group Theory</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

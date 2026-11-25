@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The residue theorem and the argument principle · Mathematics</title>
+<meta name="description" content="Cauchy's theorem says a contour integral vanishes when there is nothing inside. The residue theorem says what it is when there is: one number per singularity, read off the Laurent expansion. That turns contour integration into arithmetic, and it is the reason complex analysis is a computational too…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-residue-theorem-and-the-argument-principle.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The residue theorem and the argument principle · Mathematics">
+<meta property="og:description" content="Cauchy's theorem says a contour integral vanishes when there is nothing inside. The residue theorem says what it is when there is: one number per singularity, read off the Laurent expansion. That turns contour integration into arithmetic, and it is the reason complex analysis is a computational too…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-residue-theorem-and-the-argument-principle.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--complex-analysis">Complex Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Analysis · Complex Analysis</p>
+<h1>The residue theorem and the argument principle</h1>
+<p class="summary">Cauchy's theorem says a contour integral vanishes when there is nothing inside. The residue theorem says what it is when there is: one number per singularity, read off the Laurent expansion. That turns contour integration into arithmetic, and it is the reason complex analysis is a computational tool in <a href="mathematical-physics.html">mathematical physics</a> rather than only a structural theory.</p>
+<p class="rel"><span>needs</span> <a href="complex-integration-and-cauchys-theorem.html">Complex integration and Cauchy's theorem</a>, <a href="laurent-series-and-isolated-singularities.html">Laurent series and isolated singularities</a>, <a href="zeros-the-identity-theorem-and-the-maximum-principle.html">Zeros, the identity theorem and the maximum principle</a></p>
+<p class="rel"><span>mentioned in</span> <a href="complex-analysis.html">Complex analysis</a></p>
+<details class="path"><summary>Learning path: 92 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="filters-ultrafilters-and-the-ultrafilter-lemma.html">Filters, ultrafilters and the ultrafilter lemma</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li><li><a href="rings-ideals-and-the-quotient-ring.html">Rings, ideals and the quotient ring</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="bilinear-forms-quadratic-forms-and-sylvesters-law-of-inertia.html">Bilinear forms, quadratic forms and Sylvester's law of inertia</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-order-of-an-element-and-cyclic-groups.html">The order of an element and cyclic groups</a></li><li><a href="cosets-the-index-and-lagranges-theorem.html">Cosets, the index and Lagrange's theorem</a></li><li><a href="group-actions-orbits-and-the-orbit-stabiliser-theorem.html">Group actions, orbits and the orbit-stabiliser theorem</a></li><li><a href="the-symmetric-group-and-the-sign-of-a-permutation.html">The symmetric group and the sign of a permutation</a></li><li><a href="the-determinant-as-the-alternating-multilinear-form.html">The determinant as the alternating multilinear form</a></li><li><a href="integral-domains-fields-prime-and-maximal-ideals.html">Integral domains, fields, prime and maximal ideals</a></li><li><a href="polynomial-rings-division-and-roots.html">Polynomial rings, division and roots</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-algebra-of-continuous-functions-and-composition.html">The algebra of continuous functions and composition</a></li><li><a href="one-sided-limits-and-the-discontinuities-of-a-monotone-function.html">One-sided limits and the discontinuities of a monotone function</a></li><li><a href="the-intermediate-value-theorem.html">The intermediate value theorem</a></li><li><a href="the-continuous-image-of-an-interval-and-the-continuous-inverse.html">The continuous image of an interval and the continuous inverse</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-rules-of-differentiation.html">The rules of differentiation</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="the-spectral-theorem-for-symmetric-operators.html">The spectral theorem for symmetric operators</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="differentiability-in-several-variables.html">Differentiability in several variables</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="the-fundamental-theorem-of-calculus.html">The fundamental theorem of calculus</a></li><li><a href="integration-by-parts-and-substitution.html">Integration by parts and substitution</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li><li><a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="the-baire-category-theorem.html">The Baire category theorem</a></li><li><a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></li><li><a href="convex-set.html">Convex set</a></li><li><a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a></li><li><a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a></li><li><a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a></li><li><a href="product-measures-and-the-theorems-of-tonelli-and-fubini.html">Product measures and the theorems of Tonelli and Fubini</a></li><li><a href="regular-curves-arc-length-and-curvature.html">Regular curves, arc length and curvature</a></li><li><a href="line-integrals-exact-forms-and-greens-theorem.html">Line integrals, exact forms and Green's theorem</a></li><li><a href="the-ratio-and-root-tests.html">The ratio and root tests</a></li><li><a href="power-series-and-the-radius-of-convergence.html">Power series and the radius of convergence</a></li><li><a href="surfaces-the-two-fundamental-forms-and-gauss-curvature.html">Surfaces: the two fundamental forms and Gauss curvature</a></li><li><a href="surface-integrals-the-divergence-theorem-and-stokes-theorem.html">Surface integrals, the divergence theorem and Stokes' theorem</a></li><li><a href="connectedness-components-and-path-connectedness.html">Connectedness, components and path-connectedness</a></li><li><a href="holomorphic-functions-and-the-cauchy-riemann-equations.html">Holomorphic functions and the Cauchy-Riemann equations</a></li><li><a href="nets-and-convergence-in-topological-spaces.html">Nets and convergence in topological spaces</a></li><li><a href="complex-integration-and-cauchys-theorem.html">Complex integration and Cauchy's theorem</a></li><li><a href="the-cauchy-integral-formula-and-analyticity.html">The Cauchy integral formula and analyticity</a></li><li><a href="zeros-the-identity-theorem-and-the-maximum-principle.html">Zeros, the identity theorem and the maximum principle</a></li><li><a href="laurent-series-and-isolated-singularities.html">Laurent series and isolated singularities</a></li></ol></details>
+</header>
+<main class="note">
+<div class="theorem" id="orgb77e390">
+<p>
+Let <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> be holomorphic on an open set containing a closed disc
+<img class="m" src="m/1fc5ec794e7f4c31a12ae3058d75a1f6940d39d0.svg" alt="\(\overline{B}\)" style="height:0.968em;vertical-align:-0.000em"> except for finitely many points
+<img class="m" src="m/30257ad470fb2bb36ecd14ad9d6738c439202368.svg" alt="\(z_{1},\dots,z_{k}\)" style="height:0.685em;vertical-align:-0.212em"> in its interior, and let <img class="m" src="m/6a63972442e335159686b75f6e68f8303d880ee2.svg" alt="\(C = \partial B\)" style="height:0.761em;vertical-align:-0.000em"> be
+traversed once anticlockwise. Then
+<div class="mb"><img class="m" src="m/7ce5d38a3e711104d24b1c684171506cace59d1d.svg" alt="\[ \int_{C} f(z)\dd z = 2\pi i \sum_{j=1}^{k}\Res(f,z_{j}). \]" style="width:14.694em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="org75f6583">
+<p>
+Choose disjoint small circles <img class="m" src="m/d0c2dbc1525af1c55c842019ddb62734042ec09f.svg" alt="\(C_{j}\)" style="height:1.062em;vertical-align:-0.319em"> around the <img class="m" src="m/91fd6004f08142b8ddb0f0ebd33171f57f589660.svg" alt="\(z_{j}\)" style="height:0.785em;vertical-align:-0.314em">, inside
+<img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">. Cutting the region between <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> and the <img class="m" src="m/d0c2dbc1525af1c55c842019ddb62734042ec09f.svg" alt="\(C_{j}\)" style="height:1.062em;vertical-align:-0.319em"> into finitely
+many pieces each lying in a convex open subset of the domain of
+holomorphy, and cancelling the cuts, gives
+<img class="m" src="m/69b3f6d7806841f471e330bb6225933b1f265f01.svg" alt="\(\int_{C}f = \sum_{j}\int_{C_{j}}f\)" style="height:1.489em;vertical-align:-0.610em">.
+</p>
+
+<p>
+On a small circle about <img class="m" src="m/91fd6004f08142b8ddb0f0ebd33171f57f589660.svg" alt="\(z_{j}\)" style="height:0.785em;vertical-align:-0.314em">, expand <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> in its Laurent series,
+which converges uniformly there, and integrate term by term. For
+<img class="m" src="m/9ca7a963d0aac4a24943bbe4a887d96fb342ab73.svg" alt="\(n \ne -1\)" style="height:0.974em;vertical-align:-0.214em"> the function <img class="m" src="m/c1a2f8bbf4dbd06c370ee575bd8ecaea4ecc6c5e.svg" alt="\((z-z_{j})^{n}\)" style="height:1.135em;vertical-align:-0.318em"> has the primitive
+<img class="m" src="m/0291e775900c8f8673d06ecbaa9b806dc89c05b2.svg" alt="\((z-z_{j})^{n+1}/(n+1)\)" style="height:1.206em;vertical-align:-0.313em"> on the punctured plane, so its integral over
+the closed curve vanishes; for <img class="m" src="m/5a287ee7e840a0b0c904fd35a15b3f77977c33b3.svg" alt="\(n = -1\)" style="height:0.798em;vertical-align:-0.088em"> the parametrisation
+<img class="m" src="m/72c28bf9852fbef188d3ce5754d75f3e999df692.svg" alt="\(z = z_{j}+\rho e^{i\theta}\)" style="height:1.244em;vertical-align:-0.311em"> gives <img class="m" src="m/5a22505c9a3941a3d4dd3775135b1ac5eef689b0.svg" alt="\(2\pi i\)" style="height:0.723em;vertical-align:-0.000em">. Hence
+<img class="m" src="m/972895586cf8bc452ad9c27adafcf7abc975c9ec.svg" alt="\(\int_{C_{j}}f = 2\pi i\,c_{-1} = 2\pi i \Res(f,z_{j})\)" style="height:1.489em;vertical-align:-0.610em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org4ff3feb">
+<p>
+If <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> has a simple pole at <img class="m" src="m/b8ef01dcf60ebaf1500e28befafa5c2fac7a37b8.svg" alt="\(z_{0}\)" style="height:0.636em;vertical-align:-0.165em">, then
+<img class="m" src="m/f082c9868d2628ef988621700639347d67364adb.svg" alt="\(\Res(f,z_{0}) = \lim_{z\to z_{0}}(z-z_{0})f(z)\)" style="height:1.096em;vertical-align:-0.274em">; if it has a pole of
+order <img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em">, then
+<img class="m" src="m/6bfe9f62daa2505a1058b316cc763e36e7ad89ea.svg" alt="\(\Res(f,z_{0}) = \frac{1}{(m-1)!}\lim_{z\to z_{0}}\frac{\dd^{m-1}}{\dd z^{m-1}}\bigl[(z-z_{0})^{m}f(z)\bigr]\)" style="height:1.697em;vertical-align:-0.577em">.
+If <img class="m" src="m/cc2ea05083be7be7c8fe8b9afb2adaa48f5fd1c7.svg" alt="\(f = g/h\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/a3f6b4cdb82ca7edca4e76278bfb8a83c52785bb.svg" alt="\(g,h\)" style="height:0.974em;vertical-align:-0.214em"> holomorphic, <img class="m" src="m/2393bea1a97eae1970ae5b81d9b0a53658221a73.svg" alt="\(h(z_{0}) = 0\)" style="height:1.096em;vertical-align:-0.274em">,
+<img class="m" src="m/eb784f517970a66849c63255aaed0584227f44f4.svg" alt="\(h'(z_{0})\ne0\)" style="height:1.098em;vertical-align:-0.274em"> and <img class="m" src="m/5622daa7ddebefef335028ccaece0332a29969f7.svg" alt="\(g(z_{0})\ne0\)" style="height:1.096em;vertical-align:-0.274em">, then
+<img class="m" src="m/08051ebe6df22e44b1b7fdbdedb088b654264f81.svg" alt="\(\Res(f,z_{0}) = g(z_{0})/h'(z_{0})\)" style="height:1.098em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org9d9287c">
+<p>
+Write <img class="m" src="m/d4cba20fe2d318b65d2c790a604bd7ef75064d3f.svg" alt="\(f(z) = \sum_{n\ge-m}c_{n}(z-z_{0})^{n}\)" style="height:1.293em;vertical-align:-0.465em">. Then
+<img class="m" src="m/d4d1e035eaa20d75d327be9dc452387542724b7b.svg" alt="\((z-z_{0})^{m}f(z)\)" style="height:1.096em;vertical-align:-0.274em"> is holomorphic with power series
+<img class="m" src="m/85c167bf1cce463bbd25dacfcce37c8872c58bc7.svg" alt="\(\sum_{k\ge0}c_{k-m}(z-z_{0})^{k}\)" style="height:1.401em;vertical-align:-0.476em">, whose <img class="m" src="m/013b10a70e25e6835ab6771c39e570f140b5bb54.svg" alt="\((m-1)\)" style="height:1.096em;vertical-align:-0.274em">-st derivative at
+<img class="m" src="m/b8ef01dcf60ebaf1500e28befafa5c2fac7a37b8.svg" alt="\(z_{0}\)" style="height:0.636em;vertical-align:-0.165em"> is <img class="m" src="m/52e103233e172be15c19b16cd5f03678a9e19c1d.svg" alt="\((m-1)!\,c_{-1}\)" style="height:1.096em;vertical-align:-0.274em">; that is the displayed formula, and
+<img class="m" src="m/a8b62a140c75c34f386490b7737f38d6f1c2bec3.svg" alt="\(m = 1\)" style="height:0.706em;vertical-align:-0.000em"> is the first case.
+</p>
+
+<p>
+For the quotient, <img class="m" src="m/6c6a7c0f65b6e5eec3c9e58e95f4608590dbb80f.svg" alt="\(h\)" style="height:0.761em;vertical-align:-0.000em"> has a simple zero, so <img class="m" src="m/d5dbefc2ff6636e5201dbb02b35771029675226a.svg" alt="\(h(z) = (z-z_{0})h_{1}(z)\)" style="height:1.096em;vertical-align:-0.274em">
+with <img class="m" src="m/53ed04225c005d5a130f0ac864088bdfd113944d.svg" alt="\(h_{1}(z_{0}) = h'(z_{0})\ne0\)" style="height:1.098em;vertical-align:-0.274em">; then
+<img class="m" src="m/298859498665f918466bfb028731fcae7ff651fe.svg" alt="\((z-z_{0})f(z) = g(z)/h_{1}(z) \to g(z_{0})/h'(z_{0})\)" style="height:1.098em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org40fd39b">
+<p>
+Let <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> be holomorphic on an open set containing <img class="m" src="m/1fc5ec794e7f4c31a12ae3058d75a1f6940d39d0.svg" alt="\(\overline{B}\)" style="height:0.968em;vertical-align:-0.000em">
+except for finitely many poles inside, with no zeros or poles on
+<img class="m" src="m/6a63972442e335159686b75f6e68f8303d880ee2.svg" alt="\(C = \partial B\)" style="height:0.761em;vertical-align:-0.000em">. Then
+<div class="mb"><img class="m" src="m/51f88b4bf2cae87b659e4e69b4ff2837268e4e91.svg" alt="\[ \frac{1}{2\pi i}\int_{C}\frac{f'(z)}{f(z)}\dd z = Z - P, \]" style="width:12.031em"></div>
+where <img class="m" src="m/7c4b861f7a604d8d12b3c250305352daee8e7002.svg" alt="\(Z\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> count the zeros and the poles inside <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> with
+multiplicity.
+</p>
+
+</div>
+
+<div class="proof" id="orgc6d5e72">
+<p>
+The function <img class="m" src="m/3bed319b152531b99562b36ede2806a5341e7167.svg" alt="\(f'/f\)" style="height:1.098em;vertical-align:-0.274em"> is holomorphic except at the zeros and poles of
+<img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">. Near a zero of order <img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em">, <img class="m" src="m/183585b620caa1253c0c424bbb0332fa1dde0e54.svg" alt="\(f(z) = (z-z_{0})^{m}g(z)\)" style="height:1.096em;vertical-align:-0.274em"> with
+<img class="m" src="m/5622daa7ddebefef335028ccaece0332a29969f7.svg" alt="\(g(z_{0})\ne0\)" style="height:1.096em;vertical-align:-0.274em">, so
+<img class="m" src="m/378d8ed5bc154e18b0caf6ec048143fdb4a5c82a.svg" alt="\(f'/f = \frac{m}{z-z_{0}} + \frac{g'}{g}\)" style="height:1.651em;vertical-align:-0.528em">, whose second term is
+holomorphic: the residue is <img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em">. Near a pole of order <img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em"> the same
+computation with <img class="m" src="m/b007c374700b3d7f2200753a0b712ab7d45a2b1b.svg" alt="\(f = (z-z_{0})^{-m}g\)" style="height:1.147em;vertical-align:-0.275em"> gives residue <img class="m" src="m/ae9703831584b9164425710195bc22893bd3707e.svg" alt="\(-m\)" style="height:0.731em;vertical-align:-0.088em">. Summing
+by the residue theorem gives <img class="m" src="m/e554df33be3063c89b8a3c1d161fe124aa2d6f47.svg" alt="\(Z-P\)" style="height:0.840em;vertical-align:-0.092em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orge0ba3d2">
+<p>
+Let <img class="m" src="m/52fffc9055064e5c85f3c1e5957d19079fc01ab2.svg" alt="\(f, g\)" style="height:0.974em;vertical-align:-0.214em"> be holomorphic on an open set containing
+<img class="m" src="m/1fc5ec794e7f4c31a12ae3058d75a1f6940d39d0.svg" alt="\(\overline{B}\)" style="height:0.968em;vertical-align:-0.000em">, with <img class="m" src="m/4b79733edf2645c7e59fde363617dab2cbc21ca4.svg" alt="\(\abs{g(z)}&lt;\abs{f(z)}\)" style="height:1.096em;vertical-align:-0.274em"> for every <img class="m" src="m/a3dcfa6c97b29682527f7556e1c40cc9580c366a.svg" alt="\(z\)" style="height:0.472em;vertical-align:-0.000em"> on
+<img class="m" src="m/6a63972442e335159686b75f6e68f8303d880ee2.svg" alt="\(C = \partial B\)" style="height:0.761em;vertical-align:-0.000em">. Then <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/844a17751c5ec34fc4ddd2892d16f6618ac9b83c.svg" alt="\(f+g\)" style="height:0.974em;vertical-align:-0.214em"> have the same number of
+zeros in <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">, counted with multiplicity.
+</p>
+
+</div>
+
+<div class="proof" id="org2672b9f">
+<p>
+Neither <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> nor <img class="m" src="m/844a17751c5ec34fc4ddd2892d16f6618ac9b83c.svg" alt="\(f+g\)" style="height:0.974em;vertical-align:-0.214em"> vanishes on <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">, by the strict inequality.
+For <img class="m" src="m/a9a540d86c05581319fb25b9343811d50152c100.svg" alt="\(t \in [0,1]\)" style="height:1.096em;vertical-align:-0.274em"> put <img class="m" src="m/dc4560fbeb2d77aeb08d58eb36f9cc58a09a5692.svg" alt="\(h_{t} = f+tg\)" style="height:0.974em;vertical-align:-0.214em">, which also does not vanish on
+<img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">, and let
+<img class="m" src="m/aa22a52a90a267803fe823f51aa032a857cf9964.svg" alt="\(N(t) = \frac{1}{2\pi i}\int_{C}\frac{h_{t}'}{h_{t}}\dd z\)" style="height:1.682em;vertical-align:-0.488em">, the number
+of zeros of <img class="m" src="m/6a849c8c5bfddc78f9a0e3821957362ea790a1f8.svg" alt="\(h_{t}\)" style="height:0.925em;vertical-align:-0.167em"> in <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> by the argument principle. The
+integrand depends continuously on <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em">, uniformly in <img class="m" src="m/a3dcfa6c97b29682527f7556e1c40cc9580c366a.svg" alt="\(z\)" style="height:0.472em;vertical-align:-0.000em"> on the
+compact <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">, since <img class="m" src="m/19a4c362c89461c5b8b8e657f456c116857532ef.svg" alt="\(\abs{h_{t}}\ge\abs{f}-\abs{g}&gt;0\)" style="height:1.096em;vertical-align:-0.274em"> there; hence
+<img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> is continuous. It takes integer values, and a continuous
+integer-valued function on the connected <img class="m" src="m/b40f419d16d54b95652910807100bb67f190c2b6.svg" alt="\([0,1]\)" style="height:1.096em;vertical-align:-0.274em"> is constant, so
+<img class="m" src="m/d9030525e6caa74af7e54d9ba668b4219a367e42.svg" alt="\(N(0) = N(1)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="remark" id="org4a233e2">
+<p>
+Rouche's theorem is how one locates roots without solving: perturbing a
+polynomial by something smaller on a circle does not change how many
+roots are inside, which gives the fundamental theorem of algebra again
+in one line and is the standard tool for stability questions, where the
+zeros of a characteristic function decide whether a solution grows.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="laurent-series-and-isolated-singularities.html"><span>← previous</span>Laurent series and isolated singularities</a><a rel="next" href="sigma-algebras-measures-and-measurable-functions.html"><span>next →</span>Sigma-algebras, measures and measurable functions</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--complex-analysis.pdf" title="PDF manual">Complex Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

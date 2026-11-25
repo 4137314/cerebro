@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How a hash table works (HashMap) · Computer Science</title>
+<meta name="description" content="A hash table is an array of m buckets; key k goes to bucket h(k)\bmod m, collisions are chained in the bucket; with load factor \alpha=n/m bounded (0.75 in HashMap), lookups cost O(1+\alpha) on average, and when \alpha is exceeded the table doubles and every entry is rehashed — O(1) amortised per i…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/hashmap-internals.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="How a hash table works (HashMap) · Computer Science">
+<meta property="og:description" content="A hash table is an array of m buckets; key k goes to bucket h(k)\bmod m, collisions are chained in the bucket; with load factor \alpha=n/m bounded (0.75 in HashMap), lookups cost O(1+\alpha) on average, and when \alpha is exceeded the table doubles and every entry is rehashed — O(1) amortised per i…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/hashmap-internals.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--java">Java</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Programming · Java</p>
+<h1>How a hash table works (HashMap)</h1>
+<p class="summary">A hash table is an array of <img class="m" src="m/5f2d4f790b418da9d600db34c8fe8eb825040aa9.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em"> buckets; key <img class="m" src="m/ab474955bf3a453be6c3259db9214b4a610e4bf7.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> goes to bucket <img class="m" src="m/c051d9a1487001e187287c37c03539438701e4ca.svg" alt="\(h(k)\bmod m\)" style="height:1.096em;vertical-align:-0.274em">, collisions are chained in the bucket; with load factor <img class="m" src="m/0cdb7cf3373e2b08e9d21c4396201a3dbf41dcc5.svg" alt="\(\alpha=n/m\)" style="height:1.096em;vertical-align:-0.274em"> bounded (0.75 in <code>HashMap</code>), lookups cost <img class="m" src="m/fd018a822ca727344bbbb4eb8174a30becd14cc1.svg" alt="\(O(1+\alpha)\)" style="height:1.096em;vertical-align:-0.274em"> on average, and when <img class="m" src="m/dabec0db832b25aa2ca0696129003fd5e252557b.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> is exceeded the table doubles and every entry is rehashed — <img class="m" src="m/db232d0cd832a3fae3e6b6755f176b14153e936b.svg" alt="\(O(1)\)" style="height:1.096em;vertical-align:-0.274em"> amortised per insertion.</p>
+<p class="rel"><span>needs</span> <a href="equals-hashcode.html">The equals–hashCode contract</a>, <a href="java-collections.html">The Java Collections Framework</a></p>
+<p class="rel"><span>see also</span> <a href="stl-containers.html">STL containers</a>, <a href="big-o-complexity.html">Computational complexity and big-O</a></p>
+<p class="rel"><span>mentioned in</span> <a href="java-immutability.html">Immutable objects</a>, <a href="event-driven-simulation.html">Event-driven logic simulation</a></p>
+<details class="path"><summary>Learning path: 14 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li><li><a href="generic-programming.html">Generic programming</a></li><li><a href="casting-instanceof.html">Casts, instanceof and array covariance</a></li><li><a href="java-generics.html">Java generics and type erasure</a></li><li><a href="java-platform.html">The Java platform</a></li><li><a href="java-references.html">Objects, references and garbage collection in Java</a></li><li><a href="java-object-class.html">The class Object and final</a></li><li><a href="equals-hashcode.html">The equals–hashCode contract</a></li><li><a href="java-collections.html">The Java Collections Framework</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgbc46fd9" class="outline-2">
+<h2 id="orgbc46fd9">Construction</h2>
+<div class="outline-text-2" id="text-orgbc46fd9">
+<ul class="org-ul">
+<li><b>Index</b>: <code>HashMap</code> mixes the high bits into the low ones, <img class="m" src="m/6303c602194d8b278f81ab8a35cc4de60662c1e7.svg" alt="\(h\oplus(h\gg16)\)" style="height:1.096em;vertical-align:-0.274em">, then takes <code>h &amp; (m-1)</code> with <img class="m" src="m/5f2d4f790b418da9d600db34c8fe8eb825040aa9.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em"> a power of two.</li>
+<li><b>Collisions</b>: separate chaining (list per bucket); since Java 8 a bucket with more than 8 entries becomes a balanced tree, bounding the worst case at <img class="m" src="m/66ddf3bcf31dc141ffc1f3be703fe5e8f1db2803.svg" alt="\(O(\log n)\)" style="height:1.096em;vertical-align:-0.274em"> for <a href="comparable-comparator.html">comparable</a> keys.</li>
+<li><b>Lookup</b>: find the bucket, then compare hashes and call <code>equals</code> on each entry of the bucket.</li>
+<li><b>Resize</b>: when <img class="m" src="m/5046ce6b08e5065a1fc67986beebf09dfd48fcca.svg" alt="\(n&gt;0.75\,m\)" style="height:0.749em;vertical-align:-0.045em">, allocate <img class="m" src="m/a278988608092c753dae986d0685eb9cbfa23771.svg" alt="\(2m\)" style="height:0.706em;vertical-align:-0.000em"> buckets and reinsert every entry.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgdbfa9f1" class="outline-2">
+<h2 id="orgdbfa9f1">Derivation</h2>
+<div class="outline-text-2" id="text-orgdbfa9f1">
+<p>
+With uniform hashing a bucket holds on average <img class="m" src="m/dabec0db832b25aa2ca0696129003fd5e252557b.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> entries, so an unsuccessful search inspects <img class="m" src="m/dabec0db832b25aa2ca0696129003fd5e252557b.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> of them and a successful one about <img class="m" src="m/21c65416ca2ad7550dddc24a49b19d443b487820.svg" alt="\(1+\alpha/2\)" style="height:1.096em;vertical-align:-0.274em">. Doubling at <img class="m" src="m/aa8c126512c6063d0a9acb857c133a684df45de8.svg" alt="\(n=\alpha_{max}m\)" style="height:0.636em;vertical-align:-0.165em"> costs <img class="m" src="m/75759c7342019bc0f32aba564d0313818f7efb7a.svg" alt="\(O(n)\)" style="height:1.096em;vertical-align:-0.274em">, but it happens after <img class="m" src="m/71027e0025503b143e45cbdb874c0aef80fb434e.svg" alt="\(n/2\)" style="height:1.096em;vertical-align:-0.274em"> insertions since the previous doubling; spreading the cost gives a constant per insertion: <img class="m" src="m/ba8d739a74e6209cc2d3470ec0c72351127388ee.svg" alt="\(1+2+4+\dots+n&lt;2n\)" style="height:0.798em;vertical-align:-0.088em"> total moves for <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> insertions.
+</p>
+</div>
+</div>
+<div id="outline-container-org042c7e9" class="outline-2">
+<h2 id="org042c7e9">Picture</h2>
+<div class="outline-text-2" id="text-org042c7e9">
+<figure class="fig"><img class="m" src="m/87695d31c573c199d3c9b003ce0cb7848086bbee.svg" alt="figure" style="width:22.125em"><figcaption><span class="fl">Figure 1.</span> A hash table with chaining: <img class="m" src="m/26669956f792492dbd1389a256886c27fa4920c3.svg" alt="\(n=4\)" style="height:0.706em;vertical-align:-0.000em"> keys in <img class="m" src="m/5b34b2149ddb7d487cf0afbc09b8f0415e5fdcfa.svg" alt="\(m=8\)" style="height:0.706em;vertical-align:-0.000em"> buckets (load factor <img class="m" src="m/11b6e5a7fc5ff807d411bd8bdf9281a234f8dbcd.svg" alt="\(\alpha=0.5\)" style="height:0.706em;vertical-align:-0.000em">); k1 and k9 collide in bucket 0 and share its list.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org7bed7dc" class="outline-2">
+<h2 id="org7bed7dc">Intuition</h2>
+<div class="outline-text-2" id="text-org7bed7dc">
+<p>
+Hashing turns "search the whole list" into "go straight to the right drawer and look through the few items in it".
+</p>
+</div>
+</div>
+<div id="outline-container-orgaf63114" class="outline-2">
+<h2 id="orgaf63114">Pitfall</h2>
+<div class="outline-text-2" id="text-orgaf63114">
+<p>
+A poor <code>hashCode</code> (constant, or using few fields) puts everything in one bucket and turns <img class="m" src="m/db232d0cd832a3fae3e6b6755f176b14153e936b.svg" alt="\(O(1)\)" style="height:1.096em;vertical-align:-0.274em"> into <img class="m" src="m/75759c7342019bc0f32aba564d0313818f7efb7a.svg" alt="\(O(n)\)" style="height:1.096em;vertical-align:-0.274em">; and iteration order of a <code>HashMap</code> is not insertion order — use <code>LinkedHashMap</code> when it matters.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="java-collections.html"><span>← previous</span>The Java Collections Framework</a><a rel="next" href="java-immutability.html"><span>next →</span>Immutable objects</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--java.pdf" title="PDF manual">Java</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The ratio and root tests · Mathematics</title>
+<meta name="description" content="Both tests do the same thing: they compare a series with a geometric one that dominates it eventually. Neither says anything when its limit is 1, and neither can, since \sum 1/n and \sum 1/n^{2} both hit that case with different answers.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-ratio-and-root-tests.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The ratio and root tests · Mathematics">
+<meta property="og:description" content="Both tests do the same thing: they compare a series with a geometric one that dominates it eventually. Neither says anything when its limit is 1, and neither can, since \sum 1/n and \sum 1/n^{2} both hit that case with different answers.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-ratio-and-root-tests.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Analysis · Real Analysis</p>
+<h1>The ratio and root tests</h1>
+<p class="summary">Both tests do the same thing: they compare a series with a geometric one that dominates it eventually. Neither says anything when its limit is <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">, and neither can, since <img class="m" src="m/63e0a1bc66a8125628a6c06482b51599fcf89a4c.svg" alt="\(\sum 1/n\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/b199a46d5ed63f53ea1b7759dfb61a252611c9a0.svg" alt="\(\sum 1/n^{2}\)" style="height:1.166em;vertical-align:-0.268em"> both hit that case with different answers.</p>
+<p class="rel"><span>needs</span> <a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a>, <a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></p>
+<p class="rel"><span>unlocks</span> <a href="power-series-and-the-radius-of-convergence.html">Power series and the radius of convergence</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li></ol></details>
+</header>
+<main class="note">
+<div class="theorem" id="orgba7b3aa">
+<p>
+Let <img class="m" src="m/50bbcf1942466b696f8f80af3fa1fe987f46c0a6.svg" alt="\(L = \lim_{n \to \infty} \abs{a_{n}}^{1/n}\)" style="height:1.247em;vertical-align:-0.274em"> exist. If <img class="m" src="m/5f2bb9fa963b357f1840c0355b7ac5e98c80cbfe.svg" alt="\(L &lt; 1\)" style="height:0.792em;vertical-align:-0.040em">
+the series <img class="m" src="m/abd3049995b5235ade1c906a6165aa04fcd8f18f.svg" alt="\(\sum a_{n}\)" style="height:1.096em;vertical-align:-0.274em"> converges absolutely; if <img class="m" src="m/d403f89abca919b4be6f2ae421e6978e1b86afec.svg" alt="\(L &gt; 1\)" style="height:0.792em;vertical-align:-0.040em"> it diverges.
+</p>
+
+</div>
+
+<div class="proof" id="org0fc3a3f">
+<p>
+Suppose <img class="m" src="m/5f2bb9fa963b357f1840c0355b7ac5e98c80cbfe.svg" alt="\(L &lt; 1\)" style="height:0.792em;vertical-align:-0.040em"> and pick <img class="m" src="m/6a662e32b188f7fd491c82ebcd46ddece8ed8644.svg" alt="\(r\)" style="height:0.472em;vertical-align:-0.000em"> with <img class="m" src="m/ca36a88e16b60bb660be846f80831056e10aaec5.svg" alt="\(L &lt; r &lt; 1\)" style="height:0.792em;vertical-align:-0.040em">. There is <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> with
+<img class="m" src="m/27a4e98ed8c040306ef4bcce4b9bd554a4a40f4f.svg" alt="\(\abs{a_{n}}^{1/n} \le r\)" style="height:1.247em;vertical-align:-0.274em">, that is <img class="m" src="m/f224ff386bedbef0a2e2a00c03d8e73f48d234cb.svg" alt="\(\abs{a_{n}} \le r^{n}\)" style="height:1.096em;vertical-align:-0.274em">, for all
+<img class="m" src="m/e3a7f6df845655195bb1fcfe91670525ec99e1e5.svg" alt="\(n \ge N\)" style="height:0.898em;vertical-align:-0.153em">. The geometric series <img class="m" src="m/cdadb37d312786688f3de707f7b9d70afe7d409d.svg" alt="\(\sum r^{n}\)" style="height:1.096em;vertical-align:-0.274em"> converges, so by
+comparison <img class="m" src="m/4142201a9634be157cbb45fa6d4fcedf240e0e20.svg" alt="\(\sum_{n \ge N} \abs{a_{n}}\)" style="height:1.293em;vertical-align:-0.465em"> converges, and adding the
+finitely many earlier terms changes nothing. If <img class="m" src="m/d403f89abca919b4be6f2ae421e6978e1b86afec.svg" alt="\(L &gt; 1\)" style="height:0.792em;vertical-align:-0.040em"> then
+<img class="m" src="m/0bd9ce423b16d2142f6d519d30b952751fc4493c.svg" alt="\(\abs{a_{n}} \ge 1\)" style="height:1.096em;vertical-align:-0.274em"> for infinitely many <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">, so the terms do not tend
+to <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> and the series diverges.
+</p>
+
+</div>
+
+<div class="theorem" id="org16398ed">
+<p>
+Let <img class="m" src="m/ca5d2dff23f6cf1596e89ca253be829203605baf.svg" alt="\(a_{n} \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> for all <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> and let
+<img class="m" src="m/654b99b51e6aa13e2fc61002c3682b5c5e174892.svg" alt="\(L = \lim_{n \to \infty} \abs{a_{n+1}/a_{n}}\)" style="height:1.096em;vertical-align:-0.274em"> exist. If <img class="m" src="m/5f2bb9fa963b357f1840c0355b7ac5e98c80cbfe.svg" alt="\(L &lt; 1\)" style="height:0.792em;vertical-align:-0.040em"> the
+series <img class="m" src="m/abd3049995b5235ade1c906a6165aa04fcd8f18f.svg" alt="\(\sum a_{n}\)" style="height:1.096em;vertical-align:-0.274em"> converges absolutely; if <img class="m" src="m/d403f89abca919b4be6f2ae421e6978e1b86afec.svg" alt="\(L &gt; 1\)" style="height:0.792em;vertical-align:-0.040em"> it diverges.
+</p>
+
+</div>
+
+<div class="proof" id="orgd943cd4">
+<p>
+Suppose <img class="m" src="m/5f2bb9fa963b357f1840c0355b7ac5e98c80cbfe.svg" alt="\(L &lt; 1\)" style="height:0.792em;vertical-align:-0.040em"> and pick <img class="m" src="m/6a662e32b188f7fd491c82ebcd46ddece8ed8644.svg" alt="\(r\)" style="height:0.472em;vertical-align:-0.000em"> with <img class="m" src="m/ca36a88e16b60bb660be846f80831056e10aaec5.svg" alt="\(L &lt; r &lt; 1\)" style="height:0.792em;vertical-align:-0.040em">. There is <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> with
+<img class="m" src="m/e8caa1f64e813ec21fc8b6b81271b6f516597ea1.svg" alt="\(\abs{a_{n+1}} \le r \abs{a_{n}}\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/e3a7f6df845655195bb1fcfe91670525ec99e1e5.svg" alt="\(n \ge N\)" style="height:0.898em;vertical-align:-0.153em">, whence by induction
+<img class="m" src="m/c302814c78adc34a7798e491fc2a0acfbbc8bc6e.svg" alt="\(\abs{a_{N+k}} \le r^{k} \abs{a_{N}}\)" style="height:1.204em;vertical-align:-0.277em"> for every <img class="m" src="m/9bb310d08fa4ec8d76450df0fb40c05c9831d5ae.svg" alt="\(k \ge 0\)" style="height:0.910em;vertical-align:-0.146em">.
+Comparison with the convergent geometric series
+<img class="m" src="m/3d295fa95aa9a84074b3ccbb87429871f4744b99.svg" alt="\(\abs{a_{N}} \sum_{k \ge 0} r^{k}\)" style="height:1.401em;vertical-align:-0.476em"> gives absolute convergence. If
+<img class="m" src="m/d403f89abca919b4be6f2ae421e6978e1b86afec.svg" alt="\(L &gt; 1\)" style="height:0.792em;vertical-align:-0.040em"> then <img class="m" src="m/e080e25ae23bfdafc7eaa509d7e6252c34d80d32.svg" alt="\(\abs{a_{n+1}} \ge \abs{a_{n}} &gt; 0\)" style="height:1.096em;vertical-align:-0.274em"> for all large
+<img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">, so the terms cannot tend to <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="monotonicity-and-the-sign-of-the-derivative.html"><span>← previous</span>Monotonicity and the sign of the derivative</a><a rel="next" href="power-series-and-the-radius-of-convergence.html"><span>next →</span>Power series and the radius of convergence</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Image statistics: moments, mode, median · Remote Sensing</title>
+<meta name="description" content="Mean \mu and variance \sigma^2 summarise the level and spread of the DNs; the mode is the histogram peak, the median the value splitting the pixels in half; skewness (third standardised moment) measures asymmetry and kurtosis (fourth) the weight of the tails.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/image-statistics.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Image statistics: moments, mode, median · Remote Sensing">
+<meta property="og:description" content="Mean \mu and variance \sigma^2 summarise the level and spread of the DNs; the mode is the histogram peak, the median the value splitting the pixels in half; skewness (third standardised moment) measures asymmetry and kurtosis (fourth) the weight of the tails.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/image-statistics.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--images">Images</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Processing · Images</p>
+<h1>Image statistics: moments, mode, median</h1>
+<p class="summary">Mean <img class="m" src="m/c4127ee2465b07412c2c18a4f1394f467ef2edd3.svg" alt="\(\mu\)" style="height:0.685em;vertical-align:-0.212em"> and variance <img class="m" src="m/2d1322c48ea88c8eb5ac17bda0a7c7ba11565c7f.svg" alt="\(\sigma^2\)" style="height:0.892em;vertical-align:-0.000em"> summarise the level and spread of the DNs; the mode is the histogram peak, the median the value splitting the pixels in half; skewness (third standardised moment) measures asymmetry and kurtosis (fourth) the weight of the tails.</p>
+<p class="rel"><span>needs</span> <a href="image-histogram.html">Image histogram</a></p>
+<p class="rel"><span>unlocks</span> <a href="principal-component-analysis.html">Principal component analysis of multispectral images</a>, <a href="texture-features.html">Texture features</a>, <a href="homogeneous-area-statistics.html">Statistics of homogeneous areas in optical images</a></p>
+<p class="rel"><span>see also</span> <a href="homogeneous-area-statistics.html">Statistics of homogeneous areas in optical images</a>, <a href="texture-features.html">Texture features</a>, <a href="principal-component-analysis.html">Principal component analysis of multispectral images</a></p>
+<p class="rel"><span>mentioned in</span> <a href="radiometric-snr.html">Signal-to-noise ratio and noise-equivalent quantities</a>, <a href="radiometric-correction.html">Radiometric errors and corrections</a>, <a href="statistical-filters.html">Statistical (rank) filters</a>, <a href="speckle-filtering.html">Speckle reduction</a>, <a href="image-thresholding.html">Histogram thresholding</a>, <a href="image-segmentation.html">Image segmentation</a>, <a href="region-growing.html">Region growing</a>, <a href="feature-extraction.html">Feature extraction</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org33b82bb" class="outline-2">
+<h2 id="org33b82bb">Definition</h2>
+<div class="outline-text-2" id="text-org33b82bb">
+<p>
+With <img class="m" src="m/f826d951816c0d50813d832e72981f558c4349c3.svg" alt="\(h(k)\)" style="height:1.096em;vertical-align:-0.274em"> the normalised histogram:
+<div class="mb"><img class="m" src="m/efe3e237529381d6a3c0b89691b9ffac4d8f4375.svg" alt="\[ \mu=\sum_k k\,h(k),\qquad \sigma^2=\sum_k(k-\mu)^2h(k), \]" style="width:19.986em"></div>
+<div class="mb"><img class="m" src="m/13f04753ce0fbd90c71f873e776463f51ff9139c.svg" alt="\[ \gamma_1=\frac{1}{\sigma^3}\sum_k(k-\mu)^3h(k),\qquad \gamma_2=\frac{1}{\sigma^4}\sum_k(k-\mu)^4h(k). \]" style="width:26.470em"></div>
+</p>
+<ul class="org-ul">
+<li>mode: <img class="m" src="m/2e9974945bc7e76b6812162c4e89e5a9e2141ad7.svg" alt="\(\arg\max_k h(k)\)" style="height:1.096em;vertical-align:-0.274em">; median: <img class="m" src="m/b3da08fe2e7129db674e41a57988f30517e68d8b.svg" alt="\(\mathrm{DN}_p\)" style="height:1.062em;vertical-align:-0.319em"> with <img class="m" src="m/f484b2ea1c16cdcd96f3b5038004d5cd41398b45.svg" alt="\(H(\mathrm{DN}_p)=0.5\)" style="height:1.135em;vertical-align:-0.318em">;</li>
+<li>skewness <img class="m" src="m/1867f6deb5550af3ec76a20d6d35c01a699b9d3c.svg" alt="\(\gamma_1=0\)" style="height:0.919em;vertical-align:-0.211em"> for symmetric distributions, <img class="m" src="m/3895527e357cd3049e7db52ee1f9f6e5897b4ff7.svg" alt="\(&gt;0\)" style="height:0.749em;vertical-align:-0.045em"> for a long right tail;</li>
+<li>kurtosis <img class="m" src="m/dafe7ff69710f336104678f631cf6eb8a34edc0e.svg" alt="\(\gamma_2=3\)" style="height:0.919em;vertical-align:-0.211em"> for a Gaussian; larger means heavier tails and a sharper peak.</li>
+</ul>
+<p>
+For a symmetric unimodal histogram mean, median and mode coincide; with skew they separate (mode, median, mean in the direction of the tail).
+</p>
+<ul class="org-ul">
+<li>contrast: <img class="m" src="m/600504ce35035078dc7eb1629e63428ab62edf62.svg" alt="\(\mathrm{DN}_{max}-\mathrm{DN}_{min}\)" style="height:0.913em;vertical-align:-0.164em">, their ratio, or <img class="m" src="m/8516f62704cfc9f6fef98a2694f3ea1455c1ccb7.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5916aa3" class="outline-2">
+<h2 id="org5916aa3">Example</h2>
+<div class="outline-text-2" id="text-org5916aa3">
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="k">from</span> scipy <span class="k">import</span> stats
+<span class="v">b</span> = img[3].ravel().astype(<span class="b">float</span>)
+<span class="b">print</span>(b.mean(), b.var(), np.median(b), stats.mode(b, keepdims=<span class="n">False</span>).mode,
+      stats.skew(b), stats.kurtosis(b, fisher=<span class="n">False</span>))</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orgfa51b03" class="outline-2">
+<h2 id="orgfa51b03">Intuition</h2>
+<div class="outline-text-2" id="text-orgfa51b03">
+<p>
+Mean and variance describe the bulk; skewness and kurtosis describe the tails, where the unusual pixels (clouds, fires, shadows) live.
+</p>
+</div>
+</div>
+<div id="outline-container-org999a63f" class="outline-2">
+<h2 id="org999a63f">Pitfall</h2>
+<div class="outline-text-2" id="text-org999a63f">
+<p>
+Global statistics of a scene mix classes: a mean over forest and lake describes neither. Statistics are meaningful on <a href="homogeneous-area-statistics.html">homogeneous areas</a>.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="image-histogram.html"><span>← previous</span>Image histogram</a><a rel="next" href="look-up-table.html"><span>next →</span>Look-up tables and visualization</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--images.pdf" title="PDF manual">Images</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

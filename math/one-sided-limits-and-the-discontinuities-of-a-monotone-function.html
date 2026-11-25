@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One-sided limits and the discontinuities of a monotone function · Mathematics</title>
+<meta name="description" content="A limit either exists or it does not, and the two-sided definition gives no vocabulary for how it fails. Splitting it in two supplies that vocabulary, and it immediately pays: a monotone function turns out to have both one-sided limits everywhere, so the only discontinuity it can have is a jump.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/one-sided-limits-and-the-discontinuities-of-a-monotone-function.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="One-sided limits and the discontinuities of a monotone function · Mathematics">
+<meta property="og:description" content="A limit either exists or it does not, and the two-sided definition gives no vocabulary for how it fails. Splitting it in two supplies that vocabulary, and it immediately pays: a monotone function turns out to have both one-sided limits everywhere, so the only discontinuity it can have is a jump.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/one-sided-limits-and-the-discontinuities-of-a-monotone-function.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Real Analysis</p>
+<h1>One-sided limits and the discontinuities of a monotone function</h1>
+<p class="summary">A limit either exists or it does not, and the two-sided definition gives no vocabulary for <i>how</i> it fails. Splitting it in two supplies that vocabulary, and it immediately pays: a monotone function turns out to have both one-sided limits everywhere, so the only discontinuity it can have is a jump.</p>
+<p class="rel"><span>needs</span> <a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a>, <a href="supremum-and-infimum.html">Supremum and infimum</a>, <a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></p>
+<p class="rel"><span>unlocks</span> <a href="monotone-functions-are-integrable-and-the-mean-value-theorem-for-integrals.html">Monotone functions are integrable, and the mean value theorem for integrals</a>, <a href="taylors-theorem-with-the-peano-remainder.html">Taylor's theorem with the Peano remainder</a>, <a href="the-continuous-image-of-an-interval-and-the-continuous-inverse.html">The continuous image of an interval and the continuous inverse</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 4 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org8df01c6">
+<p>
+Let <img class="m" src="m/979c6360e64657e99af847a4effa6b30bfc2c4d0.svg" alt="\(f \colon D \to \R\)" style="height:0.974em;vertical-align:-0.214em"> and let <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> be an accumulation point of
+<img class="m" src="m/192060bf33528eb0c93cc80cba749750ff5edf51.svg" alt="\(D \cap (c, \infty)\)" style="height:1.096em;vertical-align:-0.274em">. One writes <img class="m" src="m/07aace503ff00ac3df501b5af1b58c30fb4df5a6.svg" alt="\(\lim_{x \to c^{+}} f(x) = L\)" style="height:1.096em;vertical-align:-0.274em">, the
+<i>right-hand limit</i>, if for every <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> there is <img class="m" src="m/2834db4da57323bf6f47d0a640028cc90f572412.svg" alt="\(\delta &gt; 0\)" style="height:0.804em;vertical-align:-0.040em">
+with <img class="m" src="m/191827bda4893b3cdc178ed568ffe50690d03f23.svg" alt="\(\abs{f(x) - L} &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em"> for every <img class="m" src="m/ee3f11d646a6e332199b0bf4674c6135b2566e0d.svg" alt="\(x \in D\)" style="height:0.792em;vertical-align:-0.040em"> satisfying
+<img class="m" src="m/305cd66176a24856e9d87cc413348bb0f7c69f35.svg" alt="\(c &lt; x &lt; c + \delta\)" style="height:0.852em;vertical-align:-0.094em">. The <i>left-hand limit</i>
+<img class="m" src="m/ebdaf846f26315a033264ae4a1c39e0d96957462.svg" alt="\(\lim_{x \to c^{-}} f(x)\)" style="height:1.096em;vertical-align:-0.274em"> is defined symmetrically, on
+<img class="m" src="m/d3a3131745f284c2484a4403844187dddc772a2a.svg" alt="\(c - \delta &lt; x &lt; c\)" style="height:0.852em;vertical-align:-0.094em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org6eb1cef">
+<p>
+Let <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> be an accumulation point of <img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> from both sides. Then
+<img class="m" src="m/8a980bc50f833dc20b5626208b22a61e02330305.svg" alt="\(\lim_{x \to c} f(x) = L\)" style="height:1.096em;vertical-align:-0.274em"> if and only if both one-sided limits exist
+and equal <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org70e3ca9">
+<p>
+If the two-sided limit is <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">, the <img class="m" src="m/ae9908b1dd9140d114827a466a957908d1672568.svg" alt="\(\delta\)" style="height:0.761em;vertical-align:-0.000em"> it supplies works for
+each side, since each side's condition is a restriction of
+<img class="m" src="m/75b355a715e008fd7b405acd9366ccbe30e7751c.svg" alt="\(0 &lt; \abs{x - c} &lt; \delta\)" style="height:1.096em;vertical-align:-0.274em">. Conversely, given <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> take
+<img class="m" src="m/bcd73a45be54b2765aeee639e0da17e93ed21833.svg" alt="\(\delta_{+}\)" style="height:1.017em;vertical-align:-0.254em"> and <img class="m" src="m/f9510807c22f76989d9fb97a4085d4c12d05dacd.svg" alt="\(\delta_{-}\)" style="height:1.017em;vertical-align:-0.254em"> from the two one-sided limits and put
+<img class="m" src="m/a774bce575f159e70ff4f58e8d6b18b8193ca765.svg" alt="\(\delta = \min(\delta_{+}, \delta_{-})\)" style="height:1.096em;vertical-align:-0.274em">. Any <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> with
+<img class="m" src="m/75b355a715e008fd7b405acd9366ccbe30e7751c.svg" alt="\(0 &lt; \abs{x - c} &lt; \delta\)" style="height:1.096em;vertical-align:-0.274em"> lies strictly on one side of <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em">, so it
+satisfies that side's estimate.
+</p>
+
+</div>
+
+<div class="theorem" id="org92b69d2">
+<p>
+Let <img class="m" src="m/0161523f9df16e8afc4d4f08c53cc974de97ec72.svg" alt="\(f \colon (a,b) \to \R\)" style="height:1.096em;vertical-align:-0.274em"> be increasing. Then both one-sided limits
+exist at every <img class="m" src="m/a06fa0a34dda64070d269dda53ddf998f417b711.svg" alt="\(c \in (a,b)\)" style="height:1.096em;vertical-align:-0.274em">, and
+<div class="mb"><img class="m" src="m/4e0e6b9d672d53b9a99736796ca1ab364342917b.svg" alt="\[ \lim_{x \to c^{-}} f(x) = \sup_{x &lt; c} f(x) \le f(c) \le \inf_{x &gt; c} f(x) = \lim_{x \to c^{+}} f(x). \]" style="width:25.408em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="org42302b5">
+<p>
+The set <img class="m" src="m/bf501ff2e87833a4c4af9d84fc16e555f7f3f052.svg" alt="\(\setst{f(x)}{a &lt; x &lt; c}\)" style="height:1.096em;vertical-align:-0.274em"> is non-empty and bounded above by
+<img class="m" src="m/2dd7d9d53090fc6d023c1fc6ad0281b0af33dca1.svg" alt="\(f(c)\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/b1f3fcadbe60add553146bdd761dc05594b34068.svg" alt="\(s = \sup_{x &lt; c} f(x)\)" style="height:1.148em;vertical-align:-0.321em"> exists by completeness and
+<img class="m" src="m/50591ff5bda5b897abf58777c3d7d9acdf2463eb.svg" alt="\(s \le f(c)\)" style="height:1.096em;vertical-align:-0.274em">. Let <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em">. By the characterisation of the
+supremum there is <img class="m" src="m/b3e85247cc55953b9887e1f7343f7aa634e54c88.svg" alt="\(x_{0} &lt; c\)" style="height:0.755em;vertical-align:-0.166em"> with <img class="m" src="m/3811b661c02e55f8fdcf03928ab7c32a226a0384.svg" alt="\(f(x_{0}) &gt; s - \eps\)" style="height:1.096em;vertical-align:-0.274em">, and for
+every <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> with <img class="m" src="m/6a104c62155590998c9dd48840435884396d3465.svg" alt="\(x_{0} &lt; x &lt; c\)" style="height:0.755em;vertical-align:-0.166em"> monotonicity gives
+<img class="m" src="m/78ccfe23318709e0f96f091fc632049616e968a2.svg" alt="\(s - \eps &lt; f(x_{0}) \le f(x) \le s\)" style="height:1.096em;vertical-align:-0.274em">. Taking
+<img class="m" src="m/d6218e60fc83f166dd8553d4c1fe63b6fe8ac55d.svg" alt="\(\delta = c - x_{0}\)" style="height:0.925em;vertical-align:-0.167em"> shows <img class="m" src="m/1a8c68b2a78f19f8c0fee1e7468fdfaf62f6be0a.svg" alt="\(\lim_{x \to c^{-}} f(x) = s\)" style="height:1.096em;vertical-align:-0.274em">. The
+right-hand statement is the same argument applied to the infimum.
+</p>
+
+</div>
+
+<div class="corollary" id="orgc551797">
+<p>
+An increasing <img class="m" src="m/0161523f9df16e8afc4d4f08c53cc974de97ec72.svg" alt="\(f \colon (a,b) \to \R\)" style="height:1.096em;vertical-align:-0.274em"> is continuous at <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> if and
+only if <img class="m" src="m/3fad6a2d7f6e849fbfed07ad3ce55730474d85cf.svg" alt="\(\sup_{x &lt; c} f(x) = \inf_{x &gt; c} f(x)\)" style="height:1.148em;vertical-align:-0.321em">. Every discontinuity
+of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is thus a <i>jump</i>: both one-sided limits exist and differ.
+</p>
+
+</div>
+
+<div class="proof" id="org2e2e96f">
+<p>
+By the theorem the two one-sided limits exist and are the stated
+supremum and infimum, and they bracket <img class="m" src="m/2dd7d9d53090fc6d023c1fc6ad0281b0af33dca1.svg" alt="\(f(c)\)" style="height:1.096em;vertical-align:-0.274em">. By the proposition,
+continuity at <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> is the existence of the two-sided limit together
+with its equalling <img class="m" src="m/2dd7d9d53090fc6d023c1fc6ad0281b0af33dca1.svg" alt="\(f(c)\)" style="height:1.096em;vertical-align:-0.274em">, which happens exactly when the two agree
+&#x2013; and then, being squeezed around <img class="m" src="m/2dd7d9d53090fc6d023c1fc6ad0281b0af33dca1.svg" alt="\(f(c)\)" style="height:1.096em;vertical-align:-0.274em">, they agree with it.
+</p>
+
+</div>
+
+<div class="remark" id="orgfb5e982">
+<p>
+The corollary is the reason a monotone function has at most countably
+many discontinuities: each jump contains a distinct rational, and the
+rationals are countable. That argument needs the density of the
+rationals and nothing else about <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">, which is a fair summary of how
+much structure monotonicity alone carries.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-algebra-of-continuous-functions-and-composition.html"><span>← previous</span>The algebra of continuous functions and composition</a><a rel="next" href="the-intermediate-value-theorem.html"><span>next →</span>The intermediate value theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

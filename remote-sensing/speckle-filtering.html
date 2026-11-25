@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speckle reduction · Remote Sensing</title>
+<meta name="description" content="Speckle is reduced by multilooking (averaging independent looks, at the cost of resolution) or by adaptive filters such as Lee, Kuan and Frost, which in homogeneous areas average strongly and near edges and point targets keep the original value, by comparing the local coefficient of variation with …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/speckle-filtering.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Speckle reduction · Remote Sensing">
+<meta property="og:description" content="Speckle is reduced by multilooking (averaging independent looks, at the cost of resolution) or by adaptive filters such as Lee, Kuan and Frost, which in homogeneous areas average strongly and near edges and point targets keep the original value, by comparing the local coefficient of variation with …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/speckle-filtering.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--sar-processing">Sar Processing</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Processing · Sar Processing</p>
+<h1>Speckle reduction</h1>
+<p class="summary">Speckle is reduced by multilooking (averaging independent looks, at the cost of resolution) or by adaptive filters such as Lee, Kuan and Frost, which in homogeneous areas average strongly and near edges and point targets keep the original value, by comparing the local coefficient of variation with the speckle's.</p>
+<p class="rel"><span>needs</span> <a href="speckle-statistics.html">Speckle and its statistics</a>, <a href="moving-window-filters.html">Moving-window (convolution) filters</a></p>
+<p class="rel"><span>see also</span> <a href="statistical-filters.html">Statistical (rank) filters</a>, <a href="sar-complex-image.html">SAR complex, amplitude and intensity images</a></p>
+<details class="path"><summary>Learning path: 26 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="spectral-signature.html">Spectral signature</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="radar-equation.html">Radar principle and radar equation</a></li><li><a href="side-looking-radar.html">Side-looking radar geometry</a></li><li><a href="azimuth-resolution.html">Azimuth resolution of a real-aperture radar</a></li><li><a href="backscattering-coefficient.html">Backscattering coefficient</a></li><li><a href="range-resolution.html">Range resolution</a></li><li><a href="chirp-pulse-compression.html">Chirp and pulse compression</a></li><li><a href="synthetic-aperture-radar.html">Synthetic aperture radar (SAR)</a></li><li><a href="sar-complex-image.html">SAR complex, amplitude and intensity images</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li><li><a href="image-statistics.html">Image statistics: moments, mode, median</a></li><li><a href="moving-window-filters.html">Moving-window (convolution) filters</a></li><li><a href="homogeneous-area-statistics.html">Statistics of homogeneous areas in optical images</a></li><li><a href="speckle-statistics.html">Speckle and its statistics</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org5388be9" class="outline-2">
+<h2 id="org5388be9">Method</h2>
+<div class="outline-text-2" id="text-org5388be9">
+<ul class="org-ul">
+<li><b><a href="sar-complex-image.html">Multilook</a></b>: average <img class="m" src="m/995b3f9a6b62cf6244fece7ac81dfd2f9ca4e1ac.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> looks (sub-apertures or neighbouring pixels): <img class="m" src="m/2ddc8ee1fe7094d23a1d52f7f2884d8fce5c58ee.svg" alt="\(\sigma_I/\mu_I\to1/\sqrt L\)" style="height:1.289em;vertical-align:-0.271em">, resolution worse by <img class="m" src="m/995b3f9a6b62cf6244fece7ac81dfd2f9ca4e1ac.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">.</li>
+<li><b>Mean / <a href="image-statistics.html">median</a> filters</b>: reduce speckle but blur edges and erase point targets.</li>
+<li><b>Lee filter</b>: model <img class="m" src="m/cb25c6f8ad1fa2a34614b7a33b19881c4d67f0b4.svg" alt="\(I=R\,n\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/4aeaf7ca2d96480f9f6cfe1494ee937a3e8df7b3.svg" alt="\(E[n]=1\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/a478ddb1aa159991d8ee360e8f12038de09f221e.svg" alt="\(\mathrm{Var}(n)=\sigma_n^2=1/L\)" style="height:1.166em;vertical-align:-0.268em">. In a window with mean <img class="m" src="m/55c60bc1dd52b456b8cef2dece54b859f49b12fc.svg" alt="\(\bar I\)" style="height:0.899em;vertical-align:-0.000em"> and variance <img class="m" src="m/c607b00acbf9ae36f6888ddea79577238c32d4a7.svg" alt="\(\mathrm{Var}(I)\)" style="height:1.096em;vertical-align:-0.274em">,</li>
+</ul>
+<p>
+<div class="mb"><img class="m" src="m/c3c14b4b39a77ec75dbe24dfb851209109eab4db.svg" alt="\[ \hat R=\bar I+k\,(I-\bar I),\qquad k=\frac{\mathrm{Var}(R)}{\mathrm{Var}(I)},\quad \mathrm{Var}(R)=\frac{\mathrm{Var}(I)-\bar I^2\sigma_n^2}{1+\sigma_n^2}. \]" style="width:30.494em"></div>
+In a <a href="homogeneous-area-statistics.html">homogeneous area</a> <img class="m" src="m/e131a5d4a234c0185d1a9515cc467bc9a232cfbf.svg" alt="\(\mathrm{Var}(I)\approx\bar I^2\sigma_n^2\Rightarrow k\approx0\)" style="height:1.173em;vertical-align:-0.270em">: output the mean. On an edge or a strong target <img class="m" src="m/084f3cc3297abcee07a55502346d1cc5d78c024c.svg" alt="\(k\to1\)" style="height:0.761em;vertical-align:-0.000em">: keep the pixel.
+</p>
+<ul class="org-ul">
+<li><b>Frost</b>: exponentially weighted kernel whose decay grows with the local coefficient of variation. <b>Gamma MAP</b>: Bayesian estimate with Gamma priors.</li>
+<li>Modern: non-local means, multitemporal filtering, deep networks.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org107e6d1" class="outline-2">
+<h2 id="org107e6d1">Example</h2>
+<div class="outline-text-2" id="text-org107e6d1">
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="k">def</span> <span class="f">lee</span>(I, size=7, L=1):
+    <span class="v">m</span> = ndimage.uniform_filter(I, size); <span class="v">m2</span> = ndimage.uniform_filter(I**2, size)
+    <span class="v">var</span> = m2 - m**2; <span class="v">sn2</span> = 1.0 / L
+    <span class="v">varR</span> = np.maximum((var - m**2 * sn2) / (1 + sn2), 0)
+    <span class="v">k</span> = varR / np.maximum(var, 1e-12)
+    <span class="k">return</span> m + k * (I - m)</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org7f5afd4" class="outline-2">
+<h2 id="org7f5afd4">Intuition</h2>
+<div class="outline-text-2" id="text-org7f5afd4">
+<p>
+Smooth only where the variation can be explained by speckle alone; where there is more variation than speckle could produce, there must be structure, so leave it.
+</p>
+</div>
+</div>
+<div id="outline-container-org76725ce" class="outline-2">
+<h2 id="org76725ce">Pitfall</h2>
+<div class="outline-text-2" id="text-org76725ce">
+<p>
+Every speckle filter trades noise against resolution and radiometric fidelity: filtered intensities can be biased, so estimate <img class="m" src="m/88aacec02e6ea8f67e4c3001bce15a12392bb702.svg" alt="\(\sigma^0\)" style="height:0.892em;vertical-align:-0.000em"> on homogeneous areas of unfiltered (or carefully multilooked) data.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="speckle-statistics.html"><span>← previous</span>Speckle and its statistics</a><a rel="next" href="image-segmentation.html"><span>next →</span>Image segmentation</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--sar-processing.pdf" title="PDF manual">Sar Processing</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

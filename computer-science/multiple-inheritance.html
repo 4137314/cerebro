@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multiple inheritance and the diamond · Computer Science</title>
+<meta name="description" content="A C++ class can have several base classes; when two of them share a base (the diamond), the derived object contains two copies of it and inherited names become ambiguous, unless the shared base is inherited virtual, which keeps a single shared subobject constructed by the most derived class.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/multiple-inheritance.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Multiple inheritance and the diamond · Computer Science">
+<meta property="og:description" content="A C++ class can have several base classes; when two of them share a base (the diamond), the derived object contains two copies of it and inherited names become ambiguous, unless the shared base is inherited virtual, which keeps a single shared subobject constructed by the most derived class.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/multiple-inheritance.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--cpp">Cpp</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Cpp</p>
+<h1>Multiple inheritance and the diamond</h1>
+<p class="summary">A C++ class can have several base classes; when two of them share a base (the diamond), the derived object contains two copies of it and inherited names become ambiguous, unless the shared base is inherited <code>virtual</code>, which keeps a single shared subobject constructed by the most derived class.</p>
+<p class="rel"><span>needs</span> <a href="cpp-inheritance-visibility.html">Public, protected and private inheritance in C++</a>, <a href="virtual-functions.html">Virtual functions and the virtual table</a></p>
+<p class="rel"><span>see also</span> <a href="abstract-class-interface.html">Abstract classes and interfaces</a>, <a href="uml-generalization.html">Generalization (is-a)</a>, <a href="casts-rtti.html">C++ named casts and RTTI</a></p>
+<p class="rel"><span>mentioned in</span> <a href="uml-generalization.html">Generalization (is-a)</a>, <a href="abstract-class-interface.html">Abstract classes and interfaces</a>, <a href="inheritance.html">Inheritance and overriding</a>, <a href="object-oriented-programming.html">Object-oriented programming</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li><li><a href="information-hiding.html">Information hiding and visibility</a></li><li><a href="cpp-inheritance-visibility.html">Public, protected and private inheritance in C++</a></li><li><a href="virtual-functions.html">Virtual functions and the virtual table</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org7e531aa" class="outline-2">
+<h2 id="org7e531aa">Definition</h2>
+<div class="outline-text-2" id="text-org7e531aa">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="k">struct</span> <span class="t">Person</span> { <span class="n">std</span>::<span class="t">string</span> <span class="v">name</span>; };
+<span class="k">struct</span> <span class="t">Student</span> : <span class="k">virtual</span> <span class="t">Person</span> { <span class="t">int</span> <span class="v">year</span>; };
+<span class="k">struct</span> <span class="t">Worker</span>  : <span class="k">virtual</span> <span class="t">Person</span> { <span class="t">int</span> <span class="v">seniority</span>; };
+<span class="k">struct</span> <span class="t">WorkingStudent</span> : <span class="t">Student</span>, <span class="t">Worker</span> {
+  <span class="c">// the most derived class builds Person
+</span>  WorkingStudent(<span class="n">std</span>::string n) : Person{n} {}
+};</code></pre></figure>
+<ul class="org-ul">
+<li>Without <code>virtual</code>, <code>WorkingStudent</code> has two <code>Person</code> subobjects: <code>ws.name</code> is ambiguous (<code>ws.Student::name</code> vs <code>ws.Worker::name</code>) and a <code>WorkingStudent*</code> cannot convert to <code>Person*</code> unambiguously.</li>
+<li>With <a href="virtual-functions.html">virtual</a> inheritance there is one <code>Person</code>; access goes through an extra indirection (virtual base pointer).</li>
+<li>Two bases declaring the same member function: the call is ambiguous until the <a href="inheritance.html">derived class</a> overrides it or qualifies it (<code>Student::print()</code>).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org02cc52e" class="outline-2">
+<h2 id="org02cc52e">Picture</h2>
+<div class="outline-text-2" id="text-org02cc52e">
+<figure class="fig"><img class="m" src="m/7cfec408b5762a3548b08e8dcb2cca65e6b06f3c.svg" alt="figure" style="width:18.752em"><figcaption><span class="fl">Figure 1.</span> The diamond of multiple inheritance: WorkingStudent inherits Person through both Student and Worker; virtual inheritance keeps a single Person subobject.</figcaption></figure>
+<p>
+The diamond: with <code>virtual</code> the two paths lead to one shared Person.
+</p>
+</div>
+</div>
+<div id="outline-container-orga6fe825" class="outline-2">
+<h2 id="orga6fe825">Java's answer</h2>
+<div class="outline-text-2" id="text-orga6fe825">
+<p>
+Java forbids <a href="uml-generalization.html">multiple inheritance</a> of classes and allows multiple <a href="abstract-class-interface.html">interfaces</a>. Since Java 8 default methods reintroduce a mild diamond: if two interfaces provide the same default method, the class must override it (and may call <code>A.super.m()</code>).
+</p>
+</div>
+</div>
+<div id="outline-container-orgf950a07" class="outline-2">
+<h2 id="orgf950a07">Intuition</h2>
+<div class="outline-text-2" id="text-orgf950a07">
+<p>
+Inheriting from two parents that share a grandparent: do you want two copies of the grandparent's data or one? <code>virtual</code> is how you answer "one".
+</p>
+</div>
+</div>
+<div id="outline-container-orgea1d11f" class="outline-2">
+<h2 id="orgea1d11f">Pitfall</h2>
+<div class="outline-text-2" id="text-orgea1d11f">
+<p>
+Virtual bases are constructed by the most derived class only: the <code>Person</code> initialisers written in <code>Student</code> and <code>Worker</code> are ignored when building a <code>WorkingStudent</code>, which surprises everyone once.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="lambda-expressions.html"><span>← previous</span>Lambda expressions</a><a rel="next" href="smart-pointers.html"><span>next →</span>Smart pointers: unique_ptr, shared_ptr, weak_ptr</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--cpp.pdf" title="PDF manual">Cpp</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

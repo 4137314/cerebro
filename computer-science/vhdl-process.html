@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Processes and sequential statements · Computer Science</title>
+<meta name="description" content="A process is one concurrent statement whose body runs sequentially (if, case, for, variables) each time a signal in its sensitivity list changes; to describe combinational logic the list must contain every signal read and every output must be assigned on every path, otherwise a latch is inferred.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/vhdl-process.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Processes and sequential statements · Computer Science">
+<meta property="og:description" content="A process is one concurrent statement whose body runs sequentially (if, case, for, variables) each time a signal in its sensitivity list changes; to describe combinational logic the list must contain every signal read and every output must be assigned on every path, otherwise a latch is inferred.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/vhdl-process.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--vhdl">Vhdl</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Hardware · Vhdl</p>
+<h1>Processes and sequential statements</h1>
+<p class="summary">A <code>process</code> is one concurrent statement whose body runs sequentially (<code>if</code>, <code>case</code>, <code>for</code>, variables) each time a signal in its sensitivity list changes; to describe combinational logic the list must contain every signal read and every output must be assigned on every path, otherwise a latch is inferred.</p>
+<p class="rel"><span>needs</span> <a href="vhdl-concurrent-assignments.html">Concurrent assignments: when–else and with–select</a></p>
+<p class="rel"><span>unlocks</span> <a href="sequential-logic.html">Flip-flops and registers in VHDL</a>, <a href="signals-variables.html">Signals versus variables</a>, <a href="vhdl-testbench.html">Testbenches</a></p>
+<p class="rel"><span>see also</span> <a href="signals-variables.html">Signals versus variables</a>, <a href="delta-cycle.html">Delta cycles</a>, <a href="sequential-logic.html">Flip-flops and registers in VHDL</a>, <a href="vhdl-testbench.html">Testbenches</a></p>
+<p class="rel"><span>mentioned in</span> <a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a></p>
+<details class="path"><summary>Learning path: 4 notes lead here, in study order</summary><ol><li><a href="digital-design-flow.html">Digital design flow and abstraction levels</a></li><li><a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a></li><li><a href="std-logic.html">std_logic: nine-valued logic and resolution</a></li><li><a href="vhdl-concurrent-assignments.html">Concurrent assignments: when–else and with–select</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org78321c8" class="outline-2">
+<h2 id="org78321c8">Definition</h2>
+<div class="outline-text-2" id="text-org78321c8">
+<figure class="listing lang-vhdl"><figcaption><span class="lang">VHDL</span></figcaption><pre class="src"><code><span class="f">prio</span> : <span class="k">process</span> (req)                 <span class="c">-- sensitivity list
+</span><span class="k">begin</span>
+  code  &lt;= <span class="s">"00"</span>;                     <span class="c">-- default values: assigned on every path
+</span>  valid &lt;= <span class="s">'0'</span>;
+  <span class="k">for</span> <span class="v">i</span> <span class="k">in</span> 0 <span class="k">to</span> 3 <span class="k">loop</span>               <span class="c">-- later iterations override earlier ones
+</span>    <span class="k">if</span> req(i) = <span class="s">'1'</span> <span class="k">then</span>
+      code  &lt;= <span class="t">std_logic_vector</span>(to_unsigned(i, 2));
+      valid &lt;= <span class="s">'1'</span>;
+    <span class="k">end</span> <span class="k">if</span>;
+  <span class="k">end</span> <span class="k">loop</span>;
+<span class="k">end</span> <span class="k">process</span>;</code></pre></figure>
+<ul class="org-ul">
+<li>The process wakes up when a signal in its sensitivity list has an event, runs to the end (or to a <code>wait</code>), then suspends. A process with <code>wait</code> statements has no sensitivity list.</li>
+<li>Signal assignments inside a process are <b>scheduled</b>: they take effect when the process suspends (see <a href="signals-variables.html">signals and variables</a>). The last assignment to a signal wins.</li>
+<li>Sequential statements: <code>if/elsif/else</code>, <code>case ... when</code> (all choices covered), <code>for</code> and <code>while</code> loops (unrolled by synthesis), variable assignment <code>:=</code>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5f7f878" class="outline-2">
+<h2 id="org5f7f878">Rules for combinational processes</h2>
+<div class="outline-text-2" id="text-org5f7f878">
+<ol class="org-ol">
+<li>every signal read is in the sensitivity list (or <code>process (all)</code> in VHDL-2008);</li>
+<li>every output is assigned on every path — simplest with default assignments at the top.</li>
+</ol>
+<p>
+Breaking rule 2 means the output keeps its old value on some path: a latch. Breaking rule 1 makes simulation differ from the synthesised hardware.
+</p>
+</div>
+</div>
+<div id="outline-container-org34794f8" class="outline-2">
+<h2 id="org34794f8">Worked example</h2>
+<div class="outline-text-2" id="text-org34794f8">
+<figure class="listing lang-vhdl"><figcaption><span class="lang">VHDL</span></figcaption><pre class="src"><code><span class="k">process</span> (sel, a, b) <span class="k">begin</span>
+  <span class="k">if</span> sel = <span class="s">'1'</span> <span class="k">then</span> y &lt;= a; <span class="k">end</span> <span class="k">if</span>;     <span class="c">-- y not assigned when sel = '0'
+</span><span class="k">end</span> <span class="k">process</span>;</code></pre></figure>
+<p>
+When <code>sel</code> is 0, <code>y</code> must keep its previous value: synthesis builds a level-sensitive latch enabled by <code>sel</code>. Adding <code>else y &lt;</code> b;= (or a default <code>y &lt;</code> b;= before the <code>if</code>) makes it a 2:1 multiplexer. If <code>b</code> were missing from the sensitivity list, simulation would not react to changes of <code>b</code> while synthesis (which ignores the list) would: simulation and hardware would disagree.
+</p>
+</div>
+</div>
+<div id="outline-container-org8112e80" class="outline-2">
+<h2 id="org8112e80">Intuition</h2>
+<div class="outline-text-2" id="text-org8112e80">
+<p>
+A process is a black box with one rule inside: when an input changes, recompute everything from scratch. If on some path you do not say what an output is, the hardware has to remember it.
+</p>
+</div>
+</div>
+<div id="outline-container-org5827e12" class="outline-2">
+<h2 id="org5827e12">Pitfall</h2>
+<div class="outline-text-2" id="text-org5827e12">
+<p>
+A <code>for</code> loop does not iterate in time: it describes replicated hardware, all of it present at once.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="vhdl-concurrent-assignments.html"><span>← previous</span>Concurrent assignments: when–else and with–select</a><a rel="next" href="sequential-logic.html"><span>next →</span>Flip-flops and registers in VHDL</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--vhdl.pdf" title="PDF manual">Vhdl</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

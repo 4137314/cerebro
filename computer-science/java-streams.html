@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Java streams and method references · Computer Science</title>
+<meta name="description" content="collection.stream() starts a pipeline of lazy intermediate operations (filter, map, sorted, distinct) closed by one terminal operation (collect, reduce, count, forEach); behaviour is passed as lambdas or method references (String::length), the Java counterpart of STL algorithms with predicates.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/java-streams.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Java streams and method references · Computer Science">
+<meta property="og:description" content="collection.stream() starts a pipeline of lazy intermediate operations (filter, map, sorted, distinct) closed by one terminal operation (collect, reduce, count, forEach); behaviour is passed as lambdas or method references (String::length), the Java counterpart of STL algorithms with predicates.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/java-streams.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--java">Java</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Programming · Java</p>
+<h1>Java streams and method references</h1>
+<p class="summary"><code>collection.stream()</code> starts a pipeline of lazy intermediate operations (<code>filter</code>, <code>map</code>, <code>sorted</code>, <code>distinct</code>) closed by one terminal operation (<code>collect</code>, <code>reduce</code>, <code>count</code>, <code>forEach</code>); behaviour is passed as lambdas or method references (<code>String::length</code>), the Java counterpart of STL algorithms with predicates.</p>
+<p class="rel"><span>needs</span> <a href="lambda-expressions.html">Lambda expressions</a>, <a href="java-collections.html">The Java Collections Framework</a></p>
+<p class="rel"><span>see also</span> <a href="stl-algorithms.html">STL algorithms</a>, <a href="comparable-comparator.html">Comparable and Comparator</a>, <a href="java-inner-classes.html">Nested, inner and anonymous classes</a></p>
+<details class="path"><summary>Learning path: 16 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li><li><a href="method-overloading.html">Overloading</a></li><li><a href="pointers-references.html">Pointers, references and dynamic memory in C++</a></li><li><a href="cpp-special-members.html">Special member functions and RAII</a></li><li><a href="generic-programming.html">Generic programming</a></li><li><a href="operator-overloading.html">Operator overloading in C++</a></li><li><a href="function-objects.html">Function pointers and function objects</a></li><li><a href="lambda-expressions.html">Lambda expressions</a></li><li><a href="casting-instanceof.html">Casts, instanceof and array covariance</a></li><li><a href="java-generics.html">Java generics and type erasure</a></li><li><a href="java-collections.html">The Java Collections Framework</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org609d724" class="outline-2">
+<h2 id="org609d724">Method</h2>
+<div class="outline-text-2" id="text-org609d724">
+<ul class="org-ul">
+<li><b>Source</b>: <code>list.stream()</code>, <code>Arrays.stream(a)</code>, <code>Stream.of(...)</code>, <code>IntStream.range(0, n)</code>.</li>
+<li><b>Intermediate</b> (lazy, return a stream): <code>filter(Predicate)</code>, <code>map(Function)</code>, <code>flatMap</code>, <code>sorted(Comparator)</code>, <code>distinct()</code>, <code>limit(n)</code>.</li>
+<li><b>Terminal</b> (runs the pipeline): <code>collect(Collectors.toList())</code>, <code>Collectors.groupingBy</code>, <code>reduce(identity, op)</code>, <code>count()</code>, <code>min/max(Comparator)</code> (returning <code>Optional</code>), <code>anyMatch</code>.</li>
+<li><b>Method references</b>: <code>Class::staticMethod</code>, <code>obj::method</code>, <code>Class::instanceMethod</code> (receiver = first argument), <code>Class::new</code>.</li>
+</ul>
+<p>
+Functional interfaces of <code>java.util.function</code>: <code>Predicate&lt;T&gt;</code> (T→boolean), <code>Function&lt;T,R&gt;</code>, <code>Consumer&lt;T&gt;</code>, <code>Supplier&lt;T&gt;</code>, <code>BinaryOperator&lt;T&gt;</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfe554bc" class="outline-2">
+<h2 id="orgfe554bc">Example</h2>
+<div class="outline-text-2" id="text-orgfe554bc">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="t">Map</span>&lt;<span class="t">String</span>, <span class="t">Double</span>&gt; <span class="v">avgByCourse</span> = exams.stream()
+    .filter(e -&gt; e.grade() &gt;= 18)
+    .collect(Collectors.groupingBy(Exam::course,
+                                   Collectors.averagingInt(Exam::grade)));
+<span class="t">List</span>&lt;<span class="t">String</span>&gt; <span class="v">top</span> = students.stream()
+    .sorted(Comparator.comparingDouble(Student::average).reversed())
+    .limit(3).map(Student::name).toList();
+<span class="t">int</span> <span class="v">total</span> = IntStream.rangeClosed(1, 100).sum();      <span class="c">// 5050</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orgee83afa" class="outline-2">
+<h2 id="orgee83afa">Intuition</h2>
+<div class="outline-text-2" id="text-orgee83afa">
+<p>
+Say what you want (keep these, <a href="stl-algorithms.html">transform</a> them, group them), not how to loop; the library decides the loop, possibly in parallel.
+</p>
+</div>
+</div>
+<div id="outline-container-org7939071" class="outline-2">
+<h2 id="org7939071">Pitfall</h2>
+<div class="outline-text-2" id="text-org7939071">
+<p>
+Streams are single-use, lazy (nothing happens without a terminal operation) and should not modify their source or shared state in lambdas; <code>parallelStream()</code> with side effects reintroduces data races.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="java-iterator.html"><span>← previous</span>Iterators and for-each in Java</a><a rel="next" href="java-inner-classes.html"><span>next →</span>Nested, inner and anonymous classes</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--java.pdf" title="PDF manual">Java</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

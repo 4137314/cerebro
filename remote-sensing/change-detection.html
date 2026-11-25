@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Change detection · Remote Sensing</title>
+<meta name="description" content="Comparing co-registered, radiometrically consistent images of the same area at two dates reveals changes: differencing (optical) or log-ratio (SAR) images thresholded into change/no-change, change vector analysis on multispectral vectors (magnitude and direction), or post-classification comparison …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/change-detection.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Change detection · Remote Sensing">
+<meta property="og:description" content="Comparing co-registered, radiometrically consistent images of the same area at two dates reveals changes: differencing (optical) or log-ratio (SAR) images thresholded into change/no-change, change vector analysis on multispectral vectors (magnitude and direction), or post-classification comparison …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/change-detection.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-recognition">Recognition</a> / <a rel="up" href="index.html#a-recognition--applications">Applications</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Recognition · Applications</p>
+<h1>Change detection</h1>
+<p class="summary">Comparing co-registered, radiometrically consistent images of the same area at two dates reveals changes: differencing (optical) or log-ratio (SAR) images thresholded into change/no-change, change vector analysis on multispectral vectors (magnitude and direction), or post-classification comparison of two thematic maps.</p>
+<p class="rel"><span>needs</span> <a href="geometric-correction.html">Geometric correction, geocoding and registration</a>, <a href="radiometric-correction.html">Radiometric errors and corrections</a>, <a href="image-thresholding.html">Histogram thresholding</a></p>
+<p class="rel"><span>unlocks</span> <a href="unsupervised-change-detection.html">Unsupervised change detection with EM and Bayes</a></p>
+<p class="rel"><span>see also</span> <a href="ndvi.html">NDVI and normalised difference indices</a>, <a href="remote-sensing-applications.html">Applications of remote sensing</a>, <a href="speckle-statistics.html">Speckle and its statistics</a>, <a href="unsupervised-change-detection.html">Unsupervised change detection with EM and Bayes</a></p>
+<p class="rel"><span>mentioned in</span> <a href="sun-synchronous-orbit.html">Sun-synchronous polar orbits and revisit time</a></p>
+<details class="path"><summary>Learning path: 22 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="atmospheric-scattering.html">Atmospheric scattering: Rayleigh and Mie</a></li><li><a href="spectral-signature.html">Spectral signature</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li><li><a href="image-statistics.html">Image statistics: moments, mode, median</a></li><li><a href="geometric-distortions.html">Geometric distortions</a></li><li><a href="geometric-correction.html">Geometric correction, geocoding and registration</a></li><li><a href="radiometric-correction.html">Radiometric errors and corrections</a></li><li><a href="homogeneous-area-statistics.html">Statistics of homogeneous areas in optical images</a></li><li><a href="image-segmentation.html">Image segmentation</a></li><li><a href="image-thresholding.html">Histogram thresholding</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgecd2ffd" class="outline-2">
+<h2 id="orgecd2ffd">Method</h2>
+<div class="outline-text-2" id="text-orgecd2ffd">
+<p>
+Prerequisites: precise <a href="geometric-correction.html">co-registration</a> (sub-pixel), <a href="radiometric-correction.html">radiometric</a> consistency, similar acquisition conditions.
+</p>
+<ul class="org-ul">
+<li><b>Image differencing</b>: <img class="m" src="m/e1326db5cb6497763fccbd67837aa084c8144787.svg" alt="\(D=I_2-I_1\)" style="height:0.913em;vertical-align:-0.164em">; unchanged pixels cluster around 0, changes in the tails.</li>
+<li><b>Log-ratio</b> (SAR): <img class="m" src="m/f752c30a6e8e4b09dc5ba3448847826ae0b448f4.svg" alt="\(R=\log(I_2/I_1)\)" style="height:1.096em;vertical-align:-0.274em">: turns multiplicative speckle into additive noise and makes the result independent of the absolute level.</li>
+<li><b>Change vector analysis</b>: <img class="m" src="m/26a69cc72c3e4b0046d946e189830823f4ad5974.svg" alt="\(\Delta\mathbf x=\mathbf x_2-\mathbf x_1\)" style="height:0.913em;vertical-align:-0.164em">; magnitude <img class="m" src="m/7ed83426430c42d89c470e452efed22a5e70f4b2.svg" alt="\(\|\Delta\mathbf x\|\)" style="height:1.096em;vertical-align:-0.274em"> says whether something changed, direction (angle) says what kind of change (vegetation loss, flooding).</li>
+<li><b><a href="image-thresholding.html">Thresholding</a></b>: on the magnitude, manually, by Otsu, or by Bayes with a two-component mixture (changed, unchanged).</li>
+<li><b>Post-classification comparison</b>: classify both dates independently and compare labels: gives "from–to" classes but errors of both maps multiply.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org48bde16" class="outline-2">
+<h2 id="org48bde16">Example</h2>
+<div class="outline-text-2" id="text-org48bde16">
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="v">d</span> = np.sqrt(((X2 - X1) ** 2).<span class="b">sum</span>(axis=0))          <span class="c"># CVA magnitude over bands
+</span><span class="v">changed</span> = d &gt; threshold_otsu(d)
+<span class="v">sar_lr</span> = np.log((I2 + 1e-6) / (I1 + 1e-6))</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org5613120" class="outline-2">
+<h2 id="org5613120">Intuition</h2>
+<div class="outline-text-2" id="text-org5613120">
+<p>
+Hold two images of the same place up to the light: what does not line up is change — provided the images were aligned and exposed the same way.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc2cfacb" class="outline-2">
+<h2 id="orgc2cfacb">Pitfall</h2>
+<div class="outline-text-2" id="text-orgc2cfacb">
+<p>
+Not every difference is a change of interest: phenology (seasons), soil moisture, sun angle, misregistration at edges all produce "changes". Comparing images from the same season reduces the first.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="remote-sensing-applications.html"><span>← previous</span>Applications of remote sensing</a><a rel="next" href="unsupervised-change-detection.html"><span>next →</span>Unsupervised change detection with EM and Bayes</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/recognition--applications.pdf" title="PDF manual">Applications</a> · <a class="pdf" href="pdf/recognition.pdf" title="PDF manual">Recognition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

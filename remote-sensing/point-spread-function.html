@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Point spread function and spectral response · Remote Sensing</title>
+<meta name="description" content="Real sensors do not integrate over ideal boxes: spatially the DN is the radiance weighted by the point spread function, which overlaps neighbouring cells and blurs edges; spectrally it is weighted by the relative spectral response of each band, a smooth curve instead of a rectangle.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/point-spread-function.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Point spread function and spectral response · Remote Sensing">
+<meta property="og:description" content="Real sensors do not integrate over ideal boxes: spatially the DN is the radiance weighted by the point spread function, which overlaps neighbouring cells and blurs edges; spectrally it is weighted by the relative spectral response of each band, a smooth curve instead of a rectangle.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/point-spread-function.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-acquisition">Acquisition</a> / <a rel="up" href="index.html#a-acquisition--optical-sensors">Optical Sensors</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Acquisition · Optical Sensors</p>
+<h1>Point spread function and spectral response</h1>
+<p class="summary">Real sensors do not integrate over ideal boxes: spatially the DN is the radiance weighted by the point spread function, which overlaps neighbouring cells and blurs edges; spectrally it is weighted by the relative spectral response of each band, a smooth curve instead of a rectangle.</p>
+<p class="rel"><span>needs</span> <a href="sensor-resolutions.html">Geometric, radiometric, spectral and temporal resolution</a></p>
+<p class="rel"><span>see also</span> <a href="multispectral-hyperspectral-image.html">Multispectral and hyperspectral images</a>, <a href="frequency-domain-filtering.html">Filtering in the frequency domain</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="sensor-resolutions.html">Geometric, radiometric, spectral and temporal resolution</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org1fe6e1d" class="outline-2">
+<h2 id="org1fe6e1d">Definition</h2>
+<div class="outline-text-2" id="text-org1fe6e1d">
+<p>
+The DN of band <img class="m" src="m/91708f0e0338a9a807ccfe3e469f248e0b04bbbe.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em"> at pixel <img class="m" src="m/245063ba5419d2d7c98e84ee41823a7726b9eac5.svg" alt="\((x_0,y_0)\)" style="height:1.096em;vertical-align:-0.274em"> is, up to calibration,
+<div class="mb"><img class="m" src="m/d47916a2e036208d11cf4b1505b50683101fccd1.svg" alt="\[ \mathrm{DN}_b(x_0,y_0)\propto\int\!\!\int\!\!\int L(x,y,\lambda)\,\mathrm{PSF}(x-x_0,y-y_0)\,R_b(\lambda)\,dx\,dy\,d\lambda, \]" style="width:31.539em"></div>
+with <img class="m" src="m/3edeed2e422ef4c244967becc42d97e068eede9a.svg" alt="\(\mathrm{PSF}\)" style="height:0.749em;vertical-align:-0.000em"> the spatial response (optics diffraction, detector size, image motion, electronics) and <img class="m" src="m/c42221c3b4a4646a0440250191084b83cd12785a.svg" alt="\(R_b\)" style="height:0.913em;vertical-align:-0.164em"> the relative spectral response of band <img class="m" src="m/91708f0e0338a9a807ccfe3e469f248e0b04bbbe.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em">. Ideal integration would use rectangles; real ones are bell-shaped with tails. The <a href="discrete-fourier-transform.html">Fourier transform</a> of the PSF is the modulation transfer function (MTF): how much contrast survives at each spatial frequency.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd03ce1d" class="outline-2">
+<h2 id="orgd03ce1d">Picture</h2>
+<div class="outline-text-2" id="text-orgd03ce1d">
+<figure class="fig"><img class="m" src="m/e9337e4e3ad229059e4b81bf3ff99cc0b8a2aee5.svg" alt="figure" style="width:20.001em"><figcaption><span class="fl">Figure 1.</span> Response of a sensor to a point source across pixels: the ideal response is confined to one pixel, the real point spread function spreads into its neighbours.</figcaption></figure>
+<p>
+The real response reaches into the neighbouring pixels.
+</p>
+</div>
+</div>
+<div id="outline-container-org8af9ba1" class="outline-2">
+<h2 id="org8af9ba1">Worked example</h2>
+<div class="outline-text-2" id="text-org8af9ba1">
+<p>
+A Gaussian PSF with <img class="m" src="m/82d2c92236d579ec02a626a849d588ad88f295a7.svg" alt="\(\sigma=0.42\)" style="height:0.706em;vertical-align:-0.000em"> pixel has full width at half maximum <img class="m" src="m/50b7db48c168cdd95bbb5d389ccae95ba2919d39.svg" alt="\(2\sqrt{2\ln2}\,\sigma\approx1\)" style="height:1.140em;vertical-align:-0.114em"> pixel. Its MTF <img class="m" src="m/03cac1229eb33ac734aefe7433cf17811d2ae0fb.svg" alt="\(e^{-2\pi^2\sigma^2f^2}\)" style="height:1.082em;vertical-align:-0.000em"> at the Nyquist frequency <img class="m" src="m/84b2fc84a6a97309d63da212c42e25b64e8f421a.svg" alt="\(f=0.5\)" style="height:0.974em;vertical-align:-0.214em"> cycles/pixel is <img class="m" src="m/923065e0733b567cb939f594ce492371bd86fc94.svg" alt="\(e^{-2\pi^2\cdot0.176\cdot0.25}\approx0.42\)" style="height:1.082em;vertical-align:-0.000em">: patterns at the finest resolvable scale keep 42% of their contrast.
+</p>
+</div>
+</div>
+<div id="outline-container-orga6cf60f" class="outline-2">
+<h2 id="orga6cf60f">Intuition</h2>
+<div class="outline-text-2" id="text-orga6cf60f">
+<p>
+Every pixel is a little blurred mixture of its neighbours, and every band a little mixture of nearby colours.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfd5f7fb" class="outline-2">
+<h2 id="orgfd5f7fb">Pitfall</h2>
+<div class="outline-text-2" id="text-orgfd5f7fb">
+<p>
+Small bright objects (a road, a boat) can be detected even if narrower than a pixel, while two objects one pixel apart may not be separated: detectability and resolution are different things.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="image-formats.html"><span>← previous</span>Image storage formats: BSQ, BIL, BIP</a><a rel="next" href="radiometric-snr.html"><span>next →</span>Signal-to-noise ratio and noise-equivalent quantities</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/acquisition--optical-sensors.pdf" title="PDF manual">Optical Sensors</a> · <a class="pdf" href="pdf/acquisition.pdf" title="PDF manual">Acquisition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Local compactness and the one-point compactification · Mathematics</title>
+<meta name="description" content="Compactness is the hypothesis that makes theorems work and \R^{n} does not have it. The cheapest repair is to add a single point and declare the neighbourhoods of it to be the complements of compact sets – which is exactly the convention &quot;x_{n}\to\infty means x_{n} eventually leaves every compact s…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/local-compactness-and-the-one-point-compactification.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Local compactness and the one-point compactification · Mathematics">
+<meta property="og:description" content="Compactness is the hypothesis that makes theorems work and \R^{n} does not have it. The cheapest repair is to add a single point and declare the neighbourhoods of it to be the complements of compact sets – which is exactly the convention &quot;x_{n}\to\infty means x_{n} eventually leaves every compact s…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/local-compactness-and-the-one-point-compactification.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-topology">Topology</a> / <a rel="up" href="index.html#a-topology--general-topology">General Topology</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Topology · General Topology</p>
+<h1>Local compactness and the one-point compactification</h1>
+<p class="summary">Compactness is the hypothesis that makes theorems work and <img class="m" src="m/b33f2adf960aeb722adafbfc0479a5f92fd75b05.svg" alt="\(\R^{n}\)" style="height:0.755em;vertical-align:-0.000em"> does not have it. The cheapest repair is to add a single point and declare the neighbourhoods of it to be the complements of compact sets &#x2013; which is exactly the convention "<img class="m" src="m/c0dc96a9baf460cebcc9be2eb7cf4a18a64cd165.svg" alt="\(x_{n}\to\infty\)" style="height:0.636em;vertical-align:-0.165em"> means <img class="m" src="m/4036872f3d3328901352967ce2c9418a85378974.svg" alt="\(x_{n}\)" style="height:0.636em;vertical-align:-0.165em"> eventually leaves every compact set", made into a topology.</p>
+<p class="rel"><span>needs</span> <a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a>, <a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a>, <a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a>, <a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></p>
+<p class="rel"><span>mentioned in</span> <a href="general-topology.html">General topology</a></p>
+<details class="path"><summary>Learning path: 21 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgde81681">
+<p>
+A Hausdorff space <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is <i>locally compact</i> if every point has a
+compact neighbourhood.
+</p>
+
+</div>
+
+<div class="proposition" id="org38467d5">
+<p>
+In a locally compact Hausdorff space, every point has a neighbourhood
+basis of compact sets: for every open <img class="m" src="m/f0e0b59a6d9438fcfd7d5c0e3f0acd12e8b04dae.svg" alt="\(U \ni x\)" style="height:0.792em;vertical-align:-0.040em"> there is an open
+<img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/c3f3859d15025fe20107402d2ba0922636afb226.svg" alt="\(x \in V \subseteq \overline{V}\subseteq U\)" style="height:1.117em;vertical-align:-0.145em"> and
+<img class="m" src="m/2feed9530a2ff360ca7dd84e7b6274265bd8dec6.svg" alt="\(\overline{V}\)" style="height:0.968em;vertical-align:-0.000em"> compact.
+</p>
+
+</div>
+
+<div class="proof" id="org636aedd">
+<p>
+Let <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> be a compact neighbourhood of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> open with
+<img class="m" src="m/2573d1748830236ec01b770825fd743b9341425a.svg" alt="\(x \in U\)" style="height:0.792em;vertical-align:-0.040em">. The set <img class="m" src="m/980efc69e58c454912c30104469737e0d18ce98f.svg" alt="\(C = K \setminus U\)" style="height:1.096em;vertical-align:-0.274em"> is compact &#x2013; closed in the
+compact <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">, being the intersection of <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> with the closed
+<img class="m" src="m/77edc84f440623cd8438daad15f5edf803a09cb9.svg" alt="\(X\setminus U\)" style="height:1.096em;vertical-align:-0.274em"> &#x2013; and does not contain <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">. By the separation of a
+point from a compact set in a Hausdorff space there are disjoint open
+<img class="m" src="m/3359a2ea666e508b5d2d7127cb75510f48f1662c.svg" alt="\(V_{0}\ni x\)" style="height:0.913em;vertical-align:-0.164em"> and <img class="m" src="m/3b80ab1e9b7b5d7b69209d7fdb6c59ac7043ef5b.svg" alt="\(W \supseteq C\)" style="height:0.898em;vertical-align:-0.153em">. Put <img class="m" src="m/db017d654a7ddfe760d5579f8adfe7868ac348a2.svg" alt="\(V = V_{0}\cap K^{\circ}\)" style="height:0.919em;vertical-align:-0.165em">,
+an open neighbourhood of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">. Its closure is contained in the compact
+<img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">, hence compact, and it misses <img class="m" src="m/3b80ab1e9b7b5d7b69209d7fdb6c59ac7043ef5b.svg" alt="\(W \supseteq C\)" style="height:0.898em;vertical-align:-0.153em">, so
+<img class="m" src="m/b4b27d70b63aa069a3b1389f06ac71ee7ca4d376.svg" alt="\(\overline{V}\subseteq K \setminus C \subseteq U\)" style="height:1.242em;vertical-align:-0.273em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgb20ef88">
+<p>
+Let <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> be locally compact Hausdorff and put
+<img class="m" src="m/17712c834b16573226219a121aabb5b4303a7c02.svg" alt="\(X^{+} = X \cup \set{\infty}\)" style="height:1.147em;vertical-align:-0.275em">, declaring open the open subsets of
+<img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> together with the sets <img class="m" src="m/0930ad45f71c66c50569d449bca62eeab0949574.svg" alt="\(\set{\infty}\cup(X\setminus K)\)" style="height:1.096em;vertical-align:-0.274em"> for
+<img class="m" src="m/18ea5bafa8724ddca49fab7e75f3e1dfc1d7a1f0.svg" alt="\(K \subseteq X\)" style="height:0.898em;vertical-align:-0.153em"> compact. Then <img class="m" src="m/608f85fc32fdf8d7457345620f0e3c211c942a3c.svg" alt="\(X^{+}\)" style="height:0.873em;vertical-align:-0.000em"> is a compact Hausdorff space
+containing <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> as an open dense subspace, unless <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is already
+compact.
+</p>
+
+</div>
+
+<div class="proof" id="org1cf97af">
+<p>
+Write the sets of the second kind as <img class="m" src="m/7d034ad89eecb20cd933fb514dd4cfbc06113c6d.svg" alt="\(X^{+}\setminus K\)" style="height:1.147em;vertical-align:-0.275em">. The family is
+a topology, and it is worth checking because both kinds occur. It
+contains <img class="m" src="m/b9fcf2ccae8d3515975b71b2e2ab3c4479b2d3d5.svg" alt="\(\emptyset\)" style="height:0.883em;vertical-align:-0.062em"> and <img class="m" src="m/192aeabd629b0223cd93d39da38125228e0ddc6f.svg" alt="\(X^{+} = X^{+}\setminus\emptyset\)" style="height:1.147em;vertical-align:-0.275em">.
+</p>
+
+<p>
+Unions: a union of sets of the first kind is open in <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">. A union
+involving second-kind sets is
+<img class="m" src="m/d696a7519a644eadc95d18849c975a1ad06ecfb3.svg" alt="\(\bigl(\bigcup_{i}U_{i}\bigr)\cup\bigl(X^{+}\setminus\bigcap_{j}K_{j}\bigr) = X^{+}\setminus\Bigl(\bigcap_{j}K_{j}\setminus\bigcup_{i}U_{i}\Bigr)\)" style="height:1.973em;vertical-align:-0.710em">;
+here <img class="m" src="m/82136854ae43decd5c03bd20fdcee4fe56db066c.svg" alt="\(\bigcap_{j}K_{j}\)" style="height:1.300em;vertical-align:-0.481em"> is compact, being closed in any one of the
+<img class="m" src="m/4ec7b07f328684d7859cee92bb861701971db9b1.svg" alt="\(K_{j}\)" style="height:1.062em;vertical-align:-0.319em"> &#x2013; compact subsets of a Hausdorff space are closed &#x2013; and
+removing the open <img class="m" src="m/3d71c569c487baa7ad23b26fe966cb1a70b8462f.svg" alt="\(\bigcup_{i}U_{i}\)" style="height:1.151em;vertical-align:-0.334em"> leaves a closed subset of it,
+again compact.
+</p>
+
+<p>
+Intersections of two members: two of the first kind give an open subset
+of <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">; <img class="m" src="m/52637d670c76d73214979f49633aac65e5f94f58.svg" alt="\(U \cap (X^{+}\setminus K) = U \cap (X\setminus K)\)" style="height:1.147em;vertical-align:-0.275em"> is open
+in <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> because <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> is closed; and
+<img class="m" src="m/9557c633a2ce9899d512ae94817f22fdd36a241d.svg" alt="\((X^{+}\setminus K_{1})\cap(X^{+}\setminus K_{2}) = X^{+}\setminus(K_{1}\cup K_{2})\)" style="height:1.147em;vertical-align:-0.275em">,
+a union of two compact sets being compact.
+</p>
+
+<p>
+Compactness: let <img class="m" src="m/9b5051d8f9149f1300fa601c9104624a6e64a9a6.svg" alt="\(\mathcal{U}\)" style="height:0.749em;vertical-align:-0.000em"> cover <img class="m" src="m/608f85fc32fdf8d7457345620f0e3c211c942a3c.svg" alt="\(X^{+}\)" style="height:0.873em;vertical-align:-0.000em">. Some member contains
+<img class="m" src="m/d39b5f2320262e1ac5f34b7db7f5d688cd9df10d.svg" alt="\(\infty\)" style="height:0.472em;vertical-align:-0.000em">, so it is <img class="m" src="m/0930ad45f71c66c50569d449bca62eeab0949574.svg" alt="\(\set{\infty}\cup(X\setminus K)\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">
+compact; finitely many members of <img class="m" src="m/9b5051d8f9149f1300fa601c9104624a6e64a9a6.svg" alt="\(\mathcal{U}\)" style="height:0.749em;vertical-align:-0.000em"> cover <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">, and
+together with that one they cover <img class="m" src="m/608f85fc32fdf8d7457345620f0e3c211c942a3c.svg" alt="\(X^{+}\)" style="height:0.873em;vertical-align:-0.000em">.
+</p>
+
+<p>
+Hausdorff: two points of <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> are separated inside <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">, which is
+open. For <img class="m" src="m/94eaa1f197d2485b6086400fc7bd6537a638d7d8.svg" alt="\(x \in X\)" style="height:0.792em;vertical-align:-0.040em"> and <img class="m" src="m/d39b5f2320262e1ac5f34b7db7f5d688cd9df10d.svg" alt="\(\infty\)" style="height:0.472em;vertical-align:-0.000em">, local compactness gives a compact
+neighbourhood <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">; then <img class="m" src="m/399b6bddc56b77627889b268eb89e651095bf424.svg" alt="\(K^{\circ}\)" style="height:0.755em;vertical-align:-0.000em"> and
+<img class="m" src="m/0930ad45f71c66c50569d449bca62eeab0949574.svg" alt="\(\set{\infty}\cup(X\setminus K)\)" style="height:1.096em;vertical-align:-0.274em"> are disjoint open sets. <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is open
+in <img class="m" src="m/608f85fc32fdf8d7457345620f0e3c211c942a3c.svg" alt="\(X^{+}\)" style="height:0.873em;vertical-align:-0.000em"> by construction, and dense unless <img class="m" src="m/39290c5c0035fcf5e15cbff125abc32ad5ebdceb.svg" alt="\(\set{\infty}\)" style="height:1.096em;vertical-align:-0.274em"> is
+itself open, which happens exactly when <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is compact.
+</p>
+
+</div>
+
+<div class="corollary" id="orgbcbd6b7">
+<p>
+<img class="m" src="m/b33f2adf960aeb722adafbfc0479a5f92fd75b05.svg" alt="\(\R^{n}\)" style="height:0.755em;vertical-align:-0.000em"> is locally compact, and <img class="m" src="m/746cfe24691ecd0fc8aca7770750fbc8169ef95b.svg" alt="\((\R^{n})^{+}\)" style="height:1.147em;vertical-align:-0.275em"> is homeomorphic to
+the sphere <img class="m" src="m/c76e2d4bb63a9744678d21e92cf736b05d8e2451.svg" alt="\(S^{n}\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgbe190dc">
+<p>
+A closed ball is a compact neighbourhood of each point, by Heine-Borel,
+so <img class="m" src="m/b33f2adf960aeb722adafbfc0479a5f92fd75b05.svg" alt="\(\R^{n}\)" style="height:0.755em;vertical-align:-0.000em"> is locally compact Hausdorff. Stereographic projection
+from the north pole <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> is a homeomorphism <img class="m" src="m/0cb0141a89d2ca955f3de9316431929a75dba578.svg" alt="\(S^{n}\setminus\set{N}\to\R^{n}\)" style="height:1.096em;vertical-align:-0.274em">;
+extend it to <img class="m" src="m/3d1c8f59934c980e0f70cd4e7b75a78883babb4f.svg" alt="\(S^{n}\to(\R^{n})^{+}\)" style="height:1.147em;vertical-align:-0.275em"> by sending <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> to <img class="m" src="m/d39b5f2320262e1ac5f34b7db7f5d688cd9df10d.svg" alt="\(\infty\)" style="height:0.472em;vertical-align:-0.000em">.
+This is a bijection, and it is continuous: at points other than <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">
+this is the projection, and a neighbourhood
+<img class="m" src="m/a80b77c1d3db19e0a62b3625f61dc6fa94cdf606.svg" alt="\(\set{\infty}\cup(\R^{n}\setminus K)\)" style="height:1.096em;vertical-align:-0.274em"> of <img class="m" src="m/d39b5f2320262e1ac5f34b7db7f5d688cd9df10d.svg" alt="\(\infty\)" style="height:0.472em;vertical-align:-0.000em"> pulls back to the
+complement of the compact preimage of <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">, a neighbourhood of <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">.
+A continuous bijection from a compact space to a Hausdorff space is a
+homeomorphism.
+</p>
+
+</div>
+
+<div class="remark" id="org5c07114">
+<p>
+The construction explains the two conventions that look like abuses of
+notation. "<img class="m" src="m/3405121ab04524c61e18e9b41633290dfe570060.svg" alt="\(1/x \to \infty\)" style="height:1.096em;vertical-align:-0.274em"> as <img class="m" src="m/7c62b9d392d4463c30b4e7a35acf1bc4d3ac707b.svg" alt="\(x \to 0\)" style="height:0.706em;vertical-align:-0.000em">" is continuity of a map
+into <img class="m" src="m/252d1ed9087c00a5da9291f1c264d0da08205001.svg" alt="\(\R^{+}\)" style="height:0.873em;vertical-align:-0.000em">, and the Riemann sphere of complex analysis is
+<img class="m" src="m/871209998b1ed5ea806e4be0f80033681d3102cb.svg" alt="\(\C^{+}\)" style="height:0.873em;vertical-align:-0.000em">, on which a rational function is genuinely continuous
+everywhere &#x2013; the poles are not exceptions but ordinary points mapping
+to <img class="m" src="m/d39b5f2320262e1ac5f34b7db7f5d688cd9df10d.svg" alt="\(\infty\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="general-topology.html"><span>← previous</span>General topology</a><a rel="next" href="regular-and-normal-spaces-and-urysohns-lemma.html"><span>next →</span>Regular and normal spaces, and Urysohn's lemma</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/topology--general-topology.pdf" title="PDF manual">General Topology</a> · <a class="pdf" href="pdf/topology.pdf" title="PDF manual">Topology</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

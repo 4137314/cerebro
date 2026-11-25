@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Range resolution · Remote Sensing</title>
+<meta name="description" content="Two targets are separated in range if their echoes do not overlap: with a pulse of duration \tau, slant-range resolution is r_{SR}=c\tau/2 and ground-range resolution r_{GR}=c\tau/(2\sin\theta), finer at far range and independent of the distance from the sensor.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/range-resolution.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Range resolution · Remote Sensing">
+<meta property="og:description" content="Two targets are separated in range if their echoes do not overlap: with a pulse of duration \tau, slant-range resolution is r_{SR}=c\tau/2 and ground-range resolution r_{GR}=c\tau/(2\sin\theta), finer at far range and independent of the distance from the sensor.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/range-resolution.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-acquisition">Acquisition</a> / <a rel="up" href="index.html#a-acquisition--radar">Radar</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Acquisition · Radar</p>
+<h1>Range resolution</h1>
+<p class="summary">Two targets are separated in range if their echoes do not overlap: with a pulse of duration <img class="m" src="m/f6dbecc239e450f53af45d107f726afd4b4df40b.svg" alt="\(\tau\)" style="height:0.472em;vertical-align:-0.000em">, slant-range resolution is <img class="m" src="m/23bf0f070449fe2bd7d0935444e6bb68b0890fc3.svg" alt="\(r_{SR}=c\tau/2\)" style="height:1.096em;vertical-align:-0.274em"> and ground-range resolution <img class="m" src="m/1730d39869e5c9679371e74466852c02b0557f4f.svg" alt="\(r_{GR}=c\tau/(2\sin\theta)\)" style="height:1.096em;vertical-align:-0.274em">, finer at far range and independent of the distance from the sensor.</p>
+<p class="rel"><span>needs</span> <a href="side-looking-radar.html">Side-looking radar geometry</a></p>
+<p class="rel"><span>unlocks</span> <a href="chirp-pulse-compression.html">Chirp and pulse compression</a></p>
+<p class="rel"><span>see also</span> <a href="chirp-pulse-compression.html">Chirp and pulse compression</a>, <a href="azimuth-resolution.html">Azimuth resolution of a real-aperture radar</a></p>
+<details class="path"><summary>Learning path: 4 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="radar-equation.html">Radar principle and radar equation</a></li><li><a href="side-looking-radar.html">Side-looking radar geometry</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orge7a31e4" class="outline-2">
+<h2 id="orge7a31e4">Statement</h2>
+<div class="outline-text-2" id="text-orge7a31e4">
+<p>
+<div class="mb"><img class="m" src="m/2560bead7e5da7a9210b7e4d51781348ea016e22.svg" alt="\[ r_{SR}=\frac{c\,\tau}{2},\qquad r_{GR}=\frac{c\,\tau}{2\sin\theta}. \]" style="width:14.184em"></div>
+</p>
+</div>
+</div>
+<div id="outline-container-orge7fdaf2" class="outline-2">
+<h2 id="orge7fdaf2">Derivation</h2>
+<div class="outline-text-2" id="text-orge7fdaf2">
+<p>
+Targets A and B at slant ranges <img class="m" src="m/d7afb8ff790a1638c2f4f8daf02681b369fe25c2.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/c574f88ffa6bc49d20be749627c0d202958d10c2.svg" alt="\(R+\Delta R\)" style="height:0.840em;vertical-align:-0.092em">: B's echo arrives <img class="m" src="m/0f148d8fdf7608e2a267c8f0777c23e5f75efc4d.svg" alt="\(2\Delta R/c\)" style="height:1.096em;vertical-align:-0.274em"> after A's. The two pulses of length <img class="m" src="m/f6dbecc239e450f53af45d107f726afd4b4df40b.svg" alt="\(\tau\)" style="height:0.472em;vertical-align:-0.000em"> do not overlap if <img class="m" src="m/054f6073b7bc3c88d39fd0f40586ff3788e9a4ce.svg" alt="\(2\Delta R/c\ge\tau\)" style="height:1.096em;vertical-align:-0.274em">, i.e. <img class="m" src="m/64f5b215b9464be08ecde0a7ba1e04eba73ce081.svg" alt="\(\Delta R\ge c\tau/2\)" style="height:1.096em;vertical-align:-0.274em">. On the ground a horizontal distance <img class="m" src="m/2531f30c73503fc54d6ea5d3a7ddb497a53c11bb.svg" alt="\(\Delta x\)" style="height:0.749em;vertical-align:-0.000em"> corresponds to <img class="m" src="m/5ea9962c33e3886573ac0096abad4d5b1c2f56e4.svg" alt="\(\Delta R=\Delta x\sin\theta\)" style="height:0.761em;vertical-align:-0.000em">, so <img class="m" src="m/ef890cee0510b18c1fb9126f2c090ad2fd15aece.svg" alt="\(\Delta x\ge c\tau/(2\sin\theta)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org8486012" class="outline-2">
+<h2 id="org8486012">Example</h2>
+<div class="outline-text-2" id="text-org8486012">
+<p>
+<img class="m" src="m/fbc33634adc55d6868bd1f6fdee870b9d9a3e8a7.svg" alt="\(\tau=0.1\)" style="height:0.706em;vertical-align:-0.000em"> µs gives <img class="m" src="m/58e7ad113e83c67cd044112244e3759d377172a3.svg" alt="\(r_{SR}=15\)" style="height:0.871em;vertical-align:-0.165em"> m; at <img class="m" src="m/dfb07713c37c64bac06079d17bc662506158a70d.svg" alt="\(\theta=20^\circ\)" style="height:0.761em;vertical-align:-0.000em"> <img class="m" src="m/bf0b6ada6197389bb60f711f79f4292e8a67413a.svg" alt="\(r_{GR}\approx44\)" style="height:0.871em;vertical-align:-0.165em"> m, at <img class="m" src="m/f3fb0c5afd3010a3ea8c1586a9b5b84cc9904540.svg" alt="\(50^\circ\)" style="height:0.755em;vertical-align:-0.000em"> about 20 m.
+</p>
+</div>
+</div>
+<div id="outline-container-org21da4b6" class="outline-2">
+<h2 id="org21da4b6">Consequences</h2>
+<div class="outline-text-2" id="text-org21da4b6">
+<ul class="org-ul">
+<li>resolution does not degrade with altitude: it depends only on the pulse;</li>
+<li>it degrades towards <a href="side-looking-radar.html">near range</a> (small <img class="m" src="m/c8d9a433f30967c52095060bff5783652eb30ded.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em">) and is undefined at nadir (<img class="m" src="m/859db2624b0369cbbac28060c5c4ea1293e48505.svg" alt="\(\theta=0\)" style="height:0.761em;vertical-align:-0.000em">), another reason to look sideways;</li>
+<li>a finer resolution needs a shorter pulse, hence higher peak power for the same energy — solved by <a href="chirp-pulse-compression.html">chirp pulses</a>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org04280fa" class="outline-2">
+<h2 id="org04280fa">Intuition</h2>
+<div class="outline-text-2" id="text-org04280fa">
+<p>
+Range resolution is half the pulse length in metres: echoes from points closer than that blur into one.
+</p>
+</div>
+</div>
+<div id="outline-container-orge6746b5" class="outline-2">
+<h2 id="orge6746b5">Pitfall</h2>
+<div class="outline-text-2" id="text-orge6746b5">
+<p>
+Ground-range resolution varies across the swath: the pixel spacing of a ground-range product is constant, its true resolution is not.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="backscattering-coefficient.html"><span>← previous</span>Backscattering coefficient</a><a rel="next" href="chirp-pulse-compression.html"><span>next →</span>Chirp and pulse compression</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/acquisition--radar.pdf" title="PDF manual">Radar</a> · <a class="pdf" href="pdf/acquisition.pdf" title="PDF manual">Acquisition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

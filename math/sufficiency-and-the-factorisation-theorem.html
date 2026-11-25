@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sufficiency and the factorisation theorem · Mathematics</title>
+<meta name="description" content="A sample of size n is a great deal of data and almost all of it is usually irrelevant to the parameter. A sufficient statistic is one that retains everything relevant, in the precise sense that the sample conditioned on it no longer mentions the parameter at all – and the factorisation theorem turn…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/sufficiency-and-the-factorisation-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Sufficiency and the factorisation theorem · Mathematics">
+<meta property="og:description" content="A sample of size n is a great deal of data and almost all of it is usually irrelevant to the parameter. A sufficient statistic is one that retains everything relevant, in the precise sense that the sample conditioned on it no longer mentions the parameter at all – and the factorisation theorem turn…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/sufficiency-and-the-factorisation-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-probability">Probability</a> / <a rel="up" href="index.html#a-probability--statistics">Statistics</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Probability · Statistics</p>
+<h1>Sufficiency and the factorisation theorem</h1>
+<p class="summary">A sample of size <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> is a great deal of data and almost all of it is usually irrelevant to the parameter. A sufficient statistic is one that retains everything relevant, in the precise sense that the sample conditioned on it no longer mentions the parameter at all &#x2013; and the factorisation theorem turns that condition, which quantifies over conditional laws, into an identity one can check by inspection.</p>
+<p class="rel"><span>needs</span> <a href="probability-spaces-conditioning-and-independence.html">Probability spaces, conditioning and independence</a>, <a href="statistical-models-estimators-and-consistency.html">Statistical models, estimators and consistency</a></p>
+<p class="rel"><span>unlocks</span> <a href="the-rao-blackwell-theorem.html">The Rao-Blackwell theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="statistics.html">Statistics</a></p>
+<details class="path"><summary>Learning path: 62 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="convex-functions-and-the-second-derivative.html">Convex functions and the second derivative</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li><li><a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="the-baire-category-theorem.html">The Baire category theorem</a></li><li><a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></li><li><a href="convex-set.html">Convex set</a></li><li><a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a></li><li><a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a></li><li><a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a></li><li><a href="probability-spaces-conditioning-and-independence.html">Probability spaces, conditioning and independence</a></li><li><a href="random-variables-laws-and-distribution-functions.html">Random variables, laws and distribution functions</a></li><li><a href="expectation-the-transfer-theorem-and-jensens-inequality.html">Expectation, the transfer theorem and Jensen's inequality</a></li><li><a href="variance-covariance-and-the-markov-and-chebyshev-inequalities.html">Variance, covariance and the Markov and Chebyshev inequalities</a></li><li><a href="modes-of-convergence-and-the-borel-cantelli-lemmas.html">Modes of convergence and the Borel-Cantelli lemmas</a></li><li><a href="the-weak-and-strong-laws-of-large-numbers.html">The weak and strong laws of large numbers</a></li><li><a href="statistical-models-estimators-and-consistency.html">Statistical models, estimators and consistency</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org72096eb">
+<p>
+Let <img class="m" src="m/eb813a69da16d41bd4bb6463f5868eb5df20691e.svg" alt="\((\Prob_{\theta})\)" style="height:1.096em;vertical-align:-0.274em"> be a statistical model on a countable sample
+space <img class="m" src="m/6221d5ee0f2f28853f884a7ba0481ca905043ee1.svg" alt="\(\mathcal{X}\)" style="height:0.749em;vertical-align:-0.000em">. A statistic <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> is <i>sufficient</i> for <img class="m" src="m/346f66be96cb38ba0680cfd40867d9bf1796163d.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em">
+if for every <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> with <img class="m" src="m/f9185ef81b063a4f4cb635fac9142a9a364f163b.svg" alt="\(\Prob_{\theta}(T = t)&gt;0\)" style="height:1.096em;vertical-align:-0.274em"> the conditional
+probabilities <img class="m" src="m/700b8ee6291673c3f3bd97b4bb06de6a55d6ad4f.svg" alt="\(\Prob_{\theta}(X = x \mid T = t)\)" style="height:1.096em;vertical-align:-0.274em"> do not depend on
+<img class="m" src="m/346f66be96cb38ba0680cfd40867d9bf1796163d.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org8bae09b">
+<p>
+On a countable sample space, write <img class="m" src="m/4fc0388086407e2da2c463cfca0959b35371bc01.svg" alt="\(p_{\theta}(x) = \Prob_{\theta}(X=x)\)" style="height:1.096em;vertical-align:-0.274em">.
+A statistic <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> is sufficient if and only if there are functions
+<img class="m" src="m/04185c06b09ee8d60ffac547bbccbf0d7a031a7a.svg" alt="\(g_{\theta}\)" style="height:0.685em;vertical-align:-0.212em"> and <img class="m" src="m/6c6a7c0f65b6e5eec3c9e58e95f4608590dbb80f.svg" alt="\(h\)" style="height:0.761em;vertical-align:-0.000em">, with <img class="m" src="m/6c6a7c0f65b6e5eec3c9e58e95f4608590dbb80f.svg" alt="\(h\)" style="height:0.761em;vertical-align:-0.000em"> not depending on <img class="m" src="m/346f66be96cb38ba0680cfd40867d9bf1796163d.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em">, such
+that
+<div class="mb"><img class="m" src="m/bf91301996297a05a14bede1e48ae25e978b3303.svg" alt="\[ p_{\theta}(x) = g_{\theta}(T(x))\, h(x) \qquad \text{for all } x, \theta. \]" style="width:17.776em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="org9b56843">
+<p>
+Suppose <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> is sufficient and put <img class="m" src="m/a763c59ff92295b8158742e323228cc7bae9e6f3.svg" alt="\(t = T(x)\)" style="height:1.096em;vertical-align:-0.274em">. Since
+<img class="m" src="m/58f1de613dd42dff1e0500664f43ffc826487478.svg" alt="\(\set{X = x}\subseteq\set{T=t}\)" style="height:1.096em;vertical-align:-0.274em">,
+<img class="m" src="m/1ca1e627168833290803bc11da0ccbd38b74d228.svg" alt="\(p_{\theta}(x) = \Prob_{\theta}(T=t)\,\Prob_{\theta}(X=x\mid T=t)\)" style="height:1.096em;vertical-align:-0.274em">
+whenever <img class="m" src="m/9af89b78cdb1578f048409c32615020e897f99c8.svg" alt="\(\Prob_{\theta}(T=t)&gt;0\)" style="height:1.096em;vertical-align:-0.274em">. The second factor does not depend on
+<img class="m" src="m/346f66be96cb38ba0680cfd40867d9bf1796163d.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em"> by sufficiency; call it <img class="m" src="m/2a96e292e6b4d5eff1fa9a5aa5c4a476ee451855.svg" alt="\(h(x)\)" style="height:1.096em;vertical-align:-0.274em">, and put
+<img class="m" src="m/cca1734e33e6e952e0d8920304a3df2717e6ceb7.svg" alt="\(g_{\theta}(t) = \Prob_{\theta}(T=t)\)" style="height:1.096em;vertical-align:-0.274em">. Where
+<img class="m" src="m/6708bb1a899598593c7d2680f8fad7da0be048af.svg" alt="\(\Prob_{\theta}(T=t) = 0\)" style="height:1.096em;vertical-align:-0.274em"> both sides vanish for every such <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+<p>
+Conversely, assume the factorisation. For <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> with
+<img class="m" src="m/9af89b78cdb1578f048409c32615020e897f99c8.svg" alt="\(\Prob_{\theta}(T=t)&gt;0\)" style="height:1.096em;vertical-align:-0.274em">,
+<div class="mb"><img class="m" src="m/9f659e217f725b4de1da772de1f6010851db155f.svg" alt="\[ \Prob_{\theta}(T=t) = \sum_{y \colon T(y)=t} g_{\theta}(t)h(y) = g_{\theta}(t)H(t), \qquad H(t) = \sum_{y \colon T(y)=t}h(y), \]" style="width:33.381em"></div>
+so for <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> with <img class="m" src="m/387362b30a6a36e62cfc904edab6787fdca24605.svg" alt="\(T(x)=t\)" style="height:1.096em;vertical-align:-0.274em">,
+<img class="m" src="m/21a1ef37c153120d9401fb596d44268f96b821d5.svg" alt="\(\Prob_{\theta}(X=x\mid T=t) = g_{\theta}(t)h(x)/(g_{\theta}(t)H(t)) = h(x)/H(t)\)" style="height:1.096em;vertical-align:-0.274em">,
+which does not involve <img class="m" src="m/346f66be96cb38ba0680cfd40867d9bf1796163d.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em">; and for <img class="m" src="m/1f55bb73ba86f3e668d369792a64c365ef31b819.svg" alt="\(T(x)\ne t\)" style="height:1.096em;vertical-align:-0.274em"> the
+conditional probability is <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">. Hence <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> is sufficient.
+</p>
+
+</div>
+
+<div class="corollary" id="org7cd496c">
+<p>
+If <img class="m" src="m/69b8342a996d0c62ab9a9da30d372026cb570799.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> is sufficient and <img class="m" src="m/6e65a174829a9d882f2381ced41c609ec16c096b.svg" alt="\(U = \psi(T)\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/a4a52c4927ccc1e44f25ba3cda049e822fa6a1fc.svg" alt="\(\psi\)" style="height:0.974em;vertical-align:-0.214em"> injective, then
+<img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> is sufficient; the whole sample is always sufficient; and a
+sufficient statistic remains sufficient after adjoining any further
+statistic to it.
+</p>
+
+</div>
+
+<div class="proof" id="org12ab80f">
+<p>
+Each claim is a factorisation. For an injective <img class="m" src="m/a4a52c4927ccc1e44f25ba3cda049e822fa6a1fc.svg" alt="\(\psi\)" style="height:0.974em;vertical-align:-0.214em">,
+<img class="m" src="m/e51acc18172c12f9920571218054fa4b60311a05.svg" alt="\(g_{\theta}(T(x)) = g_{\theta}(\psi^{-1}(U(x)))\)" style="height:1.166em;vertical-align:-0.268em">, a function of
+<img class="m" src="m/326cce90234f77eea980ba4e061ccec06138b595.svg" alt="\(U(x)\)" style="height:1.096em;vertical-align:-0.274em">. The identity statistic factors with <img class="m" src="m/2cbae442c510da3d48b79b42b1d067c629d37ed3.svg" alt="\(g_{\theta} = p_{\theta}\)" style="height:0.685em;vertical-align:-0.212em">
+and <img class="m" src="m/aa23b83ce42798b7e780469ac8bbfa68910ad728.svg" alt="\(h = 1\)" style="height:0.761em;vertical-align:-0.000em">. Adjoining a further statistic <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> gives
+<img class="m" src="m/d71d8463d47f8c5a27e57559c4e2b1b12423ec57.svg" alt="\(p_{\theta}(x) = g_{\theta}(T(x))h(x)\)" style="height:1.096em;vertical-align:-0.274em"> with the first factor read as a
+function of the pair <img class="m" src="m/d517b97bf00c69d8c0f2478ba14bdb860ce7d056.svg" alt="\((T(x),V(x))\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="remark" id="orgedeba70">
+<p>
+The theorem is stated for a countable sample space because that is where
+it can be proved with the tools here: the general version replaces
+probabilities by densities against a dominating measure, and its proof
+needs the Radon-Nikodym theorem. The statement is the same, and so is
+the use &#x2013; read off the dependence of the density on <img class="m" src="m/346f66be96cb38ba0680cfd40867d9bf1796163d.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em">, and
+whatever it comes packaged with is sufficient.
+</p>
+
+<p>
+Sufficiency is what makes <a href="the-rao-blackwell-theorem.html">Rao-Blackwell</a> work: conditioning an
+estimator on a sufficient statistic yields something that is still an
+estimator, because the conditional law is free of the parameter.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="statistics.html"><span>← previous</span>Statistics</a><a rel="next" href="the-rao-blackwell-theorem.html"><span>next →</span>The Rao-Blackwell theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/probability--statistics.pdf" title="PDF manual">Statistics</a> · <a class="pdf" href="pdf/probability.pdf" title="PDF manual">Probability</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geometric, radiometric, spectral and temporal resolution · Remote Sensing</title>
+<meta name="description" content="A sensor integrates radiance over space (geometric resolution, the GIFOV), wavelength (spectral resolution, band width and number), and is limited by noise (radiometric resolution, the smallest measurable radiance difference) and by revisit (temporal resolution); for a given detector they trade aga…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/sensor-resolutions.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Geometric, radiometric, spectral and temporal resolution · Remote Sensing">
+<meta property="og:description" content="A sensor integrates radiance over space (geometric resolution, the GIFOV), wavelength (spectral resolution, band width and number), and is limited by noise (radiometric resolution, the smallest measurable radiance difference) and by revisit (temporal resolution); for a given detector they trade aga…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/sensor-resolutions.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-acquisition">Acquisition</a> / <a rel="up" href="index.html#a-acquisition--optical-sensors">Optical Sensors</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Acquisition · Optical Sensors</p>
+<h1>Geometric, radiometric, spectral and temporal resolution</h1>
+<p class="summary">A sensor integrates radiance over space (geometric resolution, the GIFOV), wavelength (spectral resolution, band width and number), and is limited by noise (radiometric resolution, the smallest measurable radiance difference) and by revisit (temporal resolution); for a given detector they trade against each other because each pixel must collect enough energy.</p>
+<p class="rel"><span>needs</span> <a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a>, <a href="digital-number.html">Detector, quantization and digital numbers</a></p>
+<p class="rel"><span>unlocks</span> <a href="multispectral-hyperspectral-image.html">Multispectral and hyperspectral images</a>, <a href="point-spread-function.html">Point spread function and spectral response</a>, <a href="radiometric-snr.html">Signal-to-noise ratio and noise-equivalent quantities</a>, <a href="earth-observation-missions.html">Main Earth-observation missions</a>, <a href="pansharpening.html">Pansharpening</a></p>
+<p class="rel"><span>see also</span> <a href="multispectral-hyperspectral-image.html">Multispectral and hyperspectral images</a>, <a href="point-spread-function.html">Point spread function and spectral response</a>, <a href="earth-observation-missions.html">Main Earth-observation missions</a>, <a href="radiometric-snr.html">Signal-to-noise ratio and noise-equivalent quantities</a>, <a href="pansharpening.html">Pansharpening</a></p>
+<details class="path"><summary>Learning path: 6 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgd0b4778" class="outline-2">
+<h2 id="orgd0b4778">Definition</h2>
+<div class="outline-text-2" id="text-orgd0b4778">
+<ul class="org-ul">
+<li><b>Geometric</b>: size of the smallest ground cell resolved, the GIFOV (sub-metre to kilometres).</li>
+<li><b>Spectral</b>: number, position and width of the bands (<a href="multispectral-hyperspectral-image.html">panchromatic</a>: 1 broad band; multispectral: 3–15 bands of ~50–200 nm; hyperspectral: hundreds of contiguous bands of ~10 nm).</li>
+<li><b>Radiometric</b>: smallest difference in integrated radiance the sensor can distinguish above its noise; <img class="m" src="m/9ad268d57b6e822d73c6597fab83cab48a989c90.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> bits are chosen accordingly.</li>
+<li><b>Temporal</b>: <a href="sun-synchronous-orbit.html">revisit time</a>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org10f53c5" class="outline-2">
+<h2 id="org10f53c5">Derivation</h2>
+<div class="outline-text-2" id="text-org10f53c5">
+<p>
+The energy reaching a detector in one pixel is about
+<div class="mb"><img class="m" src="m/e3681fdca407b3000ff26fa330451d4a44e3ece8.svg" alt="\[ E\propto L_\lambda\,\Delta\lambda\;\mathrm{GIFOV}^2\;\frac{A_{optics}}{H^2}\;t_{int}. \]" style="width:15.802em"></div>
+For fixed detector noise, halving the GIFOV divides <img class="m" src="m/c1c0f060da7782a40701c9b77f4e7bed6c4d8f30.svg" alt="\(E\)" style="height:0.749em;vertical-align:-0.000em"> by four; to keep the SNR (radiometric resolution) one must widen <img class="m" src="m/b5580ba6c5a8e9fd0359ea7b37c7781f7f9faa43.svg" alt="\(\Delta\lambda\)" style="height:0.761em;vertical-align:-0.000em"> (coarser spectral resolution), integrate longer or use larger optics. This is why the <a href="pansharpening.html">panchromatic band</a> has the finest pixel (it is the widest band) and hyperspectral sensors have coarser pixels.
+</p>
+</div>
+</div>
+<div id="outline-container-orga12ecaf" class="outline-2">
+<h2 id="orga12ecaf">Picture</h2>
+<div class="outline-text-2" id="text-orga12ecaf">
+<figure class="fig"><img class="m" src="m/b889e2982fee666fa7770261b3afc721b8e858f4.svg" alt="figure" style="width:21.362em"><figcaption><span class="fl">Figure 1.</span> With a fixed energy budget per pixel, geometric, spectral and radiometric resolution compete: improving one costs the others.</figcaption></figure>
+<p>
+Improving one corner of the triangle costs the others.
+</p>
+</div>
+</div>
+<div id="outline-container-org50fed9f" class="outline-2">
+<h2 id="org50fed9f">Intuition</h2>
+<div class="outline-text-2" id="text-org50fed9f">
+<p>
+A pixel is a bucket catching photons: a smaller bucket (finer pixel) or a narrower colour range (finer band) catches fewer, and noise takes over.
+</p>
+</div>
+</div>
+<div id="outline-container-org766be0c" class="outline-2">
+<h2 id="org766be0c">Pitfall</h2>
+<div class="outline-text-2" id="text-org766be0c">
+<p>
+Pixel size in a product is not resolution: images are often resampled to a finer grid than the GIFOV, and the effective resolution also depends on the <a href="point-spread-function.html">point spread function</a>.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="digital-number.html"><span>← previous</span>Detector, quantization and digital numbers</a><a rel="next" href="multispectral-hyperspectral-image.html"><span>next →</span>Multispectral and hyperspectral images</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/acquisition--optical-sensors.pdf" title="PDF manual">Optical Sensors</a> · <a class="pdf" href="pdf/acquisition.pdf" title="PDF manual">Acquisition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

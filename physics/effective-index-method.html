@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The effective index method · Physics</title>
+<meta name="description" content="A 2D-confined waveguide is reduced to two 1D slab problems: solve the vertical slab to get n_{eff,1} inside and outside the ridge, then solve a horizontal slab with those indices (opposite polarisation) to get the mode index n_{eff}; accurate when the field is well confined, and the starting point …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/effective-index-method.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The effective index method · Physics">
+<meta property="og:description" content="A 2D-confined waveguide is reduced to two 1D slab problems: solve the vertical slab to get n_{eff,1} inside and outside the ridge, then solve a horizontal slab with those indices (opposite polarisation) to get the mode index n_{eff}; accurate when the field is well confined, and the starting point …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/effective-index-method.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-photonics">Photonics</a> / <a rel="up" href="index.html#a-photonics--silicon-photonics">Silicon Photonics</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Photonics · Silicon Photonics</p>
+<h1>The effective index method</h1>
+<p class="summary">A 2D-confined waveguide is reduced to two 1D slab problems: solve the vertical slab to get <img class="m" src="m/4003b8b689501ba2d166914e69c790e1bd498cb4.svg" alt="\(n_{eff,1}\)" style="height:0.785em;vertical-align:-0.314em"> inside and outside the ridge, then solve a horizontal slab with those indices (opposite polarisation) to get the mode index <img class="m" src="m/dc33acf7f86fdcdde14f3273093563f7f68f3063.svg" alt="\(n_{eff}\)" style="height:0.785em;vertical-align:-0.314em">; accurate when the field is well confined, and the starting point for numerical mode solvers.</p>
+<p class="rel"><span>needs</span> <a href="photonics.html">Integrated photonics: the map of the subject</a>, <a href="dielectric-slab-waveguide.html">The dielectric slab waveguide</a></p>
+<p class="rel"><span>unlocks</span> <a href="silicon-photonic-waveguides.html">Silicon photonic waveguides</a></p>
+<p class="rel"><span>see also</span> <a href="silicon-photonic-waveguides.html">Silicon photonic waveguides</a>, <a href="variational-method.html">The variational method</a></p>
+<p class="rel"><span>mentioned in</span> <a href="variational-method.html">The variational method</a></p>
+<details class="path"><summary>Learning path: 15 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="poynting-theorem.html">Poynting's theorem and electromagnetic power</a></li><li><a href="plane-waves-in-media.html">Plane waves in lossless and lossy media</a></li><li><a href="optoelectronics.html">Optoelectronics: the map of the subject</a></li><li><a href="dispersion-and-group-velocity.html">Dispersion, group velocity and group index</a></li><li><a href="reflection-and-transmission-at-interfaces.html">Reflection and transmission: Snell, Fresnel, Brewster and total internal reflection</a></li><li><a href="gaussian-beams.html">Gaussian beams</a></li><li><a href="interference-and-fabry-perot.html">Interference and the Fabry–Perot resonator</a></li><li><a href="dielectric-slab-waveguide.html">The dielectric slab waveguide</a></li><li><a href="photonics.html">Integrated photonics: the map of the subject</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgf156dd1" class="outline-2">
+<h2 id="orgf156dd1">Method</h2>
+<div class="outline-text-2" id="text-orgf156dd1">
+<ol class="org-ol">
+<li>Divide the cross-section into vertical regions (ridge, sides).</li>
+<li>For each region solve a vertical slab (<a href="dielectric-slab-waveguide.html">slab waveguide</a>) for the chosen polarisation (TE: <img class="m" src="m/59b245b1cd54877446d08d11d31f9e6a8960695d.svg" alt="\(E\)" style="height:0.749em;vertical-align:-0.000em"> horizontal → solve the vertical slab as TE) <span class="cite">(<a class="ref" href="https://doi.org/10.1002/j.1538-7305.1969.tb01166.x" data-full="E. A. J. Marcatili, “Dielectric rectangular waveguide and directional coupler for integrated optics”, Bell System Technical Journal 48, 2071–2102 (1969)." aria-label="E. A. J. Marcatili, “Dielectric rectangular waveguide and directional coupler for integrated optics”, Bell System Technical Journal 48, 2071–2102 (1969).">Marcatili 1969</a>)</span>.</li>
+<li>Build a horizontal slab with core index <img class="m" src="m/c4ded5a736fc2bc312fda1ecfbe48fc10d8843fc.svg" alt="\(n_{eff,ridge}\)" style="height:0.785em;vertical-align:-0.314em"> and cladding <img class="m" src="m/4225f262a2239165659e462095b756b8de56c52c.svg" alt="\(n_{eff,side}\)" style="height:0.785em;vertical-align:-0.314em"> (for a strip guide the sides are just cladding).</li>
+<li>Solve it with the <b>other</b> polarisation (TM-like boundary conditions for the TE mode) to get <img class="m" src="m/dc33acf7f86fdcdde14f3273093563f7f68f3063.svg" alt="\(n_{eff}\)" style="height:0.785em;vertical-align:-0.314em">.</li>
+<li>Group index <img class="m" src="m/34bf5385f63042912cccbc040d3c46094eaa42d2.svg" alt="\(n_g=n_{eff}-\lambda\,\dd n_{eff}/\dd\lambda\)" style="height:1.135em;vertical-align:-0.318em"> by repeating at two wavelengths.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgaa9c8dc" class="outline-2">
+<h2 id="orgaa9c8dc">Justification</h2>
+<div class="outline-text-2" id="text-orgaa9c8dc">
+<p>
+Separation of variables <img class="m" src="m/43824f3a84ad34176ea265d36ea747d299239c09.svg" alt="\(E(x,y)\approx X(x)Y(y)\)" style="height:1.096em;vertical-align:-0.274em"> inserted in the scalar Helmholtz equation; the variational principle (<a href="variational-method.html">variational method</a>) shows the estimate is stationary, so errors are second order in the field error. It overestimates <img class="m" src="m/dc33acf7f86fdcdde14f3273093563f7f68f3063.svg" alt="\(n_{eff}\)" style="height:0.785em;vertical-align:-0.314em"> for small, high-contrast guides; full-vector solvers (finite differences, FEM) are needed for design.
+</p>
+</div>
+</div>
+<div id="outline-container-org5d669f9" class="outline-2">
+<h2 id="org5d669f9">Worked example</h2>
+<div class="outline-text-2" id="text-org5d669f9">
+<p>
+SOI strip 500×220 nm, <img class="m" src="m/2d5f6b5ac6e853de378ba97b6095e168f931ded8.svg" alt="\(\lambda=1550\)" style="height:0.761em;vertical-align:-0.000em"> nm, TE. Vertical slab Si(220 nm) in SiO<img class="m" src="m/c9902f14814473fee6466a89ce3a2722ca89432d.svg" alt="\(_2\)" style="height:0.494em;vertical-align:-0.163em">: TE <img class="m" src="m/4582b60d6c949d0fc3d9c55ddedbbd1533305730.svg" alt="\(n_{eff,1}\approx2.85\)" style="height:1.020em;vertical-align:-0.316em">. Horizontal slab of width 500 nm, core 2.85, cladding 1.44, TM boundary conditions: <img class="m" src="m/f9a1f00da38f7003f804640e6c3844cdf4f2e2db.svg" alt="\(n_{eff}\approx2.45\)" style="height:1.020em;vertical-align:-0.316em"> (full-vector solvers give ≈ 2.44). Group index ≈ 4.2 because of strong waveguide dispersion.
+</p>
+</div>
+</div>
+<div id="outline-container-org5e47428" class="outline-2">
+<h2 id="org5e47428">Engineering applications</h2>
+<div class="outline-text-2" id="text-org5e47428">
+<p>
+Quick design of ridge lasers, rib modulators, AWG slab regions, MMI couplers; sanity checks of numerical solvers; designing single-mode width limits.
+</p>
+</div>
+</div>
+<div id="outline-container-org9aef022" class="outline-2">
+<h2 id="org9aef022">Pitfall</h2>
+<div class="outline-text-2" id="text-org9aef022">
+<p>
+EIM fails near cutoff and for modes with strong hybrid (TE/TM mixed) character, e.g. in slot waveguides or at sharp bends.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="photonics.html"><span>← previous</span>Integrated photonics: the map of the subject</a><a rel="next" href="silicon-photonic-waveguides.html"><span>next →</span>Silicon photonic waveguides</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/photonics--silicon-photonics.pdf" title="PDF manual">Silicon Photonics</a> · <a class="pdf" href="pdf/photonics.pdf" title="PDF manual">Photonics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

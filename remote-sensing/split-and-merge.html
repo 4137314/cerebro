@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Split and merge segmentation · Remote Sensing</title>
+<meta name="description" content="Split: starting from the whole image, recursively divide every square block that fails the homogeneity test into four, building a quadtree whose leaves are homogeneous &quot;atomic&quot; regions; merge: join adjacent regions whose union is still homogeneous, removing the artificial square boundaries.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/split-and-merge.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Split and merge segmentation · Remote Sensing">
+<meta property="og:description" content="Split: starting from the whole image, recursively divide every square block that fails the homogeneity test into four, building a quadtree whose leaves are homogeneous &quot;atomic&quot; regions; merge: join adjacent regions whose union is still homogeneous, removing the artificial square boundaries.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/split-and-merge.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--segmentation">Segmentation</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Processing · Segmentation</p>
+<h1>Split and merge segmentation</h1>
+<p class="summary">Split: starting from the whole image, recursively divide every square block that fails the homogeneity test into four, building a quadtree whose leaves are homogeneous "atomic" regions; merge: join adjacent regions whose union is still homogeneous, removing the artificial square boundaries.</p>
+<p class="rel"><span>needs</span> <a href="image-segmentation.html">Image segmentation</a></p>
+<p class="rel"><span>see also</span> <a href="region-growing.html">Region growing</a></p>
+<p class="rel"><span>mentioned in</span> <a href="region-growing.html">Region growing</a></p>
+<details class="path"><summary>Learning path: 17 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="spectral-signature.html">Spectral signature</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li><li><a href="image-statistics.html">Image statistics: moments, mode, median</a></li><li><a href="homogeneous-area-statistics.html">Statistics of homogeneous areas in optical images</a></li><li><a href="image-segmentation.html">Image segmentation</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org9ac5973" class="outline-2">
+<h2 id="org9ac5973">Algorithm</h2>
+<div class="outline-text-2" id="text-org9ac5973">
+<figure class="fig"><img class="m" src="m/8871759fa8927f1ed2dd0f17941e1186a16ad92f.svg" alt="figure" style="width:22.728em"><figcaption><span class="fl">Algorithm 1.</span> Split and merge: split every block that fails the homogeneity predicate <img class="m" src="m/76ce874449e4a2e22770eb7dff3ac270849df7ec.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> into quadrants, then merge adjacent regions whose union satisfies it.</figcaption></figure>
+<p>
+<img class="m" src="m/76ce874449e4a2e22770eb7dff3ac270849df7ec.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em">: homogeneity predicate, e.g. <img class="m" src="m/cbfd3223b3be79daf3e6b9bcc3d68c7bad299268.svg" alt="\(\max-\min&lt;\delta\)" style="height:0.852em;vertical-align:-0.094em"> or variance below a threshold (optical), coefficient of variation compatible with speckle (SAR).
+</p>
+</div>
+</div>
+<div id="outline-container-org9e38971" class="outline-2">
+<h2 id="org9e38971">Picture</h2>
+<div class="outline-text-2" id="text-org9e38971">
+<figure class="fig"><img class="m" src="m/f364da7f039f7dc3bb68eb2218a1140d08faf790.svg" alt="figure" style="width:26.828em"><figcaption><span class="fl">Figure 1.</span> A split-and-merge segmentation: the quadtree split refines only where the image is not uniform, and leaves of the same colour are then merged.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-org0cb7353" class="outline-2">
+<h2 id="org0cb7353">Intuition</h2>
+<div class="outline-text-2" id="text-org0cb7353">
+<p>
+Zoom in only where the image is busy; then glue back together the pieces that turned out to be the same thing.
+</p>
+</div>
+</div>
+<div id="outline-container-org1fa1c89" class="outline-2">
+<h2 id="org1fa1c89">Pitfall</h2>
+<div class="outline-text-2" id="text-org1fa1c89">
+<p>
+The result depends on the order of merges and on block alignment: a region straddling a quadtree boundary is split early and must be recovered by merging.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="region-growing.html"><span>← previous</span>Region growing</a><a rel="next" href="recognition-system.html"><span>next →</span>Recognition systems</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--segmentation.pdf" title="PDF manual">Segmentation</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

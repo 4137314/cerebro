@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free groups and presentations · Mathematics</title>
+<meta name="description" content="Every group so far has been given by exhibiting it. A presentation does the opposite: it names generators and relations and asserts that nothing else holds. Making that precise requires a group in which no relation holds at all, and a universal property saying that maps out of it are unconstrained …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/free-groups-and-presentations.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Free groups and presentations · Mathematics">
+<meta property="og:description" content="Every group so far has been given by exhibiting it. A presentation does the opposite: it names generators and relations and asserts that nothing else holds. Making that precise requires a group in which no relation holds at all, and a universal property saying that maps out of it are unconstrained …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/free-groups-and-presentations.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--group-theory">Group Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Algebra · Group Theory</p>
+<h1>Free groups and presentations</h1>
+<p class="summary">Every group so far has been given by exhibiting it. A presentation does the opposite: it names generators and relations and asserts that <i>nothing else holds</i>. Making that precise requires a group in which no relation holds at all, and a universal property saying that maps out of it are unconstrained &#x2013; which is exactly what determines it up to unique isomorphism.</p>
+<p class="rel"><span>needs</span> <a href="group.html">Group</a>, <a href="group-homomorphism.html">Group homomorphism</a>, <a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a>, <a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a>, <a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></p>
+<p class="rel"><span>mentioned in</span> <a href="group-theory.html">Group theory</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org15d1bd0">
+<p>
+Let <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> be a set. A group <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em"> with a map <img class="m" src="m/19007a318ab5e1b65dd255d829446682ed631577.svg" alt="\(\iota \colon S \to F\)" style="height:0.749em;vertical-align:-0.000em"> is
+<i>free on <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"></i> if for every group <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> and every map
+<img class="m" src="m/c0f5eb883e2bf310ce49ac4a800f1bb2f7c61b6d.svg" alt="\(f \colon S \to G\)" style="height:0.974em;vertical-align:-0.214em"> there is exactly one homomorphism
+<img class="m" src="m/1bba7847172676e3687b48ed09a511bc8bee3bbc.svg" alt="\(\bar{f} \colon F \to G\)" style="height:1.125em;vertical-align:-0.214em"> with <img class="m" src="m/cb84f332ef9409fe3b7ea86ec60a8ad7d3e312f6.svg" alt="\(\bar{f}\circ\iota = f\)" style="height:1.125em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org4126a09">
+<p>
+Any two groups free on the same set <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> are isomorphic by a unique
+isomorphism commuting with the maps from <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org93d592d">
+<p>
+Let <img class="m" src="m/4651c4a923c8ca33a76eab7f84ffbeaa38522a38.svg" alt="\((F,\iota)\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/b5f884992aa70c0458dca71f87fd5208a54472f6.svg" alt="\((F',\iota')\)" style="height:1.098em;vertical-align:-0.274em"> both be free on <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">. The
+universal property of <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em"> applied to <img class="m" src="m/7ad08bb53abdcf31062aac77f9465022d6d46cb0.svg" alt="\(\iota'\)" style="height:0.824em;vertical-align:-0.000em"> gives
+<img class="m" src="m/b4fd225b69b491c82569f68ffb50b2e6d66fd427.svg" alt="\(u \colon F \to F'\)" style="height:0.824em;vertical-align:-0.000em"> with <img class="m" src="m/d73dbcd80b0dd5c42efdefe761e71cc95ee51459.svg" alt="\(u\iota = \iota'\)" style="height:0.824em;vertical-align:-0.000em">, and symmetrically
+<img class="m" src="m/e42df6ba3e042a04d0da41ec8220573cd8322f7c.svg" alt="\(u' \colon F'\to F\)" style="height:0.824em;vertical-align:-0.000em"> with <img class="m" src="m/40a63db222e61bed1a57e7a564c29ea2a97ccec0.svg" alt="\(u'\iota' = \iota\)" style="height:0.824em;vertical-align:-0.000em">. Then <img class="m" src="m/a443ad2a48054063bbbdf12307f46c50568857c8.svg" alt="\(u'u\)" style="height:0.824em;vertical-align:-0.000em"> is a
+homomorphism <img class="m" src="m/34cc1516bea35b252e616eaa44abedd19f485ae2.svg" alt="\(F \to F\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/1c5301a23367101882358b91a419eeb794549556.svg" alt="\(u'u\iota = \iota\)" style="height:0.824em;vertical-align:-0.000em">; the identity is
+another, and the uniqueness clause forces <img class="m" src="m/a1e44acf2e4216d1fe84a76a5b2fdd5545f77385.svg" alt="\(u'u = \id\)" style="height:0.824em;vertical-align:-0.000em">. Likewise
+<img class="m" src="m/d2a6515f2bfb25e2c2c4c3dc0f5c34fc2a6d915a.svg" alt="\(uu' = \id\)" style="height:0.824em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orge6d7a16">
+<p>
+For every set <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> there is a group free on <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">: the set <img class="m" src="m/850df36747a8c055d89edf8a48ebb54ca4bb45c7.svg" alt="\(F(S)\)" style="height:1.096em;vertical-align:-0.274em"> of
+<i>reduced words</i> &#x2013; finite strings <img class="m" src="m/1401c2869266f7d788a93cb0c2ef15267559b2b6.svg" alt="\(s_{1}^{\eps_{1}}\cdots s_{k}^{\eps_{k}}\)" style="height:1.155em;vertical-align:-0.335em">
+with <img class="m" src="m/fd35e2e19fe192d3cf5d4c2159868c15eb20328a.svg" alt="\(s_{i}\in S\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/6cba18491321571617398da6bbc554d5e80408d6.svg" alt="\(\eps_{i}\in\set{1,-1}\)" style="height:1.096em;vertical-align:-0.274em">, and no two adjacent
+letters of the form <img class="m" src="m/09d33c1e4041ed3d43e70deb3dac6508256b0d0f.svg" alt="\(s^{1}s^{-1}\)" style="height:0.892em;vertical-align:-0.000em"> or <img class="m" src="m/478b07e93e1208baeabffa5dbe0fcfc223ba33f5.svg" alt="\(s^{-1}s^{1}\)" style="height:0.892em;vertical-align:-0.000em"> &#x2013; under
+concatenation followed by cancellation.
+</p>
+
+</div>
+
+<div class="proof" id="orga75ec70">
+<p>
+Let <img class="m" src="m/850df36747a8c055d89edf8a48ebb54ca4bb45c7.svg" alt="\(F(S)\)" style="height:1.096em;vertical-align:-0.274em"> be the set of reduced words, and for <img class="m" src="m/30c68b78e3d446d712e62966310abaf0f6ef5587.svg" alt="\(s \in S\)" style="height:0.792em;vertical-align:-0.040em"> let
+<img class="m" src="m/bcb36a5201e72b69a85356f34873e992fa15ede7.svg" alt="\(\lambda_{s}\)" style="height:0.925em;vertical-align:-0.167em"> be the map of <img class="m" src="m/850df36747a8c055d89edf8a48ebb54ca4bb45c7.svg" alt="\(F(S)\)" style="height:1.096em;vertical-align:-0.274em"> to itself prefixing <img class="m" src="m/42d2c35f20f2c22043ef0eb42920ada193d61639.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> and
+cancelling if the first letter is <img class="m" src="m/fd1a213c6b659c66e0cfdc5d92efb9a670f56182.svg" alt="\(s^{-1}\)" style="height:0.892em;vertical-align:-0.000em">; define <img class="m" src="m/1cdd53a127d1ec3be256562a365c45fe9da192fc.svg" alt="\(\lambda_{s^{-1}}\)" style="height:0.968em;vertical-align:-0.203em">
+symmetrically. Each <img class="m" src="m/bcb36a5201e72b69a85356f34873e992fa15ede7.svg" alt="\(\lambda_{s}\)" style="height:0.925em;vertical-align:-0.167em"> is a bijection with inverse
+<img class="m" src="m/1cdd53a127d1ec3be256562a365c45fe9da192fc.svg" alt="\(\lambda_{s^{-1}}\)" style="height:0.968em;vertical-align:-0.203em">, by inspection of the two cases. Let <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em"> be the
+subgroup of <img class="m" src="m/ad1876cd576b73a05f1834bc7ae2fc31b7ed6e1b.svg" alt="\(\Sym(F(S))\)" style="height:1.096em;vertical-align:-0.274em"> generated by the <img class="m" src="m/bcb36a5201e72b69a85356f34873e992fa15ede7.svg" alt="\(\lambda_{s}\)" style="height:0.925em;vertical-align:-0.167em">.
+</p>
+
+<p>
+The map sending a reduced word to the corresponding composite of
+<img class="m" src="m/bf732bcb08e251641d188904cbb646f8c7c05665.svg" alt="\(\lambda\)" style="height:0.761em;vertical-align:-0.000em">'s applied to the empty word is a bijection <img class="m" src="m/bf7d279a021e8aafbfc6e2a262f4b047850d659e.svg" alt="\(F(S) \to\)" style="height:1.096em;vertical-align:-0.274em">
+(orbit of the empty word), and it identifies the product of reduced
+words with concatenation-and-cancellation; so that operation makes
+<img class="m" src="m/850df36747a8c055d89edf8a48ebb54ca4bb45c7.svg" alt="\(F(S)\)" style="height:1.096em;vertical-align:-0.274em"> a group isomorphic to <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em">. Associativity, which is the only
+delicate point for words, is inherited from composition of maps.
+</p>
+
+<p>
+Universality: given <img class="m" src="m/c0f5eb883e2bf310ce49ac4a800f1bb2f7c61b6d.svg" alt="\(f \colon S \to G\)" style="height:0.974em;vertical-align:-0.214em">, the only possible value of a
+homomorphism on <img class="m" src="m/1401c2869266f7d788a93cb0c2ef15267559b2b6.svg" alt="\(s_{1}^{\eps_{1}}\cdots s_{k}^{\eps_{k}}\)" style="height:1.155em;vertical-align:-0.335em"> is
+<img class="m" src="m/8ead07313934bf9b669fae1667cc338c9afd57f1.svg" alt="\(f(s_{1})^{\eps_{1}}\cdots f(s_{k})^{\eps_{k}}\)" style="height:1.096em;vertical-align:-0.274em">, which proves
+uniqueness. That formula is well defined on reduced words and respects
+the product, since cancelling <img class="m" src="m/a4bf15d9fb410b7da2e28832cb99066c08c64ed7.svg" alt="\(s s^{-1}\)" style="height:0.892em;vertical-align:-0.000em"> in a word corresponds to
+cancelling <img class="m" src="m/b8f0a56746900029b379600aa6b098eb1eaf4c09.svg" alt="\(f(s)f(s)^{-1}\)" style="height:1.166em;vertical-align:-0.268em"> in <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">; so it is the required
+homomorphism.
+</p>
+
+</div>
+
+<div class="definition" id="org77c1f3d">
+<p>
+Let <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> be a set and <img class="m" src="m/d706d3a023a1e9295ef2f230809739150040998b.svg" alt="\(R \subseteq F(S)\)" style="height:1.096em;vertical-align:-0.274em">. The group <i>presented</i> by
+<img class="m" src="m/365c47032c7a6e1b533a99dbff0f3e737173960f.svg" alt="\(\langle S \mid R\rangle\)" style="height:1.096em;vertical-align:-0.274em"> is <img class="m" src="m/e95340cb8cae7ed5ebaf9c92ff7562072e94a29c.svg" alt="\(F(S)/N\)" style="height:1.096em;vertical-align:-0.274em">, where <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> is the smallest
+normal subgroup containing <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> &#x2013; the intersection of all of them,
+equivalently the subgroup generated by all conjugates of elements of
+<img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org3e82f01">
+<p>
+Every group is presented by some <img class="m" src="m/365c47032c7a6e1b533a99dbff0f3e737173960f.svg" alt="\(\langle S \mid R\rangle\)" style="height:1.096em;vertical-align:-0.274em">. Moreover,
+if <img class="m" src="m/f70e3cbd6698bbc1565a08866868fa90db3cd6f7.svg" alt="\(G = \langle S \mid R\rangle\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> is a group with elements
+<img class="m" src="m/2c3522e08a7737345db4f351ac9cfbb046d177bd.svg" alt="\(h_{s}\)" style="height:0.925em;vertical-align:-0.167em">, <img class="m" src="m/30c68b78e3d446d712e62966310abaf0f6ef5587.svg" alt="\(s \in S\)" style="height:0.792em;vertical-align:-0.040em">, such that every relation in <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> holds among
+the <img class="m" src="m/2c3522e08a7737345db4f351ac9cfbb046d177bd.svg" alt="\(h_{s}\)" style="height:0.925em;vertical-align:-0.167em">, then there is a unique homomorphism <img class="m" src="m/4d56cef2f94c34e7000b90507b3973cc957e5ed4.svg" alt="\(G \to H\)" style="height:0.749em;vertical-align:-0.000em"> sending
+the class of <img class="m" src="m/42d2c35f20f2c22043ef0eb42920ada193d61639.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> to <img class="m" src="m/2c3522e08a7737345db4f351ac9cfbb046d177bd.svg" alt="\(h_{s}\)" style="height:0.925em;vertical-align:-0.167em">.
+</p>
+
+</div>
+
+<div class="proof" id="org9c8f7c3">
+<p>
+For the first claim take <img class="m" src="m/51349b41cc0ceb63f1c7814847ff1a6e810c12b0.svg" alt="\(S = G\)" style="height:0.749em;vertical-align:-0.000em"> and let <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> be the kernel of the
+canonical <img class="m" src="m/7559b3ad9084a4fd9ee8d1fb55bcbdb781389f65.svg" alt="\(\bar{f}\colon F(G)\to G\)" style="height:1.185em;vertical-align:-0.273em"> extending the identity map; that
+kernel is normal and <img class="m" src="m/49548bebda236584cfa2c71f926796f2b1f8b344.svg" alt="\(G \iso F(G)/\ker\bar{f}\)" style="height:1.185em;vertical-align:-0.273em"> by the first
+isomorphism theorem.
+</p>
+
+<p>
+For the second, the universal property of <img class="m" src="m/850df36747a8c055d89edf8a48ebb54ca4bb45c7.svg" alt="\(F(S)\)" style="height:1.096em;vertical-align:-0.274em"> gives a homomorphism
+<img class="m" src="m/7af5b1ad4b6abf79020e6426d22ff92ebb11dc6f.svg" alt="\(u\colon F(S)\to H\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/fc258fbda13021063663a50c618a5c7c2b0a194b.svg" alt="\(u(s) = h_{s}\)" style="height:1.096em;vertical-align:-0.274em">. By hypothesis <img class="m" src="m/43f1d6c46cc02af73d5390471e1c8c127d40b707.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em"> kills
+every element of <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">, hence every conjugate of one and every product
+of such &#x2013; that is, all of <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">. So <img class="m" src="m/43f1d6c46cc02af73d5390471e1c8c127d40b707.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em"> factors through
+<img class="m" src="m/0748abde41e2089873dc7fa9421daaa559a21392.svg" alt="\(F(S)/N = G\)" style="height:1.096em;vertical-align:-0.274em">, uniquely since the classes of the <img class="m" src="m/42d2c35f20f2c22043ef0eb42920ada193d61639.svg" alt="\(s\)" style="height:0.472em;vertical-align:-0.000em"> generate.
+</p>
+
+</div>
+
+<div class="remark" id="org3e818e7">
+<p>
+The theorem is what makes a presentation usable: to define a map out of
+a presented group one checks finitely many relations, and nothing else.
+What it does not give is any way to decide whether two words present the
+same element &#x2013; the word problem is undecidable for finitely presented
+groups, which is the sharpest illustration in algebra of the
+undecidability results of computability theory.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="direct-and-semidirect-products.html"><span>← previous</span>Direct and semidirect products</a><a rel="next" href="group-theory.html"><span>next →</span>Group theory</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--group-theory.pdf" title="PDF manual">Group Theory</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

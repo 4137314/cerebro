@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Laplace transform and circuit transients · Physics</title>
+<meta name="description" content="X(s)=\int_{0^-}^\infty x(t)e^{-st}\dd t turns differential equations with initial conditions into algebra: \mathcal L[\dot x]=sX-x(0^-); impedances become R, sL, 1/sC (with initial-condition sources), the transfer function H(s) has poles whose real parts decide stability, and partial fractions give…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/laplace-transform-and-transients.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The Laplace transform and circuit transients · Physics">
+<meta property="og:description" content="X(s)=\int_{0^-}^\infty x(t)e^{-st}\dd t turns differential equations with initial conditions into algebra: \mathcal L[\dot x]=sX-x(0^-); impedances become R, sL, 1/sC (with initial-condition sources), the transfer function H(s) has poles whose real parts decide stability, and partial fractions give…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/laplace-transform-and-transients.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-circuits">Circuits</a> / <a rel="up" href="index.html#a-circuits--transforms">Transforms</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Circuits · Transforms</p>
+<h1>The Laplace transform and circuit transients</h1>
+<p class="summary"><img class="m" src="m/2056102e1905f5d96c77f1e271837bb90606807d.svg" alt="\(X(s)=\int_{0^-}^\infty x(t)e^{-st}\dd t\)" style="height:1.332em;vertical-align:-0.386em"> turns differential equations with initial conditions into algebra: <img class="m" src="m/618b8688ed5a53ebc6fd20b4789dafaad29b0e64.svg" alt="\(\mathcal L[\dot x]=sX-x(0^-)\)" style="height:1.147em;vertical-align:-0.275em">; impedances become <img class="m" src="m/462be1156f106ccb2bd073436a86dc7d0df95c1f.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/49c1f2be2e3995a6e88f2f1010f347eeeb9a3a8a.svg" alt="\(sL\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/3b1cd3d584e6539163f98fd5f6d621628f22934b.svg" alt="\(1/sC\)" style="height:1.096em;vertical-align:-0.274em"> (with initial-condition sources), the transfer function <img class="m" src="m/96f07e71d9f5e0f14938dd16eb903aa2a49a2475.svg" alt="\(H(s)\)" style="height:1.096em;vertical-align:-0.274em"> has poles whose real parts decide stability, and partial fractions give the time response.</p>
+<p class="rel"><span>needs</span> <a href="lti-systems-and-convolution.html">LTI systems, impulse response and first/second-order circuits</a>, <a href="fourier-series-and-transform.html">Fourier series and Fourier transform</a></p>
+<p class="rel"><span>unlocks</span> <a href="exam-practice-circuits.html">Exam practice: circuit theory (solved)</a></p>
+<p class="rel"><span>see also</span> <a href="frequency-response-and-filters.html">Frequency response, Bode plots and filters</a>, <a href="green-functions-and-feynman-propagator.html">Green's functions and the Feynman propagator</a></p>
+<p class="rel"><span>mentioned in</span> <a href="green-functions-and-feynman-propagator.html">Green's functions and the Feynman propagator</a></p>
+<details class="path"><summary>Learning path: 11 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="circuits.html">Circuit theory: the map of the subject</a></li><li><a href="kirchhoff-laws-and-network-theorems.html">Kirchhoff's laws and network theorems</a></li><li><a href="lti-systems-and-convolution.html">LTI systems, impulse response and first/second-order circuits</a></li><li><a href="complex-numbers-and-phasors.html">Complex numbers and phasors</a></li><li><a href="fourier-series-and-transform.html">Fourier series and Fourier transform</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org4bd4943" class="outline-2">
+<h2 id="org4bd4943">Key transforms and theorems</h2>
+<div class="outline-text-2" id="text-org4bd4943">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">x(t)</th>
+<th scope="col" class="org-left">X(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">δ(t)</td>
+<td class="org-left">1</td>
+</tr>
+
+<tr>
+<td class="org-left">u(t)</td>
+<td class="org-left">1/s</td>
+</tr>
+
+<tr>
+<td class="org-left">e<sup>−at</sup> u(t)</td>
+<td class="org-left">1/(s + a)</td>
+</tr>
+
+<tr>
+<td class="org-left">t e<sup>−at</sup> u(t)</td>
+<td class="org-left">1/(s + a)²</td>
+</tr>
+
+<tr>
+<td class="org-left">sin ω₀t u(t)</td>
+<td class="org-left">ω₀/(s² + ω₀²)</td>
+</tr>
+
+<tr>
+<td class="org-left">e<sup>−at</sup>cos ω₀t u(t)</td>
+<td class="org-left">(s + a)/((s + a)² + ω₀²)</td>
+</tr>
+</tbody>
+</table>
+<p>
+Initial value <img class="m" src="m/a6b7c63b580fa144cb39acd99cc1366972ab39b1.svg" alt="\(x(0^+)=\lim_{s\to\infty}sX(s)\)" style="height:1.147em;vertical-align:-0.275em">; final value <img class="m" src="m/3eb3eaa5a605071287e841b989836e54a618a0dd.svg" alt="\(x(\infty)=\lim_{s\to0}sX(s)\)" style="height:1.096em;vertical-align:-0.274em"> (only if poles of <img class="m" src="m/5e9433a7bb54b1a38dd63fafa36ff855794cebb8.svg" alt="\(sX\)" style="height:0.749em;vertical-align:-0.000em"> are in the left half-plane) <span class="cite">(<a class="ref" href="https://doi.org/10.1098/rspl.1892.0093" data-full="O. Heaviside, “On operators in physical mathematics. Part I”, Proceedings of the Royal Society of London 52, 504–529 (1893)." aria-label="O. Heaviside, “On operators in physical mathematics. Part I”, Proceedings of the Royal Society of London 52, 504–529 (1893).">Heaviside 1893</a>)</span>. <img class="m" src="m/3667ee1480636ffc0bf02c26644f660d9a9afc66.svg" alt="\(H(j\omega)=H(s)|_{s=j\omega}\)" style="height:1.135em;vertical-align:-0.318em"> for stable systems.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf1b3777" class="outline-2">
+<h2 id="orgf1b3777">Method</h2>
+<div class="outline-text-2" id="text-orgf1b3777">
+<ol class="org-ol">
+<li>Determine <img class="m" src="m/62a63a5071f56298df79415241ff9e2008c06cb7.svg" alt="\(v_C(0^-)\)" style="height:1.147em;vertical-align:-0.275em">, <img class="m" src="m/54d98da83af9e910b883f6dabe55fb827e432d37.svg" alt="\(i_L(0^-)\)" style="height:1.147em;vertical-align:-0.275em">.</li>
+<li>Transform the circuit: <img class="m" src="m/70eda0aab6ea55496a661e880c72117b61dab7b9.svg" alt="\(L\to sL\)" style="height:0.749em;vertical-align:-0.000em"> in series with a source <img class="m" src="m/7ec0741f25031cbac476d14cfa2e2064271afbe7.svg" alt="\(Li_L(0^-)\)" style="height:1.147em;vertical-align:-0.275em"> (opposing), <img class="m" src="m/fd1267f1ba0c918439d92cf1bc3271852645884a.svg" alt="\(C\to\frac1{sC}\)" style="height:1.304em;vertical-align:-0.378em"> in series with <img class="m" src="m/d97b1d0c2ff754b595ac15565c95dcb5cfe686f4.svg" alt="\(v_C(0^-)/s\)" style="height:1.147em;vertical-align:-0.275em">.</li>
+<li>Solve algebraically for <img class="m" src="m/f0ee5ae0dd800dd7053fd9b93a632159f3c8fffd.svg" alt="\(X(s)\)" style="height:1.096em;vertical-align:-0.274em">.</li>
+<li>Partial fractions: <img class="m" src="m/610ad0eb447a0d2dbda3cc471f226fc1fe125745.svg" alt="\(X=\sum\frac{r_k}{s-p_k}\)" style="height:1.349em;vertical-align:-0.526em">, <img class="m" src="m/1c3e4b2545ae6c78c10586e169374f77cf2a01b2.svg" alt="\(r_k=\lim_{s\to p_k}(s-p_k)X\)" style="height:1.135em;vertical-align:-0.318em">; invert term by term.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgc1aef07" class="outline-2">
+<h2 id="orgc1aef07">Worked example</h2>
+<div class="outline-text-2" id="text-orgc1aef07">
+<p>
+RC charged to <img class="m" src="m/33f875e0d705e664d4671e217b0497031b362d2f.svg" alt="\(V_0=5\)" style="height:0.913em;vertical-align:-0.164em"> V discharging into <img class="m" src="m/462be1156f106ccb2bd073436a86dc7d0df95c1f.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> while a step <img class="m" src="m/d70dc99f6d077ff598dc2d9e7e20726aa37f2212.svg" alt="\(V_s=10\)" style="height:0.913em;vertical-align:-0.164em"> V is applied at <img class="m" src="m/0cd60c86f06f73831e556e91eea48867019685bc.svg" alt="\(t=0\)" style="height:0.706em;vertical-align:-0.000em"> (series RC to the source): <img class="m" src="m/fdd052f048f5a476d2c631659e8585b22f6ce047.svg" alt="\(I(s)=\frac{V_s/s-V_0/s}{R+1/sC}=\frac{(V_s-V_0)/R}{s+1/RC}\)" style="height:1.677em;vertical-align:-0.570em"> → <img class="m" src="m/1412f636b5a5292bf4fba19020cbf8d3c0e73b6d.svg" alt="\(i=\frac{5}{R}e^{-t/RC}\)" style="height:1.351em;vertical-align:-0.378em">, <img class="m" src="m/34db452a79fe8fbc99e1eafd90dda6aac0ca522e.svg" alt="\(v_C=10-5e^{-t/RC}\)" style="height:1.137em;vertical-align:-0.159em">. Final value: <img class="m" src="m/2be3120622e40b5ffcff7ab89c42cb2d9e2d6826.svg" alt="\(\lim s\cdot V_C(s)=10\)" style="height:1.096em;vertical-align:-0.274em"> V ✓.
+</p>
+</div>
+</div>
+<div id="outline-container-orga016d80" class="outline-2">
+<h2 id="orga016d80">Stability</h2>
+<div class="outline-text-2" id="text-orga016d80">
+<p>
+Poles in the left half-plane → decaying modes; on the axis → oscillation; right half-plane → instability. Feedback amplifiers and oscillators are designed by placing poles (root locus, Nyquist).
+</p>
+</div>
+</div>
+<div id="outline-container-org654b7c1" class="outline-2">
+<h2 id="org654b7c1">Engineering applications</h2>
+<div class="outline-text-2" id="text-org654b7c1">
+<p>
+Switching transients (inrush, ringing), control-loop design of power converters and PLLs, step response specs (rise time, overshoot) of amplifiers, transient analysis in SPICE, the Green's-function view of <a href="green-functions-and-feynman-propagator.html">propagators</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgcf5ffe5" class="outline-2">
+<h2 id="orgcf5ffe5">Pitfall</h2>
+<div class="outline-text-2" id="text-orgcf5ffe5">
+<p>
+The final-value theorem gives nonsense for oscillating or unstable systems (e.g. <img class="m" src="m/f7c9592598c24f0fd1bb72b9a1cbd5fc529fb7b0.svg" alt="\(\sin t\)" style="height:0.732em;vertical-align:-0.000em">): check pole locations first.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="fourier-series-and-transform.html"><span>← previous</span>Fourier series and Fourier transform</a><a rel="next" href="frequency-response-and-filters.html"><span>next →</span>Frequency response, Bode plots and filters</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/circuits--transforms.pdf" title="PDF manual">Transforms</a> · <a class="pdf" href="pdf/circuits.pdf" title="PDF manual">Circuits</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Surface integrals, the divergence theorem and Stokes' theorem · Mathematics</title>
+<meta name="description" content="The two theorems of this note are what make the differential form of a physical law equivalent to its integral form: the flux of a field out of a region is the integral of its divergence, and the circulation around a loop is the flux of its curl. Every conservation law in mathematical physics is wr…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/surface-integrals-the-divergence-theorem-and-stokes-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Surface integrals, the divergence theorem and Stokes' theorem · Mathematics">
+<meta property="og:description" content="The two theorems of this note are what make the differential form of a physical law equivalent to its integral form: the flux of a field out of a region is the integral of its divergence, and the circulation around a loop is the flux of its curl. Every conservation law in mathematical physics is wr…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/surface-integrals-the-divergence-theorem-and-stokes-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Real Analysis</p>
+<h1>Surface integrals, the divergence theorem and Stokes' theorem</h1>
+<p class="summary">The two theorems of this note are what make the differential form of a physical law equivalent to its integral form: the flux of a field out of a region is the integral of its divergence, and the circulation around a loop is the flux of its curl. Every conservation law in <a href="mathematical-physics.html">mathematical physics</a> is written twice for this reason, and the translation is these identities.</p>
+<p class="rel"><span>needs</span> <a href="differentiability-in-several-variables.html">Differentiability in several variables</a>, <a href="line-integrals-exact-forms-and-greens-theorem.html">Line integrals, exact forms and Green's theorem</a>, <a href="product-measures-and-the-theorems-of-tonelli-and-fubini.html">Product measures and the theorems of Tonelli and Fubini</a>, <a href="surfaces-the-two-fundamental-forms-and-gauss-curvature.html">Surfaces: the two fundamental forms and Gauss curvature</a>, <a href="the-fundamental-theorem-of-calculus.html">The fundamental theorem of calculus</a>, <a href="the-riemann-integral.html">The Riemann integral</a>, <a href="the-rules-of-differentiation.html">The rules of differentiation</a></p>
+<p class="rel"><span>unlocks</span> <a href="holomorphic-functions-and-the-cauchy-riemann-equations.html">Holomorphic functions and the Cauchy-Riemann equations</a>, <a href="harmonic-functions-the-mean-value-property-and-the-dirichlet-problem.html">Harmonic functions, the mean value property and the Dirichlet problem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="analysis.html">Analysis</a>, <a href="real-analysis.html">Real analysis</a>, <a href="mathematical-physics.html">Mathematical physics</a></p>
+<details class="path"><summary>Learning path: 78 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="bilinear-forms-quadratic-forms-and-sylvesters-law-of-inertia.html">Bilinear forms, quadratic forms and Sylvester's law of inertia</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-order-of-an-element-and-cyclic-groups.html">The order of an element and cyclic groups</a></li><li><a href="cosets-the-index-and-lagranges-theorem.html">Cosets, the index and Lagrange's theorem</a></li><li><a href="group-actions-orbits-and-the-orbit-stabiliser-theorem.html">Group actions, orbits and the orbit-stabiliser theorem</a></li><li><a href="the-symmetric-group-and-the-sign-of-a-permutation.html">The symmetric group and the sign of a permutation</a></li><li><a href="the-determinant-as-the-alternating-multilinear-form.html">The determinant as the alternating multilinear form</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-algebra-of-continuous-functions-and-composition.html">The algebra of continuous functions and composition</a></li><li><a href="one-sided-limits-and-the-discontinuities-of-a-monotone-function.html">One-sided limits and the discontinuities of a monotone function</a></li><li><a href="the-intermediate-value-theorem.html">The intermediate value theorem</a></li><li><a href="the-continuous-image-of-an-interval-and-the-continuous-inverse.html">The continuous image of an interval and the continuous inverse</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-rules-of-differentiation.html">The rules of differentiation</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="the-spectral-theorem-for-symmetric-operators.html">The spectral theorem for symmetric operators</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="differentiability-in-several-variables.html">Differentiability in several variables</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="the-fundamental-theorem-of-calculus.html">The fundamental theorem of calculus</a></li><li><a href="integration-by-parts-and-substitution.html">Integration by parts and substitution</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li><li><a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="the-baire-category-theorem.html">The Baire category theorem</a></li><li><a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></li><li><a href="convex-set.html">Convex set</a></li><li><a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a></li><li><a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a></li><li><a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a></li><li><a href="product-measures-and-the-theorems-of-tonelli-and-fubini.html">Product measures and the theorems of Tonelli and Fubini</a></li><li><a href="regular-curves-arc-length-and-curvature.html">Regular curves, arc length and curvature</a></li><li><a href="line-integrals-exact-forms-and-greens-theorem.html">Line integrals, exact forms and Green's theorem</a></li><li><a href="surfaces-the-two-fundamental-forms-and-gauss-curvature.html">Surfaces: the two fundamental forms and Gauss curvature</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org0ec1973">
+<p>
+Let <img class="m" src="m/368214cea260078f51ae0d56b13b32869e4fd344.svg" alt="\(\sigma \colon K \to \R^{3}\)" style="height:0.892em;vertical-align:-0.000em"> be a regular parametrised surface on
+a compact <img class="m" src="m/a71e74ba01cc4b3c07e85800001a08118ae2b218.svg" alt="\(K \subseteq \R^{2}\)" style="height:1.041em;vertical-align:-0.146em"> with piecewise smooth boundary. The
+<i>area element</i> is <img class="m" src="m/253a71e28ff20dcae09508618e42767b0ee0685d.svg" alt="\(\dd S = \norm{\sigma_{u}\times\sigma_{v}}\dd u\,\dd v\)" style="height:1.096em;vertical-align:-0.274em">,
+and for a continuous <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> on the image,
+<img class="m" src="m/403e95a70a9714a4ec98084c0406ca1a2603417f.svg" alt="\(\iint_{S}f\dd S = \iint_{K}f(\sigma(u,v))\norm{\sigma_{u}\times\sigma_{v}}\dd u\,\dd v\)" style="height:1.272em;vertical-align:-0.394em">.
+For a vector field <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em">, the <i>flux</i> through <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> oriented by the unit
+normal <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> is <img class="m" src="m/2ef9e0023aced48bb34f0df3bf5c593531b986ce.svg" alt="\(\iint_{S}\inner{F}{N}\dd S = \iint_{K}\inner{F\circ\sigma}{\sigma_{u}\times\sigma_{v}}\dd u\,\dd v\)" style="height:1.272em;vertical-align:-0.394em">.
+</p>
+
+</div>
+
+<div class="definition" id="org8b6fda6">
+<p>
+For a <img class="m" src="m/137c7a7820d2ce9b6547f412208e261180f342ab.svg" alt="\(C^{1}\)" style="height:0.892em;vertical-align:-0.000em"> field <img class="m" src="m/83df8aba023007fab311eac0260e291608aea0e6.svg" alt="\(F = (F_{1},F_{2},F_{3})\)" style="height:1.096em;vertical-align:-0.274em"> on an open subset of
+<img class="m" src="m/c56c61111655edf0be710d27f99daef6e8114c56.svg" alt="\(\R^{3}\)" style="height:0.892em;vertical-align:-0.000em">,
+<img class="m" src="m/640ab3546803840f17ca81ace6ebfa383c171ba9.svg" alt="\(\Div F = \partial_{1}F_{1}+\partial_{2}F_{2}+\partial_{3}F_{3}\)" style="height:0.925em;vertical-align:-0.167em"> and
+<img class="m" src="m/4c2cfb37cbfd83ea6c0caf0d904a1cc1e8e5bbbb.svg" alt="\(\curl F = (\partial_{2}F_{3}-\partial_{3}F_{2},\, \partial_{3}F_{1}-\partial_{1}F_{3},\, \partial_{1}F_{2}-\partial_{2}F_{1})\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org6059825">
+<p>
+For <img class="m" src="m/50c56d1e9783b96a5cc2b4f818a17d6fdcccb7d1.svg" alt="\(C^{2}\)" style="height:0.892em;vertical-align:-0.000em"> fields and functions, <img class="m" src="m/c2e22f06e13ff75a1852ded3a7d66e07547b05b3.svg" alt="\(\Div(\curl F) = 0\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/0f5b90177e2dfd45e1e19b184d222cf9a23efab1.svg" alt="\(\curl(\nabla f) = 0\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org38fd08a">
+<p>
+Both are the equality of mixed second partial derivatives, which holds
+for a <img class="m" src="m/50c56d1e9783b96a5cc2b4f818a17d6fdcccb7d1.svg" alt="\(C^{2}\)" style="height:0.892em;vertical-align:-0.000em"> function. In the first, each term of the divergence
+contributes a pair of mixed derivatives with opposite signs, and the six
+terms cancel in pairs; in the second, each component of the curl is a
+difference of two equal mixed derivatives.
+</p>
+
+</div>
+
+<div class="theorem" id="org59ef12c">
+<p>
+Let <img class="m" src="m/655c543fdf9c3326d06446103be5d63c8f45b65e.svg" alt="\(V \subseteq \R^{3}\)" style="height:1.041em;vertical-align:-0.146em"> be a normal domain with respect to each
+coordinate direction &#x2013; for the third, <img class="m" src="m/04131594aba7794a23d151ab49467aa3d34089a7.svg" alt="\(V = \setst{(x,y,z)}{(x,y)\in D,\ \alpha(x,y)\le z\le\beta(x,y)}\)" style="height:1.096em;vertical-align:-0.274em">
+with <img class="m" src="m/35319b8fe82740b05546ff5e154d79f510ea2317.svg" alt="\(\alpha\le\beta\)" style="height:0.974em;vertical-align:-0.214em"> of class <img class="m" src="m/137c7a7820d2ce9b6547f412208e261180f342ab.svg" alt="\(C^{1}\)" style="height:0.892em;vertical-align:-0.000em"> on a normal domain
+<img class="m" src="m/81f510ca73a429716923f6d5d724e345c820c651.svg" alt="\(D \subseteq \R^{2}\)" style="height:1.041em;vertical-align:-0.146em"> &#x2013; and let <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em"> be <img class="m" src="m/137c7a7820d2ce9b6547f412208e261180f342ab.svg" alt="\(C^{1}\)" style="height:0.892em;vertical-align:-0.000em"> on a neighbourhood
+of <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">. Then, with <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> the outward unit normal on
+<img class="m" src="m/8264115832327f2a8abc467580edc258f97c84a9.svg" alt="\(\partial V\)" style="height:0.761em;vertical-align:-0.000em">,
+<div class="mb"><img class="m" src="m/f3c675fcb5c815f3a987e67015afa9e0fbf00a78.svg" alt="\[ \iiint_{V}\Div F \dd x\,\dd y\,\dd z = \iint_{\partial V}\inner{F}{N}\dd S. \]" style="width:18.252em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="orgf574fbd">
+<p>
+By linearity it suffices to treat <img class="m" src="m/baf59951eef9dd50081113239cb40e07f71d056a.svg" alt="\(F = (0,0,F_{3})\)" style="height:1.096em;vertical-align:-0.274em">, the other two
+components being the same argument in the corresponding description of
+<img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+<p>
+By Fubini and the fundamental theorem of calculus,
+<div class="mb"><img class="m" src="m/2997fbe4d2f88dfd6167ee88cb413862d69e6acb.svg" alt="\[ \iiint_{V}\partial_{3}F_{3} = \iint_{D}\bigl(F_{3}(x,y,\beta(x,y)) - F_{3}(x,y,\alpha(x,y))\bigr)\dd x\,\dd y. \]" style="width:29.050em"></div>
+The boundary consists of the upper graph, the lower graph and a lateral
+part on which the normal is horizontal, so
+<img class="m" src="m/f5741d46f2a759b101f780a58b9c4af03d2f0e19.svg" alt="\(\inner{F}{N} = 0\)" style="height:1.096em;vertical-align:-0.274em"> there. Parametrising the upper graph by
+<img class="m" src="m/679be74ef839dde1621c2597d7991105ebac8506.svg" alt="\((x,y)\mapsto(x,y,\beta(x,y))\)" style="height:1.096em;vertical-align:-0.274em">, the cross product of the partial
+derivatives is <img class="m" src="m/5ad752744b517868b0404c38b39ebb685d7f2974.svg" alt="\((-\beta_{x},-\beta_{y},1)\)" style="height:1.135em;vertical-align:-0.318em">, which is the upward
+normal times the area element; hence its flux contribution is
+<img class="m" src="m/f605ccbf1dbf0cb26d29243e82199e38c3000468.svg" alt="\(\iint_{D}F_{3}(x,y,\beta(x,y))\dd x\,\dd y\)" style="height:1.272em;vertical-align:-0.394em">. The lower graph carries
+the downward normal and contributes the same integral with
+<img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> and a minus sign. Adding gives the displayed identity.
+</p>
+
+</div>
+
+<div class="theorem" id="org7755382">
+<p>
+Let <img class="m" src="m/368214cea260078f51ae0d56b13b32869e4fd344.svg" alt="\(\sigma \colon K \to \R^{3}\)" style="height:0.892em;vertical-align:-0.000em"> be a <img class="m" src="m/50c56d1e9783b96a5cc2b4f818a17d6fdcccb7d1.svg" alt="\(C^{2}\)" style="height:0.892em;vertical-align:-0.000em"> regular surface over a
+normal domain <img class="m" src="m/a71e74ba01cc4b3c07e85800001a08118ae2b218.svg" alt="\(K \subseteq \R^{2}\)" style="height:1.041em;vertical-align:-0.146em">, oriented by
+<img class="m" src="m/4443daa50d6ce994a94d82aaa34fd886fc5c9fee.svg" alt="\(\sigma_{u}\times\sigma_{v}\)" style="height:0.804em;vertical-align:-0.161em">, and let <img class="m" src="m/39e238672541a3bf1f6ea5526c2a348ab82dae4a.svg" alt="\(\partial S\)" style="height:0.761em;vertical-align:-0.000em"> be the image of
+<img class="m" src="m/92a580602a71b02375233392d6b326d9b282da53.svg" alt="\(\partial K\)" style="height:0.761em;vertical-align:-0.000em"> with the induced orientation. Then for <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em"> of class
+<img class="m" src="m/137c7a7820d2ce9b6547f412208e261180f342ab.svg" alt="\(C^{1}\)" style="height:0.892em;vertical-align:-0.000em"> near the image,
+<div class="mb"><img class="m" src="m/67f73e3f345d5f34937791ec4f8a1663ca36b657.svg" alt="\[ \iint_{S}\inner{\curl F}{N}\dd S = \oint_{\partial S}F\cdot\dd s. \]" style="width:14.883em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="org7ba4f19">
+<p>
+Pull the line integral back to <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">: with <img class="m" src="m/a7557905dfe0cbb9ed8efb67df67b1b7128d6a76.svg" alt="\(\gamma\)" style="height:0.685em;vertical-align:-0.212em"> parametrising
+<img class="m" src="m/92a580602a71b02375233392d6b326d9b282da53.svg" alt="\(\partial K\)" style="height:0.761em;vertical-align:-0.000em"> and <img class="m" src="m/97bd85a239cc4cf0e42f5bde6e805861cb6285b9.svg" alt="\(\Gamma = \sigma\circ\gamma\)" style="height:0.962em;vertical-align:-0.212em">, the chain rule gives
+<img class="m" src="m/8f5dd7d79f2878c7992d06f636d28aa947c94f31.svg" alt="\(\Gamma' = \sigma_{u}u' + \sigma_{v}v'\)" style="height:0.988em;vertical-align:-0.168em">, so
+<div class="mb"><img class="m" src="m/001df7e97acc5d1e56cef6b4e1803977225e059b.svg" alt="\[ \oint_{\partial S}F\cdot\dd s = \oint_{\partial K}\bigl(\tilde{P}\dd u + \tilde{Q}\dd v\bigr), \qquad \tilde{P} = \inner{F\circ\sigma}{\sigma_{u}}, \quad \tilde{Q} = \inner{F\circ\sigma}{\sigma_{v}}. \]" style="width:33.853em"></div>
+Green's theorem on <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> turns this into
+<img class="m" src="m/40181cfd09a93c3627f10bfb42bb30139ecc7196.svg" alt="\(\iint_{K}(\partial_{u}\tilde{Q}-\partial_{v}\tilde{P})\dd u\,\dd v\)" style="height:1.399em;vertical-align:-0.392em">.
+</p>
+
+<p>
+Differentiating and using the chain rule,
+<img class="m" src="m/a992e858e0b6cc86a7b8f68a65ffcffe276834c2.svg" alt="\(\partial_{u}\tilde{Q} = \inner{DF\,\sigma_{u}}{\sigma_{v}} + \inner{F}{\sigma_{vu}}\)" style="height:1.283em;vertical-align:-0.269em">
+and symmetrically for <img class="m" src="m/95b078526d0392489f19f11b9f54379d42594832.svg" alt="\(\partial_{v}\tilde{P}\)" style="height:1.173em;vertical-align:-0.164em">; the second-derivative
+terms cancel because <img class="m" src="m/808213e8d9520864085808aae7d2c4d225f74a8f.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em"> is <img class="m" src="m/50c56d1e9783b96a5cc2b4f818a17d6fdcccb7d1.svg" alt="\(C^{2}\)" style="height:0.892em;vertical-align:-0.000em">. What remains,
+<img class="m" src="m/39660133658c21c8ff27830b84b462bc1dc20675.svg" alt="\(\inner{DF\,\sigma_{u}}{\sigma_{v}} - \inner{DF\,\sigma_{v}}{\sigma_{u}}\)" style="height:1.096em;vertical-align:-0.274em">,
+is the antisymmetric part of <img class="m" src="m/acee1c8d7d550b1525ebca53311b8005fa8ffb9c.svg" alt="\(DF\)" style="height:0.749em;vertical-align:-0.000em"> evaluated on the pair, and a direct
+computation identifies it with
+<img class="m" src="m/f31397c24cdb3c6250cdf4661c16a69c87dce988.svg" alt="\(\inner{\curl F}{\sigma_{u}\times\sigma_{v}}\)" style="height:1.096em;vertical-align:-0.274em">. Integrating over <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">
+gives the flux of the curl.
+</p>
+
+</div>
+
+<div class="corollary" id="org1196bda">
+<p>
+For a <img class="m" src="m/50c56d1e9783b96a5cc2b4f818a17d6fdcccb7d1.svg" alt="\(C^{2}\)" style="height:0.892em;vertical-align:-0.000em"> field <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em"> and a closed surface bounding a normal
+domain, the flux of <img class="m" src="m/c07633bcb9ac8a933003222bfe0e630a6223d943.svg" alt="\(\curl F\)" style="height:0.761em;vertical-align:-0.000em"> vanishes; and on a convex open set a
+field with vanishing curl is a gradient.
+</p>
+
+</div>
+
+<div class="proof" id="org12fd505">
+<p>
+The first is the divergence theorem applied to <img class="m" src="m/c07633bcb9ac8a933003222bfe0e630a6223d943.svg" alt="\(\curl F\)" style="height:0.761em;vertical-align:-0.000em">, whose
+divergence vanishes identically. The second is the two-dimensional
+statement applied componentwise: vanishing curl is exactly the equality
+of the mixed partials of the components, which is the hypothesis of the
+Poincare construction of a potential on a convex set.
+</p>
+
+</div>
+
+<div class="remark" id="org7166e47">
+<p>
+Both theorems are stated for domains one can describe by graphs, which
+is what makes the proofs Fubini plus the fundamental theorem of
+calculus. That restriction is not the natural generality: the honest
+setting is a manifold with boundary and a differential form, where both
+statements and Green's theorem are one identity,
+<img class="m" src="m/977b61d2059a557a368a77152867ba2da3016630.svg" alt="\(\int_{M}\dd\omega = \int_{\partial M}\omega\)" style="height:1.272em;vertical-align:-0.394em">. This archive has
+<a href="smooth-manifolds-smooth-maps-and-the-tangent-space.html">manifolds</a> and no differential forms, so the special cases are what can
+be proved here.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="real-analysis.html"><span>← previous</span>Real analysis</a><a rel="next" href="the-cauchy-criterion-for-series-the-harmonic-series-and-condensation.html"><span>next →</span>The Cauchy criterion for series, the harmonic series and condensation</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

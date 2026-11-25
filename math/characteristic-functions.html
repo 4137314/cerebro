@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Characteristic functions · Mathematics</title>
+<meta name="description" content="Convolving two laws to find the law of a sum is unpleasant; multiplying two functions is not. The characteristic function turns the first operation into the second, and it does so without any integrability hypothesis, because the integrand has modulus one. Everything after that is the price: recove…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/characteristic-functions.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Characteristic functions · Mathematics">
+<meta property="og:description" content="Convolving two laws to find the law of a sum is unpleasant; multiplying two functions is not. The characteristic function turns the first operation into the second, and it does so without any integrability hypothesis, because the integrand has modulus one. Everything after that is the price: recove…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/characteristic-functions.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-probability">Probability</a> / <a rel="up" href="index.html#a-probability--probability-theory">Probability Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Probability · Probability Theory</p>
+<h1>Characteristic functions</h1>
+<p class="summary">Convolving two laws to find the law of a sum is unpleasant; multiplying two functions is not. The characteristic function turns the first operation into the second, and it does so without any integrability hypothesis, because the integrand has modulus one. Everything after that is the price: recovering the law from the transform, and recognising convergence of laws in convergence of transforms.</p>
+<p class="rel"><span>needs</span> <a href="expectation-the-transfer-theorem-and-jensens-inequality.html">Expectation, the transfer theorem and Jensen's inequality</a>, <a href="modes-of-convergence-and-the-borel-cantelli-lemmas.html">Modes of convergence and the Borel-Cantelli lemmas</a>, <a href="random-variables-laws-and-distribution-functions.html">Random variables, laws and distribution functions</a>, <a href="taylors-theorem-with-the-peano-remainder.html">Taylor's theorem with the Peano remainder</a>, <a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></p>
+<p class="rel"><span>unlocks</span> <a href="the-central-limit-theorem.html">The central limit theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="probability.html">Probability</a></p>
+<details class="path"><summary>Learning path: 64 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="one-sided-limits-and-the-discontinuities-of-a-monotone-function.html">One-sided limits and the discontinuities of a monotone function</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="cauchys-mean-value-theorem-and-de-lhopitals-rule.html">Cauchy's mean value theorem and de l'Hopital's rule</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="convex-functions-and-the-second-derivative.html">Convex functions and the second derivative</a></li><li><a href="taylors-theorem-with-the-lagrange-remainder.html">Taylor's theorem with the Lagrange remainder</a></li><li><a href="taylors-theorem-with-the-peano-remainder.html">Taylor's theorem with the Peano remainder</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li><li><a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="the-baire-category-theorem.html">The Baire category theorem</a></li><li><a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></li><li><a href="convex-set.html">Convex set</a></li><li><a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a></li><li><a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a></li><li><a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a></li><li><a href="probability-spaces-conditioning-and-independence.html">Probability spaces, conditioning and independence</a></li><li><a href="random-variables-laws-and-distribution-functions.html">Random variables, laws and distribution functions</a></li><li><a href="expectation-the-transfer-theorem-and-jensens-inequality.html">Expectation, the transfer theorem and Jensen's inequality</a></li><li><a href="variance-covariance-and-the-markov-and-chebyshev-inequalities.html">Variance, covariance and the Markov and Chebyshev inequalities</a></li><li><a href="modes-of-convergence-and-the-borel-cantelli-lemmas.html">Modes of convergence and the Borel-Cantelli lemmas</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgf8ef8b4">
+<p>
+The <i>characteristic function</i> of a random variable <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is
+<div class="mb"><img class="m" src="m/fafd80605835b1c424bff64d1712616ed60bd7c2.svg" alt="\[ \varphi_{X}(t) = \E[e^{itX}] = \E[\cos(tX)] + i\,\E[\sin(tX)], \qquad t \in \R, \]" style="width:26.430em"></div>
+which is defined for every <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> because the integrand is bounded.
+</p>
+
+</div>
+
+<div class="proposition" id="org6cebab1">
+<p>
+<img class="m" src="m/197efb5e853dd8474c38e111a97255bdc0271141.svg" alt="\(\varphi_{X}(0)=1\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/c6080f7b584320532789dcfc884ceb4f23712779.svg" alt="\(\abs{\varphi_{X}(t)}\le1\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/a3017340f639b6b887e5a7e45799c273470e07d9.svg" alt="\(\varphi_{X}\)" style="height:0.685em;vertical-align:-0.212em"> is
+uniformly continuous, <img class="m" src="m/7113c69f0101859478dda1f933cd6fec4a19d624.svg" alt="\(\varphi_{aX+b}(t) = e^{itb}\varphi_{X}(at)\)" style="height:1.204em;vertical-align:-0.277em">,
+and if <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/82d9b7c5c94f297586981fdbe7ca67b30095b73a.svg" alt="\(Y\)" style="height:0.749em;vertical-align:-0.000em"> are independent then
+<img class="m" src="m/372dee10917b9da4495822b2ac7d26b56cc8d206.svg" alt="\(\varphi_{X+Y} = \varphi_{X}\varphi_{Y}\)" style="height:0.728em;vertical-align:-0.255em">.
+</p>
+
+</div>
+
+<div class="proof" id="org27b6f3e">
+<p>
+The first two are immediate from <img class="m" src="m/c71258ab278139d781fec9d4c2b41b34b479bc39.svg" alt="\(\abs{e^{itX}} = 1\)" style="height:1.196em;vertical-align:-0.275em"> and
+monotonicity. For continuity,
+<img class="m" src="m/b2acfd4a000a65c4b6a8bd97bf911d0bd76771ad.svg" alt="\(\abs{\varphi_{X}(t+h)-\varphi_{X}(t)} \le \E\abs{e^{ihX}-1}\)" style="height:1.204em;vertical-align:-0.277em">, a bound
+independent of <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em">; the integrand is bounded by <img class="m" src="m/682209d80cc07f86795f987ad28681d443268af8.svg" alt="\(2\)" style="height:0.706em;vertical-align:-0.000em"> and tends to
+<img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> pointwise as <img class="m" src="m/c426deaa6ffc363f109fe5ec8bb1590b496350cf.svg" alt="\(h \to 0\)" style="height:0.761em;vertical-align:-0.000em">, so dominated convergence makes it tend
+to <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">, which is uniform continuity. The affine rule is
+<img class="m" src="m/533a1d749432cc31961fd159d9996fb15f9fcb69.svg" alt="\(e^{it(aX+b)} = e^{itb}e^{i(ta)X}\)" style="height:0.973em;vertical-align:-0.000em">. For a sum,
+<img class="m" src="m/8a7a16d8402f35f5a54ed74fb9034e2fefb5d223.svg" alt="\(e^{it(X+Y)} = e^{itX}e^{itY}\)" style="height:0.973em;vertical-align:-0.000em"> and the two factors are independent
+bounded variables, so the expectation of the product is the product of
+the expectations, applied to real and imaginary parts.
+</p>
+
+</div>
+
+<div class="theorem" id="org5799e95">
+<p>
+If <img class="m" src="m/d3bfe31194f42f66965cfe5c6392481b19394192.svg" alt="\(\E[X^{2}]&lt;\infty\)" style="height:1.166em;vertical-align:-0.268em">, then <img class="m" src="m/a3017340f639b6b887e5a7e45799c273470e07d9.svg" alt="\(\varphi_{X}\)" style="height:0.685em;vertical-align:-0.212em"> is twice differentiable
+with <img class="m" src="m/5d688435bf967f62d3fc8fe510d66fb27f185c46.svg" alt="\(\varphi_{X}'(0) = i\E[X]\)" style="height:1.126em;vertical-align:-0.304em"> and
+<img class="m" src="m/9d0e61a5b1c674dddc65b2dbc22625cbf87bfe13.svg" alt="\(\varphi_{X}''(0) = -\E[X^{2}]\)" style="height:1.194em;vertical-align:-0.298em">; consequently
+<div class="mb"><img class="m" src="m/ee8aadb2ae989547c1bf58f693840abce5e1c453.svg" alt="\[ \varphi_{X}(t) = 1 + it\E[X] - \tfrac{1}{2}t^{2}\E[X^{2}] + o(t^{2}) \qquad (t \to 0). \]" style="width:24.612em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="org2516477">
+<p>
+For the first derivative, the difference quotient of <img class="m" src="m/8c7b70c87638870db3941bedb748c06cbc9c972b.svg" alt="\(e^{itX}\)" style="height:0.922em;vertical-align:-0.000em"> in
+<img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> is bounded in modulus by <img class="m" src="m/a4b0ce4dc03f448dfbc439455185dd416527f08c.svg" alt="\(\abs{X}\)" style="height:1.096em;vertical-align:-0.274em">, which is integrable since
+<img class="m" src="m/d3bfe31194f42f66965cfe5c6392481b19394192.svg" alt="\(\E[X^{2}]&lt;\infty\)" style="height:1.166em;vertical-align:-0.268em"> implies <img class="m" src="m/ab79903c6c50190801c6067fad1af07318cabea5.svg" alt="\(\E\abs{X}&lt;\infty\)" style="height:1.096em;vertical-align:-0.274em">; dominated convergence
+allows differentiation under the expectation, giving
+<img class="m" src="m/ac80f7d77c34e8305769766d0ac68460f50e0560.svg" alt="\(\varphi_{X}'(t) = \E[iXe^{itX}]\)" style="height:1.224em;vertical-align:-0.306em">. The same argument with the bound
+<img class="m" src="m/ceecca1a01e6ea44a373cfe6cdc64791abaac932.svg" alt="\(X^{2}\)" style="height:0.892em;vertical-align:-0.000em"> gives <img class="m" src="m/5b5f5bb3cd13143bd59a1b7319784c47df64332d.svg" alt="\(\varphi_{X}''(t) = \E[-X^{2}e^{itX}]\)" style="height:1.224em;vertical-align:-0.306em">. Evaluating at
+<img class="m" src="m/7278f3bf5413cf4c4cfb52dab1ed9a4378258c69.svg" alt="\(t = 0\)" style="height:0.706em;vertical-align:-0.000em"> gives the two values.
+</p>
+
+<p>
+The expansion is Taylor's theorem with the Peano remainder applied to
+the real and imaginary parts of <img class="m" src="m/a3017340f639b6b887e5a7e45799c273470e07d9.svg" alt="\(\varphi_{X}\)" style="height:0.685em;vertical-align:-0.212em">, both twice
+differentiable at <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> with the stated derivatives.
+</p>
+
+</div>
+<div id="outline-container-orgf3f810e" class="outline-2">
+<h2 id="orgf3f810e">Recovering the law</h2>
+<div class="outline-text-2" id="text-orgf3f810e">
+<p>
+The two facts below are what make characteristic functions a tool rather
+than a curiosity, and both are quoted here rather than proved: the
+inversion formula is a computation with Fubini's theorem and a Dirichlet
+integral, and Levy's theorem rests on it. They are standard, long, and
+independent of everything else in this archive.
+</p>
+
+<div class="theorem" id="org37a3801">
+<p>
+Two random variables with the same characteristic function have the same
+law.
+</p>
+
+</div>
+
+<div class="theorem" id="org4b84159">
+<p>
+Let <img class="m" src="m/ba7e8c3b2e127800650c5c28a5e4816d01cfc077.svg" alt="\((X_{n})\)" style="height:1.096em;vertical-align:-0.274em"> be random variables and suppose
+<img class="m" src="m/78812cb977b8751d3c02be3699a4d8b3aceb8702.svg" alt="\(\varphi_{X_{n}}(t) \to \psi(t)\)" style="height:1.096em;vertical-align:-0.274em"> for every <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em">, with <img class="m" src="m/a4a52c4927ccc1e44f25ba3cda049e822fa6a1fc.svg" alt="\(\psi\)" style="height:0.974em;vertical-align:-0.214em">
+continuous at <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">. Then <img class="m" src="m/a4a52c4927ccc1e44f25ba3cda049e822fa6a1fc.svg" alt="\(\psi\)" style="height:0.974em;vertical-align:-0.214em"> is the characteristic function of a
+random variable <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">, and <img class="m" src="m/d912d8d4cc1a60c6278464b46c606b69f6769b82.svg" alt="\(X_{n} \to X\)" style="height:0.913em;vertical-align:-0.164em"> in distribution.
+</p>
+
+</div>
+
+<div class="remark" id="org8f5c406">
+<p>
+Marking the two theorems as assumed rather than proving them is a
+deliberate entry in the archive's ledger: they are used below, they are
+not established here, and <code>cerebro results open</code> lists them among what
+the archive owes for as long as that is true.
+The alternative &#x2013; proving them &#x2013; is a note on Fubini's theorem and
+another on tightness, neither of which exists yet.
+</p>
+
+</div>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="modes-of-convergence-and-the-borel-cantelli-lemmas.html"><span>← previous</span>Modes of convergence and the Borel-Cantelli lemmas</a><a rel="next" href="conditional-expectation-as-an-orthogonal-projection.html"><span>next →</span>Conditional expectation as an orthogonal projection</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/probability--probability-theory.pdf" title="PDF manual">Probability Theory</a> · <a class="pdf" href="pdf/probability.pdf" title="PDF manual">Probability</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rigid body kinematics and the inertia tensor · Mathematics</title>
+<meta name="description" content="A rigid body is a constraint so strong that the configuration space is a group: the position of every point is determined by a rotation and a translation. Its kinetic energy is then a quadratic form in the angular velocity, and diagonalising that form by the spectral theorem produces the principal …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/rigid-body-kinematics-and-the-inertia-tensor.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Rigid body kinematics and the inertia tensor · Mathematics">
+<meta property="og:description" content="A rigid body is a constraint so strong that the configuration space is a group: the position of every point is determined by a rotation and a translation. Its kinetic energy is then a quadratic form in the angular velocity, and diagonalising that form by the spectral theorem produces the principal …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/rigid-body-kinematics-and-the-inertia-tensor.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-physics">Physics</a> / <a rel="up" href="index.html#a-physics--classical-mechanics">Classical Mechanics</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Physics · Classical Mechanics</p>
+<h1>Rigid body kinematics and the inertia tensor</h1>
+<p class="summary">A rigid body is a constraint so strong that the configuration space is a group: the position of every point is determined by a rotation and a translation. Its kinetic energy is then a quadratic form in the angular velocity, and diagonalising that form by the <a href="the-spectral-theorem-for-symmetric-operators.html">spectral theorem</a> produces the principal axes &#x2013; the frame in which the dynamics is written.</p>
+<p class="rel"><span>needs</span> <a href="bilinear-forms-quadratic-forms-and-sylvesters-law-of-inertia.html">Bilinear forms, quadratic forms and Sylvester's law of inertia</a>, <a href="constraints-virtual-work-and-the-lagrange-equations.html">Constraints, virtual work and the Lagrange equations</a>, <a href="isometries-of-euclidean-space-and-the-orthogonal-group.html">Isometries of Euclidean space and the orthogonal group</a>, <a href="product-measures-and-the-theorems-of-tonelli-and-fubini.html">Product measures and the theorems of Tonelli and Fubini</a>, <a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a>, <a href="the-spectral-theorem-for-symmetric-operators.html">The spectral theorem for symmetric operators</a></p>
+<p class="rel"><span>unlocks</span> <a href="eulers-equations-and-the-stability-of-free-rotation.html">Euler's equations and the stability of free rotation</a></p>
+<p class="rel"><span>mentioned in</span> <a href="mathematical-physics.html">Mathematical physics</a></p>
+<details class="path"><summary>Learning path: 82 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="bilinear-forms-quadratic-forms-and-sylvesters-law-of-inertia.html">Bilinear forms, quadratic forms and Sylvester's law of inertia</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-order-of-an-element-and-cyclic-groups.html">The order of an element and cyclic groups</a></li><li><a href="cosets-the-index-and-lagranges-theorem.html">Cosets, the index and Lagrange's theorem</a></li><li><a href="group-actions-orbits-and-the-orbit-stabiliser-theorem.html">Group actions, orbits and the orbit-stabiliser theorem</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-algebra-of-continuous-functions-and-composition.html">The algebra of continuous functions and composition</a></li><li><a href="one-sided-limits-and-the-discontinuities-of-a-monotone-function.html">One-sided limits and the discontinuities of a monotone function</a></li><li><a href="the-intermediate-value-theorem.html">The intermediate value theorem</a></li><li><a href="the-continuous-image-of-an-interval-and-the-continuous-inverse.html">The continuous image of an interval and the continuous inverse</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-rules-of-differentiation.html">The rules of differentiation</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="the-spectral-theorem-for-symmetric-operators.html">The spectral theorem for symmetric operators</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="differentiability-in-several-variables.html">Differentiability in several variables</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="the-contraction-mapping-principle.html">The contraction mapping principle</a></li><li><a href="the-inverse-and-implicit-function-theorems.html">The inverse and implicit function theorems</a></li><li><a href="constrained-extrema-and-lagrange-multipliers.html">Constrained extrema and Lagrange multipliers</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="the-fundamental-theorem-of-calculus.html">The fundamental theorem of calculus</a></li><li><a href="integration-by-parts-and-substitution.html">Integration by parts and substitution</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li><li><a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="the-baire-category-theorem.html">The Baire category theorem</a></li><li><a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></li><li><a href="convex-set.html">Convex set</a></li><li><a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a></li><li><a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a></li><li><a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a></li><li><a href="product-measures-and-the-theorems-of-tonelli-and-fubini.html">Product measures and the theorems of Tonelli and Fubini</a></li><li><a href="affine-spaces-affine-subspaces-and-affine-maps.html">Affine spaces, affine subspaces and affine maps</a></li><li><a href="isometries-of-euclidean-space-and-the-orthogonal-group.html">Isometries of Euclidean space and the orthogonal group</a></li><li><a href="the-action-functional-and-the-first-variation.html">The action functional and the first variation</a></li><li><a href="the-euler-lagrange-equations.html">The Euler-Lagrange equations</a></li><li><a href="noethers-theorem.html">Noether's theorem</a></li><li><a href="constraints-virtual-work-and-the-lagrange-equations.html">Constraints, virtual work and the Lagrange equations</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org41fc50d">
+<p>
+A <i>rigid motion</i> of a body is a curve <img class="m" src="m/68f64d3fd9003c9d6b7ce5345fbbc5c464560998.svg" alt="\(t \mapsto (R(t), b(t))\)" style="height:1.096em;vertical-align:-0.274em"> with
+<img class="m" src="m/f85f62d754bf465c957109d00d7946eb63f8c16e.svg" alt="\(R(t)\in\SO(3)\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/9018807b4648207f6a47543dbfe7de7dff49f3d2.svg" alt="\(b(t)\in\R^{3}\)" style="height:1.166em;vertical-align:-0.268em">, the position of the material
+point <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> being <img class="m" src="m/d52b9c7baf296ef7364fe389c316d6a7484f666a.svg" alt="\(x(t) = R(t)X + b(t)\)" style="height:1.096em;vertical-align:-0.274em">. The <i>angular velocity</i> is the
+vector <img class="m" src="m/7b220abcb572d6e59fd322981f0d9d28001ad379.svg" alt="\(\omega(t)\)" style="height:1.096em;vertical-align:-0.274em"> representing the antisymmetric matrix
+<img class="m" src="m/3e74f0e24d6d08892aae1fe40cdff9b3c0803305.svg" alt="\(\Omega = \dot{R}R^{\mathsf{T}}\)" style="height:1.009em;vertical-align:-0.000em"> through
+<img class="m" src="m/d047d853ec33a8851feb0051b26e374d46f05619.svg" alt="\(\Omega v = \omega \times v\)" style="height:0.840em;vertical-align:-0.092em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgd1896a3">
+<p>
+<img class="m" src="m/3e74f0e24d6d08892aae1fe40cdff9b3c0803305.svg" alt="\(\Omega = \dot{R}R^{\mathsf{T}}\)" style="height:1.009em;vertical-align:-0.000em"> is antisymmetric, hence of the form
+<img class="m" src="m/c4d5bcfe8544cf0adc409e78c110c780e8e16757.svg" alt="\(v \mapsto \omega\times v\)" style="height:0.731em;vertical-align:-0.088em"> for a unique <img class="m" src="m/a756b2f396111ae76704958fa4a8d6642c9dd1de.svg" alt="\(\omega\)" style="height:0.472em;vertical-align:-0.000em">; and the velocity
+of the material point <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is
+<img class="m" src="m/4661c28d51b95216bf9271e428bce133ba18d445.svg" alt="\(\dot{x} = \omega\times(x-b)+\dot{b}\)" style="height:1.295em;vertical-align:-0.272em">.
+</p>
+
+</div>
+
+<div class="proof" id="org53a5842">
+<p>
+Differentiating <img class="m" src="m/1c055a7b096458e38ca0307e52646561dbafe638.svg" alt="\(RR^{\mathsf{T}} = I\)" style="height:0.930em;vertical-align:-0.000em"> gives
+<img class="m" src="m/e29385270cb25e0fa21bfcea17b86edc48a99823.svg" alt="\(\dot{R}R^{\mathsf{T}} + R\dot{R}^{\mathsf{T}} = 0\)" style="height:1.100em;vertical-align:-0.088em">, that is
+<img class="m" src="m/1cd7d2b16f7e2615c8c393e3b70a5f29fe0d5b50.svg" alt="\(\Omega + \Omega^{\mathsf{T}} = 0\)" style="height:1.022em;vertical-align:-0.092em">. The antisymmetric <img class="m" src="m/ef22cb187e14632f568dccb7602e6bf2cc100cfc.svg" alt="\(3\times3\)" style="height:0.798em;vertical-align:-0.088em">
+matrices form a three-dimensional space, and
+<img class="m" src="m/6116ac1b0f33e945cfe967961a22388728b35715.svg" alt="\(\omega \mapsto (v\mapsto\omega\times v)\)" style="height:1.096em;vertical-align:-0.274em"> is a linear bijection onto
+it, by comparing entries. Finally
+<img class="m" src="m/c7d31b3fc9169c1cd3ffcb151dd7d0db4bfc64aa.svg" alt="\(\dot{x} = \dot{R}X+\dot{b} = \Omega R X + \dot{b} = \Omega(x-b)+\dot{b}\)" style="height:1.295em;vertical-align:-0.272em">.
+</p>
+
+</div>
+
+<div class="definition" id="org236137b">
+<p>
+Let the body have mass distribution <img class="m" src="m/5602b42c49566a683e5183a144a93b453d1accef.svg" alt="\(\mu\)" style="height:0.685em;vertical-align:-0.212em"> in body coordinates and let
+the origin be fixed, <img class="m" src="m/d9dd6b245d2c98d8c5365115c22add46651e0cea.svg" alt="\(b \equiv 0\)" style="height:0.761em;vertical-align:-0.000em">. The <i>inertia tensor</i> is the
+symmetric matrix
+<div class="mb"><img class="m" src="m/955d1b9031469be7a11dd948169e4a777fcdf795.svg" alt="\[ I_{jk} = \int \bigl(\abs{X}^{2}\delta_{jk} - X_{j}X_{k}\bigr)\dd\mu(X), \]" style="width:16.093em"></div>
+and the <i>angular momentum</i> in body coordinates is <img class="m" src="m/06eaa20dfa5e0bbed8878bb145777ca846427408.svg" alt="\(L = I\Omega_{b}\)" style="height:0.913em;vertical-align:-0.164em">
+where <img class="m" src="m/d9e87c0e03a3a38c4c90cf41097ef8f9c75f4237.svg" alt="\(\Omega_{b} = R^{\mathsf{T}}\omega\)" style="height:1.095em;vertical-align:-0.164em"> is the angular velocity in
+those coordinates.
+</p>
+
+</div>
+
+<div class="theorem" id="orgb7db87d">
+<p>
+For a body rotating about a fixed origin,
+<img class="m" src="m/ca8dc6e3e230d958a59246d234c5a383667b1986.svg" alt="\(T = \tfrac{1}{2}\inner{I\Omega_{b}}{\Omega_{b}}\)" style="height:1.304em;vertical-align:-0.378em">; the inertia tensor
+is symmetric and positive semi-definite, and positive definite unless
+the mass is concentrated on a line through the origin.
+</p>
+
+</div>
+
+<div class="proof" id="org59207b7">
+<p>
+With <img class="m" src="m/27b20b9c7ba49ace37b5ee6fefd4ef78a964c827.svg" alt="\(x = RX\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/b35eeb963893892658431b1ae60db225cb222636.svg" alt="\(\dot{x} = \omega\times x\)" style="height:0.823em;vertical-align:-0.091em">, so
+<img class="m" src="m/641ae4af1296aa0dd01dada1fee730e303e04eaa.svg" alt="\(\abs{\dot{x}}^{2} = \abs{\omega}^{2}\abs{x}^{2}-\inner{\omega}{x}^{2}\)" style="height:1.166em;vertical-align:-0.268em">
+by the identity for the cross product. Integrating against the mass
+distribution and passing to body coordinates, where <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> is an isometry
+so <img class="m" src="m/324fc1f5a68d4130d576d5c302153b738ec94d3b.svg" alt="\(\abs{x} = \abs{X}\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/a1f4538ce6805545d8f2a03226b0c5d0af5f6148.svg" alt="\(\inner{\omega}{x} = \inner{\Omega_{b}}{X}\)" style="height:1.096em;vertical-align:-0.274em">,
+gives
+<img class="m" src="m/914a44c655ae48c32ea35affb54012887d59a1e3.svg" alt="\(2T = \int(\abs{\Omega_{b}}^{2}\abs{X}^{2}-\inner{\Omega_{b}}{X}^{2})\dd\mu = \inner{I\Omega_{b}}{\Omega_{b}}\)" style="height:1.227em;vertical-align:-0.331em">.
+</p>
+
+<p>
+Symmetry is visible in the formula. The integrand
+<img class="m" src="m/324ac1ee2bf36025d37dabbfdd06bad7b6cb8e5c.svg" alt="\(\abs{X}^{2}\abs{u}^{2}-\inner{u}{X}^{2}\)" style="height:1.166em;vertical-align:-0.268em"> is non-negative by
+Cauchy-Schwarz, giving semi-definiteness; it vanishes for a given
+<img class="m" src="m/cbd2270de67a34f1c883aaca755cbc103976d45e.svg" alt="\(u \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> exactly where <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is parallel to <img class="m" src="m/43f1d6c46cc02af73d5390471e1c8c127d40b707.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em">, so
+<img class="m" src="m/b031126ed0d4562d1bf18e257037a43c34efa8e0.svg" alt="\(\inner{Iu}{u} = 0\)" style="height:1.096em;vertical-align:-0.274em"> forces the mass to sit on that line.
+</p>
+
+</div>
+
+<div class="corollary" id="org4ce884d">
+<p>
+There is an orthonormal basis of body coordinates in which <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> is
+diagonal, with entries <img class="m" src="m/1bfffd8ca052594b02c312e9bf6961c7d5f17ccf.svg" alt="\(I_{1},I_{2},I_{3}\ge0\)" style="height:0.962em;vertical-align:-0.212em"> the <i>principal
+moments</i>; in that basis
+<img class="m" src="m/5ae3d578d9da94adeeab123b9b75e445b8b6042e.svg" alt="\(T = \tfrac{1}{2}(I_{1}\Omega_{1}^{2}+I_{2}\Omega_{2}^{2}+I_{3}\Omega_{3}^{2})\)" style="height:1.304em;vertical-align:-0.378em">
+and <img class="m" src="m/42cdd20fa00352364e98265cb192323c50805eb3.svg" alt="\(L = (I_{1}\Omega_{1}, I_{2}\Omega_{2}, I_{3}\Omega_{3})\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgc973f3c">
+<p>
+<img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> is real symmetric, so the spectral theorem provides an orthonormal
+eigenbasis with real eigenvalues, non-negative by semi-definiteness.
+Rewriting the quadratic form and the linear map <img class="m" src="m/06eaa20dfa5e0bbed8878bb145777ca846427408.svg" alt="\(L = I\Omega_{b}\)" style="height:0.913em;vertical-align:-0.164em"> in
+that basis gives the displayed expressions.
+</p>
+
+</div>
+
+<div class="remark" id="org6aa4b16">
+<p>
+The angular momentum is not parallel to the angular velocity unless the
+body spins about a principal axis, and that single fact is the whole
+difficulty of rigid-body dynamics: a freely rotating body about a
+non-principal axis has <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> constant in space while <img class="m" src="m/a756b2f396111ae76704958fa4a8d6642c9dd1de.svg" alt="\(\omega\)" style="height:0.472em;vertical-align:-0.000em"> moves,
+which is why an object thrown spinning about its intermediate axis
+tumbles. <a href="eulers-equations-and-the-stability-of-free-rotation.html">Euler's equations</a> are that statement made quantitative.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="equilibria-stability-and-the-lagrange-dirichlet-theorem.html"><span>← previous</span>Equilibria, stability and the Lagrange-Dirichlet theorem</a><a rel="next" href="eulers-equations-and-the-stability-of-free-rotation.html"><span>next →</span>Euler's equations and the stability of free rotation</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/physics--classical-mechanics.pdf" title="PDF manual">Classical Mechanics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">Physics</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encodings and orderings for low power · Computer Science</title>
+<meta name="description" content="The same information can be sent with fewer bit flips: Gray code changes one bit per count step, bus-invert coding sends \bar x plus an invert line when more than half the bits would flip, FSM states with frequent transitions get adjacent codes, sign-magnitude suits small signed samples, and high-a…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/low-power-encoding.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Encodings and orderings for low power · Computer Science">
+<meta property="og:description" content="The same information can be sent with fewer bit flips: Gray code changes one bit per count step, bus-invert coding sends \bar x plus an invert line when more than half the bits would flip, FSM states with frequent transitions get adjacent codes, sign-magnitude suits small signed samples, and high-a…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/low-power-encoding.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--power">Power</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Hardware · Power</p>
+<h1>Encodings and orderings for low power</h1>
+<p class="summary">The same information can be sent with fewer bit flips: Gray code changes one bit per count step, bus-invert coding sends <img class="m" src="m/5d41ac60c29a86007f27eb451307aa90a7b79a94.svg" alt="\(\bar x\)" style="height:0.622em;vertical-align:-0.000em"> plus an invert line when more than half the bits would flip, FSM states with frequent transitions get adjacent codes, sign-magnitude suits small signed samples, and high-activity signals are connected late in a gate chain.</p>
+<p class="rel"><span>needs</span> <a href="switching-activity.html">Signal and transition probabilities</a></p>
+<p class="rel"><span>see also</span> <a href="finite-state-machine.html">Finite-state machines</a>, <a href="datapath-subsystems.html">Datapath subsystems: detectors, shifters, counters</a>, <a href="clock-gating.html">Clock gating and operand isolation</a>, <a href="bitset.html">std::bitset</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="gate-delay-model.html">Gate and wire delay models</a></li><li><a href="cmos-power.html">Power dissipation in CMOS</a></li><li><a href="switching-activity.html">Signal and transition probabilities</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgd183d0f" class="outline-2">
+<h2 id="orgd183d0f">Construction</h2>
+<div class="outline-text-2" id="text-orgd183d0f">
+<ul class="org-ul">
+<li><b>Gray counter</b>: consecutive values differ in one bit, <img class="m" src="m/b45317107d34d787d02ff1162faa02e0089f54c3.svg" alt="\(g=b\oplus(b\gg1)\)" style="height:1.096em;vertical-align:-0.274em">. A binary counter flips about 2 bits per step on average (bit <img class="m" src="m/a67e954bf39c79e3b911cbed8c1a65db21940e5a.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em"> toggles every <img class="m" src="m/969398ce062566a0ec24c02a124d5a9c8b68a3bc.svg" alt="\(2^i\)" style="height:0.905em;vertical-align:-0.000em"> steps: <img class="m" src="m/828158edcaa1a056e83167a1575a7246dda16d4a.svg" alt="\(\sum_i 2^{-i}\to2\)" style="height:1.234em;vertical-align:-0.333em">), a Gray counter exactly 1.</li>
+<li><b>Bus-invert</b>: for an <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">-bit bus, if the Hamming distance between the new word and the current bus value exceeds <img class="m" src="m/71027e0025503b143e45cbdb874c0aef80fb434e.svg" alt="\(n/2\)" style="height:1.096em;vertical-align:-0.274em">, send the complement and set an extra <code>INV</code> line. At most <img class="m" src="m/d944ebbd2f751cf1408721ef77f3e5706d0a4a68.svg" alt="\(n/2+1\)" style="height:1.096em;vertical-align:-0.274em"> lines switch per transfer.</li>
+<li><b>FSM <a href="fsm-state-encoding.html">state assignment</a></b>: weight each pair of states by the probability of the transition between them; give heavy pairs codes at Hamming distance 1.</li>
+<li><b>Sample representation</b>: in <a href="ripple-carry-adder.html">two's complement</a> a signal oscillating around 0 flips all its sign-extension bits at each zero crossing; sign-magnitude flips only the sign bit.</li>
+<li><b>Input ordering</b>: in a chain of gates, connect the signal with the highest activity (or the latest one) nearest the output, so its transitions reach fewer internal nodes.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd7a95d1" class="outline-2">
+<h2 id="orgd7a95d1">Example</h2>
+<div class="outline-text-2" id="text-orgd7a95d1">
+<p>
+Bus of 8 lines at <code>00000000</code>, next word <code>11111110</code>: 7 lines would switch. Bus-invert sends <code>00000001</code> with <code>INV</code> = 1: 2 lines switch.
+</p>
+</div>
+</div>
+<div id="outline-container-org1e355f9" class="outline-2">
+<h2 id="org1e355f9">Intuition</h2>
+<div class="outline-text-2" id="text-org1e355f9">
+<p>
+Power is spent on changes, not on values: choose the representation in which the data you actually send changes least.
+</p>
+</div>
+</div>
+<div id="outline-container-org0d35867" class="outline-2">
+<h2 id="org0d35867">Pitfall</h2>
+<div class="outline-text-2" id="text-org0d35867">
+<p>
+Encoders and decoders <a href="event-handling.html">consume</a> power and add delay: bus-invert pays off on long, heavily loaded buses (off-chip), not on short internal ones.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="switching-activity.html"><span>← previous</span>Signal and transition probabilities</a><a rel="next" href="glitches.html"><span>next →</span>Glitches</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--power.pdf" title="PDF manual">Power</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

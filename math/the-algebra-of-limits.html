@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The algebra of limits · Mathematics</title>
+<meta name="description" content="A first course proves a handful of limits from the definition and then never does so again: from here on limits are computed by combining ones already known. These are the rules that make that legitimate, and the reason they are theorems rather than notation is that each one needs the triangle ineq…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-algebra-of-limits.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The algebra of limits · Mathematics">
+<meta property="og:description" content="A first course proves a handful of limits from the definition and then never does so again: from here on limits are computed by combining ones already known. These are the rules that make that legitimate, and the reason they are theorems rather than notation is that each one needs the triangle ineq…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-algebra-of-limits.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Analysis · Real Analysis</p>
+<h1>The algebra of limits</h1>
+<p class="summary">A first course proves a handful of limits from the definition and then never does so again: from here on limits are computed by combining ones already known. These are the rules that make that legitimate, and the reason they are theorems rather than notation is that each one needs the triangle inequality and a boundedness argument to hold at all.</p>
+<p class="rel"><span>needs</span> <a href="limit-of-a-sequence.html">Limit of a sequence</a>, <a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></p>
+<p class="rel"><span>unlocks</span> <a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a>, <a href="the-algebra-of-continuous-functions-and-composition.html">The algebra of continuous functions and composition</a>, <a href="the-alternating-series-test.html">The alternating series test</a>, <a href="uniform-bounds-on-the-taylor-remainder.html">Uniform bounds on the Taylor remainder</a>, <a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 2 notes lead here, in study order</summary><ol><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li></ol></details>
+</header>
+<main class="note">
+<div class="proposition" id="org5450f5e">
+<p>
+Every convergent sequence is bounded.
+</p>
+
+</div>
+
+<div class="proof" id="org520b343">
+<p>
+Let <img class="m" src="m/c8741f428cd231298f1f92c14d48bc3dea3042ed.svg" alt="\(a_{n} \to L\)" style="height:0.913em;vertical-align:-0.164em"> and take <img class="m" src="m/f9736e1b9e44e4892d908499544f368dbaaf7d27.svg" alt="\(\eps = 1\)" style="height:0.706em;vertical-align:-0.000em">: there is <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> with
+<img class="m" src="m/07b8f8e7be4d253a33e0003874291858370c9703.svg" alt="\(\abs{a_{n} - L} &lt; 1\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/e3a7f6df845655195bb1fcfe91670525ec99e1e5.svg" alt="\(n \ge N\)" style="height:0.898em;vertical-align:-0.153em">, hence
+<img class="m" src="m/2671135d89ce56200138232ac24ab5db8f51576c.svg" alt="\(\abs{a_{n}} \le \abs{L} + 1\)" style="height:1.096em;vertical-align:-0.274em"> for those <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">. Then
+<img class="m" src="m/dcb454fbaa1433afa0d26d34211592a799da6022.svg" alt="\(C = \max(\abs{a_{1}}, \dots, \abs{a_{N-1}}, \abs{L} + 1)\)" style="height:1.096em;vertical-align:-0.274em"> bounds every
+term.
+</p>
+
+</div>
+
+<div class="theorem" id="org4b7e78c">
+<p>
+Let <img class="m" src="m/c8741f428cd231298f1f92c14d48bc3dea3042ed.svg" alt="\(a_{n} \to L\)" style="height:0.913em;vertical-align:-0.164em"> and <img class="m" src="m/8514d4b306ad68f9c9c17a19ba71cb5f36040785.svg" alt="\(b_{n} \to M\)" style="height:0.925em;vertical-align:-0.167em">. Then
+<img class="m" src="m/be902649e19dd5acaaf5fff98ab3a045167ba1c2.svg" alt="\(a_{n} + b_{n} \to L + M\)" style="height:0.925em;vertical-align:-0.167em">, <img class="m" src="m/d26b5db479775148c112fe2295f3d4419ffed4f9.svg" alt="\(a_{n} b_{n} \to LM\)" style="height:0.925em;vertical-align:-0.167em">, and, provided
+<img class="m" src="m/c72c802b1b90464a4ddf77c0a5a71b52ce87d48a.svg" alt="\(M \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/ffaa646ce52413fa6608ce544b454f8c9f106488.svg" alt="\(b_{n} \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> for all <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">,
+<img class="m" src="m/9ee9948d1979b01e5c637de9af519421b752fc9b.svg" alt="\(a_{n}/b_{n} \to L/M\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgd369299">
+<p>
+<i>Sum.</i> Given <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em">, choose <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> beyond which both
+<img class="m" src="m/32c0ca8aa193fd0f0e421055913a090a16ea446d.svg" alt="\(\abs{a_{n} - L} &lt; \eps/2\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/7705f5989682e70831ab7781911f36b0413aa5e1.svg" alt="\(\abs{b_{n} - M} &lt; \eps/2\)" style="height:1.096em;vertical-align:-0.274em">; the
+triangle inequality gives
+<img class="m" src="m/a005b0441f046d72507c379afb41d778a21df36b.svg" alt="\(\abs{(a_{n} + b_{n}) - (L + M)} &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+<i>Product.</i> Write
+<img class="m" src="m/0ec179375ca27c80aa69af15dbc6a3de5cc18d53.svg" alt="\(a_{n} b_{n} - LM = a_{n}(b_{n} - M) + M(a_{n} - L)\)" style="height:1.096em;vertical-align:-0.274em">. The sequence
+<img class="m" src="m/61f9283fe1503c8d1cecd228c646c41f111be43f.svg" alt="\((a_{n})\)" style="height:1.096em;vertical-align:-0.274em"> is bounded, say by <img class="m" src="m/5fd41c28e61f6c1a43b6ff089afcac0393f6f8de.svg" alt="\(C &gt; 0\)" style="height:0.792em;vertical-align:-0.040em">, by the proposition above.
+Given <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em">, choose <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> beyond which
+<img class="m" src="m/f36d6b13f3e1d8f1524ef97fb2fa543bb3dd2ca6.svg" alt="\(\abs{b_{n} - M} &lt; \eps / (2C)\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/65486266cb1c60f125fe8610d527645b67aa2b19.svg" alt="\(\abs{a_{n} - L} &lt; \eps / (2(\abs{M} + 1))\)" style="height:1.096em;vertical-align:-0.274em">. Then
+<div class="mb"><img class="m" src="m/0e84fbeee6a503986b7bbfa9340d72f8371a3f1e.svg" alt="\[ \abs{a_{n} b_{n} - LM} \le C \abs{b_{n} - M} + \abs{M} \abs{a_{n} - L} &lt; \frac{\eps}{2} + \frac{\eps}{2} = \eps. \]" style="width:26.340em"></div>
+</p>
+
+<p>
+<i>Quotient.</i> It suffices to prove <img class="m" src="m/95d7054854744294422aa70b360a0eb173cc57ce.svg" alt="\(1/b_{n} \to 1/M\)" style="height:1.096em;vertical-align:-0.274em"> and apply the
+product rule. Since <img class="m" src="m/478ac7f4d1ed0705d440cc15e22ada5bed82aabc.svg" alt="\(\abs{M} &gt; 0\)" style="height:1.096em;vertical-align:-0.274em">, there is <img class="m" src="m/d60d5f2cf0e21cceeb753411f39e02a62c14e7f8.svg" alt="\(N_{0}\)" style="height:0.913em;vertical-align:-0.164em"> with
+<img class="m" src="m/9184a0cde5c8828cdfbc6733324b7150f191a224.svg" alt="\(\abs{b_{n} - M} &lt; \abs{M}/2\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/2a31f26149725237c42e4a600e752bd451e611f1.svg" alt="\(n \ge N_{0}\)" style="height:0.913em;vertical-align:-0.164em">, whence
+<img class="m" src="m/b881f3b1132856104c6aa081453fbeaf471914b8.svg" alt="\(\abs{b_{n}} &gt; \abs{M}/2\)" style="height:1.096em;vertical-align:-0.274em"> by the reverse triangle inequality. For
+<img class="m" src="m/2a31f26149725237c42e4a600e752bd451e611f1.svg" alt="\(n \ge N_{0}\)" style="height:0.913em;vertical-align:-0.164em">,
+<div class="mb"><img class="m" src="m/a750546d4da615c8f4715b627ee2fc3eaa6bba21.svg" alt="\[ \Bigl| \frac{1}{b_{n}} - \frac{1}{M} \Bigr| = \frac{\abs{M - b_{n}}}{\abs{b_{n}} \abs{M}} \le \frac{2}{\abs{M}^{2}} \abs{b_{n} - M}, \]" style="width:19.277em"></div>
+and the right-hand side is below <img class="m" src="m/a81b3e641e0627a4593fdcabf96b00c1f2d2ba57.svg" alt="\(\eps\)" style="height:0.472em;vertical-align:-0.000em"> for <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> large.
+</p>
+
+</div>
+
+<div class="proposition" id="orgc58659b">
+<p>
+If <img class="m" src="m/c8741f428cd231298f1f92c14d48bc3dea3042ed.svg" alt="\(a_{n} \to L\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/8514d4b306ad68f9c9c17a19ba71cb5f36040785.svg" alt="\(b_{n} \to M\)" style="height:0.925em;vertical-align:-0.167em"> and <img class="m" src="m/f41bb2f0655668ecbba5173436aa6537f1574c90.svg" alt="\(a_{n} \le b_{n}\)" style="height:0.925em;vertical-align:-0.167em"> for all
+<img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">, then <img class="m" src="m/0970ac0f6ab289a3417cb4ecb6ed8353936324cc.svg" alt="\(L \le M\)" style="height:0.898em;vertical-align:-0.153em">.
+</p>
+
+</div>
+
+<div class="proof" id="org6c62463">
+<p>
+Suppose <img class="m" src="m/50704d17a6ca70fcfa53b7b397649015590cfcd3.svg" alt="\(L &gt; M\)" style="height:0.792em;vertical-align:-0.040em"> and put <img class="m" src="m/dd18a881fe6f5d67519b1f770d84600c0373d36f.svg" alt="\(\eps = (L - M)/2 &gt; 0\)" style="height:1.096em;vertical-align:-0.274em">. For large <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> both
+<img class="m" src="m/cff7e2018f0baeccd04b53f26dd54553af225a52.svg" alt="\(a_{n} &gt; L - \eps\)" style="height:0.913em;vertical-align:-0.164em"> and <img class="m" src="m/561238b0a08d39c77e906637108171f3e632a31d.svg" alt="\(b_{n} &lt; M + \eps\)" style="height:0.925em;vertical-align:-0.167em">, and
+<img class="m" src="m/de26ff897e009823fbd3a94860b7126bce932620.svg" alt="\(L - \eps = M + \eps\)" style="height:0.840em;vertical-align:-0.092em">, so <img class="m" src="m/50120044c00d1ceeca78bc477bffbf4c84d7b76c.svg" alt="\(a_{n} &gt; b_{n}\)" style="height:0.925em;vertical-align:-0.167em"> &#x2013; a contradiction.
+</p>
+
+</div>
+
+<div class="theorem" id="orgbd465ca">
+<p>
+Let <img class="m" src="m/d7010dd402737e9751afd11ada746806f4fa986a.svg" alt="\(a_{n} \le c_{n} \le b_{n}\)" style="height:0.925em;vertical-align:-0.167em"> for all <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">, with
+<img class="m" src="m/c8741f428cd231298f1f92c14d48bc3dea3042ed.svg" alt="\(a_{n} \to L\)" style="height:0.913em;vertical-align:-0.164em"> and <img class="m" src="m/e135b0c5986fa9c9eec73a746708182299a825a1.svg" alt="\(b_{n} \to L\)" style="height:0.925em;vertical-align:-0.167em">. Then <img class="m" src="m/749afb1d436606f18266693d8b265e85c45b38a5.svg" alt="\(c_{n} \to L\)" style="height:0.913em;vertical-align:-0.164em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgdaeae5d">
+<p>
+Given <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em">, choose <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> beyond which
+<img class="m" src="m/92fef27f1a8aa31ecf821eafd3a4e950b8f5f4bb.svg" alt="\(\abs{a_{n} - L} &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/994429f0ee6dce2482a38f96661e044956cbcdff.svg" alt="\(\abs{b_{n} - L} &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em">. For those
+<img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">,
+<img class="m" src="m/ebe18424d19d23758fa96551c567df7c66244aaf.svg" alt="\(L - \eps &lt; a_{n} \le c_{n} \le b_{n} &lt; L + \eps\)" style="height:0.925em;vertical-align:-0.167em">, so
+<img class="m" src="m/12e8fca4a470de0d63d059c205d9643b7c0e17c4.svg" alt="\(\abs{c_{n} - L} &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="remark" id="orgff3975c">
+<p>
+Note what the order statement does <i>not</i> say: strict inequality is not
+preserved. Taking <img class="m" src="m/14e92d0a13af2befff5679f2458c6300220a1512.svg" alt="\(a_{n} = 0\)" style="height:0.871em;vertical-align:-0.165em"> and <img class="m" src="m/bb5db9bc9bb1904141aee444608fc3844a72ac54.svg" alt="\(b_{n} = 1/n\)" style="height:1.096em;vertical-align:-0.274em"> gives
+<img class="m" src="m/e404b586b98c6e8d4c78781b3b308d1900efd76e.svg" alt="\(a_{n} &lt; b_{n}\)" style="height:0.925em;vertical-align:-0.167em"> for every <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> and equal limits. A limit is a
+statement about the tail, and strictness is exactly the property a tail
+can lose.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="cauchy-sequences-and-the-completeness-criterion.html"><span>← previous</span>Cauchy sequences and the completeness criterion</a><a rel="next" href="the-limit-of-a-function-and-its-sequential-characterisation.html"><span>next →</span>The limit of a function and its sequential characterisation</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

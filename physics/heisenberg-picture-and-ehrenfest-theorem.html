@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heisenberg picture and Ehrenfest's theorem · Physics</title>
+<meta name="description" content="Moving the time dependence onto operators, A_H(t)=U^\dagger AU, gives \dd A_H/\dd t=\frac{1}{i\hbar}[A_H,H]; for H=p^2/2m+V the expectation values obey Newton's law m\,\dd^2\braket x/\dd t^2=-\braket{V'(x)}.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/heisenberg-picture-and-ehrenfest-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Heisenberg picture and Ehrenfest's theorem · Physics">
+<meta property="og:description" content="Moving the time dependence onto operators, A_H(t)=U^\dagger AU, gives \dd A_H/\dd t=\frac{1}{i\hbar}[A_H,H]; for H=p^2/2m+V the expectation values obey Newton's law m\,\dd^2\braket x/\dd t^2=-\braket{V'(x)}.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/heisenberg-picture-and-ehrenfest-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-mechanics">Quantum Mechanics</a> / <a rel="up" href="index.html#a-quantum-mechanics--dynamics">Dynamics</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Quantum Mechanics · Dynamics</p>
+<h1>Heisenberg picture and Ehrenfest's theorem</h1>
+<p class="summary">Moving the time dependence onto operators, <img class="m" src="m/cc050f43acbceab6d98d134463857525c477b4a5.svg" alt="\(A_H(t)=U^\dagger AU\)" style="height:1.204em;vertical-align:-0.277em">, gives <img class="m" src="m/13b955f49781cbd3cca3fa38c0beb748b6e6caf4.svg" alt="\(\dd A_H/\dd t=\frac{1}{i\hbar}[A_H,H]\)" style="height:1.304em;vertical-align:-0.378em">; for <img class="m" src="m/fa51ea407082d4e66566c9820aeadbd3b581e1e4.svg" alt="\(H=p^2/2m+V\)" style="height:1.166em;vertical-align:-0.268em"> the expectation values obey Newton's law <img class="m" src="m/d3c1296b4217db603267abe52c3b1ba62a71d957.svg" alt="\(m\,\dd^2\braket x/\dd t^2=-\braket{V'(x)}\)" style="height:1.166em;vertical-align:-0.268em">.</p>
+<p class="rel"><span>needs</span> <a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></p>
+<p class="rel"><span>unlocks</span> <a href="spin-precession-and-rabi-oscillations.html">Spin precession and Rabi oscillations</a>, <a href="propagator-and-path-integral.html">The propagator and Feynman's path integral</a>, <a href="quantum-harmonic-oscillator.html">The quantum harmonic oscillator</a>, <a href="symmetries-and-conservation-laws.html">Symmetries, conservation laws and degeneracy</a>, <a href="effective-mass-and-holes.html">Effective mass, group velocity and holes</a></p>
+<p class="rel"><span>see also</span> <a href="quantum-harmonic-oscillator.html">The quantum harmonic oscillator</a>, <a href="symmetries-and-conservation-laws.html">Symmetries, conservation laws and degeneracy</a>, <a href="time-dependent-perturbation-and-golden-rule.html">Time-dependent perturbation theory and Fermi's golden rule</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgb30a109" class="outline-2">
+<h2 id="orgb30a109">Statement</h2>
+<div class="outline-text-2" id="text-orgb30a109">
+<p>
+Schrödinger picture: states move, operators fixed. Heisenberg picture: <img class="m" src="m/6728a93cdb9fe2d88386c2be7479a9f7a3600590.svg" alt="\(\ket\psi_H=\ket{\psi(0)}\)" style="height:1.151em;vertical-align:-0.334em">, <img class="m" src="m/5e1add2775d775023cb358510f2cc00bbf3d2489.svg" alt="\(A_H(t)=U^\dagger(t)A_SU(t)\)" style="height:1.204em;vertical-align:-0.277em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1007/bf01328377" data-full="W. Heisenberg, “Über quantentheoretische Umdeutung kinematischer und mechanischer Beziehungen”, Zeitschrift für Physik 33, 879–893 (1925)." aria-label="W. Heisenberg, “Über quantentheoretische Umdeutung kinematischer und mechanischer Beziehungen”, Zeitschrift für Physik 33, 879–893 (1925).">Heisenberg 1925</a>)</span>. Same predictions because <img class="m" src="m/a83525c4ddd75fa007eec0f0c00b2b8d9476b95e.svg" alt="\(\bra{\psi(t)}A_S\ket{\psi(t)}=\bra{\psi(0)}A_H(t)\ket{\psi(0)}\)" style="height:1.096em;vertical-align:-0.274em">. Differentiating <img class="m" src="m/8dfcfc9cf3e39b8967ef84f16bfad47c9a4f5417.svg" alt="\(U^\dagger AU\)" style="height:0.930em;vertical-align:-0.000em"> with <img class="m" src="m/922bc10ad3de511caaead9f207b706ca5a9dbbd6.svg" alt="\(i\hbar\dot U=HU\)" style="height:1.009em;vertical-align:-0.000em">:
+<div class="mb"><img class="m" src="m/1bb3b03306c8384b98e2b735159fc6e6126d7d73.svg" alt="\[ \frac{\dd A_H}{\dd t}=\frac{1}{i\hbar}[A_H,H]\;\left(+\frac{\partial A}{\partial t}\right)_H. \]" style="width:14.967em"></div>
+This mirrors the classical <img class="m" src="m/405f633930047d5861ba7c6d7a2f3e7c45119329.svg" alt="\(\dot A=\{A,H\}\)" style="height:1.283em;vertical-align:-0.269em"> under <img class="m" src="m/be65ad366e5fa0238b052376e6f6e44786566b1b.svg" alt="\(\{\,,\}\to[\,,]/i\hbar\)" style="height:1.096em;vertical-align:-0.274em"> (Dirac).
+</p>
+</div>
+</div>
+<div id="outline-container-org538fd07" class="outline-2">
+<h2 id="org538fd07">Ehrenfest theorem</h2>
+<div class="outline-text-2" id="text-org538fd07">
+<p>
+With <img class="m" src="m/bcd4cd1a63b8d2798c9c545617447cb54c4581c0.svg" alt="\(H=p^2/2m+V(x)\)" style="height:1.166em;vertical-align:-0.268em">, using <img class="m" src="m/b23efdb5985dfecb607b48d4ef5e7dc77cb2b6c5.svg" alt="\([x,F(p)]=i\hbar F'(p)\)" style="height:1.098em;vertical-align:-0.274em"> and <img class="m" src="m/fe88ccc9b37f0d915ee9f94b34095719fcbecce6.svg" alt="\([p,G(x)]=-i\hbar G'(x)\)" style="height:1.098em;vertical-align:-0.274em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1007/bf01329203" data-full="P. Ehrenfest, “Bemerkung über die angenäherte Gültigkeit der klassischen Mechanik innerhalb der Quantenmechanik”, Zeitschrift für Physik 45, 455–457 (1927)." aria-label="P. Ehrenfest, “Bemerkung über die angenäherte Gültigkeit der klassischen Mechanik innerhalb der Quantenmechanik”, Zeitschrift für Physik 45, 455–457 (1927).">Ehrenfest 1927</a>)</span>:
+<div class="mb"><img class="m" src="m/3b503bff6c7d7910583c191e09a67b78c74df02a.svg" alt="\[ \frac{\dd x_H}{\dd t}=\frac{p_H}{m},\qquad \frac{\dd p_H}{\dd t}=-V'(x_H)\;\Rightarrow\; m\frac{\dd^2\braket{x}}{\dd t^2}=-\braket{V'(x)}. \]" style="width:28.988em"></div>
+The centre of a packet follows the classical trajectory only when <img class="m" src="m/0f812793872235f1adf93f05d2e7c4cc70aa26f0.svg" alt="\(\braket{V'(x)}\simeq V'(\braket x)\)" style="height:1.098em;vertical-align:-0.274em">, i.e. when <img class="m" src="m/b1823c2844011c3351ca12a680a0432837e249b6.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> varies little over the packet (exact for <img class="m" src="m/b1823c2844011c3351ca12a680a0432837e249b6.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> at most quadratic).
+</p>
+</div>
+</div>
+<div id="outline-container-org815371c" class="outline-2">
+<h2 id="org815371c">Interaction picture</h2>
+<div class="outline-text-2" id="text-org815371c">
+<p>
+Split <img class="m" src="m/ed1e32db3a97874b29667c448ac224b118ba4a1c.svg" alt="\(H=H_0+V(t)\)" style="height:1.096em;vertical-align:-0.274em">: <img class="m" src="m/0a70bb8295a24756fa999926c05ea2bb19436200.svg" alt="\(\ket\psi_I=e^{iH_0t/\hbar}\ket\psi_S\)" style="height:1.302em;vertical-align:-0.325em">, <img class="m" src="m/bb9335ca337e93750db3028c6fdee5fe6e696773.svg" alt="\(V_I=e^{iH_0t/\hbar}Ve^{-iH_0t/\hbar}\)" style="height:1.137em;vertical-align:-0.159em">, <img class="m" src="m/407eda595787b7b45b514f0bbe562b4d2d15743e.svg" alt="\(i\hbar\partial_t\ket\psi_I=V_I\ket\psi_I\)" style="height:1.151em;vertical-align:-0.334em">. Base of time-dependent perturbation theory and of the S-matrix of <a href="s-matrix-and-cross-sections.html">QED</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org250a2fb" class="outline-2">
+<h2 id="org250a2fb">Worked example</h2>
+<div class="outline-text-2" id="text-org250a2fb">
+<p>
+Free particle: <img class="m" src="m/7c7a8abd9b359e9dbf2c1e7d60d5cf913b2a405b.svg" alt="\(x_H(t)=x(0)+p(0)t/m\)" style="height:1.096em;vertical-align:-0.274em">. Then <img class="m" src="m/3b49e17606863d5ba59c9ae383a0f0b952d4953a.svg" alt="\([x_H(t),x_H(0)]=-i\hbar t/m\)" style="height:1.096em;vertical-align:-0.274em"> and, by the <a href="uncertainty-relation.html">uncertainty relation</a>, <img class="m" src="m/7d5e3d45007c0456388750e8a551e7768a06f962.svg" alt="\(\Delta x(t)\Delta x(0)\ge\hbar t/2m\)" style="height:1.096em;vertical-align:-0.274em">: every packet must eventually spread. An electron packet of 1 nm doubles its width in <img class="m" src="m/9cd5492e23a132dba6d2051b59ebd0b46308ae5b.svg" alt="\(t\sim2m\Delta x^2/\hbar\approx17\)" style="height:1.166em;vertical-align:-0.268em"> fs.
+</p>
+</div>
+</div>
+<div id="outline-container-org7c669e1" class="outline-2">
+<h2 id="org7c669e1">Pitfall</h2>
+<div class="outline-text-2" id="text-org7c669e1">
+<p>
+Constants of motion in the Heisenberg picture (<img class="m" src="m/bcd8aaf29992afe726316b36978137495f462fd0.svg" alt="\([A,H]=0\)" style="height:1.096em;vertical-align:-0.274em">) are operators that do not change; it does not mean the state is an eigenstate of <img class="m" src="m/ab4d5b3604e572aae8418bc873e1b717a85a3c2b.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="schrodinger-equation-and-time-evolution.html"><span>← previous</span>The Schrödinger equation and time evolution</a><a rel="next" href="spin-precession-and-rabi-oscillations.html"><span>next →</span>Spin precession and Rabi oscillations</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-mechanics--dynamics.pdf" title="PDF manual">Dynamics</a> · <a class="pdf" href="pdf/quantum-mechanics.pdf" title="PDF manual">Quantum Mechanics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

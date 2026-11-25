@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Java Collections Framework · Computer Science</title>
+<meta name="description" content="A hierarchy of generic interfaces (Collection, List, Set, Queue, Map), implementations (ArrayList, LinkedList, HashSet, TreeSet, HashMap, TreeMap) and algorithms (Collections.sort, binarySearch, …); code is written against the interfaces and the implementation is chosen once, at construction.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/java-collections.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The Java Collections Framework · Computer Science">
+<meta property="og:description" content="A hierarchy of generic interfaces (Collection, List, Set, Queue, Map), implementations (ArrayList, LinkedList, HashSet, TreeSet, HashMap, TreeMap) and algorithms (Collections.sort, binarySearch, …); code is written against the interfaces and the implementation is chosen once, at construction.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/java-collections.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--java">Java</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Java</p>
+<h1>The Java Collections Framework</h1>
+<p class="summary">A hierarchy of generic interfaces (<code>Collection</code>, <code>List</code>, <code>Set</code>, <code>Queue</code>, <code>Map</code>), implementations (<code>ArrayList</code>, <code>LinkedList</code>, <code>HashSet</code>, <code>TreeSet</code>, <code>HashMap</code>, <code>TreeMap</code>) and algorithms (<code>Collections.sort</code>, <code>binarySearch</code>, …); code is written against the interfaces and the implementation is chosen once, at construction.</p>
+<p class="rel"><span>needs</span> <a href="java-generics.html">Java generics and type erasure</a></p>
+<p class="rel"><span>unlocks</span> <a href="hashmap-internals.html">How a hash table works (HashMap)</a>, <a href="java-iterator.html">Iterators and for-each in Java</a>, <a href="java-streams.html">Java streams and method references</a></p>
+<p class="rel"><span>see also</span> <a href="java-iterator.html">Iterators and for-each in Java</a>, <a href="stl-containers.html">STL containers</a>, <a href="equals-hashcode.html">The equals–hashCode contract</a>, <a href="comparable-comparator.html">Comparable and Comparator</a>, <a href="uml-association.html">Association, links and multiplicity</a>, <a href="java-streams.html">Java streams and method references</a>, <a href="hashmap-internals.html">How a hash table works (HashMap)</a></p>
+<p class="rel"><span>mentioned in</span> <a href="java-platform.html">The Java platform</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li><li><a href="generic-programming.html">Generic programming</a></li><li><a href="casting-instanceof.html">Casts, instanceof and array covariance</a></li><li><a href="java-generics.html">Java generics and type erasure</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orge14f6da" class="outline-2">
+<h2 id="orge14f6da">Definition</h2>
+<div class="outline-text-2" id="text-orge14f6da">
+<p>
+Three parts: <b>interfaces</b> (abstract data types), <b>implementations</b> (concrete data structures), <b>algorithms</b> (polymorphic static methods in <code>Collections</code>).
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">interface</th>
+<th scope="col" class="org-left">meaning</th>
+<th scope="col" class="org-left">hash</th>
+<th scope="col" class="org-left">tree (sorted)</th>
+<th scope="col" class="org-left">array / list</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Set&lt;E&gt;</td>
+<td class="org-left">no duplicates</td>
+<td class="org-left">HashSet</td>
+<td class="org-left">TreeSet</td>
+<td class="org-left">—</td>
+</tr>
+
+<tr>
+<td class="org-left">List&lt;E&gt;</td>
+<td class="org-left">by index</td>
+<td class="org-left">—</td>
+<td class="org-left">—</td>
+<td class="org-left">ArrayList, LinkedList</td>
+</tr>
+
+<tr>
+<td class="org-left">Queue&lt;E&gt;</td>
+<td class="org-left">FIFO, deque</td>
+<td class="org-left">—</td>
+<td class="org-left">PriorityQueue</td>
+<td class="org-left">ArrayDeque</td>
+</tr>
+
+<tr>
+<td class="org-left">Map&lt;K,V&gt;</td>
+<td class="org-left">key → value</td>
+<td class="org-left">HashMap</td>
+<td class="org-left">TreeMap</td>
+<td class="org-left">—</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+<code>Collection&lt;E&gt;</code> offers <code>add</code>, <code>remove</code>, <code>contains</code>, <code>size</code>, <code>isEmpty</code>, <code>iterator</code>, the bulk operations <code>addAll</code>, <code>removeAll</code>, <code>retainAll</code>, <code>containsAll</code>, and <code>toArray</code>. <code>Map</code> is not a <code>Collection</code>; its views <code>keySet()</code>, <code>values()</code>, <code>entrySet()</code> are.
+</p>
+</div>
+</div>
+<div id="outline-container-orgccca7ce" class="outline-2">
+<h2 id="orgccca7ce">Example</h2>
+<div class="outline-text-2" id="text-orgccca7ce">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="c">// declare the interface, choose the class
+</span><span class="t">List</span>&lt;<span class="t">String</span>&gt; <span class="v">names</span> = <span class="k">new</span> <span class="t">ArrayList</span>&lt;&gt;();
+<span class="t">Set</span>&lt;<span class="t">String</span>&gt; <span class="v">unique</span> = <span class="k">new</span> <span class="t">TreeSet</span>&lt;&gt;(names);   <span class="c">// sorted, no duplicates
+</span><span class="t">Map</span>&lt;<span class="t">String</span>, <span class="t">Integer</span>&gt; <span class="v">count</span> = <span class="k">new</span> <span class="t">HashMap</span>&lt;&gt;();
+<span class="k">for</span> (<span class="t">String</span> <span class="v">n</span> : names) count.merge(n, 1, Integer::sum);
+Collections.sort(names);</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orgbac0ccc" class="outline-2">
+<h2 id="orgbac0ccc">Requirements on elements</h2>
+<div class="outline-text-2" id="text-orgbac0ccc">
+<p>
+<code>HashSet</code> and <code>HashMap</code> use <code>hashCode</code> and <code>equals</code>; <code>TreeSet</code> and <code>TreeMap</code> use <code>compareTo</code> or a <code>Comparator</code>. A class stored in them must define these consistently (see <a href="equals-hashcode.html">equals and hashCode</a>, <a href="comparable-comparator.html">ordering</a>).
+</p>
+</div>
+</div>
+<div id="outline-container-orgb97ea4d" class="outline-2">
+<h2 id="orgb97ea4d">Intuition</h2>
+<div class="outline-text-2" id="text-orgb97ea4d">
+<p>
+Program to the interface: <code>List&lt;String&gt; l = new ArrayList&lt;&gt;()</code> lets you switch to <code>LinkedList</code> by editing one word.
+</p>
+</div>
+</div>
+<div id="outline-container-org90ea8e7" class="outline-2">
+<h2 id="org90ea8e7">Pitfall</h2>
+<div class="outline-text-2" id="text-org90ea8e7">
+<p>
+Mutating an element in a way that changes its <code>hashCode</code> or ordering while it is inside a <code>HashSet</code> or <code>TreeSet</code> loses it: <code>contains</code> looks in the wrong bucket or branch.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="java-exceptions.html"><span>← previous</span>Exceptions in Java: checked, unchecked, finally</a><a rel="next" href="hashmap-internals.html"><span>next →</span>How a hash table works (HashMap)</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--java.pdf" title="PDF manual">Java</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

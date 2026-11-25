@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The algebra of continuous functions and composition · Mathematics</title>
+<meta name="description" content="The sequential characterisation of the limit was proved so that the theorems about sequences could be spent on functions without being proved twice. This note spends them: the algebra of limits becomes the algebra of continuous functions, and with it every polynomial and rational function is contin…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-algebra-of-continuous-functions-and-composition.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The algebra of continuous functions and composition · Mathematics">
+<meta property="og:description" content="The sequential characterisation of the limit was proved so that the theorems about sequences could be spent on functions without being proved twice. This note spends them: the algebra of limits becomes the algebra of continuous functions, and with it every polynomial and rational function is contin…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-algebra-of-continuous-functions-and-composition.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Analysis · Real Analysis</p>
+<h1>The algebra of continuous functions and composition</h1>
+<p class="summary">The sequential characterisation of the limit was proved so that the theorems about sequences could be spent on functions without being proved twice. This note spends them: the algebra of limits becomes the algebra of continuous functions, and with it every polynomial and rational function is continuous for free. Composition is the one rule that does not come from a sequence argument in the same way, and it is the one that needs care.</p>
+<p class="rel"><span>needs</span> <a href="limits-and-continuity.html">Limits and continuity</a>, <a href="the-algebra-of-limits.html">The algebra of limits</a>, <a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></p>
+<p class="rel"><span>unlocks</span> <a href="the-rules-of-differentiation.html">The rules of differentiation</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li></ol></details>
+</header>
+<main class="note">
+<div class="theorem" id="orgf462550">
+<p>
+Let <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> be an accumulation point of <img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em">, and let
+<img class="m" src="m/8a980bc50f833dc20b5626208b22a61e02330305.svg" alt="\(\lim_{x \to c} f(x) = L\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/bfa8ebfc90efc0f1994c52f0a0d76af0be503a62.svg" alt="\(\lim_{x \to c} g(x) = M\)" style="height:1.096em;vertical-align:-0.274em">. Then
+<img class="m" src="m/1d33e43c5b677c757ee9381c8ed05c09b54bf2c6.svg" alt="\(f + g \to L + M\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/00c51acddbaeecdc67a4a6407af3cd82b9be5620.svg" alt="\(fg \to LM\)" style="height:0.974em;vertical-align:-0.214em"> as <img class="m" src="m/ba787d23b56df47c135a892a90423e7d3992888e.svg" alt="\(x \to c\)" style="height:0.472em;vertical-align:-0.000em">, and
+<img class="m" src="m/fd1b9871e5f576724b38a9ca571fd3c12cd329eb.svg" alt="\(f/g \to L/M\)" style="height:1.096em;vertical-align:-0.274em"> provided <img class="m" src="m/c72c802b1b90464a4ddf77c0a5a71b52ce87d48a.svg" alt="\(M \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> does not vanish on
+<img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org94f02ec">
+<p>
+Let <img class="m" src="m/b7cb63ac317cdbd63367cfc4bd393717cb0e6e21.svg" alt="\((x_{n})\)" style="height:1.096em;vertical-align:-0.274em"> be any sequence in <img class="m" src="m/410c795efe2391bf32a6a25ce45cec31338f5b9e.svg" alt="\(D \setminus \set{c}\)" style="height:1.096em;vertical-align:-0.274em"> with
+<img class="m" src="m/be51cc17adc20f1d28bde40ef3b294c3292d02c8.svg" alt="\(x_{n} \to c\)" style="height:0.636em;vertical-align:-0.165em">. By the sequential characterisation
+<img class="m" src="m/64fe6f639f69d514f7f00ad120e8e30fd4bd5e29.svg" alt="\(f(x_{n}) \to L\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/eb9cdc089e6d1209c179f8c07b5d1206ce445c6e.svg" alt="\(g(x_{n}) \to M\)" style="height:1.096em;vertical-align:-0.274em">, so by the algebra of limits
+<img class="m" src="m/52050940d745d4c5093ff0dc9080238dd1e513a1.svg" alt="\((f+g)(x_{n}) \to L + M\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/3a6c0101fa3b6ea8f43c4a6d96a5217a841e8b00.svg" alt="\((fg)(x_{n}) \to LM\)" style="height:1.096em;vertical-align:-0.274em">, and
+<img class="m" src="m/50e8fb2006f54ff1e3117f461db26066c10f966d.svg" alt="\((f/g)(x_{n}) \to L/M\)" style="height:1.096em;vertical-align:-0.274em"> when <img class="m" src="m/c72c802b1b90464a4ddf77c0a5a71b52ce87d48a.svg" alt="\(M \ne 0\)" style="height:0.974em;vertical-align:-0.214em">. Since this holds for every
+such sequence, the sequential characterisation read backwards gives the
+three limits.
+</p>
+
+</div>
+
+<div class="theorem" id="org4a49188">
+<p>
+If <img class="m" src="m/94818c986da11feab15557efbafcc8a8b30f10f1.svg" alt="\(f, g \colon D \to \R\)" style="height:0.974em;vertical-align:-0.214em"> are continuous at <img class="m" src="m/4f8246e7705a9c0df96e9d12bf2c596179c4d261.svg" alt="\(x_{0}\)" style="height:0.636em;vertical-align:-0.165em">, then so are
+<img class="m" src="m/cccca9f583cec6a35dc027039a39c5e74f52f78b.svg" alt="\(f + g\)" style="height:0.974em;vertical-align:-0.214em">, <img class="m" src="m/32ed46e9ed1dbb3ed096181dacbcd70b881f1189.svg" alt="\(fg\)" style="height:0.974em;vertical-align:-0.214em"> and, when <img class="m" src="m/9115f22c1a892adc2e464e9936b4905a5ad0d8b4.svg" alt="\(g(x_{0}) \ne 0\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/da61d36b7391e233b85c6384afe607fccedad239.svg" alt="\(f/g\)" style="height:1.096em;vertical-align:-0.274em"> on the set
+where <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> does not vanish.
+</p>
+
+</div>
+
+<div class="proof" id="orgf88e501">
+<p>
+Continuity at <img class="m" src="m/4f8246e7705a9c0df96e9d12bf2c596179c4d261.svg" alt="\(x_{0}\)" style="height:0.636em;vertical-align:-0.165em"> says <img class="m" src="m/6a0a1e1de9e95e8e8003c6ff30ddb51adeec3967.svg" alt="\(\lim_{x \to x_{0}} f(x) = f(x_{0})\)" style="height:1.096em;vertical-align:-0.274em">
+when <img class="m" src="m/4f8246e7705a9c0df96e9d12bf2c596179c4d261.svg" alt="\(x_{0}\)" style="height:0.636em;vertical-align:-0.165em"> is an accumulation point of <img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em">, so the previous
+theorem gives the three limits as <img class="m" src="m/0692fb54c01b590cbc8e64af74b7784900005fc5.svg" alt="\(f(x_{0}) + g(x_{0})\)" style="height:1.096em;vertical-align:-0.274em">,
+<img class="m" src="m/d246e2dbb0470267ccb1f4f1db5b53434afa562d.svg" alt="\(f(x_{0}) g(x_{0})\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/cb5689c0c381b4a2e20f30cf15e50808f6e5563a.svg" alt="\(f(x_{0})/g(x_{0})\)" style="height:1.096em;vertical-align:-0.274em">, which are exactly the
+values of the three functions at <img class="m" src="m/4f8246e7705a9c0df96e9d12bf2c596179c4d261.svg" alt="\(x_{0}\)" style="height:0.636em;vertical-align:-0.165em">. If <img class="m" src="m/4f8246e7705a9c0df96e9d12bf2c596179c4d261.svg" alt="\(x_{0}\)" style="height:0.636em;vertical-align:-0.165em"> is an isolated
+point of <img class="m" src="m/438d68d1fee177fa235a75592112976fbd19b296.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> every function is continuous there and there is nothing
+to prove.
+</p>
+
+</div>
+
+<div class="corollary" id="orge5698af">
+<p>
+Every polynomial is continuous on <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em">, and every rational function
+is continuous at every point where its denominator does not vanish.
+</p>
+
+</div>
+
+<div class="proof" id="org3686300">
+<p>
+The constant functions and the identity <img class="m" src="m/f892924060ce86763987024427ad5dc30f402867.svg" alt="\(x \mapsto x\)" style="height:0.472em;vertical-align:-0.000em"> are continuous
+directly from the definition (take <img class="m" src="m/de4b7497712791e7fe220f7939a5deace90ace44.svg" alt="\(\delta = \eps\)" style="height:0.761em;vertical-align:-0.000em"> for the identity,
+any <img class="m" src="m/ae9908b1dd9140d114827a466a957908d1672568.svg" alt="\(\delta\)" style="height:0.761em;vertical-align:-0.000em"> for a constant). Products and sums of continuous
+functions are continuous, so by induction every monomial and hence
+every polynomial is; the quotient rule gives the rational case.
+</p>
+
+</div>
+
+<div class="theorem" id="orga0e621b">
+<p>
+Let <img class="m" src="m/979c6360e64657e99af847a4effa6b30bfc2c4d0.svg" alt="\(f \colon D \to \R\)" style="height:0.974em;vertical-align:-0.214em"> be continuous at <img class="m" src="m/4f8246e7705a9c0df96e9d12bf2c596179c4d261.svg" alt="\(x_{0}\)" style="height:0.636em;vertical-align:-0.165em">, with
+<img class="m" src="m/6873b250169fc57a9e7e371ec80f405270bcbacd.svg" alt="\(f(D) \subseteq E\)" style="height:1.096em;vertical-align:-0.274em">, and let <img class="m" src="m/ee8a95e57e9202ae0e2f990ddd1c152742407c6b.svg" alt="\(g \colon E \to \R\)" style="height:0.968em;vertical-align:-0.213em"> be continuous at
+<img class="m" src="m/c66544e6ad0ebae894dd378baf73919c8226b383.svg" alt="\(f(x_{0})\)" style="height:1.096em;vertical-align:-0.274em">. Then <img class="m" src="m/8ad73b65ef7f72b970b0013a23830f3cc9ab2be0.svg" alt="\(g \circ f\)" style="height:0.974em;vertical-align:-0.214em"> is continuous at <img class="m" src="m/4f8246e7705a9c0df96e9d12bf2c596179c4d261.svg" alt="\(x_{0}\)" style="height:0.636em;vertical-align:-0.165em">.
+</p>
+
+</div>
+
+<div class="proof" id="org18ab695">
+<p>
+Let <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em">. By continuity of <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> at <img class="m" src="m/1ecf123c7908370ab984c3ac6eb0fef2f5f44337.svg" alt="\(y_{0} = f(x_{0})\)" style="height:1.096em;vertical-align:-0.274em"> there
+is <img class="m" src="m/2152f1d20ac07e01383071b73447a3c88e89d312.svg" alt="\(\eta &gt; 0\)" style="height:0.919em;vertical-align:-0.211em"> with <img class="m" src="m/93f548d27c7a88fe5099e7e5fa81f224718e6227.svg" alt="\(\abs{g(y) - g(y_{0})} &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em"> for every
+<img class="m" src="m/362ea951612dcd73ec7278924266df76be00e3f3.svg" alt="\(y \in E\)" style="height:0.962em;vertical-align:-0.212em"> with <img class="m" src="m/ffdb7c99b41df01af5ad11d50f00624a0a57f54b.svg" alt="\(\abs{y - y_{0}} &lt; \eta\)" style="height:1.096em;vertical-align:-0.274em">. By continuity of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> at
+<img class="m" src="m/4f8246e7705a9c0df96e9d12bf2c596179c4d261.svg" alt="\(x_{0}\)" style="height:0.636em;vertical-align:-0.165em">, applied with <img class="m" src="m/a1b54939210c3b11c7045471f72745425f4ff660.svg" alt="\(\eta\)" style="height:0.685em;vertical-align:-0.212em"> in the role of the tolerance, there is
+<img class="m" src="m/2834db4da57323bf6f47d0a640028cc90f572412.svg" alt="\(\delta &gt; 0\)" style="height:0.804em;vertical-align:-0.040em"> with <img class="m" src="m/84ff96a14da7efe73d874aecafb8ee47fa4951f4.svg" alt="\(\abs{f(x) - y_{0}} &lt; \eta\)" style="height:1.096em;vertical-align:-0.274em"> for every <img class="m" src="m/ee3f11d646a6e332199b0bf4674c6135b2566e0d.svg" alt="\(x \in D\)" style="height:0.792em;vertical-align:-0.040em">
+with <img class="m" src="m/f5d6d947168af415db2965d57ced214e16bc2ad8.svg" alt="\(\abs{x - x_{0}} &lt; \delta\)" style="height:1.096em;vertical-align:-0.274em">. Combining the two, every <img class="m" src="m/ee3f11d646a6e332199b0bf4674c6135b2566e0d.svg" alt="\(x \in D\)" style="height:0.792em;vertical-align:-0.040em">
+with <img class="m" src="m/f5d6d947168af415db2965d57ced214e16bc2ad8.svg" alt="\(\abs{x - x_{0}} &lt; \delta\)" style="height:1.096em;vertical-align:-0.274em"> satisfies
+<img class="m" src="m/01f70aeeb8ab501a62ea16a20e368656519da927.svg" alt="\(\abs{g(f(x)) - g(f(x_{0}))} &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="remark" id="org9995ea1">
+<p>
+Composition is stated for <i>continuity</i> and not for limits, and that is
+not laziness: the corresponding statement about limits is false as
+usually written. With <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> constantly <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> and <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> equal to <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">
+away from the origin and <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em"> at it, <img class="m" src="m/98e4a9b9be6d183b9937b53708487cac3a73c701.svg" alt="\(\lim_{x \to 0} f(x) = 0\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/6914b108efed77288d57bffafacae1a50635d9f3.svg" alt="\(\lim_{y \to 0} g(y) = 0\)" style="height:1.135em;vertical-align:-0.318em">, but <img class="m" src="m/74e1a033ac840d1cb04ec197517e963b2c0ea11c.svg" alt="\(g(f(x))\)" style="height:1.096em;vertical-align:-0.274em"> is constantly <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">. What
+repairs it is exactly the hypothesis continuity supplies: that the
+outer limit is the value at the point.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-limit-of-a-function-and-its-sequential-characterisation.html"><span>← previous</span>The limit of a function and its sequential characterisation</a><a rel="next" href="one-sided-limits-and-the-discontinuities-of-a-monotone-function.html"><span>next →</span>One-sided limits and the discontinuities of a monotone function</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

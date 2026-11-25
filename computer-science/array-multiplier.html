@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multipliers · Computer Science</title>
+<meta name="description" content="An n\times n multiplication sums n partial products a\cdot b_j\,2^j, each a row of AND gates; an array of carry-save adders reduces them in O(n) delay, a Wallace tree in O(\log n), and Booth recoding halves the number of rows; a sequential shift-and-add multiplier uses one adder for n cycles.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/array-multiplier.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Multipliers · Computer Science">
+<meta property="og:description" content="An n\times n multiplication sums n partial products a\cdot b_j\,2^j, each a row of AND gates; an array of carry-save adders reduces them in O(n) delay, a Wallace tree in O(\log n), and Booth recoding halves the number of rows; a sequential shift-and-add multiplier uses one adder for n cycles.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/array-multiplier.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--arithmetic">Arithmetic</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Hardware · Arithmetic</p>
+<h1>Multipliers</h1>
+<p class="summary">An <img class="m" src="m/dcd42ca36ad76714ccde84c8b1d5ffdf35322a3a.svg" alt="\(n\times n\)" style="height:0.731em;vertical-align:-0.088em"> multiplication sums <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> partial products <img class="m" src="m/0ebf3ad5ec49fc490f94a7d980aa255895eb60ad.svg" alt="\(a\cdot b_j\,2^j\)" style="height:1.219em;vertical-align:-0.317em">, each a row of AND gates; an array of carry-save adders reduces them in <img class="m" src="m/75759c7342019bc0f32aba564d0313818f7efb7a.svg" alt="\(O(n)\)" style="height:1.096em;vertical-align:-0.274em"> delay, a Wallace tree in <img class="m" src="m/66ddf3bcf31dc141ffc1f3be703fe5e8f1db2803.svg" alt="\(O(\log n)\)" style="height:1.096em;vertical-align:-0.274em">, and Booth recoding halves the number of rows; a sequential shift-and-add multiplier uses one adder for <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> cycles.</p>
+<p class="rel"><span>needs</span> <a href="carry-save-adder.html">Carry-save adders and adder trees</a></p>
+<p class="rel"><span>unlocks</span> <a href="fir-filter.html">FIR filter architectures</a>, <a href="booth-recoding.html">Radix-4 Booth recoding</a></p>
+<p class="rel"><span>see also</span> <a href="fir-filter.html">FIR filter architectures</a>, <a href="serial-arithmetic.html">Bit-serial arithmetic</a>, <a href="cordic.html">CORDIC</a>, <a href="booth-recoding.html">Radix-4 Booth recoding</a></p>
+<details class="path"><summary>Learning path: 2 notes lead here, in study order</summary><ol><li><a href="ripple-carry-adder.html">Full adder and ripple-carry adder</a></li><li><a href="carry-save-adder.html">Carry-save adders and adder trees</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org7851229" class="outline-2">
+<h2 id="org7851229">Construction</h2>
+<div class="outline-text-2" id="text-org7851229">
+<p>
+<div class="mb"><img class="m" src="m/07f22b6afcb939c47e95e3bb8da076634ca5b04a.svg" alt="\[ a\cdot b=\sum_{j=0}^{n-1} b_j\,a\,2^{j},\qquad pp_{j,i}=a_i\wedge b_j . \]" style="width:17.661em"></div>
+</p>
+<ul class="org-ul">
+<li><b>Array multiplier</b>: <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> rows of AND gates, <img class="m" src="m/026e79c00faa909415096200e7e53ca7b5f67bbe.svg" alt="\(n-1\)" style="height:0.798em;vertical-align:-0.088em"> rows of adders, each row adding the next partial product to the running sum in carry-save form; regular layout, delay <img class="m" src="m/d8b0a3dd7f57a1af1d13204fdd6f80e8d6e0ccd0.svg" alt="\(\approx 2n\)" style="height:0.706em;vertical-align:-0.000em"> full adders. Area <img class="m" src="m/5fea73671d3ae72ee0076fde82572e0496f1e777.svg" alt="\(O(n^2)\)" style="height:1.166em;vertical-align:-0.268em">.</li>
+<li><b>Tree multiplier</b>: all partial products at once into a <a href="carry-save-adder.html">Wallace or Dadda tree</a>, <img class="m" src="m/66ddf3bcf31dc141ffc1f3be703fe5e8f1db2803.svg" alt="\(O(\log n)\)" style="height:1.096em;vertical-align:-0.274em"> levels, then a fast carry-propagate adder.</li>
+<li><b><a href="booth-recoding.html">Radix-4 Booth</a></b>: recode <img class="m" src="m/9a9e478ff943a309ecb17df71ac414cc09c1be96.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em"> into digits in <img class="m" src="m/b10128b5f1b862bf64bc973d0a916f41e2110add.svg" alt="\(\{-2,-1,0,1,2\}\)" style="height:1.096em;vertical-align:-0.274em"> by looking at overlapping bit triples; <img class="m" src="m/71027e0025503b143e45cbdb874c0aef80fb434e.svg" alt="\(n/2\)" style="height:1.096em;vertical-align:-0.274em"> partial products, each a shifted or negated copy of <img class="m" src="m/36ad57d0b9b05e12447762c553bda3a072bc992d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">. It also handles <a href="ripple-carry-adder.html">two's complement</a> multipliers directly.</li>
+<li><b>Sequential</b>: one adder and a shift register: <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> cycles, <img class="m" src="m/75759c7342019bc0f32aba564d0313818f7efb7a.svg" alt="\(O(n)\)" style="height:1.096em;vertical-align:-0.274em"> area.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgad2b451" class="outline-2">
+<h2 id="orgad2b451">Picture</h2>
+<div class="outline-text-2" id="text-orgad2b451">
+<figure class="fig"><img class="m" src="m/8581907f03858a7d2dcf3cae758bf14131b9a26d.svg" alt="figure" style="width:24.064em"><figcaption><span class="fl">Figure 1.</span> An 8-bit array multiplier: each row adds the partial product <img class="m" src="m/518438dd53b5b4a0f6b2b1ffa352b59bb18dd491.svg" alt="\(b_j\cdot a\cdot 2^j\)" style="height:1.219em;vertical-align:-0.317em">, so the product <img class="m" src="m/1b585385119ca3fa824f551fe7c4bcb46945b991.svg" alt="\(p=a\cdot b\)" style="height:0.974em;vertical-align:-0.214em"> emerges after a chain of adders.</figcaption></figure>
+<p>
+Four shifted rows of partial products (dots) summed into an 8-bit product.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb185c47" class="outline-2">
+<h2 id="orgb185c47">Intuition</h2>
+<div class="outline-text-2" id="text-orgb185c47">
+<p>
+School multiplication in binary is easy — each row is <img class="m" src="m/36ad57d0b9b05e12447762c553bda3a072bc992d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> or zero — and the whole difficulty is adding the rows fast.
+</p>
+</div>
+</div>
+<div id="outline-container-org456355f" class="outline-2">
+<h2 id="org456355f">Pitfall</h2>
+<div class="outline-text-2" id="text-org456355f">
+<p>
+Signed operands need care: two's complement partial products must be sign-extended (or use Baugh–Wooley/Booth), otherwise the high half of the product is wrong.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="datapath-subsystems.html"><span>← previous</span>Datapath subsystems: detectors, shifters, counters</a><a rel="next" href="fir-filter.html"><span>next →</span>FIR filter architectures</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--arithmetic.pdf" title="PDF manual">Arithmetic</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

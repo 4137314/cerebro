@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Convex hulls and Caratheodory's theorem · Mathematics</title>
+<meta name="description" content="The convex hull of a set is defined by an intersection, which says nothing about how to reach a point of it. Caratheodory's theorem says one never needs more than n+1 of the original points, whatever the set: convexity in dimension n is a finitary condition, and this is the reason the theory has co…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/convex-hulls-and-caratheodorys-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Convex hulls and Caratheodory's theorem · Mathematics">
+<meta property="og:description" content="The convex hull of a set is defined by an intersection, which says nothing about how to reach a point of it. Caratheodory's theorem says one never needs more than n+1 of the original points, whatever the set: convexity in dimension n is a finitary condition, and this is the reason the theory has co…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/convex-hulls-and-caratheodorys-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-geometry">Geometry</a> / <a rel="up" href="index.html#a-geometry--convex-geometry">Convex Geometry</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Geometry · Convex Geometry</p>
+<h1>Convex hulls and Caratheodory's theorem</h1>
+<p class="summary">The convex hull of a set is defined by an intersection, which says nothing about how to reach a point of it. Caratheodory's theorem says one never needs more than <img class="m" src="m/8667d4ccbeefcc1a86781878d6b636f39c49c68a.svg" alt="\(n+1\)" style="height:0.798em;vertical-align:-0.088em"> of the original points, whatever the set: convexity in dimension <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> is a finitary condition, and this is the reason the theory has compactness statements at all.</p>
+<p class="rel"><span>needs</span> <a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a>, <a href="convex-set.html">Convex set</a>, <a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a>, <a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></p>
+<p class="rel"><span>unlocks</span> <a href="extreme-points-and-minkowskis-theorem-on-convex-bodies.html">Extreme points and Minkowski's theorem on convex bodies</a></p>
+<p class="rel"><span>mentioned in</span> <a href="geometry.html">Geometry</a></p>
+<details class="path"><summary>Learning path: 18 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="convex-set.html">Convex set</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgd04d9be">
+<p>
+The <i>convex hull</i> <img class="m" src="m/098c7ebf5edc3df9084fa66d3bb10b9ba662a259.svg" alt="\(\operatorname{conv} S\)" style="height:0.749em;vertical-align:-0.000em"> of <img class="m" src="m/5e0615fb7431e5c0b92301912e162cad052e6b34.svg" alt="\(S \subseteq \R^{n}\)" style="height:0.904em;vertical-align:-0.145em"> is the
+intersection of all convex sets containing <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">. A <i>convex combination</i>
+of <img class="m" src="m/c8e7bfdd0d40393d9cfea9ec4e564f432787f80e.svg" alt="\(v_{1},\dots,v_{k}\)" style="height:0.685em;vertical-align:-0.212em"> is <img class="m" src="m/e652ce1d0b876382b7a5ea3602baf182d9008b6e.svg" alt="\(\sum_{i}\lambda_{i}v_{i}\)" style="height:1.151em;vertical-align:-0.334em"> with
+<img class="m" src="m/c4470ef703e5c1a99daaabccb77b7ae6d57b7636.svg" alt="\(\lambda_{i} \ge 0\)" style="height:0.925em;vertical-align:-0.167em"> and <img class="m" src="m/0000dc7abe2d7f127c9d2b96304d696ae56b1a1b.svg" alt="\(\sum_{i}\lambda_{i} = 1\)" style="height:1.151em;vertical-align:-0.334em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org4e63944">
+<p>
+An intersection of convex sets is convex, so <img class="m" src="m/098c7ebf5edc3df9084fa66d3bb10b9ba662a259.svg" alt="\(\operatorname{conv} S\)" style="height:0.749em;vertical-align:-0.000em"> is the smallest
+convex set containing <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">; and <img class="m" src="m/098c7ebf5edc3df9084fa66d3bb10b9ba662a259.svg" alt="\(\operatorname{conv} S\)" style="height:0.749em;vertical-align:-0.000em"> is exactly the set of
+convex combinations of finitely many points of <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="orge40b4b1">
+<p>
+If each <img class="m" src="m/2dd610d28c2c0de7aef53a8fea45c6b40f4a41aa.svg" alt="\(C_{i}\)" style="height:0.913em;vertical-align:-0.164em"> is convex and <img class="m" src="m/d331884c44f8b6eb303d1dbad363125b4041a3af.svg" alt="\(x, y\)" style="height:0.685em;vertical-align:-0.212em"> lie in all of them, then so
+does <img class="m" src="m/b5b11f354be06fa47f666074a8845997ea7c8e4b.svg" alt="\((1-t)x+ty\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/a9a540d86c05581319fb25b9343811d50152c100.svg" alt="\(t \in [0,1]\)" style="height:1.096em;vertical-align:-0.274em">; hence the intersection is
+convex, and by construction it is contained in every convex set
+containing <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+<p>
+Let <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> be the set of convex combinations of points of <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">. Any
+convex set containing <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> contains <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">: by induction on <img class="m" src="m/5ec5e3b2fda230219e6719c59682076f93242498.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em">, if
+<img class="m" src="m/2e5358ef7f396fbd168378da5bb731c4714db685.svg" alt="\(\lambda_{k} &lt; 1\)" style="height:0.925em;vertical-align:-0.167em"> then
+<img class="m" src="m/90665c7bc11c3a51b9a18747e3858575e68a31c7.svg" alt="\(\sum_{i \le k}\lambda_{i}v_{i} = (1-\lambda_{k}) w + \lambda_{k}v_{k}\)" style="height:1.293em;vertical-align:-0.465em">
+with <img class="m" src="m/053b21377f413a7e0f02d3ef7006b4fde022b494.svg" alt="\(w = \sum_{i&lt;k}\frac{\lambda_{i}}{1-\lambda_{k}}v_{i}\)" style="height:1.476em;vertical-align:-0.487em"> a convex
+combination of <img class="m" src="m/a936753699317d577653c9b5a62e67478a9a6a7d.svg" alt="\(k-1\)" style="height:0.852em;vertical-align:-0.094em"> points. So <img class="m" src="m/e47ead75734530c55b6c1937712914ffff39773c.svg" alt="\(K \subseteq \operatorname{conv} S\)" style="height:0.898em;vertical-align:-0.153em">. Conversely
+<img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> is itself convex &#x2013; a convex combination of two convex
+combinations is one, after collecting coefficients, which are again
+non-negative and sum to <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em"> &#x2013; and it contains <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">, so
+<img class="m" src="m/5ddce453c0a4c4aaa69e4f9e21cd8beab6c53472.svg" alt="\(\operatorname{conv} S \subseteq K\)" style="height:0.898em;vertical-align:-0.153em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org6cd898b">
+<p>
+Every point of <img class="m" src="m/098c7ebf5edc3df9084fa66d3bb10b9ba662a259.svg" alt="\(\operatorname{conv} S\)" style="height:0.749em;vertical-align:-0.000em">, for <img class="m" src="m/5e0615fb7431e5c0b92301912e162cad052e6b34.svg" alt="\(S \subseteq \R^{n}\)" style="height:0.904em;vertical-align:-0.145em">, is a convex
+combination of at most <img class="m" src="m/8667d4ccbeefcc1a86781878d6b636f39c49c68a.svg" alt="\(n+1\)" style="height:0.798em;vertical-align:-0.088em"> points of <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org4fcdf4a">
+<p>
+Let <img class="m" src="m/dc87849a4be03f08ca39c5d2273594c7b47b0869.svg" alt="\(x = \sum_{i=1}^{k}\lambda_{i}v_{i}\)" style="height:1.412em;vertical-align:-0.325em"> be a convex combination with
+<img class="m" src="m/5ec5e3b2fda230219e6719c59682076f93242498.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> minimal, all <img class="m" src="m/029c29b5631e68794790aadf3c312c93f224fa29.svg" alt="\(\lambda_{i} &gt; 0\)" style="height:0.925em;vertical-align:-0.167em">, and suppose <img class="m" src="m/0d5d80243b711771bd2879e1bbc57a5629a4915d.svg" alt="\(k &gt; n+1\)" style="height:0.852em;vertical-align:-0.094em">. The
+<img class="m" src="m/2043d787a9fda25b6c1887315777ecf9b4be1b43.svg" alt="\(k-1 &gt; n\)" style="height:0.852em;vertical-align:-0.094em"> vectors <img class="m" src="m/003fae212727a67b0f9a162f2b3eea5db49abf06.svg" alt="\(v_{2}-v_{1}, \dots, v_{k}-v_{1}\)" style="height:0.852em;vertical-align:-0.213em"> lie in
+<img class="m" src="m/b33f2adf960aeb722adafbfc0479a5f92fd75b05.svg" alt="\(\R^{n}\)" style="height:0.755em;vertical-align:-0.000em">, so they are dependent: there are <img class="m" src="m/32efa3ae4ecb37a4584bdd686f746d5975cf5af7.svg" alt="\(\mu_{2},\dots,\mu_{k}\)" style="height:0.685em;vertical-align:-0.212em">,
+not all zero, with <img class="m" src="m/1d7f934ab7738ce7c210de99ca15a5fb85b34d28.svg" alt="\(\sum_{i \ge 2}\mu_{i}(v_{i}-v_{1}) = 0\)" style="height:1.293em;vertical-align:-0.465em">. Putting
+<img class="m" src="m/e2467d8e0a135aab9cccc56e582eb1004e1ac149.svg" alt="\(\mu_{1} = -\sum_{i\ge2}\mu_{i}\)" style="height:1.293em;vertical-align:-0.465em"> gives
+<img class="m" src="m/205666a85798f7adee512b1cb11e8f9204c30549.svg" alt="\(\sum_{i}\mu_{i}v_{i} = 0\)" style="height:1.151em;vertical-align:-0.334em"> and <img class="m" src="m/10882c47734310d523d19308397b10d958facd47.svg" alt="\(\sum_{i}\mu_{i} = 0\)" style="height:1.151em;vertical-align:-0.334em">, with some
+<img class="m" src="m/42d7fe0071b9a67790ff468378a48dd86121861b.svg" alt="\(\mu_{i} \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> and therefore some <img class="m" src="m/fa4e37076adceaf5b3810dc66c485ce746110270.svg" alt="\(\mu_{i} &gt; 0\)" style="height:0.919em;vertical-align:-0.211em">.
+</p>
+
+<p>
+Let <img class="m" src="m/8e5f8d4456f25e4c28511cd4de2212d0c7ed2601.svg" alt="\(t = \min\setst{\lambda_{i}/\mu_{i}}{\mu_{i} &gt; 0}\)" style="height:1.096em;vertical-align:-0.274em">, attained at
+<img class="m" src="m/ce1f894aa4a5ffe1c822c76624554cd6fd7db712.svg" alt="\(i = j\)" style="height:0.936em;vertical-align:-0.215em">. Then <img class="m" src="m/7d1ddfe0cf38db1e70a2220f80c7c6e5757d3332.svg" alt="\(x = \sum_{i}(\lambda_{i} - t\mu_{i})v_{i}\)" style="height:1.151em;vertical-align:-0.334em">, the new
+coefficients are non-negative &#x2013; for <img class="m" src="m/f8479c7655709b8c45fc0fcd3fc2ae01331674c5.svg" alt="\(\mu_{i} \le 0\)" style="height:0.919em;vertical-align:-0.211em"> obviously, and
+for <img class="m" src="m/fa4e37076adceaf5b3810dc66c485ce746110270.svg" alt="\(\mu_{i} &gt; 0\)" style="height:0.919em;vertical-align:-0.211em"> by the choice of <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> &#x2013; they sum to <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">, and the
+<img class="m" src="m/3368b211f5038907d6dc36c5bec32916d1755948.svg" alt="\(j\)" style="height:0.936em;vertical-align:-0.215em">-th vanishes. This is a convex combination of <img class="m" src="m/a936753699317d577653c9b5a62e67478a9a6a7d.svg" alt="\(k-1\)" style="height:0.852em;vertical-align:-0.094em"> of the
+points, contradicting minimality. Hence <img class="m" src="m/454e4676e5115bed679eb2f5007eb83ab2684eff.svg" alt="\(k \le n+1\)" style="height:0.910em;vertical-align:-0.146em">.
+</p>
+
+</div>
+
+<div class="corollary" id="orgf070cf7">
+<p>
+If <img class="m" src="m/5e0615fb7431e5c0b92301912e162cad052e6b34.svg" alt="\(S \subseteq \R^{n}\)" style="height:0.904em;vertical-align:-0.145em"> is closed and bounded, so is <img class="m" src="m/098c7ebf5edc3df9084fa66d3bb10b9ba662a259.svg" alt="\(\operatorname{conv} S\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org500a7a6">
+<p>
+Boundedness is clear, a convex combination of points of norm at most
+<img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> having norm at most <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">. For closedness, let
+<img class="m" src="m/a3635ed420793cba1cbf4bd1f3a9ae04b92409d9.svg" alt="\(x_{m} \to x\)" style="height:0.636em;vertical-align:-0.165em"> with <img class="m" src="m/35e482db228aec78a44b7b9bf79a577241706129.svg" alt="\(x_{m} \in \operatorname{conv} S\)" style="height:0.913em;vertical-align:-0.164em">. By the theorem, write
+<img class="m" src="m/bffaee884f763ef021fa2471a99383315adf7a25.svg" alt="\(x_{m} = \sum_{i=1}^{n+1}\lambda_{i}^{(m)}v_{i}^{(m)}\)" style="height:1.473em;vertical-align:-0.324em"> with
+<img class="m" src="m/b94306e7a7be29ea43f9dfcd2a4cb12396a77429.svg" alt="\(v_{i}^{(m)} \in S\)" style="height:1.450em;vertical-align:-0.305em"> and <img class="m" src="m/7ed9055b865ba05b84152a8e0a2e51f063fd9793.svg" alt="\(\lambda^{(m)}\)" style="height:0.973em;vertical-align:-0.000em"> in the set of non-negative
+vectors summing to <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em"> (padding with repeated points if fewer than
+<img class="m" src="m/8667d4ccbeefcc1a86781878d6b636f39c49c68a.svg" alt="\(n+1\)" style="height:0.798em;vertical-align:-0.088em"> are needed). Both the <img class="m" src="m/5d9fa081df3ac56a004d1fd2944310a985208cb9.svg" alt="\(v_{i}^{(m)}\)" style="height:1.450em;vertical-align:-0.305em"> and the
+<img class="m" src="m/7ed9055b865ba05b84152a8e0a2e51f063fd9793.svg" alt="\(\lambda^{(m)}\)" style="height:0.973em;vertical-align:-0.000em"> range over closed bounded sets, so by
+Bolzano-Weierstrass, applied finitely many times, a subsequence has
+<img class="m" src="m/bfd5cb03e760c864121149fb8946575e030d924e.svg" alt="\(v_{i}^{(m)} \to v_{i} \in S\)" style="height:1.450em;vertical-align:-0.305em"> and
+<img class="m" src="m/8187b4fa749c214f9b4543e6205a9444b47252c6.svg" alt="\(\lambda^{(m)} \to \lambda\)" style="height:0.973em;vertical-align:-0.000em"> with <img class="m" src="m/c4470ef703e5c1a99daaabccb77b7ae6d57b7636.svg" alt="\(\lambda_{i} \ge 0\)" style="height:0.925em;vertical-align:-0.167em"> summing to
+<img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">. Passing to the limit gives <img class="m" src="m/0b0695465949501b4ec97a6b37c5b951c5651fae.svg" alt="\(x = \sum_{i}\lambda_{i}v_{i} \in \operatorname{conv} S\)" style="height:1.151em;vertical-align:-0.334em">.
+</p>
+
+</div>
+
+<div class="remark" id="org71402a5">
+<p>
+Without Caratheodory the corollary is not available in this form: the
+number of points in the combinations would grow with <img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em"> and there
+would be no fixed finite-dimensional compact set to extract a
+convergent subsequence from. That is the sense in which the theorem is
+about finiteness rather than about counting.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="nearest-points-and-the-separating-hyperplane-theorem.html"><span>← previous</span>Nearest points and the separating hyperplane theorem</a><a rel="next" href="extreme-points-and-minkowskis-theorem-on-convex-bodies.html"><span>next →</span>Extreme points and Minkowski's theorem on convex bodies</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/geometry--convex-geometry.pdf" title="PDF manual">Convex Geometry</a> · <a class="pdf" href="pdf/geometry.pdf" title="PDF manual">Geometry</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

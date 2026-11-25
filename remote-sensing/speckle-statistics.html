@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speckle and its statistics · Remote Sensing</title>
+<meta name="description" content="A SAR resolution cell contains many elementary scatterers whose echoes add with random phases; for many independent scatterers with uniform phases, real and imaginary parts are zero-mean Gaussian with variance \beta/2, so the amplitude is Rayleigh distributed and the intensity negative exponential …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/speckle-statistics.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Speckle and its statistics · Remote Sensing">
+<meta property="og:description" content="A SAR resolution cell contains many elementary scatterers whose echoes add with random phases; for many independent scatterers with uniform phases, real and imaginary parts are zero-mean Gaussian with variance \beta/2, so the amplitude is Rayleigh distributed and the intensity negative exponential …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/speckle-statistics.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--sar-processing">Sar Processing</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Processing · Sar Processing</p>
+<h1>Speckle and its statistics</h1>
+<p class="summary">A SAR resolution cell contains many elementary scatterers whose echoes add with random phases; for many independent scatterers with uniform phases, real and imaginary parts are zero-mean Gaussian with variance <img class="m" src="m/fe700186fb5f7e25315857d0dde0fa56f3877693.svg" alt="\(\beta/2\)" style="height:1.096em;vertical-align:-0.274em">, so the amplitude is Rayleigh distributed and the intensity negative exponential with mean <img class="m" src="m/924edaad22dc16751327557aaea5f425f7f2c1fb.svg" alt="\(\beta\propto\sigma^0\)" style="height:1.105em;vertical-align:-0.210em"> and standard deviation equal to its mean: multiplicative noise.</p>
+<p class="rel"><span>needs</span> <a href="sar-complex-image.html">SAR complex, amplitude and intensity images</a>, <a href="homogeneous-area-statistics.html">Statistics of homogeneous areas in optical images</a></p>
+<p class="rel"><span>unlocks</span> <a href="speckle-filtering.html">Speckle reduction</a></p>
+<p class="rel"><span>see also</span> <a href="speckle-filtering.html">Speckle reduction</a>, <a href="edge-detection.html">Edge detection and directional filters</a>, <a href="texture-features.html">Texture features</a></p>
+<details class="path"><summary>Learning path: 24 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="spectral-signature.html">Spectral signature</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="radar-equation.html">Radar principle and radar equation</a></li><li><a href="side-looking-radar.html">Side-looking radar geometry</a></li><li><a href="azimuth-resolution.html">Azimuth resolution of a real-aperture radar</a></li><li><a href="backscattering-coefficient.html">Backscattering coefficient</a></li><li><a href="range-resolution.html">Range resolution</a></li><li><a href="chirp-pulse-compression.html">Chirp and pulse compression</a></li><li><a href="synthetic-aperture-radar.html">Synthetic aperture radar (SAR)</a></li><li><a href="sar-complex-image.html">SAR complex, amplitude and intensity images</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li><li><a href="image-statistics.html">Image statistics: moments, mode, median</a></li><li><a href="homogeneous-area-statistics.html">Statistics of homogeneous areas in optical images</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org6684408" class="outline-2">
+<h2 id="org6684408">Statement</h2>
+<div class="outline-text-2" id="text-org6684408">
+<p>
+Hypotheses on a <a href="homogeneous-area-statistics.html">homogeneous area</a>:
+</p>
+<ol class="org-ol">
+<li><img class="m" src="m/0b5ebb9337a8adeadec859c3b646bacae4ce15c3.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> elementary scatterers per cell, with independent amplitudes <img class="m" src="m/b1c0abb4142ab7213067298cf7dd55a26c7fae47.svg" alt="\(A_k\)" style="height:0.913em;vertical-align:-0.164em"> and phases <img class="m" src="m/04a23c51e2b714910b6c8c608051698454567b80.svg" alt="\(\phi_k\)" style="height:0.974em;vertical-align:-0.214em">;</li>
+<li>phases uniform on <img class="m" src="m/70437451f1b36a940c6caf7ced4a4da3be55ca15.svg" alt="\([-\pi,\pi]\)" style="height:1.096em;vertical-align:-0.274em">, independent of amplitudes;</li>
+<li><img class="m" src="m/0b5ebb9337a8adeadec859c3b646bacae4ce15c3.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> large.</li>
+</ol>
+<p>
+Then with <img class="m" src="m/3eac3a61af778f0eb279969a6021d185075f69eb.svg" alt="\(z=\sum_k A_ke^{j\phi_k}\)" style="height:1.259em;vertical-align:-0.327em">, <img class="m" src="m/301ac5e03913f077a5808ba9ecdfddf0d8103019.svg" alt="\(\beta=\sum_k E[A_k^2]\)" style="height:1.221em;vertical-align:-0.330em">:
+<div class="mb"><img class="m" src="m/179f18fb65e2f2671295cf022248198dd53e9ca8.svg" alt="\[ p_A(A)=\frac{2A}{\beta}e^{-A^2/\beta}\ (\text{Rayleigh}),\qquad p_I(I)=\frac1\beta e^{-I/\beta}\ (\text{exponential}),\qquad \frac{\sigma_I}{\mu_I}=1. \]" style="width:38.113em"></div>
+</p>
+</div>
+</div>
+<div id="outline-container-org37824c3" class="outline-2">
+<h2 id="org37824c3">Derivation</h2>
+<div class="outline-text-2" id="text-org37824c3">
+<p>
+<img class="m" src="m/99cfc4038db063faf03898196b308a0474ffb5df.svg" alt="\(E[\cos\phi_k]=\frac{1}{2\pi}\int_{-\pi}^{\pi}\cos\phi\,d\phi=0\)" style="height:1.423em;vertical-align:-0.484em">, so <img class="m" src="m/497892f3a12cb8e62d9faa77726eecdd8dba8850.svg" alt="\(E[\mathrm{Re}\,z]=E[\mathrm{Im}\,z]=0\)" style="height:1.096em;vertical-align:-0.274em">. Cross terms vanish by independence, and <img class="m" src="m/e67dd41f3e16f43a5df9aa150ae2019b9ad2fb31.svg" alt="\(E[\cos^2\phi]=\tfrac12\)" style="height:1.304em;vertical-align:-0.378em">: <img class="m" src="m/be143483a19f0500f4edf0c59d283b6abbd66e71.svg" alt="\(\mathrm{Var}(\mathrm{Re}\,z)=\mathrm{Var}(\mathrm{Im}\,z)=\beta/2\)" style="height:1.096em;vertical-align:-0.274em">, uncorrelated. With <img class="m" src="m/0b5ebb9337a8adeadec859c3b646bacae4ce15c3.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> large, by the central limit theorem <img class="m" src="m/517d59d387a1515caf9859aa7406447542fc10b5.svg" alt="\(\mathrm{Re}\,z\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/b8c860dfbaccc043d060208ab010ff0709dc456d.svg" alt="\(\mathrm{Im}\,z\)" style="height:0.749em;vertical-align:-0.000em"> are independent Gaussians; the modulus of a 2-D isotropic Gaussian is Rayleigh, its square exponential (chi-square with 2 degrees of freedom). The intensity can be written <img class="m" src="m/dd3eba7ddda815900416b342553350e991c51b3a.svg" alt="\(I=\beta\cdot n\)" style="height:0.974em;vertical-align:-0.214em"> with <img class="m" src="m/1a73ae0fb8f84dceb435c6a5104fde8ee543b317.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> unit-mean exponential noise: the noise multiplies the signal.
+</p>
+</div>
+</div>
+<div id="outline-container-org5f822d4" class="outline-2">
+<h2 id="org5f822d4">Picture</h2>
+<div class="outline-text-2" id="text-org5f822d4">
+<figure class="fig"><img class="m" src="m/b204adabf686a5c76d736e446ec38c1014a99d8e.svg" alt="figure" style="width:22.699em"><figcaption><span class="fl">Figure 1.</span> Speckle statistics of fully developed speckle: Rayleigh-distributed amplitude and exponentially distributed intensity.</figcaption></figure>
+<p>
+<img class="m" src="m/4d086e4daa2f16c65c4835a893586deb577f8fc6.svg" alt="\(\beta=1\)" style="height:0.974em;vertical-align:-0.214em">: the most likely intensity is zero, even on a bright target.
+</p>
+</div>
+</div>
+<div id="outline-container-org750acfd" class="outline-2">
+<h2 id="org750acfd">Multi-look</h2>
+<div class="outline-text-2" id="text-org750acfd">
+<p>
+Averaging <img class="m" src="m/995b3f9a6b62cf6244fece7ac81dfd2f9ca4e1ac.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> independent looks gives a Gamma-distributed intensity with <img class="m" src="m/03e6660879476a4fdca217e92075022ff112fbb2.svg" alt="\(\sigma_I/\mu_I=1/\sqrt L\)" style="height:1.289em;vertical-align:-0.271em">; the equivalent number of looks <img class="m" src="m/65c449d23d814658b625a19874a35369711e0f87.svg" alt="\(\mathrm{ENL}=\mu^2/\sigma^2\)" style="height:1.166em;vertical-align:-0.268em"> measures the residual speckle on a homogeneous area.
+</p>
+</div>
+</div>
+<div id="outline-container-org4f6d245" class="outline-2">
+<h2 id="org4f6d245">Intuition</h2>
+<div class="outline-text-2" id="text-org4f6d245">
+<p>
+Speckle is interference, not noise in the electronic sense: the same scene seen again from the same place gives the same speckle; a slight change of view gives a completely different one.
+</p>
+</div>
+</div>
+<div id="outline-container-org93dff09" class="outline-2">
+<h2 id="org93dff09">Pitfall</h2>
+<div class="outline-text-2" id="text-org93dff09">
+<p>
+Because speckle is multiplicative, a single bright pixel is not evidence of a strong target, and differences between images must be measured as ratios (or in dB), not differences.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="homogeneous-area-statistics.html"><span>← previous</span>Statistics of homogeneous areas in optical images</a><a rel="next" href="speckle-filtering.html"><span>next →</span>Speckle reduction</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--sar-processing.pdf" title="PDF manual">Sar Processing</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Dirac solutions, completeness relations and antiparticles · Physics</title>
+<meta name="description" content="Plane waves u(p,s)e^{-ip\cdot x} and v(p,s)e^{+ip\cdot x} with (\slashed p-m)u=0, (\slashed p+m)v=0, \bar uu=2m; the spin sums \sum_su\bar u=\slashed p+m, \sum_sv\bar v=\slashed p-m turn spin-averaged amplitudes into traces; negative-energy solutions propagating backward in time are positrons.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/free-dirac-solutions-and-antiparticles.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Free Dirac solutions, completeness relations and antiparticles · Physics">
+<meta property="og:description" content="Plane waves u(p,s)e^{-ip\cdot x} and v(p,s)e^{+ip\cdot x} with (\slashed p-m)u=0, (\slashed p+m)v=0, \bar uu=2m; the spin sums \sum_su\bar u=\slashed p+m, \sum_sv\bar v=\slashed p-m turn spin-averaged amplitudes into traces; negative-energy solutions propagating backward in time are positrons.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/free-dirac-solutions-and-antiparticles.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-electrodynamics">Quantum Electrodynamics</a> / <a rel="up" href="index.html#a-quantum-electrodynamics--relativistic-wave-equations">Relativistic Wave Equations</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Quantum Electrodynamics · Relativistic Wave Equations</p>
+<h1>Free Dirac solutions, completeness relations and antiparticles</h1>
+<p class="summary">Plane waves <img class="m" src="m/23cde881cde704fbc5f00f3ffc0061e6e1eac90b.svg" alt="\(u(p,s)e^{-ip\cdot x}\)" style="height:1.179em;vertical-align:-0.271em"> and <img class="m" src="m/43fd74882425c0ec10149efea1ca608ed331eaf0.svg" alt="\(v(p,s)e^{+ip\cdot x}\)" style="height:1.179em;vertical-align:-0.271em"> with <img class="m" src="m/414f43258de66c17e793c46a597ed99364cc4eef.svg" alt="\((\slashed p-m)u=0\)" style="height:1.240em;vertical-align:-0.422em">, <img class="m" src="m/74fcf4bd7d3df9fc66aae7bb6f6acef19adffda0.svg" alt="\((\slashed p+m)v=0\)" style="height:1.240em;vertical-align:-0.422em">, <img class="m" src="m/f0f0aaeb0e030f731b954b5133da0321e2758490.svg" alt="\(\bar uu=2m\)" style="height:0.706em;vertical-align:-0.000em">; the spin sums <img class="m" src="m/47b7208243bbb451f93aecc2ef657045628543c4.svg" alt="\(\sum_su\bar u=\slashed p+m\)" style="height:1.240em;vertical-align:-0.422em">, <img class="m" src="m/7d7cfb2243054633131bd9fab674842e19ba5ec6.svg" alt="\(\sum_sv\bar v=\slashed p-m\)" style="height:1.240em;vertical-align:-0.422em"> turn spin-averaged amplitudes into traces; negative-energy solutions propagating backward in time are positrons.</p>
+<p class="rel"><span>needs</span> <a href="dirac-equation.html">The Dirac equation</a></p>
+<p class="rel"><span>unlocks</span> <a href="gamma-matrix-traces.html">Trace theorems for gamma matrices</a>, <a href="green-functions-and-feynman-propagator.html">Green's functions and the Feynman propagator</a></p>
+<p class="rel"><span>see also</span> <a href="gamma-matrix-traces.html">Trace theorems for gamma matrices</a>, <a href="green-functions-and-feynman-propagator.html">Green's functions and the Feynman propagator</a></p>
+<details class="path"><summary>Learning path: 16 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></li><li><a href="spin-precession-and-rabi-oscillations.html">Spin precession and Rabi oscillations</a></li><li><a href="angular-momentum-algebra.html">Angular momentum: algebra and spectrum</a></li><li><a href="quantum-electrodynamics.html">Quantum electrodynamics: the map of the subject</a></li><li><a href="four-vectors-and-lorentz-transformations.html">Four-vectors, natural units and Mandelstam variables</a></li><li><a href="klein-gordon-equation.html">The Klein–Gordon equation</a></li><li><a href="dirac-equation.html">The Dirac equation</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org78c5ed6" class="outline-2">
+<h2 id="org78c5ed6">Construction</h2>
+<div class="outline-text-2" id="text-org78c5ed6">
+<p>
+<img class="m" src="m/28373c5b3f6aaa0ca9b877a42ac751900b441780.svg" alt="\(u(p,s)=\sqrt{E+m}\begin{pmatrix}\chi_s\\\frac{\boldsymbol\sigma\cdot\mathbf p}{E+m}\chi_s\end{pmatrix}\)" style="height:2.705em;vertical-align:-1.082em">, <img class="m" src="m/a716b28cfb03f673aac76caa2d0846b62cd4e99e.svg" alt="\(v(p,s)=\sqrt{E+m}\begin{pmatrix}\frac{\boldsymbol\sigma\cdot\mathbf p}{E+m}\eta_s\\\eta_s\end{pmatrix}\)" style="height:2.705em;vertical-align:-1.082em">, normalised to <img class="m" src="m/260537251c6f0da6fddd9e818d6baebb4f2e7b3a.svg" alt="\(\bar uu=-\bar vv=2m\)" style="height:0.798em;vertical-align:-0.088em">, <img class="m" src="m/233fb2042f811fa31836f404777089b66ea656ba.svg" alt="\(u^\dagger u=2E\)" style="height:0.930em;vertical-align:-0.000em">.
+Projectors: <img class="m" src="m/f38b68f317b34a140f455a3e46be95b8a75d8abf.svg" alt="\(\Lambda_\pm=\frac{\pm\slashed p+m}{2m}\)" style="height:1.486em;vertical-align:-0.371em">. Completeness:
+<div class="mb"><img class="m" src="m/d5a32e35a50c26017c6afbfd10e28448a774a614.svg" alt="\[ \sum_su(p,s)\bar u(p,s)=\slashed p+m,\qquad \sum_sv(p,s)\bar v(p,s)=\slashed p-m. \]" style="width:27.156em"></div>
+Proof: both sides are <img class="m" src="m/3377b30958b61fc0a13c930a9b80cfa72cf3a10b.svg" alt="\(4\times4\)" style="height:0.798em;vertical-align:-0.088em"> matrices; check on the rest frame (<img class="m" src="m/3015c7bef025c2767395b8341271fd7913126be9.svg" alt="\(\gamma^0m+m=\mathrm{diag}(2m,2m,0,0)\)" style="height:1.166em;vertical-align:-0.268em">) and boost covariantly.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd32523c" class="outline-2">
+<h2 id="orgd32523c">Antiparticles</h2>
+<div class="outline-text-2" id="text-orgd32523c">
+<ul class="org-ul">
+<li><b>Hole theory</b>: all negative-energy states filled; a hole behaves as a particle of charge <img class="m" src="m/ed7e2368c23c664d51c15d24179dad0b98d4a1af.svg" alt="\(+e\)" style="height:0.731em;vertical-align:-0.088em">, energy <img class="m" src="m/e7c9a3e97b680913b5864180d9b30fae8cbbb59e.svg" alt="\(+|E|\)" style="height:1.096em;vertical-align:-0.274em">: the positron (Anderson 1932) <span class="cite">(<a class="ref" href="https://doi.org/10.1098/rspa.1930.0013" data-full="P. A. M. Dirac, “A theory of electrons and protons”, Proceedings of the Royal Society of London. Series A 126, 360–365 (1930)." aria-label="P. A. M. Dirac, “A theory of electrons and protons”, Proceedings of the Royal Society of London. Series A 126, 360–365 (1930).">Dirac 1930</a>; <a class="ref" href="https://doi.org/10.1103/physrev.43.491" data-full="C. D. Anderson, “The positive electron”, Physical Review 43, 491–494 (1933)." aria-label="C. D. Anderson, “The positive electron”, Physical Review 43, 491–494 (1933).">Anderson 1933</a>)</span>. Pair creation = lifting an electron out of the sea.</li>
+<li><b>Feynman–Stückelberg</b>: a negative-energy solution moving backward in time equals a positive-energy antiparticle moving forward. This is built into the <a href="green-functions-and-feynman-propagator.html">Feynman propagator</a> and needs no sea.</li>
+<li><b>Charge conjugation</b>: <img class="m" src="m/98110ecc6f4d39c2a31131b66bfb8d3186249bcb.svg" alt="\(\psi^c=C\bar\psi^T\)" style="height:1.135em;vertical-align:-0.216em">, <img class="m" src="m/7a14e1ea4f584439871127f10ac8c25d9572448a.svg" alt="\(C=i\gamma^2\gamma^0\)" style="height:1.105em;vertical-align:-0.210em">, maps solutions of charge <img class="m" src="m/465bf84bf983bbfe41a220f8fa7ff6e468fc5da5.svg" alt="\(e\)" style="height:0.472em;vertical-align:-0.000em"> to <img class="m" src="m/6a1bfd06331a15ab0a79d1f3384693100ab96e79.svg" alt="\(-e\)" style="height:0.731em;vertical-align:-0.088em">.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb52af07" class="outline-2">
+<h2 id="orgb52af07">Helicity</h2>
+<div class="outline-text-2" id="text-orgb52af07">
+<p>
+<img class="m" src="m/2b274b599f51a18fc5a428e873c588ad6294ff7a.svg" alt="\(h=\boldsymbol\Sigma\cdot\hat{\mathbf p}/2\)" style="height:1.096em;vertical-align:-0.274em"> commutes with the free Hamiltonian; for <img class="m" src="m/5ea8b73f780094cce0250cb122a71f059f16f12f.svg" alt="\(m\to0\)" style="height:0.706em;vertical-align:-0.000em">, chirality <img class="m" src="m/6b51078f7da6fa0bb64366944b4c75112c463896.svg" alt="\(\gamma^5\)" style="height:1.105em;vertical-align:-0.210em"> = helicity: right- and left-handed components decouple (neutrinos, chiral structure of weak interactions).
+</p>
+</div>
+</div>
+<div id="outline-container-org7f01229" class="outline-2">
+<h2 id="org7f01229">Worked example</h2>
+<div class="outline-text-2" id="text-org7f01229">
+<p>
+<img class="m" src="m/06029a560360cda6d325dc72e65d213494a85e5f.svg" alt="\(\bar u(p',s')\gamma^0u(p,s)\)" style="height:1.166em;vertical-align:-0.268em"> for <img class="m" src="m/90f85c28dbc415a3017b6693e6fb6c476ae9637d.svg" alt="\(\mathbf p'=-\mathbf p\)" style="height:1.037em;vertical-align:-0.218em"> (backscattering), <img class="m" src="m/5ea8b73f780094cce0250cb122a71f059f16f12f.svg" alt="\(m\to0\)" style="height:0.706em;vertical-align:-0.000em">, same helicity: vanishes. Helicity conservation in vector couplings suppresses backward scattering in Mott scattering at high energy (factor <img class="m" src="m/afe6b04eaa420940129157835daa4f8660dc08b9.svg" alt="\(1-\beta^2\sin^2\theta/2\)" style="height:1.229em;vertical-align:-0.270em">).
+</p>
+</div>
+</div>
+<div id="outline-container-orgb91270e" class="outline-2">
+<h2 id="orgb91270e">Engineering applications</h2>
+<div class="outline-text-2" id="text-orgb91270e">
+<p>
+Positron emission tomography (annihilation photons), positron annihilation spectroscopy of vacancies in semiconductors, spin-polarised electron beams (helicity) for accelerators.
+</p>
+</div>
+</div>
+<div id="outline-container-org012023a" class="outline-2">
+<h2 id="org012023a">Pitfall</h2>
+<div class="outline-text-2" id="text-org012023a">
+<p>
+<img class="m" src="m/116f9e9ff983da5f008c2d3e683d06710417aa73.svg" alt="\(v(p,s)\)" style="height:1.096em;vertical-align:-0.274em"> describes an antiparticle of momentum <img class="m" src="m/ef0e12dc70c236b7c3a2a134e0529b5bac7dab90.svg" alt="\(\mathbf p\)" style="height:0.700em;vertical-align:-0.210em"> and <b>opposite</b> spin label; keep track when summing spins only through the completeness relations.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="dirac-equation.html"><span>← previous</span>The Dirac equation</a><a rel="next" href="gamma-matrix-traces.html"><span>next →</span>Trace theorems for gamma matrices</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-electrodynamics--relativistic-wave-equations.pdf" title="PDF manual">Relativistic Wave Equations</a> · <a class="pdf" href="pdf/quantum-electrodynamics.pdf" title="PDF manual">Quantum Electrodynamics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

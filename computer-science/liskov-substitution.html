@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Liskov substitution principle · Computer Science</title>
+<meta name="description" content="If S is a subtype of T, objects of type T may be replaced by objects of type S without altering any desirable property of the program: a subclass may weaken preconditions and strengthen postconditions, never the opposite.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/liskov-substitution.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Liskov substitution principle · Computer Science">
+<meta property="og:description" content="If S is a subtype of T, objects of type T may be replaced by objects of type S without altering any desirable property of the program: a subclass may weaken preconditions and strengthen postconditions, never the opposite.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/liskov-substitution.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--oop">Oop</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Programming · Oop</p>
+<h1>Liskov substitution principle</h1>
+<p class="summary">If S is a subtype of T, objects of type T may be replaced by objects of type S without altering any desirable property of the program: a subclass may weaken preconditions and strengthen postconditions, never the opposite.</p>
+<p class="rel"><span>needs</span> <a href="polymorphism.html">Polymorphism and dynamic binding</a></p>
+<p class="rel"><span>unlocks</span> <a href="generic-invariance.html">Invariance of generics and wildcards</a></p>
+<p class="rel"><span>see also</span> <a href="uml-generalization.html">Generalization (is-a)</a>, <a href="stack-and-queue.html">Stack and queue as classes</a>, <a href="abstract-class-interface.html">Abstract classes and interfaces</a>, <a href="generic-invariance.html">Invariance of generics and wildcards</a></p>
+<p class="rel"><span>mentioned in</span> <a href="uml-generalization.html">Generalization (is-a)</a>, <a href="inheritance.html">Inheritance and overriding</a>, <a href="stack-and-queue.html">Stack and queue as classes</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgb7d315b" class="outline-2">
+<h2 id="orgb7d315b">Statement</h2>
+<div class="outline-text-2" id="text-orgb7d315b">
+<p>
+Let <img class="m" src="m/6857a709b800febbeb8e8c03eb50d9038eac8a4f.svg" alt="\(\phi(x)\)" style="height:1.096em;vertical-align:-0.274em"> be a property provable for every object <img class="m" src="m/c1cb305e0744a841c0171151eaf770796c623d6f.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> of type <img class="m" src="m/197fb2e6904fdaa6194048653a7de0a3a5fffc10.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em">. Then <img class="m" src="m/4c3ddb36757e74b6bcd84181bc267378e5c5aab5.svg" alt="\(\phi(y)\)" style="height:1.096em;vertical-align:-0.274em"> must hold for every object <img class="m" src="m/5cf5ac6e98f9052d4dbfec03db39d31465ea78f1.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> of a subtype <img class="m" src="m/ef6d40f3cd5b8650803ccfcfb2c1556494e74417.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> of <img class="m" src="m/197fb2e6904fdaa6194048653a7de0a3a5fffc10.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em">. In terms of <a href="parnas-principles.html">contracts</a>, an overriding method must
+</p>
+<ul class="org-ul">
+<li>accept at least what the original accepts (precondition equal or weaker);</li>
+<li>guarantee at least what the original guarantees (postcondition equal or stronger);</li>
+<li>preserve the invariants of the supertype.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0392451" class="outline-2">
+<h2 id="org0392451">Derivation</h2>
+<div class="outline-text-2" id="text-org0392451">
+<p>
+A client that holds a reference of <a href="polymorphism.html">static type</a> <img class="m" src="m/197fb2e6904fdaa6194048653a7de0a3a5fffc10.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> only knows the contract of <img class="m" src="m/197fb2e6904fdaa6194048653a7de0a3a5fffc10.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em">. It establishes the precondition of <img class="m" src="m/197fb2e6904fdaa6194048653a7de0a3a5fffc10.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> and relies on the postcondition of <img class="m" src="m/197fb2e6904fdaa6194048653a7de0a3a5fffc10.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em">. If the subtype demanded more, a valid call could fail; if it promised less, a valid conclusion could be false. So both inclusions are needed for every client to stay correct.
+</p>
+</div>
+</div>
+<div id="outline-container-org1189857" class="outline-2">
+<h2 id="org1189857">Example</h2>
+<div class="outline-text-2" id="text-org1189857">
+<p>
+A <code>Queue</code> derived from <code>Stack</code> by overriding <code>pop</code> to return the oldest element type-checks, but breaks the postcondition "<code>pop</code> returns the last element pushed": any code written for stacks (for example, undo) silently misbehaves when given a queue. The derivation is legal Java and wrong design.
+</p>
+</div>
+</div>
+<div id="outline-container-orge77aafb" class="outline-2">
+<h2 id="orge77aafb">Intuition</h2>
+<div class="outline-text-2" id="text-orge77aafb">
+<p>
+A subtype is a promise to be usable everywhere the supertype is. The compiler checks names and types; only the programmer can check behaviour.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfed67c3" class="outline-2">
+<h2 id="orgfed67c3">Pitfall</h2>
+<div class="outline-text-2" id="text-orgfed67c3">
+<p>
+The classic counterexample is Square extends Rectangle: <code>setWidth</code> on a square must also change the height, so "setting the width leaves the height unchanged", true for rectangles, fails.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="information-hiding.html"><span>← previous</span>Information hiding and visibility</a><a rel="next" href="method-overloading.html"><span>next →</span>Overloading</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--oop.pdf" title="PDF manual">Oop</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

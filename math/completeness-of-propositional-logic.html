@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Completeness of propositional logic · Mathematics</title>
+<meta name="description" content="Soundness says a derivation cannot lie. Completeness says the converse: if a formula is true under every assignment satisfying the hypotheses, some finite derivation of it exists. The proof is not an algorithm – nothing constructs the derivation – but a contrapositive: a set from which nothing fals…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/completeness-of-propositional-logic.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Completeness of propositional logic · Mathematics">
+<meta property="og:description" content="Soundness says a derivation cannot lie. Completeness says the converse: if a formula is true under every assignment satisfying the hypotheses, some finite derivation of it exists. The proof is not an algorithm – nothing constructs the derivation – but a contrapositive: a set from which nothing fals…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/completeness-of-propositional-logic.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-foundations">Foundations</a> / <a rel="up" href="index.html#a-foundations--logic">Logic</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Foundations · Logic</p>
+<h1>Completeness of propositional logic</h1>
+<p class="summary">Soundness says a derivation cannot lie. Completeness says the converse: if a formula is true under every assignment satisfying the hypotheses, some finite derivation of it exists. The proof is not an algorithm &#x2013; nothing constructs the derivation &#x2013; but a contrapositive: a set from which nothing false is derivable can be given a model, built out of the syntax itself.</p>
+<p class="rel"><span>needs</span> <a href="a-proof-system-for-propositional-logic-soundness-and-the-deduction-theorem.html">A proof system for propositional logic: soundness and the deduction theorem</a>, <a href="propositional-logic-formulas-assignments-and-compactness.html">Propositional logic: formulas, assignments and compactness</a>, <a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></p>
+<p class="rel"><span>mentioned in</span> <a href="foundations.html">Foundations</a>, <a href="logic.html">Logic</a></p>
+<details class="path"><summary>Learning path: 6 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="propositional-logic-formulas-assignments-and-compactness.html">Propositional logic: formulas, assignments and compactness</a></li><li><a href="a-proof-system-for-propositional-logic-soundness-and-the-deduction-theorem.html">A proof system for propositional logic: soundness and the deduction theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgac3e4c1">
+<p>
+A set <img class="m" src="m/dd733a94278b0684a31c5e52904679e109eb8625.svg" alt="\(\Sigma\)" style="height:0.749em;vertical-align:-0.000em"> of formulas is <i>inconsistent</i> if
+<img class="m" src="m/91a245e4c33451f7e56c87533d572cdae389595a.svg" alt="\(\Sigma \vdash \varphi\)" style="height:0.974em;vertical-align:-0.214em"> for every formula <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">, and
+<i>consistent</i> otherwise. It is <i>maximal consistent</i> if it is consistent
+and no proper superset is.
+</p>
+
+</div>
+
+<div class="proposition" id="orgcc1d9f3">
+<p>
+<img class="m" src="m/dd733a94278b0684a31c5e52904679e109eb8625.svg" alt="\(\Sigma\)" style="height:0.749em;vertical-align:-0.000em"> is inconsistent if and only if <img class="m" src="m/91a245e4c33451f7e56c87533d572cdae389595a.svg" alt="\(\Sigma \vdash \varphi\)" style="height:0.974em;vertical-align:-0.214em"> and
+<img class="m" src="m/504a2953999153238f8f8b25c9436436cdb400b1.svg" alt="\(\Sigma \vdash \neg\varphi\)" style="height:0.974em;vertical-align:-0.214em"> for some <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">. Moreover
+<img class="m" src="m/91a245e4c33451f7e56c87533d572cdae389595a.svg" alt="\(\Sigma \vdash \varphi\)" style="height:0.974em;vertical-align:-0.214em"> if and only if
+<img class="m" src="m/6514d45a14b2cb86c3ddbd3f96a147de4efde5c9.svg" alt="\(\Sigma\cup\set{\neg\varphi}\)" style="height:1.096em;vertical-align:-0.274em"> is inconsistent.
+</p>
+
+</div>
+
+<div class="proof" id="org10b9fff">
+<p>
+If <img class="m" src="m/dd733a94278b0684a31c5e52904679e109eb8625.svg" alt="\(\Sigma\)" style="height:0.749em;vertical-align:-0.000em"> is inconsistent it derives everything, in particular such
+a pair. Conversely, suppose <img class="m" src="m/2f73fab8bc60dd9d5de684f3bb9c4ba2f305c769.svg" alt="\(\Sigma\vdash\varphi\)" style="height:0.974em;vertical-align:-0.214em"> and
+<img class="m" src="m/192bdaac05e8981450a251c440352373598ea722.svg" alt="\(\Sigma\vdash\neg\varphi\)" style="height:0.974em;vertical-align:-0.214em">, and let <img class="m" src="m/a4a52c4927ccc1e44f25ba3cda049e822fa6a1fc.svg" alt="\(\psi\)" style="height:0.974em;vertical-align:-0.214em"> be arbitrary. Scheme 1
+gives <img class="m" src="m/49a0706d85645573cb3c26b03daee8a52b5e613f.svg" alt="\(\neg\varphi \to (\neg\psi\to\neg\varphi)\)" style="height:1.096em;vertical-align:-0.274em">, so
+<img class="m" src="m/cfdad2a6088811e8ee5f777feb332302ecb1b98f.svg" alt="\(\Sigma\vdash\neg\psi\to\neg\varphi\)" style="height:0.974em;vertical-align:-0.214em">; scheme 3 turns this into
+<img class="m" src="m/8bd7c76a87f278f9d514fc04427473bee9e35724.svg" alt="\(\Sigma\vdash\varphi\to\psi\)" style="height:0.974em;vertical-align:-0.214em">, and modus ponens with <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> gives
+<img class="m" src="m/038d8d9b6d7aea0a918e057787c86db982c07de7.svg" alt="\(\Sigma\vdash\psi\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+<p>
+For the second claim: if <img class="m" src="m/2f73fab8bc60dd9d5de684f3bb9c4ba2f305c769.svg" alt="\(\Sigma\vdash\varphi\)" style="height:0.974em;vertical-align:-0.214em"> then
+<img class="m" src="m/6514d45a14b2cb86c3ddbd3f96a147de4efde5c9.svg" alt="\(\Sigma\cup\set{\neg\varphi}\)" style="height:1.096em;vertical-align:-0.274em"> derives <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> and
+<img class="m" src="m/b95b0ce9f55f3571a3fe9a505daeaded1e474636.svg" alt="\(\neg\varphi\)" style="height:0.685em;vertical-align:-0.212em">, hence is inconsistent by the first part. Conversely,
+suppose <img class="m" src="m/6514d45a14b2cb86c3ddbd3f96a147de4efde5c9.svg" alt="\(\Sigma\cup\set{\neg\varphi}\)" style="height:1.096em;vertical-align:-0.274em"> is inconsistent. It then derives
+every formula, in particular <img class="m" src="m/71d9658264ebd08a9663a732876c7fc15a126d36.svg" alt="\(\neg(\varphi\to\varphi)\)" style="height:1.096em;vertical-align:-0.274em">, so the
+deduction theorem gives
+<img class="m" src="m/ca687ad2cd65fdcdc81e5ec4baede39fca2d9eaf.svg" alt="\(\Sigma\vdash\neg\varphi\to\neg(\varphi\to\varphi)\)" style="height:1.096em;vertical-align:-0.274em">. Scheme 3 turns
+this into <img class="m" src="m/b15ccf1dbfac2c4024f365a2ba989c0b33801b5c.svg" alt="\(\Sigma\vdash(\varphi\to\varphi)\to\varphi\)" style="height:1.096em;vertical-align:-0.274em">, and
+<img class="m" src="m/3d347e776494c660947156f5becb03909f902c63.svg" alt="\(\vdash\varphi\to\varphi\)" style="height:0.974em;vertical-align:-0.214em"> with modus ponens gives
+<img class="m" src="m/2f73fab8bc60dd9d5de684f3bb9c4ba2f305c769.svg" alt="\(\Sigma\vdash\varphi\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="lemma" id="orgaa82ac1">
+<p>
+Every consistent <img class="m" src="m/dd733a94278b0684a31c5e52904679e109eb8625.svg" alt="\(\Sigma\)" style="height:0.749em;vertical-align:-0.000em"> is contained in a maximal consistent set
+<img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">, and such an <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> satisfies: <img class="m" src="m/700774b68d6bcd4dc4c607c0ad6efd7d7f6b34bd.svg" alt="\(M \vdash \varphi\)" style="height:0.974em;vertical-align:-0.214em"> if and only if
+<img class="m" src="m/2274dde914407ce1fa2142ed3fb3dcca0029e5a7.svg" alt="\(\varphi \in M\)" style="height:0.962em;vertical-align:-0.212em">; and exactly one of <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">, <img class="m" src="m/b95b0ce9f55f3571a3fe9a505daeaded1e474636.svg" alt="\(\neg\varphi\)" style="height:0.685em;vertical-align:-0.212em"> lies
+in <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org6a59e6a">
+<p>
+Order the consistent supersets of <img class="m" src="m/dd733a94278b0684a31c5e52904679e109eb8625.svg" alt="\(\Sigma\)" style="height:0.749em;vertical-align:-0.000em"> by inclusion. The union of
+a chain of them is consistent: a derivation of a contradiction uses
+finitely many hypotheses, which all lie in one member of the chain. Zorn
+gives a maximal element <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+<p>
+If <img class="m" src="m/700774b68d6bcd4dc4c607c0ad6efd7d7f6b34bd.svg" alt="\(M \vdash \varphi\)" style="height:0.974em;vertical-align:-0.214em"> then <img class="m" src="m/427310d0ced862ec06c154cafbc52e8d26fbe159.svg" alt="\(M\cup\set{\varphi}\)" style="height:1.096em;vertical-align:-0.274em"> is consistent &#x2013; a
+derivation from it can be turned into one from <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> by splicing in a
+derivation of <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> &#x2013; so <img class="m" src="m/6135f0cbdb8362f61f3094a10b76ffd2cfd4bf08.svg" alt="\(\varphi\in M\)" style="height:0.962em;vertical-align:-0.212em"> by maximality; the
+converse is trivial. Not both <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> and <img class="m" src="m/b95b0ce9f55f3571a3fe9a505daeaded1e474636.svg" alt="\(\neg\varphi\)" style="height:0.685em;vertical-align:-0.212em"> lie in
+<img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">, by consistency. If neither did, then by maximality both
+<img class="m" src="m/427310d0ced862ec06c154cafbc52e8d26fbe159.svg" alt="\(M\cup\set{\varphi}\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/684b0ba9360488be465bad8fa5908169a73aa800.svg" alt="\(M\cup\set{\neg\varphi}\)" style="height:1.096em;vertical-align:-0.274em"> would be
+inconsistent, so <img class="m" src="m/b1f0e0f0affb895f23996b2bc309b8488a267632.svg" alt="\(M\vdash\neg\varphi\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/71e3260a5a65c98aac6da6e7e3aea2c7a2e81e58.svg" alt="\(M\vdash\varphi\)" style="height:0.974em;vertical-align:-0.214em"> by the
+previous proposition &#x2013; contradicting consistency.
+</p>
+
+</div>
+
+<div class="theorem" id="org1fa3949">
+<p>
+Every consistent set of propositional formulas is satisfiable.
+</p>
+
+</div>
+
+<div class="proof" id="org4aae6de">
+<p>
+Let <img class="m" src="m/50b98d3f65747707d1358643c54ac9a8f258af94.svg" alt="\(M \supseteq \Sigma\)" style="height:0.898em;vertical-align:-0.153em"> be maximal consistent and define
+<img class="m" src="m/cc8cd9aef445a704d3c6ea5edfef51caea223e1c.svg" alt="\(v(p) = 1\)" style="height:1.096em;vertical-align:-0.274em"> exactly when <img class="m" src="m/be907badb25996ce1bc58d417ae52f719bbd8d5a.svg" alt="\(p \in M\)" style="height:0.962em;vertical-align:-0.212em">. We show by induction on formulas
+that <img class="m" src="m/e5467be686452d18285b2f281a1dd09cdfc78fdb.svg" alt="\(v \models \varphi\)" style="height:1.096em;vertical-align:-0.274em"> if and only if <img class="m" src="m/2274dde914407ce1fa2142ed3fb3dcca0029e5a7.svg" alt="\(\varphi \in M\)" style="height:0.962em;vertical-align:-0.212em">.
+</p>
+
+<p>
+Variables: the definition of <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em">. Negation: <img class="m" src="m/c85dd009d1719a01f41dc32ee361d730ffb0427e.svg" alt="\(v\models\neg\varphi\)" style="height:1.096em;vertical-align:-0.274em">
+means <img class="m" src="m/71b90368b2081528b151377625fd5a2185e234c6.svg" alt="\(v\not\models\varphi\)" style="height:1.096em;vertical-align:-0.274em">, that is <img class="m" src="m/e0b5c40c3eb8fd81579be2b1f49a5c0ae4876e37.svg" alt="\(\varphi\notin M\)" style="height:1.035em;vertical-align:-0.217em"> by induction,
+that is <img class="m" src="m/f17e168eaffd2b8cdd7b95231006e5e4f9eb82b9.svg" alt="\(\neg\varphi \in M\)" style="height:0.962em;vertical-align:-0.212em"> by the lemma. Conjunction: if
+<img class="m" src="m/e43c0a76230b64d969cc0395b6cdda190c7d66cb.svg" alt="\(\varphi\wedge\psi\in M\)" style="height:0.974em;vertical-align:-0.214em">, then schemes 4 and 5 with modus ponens give
+<img class="m" src="m/71e3260a5a65c98aac6da6e7e3aea2c7a2e81e58.svg" alt="\(M\vdash\varphi\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/8169eb5edf038d078be2f59e3505de8bbedff8f5.svg" alt="\(M\vdash\psi\)" style="height:0.974em;vertical-align:-0.214em">, so both lie in <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> by the
+lemma and <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> satisfies both by induction. Conversely if
+<img class="m" src="m/8071e881ef5b6162262c2ae61f2bdbc1b11f8661.svg" alt="\(\varphi,\psi\in M\)" style="height:0.974em;vertical-align:-0.214em">, then scheme 6 with two applications of modus
+ponens gives <img class="m" src="m/3efd814a65576aa630386ebd87300e66ea458d8f.svg" alt="\(M\vdash\varphi\wedge\psi\)" style="height:0.974em;vertical-align:-0.214em">, so <img class="m" src="m/e43c0a76230b64d969cc0395b6cdda190c7d66cb.svg" alt="\(\varphi\wedge\psi\in M\)" style="height:0.974em;vertical-align:-0.214em">.
+Hence <img class="m" src="m/80c6d28372e228660085bf6dbda010a2a5911147.svg" alt="\(v\models\varphi\wedge\psi\)" style="height:1.096em;vertical-align:-0.274em"> if and only if
+<img class="m" src="m/e43c0a76230b64d969cc0395b6cdda190c7d66cb.svg" alt="\(\varphi\wedge\psi\in M\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+<p>
+So <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> satisfies every member of <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">, in particular of <img class="m" src="m/dd733a94278b0684a31c5e52904679e109eb8625.svg" alt="\(\Sigma\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgd4b517c">
+<p>
+<img class="m" src="m/e710efea48b3159c550f83febd10c0aa1abcd83f.svg" alt="\(\Sigma \models \varphi\)" style="height:1.096em;vertical-align:-0.274em"> if and only if <img class="m" src="m/91a245e4c33451f7e56c87533d572cdae389595a.svg" alt="\(\Sigma \vdash \varphi\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="proof" id="orga7be3c5">
+<p>
+Soundness is one direction. For the other, suppose
+<img class="m" src="m/a02713ff5da4b7e10c7afe6110fcdd4c0e663902.svg" alt="\(\Sigma\not\vdash\varphi\)" style="height:0.974em;vertical-align:-0.214em">. Then <img class="m" src="m/6514d45a14b2cb86c3ddbd3f96a147de4efde5c9.svg" alt="\(\Sigma\cup\set{\neg\varphi}\)" style="height:1.096em;vertical-align:-0.274em"> is
+consistent, hence satisfiable by the model existence theorem: some
+<img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> satisfies <img class="m" src="m/dd733a94278b0684a31c5e52904679e109eb8625.svg" alt="\(\Sigma\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/b95b0ce9f55f3571a3fe9a505daeaded1e474636.svg" alt="\(\neg\varphi\)" style="height:0.685em;vertical-align:-0.212em">, so
+<img class="m" src="m/71b90368b2081528b151377625fd5a2185e234c6.svg" alt="\(v\not\models\varphi\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/0566d5cb63cc18dfba4ad8a739d1cefc3af2f55c.svg" alt="\(\Sigma\not\models\varphi\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="corollary" id="org510cb0b">
+<p>
+If <img class="m" src="m/704d0ae8876b0fcfc78e54b5711a22ba03429b9c.svg" alt="\(\Sigma\models\varphi\)" style="height:1.096em;vertical-align:-0.274em"> then <img class="m" src="m/a0dc62d951214d218d1b0879d906992c4f0d61df.svg" alt="\(\Sigma_{0}\models\varphi\)" style="height:1.096em;vertical-align:-0.274em"> for some
+finite <img class="m" src="m/f2931e640be287c12c72d16aacd1a08700ca6b0e.svg" alt="\(\Sigma_{0}\subseteq\Sigma\)" style="height:0.913em;vertical-align:-0.164em">.
+</p>
+
+</div>
+
+<div class="proof" id="org651af0a">
+<p>
+By completeness <img class="m" src="m/2f73fab8bc60dd9d5de684f3bb9c4ba2f305c769.svg" alt="\(\Sigma\vdash\varphi\)" style="height:0.974em;vertical-align:-0.214em">; a derivation is finite, so
+<img class="m" src="m/63547b28f5ed7e601ae2fed83e2109fd0e66ec3b.svg" alt="\(\Sigma_{0}\vdash\varphi\)" style="height:0.974em;vertical-align:-0.214em"> for a finite <img class="m" src="m/acc950cd3949879220335e4fda03dc42b4959e04.svg" alt="\(\Sigma_{0}\)" style="height:0.913em;vertical-align:-0.164em">, and soundness
+gives <img class="m" src="m/a0dc62d951214d218d1b0879d906992c4f0d61df.svg" alt="\(\Sigma_{0}\models\varphi\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="remark" id="org7a253ef">
+<p>
+The corollary is the compactness theorem again, and this is the honest
+way to see what compactness is about: derivations are finite objects,
+so any semantic consequence that a proof system can capture is already a
+consequence of finitely many hypotheses. The purely semantic proof by
+Zorn and the syntactic one here are the same argument seen from two
+sides.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="propositional-logic-formulas-assignments-and-compactness.html"><span>← previous</span>Propositional logic: formulas, assignments and compactness</a><a rel="next" href="relations-equivalence-and-the-quotient-of-a-set.html"><span>next →</span>Relations, equivalence and the quotient of a set</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/foundations--logic.pdf" title="PDF manual">Logic</a> · <a class="pdf" href="pdf/foundations.pdf" title="PDF manual">Foundations</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

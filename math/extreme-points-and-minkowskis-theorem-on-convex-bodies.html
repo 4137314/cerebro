@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Extreme points and Minkowski's theorem on convex bodies · Mathematics</title>
+<meta name="description" content="A compact convex set is determined by very few of its points: the ones that lie on no segment inside it. Minkowski's theorem says those points suffice to rebuild the whole set by taking convex combinations, which is why a linear function on a polytope is optimised at a vertex – the statement linear…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/extreme-points-and-minkowskis-theorem-on-convex-bodies.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Extreme points and Minkowski's theorem on convex bodies · Mathematics">
+<meta property="og:description" content="A compact convex set is determined by very few of its points: the ones that lie on no segment inside it. Minkowski's theorem says those points suffice to rebuild the whole set by taking convex combinations, which is why a linear function on a polytope is optimised at a vertex – the statement linear…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/extreme-points-and-minkowskis-theorem-on-convex-bodies.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-geometry">Geometry</a> / <a rel="up" href="index.html#a-geometry--convex-geometry">Convex Geometry</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Geometry · Convex Geometry</p>
+<h1>Extreme points and Minkowski's theorem on convex bodies</h1>
+<p class="summary">A compact convex set is determined by very few of its points: the ones that lie on no segment inside it. Minkowski's theorem says those points suffice to rebuild the whole set by taking convex combinations, which is why a linear function on a polytope is optimised at a vertex &#x2013; the statement linear programming is built on.</p>
+<p class="rel"><span>needs</span> <a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a>, <a href="convex-hulls-and-caratheodorys-theorem.html">Convex hulls and Caratheodory's theorem</a>, <a href="convex-set.html">Convex set</a>, <a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a>, <a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a>, <a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></p>
+<p class="rel"><span>mentioned in</span> <a href="geometry.html">Geometry</a></p>
+<details class="path"><summary>Learning path: 38 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li><li><a href="convex-set.html">Convex set</a></li><li><a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a></li><li><a href="convex-hulls-and-caratheodorys-theorem.html">Convex hulls and Caratheodory's theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org9b5412a">
+<p>
+Let <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> be a convex subset of <img class="m" src="m/b33f2adf960aeb722adafbfc0479a5f92fd75b05.svg" alt="\(\R^{n}\)" style="height:0.755em;vertical-align:-0.000em">. A point <img class="m" src="m/12e228f37a45df605a07429ef64a6d06808fbedb.svg" alt="\(x \in C\)" style="height:0.792em;vertical-align:-0.040em"> is
+<i>extreme</i> if <img class="m" src="m/553e236afd2a0f97ec4833087b2f8339ef74f2a9.svg" alt="\(x = (1-t)u + tv\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/7d81f27676bf94d7908cf86344cd256291f597b9.svg" alt="\(u,v \in C\)" style="height:0.962em;vertical-align:-0.212em"> and <img class="m" src="m/ccd4b09f7f9fe2d5a2b6e8b0c26ec4e182a48229.svg" alt="\(t\in(0,1)\)" style="height:1.096em;vertical-align:-0.274em">
+forces <img class="m" src="m/b725323c7be0a867694b6b72609e2154548262e4.svg" alt="\(u = v = x\)" style="height:0.472em;vertical-align:-0.000em">. The set of extreme points is written
+<img class="m" src="m/6d638ba963680d30bc282fb36a10053e1d29991c.svg" alt="\(\operatorname{ext} C\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgd460f75">
+<p>
+Let <img class="m" src="m/c9435c8c4a830d117b169c5f0cc96be14eda57d5.svg" alt="\(C \subseteq \R^{n}\)" style="height:0.904em;vertical-align:-0.145em"> be compact, convex and non-empty, and
+<img class="m" src="m/cbd2270de67a34f1c883aaca755cbc103976d45e.svg" alt="\(u \ne 0\)" style="height:0.974em;vertical-align:-0.214em">. Then the <i>face</i>
+<img class="m" src="m/d9b76da58674212fe73b2a3e3e3d9d9054e57ad2.svg" alt="\(F = \setst{x\in C}{\inner{u}{x} = \max_{y\in C}\inner{u}{y}}\)" style="height:1.135em;vertical-align:-0.318em"> is
+non-empty, compact and convex, and every extreme point of <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em"> is an
+extreme point of <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org9f3339a">
+<p>
+The linear function <img class="m" src="m/71582088800fd56e0182823ef4b65fc5c144f48c.svg" alt="\(x \mapsto \inner{u}{x}\)" style="height:1.096em;vertical-align:-0.274em"> is continuous on the
+compact <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">, so it attains its maximum <img class="m" src="m/5602b42c49566a683e5183a144a93b453d1accef.svg" alt="\(\mu\)" style="height:0.685em;vertical-align:-0.212em">; hence <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em"> is
+non-empty, and it is closed in <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">, hence compact, and convex as the
+intersection of <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> with a hyperplane.
+</p>
+
+<p>
+Let <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> be extreme in <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em"> and suppose <img class="m" src="m/32e222709966c84ffd98c8f54f88fb61cc5e05a3.svg" alt="\(x = (1-t)y+tz\)" style="height:1.096em;vertical-align:-0.274em"> with
+<img class="m" src="m/b3e70da56c9c31c716ef4fa9cab9fd2f4c33b314.svg" alt="\(y,z\in C\)" style="height:0.962em;vertical-align:-0.212em">, <img class="m" src="m/ccd4b09f7f9fe2d5a2b6e8b0c26ec4e182a48229.svg" alt="\(t\in(0,1)\)" style="height:1.096em;vertical-align:-0.274em">. Then
+<img class="m" src="m/81375681d5ba956a590295cd816321ff935120c6.svg" alt="\(\mu = \inner{u}{x} = (1-t)\inner{u}{y}+t\inner{u}{z}\)" style="height:1.096em;vertical-align:-0.274em"> with both terms
+at most <img class="m" src="m/5602b42c49566a683e5183a144a93b453d1accef.svg" alt="\(\mu\)" style="height:0.685em;vertical-align:-0.212em">, which forces <img class="m" src="m/db0c0089c51d189ab3fb46e068e685bc07936eb8.svg" alt="\(\inner{u}{y} = \inner{u}{z} = \mu\)" style="height:1.096em;vertical-align:-0.274em">, so
+<img class="m" src="m/da337d0d0e24549efcc2ea216f2cd4aae0964c20.svg" alt="\(y,z \in F\)" style="height:0.962em;vertical-align:-0.212em">; extremality in <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em"> gives <img class="m" src="m/6f66f29d7cc7ded43311a97684f7e37e944446f5.svg" alt="\(y = z = x\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org3235da5">
+<p>
+Every non-empty compact convex <img class="m" src="m/c9435c8c4a830d117b169c5f0cc96be14eda57d5.svg" alt="\(C \subseteq \R^{n}\)" style="height:0.904em;vertical-align:-0.145em"> is the convex hull
+of its extreme points; in particular it has some.
+</p>
+
+</div>
+
+<div class="proof" id="org1a80273">
+<p>
+Induct on <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">, the case <img class="m" src="m/3106d3a561ab87f715f0cb32487c3555522a63b8.svg" alt="\(n = 0\)" style="height:0.706em;vertical-align:-0.000em"> being a point. Let <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> be the
+closed convex hull of <img class="m" src="m/6d638ba963680d30bc282fb36a10053e1d29991c.svg" alt="\(\operatorname{ext} C\)" style="height:0.749em;vertical-align:-0.000em">; it is contained in
+<img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">, and we show the reverse inclusion.
+</p>
+
+<p>
+First, <img class="m" src="m/c4a776c8e044eeacfb107aa4536b5a0858cd954d.svg" alt="\(\operatorname{ext} C \ne \emptyset\)" style="height:1.035em;vertical-align:-0.217em">: if <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> is a single
+point that point is extreme; otherwise take <img class="m" src="m/cbd2270de67a34f1c883aaca755cbc103976d45e.svg" alt="\(u \ne 0\)" style="height:0.974em;vertical-align:-0.214em">, and by the
+previous proposition the face <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em"> in direction <img class="m" src="m/43f1d6c46cc02af73d5390471e1c8c127d40b707.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em"> is a non-empty
+compact convex set lying in a hyperplane, hence &#x2013; after an affine
+identification of that hyperplane with <img class="m" src="m/ad21f79e3689b99b446463bd0d8ed9ca37bf0700.svg" alt="\(\R^{n-1}\)" style="height:0.892em;vertical-align:-0.000em"> &#x2013; it has an extreme
+point by induction, which is extreme in <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+<p>
+Now suppose some <img class="m" src="m/12e228f37a45df605a07429ef64a6d06808fbedb.svg" alt="\(x \in C\)" style="height:0.792em;vertical-align:-0.040em"> is not in <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">. Since <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> is compact and
+convex, the separating hyperplane theorem gives <img class="m" src="m/43f1d6c46cc02af73d5390471e1c8c127d40b707.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em">
+with <img class="m" src="m/55a72663dac89391e5d7d8556f134d14927e771a.svg" alt="\(\inner{u}{y} &lt; \alpha &lt; \inner{u}{x}\)" style="height:1.096em;vertical-align:-0.274em"> for every <img class="m" src="m/bd7dec85f5db132fc8f7e47c1c5bb27991cc15e4.svg" alt="\(y \in K\)" style="height:0.962em;vertical-align:-0.212em">.
+The face <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em"> of <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> in direction <img class="m" src="m/43f1d6c46cc02af73d5390471e1c8c127d40b707.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em"> then satisfies
+<img class="m" src="m/6f356695415c6292ed93abc1a7b77a2661f4459f.svg" alt="\(\inner{u}{z} \ge \inner{u}{x} &gt; \alpha\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/4bf4500669f5e3f98274577ecfa3e8152ba214e4.svg" alt="\(z \in F\)" style="height:0.792em;vertical-align:-0.040em">, so <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em">
+misses <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">; but <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em"> contains an extreme point of <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> by the
+argument above applied to <img class="m" src="m/da85896edfc82276305370092aac9843660948d8.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em">, and every extreme point of <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> lies
+in <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> &#x2013; a contradiction. Hence <img class="m" src="m/35cd529ddf3f53855ea42e4ba4d6abc56be14550.svg" alt="\(C = K\)" style="height:0.749em;vertical-align:-0.000em">, and <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> is already the
+convex hull of <img class="m" src="m/6d638ba963680d30bc282fb36a10053e1d29991c.svg" alt="\(\operatorname{ext} C\)" style="height:0.749em;vertical-align:-0.000em">, which is compact.
+</p>
+
+</div>
+
+<div class="definition" id="orgf609ffc">
+<p>
+A <i>lattice</i> in <img class="m" src="m/b33f2adf960aeb722adafbfc0479a5f92fd75b05.svg" alt="\(\R^{n}\)" style="height:0.755em;vertical-align:-0.000em"> is <img class="m" src="m/9fd1b97fe04dd42fc85f930502daf6083a05da42.svg" alt="\(\Lambda = A\Z^{n}\)" style="height:0.755em;vertical-align:-0.000em"> for an invertible
+linear <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">; its <i>covolume</i> is <img class="m" src="m/9ec001721f8c82202cec250d43e8635fd8fe4f5f.svg" alt="\(\abs{\det A}\)" style="height:1.096em;vertical-align:-0.274em">. A set
+<img class="m" src="m/c9435c8c4a830d117b169c5f0cc96be14eda57d5.svg" alt="\(C \subseteq \R^{n}\)" style="height:0.904em;vertical-align:-0.145em"> is <i>symmetric</i> if <img class="m" src="m/cad7212991712ddb2d238bbda2df06c532178b47.svg" alt="\(-C = C\)" style="height:0.840em;vertical-align:-0.092em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgf469702">
+<p>
+Let <img class="m" src="m/ef20dcae594d2c559db23b17d502ab2d692633b3.svg" alt="\(\Lambda\)" style="height:0.749em;vertical-align:-0.000em"> be a lattice of covolume <img class="m" src="m/ad855e27454841e8ad2eca7f08dfc4eb67657f15.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em"> and <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> a convex,
+symmetric, compact subset of <img class="m" src="m/b33f2adf960aeb722adafbfc0479a5f92fd75b05.svg" alt="\(\R^{n}\)" style="height:0.755em;vertical-align:-0.000em"> of volume greater than
+<img class="m" src="m/cc54a9f4273bb95df7a328353c853dedc6d44739.svg" alt="\(2^{n}d\)" style="height:0.761em;vertical-align:-0.000em">. Then <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> contains a point of <img class="m" src="m/ef20dcae594d2c559db23b17d502ab2d692633b3.svg" alt="\(\Lambda\)" style="height:0.749em;vertical-align:-0.000em"> other than the
+origin.
+</p>
+
+</div>
+
+<div class="proof" id="org4ad4173">
+<p>
+Volume here is Lebesgue measure, and the two properties used are the
+ones a measure has by definition together with translation invariance:
+countable additivity and <img class="m" src="m/19593f97d3b497574ada925ceebf6434052db5b3.svg" alt="\(\vol(A + v) = \vol(A)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+Consider <img class="m" src="m/0f0f8c70895ff55d0d56be7a0a254678fcdd8444.svg" alt="\(C' = \tfrac{1}{2}C\)" style="height:1.304em;vertical-align:-0.378em">, of volume greater than <img class="m" src="m/ad855e27454841e8ad2eca7f08dfc4eb67657f15.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em">. If the
+translates <img class="m" src="m/37562f07ce7962b811987a6b34fa9662cb8263af.svg" alt="\(C' + \lambda\)" style="height:0.915em;vertical-align:-0.092em">, <img class="m" src="m/4d514731e609ab81817fe243b5d66d4b0188251a.svg" alt="\(\lambda\in\Lambda\)" style="height:0.804em;vertical-align:-0.040em">, were pairwise
+disjoint, then a fundamental domain <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> for <img class="m" src="m/ef20dcae594d2c559db23b17d502ab2d692633b3.svg" alt="\(\Lambda\)" style="height:0.749em;vertical-align:-0.000em"> &#x2013; the image
+of <img class="m" src="m/82c8ddac0ea58a82aab9c7fc113306ca7504eebe.svg" alt="\([0,1)^{n}\)" style="height:1.096em;vertical-align:-0.274em"> under <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, of volume <img class="m" src="m/ad855e27454841e8ad2eca7f08dfc4eb67657f15.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em">, which tiles <img class="m" src="m/b33f2adf960aeb722adafbfc0479a5f92fd75b05.svg" alt="\(\R^{n}\)" style="height:0.755em;vertical-align:-0.000em">
+under translation by <img class="m" src="m/ef20dcae594d2c559db23b17d502ab2d692633b3.svg" alt="\(\Lambda\)" style="height:0.749em;vertical-align:-0.000em"> &#x2013; would receive the pieces
+<img class="m" src="m/dee225a58495cd6b38519fba35f8fa093b2efbcd.svg" alt="\((C'+\lambda)\cap P\)" style="height:1.098em;vertical-align:-0.274em"> whose total volume is that of <img class="m" src="m/08c0f7133849d268dac613ce93b9ed93e0c2dfba.svg" alt="\(C'\)" style="height:0.824em;vertical-align:-0.000em">, by
+translating each back; that exceeds <img class="m" src="m/ad855e27454841e8ad2eca7f08dfc4eb67657f15.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em">, which is impossible inside
+<img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+<p>
+So some two translates meet: there are <img class="m" src="m/a088438872142760b73c86c11fa33759135f70bd.svg" alt="\(u,v\in C'\)" style="height:1.037em;vertical-align:-0.218em"> and
+<img class="m" src="m/ccd72f09bdf7d5fae9a865c104f3e8a788667572.svg" alt="\(\lambda \ne \mu\)" style="height:0.974em;vertical-align:-0.214em"> in <img class="m" src="m/ef20dcae594d2c559db23b17d502ab2d692633b3.svg" alt="\(\Lambda\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/d21cbaf057cb1f2cdd22d3a926ddab0c1ac55859.svg" alt="\(u+\lambda = v+\mu\)" style="height:0.974em;vertical-align:-0.214em">, hence
+<img class="m" src="m/a2594c2508ce16b9df0ce4f41b52de691db3b159.svg" alt="\(0 \ne \mu - \lambda = u - v\)" style="height:0.974em;vertical-align:-0.214em">. Now <img class="m" src="m/a89578074ea48341bdf5020dacf0fc4374ba45e0.svg" alt="\(u = \tfrac{1}{2}c_{1}\)" style="height:1.304em;vertical-align:-0.378em"> and
+<img class="m" src="m/30e2d757f14ead685029dec7dc3e039199cd20f6.svg" alt="\(v = \tfrac{1}{2}c_{2}\)" style="height:1.304em;vertical-align:-0.378em"> with <img class="m" src="m/7fbe8f00a7ba842bcb9b0beb211914e6e69fb351.svg" alt="\(c_{i}\in C\)" style="height:0.913em;vertical-align:-0.164em">, so
+<img class="m" src="m/45443af01e1e728e0e01ab42d2e496855eab112b.svg" alt="\(u - v = \tfrac{1}{2}c_{1} + \tfrac{1}{2}(-c_{2})\)" style="height:1.304em;vertical-align:-0.378em"> is a midpoint of
+two points of <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">, using symmetry, hence lies in <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> by convexity.
+</p>
+
+</div>
+
+<div class="remark" id="orgb282318">
+<p>
+The volume bound <img class="m" src="m/cc54a9f4273bb95df7a328353c853dedc6d44739.svg" alt="\(2^{n}d\)" style="height:0.761em;vertical-align:-0.000em"> cannot be improved: the open cube of side
+<img class="m" src="m/682209d80cc07f86795f987ad28681d443268af8.svg" alt="\(2\)" style="height:0.706em;vertical-align:-0.000em"> about the origin has volume exactly <img class="m" src="m/b50673e147105827c8bb51b6f174552f11f05c1b.svg" alt="\(2^{n}\)" style="height:0.728em;vertical-align:-0.000em"> for
+<img class="m" src="m/28584b3da337e0ae07a37b8c6717ca66c6e08d03.svg" alt="\(\Lambda = \Z^{n}\)" style="height:0.755em;vertical-align:-0.000em"> and contains no non-zero lattice point.
+Compactness in the statement is what allows the closed cube instead,
+and the theorem is the standard route from geometry to number theory &#x2013;
+Lagrange's four-square theorem and the finiteness of the class number
+are both proved by choosing the right lattice and the right body.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="convex-hulls-and-caratheodorys-theorem.html"><span>← previous</span>Convex hulls and Caratheodory's theorem</a><a rel="next" href="regular-curves-arc-length-and-curvature.html"><span>next →</span>Regular curves, arc length and curvature</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/geometry--convex-geometry.pdf" title="PDF manual">Convex Geometry</a> · <a class="pdf" href="pdf/geometry.pdf" title="PDF manual">Geometry</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

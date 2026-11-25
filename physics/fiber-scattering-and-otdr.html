@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scattering in fibres, OTDR and distributed sensing · Physics</title>
+<meta name="description" content="Rayleigh scattering (elastic, \propto\lambda^{-4}) sends a small fraction of every pulse back; an OTDR times it, z=\frac{ct}{2n}, with spatial resolution \Delta z=\frac{c\tau}{2n}, and the trace slope gives the loss; Raman (≈ 13 THz shift, anti-Stokes/Stokes ratio set by temperature) and Brillouin …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/fiber-scattering-and-otdr.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Scattering in fibres, OTDR and distributed sensing · Physics">
+<meta property="og:description" content="Rayleigh scattering (elastic, \propto\lambda^{-4}) sends a small fraction of every pulse back; an OTDR times it, z=\frac{ct}{2n}, with spatial resolution \Delta z=\frac{c\tau}{2n}, and the trace slope gives the loss; Raman (≈ 13 THz shift, anti-Stokes/Stokes ratio set by temperature) and Brillouin …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/fiber-scattering-and-otdr.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-optoelectronics">Optoelectronics</a> / <a rel="up" href="index.html#a-optoelectronics--fibers">Fibers</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Optoelectronics · Fibers</p>
+<h1>Scattering in fibres, OTDR and distributed sensing</h1>
+<p class="summary">Rayleigh scattering (elastic, <img class="m" src="m/8eb820c1f159f869061f512efbcbb46b271f1bb0.svg" alt="\(\propto\lambda^{-4}\)" style="height:0.892em;vertical-align:-0.000em">) sends a small fraction of every pulse back; an OTDR times it, <img class="m" src="m/44951f47adb2de0048b36685f55a74434a8e7e83.svg" alt="\(z=\frac{ct}{2n}\)" style="height:1.281em;vertical-align:-0.372em">, with spatial resolution <img class="m" src="m/90661bf2a2b95d08d2cff9b6acb94a07fe212afa.svg" alt="\(\Delta z=\frac{c\tau}{2n}\)" style="height:1.140em;vertical-align:-0.376em">, and the trace slope gives the loss; Raman (≈ 13 THz shift, anti-Stokes/Stokes ratio set by temperature) and Brillouin (≈ 11 GHz shift, <img class="m" src="m/00c67ec7a1fd6b93c438f47987726be4e973de5e.svg" alt="\(\nu_B=2nv_a/\lambda\)" style="height:1.096em;vertical-align:-0.274em">, depends on strain and temperature) backscatter turn a plain fibre into a distributed thermometer or strain gauge.</p>
+<p class="rel"><span>needs</span> <a href="fiber-dispersion-and-attenuation.html">Fibre dispersion, bit-rate limit and attenuation</a></p>
+<p class="rel"><span>see also</span> <a href="fiber-optic-sensors.html">Fibre-optic sensors: Bragg gratings, Fabry–Perot sensors and gyroscopes</a>, <a href="optical-amplifiers.html">Optical amplifiers: EDFA and SOA</a>, <a href="optical-link-design.html">Optical link design: bit rate, power budget and rise-time budget</a></p>
+<p class="rel"><span>mentioned in</span> <a href="exam-practice-optoelectronics-syllabus.html">Exam practice: optoelectronics over the whole programme (30 solved problems)</a>, <a href="optoelectronics.html">Optoelectronics: the map of the subject</a></p>
+<details class="path"><summary>Learning path: 16 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="poynting-theorem.html">Poynting's theorem and electromagnetic power</a></li><li><a href="plane-waves-in-media.html">Plane waves in lossless and lossy media</a></li><li><a href="optoelectronics.html">Optoelectronics: the map of the subject</a></li><li><a href="dispersion-and-group-velocity.html">Dispersion, group velocity and group index</a></li><li><a href="reflection-and-transmission-at-interfaces.html">Reflection and transmission: Snell, Fresnel, Brewster and total internal reflection</a></li><li><a href="gaussian-beams.html">Gaussian beams</a></li><li><a href="interference-and-fabry-perot.html">Interference and the Fabry–Perot resonator</a></li><li><a href="dielectric-slab-waveguide.html">The dielectric slab waveguide</a></li><li><a href="optical-fibers.html">Optical fibres: modes, numerical aperture and single-mode condition</a></li><li><a href="fiber-dispersion-and-attenuation.html">Fibre dispersion, bit-rate limit and attenuation</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgcf09084" class="outline-2">
+<h2 id="orgcf09084">Scattering processes</h2>
+<div class="outline-text-2" id="text-orgcf09084">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">process</th>
+<th scope="col" class="org-left">origin</th>
+<th scope="col" class="org-left">shift</th>
+<th scope="col" class="org-left">use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Rayleigh</td>
+<td class="org-left">frozen density fluctuations</td>
+<td class="org-left">none</td>
+<td class="org-left">loss floor, OTDR</td>
+</tr>
+
+<tr>
+<td class="org-left">Raman</td>
+<td class="org-left">molecular vibrations</td>
+<td class="org-left">≈ 13 THz</td>
+<td class="org-left">DTS, Raman amplifiers</td>
+</tr>
+
+<tr>
+<td class="org-left">Brillouin</td>
+<td class="org-left">acoustic waves (phonons)</td>
+<td class="org-left">≈ 11 GHz</td>
+<td class="org-left">strain/T sensing, SBS</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Rayleigh: <img class="m" src="m/ebf685ebe12db0991cb976896d477871abd585ab.svg" alt="\(\alpha_R\propto\lambda^{-4}\)" style="height:1.056em;vertical-align:-0.169em">; ≈ 0.15 dB/km at 1550 nm, hence ≈ 0.29 dB/km at 1310 nm and ≈ 1.7 dB/km at 850 nm. Brillouin: light Bragg-reflects on a sound wave moving at <img class="m" src="m/28138cc167c3e6af7c6ed240d716d60ab9cfbe7e.svg" alt="\(v_a\approx5.96\)" style="height:0.871em;vertical-align:-0.165em"> km/s, Doppler-shifted by <img class="m" src="m/2e1a50459f24bf0dc1c50cc186b1a6e96e51f243.svg" alt="\(\nu_B=\frac{2nv_a}{\lambda}=\frac{2\cdot1.45\cdot5960}{1.55\times10^{-6}}\approx11\)" style="height:1.413em;vertical-align:-0.466em"> GHz. Above a threshold of a few mW in long fibres, stimulated Brillouin scattering reflects the launched power back: it limits narrow-linewidth transmitters (power per linewidth).
+</p>
+</div>
+</div>
+<div id="outline-container-orgddad812" class="outline-2">
+<h2 id="orgddad812">OTDR (derivation)</h2>
+<div class="outline-text-2" id="text-orgddad812">
+<p>
+A pulse of duration <img class="m" src="m/2bffecead559fb3898499352afcaae1e4a188f0b.svg" alt="\(\tau\)" style="height:0.472em;vertical-align:-0.000em"> is launched; at time <img class="m" src="m/35667e44f401ec8e9c1d76417ab6c6c6667dd3c9.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> the detector sees light backscattered at <img class="m" src="m/44951f47adb2de0048b36685f55a74434a8e7e83.svg" alt="\(z=\frac{ct}{2n}\)" style="height:1.281em;vertical-align:-0.372em"> (round trip) <span class="cite">(<a class="ref" href="https://doi.org/10.1364/ao.15.002112" data-full="M. K. Barnoski and S. M. Jensen, “Fiber waveguides: a novel technique for investigating attenuation characteristics”, Applied Optics 15, 2112–2115 (1976)." aria-label="M. K. Barnoski and S. M. Jensen, “Fiber waveguides: a novel technique for investigating attenuation characteristics”, Applied Optics 15, 2112–2115 (1976).">Barnoski and Jensen 1976</a>)</span>. Two events closer than <img class="m" src="m/90661bf2a2b95d08d2cff9b6acb94a07fe212afa.svg" alt="\(\Delta z=\frac{c\tau}{2n}\)" style="height:1.140em;vertical-align:-0.376em"> merge. The backscattered power from <img class="m" src="m/4587cee4b2cc017c1afa6850202b6c578084a023.svg" alt="\(z\)" style="height:0.472em;vertical-align:-0.000em"> has crossed the fibre twice: <img class="m" src="m/2e138e9bcfd81202e30efa633749471bf04c9b2c.svg" alt="\(P(z)\propto e^{-2\alpha z}\)" style="height:1.166em;vertical-align:-0.268em">, and the trace in dB falls with slope <img class="m" src="m/91fdf57c41b5ba4edbdffe891bb4d94d155f5605.svg" alt="\(2\alpha_{dB}\)" style="height:0.871em;vertical-align:-0.165em">; instruments divide by 2 and display one-way loss. A splice is a step down, a connector or the far end a reflection spike followed by a step; dynamic range (dB between initial backscatter and noise floor) sets the maximum length; averaging <img class="m" src="m/b230d69c56ec9c52a1f32572ae74ed9d76e229f8.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> traces gains <img class="m" src="m/4952ea974ce9bf17e7e988a488b9a395f0e1bbaf.svg" alt="\(5\log_{10}N\)" style="height:1.029em;vertical-align:-0.268em"> dB.
+</p>
+</div>
+</div>
+<div id="outline-container-org4109c4a" class="outline-2">
+<h2 id="org4109c4a">Picture: an OTDR trace</h2>
+<div class="outline-text-2" id="text-org4109c4a">
+<figure class="fig"><img class="m" src="m/07eccfcb88cc75dfcabbcd89085c0ab4db1651b8.svg" alt="figure" style="width:30.503em"><figcaption><span class="fl">Figure 1.</span> An OTDR trace: Rayleigh backscatter decays linearly in dB with distance, splices appear as steps and connectors or the fibre end as reflection peaks.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-orgc81a17b" class="outline-2">
+<h2 id="orgc81a17b">Distributed temperature and strain sensing</h2>
+<div class="outline-text-2" id="text-orgc81a17b">
+<p>
+Raman DTS: the anti-Stokes line grows with temperature as <img class="m" src="m/7451914bac3c9d1eefc5622c14885493c10b9183.svg" alt="\(e^{-h\Delta\nu/k_BT}\)" style="height:0.973em;vertical-align:-0.000em"> (population of the vibrational level), the Stokes line barely changes; their ratio along the OTDR time axis maps temperature with ≈ 1 m resolution over 10 km. Brillouin (BOTDR/BOTDA): <img class="m" src="m/f1f10b35f21a469dd700206471becd2b1f18404c.svg" alt="\(\nu_B\)" style="height:0.636em;vertical-align:-0.165em"> shifts by ≈ 1 MHz/K and ≈ 0.05 MHz/µε, giving both. Phase-sensitive OTDR (coherent source) detects vibrations: intrusion detection along borders and pipelines.
+</p>
+</div>
+</div>
+<div id="outline-container-org69835ef" class="outline-2">
+<h2 id="org69835ef">Worked examples</h2>
+<div class="outline-text-2" id="text-org69835ef">
+<ol class="org-ol">
+<li><b>Resolution</b>: 10 ns pulses, <img class="m" src="m/aaf5ccc0f8895a5bbcf8c774bb8a9a032846e0e8.svg" alt="\(n=1.468\)" style="height:0.706em;vertical-align:-0.000em">: <img class="m" src="m/e992457a327ae5b42ff01571555ad06da66e5257.svg" alt="\(\Delta z=1.02\)" style="height:0.749em;vertical-align:-0.000em"> m. An echo after 100 µs comes from <img class="m" src="m/6da47eac478db7bbfda3808beb41b5a4e69d3899.svg" alt="\(z=10.2\)" style="height:0.706em;vertical-align:-0.000em"> km.</li>
+<li><b>Loss from the trace</b>: the one-way trace falls from −20.0 to −27.0 dB over 20 km, with a 0.3 dB step at 12 km: <img class="m" src="m/0fcba5a4e9eb1b7f4fef1af151cfa06178f4b70b.svg" alt="\(\alpha=\frac{7.0-0.3}{20}=0.335\)" style="height:1.304em;vertical-align:-0.378em"> dB/km (1310 nm), splice loss 0.3 dB.</li>
+<li><b>Raman DTS</b>: <img class="m" src="m/d475758dec7116b79f113416a3028e5719089589.svg" alt="\(\Delta\nu=13.2\)" style="height:0.749em;vertical-align:-0.000em"> THz: <img class="m" src="m/cf0db9ba563c3dd33d4476a801151fff45530647.svg" alt="\(e^{-h\Delta\nu/k_BT}=0.115\)" style="height:0.973em;vertical-align:-0.000em"> at 20 °C and 0.183 at 100 °C — a 60% change of the anti-Stokes/Stokes ratio over 80 K. At 1550 nm the Raman lines sit at ≈ 1664 nm (Stokes) and ≈ 1450 nm (anti-Stokes).</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org8e77313" class="outline-2">
+<h2 id="org8e77313">Engineering applications</h2>
+<div class="outline-text-2" id="text-org8e77313">
+<p>
+Fault location and acceptance testing of installed cables, monitoring of PON drops, fire detection in tunnels and temperature profiles in oil wells (DTS), strain monitoring of dams and pipelines (Brillouin), perimeter security (φ-OTDR); Raman scattering also amplifies signals (distributed Raman amplifiers, <a href="optical-amplifiers.html">amplifiers</a>).
+</p>
+</div>
+</div>
+<div id="outline-container-orgf77762a" class="outline-2">
+<h2 id="orgf77762a">Exam-style exercise</h2>
+<div class="outline-text-2" id="text-orgf77762a">
+<p>
+An OTDR uses 100 ns pulses at 1550 nm (<img class="m" src="m/915031de8037c42dcf129c6d95a552997efda7c8.svg" alt="\(n=1.47\)" style="height:0.706em;vertical-align:-0.000em">), has 28 dB dynamic range, and the fibre loses 0.2 dB/km with a splice every 4 km (0.1 dB). (a) Spatial resolution. (b) Longest measurable fibre. (c) Repetition period to avoid overlapping traces on that length.
+</p>
+</div>
+<div id="outline-container-org1da9059" class="outline-3">
+<h3 id="org1da9059">Solution</h3>
+<div class="outline-text-3" id="text-org1da9059">
+<p>
+(a) <img class="m" src="m/d6902f7431ebe3aea4c6409e377c7ff88a0febbf.svg" alt="\(\Delta z=\frac{3\times10^8\cdot10^{-7}}{2\cdot1.47}=10.2\)" style="height:1.505em;vertical-align:-0.376em"> m. (b) Loss per km <img class="m" src="m/b36c7626b0704809cf4834b17773c0c0e9dbaf95.svg" alt="\(0.2+0.025=0.225\)" style="height:0.798em;vertical-align:-0.088em"> dB → <img class="m" src="m/650a236c98fffd696978d5baad0cb2e612e241db.svg" alt="\(28/0.225=124\)" style="height:1.096em;vertical-align:-0.274em"> km (one-way loss, as displayed). (c) Round trip <img class="m" src="m/39eb20def049bf7d1e0dce009c4b7dc6a4a5afdb.svg" alt="\(t=\frac{2nL}{c}=\frac{2\cdot1.47\cdot1.24\times10^5}{3\times10^8}=1.22\)" style="height:1.585em;vertical-align:-0.475em"> ms: repetition rate ≤ 820 Hz.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdd4769b" class="outline-2">
+<h2 id="orgdd4769b">Pitfall</h2>
+<div class="outline-text-2" id="text-orgdd4769b">
+<p>
+The round trip appears twice: in <img class="m" src="m/5996aba243e0b89676f4d8447cef3b9378927692.svg" alt="\(z=ct/2n\)" style="height:1.096em;vertical-align:-0.274em"> and in the <img class="m" src="m/fb8f23cef84770757f2b95044a176030d34f4064.svg" alt="\(2\alpha\)" style="height:0.706em;vertical-align:-0.000em"> slope of the raw trace. Forgetting the 2 doubles the distance or the loss.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="fiber-optic-sensors.html"><span>← previous</span>Fibre-optic sensors: Bragg gratings, Fabry–Perot sensors and gyroscopes</a><a rel="next" href="stimulated-emission-and-lasers.html"><span>next →</span>Stimulated emission and the laser</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/optoelectronics--fibers.pdf" title="PDF manual">Fibers</a> · <a class="pdf" href="pdf/optoelectronics.pdf" title="PDF manual">Optoelectronics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

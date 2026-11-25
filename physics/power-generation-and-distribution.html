@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generation and distribution of electric power · Physics</title>
+<meta name="description" content="Alternators convert rotation into sinusoidal emf; transmitting power P at voltage V costs P_{loss}=\left(\frac{P}{V\cos\varphi}\right)^2r, so transformers raise V; three-phase systems deliver constant instantaneous power, need no return current for balanced loads, and use about half the conductor o…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/power-generation-and-distribution.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Generation and distribution of electric power · Physics">
+<meta property="og:description" content="Alternators convert rotation into sinusoidal emf; transmitting power P at voltage V costs P_{loss}=\left(\frac{P}{V\cos\varphi}\right)^2r, so transformers raise V; three-phase systems deliver constant instantaneous power, need no return current for balanced loads, and use about half the conductor o…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/power-generation-and-distribution.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-circuits">Circuits</a> / <a rel="up" href="index.html#a-circuits--power-systems">Power Systems</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Circuits · Power Systems</p>
+<h1>Generation and distribution of electric power</h1>
+<p class="summary">Alternators convert rotation into sinusoidal emf; transmitting power <img class="m" src="m/0bd021c435fd4f41fb34c2b2b12489378ab8cafb.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> at voltage <img class="m" src="m/b1823c2844011c3351ca12a680a0432837e249b6.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> costs <img class="m" src="m/25edeedbe7464ff6d80b40b0329f491c5cfe01c5.svg" alt="\(P_{loss}=\left(\frac{P}{V\cos\varphi}\right)^2r\)" style="height:2.196em;vertical-align:-0.703em">, so transformers raise <img class="m" src="m/b1823c2844011c3351ca12a680a0432837e249b6.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">; three-phase systems deliver constant instantaneous power, need no return current for balanced loads, and use about half the conductor of an equivalent single-phase system.</p>
+<p class="rel"><span>needs</span> <a href="transformer.html">The transformer</a>, <a href="ac-power-and-power-factor.html">AC power and power factor</a></p>
+<p class="rel"><span>unlocks</span> <a href="exam-practice-circuits.html">Exam practice: circuit theory (solved)</a></p>
+<p class="rel"><span>see also</span> <a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a>, <a href="switching-converters.html">Switching converters: buck, boost and losses</a></p>
+<p class="rel"><span>mentioned in</span> <a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></p>
+<details class="path"><summary>Learning path: 13 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="circuits.html">Circuit theory: the map of the subject</a></li><li><a href="kirchhoff-laws-and-network-theorems.html">Kirchhoff's laws and network theorems</a></li><li><a href="lti-systems-and-convolution.html">LTI systems, impulse response and first/second-order circuits</a></li><li><a href="complex-numbers-and-phasors.html">Complex numbers and phasors</a></li><li><a href="impedance-and-ac-circuit-analysis.html">Impedance and the symbolic method</a></li><li><a href="ac-power-and-power-factor.html">AC power and power factor</a></li><li><a href="transformer.html">The transformer</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgd49c551" class="outline-2">
+<h2 id="orgd49c551">Generation</h2>
+<div class="outline-text-2" id="text-orgd49c551">
+<p>
+A rotor magnet (or field winding) spinning at <img class="m" src="m/9f0a07445868a613e95d9c5dc83b0fbb5ddb6d37.svg" alt="\(\Omega\)" style="height:0.749em;vertical-align:-0.000em"> in a stator coil gives <img class="m" src="m/c7de0bb8252b8303e1ce7dcef4497bb6dbc548f8.svg" alt="\(e=NBA\Omega\sin\Omega t\)" style="height:0.749em;vertical-align:-0.000em"> (<a href="faraday-law-and-induction.html">Faraday</a>). Three coils at 120° give three emfs <img class="m" src="m/8327539a8b4320f0486ff8ef0181d5a2333e868d.svg" alt="\(V_m\cos(\omega t)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/4887380fcd50e75df149386c7133c9407cc4950e.svg" alt="\(V_m\cos(\omega t-2\pi/3)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/d1c236b7ec480a30d21db53c4fb4590331f94f37.svg" alt="\(V_m\cos(\omega t+2\pi/3)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orge3e0693" class="outline-2">
+<h2 id="orge3e0693">Why high voltage and three phases (derivation)</h2>
+<div class="outline-text-2" id="text-orge3e0693">
+<ul class="org-ul">
+<li>Losses: line current <img class="m" src="m/1c1e5c2984531d783b12860d2dac770ad95f329e.svg" alt="\(I=P/V\cos\varphi\)" style="height:1.096em;vertical-align:-0.274em"> → <img class="m" src="m/aa746d87b6619434631c47f20380594ff380efb9.svg" alt="\(P_{loss}=2I^2r\propto1/V^2\)" style="height:1.166em;vertical-align:-0.268em">: 10× the voltage → 1/100 of the losses.</li>
+<li>Three phases, balanced loads <img class="m" src="m/462be1156f106ccb2bd073436a86dc7d0df95c1f.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">: the currents sum to zero, so the return (neutral) wire carries no current and can be thin or omitted. Example of three resistors fed by one generator via 2 wires (current <img class="m" src="m/b4b022afb83d2780950833d4fa8791bc73015679.svg" alt="\(3I\)" style="height:0.749em;vertical-align:-0.000em">): <img class="m" src="m/aabc9b0ba7cad75b8b89ffdb66cfb44b5f31b227.svg" alt="\(P_{diss}=2(3I)^2r=18I^2r\)" style="height:1.166em;vertical-align:-0.268em">; with three generators at 120° and three wires (current <img class="m" src="m/73fd835259e2461e2dcb61a22504c2c30198389d.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> each, neutral current 0): <img class="m" src="m/ba1e2ba994558a0a61c6f40db20fbaa651650900.svg" alt="\(P_{diss}=3I^2r\)" style="height:1.056em;vertical-align:-0.169em"> — six times less loss for the same load power <span class="cite">(<a class="ref" href="https://doi.org/10.1109/t-aiee.1888.5570379" data-full="N. Tesla, “A new system of alternate current motors and transformers”, Transactions of the American Institute of Electrical Engineers 5, 308–327 (1888)." aria-label="N. Tesla, “A new system of alternate current motors and transformers”, Transactions of the American Institute of Electrical Engineers 5, 308–327 (1888).">Tesla 1888</a>)</span>.</li>
+<li>Instantaneous power <img class="m" src="m/5773b8bd8477229e76f08cb977045f1c45e14a1c.svg" alt="\(\sum v_ki_k=\frac32V_mI_m\cos\varphi\)" style="height:1.304em;vertical-align:-0.378em"> is constant: no torque ripple in motors.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7588787" class="outline-2">
+<h2 id="org7588787">Star and delta</h2>
+<div class="outline-text-2" id="text-org7588787">
+<p>
+Star (Y): <img class="m" src="m/025b9f858d6b728a06f0cd9a51c31c1f60824df5.svg" alt="\(V_{line}=\sqrt3V_{phase}\)" style="height:1.308em;vertical-align:-0.314em"> (400 V / 230 V in Europe), <img class="m" src="m/081bb6e5c28564f9958e05673f6b912f35869f15.svg" alt="\(I_{line}=I_{phase}\)" style="height:1.062em;vertical-align:-0.319em">. Delta: <img class="m" src="m/7218366b045f37a79af24532eb73d8446e4db389.svg" alt="\(V_{line}=V_{phase}\)" style="height:1.062em;vertical-align:-0.319em">, <img class="m" src="m/b9b98081691d9b29cf46c5f3406c29d228f4adc8.svg" alt="\(I_{line}=\sqrt3I_{phase}\)" style="height:1.308em;vertical-align:-0.314em">. Total power <img class="m" src="m/f7ef1b402d174c8ffed7559ec67d2e04411a2dfb.svg" alt="\(P=\sqrt3V_LI_L\cos\varphi\)" style="height:1.207em;vertical-align:-0.217em"> in both.
+</p>
+</div>
+</div>
+<div id="outline-container-org9fd09da" class="outline-2">
+<h2 id="org9fd09da">Worked example</h2>
+<div class="outline-text-2" id="text-org9fd09da">
+<p>
+Deliver 100 MW over 100 km of line with <img class="m" src="m/e965fea0c68301878990804906b480c252866742.svg" alt="\(r=0.05\)" style="height:0.706em;vertical-align:-0.000em"> Ω/km per conductor (5 Ω), PF 1, three-phase: at 20 kV line voltage <img class="m" src="m/9759da9b5e9f7f80552e2b0bff0e9f9b963669cc.svg" alt="\(I=\frac{10^8}{\sqrt3\cdot2\times10^4}=2887\)" style="height:1.711em;vertical-align:-0.599em"> A, loss <img class="m" src="m/aad8adf3cc3894bef1410f244991834bf7eea3bb.svg" alt="\(3I^2r=125\)" style="height:0.892em;vertical-align:-0.000em"> MW (impossible); at 380 kV, <img class="m" src="m/19071e8e47b3ce4d0b26672040d6f3ad9ad2ba93.svg" alt="\(I=152\)" style="height:0.749em;vertical-align:-0.000em"> A, loss <img class="m" src="m/1d7599948a69d2dd89d09cb9844e2e0deb04784c.svg" alt="\(3\cdot152^2\cdot5=0.35\)" style="height:0.892em;vertical-align:-0.000em"> MW (0.35%).
+</p>
+</div>
+</div>
+<div id="outline-container-orgcedd7ee" class="outline-2">
+<h2 id="orgcedd7ee">Engineering applications</h2>
+<div class="outline-text-2" id="text-orgcedd7ee">
+<p>
+Grid design (generation 10–25 kV, transmission 220–400 kV, distribution 15–20 kV, users 400/230 V), motors (rotating field from three phases), HVDC for very long links and cables, renewable inverters synchronising to the grid.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf6740a9" class="outline-2">
+<h2 id="orgf6740a9">Pitfall</h2>
+<div class="outline-text-2" id="text-orgf6740a9">
+<p>
+Line voltage vs phase voltage: 400 V is between two phases, 230 V phase-to-neutral; power formulas with <img class="m" src="m/3a064200ff93d7302340e3d64bc882975fde7d87.svg" alt="\(\sqrt3\)" style="height:1.140em;vertical-align:-0.148em"> use line quantities.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="transformer.html"><span>← previous</span>The transformer</a><a rel="next" href="operational-amplifier-circuits.html"><span>next →</span>Operational-amplifier circuits</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/circuits--power-systems.pdf" title="PDF manual">Power Systems</a> · <a class="pdf" href="pdf/circuits.pdf" title="PDF manual">Circuits</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

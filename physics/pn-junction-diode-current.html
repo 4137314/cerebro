@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The diode current: Shockley's equation · Physics</title>
+<meta name="description" content="Applying V raises the minority densities at the depletion edges by e^{qV/k_BT} (law of the junction); their diffusion gives I=I_s\left(e^{qV/nk_BT}-1\right), I_s=qAn_i^2\left(\frac{D_p}{L_pN_D}+\frac{D_n}{L_nN_A}\right); small-signal r_d=nV_T/I, diffusion capacitance C_d=\tau I/nV_T.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/pn-junction-diode-current.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The diode current: Shockley's equation · Physics">
+<meta property="og:description" content="Applying V raises the minority densities at the depletion edges by e^{qV/k_BT} (law of the junction); their diffusion gives I=I_s\left(e^{qV/nk_BT}-1\right), I_s=qAn_i^2\left(\frac{D_p}{L_pN_D}+\frac{D_n}{L_nN_A}\right); small-signal r_d=nV_T/I, diffusion capacitance C_d=\tau I/nV_T.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/pn-junction-diode-current.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-solid-state">Solid State</a> / <a rel="up" href="index.html#a-solid-state--junctions">Junctions</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Solid State · Junctions</p>
+<h1>The diode current: Shockley's equation</h1>
+<p class="summary">Applying <img class="m" src="m/b1823c2844011c3351ca12a680a0432837e249b6.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> raises the minority densities at the depletion edges by <img class="m" src="m/0ff8e810b5d2862e0329007d69a1af31aaf3b35f.svg" alt="\(e^{qV/k_BT}\)" style="height:0.973em;vertical-align:-0.000em"> (law of the junction); their diffusion gives <img class="m" src="m/0f36e61ef301d16fe664373c001bb936b1ff1f80.svg" alt="\(I=I_s\left(e^{qV/nk_BT}-1\right)\)" style="height:1.357em;vertical-align:-0.380em">, <img class="m" src="m/202478243bd0388bc78f2b4397d92ea99e6052fd.svg" alt="\(I_s=qAn_i^2\left(\frac{D_p}{L_pN_D}+\frac{D_n}{L_nN_A}\right)\)" style="height:1.973em;vertical-align:-0.710em">; small-signal <img class="m" src="m/fdf0b6b038e15f5917257810ab19acb037427c51.svg" alt="\(r_d=nV_T/I\)" style="height:1.096em;vertical-align:-0.274em">, diffusion capacitance <img class="m" src="m/3263132587eadae36855ced3335660ff310fcb50.svg" alt="\(C_d=\tau I/nV_T\)" style="height:1.096em;vertical-align:-0.274em">.</p>
+<p class="rel"><span>needs</span> <a href="pn-junction-electrostatics.html">The pn junction: built-in potential, depletion and capacitance</a>, <a href="generation-recombination-and-continuity.html">Generation, recombination and the continuity equation</a></p>
+<p class="rel"><span>unlocks</span> <a href="light-emitting-diodes.html">Light-emitting diodes</a>, <a href="photodiode-circuits-and-bandwidth.html">Photodiode circuits, equivalent circuit and speed</a>, <a href="solar-cells.html">Solar cells</a>, <a href="diode-circuits-and-esd-protection.html">Diode circuits and ESD protection</a>, <a href="power-diodes.html">Power pin diodes: blocking, conduction and reverse recovery</a></p>
+<p class="rel"><span>see also</span> <a href="diode-circuits-and-esd-protection.html">Diode circuits and ESD protection</a>, <a href="light-emitting-diodes.html">Light-emitting diodes</a>, <a href="solar-cells.html">Solar cells</a>, <a href="power-diodes.html">Power pin diodes: blocking, conduction and reverse recovery</a></p>
+<p class="rel"><span>mentioned in</span> <a href="strong-field-qed-and-pair-creation.html">Strong-field QED: pair creation and the Euler–Heisenberg Lagrangian</a>, <a href="led-efficiency-and-photometry.html">LED efficiencies, photometry and driving</a></p>
+<details class="path"><summary>Learning path: 29 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></li><li><a href="spin-precession-and-rabi-oscillations.html">Spin precession and Rabi oscillations</a></li><li><a href="angular-momentum-algebra.html">Angular momentum: algebra and spectrum</a></li><li><a href="orbital-angular-momentum.html">Orbital angular momentum and spherical harmonics</a></li><li><a href="hydrogen-atom.html">The hydrogen atom</a></li><li><a href="addition-of-angular-momenta.html">Addition of angular momenta</a></li><li><a href="identical-particles-and-pauli-principle.html">Identical particles, bosons, fermions and Pauli's principle</a></li><li><a href="square-well-potentials.html">Square wells: particle in a box and finite well</a></li><li><a href="symmetries-and-conservation-laws.html">Symmetries, conservation laws and degeneracy</a></li><li><a href="solid-state.html">Semiconductor physics: the map of the subject</a></li><li><a href="bloch-theorem-and-energy-bands.html">Bloch's theorem and energy bands</a></li><li><a href="effective-mass-and-holes.html">Effective mass, group velocity and holes</a></li><li><a href="density-of-states-and-fermi-dirac.html">Density of states and Fermi–Dirac statistics</a></li><li><a href="intrinsic-and-doped-semiconductors.html">Intrinsic and doped semiconductors</a></li><li><a href="drift-diffusion-and-einstein-relation.html">Drift, diffusion and the Einstein relation</a></li><li><a href="pn-junction-electrostatics.html">The pn junction: built-in potential, depletion and capacitance</a></li><li><a href="generation-recombination-and-continuity.html">Generation, recombination and the continuity equation</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org0b3dd90" class="outline-2">
+<h2 id="org0b3dd90">Derivation</h2>
+<div class="outline-text-2" id="text-org0b3dd90">
+<ol class="org-ol">
+<li><b>Law of the junction</b>: quasi-Fermi levels flat across the thin depletion region, split by <img class="m" src="m/d4ba0277c8a6c0a8af393976c1b028101fb77efd.svg" alt="\(qV\)" style="height:0.962em;vertical-align:-0.212em">: <img class="m" src="m/ea8e8ffb1ae4799306567559fc1eabd6b4e03149.svg" alt="\(p_n(x_n)=p_{n0}e^{qV/k_BT}\)" style="height:1.247em;vertical-align:-0.274em">, <img class="m" src="m/9f028743da157cd8f7be791b6ed659f9b0b51ef8.svg" alt="\(n_p(-x_p)=n_{p0}e^{qV/k_BT}\)" style="height:1.287em;vertical-align:-0.309em">.</li>
+<li>In the neutral n side the excess holes diffuse and recombine: <img class="m" src="m/81cae54f6c379ad17b273e544c6f6e0bbf06bda9.svg" alt="\(\Delta p(x)=p_{n0}(e^{qV/k_BT}-1)e^{-(x-x_n)/L_p}\)" style="height:1.247em;vertical-align:-0.274em"> (<a href="generation-recombination-and-continuity.html">continuity</a>).</li>
+<li>Hole current at <img class="m" src="m/fea5e13aa3853a3d27bbd2d843ead12b5503ec8e.svg" alt="\(x_n\)" style="height:0.636em;vertical-align:-0.165em">: <img class="m" src="m/05e00a3655dcc7c77498a9cd82943483c17c943b.svg" alt="\(J_p=qD_p\frac{p_{n0}}{L_p}(e^{qV/k_BT}-1)\)" style="height:1.567em;vertical-align:-0.595em">, with <img class="m" src="m/dc17bfccd5d3dd0f821ace65b18361c23e208614.svg" alt="\(p_{n0}=n_i^2/N_D\)" style="height:1.177em;vertical-align:-0.283em">. Same for electrons. Sum (no recombination in the depletion region):</li>
+</ol>
+<p>
+<div class="mb"><img class="m" src="m/a678bab0dc81173fb2458c57e31993d85b4f129e.svg" alt="\[ I=qAn_i^2\left(\frac{D_p}{L_pN_D}+\frac{D_n}{L_nN_A}\right)\left(e^{qV/k_BT}-1\right). \]" style="width:21.726em"></div>
+Short diode (<img class="m" src="m/78ed611eae4e594a234b7e2f922bf3fe67a8377f.svg" alt="\(W_n\ll L_p\)" style="height:1.062em;vertical-align:-0.319em">): replace <img class="m" src="m/d1c6f0fc40baad7158711eb10f3bd48f3b35d07c.svg" alt="\(L_p\)" style="height:1.062em;vertical-align:-0.319em"> by <img class="m" src="m/0dac3e698d873736456dd593687fc643faf982cf.svg" alt="\(W_n\)" style="height:0.913em;vertical-align:-0.164em">. Recombination in the depletion region adds a term <img class="m" src="m/b7a5d69dee3a1a8810a54f02a0cc772839e75b24.svg" alt="\(\propto n_ie^{qV/2k_BT}\)" style="height:1.137em;vertical-align:-0.159em"> (ideality <img class="m" src="m/8ceed7624e0ccd21a721776758d1b733d9c18222.svg" alt="\(n\to2\)" style="height:0.706em;vertical-align:-0.000em"> at low current); high injection also gives <img class="m" src="m/8ceed7624e0ccd21a721776758d1b733d9c18222.svg" alt="\(n\to2\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org401fce7" class="outline-2">
+<h2 id="org401fce7">Small-signal model</h2>
+<div class="outline-text-2" id="text-org401fce7">
+<p>
+<img class="m" src="m/c0daa0d05678b23c711693c59f4e1a03a3f63702.svg" alt="\(g_d=\frac{\dd I}{\dd V}=\frac{I}{nV_T}\)" style="height:1.452em;vertical-align:-0.494em">: at 1 mA, <img class="m" src="m/90648054cf584d9d346e82db682ed7cc9ebffb3b.svg" alt="\(r_d=26\)" style="height:0.871em;vertical-align:-0.165em"> Ω. Stored minority charge <img class="m" src="m/212f190f2e256c4fa5cce8573a10f3607355a2fc.svg" alt="\(Q=\tau I\)" style="height:0.962em;vertical-align:-0.212em"> gives <img class="m" src="m/da14af674406cfa04651e641eb86f7fa111d5fb5.svg" alt="\(C_d=\tau g_d\)" style="height:0.962em;vertical-align:-0.212em">, which dominates in forward bias and limits switching (reverse recovery).
+</p>
+</div>
+</div>
+<div id="outline-container-orgb55a505" class="outline-2">
+<h2 id="orgb55a505">Temperature</h2>
+<div class="outline-text-2" id="text-orgb55a505">
+<p>
+<img class="m" src="m/77dacbc73a31aa73e34600a562a7d9cfed809623.svg" alt="\(I_s\propto n_i^2\propto T^3e^{-E_g/k_BT}\)" style="height:1.258em;vertical-align:-0.289em">: at constant current <img class="m" src="m/4613a079a06e231ad84349cd107b68dc76df3ca3.svg" alt="\(\frac{\dd V}{\dd T}\approx-\frac{E_g/q-V}{T}\approx-2\)" style="height:1.509em;vertical-align:-0.377em"> mV/K in Si <span class="cite">(<a class="ref" href="https://doi.org/10.1002/j.1538-7305.1949.tb03645.x" data-full="W. Shockley, “The theory of p-n junctions in semiconductors and p-n junction transistors”, Bell System Technical Journal 28, 435–489 (1949)." aria-label="W. Shockley, “The theory of p-n junctions in semiconductors and p-n junction transistors”, Bell System Technical Journal 28, 435–489 (1949).">Shockley 1949</a>)</span>.
+</p>
+</div>
+</div>
+<div id="outline-container-org9f461e9" class="outline-2">
+<h2 id="org9f461e9">Worked example</h2>
+<div class="outline-text-2" id="text-org9f461e9">
+<p>
+Si diode, <img class="m" src="m/a624789c4e05207926356d708761093aec109a6f.svg" alt="\(A=10^{-4}\)" style="height:0.892em;vertical-align:-0.000em"> cm², <img class="m" src="m/5edb7ca24c2371c69d0a742191e51e5bbc443077.svg" alt="\(N_A=10^{18}\)" style="height:1.056em;vertical-align:-0.169em">, <img class="m" src="m/af505e90a06f353ed6157d4cfc8506d3f9447762.svg" alt="\(N_D=10^{16}\)" style="height:1.056em;vertical-align:-0.169em">, <img class="m" src="m/6d021a760e262ac9e04402fecebd016ff32c7c56.svg" alt="\(D_p=10\)" style="height:1.062em;vertical-align:-0.319em"> cm²/s, <img class="m" src="m/c6d9a662d719f055dc39a5881c67c5a9ace5c486.svg" alt="\(L_p=10\)" style="height:1.062em;vertical-align:-0.319em"> µm (one-sided, holes dominate): <img class="m" src="m/4b129759dc6bc5b4bf7f593f2d3cc613e6a930d1.svg" alt="\(I_s=1.6\times10^{-19}\cdot10^{-4}\cdot10^{20}\cdot\frac{10}{10^{-3}\cdot10^{16}}=1.6\times10^{-15}\)" style="height:1.304em;vertical-align:-0.378em"> A. For 1 mA: <img class="m" src="m/3f89efc79ffb43866d3e1cd867a2e5872e10fa65.svg" alt="\(V=0.0259\ln(10^{-3}/1.6\times10^{-15})=0.70\)" style="height:1.166em;vertical-align:-0.268em"> V.
+</p>
+</div>
+</div>
+<div id="outline-container-org92f7c2f" class="outline-2">
+<h2 id="org92f7c2f">Engineering applications</h2>
+<div class="outline-text-2" id="text-org92f7c2f">
+<p>
+Rectifiers, the <a href="diode-circuits-and-esd-protection.html">diode in circuits</a> (piecewise-linear models, ESD protection), band-gap voltage references (<img class="m" src="m/3ecd635d57782605b2649136fcdea230b6e06f7e.svg" alt="\(V_{BE}\)" style="height:0.913em;vertical-align:-0.164em"> + PTAT), temperature sensors, the photodiode and solar-cell equation <img class="m" src="m/08594c7d34a44fc3fe6ebb1123928288b42bf995.svg" alt="\(I=I_s(e^{qV/k_BT}-1)-I_{ph}\)" style="height:1.287em;vertical-align:-0.309em"> (<a href="solar-cells.html">solar cells</a>), LED I–V (<a href="light-emitting-diodes.html">LEDs</a>).
+</p>
+</div>
+</div>
+<div id="outline-container-org80a3801" class="outline-2">
+<h2 id="org80a3801">Pitfall</h2>
+<div class="outline-text-2" id="text-org80a3801">
+<p>
+<img class="m" src="m/effa7c52bf431d8540c651c4f0c9b3ccb859640c.svg" alt="\(I_s\)" style="height:0.913em;vertical-align:-0.164em"> is not a constant of the diode: it changes by ~×2 every 5 K and with area; use <img class="m" src="m/85e8c05c6e018976a89954fe924023fb9f47b8c5.svg" alt="\(V\approx0.6\)" style="height:0.749em;vertical-align:-0.000em">–0.7 V only as a rough rule for Si at mA currents.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="pn-junction-electrostatics.html"><span>← previous</span>The pn junction: built-in potential, depletion and capacitance</a><a rel="next" href="heterojunctions-and-quantum-wells.html"><span>next →</span>Heterojunctions and quantum wells</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/solid-state--junctions.pdf" title="PDF manual">Junctions</a> · <a class="pdf" href="pdf/solid-state.pdf" title="PDF manual">Solid State</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

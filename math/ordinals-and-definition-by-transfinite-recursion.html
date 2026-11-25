@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ordinals and definition by transfinite recursion · Mathematics</title>
+<meta name="description" content="Transfinite induction proves statements along a well order; it does not build anything. Recursion does, and it is a separate theorem: a construction that at each stage may consult everything built before it is well defined. Ordinals are then the canonical well orders – one for each order type – so …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/ordinals-and-definition-by-transfinite-recursion.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Ordinals and definition by transfinite recursion · Mathematics">
+<meta property="og:description" content="Transfinite induction proves statements along a well order; it does not build anything. Recursion does, and it is a separate theorem: a construction that at each stage may consult everything built before it is well defined. Ordinals are then the canonical well orders – one for each order type – so …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/ordinals-and-definition-by-transfinite-recursion.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-foundations">Foundations</a> / <a rel="up" href="index.html#a-foundations--set-theory">Set Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Foundations · Set Theory</p>
+<h1>Ordinals and definition by transfinite recursion</h1>
+<p class="summary">Transfinite induction proves statements along a well order; it does not build anything. Recursion does, and it is a separate theorem: a construction that at each stage may consult everything built before it is well defined. Ordinals are then the canonical well orders &#x2013; one for each order type &#x2013; so that "the length" of a construction becomes an object rather than a manner of speaking.</p>
+<p class="rel"><span>needs</span> <a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></p>
+<p class="rel"><span>mentioned in</span> <a href="set-theory.html">Set theory</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org62e7e5b">
+<p>
+A set <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> is <i>transitive</i> if every element of an element of
+<img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> is an element of <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em">. An <i>ordinal</i> is a transitive set
+strictly well ordered by the membership relation <img class="m" src="m/0a1347c61150c8bc05dac856228a8d74c539213f.svg" alt="\(\in\)" style="height:0.634em;vertical-align:-0.044em">. One writes
+<img class="m" src="m/03b1b95943bae69efb5da8c4e91d113446dfee47.svg" alt="\(\beta &lt; \alpha\)" style="height:0.974em;vertical-align:-0.214em"> for <img class="m" src="m/e44ae158779cca2934cdfd95a2664c9e319a98d7.svg" alt="\(\beta \in \alpha\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org4e97439">
+<p>
+Let <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> be an ordinal. Then every element of <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> is an
+ordinal, and <img class="m" src="m/d93cea686aaa363f1d7917551edb7715bbf53c82.svg" alt="\(\alpha = \setst{\beta}{\beta &lt; \alpha}\)" style="height:1.096em;vertical-align:-0.274em"> is the set of
+its own predecessors. If <img class="m" src="m/65ed198e156bf7d35f2bcbce00232479bbe853b2.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em"> is an ordinal with
+<img class="m" src="m/38aff92fd29d85aab89d800c338b9ed4d50d0c33.svg" alt="\(\beta \subseteq \alpha\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/2b95ff87a75cec089bd14a97ced0576391380095.svg" alt="\(\beta \ne \alpha\)" style="height:0.974em;vertical-align:-0.214em">, then
+<img class="m" src="m/e44ae158779cca2934cdfd95a2664c9e319a98d7.svg" alt="\(\beta \in \alpha\)" style="height:0.974em;vertical-align:-0.214em">. Any two ordinals are comparable, and
+<img class="m" src="m/29b1a0953df31cd5b7e7b4311f78e8d9805909ed.svg" alt="\(\alpha^{+} = \alpha \cup \set{\alpha}\)" style="height:1.147em;vertical-align:-0.275em"> is the least ordinal greater
+than <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org4d5f1d4">
+<p>
+Let <img class="m" src="m/e44ae158779cca2934cdfd95a2664c9e319a98d7.svg" alt="\(\beta \in \alpha\)" style="height:0.974em;vertical-align:-0.214em">. It is transitive: if <img class="m" src="m/edc0a73647b3a00748072b516c78021b66d84d6b.svg" alt="\(\delta\in\gamma\in\beta\)" style="height:0.974em;vertical-align:-0.214em">,
+then all three lie in <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> by transitivity of <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em">, and the
+order <img class="m" src="m/0a1347c61150c8bc05dac856228a8d74c539213f.svg" alt="\(\in\)" style="height:0.634em;vertical-align:-0.044em"> on <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> is transitive, so <img class="m" src="m/9c5412c9bbb7988d3e59be329051893a713c68e1.svg" alt="\(\delta\in\beta\)" style="height:0.974em;vertical-align:-0.214em">. It is
+well ordered by <img class="m" src="m/0a1347c61150c8bc05dac856228a8d74c539213f.svg" alt="\(\in\)" style="height:0.634em;vertical-align:-0.044em">, being a subset of <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em">. Hence <img class="m" src="m/65ed198e156bf7d35f2bcbce00232479bbe853b2.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em">
+is an ordinal, and the displayed identity for <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> is the
+definition of <img class="m" src="m/5ae67a353506ad0a92c7e12ac04735e65fd32fe4.svg" alt="\(&lt;\)" style="height:0.634em;vertical-align:-0.044em">.
+</p>
+
+<p>
+If <img class="m" src="m/d853b6223e5d88ec9c00e212c34a1da94f888ad1.svg" alt="\(\beta \subsetneq \alpha\)" style="height:0.974em;vertical-align:-0.214em">, then <img class="m" src="m/a4827aaebc00d2ad9af882350bf980f86d0b4309.svg" alt="\(\alpha \setminus \beta\)" style="height:1.096em;vertical-align:-0.274em"> has a
+least element <img class="m" src="m/a7557905dfe0cbb9ed8efb67df67b1b7128d6a76.svg" alt="\(\gamma\)" style="height:0.685em;vertical-align:-0.212em">, and <img class="m" src="m/65ed198e156bf7d35f2bcbce00232479bbe853b2.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em"> is an initial segment of
+<img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> &#x2013; for <img class="m" src="m/d06183a4548300d99de5a01715027083391d0062.svg" alt="\(\delta \in \beta\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/200074109e0ae0c421d48dc160a87f07e7f40bb6.svg" alt="\(\eps \in \delta\)" style="height:0.804em;vertical-align:-0.040em"> we get
+<img class="m" src="m/ed66ba06800d39256d9f92cadc5d6bc543a1b4e7.svg" alt="\(\eps \in \beta\)" style="height:0.974em;vertical-align:-0.214em"> by transitivity of <img class="m" src="m/65ed198e156bf7d35f2bcbce00232479bbe853b2.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em">. By the description of
+initial segments, <img class="m" src="m/9a2bf4215f106bb40b6838851811cc4833f49e8a.svg" alt="\(\beta = \setst{\delta \in \alpha}{\delta &lt; \gamma} = \gamma\)" style="height:1.096em;vertical-align:-0.274em">,
+so <img class="m" src="m/e44ae158779cca2934cdfd95a2664c9e319a98d7.svg" alt="\(\beta \in \alpha\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+<p>
+Comparability: <img class="m" src="m/b9e03c052ed3a5dee4dc6008c1e1a1c0b36bbb45.svg" alt="\(\alpha\cap\beta\)" style="height:0.974em;vertical-align:-0.214em"> is transitive and well ordered, hence
+an ordinal, and it is a subset of both. If it were a proper subset of
+each it would belong to each, hence to <img class="m" src="m/b9e03c052ed3a5dee4dc6008c1e1a1c0b36bbb45.svg" alt="\(\alpha\cap\beta\)" style="height:0.974em;vertical-align:-0.214em">, giving
+<img class="m" src="m/bc023fbed6deff94977d7d7a2bb26114a08c60b4.svg" alt="\(\gamma \in \gamma\)" style="height:0.804em;vertical-align:-0.217em"> and contradicting strictness. So
+<img class="m" src="m/b9e03c052ed3a5dee4dc6008c1e1a1c0b36bbb45.svg" alt="\(\alpha\cap\beta\)" style="height:0.974em;vertical-align:-0.214em"> equals <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> or <img class="m" src="m/65ed198e156bf7d35f2bcbce00232479bbe853b2.svg" alt="\(\beta\)" style="height:0.974em;vertical-align:-0.214em">, that is
+<img class="m" src="m/66a0ce97c48920864cfe419382e37fde91b4c7f6.svg" alt="\(\alpha \subseteq \beta\)" style="height:0.974em;vertical-align:-0.214em"> or <img class="m" src="m/0cc652db0d35fb9c7a41349f7b9c782790b507d4.svg" alt="\(\beta\subseteq\alpha\)" style="height:0.974em;vertical-align:-0.214em">, and the previous
+paragraph turns inclusion into membership or equality.
+</p>
+
+<p>
+Finally <img class="m" src="m/6cb2f7a434b3631ee0f37e9b8e76388d4d242c37.svg" alt="\(\alpha^{+}\)" style="height:0.873em;vertical-align:-0.000em"> is transitive and well ordered by <img class="m" src="m/0a1347c61150c8bc05dac856228a8d74c539213f.svg" alt="\(\in\)" style="height:0.634em;vertical-align:-0.044em">, with
+<img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> as its greatest element; any ordinal <img class="m" src="m/11d39e0b577dbd4606bbe30fe85025591ff67273.svg" alt="\(\gamma &gt; \alpha\)" style="height:0.804em;vertical-align:-0.217em">
+contains <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> and hence contains <img class="m" src="m/6cb2f7a434b3631ee0f37e9b8e76388d4d242c37.svg" alt="\(\alpha^{+}\)" style="height:0.873em;vertical-align:-0.000em"> or equals it.
+</p>
+
+</div>
+
+<div class="theorem" id="org4a505df">
+<p>
+Let <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em"> be a well-ordered set, <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> a set, and <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> a map assigning
+to every function <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> from an initial segment of <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em"> into <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> a
+value <img class="m" src="m/368b2f25e192d551b9a417668cdd5e43b8550af7.svg" alt="\(G(p) \in A\)" style="height:1.096em;vertical-align:-0.274em">. Then there is exactly one <img class="m" src="m/476ad1a3be4f254bc660b1218fba43cf73a34810.svg" alt="\(f \colon W \to A\)" style="height:0.974em;vertical-align:-0.214em">
+with <img class="m" src="m/2a6df9f257edeb2357ea18df8355b179a6a9a4a8.svg" alt="\(f(x) = G(f\restrict{W_{&lt;x}})\)" style="height:1.535em;vertical-align:-0.599em"> for every <img class="m" src="m/d046393ffe5b43aaf9ed04b1c4ea259af3d54b2b.svg" alt="\(x \in W\)" style="height:0.792em;vertical-align:-0.040em">.
+</p>
+
+</div>
+
+<div class="proof" id="org3d3c9aa">
+<p>
+Call <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> an <i>attempt</i> if its domain is an initial segment of <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em">,
+its values lie in <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, and <img class="m" src="m/d0983c1b633811b26a72d6b8d20ac8971de63ae0.svg" alt="\(p(y) = G(p\restrict{W_{&lt;y}})\)" style="height:1.586em;vertical-align:-0.650em"> for every
+<img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> in its domain. Any two attempts agree on the intersection of their
+domains: otherwise, that intersection being an initial segment, there is
+a least <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> at which <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> and <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> differ, and then
+<img class="m" src="m/a3d1e7968f757bb7ec9d894420b5c6c549ea635a.svg" alt="\(p\restrict{W_{&lt;y}} = q\restrict{W_{&lt;y}}\)" style="height:1.586em;vertical-align:-0.650em">, so
+<img class="m" src="m/a0257c0b95e54618b4ab7b61ef2f06b877e6d0f2.svg" alt="\(p(y) = G(p\restrict{W_{&lt;y}}) = q(y)\)" style="height:1.586em;vertical-align:-0.650em"> &#x2013; a contradiction.
+</p>
+
+<p>
+The attempts form a set, being certain subsets of <img class="m" src="m/2d79573df3744cc04051d48540ae9ccd6f6ba132.svg" alt="\(W \times A\)" style="height:0.840em;vertical-align:-0.092em">, so
+their union <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is a function, and it is an attempt. Its domain is all
+of <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em">: by transfinite induction, if <img class="m" src="m/0fa23ac8df3f63083f08363ef1d0ff6c7c752b00.svg" alt="\(W_{&lt;x}\)" style="height:0.971em;vertical-align:-0.223em"> is contained in the
+domain then <img class="m" src="m/3015ba25b005bd9b5d91817c4479607f05bc5a24.svg" alt="\(f\restrict{W_{&lt;x}}\)" style="height:1.535em;vertical-align:-0.599em"> is an attempt and extending it by the
+value <img class="m" src="m/f21ba074c0c4120e586c07694b5e02f58eec4e3e.svg" alt="\(G(f\restrict{W_{&lt;x}})\)" style="height:1.535em;vertical-align:-0.599em"> at <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> is again an attempt, so <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">
+lies in the domain of the union. Uniqueness is the agreement of attempts
+applied to two total solutions.
+</p>
+
+</div>
+
+<div class="theorem" id="org59ee708">
+<p>
+Every well-ordered set is order-isomorphic to exactly one ordinal, by
+exactly one isomorphism.
+</p>
+
+</div>
+
+<div class="proof" id="org342c35c">
+<p>
+Let <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em"> be well ordered. Define <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> on <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em"> by recursion:
+<img class="m" src="m/8f91a36af91fdf4d5d27aa210fb79a193123d996.svg" alt="\(f(x) = \setst{f(y)}{y &lt; x}\)" style="height:1.096em;vertical-align:-0.274em">, the value being the image of the
+previously defined part. Each <img class="m" src="m/e5ceae42d20882b9a191c5a7061083f903b09df0.svg" alt="\(f(x)\)" style="height:1.096em;vertical-align:-0.274em"> is an ordinal by induction on
+<img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">: its elements are ordinals <img class="m" src="m/8a44ca3642459208f543e43fa12d38e3a766c105.svg" alt="\(f(y)\)" style="height:1.096em;vertical-align:-0.274em">, it is transitive because
+<img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is order preserving on <img class="m" src="m/0fa23ac8df3f63083f08363ef1d0ff6c7c752b00.svg" alt="\(W_{&lt;x}\)" style="height:0.971em;vertical-align:-0.223em">, and it is well ordered since
+<img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is injective and order preserving there &#x2013; <img class="m" src="m/d49e8379f7e90b35a272c49e47fcf6172eb01a89.svg" alt="\(y &lt; y'\)" style="height:1.037em;vertical-align:-0.218em"> gives
+<img class="m" src="m/f3aa6dc5bbf1afae07ff9174cd8b91e374a04a6e.svg" alt="\(f(y) \in f(y')\)" style="height:1.098em;vertical-align:-0.274em">, and <img class="m" src="m/5b74aebe73a56f6a26e37cd32b79e89bc0b7cdfa.svg" alt="\(f(y) = f(y')\)" style="height:1.098em;vertical-align:-0.274em"> with <img class="m" src="m/a9cd2356a5eb4cc0a9ee2e2b74545c9c7db8d937.svg" alt="\(y&lt;y'\)" style="height:1.037em;vertical-align:-0.218em"> would put
+<img class="m" src="m/8a44ca3642459208f543e43fa12d38e3a766c105.svg" alt="\(f(y)\)" style="height:1.096em;vertical-align:-0.274em"> in itself.
+</p>
+
+<p>
+So <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is an order isomorphism of <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em"> onto its image, which is a
+transitive set of ordinals, hence an ordinal. Uniqueness: an order
+isomorphism between ordinals is the identity, since a least point of
+disagreement would have to be sent to the set of images of its
+predecessors, that is to itself.
+</p>
+
+</div>
+
+<div class="corollary" id="orga049786">
+<p>
+There is no set containing every ordinal.
+</p>
+
+</div>
+
+<div class="proof" id="org5652779">
+<p>
+Such a set would have as a subset the class of all ordinals, which is
+transitive and well ordered by <img class="m" src="m/0a1347c61150c8bc05dac856228a8d74c539213f.svg" alt="\(\in\)" style="height:0.634em;vertical-align:-0.044em">, hence an ordinal <img class="m" src="m/b41edcfbc96f3fa34e8d58b21086b5659a2f0420.svg" alt="\(\Omega\)" style="height:0.749em;vertical-align:-0.000em">;
+then <img class="m" src="m/1776dafa298886a2bbfe86a6ebaeac7fa4e4b43e.svg" alt="\(\Omega \in \Omega\)" style="height:0.792em;vertical-align:-0.040em">, contradicting the strictness of the order.
+</p>
+
+</div>
+
+<div class="remark" id="orgf0b208a">
+<p>
+The corollary is Burali-Forti's paradox, and in the modern axioms it is
+not a paradox but a theorem: the ordinals form a proper class. Its
+practical content is that a construction indexed by the ordinals must
+stop &#x2013; if it produced a new element at every stage it would inject the
+ordinals into a set &#x2013; which is the standard argument for closing off a
+transfinite process, Hartogs' theorem being the sharp form of it.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html"><span>← previous</span>Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a><a rel="next" href="set-theory.html"><span>next →</span>Set theory</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/foundations--set-theory.pdf" title="PDF manual">Set Theory</a> · <a class="pdf" href="pdf/foundations.pdf" title="PDF manual">Foundations</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

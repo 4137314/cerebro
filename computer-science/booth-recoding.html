@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radix-4 Booth recoding · Computer Science</title>
+<meta name="description" content="Rewriting the two's-complement multiplier b in digits d_j\in\{-2,-1,0,1,2\}, each computed from an overlapping triple of bits b_{2j+1}b_{2j}b_{2j-1}, halves the number of partial products; every partial product is 0, \pm a or \pm2a — a shift and an inversion — and signed operands are handled direct…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/booth-recoding.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Radix-4 Booth recoding · Computer Science">
+<meta property="og:description" content="Rewriting the two's-complement multiplier b in digits d_j\in\{-2,-1,0,1,2\}, each computed from an overlapping triple of bits b_{2j+1}b_{2j}b_{2j-1}, halves the number of partial products; every partial product is 0, \pm a or \pm2a — a shift and an inversion — and signed operands are handled direct…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/booth-recoding.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--arithmetic">Arithmetic</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Hardware · Arithmetic</p>
+<h1>Radix-4 Booth recoding</h1>
+<p class="summary">Rewriting the two's-complement multiplier <img class="m" src="m/9a9e478ff943a309ecb17df71ac414cc09c1be96.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em"> in digits <img class="m" src="m/6351c6b5420a7b4c5ed0e447ab49d8e65fc67319.svg" alt="\(d_j\in\{-2,-1,0,1,2\}\)" style="height:1.135em;vertical-align:-0.318em">, each computed from an overlapping triple of bits <img class="m" src="m/33898a24f2263272c3e265b2fc450efcae18798c.svg" alt="\(b_{2j+1}b_{2j}b_{2j-1}\)" style="height:1.075em;vertical-align:-0.312em">, halves the number of partial products; every partial product is <img class="m" src="m/b97f4b6a6e93977a255f329ef6b532015a8c9b8a.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">, <img class="m" src="m/0c15712800f7e95524c5ff23939cee031ee03873.svg" alt="\(\pm a\)" style="height:0.731em;vertical-align:-0.088em"> or <img class="m" src="m/a7910a63c425575278a656a8794fb1e2bfd13248.svg" alt="\(\pm2a\)" style="height:0.798em;vertical-align:-0.088em"> — a shift and an inversion — and signed operands are handled directly.</p>
+<p class="rel"><span>needs</span> <a href="array-multiplier.html">Multipliers</a></p>
+<p class="rel"><span>see also</span> <a href="carry-save-adder.html">Carry-save adders and adder trees</a>, <a href="serial-arithmetic.html">Bit-serial arithmetic</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="ripple-carry-adder.html">Full adder and ripple-carry adder</a></li><li><a href="carry-save-adder.html">Carry-save adders and adder trees</a></li><li><a href="array-multiplier.html">Multipliers</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgf41ea6b" class="outline-2">
+<h2 id="orgf41ea6b">Construction</h2>
+<div class="outline-text-2" id="text-orgf41ea6b">
+<p>
+<div class="mb"><img class="m" src="m/6b3dc86a373f57070e17627c0225290f0f7d2a74.svg" alt="\[ b=\sum_{j=0}^{n/2-1}d_j\,4^j,\qquad d_j=-2b_{2j+1}+b_{2j}+b_{2j-1},\quad b_{-1}=0. \]" style="width:28.021em"></div>
+</p>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">b(2j+1) b(2j) b(2j-1)</th>
+<th scope="col" class="org-right">d(j)</th>
+<th scope="col" class="org-left">partial product</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">0 0 0</td>
+<td class="org-right">0</td>
+<td class="org-left">0</td>
+</tr>
+
+<tr>
+<td class="org-left">0 0 1</td>
+<td class="org-right">+1</td>
+<td class="org-left">+a</td>
+</tr>
+
+<tr>
+<td class="org-left">0 1 0</td>
+<td class="org-right">+1</td>
+<td class="org-left">+a</td>
+</tr>
+
+<tr>
+<td class="org-left">0 1 1</td>
+<td class="org-right">+2</td>
+<td class="org-left">+2a (shift)</td>
+</tr>
+
+<tr>
+<td class="org-left">1 0 0</td>
+<td class="org-right">−2</td>
+<td class="org-left">−2a</td>
+</tr>
+
+<tr>
+<td class="org-left">1 0 1</td>
+<td class="org-right">−1</td>
+<td class="org-left">−a</td>
+</tr>
+
+<tr>
+<td class="org-left">1 1 0</td>
+<td class="org-right">−1</td>
+<td class="org-left">−a</td>
+</tr>
+
+<tr>
+<td class="org-left">1 1 1</td>
+<td class="org-right">0</td>
+<td class="org-left">0</td>
+</tr>
+</tbody>
+</table>
+<p>
+Negation is inversion plus a 1 added at the row's least significant position (folded into the <a href="carry-save-adder.html">adder tree</a>).
+</p>
+</div>
+</div>
+<div id="outline-container-org968257f" class="outline-2">
+<h2 id="org968257f">Derivation</h2>
+<div class="outline-text-2" id="text-org968257f">
+<p>
+<a href="ripple-carry-adder.html">Two's complement</a>: <img class="m" src="m/80dcf3aaa39f454ba4a83572276582b3ee2a096e.svg" alt="\(b=-b_{n-1}2^{n-1}+\sum_{i&lt;n-1}b_i2^i\)" style="height:1.325em;vertical-align:-0.424em">. Since <img class="m" src="m/b6f11af17590ff2eb20fcc3a526b3d1a4579d933.svg" alt="\(2^i=2^{i+1}-2^i\)" style="height:0.997em;vertical-align:-0.090em">, each bit can be written as <img class="m" src="m/7339e9bf957d5d9ff1627948aebc9fea13d4cdb1.svg" alt="\(b_i=2b_i-b_i\)" style="height:0.925em;vertical-align:-0.167em">; regrouping pairs of positions gives <img class="m" src="m/c05c78c53b4ab98128ba719b6d18b01147ae242a.svg" alt="\(\sum_j(b_{2j-1}+b_{2j}-2b_{2j+1})4^j\)" style="height:1.383em;vertical-align:-0.484em">, which telescopes exactly to the two's-complement value, sign bit included.
+</p>
+</div>
+</div>
+<div id="outline-container-orgede9f48" class="outline-2">
+<h2 id="orgede9f48">Example</h2>
+<div class="outline-text-2" id="text-orgede9f48">
+<p>
+<img class="m" src="m/3fc10c4a4b4e7cfbd4305d6ea73eb4d731f06931.svg" alt="\(b=0111_2=7\)" style="height:0.925em;vertical-align:-0.167em">, bits with <img class="m" src="m/55b04ff030db874bcbfb53cfdc3fc5abf907e305.svg" alt="\(b_{-1}=0\)" style="height:1.017em;vertical-align:-0.254em">: triple <img class="m" src="m/c8de3c6e984735aaf918c382b0d21e0a348dbde7.svg" alt="\((b_1b_0b_{-1})=110\Rightarrow d_0=-1\)" style="height:1.096em;vertical-align:-0.274em">; <img class="m" src="m/cf902ae4512dbc3cbf0de2ab20174d74e7d422a9.svg" alt="\((b_3b_2b_1)=011\Rightarrow d_1=+2\)" style="height:1.096em;vertical-align:-0.274em">. Check: <img class="m" src="m/d64233fcf4b58be7bb46951d30a4dec8b28681a8.svg" alt="\(-1+2\cdot4=7\)" style="height:0.798em;vertical-align:-0.088em">. So <img class="m" src="m/4b2f9e0d7dae24f4bf64284a6db78514a222d893.svg" alt="\(a\cdot7=8a-a\)" style="height:0.798em;vertical-align:-0.088em">: two partial products instead of three non-zero ones.
+</p>
+</div>
+</div>
+<div id="outline-container-org82a1148" class="outline-2">
+<h2 id="org82a1148">Intuition</h2>
+<div class="outline-text-2" id="text-org82a1148">
+<p>
+Long runs of ones become "subtract at the start, add at the end", and looking at bits two at a time halves the rows to add.
+</p>
+</div>
+</div>
+<div id="outline-container-orge4d9370" class="outline-2">
+<h2 id="orge4d9370">Pitfall</h2>
+<div class="outline-text-2" id="text-orge4d9370">
+<p>
+<a href="array-multiplier.html">Partial products</a> are signed: each row must be sign-extended to the full width (or use the sign-extension-prevention trick with constant ones), otherwise the high half of the product is wrong.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="magnitude-comparator.html"><span>← previous</span>Iterative magnitude comparator</a><a rel="next" href="datapath-control.html"><span>next →</span>Datapath and control unit</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--arithmetic.pdf" title="PDF manual">Arithmetic</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C++ templates · Computer Science</title>
+<meta name="description" content="template &lt;typename T&gt; introduces a function or class written for an unknown type; each use with concrete arguments instantiates a separate copy at compile time, arguments of function templates are deduced from the call, and specialisations replace the generic code for chosen arguments.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/cpp-templates.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="C++ templates · Computer Science">
+<meta property="og:description" content="template &lt;typename T&gt; introduces a function or class written for an unknown type; each use with concrete arguments instantiates a separate copy at compile time, arguments of function templates are deduced from the call, and specialisations replace the generic code for chosen arguments.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/cpp-templates.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--generic-programming">Generic Programming</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Programming · Generic Programming</p>
+<h1>C++ templates</h1>
+<p class="summary"><code>template &lt;typename T&gt;</code> introduces a function or class written for an unknown type; each use with concrete arguments instantiates a separate copy at compile time, arguments of function templates are deduced from the call, and specialisations replace the generic code for chosen arguments.</p>
+<p class="rel"><span>needs</span> <a href="generic-programming.html">Generic programming</a></p>
+<p class="rel"><span>unlocks</span> <a href="perfect-forwarding.html">Forwarding references and perfect forwarding</a>, <a href="bitset.html">std::bitset</a>, <a href="stl-containers.html">STL containers</a>, <a href="template-metaprogramming.html">Template metaprogramming</a>, <a href="template-specialization.html">Template specialization, SFINAE and concepts</a></p>
+<p class="rel"><span>see also</span> <a href="stl-containers.html">STL containers</a>, <a href="template-metaprogramming.html">Template metaprogramming</a>, <a href="bitset.html">std::bitset</a>, <a href="template-specialization.html">Template specialization, SFINAE and concepts</a>, <a href="perfect-forwarding.html">Forwarding references and perfect forwarding</a></p>
+<p class="rel"><span>mentioned in</span> <a href="uml-generalization.html">Generalization (is-a)</a>, <a href="vhdl-structural.html">Structural VHDL: components, port maps, generics</a></p>
+<details class="path"><summary>Learning path: 6 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li><li><a href="generic-programming.html">Generic programming</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org7235f0b" class="outline-2">
+<h2 id="org7235f0b">Construction</h2>
+<div class="outline-text-2" id="text-org7235f0b">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="k">template</span> &lt;<span class="k">typename</span> <span class="t">T</span>&gt;
+<span class="t">T</span> <span class="f">max</span>(<span class="t">T</span> <span class="v">a</span>, <span class="t">T</span> <span class="v">b</span>) { <span class="k">return</span> a &gt; b ? a : b; }
+
+<span class="k">template</span> &lt;<span class="k">typename</span> <span class="t">F</span>, <span class="k">typename</span> <span class="t">S</span>&gt;
+<span class="k">class</span> <span class="t">Pair</span> {
+  <span class="t">F</span> <span class="v">first</span>; <span class="t">S</span> <span class="v">second</span>;
+<span class="k">public</span>:
+  <span class="f">Pair</span>(<span class="k">const</span> <span class="t">F</span>&amp; <span class="v">f</span>, <span class="k">const</span> <span class="t">S</span>&amp; <span class="v">s</span>) : first(f), second(s) {}
+  <span class="t">F</span> <span class="f">get_first</span>() <span class="k">const</span> { <span class="k">return</span> first; }
+  <span class="t">S</span> <span class="f">get_second</span>() <span class="k">const</span> { <span class="k">return</span> second; }
+};
+<span class="t">Pair</span>&lt;<span class="n">std</span>::string, <span class="t">int</span>&gt; <span class="v">p</span>(<span class="s">"Enrico"</span>, 15);</code></pre></figure>
+<ul class="org-ul">
+<li><b>Instantiation</b>: <code>max(2, 3)</code> creates <code>max&lt;int&gt;</code>; <code>Pair&lt;string,int&gt;</code> creates a class. Uninstantiated members are not even compiled (laziness).</li>
+<li><b>Deduction</b>: the compiler infers <code>T</code> from the arguments; <code>max(3, 2.3)</code> fails because <code>T</code> cannot be both <code>int</code> and <code>double</code>; <code>max&lt;double&gt;(3, 2.3)</code> or a second parameter <code>template &lt;class T1, class T2&gt;</code> fixes it.</li>
+<li><b>Specialisation</b>: <code>template &lt;&gt; struct factorial&lt;0&gt; { ... };</code> gives a separate definition for one argument; the library specialises <code>vector&lt;bool&gt;</code>.</li>
+<li><b>Non-type parameters</b>: <code>template &lt;unsigned N&gt; class bitset;</code>, values known at compile time.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3de1395" class="outline-2">
+<h2 id="org3de1395">Where to put the code</h2>
+<div class="outline-text-2" id="text-org3de1395">
+<p>
+A template is a recipe, not code: its full definition must be visible where it is instantiated, so templates live entirely in headers (including the definitions of the member functions).
+</p>
+</div>
+</div>
+<div id="outline-container-org70be18e" class="outline-2">
+<h2 id="org70be18e">Intuition</h2>
+<div class="outline-text-2" id="text-org70be18e">
+<p>
+A template is a macro with types and rules: the compiler stamps out a fresh, fully typed copy for every set of arguments you use.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfa939df" class="outline-2">
+<h2 id="orgfa939df">Pitfall</h2>
+<div class="outline-text-2" id="text-orgfa939df">
+<p>
+Errors appear at instantiation, deep in the template, with long messages; C++20 concepts state the requirements up front and give short errors.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="generic-programming.html"><span>← previous</span>Generic programming</a><a rel="next" href="stl-containers.html"><span>next →</span>STL containers</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--generic-programming.pdf" title="PDF manual">Generic Programming</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

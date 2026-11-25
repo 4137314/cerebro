@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wrapper classes and autoboxing · Computer Science</title>
+<meta name="description" content="Every primitive type has an immutable wrapper class (Integer, Double, Boolean, …) so that numbers can live where objects are required, such as in collections; since Java 5 the compiler converts between them automatically (autoboxing and unboxing).">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/wrapper-autoboxing.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Wrapper classes and autoboxing · Computer Science">
+<meta property="og:description" content="Every primitive type has an immutable wrapper class (Integer, Double, Boolean, …) so that numbers can live where objects are required, such as in collections; since Java 5 the compiler converts between them automatically (autoboxing and unboxing).">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/wrapper-autoboxing.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--java">Java</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Java</p>
+<h1>Wrapper classes and autoboxing</h1>
+<p class="summary">Every primitive type has an immutable wrapper class (<code>Integer</code>, <code>Double</code>, <code>Boolean</code>, …) so that numbers can live where objects are required, such as in collections; since Java 5 the compiler converts between them automatically (autoboxing and unboxing).</p>
+<p class="rel"><span>needs</span> <a href="java-references.html">Objects, references and garbage collection in Java</a></p>
+<p class="rel"><span>see also</span> <a href="java-generics.html">Java generics and type erasure</a>, <a href="java-collections.html">The Java Collections Framework</a>, <a href="implicit-conversion.html">Converting constructors and explicit</a>, <a href="java-enum.html">Enumerated types</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="java-platform.html">The Java platform</a></li><li><a href="java-references.html">Objects, references and garbage collection in Java</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgbddf18d" class="outline-2">
+<h2 id="orgbddf18d">Definition</h2>
+<div class="outline-text-2" id="text-orgbddf18d">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">primitive</th>
+<th scope="col" class="org-left">wrapper</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">int</td>
+<td class="org-left">Integer</td>
+</tr>
+
+<tr>
+<td class="org-left">long</td>
+<td class="org-left">Long</td>
+</tr>
+
+<tr>
+<td class="org-left">double</td>
+<td class="org-left">Double</td>
+</tr>
+
+<tr>
+<td class="org-left">char</td>
+<td class="org-left">Character</td>
+</tr>
+
+<tr>
+<td class="org-left">boolean</td>
+<td class="org-left">Boolean</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Wrappers are <a href="java-immutability.html">immutable objects</a> with utility methods (<code>Integer.parseInt</code>, <code>Integer.MAX_VALUE</code>, <code>Double.compare</code>). The compiler inserts the conversions: <code>Integer x = 5;</code> becomes <code>Integer.valueOf(5)</code> (boxing), <code>int y = x;</code> becomes <code>x.intValue()</code> (unboxing).
+</p>
+</div>
+</div>
+<div id="outline-container-orgd1c1862" class="outline-2">
+<h2 id="orgd1c1862">Example</h2>
+<div class="outline-text-2" id="text-orgd1c1862">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="t">List</span>&lt;<span class="t">Integer</span>&gt; <span class="v">l</span> = <span class="k">new</span> <span class="t">ArrayList</span>&lt;&gt;();
+l.add(3);                 <span class="c">// boxing
+</span><span class="t">int</span> <span class="v">s</span> = 0;
+<span class="k">for</span> (<span class="t">int</span> <span class="v">v</span> : l) s += v;   <span class="c">// unboxing</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org57a4e92" class="outline-2">
+<h2 id="org57a4e92">Intuition</h2>
+<div class="outline-text-2" id="text-org57a4e92">
+<p>
+Generics and collections only speak objects; wrappers are the envelopes numbers travel in, and autoboxing seals and opens them for you.
+</p>
+</div>
+</div>
+<div id="outline-container-org89568ba" class="outline-2">
+<h2 id="org89568ba">Pitfall</h2>
+<div class="outline-text-2" id="text-org89568ba">
+<p>
+<code>==</code> compares references: <code>Integer a = 1000, b = 1000; a =</code> b= is false (only values in <img class="m" src="m/b8125f85d2a5ff035d777dc28bdf31190e07f2e6.svg" alt="\([-128,127]\)" style="height:1.096em;vertical-align:-0.274em"> are cached), and unboxing a <code>null</code> <code>Integer</code> <a href="java-exceptions.html">throws</a> <code>NullPointerException</code>.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="java-dynamic-binding.html"><span>← previous</span>The Java method selection rule</a><a rel="next" href="threads-data-race.html"><span>next →</span>Threads and data races</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--java.pdf" title="PDF manual">Java</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

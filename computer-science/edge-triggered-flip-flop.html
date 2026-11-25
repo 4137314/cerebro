@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edge-triggered flip-flops: master–slave · Computer Science</title>
+<meta name="description" content="A latch in a feedback loop is transparent for the whole active clock phase, so the state can change several times per cycle (the circuit oscillates, at a rate set by its delays); two latches clocked in opposition — master open while the clock is high, slave open while it is low — are never transpar…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/edge-triggered-flip-flop.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Edge-triggered flip-flops: master–slave · Computer Science">
+<meta property="og:description" content="A latch in a feedback loop is transparent for the whole active clock phase, so the state can change several times per cycle (the circuit oscillates, at a rate set by its delays); two latches clocked in opposition — master open while the clock is high, slave open while it is low — are never transpar…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/edge-triggered-flip-flop.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--sequential">Sequential</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Hardware · Sequential</p>
+<h1>Edge-triggered flip-flops: master–slave</h1>
+<p class="summary">A latch in a feedback loop is transparent for the whole active clock phase, so the state can change several times per cycle (the circuit oscillates, at a rate set by its delays); two latches clocked in opposition — master open while the clock is high, slave open while it is low — are never transparent end to end, so the output changes once per clock edge and takes the value <img class="m" src="m/9bc9fac98a58f67aa2a9c76ad1bb70f716743fac.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> had just before that edge.</p>
+<p class="rel"><span>needs</span> <a href="sr-latch.html">SR latch and D latch</a></p>
+<p class="rel"><span>unlocks</span> <a href="fsm-analysis.html">Analysis of synchronous sequential circuits</a>, <a href="flip-flop-types.html">D, T, JK and SR flip-flops: characteristic and excitation tables</a>, <a href="registers-shift-registers.html">Registers and shift registers</a>, <a href="sequential-logic.html">Flip-flops and registers in VHDL</a></p>
+<p class="rel"><span>see also</span> <a href="flip-flop-types.html">D, T, JK and SR flip-flops: characteristic and excitation tables</a>, <a href="setup-hold-time.html">Setup and hold constraints</a>, <a href="metastability.html">Metastability and synchronizers</a>, <a href="sequential-logic.html">Flip-flops and registers in VHDL</a>, <a href="registers-shift-registers.html">Registers and shift registers</a></p>
+<p class="rel"><span>mentioned in</span> <a href="logic-hazards.html">Timing diagrams and static hazards</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li><li><a href="sr-latch.html">SR latch and D latch</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org20426e9" class="outline-2">
+<h2 id="org20426e9">Construction</h2>
+<div class="outline-text-2" id="text-org20426e9">
+<p>
+Why a latch is not enough: in a synchronous loop (next-state logic → latch → next-state logic), while <img class="m" src="m/21b84aa0b26f8098b681177bd1291757d7146232.svg" alt="\(C=1\)" style="height:0.749em;vertical-align:-0.000em"> the latch is transparent; a fast enough logic delivers the new next state before <img class="m" src="m/52138c1336de78ec97ddf99f4365ef7a94e63f4d.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> falls and the state changes again. Example: <img class="m" src="m/95a7d8c5160c4944e016fe7d6ead11f2868af839.svg" alt="\(D=\bar Q\)" style="height:1.112em;vertical-align:-0.211em"> through a wire — with <img class="m" src="m/21b84aa0b26f8098b681177bd1291757d7146232.svg" alt="\(C=1\)" style="height:0.749em;vertical-align:-0.000em"> the latch oscillates, with <img class="m" src="m/71c7f4692b1a3c9af44a1c717b69ae73af48013b.svg" alt="\(C=0\)" style="height:0.749em;vertical-align:-0.000em"> it stops on an unpredictable value. Narrowing the active pulse below the minimum logic delay works on paper but needs very steep, short pulses on a heavily loaded clock net: big drivers, energy, electromagnetic noise.
+<b>Master–slave</b>: <img class="m" src="m/df6bd68bcde661ac73c8c609db0f49e5c9d9a059.svg" alt="\(D\to\)" style="height:0.749em;vertical-align:-0.000em"> master latch (enabled by <img class="m" src="m/52138c1336de78ec97ddf99f4365ef7a94e63f4d.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">) <img class="m" src="m/999220c0d67130b30a723fe8e2b80b01e04c2ebc.svg" alt="\(\to Q_M\to\)" style="height:0.962em;vertical-align:-0.212em"> slave latch (enabled by <img class="m" src="m/bc226f2b3ab1215e8814615964d3f430194a5edc.svg" alt="\(\bar C\)" style="height:0.899em;vertical-align:-0.000em">) <img class="m" src="m/9f87b8427529948b584ece82ea56a238ad179713.svg" alt="\(\to Q\)" style="height:0.962em;vertical-align:-0.212em">.
+</p>
+<ul class="org-ul">
+<li><img class="m" src="m/21b84aa0b26f8098b681177bd1291757d7146232.svg" alt="\(C=1\)" style="height:0.749em;vertical-align:-0.000em">: master transparent, <img class="m" src="m/0995030f34926ebee64f3722325ff354804b43bc.svg" alt="\(Q_M\)" style="height:0.962em;vertical-align:-0.212em"> follows <img class="m" src="m/9bc9fac98a58f67aa2a9c76ad1bb70f716743fac.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em">; slave closed, <img class="m" src="m/c9e87f8dd2ee4dc7ef26ee24f811110f661e9c84.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> still.</li>
+<li><img class="m" src="m/5c3d217db3db66bad8d92b1134535b0e340d9eca.svg" alt="\(C:1\to0\)" style="height:0.749em;vertical-align:-0.000em">: master closes on the current <img class="m" src="m/9bc9fac98a58f67aa2a9c76ad1bb70f716743fac.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em">; slave opens and copies <img class="m" src="m/0995030f34926ebee64f3722325ff354804b43bc.svg" alt="\(Q_M\)" style="height:0.962em;vertical-align:-0.212em"> to <img class="m" src="m/c9e87f8dd2ee4dc7ef26ee24f811110f661e9c84.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em">.</li>
+<li><img class="m" src="m/71c7f4692b1a3c9af44a1c717b69ae73af48013b.svg" alt="\(C=0\)" style="height:0.749em;vertical-align:-0.000em">: master closed, slave sees a constant input: nothing moves.</li>
+</ul>
+<p>
+There is never a transparent path from <img class="m" src="m/9bc9fac98a58f67aa2a9c76ad1bb70f716743fac.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> to <img class="m" src="m/c9e87f8dd2ee4dc7ef26ee24f811110f661e9c84.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em">. This one is <b>negative-edge triggered</b>; with the enables swapped it is <b>positive-edge triggered</b> (the usual <img class="m" src="m/ac5bd43d9d8050c96c9662265dde4771bd6b643c.svg" alt="\(\mathtt{rising\_edge}\)" style="height:0.913em;vertical-align:-0.247em"> register; drawn with a triangle on <img class="m" src="m/52138c1336de78ec97ddf99f4365ef7a94e63f4d.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">, a bubble for the falling edge).
+<b>Sampling semantics</b> (the important part): the value of <img class="m" src="m/9bc9fac98a58f67aa2a9c76ad1bb70f716743fac.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> just before the active edge is found on <img class="m" src="m/c9e87f8dd2ee4dc7ef26ee24f811110f661e9c84.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> just after it. Between edges <img class="m" src="m/9bc9fac98a58f67aa2a9c76ad1bb70f716743fac.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> may do anything — even glitch — provided it is stable in the <a href="setup-hold-time.html">setup/hold window</a> around the edge. Hence the next-state logic only has to settle within one clock period, and combinational <a href="logic-hazards.html">hazards</a> do not propagate.
+<b>Preset and clear</b>: asynchronous inputs (often active low, <img class="m" src="m/7973cf508eee2fb0eae27c69a2aba5032cc095c2.svg" alt="\(\bar S\)" style="height:0.899em;vertical-align:-0.000em">, <img class="m" src="m/cb1fef9f1b2e510d440c24ee0a2d191cb54b089e.svg" alt="\(\bar R\)" style="height:0.899em;vertical-align:-0.000em">) that force <img class="m" src="m/93e1419cfea5b8ce6fb48032cf08421865574fe7.svg" alt="\(Q=1\)" style="height:0.962em;vertical-align:-0.212em"> or <img class="m" src="m/274313cfcf49acb2d49e2749dbabc9533a76b414.svg" alt="\(Q=0\)" style="height:0.962em;vertical-align:-0.212em"> immediately, regardless of the clock — used to start from a known state at power-up.
+</p>
+</div>
+</div>
+<div id="outline-container-org7e2f627" class="outline-2">
+<h2 id="org7e2f627">Picture</h2>
+<div class="outline-text-2" id="text-org7e2f627">
+<figure class="fig"><img class="m" src="m/cbab9002030f5a9f1d7bfbd6878012e5e8a50e0c.svg" alt="figure" style="width:24.174em"><figcaption><span class="fl">Figure 1.</span> Timing of an edge-triggered D flip-flop: the output <img class="m" src="m/c9e87f8dd2ee4dc7ef26ee24f811110f661e9c84.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> copies the input <img class="m" src="m/9bc9fac98a58f67aa2a9c76ad1bb70f716743fac.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> only at the rising edges of the clock <img class="m" src="m/52138c1336de78ec97ddf99f4365ef7a94e63f4d.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em">.</figcaption></figure>
+<p>
+Positive-edge flip-flop: at edge 1 <img class="m" src="m/9bce51b0aed8605b266682ed2f1e145ca0e00edf.svg" alt="\(D=0\)" style="height:0.749em;vertical-align:-0.000em"> (the glitch after it is ignored), at edge 5 <img class="m" src="m/1eaa1e97fcf59a3f1c0fe133a99a2c3bf66f80c6.svg" alt="\(D=1\)" style="height:0.749em;vertical-align:-0.000em">, at edge 9 <img class="m" src="m/9bce51b0aed8605b266682ed2f1e145ca0e00edf.svg" alt="\(D=0\)" style="height:0.749em;vertical-align:-0.000em">; <img class="m" src="m/c9e87f8dd2ee4dc7ef26ee24f811110f661e9c84.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> changes only at edges.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd0a3b94" class="outline-2">
+<h2 id="orgd0a3b94">Example</h2>
+<div class="outline-text-2" id="text-orgd0a3b94">
+<p>
+Same <img class="m" src="m/9bc9fac98a58f67aa2a9c76ad1bb70f716743fac.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> waveform into a D <b>latch</b> (transparent while <img class="m" src="m/21b84aa0b26f8098b681177bd1291757d7146232.svg" alt="\(C=1\)" style="height:0.749em;vertical-align:-0.000em">): during the high phase 1–3 the glitch at 2–2.4 passes straight to <img class="m" src="m/c9e87f8dd2ee4dc7ef26ee24f811110f661e9c84.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em">; the flip-flop above ignores it. That is the practical difference between level and edge sensitivity.
+</p>
+</div>
+</div>
+<div id="outline-container-org672748f" class="outline-2">
+<h2 id="org672748f">Intuition</h2>
+<div class="outline-text-2" id="text-org672748f">
+<p>
+A pair of airlock doors: one is always shut, so nothing can run straight through; the data moves one chamber per clock half-period.
+</p>
+</div>
+</div>
+<div id="outline-container-orga404628" class="outline-2">
+<h2 id="orga404628">Pitfall</h2>
+<div class="outline-text-2" id="text-orga404628">
+<p>
+"Edge-triggered" does not mean "infinitely fast": violating setup or hold makes the internal loop resolve late and possibly at random (<a href="metastability.html">metastability</a>). And the asynchronous clear acts <b>at once</b>, not at the next edge — a common timing-diagram mistake.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="sr-latch.html"><span>← previous</span>SR latch and D latch</a><a rel="next" href="fsm-analysis.html"><span>next →</span>Analysis of synchronous sequential circuits</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--sequential.pdf" title="PDF manual">Sequential</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

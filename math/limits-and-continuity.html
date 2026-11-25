@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Limits and continuity · Mathematics</title>
+<meta name="description" content="Limits and continuity">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/limits-and-continuity.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Limits and continuity · Mathematics">
+<meta property="og:description" content="Limits and continuity">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/limits-and-continuity.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Real Analysis</p>
+<h1>Limits and continuity</h1>
+<p class="summary">Limits and continuity</p>
+<p class="rel"><span>needs</span> <a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></p>
+<p class="rel"><span>unlocks</span> <a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a>, <a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a>, <a href="the-algebra-of-continuous-functions-and-composition.html">The algebra of continuous functions and composition</a>, <a href="the-derivative.html">The derivative</a>, <a href="the-intermediate-value-theorem.html">The intermediate value theorem</a>, <a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a>, <a href="the-weierstrass-approximation-theorem.html">The Weierstrass approximation theorem</a>, <a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a>, <a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org6d825fc" class="outline-2">
+<h2 id="org6d825fc">Continuity at a point</h2>
+<div class="outline-text-2" id="text-org6d825fc">
+<div class="definition" id="orgc276afa">
+<p>
+Let <img class="m" src="m/5114746bde5c2fa27cbab6ded033f865e783667e.svg" alt="\(f\colon D \to \R\)" style="height:0.974em;vertical-align:-0.214em"> with <img class="m" src="m/c5f23dbcba971a9703b43b10b3c576167fa55567.svg" alt="\(D \subseteq \R\)" style="height:0.904em;vertical-align:-0.145em"> and let <img class="m" src="m/3ee6e178a0db237ec68c075dd4e92356c21acc72.svg" alt="\(x_0 \in D\)" style="height:0.913em;vertical-align:-0.164em">. Then
+<img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is <i>continuous</i> at <img class="m" src="m/31807f73b2f6d21b04f9e50f949983a363efc963.svg" alt="\(x_0\)" style="height:0.636em;vertical-align:-0.165em"> if for every <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em"> there is a
+<img class="m" src="m/2834db4da57323bf6f47d0a640028cc90f572412.svg" alt="\(\delta &gt; 0\)" style="height:0.804em;vertical-align:-0.040em"> such that <img class="m" src="m/d62feb61b8ae2df29e2366b1e7599dbc30affcb8.svg" alt="\(\abs{f(x) - f(x_0)} &lt; \eps\)" style="height:1.096em;vertical-align:-0.274em"> whenever <img class="m" src="m/ee3f11d646a6e332199b0bf4674c6135b2566e0d.svg" alt="\(x \in D\)" style="height:0.792em;vertical-align:-0.040em">
+and <img class="m" src="m/7fe603cabbbdfcffd09445f9cbe896d8bfa3862c.svg" alt="\(\abs{x - x_0} &lt; \delta\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orga024b1d">
+<p>
+If <img class="m" src="m/94818c986da11feab15557efbafcc8a8b30f10f1.svg" alt="\(f, g \colon D \to \R\)" style="height:0.974em;vertical-align:-0.214em"> are continuous at <img class="m" src="m/31807f73b2f6d21b04f9e50f949983a363efc963.svg" alt="\(x_0\)" style="height:0.636em;vertical-align:-0.165em">, then so is <img class="m" src="m/cccca9f583cec6a35dc027039a39c5e74f52f78b.svg" alt="\(f + g\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgc8d30af">
+<p>
+Fix <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em">. By continuity of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> at <img class="m" src="m/31807f73b2f6d21b04f9e50f949983a363efc963.svg" alt="\(x_0\)" style="height:0.636em;vertical-align:-0.165em"> there are
+<img class="m" src="m/c0c5971c8c647607c2f9968c0b523cf040e76148.svg" alt="\(\delta_1, \delta_2 &gt; 0\)" style="height:0.974em;vertical-align:-0.214em"> with <img class="m" src="m/37067df8259642c7e2c56ddff0113cf8802ebec5.svg" alt="\(\abs{f(x) - f(x_0)} &lt; \eps/2\)" style="height:1.096em;vertical-align:-0.274em"> for
+<img class="m" src="m/02a4208b2a6efa0469a207a31748252d800b3fb9.svg" alt="\(\abs{x - x_0} &lt; \delta_1\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/7e7825ebb5e6dbb9e15df8fe66eb9f6b38c7865f.svg" alt="\(\abs{g(x) - g(x_0)} &lt; \eps/2\)" style="height:1.096em;vertical-align:-0.274em"> for
+<img class="m" src="m/044a7507dae300372f765997119dbed3205b96ee.svg" alt="\(\abs{x - x_0} &lt; \delta_2\)" style="height:1.096em;vertical-align:-0.274em">. Put <img class="m" src="m/b9b2318ce327228eb87fe161cafb46d00742ab83.svg" alt="\(\delta = \min(\delta_1, \delta_2)\)" style="height:1.096em;vertical-align:-0.274em">.
+Then for <img class="m" src="m/7fe603cabbbdfcffd09445f9cbe896d8bfa3862c.svg" alt="\(\abs{x - x_0} &lt; \delta\)" style="height:1.096em;vertical-align:-0.274em">,
+<div class="mb"><img class="m" src="m/e119df06394a73be29a8c65f17bc73aa8901adff.svg" alt="\[\abs{(f+g)(x) - (f+g)(x_0)} \leq \abs{f(x) - f(x_0)} + \abs{g(x) - g(x_0)} &lt; \eps,\]" style="width:30.519em"></div>
+so <img class="m" src="m/cccca9f583cec6a35dc027039a39c5e74f52f78b.svg" alt="\(f + g\)" style="height:0.974em;vertical-align:-0.214em"> is continuous at <img class="m" src="m/31807f73b2f6d21b04f9e50f949983a363efc963.svg" alt="\(x_0\)" style="height:0.636em;vertical-align:-0.165em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org9872d45">
+<p>
+The function <img class="m" src="m/00a4a852796563bd86ec1a2f478cddb9c787a895.svg" alt="\(x \mapsto \abs{x}\)" style="height:1.096em;vertical-align:-0.274em"> is continuous at every point of
+<img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em">, and <img class="m" src="m/de4b7497712791e7fe220f7939a5deace90ace44.svg" alt="\(\delta = \eps\)" style="height:0.761em;vertical-align:-0.000em"> suffices at every point.
+</p>
+
+</div>
+
+<div class="proof" id="orgbafca78">
+<p>
+Let <img class="m" src="m/a1c799ede58cf4b0c86740bb8ff4b509a5cf45fd.svg" alt="\(x_{0} \in \R\)" style="height:0.919em;vertical-align:-0.165em"> and <img class="m" src="m/1b263707166ea7067daded3c46546b801c50e2ea.svg" alt="\(\eps &gt; 0\)" style="height:0.749em;vertical-align:-0.045em">, and take <img class="m" src="m/de4b7497712791e7fe220f7939a5deace90ace44.svg" alt="\(\delta = \eps\)" style="height:0.761em;vertical-align:-0.000em">. For
+<img class="m" src="m/f5d6d947168af415db2965d57ced214e16bc2ad8.svg" alt="\(\abs{x - x_{0}} &lt; \delta\)" style="height:1.096em;vertical-align:-0.274em"> the reverse triangle inequality gives
+<img class="m" src="m/535bfa13936f030c1fbade605582e9c6dd3f84e8.svg" alt="\(\bigl| \abs{x} - \abs{x_{0}} \bigr| \le \abs{x - x_{0}} &lt; \eps\)" style="height:1.315em;vertical-align:-0.381em">.
+</p>
+
+</div>
+
+<div class="remark" id="org99c14ab">
+<p>
+Continuity is a local property: it is defined point by point, and a
+function can be continuous at some points of its domain and not others.
+The proposition above is the case where the local statement happens to
+hold uniformly &#x2013; <img class="m" src="m/ae9908b1dd9140d114827a466a957908d1672568.svg" alt="\(\delta\)" style="height:0.761em;vertical-align:-0.000em"> does not depend on <img class="m" src="m/4f8246e7705a9c0df96e9d12bf2c596179c4d261.svg" alt="\(x_{0}\)" style="height:0.636em;vertical-align:-0.165em"> &#x2013; which is
+the distinction uniform continuity is about.
+</p>
+
+</div>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-absolute-value-and-the-triangle-inequality.html"><span>← previous</span>The absolute value and the triangle inequality</a><a rel="next" href="continuous-functions-on-a-compact-interval.html"><span>next →</span>Continuous functions on a compact interval</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

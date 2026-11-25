@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Existence and uniqueness for ordinary differential equations · Mathematics</title>
+<meta name="description" content="An initial value problem is a differential statement, and differential statements are hard to iterate. The move that makes the whole theory work is to turn it into an integral equation, which says the same thing and is a fixed-point equation for an operator on a space of functions. Existence and un…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/existence-and-uniqueness-for-ordinary-differential-equations.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Existence and uniqueness for ordinary differential equations · Mathematics">
+<meta property="og:description" content="An initial value problem is a differential statement, and differential statements are hard to iterate. The move that makes the whole theory work is to turn it into an integral equation, which says the same thing and is a fixed-point equation for an operator on a space of functions. Existence and un…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/existence-and-uniqueness-for-ordinary-differential-equations.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--ordinary-differential-equations">Ordinary Differential Equations</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Analysis · Ordinary Differential Equations</p>
+<h1>Existence and uniqueness for ordinary differential equations</h1>
+<p class="summary">An initial value problem is a differential statement, and differential statements are hard to iterate. The move that makes the whole theory work is to turn it into an <b>integral</b> equation, which says the same thing and is a fixed-point equation for an operator on a space of functions. Existence and uniqueness are then not a new argument: they are the contraction principle, applied to that operator.</p>
+<p class="rel"><span>needs</span> <a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a>, <a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a>, <a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a>, <a href="the-contraction-mapping-principle.html">The contraction mapping principle</a>, <a href="the-derivative.html">The derivative</a>, <a href="the-fundamental-theorem-of-calculus.html">The fundamental theorem of calculus</a></p>
+<p class="rel"><span>unlocks</span> <a href="sturm-liouville-problems-and-eigenfunction-expansions.html">Sturm-Liouville problems and eigenfunction expansions</a>, <a href="first-order-equations-and-the-method-of-characteristics.html">First-order equations and the method of characteristics</a>, <a href="flows-equilibria-and-linearisation.html">Flows, equilibria and linearisation</a></p>
+<p class="rel"><span>mentioned in</span> <a href="mathematics.html">Mathematics</a>, <a href="analysis.html">Analysis</a>, <a href="dynamical-systems.html">Dynamical systems</a></p>
+<details class="path"><summary>Learning path: 21 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="the-contraction-mapping-principle.html">The contraction mapping principle</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="the-fundamental-theorem-of-calculus.html">The fundamental theorem of calculus</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li></ol></details>
+</header>
+<main class="note">
+<div class="proposition" id="org9491bc5">
+<p>
+Let <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> be continuous on a neighbourhood of <img class="m" src="m/5e86f40082c945f41974e8c3c20757e73e4adea8.svg" alt="\((t_{0}, y_{0})\)" style="height:1.096em;vertical-align:-0.274em">. A
+continuously differentiable <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> solves
+<img class="m" src="m/dbcc9b274f221f3203efda19bc88e1563c91956a.svg" alt="\(y'(t) = f(t, y(t))\)" style="height:1.098em;vertical-align:-0.274em">, <img class="m" src="m/5668daf768764aee5585da0cbd39f91d1df3708f.svg" alt="\(y(t_{0}) = y_{0}\)" style="height:1.096em;vertical-align:-0.274em"> on an interval <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> if and
+only if it is continuous and satisfies
+<div class="mb"><img class="m" src="m/11ec41cd85b3bf32dfebd638e7dad4036ee57143.svg" alt="\[ y(t) = y_{0} + \int_{t_{0}}^{t} f(s, y(s)) \dd s \qquad (t \in I). \]" style="width:18.543em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="org058e91e">
+<p>
+If <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> solves the differential problem, <img class="m" src="m/95ae1e03c6d172b89619e7dd4d1a2d9f0cf1a6c7.svg" alt="\(s \mapsto f(s, y(s))\)" style="height:1.096em;vertical-align:-0.274em"> is
+continuous and equals <img class="m" src="m/9e95c6fe600e0276719a9b9570305f2353366452.svg" alt="\(y'\)" style="height:1.037em;vertical-align:-0.218em">, so the second fundamental theorem gives
+the integral identity. Conversely, if <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> is continuous and satisfies
+the identity, the integrand is continuous, so the first fundamental
+theorem makes the right-hand side differentiable with derivative
+<img class="m" src="m/5305312e7ea383ff7b3e6610565cdb1b7cf05908.svg" alt="\(f(t, y(t))\)" style="height:1.096em;vertical-align:-0.274em">; evaluating at <img class="m" src="m/9bac5a24b83a17589f254a415232c4e2d7c20248.svg" alt="\(t_{0}\)" style="height:0.838em;vertical-align:-0.168em"> gives <img class="m" src="m/5668daf768764aee5585da0cbd39f91d1df3708f.svg" alt="\(y(t_{0}) = y_{0}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="definition" id="org9b6f065">
+<p>
+A function <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is <i>Lipschitz in the second variable</i> on a set <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">
+if there is <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> with
+<img class="m" src="m/323a5bff6164f07265f14a85e8fffd65e8e20a00.svg" alt="\(\abs{f(t, y) - f(t, z)} \le L \abs{y - z}\)" style="height:1.096em;vertical-align:-0.274em"> whenever <img class="m" src="m/b1423b4e344ad760efc6f0ffdeb01e0d2d7ce491.svg" alt="\((t,y)\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/07148fe78197ecb7b96361374467bba75a1af240.svg" alt="\((t,z)\)" style="height:1.096em;vertical-align:-0.274em"> lie in <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org6a9dd4f">
+<p>
+Let <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> be continuous on
+<img class="m" src="m/61a28997354cd2616cbce1445629ddaf1e3c21b6.svg" alt="\(R = \setst{(t,y)}{\abs{t - t_{0}} \le a, \ \abs{y - y_{0}} \le b}\)" style="height:1.096em;vertical-align:-0.274em">,
+bounded there by <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">, and Lipschitz in <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> with constant <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">.
+Then the initial value problem has exactly one solution on
+<img class="m" src="m/c18988837bc85a55bdf4ffe4845a5295a308f8d9.svg" alt="\(\abs{t - t_{0}} \le \alpha\)" style="height:1.096em;vertical-align:-0.274em"> for any
+<img class="m" src="m/4988966cd6461ec6c7a599bfe2d0fb064861230f.svg" alt="\(\alpha &lt; \min(a, b/M, 1/L)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org65e60ab">
+<p>
+Let <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> be the continuous functions on <img class="m" src="m/4fe8fcd3df8b82ffdd8576433768f64ef1872f08.svg" alt="\(I = [t_{0}-\alpha, t_{0}+\alpha]\)" style="height:1.096em;vertical-align:-0.274em">
+with <img class="m" src="m/0c6d5d117ea868158ece3a931bf9c808ec4b29d8.svg" alt="\(\abs{y(t) - y_{0}} \le b\)" style="height:1.096em;vertical-align:-0.274em">, under the distance
+<img class="m" src="m/0d7ecee4d5f237988581ebfc04c4c0f4a469a241.svg" alt="\(d(y,z) = \sup_{I} \abs{y - z}\)" style="height:1.096em;vertical-align:-0.274em">. It is complete: a uniformly Cauchy
+sequence converges uniformly by the uniform Cauchy criterion, the limit
+is continuous, and the bound <img class="m" src="m/3e06a019cd38c37676d8824dc4830b20c34cd23f.svg" alt="\(\abs{y - y_{0}} \le b\)" style="height:1.096em;vertical-align:-0.274em"> passes to the
+limit.
+</p>
+
+<p>
+Define <img class="m" src="m/643de9af3bbc5f4833677a6e645fbc10a254813c.svg" alt="\((Ty)(t) = y_{0} + \int_{t_{0}}^{t} f(s, y(s)) \dd s\)" style="height:1.583em;vertical-align:-0.507em">. It maps
+<img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> into <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">: the integrand is bounded by <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">, so
+<img class="m" src="m/a67f363d71ee1976a453e48cc421a75c695f2662.svg" alt="\(\abs{(Ty)(t) - y_{0}} \le M\alpha \le b\)" style="height:1.096em;vertical-align:-0.274em">. It is a contraction:
+<div class="mb"><img class="m" src="m/d133e391395fcd92bf4a76596d94ac9db37e81d3.svg" alt="\[ \abs{(Ty)(t) - (Tz)(t)} \le \Bigl| \int_{t_{0}}^{t} \abs{f(s,y(s)) - f(s,z(s))} \dd s \Bigr| \le L \alpha \, d(y,z), \]" style="width:30.938em"></div>
+and <img class="m" src="m/d41406b89f7a473dbda49ccd6ab0d6284ef5c338.svg" alt="\(L\alpha &lt; 1\)" style="height:0.792em;vertical-align:-0.040em">. The contraction principle gives a unique fixed
+point, which by the previous proposition is the unique solution.
+</p>
+
+</div>
+
+<div class="remark" id="org1e0d8d1">
+<p>
+Both hypotheses are doing visible work and neither can be dropped.
+Continuity alone gives existence but not uniqueness &#x2013; <img class="m" src="m/b10d8da512d7c55eff98294b6e3825800dd026aa.svg" alt="\(y' = \abs{y}^{1/2}\)" style="height:1.247em;vertical-align:-0.274em">
+with <img class="m" src="m/c0c4a38da7840393dc976f227ea7a5bc6b4b734f.svg" alt="\(y(0) = 0\)" style="height:1.096em;vertical-align:-0.274em"> is solved by <img class="m" src="m/4ab4a8b24c8ce9efb8c8b3a177a7765ef99250fa.svg" alt="\(y \equiv 0\)" style="height:0.919em;vertical-align:-0.211em"> and by <img class="m" src="m/89837dc77aa1aed777bc6a95a8b94c072f56fba5.svg" alt="\(y = t^{2}/4\)" style="height:1.166em;vertical-align:-0.268em">,
+and <img class="m" src="m/b4c24e431c5dc4512b3951b3d0b2c08cabc49761.svg" alt="\(\abs{y}^{1/2}\)" style="height:1.247em;vertical-align:-0.274em"> is not Lipschitz at the origin. And the interval
+is short by necessity, not by weakness of the proof: a solution can
+leave the rectangle in finite time, so a <b>local</b> statement is the only
+true one.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-fourier-transform-inversion-and-plancherel.html"><span>← previous</span>The Fourier transform, inversion and Plancherel</a><a rel="next" href="sturm-liouville-problems-and-eigenfunction-expansions.html"><span>next →</span>Sturm-Liouville problems and eigenfunction expansions</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--ordinary-differential-equations.pdf" title="PDF manual">Ordinary Differential Equations</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

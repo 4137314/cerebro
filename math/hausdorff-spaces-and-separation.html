@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hausdorff spaces and separation · Mathematics</title>
+<meta name="description" content="The axioms of a topological space allow a topology so coarse that two points cannot be told apart by open sets, and then a sequence can converge to everything at once. Nothing in the general theory forbids it; a separation axiom is the extra hypothesis under which the statements one expects – limit…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/hausdorff-spaces-and-separation.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Hausdorff spaces and separation · Mathematics">
+<meta property="og:description" content="The axioms of a topological space allow a topology so coarse that two points cannot be told apart by open sets, and then a sequence can converge to everything at once. Nothing in the general theory forbids it; a separation axiom is the extra hypothesis under which the statements one expects – limit…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/hausdorff-spaces-and-separation.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-topology">Topology</a> / <a rel="up" href="index.html#a-topology--general-topology">General Topology</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Topology · General Topology</p>
+<h1>Hausdorff spaces and separation</h1>
+<p class="summary">The axioms of a topological space allow a topology so coarse that two points cannot be told apart by open sets, and then a sequence can converge to everything at once. Nothing in the general theory forbids it; a separation axiom is the extra hypothesis under which the statements one expects &#x2013; limits are unique, compact sets are closed &#x2013; become true again.</p>
+<p class="rel"><span>needs</span> <a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a>, <a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a>, <a href="limit-of-a-sequence.html">Limit of a sequence</a>, <a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a>, <a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a>, <a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></p>
+<p class="rel"><span>unlocks</span> <a href="boolean-algebras-and-stones-representation-theorem.html">Boolean algebras and Stone's representation theorem</a>, <a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a>, <a href="local-compactness-and-the-one-point-compactification.html">Local compactness and the one-point compactification</a>, <a href="nets-and-convergence-in-topological-spaces.html">Nets and convergence in topological spaces</a>, <a href="regular-and-normal-spaces-and-urysohns-lemma.html">Regular and normal spaces, and Urysohn's lemma</a>, <a href="tychonoffs-theorem.html">Tychonoff's theorem</a>, <a href="smooth-manifolds-smooth-maps-and-the-tangent-space.html">Smooth manifolds, smooth maps and the tangent space</a></p>
+<p class="rel"><span>see also</span> <a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="topology.html">Topology</a>, <a href="general-topology.html">General topology</a></p>
+<details class="path"><summary>Learning path: 15 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orge9ce5dd">
+<p>
+A topological space <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is <i>Hausdorff</i> if for any two distinct points
+<img class="m" src="m/d8bbcaa55606851960ee0c534f69095478c4801d.svg" alt="\(x \ne y\)" style="height:0.974em;vertical-align:-0.214em"> there are disjoint open sets <img class="m" src="m/f0e0b59a6d9438fcfd7d5c0e3f0acd12e8b04dae.svg" alt="\(U \ni x\)" style="height:0.792em;vertical-align:-0.040em"> and <img class="m" src="m/f46b9b9ff59230038b038135a351f3d254a9dad4.svg" alt="\(V \ni y\)" style="height:0.962em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org5d33dcd">
+<p>
+Every metric space, with the topology of its open sets, is Hausdorff.
+</p>
+
+</div>
+
+<div class="proof" id="org6c9de6c">
+<p>
+For <img class="m" src="m/d8bbcaa55606851960ee0c534f69095478c4801d.svg" alt="\(x \ne y\)" style="height:0.974em;vertical-align:-0.214em"> put <img class="m" src="m/f0666cd4a95f9ab0a0690874516d747f644238dc.svg" alt="\(r = d(x,y)/2 &gt; 0\)" style="height:1.096em;vertical-align:-0.274em">. The balls <img class="m" src="m/16d1754b2ec5e2a2620a1ad6444530b243c43182.svg" alt="\(B(x,r)\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/14b436a80fad04f8a9e10f7353f4834381837a3e.svg" alt="\(B(y,r)\)" style="height:1.096em;vertical-align:-0.274em"> are open and disjoint: a common point <img class="m" src="m/a3dcfa6c97b29682527f7556e1c40cc9580c366a.svg" alt="\(z\)" style="height:0.472em;vertical-align:-0.000em"> would give
+<img class="m" src="m/fc9821a641a9c72e3a1f9398ce4bfd38f5aaba45.svg" alt="\(d(x,y) \le d(x,z)+d(z,y) &lt; 2r = d(x,y)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgcd01494">
+<p>
+In a Hausdorff space a sequence has at most one limit, where
+<img class="m" src="m/9e519e18a16fad95b7f2ddd9d2a5db724502225f.svg" alt="\(x_{n} \to x\)" style="height:0.636em;vertical-align:-0.165em"> means that every neighbourhood of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> contains all but
+finitely many <img class="m" src="m/4036872f3d3328901352967ce2c9418a85378974.svg" alt="\(x_{n}\)" style="height:0.636em;vertical-align:-0.165em">.
+</p>
+
+</div>
+
+<div class="proof" id="org1caa90b">
+<p>
+Suppose <img class="m" src="m/9e519e18a16fad95b7f2ddd9d2a5db724502225f.svg" alt="\(x_{n} \to x\)" style="height:0.636em;vertical-align:-0.165em"> and <img class="m" src="m/3cc06ae1e48f561c9c7c6daecc6eb4cb55f17ab6.svg" alt="\(x_{n} \to y\)" style="height:0.685em;vertical-align:-0.212em"> with <img class="m" src="m/d8bbcaa55606851960ee0c534f69095478c4801d.svg" alt="\(x \ne y\)" style="height:0.974em;vertical-align:-0.214em">, and take
+disjoint open <img class="m" src="m/f0e0b59a6d9438fcfd7d5c0e3f0acd12e8b04dae.svg" alt="\(U \ni x\)" style="height:0.792em;vertical-align:-0.040em">, <img class="m" src="m/f46b9b9ff59230038b038135a351f3d254a9dad4.svg" alt="\(V \ni y\)" style="height:0.962em;vertical-align:-0.212em">. All but finitely many terms lie
+in <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">, and all but finitely many lie in <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">; as the sequence has
+infinitely many indices, some term lies in both, contradicting
+disjointness.
+</p>
+
+</div>
+
+<div class="proposition" id="org36486f1">
+<p>
+In a Hausdorff space every finite subset is closed.
+</p>
+
+</div>
+
+<div class="proof" id="org2007d7e">
+<p>
+It suffices to treat a single point <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, finite unions of closed sets
+being closed. For each <img class="m" src="m/8b3f8ef1d78c96d5a6fbf43889e3a2dd0c5dee31.svg" alt="\(y \ne x\)" style="height:0.974em;vertical-align:-0.214em"> choose disjoint open
+<img class="m" src="m/e3db931a34e6fce782133988a67a58a4e6e5b22a.svg" alt="\(U_{y} \ni y\)" style="height:1.062em;vertical-align:-0.319em"> and <img class="m" src="m/b2f877c832553dda9b7171dc0bb0efdbd64ac515.svg" alt="\(V_{y} \ni x\)" style="height:1.062em;vertical-align:-0.319em">; then <img class="m" src="m/d692bc2b073c23b36a5c6ff8d99a0441e08d4bbc.svg" alt="\(U_{y}\)" style="height:1.062em;vertical-align:-0.319em"> misses <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, so
+<img class="m" src="m/9367ade3109d07fd86d5f17ad160ba2e1230de68.svg" alt="\(X \setminus \set{x} = \bigcup_{y \ne x}U_{y}\)" style="height:1.300em;vertical-align:-0.481em"> is open.
+</p>
+
+</div>
+
+<div class="proposition" id="org19fbc96">
+<p>
+A compact subset <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> of a Hausdorff space <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is closed. More
+precisely, a point <img class="m" src="m/8e2374a65c6f6b4dd95871f19535d2468f090ea5.svg" alt="\(x \notin K\)" style="height:0.865em;vertical-align:-0.043em"> and <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> have disjoint open
+neighbourhoods.
+</p>
+
+</div>
+
+<div class="proof" id="org4d60648">
+<p>
+Fix <img class="m" src="m/8e2374a65c6f6b4dd95871f19535d2468f090ea5.svg" alt="\(x \notin K\)" style="height:0.865em;vertical-align:-0.043em">. For each <img class="m" src="m/bd7dec85f5db132fc8f7e47c1c5bb27991cc15e4.svg" alt="\(y \in K\)" style="height:0.962em;vertical-align:-0.212em"> choose disjoint open
+<img class="m" src="m/e3db931a34e6fce782133988a67a58a4e6e5b22a.svg" alt="\(U_{y} \ni y\)" style="height:1.062em;vertical-align:-0.319em"> and <img class="m" src="m/b2f877c832553dda9b7171dc0bb0efdbd64ac515.svg" alt="\(V_{y} \ni x\)" style="height:1.062em;vertical-align:-0.319em">. The <img class="m" src="m/d692bc2b073c23b36a5c6ff8d99a0441e08d4bbc.svg" alt="\(U_{y}\)" style="height:1.062em;vertical-align:-0.319em"> cover <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">, so
+finitely many <img class="m" src="m/7fae06cc5369f3fb0d41a3e16c3b3628e7bc62cb.svg" alt="\(U_{y_{1}}, \dots, U_{y_{m}}\)" style="height:1.062em;vertical-align:-0.319em"> do; then
+<img class="m" src="m/a646704dca7f1aa1ee90212c5a47f437c474dd4c.svg" alt="\(V = V_{y_{1}}\cap\cdots\cap V_{y_{m}}\)" style="height:1.062em;vertical-align:-0.319em"> is an open neighbourhood of
+<img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> disjoint from <img class="m" src="m/ffcf76935237f1024e2d701372f6922cdf3b8e10.svg" alt="\(U = U_{y_{1}}\cup\cdots\cup U_{y_{m}} \supseteq K\)" style="height:1.062em;vertical-align:-0.319em">.
+In particular every <img class="m" src="m/8e2374a65c6f6b4dd95871f19535d2468f090ea5.svg" alt="\(x \notin K\)" style="height:0.865em;vertical-align:-0.043em"> has a neighbourhood missing <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">, so
+the complement of <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> is open.
+</p>
+
+</div>
+
+<div class="theorem" id="org8ad51d6">
+<p>
+A continuous bijection from a compact space to a Hausdorff space is a
+homeomorphism.
+</p>
+
+</div>
+
+<div class="proof" id="orgade6df8">
+<p>
+Let <img class="m" src="m/d7c0c93f2d459ca20e4f53c81d24a704a65c7b84.svg" alt="\(f \colon X \to Y\)" style="height:0.974em;vertical-align:-0.214em"> be such a map and <img class="m" src="m/52ae05264b3260261436df46e1d5985432c8859d.svg" alt="\(C \subseteq X\)" style="height:0.898em;vertical-align:-0.153em"> closed.
+Then <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> is compact, so <img class="m" src="m/585edb8c556cfc3c29591c0c485724d5a0dc1307.svg" alt="\(f(C)\)" style="height:1.096em;vertical-align:-0.274em"> is compact, hence closed in the
+Hausdorff space <img class="m" src="m/82d9b7c5c94f297586981fdbe7ca67b30095b73a.svg" alt="\(Y\)" style="height:0.749em;vertical-align:-0.000em">. So <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is a closed bijection, therefore a
+homeomorphism.
+</p>
+
+</div>
+
+<div class="proposition" id="org0c0872d">
+<p>
+A subspace of a Hausdorff space is Hausdorff, and any product of
+Hausdorff spaces is Hausdorff.
+</p>
+
+</div>
+
+<div class="proof" id="orgc65c50d">
+<p>
+For a subspace <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, intersect the separating open sets with <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">.
+For a product, let <img class="m" src="m/d8bbcaa55606851960ee0c534f69095478c4801d.svg" alt="\(x \ne y\)" style="height:0.974em;vertical-align:-0.214em"> in <img class="m" src="m/619079e41f0973fc6e17e2da45c2b494c9d62e71.svg" alt="\(\prod_{i}X_{i}\)" style="height:1.151em;vertical-align:-0.334em">; they differ in some
+coordinate <img class="m" src="m/3368b211f5038907d6dc36c5bec32916d1755948.svg" alt="\(j\)" style="height:0.936em;vertical-align:-0.215em">, so there are disjoint open <img class="m" src="m/d1532c51ce017447991a87acd37e980e1f854885.svg" alt="\(U, V \subseteq X_{j}\)" style="height:1.062em;vertical-align:-0.319em">
+around <img class="m" src="m/7aec52be58f5541071e5762fbf625cdf970f2f1c.svg" alt="\(x_{j}\)" style="height:0.785em;vertical-align:-0.314em"> and <img class="m" src="m/57118f7d0a6827b7288f5b40618fb83220d30d2c.svg" alt="\(y_{j}\)" style="height:0.785em;vertical-align:-0.314em">, and <img class="m" src="m/5994ebbf55ae8126b2002aa7f591c0afd5c9b6fc.svg" alt="\(\pi_{j}^{-1}(U)\)" style="height:1.418em;vertical-align:-0.454em">,
+<img class="m" src="m/39605e6f64bc7898df643bd89f22b52912018ed8.svg" alt="\(\pi_{j}^{-1}(V)\)" style="height:1.418em;vertical-align:-0.454em"> are disjoint open sets separating <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/e1c05837168809ddd8d01d298efe8fcae0dca963.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="remark" id="org1510340">
+<p>
+A quotient is missing from that list, and deliberately: the quotient of
+a Hausdorff space need not be Hausdorff, since the quotient topology is
+defined by mapping out and separation is a statement about mapping in.
+That is where the axiom stops being automatic and becomes something to
+check.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="subspace-product-and-quotient-topologies.html"><span>← previous</span>Subspace, product and quotient topologies</a><a rel="next" href="compactness-and-the-heine-borel-theorem.html"><span>next →</span>Compactness and the Heine-Borel theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/topology--general-topology.pdf" title="PDF manual">General Topology</a> · <a class="pdf" href="pdf/topology.pdf" title="PDF manual">Topology</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fourier series, Fejer's theorem and Parseval's identity · Mathematics</title>
+<meta name="description" content="Expanding a periodic function in exponentials is an orthogonal projection in Hilbert space, so convergence in L^{2} and Parseval's identity are free – provided the exponentials are complete. That completeness is the one thing the abstract theory cannot supply, and it is proved here by an approximat…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/fourier-series-fejers-theorem-and-parsevals-identity.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Fourier series, Fejer's theorem and Parseval's identity · Mathematics">
+<meta property="og:description" content="Expanding a periodic function in exponentials is an orthogonal projection in Hilbert space, so convergence in L^{2} and Parseval's identity are free – provided the exponentials are complete. That completeness is the one thing the abstract theory cannot supply, and it is proved here by an approximat…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/fourier-series-fejers-theorem-and-parsevals-identity.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--harmonic-analysis">Harmonic Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Harmonic Analysis</p>
+<h1>Fourier series, Fejer's theorem and Parseval's identity</h1>
+<p class="summary">Expanding a periodic function in exponentials is an orthogonal projection in <a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert space</a>, so convergence in <img class="m" src="m/f3b131d6a772188adab030e30e89617ec918342f.svg" alt="\(L^{2}\)" style="height:0.892em;vertical-align:-0.000em"> and Parseval's identity are free &#x2013; provided the exponentials are complete. That completeness is the one thing the abstract theory cannot supply, and it is proved here by an approximation argument: the Cesaro means of the series converge uniformly for a continuous function, which is Fejer's theorem.</p>
+<p class="rel"><span>needs</span> <a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a>, <a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a>, <a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a>, <a href="product-measures-and-the-theorems-of-tonelli-and-fubini.html">Product measures and the theorems of Tonelli and Fubini</a>, <a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a>, <a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></p>
+<p class="rel"><span>unlocks</span> <a href="the-fourier-transform-inversion-and-plancherel.html">The Fourier transform, inversion and Plancherel</a>, <a href="sturm-liouville-problems-and-eigenfunction-expansions.html">Sturm-Liouville problems and eigenfunction expansions</a>, <a href="the-heat-equation-separation-of-variables-and-the-maximum-principle.html">The heat equation: separation of variables and the maximum principle</a></p>
+<p class="rel"><span>mentioned in</span> <a href="analysis.html">Analysis</a></p>
+<details class="path"><summary>Learning path: 53 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li><li><a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="the-baire-category-theorem.html">The Baire category theorem</a></li><li><a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></li><li><a href="convex-set.html">Convex set</a></li><li><a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a></li><li><a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a></li><li><a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a></li><li><a href="product-measures-and-the-theorems-of-tonelli-and-fubini.html">Product measures and the theorems of Tonelli and Fubini</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org5472b44">
+<p>
+For <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> integrable on <img class="m" src="m/d9bf3b1be6a9817ecd3e7e61acfc31f647f6c9cd.svg" alt="\([-\pi,\pi]\)" style="height:1.096em;vertical-align:-0.274em">, the <i>Fourier coefficients</i> are
+<img class="m" src="m/920d5db8b2a9d60f6265cb90b23dd5e654e6f8d4.svg" alt="\(\hat{f}(n) = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(t)e^{-int}\dd t\)" style="height:1.531em;vertical-align:-0.475em">,
+<img class="m" src="m/2c9a33c392e8e7636e46c995a7138c1ab073e4b8.svg" alt="\(n \in \Z\)" style="height:0.798em;vertical-align:-0.040em">, and the <i>partial sums</i> are
+<img class="m" src="m/37d5ec6af0ef5898dedf5cbb449dfee5949c25e0.svg" alt="\(S_{N}f(x) = \sum_{\abs{n}\le N}\hat{f}(n)e^{inx}\)" style="height:1.571em;vertical-align:-0.518em">. The system
+<img class="m" src="m/2be1b97e827b046b4aabf35412a735ae060d870d.svg" alt="\(e_{n}(t) = e^{int}\)" style="height:1.179em;vertical-align:-0.271em"> is orthonormal in <img class="m" src="m/607bea3226ae816eb4820f0480181d12007b3130.svg" alt="\(L^{2}([-\pi,\pi])\)" style="height:1.166em;vertical-align:-0.268em"> for the
+inner product
+<img class="m" src="m/ad4df5f20515185130d9e93a887e0daae063e61e.svg" alt="\(\inner{f}{g} = \frac{1}{2\pi}\int_{-\pi}^{\pi}f\overline{g}\)" style="height:1.423em;vertical-align:-0.484em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org2cf7f7c">
+<p>
+<img class="m" src="m/c1a288e958c40f9cf5228db20cbe0157513389c1.svg" alt="\(\inner{e_{n}}{e_{m}} = 1\)" style="height:1.096em;vertical-align:-0.274em"> if <img class="m" src="m/fdf70f2a78b9e16ffacd9e87fe56ab95992aab3f.svg" alt="\(n = m\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> otherwise; and
+<img class="m" src="m/562c9cceb5e41493f1a769f5e7b424b7f9101e4c.svg" alt="\(S_{N}f\)" style="height:0.974em;vertical-align:-0.214em"> is the orthogonal projection of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> onto the span of
+<img class="m" src="m/a459fec43174d4863e517d4c7fa0c026f2aa148e.svg" alt="\(e_{-N},\dots,e_{N}\)" style="height:0.728em;vertical-align:-0.255em">, so it minimises
+<img class="m" src="m/73abaa85a6ed0cc7216adc14bb22faec61a35727.svg" alt="\(\norm{f - p}\)" style="height:1.096em;vertical-align:-0.274em"> over trigonometric polynomials <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> of degree at most
+<img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgf464df0">
+<p>
+For <img class="m" src="m/3d020c81f4e6729626db9f8ddfa81feedc85e6a0.svg" alt="\(n \ne m\)" style="height:0.974em;vertical-align:-0.214em">,
+<img class="m" src="m/220f0f5701f2c162c7319c0743f49e50003170a6.svg" alt="\(\frac{1}{2\pi}\int_{-\pi}^{\pi}e^{i(n-m)t}\dd t = \frac{1}{2\pi}\bigl[\frac{e^{i(n-m)t}}{i(n-m)}\bigr]_{-\pi}^{\pi} = 0\)" style="height:1.743em;vertical-align:-0.575em">
+by periodicity, and for <img class="m" src="m/fdf70f2a78b9e16ffacd9e87fe56ab95992aab3f.svg" alt="\(n = m\)" style="height:0.472em;vertical-align:-0.000em"> the integrand is <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">. The
+coefficients <img class="m" src="m/74a6a9047d7a2160011b87ab3d8b9a32afd868b6.svg" alt="\(\hat{f}(n) = \inner{f}{e_{n}}\)" style="height:1.324em;vertical-align:-0.278em"> are those of the
+orthogonal projection onto the span, which is the nearest point of that
+subspace.
+</p>
+
+</div>
+
+<div class="lemma" id="org5102a3b">
+<p>
+Let <img class="m" src="m/a3a1d32acc0f86bdd7b4119e13135b706b526fa2.svg" alt="\(\sigma_{N}f = \frac{1}{N+1}\sum_{k=0}^{N}S_{k}f\)" style="height:1.544em;vertical-align:-0.463em"> be the Cesaro
+means. Then <img class="m" src="m/e9a6bc2509e7ca13a8fafd8e6880adb18080051b.svg" alt="\(\sigma_{N}f(x) = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(x-t)K_{N}(t)\dd t\)" style="height:1.423em;vertical-align:-0.484em">
+with
+<div class="mb"><img class="m" src="m/22dc9d08d85a7d4038803f3e78cc842247c2afe9.svg" alt="\[ K_{N}(t) = \frac{1}{N+1}\Bigl(\frac{\sin\frac{(N+1)t}{2}}{\sin\frac{t}{2}}\Bigr)^{2}, \]" style="width:14.683em"></div>
+and <img class="m" src="m/8eaf371b6a8d34d148c796d343901ecc59eebc69.svg" alt="\(K_{N}\ge0\)" style="height:0.913em;vertical-align:-0.164em">,
+<img class="m" src="m/06d9b2f9486a33e802c3881495970fbd1efc4f07.svg" alt="\(\frac{1}{2\pi}\int_{-\pi}^{\pi}K_{N} = 1\)" style="height:1.423em;vertical-align:-0.484em">, and for every
+<img class="m" src="m/722b00acf7aef71aba0503bbe9a32ea420a49689.svg" alt="\(\delta&gt;0\)" style="height:0.804em;vertical-align:-0.040em">, <img class="m" src="m/7266c49b8b7f0fabd6f0a5fba5a4cc01e3a0019a.svg" alt="\(\sup_{\delta\le\abs{t}\le\pi}K_{N}(t)\to0\)" style="height:1.282em;vertical-align:-0.461em">.
+</p>
+
+</div>
+
+<div class="proof" id="org5aa7736">
+<p>
+Substituting the definition of <img class="m" src="m/3219725231353fee79555167350ea97e156585a4.svg" alt="\(\hat{f}\)" style="height:1.263em;vertical-align:-0.215em"> and exchanging the finite sum
+with the integral, <img class="m" src="m/af3cb98ee9fd016fe491df5d31573bb4620c5ef8.svg" alt="\(S_{k}f(x) = \frac{1}{2\pi}\int f(x-t)D_{k}(t)\dd t\)" style="height:1.304em;vertical-align:-0.378em">
+with <img class="m" src="m/c49f241508ef21aa5fe39e99752efdd04e337a44.svg" alt="\(D_{k}(t) = \sum_{\abs{n}\le k}e^{int}\)" style="height:1.426em;vertical-align:-0.528em">, a geometric sum equal to
+<img class="m" src="m/76bafbcbb35f73274c0405b0db40ac2b7a8b52e1.svg" alt="\(\sin((k+\frac{1}{2})t)/\sin(t/2)\)" style="height:1.304em;vertical-align:-0.378em">. Averaging over <img class="m" src="m/64c45721d8567b8df3c8f3b96bc82d5d70688487.svg" alt="\(k \le N\)" style="height:0.910em;vertical-align:-0.146em"> and
+summing the resulting trigonometric identity gives the displayed
+<img class="m" src="m/225355a6674b3d691aa321532e8e5d4f2f2c2b4c.svg" alt="\(K_{N}\)" style="height:0.913em;vertical-align:-0.164em">, which is manifestly non-negative.
+</p>
+
+<p>
+Its integral is <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em"> because each <img class="m" src="m/e53037165759d6934ccabf178cd4de964798b080.svg" alt="\(D_{k}\)" style="height:0.913em;vertical-align:-0.164em"> integrates to <img class="m" src="m/c41f9b7208fa907b2fe2e5eb456970cf9afb69bb.svg" alt="\(2\pi\)" style="height:0.706em;vertical-align:-0.000em">, only
+the constant term surviving. For <img class="m" src="m/5256a8f22c8cd0bbb6d6fb7dfcba04d30045232a.svg" alt="\(\delta\le\abs{t}\le\pi\)" style="height:1.096em;vertical-align:-0.274em"> the
+denominator <img class="m" src="m/5844516c0d15ade99bcedd733b96cf54f553b58b.svg" alt="\(\sin^{2}(t/2)\)" style="height:1.229em;vertical-align:-0.270em"> is bounded below by <img class="m" src="m/1d6071f68aa253bbdfedbabff04e08bef140b08d.svg" alt="\(\sin^{2}(\delta/2)\)" style="height:1.229em;vertical-align:-0.270em">,
+so <img class="m" src="m/80a3f5e91d4015734fc47e35ebee5c16e6a0c6cf.svg" alt="\(K_{N}(t) \le \frac{1}{(N+1)\sin^{2}(\delta/2)} \to 0\)" style="height:1.508em;vertical-align:-0.588em">, uniformly.
+</p>
+
+</div>
+
+<div class="theorem" id="org9f2b079">
+<p>
+If <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is continuous and <img class="m" src="m/c41f9b7208fa907b2fe2e5eb456970cf9afb69bb.svg" alt="\(2\pi\)" style="height:0.706em;vertical-align:-0.000em">-periodic, then
+<img class="m" src="m/92bd360e4dace877a02922255a9d6bfa06dc8559.svg" alt="\(\sigma_{N}f \to f\)" style="height:0.974em;vertical-align:-0.214em"> uniformly on <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="orge35d2dc">
+<p>
+Using <img class="m" src="m/c1475fe5d22e3b72c68e22af0b04c404fffb38b2.svg" alt="\(\frac{1}{2\pi}\int K_{N} = 1\)" style="height:1.304em;vertical-align:-0.378em">,
+<div class="mb"><img class="m" src="m/2ad2f2f8a8bb3b37653538bcd72063d101086cb0.svg" alt="\[ \abs{\sigma_{N}f(x)-f(x)} \le \frac{1}{2\pi}\int_{-\pi}^{\pi}\abs{f(x-t)-f(x)}K_{N}(t)\dd t. \]" style="width:24.948em"></div>
+Let <img class="m" src="m/2cffdc597a54fae183dedb83e6fbd3d870b664ce.svg" alt="\(\eps&gt;0\)" style="height:0.749em;vertical-align:-0.045em">. By uniform continuity of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> &#x2013; it is continuous and
+periodic, hence uniformly continuous &#x2013; choose <img class="m" src="m/722b00acf7aef71aba0503bbe9a32ea420a49689.svg" alt="\(\delta&gt;0\)" style="height:0.804em;vertical-align:-0.040em"> with
+<img class="m" src="m/4de3c6fd11fac88e195e248eb6b0b5ac90a96d7e.svg" alt="\(\abs{f(x-t)-f(x)}&lt;\eps/2\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/0ef05347b4c589fec194942054f5efe5f86cb33a.svg" alt="\(\abs{t}&lt;\delta\)" style="height:1.096em;vertical-align:-0.274em">, uniformly in
+<img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">. Split the integral: the part over <img class="m" src="m/0ef05347b4c589fec194942054f5efe5f86cb33a.svg" alt="\(\abs{t}&lt;\delta\)" style="height:1.096em;vertical-align:-0.274em"> is at most
+<img class="m" src="m/211a2a37f996f96293dac069c43ef1260c5dbb46.svg" alt="\(\eps/2\)" style="height:1.096em;vertical-align:-0.274em"> since <img class="m" src="m/8eaf371b6a8d34d148c796d343901ecc59eebc69.svg" alt="\(K_{N}\ge0\)" style="height:0.913em;vertical-align:-0.164em"> has total mass <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">, and the part over
+<img class="m" src="m/5256a8f22c8cd0bbb6d6fb7dfcba04d30045232a.svg" alt="\(\delta\le\abs{t}\le\pi\)" style="height:1.096em;vertical-align:-0.274em"> is at most
+<img class="m" src="m/47159374454b1c41b170c96ac9c3133827f2949b.svg" alt="\(2\sup\abs{f}\cdot\sup_{\abs{t}\ge\delta}K_{N}\)" style="height:1.282em;vertical-align:-0.461em">, which is below
+<img class="m" src="m/211a2a37f996f96293dac069c43ef1260c5dbb46.svg" alt="\(\eps/2\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/f88341f7e1465cd61b5f5055220edc413980356b.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> large, independently of <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org473e3cd">
+<p>
+The system <img class="m" src="m/500ec8e4a2e738319ad57852fc9ddab3d37dbf5c.svg" alt="\((e_{n})_{n\in\Z}\)" style="height:1.096em;vertical-align:-0.274em"> is an orthonormal basis of
+<img class="m" src="m/607bea3226ae816eb4820f0480181d12007b3130.svg" alt="\(L^{2}([-\pi,\pi])\)" style="height:1.166em;vertical-align:-0.268em">: for every <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> in that space,
+<img class="m" src="m/636a1765582af21839e503178d7d4e87cd5d59c8.svg" alt="\(S_{N}f \to f\)" style="height:0.974em;vertical-align:-0.214em"> in <img class="m" src="m/f3b131d6a772188adab030e30e89617ec918342f.svg" alt="\(L^{2}\)" style="height:0.892em;vertical-align:-0.000em"> and
+<img class="m" src="m/65954737764aab87f89d34eaa3a2d99df93ae7b9.svg" alt="\(\frac{1}{2\pi}\int_{-\pi}^{\pi}\abs{f}^{2} = \sum_{n\in\Z}\abs{\hat{f}(n)}^{2}\)" style="height:1.531em;vertical-align:-0.475em">.
+</p>
+
+</div>
+
+<div class="proof" id="org73e1c49">
+<p>
+By the abstract theorem on orthonormal systems it suffices that the
+span of the <img class="m" src="m/319b1206caa9ea0616178088a35b4655142335b3.svg" alt="\(e_{n}\)" style="height:0.636em;vertical-align:-0.165em"> &#x2013; the trigonometric polynomials &#x2013; be dense in
+<img class="m" src="m/f3b131d6a772188adab030e30e89617ec918342f.svg" alt="\(L^{2}\)" style="height:0.892em;vertical-align:-0.000em">. Continuous periodic functions are dense in <img class="m" src="m/f3b131d6a772188adab030e30e89617ec918342f.svg" alt="\(L^{2}\)" style="height:0.892em;vertical-align:-0.000em">: a
+square-integrable function is approximated in norm by simple functions,
+each of which is approximated by continuous ones. And a continuous
+periodic <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is approximated uniformly, hence in <img class="m" src="m/f3b131d6a772188adab030e30e89617ec918342f.svg" alt="\(L^{2}\)" style="height:0.892em;vertical-align:-0.000em">, by the
+trigonometric polynomials <img class="m" src="m/db31d567b9fc6cf64943d4f55e09e23dc71bc1b9.svg" alt="\(\sigma_{N}f\)" style="height:0.974em;vertical-align:-0.214em"> by Fejer's theorem. Density
+follows, and with it the expansion and Parseval's identity.
+</p>
+
+</div>
+
+<div class="remark" id="org677a1a1">
+<p>
+Fejer's theorem is stronger than it looks precisely because it averages:
+the partial sums themselves need not converge at a point even for a
+continuous function, and there is a continuous function whose Fourier
+series diverges somewhere. Averaging repairs this, and the same trick &#x2013;
+replace a kernel by a non-negative one of unit mass concentrating at the
+origin &#x2013; is the standard device of approximate identities throughout
+harmonic analysis.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-hahn-banach-theorem.html"><span>← previous</span>The Hahn-Banach theorem</a><a rel="next" href="the-fourier-transform-inversion-and-plancherel.html"><span>next →</span>The Fourier transform, inversion and Plancherel</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--harmonic-analysis.pdf" title="PDF manual">Harmonic Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dual spaces, annihilators and the transpose · Mathematics</title>
+<meta name="description" content="Every subspace can be described in two ways: by generators, or by the linear equations it satisfies. The dual space is the home of those equations, and the dictionary between the two descriptions – subspace against annihilator, map against transpose – reverses inclusions and exchanges kernels with …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/dual-spaces-annihilators-and-the-transpose.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Dual spaces, annihilators and the transpose · Mathematics">
+<meta property="og:description" content="Every subspace can be described in two ways: by generators, or by the linear equations it satisfies. The dual space is the home of those equations, and the dictionary between the two descriptions – subspace against annihilator, map against transpose – reverses inclusions and exchanges kernels with …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/dual-spaces-annihilators-and-the-transpose.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--linear-algebra">Linear Algebra</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Algebra · Linear Algebra</p>
+<h1>Dual spaces, annihilators and the transpose</h1>
+<p class="summary">Every subspace can be described in two ways: by generators, or by the linear equations it satisfies. The dual space is the home of those equations, and the dictionary between the two descriptions &#x2013; subspace against annihilator, map against transpose &#x2013; reverses inclusions and exchanges kernels with images. In finite dimension the dictionary is perfect, and the failure of that perfection in infinite dimension is what makes functional analysis a subject.</p>
+<p class="rel"><span>needs</span> <a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a>, <a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a>, <a href="vector-space.html">Vector space</a></p>
+<p class="rel"><span>unlocks</span> <a href="constrained-extrema-and-lagrange-multipliers.html">Constrained extrema and Lagrange multipliers</a>, <a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a>, <a href="the-hahn-banach-theorem.html">The Hahn-Banach theorem</a></p>
+<p class="rel"><span>mentioned in</span> <a href="linear-algebra.html">Linear algebra</a>, <a href="functional-analysis.html">Functional analysis</a></p>
+<details class="path"><summary>Learning path: 11 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org60cbdd3">
+<p>
+The <i>dual space</i> of a vector space <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> over <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> is
+<img class="m" src="m/4a2ebc248cbab06296feea028df88d5ea9163a71.svg" alt="\(V^{*} = \Hom(V,K)\)" style="height:1.096em;vertical-align:-0.274em">, the set of linear maps <img class="m" src="m/bacaf5efe3c7b93acb15202158e83d3faf6a6dc3.svg" alt="\(V \to K\)" style="height:0.749em;vertical-align:-0.000em"> &#x2013; the
+<i>linear functionals</i> &#x2013; with pointwise operations.
+</p>
+
+</div>
+
+<div class="theorem" id="org535ad63">
+<p>
+Let <img class="m" src="m/dced2b67f9b7f4d24247850b8be49b9b4ecb954a.svg" alt="\(e_{1},\dots,e_{n}\)" style="height:0.685em;vertical-align:-0.212em"> be a basis of <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">. The functionals
+<img class="m" src="m/fa0a2598162195dc66389051543cabf464577f68.svg" alt="\(e^{i}\)" style="height:0.905em;vertical-align:-0.000em"> defined by <img class="m" src="m/fdfd2cf59b2724b6e8f5632530578275f95ab30b.svg" alt="\(e^{i}(e_{j}) = \delta_{ij}\)" style="height:1.219em;vertical-align:-0.317em"> form a basis of
+<img class="m" src="m/74e1f2055db05eebf803811cefc73b7565be06c0.svg" alt="\(V^{*}\)" style="height:0.755em;vertical-align:-0.000em">; in particular <img class="m" src="m/3608345a27c917a4f43fcf4bbb99d9035bfb4905.svg" alt="\(\dim V^{*} = \dim V\)" style="height:0.761em;vertical-align:-0.000em"> in finite dimension.
+</p>
+
+</div>
+
+<div class="proof" id="org3d09453">
+<p>
+Each <img class="m" src="m/fa0a2598162195dc66389051543cabf464577f68.svg" alt="\(e^{i}\)" style="height:0.905em;vertical-align:-0.000em"> is well defined by prescribing its values on a basis.
+They span: for <img class="m" src="m/8fccb464ec689f88be5a5a71626b360a3b128ead.svg" alt="\(\varphi \in V^{*}\)" style="height:0.968em;vertical-align:-0.213em"> and <img class="m" src="m/8f1f90b441f82f226caffb15d593000ca1eea85f.svg" alt="\(v = \sum_{j}x_{j}e_{j}\)" style="height:1.300em;vertical-align:-0.481em">,
+linearity gives <img class="m" src="m/8e3da78f73e0c424255c9fd66de5dd35e50e2a37.svg" alt="\(\varphi(v) = \sum_{j}x_{j}\varphi(e_{j})\)" style="height:1.300em;vertical-align:-0.481em">, so
+<img class="m" src="m/bb3c068a11010f5cc71441922ccbca00e95000a5.svg" alt="\(\varphi = \sum_{i}\varphi(e_{i})e^{i}\)" style="height:1.234em;vertical-align:-0.333em">. They are independent:
+applying <img class="m" src="m/4945db21c6d9fe10921007e88eb12812988c3a4e.svg" alt="\(\sum_{i}\alpha_{i}e^{i} = 0\)" style="height:1.234em;vertical-align:-0.333em"> to <img class="m" src="m/9f55e2b95d4cd9e1b28f9675fb8ff197e002618e.svg" alt="\(e_{j}\)" style="height:0.785em;vertical-align:-0.314em"> gives
+<img class="m" src="m/6f76e7793030b78abb53116ea74ae10d054d5436.svg" alt="\(\alpha_{j} = 0\)" style="height:1.020em;vertical-align:-0.316em">.
+</p>
+
+</div>
+
+<div class="definition" id="orgddd3cbe">
+<p>
+For <img class="m" src="m/3d144c285324701d566ca43314370e2b89b5fede.svg" alt="\(U \subseteq V\)" style="height:0.898em;vertical-align:-0.153em"> a subspace, the <i>annihilator</i> is
+<img class="m" src="m/d77aab821241b3bfde4566d5ce225edf8c28edf4.svg" alt="\(U^{\circ} = \setst{\varphi \in V^{*}}{\varphi(u) = 0 \text{ for all } u \in U}\)" style="height:1.096em;vertical-align:-0.274em">,
+a subspace of <img class="m" src="m/74e1f2055db05eebf803811cefc73b7565be06c0.svg" alt="\(V^{*}\)" style="height:0.755em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orga369f99">
+<p>
+Let <img class="m" src="m/7139688cdd77c78b2d71fd11f23f48234f04009e.svg" alt="\(\dim V = n\)" style="height:0.761em;vertical-align:-0.000em"> and <img class="m" src="m/3d144c285324701d566ca43314370e2b89b5fede.svg" alt="\(U \subseteq V\)" style="height:0.898em;vertical-align:-0.153em"> a subspace of dimension <img class="m" src="m/5ec5e3b2fda230219e6719c59682076f93242498.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em">.
+Then <img class="m" src="m/6538a1dd1c42cdad4c683f95a0ee48ac501732fc.svg" alt="\(\dim U^{\circ} = n - k\)" style="height:0.852em;vertical-align:-0.094em">, and <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> is exactly the set of vectors
+annihilated by <img class="m" src="m/ca3dde0f92c2e623fcfaf4b702b7afbd8a8d2c8d.svg" alt="\(U^{\circ}\)" style="height:0.755em;vertical-align:-0.000em">. Hence a <img class="m" src="m/5ec5e3b2fda230219e6719c59682076f93242498.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em">-dimensional subspace is the
+solution set of <img class="m" src="m/67ae0d2c2dc6f53b131bb64fba1a99abac64b2b2.svg" alt="\(n-k\)" style="height:0.852em;vertical-align:-0.094em"> independent linear equations.
+</p>
+
+</div>
+
+<div class="proof" id="org0bb8ef7">
+<p>
+Extend a basis <img class="m" src="m/ed28f8dfc95fef61398fd49118218fff8fb47f40.svg" alt="\(e_{1},\dots,e_{k}\)" style="height:0.685em;vertical-align:-0.212em"> of <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> to a basis of <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">. A
+functional <img class="m" src="m/28617d88337014ea21d73f26b431bbe24f1cdbb4.svg" alt="\(\varphi = \sum_{i}\alpha_{i}e^{i}\)" style="height:1.234em;vertical-align:-0.333em"> annihilates <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">
+exactly when <img class="m" src="m/4aa58c506a325534ae3dea7758c74f70cd715958.svg" alt="\(\alpha_{1} = \cdots = \alpha_{k} = 0\)" style="height:0.871em;vertical-align:-0.165em">, so <img class="m" src="m/ca3dde0f92c2e623fcfaf4b702b7afbd8a8d2c8d.svg" alt="\(U^{\circ}\)" style="height:0.755em;vertical-align:-0.000em">
+is spanned by <img class="m" src="m/cdd71d5f6960c885f2df93a5f41380cc4b21d81c.svg" alt="\(e^{k+1},\dots,e^{n}\)" style="height:1.144em;vertical-align:-0.217em"> and has dimension <img class="m" src="m/67ae0d2c2dc6f53b131bb64fba1a99abac64b2b2.svg" alt="\(n-k\)" style="height:0.852em;vertical-align:-0.094em">.
+</p>
+
+<p>
+If <img class="m" src="m/997a3655598a821932fb4c01ba21cd2c7d622584.svg" alt="\(v \notin U\)" style="height:0.865em;vertical-align:-0.043em">, write <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> in the basis: some coordinate
+<img class="m" src="m/7aec52be58f5541071e5762fbf625cdf970f2f1c.svg" alt="\(x_{j}\)" style="height:0.785em;vertical-align:-0.314em"> with <img class="m" src="m/dae5f6670062ab66081a483b89e0804638515dc5.svg" alt="\(j &gt; k\)" style="height:0.974em;vertical-align:-0.214em"> is non-zero, and <img class="m" src="m/904bb4cf03528092ca33f5c934a906a1783d89ce.svg" alt="\(e^{j} \in U^{\circ}\)" style="height:0.948em;vertical-align:-0.047em"> does
+not annihilate <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em">. So the vectors annihilated by all of
+<img class="m" src="m/ca3dde0f92c2e623fcfaf4b702b7afbd8a8d2c8d.svg" alt="\(U^{\circ}\)" style="height:0.755em;vertical-align:-0.000em"> are exactly those of <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="definition" id="org647883a">
+<p>
+For a linear <img class="m" src="m/9bf3de8129d5fc439bec609ad53ed1e53de44ca3.svg" alt="\(f \colon V \to W\)" style="height:0.974em;vertical-align:-0.214em">, the <i>transpose</i>
+<img class="m" src="m/244c118ef40e590167a16ff03af9a2622c9f05be.svg" alt="\(f^{*} \colon W^{*} \to V^{*}\)" style="height:0.974em;vertical-align:-0.214em"> is <img class="m" src="m/a0cffc6c909918cc01a7ace20dd7f728893a000d.svg" alt="\(f^{*}(\varphi) = \varphi \circ f\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org9568926">
+<p>
+For linear <img class="m" src="m/9bf3de8129d5fc439bec609ad53ed1e53de44ca3.svg" alt="\(f \colon V \to W\)" style="height:0.974em;vertical-align:-0.214em"> between finite-dimensional spaces,
+<img class="m" src="m/1a8c4e7532f8417e6a8d6446deaed5cfbdbafa4d.svg" alt="\(f^{*}\)" style="height:0.974em;vertical-align:-0.214em"> is linear, <img class="m" src="m/b1ff4cf0d72c522c49dc858babec4045e8905b1e.svg" alt="\(\ker f^{*} = (\im f)^{\circ}\)" style="height:1.096em;vertical-align:-0.274em">,
+<img class="m" src="m/f904d32462842f46ad30b558d60ee3589a714ab3.svg" alt="\(\im f^{*} = (\ker f)^{\circ}\)" style="height:1.096em;vertical-align:-0.274em">, and <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/1a8c4e7532f8417e6a8d6446deaed5cfbdbafa4d.svg" alt="\(f^{*}\)" style="height:0.974em;vertical-align:-0.214em"> have the same
+rank. Moreover <img class="m" src="m/9762648bc8a340a0d7ff5a7bf73d7eb1b069142c.svg" alt="\((g\circ f)^{*} = f^{*}\circ g^{*}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orge5889ac">
+<p>
+Linearity and the composition rule are immediate from the definition.
+</p>
+
+<p>
+<img class="m" src="m/10d1f8a3787f77db690315538901915867f26f2d.svg" alt="\(f^{*}(\varphi) = 0\)" style="height:1.096em;vertical-align:-0.274em"> says <img class="m" src="m/6966997dcfec5bd70442d81b503686a598515bcf.svg" alt="\(\varphi(f(v)) = 0\)" style="height:1.096em;vertical-align:-0.274em"> for all <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em">, that is
+<img class="m" src="m/fb00041721810239c780c066a1155530a634c047.svg" alt="\(\varphi \in (\im f)^{\circ}\)" style="height:1.096em;vertical-align:-0.274em">. For the image: every
+<img class="m" src="m/74c41dc6611446c6cd06c5e8898b4c87ef99b308.svg" alt="\(\varphi\circ f\)" style="height:0.974em;vertical-align:-0.214em"> kills <img class="m" src="m/910cad29da40b81a62d85ddc46f55269e2e2a12d.svg" alt="\(\ker f\)" style="height:0.974em;vertical-align:-0.214em">, so
+<img class="m" src="m/5051285487635106dff1ad3b81d97432314c46bd.svg" alt="\(\im f^{*}\subseteq(\ker f)^{\circ}\)" style="height:1.096em;vertical-align:-0.274em">; and by rank-nullity applied
+twice,
+<img class="m" src="m/795f3a5bfa2c5ee90739a1955d9453ce441d05a4.svg" alt="\(\dim \im f^{*} = \dim W^{*} - \dim\ker f^{*} = \dim W - \dim(\im f)^{\circ} = \dim\im f\)" style="height:1.096em;vertical-align:-0.274em">,
+while <img class="m" src="m/4e5cd98d56da39d57eed3dfcc632ff5c01869857.svg" alt="\(\dim(\ker f)^{\circ} = \dim V - \dim\ker f = \dim \im f\)" style="height:1.096em;vertical-align:-0.274em"> as
+well. Equal dimensions and an inclusion give equality, and the same
+computation shows the two ranks agree.
+</p>
+
+</div>
+
+<div class="theorem" id="org08c18b3">
+<p>
+The map <img class="m" src="m/544eb0a40f799f2e9f2c1750b96a1a3a20515f10.svg" alt="\(\eta \colon V \to V^{**}\)" style="height:0.968em;vertical-align:-0.213em"> with
+<img class="m" src="m/0cf60a34aa4166af9a7d01c961eaee5ac1c3a00c.svg" alt="\(\eta(v)(\varphi) = \varphi(v)\)" style="height:1.096em;vertical-align:-0.274em"> is linear and injective, and it is an
+isomorphism when <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> is finite-dimensional. It is defined without
+reference to a basis.
+</p>
+
+</div>
+
+<div class="proof" id="org6287d7e">
+<p>
+Linearity in <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> is immediate. Injectivity: if <img class="m" src="m/8605ad4a39064be56858f06c79cfb196fb260c60.svg" alt="\(v \ne 0\)" style="height:0.974em;vertical-align:-0.214em">, extend
+<img class="m" src="m/0ec6c14da2128048ec8073b496960dc5ba684573.svg" alt="\(\set{v}\)" style="height:1.096em;vertical-align:-0.274em"> to a basis and take the coordinate functional dual to
+<img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em">; it does not vanish at <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em">, so <img class="m" src="m/97b1d0eeca6277f2af35a944b336210a0cf8284b.svg" alt="\(\eta(v)\ne0\)" style="height:1.096em;vertical-align:-0.274em">. In finite
+dimension <img class="m" src="m/6b042eae4a7ac2f27d3bfccb492fb708e82f64d1.svg" alt="\(\dim V^{**} = \dim V^{*} = \dim V\)" style="height:0.761em;vertical-align:-0.000em">, so an injective linear
+map between them is an isomorphism.
+</p>
+
+</div>
+
+<div class="remark" id="org309b6f8">
+<p>
+That <img class="m" src="m/a1b54939210c3b11c7045471f72745425f4ff660.svg" alt="\(\eta\)" style="height:0.685em;vertical-align:-0.212em"> needs no basis, while the isomorphism <img class="m" src="m/953a2d6c8ae4d16a4a00c0ff0d56e3b31095d845.svg" alt="\(V \iso V^{*}\)" style="height:0.809em;vertical-align:-0.057em">
+does, is the substance of the distinction between a vector and a
+functional &#x2013; the reason physics writes indices up and down. In infinite
+dimension <img class="m" src="m/a1b54939210c3b11c7045471f72745425f4ff660.svg" alt="\(\eta\)" style="height:0.685em;vertical-align:-0.212em"> is still injective and no longer surjective, and the
+spaces for which it happens to be surjective are called reflexive; the
+Hahn-Banach theorem is what keeps the injectivity true there.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="cauchy-schwarz-inequality.html"><span>← previous</span>Cauchy-Schwarz inequality</a><a rel="next" href="the-determinant-as-the-alternating-multilinear-form.html"><span>next →</span>The determinant as the alternating multilinear form</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--linear-algebra.pdf" title="PDF manual">Linear Algebra</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>std::bitset · Computer Science</title>
+<meta name="description" content="std::bitset&lt;N&gt; is a fixed-size array of N bits packed into machine words, with the bitwise operators &amp; | ^ ~ &lt;&lt; &gt;&gt;, indexing, set/reset/flip, count and conversions to and from strings and integers; N is a template parameter, so the size is fixed at compile time.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/bitset.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="std::bitset · Computer Science">
+<meta property="og:description" content="std::bitset&lt;N&gt; is a fixed-size array of N bits packed into machine words, with the bitwise operators &amp; | ^ ~ &lt;&lt; &gt;&gt;, indexing, set/reset/flip, count and conversions to and from strings and integers; N is a template parameter, so the size is fixed at compile time.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/bitset.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--cpp">Cpp</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">example · Programming · Cpp</p>
+<h1>std::bitset</h1>
+<p class="summary"><code>std::bitset&lt;N&gt;</code> is a fixed-size array of <img class="m" src="m/c9556610734f8d479d56f4a3f024509a5a0741cf.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> bits packed into machine words, with the bitwise operators <code>&amp; | ^ ~ &lt;&lt; &gt;&gt;</code>, indexing, <code>set/reset/flip</code>, <code>count</code> and conversions to and from strings and integers; <img class="m" src="m/c9556610734f8d479d56f4a3f024509a5a0741cf.svg" alt="\(N\)" style="height:0.749em;vertical-align:-0.000em"> is a template parameter, so the size is fixed at compile time.</p>
+<p class="rel"><span>needs</span> <a href="cpp-templates.html">C++ templates</a>, <a href="operator-overloading.html">Operator overloading in C++</a></p>
+<p class="rel"><span>see also</span> <a href="template-metaprogramming.html">Template metaprogramming</a>, <a href="low-power-encoding.html">Encodings and orderings for low power</a></p>
+<details class="path"><summary>Learning path: 12 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li><li><a href="method-overloading.html">Overloading</a></li><li><a href="pointers-references.html">Pointers, references and dynamic memory in C++</a></li><li><a href="cpp-special-members.html">Special member functions and RAII</a></li><li><a href="generic-programming.html">Generic programming</a></li><li><a href="cpp-templates.html">C++ templates</a></li><li><a href="operator-overloading.html">Operator overloading in C++</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgcabca57" class="outline-2">
+<h2 id="orgcabca57">Definition</h2>
+<div class="outline-text-2" id="text-orgcabca57">
+<p>
+<code>#include &lt;bitset&gt;</code>; <code>std::bitset&lt;64&gt; b;</code> is 64 zero bits. Operations:
+</p>
+<ul class="org-ul">
+<li>bitwise <code>&amp;</code>, <code>|</code>, <code>^</code>, <code>~</code> and shifts <code>&lt;&lt;</code>, <code>&gt;&gt;</code> (with their compound forms), as for integers;</li>
+<li><code>b[i]</code> reads or writes bit <img class="m" src="m/a67e954bf39c79e3b911cbed8c1a65db21940e5a.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em"> (bit 0 is the least significant, printed last);</li>
+<li><code>set(i)</code>, <code>reset(i)</code>, <code>flip(i)</code> and their no-argument versions on all bits; <code>count()</code>, <code>any()</code>, <code>none()</code>, <code>size()</code>;</li>
+<li><code>bitset&lt;64&gt;(std::string("1010"))</code>, <code>to_string()</code>, <code>to_ulong()</code>, <code>to_ullong()</code> (which throw <code>overflow_error</code> if the value does not fit).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3eaa096" class="outline-2">
+<h2 id="org3eaa096">Example</h2>
+<div class="outline-text-2" id="text-org3eaa096">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="n">std</span>::<span class="t">bitset</span>&lt;64&gt; <span class="f">b</span>(<span class="n">std</span>::string(<span class="s">"101010101010111010101"</span>));
+b &lt;&lt;= 4;                       <span class="c">// shift left, zeros enter on the right
+</span><span class="k">auto</span> <span class="v">pairs</span> = b &amp; (b &lt;&lt; 3);     <span class="c">// bits that are 1 together with the bit 3 below them
+</span>b &amp;= (~b &lt;&lt; 15);               <span class="c">// masks built from b itself
+</span>b.flip();  b.reset(42);
+<span class="k">if</span> (<span class="k">!</span>b[42]) b[41] = 0;
+<span class="n">std</span>::cout &lt;&lt; b &lt;&lt; <span class="s">" "</span> &lt;&lt; b.count() &lt;&lt; <span class="s">"\n"</span>;</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orgebb8ada" class="outline-2">
+<h2 id="orgebb8ada">Intuition</h2>
+<div class="outline-text-2" id="text-orgebb8ada">
+<p>
+A <code>bitset</code> is a register: the same operations a circuit does on a word, with names and bounds checks.
+</p>
+</div>
+</div>
+<div id="outline-container-org874b027" class="outline-2">
+<h2 id="org874b027">Pitfall</h2>
+<div class="outline-text-2" id="text-org874b027">
+<p>
+<code>std::vector&lt;bool&gt;</code> is the dynamic counterpart, but it is a template specialisation that packs bits too, so <code>v[i]</code> returns a proxy, not a <code>bool&amp;</code>.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="smart-pointers.html"><span>← previous</span>Smart pointers: unique_ptr, shared_ptr, weak_ptr</a><a rel="next" href="copy-and-swap.html"><span>next →</span>The copy-and-swap idiom</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--cpp.pdf" title="PDF manual">Cpp</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

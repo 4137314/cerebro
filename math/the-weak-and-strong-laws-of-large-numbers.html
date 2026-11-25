@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The weak and strong laws of large numbers · Mathematics</title>
+<meta name="description" content="The statement that an average of independent measurements approaches the mean is what makes probability a description of anything, and it comes in two strengths that are genuinely different: the average is eventually close with high probability, or it converges for almost every outcome. The first i…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-weak-and-strong-laws-of-large-numbers.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The weak and strong laws of large numbers · Mathematics">
+<meta property="og:description" content="The statement that an average of independent measurements approaches the mean is what makes probability a description of anything, and it comes in two strengths that are genuinely different: the average is eventually close with high probability, or it converges for almost every outcome. The first i…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-weak-and-strong-laws-of-large-numbers.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-probability">Probability</a> / <a rel="up" href="index.html#a-probability--probability-theory">Probability Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Probability · Probability Theory</p>
+<h1>The weak and strong laws of large numbers</h1>
+<p class="summary">The statement that an average of independent measurements approaches the mean is what makes probability a description of anything, and it comes in two strengths that are genuinely different: the average is eventually close <i>with high probability</i>, or it converges <i>for almost every outcome</i>. The first is Chebyshev's inequality applied once; the second needs the Borel-Cantelli lemma and a summable bound.</p>
+<p class="rel"><span>needs</span> <a href="expectation-the-transfer-theorem-and-jensens-inequality.html">Expectation, the transfer theorem and Jensen's inequality</a>, <a href="modes-of-convergence-and-the-borel-cantelli-lemmas.html">Modes of convergence and the Borel-Cantelli lemmas</a>, <a href="random-variables-laws-and-distribution-functions.html">Random variables, laws and distribution functions</a>, <a href="variance-covariance-and-the-markov-and-chebyshev-inequalities.html">Variance, covariance and the Markov and Chebyshev inequalities</a></p>
+<p class="rel"><span>unlocks</span> <a href="statistical-models-estimators-and-consistency.html">Statistical models, estimators and consistency</a></p>
+<p class="rel"><span>mentioned in</span> <a href="probability.html">Probability</a>, <a href="the-central-limit-theorem.html">The central limit theorem</a>, <a href="statistics.html">Statistics</a></p>
+<details class="path"><summary>Learning path: 60 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="orthogonality-gram-schmidt-and-orthogonal-decomposition.html">Orthogonality, Gram-Schmidt and orthogonal decomposition</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="absolute-convergence-and-the-comparison-test.html">Absolute convergence and the comparison test</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="convex-functions-and-the-second-derivative.html">Convex functions and the second derivative</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li><li><a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></li><li><a href="pointwise-and-uniform-convergence.html">Pointwise and uniform convergence</a></li><li><a href="the-baire-category-theorem.html">The Baire category theorem</a></li><li><a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></li><li><a href="convex-set.html">Convex set</a></li><li><a href="nearest-points-and-the-separating-hyperplane-theorem.html">Nearest points and the separating hyperplane theorem</a></li><li><a href="hilbert-spaces-projection-riesz-representation-and-orthonormal-bases.html">Hilbert spaces: projection, Riesz representation and orthonormal bases</a></li><li><a href="square-integrable-functions-and-the-completeness-of-l2.html">Square-integrable functions and the completeness of L2</a></li><li><a href="probability-spaces-conditioning-and-independence.html">Probability spaces, conditioning and independence</a></li><li><a href="random-variables-laws-and-distribution-functions.html">Random variables, laws and distribution functions</a></li><li><a href="expectation-the-transfer-theorem-and-jensens-inequality.html">Expectation, the transfer theorem and Jensen's inequality</a></li><li><a href="variance-covariance-and-the-markov-and-chebyshev-inequalities.html">Variance, covariance and the Markov and Chebyshev inequalities</a></li><li><a href="modes-of-convergence-and-the-borel-cantelli-lemmas.html">Modes of convergence and the Borel-Cantelli lemmas</a></li></ol></details>
+</header>
+<main class="note">
+<div class="theorem" id="org0eaafe9">
+<p>
+Let <img class="m" src="m/320400f5916341cb170aa186717936935ece56a4.svg" alt="\(X_{1},X_{2},\dots\)" style="height:0.962em;vertical-align:-0.212em"> be independent, identically distributed and
+square-integrable, with mean <img class="m" src="m/5602b42c49566a683e5183a144a93b453d1accef.svg" alt="\(\mu\)" style="height:0.685em;vertical-align:-0.212em"> and variance <img class="m" src="m/42c66778d28ceea452a660a327a952bcc657f300.svg" alt="\(\sigma^{2}\)" style="height:0.892em;vertical-align:-0.000em">, and
+let <img class="m" src="m/5a0d25b987dcbbf83572f385c7b931c7aa840954.svg" alt="\(S_{n} = X_{1}+\cdots+X_{n}\)" style="height:0.913em;vertical-align:-0.164em">. Then <img class="m" src="m/bdb1174b72714838a544394ddf3faec5ff64f6e5.svg" alt="\(S_{n}/n \to \mu\)" style="height:1.096em;vertical-align:-0.274em"> in
+probability: for every <img class="m" src="m/2cffdc597a54fae183dedb83e6fbd3d870b664ce.svg" alt="\(\eps&gt;0\)" style="height:0.749em;vertical-align:-0.045em">,
+<img class="m" src="m/135a8028fd29f2c7009607d605c3a5ad85ac8591.svg" alt="\(\Prob(\abs{S_{n}/n-\mu}\ge\eps) \le \sigma^{2}/(n\eps^{2}) \to 0\)" style="height:1.166em;vertical-align:-0.268em">.
+</p>
+
+</div>
+
+<div class="proof" id="orga79bcb3">
+<p>
+By linearity <img class="m" src="m/729600b9652b7aaf159b9a0088444e7738bc60f0.svg" alt="\(\E[S_{n}/n] = \mu\)" style="height:1.096em;vertical-align:-0.274em">, and by independence
+<img class="m" src="m/cd5f722a9cdf55bada9a0d807759335d3df71903.svg" alt="\(\Var(S_{n}) = n\sigma^{2}\)" style="height:1.166em;vertical-align:-0.268em">, so <img class="m" src="m/8aaf192b6cdfaf198f7e3a0f0750a47716e2db93.svg" alt="\(\Var(S_{n}/n) = \sigma^{2}/n\)" style="height:1.166em;vertical-align:-0.268em">.
+Chebyshev's inequality applied to <img class="m" src="m/4dd96ebeca475158508ae818d1421faea6eddc03.svg" alt="\(S_{n}/n\)" style="height:1.096em;vertical-align:-0.274em"> gives the displayed bound,
+which tends to <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="orgc576392">
+<p>
+Let <img class="m" src="m/320400f5916341cb170aa186717936935ece56a4.svg" alt="\(X_{1},X_{2},\dots\)" style="height:0.962em;vertical-align:-0.212em"> be independent, identically distributed with
+<img class="m" src="m/a6ce1963a01a5d15789624523e5a7c19d74ab304.svg" alt="\(\E[X_{1}^{4}]&lt;\infty\)" style="height:1.166em;vertical-align:-0.268em"> and mean <img class="m" src="m/5602b42c49566a683e5183a144a93b453d1accef.svg" alt="\(\mu\)" style="height:0.685em;vertical-align:-0.212em">. Then <img class="m" src="m/ada6e9e9c9dba9549c9b96b40df3281b85ca18dd.svg" alt="\(S_{n}/n\to\mu\)" style="height:1.096em;vertical-align:-0.274em">
+almost surely.
+</p>
+
+</div>
+
+<div class="proof" id="org4460fa5">
+<p>
+Replacing <img class="m" src="m/024ec503e467bb004aaf6a21692c830bd7fa5661.svg" alt="\(X_{i}\)" style="height:0.913em;vertical-align:-0.164em"> by <img class="m" src="m/15f86268784d565e0fb668734e0f2147a6e65529.svg" alt="\(X_{i}-\mu\)" style="height:0.962em;vertical-align:-0.212em">, which preserves independence and
+the fourth-moment hypothesis, assume <img class="m" src="m/70959336da5572081639cf1117df00155cb19dc1.svg" alt="\(\mu = 0\)" style="height:0.919em;vertical-align:-0.211em">.
+</p>
+
+<p>
+Expand <img class="m" src="m/fd6b577bf45c4086fae1a4271bfc3d8b5f19bab4.svg" alt="\(\E[S_{n}^{4}] = \sum \E[X_{i}X_{j}X_{k}X_{l}]\)" style="height:1.206em;vertical-align:-0.313em"> over all
+quadruples of indices. If some index occurs exactly once, the
+corresponding factor is independent of the rest, so the expectation
+factors and vanishes because <img class="m" src="m/c322259f6031fb2454d8a76f570d6db10359ee87.svg" alt="\(\E[X_{i}] = 0\)" style="height:1.096em;vertical-align:-0.274em">. The surviving terms are
+those with all four indices equal &#x2013; there are <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> of them, each
+<img class="m" src="m/f9e9ee76cd78a5762964a61c2a8a3b2869387d19.svg" alt="\(\E[X_{1}^{4}]\)" style="height:1.166em;vertical-align:-0.268em"> &#x2013; and those splitting into two pairs, of which there
+are <img class="m" src="m/a82629452258865bb61286ea28a13a08bff5297d.svg" alt="\(3n(n-1)\)" style="height:1.096em;vertical-align:-0.274em">, each equal to <img class="m" src="m/c22660f2dac5928a084117f58b8d95c241b77950.svg" alt="\(\E[X_{1}^{2}]^{2}\)" style="height:1.166em;vertical-align:-0.268em"> by independence.
+Hence <img class="m" src="m/c236ba0698f5402b72038a5bc355725ebf44b1b9.svg" alt="\(\E[S_{n}^{4}] \le Cn^{2}\)" style="height:1.166em;vertical-align:-0.268em"> for a constant <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> depending only
+on the law.
+</p>
+
+<p>
+By Markov's inequality applied to <img class="m" src="m/5b408e514b70528efe46f4eedb7402c6b0b3a00e.svg" alt="\(S_{n}^{4}\)" style="height:1.163em;vertical-align:-0.267em">, for every <img class="m" src="m/2cffdc597a54fae183dedb83e6fbd3d870b664ce.svg" alt="\(\eps&gt;0\)" style="height:0.749em;vertical-align:-0.045em">
+<div class="mb"><img class="m" src="m/0eb271fb3f31ab14e1bd4fbce94b1acb4fd59727.svg" alt="\[ \Prob\Bigl(\Bigl|\frac{S_{n}}{n}\Bigr|&gt;\eps\Bigr) = \Prob(S_{n}^{4}&gt;\eps^{4}n^{4}) \le \frac{Cn^{2}}{\eps^{4}n^{4}} = \frac{C}{\eps^{4}n^{2}}, \]" style="width:22.135em"></div>
+and <img class="m" src="m/15f1ca27ffaa9344274a1412687c16da0f909e4d.svg" alt="\(\sum_{n}n^{-2}&lt;\infty\)" style="height:1.221em;vertical-align:-0.330em">. The corollary to the first
+Borel-Cantelli lemma then gives <img class="m" src="m/0e2ed18a33666950f97707ef297fa42cc1383484.svg" alt="\(S_{n}/n\to0\)" style="height:1.096em;vertical-align:-0.274em"> almost surely.
+</p>
+
+</div>
+
+<div class="corollary" id="org30b89aa">
+<p>
+Let <img class="m" src="m/12e15084b553359dd474017633f52fd0fa2258bb.svg" alt="\((A_{n})\)" style="height:1.096em;vertical-align:-0.274em"> be independent events all of the same probability
+<img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">, and let <img class="m" src="m/f6cda0c06a7713f1fdf357539637e5bebb1fec22.svg" alt="\(N_{n}\)" style="height:0.913em;vertical-align:-0.164em"> be the number of the first <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> that occur.
+Then <img class="m" src="m/f846a49c99933c5c18e3f4e9dd767e5e116b1c7b.svg" alt="\(N_{n}/n \to p\)" style="height:1.096em;vertical-align:-0.274em"> almost surely.
+</p>
+
+</div>
+
+<div class="proof" id="orga82e8ea">
+<p>
+The indicators <img class="m" src="m/19a3f64b6f4e2ddcba704cc0c9497d13e9bb538f.svg" alt="\(\indicator_{A_{n}}\)" style="height:0.980em;vertical-align:-0.274em"> are independent by the
+proposition on functions of independent variables, identically
+distributed, bounded and hence with finite fourth moment, and their
+common mean is <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">. Their partial sums are <img class="m" src="m/f6cda0c06a7713f1fdf357539637e5bebb1fec22.svg" alt="\(N_{n}\)" style="height:0.913em;vertical-align:-0.164em">, so the strong
+law applies.
+</p>
+
+</div>
+
+<div class="remark" id="orgfecc840">
+<p>
+The fourth moment is a convenience, not a necessity: Kolmogorov's strong
+law needs only integrability, and Etemadi's proof needs only pairwise
+independence. What is not a convenience is the distinction between the
+two laws. The weak law says nothing about any single sequence of
+outcomes; the strong law says that the set of outcomes along which the
+averages fail to converge is null, which is the statement that justifies
+reading a long run of measurements as an estimate.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-central-limit-theorem.html"><span>← previous</span>The central limit theorem</a><a rel="next" href="statistical-models-estimators-and-consistency.html"><span>next →</span>Statistical models, estimators and consistency</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/probability--probability-theory.pdf" title="PDF manual">Probability Theory</a> · <a class="pdf" href="pdf/probability.pdf" title="PDF manual">Probability</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

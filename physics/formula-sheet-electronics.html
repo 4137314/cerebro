@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formula sheet: semiconductors, circuits and electronics · Physics</title>
+<meta name="description" content="Carrier statistics and junctions; circuit theory and transforms; MOSFET, inverter, delay and power formulas in the course conventions; power and superconducting devices.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/formula-sheet-electronics.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Formula sheet: semiconductors, circuits and electronics · Physics">
+<meta property="og:description" content="Carrier statistics and junctions; circuit theory and transforms; MOSFET, inverter, delay and power formulas in the course conventions; power and superconducting devices.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/formula-sheet-electronics.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-revision">Revision</a> / <a rel="up" href="index.html#a-revision--formula-sheets">Formula Sheets</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">overview · Revision · Formula Sheets</p>
+<h1>Formula sheet: semiconductors, circuits and electronics</h1>
+<p class="summary">Carrier statistics and junctions; circuit theory and transforms; MOSFET, inverter, delay and power formulas in the course conventions; power and superconducting devices.</p>
+<p class="rel"><span>needs</span> <a href="physics-study-map.html">Physics: study map</a></p>
+<p class="rel"><span>unlocks</span> <a href="exam-practice-circuits.html">Exam practice: circuit theory (solved)</a>, <a href="exam-practice-digital-electronics.html">Exam practice: digital electronic circuits (solved)</a></p>
+<p class="rel"><span>see also</span> <a href="exam-practice-digital-electronics.html">Exam practice: digital electronic circuits (solved)</a>, <a href="exam-practice-circuits.html">Exam practice: circuit theory (solved)</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="physics-study-map.html">Physics: study map</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org7459118" class="outline-2">
+<h2 id="org7459118">Semiconductors (300 K, Si)</h2>
+<div class="outline-text-2" id="text-org7459118">
+<p>
+<div class="mb"><img class="m" src="m/e449249440f142b226ebc7be25a7cf9f47ee4f5a.svg" alt="\[ n=N_ce^{-(E_c-E_F)/k_BT},\quad np=n_i^2,\quad \sigma=q(n\mu_n+p\mu_p),\quad \frac{D}{\mu}=\frac{k_BT}{q}=25.9\text{ mV},\quad L=\sqrt{D\tau} \]" style="width:44.432em"></div>
+<div class="mb"><img class="m" src="m/804770baa1ecae1941a6753fcee2c66ae505f19a.svg" alt="\[ V_{bi}=\frac{k_BT}q\ln\frac{N_AN_D}{n_i^2},\quad W=\sqrt{\frac{2\epsilon(V_{bi}-V)}{q}\left(\frac1{N_A}+\frac1{N_D}\right)},\quad I=I_s(e^{V/nV_T}-1),\quad I_s=qAn_i^2\left(\frac{D_p}{L_pN_D}+\frac{D_n}{L_nN_A}\right) \]" style="width:54.634em"></div>
+</p>
+</div>
+</div>
+<div id="outline-container-org3cbd67b" class="outline-2">
+<h2 id="org3cbd67b">Circuits</h2>
+<div class="outline-text-2" id="text-org3cbd67b">
+<p>
+<div class="mb"><img class="m" src="m/8685c8e0d6e96f330ecc805d664a17ad5431f911.svg" alt="\[ x(t)=x_\infty+(x_0-x_\infty)e^{-t/\tau},\quad Z_L=j\omega L,\quad Z_C=\frac1{j\omega C},\quad \omega_0=\frac1{\sqrt{LC}},\quad Q_{series}=\frac{\omega_0L}R,\quad S=\mathbf V\mathbf I^*=P+jQ \]" style="width:53.236em"></div>
+<div class="mb"><img class="m" src="m/7422775f057bd8b04f2a2e23acef9a90206e85ab.svg" alt="\[ \mathcal L[\dot x]=sX-x(0^-),\quad x(\infty)=\lim_{s\to0}sX,\quad \frac{V_2}{V_1}=\frac{n_2}{n_1},\quad Z_{in}=\left(\frac{n_1}{n_2}\right)^2Z_L,\quad P_{3\phi}=\sqrt3V_LI_L\cos\varphi \]" style="width:44.901em"></div>
+</p>
+</div>
+</div>
+<div id="outline-container-org58ff7fe" class="outline-2">
+<h2 id="org58ff7fe">MOSFET and CMOS (course conventions)</h2>
+<div class="outline-text-2" id="text-org58ff7fe">
+<p>
+<div class="mb"><img class="m" src="m/3661819b24c8417ae7540e1b6c0f87f798b3efaa.svg" alt="\[ I_D^{sat}=\frac{K_n}2(V_{GS}-V_{TN})^2,\quad I_D^{tri}=K_n\left(V_{GS}-V_{TN}-\frac{V_{DS}}2\right)V_{DS},\quad V_{TN}=V_{TO}+\gamma\left(\sqrt{V_{SB}+2\phi_F}-\sqrt{2\phi_F}\right) \]" style="width:52.449em"></div>
+<div class="mb"><img class="m" src="m/c81f5b3851493c9af6c8e2eda4cc618e0b30468f.svg" alt="\[ V_M=\frac{V_{TN}+\sqrt{K_p/K_n}(V_{DD}+V_{TP})}{1+\sqrt{K_p/K_n}},\quad R_{on}=\frac{1}{K(V_{DD}-|V_T|)},\quad t_{PHL}=0.69\cdot1.7R_{on}C,\quad t_f=2.2\cdot1.7R_{on}C \]" style="width:52.917em"></div>
+<div class="mb"><img class="m" src="m/fe487026230cfb887b2ac838066972cfc278df6b.svg" alt="\[ P_{dyn}=\alpha CV_{DD}^2f,\quad NM_H=V_{OH}-V_{IH},\quad NM_L=V_{IL}-V_{OL},\quad V_F^{DRAM}=\frac{C_SV_S+C_{BL}V_{BL}}{C_S+C_{BL}},\quad I_{leak}=C_S\frac{\Delta V}{\Delta t} \]" style="width:54.319em"></div>
+</p>
+</div>
+</div>
+<div id="outline-container-orgd89702f" class="outline-2">
+<h2 id="orgd89702f">Power and superconducting devices</h2>
+<div class="outline-text-2" id="text-orgd89702f">
+<p>
+<div class="mb"><img class="m" src="m/76ca6fb4e6038452fa4e758ff4b1b2f2cd3a346b.svg" alt="\[ V_{BR}=\frac{\epsilon E_c^2}{2qN_D},\quad R_{on,sp}=\frac{4V_{BR}^2}{\epsilon\mu E_c^3},\quad V_o^{buck}=DV_{in},\quad V_o^{boost}=\frac{V_{in}}{1-D},\quad \Delta i_L^{buck}=\frac{(V_{in}-V_o)D}{Lf_s} \]" style="width:44.978em"></div>
+<div class="mb"><img class="m" src="m/85dbad109b03503179c1cf1152d665f446239e91.svg" alt="\[ I=I_c\sin\varphi,\quad V=\frac{\Phi_0}{2\pi}\dot\varphi,\quad L_J=\frac{\Phi_0}{2\pi I_c\cos\varphi},\quad \beta_c=\frac{2\pi I_cR^2C}{\Phi_0},\quad \beta_L=\frac{2\pi LI_c}{\Phi_0},\quad E_{sw}\approx I_c\Phi_0 \]" style="width:44.293em"></div>
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="formula-sheet-quantum.html"><span>← previous</span>Formula sheet: quantum mechanics, quantum optics and QED</a><a rel="next" href="exam-practice-circuits.html"><span>next →</span>Exam practice: circuit theory (solved)</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/revision--formula-sheets.pdf" title="PDF manual">Formula Sheets</a> · <a class="pdf" href="pdf/revision.pdf" title="PDF manual">Revision</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

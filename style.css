@@ -1,0 +1,156 @@
+/* cerebro: style of the public site (tools/site.el copies it to style.css). */
+:root {
+  --bg: #fbfaf7; --fg: #1d1f23; --dim: #5d6470; --faint: #9aa1ab; --rule: #e3e0d8;
+  --accent: #0b7285; --box: #f3f1ea; --proof: #fdfcf9;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #15171b; --fg: #e3e5e8; --dim: #a3a9b3; --faint: #6b727d; --rule: #2a2e35;
+    --accent: #4fd1e0; --box: #1c1f24; --proof: #181a1f;
+  }
+  /* The SVGs are drawn black: invert them, keeping the hues of the figures. */
+  img.m { filter: invert(1) hue-rotate(180deg); }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0 auto; max-width: 46rem; padding: 2rem 16px 4rem;
+  background: var(--bg); color: var(--fg);
+  font: 17px/1.6 "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+nav { font: 0.85rem/1.4 system-ui, sans-serif; color: var(--faint); margin-bottom: 1.5rem; }
+header { border-bottom: 1px solid var(--rule); padding-bottom: 1rem; margin-bottom: 1.5rem; }
+h1 { font-size: 2rem; line-height: 1.2; margin: 0.2rem 0 0.6rem; }
+h2 { font-size: 1.4rem; margin-top: 2.2rem; border-bottom: 1px solid var(--rule); }
+h3 { font-size: 1.1rem; margin-top: 1.6rem; }
+.meta, .kind, .rel span {
+  font: 0.8rem/1.4 system-ui, sans-serif; color: var(--dim);
+  text-transform: lowercase; letter-spacing: 0.02em;
+}
+.summary { color: var(--dim); font-style: italic; }
+.rel { margin: 0.3rem 0; font-size: 0.95rem; }
+.rel span { display: inline-block; min-width: 4.5rem; }
+ul.notes, ul.bases { list-style: none; padding: 0; }
+ul.notes li, ul.bases li { margin: 0.7rem 0; }
+ul.bases li { font-size: 1.25rem; }
+img.m { display: inline; }
+.mb { margin: 1rem 0; overflow-x: auto; text-align: center; }
+.mb img.m { max-width: 100%; height: auto; }
+code.tex { color: #c92a2a; font-size: 0.85em; }
+pre { background: var(--box); padding: 0.8rem 1rem; overflow-x: auto; font-size: 0.85rem; border-radius: 4px; }
+table { border-collapse: collapse; margin: 1rem 0; display: block; overflow-x: auto; }
+td, th { border: 1px solid var(--rule); padding: 0.3rem 0.6rem; }
+/* Org special blocks: theorems, definitions, proofs... */
+.axiom, .definition, .theorem, .lemma, .proposition, .corollary, .remark, .example, .proof {
+  margin: 1.2rem 0; padding: 0.6rem 1rem; border-left: 3px solid var(--accent); background: var(--box);
+}
+.proof { border-left-color: var(--rule); background: var(--proof); }
+.remark, .example { border-left-color: var(--faint); }
+.axiom::before, .definition::before, .theorem::before, .lemma::before, .proposition::before,
+.corollary::before, .remark::before, .example::before, .proof::before {
+  display: block; font: 600 0.8rem/1.6 system-ui, sans-serif; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.axiom::before { content: "Axiom"; } .definition::before { content: "Definition"; }
+.theorem::before { content: "Theorem"; } .lemma::before { content: "Lemma"; }
+.proposition::before { content: "Proposition"; } .corollary::before { content: "Corollary"; }
+.remark::before { content: "Remark"; color: var(--dim); }
+.example::before { content: "Example"; color: var(--dim); }
+.proof::before { content: "Proof"; color: var(--dim); }
+.proof::after { content: "∎"; display: block; text-align: right; color: var(--dim); }
+footer { margin-top: 4rem; padding-top: 1rem; border-top: 1px solid var(--rule); font: 0.8rem/1.4 system-ui, sans-serif; color: var(--faint); }
+
+/* Navigation: top bar with breadcrumbs and search */
+nav.top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem 1rem; position: relative; }
+nav.top .crumbs { flex: 1 1 auto; }
+#q {
+  flex: 0 1 17rem; min-width: 0; width: 100%; font: 0.9rem/1.4 system-ui, sans-serif; color: var(--fg);
+  background: var(--box); border: 1px solid var(--rule); border-radius: 6px; padding: 0.35rem 0.6rem;
+}
+#q:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+#results {
+  position: absolute; z-index: 20; top: 100%; right: 0; left: 0; margin: 0.3rem 0 0; padding: 0.3rem;
+  list-style: none; max-height: 70vh; overflow-y: auto; background: var(--bg);
+  border: 1px solid var(--rule); border-radius: 8px; box-shadow: 0 8px 30px rgb(0 0 0 / 0.18);
+}
+#results li a { display: block; padding: 0.45rem 0.6rem; border-radius: 5px; color: var(--fg); text-decoration: none; }
+#results li.sel a, #results li a:hover { background: var(--box); }
+#results b { display: block; font: 600 0.95rem/1.3 system-ui, sans-serif; color: var(--accent); }
+#results .where { display: block; font: 0.72rem/1.4 system-ui, sans-serif; color: var(--dim); }
+#results .sum { display: block; font-size: 0.85rem; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Note page: learning path, contents, previous/next, downloads */
+details.path, details.toc { margin: 0.8rem 0; font-size: 0.95rem; }
+details.path summary, details.toc summary { cursor: pointer; font: 0.85rem/1.6 system-ui, sans-serif; color: var(--dim); }
+details.path ol { columns: 2 16rem; margin: 0.4rem 0 0; }
+details.toc ol { margin: 0.4rem 0 0; padding-left: 1.2rem; }
+details.toc li.h3 { margin-left: 1rem; list-style: circle; }
+nav.pn { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+nav.pn a { max-width: 48%; }
+nav.pn a[rel="next"] { text-align: right; margin-left: auto; }
+nav.pn span { display: block; font: 0.75rem/1.4 system-ui, sans-serif; color: var(--dim); }
+.dl { margin-top: 1rem; font-size: 0.9rem; }
+.dl > span { font: 0.8rem/1.4 system-ui, sans-serif; color: var(--dim); margin-right: 0.4rem; }
+a.pdf { font: 600 0.72rem/1 system-ui, sans-serif; letter-spacing: 0.04em; padding: 0.15rem 0.35rem; border: 1px solid var(--rule); border-radius: 4px; vertical-align: middle; }
+h2 a.pdf, h3 a.pdf { margin-left: 0.4rem; }
+h2[id], h3[id] { scroll-margin-top: 1rem; }
+kbd { font: 0.78rem/1 ui-monospace, monospace; padding: 0.1rem 0.3rem; border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: 4px; background: var(--box); }
+.keys { color: var(--faint); }
+p.keys { font: 0.85rem/1.8 system-ui, sans-serif; color: var(--dim); }
+
+/* Previews of linked notes and the keyboard help */
+.preview {
+  position: absolute; z-index: 30; max-width: min(28rem, calc(100vw - 16px)); padding: 0.7rem 0.9rem;
+  background: var(--bg); border: 1px solid var(--rule); border-radius: 8px;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.2); font-size: 0.92rem; pointer-events: none;
+}
+.preview p { margin: 0.2rem 0; }
+.preview .t { font-weight: 700; font-size: 1.05rem; }
+.preview .meta { margin: 0; }
+dialog.help { border: 1px solid var(--rule); border-radius: 10px; background: var(--bg); color: var(--fg); max-width: 26rem; }
+dialog.help::backdrop { background: rgb(0 0 0 / 0.35); }
+dialog.help h2 { margin-top: 0; border: 0; }
+dialog.help dl { display: grid; grid-template-columns: auto 1fr; gap: 0.4rem 1rem; }
+dialog.help dd { margin: 0; }
+dialog.help p { font-size: 0.85rem; color: var(--dim); }
+@media (max-width: 560px) { #q { flex-basis: 100%; } details.path ol { columns: 1; } }
+
+/* Figures: centred, scaled to the column, numbered caption */
+figure.fig { margin: 1.6rem 0; text-align: center; }
+figure.fig img.m { max-width: 100%; height: auto; }
+figure.fig figcaption { margin: 0.6rem auto 0; max-width: 36rem; font-size: 0.9rem; line-height: 1.45; color: var(--dim); text-align: left; }
+figure.fig figcaption .fl { font: 600 0.8rem/1.4 system-ui, sans-serif; color: var(--fg); margin-right: 0.25rem; }
+.mb { overflow-x: auto; }
+
+/* Listings: one colour per language (rule and label), tokens coloured by kind */
+:root {
+  --tk: #8b1e5b; --tt: #005cc5; --ts: #22863a; --tc: #6a737d; --tf: #6f42c1; --tv: #b35900; --tn: #0b7285; --tb: #d73a49; --tp: #6a4c93;
+  --l-cpp: #1f5f99; --l-c: #1f5f99; --l-java: #b0602a; --l-vhdl: #2e7d32; --l-python: #3b6fb6; --l-asm: #6a4c93; --l-sh: #555; --l-elisp: #7b3f99; --l-text: #888;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tk: #ff7ab2; --tt: #79b8ff; --ts: #85e89d; --tc: #8b949e; --tf: #d2a8ff; --tv: #ffab70; --tn: #56d4dd; --tb: #f97583; --tp: #b392f0;
+    --l-cpp: #58a6ff; --l-c: #58a6ff; --l-java: #f0883e; --l-vhdl: #56d364; --l-python: #79c0ff; --l-asm: #bc8cff; --l-sh: #aaa; --l-elisp: #d2a8ff; --l-text: #888;
+  }
+}
+figure.listing { margin: 1.3rem 0; border-left: 3px solid var(--lc, var(--l-text)); background: var(--box); border-radius: 0 6px 6px 0; }
+figure.listing figcaption { padding: 0.35rem 0.9rem 0; font: 0.78rem/1.4 system-ui, sans-serif; color: var(--dim); }
+figure.listing .lang { font-weight: 700; letter-spacing: 0.04em; color: var(--lc, var(--l-text)); text-transform: uppercase; margin-right: 0.3rem; }
+figure.listing pre.src { margin: 0; background: none; border-radius: 0; padding: 0.4rem 0.9rem 0.8rem; line-height: 1.5; }
+.lang-cpp { --lc: var(--l-cpp); } .lang-c { --lc: var(--l-c); } .lang-java { --lc: var(--l-java); }
+.lang-vhdl { --lc: var(--l-vhdl); } .lang-python { --lc: var(--l-python); } .lang-asm { --lc: var(--l-asm); }
+.lang-sh { --lc: var(--l-sh); } .lang-elisp { --lc: var(--l-elisp); }
+pre.src .k { color: var(--tk); font-weight: 600; } pre.src .t { color: var(--tt); } pre.src .s { color: var(--ts); }
+pre.src .c { color: var(--tc); font-style: italic; } pre.src .f { color: var(--tf); } pre.src .v { color: var(--tv); }
+pre.src .n { color: var(--tn); } pre.src .b { color: var(--tb); } pre.src .p { color: var(--tp); }
+
+/* Citations of the original papers, and the references page */
+.cite { font-size: 0.88em; color: var(--dim); white-space: nowrap; }
+.cite a.ref { color: var(--accent); }
+.ref.missing { color: #c92a2a; }
+ol.refs { padding-left: 1.4rem; }
+ol.refs li { margin: 0.9rem 0; }
+ol.refs li:target { background: var(--box); }
+.preview.refbox { font-size: 0.88rem; }

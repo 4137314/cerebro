@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Integral domains, fields, prime and maximal ideals · Mathematics</title>
+<meta name="description" content="Two properties a ring may have – no zero divisors, every non-zero element invertible – turn out to be properties of ideals of a larger ring, read off from the quotient. That translation is what makes commutative algebra geometric: a prime ideal is a point of a space, and the dictionary below is the…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/integral-domains-fields-prime-and-maximal-ideals.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Integral domains, fields, prime and maximal ideals · Mathematics">
+<meta property="og:description" content="Two properties a ring may have – no zero divisors, every non-zero element invertible – turn out to be properties of ideals of a larger ring, read off from the quotient. That translation is what makes commutative algebra geometric: a prime ideal is a point of a space, and the dictionary below is the…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/integral-domains-fields-prime-and-maximal-ideals.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--commutative-algebra">Commutative Algebra</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Algebra · Commutative Algebra</p>
+<h1>Integral domains, fields, prime and maximal ideals</h1>
+<p class="summary">Two properties a ring may have &#x2013; no zero divisors, every non-zero element invertible &#x2013; turn out to be properties of <b>ideals</b> of a larger ring, read off from the quotient. That translation is what makes commutative algebra geometric: a prime ideal is a point of a space, and the dictionary below is the first entry of it.</p>
+<p class="rel"><span>needs</span> <a href="rings-ideals-and-the-quotient-ring.html">Rings, ideals and the quotient ring</a>, <a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></p>
+<p class="rel"><span>unlocks</span> <a href="field-extensions-the-tower-law-and-minimal-polynomials.html">Field extensions, the tower law and minimal polynomials</a>, <a href="finite-fields.html">Finite fields</a>, <a href="splitting-fields-and-their-uniqueness.html">Splitting fields and their uniqueness</a>, <a href="euclidean-domains-principal-ideals-and-unique-factorisation.html">Euclidean domains, principal ideals and unique factorisation</a>, <a href="noetherian-rings-and-the-hilbert-basis-theorem.html">Noetherian rings and the Hilbert basis theorem</a>, <a href="polynomial-rings-division-and-roots.html">Polynomial rings, division and roots</a></p>
+<p class="rel"><span>mentioned in</span> <a href="mathematics.html">Mathematics</a>, <a href="foundations.html">Foundations</a>, <a href="rings-and-commutative-algebra.html">Rings and commutative algebra</a></p>
+<details class="path"><summary>Learning path: 14 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li><li><a href="rings-ideals-and-the-quotient-ring.html">Rings, ideals and the quotient ring</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orge48ea65">
+<p>
+A commutative ring <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/d88ad74682060dede7c56c795689298c5c82b0cd.svg" alt="\(1 \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> is an <i>integral domain</i> if
+<img class="m" src="m/c6dffece63ce925af2cfbaab7858c1796df3e9fb.svg" alt="\(ab = 0\)" style="height:0.761em;vertical-align:-0.000em"> implies <img class="m" src="m/163946e2b583e9a9abba9eb085115debd1295a2c.svg" alt="\(a = 0\)" style="height:0.706em;vertical-align:-0.000em"> or <img class="m" src="m/257c61c5215496e97b922556e83b5344a53b2b23.svg" alt="\(b = 0\)" style="height:0.761em;vertical-align:-0.000em">. It is a <i>field</i> if every
+non-zero element is a unit.
+</p>
+
+</div>
+
+<div class="proposition" id="orge244388">
+<p>
+Every field is an integral domain, and every finite integral domain is
+a field.
+</p>
+
+</div>
+
+<div class="proof" id="org5aab298">
+<p>
+If <img class="m" src="m/c6dffece63ce925af2cfbaab7858c1796df3e9fb.svg" alt="\(ab = 0\)" style="height:0.761em;vertical-align:-0.000em"> in a field with <img class="m" src="m/fda79e8cee9043b343e5fc6d7337eb3dc0445815.svg" alt="\(a \ne 0\)" style="height:0.974em;vertical-align:-0.214em">, multiplying by <img class="m" src="m/9e2ab0b6a2bc9b000f9429514070e9999bcaa3b8.svg" alt="\(a^{-1}\)" style="height:0.892em;vertical-align:-0.000em">
+gives <img class="m" src="m/257c61c5215496e97b922556e83b5344a53b2b23.svg" alt="\(b = 0\)" style="height:0.761em;vertical-align:-0.000em">. Let now <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> be a finite domain and <img class="m" src="m/fda79e8cee9043b343e5fc6d7337eb3dc0445815.svg" alt="\(a \ne 0\)" style="height:0.974em;vertical-align:-0.214em">. The
+map <img class="m" src="m/589c5d3147a950e09dd094d15847b992382c84c9.svg" alt="\(x \mapsto ax\)" style="height:0.472em;vertical-align:-0.000em"> is injective, since <img class="m" src="m/bc0af80b1db93a50fe21682b6c09ea2b6ab983d3.svg" alt="\(ax = ay\)" style="height:0.685em;vertical-align:-0.212em"> gives
+<img class="m" src="m/3a1705482136633d9bf839ec293a7f3e77f43f45.svg" alt="\(a(x-y) = 0\)" style="height:1.096em;vertical-align:-0.274em"> and hence <img class="m" src="m/b166a59ca53644d0d6f1d624a0065569398239d2.svg" alt="\(x = y\)" style="height:0.685em;vertical-align:-0.212em">; an injective map of a finite set to
+itself is surjective, so <img class="m" src="m/dab1fbdca15028a0b3ab57a9dc1ec528f0d59ae6.svg" alt="\(ax = 1\)" style="height:0.706em;vertical-align:-0.000em"> for some <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgab92d31">
+<p>
+A commutative ring <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/d88ad74682060dede7c56c795689298c5c82b0cd.svg" alt="\(1 \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> is a field if and only if its
+only ideals are <img class="m" src="m/8dcf131464dd5858fa06f691aaba11b1ce2eb67c.svg" alt="\(\set{0}\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgd96ed60">
+<p>
+Let <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> be a field and <img class="m" src="m/1940710ee2f8f53b4ed18d56f9966bd16858f4c8.svg" alt="\(I \ne \set{0}\)" style="height:1.096em;vertical-align:-0.274em"> an ideal, say <img class="m" src="m/14c2759c749ffc674b11fd098d402a78d9d17ac0.svg" alt="\(a \in I\)" style="height:0.792em;vertical-align:-0.040em">
+with <img class="m" src="m/fda79e8cee9043b343e5fc6d7337eb3dc0445815.svg" alt="\(a \ne 0\)" style="height:0.974em;vertical-align:-0.214em">. Then <img class="m" src="m/4382cd5b4a381dd0a3f6f784f6b521e150ee0828.svg" alt="\(1 = a^{-1}a \in I\)" style="height:0.935em;vertical-align:-0.047em">, so <img class="m" src="m/6d21835c473bffc0aee34f170d0adaf25a587095.svg" alt="\(r = r \cdot 1 \in I\)" style="height:0.792em;vertical-align:-0.040em">
+for every <img class="m" src="m/6a662e32b188f7fd491c82ebcd46ddece8ed8644.svg" alt="\(r\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/0f5d0bbb2009d981e03d6c72d83483856046d985.svg" alt="\(I = R\)" style="height:0.749em;vertical-align:-0.000em">. Conversely, if the only ideals are the
+trivial ones and <img class="m" src="m/fda79e8cee9043b343e5fc6d7337eb3dc0445815.svg" alt="\(a \ne 0\)" style="height:0.974em;vertical-align:-0.214em">, the principal ideal <img class="m" src="m/cf10a5bf40c3ebf9d4bd5937ba7f860d27baecd7.svg" alt="\((a)\)" style="height:1.096em;vertical-align:-0.274em"> is not
+<img class="m" src="m/8dcf131464dd5858fa06f691aaba11b1ce2eb67c.svg" alt="\(\set{0}\)" style="height:1.096em;vertical-align:-0.274em">, hence equals <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">, so <img class="m" src="m/f8b60ab07299e02f746baaa3aa7a94d4b0ebdd39.svg" alt="\(1 = ab\)" style="height:0.761em;vertical-align:-0.000em"> for some <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="definition" id="orgefc07cd">
+<p>
+Let <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> be commutative. A proper ideal <img class="m" src="m/a10bb4cb62db772618172277a60de28f5036dfd4.svg" alt="\(P \subsetneq R\)" style="height:0.898em;vertical-align:-0.153em"> is <i>prime</i>
+if <img class="m" src="m/97ff2b375fb223dd2cc6348e27b3f51e7433bfb8.svg" alt="\(ab \in P\)" style="height:0.804em;vertical-align:-0.040em"> implies <img class="m" src="m/62f72512c9ca6173f927609c7a1747da430be0ce.svg" alt="\(a \in P\)" style="height:0.792em;vertical-align:-0.040em"> or <img class="m" src="m/b4d22cfb2724e79da4c47e1b585547302b44060f.svg" alt="\(b \in P\)" style="height:0.804em;vertical-align:-0.040em">; a proper ideal
+<img class="m" src="m/8cbf580ac3997a9f481ea6b19f553b2eb54f5afd.svg" alt="\(M \subsetneq R\)" style="height:0.898em;vertical-align:-0.153em"> is <i>maximal</i> if no ideal lies strictly between <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em">
+and <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org9cd3b98">
+<p>
+A proper ideal <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> of a commutative ring <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> is prime if and only if
+<img class="m" src="m/51aaad94ad41e8881679217a9c4536064629ddc5.svg" alt="\(R/P\)" style="height:1.096em;vertical-align:-0.274em"> is an integral domain.
+</p>
+
+</div>
+
+<div class="proof" id="org1b9feda">
+<p>
+<img class="m" src="m/51aaad94ad41e8881679217a9c4536064629ddc5.svg" alt="\(R/P\)" style="height:1.096em;vertical-align:-0.274em"> is commutative with <img class="m" src="m/eb2e93232377ee89e318e880ef25f5aac8aeeded.svg" alt="\(1 + P \ne 0 + P\)" style="height:0.974em;vertical-align:-0.214em"> exactly when <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> is
+proper. Now <img class="m" src="m/892bc8845efb714e3a4035b68bead69471c229e1.svg" alt="\((a+P)(b+P) = 0 + P\)" style="height:1.096em;vertical-align:-0.274em"> means <img class="m" src="m/97ff2b375fb223dd2cc6348e27b3f51e7433bfb8.svg" alt="\(ab \in P\)" style="height:0.804em;vertical-align:-0.040em">, and
+<img class="m" src="m/9cb2a0624a4da34f740a5ba4f722f85db6560507.svg" alt="\(a + P = 0 + P\)" style="height:0.840em;vertical-align:-0.092em"> means <img class="m" src="m/62f72512c9ca6173f927609c7a1747da430be0ce.svg" alt="\(a \in P\)" style="height:0.792em;vertical-align:-0.040em">. So "no zero divisors in <img class="m" src="m/51aaad94ad41e8881679217a9c4536064629ddc5.svg" alt="\(R/P\)" style="height:1.096em;vertical-align:-0.274em">"
+is literally the statement that <img class="m" src="m/97ff2b375fb223dd2cc6348e27b3f51e7433bfb8.svg" alt="\(ab \in P\)" style="height:0.804em;vertical-align:-0.040em"> implies <img class="m" src="m/62f72512c9ca6173f927609c7a1747da430be0ce.svg" alt="\(a \in P\)" style="height:0.792em;vertical-align:-0.040em"> or
+<img class="m" src="m/b4d22cfb2724e79da4c47e1b585547302b44060f.svg" alt="\(b \in P\)" style="height:0.804em;vertical-align:-0.040em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org45d448c">
+<p>
+A proper ideal <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> of a commutative ring <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> is maximal if and only
+if <img class="m" src="m/62e91e548f2a43ec6b803aaedbdb67cfae89458e.svg" alt="\(R/M\)" style="height:1.096em;vertical-align:-0.274em"> is a field.
+</p>
+
+</div>
+
+<div class="proof" id="org5c8e2ab">
+<p>
+The ideals of <img class="m" src="m/62e91e548f2a43ec6b803aaedbdb67cfae89458e.svg" alt="\(R/M\)" style="height:1.096em;vertical-align:-0.274em"> are exactly the <img class="m" src="m/acdc763eb50bf7888344176d53a6079226e0d0d5.svg" alt="\(J/M\)" style="height:1.096em;vertical-align:-0.274em"> for ideals <img class="m" src="m/5919fa9b720d5923593af26bfc506877418cd319.svg" alt="\(J\)" style="height:0.749em;vertical-align:-0.000em"> with
+<img class="m" src="m/4a440fd3877d7b4b9093e4ca224d007d8cb55156.svg" alt="\(M \subseteq J \subseteq R\)" style="height:0.898em;vertical-align:-0.153em">: the preimage under <img class="m" src="m/b1e3c27a225dba8050e88d2182ad88a60344ed21.svg" alt="\(\pi\)" style="height:0.472em;vertical-align:-0.000em"> of an ideal of
+<img class="m" src="m/62e91e548f2a43ec6b803aaedbdb67cfae89458e.svg" alt="\(R/M\)" style="height:1.096em;vertical-align:-0.274em"> is such a <img class="m" src="m/5919fa9b720d5923593af26bfc506877418cd319.svg" alt="\(J\)" style="height:0.749em;vertical-align:-0.000em">, and <img class="m" src="m/3a4a2647c8999a83b731caa477cc0d54b1690502.svg" alt="\(\pi(J)\)" style="height:1.096em;vertical-align:-0.274em"> recovers it, since <img class="m" src="m/b1e3c27a225dba8050e88d2182ad88a60344ed21.svg" alt="\(\pi\)" style="height:0.472em;vertical-align:-0.000em"> is
+surjective and <img class="m" src="m/9fa38583030eb1501e412293741d403be6aeb551.svg" alt="\(\pi^{-1}(\pi(J)) = J\)" style="height:1.166em;vertical-align:-0.268em"> when <img class="m" src="m/a2ac68d9beec92f7c1332184849cb6d90b34eace.svg" alt="\(J \supseteq M\)" style="height:0.898em;vertical-align:-0.153em">. So
+<img class="m" src="m/62e91e548f2a43ec6b803aaedbdb67cfae89458e.svg" alt="\(R/M\)" style="height:1.096em;vertical-align:-0.274em"> has only the two trivial ideals precisely when there is no ideal
+strictly between <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">; by the previous proposition that is
+exactly when <img class="m" src="m/62e91e548f2a43ec6b803aaedbdb67cfae89458e.svg" alt="\(R/M\)" style="height:1.096em;vertical-align:-0.274em"> is a field.
+</p>
+
+</div>
+
+<div class="corollary" id="org1220606">
+<p>
+Every maximal ideal of a commutative ring is prime.
+</p>
+
+</div>
+
+<div class="proof" id="orge1a5101">
+<p>
+If <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> is maximal then <img class="m" src="m/62e91e548f2a43ec6b803aaedbdb67cfae89458e.svg" alt="\(R/M\)" style="height:1.096em;vertical-align:-0.274em"> is a field, hence an integral domain,
+hence <img class="m" src="m/0e1bdc0c64c88c88a3a289dcc053144a65dbb2ad.svg" alt="\(M\)" style="height:0.749em;vertical-align:-0.000em"> is prime.
+</p>
+
+</div>
+
+<div class="theorem" id="org5ee3aea">
+<p>
+Every commutative ring with <img class="m" src="m/d88ad74682060dede7c56c795689298c5c82b0cd.svg" alt="\(1 \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> has a maximal ideal; more
+generally every proper ideal is contained in one.
+</p>
+
+</div>
+
+<div class="proof" id="org3bb99be">
+<p>
+Let <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> be a proper ideal and order by inclusion the set <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> of
+proper ideals containing <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em">; it is non-empty, containing <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em">. Let
+<img class="m" src="m/cd053a42dc6593a0d14dc4a0625b55838bea74c4.svg" alt="\(\mathcal{C}\)" style="height:0.749em;vertical-align:-0.000em"> be a chain in <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> the union of its members.
+<img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> is an ideal: two elements of <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> lie in a common member of the
+chain, so their difference lies in <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">, and absorption is inherited.
+<img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> is proper, because <img class="m" src="m/a5876e928ad4681e850a5af4589cf7af67bd5cfd.svg" alt="\(1 \in U\)" style="height:0.792em;vertical-align:-0.040em"> would put <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em"> in some member of
+the chain, which is proper. So <img class="m" src="m/c14d9f8debc0887d1126102ac4e0772e8ed265e8.svg" alt="\(U \in P\)" style="height:0.792em;vertical-align:-0.040em"> is an upper bound, and Zorn's
+lemma gives a maximal element of <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> &#x2013; an ideal maximal among the
+proper ideals containing <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em">, which is maximal outright since any
+ideal strictly containing it is proper or all of <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="remark" id="orga52c44e">
+<p>
+"<img class="m" src="m/a5876e928ad4681e850a5af4589cf7af67bd5cfd.svg" alt="\(1 \in U\)" style="height:0.792em;vertical-align:-0.040em"> would put <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em"> in some member of the chain" is the whole
+reason the proof works, and the reason ideals are required to be proper:
+properness is a <b>finitary</b> condition, so it survives unions of chains.
+The same argument proves that every vector space has a basis and that
+every finitely satisfiable set of formulas has a maximal such extension
+&#x2013; three instances of one Zorn argument.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="finite-fields.html"><span>← previous</span>Finite fields</a><a rel="next" href="polynomial-rings-division-and-roots.html"><span>next →</span>Polynomial rings, division and roots</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--commutative-algebra.pdf" title="PDF manual">Commutative Algebra</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

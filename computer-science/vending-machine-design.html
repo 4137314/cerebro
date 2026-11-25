@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Worked design: a vending-machine controller · Computer Science</title>
+<meta name="description" content="A typical design problem — decode 3-bit serial commands (start bit + 2 bits), drive a credit accumulator with add10/sub10, dispense when the credit is at least 30 and return change one coin per cycle — is solved with a 9-state machine whose decoding states are a tree on the serial bits, whose fixed…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/vending-machine-design.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Worked design: a vending-machine controller · Computer Science">
+<meta property="og:description" content="A typical design problem — decode 3-bit serial commands (start bit + 2 bits), drive a credit accumulator with add10/sub10, dispense when the credit is at least 30 and return change one coin per cycle — is solved with a 9-state machine whose decoding states are a tree on the serial bits, whose fixed…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/vending-machine-design.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--sequential">Sequential</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">example · Hardware · Sequential</p>
+<h1>Worked design: a vending-machine controller</h1>
+<p class="summary">A typical design problem — decode 3-bit serial commands (start bit + 2 bits), drive a credit accumulator with <img class="m" src="m/4d8526785362288047696f5545e020aea5ccb396.svg" alt="\(add10/sub10\)" style="height:1.096em;vertical-align:-0.274em">, dispense when the credit is at least 30 and return change one coin per cycle — is solved with a 9-state machine whose decoding states are a tree on the serial bits, whose fixed operations are chains of Moore states and whose change loop is a single state with outputs conditioned on the status signal <img class="m" src="m/ae09390846244dbd853cbba8388fd22b40983b51.svg" alt="\(gt0\)" style="height:0.919em;vertical-align:-0.211em">.</p>
+<p class="rel"><span>needs</span> <a href="rtl-design.html">The RTL design method: datapath and control unit</a></p>
+<p class="rel"><span>see also</span> <a href="fsm-patterns.html">Recurring state-machine patterns</a>, <a href="serial-communication.html">Serial communication</a>, <a href="sequential-logic.html">Flip-flops and registers in VHDL</a>, <a href="finite-state-machine.html">Finite-state machines</a>, <a href="asm-chart.html">Algorithmic state machine (ASM) charts</a></p>
+<details class="path"><summary>Learning path: 15 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="multiplexer.html">Multiplexer and demultiplexer</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li><li><a href="sr-latch.html">SR latch and D latch</a></li><li><a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></li><li><a href="fsm-analysis.html">Analysis of synchronous sequential circuits</a></li><li><a href="fsm-synthesis.html">Synthesis of finite-state machines</a></li><li><a href="mealy-moore.html">Mealy versus Moore machines</a></li><li><a href="asm-chart.html">Algorithmic state machine (ASM) charts</a></li><li><a href="registers-shift-registers.html">Registers and shift registers</a></li><li><a href="counters.html">Synchronous counters</a></li><li><a href="fsm-patterns.html">Recurring state-machine patterns</a></li><li><a href="rtl-design.html">The RTL design method: datapath and control unit</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orga13bc37" class="outline-2">
+<h2 id="orga13bc37">Example</h2>
+<div class="outline-text-2" id="text-orga13bc37">
+<p>
+<b>Specification</b>. Drink 30 cents; coins of 10 and 20; change and refunds only in 10-cent coins. Commands on a serial line <img class="m" src="m/c6306f7556c20ed611b57417e4530ef85873290c.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> (synchronous, idle 0), 3 bits, first the start bit 1: <code>100</code> coin 10, <code>101</code> coin 20, <code>110</code> dispense, <code>111</code> refund. Datapath: accumulator <b>credit</b> with synchronous <img class="m" src="m/57f7499e86623a0e5749f95cf8b8e88631062254.svg" alt="\(add10\)" style="height:0.761em;vertical-align:-0.000em">, <img class="m" src="m/49203e567ddb41fa47696eb8495f314566eacb26.svg" alt="\(sub10\)" style="height:0.761em;vertical-align:-0.000em"> (adding 20 = two cycles of <img class="m" src="m/57f7499e86623a0e5749f95cf8b8e88631062254.svg" alt="\(add10\)" style="height:0.761em;vertical-align:-0.000em">); comparators <img class="m" src="m/8644e4ebbbb58b56c3257e401963609c734add3a.svg" alt="\(gte30=[\mathit{credit}\ge30]\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/0fe4ff69eeba7c9b621cf5e0d6e0491f2a2426ce.svg" alt="\(gt0=[\mathit{credit}&gt;0]\)" style="height:1.096em;vertical-align:-0.274em"> (combinational, negligible delay). Outputs: <img class="m" src="m/aeed2092d16a0b532be0546b705a4c6a123e91d2.svg" alt="\(dist\)" style="height:0.761em;vertical-align:-0.000em"> one cycle to dispense, <img class="m" src="m/abb5020653500dde0d18603c65af2db8a0efba6c.svg" alt="\(ret10\)" style="height:0.706em;vertical-align:-0.000em"> one coin per cycle. At the end the credit must be 0.
+<b>States</b> (Moore outputs in brackets, default 0):
+</p>
+<ul class="org-ul">
+<li>IDLE: busy-wait for the start bit; <img class="m" src="m/08a62d0dc936ac13df4b12667c1f8486b12be467.svg" alt="\(L\to\)" style="height:0.749em;vertical-align:-0.000em"> START.</li>
+<li>START: read bit 2; <img class="m" src="m/e278f91014f4d0d4f315ae434a9037ade981dfb2.svg" alt="\(\bar L\to\)" style="height:0.899em;vertical-align:-0.000em"> COIN, <img class="m" src="m/08a62d0dc936ac13df4b12667c1f8486b12be467.svg" alt="\(L\to\)" style="height:0.749em;vertical-align:-0.000em"> REQ.</li>
+<li>COIN [<img class="m" src="m/57f7499e86623a0e5749f95cf8b8e88631062254.svg" alt="\(add10\)" style="height:0.761em;vertical-align:-0.000em">]: read bit 3; <img class="m" src="m/e278f91014f4d0d4f315ae434a9037ade981dfb2.svg" alt="\(\bar L\to\)" style="height:0.899em;vertical-align:-0.000em"> IDLE (10 added), <img class="m" src="m/08a62d0dc936ac13df4b12667c1f8486b12be467.svg" alt="\(L\to\)" style="height:0.749em;vertical-align:-0.000em"> ADD2.</li>
+<li>ADD2 [<img class="m" src="m/57f7499e86623a0e5749f95cf8b8e88631062254.svg" alt="\(add10\)" style="height:0.761em;vertical-align:-0.000em">]: second 10 of a 20 coin; → IDLE.</li>
+<li>REQ: read bit 3; <img class="m" src="m/08a62d0dc936ac13df4b12667c1f8486b12be467.svg" alt="\(L\to\)" style="height:0.749em;vertical-align:-0.000em"> CHG (refund); <img class="m" src="m/f223126cd1a29535ffceeccb15be1a665f42be15.svg" alt="\(\bar L\cdot gte30\to\)" style="height:1.112em;vertical-align:-0.211em"> D1; <img class="m" src="m/6a1a2c95ec1b4d498a7a6a2456af4a8ffb3fe856.svg" alt="\(\bar L\cdot\overline{gte30}\to\)" style="height:1.138em;vertical-align:-0.216em"> IDLE (not enough credit: keep it, wait).</li>
+<li>D1 [<img class="m" src="m/8dbe8dfc49b813d08a95bad2f69a2eccee1ef4f8.svg" alt="\(dist, sub10\)" style="height:0.974em;vertical-align:-0.214em">] → D2 [<img class="m" src="m/49203e567ddb41fa47696eb8495f314566eacb26.svg" alt="\(sub10\)" style="height:0.761em;vertical-align:-0.000em">] → D3 [<img class="m" src="m/49203e567ddb41fa47696eb8495f314566eacb26.svg" alt="\(sub10\)" style="height:0.761em;vertical-align:-0.000em">] → CHG: dispense and take 30.</li>
+<li>CHG: if <img class="m" src="m/ae09390846244dbd853cbba8388fd22b40983b51.svg" alt="\(gt0\)" style="height:0.919em;vertical-align:-0.211em">: conditional outputs <img class="m" src="m/9ff58dcfe16f8811634196eb1a91aa233eb5f51c.svg" alt="\(ret10=sub10=1\)" style="height:0.761em;vertical-align:-0.000em">, stay; else → IDLE.</li>
+</ul>
+<p>
+The change loop cannot go below 0: in CHG <img class="m" src="m/ae09390846244dbd853cbba8388fd22b40983b51.svg" alt="\(gt0\)" style="height:0.919em;vertical-align:-0.211em"> looks at the value of <b>this</b> cycle, and the decrement appears in the next one, so with credit 10 the machine pays one coin and sees 0 in the following cycle. The coin decoding uses COIN's output for both coins, so one state is saved.
+<b>Timing diagram</b> — two 20-cent coins, then "dispense":
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">cycle</th>
+<th scope="col" class="org-right">L</th>
+<th scope="col" class="org-left">state</th>
+<th scope="col" class="org-right">credit</th>
+<th scope="col" class="org-right">add10</th>
+<th scope="col" class="org-right">sub10</th>
+<th scope="col" class="org-right">dist</th>
+<th scope="col" class="org-right">ret10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">IDLE</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-right">0</td>
+<td class="org-left">START</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-right">1</td>
+<td class="org-left">COIN</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">4</td>
+<td class="org-right">0</td>
+<td class="org-left">ADD2</td>
+<td class="org-right">10</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">5</td>
+<td class="org-right">0</td>
+<td class="org-left">IDLE</td>
+<td class="org-right">20</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">…</td>
+<td class="org-right">…</td>
+<td class="org-left">…</td>
+<td class="org-right">…</td>
+<td class="org-right">…</td>
+<td class="org-right">…</td>
+<td class="org-right">…</td>
+<td class="org-right">…</td>
+</tr>
+
+<tr>
+<td class="org-right">11</td>
+<td class="org-right">1</td>
+<td class="org-left">IDLE</td>
+<td class="org-right">40</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">12</td>
+<td class="org-right">1</td>
+<td class="org-left">START</td>
+<td class="org-right">40</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">13</td>
+<td class="org-right">0</td>
+<td class="org-left">REQ</td>
+<td class="org-right">40</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">14</td>
+<td class="org-right">0</td>
+<td class="org-left">D1</td>
+<td class="org-right">40</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">15</td>
+<td class="org-right">0</td>
+<td class="org-left">D2</td>
+<td class="org-right">30</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">16</td>
+<td class="org-right">0</td>
+<td class="org-left">D3</td>
+<td class="org-right">20</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">17</td>
+<td class="org-right">0</td>
+<td class="org-left">CHG</td>
+<td class="org-right">10</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">18</td>
+<td class="org-right">0</td>
+<td class="org-left">CHG</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">19</td>
+<td class="org-right">0</td>
+<td class="org-left">IDLE</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Each <img class="m" src="m/57f7499e86623a0e5749f95cf8b8e88631062254.svg" alt="\(add10\)" style="height:0.761em;vertical-align:-0.000em">/<img class="m" src="m/49203e567ddb41fa47696eb8495f314566eacb26.svg" alt="\(sub10\)" style="height:0.761em;vertical-align:-0.000em"> shows in <b>credit</b> one cycle later; <img class="m" src="m/c6306f7556c20ed611b57417e4530ef85873290c.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> is read in the state <b>after</b> the one that saw the previous bit. Nine states: 4 bits binary, or one-hot.
+<b>Accumulator in VHDL</b> (asynchronous reset, overflow ignored):
+</p>
+<figure class="listing lang-vhdl"><figcaption><span class="lang">VHDL</span></figcaption><pre class="src"><code><span class="f">acc</span> : <span class="k">process</span> (clk, rst)
+<span class="k">begin</span>
+  <span class="k">if</span> rst = <span class="s">'1'</span> <span class="k">then</span>
+    credit &lt;= (<span class="k">others</span> =&gt; <span class="s">'0'</span>);
+  <span class="k">elsif</span> rising_edge(clk) <span class="k">then</span>
+    <span class="k">if</span> add10 = <span class="s">'1'</span> <span class="k">then</span>
+      credit &lt;= credit + 10;            <span class="c">-- credit : unsigned(7 downto 0), numeric_std
+</span>    <span class="k">elsif</span> sub10 = <span class="s">'1'</span> <span class="k">then</span>
+      credit &lt;= credit - 10;
+    <span class="k">end</span> <span class="k">if</span>;
+  <span class="k">end</span> <span class="k">if</span>;
+<span class="k">end</span> <span class="k">process</span>;
+
+gte30 &lt;= <span class="s">'1'</span> <span class="k">when</span> credit &gt;= 30 <span class="k">else</span> <span class="s">'0'</span>;   <span class="c">-- combinational status signals
+</span>gt0   &lt;= <span class="s">'1'</span> <span class="k">when</span> credit &gt; 0   <span class="k">else</span> <span class="s">'0'</span>;</code></pre></figure>
+<p>
+The controller is the usual two-process <a href="finite-state-machine.html">VHDL FSM</a>, with the CHG outputs assigned inside <code>if gt0 = '1'</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgaff7ebf" class="outline-2">
+<h2 id="orgaff7ebf">Intuition</h2>
+<div class="outline-text-2" id="text-orgaff7ebf">
+<p>
+Decode first (a tree of states that each read one bit), then execute fixed sequences as chains of states, and use a single looping state with a datapath condition for anything of variable length.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb2052ba" class="outline-2">
+<h2 id="orgb2052ba">Pitfall</h2>
+<div class="outline-text-2" id="text-orgb2052ba">
+<p>
+Using <img class="m" src="m/283b53927114df1869f83e91a89ae766d201ff40.svg" alt="\(gt10\)" style="height:0.919em;vertical-align:-0.211em"> to stop the change loop, as a careless design would, leaves 10 cents in the machine; testing <img class="m" src="m/fa41660522f032d0f54e8f5acd0949a2e718f5a7.svg" alt="\(gte30\)" style="height:0.919em;vertical-align:-0.211em"> in D1 instead of REQ would dispense after the credit has already started to fall. Write the timing diagram cycle by cycle before trusting the diagram: off-by-one errors between "commanded" and "visible" are the most common mistake.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="state-minimization.html"><span>← previous</span>State minimization</a><a rel="next" href="big-o-complexity.html"><span>next →</span>Computational complexity and big-O</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--sequential.pdf" title="PDF manual">Sequential</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

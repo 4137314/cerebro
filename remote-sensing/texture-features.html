@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Texture features · Remote Sensing</title>
+<meta name="description" content="Texture is the spatial arrangement of tones; it is measured by first-order statistics in a window (variance, range, entropy) or by second-order statistics from the grey-level co-occurrence matrix P_{d,\theta}(i,j) — how often level i sits next to level j at a given offset — from which contrast, hom…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/texture-features.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Texture features · Remote Sensing">
+<meta property="og:description" content="Texture is the spatial arrangement of tones; it is measured by first-order statistics in a window (variance, range, entropy) or by second-order statistics from the grey-level co-occurrence matrix P_{d,\theta}(i,j) — how often level i sits next to level j at a given offset — from which contrast, hom…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/texture-features.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--filtering">Filtering</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Processing · Filtering</p>
+<h1>Texture features</h1>
+<p class="summary">Texture is the spatial arrangement of tones; it is measured by first-order statistics in a window (variance, range, entropy) or by second-order statistics from the grey-level co-occurrence matrix <img class="m" src="m/cbe8b26a7b5646aa92a792d0b3edbe99ff758339.svg" alt="\(P_{d,\theta}(i,j)\)" style="height:1.135em;vertical-align:-0.318em"> — how often level <img class="m" src="m/884847440dc967aaa55ae74bccbd8114bfa7b08c.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em"> sits next to level <img class="m" src="m/6e4ee88bd11bec3ecdc790b58d8218b942cb2425.svg" alt="\(j\)" style="height:0.936em;vertical-align:-0.215em"> at a given offset — from which contrast, homogeneity, entropy and energy are derived.</p>
+<p class="rel"><span>needs</span> <a href="statistical-filters.html">Statistical (rank) filters</a>, <a href="image-statistics.html">Image statistics: moments, mode, median</a></p>
+<p class="rel"><span>see also</span> <a href="feature-extraction.html">Feature extraction</a>, <a href="speckle-statistics.html">Speckle and its statistics</a></p>
+<p class="rel"><span>mentioned in</span> <a href="digital-image.html">Digital images</a>, <a href="feature-extraction.html">Feature extraction</a>, <a href="feature-space.html">Feature space and spectral classes</a>, <a href="photointerpretation.html">Photointerpretation</a>, <a href="convolutional-neural-network.html">Convolutional neural networks and deep learning</a></p>
+<details class="path"><summary>Learning path: 11 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li><li><a href="image-statistics.html">Image statistics: moments, mode, median</a></li><li><a href="moving-window-filters.html">Moving-window (convolution) filters</a></li><li><a href="statistical-filters.html">Statistical (rank) filters</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org81d845f" class="outline-2">
+<h2 id="org81d845f">Definition</h2>
+<div class="outline-text-2" id="text-org81d845f">
+<p>
+<b>First order</b> (window <img class="m" src="m/35381c6f1031b668b25df83a87b2fdbdb0a43753.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em">): local mean, variance, range, entropy of the local histogram.
+</p>
+
+<p>
+<b>Co-occurrence matrix</b> (Haralick): for an offset <img class="m" src="m/ef546c8ffd74954c3980850ad3071a74166eb7cd.svg" alt="\((d,\theta)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/a9f173f3cf349232401860ea47fff715b34b3a46.svg" alt="\(P(i,j)\)" style="height:1.096em;vertical-align:-0.274em"> = normalised count of pixel pairs with values <img class="m" src="m/884847440dc967aaa55ae74bccbd8114bfa7b08c.svg" alt="\(i\)" style="height:0.723em;vertical-align:-0.000em"> and <img class="m" src="m/6e4ee88bd11bec3ecdc790b58d8218b942cb2425.svg" alt="\(j\)" style="height:0.936em;vertical-align:-0.215em"> at that offset (levels usually requantized to 16–64). Features:
+<div class="mb"><img class="m" src="m/d510b296428efaba381f233714908a543a3a0fd7.svg" alt="\[ \mathrm{Contrast}=\sum_{i,j}(i-j)^2P(i,j),\quad \mathrm{Homogeneity}=\sum_{i,j}\frac{P(i,j)}{1+|i-j|},\]" style="width:30.246em"></div>
+<div class="mb"><img class="m" src="m/d09ddc19535e5843f5a014a736af04019e4762eb.svg" alt="\[ \mathrm{Entropy}=-\sum_{i,j}P(i,j)\log P(i,j),\quad \mathrm{Energy}=\sum_{i,j}P(i,j)^2. \]" style="width:28.221em"></div>
+Computed in a <a href="moving-window-filters.html">moving window</a>, each feature becomes a new band for classification.
+</p>
+</div>
+</div>
+<div id="outline-container-orgccc49ce" class="outline-2">
+<h2 id="orgccc49ce">Example</h2>
+<div class="outline-text-2" id="text-orgccc49ce">
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="k">from</span> skimage.feature <span class="k">import</span> graycomatrix, graycoprops
+<span class="v">q</span> = (band / band.<span class="b">max</span>() * 31).astype(np.uint8)
+<span class="v">P</span> = graycomatrix(q, distances=[1], angles=[0, np.pi/2], levels=32, normed=<span class="n">True</span>)
+<span class="v">contrast</span>, <span class="v">homogeneity</span> = graycoprops(P, <span class="s">"contrast"</span>), graycoprops(P, <span class="s">"homogeneity"</span>)</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orga22de95" class="outline-2">
+<h2 id="orga22de95">Intuition</h2>
+<div class="outline-text-2" id="text-orga22de95">
+<p>
+Two fields with the same average colour, one orchard and one meadow, differ in how the colour changes from pixel to pixel: that is texture.
+</p>
+</div>
+</div>
+<div id="outline-container-org9224273" class="outline-2">
+<h2 id="org9224273">Pitfall</h2>
+<div class="outline-text-2" id="text-org9224273">
+<p>
+Texture depends on window size and resolution: too small a window is noisy, too large mixes classes at boundaries, producing a halo of wrong features along every edge.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="statistical-filters.html"><span>← previous</span>Statistical (rank) filters</a><a rel="next" href="convolution-theorem.html"><span>next →</span>The convolution theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--filtering.pdf" title="PDF manual">Filtering</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

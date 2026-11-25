@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Group representations, Wigner's theorem and spin · Physics</title>
+<meta name="description" content="Symmetries act on rays, so by Wigner's theorem they are unitary or antiunitary up to phase; projective representations of SO(3) are true representations of its double cover SU(2), whose irreducible representations are labelled by j\in\tfrac12\mathbb N: spin ½ exists because \pi_1(SO(3))=\mathbb Z_2.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/group-representations-and-spin.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Group representations, Wigner's theorem and spin · Physics">
+<meta property="og:description" content="Symmetries act on rays, so by Wigner's theorem they are unitary or antiunitary up to phase; projective representations of SO(3) are true representations of its double cover SU(2), whose irreducible representations are labelled by j\in\tfrac12\mathbb N: spin ½ exists because \pi_1(SO(3))=\mathbb Z_2.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/group-representations-and-spin.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-mechanics">Quantum Mechanics</a> / <a rel="up" href="index.html#a-quantum-mechanics--mathematical-foundations">Mathematical Foundations</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Quantum Mechanics · Mathematical Foundations</p>
+<h1>Group representations, Wigner's theorem and spin</h1>
+<p class="summary">Symmetries act on rays, so by Wigner's theorem they are unitary or antiunitary up to phase; projective representations of SO(3) are true representations of its double cover SU(2), whose irreducible representations are labelled by <img class="m" src="m/bafefbaef3bd3e4d8364ae611b0c1546a48f038c.svg" alt="\(j\in\tfrac12\mathbb N\)" style="height:1.304em;vertical-align:-0.378em">: spin ½ exists because <img class="m" src="m/265c3366154938d46f4c01c17db90d38e7ca8a44.svg" alt="\(\pi_1(SO(3))=\mathbb Z_2\)" style="height:1.096em;vertical-align:-0.274em">.</p>
+<p class="rel"><span>needs</span> <a href="stone-and-stone-von-neumann-theorems.html">Stone's theorem and the Stone–von Neumann theorem</a>, <a href="symmetries-and-conservation-laws.html">Symmetries, conservation laws and degeneracy</a></p>
+<p class="rel"><span>see also</span> <a href="dirac-equation.html">The Dirac equation</a>, <a href="four-vectors-and-lorentz-transformations.html">Four-vectors, natural units and Mandelstam variables</a></p>
+<p class="rel"><span>mentioned in</span> <a href="angular-momentum-algebra.html">Angular momentum: algebra and spectrum</a></p>
+<details class="path"><summary>Learning path: 15 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></li><li><a href="spin-precession-and-rabi-oscillations.html">Spin precession and Rabi oscillations</a></li><li><a href="angular-momentum-algebra.html">Angular momentum: algebra and spectrum</a></li><li><a href="symmetries-and-conservation-laws.html">Symmetries, conservation laws and degeneracy</a></li><li><a href="self-adjoint-operators-and-spectral-theorem.html">Self-adjoint operators and the spectral theorem</a></li><li><a href="stone-and-stone-von-neumann-theorems.html">Stone's theorem and the Stone–von Neumann theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org990f2ab" class="outline-2">
+<h2 id="org990f2ab">Wigner's theorem</h2>
+<div class="outline-text-2" id="text-org990f2ab">
+<p>
+A bijection of rays preserving transition probabilities <img class="m" src="m/4cd80a96c7078cfa3c58d04c8c7c712791f4b252.svg" alt="\(|\braket{\phi|\psi}|^2\)" style="height:1.166em;vertical-align:-0.268em"> is induced by an operator <img class="m" src="m/a9ab64b8eaca50a512ea62d72ab16d1984c820de.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> on <img class="m" src="m/2ae09b62384d6cf4e9cc03a18473979fbb21ceed.svg" alt="\(\mathcal H\)" style="height:0.749em;vertical-align:-0.000em">, either unitary or antiunitary, unique up to a phase <span class="cite">(<a class="ref" href="references.html#ref-wigner1931" data-full="E. Wigner, Gruppentheorie und ihre Anwendung auf die Quantenmechanik der Atomspektren (Vieweg, Braunschweig, 1931)." aria-label="E. Wigner, Gruppentheorie und ihre Anwendung auf die Quantenmechanik der Atomspektren (Vieweg, Braunschweig, 1931).">Wigner 1931</a>)</span>. Hence a symmetry group <img class="m" src="m/3b89e89236da9a0d9086faa7c83e721e1319be60.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> acts by <img class="m" src="m/b74d5cc503f10ef734f36ace0aec1b892c67e536.svg" alt="\(U(g_1)U(g_2)=\omega(g_1,g_2)U(g_1g_2)\)" style="height:1.096em;vertical-align:-0.274em">, <img class="m" src="m/e934a27f3adf186bde673a34f875c39a3d6a0ef6.svg" alt="\(|\omega|=1\)" style="height:1.096em;vertical-align:-0.274em">: a <b>projective</b> representation <span class="cite">(<a class="ref" href="https://doi.org/10.2307/1968551" data-full="E. Wigner, “On unitary representations of the inhomogeneous Lorentz group”, Annals of Mathematics 40, 149–204 (1939)." aria-label="E. Wigner, “On unitary representations of the inhomogeneous Lorentz group”, Annals of Mathematics 40, 149–204 (1939).">Wigner 1939</a>)</span>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf43d772" class="outline-2">
+<h2 id="orgf43d772">SU(2) → SO(3)</h2>
+<div class="outline-text-2" id="text-orgf43d772">
+<p>
+<img class="m" src="m/e8d9410037ec35c77de911fe74a0b65ec3db8fb5.svg" alt="\(SU(2)=\{e^{-i\boldsymbol\sigma\cdot\hat n\phi/2}\}\)" style="height:1.247em;vertical-align:-0.274em"> acts on traceless Hermitian matrices <img class="m" src="m/552b686263ddb06ffb1cde835ae553c0e7ac44a6.svg" alt="\(\mathbf x\cdot\boldsymbol\sigma\mapsto U(\mathbf x\cdot\boldsymbol\sigma)U^\dagger\)" style="height:1.204em;vertical-align:-0.277em">, preserving <img class="m" src="m/9c7b9bbcb6750c5d256ac329aa04a355280c12e0.svg" alt="\(\det=-|\mathbf x|^2\)" style="height:1.166em;vertical-align:-0.268em">: a rotation <img class="m" src="m/048ab77f6e4fb13ea295a211087869ff5247c509.svg" alt="\(R(U)\in SO(3)\)" style="height:1.096em;vertical-align:-0.274em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1007/bf01397326" data-full="W. Pauli, “Zur Quantenmechanik des magnetischen Elektrons”, Zeitschrift für Physik 43, 601–623 (1927)." aria-label="W. Pauli, “Zur Quantenmechanik des magnetischen Elektrons”, Zeitschrift für Physik 43, 601–623 (1927).">Pauli 1927</a>)</span>. The map is 2:1, <img class="m" src="m/d68f6321d11637726850c46e225e91bb24232bef.svg" alt="\(\pm U\mapsto R\)" style="height:0.840em;vertical-align:-0.092em">. Its kernel <img class="m" src="m/1b16a97e6e554121496ffa244645ad5e180f2170.svg" alt="\(\{\pm1\}\)" style="height:1.096em;vertical-align:-0.274em"> is why a <img class="m" src="m/e4891c4be689e29794f8ebb746d6bdf2c5516db2.svg" alt="\(2\pi\)" style="height:0.706em;vertical-align:-0.000em"> rotation gives <img class="m" src="m/2b5d580b6e61c94da1bb188b65a19b9b37604104.svg" alt="\(-1\)" style="height:0.798em;vertical-align:-0.088em"> on spinors.
+<b>Bargmann</b>: for simply connected groups with no central extension of the Lie algebra (true for SU(2)), every projective representation of the quotient lifts to a true representation of the cover. Irreducible unitary representations of SU(2): dimension <img class="m" src="m/80e28de9e528ec99f967f9fcd0436dc8fb589347.svg" alt="\(2j+1\)" style="height:0.936em;vertical-align:-0.215em">, <img class="m" src="m/2472cf2d4833d22d375feac219656c8d96cac84d.svg" alt="\(j=0,\tfrac12,1,\dots\)" style="height:1.304em;vertical-align:-0.378em"> — the <a href="angular-momentum-algebra.html">angular-momentum spectrum</a> reobtained from topology.
+</p>
+</div>
+</div>
+<div id="outline-container-org922b869" class="outline-2">
+<h2 id="org922b869">Lie algebra view</h2>
+<div class="outline-text-2" id="text-org922b869">
+<p>
+Differentiating <img class="m" src="m/2e3556ba6968bf9780db0b69457949a1239ce2d4.svg" alt="\(U(e^{tX})=e^{-itJ_X}\)" style="height:1.196em;vertical-align:-0.275em"> (Stone) maps the Lie algebra <img class="m" src="m/14da092ad991b147c21f1ab289cb67b36c3957c8.svg" alt="\(\mathfrak{su}(2)\)" style="height:1.096em;vertical-align:-0.274em"> to self-adjoint generators with <img class="m" src="m/9b4ac09a6d2c34a67c0cbe0fdbe998b88227c4c4.svg" alt="\([J_i,J_j]=i\epsilon_{ijk}J_k\)" style="height:1.135em;vertical-align:-0.318em"> (<img class="m" src="m/bf80cbcdf2adfdedf54720019cf33cfc353ec466.svg" alt="\(\hbar=1\)" style="height:0.755em;vertical-align:-0.000em">). Casimir <img class="m" src="m/520a9448554af644ddfa0cf255bc9b01bd9f3576.svg" alt="\(\mathbf J^2\)" style="height:0.892em;vertical-align:-0.000em"> labels irreducibles. The same scheme with the Lorentz group gives spinor representations <img class="m" src="m/3e02033d2ab18a9767993ebfed98877ed8a0ce9f.svg" alt="\((\tfrac12,0)\oplus(0,\tfrac12)\)" style="height:1.304em;vertical-align:-0.378em"> of the <a href="dirac-equation.html">Dirac equation</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-orga35b3de" class="outline-2">
+<h2 id="orga35b3de">Worked example</h2>
+<div class="outline-text-2" id="text-orga35b3de">
+<p>
+<img class="m" src="m/b298bd8fecb84f8aff7f0f8bf92c9cd90c00f8a4.svg" alt="\(\tfrac12\otimes\tfrac12=0\oplus1\)" style="height:1.304em;vertical-align:-0.378em"> and <img class="m" src="m/b96c1bac0b57615fdc642b623ff545855f451a2f.svg" alt="\(1\otimes1=0\oplus1\oplus2\)" style="height:0.798em;vertical-align:-0.088em"> (dimensions <img class="m" src="m/78e00a0e058239d49dbcf6fbe891773bd30f88aa.svg" alt="\(4=1+3\)" style="height:0.798em;vertical-align:-0.088em">, <img class="m" src="m/a1489870891ae1015d95f65b4ef37b47deb0c4fb.svg" alt="\(9=1+3+5\)" style="height:0.798em;vertical-align:-0.088em">): character theory, <img class="m" src="m/823c8e7031b6f5403bbac09ec915e784cfde1a71.svg" alt="\(\chi_j(\phi)=\frac{\sin((j+\frac12)\phi)}{\sin(\phi/2)}\)" style="height:1.821em;vertical-align:-0.565em">, and <img class="m" src="m/e9120cec52d8a963f4ec779c58637c1496f1e7f6.svg" alt="\(\chi_{1/2}^2=\chi_0+\chi_1\)" style="height:1.437em;vertical-align:-0.546em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org0a59d84" class="outline-2">
+<h2 id="org0a59d84">Engineering applications</h2>
+<div class="outline-text-2" id="text-org0a59d84">
+<p>
+Classification of electron states in crystals by space-group representations (band labels at high-symmetry points), polarisation optics on the Poincaré sphere (SU(2) acting on Jones vectors), quantum control as paths in SU(2).
+</p>
+</div>
+</div>
+<div id="outline-container-org05ab753" class="outline-2">
+<h2 id="org05ab753">Pitfall</h2>
+<div class="outline-text-2" id="text-org05ab753">
+<p>
+Phases matter: a projective representation that cannot be made linear signals a genuinely new quantum number (spin, or mass in the Galilei group via Bargmann's superselection).
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="algebraic-quantum-theory.html"><span>← previous</span>Algebraic quantum theory: C*-algebras, GNS and Gleason</a><a rel="next" href="quantum-optics.html"><span>next →</span>Quantum optics: the map of the subject</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-mechanics--mathematical-foundations.pdf" title="PDF manual">Mathematical Foundations</a> · <a class="pdf" href="pdf/quantum-mechanics.pdf" title="PDF manual">Quantum Mechanics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

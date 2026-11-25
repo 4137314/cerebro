@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mathematical morphology · Remote Sensing</title>
+<meta name="description" content="With a small structuring element B, erosion shrinks objects (a pixel stays only if B fits inside), dilation grows them, opening (erosion then dilation) removes objects and protrusions smaller than B, closing (dilation then erosion) fills gaps and holes smaller than B: the standard clean-up of binar…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/morphological-operations.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Mathematical morphology · Remote Sensing">
+<meta property="og:description" content="With a small structuring element B, erosion shrinks objects (a pixel stays only if B fits inside), dilation grows them, opening (erosion then dilation) removes objects and protrusions smaller than B, closing (dilation then erosion) fills gaps and holes smaller than B: the standard clean-up of binar…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/morphological-operations.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--segmentation">Segmentation</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Processing · Segmentation</p>
+<h1>Mathematical morphology</h1>
+<p class="summary">With a small structuring element <img class="m" src="m/930bceceff5ba504b5eefacfc24da37e501bf942.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">, erosion shrinks objects (a pixel stays only if <img class="m" src="m/930bceceff5ba504b5eefacfc24da37e501bf942.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> fits inside), dilation grows them, opening (erosion then dilation) removes objects and protrusions smaller than <img class="m" src="m/930bceceff5ba504b5eefacfc24da37e501bf942.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">, closing (dilation then erosion) fills gaps and holes smaller than <img class="m" src="m/930bceceff5ba504b5eefacfc24da37e501bf942.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">: the standard clean-up of binary masks and a source of shape features.</p>
+<p class="rel"><span>needs</span> <a href="statistical-filters.html">Statistical (rank) filters</a>, <a href="image-thresholding.html">Histogram thresholding</a></p>
+<p class="rel"><span>see also</span> <a href="region-growing.html">Region growing</a>, <a href="image-segmentation.html">Image segmentation</a>, <a href="change-detection.html">Change detection</a></p>
+<details class="path"><summary>Learning path: 20 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="radiometric-quantities.html">Radiometric quantities</a></li><li><a href="planck-law.html">Black body and Planck's law</a></li><li><a href="gray-body.html">Real bodies: emissivity and Kirchhoff's law</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="spectral-signature.html">Spectral signature</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li><li><a href="image-statistics.html">Image statistics: moments, mode, median</a></li><li><a href="moving-window-filters.html">Moving-window (convolution) filters</a></li><li><a href="statistical-filters.html">Statistical (rank) filters</a></li><li><a href="homogeneous-area-statistics.html">Statistics of homogeneous areas in optical images</a></li><li><a href="image-segmentation.html">Image segmentation</a></li><li><a href="image-thresholding.html">Histogram thresholding</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org7f806d1" class="outline-2">
+<h2 id="org7f806d1">Method</h2>
+<div class="outline-text-2" id="text-org7f806d1">
+<p>
+For a binary image <img class="m" src="m/624181e756424cb5b5cfe3056880b27fd01010dc.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> and structuring element <img class="m" src="m/930bceceff5ba504b5eefacfc24da37e501bf942.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> (e.g. a <img class="m" src="m/50db2fc2c0f28b7a9f0286b8c62522b48a5bd284.svg" alt="\(3\times3\)" style="height:0.798em;vertical-align:-0.088em"> square or a disk):
+</p>
+<ul class="org-ul">
+<li><b>erosion</b> <img class="m" src="m/5ccbb4fb2bbfa4186dd3d612e0135a6492b20fc3.svg" alt="\(X\ominus B=\{p: B_p\subseteq X\}\)" style="height:1.135em;vertical-align:-0.318em"> — grey-level version: <a href="statistical-filters.html">minimum filter</a>;</li>
+<li><b>dilation</b> <img class="m" src="m/2ff27dd8689fcffc8c546ac84266de03d82d85ec.svg" alt="\(X\oplus B=\{p: B_p\cap X\neq\emptyset\}\)" style="height:1.135em;vertical-align:-0.318em"> — maximum filter;</li>
+<li><b>opening</b> <img class="m" src="m/356545eda2f9e057025c0da09e35b87cf87e6715.svg" alt="\(X\circ B=(X\ominus B)\oplus B\)" style="height:1.096em;vertical-align:-0.274em">: removes small bright objects, keeps the shape of large ones;</li>
+<li><b>closing</b> <img class="m" src="m/f4167c33a637179a51630e874728c2ae7ba91ab4.svg" alt="\(X\bullet B=(X\oplus B)\ominus B\)" style="height:1.096em;vertical-align:-0.274em">: fills small dark holes and gaps.</li>
+</ul>
+<p>
+Opening and closing are idempotent; <b>morphological profiles</b> (openings and closings with growing <img class="m" src="m/930bceceff5ba504b5eefacfc24da37e501bf942.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em">) describe the size of structures around each pixel and are strong spatial features for classifying very high resolution images.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc9ed379" class="outline-2">
+<h2 id="orgc9ed379">Example</h2>
+<div class="outline-text-2" id="text-orgc9ed379">
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="k">from</span> scipy <span class="k">import</span> ndimage
+<span class="v">water</span> = nir &lt; T                                         <span class="c"># noisy threshold mask
+# drop isolated pixels
+</span><span class="v">clean</span> = ndimage.binary_opening(water, structure=np.ones((3, 3)))
+<span class="c"># fill gaps in the river
+</span><span class="v">clean</span> = ndimage.binary_closing(clean, structure=np.ones((5, 5)))</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orgd66b1b2" class="outline-2">
+<h2 id="orgd66b1b2">Intuition</h2>
+<div class="outline-text-2" id="text-orgd66b1b2">
+<p>
+Roll a coin of the size of <img class="m" src="m/930bceceff5ba504b5eefacfc24da37e501bf942.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> inside the objects (opening) or outside them (closing): whatever the coin cannot reach is erased or filled.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfc7d845" class="outline-2">
+<h2 id="orgfc7d845">Pitfall</h2>
+<div class="outline-text-2" id="text-orgfc7d845">
+<p>
+The structuring element encodes a scale and a shape: a square <img class="m" src="m/930bceceff5ba504b5eefacfc24da37e501bf942.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> removes a one-pixel-wide river together with the noise. Choose <img class="m" src="m/930bceceff5ba504b5eefacfc24da37e501bf942.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> smaller than the narrowest structure to keep.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="image-thresholding.html"><span>← previous</span>Histogram thresholding</a><a rel="next" href="region-growing.html"><span>next →</span>Region growing</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--segmentation.pdf" title="PDF manual">Segmentation</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

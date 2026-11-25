@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Power semiconductor devices: the map of the subject · Physics</title>
+<meta name="description" content="Power devices block high voltage with thick, lightly doped drift regions and conduct high current with low loss; the trade-off between breakdown voltage and on-resistance (unipolar limit R_{on,sp}\propto V_{BR}^{2.5}), conductivity modulation in bipolar devices (pin, IGBT, thyristor) and wide-bandg…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/power-electronics.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Power semiconductor devices: the map of the subject · Physics">
+<meta property="og:description" content="Power devices block high voltage with thick, lightly doped drift regions and conduct high current with low loss; the trade-off between breakdown voltage and on-resistance (unipolar limit R_{on,sp}\propto V_{BR}^{2.5}), conductivity modulation in bipolar devices (pin, IGBT, thyristor) and wide-bandg…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/power-electronics.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-power-electronics">Power Electronics</a> / <a rel="up" href="index.html#a-power-electronics--power-electronics">Power Electronics</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">overview · Power Electronics · Power Electronics</p>
+<h1>Power semiconductor devices: the map of the subject</h1>
+<p class="summary">Power devices block high voltage with thick, lightly doped drift regions and conduct high current with low loss; the trade-off between breakdown voltage and on-resistance (unipolar limit <img class="m" src="m/9355a9007c0e5841719af1a8035e09574e6c5484.svg" alt="\(R_{on,sp}\propto V_{BR}^{2.5}\)" style="height:1.206em;vertical-align:-0.313em">), conductivity modulation in bipolar devices (pin, IGBT, thyristor) and wide-bandgap materials (SiC, GaN) define the field; converters switch them at kHz–MHz.</p>
+<p class="rel"><span>needs</span> <a href="solid-state.html">Semiconductor physics: the map of the subject</a>, <a href="circuits.html">Circuit theory: the map of the subject</a></p>
+<p class="rel"><span>unlocks</span> <a href="power-diodes.html">Power pin diodes: blocking, conduction and reverse recovery</a></p>
+<p class="rel"><span>see also</span> <a href="digital-electronics.html">Digital electronic circuits: the map of the subject</a></p>
+<p class="rel"><span>mentioned in</span> <a href="physics-study-map.html">Physics: study map</a></p>
+<details class="path"><summary>Learning path: 4 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="circuits.html">Circuit theory: the map of the subject</a></li><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="solid-state.html">Semiconductor physics: the map of the subject</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgd6aff5b" class="outline-2">
+<h2 id="orgd6aff5b">Overview</h2>
+<div class="outline-text-2" id="text-orgd6aff5b">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">block</th>
+<th scope="col" class="org-left">notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">devices</td>
+<td class="org-left">power diodes, MOSFETs and IGBTs, thyristors, SiC and GaN</td>
+</tr>
+
+<tr>
+<td class="org-left">converters</td>
+<td class="org-left">buck, boost, losses and the switching cycle</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org3282188" class="outline-2">
+<h2 id="org3282188">Device map</h2>
+<div class="outline-text-2" id="text-org3282188">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">device</th>
+<th scope="col" class="org-left">voltage</th>
+<th scope="col" class="org-left">frequency</th>
+<th scope="col" class="org-left">carriers</th>
+<th scope="col" class="org-left">typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Si MOSFET</td>
+<td class="org-left">&lt; 600 V</td>
+<td class="org-left">100 kHz–MHz</td>
+<td class="org-left">unipolar</td>
+<td class="org-left">supplies, motor drives</td>
+</tr>
+
+<tr>
+<td class="org-left">IGBT</td>
+<td class="org-left">600 V–6.5 kV</td>
+<td class="org-left">1–50 kHz</td>
+<td class="org-left">bipolar</td>
+<td class="org-left">inverters, traction</td>
+</tr>
+
+<tr>
+<td class="org-left">thyristor</td>
+<td class="org-left">up to 10 kV</td>
+<td class="org-left">50–1000 Hz</td>
+<td class="org-left">bipolar</td>
+<td class="org-left">HVDC, soft starters</td>
+</tr>
+
+<tr>
+<td class="org-left">SiC MOSFET</td>
+<td class="org-left">650 V–3.3 kV</td>
+<td class="org-left">10–200 kHz</td>
+<td class="org-left">unipolar</td>
+<td class="org-left">EV inverters, PV</td>
+</tr>
+
+<tr>
+<td class="org-left">GaN HEMT</td>
+<td class="org-left">&lt; 650 V</td>
+<td class="org-left">0.1–10 MHz</td>
+<td class="org-left">unipolar</td>
+<td class="org-left">chargers, data centres</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org3ea3b06" class="outline-2">
+<h2 id="org3ea3b06">Engineering applications</h2>
+<div class="outline-text-2" id="text-org3ea3b06">
+<p>
+Electric vehicles, renewable inverters, motor drives, HVDC links, switch-mode power supplies, induction heating.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="sram-cell.html"><span>← previous</span>The 6T SRAM cell</a><a rel="next" href="power-diodes.html"><span>next →</span>Power pin diodes: blocking, conduction and reverse recovery</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/power-electronics--power-electronics.pdf" title="PDF manual">Power Electronics</a> · <a class="pdf" href="pdf/power-electronics.pdf" title="PDF manual">Power Electronics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

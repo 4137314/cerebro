@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Central forces, the two-body problem and Kepler's laws · Mathematics</title>
+<meta name="description" content="The two-body problem is the one non-trivial mechanical system that is solved completely, and it is solved by symmetry rather than by integration: rotational invariance reduces two bodies in space to one coordinate, and the reduction is what turns the orbit equation into a conic. Kepler's three laws…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/central-forces-the-two-body-problem-and-keplers-laws.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Central forces, the two-body problem and Kepler's laws · Mathematics">
+<meta property="og:description" content="The two-body problem is the one non-trivial mechanical system that is solved completely, and it is solved by symmetry rather than by integration: rotational invariance reduces two bodies in space to one coordinate, and the reduction is what turns the orbit equation into a conic. Kepler's three laws…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/central-forces-the-two-body-problem-and-keplers-laws.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-physics">Physics</a> / <a rel="up" href="index.html#a-physics--classical-mechanics">Classical Mechanics</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Physics · Classical Mechanics</p>
+<h1>Central forces, the two-body problem and Kepler's laws</h1>
+<p class="summary">The two-body problem is the one non-trivial mechanical system that is solved completely, and it is solved by symmetry rather than by integration: rotational invariance reduces two bodies in space to one coordinate, and the reduction is what turns the orbit equation into a conic. Kepler's three laws are the three conserved quantities, read off in order.</p>
+<p class="rel"><span>needs</span> <a href="conics-and-quadrics-classification-by-signature.html">Conics and quadrics: classification by signature</a>, <a href="constraints-virtual-work-and-the-lagrange-equations.html">Constraints, virtual work and the Lagrange equations</a>, <a href="differentiability-in-several-variables.html">Differentiability in several variables</a>, <a href="noethers-theorem.html">Noether's theorem</a>, <a href="the-rules-of-differentiation.html">The rules of differentiation</a></p>
+<p class="rel"><span>mentioned in</span> <a href="mathematical-physics.html">Mathematical physics</a></p>
+<details class="path"><summary>Learning path: 68 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="bilinear-forms-quadratic-forms-and-sylvesters-law-of-inertia.html">Bilinear forms, quadratic forms and Sylvester's law of inertia</a></li><li><a href="inner-product-space.html">Inner product space</a></li><li><a href="cauchy-schwarz-inequality.html">Cauchy-Schwarz inequality</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-order-of-an-element-and-cyclic-groups.html">The order of an element and cyclic groups</a></li><li><a href="cosets-the-index-and-lagranges-theorem.html">Cosets, the index and Lagrange's theorem</a></li><li><a href="group-actions-orbits-and-the-orbit-stabiliser-theorem.html">Group actions, orbits and the orbit-stabiliser theorem</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-algebra-of-continuous-functions-and-composition.html">The algebra of continuous functions and composition</a></li><li><a href="one-sided-limits-and-the-discontinuities-of-a-monotone-function.html">One-sided limits and the discontinuities of a monotone function</a></li><li><a href="the-intermediate-value-theorem.html">The intermediate value theorem</a></li><li><a href="the-continuous-image-of-an-interval-and-the-continuous-inverse.html">The continuous image of an interval and the continuous inverse</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-rules-of-differentiation.html">The rules of differentiation</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="differentiability-in-several-variables.html">Differentiability in several variables</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li><li><a href="the-contraction-mapping-principle.html">The contraction mapping principle</a></li><li><a href="the-inverse-and-implicit-function-theorems.html">The inverse and implicit function theorems</a></li><li><a href="constrained-extrema-and-lagrange-multipliers.html">Constrained extrema and Lagrange multipliers</a></li><li><a href="uniform-continuity-and-the-heine-cantor-theorem.html">Uniform continuity and the Heine&#x2013;Cantor theorem</a></li><li><a href="the-riemann-integral.html">The Riemann integral</a></li><li><a href="linearity-additivity-and-monotonicity-of-the-integral.html">Linearity, additivity and monotonicity of the integral</a></li><li><a href="the-fundamental-theorem-of-calculus.html">The fundamental theorem of calculus</a></li><li><a href="integration-by-parts-and-substitution.html">Integration by parts and substitution</a></li><li><a href="affine-spaces-affine-subspaces-and-affine-maps.html">Affine spaces, affine subspaces and affine maps</a></li><li><a href="projective-space-affine-charts-and-the-dimension-formula.html">Projective space, affine charts and the dimension formula</a></li><li><a href="conics-and-quadrics-classification-by-signature.html">Conics and quadrics: classification by signature</a></li><li><a href="the-action-functional-and-the-first-variation.html">The action functional and the first variation</a></li><li><a href="the-euler-lagrange-equations.html">The Euler-Lagrange equations</a></li><li><a href="noethers-theorem.html">Noether's theorem</a></li><li><a href="constraints-virtual-work-and-the-lagrange-equations.html">Constraints, virtual work and the Lagrange equations</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgb558231">
+<p>
+A <i>central force</i> system is a single particle of mass <img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em"> in
+<img class="m" src="m/c56c61111655edf0be710d27f99daef6e8114c56.svg" alt="\(\R^{3}\)" style="height:0.892em;vertical-align:-0.000em"> with potential <img class="m" src="m/5a919c190c6330194fec6f9666e4b58b99668b42.svg" alt="\(V(r)\)" style="height:1.096em;vertical-align:-0.274em"> depending only on
+<img class="m" src="m/cfed2e969b1a17ed948651d274531a82a526efa4.svg" alt="\(r = \abs{x}\)" style="height:1.096em;vertical-align:-0.274em">; the Lagrangian is
+<img class="m" src="m/f93c609e27172bc2b9e3e8bd41e278b10c2da735.svg" alt="\(L = \tfrac{1}{2}m\abs{\dot{x}}^{2}-V(r)\)" style="height:1.304em;vertical-align:-0.378em">. The <i>angular momentum</i> is
+<img class="m" src="m/fefea2b87e91185144602801b2d336286e80b837.svg" alt="\(\ell = m\,x \times \dot{x}\)" style="height:0.852em;vertical-align:-0.094em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgc6d4ee2">
+<p>
+Along any motion, <img class="m" src="m/07a36ad20d0536a3700d1a70cc39a959945a8918.svg" alt="\(\ell\)" style="height:0.761em;vertical-align:-0.000em"> is constant; the motion is therefore planar,
+and in polar coordinates <img class="m" src="m/23fa53d952633b7eff73f468a5e4b94cf75e45d0.svg" alt="\((r,\theta)\)" style="height:1.096em;vertical-align:-0.274em"> in that plane
+<img class="m" src="m/d3a9009518a35509b9edfd280693121c3f447c2e.svg" alt="\(\ell = mr^{2}\dot{\theta}\)" style="height:1.021em;vertical-align:-0.000em"> is constant &#x2013; which is Kepler's second
+law, equal areas in equal times.
+</p>
+
+</div>
+
+<div class="proof" id="orga468fef">
+<p>
+Differentiating, <img class="m" src="m/906cddf5b5ad892c03366b7543cd16a75a3fd7cb.svg" alt="\(\dot{\ell} = m\,\dot{x}\times\dot{x} + m\,x\times\ddot{x} = x \times (-V'(r)x/r) = 0\)" style="height:1.295em;vertical-align:-0.272em">,
+the force being parallel to <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">. If <img class="m" src="m/f7be7bdb81e023502cc4377640a75a3b6e532bf7.svg" alt="\(\ell \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> then <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> stays in
+the plane through the origin orthogonal to <img class="m" src="m/07a36ad20d0536a3700d1a70cc39a959945a8918.svg" alt="\(\ell\)" style="height:0.761em;vertical-align:-0.000em">, since
+<img class="m" src="m/83dd8137142f087e998a8269fc70c22f04300138.svg" alt="\(\inner{x}{\ell} = 0\)" style="height:1.096em;vertical-align:-0.274em"> identically; if <img class="m" src="m/f842bc4bec864c0cbeee28cc6b1a29c8c2514063.svg" alt="\(\ell = 0\)" style="height:0.761em;vertical-align:-0.000em"> the motion is along
+a fixed line. In polar coordinates in that plane,
+<img class="m" src="m/1f20ce3462fcd2a860a9c2300488b6d9b2de2591.svg" alt="\(\abs{x\times\dot{x}} = r^{2}\dot{\theta}\)" style="height:1.295em;vertical-align:-0.272em">, and the swept area has
+derivative <img class="m" src="m/86dd4855196d44c745d683870e0f8e249f532099.svg" alt="\(\tfrac{1}{2}r^{2}\dot{\theta}\)" style="height:1.399em;vertical-align:-0.378em">, constant.
+</p>
+
+</div>
+
+<div class="theorem" id="org0c548f2">
+<p>
+In the plane of motion the Lagrangian is
+<img class="m" src="m/d998b4e5cfd66877bd4d3d93dd52fc524fd40d2f.svg" alt="\(L = \tfrac{1}{2}m(\dot{r}^{2}+r^{2}\dot{\theta}^{2})-V(r)\)" style="height:1.399em;vertical-align:-0.378em">; the
+coordinate <img class="m" src="m/346f66be96cb38ba0680cfd40867d9bf1796163d.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em"> is cyclic with momentum <img class="m" src="m/07a36ad20d0536a3700d1a70cc39a959945a8918.svg" alt="\(\ell\)" style="height:0.761em;vertical-align:-0.000em">, and the radial
+motion satisfies
+<div class="mb"><img class="m" src="m/1a6a755c9ba4dea214836da60eba67b4205817ee.svg" alt="\[ m\ddot{r} = -V_{\mathrm{eff}}'(r), \qquad V_{\mathrm{eff}}(r) = V(r)+\frac{\ell^{2}}{2mr^{2}}, \]" style="width:20.718em"></div>
+with conserved energy
+<img class="m" src="m/554d405b2dfe843a0b1491b273cb79a8afcf89f7.svg" alt="\(E = \tfrac{1}{2}m\dot{r}^{2}+V_{\mathrm{eff}}(r)\)" style="height:1.304em;vertical-align:-0.378em">.
+</p>
+
+</div>
+
+<div class="proof" id="org7a57bb6">
+<p>
+The expression for <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> is the kinetic energy in polar coordinates.
+Since <img class="m" src="m/346f66be96cb38ba0680cfd40867d9bf1796163d.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em"> does not appear, <img class="m" src="m/d43ed4ad1acfe468b16b5af78fe55ae21b2d06ad.svg" alt="\(p_{\theta} = mr^{2}\dot{\theta} = \ell\)" style="height:1.234em;vertical-align:-0.210em">
+is conserved. The Lagrange equation for <img class="m" src="m/6a662e32b188f7fd491c82ebcd46ddece8ed8644.svg" alt="\(r\)" style="height:0.472em;vertical-align:-0.000em"> reads
+<img class="m" src="m/e13117e82d2b6a0ace4020fc37ddb3d4bc047fc4.svg" alt="\(m\ddot{r} = mr\dot{\theta}^{2}-V'(r)\)" style="height:1.295em;vertical-align:-0.272em">; substituting
+<img class="m" src="m/030b700dfa5d3448e68c6b141f065abd650dae6a.svg" alt="\(\dot{\theta} = \ell/(mr^{2})\)" style="height:1.295em;vertical-align:-0.272em"> gives
+<img class="m" src="m/5efb8c391c19bd90f290a23c2357ee98ed2007b0.svg" alt="\(m\ddot{r} = \ell^{2}/(mr^{3}) - V'(r) = -V_{\mathrm{eff}}'(r)\)" style="height:1.202em;vertical-align:-0.313em">.
+Multiplying by <img class="m" src="m/93145d9dfb2c882da7b3d50f4694da4b1577a77a.svg" alt="\(\dot{r}\)" style="height:0.732em;vertical-align:-0.000em"> and integrating gives the conserved <img class="m" src="m/af428b55ddf829e9044704887ce1bde83bdc2a14.svg" alt="\(E\)" style="height:0.749em;vertical-align:-0.000em">,
+which is also the energy of the previous note with
+<img class="m" src="m/d421d3af722df4cdabfa509b2de4bea6276c7dd1.svg" alt="\(\dot{\theta}\)" style="height:1.021em;vertical-align:-0.000em"> eliminated.
+</p>
+
+</div>
+
+<div class="theorem" id="orge645065">
+<p>
+For the Newtonian potential <img class="m" src="m/592092acd0087699b743d972ef79d3e3866629f2.svg" alt="\(V(r) = -k/r\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/d162d4c1ef9e7cda2cd0ea8a28c40493c80c0a1d.svg" alt="\(k&gt;0\)" style="height:0.804em;vertical-align:-0.040em"> and
+<img class="m" src="m/f7be7bdb81e023502cc4377640a75a3b6e532bf7.svg" alt="\(\ell \ne 0\)" style="height:0.974em;vertical-align:-0.214em">, the orbit in polar coordinates is
+<div class="mb"><img class="m" src="m/b99100991bbd9401af7e36f6e3e6c9917920bd17.svg" alt="\[ r(\theta) = \frac{p}{1+e\cos(\theta-\theta_{0})}, \qquad p = \frac{\ell^{2}}{mk}, \quad e = \sqrt{1+\frac{2E\ell^{2}}{mk^{2}}}, \]" style="width:27.432em"></div>
+a conic with the centre of force at a focus: an ellipse for <img class="m" src="m/faeaa4607ebb5febc022ca2edb2c3553ee9918d4.svg" alt="\(E&lt;0\)" style="height:0.792em;vertical-align:-0.040em">, a
+parabola for <img class="m" src="m/ccf45a74dacc653d52d71c23a6a59b525cb4546d.svg" alt="\(E = 0\)" style="height:0.749em;vertical-align:-0.000em">, a hyperbola for <img class="m" src="m/c88a5c3511c0bd5bb4657c27bfc8cee733523004.svg" alt="\(E&gt;0\)" style="height:0.792em;vertical-align:-0.040em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgf8da422">
+<p>
+Substitute <img class="m" src="m/7d791ef3c4a9339338a8cacf3529f599be8fd71c.svg" alt="\(u = 1/r\)" style="height:1.096em;vertical-align:-0.274em"> and use <img class="m" src="m/346f66be96cb38ba0680cfd40867d9bf1796163d.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em"> as the independent variable.
+From <img class="m" src="m/f67f27fd20faaf8ca2c4cbbf94be4ab620784084.svg" alt="\(\dot{\theta} = \ell u^{2}/m\)" style="height:1.295em;vertical-align:-0.272em"> and the chain rule,
+<img class="m" src="m/bc215dafc0455151ed8fa5db11a3c713364ded70.svg" alt="\(\dot{r} = -\frac{\ell}{m}\frac{\dd u}{\dd\theta}\)" style="height:1.342em;vertical-align:-0.376em"> and
+<img class="m" src="m/0421bd1c528b86484e0c40573e42e04bf99e873d.svg" alt="\(\ddot{r} = -\frac{\ell^{2}u^{2}}{m^{2}}\frac{\dd^{2}u}{\dd\theta^{2}}\)" style="height:1.493em;vertical-align:-0.373em">.
+Substituting into the radial equation with <img class="m" src="m/89dada7fb02f75ce5122931ae90701d65fa3f22c.svg" alt="\(V' = k/r^{2} = ku^{2}\)" style="height:1.166em;vertical-align:-0.268em">
+gives the linear equation
+<img class="m" src="m/a32fbe68e1fd8ed4e263404253c61fa8de8a06b5.svg" alt="\(\frac{\dd^{2}u}{\dd\theta^{2}} + u = \frac{mk}{\ell^{2}}\)" style="height:1.493em;vertical-align:-0.373em">,
+whose general solution is <img class="m" src="m/015d8d93378e5f13187599b2f44066d9dd998e7b.svg" alt="\(u = \frac{mk}{\ell^{2}}(1+e\cos(\theta-\theta_{0}))\)" style="height:1.342em;vertical-align:-0.376em">
+with constants <img class="m" src="m/bda47511a87a54c1a4b890a29863ec989a2bebe4.svg" alt="\(e, \theta_{0}\)" style="height:0.974em;vertical-align:-0.214em">. Inverting gives the displayed <img class="m" src="m/6a662e32b188f7fd491c82ebcd46ddece8ed8644.svg" alt="\(r\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+<p>
+To identify <img class="m" src="m/09798e3cb5ef8291c7239dd012807e66ef0eccaf.svg" alt="\(e\)" style="height:0.472em;vertical-align:-0.000em">, evaluate the conserved energy on this solution: a
+direct computation with
+<img class="m" src="m/cd339a2a089d6306178782d456c645861823a71a.svg" alt="\(\dot{r} = \frac{\ell}{m}\frac{mk}{\ell^{2}}e\sin(\theta-\theta_{0})\)" style="height:1.342em;vertical-align:-0.376em">
+gives <img class="m" src="m/c939b29549e2de1fad5de4b4f4fc3562c20dbe07.svg" alt="\(E = \frac{mk^{2}}{2\ell^{2}}(e^{2}-1)\)" style="height:1.493em;vertical-align:-0.373em">, which is the stated
+expression. The trichotomy in <img class="m" src="m/09798e3cb5ef8291c7239dd012807e66ef0eccaf.svg" alt="\(e\)" style="height:0.472em;vertical-align:-0.000em"> against <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em"> is the trichotomy in
+<img class="m" src="m/af428b55ddf829e9044704887ce1bde83bdc2a14.svg" alt="\(E\)" style="height:0.749em;vertical-align:-0.000em"> against <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">, and it is the classification of the conic by
+eccentricity.
+</p>
+
+</div>
+
+<div class="corollary" id="orgccc511e">
+<p>
+For a bounded orbit with semi-major axis <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">, the period satisfies
+<img class="m" src="m/7796eda722d77623a0cc3e99f88ce9246e11bb23.svg" alt="\(T^{2} = \frac{4\pi^{2}m}{k}a^{3}\)" style="height:1.493em;vertical-align:-0.373em">.
+</p>
+
+</div>
+
+<div class="proof" id="org086ad81">
+<p>
+By the second law the areal velocity is <img class="m" src="m/6ab4460b5eb7076370422c704492f2246a408ab1.svg" alt="\(\ell/(2m)\)" style="height:1.096em;vertical-align:-0.274em">, so the period is
+the area of the ellipse divided by it: <img class="m" src="m/dd8e6f299e6a80b0a68b8dcb493b7a2ba85cff9f.svg" alt="\(T = 2m\pi ab/\ell\)" style="height:1.096em;vertical-align:-0.274em">, where
+<img class="m" src="m/a832639ebc58b837bcc0a0d8e9336c9c0bc44982.svg" alt="\(b = a\sqrt{1-e^{2}}\)" style="height:1.140em;vertical-align:-0.137em"> is the semi-minor axis. From the orbit,
+<img class="m" src="m/72104f1b1b5e8472962479801edbb9932e670757.svg" alt="\(p = a(1-e^{2})\)" style="height:1.166em;vertical-align:-0.268em">, so <img class="m" src="m/311d319e20cdde0e501f128cc774823fe484cece.svg" alt="\(b^{2} = ap = a\ell^{2}/(mk)\)" style="height:1.166em;vertical-align:-0.268em">. Substituting,
+<img class="m" src="m/55a89cc53372206c5f0840a0648e5185b1a2bcab.svg" alt="\(T^{2} = \frac{4m^{2}\pi^{2}a^{2}b^{2}}{\ell^{2}} = \frac{4\pi^{2}m}{k}a^{3}\)" style="height:1.493em;vertical-align:-0.373em">.
+</p>
+
+</div>
+
+<div class="remark" id="org4242ff3">
+<p>
+Two features of the Newtonian potential are accidental and worth
+naming. The radial equation became <i>linear</i> after the substitution
+<img class="m" src="m/7d791ef3c4a9339338a8cacf3529f599be8fd71c.svg" alt="\(u = 1/r\)" style="height:1.096em;vertical-align:-0.274em">, which is why the orbit is a conic and closes; for a general
+central force the orbit precesses, and Bertrand's theorem says the only
+potentials with all bounded orbits closed are <img class="m" src="m/164ff79b4466e7894eb59b1cd987836a803003e6.svg" alt="\(-k/r\)" style="height:1.096em;vertical-align:-0.274em"> and the harmonic
+one. The extra conservation behind that &#x2013; the Laplace-Runge-Lenz vector
+&#x2013; is a symmetry not visible in the rotation group, and it is the
+classical shadow of the degeneracy of the hydrogen spectrum.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="constraints-virtual-work-and-the-lagrange-equations.html"><span>← previous</span>Constraints, virtual work and the Lagrange equations</a><a rel="next" href="equilibria-stability-and-the-lagrange-dirichlet-theorem.html"><span>next →</span>Equilibria, stability and the Lagrange-Dirichlet theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/physics--classical-mechanics.pdf" title="PDF manual">Classical Mechanics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">Physics</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resource sharing and binding · Computer Science</title>
+<meta name="description" content="After scheduling, operations of the same type that never run in the same cycle can share a unit, and values whose lifetimes do not overlap can share a register; minimum sharing is colouring the conflict graph (or partitioning the compatibility graph into cliques), solved exactly for register lifeti…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/resource-binding.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Resource sharing and binding · Computer Science">
+<meta property="og:description" content="After scheduling, operations of the same type that never run in the same cycle can share a unit, and values whose lifetimes do not overlap can share a register; minimum sharing is colouring the conflict graph (or partitioning the compatibility graph into cliques), solved exactly for register lifeti…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/resource-binding.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--high-level-synthesis">High Level Synthesis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Hardware · High Level Synthesis</p>
+<h1>Resource sharing and binding</h1>
+<p class="summary">After scheduling, operations of the same type that never run in the same cycle can share a unit, and values whose lifetimes do not overlap can share a register; minimum sharing is colouring the conflict graph (or partitioning the compatibility graph into cliques), solved exactly for register lifetimes by the left-edge algorithm on interval graphs.</p>
+<p class="rel"><span>needs</span> <a href="list-scheduling.html">List scheduling</a></p>
+<p class="rel"><span>see also</span> <a href="datapath-control.html">Datapath and control unit</a></p>
+<details class="path"><summary>Learning path: 6 notes lead here, in study order</summary><ol><li><a href="big-o-complexity.html">Computational complexity and big-O</a></li><li><a href="digital-design-flow.html">Digital design flow and abstraction levels</a></li><li><a href="np-hard-optimization.html">Hard optimization problems and heuristics</a></li><li><a href="data-flow-graph.html">Data-flow graphs and architectural synthesis</a></li><li><a href="asap-alap-scheduling.html">ASAP and ALAP scheduling, mobility</a></li><li><a href="list-scheduling.html">List scheduling</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org464a85c" class="outline-2">
+<h2 id="org464a85c">Method</h2>
+<div class="outline-text-2" id="text-org464a85c">
+<ul class="org-ul">
+<li><b>Compatibility graph</b>: one vertex per operation, an edge between two operations of the same type that do not overlap in time. A <b>clique</b> is a set of operations that can share one unit. Minimum units = minimum clique partition.</li>
+<li><b>Conflict graph</b>: the complement; minimum units = chromatic number (graph colouring).</li>
+<li><b>Registers</b>: a value lives from the cycle it is produced to its last use; two values conflict if their lifetimes overlap. Conflict graphs of intervals are <b>interval graphs</b>, colourable optimally in polynomial time by the left-edge algorithm: sort intervals by start; repeatedly fill one register with non-overlapping intervals taken left to right.</li>
+<li>Sharing adds multiplexers at the unit inputs and register inputs: their area and delay limit how much sharing pays.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org799a726" class="outline-2">
+<h2 id="org799a726">Algorithm</h2>
+<div class="outline-text-2" id="text-org799a726">
+<figure class="fig"><img class="m" src="m/db49a1feebd60e1041eef0b2139394d4b853f79d.svg" alt="figure" style="width:26.743em"><figcaption><span class="fl">Algorithm 1.</span> The left-edge algorithm: sort lifetimes by start and pack each register with non-overlapping intervals; the number of registers equals the maximum overlap.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-orgc5163a6" class="outline-2">
+<h2 id="orgc5163a6">Picture</h2>
+<div class="outline-text-2" id="text-orgc5163a6">
+<figure class="fig"><img class="m" src="m/48fdeb86577733268853b6907d8911cd8a403b92.svg" alt="figure" style="width:18.623em"><figcaption><span class="fl">Figure 1.</span> Register binding by the left-edge algorithm: variable lifetimes over the control steps packed into registers R1, R2 and R3.</figcaption></figure>
+<p>
+Five values, at most three alive at once: three registers.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf898755" class="outline-2">
+<h2 id="orgf898755">Intuition</h2>
+<div class="outline-text-2" id="text-orgf898755">
+<p>
+Sharing is time-slicing hardware: the same multiplier is the "first multiplication" in cycle 1 and the "fourth" in cycle 3.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfb765a4" class="outline-2">
+<h2 id="orgfb765a4">Pitfall</h2>
+<div class="outline-text-2" id="text-orgfb765a4">
+<p>
+Binding interacts with scheduling and with wiring: a sharing that minimises units can maximise multiplexers and long wires, so the best area is not always the fewest units.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="list-scheduling.html"><span>← previous</span>List scheduling</a><a rel="next" href="ripple-carry-adder.html"><span>next →</span>Full adder and ripple-carry adder</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--high-level-synthesis.pdf" title="PDF manual">High Level Synthesis</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

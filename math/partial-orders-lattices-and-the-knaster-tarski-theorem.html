@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Partial orders, lattices and the Knaster-Tarski theorem · Mathematics</title>
+<meta name="description" content="The supremum was introduced for subsets of \R, where the order is total and the completeness axiom is an assumption about that particular field. Nothing in the definition of a supremum uses either. Stating it for a partial order isolates what the argument needs, and reveals that &quot;every subset has a…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/partial-orders-lattices-and-the-knaster-tarski-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Partial orders, lattices and the Knaster-Tarski theorem · Mathematics">
+<meta property="og:description" content="The supremum was introduced for subsets of \R, where the order is total and the completeness axiom is an assumption about that particular field. Nothing in the definition of a supremum uses either. Stating it for a partial order isolates what the argument needs, and reveals that &quot;every subset has a…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/partial-orders-lattices-and-the-knaster-tarski-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-foundations">Foundations</a> / <a rel="up" href="index.html#a-foundations--set-theory">Set Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Foundations · Set Theory</p>
+<h1>Partial orders, lattices and the Knaster-Tarski theorem</h1>
+<p class="summary">The supremum was introduced for subsets of <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em">, where the order is total and the completeness axiom is an assumption about that particular field. Nothing in the <b>definition</b> of a supremum uses either. Stating it for a partial order isolates what the argument needs, and reveals that "every subset has a supremum" &#x2013; false in <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em">, true in a power set &#x2013; is by itself strong enough to produce fixed points, with no continuity and no metric anywhere in sight.</p>
+<p class="rel"><span>needs</span> <a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></p>
+<p class="rel"><span>unlocks</span> <a href="boolean-algebras-and-stones-representation-theorem.html">Boolean algebras and Stone's representation theorem</a>, <a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a>, <a href="filters-ultrafilters-and-the-ultrafilter-lemma.html">Filters, ultrafilters and the ultrafilter lemma</a>, <a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a>, <a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a>, <a href="nets-and-convergence-in-topological-spaces.html">Nets and convergence in topological spaces</a></p>
+<p class="rel"><span>mentioned in</span> <a href="set-theory.html">Set theory</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgc3ccb72">
+<p>
+A <i>partial order</i> on a set <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> is a relation <img class="m" src="m/1b248c11c728b8e48c49f9f268e80d588d1a5b08.svg" alt="\(\le\)" style="height:0.846em;vertical-align:-0.152em"> that is
+reflexive, <i>antisymmetric</i> (<img class="m" src="m/44382724e9829f69d3dcf3bdaf4a26edc0a16e6a.svg" alt="\(x \le y\)" style="height:0.910em;vertical-align:-0.209em"> and <img class="m" src="m/b26a85e76062af51d59c690e6a90bddcfaccd4c2.svg" alt="\(y \le x\)" style="height:0.910em;vertical-align:-0.209em"> imply <img class="m" src="m/b166a59ca53644d0d6f1d624a0065569398239d2.svg" alt="\(x = y\)" style="height:0.685em;vertical-align:-0.212em">)
+and transitive. The pair <img class="m" src="m/680f299768f61d967c6ee3432d85ae713787a65a.svg" alt="\((P, \le)\)" style="height:1.096em;vertical-align:-0.274em"> is a <i>partially ordered set</i>. It
+is <i>totally ordered</i> if any two elements are comparable, and a subset
+of <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> that is totally ordered by <img class="m" src="m/1b248c11c728b8e48c49f9f268e80d588d1a5b08.svg" alt="\(\le\)" style="height:0.846em;vertical-align:-0.152em"> is a <i>chain</i>.
+</p>
+
+</div>
+
+<div class="definition" id="org8a56b0a">
+<p>
+Let <img class="m" src="m/b6c27d6344648693d7a279c16aef6fd82d925ac0.svg" alt="\(S \subseteq P\)" style="height:0.898em;vertical-align:-0.153em">. An <i>upper bound</i> of <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> is <img class="m" src="m/b4d22cfb2724e79da4c47e1b585547302b44060f.svg" alt="\(b \in P\)" style="height:0.804em;vertical-align:-0.040em"> with
+<img class="m" src="m/7c734f67ca79734185786253c7bcb3c181338e86.svg" alt="\(s \le b\)" style="height:0.910em;vertical-align:-0.146em"> for all <img class="m" src="m/30c68b78e3d446d712e62966310abaf0f6ef5587.svg" alt="\(s \in S\)" style="height:0.792em;vertical-align:-0.040em">; the <i>supremum</i> <img class="m" src="m/7a8415fdf90f2825a9ed90fca29ac21054f50e51.svg" alt="\(\sup S\)" style="height:0.962em;vertical-align:-0.212em"> is an upper
+bound below every upper bound. <i>Lower bound</i> and <i>infimum</i> are defined
+by reversing the order. An element <img class="m" src="m/cb77b01a83b7dbb7d0085ac5688dab0aef7bd607.svg" alt="\(m \in P\)" style="height:0.792em;vertical-align:-0.040em"> is <i>maximal</i> if
+<img class="m" src="m/ae4c320492d3dd8f11611394d516a9b193745448.svg" alt="\(m \le x\)" style="height:0.846em;vertical-align:-0.152em"> implies <img class="m" src="m/33eeac18799f50ff096eb1c6a817b3a15c0c1c98.svg" alt="\(x = m\)" style="height:0.472em;vertical-align:-0.000em">, and a <i>greatest element</i> if <img class="m" src="m/537c19ab93af2e8642bed44461d631180723948f.svg" alt="\(x \le m\)" style="height:0.846em;vertical-align:-0.152em">
+for all <img class="m" src="m/9b1491c1e7e358029b0d6d8290c879dbd0fb608d.svg" alt="\(x \in P\)" style="height:0.792em;vertical-align:-0.040em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgb10eb68">
+<p>
+A subset of a partially ordered set has at most one supremum.
+</p>
+
+</div>
+
+<div class="proof" id="org5c77f09">
+<p>
+If <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em"> and <img class="m" src="m/38292af6758f932cce63537f08bca1a2a0b27eee.svg" alt="\(b'\)" style="height:0.824em;vertical-align:-0.000em"> are both suprema of <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">, each is an upper bound
+and each lies below every upper bound, so <img class="m" src="m/a66b0127ea17e2b68e37dbf2256d9b0581b57bce.svg" alt="\(b \le b'\)" style="height:0.973em;vertical-align:-0.146em"> and
+<img class="m" src="m/d525c5f516d47a2e5d3d1c4866adc02123d4fd19.svg" alt="\(b' \le b\)" style="height:0.973em;vertical-align:-0.146em">; antisymmetry gives <img class="m" src="m/bac391f5b2e4bf93211efc1a3980f56e14b20bcb.svg" alt="\(b = b'\)" style="height:0.824em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="definition" id="org633905e">
+<p>
+A <i>lattice</i> is a partially ordered set in which every pair of elements
+has a supremum and an infimum; it is a <i>complete lattice</i> if every
+subset has a supremum and an infimum.
+</p>
+
+</div>
+
+<div class="proposition" id="org77ade85">
+<p>
+If every subset of a partially ordered set <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> has a supremum, then
+every subset has an infimum, so <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> is a complete lattice.
+</p>
+
+</div>
+
+<div class="proof" id="org75908e6">
+<p>
+Let <img class="m" src="m/b6c27d6344648693d7a279c16aef6fd82d925ac0.svg" alt="\(S \subseteq P\)" style="height:0.898em;vertical-align:-0.153em"> and let <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> be the set of lower bounds of
+<img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">, with <img class="m" src="m/b3de634f820494108e3e0e7b841065266fbb743f.svg" alt="\(b = \sup L\)" style="height:0.974em;vertical-align:-0.214em">. Every <img class="m" src="m/30c68b78e3d446d712e62966310abaf0f6ef5587.svg" alt="\(s \in S\)" style="height:0.792em;vertical-align:-0.040em"> is an upper bound of
+<img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">, so <img class="m" src="m/c118ab3c7070de7081ba8b45a591db03a4883afe.svg" alt="\(b \le s\)" style="height:0.910em;vertical-align:-0.146em"> by definition of the supremum: <img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em"> is a lower
+bound of <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">. Any lower bound of <img class="m" src="m/548fc1dbdde881acdffc6661674a211bff232b84.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> lies in <img class="m" src="m/e03103b18f8b326de0773e6d31b3eed4ba5d94d4.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> and hence below
+<img class="m" src="m/2a25dd31559771a49025fdf50dfbeba807b5a834.svg" alt="\(b\)" style="height:0.761em;vertical-align:-0.000em">, so <img class="m" src="m/fe3c0e88f0840b9c0c07d620b2b416db3a817bfd.svg" alt="\(b = \inf S\)" style="height:0.761em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org6f25b4a">
+<p>
+Let <img class="m" src="m/f1ea783cca2a136a135912f531be7a6e8a0fd344.svg" alt="\(P\)" style="height:0.749em;vertical-align:-0.000em"> be a complete lattice and <img class="m" src="m/cb61068247edb1e9f3c67164cca5048dd13c29f4.svg" alt="\(f \colon P \to P\)" style="height:0.974em;vertical-align:-0.214em"> <i>monotone</i>,
+that is <img class="m" src="m/44382724e9829f69d3dcf3bdaf4a26edc0a16e6a.svg" alt="\(x \le y\)" style="height:0.910em;vertical-align:-0.209em"> implies <img class="m" src="m/b6d6dd44bc07591d9a7156f54e9bc79fadc6e84e.svg" alt="\(f(x) \le f(y)\)" style="height:1.096em;vertical-align:-0.274em">. Then <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> has a fixed
+point; indeed <img class="m" src="m/c9189944e4ebcc33752c38f2e9cb4bc001e9779f.svg" alt="\(a = \sup \setst{x \in P}{x \le f(x)}\)" style="height:1.096em;vertical-align:-0.274em"> is the greatest
+one, and <img class="m" src="m/bdacf57551dc0221520e705636f87265026e136e.svg" alt="\(\inf \setst{x \in P}{f(x) \le x}\)" style="height:1.096em;vertical-align:-0.274em"> is the least.
+</p>
+
+</div>
+
+<div class="proof" id="orgbd7222f">
+<p>
+Let <img class="m" src="m/cfff7ce7011f14637c901d9680ac4cfa55959772.svg" alt="\(A = \setst{x}{x \le f(x)}\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/f3332f424455d3aae354d070ea52557971a010b8.svg" alt="\(a = \sup A\)" style="height:0.962em;vertical-align:-0.212em">. For <img class="m" src="m/67cfd0662406b4a66864b7834697edf23e0b7194.svg" alt="\(x \in A\)" style="height:0.792em;vertical-align:-0.040em">
+we have <img class="m" src="m/833e1cc1424da3fab508ac4c2ffbafc98451d7da.svg" alt="\(x \le a\)" style="height:0.846em;vertical-align:-0.152em">, so <img class="m" src="m/f0419445d31cb76e1cc2685098d7b3cfb108b434.svg" alt="\(x \le f(x) \le f(a)\)" style="height:1.096em;vertical-align:-0.274em"> by monotonicity; thus
+<img class="m" src="m/c1b5d0555357931046ec6e26eb22e2d93d82a1e2.svg" alt="\(f(a)\)" style="height:1.096em;vertical-align:-0.274em"> is an upper bound of <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/a7f0b0b6a7901dac668a9efcb43b31d04d6469e7.svg" alt="\(a \le f(a)\)" style="height:1.096em;vertical-align:-0.274em">. Applying <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">
+to this inequality gives <img class="m" src="m/5f0bd8020c49275b33bc44bfe3babb2f394c156b.svg" alt="\(f(a) \le f(f(a))\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/fda635ede16d6812727c4e0ea7895f621bfc717c.svg" alt="\(f(a) \in A\)" style="height:1.096em;vertical-align:-0.274em"> and
+therefore <img class="m" src="m/00e83d15ffc1634922e2f6d547694d166cf9fd87.svg" alt="\(f(a) \le a\)" style="height:1.096em;vertical-align:-0.274em">. Antisymmetry gives <img class="m" src="m/ba16eb2eb0b04ba4c88f2f0354e3659ecd3dfb70.svg" alt="\(f(a) = a\)" style="height:1.096em;vertical-align:-0.274em">. Any fixed
+point <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> lies in <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, hence <img class="m" src="m/833e1cc1424da3fab508ac4c2ffbafc98451d7da.svg" alt="\(x \le a\)" style="height:0.846em;vertical-align:-0.152em">: the fixed point <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> is
+the greatest. The statement about the least fixed point is the same
+argument in the order-reversed lattice, which is again complete by the
+previous proposition.
+</p>
+
+</div>
+
+<div class="remark" id="org47fa071">
+<p>
+No hypothesis here is analytic: the theorem holds in the power set of
+any set, ordered by inclusion, where suprema are unions. That is the
+form in which it is used &#x2013; to construct a set defined by a
+self-referential closure condition as the least fixed point of a
+monotone operator &#x2013; and it is also the shortest route to the
+Cantor-Schroder-Bernstein theorem.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="relations-equivalence-and-the-quotient-of-a-set.html"><span>← previous</span>Relations, equivalence and the quotient of a set</a><a rel="next" href="well-ordered-sets-and-transfinite-induction.html"><span>next →</span>Well-ordered sets and transfinite induction</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/foundations--set-theory.pdf" title="PDF manual">Set Theory</a> · <a class="pdf" href="pdf/foundations.pdf" title="PDF manual">Foundations</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

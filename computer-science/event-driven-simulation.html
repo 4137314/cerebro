@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Event-driven logic simulation · Computer Science</title>
+<meta name="description" content="A logic simulator keeps a queue of future events ordered by time; it repeatedly takes the earliest events, updates the signals, evaluates only the gates whose inputs changed, and schedules their new outputs after their delays; the cost depends on how the queue is stored: linked list, balanced tree …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/event-driven-simulation.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Event-driven logic simulation · Computer Science">
+<meta property="og:description" content="A logic simulator keeps a queue of future events ordered by time; it repeatedly takes the earliest events, updates the signals, evaluates only the gates whose inputs changed, and schedules their new outputs after their delays; the cost depends on how the queue is stored: linked list, balanced tree …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/event-driven-simulation.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--simulation">Simulation</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Hardware · Simulation</p>
+<h1>Event-driven logic simulation</h1>
+<p class="summary">A logic simulator keeps a queue of future events ordered by time; it repeatedly takes the earliest events, updates the signals, evaluates only the gates whose inputs changed, and schedules their new outputs after their delays; the cost depends on how the queue is stored: linked list, balanced tree or timing wheel.</p>
+<p class="rel"><span>needs</span> <a href="big-o-complexity.html">Computational complexity and big-O</a>, <a href="vhdl-concurrent-assignments.html">Concurrent assignments: when–else and with–select</a></p>
+<p class="rel"><span>unlocks</span> <a href="delta-cycle.html">Delta cycles</a></p>
+<p class="rel"><span>see also</span> <a href="delta-cycle.html">Delta cycles</a>, <a href="vhdl-testbench.html">Testbenches</a>, <a href="glitches.html">Glitches</a></p>
+<p class="rel"><span>mentioned in</span> <a href="logic-hazards.html">Timing diagrams and static hazards</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="big-o-complexity.html">Computational complexity and big-O</a></li><li><a href="digital-design-flow.html">Digital design flow and abstraction levels</a></li><li><a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a></li><li><a href="std-logic.html">std_logic: nine-valued logic and resolution</a></li><li><a href="vhdl-concurrent-assignments.html">Concurrent assignments: when–else and with–select</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgcfd3631" class="outline-2">
+<h2 id="orgcfd3631">Method</h2>
+<div class="outline-text-2" id="text-orgcfd3631">
+<p>
+Types of simulation: compiled (evaluate every gate every cycle) or event-driven (evaluate only on change); zero-delay, unit-delay or real-delay. Only a small fraction of the circuit is active at any time, which event-driven simulation exploits.
+</p>
+</div>
+</div>
+<div id="outline-container-orga5e57d7" class="outline-2">
+<h2 id="orga5e57d7">Algorithm</h2>
+<div class="outline-text-2" id="text-orga5e57d7">
+<figure class="fig"><img class="m" src="m/f00b9bc11bdc5d7313a9022cdae6e7b9907af368.svg" alt="figure" style="width:24.486em"><figcaption><span class="fl">Algorithm 1.</span> The event-driven simulation loop: take the next events from the queue, apply those that change a signal, evaluate the gates they reach and schedule the new output events.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-orgde17441" class="outline-2">
+<h2 id="orgde17441">Complexity</h2>
+<div class="outline-text-2" id="text-orgde17441">
+<p>
+With <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> gates, simulated time <img class="m" src="m/197fb2e6904fdaa6194048653a7de0a3a5fffc10.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em"> and activity proportional to <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> per time unit, about <img class="m" src="m/d1ed3d6a0e70f8233ec7fdc6e76728b9ded278a8.svg" alt="\(Tn\)" style="height:0.749em;vertical-align:-0.000em"> events are processed. The cost of each queue insertion decides the total:
+</p>
+<ul class="org-ul">
+<li><b>sorted linked list</b>: insertion <img class="m" src="m/75759c7342019bc0f32aba564d0313818f7efb7a.svg" alt="\(O(n)\)" style="height:1.096em;vertical-align:-0.274em"> (scan for the position): total <img class="m" src="m/b8ea952da6759967c7f13fa08a84e06568749c6a.svg" alt="\(O(Tn^2)\)" style="height:1.166em;vertical-align:-0.268em">;</li>
+<li><b>balanced tree</b> (heap): <img class="m" src="m/66ddf3bcf31dc141ffc1f3be703fe5e8f1db2803.svg" alt="\(O(\log n)\)" style="height:1.096em;vertical-align:-0.274em">: total <img class="m" src="m/112b050adda402998b2fa215c13d8f1a741af6c8.svg" alt="\(O(Tn\log n)\)" style="height:1.096em;vertical-align:-0.274em">;</li>
+<li><b>timing wheel</b>: a circular array of <a href="hashmap-internals.html">buckets</a>, one per time unit up to the maximum delay; inserting at <img class="m" src="m/b3f7039779ab543b818db6fc6dc49e18fac567ac.svg" alt="\(t+d\)" style="height:0.852em;vertical-align:-0.094em"> is indexing bucket <img class="m" src="m/33fbcae653cd320beb7d6cdb7176d82488d4a6a4.svg" alt="\((t+d)\bmod W\)" style="height:1.096em;vertical-align:-0.274em">: <img class="m" src="m/db232d0cd832a3fae3e6b6755f176b14153e936b.svg" alt="\(O(1)\)" style="height:1.096em;vertical-align:-0.274em">, total <img class="m" src="m/21d6dee19e6efdc35a67ea16580c2967d6c8590b.svg" alt="\(O(Tn)\)" style="height:1.096em;vertical-align:-0.274em">. Events beyond the wheel go to an overflow list.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2eebf93" class="outline-2">
+<h2 id="org2eebf93">Picture</h2>
+<div class="outline-text-2" id="text-org2eebf93">
+<figure class="fig"><img class="m" src="m/f067907ca17ab5eeb5c5cd0d4ebe3ea02d14703c.svg" alt="figure" style="width:25.933em"><figcaption><span class="fl">Figure 1.</span> A timing wheel: a circular array of event buckets, one per time unit; the pointer advances one bucket per step and wraps around.</figcaption></figure>
+<p>
+A timing wheel: the pointer advances one bucket per time unit; an event with delay 2 goes two buckets ahead.
+</p>
+</div>
+</div>
+<div id="outline-container-orged68cbd" class="outline-2">
+<h2 id="orged68cbd">Intuition</h2>
+<div class="outline-text-2" id="text-orged68cbd">
+<p>
+Simulate only what changes. Most of a circuit is quiet most of the time, so following the events is far cheaper than recomputing everything.
+</p>
+</div>
+</div>
+<div id="outline-container-orge62745b" class="outline-2">
+<h2 id="orge62745b">Pitfall</h2>
+<div class="outline-text-2" id="text-orge62745b">
+<p>
+Event-driven simulation with real delays shows <a href="glitches.html">glitches</a> that zero-delay functional simulation hides — and conversely a zero-delay simulation that passes says nothing about timing.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="vhdl-testbench.html"><span>← previous</span>Testbenches</a><a rel="next" href="delta-cycle.html"><span>next →</span>Delta cycles</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--simulation.pdf" title="PDF manual">Simulation</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

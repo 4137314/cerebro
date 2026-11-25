@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The RISC-V base instruction set (RV32I) · Computer Science</title>
+<meta name="description" content="RV32I is a load–store RISC ISA with 32 registers of 32 bits (x0\equiv0), fixed 32-bit instructions in six formats (R, I, S, B, U, J) that keep the register fields rd, rs1, rs2 in the same positions, and immediates whose bits are scattered so that the sign is always bit 31.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/risc-v-isa.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The RISC-V base instruction set (RV32I) · Computer Science">
+<meta property="og:description" content="RV32I is a load–store RISC ISA with 32 registers of 32 bits (x0\equiv0), fixed 32-bit instructions in six formats (R, I, S, B, U, J) that keep the register fields rd, rs1, rs2 in the same positions, and immediates whose bits are scattered so that the sign is always bit 31.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/risc-v-isa.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--processors">Processors</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Hardware · Processors</p>
+<h1>The RISC-V base instruction set (RV32I)</h1>
+<p class="summary">RV32I is a load–store RISC ISA with 32 registers of 32 bits (<img class="m" src="m/1f59ed3c97cb21ddcc5640ec2a53d98f7f6dc07f.svg" alt="\(x0\equiv0\)" style="height:0.706em;vertical-align:-0.000em">), fixed 32-bit instructions in six formats (R, I, S, B, U, J) that keep the register fields <img class="m" src="m/de7392457fdb916eb8e69b784549981224e9b885.svg" alt="\(rd\)" style="height:0.761em;vertical-align:-0.000em">, <img class="m" src="m/c877d8579d8e5e2f956acd335c599422548aa134.svg" alt="\(rs1\)" style="height:0.706em;vertical-align:-0.000em">, <img class="m" src="m/93348614e51f5ac30a4e2cd87a02ae6d92f26fac.svg" alt="\(rs2\)" style="height:0.706em;vertical-align:-0.000em"> in the same positions, and immediates whose bits are scattered so that the sign is always bit 31.</p>
+<p class="rel"><span>needs</span> <a href="datapath-control.html">Datapath and control unit</a></p>
+<p class="rel"><span>unlocks</span> <a href="risc-v-datapath.html">A non-pipelined RISC-V processor</a></p>
+<p class="rel"><span>see also</span> <a href="risc-v-datapath.html">A non-pipelined RISC-V processor</a>, <a href="alu-design.html">Arithmetic logic unit</a></p>
+<details class="path"><summary>Learning path: 17 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li><li><a href="sr-latch.html">SR latch and D latch</a></li><li><a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></li><li><a href="fsm-analysis.html">Analysis of synchronous sequential circuits</a></li><li><a href="fsm-synthesis.html">Synthesis of finite-state machines</a></li><li><a href="digital-design-flow.html">Digital design flow and abstraction levels</a></li><li><a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a></li><li><a href="std-logic.html">std_logic: nine-valued logic and resolution</a></li><li><a href="vhdl-concurrent-assignments.html">Concurrent assignments: when–else and with–select</a></li><li><a href="vhdl-process.html">Processes and sequential statements</a></li><li><a href="sequential-logic.html">Flip-flops and registers in VHDL</a></li><li><a href="finite-state-machine.html">Finite-state machines</a></li><li><a href="datapath-subsystems.html">Datapath subsystems: detectors, shifters, counters</a></li><li><a href="datapath-control.html">Datapath and control unit</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org3800981" class="outline-2">
+<h2 id="org3800981">Definition</h2>
+<div class="outline-text-2" id="text-org3800981">
+<p>
+Fields: <code>opcode</code> [6:0], <code>rd</code> [11:7], <code>funct3</code> [14:12], <code>rs1</code> [19:15], <code>rs2</code> [24:20], <code>funct7</code> [31:25].
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">format</th>
+<th scope="col" class="org-left">use</th>
+<th scope="col" class="org-left">example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">R</td>
+<td class="org-left">register–register ALU</td>
+<td class="org-left">add rd, rs1, rs2</td>
+</tr>
+
+<tr>
+<td class="org-left">I</td>
+<td class="org-left">ALU with immediate, loads, jalr</td>
+<td class="org-left">addi rd, rs1, imm  /  lw rd, imm(rs1)</td>
+</tr>
+
+<tr>
+<td class="org-left">S</td>
+<td class="org-left">stores</td>
+<td class="org-left">sw rs2, imm(rs1)</td>
+</tr>
+
+<tr>
+<td class="org-left">B</td>
+<td class="org-left">conditional branches</td>
+<td class="org-left">beq rs1, rs2, label</td>
+</tr>
+
+<tr>
+<td class="org-left">U</td>
+<td class="org-left">upper immediate</td>
+<td class="org-left">lui rd, imm  /  auipc rd, imm</td>
+</tr>
+
+<tr>
+<td class="org-left">J</td>
+<td class="org-left">jump and link</td>
+<td class="org-left">jal rd, label</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Immediates are 12 bits (I, S, B) or 20 bits (U, J), sign-extended from instruction bit 31. B and J immediates encode even offsets (bit 0 implicit), relative to the PC of the branch. Only loads and stores access memory; <code>x0</code> reads as zero and ignores writes, so <code>addi x0, x0, 0</code> is the <code>nop</code> and <code>add rd, rs, x0</code> a move.
+</p>
+</div>
+</div>
+<div id="outline-container-org411ae31" class="outline-2">
+<h2 id="org411ae31">Example</h2>
+<div class="outline-text-2" id="text-org411ae31">
+<figure class="listing lang-asm"><figcaption><span class="lang">Assembly</span></figcaption><pre class="src"><code># sum of the n words at address a0, result in a1
+      <span class="k">li</span>    a1, 0
+<span class="f">loop</span>: <span class="k">beq</span>   a2, zero, done      # a2 = n
+      <span class="k">lw</span>    t0, 0(a0)
+      <span class="k">add</span>   a1, a1, t0
+      <span class="k">addi</span>  a0, a0, 4
+      <span class="k">addi</span>  a2, a2, -1
+      <span class="k">j</span>     loop
+<span class="f">done</span>:</code></pre></figure>
+<p>
+Online compilers and assemblers turn C or assembly into hex words that initialise the instruction memory of a soft-core.
+</p>
+</div>
+</div>
+<div id="outline-container-org01dc882" class="outline-2">
+<h2 id="org01dc882">Intuition</h2>
+<div class="outline-text-2" id="text-org01dc882">
+<p>
+A small, regular instruction set: the <a href="rom-as-logic.html">decoder</a> reads registers before it even knows the instruction, because they are always in the same place.
+</p>
+</div>
+</div>
+<div id="outline-container-orgad1c73f" class="outline-2">
+<h2 id="orgad1c73f">Pitfall</h2>
+<div class="outline-text-2" id="text-orgad1c73f">
+<p>
+The B-type immediate is shuffled (bits 12, 10:5, 4:1, 11) and must be reassembled exactly; a wrong bit order sends branches to plausible but wrong addresses.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="alu-design.html"><span>← previous</span>Arithmetic logic unit</a><a rel="next" href="risc-v-datapath.html"><span>next →</span>A non-pipelined RISC-V processor</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--processors.pdf" title="PDF manual">Processors</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

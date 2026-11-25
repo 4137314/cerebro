@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overloading · Computer Science</title>
+<meta name="description" content="Several functions in the same scope may share a name if their parameter lists differ; the compiler picks one at compile time from the static types of the arguments, while the return type alone never distinguishes two overloads.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/method-overloading.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Overloading · Computer Science">
+<meta property="og:description" content="Several functions in the same scope may share a name if their parameter lists differ; the compiler picks one at compile time from the static types of the arguments, while the return type alone never distinguishes two overloads.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/method-overloading.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--oop">Oop</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Oop</p>
+<h1>Overloading</h1>
+<p class="summary">Several functions in the same scope may share a name if their parameter lists differ; the compiler picks one at compile time from the static types of the arguments, while the return type alone never distinguishes two overloads.</p>
+<p class="rel"><span>needs</span> <a href="object-oriented-programming.html">Object-oriented programming</a></p>
+<p class="rel"><span>unlocks</span> <a href="operator-overloading.html">Operator overloading in C++</a>, <a href="java-dynamic-binding.html">The Java method selection rule</a></p>
+<p class="rel"><span>see also</span> <a href="inheritance.html">Inheritance and overriding</a>, <a href="java-dynamic-binding.html">The Java method selection rule</a>, <a href="operator-overloading.html">Operator overloading in C++</a></p>
+<p class="rel"><span>mentioned in</span> <a href="inheritance.html">Inheritance and overriding</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="object-oriented-programming.html">Object-oriented programming</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org194b0fc" class="outline-2">
+<h2 id="org194b0fc">Definition</h2>
+<div class="outline-text-2" id="text-org194b0fc">
+<p>
+The <b>signature</b> of a method is its name plus the number, order and types of its parameters. Two methods with the same name and different signatures are <b>overloaded</b>; the compiler resolves each call to the most specific applicable one using the static (declared) types of the arguments.
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">overloading</th>
+<th scope="col" class="org-left">overriding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">where</td>
+<td class="org-left">same class (or inherited)</td>
+<td class="org-left">subclass</td>
+</tr>
+
+<tr>
+<td class="org-left">signature</td>
+<td class="org-left">different</td>
+<td class="org-left">identical</td>
+</tr>
+
+<tr>
+<td class="org-left">chosen</td>
+<td class="org-left">at compile time</td>
+<td class="org-left">at run time</td>
+</tr>
+
+<tr>
+<td class="org-left">based on</td>
+<td class="org-left">static types of the arguments</td>
+<td class="org-left">dynamic type of the receiver</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org3cc72c3" class="outline-2">
+<h2 id="org3cc72c3">Example</h2>
+<div class="outline-text-2" id="text-org3cc72c3">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">class</span> <span class="t">Printer</span> {
+    <span class="t">void</span> <span class="f">print</span>(<span class="t">int</span> <span class="v">x</span>)    { System.out.println(<span class="s">"int "</span> + x); }
+    <span class="t">void</span> <span class="f">print</span>(<span class="t">double</span> <span class="v">x</span>) { System.out.println(<span class="s">"double "</span> + x); }
+    <span class="t">void</span> <span class="f">print</span>(<span class="t">Object</span> <span class="v">o</span>) { System.out.println(<span class="s">"object "</span> + o); }
+}
+<span class="t">Object</span> <span class="v">s</span> = <span class="s">"hi"</span>;
+<span class="k">new</span> <span class="t">Printer</span>().print(s);   <span class="c">// "object hi": the static type of s is Object
+</span><span class="k">new</span> <span class="t">Printer</span>().print(3);   <span class="c">// "int 3": exact match beats widening to double</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org8d6d626" class="outline-2">
+<h2 id="org8d6d626">Intuition</h2>
+<div class="outline-text-2" id="text-org8d6d626">
+<p>
+Overloading is a convenience of naming, decided by the compiler; nothing about it is dynamic.
+</p>
+</div>
+</div>
+<div id="outline-container-orgce17177" class="outline-2">
+<h2 id="orgce17177">Pitfall</h2>
+<div class="outline-text-2" id="text-orgce17177">
+<p>
+<code>int f()</code> and <code>double f()</code> cannot coexist: the return type is not part of the signature. Combining overloading with overriding is the classic trap: the overload is fixed at compile time, then the <a href="virtual-functions.html">override</a> is chosen at run time among the methods with that exact signature (see <a href="java-dynamic-binding.html">the binding rule</a>).
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="liskov-substitution.html"><span>← previous</span>Liskov substitution principle</a><a rel="next" href="parnas-principles.html"><span>next →</span>Parnas principles and contracts</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--oop.pdf" title="PDF manual">Oop</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

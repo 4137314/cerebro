@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cosets, the index and Lagrange's theorem · Mathematics</title>
+<meta name="description" content="A subgroup cuts the group into translated copies of itself, all of the same size. That single observation is the whole of Lagrange's theorem, and it is the reason finite group theory is a subject with arithmetic in it: the order of a subgroup, and hence the order of every element, divides the order…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/cosets-the-index-and-lagranges-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Cosets, the index and Lagrange's theorem · Mathematics">
+<meta property="og:description" content="A subgroup cuts the group into translated copies of itself, all of the same size. That single observation is the whole of Lagrange's theorem, and it is the reason finite group theory is a subject with arithmetic in it: the order of a subgroup, and hence the order of every element, divides the order…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/cosets-the-index-and-lagranges-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--group-theory">Group Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Algebra · Group Theory</p>
+<h1>Cosets, the index and Lagrange's theorem</h1>
+<p class="summary">A subgroup cuts the group into translated copies of itself, all of the same size. That single observation is the whole of Lagrange's theorem, and it is the reason finite group theory is a subject with arithmetic in it: the order of a subgroup, and hence the order of every element, divides the order of the group before any structure is examined.</p>
+<p class="rel"><span>needs</span> <a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a>, <a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a>, <a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a>, <a href="the-order-of-an-element-and-cyclic-groups.html">The order of an element and cyclic groups</a></p>
+<p class="rel"><span>unlocks</span> <a href="cauchys-theorem-and-the-sylow-theorems.html">Cauchy's theorem and the Sylow theorems</a>, <a href="composition-series-jordan-holder-and-solvable-groups.html">Composition series, Jordan-Holder and solvable groups</a>, <a href="direct-and-semidirect-products.html">Direct and semidirect products</a>, <a href="group-actions-orbits-and-the-orbit-stabiliser-theorem.html">Group actions, orbits and the orbit-stabiliser theorem</a>, <a href="the-symmetric-group-and-the-sign-of-a-permutation.html">The symmetric group and the sign of a permutation</a></p>
+<p class="rel"><span>mentioned in</span> <a href="algebra.html">Algebra</a>, <a href="group-theory.html">Group theory</a></p>
+<details class="path"><summary>Learning path: 10 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li><li><a href="the-order-of-an-element-and-cyclic-groups.html">The order of an element and cyclic groups</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgc4e12c9">
+<p>
+Let <img class="m" src="m/e6240680439cedf4d545e91634fbb7d91deadc06.svg" alt="\(H \le G\)" style="height:0.898em;vertical-align:-0.153em"> and <img class="m" src="m/b40d588e7ff12348518e579bad95befc8bcc5bf5.svg" alt="\(a \in G\)" style="height:0.792em;vertical-align:-0.040em">. The <i>left coset</i> of <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> by <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> is
+<img class="m" src="m/2f2063f8529471b0320a68b2f9012a00d415b66b.svg" alt="\(aH = \setst{ah}{h \in H}\)" style="height:1.096em;vertical-align:-0.274em">, and the <i>right coset</i> is
+<img class="m" src="m/12d6109d81173cf1589eb1a9095acc4bbf3e0b6f.svg" alt="\(Ha = \setst{ha}{h \in H}\)" style="height:1.096em;vertical-align:-0.274em">. The set of left cosets is written
+<img class="m" src="m/5aef6e410aacc6d6c95633570d821e1bfb4a7a85.svg" alt="\(G/H\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org03e4575">
+<p>
+The relation <img class="m" src="m/d3d595b4bf6aa7f101feafd137ecadad22acb751.svg" alt="\(a \sim b\)" style="height:0.761em;vertical-align:-0.000em"> defined by <img class="m" src="m/8d735d4caedaa091680a93264e1ba02eda328efe.svg" alt="\(a^{-1}b \in H\)" style="height:0.935em;vertical-align:-0.047em"> is an equivalence
+relation on <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> whose classes are the left cosets of <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em">. In
+particular the left cosets partition <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">, and <img class="m" src="m/350107ec4439ed4fe0de80e67187db03958c381f.svg" alt="\(aH = bH\)" style="height:0.761em;vertical-align:-0.000em"> if and only
+if <img class="m" src="m/8d735d4caedaa091680a93264e1ba02eda328efe.svg" alt="\(a^{-1}b \in H\)" style="height:0.935em;vertical-align:-0.047em">.
+</p>
+
+</div>
+
+<div class="proof" id="org2b1eb18">
+<p>
+Reflexivity is <img class="m" src="m/3498b910cde3da720b82843c85d329539c072816.svg" alt="\(a^{-1}a = e \in H\)" style="height:0.935em;vertical-align:-0.047em">; symmetry follows because
+<img class="m" src="m/d084bd0df18c0d65ae26fafbbacef49e47b93b7a.svg" alt="\((a^{-1}b)^{-1} = b^{-1}a\)" style="height:1.166em;vertical-align:-0.268em"> and <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> is closed under inverses;
+transitivity because <img class="m" src="m/1a134c45a1a9af3264931c2e6a169d893f73827b.svg" alt="\(a^{-1}c = (a^{-1}b)(b^{-1}c)\)" style="height:1.166em;vertical-align:-0.268em"> and <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> is
+closed under products. The class of <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> is
+<img class="m" src="m/c4b59f667ac4ba5bbea264303e5fe912f13ea998.svg" alt="\(\setst{b}{a^{-1}b \in H} = \setst{ah}{h \in H} = aH\)" style="height:1.166em;vertical-align:-0.268em">. The classes of
+an equivalence relation partition the set, and two classes coincide
+exactly when their representatives are related.
+</p>
+
+</div>
+
+<div class="proposition" id="org22b7596">
+<p>
+For every <img class="m" src="m/b40d588e7ff12348518e579bad95befc8bcc5bf5.svg" alt="\(a \in G\)" style="height:0.792em;vertical-align:-0.040em"> the map <img class="m" src="m/f992185e910f181b43f09d428d9de1695570d99b.svg" alt="\(h \mapsto ah\)" style="height:0.761em;vertical-align:-0.000em"> is a bijection
+<img class="m" src="m/e8d68829dfd3b701447050661aa11bd4c8749659.svg" alt="\(H \to aH\)" style="height:0.749em;vertical-align:-0.000em">; so all left cosets of <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> have the same cardinality as
+<img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org7f959a6">
+<p>
+It is surjective by the definition of <img class="m" src="m/f150a1f243418c09c36c35f6739044acb1a0bd87.svg" alt="\(aH\)" style="height:0.749em;vertical-align:-0.000em"> and injective because
+<img class="m" src="m/609737a8e1f51cd2f59a8bbb08f8eb274c12cc4f.svg" alt="\(ah = ah'\)" style="height:0.824em;vertical-align:-0.000em"> gives <img class="m" src="m/52743aaf2bf27072ea9e1a60a30be7f92d6c0fca.svg" alt="\(h = h'\)" style="height:0.824em;vertical-align:-0.000em"> on multiplying by <img class="m" src="m/9e2ab0b6a2bc9b000f9429514070e9999bcaa3b8.svg" alt="\(a^{-1}\)" style="height:0.892em;vertical-align:-0.000em">. Its inverse
+is <img class="m" src="m/6e0213511240622627c2848268b9b86b0f89b626.svg" alt="\(x \mapsto a^{-1}x\)" style="height:0.892em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="definition" id="org4cb34fa">
+<p>
+The <i>index</i> <img class="m" src="m/e967a4636413dbc8814f394eeabd34677fa5d400.svg" alt="\([G : H]\)" style="height:1.096em;vertical-align:-0.274em"> of <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> in <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> is the cardinality of
+<img class="m" src="m/5aef6e410aacc6d6c95633570d821e1bfb4a7a85.svg" alt="\(G/H\)" style="height:1.096em;vertical-align:-0.274em">, the number of distinct left cosets.
+</p>
+
+</div>
+
+<div class="theorem" id="org83d4fc5">
+<p>
+If <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em"> is a finite group and <img class="m" src="m/e6240680439cedf4d545e91634fbb7d91deadc06.svg" alt="\(H \le G\)" style="height:0.898em;vertical-align:-0.153em">, then
+<img class="m" src="m/458fe14a0bd6ecd2ae8ab7e658f17fe8121adda4.svg" alt="\(\abs{G} = [G : H] \cdot \abs{H}\)" style="height:1.096em;vertical-align:-0.274em">. In particular <img class="m" src="m/26a98f43d366f7b0dedd35e39afa54da798e0e4f.svg" alt="\(\abs{H}\)" style="height:1.096em;vertical-align:-0.274em"> divides
+<img class="m" src="m/d3febd33fc47d5ed80e6f69e2edb4aaa89356598.svg" alt="\(\abs{G}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgfce0b29">
+<p>
+The left cosets partition <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">, so <img class="m" src="m/d3febd33fc47d5ed80e6f69e2edb4aaa89356598.svg" alt="\(\abs{G}\)" style="height:1.096em;vertical-align:-0.274em"> is the sum of their
+cardinalities; there are <img class="m" src="m/e967a4636413dbc8814f394eeabd34677fa5d400.svg" alt="\([G : H]\)" style="height:1.096em;vertical-align:-0.274em"> of them and each has <img class="m" src="m/26a98f43d366f7b0dedd35e39afa54da798e0e4f.svg" alt="\(\abs{H}\)" style="height:1.096em;vertical-align:-0.274em">
+elements.
+</p>
+
+</div>
+
+<div class="corollary" id="orge0efb5f">
+<p>
+In a finite group <img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">, the order of every element divides <img class="m" src="m/d3febd33fc47d5ed80e6f69e2edb4aaa89356598.svg" alt="\(\abs{G}\)" style="height:1.096em;vertical-align:-0.274em">,
+and <img class="m" src="m/b89934d926a3337182444df22feb4b61b4533cd9.svg" alt="\(a^{\abs{G}} = e\)" style="height:0.973em;vertical-align:-0.000em"> for all <img class="m" src="m/b40d588e7ff12348518e579bad95befc8bcc5bf5.svg" alt="\(a \in G\)" style="height:0.792em;vertical-align:-0.040em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgd2ea639">
+<p>
+The subgroup <img class="m" src="m/f94002e6e2b6419100d1b0f00ff5d2cd6e50df8f.svg" alt="\(\langle a \rangle\)" style="height:1.096em;vertical-align:-0.274em"> has exactly <img class="m" src="m/a5eed362fa88d8e1161a4c741c9b6f6ec55add7a.svg" alt="\(\ord(a)\)" style="height:1.096em;vertical-align:-0.274em"> elements, so
+<img class="m" src="m/a5eed362fa88d8e1161a4c741c9b6f6ec55add7a.svg" alt="\(\ord(a)\)" style="height:1.096em;vertical-align:-0.274em"> divides <img class="m" src="m/d3febd33fc47d5ed80e6f69e2edb4aaa89356598.svg" alt="\(\abs{G}\)" style="height:1.096em;vertical-align:-0.274em"> by Lagrange. Writing
+<img class="m" src="m/f6068c4745571b2093b983626274cae1efef78fb.svg" alt="\(\abs{G} = \ord(a) k\)" style="height:1.096em;vertical-align:-0.274em"> gives <img class="m" src="m/24f1a91f1e61704d0e5e9dab65a6dcf1acaa10ac.svg" alt="\(a^{\abs{G}} = (a^{\ord(a)})^{k} = e\)" style="height:1.247em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="corollary" id="orgb96e472">
+<p>
+A group of prime order <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> is cyclic, and every element other than
+the identity generates it.
+</p>
+
+</div>
+
+<div class="proof" id="orgee93190">
+<p>
+Take <img class="m" src="m/c65d5dabdc573921bc225998d373d9b202064a67.svg" alt="\(a \ne e\)" style="height:0.974em;vertical-align:-0.214em">. Then <img class="m" src="m/a5eed362fa88d8e1161a4c741c9b6f6ec55add7a.svg" alt="\(\ord(a)\)" style="height:1.096em;vertical-align:-0.274em"> divides <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> and is not <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">, so it
+is <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em">; hence <img class="m" src="m/f94002e6e2b6419100d1b0f00ff5d2cd6e50df8f.svg" alt="\(\langle a \rangle\)" style="height:1.096em;vertical-align:-0.274em"> has <img class="m" src="m/5d4de53bdd258f6d4eeaceda4070afcab85d7ca7.svg" alt="\(p\)" style="height:0.685em;vertical-align:-0.212em"> elements and equals
+<img class="m" src="m/29b172818fb3406208f06c2dbb3157bc83e39cbf.svg" alt="\(G\)" style="height:0.749em;vertical-align:-0.000em">. By the classification of cyclic groups <img class="m" src="m/747e9fa6368f3be8233f3afb9a5bd37ae5757ee7.svg" alt="\(G \iso \Z/p\Z\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="remark" id="org86453b8">
+<p>
+The converse of Lagrange's theorem is false &#x2013; a divisor of <img class="m" src="m/d3febd33fc47d5ed80e6f69e2edb4aaa89356598.svg" alt="\(\abs{G}\)" style="height:1.096em;vertical-align:-0.274em">
+need not be the order of a subgroup &#x2013; and repairing it partially is what
+the Sylow theorems do. That the failure is only partial is why the
+theorem above is a genuine constraint rather than a classification.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="the-order-of-an-element-and-cyclic-groups.html"><span>← previous</span>The order of an element and cyclic groups</a><a rel="next" href="group-actions-orbits-and-the-orbit-stabiliser-theorem.html"><span>next →</span>Group actions, orbits and the orbit-stabiliser theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--group-theory.pdf" title="PDF manual">Group Theory</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

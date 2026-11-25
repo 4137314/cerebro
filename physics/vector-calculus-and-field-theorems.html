@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vector calculus and the field theorems · Physics</title>
+<meta name="description" content="Gradient, divergence and curl with the theorems \oint_S\mathbf F\cdot\dd\mathbf S=\int_V\nabla\cdot\mathbf F\,\dd V (Gauss) and \oint_C\mathbf F\cdot\dd\mathbf l=\int_S(\nabla\times\mathbf F)\cdot\dd\mathbf S (Stokes); Helmholtz: a field is fixed by its divergence and curl, which is why Maxwell's e…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/vector-calculus-and-field-theorems.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Vector calculus and the field theorems · Physics">
+<meta property="og:description" content="Gradient, divergence and curl with the theorems \oint_S\mathbf F\cdot\dd\mathbf S=\int_V\nabla\cdot\mathbf F\,\dd V (Gauss) and \oint_C\mathbf F\cdot\dd\mathbf l=\int_S(\nabla\times\mathbf F)\cdot\dd\mathbf S (Stokes); Helmholtz: a field is fixed by its divergence and curl, which is why Maxwell's e…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/vector-calculus-and-field-theorems.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-electromagnetic-fields">Electromagnetic Fields</a> / <a rel="up" href="index.html#a-electromagnetic-fields--static-fields">Static Fields</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">identity · Electromagnetic Fields · Static Fields</p>
+<h1>Vector calculus and the field theorems</h1>
+<p class="summary">Gradient, divergence and curl with the theorems <img class="m" src="m/a878ef271a95f3ed7af06781174ac52f917b0f3b.svg" alt="\(\oint_S\mathbf F\cdot\dd\mathbf S=\int_V\nabla\cdot\mathbf F\,\dd V\)" style="height:1.272em;vertical-align:-0.394em"> (Gauss) and <img class="m" src="m/de8b638e8ba9b25e89127f5990425b5f95149c6b.svg" alt="\(\oint_C\mathbf F\cdot\dd\mathbf l=\int_S(\nabla\times\mathbf F)\cdot\dd\mathbf S\)" style="height:1.272em;vertical-align:-0.394em"> (Stokes); Helmholtz: a field is fixed by its divergence and curl, which is why Maxwell's equations specify them.</p>
+<p class="rel"><span>needs</span> <a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></p>
+<p class="rel"><span>unlocks</span> <a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a>, <a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></p>
+<p class="rel"><span>see also</span> <a href="maxwell-equations.html">Maxwell's equations</a>, <a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orge9947ef" class="outline-2">
+<h2 id="orge9947ef">Identities</h2>
+<div class="outline-text-2" id="text-orge9947ef">
+<p>
+<div class="mb"><img class="m" src="m/482f986dced661e536729fbea447cf2e7756fa48.svg" alt="\[ \nabla\times\nabla f=0,\qquad \nabla\cdot(\nabla\times\mathbf A)=0,\qquad \nabla\times(\nabla\times\mathbf A)=\nabla(\nabla\cdot\mathbf A)-\nabla^2\mathbf A,\qquad \nabla\cdot(\mathbf E\times\mathbf H)=\mathbf H\cdot\nabla\times\mathbf E-\mathbf E\cdot\nabla\times\mathbf H. \]" style="width:56.062em"></div>
+Consequences: curl-free ⇔ <img class="m" src="m/cc8daa36ee2cd08a2eb41f3e449425035639aeb8.svg" alt="\(\mathbf F=-\nabla V\)" style="height:0.843em;vertical-align:-0.093em"> (conservative, path-independent); divergence-free ⇔ <img class="m" src="m/b9a13ef445536a504dca08f2462930b96e2f4f86.svg" alt="\(\mathbf F=\nabla\times\mathbf A\)" style="height:0.843em;vertical-align:-0.093em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org37b7e25" class="outline-2">
+<h2 id="org37b7e25">Coordinates</h2>
+<div class="outline-text-2" id="text-org37b7e25">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">system</th>
+<th scope="col" class="org-left">divergence of F</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Cartesian</td>
+<td class="org-left">∂Fx/∂x + ∂Fy/∂y + ∂Fz/∂z</td>
+</tr>
+
+<tr>
+<td class="org-left">cylindrical</td>
+<td class="org-left">(1/r)∂(rFr)/∂r + (1/r)∂Fφ/∂φ + ∂Fz/∂z</td>
+</tr>
+
+<tr>
+<td class="org-left">spherical</td>
+<td class="org-left">(1/R²)∂(R²FR)/∂R + (1/R sinθ)∂(sinθ Fθ)/∂θ + (1/R sinθ)∂Fφ/∂φ</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org4af1658" class="outline-2">
+<h2 id="org4af1658">Helmholtz theorem</h2>
+<div class="outline-text-2" id="text-org4af1658">
+<p>
+If <img class="m" src="m/e41e1983fb1e913583fc6939f287e883c5fb81a1.svg" alt="\(\nabla\cdot\mathbf F=\rho_s\)" style="height:0.965em;vertical-align:-0.212em"> and <img class="m" src="m/2b598420105d8fbeec024954bac84c6352068c22.svg" alt="\(\nabla\times\mathbf F=\mathbf J_s\)" style="height:0.916em;vertical-align:-0.165em"> are given and <img class="m" src="m/c3d57ecfe0226e34114654c87ca96f43a80914c4.svg" alt="\(\mathbf F\to0\)" style="height:0.752em;vertical-align:-0.000em"> fast enough at infinity, then <img class="m" src="m/65ba13a00caea720b003118395e6d67ac074f1f2.svg" alt="\(\mathbf F=-\nabla\int\frac{\rho_s}{4\pi R}\dd V'+\nabla\times\int\frac{\mathbf J_s}{4\pi R}\dd V'\)" style="height:1.354em;vertical-align:-0.379em">, uniquely. Proof sketch: the difference of two solutions is curl- and divergence-free, so it is <img class="m" src="m/91c9bdebb3aa1e96a35176a60baee08c98ebf33f.svg" alt="\(\nabla\phi\)" style="height:0.974em;vertical-align:-0.214em"> with <img class="m" src="m/36967f60ab935da8171dbcf7ce9216b4fc2d7ba3.svg" alt="\(\nabla^2\phi=0\)" style="height:1.105em;vertical-align:-0.210em"> vanishing at infinity, hence zero.
+</p>
+</div>
+</div>
+<div id="outline-container-org6c93ad2" class="outline-2">
+<h2 id="org6c93ad2">Worked example</h2>
+<div class="outline-text-2" id="text-org6c93ad2">
+<p>
+<img class="m" src="m/becb8dd2e4e8dc3f5b460ecdea2aeb72844faedc.svg" alt="\(\mathbf F=\hat r\,r\)" style="height:0.761em;vertical-align:-0.000em"> (cylindrical) in a cylinder of radius <img class="m" src="m/a8cfe9079fe989303b56be54d2b47f265d286d9d.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em">, height <img class="m" src="m/0d5a54c1585e2d15108524aceea77a2748759c03.svg" alt="\(h\)" style="height:0.761em;vertical-align:-0.000em">: <img class="m" src="m/151fc6b7623c71d2916ff0a409c43e4b259e9f2e.svg" alt="\(\nabla\cdot\mathbf F=\frac1r\partial_r(r^2)=2\)" style="height:1.304em;vertical-align:-0.378em">, volume integral <img class="m" src="m/4434d7b1a8bb82d49be79c71772ddf2670fb521f.svg" alt="\(2\pi a^2h\)" style="height:0.892em;vertical-align:-0.000em">; flux through the side <img class="m" src="m/be80ff9f9a2d488c28c817d6656ef00a85af70ef.svg" alt="\(a\cdot2\pi ah\)" style="height:0.761em;vertical-align:-0.000em">, through the caps 0: equal, as Gauss requires.
+</p>
+</div>
+</div>
+<div id="outline-container-org1eb7aa3" class="outline-2">
+<h2 id="org1eb7aa3">Engineering applications</h2>
+<div class="outline-text-2" id="text-org1eb7aa3">
+<p>
+Every field solver (FEM, FDTD) discretises these operators; Stokes underlies Ampère-loop current probes (Rogowski coils) and Faraday induction; divergence underlies charge conservation in circuit simulators (KCL is <img class="m" src="m/b70680bb80e2476c689bc219374f2649b2444186.svg" alt="\(\nabla\cdot\mathbf J=0\)" style="height:0.752em;vertical-align:-0.000em"> integrated).
+</p>
+</div>
+</div>
+<div id="outline-container-org0f07149" class="outline-2">
+<h2 id="org0f07149">Pitfall</h2>
+<div class="outline-text-2" id="text-org0f07149">
+<p>
+In curvilinear coordinates the unit vectors depend on position: you cannot differentiate components as if Cartesian.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="electromagnetic-fields.html"><span>← previous</span>Electromagnetic fields: the map of the subject</a><a rel="next" href="electrostatics-and-gauss-law.html"><span>next →</span>Electrostatics and Gauss's law</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/electromagnetic-fields--static-fields.pdf" title="PDF manual">Static Fields</a> · <a class="pdf" href="pdf/electromagnetic-fields.pdf" title="PDF manual">Electromagnetic Fields</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

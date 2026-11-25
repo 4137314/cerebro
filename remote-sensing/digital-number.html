@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Detector, quantization and digital numbers · Remote Sensing</title>
+<meta name="description" content="The detector converts the radiance focused by the optics into a current or voltage, which is sampled and quantized with Q bits into a digital number \mathrm{DN}\in\{0,\dots,2^Q-1\}; calibration relates DN linearly to radiance, L=\mathrm{gain}\cdot\mathrm{DN}+\mathrm{offset}.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/digital-number.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Detector, quantization and digital numbers · Remote Sensing">
+<meta property="og:description" content="The detector converts the radiance focused by the optics into a current or voltage, which is sampled and quantized with Q bits into a digital number \mathrm{DN}\in\{0,\dots,2^Q-1\}; calibration relates DN linearly to radiance, L=\mathrm{gain}\cdot\mathrm{DN}+\mathrm{offset}.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/digital-number.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-acquisition">Acquisition</a> / <a rel="up" href="index.html#a-acquisition--optical-sensors">Optical Sensors</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Acquisition · Optical Sensors</p>
+<h1>Detector, quantization and digital numbers</h1>
+<p class="summary">The detector converts the radiance focused by the optics into a current or voltage, which is sampled and quantized with <img class="m" src="m/9ad268d57b6e822d73c6597fab83cab48a989c90.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> bits into a digital number <img class="m" src="m/dac25ebfeb053d8617af8c41070ba892769621de.svg" alt="\(\mathrm{DN}\in\{0,\dots,2^Q-1\}\)" style="height:1.196em;vertical-align:-0.275em">; calibration relates DN linearly to radiance, <img class="m" src="m/2e618dd778966b2ed0ea72d59abe4076af9559ae.svg" alt="\(L=\mathrm{gain}\cdot\mathrm{DN}+\mathrm{offset}\)" style="height:0.974em;vertical-align:-0.214em">.</p>
+<p class="rel"><span>needs</span> <a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></p>
+<p class="rel"><span>unlocks</span> <a href="sensor-resolutions.html">Geometric, radiometric, spectral and temporal resolution</a>, <a href="digital-image.html">Digital images</a>, <a href="radiometric-correction.html">Radiometric errors and corrections</a></p>
+<p class="rel"><span>see also</span> <a href="sensor-resolutions.html">Geometric, radiometric, spectral and temporal resolution</a>, <a href="digital-image.html">Digital images</a>, <a href="look-up-table.html">Look-up tables and visualization</a>, <a href="radiometric-quantities.html">Radiometric quantities</a>, <a href="radiometric-correction.html">Radiometric errors and corrections</a></p>
+<p class="rel"><span>mentioned in</span> <a href="radiometric-snr.html">Signal-to-noise ratio and noise-equivalent quantities</a>, <a href="image-histogram.html">Image histogram</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org7a866a4" class="outline-2">
+<h2 id="org7a866a4">Definition</h2>
+<div class="outline-text-2" id="text-org7a866a4">
+<p>
+Chain: mirror and optics collect radiance → filters or prism select the band → detector (transducer) converts EM energy variations into an electrical signal → amplifier → sampling and A/D conversion → DN. Each pixel's DN represents the radiance integrated over its ground cell, spectral band and integration time.
+</p>
+
+<p>
+Linear quantization with <img class="m" src="m/9ad268d57b6e822d73c6597fab83cab48a989c90.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> bits over the range <img class="m" src="m/4a58c58e623b4f1d14be1830b87603a783f1010d.svg" alt="\([L_{min},L_{max}]\)" style="height:1.096em;vertical-align:-0.274em">:
+<div class="mb"><img class="m" src="m/2807f4732fbf921d2a2d0ca21a9bb988a8e84bb4.svg" alt="\[ \mathrm{DN}=\mathrm{round}\!\left((2^Q-1)\frac{L-L_{min}}{L_{max}-L_{min}}\right),\qquad L=\mathrm{gain}\cdot\mathrm{DN}+\mathrm{offset}. \]" style="width:31.858em"></div>
+Gains and offsets come from pre-launch and on-board calibration (lamps, solar diffusers, deep space views) and are distributed in the image metadata.
+</p>
+</div>
+</div>
+<div id="outline-container-org579767c" class="outline-2">
+<h2 id="org579767c">Example</h2>
+<div class="outline-text-2" id="text-org579767c">
+<p>
+<a href="earth-observation-missions.html">Landsat</a> 8 OLI quantizes at 12 bits (4096 levels, delivered in 16-bit words); <a href="copernicus-sentinel.html">Sentinel-2</a> delivers 16-bit products; older sensors used 8 bits (256 levels).
+</p>
+</div>
+</div>
+<div id="outline-container-org0e778b1" class="outline-2">
+<h2 id="org0e778b1">Intuition</h2>
+<div class="outline-text-2" id="text-org0e778b1">
+<p>
+A DN is a measurement in arbitrary units: meaningful within one band of one image, comparable across images only after conversion to radiance or reflectance.
+</p>
+</div>
+</div>
+<div id="outline-container-org8aabece" class="outline-2">
+<h2 id="org8aabece">Pitfall</h2>
+<div class="outline-text-2" id="text-org8aabece">
+<p>
+More bits are useless if the noise is larger than one quantization step: <img class="m" src="m/9ad268d57b6e822d73c6597fab83cab48a989c90.svg" alt="\(Q\)" style="height:0.962em;vertical-align:-0.212em"> should match the <a href="sensor-resolutions.html">radiometric resolution</a>, not exceed it.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="scanner-geometry.html"><span>← previous</span>Scanner geometry: IFOV, GIFOV, swath</a><a rel="next" href="sensor-resolutions.html"><span>next →</span>Geometric, radiometric, spectral and temporal resolution</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/acquisition--optical-sensors.pdf" title="PDF manual">Optical Sensors</a> · <a class="pdf" href="pdf/acquisition.pdf" title="PDF manual">Acquisition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

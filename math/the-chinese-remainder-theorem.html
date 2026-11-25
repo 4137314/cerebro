@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Chinese remainder theorem · Mathematics</title>
+<meta name="description" content="Solving congruences one modulus at a time is possible exactly when the moduli are unrelated, and the theorem says what &quot;unrelated&quot; means for ideals: their sum is everything. The statement is an isomorphism of rings, so it does not merely produce a solution but identifies the whole ring with a produ…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-chinese-remainder-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The Chinese remainder theorem · Mathematics">
+<meta property="og:description" content="Solving congruences one modulus at a time is possible exactly when the moduli are unrelated, and the theorem says what &quot;unrelated&quot; means for ideals: their sum is everything. The statement is an isomorphism of rings, so it does not merely produce a solution but identifies the whole ring with a produ…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-chinese-remainder-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--commutative-algebra">Commutative Algebra</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Algebra · Commutative Algebra</p>
+<h1>The Chinese remainder theorem</h1>
+<p class="summary">Solving congruences one modulus at a time is possible exactly when the moduli are unrelated, and the theorem says what "unrelated" means for ideals: their sum is everything. The statement is an isomorphism of rings, so it does not merely produce a solution but identifies the whole ring with a product &#x2013; which is how a computation is split into independent ones.</p>
+<p class="rel"><span>needs</span> <a href="euclidean-domains-principal-ideals-and-unique-factorisation.html">Euclidean domains, principal ideals and unique factorisation</a>, <a href="rings-ideals-and-the-quotient-ring.html">Rings, ideals and the quotient ring</a></p>
+<p class="rel"><span>mentioned in</span> <a href="rings-and-commutative-algebra.html">Rings and commutative algebra</a></p>
+<details class="path"><summary>Learning path: 16 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li><li><a href="rings-ideals-and-the-quotient-ring.html">Rings, ideals and the quotient ring</a></li><li><a href="integral-domains-fields-prime-and-maximal-ideals.html">Integral domains, fields, prime and maximal ideals</a></li><li><a href="euclidean-domains-principal-ideals-and-unique-factorisation.html">Euclidean domains, principal ideals and unique factorisation</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org9e73c7f">
+<p>
+Ideals <img class="m" src="m/dd8223661f3560c45441cdff4cbafee406b49531.svg" alt="\(I, J\)" style="height:0.962em;vertical-align:-0.212em"> of a commutative ring <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> are <i>comaximal</i> if
+<img class="m" src="m/588c4da32e95d529503201600e4f87744572f723.svg" alt="\(I + J = R\)" style="height:0.840em;vertical-align:-0.092em">, where <img class="m" src="m/145f20754e7480349cf4c159620ec814e132adce.svg" alt="\(I + J = \setst{a+b}{a \in I, b\in J}\)" style="height:1.096em;vertical-align:-0.274em">. The
+<i>product</i> <img class="m" src="m/bf7350d3fec361d0a4a01c64112440e53bd954ea.svg" alt="\(IJ\)" style="height:0.749em;vertical-align:-0.000em"> is the ideal generated by the products <img class="m" src="m/b6eebf8d24c4287536f88be59ee8c44dc77956a4.svg" alt="\(ab\)" style="height:0.761em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org5a186b7">
+<p>
+If <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/5919fa9b720d5923593af26bfc506877418cd319.svg" alt="\(J\)" style="height:0.749em;vertical-align:-0.000em"> are comaximal then <img class="m" src="m/864227b65f8d9e95e99309b78e07ef0c3c6598cf.svg" alt="\(IJ = I \cap J\)" style="height:0.749em;vertical-align:-0.000em">; and if
+<img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> is comaximal with each of <img class="m" src="m/6a304b770e76b3b5dcbd804fc2b41816a15cf5ca.svg" alt="\(J_{1},\dots,J_{n}\)" style="height:0.962em;vertical-align:-0.212em"> then it is
+comaximal with their product.
+</p>
+
+</div>
+
+<div class="proof" id="org510a026">
+<p>
+Always <img class="m" src="m/c1f33f601f618dc8d93e18dee92e22b83aedd9a1.svg" alt="\(IJ \subseteq I\cap J\)" style="height:0.898em;vertical-align:-0.153em">, each generator lying in both. For the
+converse write <img class="m" src="m/13c73bab6a06e2b0bbfb90ec807cf0af959ca478.svg" alt="\(1 = u + v\)" style="height:0.798em;vertical-align:-0.088em"> with <img class="m" src="m/7c794981599f4515b04d4e21b50c7224107c4ea8.svg" alt="\(u \in I\)" style="height:0.792em;vertical-align:-0.040em">, <img class="m" src="m/0933bc9b599c9d5c93f80e2c4b3b83d15d19a54c.svg" alt="\(v \in J\)" style="height:0.792em;vertical-align:-0.040em">. For
+<img class="m" src="m/f885d7850d56a328de604f74206af8c38c39a027.svg" alt="\(x \in I \cap J\)" style="height:0.792em;vertical-align:-0.040em">, <img class="m" src="m/da1f17c8e4122657cb6f76f4ce3adc0d757ae740.svg" alt="\(x = xu + xv\)" style="height:0.731em;vertical-align:-0.088em">, and <img class="m" src="m/418100eb168248c53d4c37d529ddd4349e12bf85.svg" alt="\(xu \in JI\)" style="height:0.792em;vertical-align:-0.040em"> since
+<img class="m" src="m/0ae5139addc4bb6ab1bdf0b61fe4da4335677cbf.svg" alt="\(x \in J\)" style="height:0.792em;vertical-align:-0.040em">, while <img class="m" src="m/b6c1a19e22a0da22b5e3b58ea12284966927e7b5.svg" alt="\(xv \in IJ\)" style="height:0.792em;vertical-align:-0.040em"> since <img class="m" src="m/1b4ad7056988557d13e90ba97c702b593bae0e43.svg" alt="\(x \in I\)" style="height:0.792em;vertical-align:-0.040em">; so <img class="m" src="m/deb0136e56d6f593603e68fe79b536a58a68081b.svg" alt="\(x \in IJ\)" style="height:0.792em;vertical-align:-0.040em">.
+</p>
+
+<p>
+For the second claim, write <img class="m" src="m/b90ffb91457aea8d219fcd5c163b80de3a81931d.svg" alt="\(1 = u_{k}+v_{k}\)" style="height:0.871em;vertical-align:-0.165em"> with <img class="m" src="m/daee86654163f558bda96154d3e3719b26a2dac7.svg" alt="\(u_{k}\in I\)" style="height:0.913em;vertical-align:-0.164em">,
+<img class="m" src="m/cb4fec0e616b541b61c9d19456c1b32f7fba5d6d.svg" alt="\(v_{k}\in J_{k}\)" style="height:0.913em;vertical-align:-0.164em">. Then
+<img class="m" src="m/9228d738bbebf66e9245c0e292d88ab8e59b3e18.svg" alt="\(1 = \prod_{k}(u_{k}+v_{k})\)" style="height:1.151em;vertical-align:-0.334em">, and expanding, every term but
+<img class="m" src="m/37711dafeb4ed0b259da9d9c44ab2562284793a0.svg" alt="\(\prod_{k}v_{k}\)" style="height:1.151em;vertical-align:-0.334em"> contains some <img class="m" src="m/f35489d689026906045a1851300442d2bfc382db.svg" alt="\(u_{k}\)" style="height:0.636em;vertical-align:-0.165em"> and hence lies in <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em">. So
+<img class="m" src="m/aab8e7264799ae0420024242af77ed102bb5e105.svg" alt="\(1 \in I + \prod_{k}J_{k}\)" style="height:1.151em;vertical-align:-0.334em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org9b6216e">
+<p>
+Let <img class="m" src="m/72c46bd8471282bb1ffcc7a3a453c4da9c7f7011.svg" alt="\(I_{1},\dots,I_{n}\)" style="height:0.962em;vertical-align:-0.212em"> be pairwise comaximal ideals of a commutative
+ring <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em">. Then
+<div class="mb"><img class="m" src="m/d4026aeb50fa9d4759c4e3fe77ef42c695fb4aec.svg" alt="\[ R/(I_{1}\cap\cdots\cap I_{n}) \iso R/I_{1} \times \cdots \times R/I_{n}, \]" style="width:18.558em"></div>
+by <img class="m" src="m/405f20b52b53ff7f7378340554c434640a198e20.svg" alt="\(x + \bigcap_{k}I_{k} \mapsto (x+I_{1},\dots,x+I_{n})\)" style="height:1.151em;vertical-align:-0.334em">, and the
+intersection equals the product <img class="m" src="m/ac6b720cb080d8e9e9962b05e4abb3b6d9cd44d2.svg" alt="\(I_{1}\cdots I_{n}\)" style="height:0.913em;vertical-align:-0.164em">.
+</p>
+
+</div>
+
+<div class="proof" id="org7e4f057">
+<p>
+The map <img class="m" src="m/b9c8f43fa24101fb487b390bc17f4cf52cae44cd.svg" alt="\(\varphi \colon R \to \prod_{k}R/I_{k}\)" style="height:1.151em;vertical-align:-0.334em"> sending <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> to the
+tuple of its classes is a ring homomorphism with kernel
+<img class="m" src="m/2a2b9d81303250b9183128eec21b2a073c6fe91a.svg" alt="\(\bigcap_{k}I_{k}\)" style="height:1.151em;vertical-align:-0.334em">; by the homomorphism theorem it suffices to prove
+it surjective.
+</p>
+
+<p>
+Fix <img class="m" src="m/5ec5e3b2fda230219e6719c59682076f93242498.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em">. By the previous proposition <img class="m" src="m/896d8b927ed09d6266daa4ab786d88f96e8b78e1.svg" alt="\(I_{k}\)" style="height:0.913em;vertical-align:-0.164em"> is comaximal with
+<img class="m" src="m/87d3ad238c3bb3a42d63f4bcc66b6484f5aed15c.svg" alt="\(\prod_{l\ne k}I_{l}\)" style="height:1.300em;vertical-align:-0.481em">, so there are <img class="m" src="m/5c702b10fe7198fac389ca7742ac068496f830d5.svg" alt="\(u \in I_{k}\)" style="height:0.913em;vertical-align:-0.164em"> and
+<img class="m" src="m/996932b3526e2ce83451dd29ca79857e52c0a9d0.svg" alt="\(w \in \prod_{l\ne k}I_{l}\)" style="height:1.300em;vertical-align:-0.481em"> with <img class="m" src="m/7425a7eb07be19d85c4c80ecdff764cdf3d4048d.svg" alt="\(u + w = 1\)" style="height:0.798em;vertical-align:-0.088em">. Then <img class="m" src="m/5bff43a6a7aad21872fa4eba18b7240439e565fa.svg" alt="\(w \equiv 1\)" style="height:0.706em;vertical-align:-0.000em">
+modulo <img class="m" src="m/896d8b927ed09d6266daa4ab786d88f96e8b78e1.svg" alt="\(I_{k}\)" style="height:0.913em;vertical-align:-0.164em"> and <img class="m" src="m/35e0a435eb987b2459368ab5f7a01e52185ae9cd.svg" alt="\(w \equiv 0\)" style="height:0.706em;vertical-align:-0.000em"> modulo every <img class="m" src="m/4a45f67b60698d4e0304793194444c9e7648a3f0.svg" alt="\(I_{l}\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/3cdfedbdb07df2f68de6c1982f692d1c44a2739f.svg" alt="\(l\ne k\)" style="height:0.974em;vertical-align:-0.214em">;
+so <img class="m" src="m/9994a8b9fdbb4815d28b1214ba2b0ddd900f63f5.svg" alt="\(\varphi(w)\)" style="height:1.096em;vertical-align:-0.274em"> is the <img class="m" src="m/5ec5e3b2fda230219e6719c59682076f93242498.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em">-th standard idempotent. Given a target
+tuple <img class="m" src="m/3e1ed71314ea9d1f1536fc828c5ea984dbb0b66d.svg" alt="\((x_{k}+I_{k})_{k}\)" style="height:1.096em;vertical-align:-0.274em">, the element <img class="m" src="m/f4b98ab3ac5e6dcc762243f70d08e31730d17491.svg" alt="\(\sum_{k}x_{k}w_{k}\)" style="height:1.151em;vertical-align:-0.334em"> maps to
+it.
+</p>
+
+<p>
+Finally the intersection is the product: by induction on <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> using the
+proposition, <img class="m" src="m/5337f93ba08e7a7c742facd0b05834ecf067a95a.svg" alt="\(I_{1}\cap(I_{2}\cdots I_{n}) = I_{1}(I_{2}\cdots I_{n})\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="corollary" id="org0fa4a25">
+<p>
+Let <img class="m" src="m/6b95b116d752a304538ca25add848e0068f7b4ae.svg" alt="\(m_{1},\dots,m_{n}\)" style="height:0.685em;vertical-align:-0.212em"> be pairwise coprime positive integers with
+product <img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em">. Then <img class="m" src="m/9dc516717a7a674e4e8f536642e0d855b4fdcaf8.svg" alt="\(\Z/m\Z \iso \prod_{k}\Z/m_{k}\Z\)" style="height:1.151em;vertical-align:-0.334em"> as rings; in
+particular the system of congruences <img class="m" src="m/d7cb93b0bccd9866c714c721e0d56c53b12a5fda.svg" alt="\(x \equiv a_{k} \pmod{m_{k}}\)" style="height:1.096em;vertical-align:-0.274em"> has
+a solution, unique modulo <img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org6b9fb68">
+<p>
+In <img class="m" src="m/7dabe02ee97dbd1f64356da323fa6ec62fd0b242.svg" alt="\(\Z\)" style="height:0.755em;vertical-align:-0.000em"> every ideal is <img class="m" src="m/230983873a457af1766ba271c92571a80232c2c8.svg" alt="\(d\Z\)" style="height:0.761em;vertical-align:-0.000em">. The ideals <img class="m" src="m/e311aeee5eb77979fa83d5ea0543d3f7a8522075.svg" alt="\(m_{k}\Z\)" style="height:0.919em;vertical-align:-0.165em"> are pairwise
+comaximal: <img class="m" src="m/b8b3dbbdff318cb6e0b7d0ad18692b5a576a85ff.svg" alt="\(m_{j}\Z + m_{k}\Z\)" style="height:1.068em;vertical-align:-0.310em"> is the ideal generated by
+<img class="m" src="m/703605e83268f1c11c66d8d3d8485ee5941a2416.svg" alt="\(\gcd(m_{j},m_{k}) = 1\)" style="height:1.135em;vertical-align:-0.318em">, hence all of <img class="m" src="m/7dabe02ee97dbd1f64356da323fa6ec62fd0b242.svg" alt="\(\Z\)" style="height:0.755em;vertical-align:-0.000em">. Their intersection is
+<img class="m" src="m/90fed26a3e9c32dfcbd668f75a1ff30e2d07cc18.svg" alt="\(m\Z\)" style="height:0.755em;vertical-align:-0.000em"> by the theorem, the product of the <img class="m" src="m/e311aeee5eb77979fa83d5ea0543d3f7a8522075.svg" alt="\(m_{k}\Z\)" style="height:0.919em;vertical-align:-0.165em"> being
+<img class="m" src="m/90fed26a3e9c32dfcbd668f75a1ff30e2d07cc18.svg" alt="\(m\Z\)" style="height:0.755em;vertical-align:-0.000em">. The isomorphism is the statement about congruences, its
+injectivity the uniqueness modulo <img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="remark" id="orge102eff">
+<p>
+Comaximality is essential and not merely convenient: <img class="m" src="m/78e36498e3ca5304263852157d339d569e9526b1.svg" alt="\(2\Z\)" style="height:0.755em;vertical-align:-0.000em"> and
+<img class="m" src="m/afd7d572a6e5792160611e632444a767b9e3a78c.svg" alt="\(4\Z\)" style="height:0.755em;vertical-align:-0.000em"> are not comaximal, and <img class="m" src="m/401e02db31ed6e4aef7fd698cbe8f5530333e325.svg" alt="\(\Z/8\Z\)" style="height:1.096em;vertical-align:-0.274em"> is not a product of
+<img class="m" src="m/87b168721877d1e07d27d10a723fa648bace0e73.svg" alt="\(\Z/2\Z\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/65545faa99f07ef4a8290c1388fb8c13e2c77839.svg" alt="\(\Z/4\Z\)" style="height:1.096em;vertical-align:-0.274em"> &#x2013; it has an element of order <img class="m" src="m/043b7d4085bb2fd421caac9d0d2aa85868a10fa0.svg" alt="\(8\)" style="height:0.706em;vertical-align:-0.000em"> and the
+product has none. The idempotents <img class="m" src="m/179e19a5ba1473d91e8562e8783b524b971ae4f8.svg" alt="\(\varphi(w_{k})\)" style="height:1.096em;vertical-align:-0.274em"> constructed in the
+proof are the real content: a decomposition of a ring into a product is
+the same thing as a family of orthogonal idempotents summing to <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em">.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="noetherian-rings-and-the-hilbert-basis-theorem.html"><span>← previous</span>Noetherian rings and the Hilbert basis theorem</a><a rel="next" href="analysis.html"><span>next →</span>Analysis</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--commutative-algebra.pdf" title="PDF manual">Commutative Algebra</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

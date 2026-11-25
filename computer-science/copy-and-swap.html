@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The copy-and-swap idiom · Computer Science</title>
+<meta name="description" content="Implement assignment as &quot;take the argument by value, swap its contents with *this&quot;: the copy (or move) happens in the parameter, the swap cannot throw, and the old state dies with the parameter — one operator that is correct for self-assignment, gives the strong guarantee and serves both copy and m…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/copy-and-swap.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The copy-and-swap idiom · Computer Science">
+<meta property="og:description" content="Implement assignment as &quot;take the argument by value, swap its contents with *this&quot;: the copy (or move) happens in the parameter, the swap cannot throw, and the old state dies with the parameter — one operator that is correct for self-assignment, gives the strong guarantee and serves both copy and m…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/copy-and-swap.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--cpp">Cpp</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Programming · Cpp</p>
+<h1>The copy-and-swap idiom</h1>
+<p class="summary">Implement assignment as "take the argument by value, swap its contents with <code>*this</code>": the copy (or move) happens in the parameter, the swap cannot throw, and the old state dies with the parameter — one operator that is correct for self-assignment, gives the strong guarantee and serves both copy and move assignment.</p>
+<p class="rel"><span>needs</span> <a href="shallow-deep-copy.html">Shallow and deep copy, rule of three</a>, <a href="exception-safety.html">Exception-safety guarantees</a></p>
+<p class="rel"><span>see also</span> <a href="move-semantics.html">Move semantics and the rule of five</a>, <a href="operator-overloading.html">Operator overloading in C++</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-association.html">Association, links and multiplicity</a></li><li><a href="aggregation-composition.html">Aggregation and composition</a></li><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="exception-handling.html">Exceptions</a></li><li><a href="pointers-references.html">Pointers, references and dynamic memory in C++</a></li><li><a href="cpp-special-members.html">Special member functions and RAII</a></li><li><a href="exception-safety.html">Exception-safety guarantees</a></li><li><a href="shallow-deep-copy.html">Shallow and deep copy, rule of three</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org29a200b" class="outline-2">
+<h2 id="org29a200b">Construction</h2>
+<div class="outline-text-2" id="text-org29a200b">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="k">class</span> <span class="t">A</span> {
+  <span class="t">int</span> <span class="v">i</span> = 0;
+  <span class="t">B</span>* <span class="v">pb</span> = <span class="n">nullptr</span>;
+<span class="k">public</span>:
+  <span class="f">A</span>(<span class="k">const</span> <span class="t">A</span>&amp; <span class="v">a</span>) : i(a.i), pb(a.pb ? <span class="k">new</span> <span class="t">B</span>(*a.pb) : <span class="n">nullptr</span>) {}   <span class="c">// the real copy
+</span>  <span class="f">A</span>(<span class="t">A</span>&amp;&amp; <span class="v">a</span>) <span class="k">noexcept</span> : i(a.i), pb(a.pb) { a.pb = <span class="n">nullptr</span>; }      <span class="c">// the real move
+</span>  ~<span class="f">A</span>() { <span class="k">delete</span> pb; }
+
+  <span class="k">friend</span> <span class="t">void</span> <span class="f">swap</span>(<span class="t">A</span>&amp; <span class="v">x</span>, <span class="t">A</span>&amp; <span class="v">y</span>) <span class="k">noexcept</span> {
+    <span class="k">using</span> <span class="n">std</span>::swap;
+    swap(x.i, y.i);
+    swap(x.pb, y.pb);
+  }
+  <span class="c">// by value: copy-constructed or move-constructed
+</span>  <span class="t">A</span>&amp; <span class="k">operator</span><span class="f">=</span>(<span class="t">A</span> <span class="v">other</span>) <span class="k">noexcept</span> {
+    swap(*<span class="k">this</span>, other);
+    <span class="k">return</span> *<span class="k">this</span>;
+  <span class="c">// other (holding the old state) is destroyed here
+</span>  }
+};</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orgf124a0f" class="outline-2">
+<h2 id="orgf124a0f">Derivation</h2>
+<div class="outline-text-2" id="text-orgf124a0f">
+<ul class="org-ul">
+<li><b>Self-assignment</b>: <code>a = a</code> copies <code>a</code> into <code>other</code>, swaps, destroys the old copy: correct without a test.</li>
+<li><b><a href="exception-safety.html">Strong guarantee</a></b>: the only operation that can throw is the copy into <code>other</code>, which happens before <code>*this</code> is touched.</li>
+<li><b>Copy and move</b>: if the argument is an <a href="value-categories.html">lvalue</a>, <code>other</code> is copy-constructed; if it is an rvalue, move-constructed. One function covers both assignments, so the <a href="move-semantics.html">rule of five</a> reduces to four functions plus <code>swap</code>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9d428bf" class="outline-2">
+<h2 id="org9d428bf">Intuition</h2>
+<div class="outline-text-2" id="text-org9d428bf">
+<p>
+Make a fresh, correct object first; then exchange contents with it and let the old contents be thrown away by a <a href="cpp-special-members.html">destructor</a> that already works.
+</p>
+</div>
+</div>
+<div id="outline-container-orgde1beb1" class="outline-2">
+<h2 id="orgde1beb1">Pitfall</h2>
+<div class="outline-text-2" id="text-orgde1beb1">
+<p>
+Copy-and-swap always builds a new object, even when reusing the existing buffer would be cheaper (assigning a vector to an equal-sized one): for performance-critical types a hand-written assignment can be faster, at the price of weaker guarantees.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="bitset.html"><span>← previous</span>std::bitset</a><a rel="next" href="generic-programming.html"><span>next →</span>Generic programming</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--cpp.pdf" title="PDF manual">Cpp</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

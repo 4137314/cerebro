@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operator overloading in C++ · Computer Science</title>
+<meta name="description" content="Most C++ operators can be redefined for classes, either as members (the left operand is *this) or as free functions (all operands are parameters); operator= only as a member; prefix ++ returns a reference, postfix ++(int) a copy of the old value.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/operator-overloading.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Operator overloading in C++ · Computer Science">
+<meta property="og:description" content="Most C++ operators can be redefined for classes, either as members (the left operand is *this) or as free functions (all operands are parameters); operator= only as a member; prefix ++ returns a reference, postfix ++(int) a copy of the old value.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/operator-overloading.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--cpp">Cpp</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Programming · Cpp</p>
+<h1>Operator overloading in C++</h1>
+<p class="summary">Most C++ operators can be redefined for classes, either as members (the left operand is <code>*this</code>) or as free functions (all operands are parameters); <code>operator=</code> only as a member; prefix <code>++</code> returns a reference, postfix <code>++(int)</code> a copy of the old value.</p>
+<p class="rel"><span>needs</span> <a href="cpp-special-members.html">Special member functions and RAII</a>, <a href="method-overloading.html">Overloading</a></p>
+<p class="rel"><span>unlocks</span> <a href="function-objects.html">Function pointers and function objects</a>, <a href="bitset.html">std::bitset</a></p>
+<p class="rel"><span>see also</span> <a href="implicit-conversion.html">Converting constructors and explicit</a>, <a href="function-objects.html">Function pointers and function objects</a>, <a href="stl-containers.html">STL containers</a>, <a href="equals-hashcode.html">The equals–hashCode contract</a>, <a href="bitset.html">std::bitset</a></p>
+<p class="rel"><span>mentioned in</span> <a href="implicit-conversion.html">Converting constructors and explicit</a></p>
+<details class="path"><summary>Learning path: 5 notes lead here, in study order</summary><ol><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="method-overloading.html">Overloading</a></li><li><a href="pointers-references.html">Pointers, references and dynamic memory in C++</a></li><li><a href="cpp-special-members.html">Special member functions and RAII</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgab2dcfe" class="outline-2">
+<h2 id="orgab2dcfe">Method</h2>
+<div class="outline-text-2" id="text-orgab2dcfe">
+<p>
+In <code>a1 = (a2 + a3) * (++a4);</code> four operators appear: <code>=</code>, <code>+</code>, <code>*</code>, <code>++</code>. For a class <code>A</code>:
+</p>
+<ul class="org-ul">
+<li><b>member</b>: <code>A A::operator+(const A&amp; r) const;</code> so <code>a + b</code> means <code>a.operator+(b)</code>;</li>
+<li><b>free function</b>: <code>A operator+(const A&amp; l, const A&amp; r);</code> so <code>a + b</code> means <code>operator+(a, b)</code>; it needs access to the representation through getters or a <code>friend</code> declaration;</li>
+<li><code>operator=</code>, <code>operator[]</code>, <code>operator()</code>, <code>operator-&gt;</code> can only be members.</li>
+</ul>
+
+<p>
+Operators that build a new value (<code>+</code>, <code>*</code>, postfix <code>++</code>) return by value; operators that modify their left operand (<code>=</code>, <code>+=</code>, prefix <code>++</code>) return <code>A&amp;</code> to <code>*this</code>, so they can be chained.
+</p>
+</div>
+</div>
+<div id="outline-container-org058c9d2" class="outline-2">
+<h2 id="org058c9d2">Example</h2>
+<div class="outline-text-2" id="text-org058c9d2">
+<figure class="listing lang-cpp"><figcaption><span class="lang">C++</span></figcaption><pre class="src"><code><span class="k">class</span> <span class="t">Complex</span> {
+  <span class="t">double</span> <span class="v">re</span>, <span class="v">im</span>;
+<span class="k">public</span>:
+  <span class="f">Complex</span>(<span class="t">double</span> <span class="v">r</span> = 0, <span class="t">double</span> <span class="v">i</span> = 0) : re(r), im(i) {}
+  <span class="t">Complex</span>&amp; <span class="k">operator</span><span class="f">+=</span>(<span class="k">const</span> <span class="t">Complex</span>&amp; <span class="v">o</span>) { re += o.re; im += o.im; <span class="k">return</span> *<span class="k">this</span>; }
+  <span class="t">Complex</span>&amp; <span class="k">operator</span><span class="f">++</span>()    { ++re; <span class="k">return</span> *<span class="k">this</span>; }               <span class="c">// prefix
+</span>  <span class="t">Complex</span>  <span class="k">operator</span><span class="f">++</span>(<span class="t">int</span>) { <span class="t">Complex</span> <span class="v">old</span> = *<span class="k">this</span>; ++re; <span class="k">return</span> old; }  <span class="c">// postfix
+</span>  <span class="k">friend</span> <span class="n">std</span>::<span class="t">ostream</span>&amp; <span class="k">operator</span><span class="f">&lt;&lt;</span>(<span class="n">std</span>::<span class="t">ostream</span>&amp; <span class="v">os</span>, <span class="k">const</span> <span class="t">Complex</span>&amp; <span class="v">c</span>) {
+    <span class="k">return</span> os &lt;&lt; c.re &lt;&lt; <span class="s">"+"</span> &lt;&lt; c.im &lt;&lt; <span class="s">"i"</span>;
+  }
+};
+<span class="c">// 2 + c works too
+</span><span class="t">Complex</span> <span class="k">operator</span><span class="f">+</span>(<span class="t">Complex</span> <span class="v">l</span>, <span class="k">const</span> <span class="t">Complex</span>&amp; <span class="v">r</span>) { <span class="k">return</span> l += r; }</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org149f1db" class="outline-2">
+<h2 id="org149f1db">When to use</h2>
+<div class="outline-text-2" id="text-org149f1db">
+<p>
+When the meaning is natural (arithmetic on numbers, <code>&lt;&lt;</code> on streams, <code>[]</code> on containers), and when generic libraries require it: <code>std::set</code> and <code>std::sort</code> need <code>operator&lt;</code>, <code>std::find</code> needs ~operator=~=. Otherwise sparingly.
+</p>
+</div>
+</div>
+<div id="outline-container-org9969a3e" class="outline-2">
+<h2 id="org9969a3e">Intuition</h2>
+<div class="outline-text-2" id="text-org9969a3e">
+<p>
+An operator is just a function with a short name and a fixed number of operands; the compiler rewrites the expression into calls.
+</p>
+</div>
+</div>
+<div id="outline-container-org9847061" class="outline-2">
+<h2 id="org9847061">Pitfall</h2>
+<div class="outline-text-2" id="text-org9847061">
+<p>
+<code>friend</code> breaks encapsulation and should be rare. Writing <code>(a++)++</code> increments a temporary copy, not <code>a</code>; <code>++(++a)</code> increments <code>a</code> twice because prefix returns a reference.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="perfect-forwarding.html"><span>← previous</span>Forwarding references and perfect forwarding</a><a rel="next" href="function-objects.html"><span>next →</span>Function pointers and function objects</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--cpp.pdf" title="PDF manual">Cpp</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

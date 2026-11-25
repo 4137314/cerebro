@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expectation, the transfer theorem and Jensen's inequality · Mathematics</title>
+<meta name="description" content="The expectation of a random variable is its integral, so linearity and the convergence theorems come for nothing. Two statements do not: that the expectation of g(X) can be computed on the line, knowing only the law of X, and that expectation commutes with a product when the factors are independent…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/expectation-the-transfer-theorem-and-jensens-inequality.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Expectation, the transfer theorem and Jensen's inequality · Mathematics">
+<meta property="og:description" content="The expectation of a random variable is its integral, so linearity and the convergence theorems come for nothing. Two statements do not: that the expectation of g(X) can be computed on the line, knowing only the law of X, and that expectation commutes with a product when the factors are independent…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/expectation-the-transfer-theorem-and-jensens-inequality.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-probability">Probability</a> / <a rel="up" href="index.html#a-probability--probability-theory">Probability Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Probability · Probability Theory</p>
+<h1>Expectation, the transfer theorem and Jensen's inequality</h1>
+<p class="summary">The expectation of a random variable is its integral, so linearity and the convergence theorems come for nothing. Two statements do not: that the expectation of <img class="m" src="m/8ec530f0374f67d3c3f4e8249157c0f587e07813.svg" alt="\(g(X)\)" style="height:1.096em;vertical-align:-0.274em"> can be computed on the line, knowing only the law of <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">, and that expectation commutes with a product when the factors are independent. Both are proved by the same device &#x2013; check it for indicators, extend by linearity and monotone limits &#x2013; which is the standard machine of the subject.</p>
+<p class="rel"><span>needs</span> <a href="convex-functions-and-the-second-derivative.html">Convex functions and the second derivative</a>, <a href="probability-spaces-conditioning-and-independence.html">Probability spaces, conditioning and independence</a>, <a href="random-variables-laws-and-distribution-functions.html">Random variables, laws and distribution functions</a>, <a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></p>
+<p class="rel"><span>unlocks</span> <a href="the-fourier-transform-inversion-and-plancherel.html">The Fourier transform, inversion and Plancherel</a>, <a href="characteristic-functions.html">Characteristic functions</a>, <a href="the-weak-and-strong-laws-of-large-numbers.html">The weak and strong laws of large numbers</a>, <a href="variance-covariance-and-the-markov-and-chebyshev-inequalities.html">Variance, covariance and the Markov and Chebyshev inequalities</a>, <a href="fisher-information-and-the-cramer-rao-bound.html">Fisher information and the Cramer-Rao bound</a>, <a href="least-squares-and-the-gauss-markov-theorem.html">Least squares and the Gauss-Markov theorem</a>, <a href="statistical-models-estimators-and-consistency.html">Statistical models, estimators and consistency</a></p>
+<p class="rel"><span>mentioned in</span> <a href="probability.html">Probability</a></p>
+<details class="path"><summary>Learning path: 26 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="the-algebra-of-limits.html">The algebra of limits</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li><li><a href="convex-functions-and-the-second-derivative.html">Convex functions and the second derivative</a></li><li><a href="limit-superior-and-limit-inferior.html">Limit superior and limit inferior</a></li><li><a href="sigma-algebras-measures-and-measurable-functions.html">Sigma-algebras, measures and measurable functions</a></li><li><a href="the-lebesgue-integral-and-the-convergence-theorems.html">The Lebesgue integral and the convergence theorems</a></li><li><a href="probability-spaces-conditioning-and-independence.html">Probability spaces, conditioning and independence</a></li><li><a href="random-variables-laws-and-distribution-functions.html">Random variables, laws and distribution functions</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orgeeaaeee">
+<p>
+The <i>expectation</i> of a random variable <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> with
+<img class="m" src="m/ab79903c6c50190801c6067fad1af07318cabea5.svg" alt="\(\E\abs{X}&lt;\infty\)" style="height:1.096em;vertical-align:-0.274em"> is <img class="m" src="m/56725a1eaa7b25efc109f62469e341831167ef8d.svg" alt="\(\E[X] = \int_{\Omega}X \dd\Prob\)" style="height:1.272em;vertical-align:-0.394em">; such an
+<img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is <i>integrable</i>. For <img class="m" src="m/66ee56800fdc95bd387eace5ee13ee5f882d36dc.svg" alt="\(X \ge 0\)" style="height:0.898em;vertical-align:-0.153em"> the expectation is defined in
+<img class="m" src="m/1c2e1dfbb9bcf570958d703759e4ee2d5a00b10f.svg" alt="\([0,\infty]\)" style="height:1.096em;vertical-align:-0.274em"> with no integrability assumed.
+</p>
+
+</div>
+
+<div class="theorem" id="org51ac616">
+<p>
+Let <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> be a random variable with law <img class="m" src="m/271baffb13bab27c921628e5afd7063b9dffbbde.svg" alt="\(\Prob_{X}\)" style="height:0.919em;vertical-align:-0.165em"> and
+<img class="m" src="m/6c6b87c1675c5c572a770b666b35b3a6ce7cf9d7.svg" alt="\(g \colon \R\to\R\)" style="height:0.968em;vertical-align:-0.213em"> Borel measurable with <img class="m" src="m/d71a352e77713b835bc079edd94ca1e22ddf428d.svg" alt="\(g \ge 0\)" style="height:0.919em;vertical-align:-0.211em">, or with
+<img class="m" src="m/8ec530f0374f67d3c3f4e8249157c0f587e07813.svg" alt="\(g(X)\)" style="height:1.096em;vertical-align:-0.274em"> integrable. Then
+<div class="mb"><img class="m" src="m/457b08adf3f6749f8923b65f215ae32f100b4aee.svg" alt="\[ \E[g(X)] = \int_{\R} g \dd\Prob_{X}. \]" style="width:9.587em"></div>
+</p>
+
+</div>
+
+<div class="proof" id="orgbd69713">
+<p>
+For <img class="m" src="m/e9548a85bfdedf2ffc7bdc7169e1b4db96747de3.svg" alt="\(g = \indicator_{B}\)" style="height:0.919em;vertical-align:-0.211em"> with <img class="m" src="m/0736c1ec600d1e18c75ed68a9406c4f32be5e507.svg" alt="\(B\)" style="height:0.749em;vertical-align:-0.000em"> Borel, the left side is
+<img class="m" src="m/3e1c0e2499c87d9264302ba85773660e5723f9f1.svg" alt="\(\Prob(X\in B)\)" style="height:1.096em;vertical-align:-0.274em"> and the right side is <img class="m" src="m/851ce2c65efd165e212a1313c44542835a7030f3.svg" alt="\(\Prob_{X}(B)\)" style="height:1.096em;vertical-align:-0.274em">, equal by
+definition of the law. By linearity of both integrals the identity holds
+for every non-negative simple <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em">. For general <img class="m" src="m/d71a352e77713b835bc079edd94ca1e22ddf428d.svg" alt="\(g \ge 0\)" style="height:0.919em;vertical-align:-0.211em">, take
+simple <img class="m" src="m/5253128181d222d03645aa328725e817cdc5ebdc.svg" alt="\(s_{n}\uparrow g\)" style="height:0.974em;vertical-align:-0.214em">; then <img class="m" src="m/e1c681c4c59112ae8da2b1d136efecbc0deed59d.svg" alt="\(s_{n}(X)\uparrow g(X)\)" style="height:1.096em;vertical-align:-0.274em">, and monotone
+convergence applied on each side gives the identity in the limit.
+</p>
+
+<p>
+For integrable <img class="m" src="m/8ec530f0374f67d3c3f4e8249157c0f587e07813.svg" alt="\(g(X)\)" style="height:1.096em;vertical-align:-0.274em">, apply the non-negative case to
+<img class="m" src="m/ead760302e2e5e027ff9ecffc60972d019fae61e.svg" alt="\(g^{+} = \max(g,0)\)" style="height:1.147em;vertical-align:-0.275em"> and <img class="m" src="m/74e4b34695a9ddb2eccd48f35c9eee38efa7bc76.svg" alt="\(g^{-} = \max(-g,0)\)" style="height:1.147em;vertical-align:-0.275em">, both finite, and
+subtract.
+</p>
+
+</div>
+
+<div class="proposition" id="org320a2ce">
+<p>
+Expectation is linear and monotone on integrable random variables,
+<img class="m" src="m/a69dc94d9cd8ebbb31fc2d349048cdd909dffcf4.svg" alt="\(\abs{\E[X]}\le\E\abs{X}\)" style="height:1.096em;vertical-align:-0.274em">, and a constant has itself as expectation.
+If <img class="m" src="m/d6d3ba2c2e6ed80afc3585516ef553a0c8441dae.svg" alt="\(X_{n}\to X\)" style="height:0.913em;vertical-align:-0.164em"> almost surely with <img class="m" src="m/4e0ba6301b254c8eabfa9c96bbabce04972217b8.svg" alt="\(\abs{X_{n}}\le Y\)" style="height:1.096em;vertical-align:-0.274em"> integrable,
+then <img class="m" src="m/ab7cb3aa68811f8fe1c26eebfaa03355022ecd6b.svg" alt="\(\E[X_{n}]\to\E[X]\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org3f493ce">
+<p>
+Each statement is the corresponding property of the integral, applied on
+the measure space <img class="m" src="m/68e4695a374bc8fea1198d77be986a3d133a301d.svg" alt="\((\Omega,\mathcal{F},\Prob)\)" style="height:1.096em;vertical-align:-0.274em">; the last is dominated
+convergence, and <img class="m" src="m/a69dc94d9cd8ebbb31fc2d349048cdd909dffcf4.svg" alt="\(\abs{\E[X]}\le\E\abs{X}\)" style="height:1.096em;vertical-align:-0.274em"> follows from monotonicity
+applied to <img class="m" src="m/98c7bbb991a19cdc954ad7e1f934728780ac8a07.svg" alt="\(\pm X \le \abs{X}\)" style="height:1.096em;vertical-align:-0.274em">. A constant <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> has
+<img class="m" src="m/3538132beed140f0180817009a517f7ac8f9264d.svg" alt="\(\int c \dd\Prob = c\,\Prob(\Omega) = c\)" style="height:1.218em;vertical-align:-0.341em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org754f0ca">
+<p>
+If <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/82d9b7c5c94f297586981fdbe7ca67b30095b73a.svg" alt="\(Y\)" style="height:0.749em;vertical-align:-0.000em"> are independent and both integrable, then <img class="m" src="m/6b39414700161e77512fbc05184d0c40d7fbdc6d.svg" alt="\(XY\)" style="height:0.749em;vertical-align:-0.000em"> is
+integrable and <img class="m" src="m/7e7e9f75dacfbaf9270b54523190b18b8d68b593.svg" alt="\(\E[XY] = \E[X]\,\E[Y]\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgfcf489a">
+<p>
+Assume first <img class="m" src="m/23d9cb4d714055ad5dcf6f3180092da7087183b9.svg" alt="\(X, Y\ge0\)" style="height:0.962em;vertical-align:-0.212em">. For the pair
+<img class="m" src="m/5e1bad13cfe5ae45a60a13d9b8b10cd1d2dd5f58.svg" alt="\(\indicator_{\set{X\in B_{1}}}\)" style="height:1.096em;vertical-align:-0.395em"> and <img class="m" src="m/22bb401695b622ee558ec405a2b96a80b310aeea.svg" alt="\(\indicator_{\set{Y\in B_{2}}}\)" style="height:1.096em;vertical-align:-0.395em">
+with <img class="m" src="m/119978ebbde27e85c6c54028a7d504ad57339019.svg" alt="\(B_{1},B_{2}\)" style="height:0.962em;vertical-align:-0.212em"> Borel, the claim is
+<img class="m" src="m/52d042f6ddfeae845066b3f0fbf36401e5ac2396.svg" alt="\(\Prob(X\in B_{1}, Y\in B_{2}) = \Prob(X\in B_{1})\Prob(Y\in B_{2})\)" style="height:1.096em;vertical-align:-0.274em">,
+which is the definition of independence. By bilinearity it holds for
+any pair of non-negative simple functions of <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> and of <img class="m" src="m/82d9b7c5c94f297586981fdbe7ca67b30095b73a.svg" alt="\(Y\)" style="height:0.749em;vertical-align:-0.000em">, each
+being a finite combination of such indicators. Take simple <img class="m" src="m/828cd7475e7d0ca930b6fcb80a9370ec192797dc.svg" alt="\(s_{n}\uparrow X\)" style="height:0.974em;vertical-align:-0.214em"> and
+<img class="m" src="m/bc683dce15a07ce88c289dc7ba41d3681ec05c75.svg" alt="\(t_{n}\uparrow Y\)" style="height:0.974em;vertical-align:-0.214em"> of the form <img class="m" src="m/fd06e807b870b1833544dc34be3185c3d830b626.svg" alt="\(s_{n} = \varphi_{n}(X)\)" style="height:1.096em;vertical-align:-0.274em">,
+<img class="m" src="m/ab4f937aa21140e7746812d0c18a1f380add9372.svg" alt="\(t_{n} = \psi_{n}(Y)\)" style="height:1.096em;vertical-align:-0.274em"> &#x2013; the approximation theorem produces exactly
+such functions, being built from the level sets of <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/82d9b7c5c94f297586981fdbe7ca67b30095b73a.svg" alt="\(Y\)" style="height:0.749em;vertical-align:-0.000em">. Then
+<img class="m" src="m/23f0be2854105e24e76a1740dc54be544f9b685f.svg" alt="\(s_{n}t_{n}\uparrow XY\)" style="height:0.974em;vertical-align:-0.214em">, and monotone convergence on both sides gives
+<img class="m" src="m/7242fb383ee3674654c4588e2e10e524c9cd00c4.svg" alt="\(\E[XY] = \E[X]\E[Y]\)" style="height:1.096em;vertical-align:-0.274em"> in <img class="m" src="m/1c2e1dfbb9bcf570958d703759e4ee2d5a00b10f.svg" alt="\([0,\infty]\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+In general apply this to <img class="m" src="m/a4b0ce4dc03f448dfbc439455185dd416527f08c.svg" alt="\(\abs{X}\)" style="height:1.096em;vertical-align:-0.274em"> and <img class="m" src="m/9867670e5f38a03f476baf43fced4d83963527a2.svg" alt="\(\abs{Y}\)" style="height:1.096em;vertical-align:-0.274em">, which are
+independent by the proposition on functions of independent variables;
+the product of their finite expectations bounds <img class="m" src="m/7116e56d2b2c8ff5d1a1a821a1287ea8858937b7.svg" alt="\(\E\abs{XY}\)" style="height:1.096em;vertical-align:-0.274em">, so
+<img class="m" src="m/6b39414700161e77512fbc05184d0c40d7fbdc6d.svg" alt="\(XY\)" style="height:0.749em;vertical-align:-0.000em"> is integrable. Splitting <img class="m" src="m/2e40c6756790ca4b75effbcf6df504a9295e9a55.svg" alt="\(X = X^{+}-X^{-}\)" style="height:0.964em;vertical-align:-0.087em"> and
+<img class="m" src="m/10d90e5b1653aa2287df0044655711e0ce4ddba2.svg" alt="\(Y = Y^{+}-Y^{-}\)" style="height:0.964em;vertical-align:-0.087em"> into four independent non-negative pairs and
+expanding by linearity gives the identity.
+</p>
+
+</div>
+
+<div class="theorem" id="orgb8ddc35">
+<p>
+Let <img class="m" src="m/7e36a2f5350f4ac486edcdb2a493d1b0a484582f.svg" alt="\(\varphi \colon \R\to\R\)" style="height:0.968em;vertical-align:-0.213em"> be convex and <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> integrable with
+<img class="m" src="m/b01e40311495bf0ddc499703d3622f5296f13080.svg" alt="\(\varphi(X)\)" style="height:1.096em;vertical-align:-0.274em"> integrable. Then <img class="m" src="m/bd5aaf415598f31ef608291c2faa7de1e8c9aafc.svg" alt="\(\varphi(\E[X]) \le \E[\varphi(X)]\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="org7847c4f">
+<p>
+Put <img class="m" src="m/c61a4cb7135a54026fa4a51828f1c15582472f13.svg" alt="\(m = \E[X]\)" style="height:1.096em;vertical-align:-0.274em">. Convexity makes the difference quotient
+<img class="m" src="m/5fbb0613bdc5b9e1abe706b3396327d2ffec7cb7.svg" alt="\(t \mapsto (\varphi(t)-\varphi(m))/(t-m)\)" style="height:1.096em;vertical-align:-0.274em"> non-decreasing on each side
+of <img class="m" src="m/f6ebd73bb26c8cebd18e424b4c06720ac4b8f586.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em">, so
+<img class="m" src="m/d9602e1302d65b1c6b7e3bdc0beb272db10103f0.svg" alt="\(a = \sup_{t&lt;m}(\varphi(t)-\varphi(m))/(t-m)\)" style="height:1.148em;vertical-align:-0.321em"> is finite and is at most
+every quotient with <img class="m" src="m/95eb78329f6ac3ca65f027935056189568d4d398.svg" alt="\(t&gt;m\)" style="height:0.717em;vertical-align:-0.043em">. Hence the line
+<img class="m" src="m/60547ef8bd658d3da4c117d31a994c0cf2f557f2.svg" alt="\(\ell(t) = \varphi(m)+a(t-m)\)" style="height:1.096em;vertical-align:-0.274em"> satisfies <img class="m" src="m/a94a2dd937c269108fcdebedb59e9b6935c94c3a.svg" alt="\(\ell \le \varphi\)" style="height:0.974em;vertical-align:-0.214em">
+everywhere &#x2013; for <img class="m" src="m/95eb78329f6ac3ca65f027935056189568d4d398.svg" alt="\(t&gt;m\)" style="height:0.717em;vertical-align:-0.043em"> because <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> is below the quotient, for
+<img class="m" src="m/f485b5f7f5e861fc617279b87b3a47ae1b231b80.svg" alt="\(t&lt;m\)" style="height:0.717em;vertical-align:-0.043em"> because <img class="m" src="m/6860b90be7ac772341f5c21f131d001600d7284a.svg" alt="\(a\)" style="height:0.472em;vertical-align:-0.000em"> is above it and the denominator is negative, and
+at <img class="m" src="m/c71cad4041c4de18647440bc9de0d57b9db5d8a4.svg" alt="\(t = m\)" style="height:0.674em;vertical-align:-0.000em"> with equality.
+</p>
+
+<p>
+Applying monotonicity of expectation to <img class="m" src="m/d9f75c01b346b3253d95a494f464a4e39d093987.svg" alt="\(\ell(X)\le\varphi(X)\)" style="height:1.096em;vertical-align:-0.274em"> and
+linearity gives
+<img class="m" src="m/3de61fa10e706f101b82094c39a805eaad48d10c.svg" alt="\(\varphi(m) + a(\E[X]-m) = \varphi(m) \le \E[\varphi(X)]\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="remark" id="org279b517">
+<p>
+The transfer theorem is what makes the underlying probability space
+disappear from every computation: after it, an expectation is an
+integral against a measure on <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em">, and two random variables with the
+same law are interchangeable in every formula. Jensen's inequality is
+the reason variance, entropy and the moment inequalities all point the
+same way.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="random-variables-laws-and-distribution-functions.html"><span>← previous</span>Random variables, laws and distribution functions</a><a rel="next" href="variance-covariance-and-the-markov-and-chebyshev-inequalities.html"><span>next →</span>Variance, covariance and the Markov and Chebyshev inequalities</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/probability--probability-theory.pdf" title="PDF manual">Probability Theory</a> · <a class="pdf" href="pdf/probability.pdf" title="PDF manual">Probability</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

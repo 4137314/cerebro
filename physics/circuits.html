@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Circuit theory: the map of the subject · Physics</title>
+<meta name="description" content="Lumped circuits (size ≪ wavelength) obey Kirchhoff's laws; linear time-invariant networks are fully described by their impulse response or, equivalently, by a transfer function analysed with phasors (sinusoids), Fourier (spectra) and Laplace (transients); transformers and three-phase systems carry …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/circuits.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Circuit theory: the map of the subject · Physics">
+<meta property="og:description" content="Lumped circuits (size ≪ wavelength) obey Kirchhoff's laws; linear time-invariant networks are fully described by their impulse response or, equivalently, by a transfer function analysed with phasors (sinusoids), Fourier (spectra) and Laplace (transients); transformers and three-phase systems carry …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/circuits.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-circuits">Circuits</a> / <a rel="up" href="index.html#a-circuits--circuits">Circuits</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">overview · Circuits · Circuits</p>
+<h1>Circuit theory: the map of the subject</h1>
+<p class="summary">Lumped circuits (size ≪ wavelength) obey Kirchhoff's laws; linear time-invariant networks are fully described by their impulse response or, equivalently, by a transfer function analysed with phasors (sinusoids), Fourier (spectra) and Laplace (transients); transformers and three-phase systems carry the power.</p>
+<p class="rel"><span>needs</span> <a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></p>
+<p class="rel"><span>unlocks</span> <a href="kirchhoff-laws-and-network-theorems.html">Kirchhoff's laws and network theorems</a>, <a href="digital-electronics.html">Digital electronic circuits: the map of the subject</a>, <a href="power-electronics.html">Power semiconductor devices: the map of the subject</a></p>
+<p class="rel"><span>see also</span> <a href="digital-electronics.html">Digital electronic circuits: the map of the subject</a>, <a href="solid-state.html">Semiconductor physics: the map of the subject</a></p>
+<p class="rel"><span>mentioned in</span> <a href="physics-study-map.html">Physics: study map</a>, <a href="transmission-lines.html">Transmission lines</a></p>
+<details class="path"><summary>Learning path: 1 note leads here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgc751d7f" class="outline-2">
+<h2 id="orgc751d7f">Overview</h2>
+<div class="outline-text-2" id="text-orgc751d7f">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">block</th>
+<th scope="col" class="org-left">notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">foundations</td>
+<td class="org-left">lumped elements and Kirchhoff, network theorems</td>
+</tr>
+
+<tr>
+<td class="org-left">time domain</td>
+<td class="org-left">LTI systems, impulse response, convolution, RC/RL/RLC</td>
+</tr>
+
+<tr>
+<td class="org-left">AC</td>
+<td class="org-left">complex numbers and phasors, impedance, AC power</td>
+</tr>
+
+<tr>
+<td class="org-left">transforms</td>
+<td class="org-left">Fourier series/transform, frequency response, Laplace</td>
+</tr>
+
+<tr>
+<td class="org-left">power</td>
+<td class="org-left">transformer, generation and three-phase distribution</td>
+</tr>
+
+<tr>
+<td class="org-left">analog</td>
+<td class="org-left">operational-amplifier circuits</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgc5313c0" class="outline-2">
+<h2 id="orgc5313c0">Picture</h2>
+<div class="outline-text-2" id="text-orgc5313c0">
+<figure class="fig"><img class="m" src="m/53171ee4c2fa8385c59e11ebdc372edae561bf1f.svg" alt="figure" style="width:13.714em"><figcaption><span class="fl">Figure 1.</span> A series RC circuit driven by a source <img class="m" src="m/775511a840f81439dc656595d8c56fa6e960aa44.svg" alt="\(v_s\)" style="height:0.636em;vertical-align:-0.165em">: the prototype of the linear circuits studied in the subject.</figcaption></figure>
+<p>
+The RC circuit: the reference example for every method in this domain.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb37ce1d" class="outline-2">
+<h2 id="orgb37ce1d">Method selection</h2>
+<div class="outline-text-2" id="text-orgb37ce1d">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">question</th>
+<th scope="col" class="org-left">tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">DC operating point</td>
+<td class="org-left">KCL/KVL, Thévenin, superposition</td>
+</tr>
+
+<tr>
+<td class="org-left">sinusoidal steady state</td>
+<td class="org-left">phasors and impedances</td>
+</tr>
+
+<tr>
+<td class="org-left">response to periodic signal</td>
+<td class="org-left">Fourier series × H(jω)</td>
+</tr>
+
+<tr>
+<td class="org-left">transient after a switch, stability</td>
+<td class="org-left">Laplace transform, poles</td>
+</tr>
+
+<tr>
+<td class="org-left">arbitrary input, time domain</td>
+<td class="org-left">convolution with h(t)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgfa5b5be" class="outline-2">
+<h2 id="orgfa5b5be">Engineering applications</h2>
+<div class="outline-text-2" id="text-orgfa5b5be">
+<p>
+Every electronic system: filters, amplifiers, power supplies, grids, sensors, the small-signal models of <a href="digital-electronics.html">transistors</a> and the lumped limit of <a href="transmission-lines.html">transmission lines</a>.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="heterojunctions-and-quantum-wells.html"><span>← previous</span>Heterojunctions and quantum wells</a><a rel="next" href="kirchhoff-laws-and-network-theorems.html"><span>next →</span>Kirchhoff's laws and network theorems</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/circuits--circuits.pdf" title="PDF manual">Circuits</a> · <a class="pdf" href="pdf/circuits.pdf" title="PDF manual">Circuits</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

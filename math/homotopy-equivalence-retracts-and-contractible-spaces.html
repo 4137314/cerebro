@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homotopy equivalence, retracts and contractible spaces · Mathematics</title>
+<meta name="description" content="Homeomorphism is too fine an equivalence for the invariants of algebraic topology: a disc and a point are not homeomorphic and no functor built from loops can tell them apart. Homotopy equivalence is the coarser relation those invariants actually see, and recognising it is usually a matter of contr…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/homotopy-equivalence-retracts-and-contractible-spaces.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Homotopy equivalence, retracts and contractible spaces · Mathematics">
+<meta property="og:description" content="Homeomorphism is too fine an equivalence for the invariants of algebraic topology: a disc and a point are not homeomorphic and no functor built from loops can tell them apart. Homotopy equivalence is the coarser relation those invariants actually see, and recognising it is usually a matter of contr…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/homotopy-equivalence-retracts-and-contractible-spaces.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-topology">Topology</a> / <a rel="up" href="index.html#a-topology--algebraic-topology">Algebraic Topology</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Topology · Algebraic Topology</p>
+<h1>Homotopy equivalence, retracts and contractible spaces</h1>
+<p class="summary">Homeomorphism is too fine an equivalence for the invariants of algebraic topology: a disc and a point are not homeomorphic and no functor built from loops can tell them apart. Homotopy equivalence is the coarser relation those invariants actually see, and recognising it is usually a matter of contracting a space onto a subspace without tearing it.</p>
+<p class="rel"><span>needs</span> <a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a>, <a href="convex-set.html">Convex set</a>, <a href="path-homotopy-and-the-fundamental-group.html">Path homotopy and the fundamental group</a>, <a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a>, <a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></p>
+<p class="rel"><span>unlocks</span> <a href="covering-spaces-and-the-fundamental-group-of-the-circle.html">Covering spaces and the fundamental group of the circle</a></p>
+<p class="rel"><span>mentioned in</span> <a href="algebraic-topology.html">Algebraic topology</a></p>
+<details class="path"><summary>Learning path: 22 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="convex-set.html">Convex set</a></li><li><a href="connectedness-components-and-path-connectedness.html">Connectedness, components and path-connectedness</a></li><li><a href="path-homotopy-and-the-fundamental-group.html">Path homotopy and the fundamental group</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org4aebb57">
+<p>
+Two continuous maps <img class="m" src="m/29366c0d9701c776f233ad72d42b015eee2812ff.svg" alt="\(f, g \colon X \to Y\)" style="height:0.974em;vertical-align:-0.214em"> are <i>homotopic</i>, written
+<img class="m" src="m/f08aacff87f4e2032bf78de15a1847ae173660ef.svg" alt="\(f \simeq g\)" style="height:0.974em;vertical-align:-0.214em">, if there is a continuous
+<img class="m" src="m/3824e556e12446767fc1040a9d7d0b3f84344798.svg" alt="\(H \colon X\times[0,1]\to Y\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/98bd40bbb3a76ec323697ccaa9f4872b389b4846.svg" alt="\(H(\cdot,0) = f\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/2fe6d3e61ec2a4a8bc9362b79e63fc89ab692002.svg" alt="\(H(\cdot,1) = g\)" style="height:1.096em;vertical-align:-0.274em">. A map <img class="m" src="m/d7c0c93f2d459ca20e4f53c81d24a704a65c7b84.svg" alt="\(f \colon X \to Y\)" style="height:0.974em;vertical-align:-0.214em"> is a <i>homotopy
+equivalence</i> if there is <img class="m" src="m/238f96f435dd377c0bf4777e2b4c936f1cb6abe6.svg" alt="\(g \colon Y \to X\)" style="height:0.962em;vertical-align:-0.212em"> with
+<img class="m" src="m/0df1a76f8d2ac37a652bfee0f169850d044392a8.svg" alt="\(g\circ f \simeq \id_{X}\)" style="height:0.974em;vertical-align:-0.214em"> and <img class="m" src="m/ed2653cc45583d3469d3750948c1e3fdc7eaaf1a.svg" alt="\(f \circ g \simeq \id_{Y}\)" style="height:0.974em;vertical-align:-0.214em">; the
+spaces are then <i>homotopy equivalent</i>. A space homotopy equivalent to a
+point is <i>contractible</i>.
+</p>
+
+</div>
+
+<div class="proposition" id="org009ba46">
+<p>
+Homotopy is an equivalence relation on the continuous maps <img class="m" src="m/225937443b58b3943cb1e275f30a909240092923.svg" alt="\(X \to Y\)" style="height:0.749em;vertical-align:-0.000em">,
+and it is compatible with composition: <img class="m" src="m/e59dbd017ea17fa3174458bf43aa679c2a2ea1be.svg" alt="\(f\simeq f'\)" style="height:1.037em;vertical-align:-0.218em"> and
+<img class="m" src="m/4e46ecdd6d60bf71d91875e60fded6f33fac0f5c.svg" alt="\(g \simeq g'\)" style="height:1.037em;vertical-align:-0.218em"> imply <img class="m" src="m/f6b450ca7aeae52668e2f166ed2a05c2d50c7a58.svg" alt="\(g\circ f \simeq g'\circ f'\)" style="height:1.037em;vertical-align:-0.218em">.
+</p>
+
+</div>
+
+<div class="proof" id="org7e877c9">
+<p>
+Reflexivity uses <img class="m" src="m/1ad65e0ab9de8ff9f332e985cf958aff79fd6833.svg" alt="\(H(x,t) = f(x)\)" style="height:1.096em;vertical-align:-0.274em">; symmetry, <img class="m" src="m/f8426429853bc4c532ca358ce6743f08c92cf952.svg" alt="\(H(x,1-t)\)" style="height:1.096em;vertical-align:-0.274em">;
+transitivity, the concatenation <img class="m" src="m/031b462cbf60fae8e1ee8fbeba61c864b7ec70f1.svg" alt="\(H(x,2t)\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/09378de460eff4abc880b0fd3999764877747c49.svg" alt="\(t\le1/2\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/a614e4e6ef573aff2a6c0cad072ee314b284c792.svg" alt="\(K(x,2t-1)\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/67eb0883b6706dba4b5e243e32f53b8c31d94fd3.svg" alt="\(t\ge1/2\)" style="height:1.096em;vertical-align:-0.274em">, continuous by the pasting lemma since
+both formulas give <img class="m" src="m/f3c034a3c32b8941ed2e98f75d5f28b044aa549d.svg" alt="\(g(x)\)" style="height:1.096em;vertical-align:-0.274em"> at <img class="m" src="m/2ec8019ce2fd125b7eafc098c0a86da3e507dd76.svg" alt="\(t = 1/2\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<p>
+For compatibility, if <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> is a homotopy from <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> to <img class="m" src="m/fcd248f8faa113603c50440935779dfa8223591a.svg" alt="\(f'\)" style="height:1.037em;vertical-align:-0.218em"> then
+<img class="m" src="m/c987a47768952bbbbdc31a25acff3cb2af17be46.svg" alt="\(g\circ H\)" style="height:0.962em;vertical-align:-0.212em"> is one from <img class="m" src="m/78d776783d422435190d72828167aa4938a575f5.svg" alt="\(g f\)" style="height:0.974em;vertical-align:-0.214em"> to <img class="m" src="m/22f153d67cb5f523d1eb39d72c3a2a15c1f16c6a.svg" alt="\(g f'\)" style="height:1.037em;vertical-align:-0.218em">; and if <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> is one from
+<img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> to <img class="m" src="m/f4fbcb48b235ccb81b53490477f71f9205dcd2c8.svg" alt="\(g'\)" style="height:1.037em;vertical-align:-0.218em"> then <img class="m" src="m/910e2b96560c67dc05648aa6ec29452cfede581e.svg" alt="\((x,t)\mapsto K(f'(x),t)\)" style="height:1.098em;vertical-align:-0.274em"> is one from <img class="m" src="m/b07de423c96a15ba4a545dd5293dd61d4259adff.svg" alt="\(gf'\)" style="height:1.037em;vertical-align:-0.218em"> to
+<img class="m" src="m/6b84d7a484999df6a08f64b96cfe5bcdad35104e.svg" alt="\(g'f'\)" style="height:1.037em;vertical-align:-0.218em">. Composing the two homotopies by transitivity gives the claim.
+</p>
+
+</div>
+
+<div class="definition" id="orga0fe685">
+<p>
+Let <img class="m" src="m/8cf713af0820812531d65e982303553bcc04428e.svg" alt="\(A \subseteq X\)" style="height:0.898em;vertical-align:-0.153em">. A <i>retraction</i> is a continuous
+<img class="m" src="m/90f4cac131c969b983c183dcead76217fbb0b940.svg" alt="\(r \colon X \to A\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/bcc9b5d8735abd308a37da4513a59b3ae40c05fc.svg" alt="\(r\vert_{A} = \id_{A}\)" style="height:1.096em;vertical-align:-0.274em">; it is a
+<i>deformation retraction</i> if moreover <img class="m" src="m/3d0d86f49b298d71fbbc62f8899e11dd14532611.svg" alt="\(\iota\circ r \simeq \id_{X}\)" style="height:0.925em;vertical-align:-0.167em">,
+where <img class="m" src="m/216ccdeb0d6cab34c139363cb21ee8370f7770d4.svg" alt="\(\iota\)" style="height:0.472em;vertical-align:-0.000em"> is the inclusion. <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is then a <i>deformation
+retract</i> of <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proposition" id="orgcecf7f0">
+<p>
+If <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is a deformation retract of <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> then the inclusion
+<img class="m" src="m/c5535f57fcdaedf418156682debe82940de2dcec.svg" alt="\(\iota \colon A \to X\)" style="height:0.749em;vertical-align:-0.000em"> is a homotopy equivalence.
+</p>
+
+</div>
+
+<div class="proof" id="org4accca9">
+<p>
+Take <img class="m" src="m/ca7f0fb004f46bb1ff368c8636ceb8da3e0e7b9e.svg" alt="\(g = r\)" style="height:0.685em;vertical-align:-0.212em">. Then <img class="m" src="m/6565e88a76eae2e6b72315ddb1033421cbb5b32d.svg" alt="\(r\circ\iota = \id_{A}\)" style="height:0.925em;vertical-align:-0.167em"> exactly, and
+<img class="m" src="m/9b650a07511b5434b7faaa614ac3ee2bc25f69d0.svg" alt="\(\iota\circ r\simeq\id_{X}\)" style="height:0.925em;vertical-align:-0.167em"> by hypothesis.
+</p>
+
+</div>
+
+<div class="proposition" id="org3cf2b89">
+<p>
+A convex subset <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> of <img class="m" src="m/b33f2adf960aeb722adafbfc0479a5f92fd75b05.svg" alt="\(\R^{n}\)" style="height:0.755em;vertical-align:-0.000em"> is contractible; more generally any
+two maps into <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> are homotopic.
+</p>
+
+</div>
+
+<div class="proof" id="org8698359">
+<p>
+For continuous <img class="m" src="m/eb84c9a8938737365ec121bc552186a2d9121095.svg" alt="\(f, g \colon X \to C\)" style="height:0.974em;vertical-align:-0.214em">, the straight-line homotopy
+<img class="m" src="m/5f2ec38eabd164fb49d080439a461389d1f21007.svg" alt="\(H(x,t) = (1-t)f(x)+tg(x)\)" style="height:1.096em;vertical-align:-0.274em"> takes values in <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> by convexity and is
+continuous, being built from continuous operations. Taking <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em">
+constant and <img class="m" src="m/daa4382bfec6304fc194ff7ec37ad6e1bb9fcb34.svg" alt="\(X = C\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/237fd4e561483e41962e18620cc76144fe6121ee.svg" alt="\(f = \id\)" style="height:0.974em;vertical-align:-0.214em">, shows the identity of <img class="m" src="m/86131f856cf97f3818bf91718aa33e5eb3928dcd.svg" alt="\(C\)" style="height:0.749em;vertical-align:-0.000em"> is
+homotopic to a constant, which together with the maps to and from a
+point gives the homotopy equivalence.
+</p>
+
+</div>
+
+<div class="theorem" id="orgf419519">
+<p>
+If <img class="m" src="m/d7c0c93f2d459ca20e4f53c81d24a704a65c7b84.svg" alt="\(f \colon X \to Y\)" style="height:0.974em;vertical-align:-0.214em"> is a homotopy equivalence and <img class="m" src="m/4c9910975475777cccbdb9bf932626b49a938c6a.svg" alt="\(x_{0}\in X\)" style="height:0.913em;vertical-align:-0.164em">,
+then <img class="m" src="m/89e7b6db57069d817402787da27e49557dea069e.svg" alt="\(f_{*}\colon\pi_{1}(X,x_{0})\to\pi_{1}(Y,f(x_{0}))\)" style="height:1.096em;vertical-align:-0.274em"> is an
+isomorphism. In particular a contractible space has trivial fundamental
+group, and homotopy equivalent path-connected spaces have isomorphic
+fundamental groups.
+</p>
+
+</div>
+
+<div class="proof" id="org9d2ad6c">
+<p>
+First, homotopic maps induce the same homomorphism up to the change of
+basepoint: if <img class="m" src="m/42689da43bd724c55a2d81a7950e44aae57c9fbf.svg" alt="\(H\)" style="height:0.749em;vertical-align:-0.000em"> is a homotopy from <img class="m" src="m/43f1d6c46cc02af73d5390471e1c8c127d40b707.svg" alt="\(u\)" style="height:0.472em;vertical-align:-0.000em"> to <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/332aa251136465a44f2bbd65ec70ed9e42114584.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> is
+a loop at <img class="m" src="m/4f8246e7705a9c0df96e9d12bf2c596179c4d261.svg" alt="\(x_{0}\)" style="height:0.636em;vertical-align:-0.165em">, then <img class="m" src="m/c40b07e94b25c7ca91dd541b3e19ca55c6141c24.svg" alt="\((s,t)\mapsto H(\alpha(s),t)\)" style="height:1.096em;vertical-align:-0.274em"> is a homotopy
+of loops except that the basepoint traces the path
+<img class="m" src="m/d92c346ac0d4c45bb7ecb211b53246218ecb8b08.svg" alt="\(\gamma(t) = H(x_{0},t)\)" style="height:1.096em;vertical-align:-0.274em">; composing with <img class="m" src="m/a7557905dfe0cbb9ed8efb67df67b1b7128d6a76.svg" alt="\(\gamma\)" style="height:0.685em;vertical-align:-0.212em"> at both ends shows
+<img class="m" src="m/2864d4244234ba725927a688f25c19bf38cb76b8.svg" alt="\(v_{*}[\alpha] = [\overline{\gamma}]\,u_{*}[\alpha]\,[\gamma]\)" style="height:1.096em;vertical-align:-0.274em">, so
+<img class="m" src="m/64b1ab641607454b4e0a1d3549de71bf7e0ce29c.svg" alt="\(v_{*}\)" style="height:0.636em;vertical-align:-0.165em"> is <img class="m" src="m/3f7bd24afe578b2f3c2a2e187655de0195943ed8.svg" alt="\(u_{*}\)" style="height:0.636em;vertical-align:-0.165em"> followed by the change-of-basepoint isomorphism.
+</p>
+
+<p>
+Now let <img class="m" src="m/5aeacc06acd6db63f5560f3db4c92520f0192d3f.svg" alt="\(g\)" style="height:0.685em;vertical-align:-0.212em"> be a homotopy inverse of <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em">. Then
+<img class="m" src="m/f8d009289f2e7417ae6adcdfa12204b05d726957.svg" alt="\(g_{*}f_{*} = (g f)_{*}\)" style="height:1.096em;vertical-align:-0.274em"> equals <img class="m" src="m/093238166030076d03ed63ff7a5536d6d48dd05b.svg" alt="\((\id_{X})_{*} = \id\)" style="height:1.096em;vertical-align:-0.274em"> composed with
+an isomorphism, hence is an isomorphism; so <img class="m" src="m/71d93a8092fa4769d6e34fe1215a4697688c85a8.svg" alt="\(f_{*}\)" style="height:0.974em;vertical-align:-0.214em"> is injective and
+<img class="m" src="m/28f0211c1df7b41bbc39ffb65c6190485c38a68a.svg" alt="\(g_{*}\)" style="height:0.685em;vertical-align:-0.212em"> surjective. Applying the same to <img class="m" src="m/511d75856192bc1247ba2a05903fbe1a0e7967dc.svg" alt="\(f_{*}g_{*}\)" style="height:0.974em;vertical-align:-0.214em"> shows
+<img class="m" src="m/28f0211c1df7b41bbc39ffb65c6190485c38a68a.svg" alt="\(g_{*}\)" style="height:0.685em;vertical-align:-0.212em"> is injective too, hence bijective, and then
+<img class="m" src="m/fa033042569a5729ee12d168062174bbf8e71565.svg" alt="\(f_{*} = g_{*}^{-1}\circ(g_{*}f_{*})\)" style="height:1.166em;vertical-align:-0.268em"> is bijective.
+</p>
+
+</div>
+
+<div class="remark" id="org45a45e1">
+<p>
+The theorem is what makes the fundamental group computable: one replaces
+a space by any homotopy equivalent one, and a punctured plane, an
+annulus and a circle become the same problem. It also fixes the limits
+of the invariant &#x2013; it cannot distinguish spaces that are homotopy
+equivalent, so <img class="m" src="m/b33f2adf960aeb722adafbfc0479a5f92fd75b05.svg" alt="\(\R^{n}\)" style="height:0.755em;vertical-align:-0.000em"> and a point have the same <img class="m" src="m/474142ad5654bd8d6584be24f6d560b6d4f0136f.svg" alt="\(\pi_{1}\)" style="height:0.636em;vertical-align:-0.165em"> for
+every <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">, and separating those requires the higher homotopy or
+homology groups.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="path-homotopy-and-the-fundamental-group.html"><span>← previous</span>Path homotopy and the fundamental group</a><a rel="next" href="covering-spaces-and-the-fundamental-group-of-the-circle.html"><span>next →</span>Covering spaces and the fundamental group of the circle</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/topology--algebraic-topology.pdf" title="PDF manual">Algebraic Topology</a> · <a class="pdf" href="pdf/topology.pdf" title="PDF manual">Topology</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

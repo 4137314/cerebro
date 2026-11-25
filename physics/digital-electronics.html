@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digital electronic circuits: the map of the subject · Physics</title>
+<meta name="description" content="From the MOSFET square-law model to logic gates: NMOS inverters with resistive, saturated and depletion loads, pseudo-NMOS, static CMOS (VTC, noise margins, sizing, delay, power), dynamic and pass-transistor logic, latches and flip-flops, SRAM and DRAM cells — each with the quantitative design ques…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/digital-electronics.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Digital electronic circuits: the map of the subject · Physics">
+<meta property="og:description" content="From the MOSFET square-law model to logic gates: NMOS inverters with resistive, saturated and depletion loads, pseudo-NMOS, static CMOS (VTC, noise margins, sizing, delay, power), dynamic and pass-transistor logic, latches and flip-flops, SRAM and DRAM cells — each with the quantitative design ques…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/digital-electronics.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-digital-electronics">Digital Electronics</a> / <a rel="up" href="index.html#a-digital-electronics--digital-electronics">Digital Electronics</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">overview · Digital Electronics · Digital Electronics</p>
+<h1>Digital electronic circuits: the map of the subject</h1>
+<p class="summary">From the MOSFET square-law model to logic gates: NMOS inverters with resistive, saturated and depletion loads, pseudo-NMOS, static CMOS (VTC, noise margins, sizing, delay, power), dynamic and pass-transistor logic, latches and flip-flops, SRAM and DRAM cells — each with the quantitative design questions typical of the exam.</p>
+<p class="rel"><span>needs</span> <a href="solid-state.html">Semiconductor physics: the map of the subject</a>, <a href="circuits.html">Circuit theory: the map of the subject</a></p>
+<p class="rel"><span>unlocks</span> <a href="mosfet-operation-and-iv.html">The MOSFET: regions of operation and I–V model</a>, <a href="superconducting-electronics.html">Superconducting electronics: the map of the subject</a></p>
+<p class="rel"><span>see also</span> <a href="power-electronics.html">Power semiconductor devices: the map of the subject</a>, <a href="superconducting-electronics.html">Superconducting electronics: the map of the subject</a></p>
+<p class="rel"><span>mentioned in</span> <a href="physics-study-map.html">Physics: study map</a></p>
+<details class="path"><summary>Learning path: 4 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="circuits.html">Circuit theory: the map of the subject</a></li><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="solid-state.html">Semiconductor physics: the map of the subject</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org9e473ae" class="outline-2">
+<h2 id="org9e473ae">Overview</h2>
+<div class="outline-text-2" id="text-org9e473ae">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">block</th>
+<th scope="col" class="org-left">notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">devices</td>
+<td class="org-left">MOSFET I–V and body effect, capacitances and scaling, diodes</td>
+</tr>
+
+<tr>
+<td class="org-left">inverters</td>
+<td class="org-left">static characteristics, NMOS loads, CMOS inverter</td>
+</tr>
+
+<tr>
+<td class="org-left">CMOS timing</td>
+<td class="org-left">propagation delay, power dissipation</td>
+</tr>
+
+<tr>
+<td class="org-left">logic</td>
+<td class="org-left">static CMOS gates, pseudo-NMOS, dynamic and pass logic</td>
+</tr>
+
+<tr>
+<td class="org-left">sequential</td>
+<td class="org-left">latches and flip-flops</td>
+</tr>
+
+<tr>
+<td class="org-left">memories</td>
+<td class="org-left">SRAM, DRAM</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org6a68fb2" class="outline-2">
+<h2 id="org6a68fb2">Course conventions (used in every note)</h2>
+<div class="outline-text-2" id="text-org6a68fb2">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">symbol</th>
+<th scope="col" class="org-left">meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">K'n = μn·Cox</td>
+<td class="org-left">process transconductance (µA/V²)</td>
+</tr>
+
+<tr>
+<td class="org-left">Kn = K'n·(W/L)</td>
+<td class="org-left">device transconductance</td>
+</tr>
+
+<tr>
+<td class="org-left">saturation</td>
+<td class="org-left">I_D = (Kn/2)(V_GS − V_TN)², if V_DS ≥ V_GS − V_TN</td>
+</tr>
+
+<tr>
+<td class="org-left">triode</td>
+<td class="org-left">I_D = Kn(V_GS − V_TN − V_DS/2)V_DS</td>
+</tr>
+
+<tr>
+<td class="org-left">body effect</td>
+<td class="org-left">V_TN = V_TO + γ(√(V_SB + 2φF) − √(2φF))</td>
+</tr>
+
+<tr>
+<td class="org-left">on-resistance</td>
+<td class="org-left">R_on = 1/(Kn(V_DD − V_TN)), R_eq ≈ 1.7·R_on</td>
+</tr>
+
+<tr>
+<td class="org-left">delays</td>
+<td class="org-left">t_PHL = 0.69·1.7·R_on·C, t_f = 2.2·1.7·R_on·C</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org959dab9" class="outline-2">
+<h2 id="org959dab9">How to solve an exam exercise</h2>
+<div class="outline-text-2" id="text-org959dab9">
+<ol class="org-ol">
+<li>Guess the region of each transistor (saturated if <img class="m" src="m/d597090f2a41f80ca1050b1a10b42dee7cd94256.svg" alt="\(V_{GS}=V_{DS}\)" style="height:0.913em;vertical-align:-0.164em">; triode if the output is "low").</li>
+<li>Equate the currents of devices in series; solve the quadratic; discard the root that violates the region.</li>
+<li>Verify the guessed regions a posteriori.</li>
+<li>For timing, replace each conducting path by its equivalent resistance and use <img class="m" src="m/0a90e7e0e82c616c6880cc3f768a7bb0ba71f53d.svg" alt="\(0.69RC\)" style="height:0.749em;vertical-align:-0.000em"> / <img class="m" src="m/f94ef32e55c3f54e72af3471861d68b66853667c.svg" alt="\(2.2RC\)" style="height:0.749em;vertical-align:-0.000em">.</li>
+<li>Power: static <img class="m" src="m/e20c3b076d45d3f834ec56d686805c6431a31b25.svg" alt="\(V_{DD}I_{DD}\)" style="height:0.913em;vertical-align:-0.164em"> (ratioed logic), dynamic <img class="m" src="m/cb3abbfa9f3b4ef4e28a5e0010fc5cea768696b0.svg" alt="\(\alpha CV_{DD}^2f\)" style="height:1.194em;vertical-align:-0.298em">.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org0101cab" class="outline-2">
+<h2 id="org0101cab">Engineering applications</h2>
+<div class="outline-text-2" id="text-org0101cab">
+<p>
+Microprocessors, memories, FPGAs, mixed-signal SoCs; the <a href="exam-practice-digital-electronics.html">exam practice</a> contains full solved problems.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="operational-amplifier-circuits.html"><span>← previous</span>Operational-amplifier circuits</a><a rel="next" href="mosfet-operation-and-iv.html"><span>next →</span>The MOSFET: regions of operation and I–V model</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/digital-electronics--digital-electronics.pdf" title="PDF manual">Digital Electronics</a> · <a class="pdf" href="pdf/digital-electronics.pdf" title="PDF manual">Digital Electronics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

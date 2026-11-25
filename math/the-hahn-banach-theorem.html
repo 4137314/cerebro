@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Hahn-Banach theorem · Mathematics</title>
+<meta name="description" content="In finite dimension the dual space is as large as the space, because a basis produces functionals. In infinite dimension no basis is available and the dual could conceivably be trivial. Hahn-Banach rules that out: a functional defined on a subspace and dominated by a convex gauge extends to the who…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-hahn-banach-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The Hahn-Banach theorem · Mathematics">
+<meta property="og:description" content="In finite dimension the dual space is as large as the space, because a basis produces functionals. In infinite dimension no basis is available and the dual could conceivably be trivial. Hahn-Banach rules that out: a functional defined on a subspace and dominated by a convex gauge extends to the who…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-hahn-banach-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--functional-analysis">Functional Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · Functional Analysis</p>
+<h1>The Hahn-Banach theorem</h1>
+<p class="summary">In finite dimension the <a href="dual-spaces-annihilators-and-the-transpose.html">dual space</a> is as large as the space, because a basis produces functionals. In infinite dimension no basis is available and the dual could conceivably be trivial. Hahn-Banach rules that out: a functional defined on a subspace and dominated by a convex gauge extends to the whole space with the same bound, so there are always enough functionals to separate points.</p>
+<p class="rel"><span>needs</span> <a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a>, <a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a>, <a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a>, <a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a>, <a href="vector-space.html">Vector space</a></p>
+<p class="rel"><span>mentioned in</span> <a href="mathematics.html">Mathematics</a>, <a href="foundations.html">Foundations</a>, <a href="functional-analysis.html">Functional analysis</a></p>
+<details class="path"><summary>Learning path: 32 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="subspace-product-and-quotient-topologies.html">Subspace, product and quotient topologies</a></li><li><a href="hausdorff-spaces-and-separation.html">Hausdorff spaces and separation</a></li><li><a href="compactness-and-the-heine-borel-theorem.html">Compactness and the Heine-Borel theorem</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="vector-space.html">Vector space</a></li><li><a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a></li><li><a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a></li><li><a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li><li><a href="total-boundedness-and-compactness-in-metric-spaces.html">Total boundedness and compactness in metric spaces</a></li><li><a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="orga2dcb59">
+<p>
+A <i>sublinear functional</i> on a real vector space <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> is
+<img class="m" src="m/698d12451d1c55c39ee5d89a21106be5990220d4.svg" alt="\(q \colon V \to \R\)" style="height:0.968em;vertical-align:-0.213em"> with <img class="m" src="m/76bea8e50e95bbc29fcebf55cc2905ea73cad075.svg" alt="\(q(v+w)\le q(v)+q(w)\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/3266b418c374f0505b538c03038fa21827092936.svg" alt="\(q(\lambda v) = \lambda q(v)\)" style="height:1.096em;vertical-align:-0.274em"> for <img class="m" src="m/8f59d3ecd369a82f31ea6433bfd4709d06d6e1e4.svg" alt="\(\lambda \ge 0\)" style="height:0.910em;vertical-align:-0.146em">. Every norm is
+one.
+</p>
+
+</div>
+
+<div class="lemma" id="org5e0c16c">
+<p>
+Let <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> be sublinear on <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/3d144c285324701d566ca43314370e2b89b5fede.svg" alt="\(U \subseteq V\)" style="height:0.898em;vertical-align:-0.153em"> a subspace and
+<img class="m" src="m/708a4f9354c20c1fb60adf4504de2654f4b92686.svg" alt="\(\varphi \colon U \to \R\)" style="height:0.968em;vertical-align:-0.213em"> linear with <img class="m" src="m/116813226a9132ddca7c2cbff4afe928905385be.svg" alt="\(\varphi \le q\)" style="height:0.910em;vertical-align:-0.209em"> on <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">. Let
+<img class="m" src="m/44542438980e6937eb979921e992a37bd9cbd03c.svg" alt="\(z \notin U\)" style="height:0.865em;vertical-align:-0.043em">. Then <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> extends to <img class="m" src="m/8176a8a0f5d2a30cd596e0b26e9799a3e8b72279.svg" alt="\(U + \R z\)" style="height:0.846em;vertical-align:-0.093em"> with the same
+domination.
+</p>
+
+</div>
+
+<div class="proof" id="orgac49b6f">
+<p>
+An extension is determined by the value <img class="m" src="m/3e51eaf0a32f9433fb53d489dd04a0aff6b5ba22.svg" alt="\(c = \varphi(z)\)" style="height:1.096em;vertical-align:-0.274em">, and the
+requirement is <img class="m" src="m/c22c8f06aead60cd564b6a3e1d48238b2df12d03.svg" alt="\(\varphi(u) + tc \le q(u+tz)\)" style="height:1.096em;vertical-align:-0.274em"> for all <img class="m" src="m/8860addae40dfc02249286780b032c9b329d1bb9.svg" alt="\(u \in U\)" style="height:0.792em;vertical-align:-0.040em">,
+<img class="m" src="m/276f9d8e23083b442e81017db4ae8963a55538d2.svg" alt="\(t \in \R\)" style="height:0.798em;vertical-align:-0.040em">. For <img class="m" src="m/2e6322aafbff97406b8e32e9956aa367da976a5d.svg" alt="\(t&gt;0\)" style="height:0.749em;vertical-align:-0.045em">, dividing by <img class="m" src="m/9d9d99b1a8cb784423d2564a8fe772ccfed6ea88.svg" alt="\(t\)" style="height:0.674em;vertical-align:-0.000em"> and using homogeneity this
+says <img class="m" src="m/363fa11928ff3803043b5efbf2ebde239bf68bbc.svg" alt="\(c \le q(u'+z)-\varphi(u')\)" style="height:1.098em;vertical-align:-0.274em"> for all <img class="m" src="m/b8780fbcaaabe2ead990e9258a9a164f6ba18d7c.svg" alt="\(u'\in U\)" style="height:0.867em;vertical-align:-0.043em">; for <img class="m" src="m/0b8d0f3d233125a4ed20f96398a04a3c1661b4d1.svg" alt="\(t&lt;0\)" style="height:0.749em;vertical-align:-0.045em">, it
+says <img class="m" src="m/cb72e85b13edd3673995d876682daf3321a5ee4b.svg" alt="\(c \ge \varphi(u'')-q(u''-z)\)" style="height:1.098em;vertical-align:-0.274em">; and <img class="m" src="m/7278f3bf5413cf4c4cfb52dab1ed9a4378258c69.svg" alt="\(t = 0\)" style="height:0.706em;vertical-align:-0.000em"> is the hypothesis.
+</p>
+
+<p>
+Such a <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> exists provided
+<img class="m" src="m/21a30fa9b0802e28980cc3863c2ff156a51eadfb.svg" alt="\(\varphi(u'')-q(u''-z) \le q(u'+z)-\varphi(u')\)" style="height:1.098em;vertical-align:-0.274em"> for all
+<img class="m" src="m/43e43d2cf2788f2fa45482d1578d6dd873e679ca.svg" alt="\(u',u''\in U\)" style="height:1.037em;vertical-align:-0.218em">, that is
+<img class="m" src="m/30882b69163d364160b4013eb78bedc7f7b0d18d.svg" alt="\(\varphi(u'+u'') \le q(u'+z) + q(u''-z)\)" style="height:1.098em;vertical-align:-0.274em">. This holds because
+<img class="m" src="m/7999837bf4a747293a7028c3bd59f82560158f61.svg" alt="\(\varphi(u'+u'')\le q(u'+u'') = q\bigl((u'+z)+(u''-z)\bigr) \le q(u'+z)+q(u''-z)\)" style="height:1.315em;vertical-align:-0.381em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org216d22a">
+<p>
+Let <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> be sublinear on a real vector space <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> a subspace
+and <img class="m" src="m/708a4f9354c20c1fb60adf4504de2654f4b92686.svg" alt="\(\varphi \colon U \to \R\)" style="height:0.968em;vertical-align:-0.213em"> linear with <img class="m" src="m/116813226a9132ddca7c2cbff4afe928905385be.svg" alt="\(\varphi \le q\)" style="height:0.910em;vertical-align:-0.209em"> on <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">.
+Then <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> extends to a linear <img class="m" src="m/a7677e40ea842a5baa621cecc4ebec5cc853bb15.svg" alt="\(\Phi \colon V \to \R\)" style="height:0.755em;vertical-align:-0.000em"> with
+<img class="m" src="m/9eeed5de8468da0a31cc4a1c6a345d8a56685d02.svg" alt="\(\Phi \le q\)" style="height:0.962em;vertical-align:-0.212em"> on <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proof" id="org688be18">
+<p>
+Order by extension the pairs <img class="m" src="m/9e9523410ca58bb546d4987debdaca80a1b789f3.svg" alt="\((W,\psi)\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/09a5da7fc8585cf51b19895d3ced72065864d2d7.svg" alt="\(U \subseteq W\)" style="height:0.898em;vertical-align:-0.153em"> a
+subspace and <img class="m" src="m/a4a52c4927ccc1e44f25ba3cda049e822fa6a1fc.svg" alt="\(\psi\)" style="height:0.974em;vertical-align:-0.214em"> linear on <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em">, dominated by <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em"> and extending
+<img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em">: <img class="m" src="m/d2ec50e5e15ef505765cd24341173bcdb8517063.svg" alt="\((W,\psi)\preceq(W',\psi')\)" style="height:1.098em;vertical-align:-0.274em"> when <img class="m" src="m/70d6df26314cc75719ba27b149bb6daf21b060a2.svg" alt="\(W \subseteq W'\)" style="height:0.973em;vertical-align:-0.146em"> and
+<img class="m" src="m/cb0c25b9ef14612aa4fe0e572a94308d36402855.svg" alt="\(\psi'\)" style="height:1.037em;vertical-align:-0.218em"> restricts to <img class="m" src="m/a4a52c4927ccc1e44f25ba3cda049e822fa6a1fc.svg" alt="\(\psi\)" style="height:0.974em;vertical-align:-0.214em">. The family is non-empty, containing
+<img class="m" src="m/0da7f87cfb7623dcb9da900735638553ff05ed14.svg" alt="\((U,\varphi)\)" style="height:1.096em;vertical-align:-0.274em">, and a chain has an upper bound &#x2013; the union of the
+subspaces, which is a subspace since the chain is totally ordered, with
+the common extension of the functionals, still dominated by <img class="m" src="m/67e07545249870f58031900241dacf371d1a33a9.svg" alt="\(q\)" style="height:0.685em;vertical-align:-0.212em">
+because domination is a pointwise condition.
+</p>
+
+<p>
+Zorn's lemma gives a maximal <img class="m" src="m/9e9523410ca58bb546d4987debdaca80a1b789f3.svg" alt="\((W,\psi)\)" style="height:1.096em;vertical-align:-0.274em">. If <img class="m" src="m/d76fbfef3a3f9057429124c1f94928c36023249c.svg" alt="\(W \ne V\)" style="height:0.974em;vertical-align:-0.214em">, the lemma
+extends <img class="m" src="m/a4a52c4927ccc1e44f25ba3cda049e822fa6a1fc.svg" alt="\(\psi\)" style="height:0.974em;vertical-align:-0.214em"> to <img class="m" src="m/5cace3dcae77c6d811ad0847773b92bf53d3c7e7.svg" alt="\(W + \R z\)" style="height:0.846em;vertical-align:-0.093em"> for any <img class="m" src="m/a5a4ad8a098088272789628a8bb32d92a672f31e.svg" alt="\(z \notin W\)" style="height:0.865em;vertical-align:-0.043em">, contradicting
+maximality. So <img class="m" src="m/b8e8361296be98eb64081455fb98bee47bb06e66.svg" alt="\(W = V\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="corollary" id="orgd854493">
+<p>
+Let <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> be a normed space, <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> a subspace and <img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> a linear
+functional on <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/2f8ed5677b8026ff01dadf26e42ef0a7bb8548a4.svg" alt="\(\abs{\varphi(u)}\le C\norm{u}\)" style="height:1.096em;vertical-align:-0.274em">. Then
+<img class="m" src="m/a65376d923c2262d8c70e4bcbdf6a3f86354b6df.svg" alt="\(\varphi\)" style="height:0.685em;vertical-align:-0.212em"> extends to <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> with the same bound.
+</p>
+
+</div>
+
+<div class="proof" id="org95a389d">
+<p>
+Apply the theorem with <img class="m" src="m/6de5d55540cf86d91fbd98add724d65f55abbff5.svg" alt="\(q(v) = C\norm{v}\)" style="height:1.096em;vertical-align:-0.274em">, which is sublinear, to get
+<img class="m" src="m/9eeed5de8468da0a31cc4a1c6a345d8a56685d02.svg" alt="\(\Phi \le q\)" style="height:0.962em;vertical-align:-0.212em">. Then also <img class="m" src="m/700f91cf890c86ee1077ec1902bd4d2b6ff79aa0.svg" alt="\(-\Phi(v) = \Phi(-v)\le C\norm{v}\)" style="height:1.096em;vertical-align:-0.274em">, so
+<img class="m" src="m/c845670e10d78d23fc79a76f624fb1554151ee3d.svg" alt="\(\abs{\Phi(v)}\le C\norm{v}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org9b34a15">
+<p>
+Let <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> be a normed space. For every <img class="m" src="m/8605ad4a39064be56858f06c79cfb196fb260c60.svg" alt="\(v \ne 0\)" style="height:0.974em;vertical-align:-0.214em"> there is a linear
+functional <img class="m" src="m/fa487ac7b42c8b2ef4b61263ca81e5c6f295f32f.svg" alt="\(\Phi\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/513bc30fd171eb4980dfea5aa002f0d0bee24624.svg" alt="\(\Phi(v) = \norm{v}\)" style="height:1.096em;vertical-align:-0.274em"> and
+<img class="m" src="m/cf6801c13c5a00ffdfbc3aca2fa3b3d93047ea88.svg" alt="\(\abs{\Phi(w)}\le\norm{w}\)" style="height:1.096em;vertical-align:-0.274em"> for all <img class="m" src="m/969e77e7e1813d23233baff7c36f4a9c8b08dca7.svg" alt="\(w\)" style="height:0.472em;vertical-align:-0.000em">. Hence the functionals
+separate points, and the canonical map <img class="m" src="m/6a5ff78f9b2a91ab91c2988f4d2a3cf955497c22.svg" alt="\(V \to V^{**}\)" style="height:0.755em;vertical-align:-0.000em"> is injective and
+norm-preserving.
+</p>
+
+</div>
+
+<div class="proof" id="org9dcf898">
+<p>
+On the line <img class="m" src="m/325d0627f691e826dd999bc829f0f68deeac709b.svg" alt="\(U = \R v\)" style="height:0.755em;vertical-align:-0.000em"> define <img class="m" src="m/7434d48a1530d3cf99e734b0dbf36a326edef46e.svg" alt="\(\varphi(tv) = t\norm{v}\)" style="height:1.096em;vertical-align:-0.274em">, so that
+<img class="m" src="m/16097b4a58a075c24c4980cf0b7695d8e0f2d56d.svg" alt="\(\abs{\varphi(u)} = \norm{u}\)" style="height:1.096em;vertical-align:-0.274em"> on <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em">. By the corollary it extends to
+<img class="m" src="m/fa487ac7b42c8b2ef4b61263ca81e5c6f295f32f.svg" alt="\(\Phi\)" style="height:0.749em;vertical-align:-0.000em"> with <img class="m" src="m/cf6801c13c5a00ffdfbc3aca2fa3b3d93047ea88.svg" alt="\(\abs{\Phi(w)}\le\norm{w}\)" style="height:1.096em;vertical-align:-0.274em">, and <img class="m" src="m/513bc30fd171eb4980dfea5aa002f0d0bee24624.svg" alt="\(\Phi(v) = \norm{v}\)" style="height:1.096em;vertical-align:-0.274em">.
+If <img class="m" src="m/dabf09cf59b226b97804d60dd4341bcecf559663.svg" alt="\(v \ne w\)" style="height:0.974em;vertical-align:-0.214em">, applying this to <img class="m" src="m/3d8260e3d4a63a3d27d8ab9f6abfa86e4d15292d.svg" alt="\(v - w\)" style="height:0.731em;vertical-align:-0.088em"> gives a functional taking
+different values at <img class="m" src="m/a1a1ba4fac21d3e2ff34910413df387c1d3a1732.svg" alt="\(v\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/969e77e7e1813d23233baff7c36f4a9c8b08dca7.svg" alt="\(w\)" style="height:0.472em;vertical-align:-0.000em">.
+</p>
+
+<p>
+For the last claim, <img class="m" src="m/986cbcafd1f1bf1176aa083aa7fc8ffd53c41ab0.svg" alt="\(\eta(v)\)" style="height:1.096em;vertical-align:-0.274em"> has norm at most <img class="m" src="m/acf26e3704cfcfc7c75d11dd75a0a4f5618a57b4.svg" alt="\(\norm{v}\)" style="height:1.096em;vertical-align:-0.274em"> since
+<img class="m" src="m/2e5df5cefb6c87d8fbf254f9a80b1ca6db2690f0.svg" alt="\(\abs{\varphi(v)}\le\norm{\varphi}\norm{v}\)" style="height:1.096em;vertical-align:-0.274em">, and at least
+<img class="m" src="m/acf26e3704cfcfc7c75d11dd75a0a4f5618a57b4.svg" alt="\(\norm{v}\)" style="height:1.096em;vertical-align:-0.274em"> by the <img class="m" src="m/fa487ac7b42c8b2ef4b61263ca81e5c6f295f32f.svg" alt="\(\Phi\)" style="height:0.749em;vertical-align:-0.000em"> just constructed; injectivity follows from
+<img class="m" src="m/291fd3a1d7a5b3c28c9b65d5cef11177fb3a2bac.svg" alt="\(\norm{\eta(v)} = \norm{v}\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="remark" id="org936c766">
+<p>
+The theorem is pure Zorn: the extension is never constructed and, for a
+general Banach space, cannot be. That is the same status as the
+existence of a basis of an arbitrary vector space and of a maximal ideal
+in a ring &#x2013; three theorems that make their subjects possible and give
+nothing to compute with. The geometric form, separating a point from a
+closed convex set by a hyperplane, is the infinite-dimensional statement
+of the separation theorem proved in <img class="m" src="m/b33f2adf960aeb722adafbfc0479a5f92fd75b05.svg" alt="\(\R^{n}\)" style="height:0.755em;vertical-align:-0.000em"> with a nearest point.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="functional-analysis.html"><span>← previous</span>Functional analysis</a><a rel="next" href="fourier-series-fejers-theorem-and-parsevals-identity.html"><span>next →</span>Fourier series, Fejer's theorem and Parseval's identity</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--functional-analysis.pdf" title="PDF manual">Functional Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

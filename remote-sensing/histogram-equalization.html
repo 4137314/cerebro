@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Histogram equalization · Remote Sensing</title>
+<meta name="description" content="Using the cumulative histogram as the transfer function, \mathrm{GL}=\mathrm{round}\big((L-1)H(\mathrm{DN})\big), spreads the pixels as uniformly as possible over the gray levels: densely populated DN ranges get stretched, sparse ones compressed.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/histogram-equalization.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Histogram equalization · Remote Sensing">
+<meta property="og:description" content="Using the cumulative histogram as the transfer function, \mathrm{GL}=\mathrm{round}\big((L-1)H(\mathrm{DN})\big), spreads the pixels as uniformly as possible over the gray levels: densely populated DN ranges get stretched, sparse ones compressed.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/histogram-equalization.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--enhancement">Enhancement</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Processing · Enhancement</p>
+<h1>Histogram equalization</h1>
+<p class="summary">Using the cumulative histogram as the transfer function, <img class="m" src="m/6d416bda1974accc290248145066ff484ab089ca.svg" alt="\(\mathrm{GL}=\mathrm{round}\big((L-1)H(\mathrm{DN})\big)\)" style="height:1.315em;vertical-align:-0.381em">, spreads the pixels as uniformly as possible over the gray levels: densely populated DN ranges get stretched, sparse ones compressed.</p>
+<p class="rel"><span>needs</span> <a href="contrast-stretching.html">Contrast stretching</a></p>
+<p class="rel"><span>see also</span> <a href="image-histogram.html">Image histogram</a></p>
+<p class="rel"><span>mentioned in</span> <a href="digital-image.html">Digital images</a>, <a href="image-histogram.html">Image histogram</a></p>
+<details class="path"><summary>Learning path: 10 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="image-histogram.html">Image histogram</a></li><li><a href="look-up-table.html">Look-up tables and visualization</a></li><li><a href="contrast-stretching.html">Contrast stretching</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orga1194fd" class="outline-2">
+<h2 id="orga1194fd">Method</h2>
+<div class="outline-text-2" id="text-orga1194fd">
+<p>
+<div class="mb"><img class="m" src="m/4e889ce3aac64fb0712cc4be2662a81e9e356106.svg" alt="\[ \mathrm{GL}(k)=\mathrm{round}\big((L-1)\,H(k)\big),\qquad H(k)=\sum_{j\le k}h(j), \]" style="width:25.062em"></div>
+with <img class="m" src="m/be35afadc9501c49510c23b8bec7d35c54a39713.svg" alt="\(L=256\)" style="height:0.749em;vertical-align:-0.000em"> display levels.
+</p>
+</div>
+</div>
+<div id="outline-container-org762da3c" class="outline-2">
+<h2 id="org762da3c">Derivation</h2>
+<div class="outline-text-2" id="text-org762da3c">
+<p>
+For a continuous variable <img class="m" src="m/624181e756424cb5b5cfe3056880b27fd01010dc.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> with distribution function <img class="m" src="m/03f3b882c8a4ec33f3059f121dc1e0694eabc8eb.svg" alt="\(F\)" style="height:0.749em;vertical-align:-0.000em">, the variable <img class="m" src="m/03ba40de296b86a21bb5b9771b10a8fe21677e3c.svg" alt="\(U=F(X)\)" style="height:1.096em;vertical-align:-0.274em"> is uniform on <img class="m" src="m/ae44badaca28b2f1edc2a05a673ec774ff9dfce8.svg" alt="\([0,1]\)" style="height:1.096em;vertical-align:-0.274em">: <img class="m" src="m/8e68c982687f2a159911fe4b2473677d82aa2832.svg" alt="\(P(U\le u)=P(X\le F^{-1}(u))=u\)" style="height:1.166em;vertical-align:-0.268em">. The discrete version can only merge levels, not split them, so the result is approximately flat, with gaps where levels have been spread apart.
+</p>
+</div>
+</div>
+<div id="outline-container-orgae5715b" class="outline-2">
+<h2 id="orgae5715b">Example</h2>
+<div class="outline-text-2" id="text-orgae5715b">
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="v">hist</span>, <span class="v">_</span> = np.histogram(band, bins=4096, <span class="b">range</span>=(0, 4096))
+<span class="v">cdf</span> = np.cumsum(hist) / band.size
+<span class="v">gl</span> = np.<span class="b">round</span>(255 * cdf[band]).astype(np.uint8)</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org0586e9b" class="outline-2">
+<h2 id="org0586e9b">Intuition</h2>
+<div class="outline-text-2" id="text-org0586e9b">
+<p>
+Give every gray level an equal share of the pixels: wherever many pixels have similar values, pull them apart.
+</p>
+</div>
+</div>
+<div id="outline-container-org6006f1f" class="outline-2">
+<h2 id="org6006f1f">Pitfall</h2>
+<div class="outline-text-2" id="text-org6006f1f">
+<p>
+Equalisation maximises contrast for the dominant classes and can exaggerate noise in large uniform areas (sea, desert) while crushing small bright features; adaptive local versions (CLAHE) limit this.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="contrast-stretching.html"><span>← previous</span>Contrast stretching</a><a rel="next" href="pansharpening.html"><span>next →</span>Pansharpening</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--enhancement.pdf" title="PDF manual">Enhancement</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

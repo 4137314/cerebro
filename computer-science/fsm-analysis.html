@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analysis of synchronous sequential circuits · Computer Science</title>
+<meta name="description" content="In a synchronous circuit the state X(n) held by the flip-flops and the inputs IN(n) of clock cycle n determine the next state X(n+1)=\Delta(IN(n),X(n)) and the outputs OUT(n)=\Lambda(IN(n),X(n)); to analyse a circuit, read \Delta from the logic driving each flip-flop input and \Lambda from the logi…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/fsm-analysis.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Analysis of synchronous sequential circuits · Computer Science">
+<meta property="og:description" content="In a synchronous circuit the state X(n) held by the flip-flops and the inputs IN(n) of clock cycle n determine the next state X(n+1)=\Delta(IN(n),X(n)) and the outputs OUT(n)=\Lambda(IN(n),X(n)); to analyse a circuit, read \Delta from the logic driving each flip-flop input and \Lambda from the logi…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/fsm-analysis.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--sequential">Sequential</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Hardware · Sequential</p>
+<h1>Analysis of synchronous sequential circuits</h1>
+<p class="summary">In a synchronous circuit the state <img class="m" src="m/9cdab98eef33156b49326aeb023e51aa801bcd4d.svg" alt="\(X(n)\)" style="height:1.096em;vertical-align:-0.274em"> held by the flip-flops and the inputs <img class="m" src="m/62a426fe8b7c2f933b485aafbe91bedcc7f94663.svg" alt="\(IN(n)\)" style="height:1.096em;vertical-align:-0.274em"> of clock cycle <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> determine the next state <img class="m" src="m/59c4c109c2bb7de4875a10cc4f0e9dfbdbee2a80.svg" alt="\(X(n+1)=\Delta(IN(n),X(n))\)" style="height:1.096em;vertical-align:-0.274em"> and the outputs <img class="m" src="m/09c10c674fa3ba0a839b42f3cf2c1cf350057bad.svg" alt="\(OUT(n)=\Lambda(IN(n),X(n))\)" style="height:1.096em;vertical-align:-0.274em">; to analyse a circuit, read <img class="m" src="m/ccde4b7b6b4da75d48b36ba7dba3da040be12865.svg" alt="\(\Delta\)" style="height:0.749em;vertical-align:-0.000em"> from the logic driving each flip-flop input and <img class="m" src="m/7d05db9dd4be72eb379fa50f34da817a5bfbae8f.svg" alt="\(\Lambda\)" style="height:0.749em;vertical-align:-0.000em"> from the logic driving the outputs, tabulate them over all <img class="m" src="m/fcf3260c61a332694604b73662dd83b1dc79f34c.svg" alt="\(2^{n+m}\)" style="height:0.873em;vertical-align:-0.000em"> state–input combinations and draw the state diagram.</p>
+<p class="rel"><span>needs</span> <a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></p>
+<p class="rel"><span>unlocks</span> <a href="fsm-synthesis.html">Synthesis of finite-state machines</a></p>
+<p class="rel"><span>see also</span> <a href="fsm-synthesis.html">Synthesis of finite-state machines</a>, <a href="flip-flop-types.html">D, T, JK and SR flip-flops: characteristic and excitation tables</a>, <a href="finite-state-machine.html">Finite-state machines</a></p>
+<details class="path"><summary>Learning path: 6 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li><li><a href="sr-latch.html">SR latch and D latch</a></li><li><a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org90c23a8" class="outline-2">
+<h2 id="org90c23a8">Method</h2>
+<div class="outline-text-2" id="text-org90c23a8">
+<p>
+Model: <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> flip-flops hold the <b>present state</b> <img class="m" src="m/9cdab98eef33156b49326aeb023e51aa801bcd4d.svg" alt="\(X(n)\)" style="height:1.096em;vertical-align:-0.274em">, a vector of bits, constant for the whole clock cycle <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">; combinational logic computes the <b>next state</b> <img class="m" src="m/8099602ce7a9fac8ebdb2d27c2378b3761684d7b.svg" alt="\(Y(n)\)" style="height:1.096em;vertical-align:-0.274em"> and the outputs; at the active edge <img class="m" src="m/d3f8cbc2d9b5eff14bff89dd0649de55cee7c83f.svg" alt="\(X(n+1)=Y(n)\)" style="height:1.096em;vertical-align:-0.274em">. With edge-triggered flip-flops present and next state are separate signals: the equations are explicit, no stability problem.
+</p>
+<ol class="org-ol">
+<li>For each flip-flop input, follow the logic backwards to primary inputs and flip-flop outputs: the expressions <img class="m" src="m/b6d7d05dbe1913b2558af0aa5b05976d26a19f9f.svg" alt="\(D_i=\dots\)" style="height:0.913em;vertical-align:-0.164em"> are the next-state function <img class="m" src="m/ccde4b7b6b4da75d48b36ba7dba3da040be12865.svg" alt="\(\Delta\)" style="height:0.749em;vertical-align:-0.000em">.</li>
+<li>Do the same for each primary output: the output function <img class="m" src="m/7d05db9dd4be72eb379fa50f34da817a5bfbae8f.svg" alt="\(\Lambda\)" style="height:0.749em;vertical-align:-0.000em">.</li>
+<li><b>State table</b>: one row per (present state, input), <img class="m" src="m/fcf3260c61a332694604b73662dd83b1dc79f34c.svg" alt="\(2^{n+m}\)" style="height:0.873em;vertical-align:-0.000em"> rows for <img class="m" src="m/0fd0b758e2f5f710a4d812e11d152bdb02c6f496.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> flip-flops and <img class="m" src="m/5f2d4f790b418da9d600db34c8fe8eb825040aa9.svg" alt="\(m\)" style="height:0.472em;vertical-align:-0.000em"> inputs; columns: next state, outputs.</li>
+<li><b>State diagram</b>: a circle per state (at most <img class="m" src="m/c26a7f26d15dab5c1c6e5096f2fb7c0c2fafc477.svg" alt="\(2^n\)" style="height:0.728em;vertical-align:-0.000em">), an arrow per row from present to next state labelled input/output. Each state has <img class="m" src="m/10080e6b75656d7e1aa3732982d94dd6cecb0c10.svg" alt="\(2^m\)" style="height:0.728em;vertical-align:-0.000em"> outgoing arrows (rows with the same next state and output can share one arrow with a don't-care label).</li>
+<li>Read the behaviour off the diagram and say in words what the circuit does.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orge08c25e" class="outline-2">
+<h2 id="orge08c25e">Example</h2>
+<div class="outline-text-2" id="text-orge08c25e">
+<p>
+One input <img class="m" src="m/c1cb305e0744a841c0171151eaf770796c623d6f.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">, output <img class="m" src="m/5cf5ac6e98f9052d4dbfec03db39d31465ea78f1.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em">, flip-flops <img class="m" src="m/439f79a65e6a359971e3fdd7957ec34ec3c2184a.svg" alt="\(a,b\)" style="height:0.974em;vertical-align:-0.214em">: <img class="m" src="m/c6b00bc541c3affa722d043cdff19e267099543e.svg" alt="\(D_a=xa+xb\)" style="height:0.925em;vertical-align:-0.167em">, <img class="m" src="m/db5fa9f718f61dc9dfc6674c62f072d31a382b55.svg" alt="\(D_b=x\bar a\)" style="height:0.913em;vertical-align:-0.164em">, <img class="m" src="m/0735daf79541481bcd8ee7abe3d8e6b7613e71d1.svg" alt="\(y=\bar x(a+b)\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">ab</th>
+<th scope="col" class="org-right">x</th>
+<th scope="col" class="org-right">a⁺b⁺</th>
+<th scope="col" class="org-right">y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">00</td>
+<td class="org-right">0</td>
+<td class="org-right">00</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">00</td>
+<td class="org-right">1</td>
+<td class="org-right">01</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">01</td>
+<td class="org-right">0</td>
+<td class="org-right">00</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">01</td>
+<td class="org-right">1</td>
+<td class="org-right">11</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">10</td>
+<td class="org-right">0</td>
+<td class="org-right">00</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">10</td>
+<td class="org-right">1</td>
+<td class="org-right">10</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">11</td>
+<td class="org-right">0</td>
+<td class="org-right">00</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">11</td>
+<td class="org-right">1</td>
+<td class="org-right">10</td>
+<td class="org-right">0</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Every <img class="m" src="m/9a0752da5b7c9ac35ea7fe82a5d424dd4da538c7.svg" alt="\(x=0\)" style="height:0.706em;vertical-align:-0.000em"> returns to 00, with <img class="m" src="m/b85d0271b53e9d4283c4c6698ca6655db196433b.svg" alt="\(y=1\)" style="height:0.919em;vertical-align:-0.211em"> unless it was already in 00. So: the machine waits in 00 with <img class="m" src="m/116bf86509d4c6b00366d97cb75c953ce33827c1.svg" alt="\(y=0\)" style="height:0.919em;vertical-align:-0.211em">; when <img class="m" src="m/c1cb305e0744a841c0171151eaf770796c623d6f.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> becomes 1 it leaves 00 (and stays out while <img class="m" src="m/4eb7bc30320be020fecb2a7447ffcd23f5a64376.svg" alt="\(x=1\)" style="height:0.706em;vertical-align:-0.000em">: 01→11→10→10…); when <img class="m" src="m/c1cb305e0744a841c0171151eaf770796c623d6f.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> returns to 0 it raises <img class="m" src="m/5cf5ac6e98f9052d4dbfec03db39d31465ea78f1.svg" alt="\(y\)" style="height:0.685em;vertical-align:-0.212em"> for that cycle and goes back to 00. It signals the <b>end</b> of a pulse of ones — a Mealy falling-edge detector.
+</p>
+</div>
+</div>
+<div id="outline-container-org8c1a849" class="outline-2">
+<h2 id="org8c1a849">Picture</h2>
+<div class="outline-text-2" id="text-org8c1a849">
+<figure class="fig"><img class="m" src="m/3126349e8bb52a078408643d7e5e28edd99349df.svg" alt="figure" style="width:14.777em"><figcaption><span class="fl">Figure 1.</span> State diagram obtained by analysing a synchronous circuit: four states coded by the two flip-flops, edges labelled input/output.</figcaption></figure>
+<p>
+Arrows labelled <img class="m" src="m/563770ffd045908c0806cd39aec5ff301c3e7187.svg" alt="\(x/y\)" style="height:1.096em;vertical-align:-0.274em">; the cyan state is the waiting state.
+</p>
+</div>
+</div>
+<div id="outline-container-orgcce6a59" class="outline-2">
+<h2 id="orgcce6a59">Intuition</h2>
+<div class="outline-text-2" id="text-orgcce6a59">
+<p>
+Analysis is mechanical — a computer could do it: the creative part is only the last step, naming what the states remember.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd27705e" class="outline-2">
+<h2 id="orgd27705e">Pitfall</h2>
+<div class="outline-text-2" id="text-orgd27705e">
+<p>
+The output written on an arrow belongs to the <b>present</b> state and input (the cycle before the transition), not to the state the arrow points to. Unreachable codes (here none) still need a row: after a glitch the machine may land there.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="edge-triggered-flip-flop.html"><span>← previous</span>Edge-triggered flip-flops: master–slave</a><a rel="next" href="fsm-synthesis.html"><span>next →</span>Synthesis of finite-state machines</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--sequential.pdf" title="PDF manual">Sequential</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

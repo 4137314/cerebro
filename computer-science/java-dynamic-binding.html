@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Java method selection rule · Computer Science</title>
+<meta name="description" content="For a call x.f(a1,…,an) the compiler fixes the signature, choosing among the methods of the static type of x= the most specific one applicable to the static types of the arguments; at run time the JVM executes the override of that exact signature in the dynamic type of =x.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/java-dynamic-binding.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The Java method selection rule · Computer Science">
+<meta property="og:description" content="For a call x.f(a1,…,an) the compiler fixes the signature, choosing among the methods of the static type of x= the most specific one applicable to the static types of the arguments; at run time the JVM executes the override of that exact signature in the dynamic type of =x.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/java-dynamic-binding.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--java">Java</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Programming · Java</p>
+<h1>The Java method selection rule</h1>
+<p class="summary">For a call <code>x.f(a1,…,an)</code> the compiler fixes the signature, choosing among the methods of the static type of <code>x</code> the most specific one applicable to the static types of the arguments; at run time the JVM executes the override of that exact signature in the dynamic type of <code>x</code>.</p>
+<p class="rel"><span>needs</span> <a href="polymorphism.html">Polymorphism and dynamic binding</a>, <a href="method-overloading.html">Overloading</a></p>
+<p class="rel"><span>see also</span> <a href="virtual-functions.html">Virtual functions and the virtual table</a>, <a href="java-object-class.html">The class Object and final</a>, <a href="casting-instanceof.html">Casts, instanceof and array covariance</a></p>
+<p class="rel"><span>mentioned in</span> <a href="equals-hashcode.html">The equals–hashCode contract</a></p>
+<details class="path"><summary>Learning path: 6 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="polymorphism.html">Polymorphism and dynamic binding</a></li><li><a href="method-overloading.html">Overloading</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org3dd3e13" class="outline-2">
+<h2 id="org3dd3e13">Statement</h2>
+<div class="outline-text-2" id="text-org3dd3e13">
+<p>
+Two phases.
+</p>
+<ol class="org-ol">
+<li><b>Compile time</b>: look at the <a href="polymorphism.html">static type</a> <img class="m" src="m/ef6d40f3cd5b8650803ccfcfb2c1556494e74417.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> of <code>x</code> and at the static types of the arguments. Among the methods named <code>f</code> visible in <img class="m" src="m/ef6d40f3cd5b8650803ccfcfb2c1556494e74417.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> (declared or inherited) that are applicable, pick the most specific signature <img class="m" src="m/fa5386a585f6373906997a430dbbb6e4390d955d.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">. If none or more than one is maximal, compilation fails.</li>
+<li><b>Run time</b>: let <img class="m" src="m/9bc9fac98a58f67aa2a9c76ad1bb70f716743fac.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> be the dynamic type of the object. Starting from <img class="m" src="m/9bc9fac98a58f67aa2a9c76ad1bb70f716743fac.svg" alt="\(D\)" style="height:0.749em;vertical-align:-0.000em"> and moving up the hierarchy, execute the first method with exactly the signature <img class="m" src="m/fa5386a585f6373906997a430dbbb6e4390d955d.svg" alt="\(\sigma\)" style="height:0.472em;vertical-align:-0.000em">.</li>
+</ol>
+<p>
+Static, private and final methods and constructors are bound at compile time.
+</p>
+</div>
+</div>
+<div id="outline-container-org4fc86c9" class="outline-2">
+<h2 id="org4fc86c9">Example</h2>
+<div class="outline-text-2" id="text-org4fc86c9">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">class</span> <span class="t">A</span>           { <span class="t">void</span> <span class="f">m</span>(<span class="t">A</span> <span class="v">a</span>) { System.out.println(<span class="s">"A.m(A)"</span>); } }
+<span class="c">// overload, not override
+</span><span class="k">class</span> <span class="t">B</span> <span class="k">extends</span> <span class="t">A</span> { <span class="t">void</span> <span class="f">m</span>(<span class="t">B</span> <span class="v">b</span>) { System.out.println(<span class="s">"B.m(B)"</span>); }
+                    @Override <span class="t">void</span> <span class="f">m</span>(<span class="t">A</span> <span class="v">a</span>) { System.out.println(<span class="s">"B.m(A)"</span>); } }
+<span class="t">A</span> <span class="v">x</span> = <span class="k">new</span> <span class="t">B</span>();  <span class="t">B</span> <span class="v">y</span> = <span class="k">new</span> <span class="t">B</span>();
+x.m(y);   <span class="c">// B.m(A): static type A only knows m(A); the override in B runs
+</span>y.m(y);   <span class="c">// B.m(B): static type B, most specific is m(B)
+</span>y.m(x);   <span class="c">// B.m(A)</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org0d0ed89" class="outline-2">
+<h2 id="org0d0ed89">Derivation</h2>
+<div class="outline-text-2" id="text-org0d0ed89">
+<p>
+For <code>x.m(y)</code>: the static type of <code>x</code> is <code>A</code>, whose only method is <code>m(A)</code>, applicable because <code>B</code> is a subtype of <code>A</code>, so <img class="m" src="m/9f442c4a01b1d11c241f8ea73bc20ee097b2929f.svg" alt="\(\sigma=\)" style="height:0.472em;vertical-align:-0.000em">=m(A)=. The dynamic type is <code>B</code>, which overrides <code>m(A)</code>: <code>B.m(A)</code> runs. <code>B.m(B)</code> is never considered, because the signature was fixed in phase 1.
+</p>
+</div>
+</div>
+<div id="outline-container-org20d7818" class="outline-2">
+<h2 id="org20d7818">Intuition</h2>
+<div class="outline-text-2" id="text-org20d7818">
+<p>
+The compiler chooses <b>which</b> message is sent; the object chooses <b>how</b> to answer it.
+</p>
+</div>
+</div>
+<div id="outline-container-org1856299" class="outline-2">
+<h2 id="org1856299">Pitfall</h2>
+<div class="outline-text-2" id="text-org1856299">
+<p>
+Writing <code>equals(Point p)</code> instead of <code>equals(Object o)</code> adds an overload: collections call <code>equals(Object)</code> and never see it.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="stack-and-queue.html"><span>← previous</span>Stack and queue as classes</a><a rel="next" href="wrapper-autoboxing.html"><span>next →</span>Wrapper classes and autoboxing</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--java.pdf" title="PDF manual">Java</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

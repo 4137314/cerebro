@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radiometric errors and corrections · Remote Sensing</title>
+<meta name="description" content="Measured DNs are distorted by the sensor (detector differences causing stripes, dropped lines, calibration drift) and by the atmosphere and illumination (path radiance, attenuation, sun angle, topography); corrections convert DN to radiance and reflectance, equalise detectors, fill lines and remove…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/radiometric-correction.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Radiometric errors and corrections · Remote Sensing">
+<meta property="og:description" content="Measured DNs are distorted by the sensor (detector differences causing stripes, dropped lines, calibration drift) and by the atmosphere and illumination (path radiance, attenuation, sun angle, topography); corrections convert DN to radiance and reflectance, equalise detectors, fill lines and remove…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/radiometric-correction.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--corrections">Corrections</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Processing · Corrections</p>
+<h1>Radiometric errors and corrections</h1>
+<p class="summary">Measured DNs are distorted by the sensor (detector differences causing stripes, dropped lines, calibration drift) and by the atmosphere and illumination (path radiance, attenuation, sun angle, topography); corrections convert DN to radiance and reflectance, equalise detectors, fill lines and remove the atmospheric offset.</p>
+<p class="rel"><span>needs</span> <a href="digital-number.html">Detector, quantization and digital numbers</a>, <a href="atmospheric-scattering.html">Atmospheric scattering: Rayleigh and Mie</a></p>
+<p class="rel"><span>unlocks</span> <a href="change-detection.html">Change detection</a></p>
+<p class="rel"><span>see also</span> <a href="geometric-distortions.html">Geometric distortions</a>, <a href="geometric-correction.html">Geometric correction, geocoding and registration</a>, <a href="atmospheric-windows.html">Atmospheric transmittance and windows</a>, <a href="change-detection.html">Change detection</a></p>
+<p class="rel"><span>mentioned in</span> <a href="remote-sensing-system.html">Remote sensing system</a>, <a href="atmospheric-windows.html">Atmospheric transmittance and windows</a>, <a href="toa-reflectance.html">From DN to top-of-atmosphere and surface reflectance</a>, <a href="principal-component-analysis.html">Principal component analysis of multispectral images</a>, <a href="frequency-domain-filtering.html">Filtering in the frequency domain</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="electromagnetic-spectrum.html">Electromagnetic spectrum and spectral regions</a></li><li><a href="atmospheric-windows.html">Atmospheric transmittance and windows</a></li><li><a href="atmospheric-scattering.html">Atmospheric scattering: Rayleigh and Mie</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgb3a2441" class="outline-2">
+<h2 id="orgb3a2441">Method</h2>
+<div class="outline-text-2" id="text-orgb3a2441">
+<p>
+<b>Sensor errors</b>
+</p>
+<ul class="org-ul">
+<li><b>striping</b>: detectors of a <a href="scanner-geometry.html">whiskbroom</a> or pushbroom with slightly different gains; corrected by matching each detector's mean and <a href="image-statistics.html">variance</a> to the global ones (histogram matching per detector line);</li>
+<li><b>line dropouts</b>: missing lines, replaced by the average of the neighbouring lines;</li>
+<li><b>calibration</b>: DN to <a href="toa-reflectance.html">at-sensor radiance</a> with gain and offset from the metadata.</li>
+</ul>
+<p>
+<b>Atmosphere and illumination</b>
+</p>
+<ul class="org-ul">
+<li>top-of-atmosphere reflectance: <img class="m" src="m/c678f108f24dc86d553dac8219bbd1042fee7af0.svg" alt="\(\rho_{TOA}=\dfrac{\pi L\,d^2}{E_{sun}\cos\theta_s}\)" style="height:2.550em;vertical-align:-0.918em">, removing sun angle <img class="m" src="m/d05198831b0f24a926564d6dc68180cb1da4d434.svg" alt="\(\theta_s\)" style="height:0.925em;vertical-align:-0.167em"> and Earth–Sun distance <img class="m" src="m/588903fb08fcda4c95b5c78df0c31fb690799e67.svg" alt="\(d\)" style="height:0.761em;vertical-align:-0.000em">;</li>
+<li><b>dark object subtraction</b>: deep water or shadow should have near-zero reflectance; the minimum DN of each band estimates the <a href="atmospheric-scattering.html">path radiance</a> and is subtracted (larger in the blue);</li>
+<li>radiative transfer models (6S, MODTRAN, Sen2Cor) estimate aerosol and water vapour to obtain surface reflectance;</li>
+<li>topographic correction: <img class="m" src="m/638eeabbec71ead84392548485454d93732e41ef.svg" alt="\(\cos i\)" style="height:0.723em;vertical-align:-0.000em"> of the local illumination angle on slopes.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org197911c" class="outline-2">
+<h2 id="org197911c">Example</h2>
+<div class="outline-text-2" id="text-org197911c">
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="c"># destriping: equalise the statistics of each of the D detectors (every D-th line)
+</span><span class="k">for</span> d <span class="k">in</span> <span class="b">range</span>(D):
+    <span class="v">rows</span> = band[d::D]
+    <span class="v">band</span>[d::D] = (rows - rows.mean()) / rows.std() * band.std() + band.mean()
+<span class="c"># dark object subtraction
+</span><span class="v">band_corr</span> = np.clip(band - np.percentile(band, 0.1), 0, <span class="n">None</span>)</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org6e313be" class="outline-2">
+<h2 id="org6e313be">Intuition</h2>
+<div class="outline-text-2" id="text-org6e313be">
+<p>
+First make all pixels of a band measure the same thing in the same units; then remove what the air added and subtracted.
+</p>
+</div>
+</div>
+<div id="outline-container-org3bac958" class="outline-2">
+<h2 id="org3bac958">Pitfall</h2>
+<div class="outline-text-2" id="text-org3bac958">
+<p>
+Multi-date analyses (<a href="change-detection.html">change detection</a>, time series) are the most sensitive to radiometric inconsistencies: an uncorrected haze difference looks exactly like a change on the ground.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="geometric-correction.html"><span>← previous</span>Geometric correction, geocoding and registration</a><a rel="next" href="moving-window-filters.html"><span>next →</span>Moving-window (convolution) filters</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--corrections.pdf" title="PDF manual">Corrections</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

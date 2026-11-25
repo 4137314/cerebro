@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recurring state-machine patterns · Computer Science</title>
+<meta name="description" content="A few fragments recur in every controller: busy-wait (a self-loop until a signal arrives), choice (branch on a signal), fire-and-check (start a counter or slow unit, then wait for its terminal count), edge detection (wait for 1, then for 0) and the one-cycle pulse; Moore versions react one cycle la…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/fsm-patterns.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Recurring state-machine patterns · Computer Science">
+<meta property="og:description" content="A few fragments recur in every controller: busy-wait (a self-loop until a signal arrives), choice (branch on a signal), fire-and-check (start a counter or slow unit, then wait for its terminal count), edge detection (wait for 1, then for 0) and the one-cycle pulse; Moore versions react one cycle la…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/fsm-patterns.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--sequential">Sequential</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">construction · Hardware · Sequential</p>
+<h1>Recurring state-machine patterns</h1>
+<p class="summary">A few fragments recur in every controller: busy-wait (a self-loop until a signal arrives), choice (branch on a signal), fire-and-check (start a counter or slow unit, then wait for its terminal count), edge detection (wait for 1, then for 0) and the one-cycle pulse; Moore versions react one cycle late and can miss short pulses, conditional (Mealy) outputs react at once; the simplest any-edge detector is one flip-flop and an XOR.</p>
+<p class="rel"><span>needs</span> <a href="asm-chart.html">Algorithmic state machine (ASM) charts</a>, <a href="counters.html">Synchronous counters</a></p>
+<p class="rel"><span>unlocks</span> <a href="rtl-design.html">The RTL design method: datapath and control unit</a></p>
+<p class="rel"><span>see also</span> <a href="rtl-design.html">The RTL design method: datapath and control unit</a>, <a href="vending-machine-design.html">Worked design: a vending-machine controller</a>, <a href="mealy-moore.html">Mealy versus Moore machines</a>, <a href="critical-races.html">Critical races</a></p>
+<details class="path"><summary>Learning path: 13 notes lead here, in study order</summary><ol><li><a href="boolean-algebra.html">Boolean algebra: axioms, theorems, complete operator sets</a></li><li><a href="canonical-forms.html">Shannon expansion and canonical forms</a></li><li><a href="karnaugh-maps.html">Karnaugh maps</a></li><li><a href="multiplexer.html">Multiplexer and demultiplexer</a></li><li><a href="sequential-circuits.html">Sequential circuits: memory through feedback</a></li><li><a href="sr-latch.html">SR latch and D latch</a></li><li><a href="edge-triggered-flip-flop.html">Edge-triggered flip-flops: master–slave</a></li><li><a href="fsm-analysis.html">Analysis of synchronous sequential circuits</a></li><li><a href="fsm-synthesis.html">Synthesis of finite-state machines</a></li><li><a href="mealy-moore.html">Mealy versus Moore machines</a></li><li><a href="asm-chart.html">Algorithmic state machine (ASM) charts</a></li><li><a href="registers-shift-registers.html">Registers and shift registers</a></li><li><a href="counters.html">Synchronous counters</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgcaad750" class="outline-2">
+<h2 id="orgcaad750">Construction</h2>
+<div class="outline-text-2" id="text-orgcaad750">
+<ul class="org-ul">
+<li><b>Busy wait</b>: state W with a self-loop on <img class="m" src="m/7973cf508eee2fb0eae27c69a2aba5032cc095c2.svg" alt="\(\bar S\)" style="height:0.899em;vertical-align:-0.000em">; <img class="m" src="m/82015a3f3bf193fd6aa1ef859a5229bdedb36b78.svg" alt="\(S=1\)" style="height:0.749em;vertical-align:-0.000em"> leads to the next state, entered one cycle after <img class="m" src="m/ef6d40f3cd5b8650803ccfcfb2c1556494e74417.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> rose (or act at once with a conditional output on the exit arrow).</li>
+<li><b>Choice</b>: a decision on <img class="m" src="m/ef6d40f3cd5b8650803ccfcfb2c1556494e74417.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> leading to two different paths.</li>
+<li><b>Fire and check</b>: SETUP (load the timer, <img class="m" src="m/d41505cd0dcb9bf9f84419f13de24fd397157766.svg" alt="\(\mathit{load}=1\)" style="height:0.761em;vertical-align:-0.000em">) → WAIT (<img class="m" src="m/b292a8439b6e9633327beacdbefd997214d7fafe.svg" alt="\(\mathit{enable}=1\)" style="height:0.761em;vertical-align:-0.000em">, self-loop until <img class="m" src="m/309c72a45be88f6cf409bad1d4634de8179f20ab.svg" alt="\(TC\)" style="height:0.749em;vertical-align:-0.000em">) → go on. Three states handle any delay, any count, any slow arithmetic unit: the counter, not the FSM, counts.</li>
+<li><b>Falling-edge detector</b>: wait for <img class="m" src="m/82015a3f3bf193fd6aa1ef859a5229bdedb36b78.svg" alt="\(S=1\)" style="height:0.749em;vertical-align:-0.000em">, then wait for <img class="m" src="m/b9a217d8afc6aa090bb3352507b5b24ba1a8dd82.svg" alt="\(S=0\)" style="height:0.749em;vertical-align:-0.000em">, then signal — two busy waits in sequence.</li>
+<li><b>Any-edge detector</b> ("derivator", <img class="m" src="m/8f5129700297b8fc392f41109cf38dfccfdf51fa.svg" alt="\(OUT=1\)" style="height:0.749em;vertical-align:-0.000em"> for one cycle at each transition of <img class="m" src="m/ef6d40f3cd5b8650803ccfcfb2c1556494e74417.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">). Moore: four states — a (wait for 1), b (<img class="m" src="m/8f5129700297b8fc392f41109cf38dfccfdf51fa.svg" alt="\(OUT=1\)" style="height:0.749em;vertical-align:-0.000em">), c (wait for 0), d (<img class="m" src="m/8f5129700297b8fc392f41109cf38dfccfdf51fa.svg" alt="\(OUT=1\)" style="height:0.749em;vertical-align:-0.000em">) — two state bits; it reacts one cycle late and, while in b or d, does not look at <img class="m" src="m/ef6d40f3cd5b8650803ccfcfb2c1556494e74417.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em">, so a pulse shorter than a cycle can be lost (fix: test <img class="m" src="m/ef6d40f3cd5b8650803ccfcfb2c1556494e74417.svg" alt="\(S\)" style="height:0.749em;vertical-align:-0.000em"> also in b and d). Mealy: one flip-flop remembering the previous value, <img class="m" src="m/4c2779d9a972812cfb46d96125148fe0a9fdada2.svg" alt="\(x^+=S\)" style="height:0.873em;vertical-align:-0.000em">, <img class="m" src="m/71435247851198ff3e3470d8fcbbe3989be04d38.svg" alt="\(OUT=x\oplus S\)" style="height:0.840em;vertical-align:-0.092em"> — the difference between the present and the previous sample.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfba0342" class="outline-2">
+<h2 id="orgfba0342">Example</h2>
+<div class="outline-text-2" id="text-orgfba0342">
+<p>
+Pulse-width measurer: input <img class="m" src="m/c6306f7556c20ed611b57417e4530ef85873290c.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> (synchronous), a counter with synchronous <img class="m" src="m/72b65b4ee36bf92358cead724c4794ba83d60004.svg" alt="\(\mathit{init}\)" style="height:0.718em;vertical-align:-0.000em"> and <img class="m" src="m/01552b44c9baa10d534358997479cd6c372a9703.svg" alt="\(\mathit{count\_en}\)" style="height:0.674em;vertical-align:-0.000em">, output <img class="m" src="m/ede218e9e2656767503984ba616fe76015b31d1d.svg" alt="\(\mathit{ready}\)" style="height:0.974em;vertical-align:-0.214em"> for one cycle when the counter holds the width of the last pulse of ones.
+</p>
+<ul class="org-ul">
+<li>IDLE: <img class="m" src="m/eebed4f340764bc9a97f63619c572882fbf15bf2.svg" alt="\(\mathit{init}=1\)" style="height:0.718em;vertical-align:-0.000em">; <img class="m" src="m/08a62d0dc936ac13df4b12667c1f8486b12be467.svg" alt="\(L\to\)" style="height:0.749em;vertical-align:-0.000em"> CNT.</li>
+<li>CNT: <img class="m" src="m/46331c5e66c1e097aad7b1ffaf736d356b6e4971.svg" alt="\(\mathit{count\_en}=1\)" style="height:0.706em;vertical-align:-0.000em">; <img class="m" src="m/e278f91014f4d0d4f315ae434a9037ade981dfb2.svg" alt="\(\bar L\to\)" style="height:0.899em;vertical-align:-0.000em"> RDY.</li>
+<li>RDY: <img class="m" src="m/c443ba6aad188c42b1849fbb0f994ff57b00e8de.svg" alt="\(\mathit{ready}=1\)" style="height:0.974em;vertical-align:-0.214em">; → IDLE.</li>
+</ul>
+<p>
+If <img class="m" src="m/c6306f7556c20ed611b57417e4530ef85873290c.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em"> is 1 during cycles <img class="m" src="m/2a4e532355fa3f36a31645565840501aba719ea8.svg" alt="\(t_0,\dots,t_0+k-1\)" style="height:0.974em;vertical-align:-0.214em">: IDLE sees it at <img class="m" src="m/92b766f94e2eadcbfce111b15b8cb1de3a66f9d1.svg" alt="\(t_0\)" style="height:0.838em;vertical-align:-0.168em">, CNT lasts from <img class="m" src="m/b386850c1de5df2fa8a977e34ab686b567623bd8.svg" alt="\(t_0+1\)" style="height:0.871em;vertical-align:-0.165em"> to <img class="m" src="m/452384d20591f9babee12798223fc6619d231784.svg" alt="\(t_0+k\)" style="height:0.925em;vertical-align:-0.167em"> (it sees <img class="m" src="m/2519ccd81a819cbea17df50b53c9bb0c4d148e8b.svg" alt="\(L=0\)" style="height:0.749em;vertical-align:-0.000em"> at <img class="m" src="m/452384d20591f9babee12798223fc6619d231784.svg" alt="\(t_0+k\)" style="height:0.925em;vertical-align:-0.167em">), so the counter is enabled for exactly <img class="m" src="m/ab474955bf3a453be6c3259db9214b4a610e4bf7.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> cycles and shows <img class="m" src="m/ab474955bf3a453be6c3259db9214b4a610e4bf7.svg" alt="\(k\)" style="height:0.761em;vertical-align:-0.000em"> in RDY at <img class="m" src="m/364bdbb8aa85e8d0d5b8ce1139250ed82eb7fe09.svg" alt="\(t_0+k+1\)" style="height:0.925em;vertical-align:-0.167em">. The one-cycle delay at the start and the one at the end cancel.
+</p>
+</div>
+</div>
+<div id="outline-container-org1862b30" class="outline-2">
+<h2 id="org1862b30">Picture</h2>
+<div class="outline-text-2" id="text-org1862b30">
+<figure class="fig"><img class="m" src="m/3e6f582e9c226125aa0811d755f360e02e1cea4d.svg" alt="figure" style="width:21.097em"><figcaption><span class="fl">Figure 1.</span> A recurring controller pattern: IDLE initialises, CNT counts while enabled, RDY signals completion, with transitions on the input <img class="m" src="m/c6306f7556c20ed611b57417e4530ef85873290c.svg" alt="\(L\)" style="height:0.749em;vertical-align:-0.000em">.</figcaption></figure>
+<p>
+Moore outputs written inside the states; RDY returns to IDLE unconditionally.
+</p>
+</div>
+</div>
+<div id="outline-container-orgca72aab" class="outline-2">
+<h2 id="orgca72aab">Intuition</h2>
+<div class="outline-text-2" id="text-orgca72aab">
+<p>
+Let the datapath count and wait; let the state machine only decide when to start, stop and look.
+</p>
+</div>
+</div>
+<div id="outline-container-orgcfc665a" class="outline-2">
+<h2 id="orgcfc665a">Pitfall</h2>
+<div class="outline-text-2" id="text-orgcfc665a">
+<p>
+A Moore machine samples its inputs once per cycle: a signal must last longer than a clock period to be seen with certainty, and the reaction comes one cycle after it. Inputs not synchronous with the clock must be <a href="critical-races.html">synchronized</a> before any of these patterns can rely on them.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="counters.html"><span>← previous</span>Synchronous counters</a><a rel="next" href="rtl-design.html"><span>next →</span>The RTL design method: datapath and control unit</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--sequential.pdf" title="PDF manual">Sequential</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The contraction mapping principle · Mathematics</title>
+<meta name="description" content="One theorem, proved once, in a complete metric space, and then spent three times: on the existence and uniqueness of solutions of a differential equation, on the inverse function theorem, and on the implicit function theorem. What it says is that a map which shrinks distances by a fixed factor has …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-contraction-mapping-principle.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The contraction mapping principle · Mathematics">
+<meta property="og:description" content="One theorem, proved once, in a complete metric space, and then spent three times: on the existence and uniqueness of solutions of a differential equation, on the inverse function theorem, and on the implicit function theorem. What it says is that a map which shrinks distances by a fixed factor has …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-contraction-mapping-principle.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--general-topology">General Topology</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Analysis · General Topology</p>
+<h1>The contraction mapping principle</h1>
+<p class="summary">One theorem, proved once, in a complete metric space, and then spent three times: on the existence and uniqueness of solutions of a differential equation, on the inverse function theorem, and on the implicit function theorem. What it says is that a map which shrinks distances by a fixed factor has exactly one fixed point, and that the point is the limit of iterating the map from anywhere at all &#x2013; so the proof is also an algorithm.</p>
+<p class="rel"><span>needs</span> <a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a>, <a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></p>
+<p class="rel"><span>unlocks</span> <a href="the-inverse-and-implicit-function-theorems.html">The inverse and implicit function theorems</a>, <a href="existence-and-uniqueness-for-ordinary-differential-equations.html">Existence and uniqueness for ordinary differential equations</a></p>
+<p class="rel"><span>mentioned in</span> <a href="mathematics.html">Mathematics</a>, <a href="general-topology.html">General topology</a></p>
+<details class="path"><summary>Learning path: 9 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="series-and-convergence-of-the-partial-sums.html">Series and convergence of the partial sums</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org0fc7f12">
+<p>
+A map <img class="m" src="m/b4347007390ca8025b5e19797cdb24ef334030f5.svg" alt="\(T \colon X \to X\)" style="height:0.749em;vertical-align:-0.000em"> on a metric space is a <i>contraction</i> if
+there is <img class="m" src="m/e0358355d32c7574ab5de8f3087bea4cca64fcff.svg" alt="\(k &lt; 1\)" style="height:0.804em;vertical-align:-0.040em"> with <img class="m" src="m/179ebafc6faba12c36935f3471c6e6d2f062590b.svg" alt="\(d(Tx, Ty) \le k \, d(x,y)\)" style="height:1.096em;vertical-align:-0.274em"> for all
+<img class="m" src="m/519a7e90017c2e6f2d458f05acd1ce0b5df7af4b.svg" alt="\(x, y \in X\)" style="height:0.962em;vertical-align:-0.212em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org111149f">
+<p>
+A contraction on a non-empty complete metric space has exactly one
+fixed point, and for every <img class="m" src="m/4f8246e7705a9c0df96e9d12bf2c596179c4d261.svg" alt="\(x_{0}\)" style="height:0.636em;vertical-align:-0.165em"> the iterates
+<img class="m" src="m/58506ce9c414e3476ef5b6658e5607f81f56c694.svg" alt="\(x_{n+1} = T x_{n}\)" style="height:1.005em;vertical-align:-0.251em"> converge to it.
+</p>
+
+</div>
+
+<div class="proof" id="orga7fa6b1">
+<p>
+Fix <img class="m" src="m/4f8246e7705a9c0df96e9d12bf2c596179c4d261.svg" alt="\(x_{0}\)" style="height:0.636em;vertical-align:-0.165em"> and put <img class="m" src="m/b310a9072f09b58e4c12cec0cfa4ab3a40cb2f83.svg" alt="\(x_{n+1} = Tx_{n}\)" style="height:1.005em;vertical-align:-0.251em">. By induction
+<img class="m" src="m/7fb1b3163cdca3e8a3dd336dd0172f3cba1bf189.svg" alt="\(d(x_{n+1}, x_{n}) \le k^{n} d(x_{1}, x_{0})\)" style="height:1.096em;vertical-align:-0.274em">, so for <img class="m" src="m/1f46581864565efe713573419ee62c02eb8e586e.svg" alt="\(m &gt; n\)" style="height:0.634em;vertical-align:-0.044em"> the
+triangle inequality and the geometric series give
+<div class="mb"><img class="m" src="m/d75a77287569d5afd73dfa5dc3b1933c1d0fb0b1.svg" alt="\[ d(x_{m}, x_{n}) \le \sum_{j=n}^{m-1} k^{j} d(x_{1}, x_{0}) \le \frac{k^{n}}{1-k} d(x_{1}, x_{0}). \]" style="width:22.014em"></div>
+Since <img class="m" src="m/e0358355d32c7574ab5de8f3087bea4cca64fcff.svg" alt="\(k &lt; 1\)" style="height:0.804em;vertical-align:-0.040em"> this tends to <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">, so <img class="m" src="m/b7cb63ac317cdbd63367cfc4bd393717cb0e6e21.svg" alt="\((x_{n})\)" style="height:1.096em;vertical-align:-0.274em"> is Cauchy and, by
+completeness, converges to some <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">. A contraction is continuous
+(take <img class="m" src="m/de4b7497712791e7fe220f7939a5deace90ace44.svg" alt="\(\delta = \eps\)" style="height:0.761em;vertical-align:-0.000em">), so <img class="m" src="m/24901a7e31987ca13432258c6025d9474e407ef3.svg" alt="\(Tx = \lim T x_{n} = \lim x_{n+1} = x\)" style="height:1.017em;vertical-align:-0.254em">.
+If <img class="m" src="m/15b6630c909fbd8ee1080d2f6274d61a9c500d2e.svg" alt="\(Tx = x\)" style="height:0.749em;vertical-align:-0.000em"> and <img class="m" src="m/82ef2fe26e2632aede8f4bef7ef35ef7e08d2020.svg" alt="\(Ty = y\)" style="height:0.962em;vertical-align:-0.212em"> then
+<img class="m" src="m/8b606941dd1db9d25ad651f1faaa8b493a7f42c4.svg" alt="\(d(x,y) = d(Tx,Ty) \le k \, d(x,y)\)" style="height:1.096em;vertical-align:-0.274em">, which forces <img class="m" src="m/355c0ae5f210bba59d302ec157bdbbfbdfc3c2dc.svg" alt="\(d(x,y) = 0\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="remark" id="org607849c">
+<p>
+Completeness is where the fixed point comes from and is not removable:
+on <img class="m" src="m/83349875d2551503beeb2426480fe7a04427bf34.svg" alt="\(\Q\)" style="height:0.938em;vertical-align:-0.178em"> a contraction can have its fixed point at an irrational and
+the iterates converge to nothing in the space. That is the same
+observation as the Cauchy criterion in the first course, and it is why
+this theorem belongs to metric spaces rather than to <img class="m" src="m/b33f2adf960aeb722adafbfc0479a5f92fd75b05.svg" alt="\(\R^{n}\)" style="height:0.755em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="corollary" id="org2b0ad64">
+<p>
+With the notation above, <img class="m" src="m/7f95a3116dc377e82ac916ac9743b32cff639702.svg" alt="\(d(x_{n}, x) \le \frac{k^{n}}{1-k} d(x_{1}, x_{0})\)" style="height:1.467em;vertical-align:-0.470em">.
+</p>
+
+</div>
+
+<div class="proof" id="org12b5ca5">
+<p>
+Let <img class="m" src="m/0f754ac9cb134dc1801e16f28669efa395b2f4aa.svg" alt="\(m \to \infty\)" style="height:0.472em;vertical-align:-0.000em"> in the displayed estimate of the proof, using that
+<img class="m" src="m/e2cee3486cdf1b3b7f8ba0cbe80952221f2b0f5d.svg" alt="\(d(\cdot, x_{m}) \to d(\cdot, x)\)" style="height:1.096em;vertical-align:-0.274em"> by continuity of the distance.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="metric-spaces-and-completeness.html"><span>← previous</span>Metric spaces and completeness</a><a rel="next" href="topology.html"><span>next →</span>Topology</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--general-topology.pdf" title="PDF manual">General Topology</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

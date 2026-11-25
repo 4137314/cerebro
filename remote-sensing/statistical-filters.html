@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Statistical (rank) filters · Remote Sensing</title>
+<meta name="description" content="Nonlinear filters replace each pixel with a statistic of its window — median, mode, minimum, maximum, variance; the median removes impulse noise while preserving edges, the mode cleans classification maps, variance and range measure local texture.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/statistical-filters.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Statistical (rank) filters · Remote Sensing">
+<meta property="og:description" content="Nonlinear filters replace each pixel with a statistic of its window — median, mode, minimum, maximum, variance; the median removes impulse noise while preserving edges, the mode cleans classification maps, variance and range measure local texture.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/statistical-filters.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-processing">Processing</a> / <a rel="up" href="index.html#a-processing--filtering">Filtering</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">method · Processing · Filtering</p>
+<h1>Statistical (rank) filters</h1>
+<p class="summary">Nonlinear filters replace each pixel with a statistic of its window — median, mode, minimum, maximum, variance; the median removes impulse noise while preserving edges, the mode cleans classification maps, variance and range measure local texture.</p>
+<p class="rel"><span>needs</span> <a href="moving-window-filters.html">Moving-window (convolution) filters</a></p>
+<p class="rel"><span>unlocks</span> <a href="texture-features.html">Texture features</a>, <a href="morphological-operations.html">Mathematical morphology</a></p>
+<p class="rel"><span>see also</span> <a href="speckle-filtering.html">Speckle reduction</a>, <a href="texture-features.html">Texture features</a>, <a href="morphological-operations.html">Mathematical morphology</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="acquisition-platforms.html">Acquisition platforms</a></li><li><a href="satellite-orbits.html">Satellite orbits</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="scanner-geometry.html">Scanner geometry: IFOV, GIFOV, swath</a></li><li><a href="digital-number.html">Detector, quantization and digital numbers</a></li><li><a href="digital-image.html">Digital images</a></li><li><a href="moving-window-filters.html">Moving-window (convolution) filters</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org717dc87" class="outline-2">
+<h2 id="org717dc87">Method</h2>
+<div class="outline-text-2" id="text-org717dc87">
+<p>
+For each pixel, sort the <img class="m" src="m/6b809e9622699ee3be531912c1fe98bee17ecc35.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> values of the window <img class="m" src="m/3960eb10260a52531ae861d552b8fbbc4263f3c4.svg" alt="\(W(y,x)\)" style="height:1.096em;vertical-align:-0.274em"> and output
+</p>
+<ul class="org-ul">
+<li><b><a href="image-statistics.html">median</a></b>: middle value; an isolated outlier never wins, and a straight edge keeps its position;</li>
+<li><b>mode</b>: most frequent value; used on label maps (majority filter) to remove isolated misclassified pixels;</li>
+<li><b>min / max</b>: erosion / <a href="morphological-operations.html">dilation</a> in grey-level morphology;</li>
+<li><b>variance, range, entropy</b>: local texture measures (see <a href="texture-features.html">texture</a>).</li>
+</ul>
+<p>
+Cost: <img class="m" src="m/03667b5a9689bdbb3831f1356404e840fde05863.svg" alt="\(O(K\log K)\)" style="height:1.096em;vertical-align:-0.274em"> per pixel by sorting, <img class="m" src="m/399d6b379ad2c5dff40b4b5ee686d72c276b40aa.svg" alt="\(O(K)\)" style="height:1.096em;vertical-align:-0.274em"> with histogram updates.
+</p>
+</div>
+</div>
+<div id="outline-container-org2d7e8ce" class="outline-2">
+<h2 id="org2d7e8ce">Example</h2>
+<div class="outline-text-2" id="text-org2d7e8ce">
+<figure class="listing lang-python"><figcaption><span class="lang">Python</span></figcaption><pre class="src"><code><span class="v">med</span> = ndimage.median_filter(band, size=3)
+<span class="v">vote</span> = <span class="k">lambda</span> w: np.bincount(w.astype(<span class="b">int</span>)).argmax()
+<span class="v">majority</span> = ndimage.generic_filter(labels, vote, size=3)</code></pre></figure>
+<p>
+A <img class="m" src="m/50db2fc2c0f28b7a9f0286b8c62522b48a5bd284.svg" alt="\(3\times3\)" style="height:0.798em;vertical-align:-0.088em"> window with values <img class="m" src="m/4d0964287f1e83bae813b91de17bfbc3abf8dc4c.svg" alt="\(\{10,11,12,10,250,11,12,10,11\}\)" style="height:1.096em;vertical-align:-0.274em">: mean 37 (outlier spread around), median 11 (outlier removed).
+</p>
+</div>
+</div>
+<div id="outline-container-org621a3b3" class="outline-2">
+<h2 id="org621a3b3">Intuition</h2>
+<div class="outline-text-2" id="text-org621a3b3">
+<p>
+Ranking makes a filter robust: a few crazy values cannot move the middle of a sorted list.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb9dc9d7" class="outline-2">
+<h2 id="orgb9dc9d7">Pitfall</h2>
+<div class="outline-text-2" id="text-orgb9dc9d7">
+<p>
+The median erodes thin lines and sharp corners narrower than half the window: roads one pixel wide disappear with a <img class="m" src="m/8faacd99cf1b6074e9c8a964256d663a6dc18b13.svg" alt="\(5\times5\)" style="height:0.798em;vertical-align:-0.088em"> median.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="sampling-aliasing.html"><span>← previous</span>Sampling theorem and aliasing</a><a rel="next" href="texture-features.html"><span>next →</span>Texture features</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/processing--filtering.pdf" title="PDF manual">Filtering</a> · <a class="pdf" href="pdf/processing.pdf" title="PDF manual">Processing</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

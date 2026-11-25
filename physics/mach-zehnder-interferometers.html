@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mach–Zehnder interferometers on chip · Physics</title>
+<meta name="description" content="Split, delay by \Delta L, recombine: T=\cos^2\!\left(\frac{\beta_1L_1-\beta_2L_2}{2}\right) for ideal 3 dB splitters; an unbalanced MZI is a periodic filter with \mathrm{FSR}=\frac{\lambda^2}{n_g\Delta L}; a phase shifter in one arm makes a switch or modulator, and meshes of MZIs implement any unit…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/mach-zehnder-interferometers.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Mach–Zehnder interferometers on chip · Physics">
+<meta property="og:description" content="Split, delay by \Delta L, recombine: T=\cos^2\!\left(\frac{\beta_1L_1-\beta_2L_2}{2}\right) for ideal 3 dB splitters; an unbalanced MZI is a periodic filter with \mathrm{FSR}=\frac{\lambda^2}{n_g\Delta L}; a phase shifter in one arm makes a switch or modulator, and meshes of MZIs implement any unit…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/mach-zehnder-interferometers.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-photonics">Photonics</a> / <a rel="up" href="index.html#a-photonics--silicon-photonics">Silicon Photonics</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Photonics · Silicon Photonics</p>
+<h1>Mach–Zehnder interferometers on chip</h1>
+<p class="summary">Split, delay by <img class="m" src="m/1f7b675e1c5cd19efbad093710320a12f1290eb4.svg" alt="\(\Delta L\)" style="height:0.749em;vertical-align:-0.000em">, recombine: <img class="m" src="m/c664bad183de857a8d2ae3d359bc3e0afeb664b3.svg" alt="\(T=\cos^2\!\left(\frac{\beta_1L_1-\beta_2L_2}{2}\right)\)" style="height:1.973em;vertical-align:-0.710em"> for ideal 3 dB splitters; an unbalanced MZI is a periodic filter with <img class="m" src="m/b51597833057333ad0b1c016c022cfa9fae1c989.svg" alt="\(\mathrm{FSR}=\frac{\lambda^2}{n_g\Delta L}\)" style="height:1.709em;vertical-align:-0.598em">; a phase shifter in one arm makes a switch or modulator, and meshes of MZIs implement any unitary matrix.</p>
+<p class="rel"><span>needs</span> <a href="directional-couplers.html">Directional couplers and coupled-mode theory</a>, <a href="interference-and-fabry-perot.html">Interference and the Fabry–Perot resonator</a></p>
+<p class="rel"><span>unlocks</span> <a href="silicon-modulators.html">Silicon modulators: plasma dispersion</a></p>
+<p class="rel"><span>see also</span> <a href="electro-optic-modulators.html">Electro-optic modulators</a>, <a href="silicon-modulators.html">Silicon modulators: plasma dispersion</a>, <a href="ring-resonators.html">Ring resonators</a></p>
+<p class="rel"><span>mentioned in</span> <a href="beam-splitter-and-hong-ou-mandel.html">The quantum beam splitter and Hong–Ou–Mandel interference</a></p>
+<details class="path"><summary>Learning path: 18 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="poynting-theorem.html">Poynting's theorem and electromagnetic power</a></li><li><a href="plane-waves-in-media.html">Plane waves in lossless and lossy media</a></li><li><a href="optoelectronics.html">Optoelectronics: the map of the subject</a></li><li><a href="dispersion-and-group-velocity.html">Dispersion, group velocity and group index</a></li><li><a href="reflection-and-transmission-at-interfaces.html">Reflection and transmission: Snell, Fresnel, Brewster and total internal reflection</a></li><li><a href="gaussian-beams.html">Gaussian beams</a></li><li><a href="interference-and-fabry-perot.html">Interference and the Fabry–Perot resonator</a></li><li><a href="dielectric-slab-waveguide.html">The dielectric slab waveguide</a></li><li><a href="photonics.html">Integrated photonics: the map of the subject</a></li><li><a href="effective-index-method.html">The effective index method</a></li><li><a href="silicon-photonic-waveguides.html">Silicon photonic waveguides</a></li><li><a href="directional-couplers.html">Directional couplers and coupled-mode theory</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org845c62e" class="outline-2">
+<h2 id="org845c62e">Derivation</h2>
+<div class="outline-text-2" id="text-org845c62e">
+<p>
+Input field <img class="m" src="m/1f93bf111f62461bc46e4de4e40499ebf9f3ba6e.svg" alt="\(E_0\)" style="height:0.913em;vertical-align:-0.164em"> → two arms <img class="m" src="m/fd15bb6b926390c2420ee4f09401acdff54b6a4b.svg" alt="\(E_0/\sqrt2\)" style="height:1.268em;vertical-align:-0.279em"> each → phases <img class="m" src="m/67d8c559e5eb67836a8cae81a4af7dfcfcacab39.svg" alt="\(\phi_i=\beta L_i\)" style="height:0.974em;vertical-align:-0.214em"> and losses <img class="m" src="m/925142b110b6a7ba3e64b1841fe4f0ce820f0d80.svg" alt="\(e^{-\alpha L_i/2}\)" style="height:0.973em;vertical-align:-0.000em"> → combiner: <img class="m" src="m/780ae2c215bb7c7755c8a5c14acf322846c56ab0.svg" alt="\(E_{out}=\frac{E_0}2\left(e^{-j\phi_1}+e^{-j\phi_2}\right)\)" style="height:1.357em;vertical-align:-0.380em">, so <img class="m" src="m/a4b839a0a90b7a86b77b638efb8dd10768c456a0.svg" alt="\(\frac{I}{I_0}=\cos^2\frac{\Delta\phi}{2}=\frac12(1+\cos\Delta\phi)\)" style="height:1.509em;vertical-align:-0.483em"> <span class="cite">(<a class="ref" href="references.html#ref-zehnder1891" data-full="L. Zehnder, “Ein neuer Interferenzrefraktor”, Zeitschrift für Instrumentenkunde 11, 275–285 (1891)." aria-label="L. Zehnder, “Ein neuer Interferenzrefraktor”, Zeitschrift für Instrumentenkunde 11, 275–285 (1891).">Zehnder 1891</a>)</span>. For an unbalanced MZI, <img class="m" src="m/9001870ca8a95e016e57e46b55b0711363b1dd6e.svg" alt="\(\Delta\phi=\beta\Delta L\)" style="height:0.974em;vertical-align:-0.214em">; neighbouring peaks differ by <img class="m" src="m/b21cab780d4988863d15376ce5a86f8cb1eb1447.svg" alt="\(\Delta\beta\Delta L=2\pi\)" style="height:0.974em;vertical-align:-0.214em">: <img class="m" src="m/3ca4e91acaf5c7f56862d803e00c6f4f0050c89f.svg" alt="\(\frac{\dd\beta}{\dd\lambda}=-\frac{2\pi n_g}{\lambda^2}\Rightarrow\mathrm{FSR}=\frac{\lambda^2}{n_g\Delta L}\)" style="height:1.709em;vertical-align:-0.598em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org204299c" class="outline-2">
+<h2 id="org204299c">Phase shifters</h2>
+<div class="outline-text-2" id="text-org204299c">
+<p>
+Thermo-optic: <img class="m" src="m/c55adf1f486e901ce4048ab7b9fb6ec9830abc1c.svg" alt="\(\dd n/\dd T=1.8\times10^{-4}\)" style="height:1.166em;vertical-align:-0.268em"> K<img class="m" src="m/6174f00c281084cf5eb1be35c3830ee14666a0c8.svg" alt="\(^{-1}\)" style="height:0.892em;vertical-align:-0.000em"> in Si; <img class="m" src="m/6ba8cf9ba286d26abb2e4c7f5ec9bc7ba671e475.svg" alt="\(\pi\)" style="height:0.472em;vertical-align:-0.000em"> shift needs <img class="m" src="m/ee3ddeef877fe0d12588645d6ae5314483374fdc.svg" alt="\(\Delta T\,L=\lambda/(2\,\dd n/\dd T)=4.3\)" style="height:1.096em;vertical-align:-0.274em"> K·mm (≈ 20 mW heaters, µs speed). Carrier-based for GHz (<a href="silicon-modulators.html">silicon modulators</a>).
+</p>
+</div>
+</div>
+<div id="outline-container-org485e97a" class="outline-2">
+<h2 id="org485e97a">Worked example</h2>
+<div class="outline-text-2" id="text-org485e97a">
+<p>
+Demultiplex two channels 0.8 nm apart (100 GHz grid) at 1550 nm: need FSR = 1.6 nm → <img class="m" src="m/438b29f5633da54fbc4a0a8c5955ff6bb330e982.svg" alt="\(\Delta L=\frac{1.55^2}{4.2\cdot1.6\times10^{-3}}\)" style="height:1.585em;vertical-align:-0.475em"> µm <img class="m" src="m/82f4ebc26d2ad169ae16434c7c7fcd6a9956d493.svg" alt="\(=357\)" style="height:0.706em;vertical-align:-0.000em"> µm. Extinction ratio is limited by splitter imbalance: <img class="m" src="m/6823dd40fd6e71fa849ecce51e02b7eef4e66c3c.svg" alt="\(\mathrm{ER}=\left(\frac{1+r}{1-r}\right)^2\)" style="height:2.196em;vertical-align:-0.703em"> with <img class="m" src="m/c4746592dc70211ead899718883f7b978f7e1c75.svg" alt="\(r\)" style="height:0.472em;vertical-align:-0.000em"> the amplitude ratio; a 52:48 split gives ER ≈ 34 dB.
+</p>
+</div>
+</div>
+<div id="outline-container-orged89892" class="outline-2">
+<h2 id="orged89892">Engineering applications</h2>
+<div class="outline-text-2" id="text-orged89892">
+<p>
+Modulators (Si, LiNbO<img class="m" src="m/ab13e93df32d6d5a43c753114af1438e702c1075.svg" alt="\(_3\)" style="height:0.494em;vertical-align:-0.163em">), optical switches and routers, wavelength (de)multiplexers and interleavers, sensors (one arm exposed), programmable photonics and optical neural networks (Reck/Clements MZI meshes), quantum photonic circuits.
+</p>
+</div>
+</div>
+<div id="outline-container-orga2090ca" class="outline-2">
+<h2 id="orga2090ca">Pitfall</h2>
+<div class="outline-text-2" id="text-orga2090ca">
+<p>
+Path imbalance converts laser phase noise into intensity noise when <img class="m" src="m/1f7b675e1c5cd19efbad093710320a12f1290eb4.svg" alt="\(\Delta L\)" style="height:0.749em;vertical-align:-0.000em"> is comparable to the coherence length (<a href="coherence-of-light.html">coherence</a>); use balanced MZIs for modulators.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="grating-couplers.html"><span>← previous</span>Grating couplers</a><a rel="next" href="silicon-modulators.html"><span>next →</span>Silicon modulators: plasma dispersion</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/photonics--silicon-photonics.pdf" title="PDF manual">Silicon Photonics</a> · <a class="pdf" href="pdf/photonics.pdf" title="PDF manual">Photonics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

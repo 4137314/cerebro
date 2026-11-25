@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monotonicity and the sign of the derivative · Mathematics</title>
+<meta name="description" content="The derivative is defined pointwise and monotonicity is a statement about pairs of points, so nothing connects them locally. The mean value theorem is the bridge, and it is the only one: every &quot;the function increases because the derivative is positive&quot; argument in the course is this corollary, and …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/monotonicity-and-the-sign-of-the-derivative.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Monotonicity and the sign of the derivative · Mathematics">
+<meta property="og:description" content="The derivative is defined pointwise and monotonicity is a statement about pairs of points, so nothing connects them locally. The mean value theorem is the bridge, and it is the only one: every &quot;the function increases because the derivative is positive&quot; argument in the course is this corollary, and …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/monotonicity-and-the-sign-of-the-derivative.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-analysis">Analysis</a> / <a rel="up" href="index.html#a-analysis--real-analysis">Real Analysis</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Analysis · Real Analysis</p>
+<h1>Monotonicity and the sign of the derivative</h1>
+<p class="summary">The derivative is defined pointwise and monotonicity is a statement about pairs of points, so nothing connects them locally. The mean value theorem is the bridge, and it is the only one: every "the function increases because the derivative is positive" argument in the course is this corollary, and the asymmetry in it &#x2013; the strict version goes one way only &#x2013; is what the standard mistake gets wrong.</p>
+<p class="rel"><span>needs</span> <a href="the-mean-value-theorem.html">The mean value theorem</a></p>
+<p class="rel"><span>unlocks</span> <a href="the-legendre-transform.html">The Legendre transform</a></p>
+<p class="rel"><span>mentioned in</span> <a href="real-analysis.html">Real analysis</a></p>
+<details class="path"><summary>Learning path: 11 notes lead here, in study order</summary><ol><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="continuous-functions-on-a-compact-interval.html">Continuous functions on a compact interval</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-derivative.html">The derivative</a></li><li><a href="the-mean-value-theorem.html">The mean value theorem</a></li></ol></details>
+</header>
+<main class="note">
+<div class="corollary" id="org9955bfa">
+<p>
+Let <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> be continuous on an interval <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> and differentiable on its
+interior. If <img class="m" src="m/d0a92799af60f64100d1d8ff631eca23f8107100.svg" alt="\(f' \ge 0\)" style="height:1.037em;vertical-align:-0.218em"> throughout the interior then <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is
+increasing on <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em">; if <img class="m" src="m/65322a16e6d57e01c39b09104021e062bf3644d3.svg" alt="\(f' \le 0\)" style="height:1.037em;vertical-align:-0.218em"> it is decreasing; and <img class="m" src="m/1f79e3908f78b3ad9828ac1cf63e4b7a68ade608.svg" alt="\(f' &gt; 0\)" style="height:1.037em;vertical-align:-0.218em">
+makes <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> strictly increasing.
+</p>
+
+</div>
+
+<div class="proof" id="orga7e01f0">
+<p>
+Let <img class="m" src="m/cd381fb892d8b86197abf6604b87376f8fee3a18.svg" alt="\(x &lt; y\)" style="height:0.804em;vertical-align:-0.217em"> in <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em">. The mean value theorem on <img class="m" src="m/3340d0b0aa4ac2520adc0f98255cac2026207738.svg" alt="\([x,y]\)" style="height:1.096em;vertical-align:-0.274em"> gives
+<img class="m" src="m/c1ed744a9e7caddf5d5446842c92bccb3a7aaeb1.svg" alt="\(c \in (x,y)\)" style="height:1.096em;vertical-align:-0.274em"> with <img class="m" src="m/fde93fbb84ead13947f3d3090f5f59015dee1cba.svg" alt="\(f(y) - f(x) = f'(c)(y - x)\)" style="height:1.098em;vertical-align:-0.274em">. The factor
+<img class="m" src="m/0d88b825d28e012721c2a8ddbfde0ea46bec98d2.svg" alt="\(y - x\)" style="height:0.852em;vertical-align:-0.213em"> is positive, so the sign of <img class="m" src="m/4a877d59133fbc176509019bb587f02824b7c1af.svg" alt="\(f(y) - f(x)\)" style="height:1.096em;vertical-align:-0.274em"> is the sign of
+<img class="m" src="m/321f6b0c4671bbf2711a5148dd1ac2b39663e586.svg" alt="\(f'(c)\)" style="height:1.098em;vertical-align:-0.274em">: non-negative, non-positive or strictly positive according to
+the hypothesis.
+</p>
+
+</div>
+
+<div class="proposition" id="orgafc729b">
+<p>
+A differentiable strictly increasing function satisfies <img class="m" src="m/d0a92799af60f64100d1d8ff631eca23f8107100.svg" alt="\(f' \ge 0\)" style="height:1.037em;vertical-align:-0.218em">,
+and this cannot be improved to <img class="m" src="m/1f79e3908f78b3ad9828ac1cf63e4b7a68ade608.svg" alt="\(f' &gt; 0\)" style="height:1.037em;vertical-align:-0.218em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgf459b2a">
+<p>
+For <img class="m" src="m/a850844b405d688a7f175705e4c94c8cc5b2067a.svg" alt="\(h &gt; 0\)" style="height:0.804em;vertical-align:-0.040em"> the quotient <img class="m" src="m/050861cdaafcd76bf6c49853c8630ddd85a8c86d.svg" alt="\((f(c+h) - f(c))/h\)" style="height:1.096em;vertical-align:-0.274em"> is positive and for
+<img class="m" src="m/127f8d26036aa1987dbac526be0a534e46c1d370.svg" alt="\(h &lt; 0\)" style="height:0.804em;vertical-align:-0.040em"> it is again positive, so its limit <img class="m" src="m/321f6b0c4671bbf2711a5148dd1ac2b39663e586.svg" alt="\(f'(c)\)" style="height:1.098em;vertical-align:-0.274em"> is
+non-negative; a limit of positive numbers need not be positive, which
+is exactly the loss. That the loss is real is shown by <img class="m" src="m/7e33cad3564ab06e9cbc0974aade9d5175f3690d.svg" alt="\(f(x) = x^{3}\)" style="height:1.166em;vertical-align:-0.268em">,
+strictly increasing on <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em"> with <img class="m" src="m/b062792bc7035f76f845685746c4656fbb741f04.svg" alt="\(f'(0) = 0\)" style="height:1.098em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org64ac734">
+<p>
+Let <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> be continuous at <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em"> and differentiable on
+<img class="m" src="m/63329c40663e044f100921710c66bbf1ac6f98f6.svg" alt="\((c - \delta, c) \cup (c, c + \delta)\)" style="height:1.096em;vertical-align:-0.274em"> for some <img class="m" src="m/2834db4da57323bf6f47d0a640028cc90f572412.svg" alt="\(\delta &gt; 0\)" style="height:0.804em;vertical-align:-0.040em">. If
+<img class="m" src="m/1f79e3908f78b3ad9828ac1cf63e4b7a68ade608.svg" alt="\(f' &gt; 0\)" style="height:1.037em;vertical-align:-0.218em"> on the left piece and <img class="m" src="m/01807808932543ba860fde870cc4bfcae1c29c8b.svg" alt="\(f' &lt; 0\)" style="height:1.037em;vertical-align:-0.218em"> on the right, then <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> has
+a local maximum at <img class="m" src="m/79f7b93951c4bc160ae5680fe029eaff17b65bf4.svg" alt="\(c\)" style="height:0.472em;vertical-align:-0.000em">; with the signs reversed, a local minimum.
+</p>
+
+</div>
+
+<div class="proof" id="org0668116">
+<p>
+On <img class="m" src="m/b383f7c847d2bdf9fa9ac27395dfdc34092c9890.svg" alt="\((c - \delta, c]\)" style="height:1.096em;vertical-align:-0.274em"> the function is continuous and has positive
+derivative on the interior, so it is increasing there by the corollary,
+giving <img class="m" src="m/369552b1df21f89e55fd25d39c6e6668cf4fa943.svg" alt="\(f(x) \le f(c)\)" style="height:1.096em;vertical-align:-0.274em"> for those <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em">. Symmetrically <img class="m" src="m/78243fc5c13fb45481dbf4cf9f66b719beb2162d.svg" alt="\(f\)" style="height:0.974em;vertical-align:-0.214em"> is
+decreasing on <img class="m" src="m/879ecfbd91aa34a6df5c23081197a64be2acd66d.svg" alt="\([c, c + \delta)\)" style="height:1.096em;vertical-align:-0.274em">, so <img class="m" src="m/369552b1df21f89e55fd25d39c6e6668cf4fa943.svg" alt="\(f(x) \le f(c)\)" style="height:1.096em;vertical-align:-0.274em"> there too.
+Hence <img class="m" src="m/2dd7d9d53090fc6d023c1fc6ad0281b0af33dca1.svg" alt="\(f(c)\)" style="height:1.096em;vertical-align:-0.274em"> is a maximum over the whole neighbourhood. The other
+case follows by applying this to <img class="m" src="m/260f963332ff7cc2fa4c5efa180922c4739a327e.svg" alt="\(-f\)" style="height:0.974em;vertical-align:-0.214em">.
+</p>
+
+</div>
+
+<div class="remark" id="org3bc82af">
+<p>
+Note which direction each statement runs. The interior extremum lemma
+says a local extremum at an interior differentiable point forces
+<img class="m" src="m/3d82e46bcd4ceeefd1bcfc53217c3f31f6efd15a.svg" alt="\(f'(c) = 0\)" style="height:1.098em;vertical-align:-0.274em">; it does <i>not</i> say a zero of <img class="m" src="m/fcd248f8faa113603c50440935779dfa8223591a.svg" alt="\(f'\)" style="height:1.037em;vertical-align:-0.218em"> is an extremum, and
+<img class="m" src="m/c4db70ba683d598f6bbb311020211d0e249bd077.svg" alt="\(x^{3}\)" style="height:0.892em;vertical-align:-0.000em"> at the origin is again the counterexample. The first
+derivative test above is the converse that is actually true, and it
+asks for the sign of <img class="m" src="m/fcd248f8faa113603c50440935779dfa8223591a.svg" alt="\(f'\)" style="height:1.037em;vertical-align:-0.218em"> on both sides rather than its value at the
+point.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="monotone-functions-are-integrable-and-the-mean-value-theorem-for-integrals.html"><span>← previous</span>Monotone functions are integrable, and the mean value theorem for integrals</a><a rel="next" href="the-ratio-and-root-tests.html"><span>next →</span>The ratio and root tests</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/analysis--real-analysis.pdf" title="PDF manual">Real Analysis</a> · <a class="pdf" href="pdf/analysis.pdf" title="PDF manual">Analysis</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

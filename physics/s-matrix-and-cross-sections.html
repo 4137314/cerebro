@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The S matrix, cross sections and decay rates · Physics</title>
+<meta name="description" content="S_{fi}=\delta_{fi}-i(2\pi)^4\delta^4(P_f-P_i)\prod(\text{norm.})\,\mathcal M_{fi}; squaring and dividing by flux and time gives \dd\sigma=\frac{|\mathcal M|^2}{4\sqrt{(p_1\cdot p_2)^2-m_1^2m_2^2}}\dd\Phi, and in the CM frame for 2\to2: \frac{\dd\sigma}{\dd\Omega}=\frac{1}{64\pi^2s}\frac{|\mathbf p_…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/s-matrix-and-cross-sections.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The S matrix, cross sections and decay rates · Physics">
+<meta property="og:description" content="S_{fi}=\delta_{fi}-i(2\pi)^4\delta^4(P_f-P_i)\prod(\text{norm.})\,\mathcal M_{fi}; squaring and dividing by flux and time gives \dd\sigma=\frac{|\mathcal M|^2}{4\sqrt{(p_1\cdot p_2)^2-m_1^2m_2^2}}\dd\Phi, and in the CM frame for 2\to2: \frac{\dd\sigma}{\dd\Omega}=\frac{1}{64\pi^2s}\frac{|\mathbf p_…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/s-matrix-and-cross-sections.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-quantum-electrodynamics">Quantum Electrodynamics</a> / <a rel="up" href="index.html#a-quantum-electrodynamics--scattering-theory">Scattering Theory</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Quantum Electrodynamics · Scattering Theory</p>
+<h1>The S matrix, cross sections and decay rates</h1>
+<p class="summary"><img class="m" src="m/89a4b4020ecfbfbf46769ff760effd6680268f3b.svg" alt="\(S_{fi}=\delta_{fi}-i(2\pi)^4\delta^4(P_f-P_i)\prod(\text{norm.})\,\mathcal M_{fi}\)" style="height:1.206em;vertical-align:-0.313em">; squaring and dividing by flux and time gives <img class="m" src="m/03b51322ecdac719714835b8badb545754a487e7.svg" alt="\(\dd\sigma=\frac{|\mathcal M|^2}{4\sqrt{(p_1\cdot p_2)^2-m_1^2m_2^2}}\dd\Phi\)" style="height:2.147em;vertical-align:-0.923em">, and in the CM frame for <img class="m" src="m/d20f235fd2f9741649a7fbe01ae8575bb5475dae.svg" alt="\(2\to2\)" style="height:0.706em;vertical-align:-0.000em">: <img class="m" src="m/46399c565acb0f317455c6ec9afedad8d5fc4fea.svg" alt="\(\frac{\dd\sigma}{\dd\Omega}=\frac{1}{64\pi^2s}\frac{|\mathbf p_f|}{|\mathbf p_i|}|\mathcal M|^2\)" style="height:1.708em;vertical-align:-0.564em">.</p>
+<p class="rel"><span>needs</span> <a href="green-functions-and-feynman-propagator.html">Green's functions and the Feynman propagator</a>, <a href="time-dependent-perturbation-and-golden-rule.html">Time-dependent perturbation theory and Fermi's golden rule</a></p>
+<p class="rel"><span>unlocks</span> <a href="feynman-rules-of-qed.html">Feynman rules of QED in momentum space</a>, <a href="coulomb-scattering-and-the-mott-formula.html">Coulomb scattering of electrons: the Mott formula</a></p>
+<p class="rel"><span>see also</span> <a href="coulomb-scattering-and-the-mott-formula.html">Coulomb scattering of electrons: the Mott formula</a>, <a href="scattering-and-born-approximation.html">Scattering theory and the Born approximation</a></p>
+<p class="rel"><span>mentioned in</span> <a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a>, <a href="quantum-electrodynamics.html">Quantum electrodynamics: the map of the subject</a>, <a href="scattering-parameters.html">Scattering parameters</a></p>
+<details class="path"><summary>Learning path: 22 notes lead here, in study order</summary><ol><li><a href="quantum-mechanics.html">Quantum mechanics: the map of the subject</a></li><li><a href="stern-gerlach-experiment.html">The Stern–Gerlach experiment</a></li><li><a href="kets-bras-and-operators.html">Kets, bras and operators</a></li><li><a href="observables-and-spectral-decomposition.html">Observables, eigenvalues and spectral decomposition</a></li><li><a href="measurement-postulate.html">Measurement: Born rule and collapse</a></li><li><a href="commutators-and-compatible-observables.html">Commutators and compatible observables</a></li><li><a href="uncertainty-relation.html">The uncertainty relation</a></li><li><a href="position-momentum-and-wave-functions.html">Position, momentum and wave functions</a></li><li><a href="schrodinger-equation-and-time-evolution.html">The Schrödinger equation and time evolution</a></li><li><a href="heisenberg-picture-and-ehrenfest-theorem.html">Heisenberg picture and Ehrenfest's theorem</a></li><li><a href="spin-precession-and-rabi-oscillations.html">Spin precession and Rabi oscillations</a></li><li><a href="angular-momentum-algebra.html">Angular momentum: algebra and spectrum</a></li><li><a href="quantum-harmonic-oscillator.html">The quantum harmonic oscillator</a></li><li><a href="time-independent-perturbation-theory.html">Time-independent perturbation theory</a></li><li><a href="time-dependent-perturbation-and-golden-rule.html">Time-dependent perturbation theory and Fermi's golden rule</a></li><li><a href="quantum-electrodynamics.html">Quantum electrodynamics: the map of the subject</a></li><li><a href="four-vectors-and-lorentz-transformations.html">Four-vectors, natural units and Mandelstam variables</a></li><li><a href="klein-gordon-equation.html">The Klein–Gordon equation</a></li><li><a href="dirac-equation.html">The Dirac equation</a></li><li><a href="free-dirac-solutions-and-antiparticles.html">Free Dirac solutions, completeness relations and antiparticles</a></li><li><a href="propagator-and-path-integral.html">The propagator and Feynman's path integral</a></li><li><a href="green-functions-and-feynman-propagator.html">Green's functions and the Feynman propagator</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org8790cad" class="outline-2">
+<h2 id="org8790cad">Definition</h2>
+<div class="outline-text-2" id="text-org8790cad">
+<p>
+<img class="m" src="m/1a56246840c4c679377df571288058a689df1148.svg" alt="\(S_{fi}=\lim_{t\to\infty}\braket{f|U_I(t,-t)|i}\)" style="height:1.135em;vertical-align:-0.318em">; unitarity <img class="m" src="m/794efb7365781e99315dbe7b6393e38612d36248.svg" alt="\(S^\dagger S=1\)" style="height:0.930em;vertical-align:-0.000em"> (probability conservation, optical theorem) <span class="cite">(<a class="ref" href="https://doi.org/10.1103/physrev.52.1107" data-full="J. A. Wheeler, “On the mathematical description of light nuclei by the method of resonating group structure”, Physical Review 52, 1107–1122 (1937)." aria-label="J. A. Wheeler, “On the mathematical description of light nuclei by the method of resonating group structure”, Physical Review 52, 1107–1122 (1937).">Wheeler 1937</a>; <a class="ref" href="https://doi.org/10.1007/bf01329800" data-full="W. Heisenberg, “Die „beobachtbaren Größen“ in der Theorie der Elementarteilchen”, Zeitschrift für Physik 120, 513–538 (1943)." aria-label="W. Heisenberg, “Die „beobachtbaren Größen“ in der Theorie der Elementarteilchen”, Zeitschrift für Physik 120, 513–538 (1943).">Heisenberg 1943</a>)</span>. Write <img class="m" src="m/493b375430d885b3d92603f4c1d50c666dc08ff1.svg" alt="\(S=1+iT\)" style="height:0.840em;vertical-align:-0.092em"> and extract energy–momentum conservation: <img class="m" src="m/bc01a59a9e25ce7ba0434a112a2e9308948a133b.svg" alt="\(\braket{f|iT|i}=(2\pi)^4\delta^4(\sum p_f-\sum p_i)\,i\mathcal M\)" style="height:1.206em;vertical-align:-0.313em">, with the invariant amplitude <img class="m" src="m/0d44f33a307de2d030cde78d2d520944d8b564d1.svg" alt="\(\mathcal M\)" style="height:0.749em;vertical-align:-0.000em"> given by <a href="feynman-rules-of-qed.html">Feynman rules</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org24382ec" class="outline-2">
+<h2 id="org24382ec">Derivation of the cross section</h2>
+<div class="outline-text-2" id="text-org24382ec">
+<p>
+Square: <img class="m" src="m/354e154afcf08bc0f90a61e485ca0cdc276e68cb.svg" alt="\([(2\pi)^4\delta^4]^2=(2\pi)^4\delta^4\cdot VT\)" style="height:1.166em;vertical-align:-0.268em">. Divide by time <img class="m" src="m/18b98a4b43095bc093e19b02089312514253ce4d.svg" alt="\(T\)" style="height:0.749em;vertical-align:-0.000em">, by the incident flux <img class="m" src="m/3a0302ad66925ef2ba875786433adf81b383f0fb.svg" alt="\(|\mathbf v_1-\mathbf v_2|/V\)" style="height:1.096em;vertical-align:-0.274em"> and by the target density <img class="m" src="m/a0af7aab4cb437843df56243afdf87ac1eeff001.svg" alt="\(1/V\)" style="height:1.096em;vertical-align:-0.274em">; with relativistic normalisation <img class="m" src="m/44b741fa75fa9ddbc05e4fb3b1061e66bd044905.svg" alt="\(2E\)" style="height:0.749em;vertical-align:-0.000em"> particles per volume:
+<div class="mb"><img class="m" src="m/8b76984f4085c7a2bd1c71cc38483d9905ee2f8b.svg" alt="\[ \dd\sigma=\frac{(2\pi)^4\delta^4(P_f-P_i)}{4\sqrt{(p_1\cdot p_2)^2-m_1^2m_2^2}}\,\overline{|\mathcal M|^2}\prod_f\frac{\dd^3p_f}{(2\pi)^32E_f}. \]" style="width:22.524em"></div>
+The flux factor is Lorentz invariant (<img class="m" src="m/056e408d02331b2202d38405abfa3408b57741cc.svg" alt="\(4E_1E_2|\mathbf v_1-\mathbf v_2|\)" style="height:1.096em;vertical-align:-0.274em"> in collinear frames). Decay rate: <img class="m" src="m/38750a5b3972f32046bac44eb8bb90dd59b76ecf.svg" alt="\(\dd\Gamma=\frac{1}{2M}\overline{|\mathcal M|^2}\dd\Phi\)" style="height:1.419em;vertical-align:-0.383em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgef8d7d6" class="outline-2">
+<h2 id="orgef8d7d6">Two-body phase space</h2>
+<div class="outline-text-2" id="text-orgef8d7d6">
+<p>
+In the CM frame, <img class="m" src="m/ad9962282ea7415854434213397669c378c9e99b.svg" alt="\(\int\dd\Phi_2=\frac{|\mathbf p_f|}{16\pi^2\sqrt s}\int\dd\Omega\)" style="height:1.734em;vertical-align:-0.590em">, so
+<div class="mb"><img class="m" src="m/cab793e41e8dccc40aa0f9387ac958fbd4c85b3b.svg" alt="\[ \left(\frac{\dd\sigma}{\dd\Omega}\right)_{CM}=\frac{1}{64\pi^2s}\frac{|\mathbf p_f|}{|\mathbf p_i|}\overline{|\mathcal M|^2}. \]" style="width:14.282em"></div>
+</p>
+</div>
+</div>
+<div id="outline-container-org6390e56" class="outline-2">
+<h2 id="org6390e56">Worked example</h2>
+<div class="outline-text-2" id="text-org6390e56">
+<p>
+<img class="m" src="m/b3e8e6925ae59e80c2b9b680f409d7e0d77c2196.svg" alt="\(e^+e^-\to\mu^+\mu^-\)" style="height:1.086em;vertical-align:-0.217em"> at high energy: <img class="m" src="m/f83bf7dc9a18dfb9e00fb7830912bcbc17b2c9cd.svg" alt="\(\overline{|\mathcal M|^2}=e^4(1+\cos^2\theta)\)" style="height:1.315em;vertical-align:-0.276em"> gives <img class="m" src="m/39da3389dac5a462a62251131376f5b94514c39c.svg" alt="\(\frac{\dd\sigma}{\dd\Omega}=\frac{\alpha^2}{4s}(1+\cos^2\theta)\)" style="height:1.493em;vertical-align:-0.373em">, <img class="m" src="m/ddfe57b4fc3c93504a2e7f0736ea4d226062e15e.svg" alt="\(\sigma=\frac{4\pi\alpha^2}{3s}=\frac{86.8\text{ nb}}{s/\mathrm{GeV}^2}\)" style="height:1.705em;vertical-align:-0.597em">. At <img class="m" src="m/7ba2fa19263be30345bebef426af9a7ab2f2da34.svg" alt="\(\sqrt s=10\)" style="height:1.140em;vertical-align:-0.262em"> GeV: 0.87 nb. Unit check with <img class="m" src="m/65d18010f4a11ce144be44335ac7ac5b6e4e914b.svg" alt="\(0.3894\)" style="height:0.706em;vertical-align:-0.000em"> mb GeV<img class="m" src="m/1fedd888fcc109f50d63a0fa69830ca428cd2637.svg" alt="\(^2\)" style="height:0.892em;vertical-align:-0.000em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org6b1f8fd" class="outline-2">
+<h2 id="org6b1f8fd">Engineering applications</h2>
+<div class="outline-text-2" id="text-org6b1f8fd">
+<p>
+Cross sections set detector rates (<img class="m" src="m/a733cded69e8874e8e9b548f4ec9b0213e26eb0a.svg" alt="\(R=\sigma\mathcal L\)" style="height:0.749em;vertical-align:-0.000em">), radiation shielding and dosimetry (attenuation <img class="m" src="m/9af094a1a5259b30453a60d9d068b6806e85b844.svg" alt="\(\mu=n\sigma\)" style="height:0.685em;vertical-align:-0.212em">), interaction lengths in calorimeters, and photon interaction probabilities in X-ray imaging.
+</p>
+</div>
+</div>
+<div id="outline-container-org4174266" class="outline-2">
+<h2 id="org4174266">Pitfall</h2>
+<div class="outline-text-2" id="text-org4174266">
+<p>
+Average over <b>initial</b> spins/polarisations (divide by their number), sum over <b>final</b> ones; and for identical final particles divide the total cross section by 2 (or integrate over half the solid angle).
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="green-functions-and-feynman-propagator.html"><span>← previous</span>Green's functions and the Feynman propagator</a><a rel="next" href="feynman-rules-of-qed.html"><span>next →</span>Feynman rules of QED in momentum space</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/quantum-electrodynamics--scattering-theory.pdf" title="PDF manual">Scattering Theory</a> · <a class="pdf" href="pdf/quantum-electrodynamics.pdf" title="PDF manual">Quantum Electrodynamics</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

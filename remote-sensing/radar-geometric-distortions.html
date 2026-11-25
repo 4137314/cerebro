@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foreshortening, layover and shadow · Remote Sensing</title>
+<meta name="description" content="Because a radar orders points by distance, relief distorts its images: slopes facing the radar appear compressed and bright (foreshortening), very steep ones have their top imaged before their foot (layover), and slopes facing away steeper than the beam receive no energy (shadow).">
+<link rel="canonical" href="https://4137314.github.io/cerebro/remote-sensing/radar-geometric-distortions.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Foreshortening, layover and shadow · Remote Sensing">
+<meta property="og:description" content="Because a radar orders points by distance, relief distorts its images: slopes facing the radar appear compressed and bright (foreshortening), very steep ones have their top imaged before their foot (layover), and slopes facing away steeper than the beam receive no energy (shadow).">
+<meta property="og:url" content="https://4137314.github.io/cerebro/remote-sensing/radar-geometric-distortions.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Remote Sensing</a> / <a href="index.html#d-acquisition">Acquisition</a> / <a rel="up" href="index.html#a-acquisition--radar">Radar</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Acquisition · Radar</p>
+<h1>Foreshortening, layover and shadow</h1>
+<p class="summary">Because a radar orders points by distance, relief distorts its images: slopes facing the radar appear compressed and bright (foreshortening), very steep ones have their top imaged before their foot (layover), and slopes facing away steeper than the beam receive no energy (shadow).</p>
+<p class="rel"><span>needs</span> <a href="side-looking-radar.html">Side-looking radar geometry</a></p>
+<p class="rel"><span>see also</span> <a href="geometric-correction.html">Geometric correction, geocoding and registration</a>, <a href="backscattering-coefficient.html">Backscattering coefficient</a></p>
+<details class="path"><summary>Learning path: 4 notes lead here, in study order</summary><ol><li><a href="remote-sensing-system.html">Remote sensing system</a></li><li><a href="passive-active-sensors.html">Passive and active sensors</a></li><li><a href="radar-equation.html">Radar principle and radar equation</a></li><li><a href="side-looking-radar.html">Side-looking radar geometry</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-orgcf6a30f" class="outline-2">
+<h2 id="orgcf6a30f">Definition</h2>
+<div class="outline-text-2" id="text-orgcf6a30f">
+<p>
+Let <img class="m" src="m/26a79d102cb1ce06fd629f701c75ae2cb8c4fd84.svg" alt="\(\alpha\)" style="height:0.472em;vertical-align:-0.000em"> be the terrain slope towards the radar and <img class="m" src="m/c8d9a433f30967c52095060bff5783652eb30ded.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em"> the <a href="backscattering-coefficient.html">incidence angle</a> on flat ground.
+</p>
+<ul class="org-ul">
+<li><b>Foreshortening</b> (<img class="m" src="m/bb1d00b7eebe8bdc1182a11e4841c2788a321133.svg" alt="\(0&lt;\alpha&lt;\theta\)" style="height:0.804em;vertical-align:-0.040em">): the slope facing the radar is mapped to fewer range cells than its ground length; energy from the whole slope is concentrated: bright, compressed.</li>
+<li><b>Layover</b> (<img class="m" src="m/769cc98e3f9d17af285c842e9ece5831c1f0bf3d.svg" alt="\(\alpha&gt;\theta\)" style="height:0.804em;vertical-align:-0.040em">): the top of the slope is closer to the radar than its foot, so it appears first: the slope is reversed and overlaps with other terrain.</li>
+<li><b>Shadow</b> (back slope steeper than <img class="m" src="m/329abd82a60c9d11729d9e36a969eb2bb3068677.svg" alt="\(90^\circ-\theta\)" style="height:0.852em;vertical-align:-0.094em">): no illumination, no signal: black areas, behind mountains and tall buildings.</li>
+</ul>
+<p>
+Small incidence angles (steep look) enhance foreshortening and layover; large ones enhance shadow.
+</p>
+</div>
+</div>
+<div id="outline-container-org4e0bd4d" class="outline-2">
+<h2 id="org4e0bd4d">Picture</h2>
+<div class="outline-text-2" id="text-org4e0bd4d">
+<figure class="fig"><img class="m" src="m/82546d4ce3b9aa9196dbd099de432b608a62e701.svg" alt="figure" style="width:36.214em"><figcaption><span class="fl">Figure 1.</span> Terrain distortions of side-looking radar, beam from the left: foreshortening of slopes facing the radar, layover when the top returns before the base, and shadow behind steep slopes.</figcaption></figure>
+</div>
+</div>
+<div id="outline-container-orgd626207" class="outline-2">
+<h2 id="orgd626207">Worked example</h2>
+<div class="outline-text-2" id="text-orgd626207">
+<p>
+Incidence angle on flat ground <img class="m" src="m/3ba825c9e57180f6375b4b9fd7ec4bd48329cc46.svg" alt="\(\theta=23^\circ\)" style="height:0.761em;vertical-align:-0.000em"> (ERS). A slope of 30° facing the radar exceeds <img class="m" src="m/c8d9a433f30967c52095060bff5783652eb30ded.svg" alt="\(\theta\)" style="height:0.761em;vertical-align:-0.000em">: layover — its top is imaged before its foot. A slope of 15° facing the radar: foreshortening, local incidence <img class="m" src="m/895611e7344e693e4c068bc7a0efc8b8e30e0c25.svg" alt="\(\theta-\alpha=8^\circ\)" style="height:0.852em;vertical-align:-0.094em">, very bright. A back slope steeper than <img class="m" src="m/f377a002e9b9f5720fe1aa1f676926acc780e4ba.svg" alt="\(90^\circ-23^\circ=67^\circ\)" style="height:0.846em;vertical-align:-0.093em"> is in shadow; with Sentinel-1 at <img class="m" src="m/076ea7bd571e66973e090da5d3d5310fe50999fb.svg" alt="\(\theta=40^\circ\)" style="height:0.761em;vertical-align:-0.000em"> layover needs slopes above 40° but shadow starts at 50°.
+</p>
+</div>
+</div>
+<div id="outline-container-org0aeacc0" class="outline-2">
+<h2 id="org0aeacc0">Intuition</h2>
+<div class="outline-text-2" id="text-org0aeacc0">
+<p>
+Mountains lean towards a radar, the opposite of an optical image where tall objects lean away from nadir.
+</p>
+</div>
+</div>
+<div id="outline-container-org09f28da" class="outline-2">
+<h2 id="org09f28da">Pitfall</h2>
+<div class="outline-text-2" id="text-org09f28da">
+<p>
+Layover and shadow areas carry no recoverable information: geometric correction with a DEM can place pixels correctly but cannot fill shadows or unfold layover.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="chirp-pulse-compression.html"><span>← previous</span>Chirp and pulse compression</a><a rel="next" href="radar-bands.html"><span>next →</span>Radar frequency bands</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/acquisition--radar.pdf" title="PDF manual">Radar</a> · <a class="pdf" href="pdf/acquisition.pdf" title="PDF manual">Acquisition</a> · <a class="pdf" href="pdf/remote-sensing.pdf" title="PDF manual">whole Remote Sensing</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

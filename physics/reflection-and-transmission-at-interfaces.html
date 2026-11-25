@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reflection and transmission: Snell, Fresnel, Brewster and total internal reflection · Physics</title>
+<meta name="description" content="Phase matching along the interface gives n_1\sin\theta_1=n_2\sin\theta_2; the boundary conditions give the Fresnel coefficients r_\perp=\frac{n_1\cos\theta_1-n_2\cos\theta_2}{n_1\cos\theta_1+n_2\cos\theta_2}, r_\parallel=\frac{n_2\cos\theta_1-n_1\cos\theta_2}{n_2\cos\theta_1+n_1\cos\theta_2}; r_\pa…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/physics/reflection-and-transmission-at-interfaces.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Reflection and transmission: Snell, Fresnel, Brewster and total internal reflection · Physics">
+<meta property="og:description" content="Phase matching along the interface gives n_1\sin\theta_1=n_2\sin\theta_2; the boundary conditions give the Fresnel coefficients r_\perp=\frac{n_1\cos\theta_1-n_2\cos\theta_2}{n_1\cos\theta_1+n_2\cos\theta_2}, r_\parallel=\frac{n_2\cos\theta_1-n_1\cos\theta_2}{n_2\cos\theta_1+n_1\cos\theta_2}; r_\pa…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/physics/reflection-and-transmission-at-interfaces.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Physics</a> / <a href="index.html#d-electromagnetic-fields">Electromagnetic Fields</a> / <a rel="up" href="index.html#a-electromagnetic-fields--waves">Waves</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">theorem · Electromagnetic Fields · Waves</p>
+<h1>Reflection and transmission: Snell, Fresnel, Brewster and total internal reflection</h1>
+<p class="summary">Phase matching along the interface gives <img class="m" src="m/19d6a37fbbf9f484e8aed4df6396c9db9fdbc263.svg" alt="\(n_1\sin\theta_1=n_2\sin\theta_2\)" style="height:0.925em;vertical-align:-0.167em">; the boundary conditions give the Fresnel coefficients <img class="m" src="m/a4894aa0338f07a7e36901f4056e17526b54ab6d.svg" alt="\(r_\perp=\frac{n_1\cos\theta_1-n_2\cos\theta_2}{n_1\cos\theta_1+n_2\cos\theta_2}\)" style="height:1.470em;vertical-align:-0.485em">, <img class="m" src="m/67ad1fb61015f44e470d330f2f52d26e03e70929.svg" alt="\(r_\parallel=\frac{n_2\cos\theta_1-n_1\cos\theta_2}{n_2\cos\theta_1+n_1\cos\theta_2}\)" style="height:1.470em;vertical-align:-0.485em">; <img class="m" src="m/1d767da0e9c9c2bb28dfca3d61fdf24d85e99694.svg" alt="\(r_\parallel=0\)" style="height:1.096em;vertical-align:-0.395em"> at Brewster <img class="m" src="m/77ecc96cc8266a04ffd0e3529bddd549a066a9b2.svg" alt="\(\tan\theta_B=n_2/n_1\)" style="height:1.096em;vertical-align:-0.274em">, and beyond <img class="m" src="m/a61d88bc8faf200b2f634f7087389515812cf95c.svg" alt="\(\sin\theta_c=n_2/n_1\)" style="height:1.096em;vertical-align:-0.274em"> reflection is total with an evanescent field.</p>
+<p class="rel"><span>needs</span> <a href="plane-waves-in-media.html">Plane waves in lossless and lossy media</a></p>
+<p class="rel"><span>unlocks</span> <a href="rectangular-waveguides.html">Rectangular metallic waveguides and cavities</a>, <a href="interference-and-fabry-perot.html">Interference and the Fabry–Perot resonator</a>, <a href="thin-film-optics-and-coatings.html">Thin films: anti-reflection coatings and dielectric mirrors</a>, <a href="total-internal-reflection-and-evanescent-waves.html">Total internal reflection, evanescent waves and optical tunnelling</a>, <a href="dielectric-slab-waveguide.html">The dielectric slab waveguide</a>, <a href="polarization-and-birefringence.html">Polarisation, birefringence and wave plates</a></p>
+<p class="rel"><span>see also</span> <a href="dielectric-slab-waveguide.html">The dielectric slab waveguide</a>, <a href="interference-and-fabry-perot.html">Interference and the Fabry–Perot resonator</a>, <a href="transmission-lines.html">Transmission lines</a></p>
+<p class="rel"><span>mentioned in</span> <a href="exam-practice-optoelectronics-syllabus.html">Exam practice: optoelectronics over the whole programme (30 solved problems)</a></p>
+<details class="path"><summary>Learning path: 8 notes lead here, in study order</summary><ol><li><a href="electromagnetic-fields.html">Electromagnetic fields: the map of the subject</a></li><li><a href="vector-calculus-and-field-theorems.html">Vector calculus and the field theorems</a></li><li><a href="electrostatics-and-gauss-law.html">Electrostatics and Gauss's law</a></li><li><a href="magnetostatics-and-ampere-law.html">Magnetostatics: Biot–Savart, Ampère and inductance</a></li><li><a href="faraday-law-and-induction.html">Faraday's law and electromagnetic induction</a></li><li><a href="maxwell-equations.html">Maxwell's equations</a></li><li><a href="poynting-theorem.html">Poynting's theorem and electromagnetic power</a></li><li><a href="plane-waves-in-media.html">Plane waves in lossless and lossy media</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org827d0ea" class="outline-2">
+<h2 id="org827d0ea">Normal incidence</h2>
+<div class="outline-text-2" id="text-org827d0ea">
+<p>
+Continuity of <img class="m" src="m/5bc4c056125512a124d403351687709d383757f9.svg" alt="\(E_t\)" style="height:0.913em;vertical-align:-0.164em"> and <img class="m" src="m/9b64379a7a780731cd8bc08fd2a4cf78b1503384.svg" alt="\(H_t\)" style="height:0.913em;vertical-align:-0.164em">: <img class="m" src="m/2a06d78258e1884c6462a1a80cb912edbb9d67d5.svg" alt="\(\Gamma=\frac{\eta_2-\eta_1}{\eta_2+\eta_1}=\frac{n_1-n_2}{n_1+n_2}\)" style="height:1.491em;vertical-align:-0.522em">, <img class="m" src="m/35457670d2f2eb20bf9a84f68f32c0c91312809c.svg" alt="\(\tau=1+\Gamma\)" style="height:0.840em;vertical-align:-0.092em">; <img class="m" src="m/f571a58b4db45f940b13fb568546b9b8ea78c0df.svg" alt="\(R=|\Gamma|^2\)" style="height:1.166em;vertical-align:-0.268em">, <img class="m" src="m/1fe9b7ae56e34756a182cb2aaceb6fefbd202da0.svg" alt="\(T=1-R\)" style="height:0.840em;vertical-align:-0.092em">. Identical to a <a href="transmission-lines.html">transmission-line</a> mismatch with <img class="m" src="m/8151080b39d03b4e2ab9a28cb4e12e43776d9197.svg" alt="\(Z\to\eta\)" style="height:0.962em;vertical-align:-0.212em">.
+</p>
+</div>
+</div>
+<div id="outline-container-org6974d76" class="outline-2">
+<h2 id="org6974d76">Oblique incidence (derivation)</h2>
+<div class="outline-text-2" id="text-org6974d76">
+<p>
+The tangential wavevector must be equal on both sides at every point of the interface: <img class="m" src="m/486572653bf6c0283b8166332aeddc8a0c36ff31.svg" alt="\(k_1\sin\theta_1=k_2\sin\theta_2\)" style="height:0.925em;vertical-align:-0.167em"> (Snell) and <img class="m" src="m/f2bfaad7539172f85defcf330ffa06c9676c79d7.svg" alt="\(\theta_r=\theta_i\)" style="height:0.925em;vertical-align:-0.167em">. Matching tangential <img class="m" src="m/a35cedef7903fa280d4fe61450c00176b37b6a57.svg" alt="\(\mathbf E,\mathbf H\)" style="height:0.965em;vertical-align:-0.212em"> separately for <img class="m" src="m/13e24d8d3b43da0f7b64232729361639725d8c39.svg" alt="\(\perp\)" style="height:0.761em;vertical-align:-0.000em"> (s, TE) and <img class="m" src="m/56dbed1dd325b0f61e20af01f1f326bd1d39f193.svg" alt="\(\parallel\)" style="height:1.096em;vertical-align:-0.274em"> (p, TM) polarisation gives the coefficients in the summary (non-magnetic media), with <img class="m" src="m/ff2f1a281bdb78b7b7c0eb55d1188b91392c771d.svg" alt="\(t_\perp=1+r_\perp\)" style="height:0.871em;vertical-align:-0.165em">, <img class="m" src="m/ee0b3d176e7799d56c37572af27af1d759c52706.svg" alt="\(t_\parallel=(1+r_\parallel)\frac{n_1}{n_2}\)" style="height:1.309em;vertical-align:-0.484em"> <span class="cite">(<a class="ref" href="https://doi.org/10.1098/rstl.1815.0010" data-full="D. Brewster, “On the laws which regulate the polarisation of light by reflexion from transparent bodies”, Philosophical Transactions of the Royal Society of London 105, 125–159 (1815)." aria-label="D. Brewster, “On the laws which regulate the polarisation of light by reflexion from transparent bodies”, Philosophical Transactions of the Royal Society of London 105, 125–159 (1815).">Brewster 1815</a>)</span>. Power: <img class="m" src="m/32363223e7a34e64a345521e47e217a40d9d1495.svg" alt="\(R=|r|^2\)" style="height:1.166em;vertical-align:-0.268em">, <img class="m" src="m/c06a46d1a9f93de9de830b7922218b5a9fe29076.svg" alt="\(T=\frac{n_2\cos\theta_2}{n_1\cos\theta_1}|t|^2\)" style="height:1.470em;vertical-align:-0.485em">.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbf1bc7a" class="outline-2">
+<h2 id="orgbf1bc7a">Picture</h2>
+<div class="outline-text-2" id="text-orgbf1bc7a">
+<figure class="fig"><img class="m" src="m/d9bc27a636b34e4d3a42b2891e1f8ca654fe043e.svg" alt="figure" style="width:22.242em"><figcaption><span class="fl">Figure 1.</span> Fresnel power reflectances <img class="m" src="m/f49f4b46cadda69cf8a6f21f0d1de95f7468e71e.svg" alt="\(R_\perp\)" style="height:0.913em;vertical-align:-0.164em"> and <img class="m" src="m/6696602939d4fec89534954bfb28e670f660e63b.svg" alt="\(R_\parallel\)" style="height:1.139em;vertical-align:-0.387em"> versus angle of incidence; <img class="m" src="m/6696602939d4fec89534954bfb28e670f660e63b.svg" alt="\(R_\parallel\)" style="height:1.139em;vertical-align:-0.387em"> vanishes at Brewster's angle.</figcaption></figure>
+<p>
+Air to glass (<img class="m" src="m/60dfd4310efdc6519c7f05ae622e80f37cd93ee9.svg" alt="\(n=1.5\)" style="height:0.706em;vertical-align:-0.000em">): <img class="m" src="m/6696602939d4fec89534954bfb28e670f660e63b.svg" alt="\(R_\parallel\)" style="height:1.139em;vertical-align:-0.387em"> vanishes at Brewster's angle 56.3°.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb79f9b3" class="outline-2">
+<h2 id="orgb79f9b3">Total internal reflection</h2>
+<div class="outline-text-2" id="text-orgb79f9b3">
+<p>
+For <img class="m" src="m/946f96a57a6e9b243c4e06e9d88f2275d3b5dbfb.svg" alt="\(n_1&gt;n_2\)" style="height:0.755em;vertical-align:-0.166em"> and <img class="m" src="m/481acb81ef40e8fc648f3dddefa452f5334789ad.svg" alt="\(\theta_1&gt;\theta_c\)" style="height:0.925em;vertical-align:-0.167em">: <img class="m" src="m/d2e69abc070b6bfe0a0899effcd284198aa8bb0c.svg" alt="\(\cos\theta_2=-j\sqrt{\sin^2\theta_1/\sin^2\theta_c-1}\)" style="height:2.016em;vertical-align:-0.605em">, <img class="m" src="m/01e5399dc70af2726b4517f15f3bfac8770d9811.svg" alt="\(|r|=1\)" style="height:1.096em;vertical-align:-0.274em"> with a polarisation-dependent phase <img class="m" src="m/01b7d70cedb14c80e6162dd24157ffe2d1c79ecc.svg" alt="\(\phi\)" style="height:0.974em;vertical-align:-0.214em"> (the basis of <a href="dielectric-slab-waveguide.html">waveguide modes</a>). The transmitted field is evanescent, <img class="m" src="m/3a480a2779e2e71605223fbb0951ec7cf068e0ea.svg" alt="\(e^{-\alpha_2y}\)" style="height:0.873em;vertical-align:-0.000em">, <img class="m" src="m/2c8585ce2b20ae309d98a6ce9bca8611df123772.svg" alt="\(\alpha_2=k_2\sqrt{(n_1/n_2)^2\sin^2\theta_1-1}\)" style="height:2.016em;vertical-align:-0.605em">: penetration depth <img class="m" src="m/a06fb8f338cd2541dcb0c73a97b848d1b5b34bb0.svg" alt="\(\sim\lambda/2\pi\)" style="height:1.096em;vertical-align:-0.274em">. Bringing a second medium within this depth gives frustrated TIR — optical tunnelling, the analogue of <a href="tunnelling-and-wkb.html">quantum tunnelling</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org1c32c74" class="outline-2">
+<h2 id="org1c32c74">Worked example</h2>
+<div class="outline-text-2" id="text-org1c32c74">
+<p>
+Silicon (<img class="m" src="m/fbb6a5d4e6f653b4a2e8c680538370e45caf4ee7.svg" alt="\(n=3.48\)" style="height:0.706em;vertical-align:-0.000em">) to air at 1550 nm: <img class="m" src="m/9db8128b7c67db2f1cd32a998ffdbb0b0145a4bb.svg" alt="\(R=\left(\frac{2.48}{4.48}\right)^2=30.6\%\)" style="height:1.539em;vertical-align:-0.385em"> per facet. A quarter-wave anti-reflection layer of <img class="m" src="m/dafa010812fc6fb97f9233ef5445408a61308d69.svg" alt="\(n=\sqrt{3.48}=1.87\)" style="height:1.140em;vertical-align:-0.148em"> (e.g. Si<img class="m" src="m/ab13e93df32d6d5a43c753114af1438e702c1075.svg" alt="\(_3\)" style="height:0.494em;vertical-align:-0.163em">N<img class="m" src="m/921206c46591c07a3eb4bc351d71b06558d030d7.svg" alt="\(_4\)" style="height:0.494em;vertical-align:-0.163em">-like), thickness <img class="m" src="m/66e5dd5f6f28b32487e6b468bf65cc15be7d83ae.svg" alt="\(\lambda/4n=207\)" style="height:1.096em;vertical-align:-0.274em"> nm, cancels it. Critical angle Si/air: <img class="m" src="m/a582999faaf4a82e7bfe279563de3b09622097f4.svg" alt="\(\arcsin(1/3.48)=16.7^\circ\)" style="height:1.096em;vertical-align:-0.274em"> — why LEDs trap light (<a href="light-emitting-diodes.html">extraction efficiency</a>).
+</p>
+</div>
+</div>
+<div id="outline-container-org433052c" class="outline-2">
+<h2 id="org433052c">Engineering applications</h2>
+<div class="outline-text-2" id="text-org433052c">
+<p>
+Anti-reflection coatings on solar cells and lenses, Brewster windows in gas lasers, polarising beam splitters, prism couplers and ATR spectroscopy (evanescent sensing), fibre guidance by TIR, radar absorbers.
+</p>
+</div>
+</div>
+<div id="outline-container-org61b8ba5" class="outline-2">
+<h2 id="org61b8ba5">Pitfall</h2>
+<div class="outline-text-2" id="text-org61b8ba5">
+<p>
+Two conventions exist for the sign of <img class="m" src="m/53bac9ebd852d05fdef8b12c160e188984803100.svg" alt="\(r_\parallel\)" style="height:0.861em;vertical-align:-0.388em">; they differ by <img class="m" src="m/6ba8cf9ba286d26abb2e4c7f5ec9bc7ba671e475.svg" alt="\(\pi\)" style="height:0.472em;vertical-align:-0.000em"> at normal incidence. Choose one and keep it in interference calculations.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="plane-waves-in-media.html"><span>← previous</span>Plane waves in lossless and lossy media</a><a rel="next" href="transmission-lines.html"><span>next →</span>Transmission lines</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/electromagnetic-fields--waves.pdf" title="PDF manual">Waves</a> · <a class="pdf" href="pdf/electromagnetic-fields.pdf" title="PDF manual">Electromagnetic Fields</a> · <a class="pdf" href="pdf/physics.pdf" title="PDF manual">whole Physics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

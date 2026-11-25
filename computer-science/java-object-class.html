@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The class Object and final · Computer Science</title>
+<meta name="description" content="Every Java class descends from java.lang.Object, which gives all objects equals, hashCode, toString, getClass and clone; final on a class forbids subclasses and on a method forbids overriding, which also allows static binding.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/java-object-class.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The class Object and final · Computer Science">
+<meta property="og:description" content="Every Java class descends from java.lang.Object, which gives all objects equals, hashCode, toString, getClass and clone; final on a class forbids subclasses and on a method forbids overriding, which also allows static binding.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/java-object-class.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-programming">Programming</a> / <a rel="up" href="index.html#a-programming--java">Java</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Programming · Java</p>
+<h1>The class Object and final</h1>
+<p class="summary">Every Java class descends from <code>java.lang.Object</code>, which gives all objects <code>equals</code>, <code>hashCode</code>, <code>toString</code>, <code>getClass</code> and <code>clone</code>; <code>final</code> on a class forbids subclasses and on a method forbids overriding, which also allows static binding.</p>
+<p class="rel"><span>needs</span> <a href="inheritance.html">Inheritance and overriding</a>, <a href="java-references.html">Objects, references and garbage collection in Java</a></p>
+<p class="rel"><span>unlocks</span> <a href="java-enum.html">Enumerated types</a>, <a href="java-exceptions.html">Exceptions in Java: checked, unchecked, finally</a>, <a href="java-immutability.html">Immutable objects</a>, <a href="java-inner-classes.html">Nested, inner and anonymous classes</a>, <a href="equals-hashcode.html">The equals–hashCode contract</a></p>
+<p class="rel"><span>see also</span> <a href="equals-hashcode.html">The equals–hashCode contract</a>, <a href="java-dynamic-binding.html">The Java method selection rule</a>, <a href="wrapper-autoboxing.html">Wrapper classes and autoboxing</a>, <a href="java-enum.html">Enumerated types</a>, <a href="java-exceptions.html">Exceptions in Java: checked, unchecked, finally</a>, <a href="java-inner-classes.html">Nested, inner and anonymous classes</a>, <a href="java-immutability.html">Immutable objects</a></p>
+<details class="path"><summary>Learning path: 7 notes lead here, in study order</summary><ol><li><a href="uml-class-diagram.html">UML class diagram</a></li><li><a href="uml-generalization.html">Generalization (is-a)</a></li><li><a href="call-stack.html">Memory model: static area, stack and heap</a></li><li><a href="object-oriented-programming.html">Object-oriented programming</a></li><li><a href="inheritance.html">Inheritance and overriding</a></li><li><a href="java-platform.html">The Java platform</a></li><li><a href="java-references.html">Objects, references and garbage collection in Java</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org9e1fb34" class="outline-2">
+<h2 id="org9e1fb34">Definition</h2>
+<div class="outline-text-2" id="text-org9e1fb34">
+<p>
+A class without <code>extends</code> extends <code>Object</code>, so the hierarchy is a single tree rooted at <code>Object</code> and any object can be stored in a variable of type <code>Object</code>. Methods of <code>Object</code>:
+</p>
+<ul class="org-ul">
+<li><code>boolean equals(Object o)</code>: identity by default;</li>
+<li><code>int hashCode()</code>: consistent with <code>equals</code> (see <a href="equals-hashcode.html">the contract</a>);</li>
+<li><code>String toString()</code>: class name and hash by default; called by string concatenation and <code>println</code>;</li>
+<li><code>Class&lt;?&gt; getClass()</code>: the <a href="polymorphism.html">dynamic type</a>;</li>
+<li><code>protected Object clone()</code>: a <a href="shallow-deep-copy.html">shallow copy</a>, for classes that implement <code>Cloneable</code>.</li>
+</ul>
+
+<p>
+<code>final class String</code>: no subclass can exist (security, immutability). <code>final void m()</code>: cannot be overridden; a method in a subclass with the same signature is an error, while a private method with the same name in a subclass is simply a new method.
+</p>
+</div>
+</div>
+<div id="outline-container-org1f84791" class="outline-2">
+<h2 id="org1f84791">Example</h2>
+<div class="outline-text-2" id="text-org1f84791">
+<figure class="listing lang-java"><figcaption><span class="lang">Java</span></figcaption><pre class="src"><code><span class="k">public</span> <span class="k">class</span> <span class="t">Point</span> {
+    <span class="k">private</span> <span class="k">final</span> <span class="t">int</span> <span class="v">x</span>, <span class="v">y</span>;
+    <span class="k">public</span> <span class="f">Point</span>(<span class="t">int</span> <span class="v">x</span>, <span class="t">int</span> <span class="v">y</span>) { <span class="k">this</span>.x = x; <span class="k">this</span>.y = y; }
+    @Override <span class="k">public</span> <span class="t">String</span> <span class="f">toString</span>() { <span class="k">return</span> <span class="s">"("</span> + x + <span class="s">", "</span> + y + <span class="s">")"</span>; }
+}
+System.out.println(<span class="k">new</span> <span class="t">Point</span>(1, 2));   <span class="c">// (1, 2), via the dynamically bound toString</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org0b3460c" class="outline-2">
+<h2 id="org0b3460c">Intuition</h2>
+<div class="outline-text-2" id="text-org0b3460c">
+<p>
+<code>Object</code> is the minimum every object can do; overriding its methods is how a class says what equality, hashing and printing mean for it.
+</p>
+</div>
+</div>
+<div id="outline-container-orgec42ffb" class="outline-2">
+<h2 id="orgec42ffb">Pitfall</h2>
+<div class="outline-text-2" id="text-orgec42ffb">
+<p>
+<code>Object[]</code> can hold anything, but nothing can be done with the elements without a cast; generic collections replaced that style (see generics).
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="java-references.html"><span>← previous</span>Objects, references and garbage collection in Java</a><a rel="next" href="equals-hashcode.html"><span>next →</span>The equals–hashCode contract</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/programming--java.pdf" title="PDF manual">Java</a> · <a class="pdf" href="pdf/programming.pdf" title="PDF manual">Programming</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

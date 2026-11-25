@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Baire category theorem · Mathematics</title>
+<meta name="description" content="Completeness has so far produced limits of specific sequences. The Baire theorem extracts something else from it: a complete space cannot be exhausted by countably many negligible pieces. That is an existence principle with no construction attached – the standard way to prove that an object with so…">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/the-baire-category-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="The Baire category theorem · Mathematics">
+<meta property="og:description" content="Completeness has so far produced limits of specific sequences. The Baire theorem extracts something else from it: a complete space cannot be exhausted by countably many negligible pieces. That is an existence principle with no construction attached – the standard way to prove that an object with so…">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/the-baire-category-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-topology">Topology</a> / <a rel="up" href="index.html#a-topology--general-topology">General Topology</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Topology · General Topology</p>
+<h1>The Baire category theorem</h1>
+<p class="summary">Completeness has so far produced limits of specific sequences. The Baire theorem extracts something else from it: a complete space cannot be exhausted by countably many negligible pieces. That is an existence principle with no construction attached &#x2013; the standard way to prove that an object with some property exists is to show its complement is a countable union of nowhere dense sets.</p>
+<p class="rel"><span>needs</span> <a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a>, <a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a>, <a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a>, <a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></p>
+<p class="rel"><span>unlocks</span> <a href="uniform-boundedness-open-mapping-and-closed-graph.html">Uniform boundedness, open mapping and closed graph</a></p>
+<p class="rel"><span>mentioned in</span> <a href="mathematics.html">Mathematics</a>, <a href="analysis.html">Analysis</a>, <a href="functional-analysis.html">Functional analysis</a>, <a href="general-topology.html">General topology</a></p>
+<details class="path"><summary>Learning path: 20 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="supremum-and-infimum.html">Supremum and infimum</a></li><li><a href="completeness-of-the-real-numbers.html">Completeness of the real numbers</a></li><li><a href="limit-of-a-sequence.html">Limit of a sequence</a></li><li><a href="monotone-convergence-theorem.html">Monotone convergence theorem</a></li><li><a href="bolzano-weierstrass-theorem.html">Bolzano&#x2013;Weierstrass theorem</a></li><li><a href="the-absolute-value-and-the-triangle-inequality.html">The absolute value and the triangle inequality</a></li><li><a href="limits-and-continuity.html">Limits and continuity</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="cauchy-sequences-and-the-completeness-criterion.html">Cauchy sequences and the completeness criterion</a></li><li><a href="metric-spaces-and-completeness.html">Metric spaces and completeness</a></li><li><a href="topological-spaces-bases-and-generated-topologies.html">Topological spaces, bases and generated topologies</a></li><li><a href="interior-closure-boundary-and-density.html">Interior, closure, boundary and density</a></li><li><a href="continuous-maps-homeomorphisms-and-topological-invariants.html">Continuous maps, homeomorphisms and topological invariants</a></li><li><a href="cardinality-cantors-theorem-and-cantor-schroder-bernstein.html">Cardinality: Cantor's theorem and Cantor-Schroder-Bernstein</a></li><li><a href="the-limit-of-a-function-and-its-sequential-characterisation.html">The limit of a function and its sequential characterisation</a></li><li><a href="the-metric-topology-and-continuity-in-metric-spaces.html">The metric topology and continuity in metric spaces</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org4c435f1">
+<p>
+A subset <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> of a topological space is <i>nowhere dense</i> if
+<img class="m" src="m/8d9961d8783b6be37053249e2f4ef1e57fe37d60.svg" alt="\((\overline{A})^{\circ} = \emptyset\)" style="height:1.242em;vertical-align:-0.273em">, and <i>meagre</i> if it is a
+countable union of nowhere dense sets.
+</p>
+
+</div>
+
+<div class="proposition" id="orgfde9ca1">
+<p>
+<img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em"> is nowhere dense if and only if <img class="m" src="m/6e5fbcad7de887f781e2b13ffb373b2bccff1d22.svg" alt="\(X \setminus \overline{A}\)" style="height:1.242em;vertical-align:-0.273em"> is
+dense; and a closed set is nowhere dense exactly when it has empty
+interior.
+</p>
+
+</div>
+
+<div class="proof" id="orgbc0f35c">
+<p>
+<img class="m" src="m/8d9961d8783b6be37053249e2f4ef1e57fe37d60.svg" alt="\((\overline{A})^{\circ} = \emptyset\)" style="height:1.242em;vertical-align:-0.273em"> says no non-empty open set is
+contained in <img class="m" src="m/583955cc3615dbf38f19d4187ceb351e86f8aad5.svg" alt="\(\overline{A}\)" style="height:0.968em;vertical-align:-0.000em">, that is every non-empty open set meets
+the complement of <img class="m" src="m/583955cc3615dbf38f19d4187ceb351e86f8aad5.svg" alt="\(\overline{A}\)" style="height:0.968em;vertical-align:-0.000em"> &#x2013; which is density of that
+complement. For closed <img class="m" src="m/0bb0b6ee46aefd132d43689d8792150c340b06ec.svg" alt="\(A\)" style="height:0.749em;vertical-align:-0.000em">, <img class="m" src="m/b35e047d8ed12a5cc953e124faf84a4646ad1b72.svg" alt="\(\overline{A} = A\)" style="height:0.968em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org75aca76">
+<p>
+In a complete metric space, the intersection of countably many dense
+open sets is dense.
+</p>
+
+</div>
+
+<div class="proof" id="orga197719">
+<p>
+Let <img class="m" src="m/fde78a5f2e67fe4076117806ebfe17e7982234e5.svg" alt="\((U_{n})_{n\ge1}\)" style="height:1.129em;vertical-align:-0.305em"> be dense open sets and <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em"> a non-empty open
+set; we find a point of <img class="m" src="m/6042f31315994770d45b769a124e6eb2180ead88.svg" alt="\(W \cap \bigcap_{n}U_{n}\)" style="height:1.151em;vertical-align:-0.334em">.
+</p>
+
+<p>
+Since <img class="m" src="m/e7bee2b3e26724f9cdc855abaa8c0bf988d5b821.svg" alt="\(U_{1}\)" style="height:0.913em;vertical-align:-0.164em"> is dense, <img class="m" src="m/d52bf127daaf6ac8434ea8486c196864f0548801.svg" alt="\(W \cap U_{1}\)" style="height:0.913em;vertical-align:-0.164em"> is non-empty and open, so it
+contains a ball; choose <img class="m" src="m/a78629c10c264cf8b12e1bb7daf5b30534395c3f.svg" alt="\(x_{1}\)" style="height:0.636em;vertical-align:-0.165em"> and <img class="m" src="m/02110f3731ee6df5c31a4ae273545d5bf1f2a3c3.svg" alt="\(0 &lt; r_{1} \le 1\)" style="height:0.871em;vertical-align:-0.165em"> with the
+closed ball <img class="m" src="m/f8c4fc3e959deda0a299a86fe18b7209dc4cd23f.svg" alt="\(\overline{B}(x_{1},r_{1}) \subseteq W\cap U_{1}\)" style="height:1.242em;vertical-align:-0.273em">
+(shrinking the radius by half makes the closed ball fit). Recursively,
+given <img class="m" src="m/9daac5cc93622bf76128199854ae6868f14f0366.svg" alt="\(x_{n}, r_{n}\)" style="height:0.685em;vertical-align:-0.212em">, density of <img class="m" src="m/8910d923f34f994d8bc2d32ed6ebba508d07d6c2.svg" alt="\(U_{n+1}\)" style="height:1.005em;vertical-align:-0.251em"> makes
+<img class="m" src="m/9b19029cf45d412075a98e7e5d3640a9a34ccc79.svg" alt="\(B(x_{n},r_{n})\cap U_{n+1}\)" style="height:1.096em;vertical-align:-0.274em"> non-empty and open, so choose
+<img class="m" src="m/9964a3b90ba27930e17d59f555b3c5cf75a2ba32.svg" alt="\(x_{n+1}\)" style="height:0.728em;vertical-align:-0.255em"> and <img class="m" src="m/9a14220d23020072ad7bebb0c3cacce7e52c75e3.svg" alt="\(0 &lt; r_{n+1} \le r_{n}/2\)" style="height:1.096em;vertical-align:-0.274em"> with
+<img class="m" src="m/c4b458e73cf8b67d66c652dbfc08750c004f504b.svg" alt="\(\overline{B}(x_{n+1},r_{n+1}) \subseteq B(x_{n},r_{n})\cap U_{n+1}\)" style="height:1.242em;vertical-align:-0.273em">.
+</p>
+
+<p>
+The balls are nested and <img class="m" src="m/1981b6c4ecc7dde502887666b8d115b2b528e46e.svg" alt="\(r_{n} \le 2^{1-n}\)" style="height:1.056em;vertical-align:-0.169em">, so for <img class="m" src="m/a24cad52083942cd7bb2493ac811c3a7b7cdaffb.svg" alt="\(m \ge n\)" style="height:0.846em;vertical-align:-0.152em"> we
+have <img class="m" src="m/53841a0d04889ea4feec11f381b7bb42af5a3d20.svg" alt="\(x_{m} \in B(x_{n},r_{n})\)" style="height:1.096em;vertical-align:-0.274em"> and hence
+<img class="m" src="m/6ae7be8c2b00b943dc7144fcea37ac285d55e30f.svg" alt="\(d(x_{m},x_{n}) &lt; 2^{1-n}\)" style="height:1.166em;vertical-align:-0.268em">: the sequence is Cauchy and converges to
+some <img class="m" src="m/9cda5e1b132ca416a3799f160a4fdc9e4f1b5c53.svg" alt="\(x\)" style="height:0.472em;vertical-align:-0.000em"> by completeness. For each <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">, all terms from index <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em">
+on lie in the closed set <img class="m" src="m/790b824235784efe5cca71a093e8e0fcb10409ce.svg" alt="\(\overline{B}(x_{n},r_{n})\)" style="height:1.242em;vertical-align:-0.273em">, so
+<img class="m" src="m/a21907ed3b9171b5d56d93181470f1105a41097d.svg" alt="\(x \in \overline{B}(x_{n},r_{n}) \subseteq U_{n}\)" style="height:1.242em;vertical-align:-0.273em">, and also
+<img class="m" src="m/d046393ffe5b43aaf9ed04b1c4ea259af3d54b2b.svg" alt="\(x \in W\)" style="height:0.792em;vertical-align:-0.040em">. Hence <img class="m" src="m/c9112073c23aea1d7567716e55eff32acc899d3c.svg" alt="\(W\)" style="height:0.749em;vertical-align:-0.000em"> meets the intersection, which is therefore
+dense.
+</p>
+
+</div>
+
+<div class="corollary" id="orgee19940">
+<p>
+A non-empty complete metric space is not a countable union of nowhere
+dense sets. Consequently, if it is a countable union of closed sets,
+one of them has non-empty interior.
+</p>
+
+</div>
+
+<div class="proof" id="orgedbb524">
+<p>
+Let <img class="m" src="m/50722af1b6d102992ef46b6087aee9dd03cf23c8.svg" alt="\(X = \bigcup_{n}A_{n}\)" style="height:1.151em;vertical-align:-0.334em"> with each <img class="m" src="m/b33906b81a0a0b67870798fdbd43e0d16439b942.svg" alt="\(A_{n}\)" style="height:0.913em;vertical-align:-0.164em"> nowhere dense. The sets
+<img class="m" src="m/e1eacda8f4f9e5c503897fb91c170327959b3b25.svg" alt="\(U_{n} = X\setminus\overline{A_{n}}\)" style="height:1.242em;vertical-align:-0.273em"> are open and dense, so
+<img class="m" src="m/6556bf01ec12d1ab13e5777017abe44aa2c024d6.svg" alt="\(\bigcap_{n}U_{n}\)" style="height:1.151em;vertical-align:-0.334em"> is dense, in particular non-empty since <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em"> is.
+But a point of it lies in no <img class="m" src="m/1839607a43d5fbaff812fb626b14d5114f35a6f5.svg" alt="\(\overline{A_{n}}\)" style="height:1.132em;vertical-align:-0.170em">, hence in no
+<img class="m" src="m/b33906b81a0a0b67870798fdbd43e0d16439b942.svg" alt="\(A_{n}\)" style="height:0.913em;vertical-align:-0.164em"> &#x2013; contradicting the covering. If the <img class="m" src="m/b33906b81a0a0b67870798fdbd43e0d16439b942.svg" alt="\(A_{n}\)" style="height:0.913em;vertical-align:-0.164em"> are closed and
+cover <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">, one of them is therefore not nowhere dense, that is, has
+non-empty interior.
+</p>
+
+</div>
+
+<div class="corollary" id="org0a4abfb">
+<p>
+A non-empty complete metric space with no isolated points is
+uncountable. In particular <img class="m" src="m/570a98c389b9111893b5d6af5f2a80eddc894213.svg" alt="\(\R\)" style="height:0.755em;vertical-align:-0.000em"> is uncountable.
+</p>
+
+</div>
+
+<div class="proof" id="orgba73ef3">
+<p>
+Suppose <img class="m" src="m/8889a773ebc854d1557606181adfd6dce98308c2.svg" alt="\(X = \set{x_{1}, x_{2}, \dots}\)" style="height:1.096em;vertical-align:-0.274em"> is countable. Each singleton
+<img class="m" src="m/0c22a3a1e83eadd4eb415963d08f4f7d096fe50f.svg" alt="\(\set{x_{n}}\)" style="height:1.096em;vertical-align:-0.274em"> is closed, and it has empty interior because <img class="m" src="m/4036872f3d3328901352967ce2c9418a85378974.svg" alt="\(x_{n}\)" style="height:0.636em;vertical-align:-0.165em">
+is not isolated: every ball around it contains another point. So <img class="m" src="m/4075042cc75006f85635b4a60bc12be47ba030c5.svg" alt="\(X\)" style="height:0.749em;vertical-align:-0.000em">
+is a countable union of nowhere dense sets, contradicting the previous
+corollary.
+</p>
+
+</div>
+
+<div class="remark" id="orgabab02f">
+<p>
+The recursive choice of the balls is a sequence of dependent choices,
+and the theorem is in fact equivalent to the axiom of dependent choice
+over the other axioms of set theory. It is worth knowing which existence
+results in analysis are of this kind: they produce a point that is
+generic rather than constructed, and no algorithm is implied.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="total-boundedness-and-compactness-in-metric-spaces.html"><span>← previous</span>Total boundedness and compactness in metric spaces</a><a rel="next" href="connectedness-components-and-path-connectedness.html"><span>next →</span>Connectedness, components and path-connectedness</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/topology--general-topology.pdf" title="PDF manual">General Topology</a> · <a class="pdf" href="pdf/topology.pdf" title="PDF manual">Topology</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

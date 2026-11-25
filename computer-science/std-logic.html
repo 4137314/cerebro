@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>std_logic: nine-valued logic and resolution · Computer Science</title>
+<meta name="description" content="std_logic has nine values — U= uninitialised, X unknown, 0, 1, Z high impedance, W weak unknown, L weak 0, =H weak 1, - don't care — and a resolution function that computes the value of a signal driven by several sources, which models buses and tri-state outputs.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/std-logic.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="std_logic: nine-valued logic and resolution · Computer Science">
+<meta property="og:description" content="std_logic has nine values — U= uninitialised, X unknown, 0, 1, Z high impedance, W weak unknown, L weak 0, =H weak 1, - don't care — and a resolution function that computes the value of a signal driven by several sources, which models buses and tri-state outputs.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/std-logic.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--vhdl">Vhdl</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Hardware · Vhdl</p>
+<h1>std_logic: nine-valued logic and resolution</h1>
+<p class="summary"><code>std_logic</code> has nine values — <code>U</code> uninitialised, <code>X</code> unknown, <code>0</code>, <code>1</code>, <code>Z</code> high impedance, <code>W</code> weak unknown, <code>L</code> weak 0, <code>H</code> weak 1, <code>-</code> don't care — and a resolution function that computes the value of a signal driven by several sources, which models buses and tri-state outputs.</p>
+<p class="rel"><span>needs</span> <a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a></p>
+<p class="rel"><span>unlocks</span> <a href="vhdl-concurrent-assignments.html">Concurrent assignments: when–else and with–select</a>, <a href="i2c.html">I²C</a></p>
+<p class="rel"><span>see also</span> <a href="i2c.html">I²C</a>, <a href="vhdl-concurrent-assignments.html">Concurrent assignments: when–else and with–select</a></p>
+<p class="rel"><span>mentioned in</span> <a href="register-transfer-buses.html">Register transfers: multiplexers, buses, tri-state</a></p>
+<details class="path"><summary>Learning path: 2 notes lead here, in study order</summary><ol><li><a href="digital-design-flow.html">Digital design flow and abstraction levels</a></li><li><a href="vhdl-entity-architecture.html">VHDL: entity and architecture</a></li></ol></details>
+</header>
+<main class="note">
+<div id="outline-container-org757b3c2" class="outline-2">
+<h2 id="org757b3c2">Definition</h2>
+<div class="outline-text-2" id="text-org757b3c2">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">value</th>
+<th scope="col" class="org-left">meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">'U'</td>
+<td class="org-left">uninitialised (never assigned)</td>
+</tr>
+
+<tr>
+<td class="org-left">'X'</td>
+<td class="org-left">forcing unknown (0 and 1 driven together)</td>
+</tr>
+
+<tr>
+<td class="org-left">'0' '1'</td>
+<td class="org-left">forcing low, forcing high</td>
+</tr>
+
+<tr>
+<td class="org-left">'Z'</td>
+<td class="org-left">high impedance (driver off)</td>
+</tr>
+
+<tr>
+<td class="org-left">'W'</td>
+<td class="org-left">weak unknown</td>
+</tr>
+
+<tr>
+<td class="org-left">'L' 'H'</td>
+<td class="org-left">weak 0, weak 1 (pull-down, pull-up)</td>
+</tr>
+
+<tr>
+<td class="org-left">'-'</td>
+<td class="org-left">don't care (for synthesis)</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+<code>std_ulogic</code> is the unresolved base type; <code>std_logic</code> is its resolved subtype. With several drivers the <b>resolution function</b> combines them: a strong value beats a weak one or <code>Z</code>, two different strong values give <code>X</code>, <code>Z</code> with <code>H</code> gives <code>H</code>. So <code>std_logic</code> models a wire with a pull-up and open-drain devices (<img class="m" src="m/bf6305f44c6262eae0a0e7117f69653e72891403.svg" alt="\(\to\)" style="height:0.402em;vertical-align:-0.000em"> <code>H</code> unless someone pulls <code>0</code>).
+</p>
+
+<p>
+Vectors: <code>std_logic_vector(7 downto 0)</code>. Arithmetic uses <code>ieee.numeric_std</code>: <code>unsigned</code> and <code>signed</code> vectors with <code>+</code>, <code>-</code>, <code>*</code>, comparisons, and conversions <code>to_integer</code>, <code>to_unsigned(n, width)</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org5f8ddf9" class="outline-2">
+<h2 id="org5f8ddf9">Example: tri-state driver</h2>
+<div class="outline-text-2" id="text-org5f8ddf9">
+<figure class="listing lang-vhdl"><figcaption><span class="lang">VHDL</span></figcaption><pre class="src"><code><span class="c">-- releases the line when disabled
+</span>bus_line &lt;= data_out <span class="k">when</span> enable = <span class="s">'1'</span> <span class="k">else</span> <span class="s">'Z'</span>;
+data_in  &lt;= bus_line;                              <span class="c">-- inout port read back</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org4a70eb5" class="outline-2">
+<h2 id="org4a70eb5">Intuition</h2>
+<div class="outline-text-2" id="text-org4a70eb5">
+<p>
+Real wires are not Boolean: they can float, fight or be pulled weakly. Nine values let simulation show those situations instead of hiding them.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb15b0e4" class="outline-2">
+<h2 id="orgb15b0e4">Pitfall</h2>
+<div class="outline-text-2" id="text-orgb15b0e4">
+<p>
+<code>U</code> and <code>X</code> in simulation are messages: <code>U</code> means a missing reset or initialisation, <code>X</code> a conflict between drivers. Silencing them with initial values in the declaration hides bugs that the hardware will have.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="vhdl-entity-architecture.html"><span>← previous</span>VHDL: entity and architecture</a><a rel="next" href="vhdl-concurrent-assignments.html"><span>next →</span>Concurrent assignments: when–else and with–select</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--vhdl.pdf" title="PDF manual">Vhdl</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

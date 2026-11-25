@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gate and wire delay models · Computer Science</title>
+<meta name="description" content="A gate's delay grows with the capacitance it drives: to first order d=d_0+k\,C_L, an intrinsic part plus a part proportional to the load (fanout gates and wire); libraries tabulate delay and output slew against input slew and load, and wires add an RC delay.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/computer-science/gate-delay-model.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Gate and wire delay models · Computer Science">
+<meta property="og:description" content="A gate's delay grows with the capacitance it drives: to first order d=d_0+k\,C_L, an intrinsic part plus a part proportional to the load (fanout gates and wire); libraries tabulate delay and output slew against input slew and load, and wires add an RC delay.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/computer-science/gate-delay-model.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Computer Science</a> / <a href="index.html#d-hardware">Hardware</a> / <a rel="up" href="index.html#a-hardware--timing">Timing</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">model · Hardware · Timing</p>
+<h1>Gate and wire delay models</h1>
+<p class="summary">A gate's delay grows with the capacitance it drives: to first order <img class="m" src="m/5c59c74a071f64d679a8c33a662d7dcc2a526684.svg" alt="\(d=d_0+k\,C_L\)" style="height:0.925em;vertical-align:-0.167em">, an intrinsic part plus a part proportional to the load (fanout gates and wire); libraries tabulate delay and output slew against input slew and load, and wires add an RC delay.</p>
+<p class="rel"><span>unlocks</span> <a href="static-timing-analysis.html">Static timing analysis</a>, <a href="timing-driven-mapping.html">Technology mapping for delay</a>, <a href="glitches.html">Glitches</a>, <a href="cmos-power.html">Power dissipation in CMOS</a></p>
+<p class="rel"><span>see also</span> <a href="static-timing-analysis.html">Static timing analysis</a>, <a href="timing-driven-mapping.html">Technology mapping for delay</a>, <a href="cmos-power.html">Power dissipation in CMOS</a>, <a href="glitches.html">Glitches</a></p>
+<p class="rel"><span>mentioned in</span> <a href="dvfs-parallelism.html">Voltage scaling, DVFS and parallel datapaths</a></p>
+</header>
+<main class="note">
+<div id="outline-container-org00b3f3c" class="outline-2">
+<h2 id="org00b3f3c">Model</h2>
+<div class="outline-text-2" id="text-org00b3f3c">
+<ul class="org-ul">
+<li><b>Linear model</b>: <img class="m" src="m/33f73a67569a58e4f5abf8c874b1b1f0d1034753.svg" alt="\(d = d_0 + R_{drive}\,C_L\)" style="height:0.925em;vertical-align:-0.167em">, with <img class="m" src="m/62a9720ea18791a8350614d43535578ebfd32252.svg" alt="\(C_L=\sum_{\text{fanout}} C_{in} + C_{wire}\)" style="height:1.151em;vertical-align:-0.334em">. A stronger gate (smaller <img class="m" src="m/c0d0dc7f0c4ceab7fda61764bc9fbd818412b81b.svg" alt="\(R_{drive}\)" style="height:0.913em;vertical-align:-0.164em">) is bigger and loads its own driver more.</li>
+<li><b>Table model</b> (standard-cell libraries): delay and output transition time <img class="m" src="m/becb0799d3a51a5d00f1d972c5a67199ebd10a86.svg" alt="\(t_{out}\)" style="height:0.838em;vertical-align:-0.168em"> are looked up in 2-D tables indexed by input transition <img class="m" src="m/6ef7fe1f92055621d173241877507858e17ca2a3.svg" alt="\(t_{in}\)" style="height:0.838em;vertical-align:-0.168em"> and load <img class="m" src="m/6c325b51b26888b3d7d4ad571346d7f35110fe9b.svg" alt="\(C_L\)" style="height:0.913em;vertical-align:-0.164em">, interpolating between entries; rise and fall differ.</li>
+<li><b>Unit delay</b>: every gate takes 1; good for counting levels, useless for sizing.</li>
+<li><b>Wires</b>: a long wire is a distributed RC line; the Elmore delay of a line of length <img class="m" src="m/81d41abbd1af84d501363841b4ad63e06f253bb3.svg" alt="\(\ell\)" style="height:0.761em;vertical-align:-0.000em"> is <img class="m" src="m/9304eb89d1f89e6ed44c259be6bc3f555d0a22df.svg" alt="\(\approx\tfrac12 r c\,\ell^2\)" style="height:1.304em;vertical-align:-0.378em">: quadratic in length, so long wires are split by buffers.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6dfa6aa" class="outline-2">
+<h2 id="org6dfa6aa">Picture</h2>
+<div class="outline-text-2" id="text-org6dfa6aa">
+<figure class="fig"><img class="m" src="m/35a0fd906647e2335e2705902fe304f410077dc5.svg" alt="figure" style="width:21.328em"><figcaption><span class="fl">Figure 1.</span> Delay of inverters of sizes x1, x2 and x4 versus load capacitance <img class="m" src="m/6c325b51b26888b3d7d4ad571346d7f35110fe9b.svg" alt="\(C_L\)" style="height:0.913em;vertical-align:-0.164em">: linear in the load, with slopes falling as the drive strength grows.</figcaption></figure>
+<p>
+Bigger gates have more intrinsic delay but a smaller slope: each wins in a range of loads.
+</p>
+</div>
+</div>
+<div id="outline-container-org06c9b14" class="outline-2">
+<h2 id="org06c9b14">Worked example</h2>
+<div class="outline-text-2" id="text-org06c9b14">
+<p>
+An inverter with <img class="m" src="m/522499d38b8f5724723d735a79307e1ba214ab5e.svg" alt="\(d=20+6\,C_L\)" style="height:0.925em;vertical-align:-0.167em"> ps drives four inputs of 3 fF each and 8 fF of wire: <img class="m" src="m/6242236fc61eda58909fffc4e4f5f05309d27624.svg" alt="\(C_L=20\)" style="height:0.913em;vertical-align:-0.164em"> fF, <img class="m" src="m/b764a518c1dc85bdb7ce20bd9d9dea79887d7ffd.svg" alt="\(d=140\)" style="height:0.761em;vertical-align:-0.000em"> ps. Replacing it with an x4 inverter (<img class="m" src="m/84e865115dac5e6ddd231c8d5f23dbcf479f9eff.svg" alt="\(d=40+1.5\,C_L\)" style="height:0.925em;vertical-align:-0.167em">, input capacitance 4× larger) gives 70 ps, but its own input load grows from 3 to 12 fF, slowing the gate that drives it by <img class="m" src="m/9ec1da5c83515eec84ae666e5a0e27980f60faf5.svg" alt="\(6\cdot9=54\)" style="height:0.706em;vertical-align:-0.000em"> ps with the x1 slope: the net gain is about 16 ps, not 70. Sizing is a chain problem, not a single-gate one.
+</p>
+</div>
+</div>
+<div id="outline-container-org435f59d" class="outline-2">
+<h2 id="org435f59d">Intuition</h2>
+<div class="outline-text-2" id="text-org435f59d">
+<p>
+A gate is a current source charging a capacitor. More capacitance, more time; more current (a bigger gate), less time.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf0b1208" class="outline-2">
+<h2 id="orgf0b1208">Pitfall</h2>
+<div class="outline-text-2" id="text-orgf0b1208">
+<p>
+Delay depends on the load, and the load depends on what is connected later: mapping and sizing decisions interact, which is why <a href="timing-driven-mapping.html">timing-driven mapping</a> must model loads.
+</p>
+</div>
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="clock-skew-jitter.html"><span>← previous</span>Clock skew and jitter</a><a rel="next" href="static-timing-analysis.html"><span>next →</span>Static timing analysis</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/hardware--timing.pdf" title="PDF manual">Timing</a> · <a class="pdf" href="pdf/hardware.pdf" title="PDF manual">Hardware</a> · <a class="pdf" href="pdf/computer-science.pdf" title="PDF manual">whole Computer Science</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

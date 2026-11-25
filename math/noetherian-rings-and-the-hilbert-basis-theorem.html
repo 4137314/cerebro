@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noetherian rings and the Hilbert basis theorem · Mathematics</title>
+<meta name="description" content="Principal ideal domains were shown to admit no infinite ascending chain of ideals, and that alone gave the existence half of unique factorisation. Isolating the chain condition – rather than the principality – gives a class of rings closed under quotients and, by Hilbert's theorem, under adjoining …">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/noetherian-rings-and-the-hilbert-basis-theorem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Noetherian rings and the Hilbert basis theorem · Mathematics">
+<meta property="og:description" content="Principal ideal domains were shown to admit no infinite ascending chain of ideals, and that alone gave the existence half of unique factorisation. Isolating the chain condition – rather than the principality – gives a class of rings closed under quotients and, by Hilbert's theorem, under adjoining …">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/noetherian-rings-and-the-hilbert-basis-theorem.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--commutative-algebra">Commutative Algebra</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Algebra · Commutative Algebra</p>
+<h1>Noetherian rings and the Hilbert basis theorem</h1>
+<p class="summary">Principal ideal domains were shown to admit no infinite ascending chain of ideals, and that alone gave the existence half of unique factorisation. Isolating the chain condition &#x2013; rather than the principality &#x2013; gives a class of rings closed under quotients and, by Hilbert's theorem, under adjoining a variable. That closure is why algebraic geometry can work with finitely many equations.</p>
+<p class="rel"><span>needs</span> <a href="euclidean-domains-principal-ideals-and-unique-factorisation.html">Euclidean domains, principal ideals and unique factorisation</a>, <a href="integral-domains-fields-prime-and-maximal-ideals.html">Integral domains, fields, prime and maximal ideals</a>, <a href="polynomial-rings-division-and-roots.html">Polynomial rings, division and roots</a>, <a href="rings-ideals-and-the-quotient-ring.html">Rings, ideals and the quotient ring</a>, <a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></p>
+<p class="rel"><span>mentioned in</span> <a href="algebra.html">Algebra</a>, <a href="rings-and-commutative-algebra.html">Rings and commutative algebra</a>, <a href="geometry.html">Geometry</a></p>
+<details class="path"><summary>Learning path: 17 notes lead here, in study order</summary><ol><li><a href="relations-equivalence-and-the-quotient-of-a-set.html">Relations, equivalence and the quotient of a set</a></li><li><a href="partial-orders-lattices-and-the-knaster-tarski-theorem.html">Partial orders, lattices and the Knaster-Tarski theorem</a></li><li><a href="well-ordered-sets-and-transfinite-induction.html">Well-ordered sets and transfinite induction</a></li><li><a href="the-axiom-of-choice-and-zorns-lemma.html">The axiom of choice and Zorn's lemma</a></li><li><a href="maps-invertibility-and-the-canonical-factorisation.html">Maps, invertibility and the canonical factorisation</a></li><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li><li><a href="group-homomorphism.html">Group homomorphism</a></li><li><a href="uniqueness-of-the-identity-element.html">Uniqueness of the identity element</a></li><li><a href="subgroups-the-subgroup-criterion-and-generation.html">Subgroups, the subgroup criterion and generation</a></li><li><a href="normal-subgroups-and-the-quotient-group.html">Normal subgroups and the quotient group</a></li><li><a href="the-isomorphism-theorems-for-groups.html">The isomorphism theorems for groups</a></li><li><a href="rings-ideals-and-the-quotient-ring.html">Rings, ideals and the quotient ring</a></li><li><a href="integral-domains-fields-prime-and-maximal-ideals.html">Integral domains, fields, prime and maximal ideals</a></li><li><a href="polynomial-rings-division-and-roots.html">Polynomial rings, division and roots</a></li><li><a href="euclidean-domains-principal-ideals-and-unique-factorisation.html">Euclidean domains, principal ideals and unique factorisation</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org736357a">
+<p>
+A commutative ring <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> is <i>Noetherian</i> if every ideal is finitely
+generated: for each ideal <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> there are <img class="m" src="m/b4ce28ca427808bd3c057106c1df9e59477ec13d.svg" alt="\(a_{1},\dots,a_{k}\)" style="height:0.685em;vertical-align:-0.212em"> with
+<img class="m" src="m/f6deb7fa3f765e575f7562e0732804ba9cbc4e9f.svg" alt="\(I = a_{1}R + \cdots + a_{k}R\)" style="height:0.913em;vertical-align:-0.164em">.
+</p>
+
+</div>
+
+<div class="theorem" id="org4555c91">
+<p>
+For a commutative ring <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> the following are equivalent: (i) <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> is
+Noetherian; (ii) every ascending chain of ideals
+<img class="m" src="m/6769210c30e9dd0a9956a2fc18b24524f331496c.svg" alt="\(I_{1}\subseteq I_{2}\subseteq\cdots\)" style="height:0.913em;vertical-align:-0.164em"> is eventually constant;
+(iii) every non-empty family of ideals has a maximal element.
+</p>
+
+</div>
+
+<div class="proof" id="org3d3a23d">
+<p>
+(i) implies (ii): the union <img class="m" src="m/6d3c9784575eb8622efa3d375ec08540cf9c59a5.svg" alt="\(U\)" style="height:0.749em;vertical-align:-0.000em"> of an ascending chain is an ideal,
+hence generated by finitely many elements, all of which lie in some
+<img class="m" src="m/90e155f3c816563620514f1c1cabc55dd4e816a2.svg" alt="\(I_{N}\)" style="height:0.913em;vertical-align:-0.164em">; then <img class="m" src="m/8074b28d05323993a2fb712b785a299fbfc19fee.svg" alt="\(U = I_{N} = I_{n}\)" style="height:0.913em;vertical-align:-0.164em"> for <img class="m" src="m/e3a7f6df845655195bb1fcfe91670525ec99e1e5.svg" alt="\(n \ge N\)" style="height:0.898em;vertical-align:-0.153em">.
+</p>
+
+<p>
+(ii) implies (iii): if a non-empty family had no maximal element, one
+could choose, for each of its members, a strictly larger member, and
+recursively build a strictly increasing chain &#x2013; contradicting (ii).
+</p>
+
+<p>
+(iii) implies (i): given an ideal <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em">, let <img class="m" src="m/94e875ed771ea5fa5a0855a42416fd2a60a6f842.svg" alt="\(\mathcal{F}\)" style="height:0.749em;vertical-align:-0.000em"> be the
+family of finitely generated ideals contained in <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em">, non-empty since
+it contains <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em">. Let <img class="m" src="m/5919fa9b720d5923593af26bfc506877418cd319.svg" alt="\(J\)" style="height:0.749em;vertical-align:-0.000em"> be maximal in <img class="m" src="m/94e875ed771ea5fa5a0855a42416fd2a60a6f842.svg" alt="\(\mathcal{F}\)" style="height:0.749em;vertical-align:-0.000em">. If some
+<img class="m" src="m/5ce612647606dded53919aabc1d4f0f777cf3e0a.svg" alt="\(a \in I \setminus J\)" style="height:1.096em;vertical-align:-0.274em"> existed, <img class="m" src="m/0a5bb899a801df469580739446850a2aee32ff7e.svg" alt="\(J + aR\)" style="height:0.840em;vertical-align:-0.092em"> would be a finitely
+generated ideal inside <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> and strictly larger; so <img class="m" src="m/6b9f87defbedc43da08a476dc67cb42da1345248.svg" alt="\(J = I\)" style="height:0.749em;vertical-align:-0.000em">.
+</p>
+
+</div>
+
+<div class="proposition" id="org57ecf62">
+<p>
+A quotient of a Noetherian ring is Noetherian; so is any homomorphic
+image.
+</p>
+
+</div>
+
+<div class="proof" id="orge89d8be">
+<p>
+Ideals of <img class="m" src="m/34ee70cd4a72dc210c71d73e990c96c452605936.svg" alt="\(R/I\)" style="height:1.096em;vertical-align:-0.274em"> are the <img class="m" src="m/8e697945480bbd76ff18fed906b81c2fc8ef2010.svg" alt="\(J/I\)" style="height:1.096em;vertical-align:-0.274em"> for ideals <img class="m" src="m/22d1185761b125c17fb02376504b2b65f5ca15df.svg" alt="\(J \supseteq I\)" style="height:0.898em;vertical-align:-0.153em">, by
+taking preimages under the surjective projection. If <img class="m" src="m/5919fa9b720d5923593af26bfc506877418cd319.svg" alt="\(J\)" style="height:0.749em;vertical-align:-0.000em"> is generated
+by <img class="m" src="m/b4ce28ca427808bd3c057106c1df9e59477ec13d.svg" alt="\(a_{1},\dots,a_{k}\)" style="height:0.685em;vertical-align:-0.212em"> then <img class="m" src="m/8e697945480bbd76ff18fed906b81c2fc8ef2010.svg" alt="\(J/I\)" style="height:1.096em;vertical-align:-0.274em"> is generated by their classes. A
+homomorphic image is isomorphic to a quotient by the homomorphism
+theorem.
+</p>
+
+</div>
+
+<div class="theorem" id="orge7fedd9">
+<p>
+If <img class="m" src="m/18415a42b2085488f2aedc17eef0c7f2adb94a38.svg" alt="\(R\)" style="height:0.749em;vertical-align:-0.000em"> is Noetherian then so is <img class="m" src="m/ed66dab0437b00d764a53b6a4e98ac0990d25ef0.svg" alt="\(R[x]\)" style="height:1.096em;vertical-align:-0.274em">.
+</p>
+
+</div>
+
+<div class="proof" id="orgacdcb0b">
+<p>
+Let <img class="m" src="m/a9fab4fccf9e7dbe21c904143cc43150208dcb93.svg" alt="\(I \subseteq R[x]\)" style="height:1.096em;vertical-align:-0.274em"> be an ideal, and suppose it is not finitely
+generated. Choose <img class="m" src="m/ccb96908c659c4588114f8e2a68f52bc78789c93.svg" alt="\(f_{1} \in I \setminus \set{0}\)" style="height:1.096em;vertical-align:-0.274em"> of least degree,
+and recursively <img class="m" src="m/5de9d25efd2ca00740b08db722055501e336ef52.svg" alt="\(f_{k+1} \in I \setminus (f_{1},\dots,f_{k})\)" style="height:1.096em;vertical-align:-0.274em"> of least
+degree &#x2013; possible, since <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> is not generated by finitely many
+elements. Let <img class="m" src="m/bd45464efc731e3318b81dcdd7774f6c3479cdc6.svg" alt="\(a_{k}\)" style="height:0.636em;vertical-align:-0.165em"> be the leading coefficient of <img class="m" src="m/3b6cde8fb7cd40ef6d4f9d48760f1c1835c3ab43.svg" alt="\(f_{k}\)" style="height:0.974em;vertical-align:-0.214em"> and
+<img class="m" src="m/207eb33c4327feeea8f3ca7f8eb39c77a1e4ce70.svg" alt="\(d_{k} = \deg f_{k}\)" style="height:0.974em;vertical-align:-0.214em">, so <img class="m" src="m/a906139d178a43ce016e00caabc12eb428013203.svg" alt="\(d_{1}\le d_{2}\le\cdots\)" style="height:0.925em;vertical-align:-0.167em"> by the choice of
+least degree.
+</p>
+
+<p>
+The chain <img class="m" src="m/9797835ecbaa71559a3697000fc4b738bb45fb03.svg" alt="\(a_{1}R \subseteq a_{1}R + a_{2}R \subseteq \cdots\)" style="height:0.913em;vertical-align:-0.164em"> is
+eventually constant, so <img class="m" src="m/ad87b9fde0c11a434275fef0a9a089645bd88e85.svg" alt="\(a_{n+1} = \sum_{k \le n} r_{k}a_{k}\)" style="height:1.293em;vertical-align:-0.465em"> for some
+<img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> and <img class="m" src="m/aee8782ba94b5f0c89d8cb18baaebd2525b6b6c7.svg" alt="\(r_{k}\in R\)" style="height:0.913em;vertical-align:-0.164em">. Consider
+<img class="m" src="m/782d632c7142c6e7c307e70a27039342bfe5aea8.svg" alt="\(g = f_{n+1} - \sum_{k\le n} r_{k}x^{d_{n+1}-d_{k}}f_{k}\)" style="height:1.401em;vertical-align:-0.476em">, which lies
+in <img class="m" src="m/04ab9f365a7cdc00bd9a908197a3ef8a1f3ad017.svg" alt="\(I\)" style="height:0.749em;vertical-align:-0.000em"> and not in <img class="m" src="m/d3c7981cbfd7bd169a030f4370130809d08cd63e.svg" alt="\((f_{1},\dots,f_{n})\)" style="height:1.096em;vertical-align:-0.274em">, since <img class="m" src="m/07ab895bb0e79752be4b3fcbc02dd4fec392283c.svg" alt="\(f_{n+1}\)" style="height:1.017em;vertical-align:-0.254em"> does not.
+But its coefficient of <img class="m" src="m/4f7a1ad688706eac4db404d1624cb2111da1ffc3.svg" alt="\(x^{d_{n+1}}\)" style="height:0.930em;vertical-align:-0.000em"> is
+<img class="m" src="m/e1f4b4f09b0b4c99ff7ab8eb559e10828ec6b5bb.svg" alt="\(a_{n+1} - \sum_{k}r_{k}a_{k} = 0\)" style="height:1.151em;vertical-align:-0.334em">, so <img class="m" src="m/751ad74a7b9b5fe81f519e064c8b87082fed8c01.svg" alt="\(\deg g &lt; d_{n+1}\)" style="height:1.017em;vertical-align:-0.254em">,
+contradicting the minimality in the choice of <img class="m" src="m/07ab895bb0e79752be4b3fcbc02dd4fec392283c.svg" alt="\(f_{n+1}\)" style="height:1.017em;vertical-align:-0.254em">.
+</p>
+
+</div>
+
+<div class="corollary" id="org13bfdcd">
+<p>
+For a field <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">, the ring <img class="m" src="m/6ab57f9ac845033f44409b5c7d3b5b0570a665f2.svg" alt="\(K[x_{1},\dots,x_{n}]\)" style="height:1.096em;vertical-align:-0.274em"> is Noetherian, and
+so is every quotient of it. Consequently any system of polynomial
+equations over <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> has the same solution set as some finite
+subsystem of it.
+</p>
+
+</div>
+
+<div class="proof" id="orgde756ea">
+<p>
+A field is Noetherian, having only the ideals <img class="m" src="m/ca135951bf862b23189b0658caea057d5a8abc0b.svg" alt="\(0\)" style="height:0.706em;vertical-align:-0.000em"> and <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">; apply
+Hilbert's theorem <img class="m" src="m/60d205d45755438824e47e256bedb6e8f5a48649.svg" alt="\(n\)" style="height:0.472em;vertical-align:-0.000em"> times, and the previous proposition for
+quotients. Given a family <img class="m" src="m/823d458118978517887306921d56d285d07cc9d5.svg" alt="\(\mathcal{S}\)" style="height:0.749em;vertical-align:-0.000em"> of polynomials, the ideal it
+generates is generated by finitely many polynomials, each a combination
+of finitely many members of <img class="m" src="m/823d458118978517887306921d56d285d07cc9d5.svg" alt="\(\mathcal{S}\)" style="height:0.749em;vertical-align:-0.000em">; those finitely many members
+generate the same ideal, hence have the same common zeros.
+</p>
+
+</div>
+
+<div class="remark" id="orgc1e044b">
+<p>
+The last sentence is the reason the chain condition matters outside
+algebra: an algebraic set is cut out by finitely many equations even
+when it is defined by infinitely many, so the objects of algebraic
+geometry are finite data. Note also what the proof of Hilbert's theorem
+does <i>not</i> do &#x2013; it produces no generators, only a contradiction from
+their absence, which is characteristic of the whole subject after
+Hilbert.
+</p>
+
+</div>
+</main>
+<nav class="pn"><a rel="prev" href="euclidean-domains-principal-ideals-and-unique-factorisation.html"><span>← previous</span>Euclidean domains, principal ideals and unique factorisation</a><a rel="next" href="the-chinese-remainder-theorem.html"><span>next →</span>The Chinese remainder theorem</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--commutative-algebra.pdf" title="PDF manual">Commutative Algebra</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>

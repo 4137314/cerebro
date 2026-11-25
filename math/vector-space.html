@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vector space · Mathematics</title>
+<meta name="description" content="A vector space endows an abelian group with a compatible action of a field of scalars – the arena of linear algebra and the local model of every geometry considered here.">
+<link rel="canonical" href="https://4137314.github.io/cerebro/math/vector-space.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="cerebro">
+<meta property="og:title" content="Vector space · Mathematics">
+<meta property="og:description" content="A vector space endows an abelian group with a compatible action of a field of scalars – the arena of linear algebra and the local model of every geometry considered here.">
+<meta property="og:url" content="https://4137314.github.io/cerebro/math/vector-space.html">
+<link rel="stylesheet" href="../style.css">
+<script src="../site.js" defer></script>
+</head>
+<body data-root="../">
+<nav class="top"><span class="crumbs"><a href="../index.html">cerebro</a> / <a href="index.html">Mathematics</a> / <a href="index.html#d-algebra">Algebra</a> / <a rel="up" href="index.html#a-algebra--linear-algebra">Linear Algebra</a></span><input id="q" type="search" placeholder="Search all notes   /" aria-label="Search all notes" autocomplete="off" spellcheck="false"></nav>
+<header>
+<p class="meta">definition · Algebra · Linear Algebra</p>
+<h1>Vector space</h1>
+<p class="summary">A <i>vector space</i> endows an <a href="abelian-group.html">abelian group</a> with a compatible action of a field of scalars &#x2013; the arena of linear algebra and the local model of every geometry considered here.</p>
+<p class="rel"><span>needs</span> <a href="abelian-group.html">Abelian group</a></p>
+<p class="rel"><span>unlocks</span> <a href="bilinear-forms-quadratic-forms-and-sylvesters-law-of-inertia.html">Bilinear forms, quadratic forms and Sylvester's law of inertia</a>, <a href="dual-spaces-annihilators-and-the-transpose.html">Dual spaces, annihilators and the transpose</a>, <a href="inner-product-space.html">Inner product space</a>, <a href="linear-maps-quotient-spaces-and-the-rank-nullity-theorem.html">Linear maps, quotient spaces and the rank-nullity theorem</a>, <a href="span-linear-independence-bases-and-dimension.html">Span, linear independence, bases and dimension</a>, <a href="the-determinant-as-the-alternating-multilinear-form.html">The determinant as the alternating multilinear form</a>, <a href="modules-quotients-and-exact-sequences.html">Modules, quotients and exact sequences</a>, <a href="field-extensions-the-tower-law-and-minimal-polynomials.html">Field extensions, the tower law and minimal polynomials</a>, <a href="normed-spaces-and-the-equivalence-of-norms-in-finite-dimension.html">Normed spaces and the equivalence of norms in finite dimension</a>, <a href="the-hahn-banach-theorem.html">The Hahn-Banach theorem</a>, <a href="affine-spaces-affine-subspaces-and-affine-maps.html">Affine spaces, affine subspaces and affine maps</a>, <a href="smooth-manifolds-smooth-maps-and-the-tangent-space.html">Smooth manifolds, smooth maps and the tangent space</a>, <a href="convex-set.html">Convex set</a>, <a href="projective-space-affine-charts-and-the-dimension-formula.html">Projective space, affine charts and the dimension formula</a></p>
+<p class="rel"><span>mentioned in</span> <a href="linear-algebra.html">Linear algebra</a></p>
+<details class="path"><summary>Learning path: 3 notes lead here, in study order</summary><ol><li><a href="binary-operation.html">Binary operation</a></li><li><a href="group.html">Group</a></li><li><a href="abelian-group.html">Abelian group</a></li></ol></details>
+</header>
+<main class="note">
+<div class="definition" id="org7e83bff">
+<p>
+Let <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> be a field. A <b>vector space</b> over <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> is an <a href="abelian-group.html">abelian group</a>
+<img class="m" src="m/9f50d090d9d3dec97eb84ef2e454515af401e990.svg" alt="\((V, +)\)" style="height:1.096em;vertical-align:-0.274em"> together with a <b>scalar multiplication</b> <img class="m" src="m/a453c867e98b6ccdb17a3cdd8829d94623a92d5a.svg" alt="\(K \times V \to V\)" style="height:0.840em;vertical-align:-0.092em">,
+<img class="m" src="m/def7d1d4a97b560049ae9b20eef3d1c7d4b42238.svg" alt="\((\lambda, v) \mapsto \lambda v\)" style="height:1.096em;vertical-align:-0.274em">, such that for all <img class="m" src="m/0befe6d680dcea786c506be57720d003fc55aaff.svg" alt="\(\lambda, \mu \in K\)" style="height:0.974em;vertical-align:-0.214em">
+and <img class="m" src="m/966bb6cc376f617cf428889988f7bac384b63c5f.svg" alt="\(u, v \in V\)" style="height:0.962em;vertical-align:-0.212em">:
+</p>
+<ol class="org-ol">
+<li><img class="m" src="m/5af56b5c4dce656c41442361f59f93530ad571cc.svg" alt="\(\lambda (u + v) = \lambda u + \lambda v\)" style="height:1.096em;vertical-align:-0.274em">;</li>
+<li><img class="m" src="m/748137507d598f9fd301b5bbc79b61fc8c5c3af6.svg" alt="\((\lambda + \mu) v = \lambda v + \mu v\)" style="height:1.096em;vertical-align:-0.274em">;</li>
+<li><img class="m" src="m/3ebfd6a5d73e92f9c9863fd595064a966f3b179e.svg" alt="\((\lambda \mu) v = \lambda (\mu v)\)" style="height:1.096em;vertical-align:-0.274em">;</li>
+<li><img class="m" src="m/1079e73602ed737a32e1c4089da925403043831d.svg" alt="\(1\, v = v\)" style="height:0.706em;vertical-align:-0.000em">, where <img class="m" src="m/9695d5e0aa32cb723dce32395d1008279ab1baa5.svg" alt="\(1\)" style="height:0.706em;vertical-align:-0.000em"> is the multiplicative identity of <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em">.</li>
+</ol>
+
+</div>
+
+<p>
+Elements of <img class="m" src="m/31b6ae34aa6c3bdb6bd25208e4382d230a38d4ee.svg" alt="\(V\)" style="height:0.749em;vertical-align:-0.000em"> are <i>vectors</i>, elements of <img class="m" src="m/3499ea51a4b004c4d767f500f9c2312deb8a184d.svg" alt="\(K\)" style="height:0.749em;vertical-align:-0.000em"> <i>scalars</i>. The running
+example is <img class="m" src="m/b3978a2148f10adddc8688f3fa9f4c003935cbc7.svg" alt="\(K = \R\)" style="height:0.755em;vertical-align:-0.000em"> and <img class="m" src="m/080e86120d5643b927bc1c1f1e4f734c50216121.svg" alt="\(V = \R^{n}\)" style="height:0.755em;vertical-align:-0.000em">.
+</p>
+</main>
+<nav class="pn"><a rel="prev" href="algebra.html"><span>← previous</span>Algebra</a><a rel="next" href="span-linear-independence-bases-and-dimension.html"><span>next →</span>Span, linear independence, bases and dimension</a></nav>
+<p class="dl"><span>PDF</span> <a class="pdf" href="pdf/algebra--linear-algebra.pdf" title="PDF manual">Linear Algebra</a> · <a class="pdf" href="pdf/algebra.pdf" title="PDF manual">Algebra</a> · <a class="pdf" href="pdf/math.pdf" title="PDF manual">whole Mathematics</a></p>
+
+<footer><a href="https://4137314.github.io/">Mattia Fait</a> · <a href="https://github.com/4137314/cerebro">source</a> · <span class="keys">press <kbd>?</kbd> for keyboard shortcuts</span></footer>
+</body>
+</html>
