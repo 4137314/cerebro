@@ -188,10 +188,30 @@
     tip.style.left = left + scrollX + "px";
     tip.style.top = (below ? r.bottom + 6 : r.top - tip.offsetHeight - 6) + scrollY + "px";
   };
+  // The full reference of a citation, from the link itself.
+  const showRef = a => {
+    hidePreview();
+    tip = document.createElement("div");
+    tip.className = "preview refbox";
+    tip.textContent = a.dataset.full;
+    document.body.append(tip);
+    const r = a.getBoundingClientRect();
+    tip.style.left = Math.max(8, Math.min(r.left, innerWidth - tip.offsetWidth - 8)) + scrollX + "px";
+    tip.style.top = (r.bottom + tip.offsetHeight + 8 < innerHeight ? r.bottom + 6 : r.top - tip.offsetHeight - 6) + scrollY + "px";
+  };
+  if (matchMedia("(hover: hover)").matches) {
+    document.addEventListener("mouseover", ev => {
+      const a = ev.target.closest && ev.target.closest("a.ref[data-full]");
+      if (!a) return;
+      clearTimeout(timer);
+      timer = setTimeout(() => showRef(a), 200);
+      a.addEventListener("mouseleave", hidePreview, { once: true });
+    });
+  }
   if (matchMedia("(hover: hover)").matches && location.protocol !== "file:") {
     document.addEventListener("mouseover", ev => {
       const a = ev.target.closest && ev.target.closest("main a, header a, details a, nav.pn a");
-      if (!a || a.origin !== location.origin || !/\.html$/.test(a.pathname)
+      if (!a || a.classList.contains("ref") || a.origin !== location.origin || !/\.html$/.test(a.pathname)
           || a.pathname === location.pathname || /\/index\.html$/.test(a.pathname)) return;
       clearTimeout(timer);
       timer = setTimeout(() => preview(a), 350);

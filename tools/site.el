@@ -21,6 +21,7 @@
 (require 'cl-lib)
 (require 'subr-x)
 (require 'json)
+(require 'oc)
 
 (defconst site--file (or load-file-name buffer-file-name))
 (add-to-list 'load-path (file-name-directory site--file))
@@ -29,6 +30,8 @@
 (setq org-id-locations-file null-device
       ;; Source blocks stay plain (no htmlize): styled by the stylesheet.
       org-html-htmlize-output-type nil)
+
+(require 'refs)
 
 (defvar site--base nil "Name of the base being built (its directory in the site).")
 
@@ -70,6 +73,12 @@ Roots are relative to HUB-ROOT, or to REGISTRY when they start with \".\" (as in
 
 (defun site--em (pt) (format "%.3fem" (* pt site--em-per-pt)))
 
+(defconst site--figure-kinds
+  '(("tikzpicture" . "Figure") ("circuitikz" . "Figure") ("algorithmic" . "Algorithm"))
+  "Environments shown as numbered figures, with the word of their label.")
+
+(defvar site--counters nil "Figure numbers of the note being exported: (WORD . N)...")
+
 (defun site--math (text blockp)
   "HTML of the fragment TEXT: the image of its SVG, or the TeX itself if not rendered."
   (let* ((text (string-trim text))
@@ -80,12 +89,12 @@ Roots are relative to HUB-ROOT, or to REGISTRY when they start with \".\" (as in
                (format "<code class=\"tex\">%s</code>" (org-html-encode-plain-text text)))
       (puthash hash t site--used)
       (let* ((size (site--svg-size file))
-             (alt (if (string-match-p "\\`\\\\begin{\\(?:tikz\\|circuitikz\\)" text)
+             (alt (if (assoc (site--environment text) site--figure-kinds)
                       "figure"
                     (org-html-encode-plain-text text)))
              (alt (replace-regexp-in-string "\"" "&quot;" alt)))
         (if blockp
-            (format "<div class=\"mb\"><img class=\"m\" src=\"m/%s.svg\" alt=\"%s\" style=\"width:%s\"></div>"
+            (format "<img class=\"m\" src=\"m/%s.svg\" alt=\"%s\" style=\"width:%s\">"
                     hash alt (site--em (car size)))
           (let* ((ascent (gethash hash kb--meta 'center))
                  (depth (if (numberp ascent)
@@ -94,14 +103,120 @@ Roots are relative to HUB-ROOT, or to REGISTRY when they start with \".\" (as in
             (format "<img class=\"m\" src=\"m/%s.svg\" alt=\"%s\" style=\"height:%s;vertical-align:-%s\">"
                     hash alt (site--em (cdr size)) (site--em depth))))))))
 
+(defun site--environment (text)
+  "Name of the LaTeX environment TEXT starts with, or nil."
+  (and (string-match "\\`[ \t]*\\\\begin{\\([a-zA-Z*]+\\)}" text) (match-string 1 text)))
+
 (defun site--latex-fragment (fragment _contents _info)
   (let ((v (org-element-property :value fragment)))
     (if (string-prefix-p "$" v)
         (org-html-encode-plain-text v)
-      (site--math v (string-prefix-p "\\[" v)))))
+      (let ((img (site--math v (string-prefix-p "\\[" v))))
+        (if (string-prefix-p "\\[" v) (format "<div class=\"mb\">%s</div>" img) img)))))
 
-(defun site--latex-environment (env _contents _info)
-  (site--math (org-element-property :value env) t))
+(defun site--latex-environment (env _contents info)
+  "Displayed environment: a numbered figure with its caption for pictures and algorithms."
+  (let* ((text (org-element-property :value env))
+         (word (cdr (assoc (site--environment text) site--figure-kinds)))
+         (img (site--math text t)))
+    (if (not word)
+        (format "<div class=\"mb\">%s</div>" img)
+      (let* ((n (1+ (or (cdr (assoc word site--counters)) 0)))
+             (caption (org-export-get-caption env)))
+        (setf (alist-get word site--counters nil nil #'equal) n)
+        (format "<figure class=\"fig\">%s%s</figure>" img
+                (if caption
+                    (format "<figcaption><span class=\"fl\">%s %d.</span> %s</figcaption>"
+                            word n (org-export-data caption info))
+                  ""))))))
+
+;;;; Listings
+
+(defconst site--languages
+  '(("c++" "cpp" "C++" c++-mode) ("cpp" "cpp" "C++" c++-mode) ("c" "c" "C" c-mode)
+    ("java" "java" "Java" java-mode) ("vhdl" "vhdl" "VHDL" vhdl-mode)
+    ("python" "python" "Python" python-mode) ("asm" "asm" "Assembly" asm-mode)
+    ("sh" "sh" "Shell" sh-mode) ("bash" "sh" "Shell" sh-mode)
+    ("emacs-lisp" "elisp" "Emacs Lisp" emacs-lisp-mode) ("text" "text" "Text" nil))
+  "Org language -> (CSS class, label, Emacs mode used to colour it).")
+
+(defconst site--face-classes
+  '((font-lock-keyword-face . "k") (font-lock-type-face . "t") (font-lock-string-face . "s")
+    (font-lock-doc-face . "s") (font-lock-comment-face . "c") (font-lock-comment-delimiter-face . "c")
+    (font-lock-function-name-face . "f") (font-lock-function-call-face . "f")
+    (font-lock-variable-name-face . "v") (font-lock-constant-face . "n") (font-lock-number-face . "n")
+    (font-lock-builtin-face . "b") (font-lock-preprocessor-face . "p") (font-lock-warning-face . "k")
+    (font-lock-negation-char-face . "k"))
+  "Token classes of the listings (colours in site.css).")
+
+(defun site--face-class (face)
+  (cl-some (lambda (f) (cdr (assq f site--face-classes))) (if (listp face) face (list face))))
+
+(defun site--highlight (code mode)
+  "CODE as HTML, its tokens in spans coloured as MODE's font-lock sees them."
+  (with-temp-buffer
+    (insert code)
+    (when (and mode (fboundp mode))
+      (let ((inhibit-message t)) (delay-mode-hooks (funcall mode)) (font-lock-ensure)))
+    (let ((pos (point-min)) (out nil) (run "") (class nil))
+      (cl-flet ((flush () (unless (string-empty-p run)
+                            (push (if class (format "<span class=\"%s\">%s</span>" class run) run) out))))
+        (while (< pos (point-max))
+          (let* ((next (next-single-property-change pos 'face nil (point-max)))
+                 (c (site--face-class (get-text-property pos 'face)))
+                 (text (org-html-encode-plain-text (buffer-substring-no-properties pos next))))
+            (if (equal c class)
+                (setq run (concat run text))
+              (flush)
+              (setq run text class c))
+            (setq pos next)))
+        (flush))
+      (apply #'concat (nreverse out)))))
+
+(defun site--src-block (block _contents info)
+  (let* ((lang (or (org-element-property :language block) "text"))
+         (l (or (assoc lang site--languages) (list lang lang lang nil)))
+         (code (car (org-export-unravel-code block)))
+         (caption (org-export-get-caption block)))
+    (format "<figure class=\"listing lang-%s\"><figcaption><span class=\"lang\">%s</span>%s</figcaption><pre class=\"src\"><code>%s</code></pre></figure>"
+            (nth 1 l) (nth 2 l)
+            (if caption (concat " " (org-export-data caption info)) "")
+            (site--highlight (string-trim-right code) (nth 3 l)))))
+
+;;;; Citations
+
+(defvar site--refs nil "Bibliography of the base being built (`refs-load').")
+(defvar site--cited (make-hash-table :test 'equal) "Key -> ids of the notes citing it.")
+(defvar site--note nil "Id of the note being exported.")
+
+(defun site--cite (key)
+  (let ((e (and site--refs (gethash key site--refs))))
+    (if (not e)
+        (progn (message "site: %s: unknown reference %s" (or site--note "?") key)
+               (format "<span class=\"ref missing\">%s</span>" (org-html-encode-plain-text key)))
+      (when site--note (cl-pushnew site--note (gethash key site--cited) :test #'equal))
+      (format "<a class=\"ref\" href=\"%s\" data-full=\"%s\" aria-label=\"%s\">%s</a>"
+              (or (refs-url e) (format "references.html#ref-%s" key))
+              (site--attr (refs-full e)) (site--attr (refs-full e))
+              (org-html-encode-plain-text (refs-short e))))))
+
+(defun site--citation-html (citation)
+  "(Author Year; Author Year) for [cite:@a;@b], each linked to the paper."
+  (format "<span class=\"cite\">(%s)</span>"
+          (mapconcat (lambda (r) (site--cite (org-element-property :key r)))
+                     (org-cite-get-references citation) "; ")))
+
+(defvar site-cite-latex-function nil
+  "Function of a citation that writes it for LaTeX (set by manual.el).")
+
+;; The notes' own citation processor: HTML here, LaTeX in manual.el.
+(org-cite-register-processor 'kb
+  :export-citation
+  (lambda (citation _style backend _info)
+    (org-export-raw-string
+     (if (org-export-derived-backend-p backend 'latex)
+         (funcall site-cite-latex-function citation)
+       (site--citation-html citation)))))
 
 ;;;; Links
 
@@ -120,6 +235,7 @@ Roots are relative to HUB-ROOT, or to REGISTRY when they start with \".\" (as in
 (org-export-define-derived-backend 'site 'html
   :translate-alist '((latex-fragment . site--latex-fragment)
                      (latex-environment . site--latex-environment)
+                     (src-block . site--src-block)
                      (link . site--link)))
 
 (defconst site--export-options
@@ -129,7 +245,7 @@ Roots are relative to HUB-ROOT, or to REGISTRY when they start with \".\" (as in
   "Export settings of every note.")
 
 (defun site--export-buffer ()
-  (let ((org-export-use-babel nil))
+  (let ((org-export-use-babel nil) (org-cite-export-processors '((t kb))))
     (org-export-as 'site nil nil t site--export-options)))
 
 (defun site--org-inline (s)
@@ -151,7 +267,9 @@ Roots are relative to HUB-ROOT, or to REGISTRY when they start with \".\" (as in
     (org-mode)
     ;; Deterministic ids of headlines and blocks: a rebuild changes only what changed.
     (random (concat "site:" file))
-    (site--export-buffer)))
+    (let ((site--counters nil)
+          (site--note (file-name-base file)))
+      (site--export-buffer))))
 
 ;;;; Text
 
@@ -307,8 +425,8 @@ summary for search engines and link previews."
       (site--rel "see also" see)
       (site--rel "mentioned in" mentioned)
       (if path
-          (format "<details class=\"path\"><summary>Learning path: %d notes lead here, in study order</summary><ol>%s</ol></details>\n"
-                  (length path)
+          (format "<details class=\"path\"><summary>Learning path: %d %s here, in study order</summary><ol>%s</ol></details>\n"
+                  (length path) (if (= (length path) 1) "note leads" "notes lead")
                   (mapconcat (lambda (p) (concat "<li>" (site--note-link p) "</li>")) path ""))
         "")
       "</header>\n<main class=\"note\">\n"
@@ -329,9 +447,12 @@ summary for search engines and link previews."
      (concat
       (site--topbar (format "<a href=\"../index.html\">cerebro</a> / %s" (org-html-encode-plain-text base-title)))
       (format "<header><h1>%s</h1><p class=\"meta\">%d notes, in study order</p>\n" (org-html-encode-plain-text base-title) n)
-      (format "<p class=\"rel\">%s<a rel=\"next\" href=\"%s.html\">start reading →</a></p>\n"
+      (format "<p class=\"rel\">%s%s<a rel=\"next\" href=\"%s.html\">start reading →</a></p>\n"
               (let ((l (site--pdf-link (concat site--base ".pdf") (format "%s manual (PDF)" base-title))))
                 (if (string-empty-p l) "" (concat l " · ")))
+              (if (> (hash-table-count site--cited) 0)
+                  (format "<a href=\"references.html\">references (%d)</a> · " (hash-table-count site--cited))
+                "")
               (car site--sequence))
       "<a rel=\"up\" href=\"../index.html\" hidden></a>"
       "<details class=\"toc\" open><summary>Contents</summary><ol>"
@@ -370,6 +491,30 @@ summary for search engines and link previews."
              base-title n
              (string-join (mapcar (lambda (g) (downcase (site--words (car g)))) groups) ", ")))))
 
+(defun site--references-page (base-title)
+  "Every paper cited in the base, with the notes that cite it."
+  (let ((keys (sort (hash-table-keys site--cited)
+                    (lambda (a b) (string< (refs-short (gethash a site--refs))
+                                           (refs-short (gethash b site--refs)))))))
+    (site--page
+     (format "References · %s" base-title)
+     (concat
+      (site--topbar (format "<a href=\"../index.html\">cerebro</a> / <a rel=\"up\" href=\"index.html\">%s</a> / references"
+                            (org-html-encode-plain-text base-title)))
+      (format "<header><h1>References</h1><p class=\"summary\">The %d papers and books cited in the %s notes: where each result was first proved, measured or proposed.</p></header>\n<main>\n<ol class=\"refs\">\n"
+              (length keys) (org-html-encode-plain-text base-title))
+      (mapconcat
+       (lambda (k)
+         (let* ((e (gethash k site--refs)) (url (refs-url e)))
+           (format "<li id=\"ref-%s\"><b>%s</b> %s%s<br><span class=\"rel\"><span>cited in</span> %s</span></li>\n"
+                   k (org-html-encode-plain-text (refs-short e)) (org-html-encode-plain-text (refs-full e))
+                   (if url (format " <a href=\"%s\">%s</a>" url (org-html-encode-plain-text (replace-regexp-in-string "\\`https://\\(doi.org/\\)?" "" url))) "")
+                   (site--note-list (sort (copy-sequence (gethash k site--cited)) #'kb--rank<)))))
+       keys "")
+      "</ol>\n</main>\n")
+     "../" (concat site--base "/references.html")
+     (format "Original papers cited in the %s notes." base-title))))
+
 ;;;; Search index and base summary
 
 (defun site--search-entries (base-title)
@@ -403,6 +548,12 @@ summary for search engines and link previews."
 
 ;;;; Building
 
+(defun site--bib-file (config)
+  "refs.bib next to the base's CONFIG, if there is one."
+  (and config (not (string-empty-p config))
+       (let ((f (expand-file-name "refs.bib" (file-name-directory config))))
+         (and (file-exists-p f) f))))
+
 (defun site-build-base (name title dir config out state &optional pdf)
   "Write the pages of base NAME (TITLE, notes in DIR, CONFIG) into OUT/NAME/.
 STATE is the base's state directory (SVG cache), shared with the hub; PDF non-empty
@@ -415,7 +566,9 @@ also builds the manuals (manual.el)."
   (when (and config (not (string-empty-p config)) (file-exists-p config))
     (load config nil t))
   (kb-reload)
-  (setq site--sequence (site--reading-order))
+  (setq site--sequence (site--reading-order)
+        site--cited (make-hash-table :test 'equal)
+        site--refs (refs-load (site--bib-file config)))
   (message "site: %s: rendering formulas (%d new)" name (kb-render-all t))
   (dolist (e kb--render-errors)
     (message "site: %s: LaTeX: %s in %s" name (cdr e) (truncate-string-to-width (car e) 100)))
@@ -426,10 +579,14 @@ also builds the manuals (manual.el)."
     (setq site--pdfs
           (and pdf (not (string-empty-p pdf))
                (progn (require 'manual)
-                      (manual-build name title (site--groups) (expand-file-name "pdf" dest)))))
+                      (manual-build name title (site--groups) (expand-file-name "pdf" dest)
+                                    (site--bib-file config)))))
     (dolist (id site--sequence)
       (with-temp-file (expand-file-name (concat id ".html") dest)
         (insert (site--note-page id title))))
+    (when (> (hash-table-count site--cited) 0)
+      (with-temp-file (expand-file-name "references.html" dest)
+        (insert (site--references-page title))))
     (with-temp-file (expand-file-name "index.html" dest)
       (insert (site--index-page title)))
     (maphash (lambda (hash _) (copy-file (kb--svg hash) (expand-file-name (concat "m/" hash ".svg") dest) t))

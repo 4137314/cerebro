@@ -186,4 +186,72 @@
   (should (equal (plist-get (site--parse-args '("r.el" "/hub" "out" "--index-only")) :build) nil))
   (should (equal (plist-get (site--parse-args '("r.el" "/hub" "out" "--no-index")) :index) nil)))
 
+(defconst site-test--bib "@article{bohr1913,
+  author = {Bohr, Niels},
+  title = {On the constitution of atoms and molecules},
+  journal = {Philosophical Magazine},
+  volume = {26}, pages = {1--25}, year = {1913},
+  doi = {10.1080/14786441308634955}}
+@book{dirac1930,
+  author = {Dirac, Paul Adrien Maurice},
+  title = {The Principles of Quantum Mechanics},
+  publisher = {Clarendon Press}, address = {Oxford}, year = {1930}}
+@article{epr1935,
+  author = {Einstein, Albert and Podolsky, Boris and Rosen, Nathan},
+  title = {Can quantum-mechanical description of physical reality be considered complete?},
+  journal = {Physical Review}, volume = {47}, pages = {777--780}, year = {1935},
+  doi = {10.1103/PhysRev.47.777}}
+@article{ab1959,
+  author = {Aharonov, Yakir and Bohm, David},
+  title = {Significance of electromagnetic potentials in the quantum theory},
+  journal = {Physical Review}, volume = {115}, pages = {485--491}, year = {1959}}
+")
+
+(defmacro site-test--with-bib (&rest body)
+  `(let ((bib (make-temp-file "refs" nil ".bib" site-test--bib)))
+     (unwind-protect
+         (progn (setq site--refs (refs-load bib) site--cited (make-hash-table :test 'equal)) ,@body)
+       (delete-file bib) (setq site--refs nil))))
+
+(ert-deftest site-test-refs-format ()
+  (site-test--with-bib
+   (should (equal (refs-short (gethash "bohr1913" site--refs)) "Bohr 1913"))
+   (should (equal (refs-short (gethash "ab1959" site--refs)) "Aharonov and Bohm 1959"))
+   (should (equal (refs-short (gethash "epr1935" site--refs)) "Einstein et al. 1935"))
+   (should (equal (refs-full (gethash "bohr1913" site--refs))
+                  "N. Bohr, “On the constitution of atoms and molecules”, Philosophical Magazine 26, 1–25 (1913)."))
+   (should (equal (refs-full (gethash "dirac1930" site--refs))
+                  "P. A. M. Dirac, The Principles of Quantum Mechanics (Clarendon Press, Oxford, 1930)."))))
+
+(ert-deftest site-test-citation ()
+  (site-test--with-bib
+   (site-test--with-base '(("a" . "Atoms are quantised [cite:@bohr1913; @epr1935], see [cite:@nokey]."))
+     (let ((html (site-test--html "a")))
+       (should (string-match-p "quantised <span class=\"cite\">(<a class=\"ref\" href=\"https://doi.org/10.1080/14786441308634955\"" html))
+       (should (string-match-p ">Bohr 1913</a>; <a class=\"ref\"[^>]*>Einstein et al. 1935</a>)</span>" html))
+       (should (string-match-p "data-full=\"N. Bohr, “On the constitution" html))
+       (should (string-match-p "<span class=\"ref missing\">nokey</span>" html))
+       (should (equal (gethash "bohr1913" site--cited) '("a")))))))
+
+(ert-deftest site-test-figure-caption ()
+  (site-test--with-base '(("a" . "#+CAPTION: Energy levels of \\(H\\).\n\\begin{tikzpicture}\n\\draw (0,0) -- (1,0);\n\\end{tikzpicture}\n\n#+CAPTION: Second.\n\\begin{tikzpicture}\n\\draw (0,0) -- (2,0);\n\\end{tikzpicture}\n\n#+CAPTION: Steps.\n\\begin{algorithmic}\n\\State x\n\\end{algorithmic}\n"))
+    (dolist (f '("\\begin{tikzpicture}\n\\draw (0,0) -- (1,0);\n\\end{tikzpicture}"
+                 "\\begin{tikzpicture}\n\\draw (0,0) -- (2,0);\n\\end{tikzpicture}"
+                 "\\begin{algorithmic}\n\\State x\n\\end{algorithmic}"))
+      (site-test--fake-svg f))
+    (site-test--fake-svg "\\(H\\)")
+    (let ((html (site-test--html "a")))
+      (should (string-match-p "<figure class=\"fig\"><img class=\"m\"" html))
+      (should (string-match-p "<figcaption><span class=\"fl\">Figure 1.</span> Energy levels of <img" html))
+      (should (string-match-p "<span class=\"fl\">Figure 2.</span> Second." html))
+      (should (string-match-p "<span class=\"fl\">Algorithm 1.</span> Steps." html)))))
+
+(ert-deftest site-test-src-highlight ()
+  (site-test--with-base '(("a" . "#+begin_src c++\nint main() { return 0; } // hi <b>\n#+end_src\n"))
+    (let ((html (site-test--html "a")))
+      (should (string-match-p "<figure class=\"listing lang-cpp\"><figcaption><span class=\"lang\">C\\+\\+</span></figcaption>" html))
+      (should (string-match-p "<span class=\"t\">int</span>" html))
+      (should (string-match-p "<span class=\"k\">return</span>" html))
+      (should (string-match-p "<span class=\"c\">// hi &lt;b&gt;</span>" html)))))
+
 ;;; test-site.el ends here

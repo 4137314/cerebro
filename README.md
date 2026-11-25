@@ -52,11 +52,17 @@ without it):
 - search over every base (`/`), previews of linked notes on hover, keys: `j`/`k` next and
   previous note, `u` up to the area, `h` home, `l` learning path, `c` contents, `r` random
   note, `?` all keys;
+- figures (TikZ pictures, algorithms) numbered, centred and captioned from their
+  `#+CAPTION:`; listings coloured by language (C++, Java, VHDL, Python, assembly);
+- the papers that first proved or found a result cited next to it with org-cite,
+  `[cite:@key]`, from the base's `refs.bib` (next to its `kb-config.el`, `tools/refs.el`):
+  "(Author Year)" linked to the DOI, the full reference on hover, and a references page;
 - canonical links, descriptions and `sitemap.xml` for the crawlers.
 
 `tools/manual.el` turns each base into a LuaLaTeX book (a chapter per domain, a section per
 area, a subsection per note with a link to its page, links between notes kept) and cuts it
-with qpdf into one PDF per domain and per area: `<base>/pdf/<base>.pdf`,
+with qpdf into one PDF per domain and per area (figures as floats, listings with `listings`,
+citations with biblatex and the bibliography at the end of every PDF): `<base>/pdf/<base>.pdf`,
 `<base>/pdf/<domain>.pdf`, `<base>/pdf/<domain>--<area>.pdf`.
 
 The site is built by the workflow `.github/workflows/cerebro-site.yml` of the `~/dev`

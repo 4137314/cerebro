@@ -35,4 +35,23 @@
     (should (string-match-p "\\\\newtheorem{theorem}" p))
     (should (string-match-p "zref-abspage" p))))
 
+(ert-deftest manual-test-figure-and-listing ()
+  (site-test--with-base '(("a" . "#+CAPTION: Energy levels.\n\\begin{tikzpicture}\n\\draw (0,0) -- (1,0);\n\\end{tikzpicture}\n\n#+CAPTION: Steps.\n\\begin{algorithmic}\n\\State x\n\\end{algorithmic}\n\n\\[ a = b \\]\n\n#+begin_src vhdl\nsignal a : std_logic;\n#+end_src\n\nCited [cite:@bohr1913;@x2].\n"))
+    (let ((tex (manual--note-latex "a")))
+      (should (string-match-p (regexp-quote "\\begin{figure}[H]\n\\centering\n\\adjustbox{max width=\\linewidth}{%\n\\begin{tikzpicture}") tex))
+      (should (string-match-p (regexp-quote "\\caption{Energy levels.}\n\\end{figure}") tex))
+      (should (string-match-p (regexp-quote "\\begin{algorithm}[H]\n\\caption{Steps.}\n\\begin{algorithmic}") tex))
+      (should (string-match-p (regexp-quote "\\[ a = b \\]") tex))
+      (should-not (string-match-p (regexp-quote "\\begin{figure}[H]\n\\centering\n\\adjustbox{max width=\\linewidth}{%\n\\[") tex))
+      (should (string-match-p (regexp-quote "\\begin{lstlisting}[style=kb,language={VHDL},title={VHDL},rulecolor=\\color{kbvhdl}]\nsignal a : std_logic;\n\\end{lstlisting}") tex))
+      (should (string-match-p (regexp-quote "Cited \\parencite{bohr1913,x2}.") tex)))))
+
+(ert-deftest manual-test-ranges-before-bibliography ()
+  (let ((aux "\\zref@newlabel{kbdomain:d1}{\\default{1}\\page{1}\\abspage{3}}
+\\zref@newlabel{kbarea:d1--a}{\\default{1.1}\\page{1}\\abspage{3}}
+\\zref@newlabel{kbend:bibliography}{\\default{1.1}\\page{9}\\abspage{9}}
+"))
+    (should (equal (manual--ranges aux 10) '(("d1.pdf" 3 . 8) ("d1--a.pdf" 3 . 8))))
+    (should (equal (manual--bib-start aux) 9))))
+
 ;;; test-manual.el ends here

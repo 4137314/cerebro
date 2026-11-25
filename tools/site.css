@@ -116,3 +116,41 @@ dialog.help dl { display: grid; grid-template-columns: auto 1fr; gap: 0.4rem 1re
 dialog.help dd { margin: 0; }
 dialog.help p { font-size: 0.85rem; color: var(--dim); }
 @media (max-width: 560px) { #q { flex-basis: 100%; } details.path ol { columns: 1; } }
+
+/* Figures: centred, scaled to the column, numbered caption */
+figure.fig { margin: 1.6rem 0; text-align: center; }
+figure.fig img.m { max-width: 100%; height: auto; }
+figure.fig figcaption { margin: 0.6rem auto 0; max-width: 36rem; font-size: 0.9rem; line-height: 1.45; color: var(--dim); text-align: left; }
+figure.fig figcaption .fl { font: 600 0.8rem/1.4 system-ui, sans-serif; color: var(--fg); margin-right: 0.25rem; }
+.mb { overflow-x: auto; }
+
+/* Listings: one colour per language (rule and label), tokens coloured by kind */
+:root {
+  --tk: #8b1e5b; --tt: #005cc5; --ts: #22863a; --tc: #6a737d; --tf: #6f42c1; --tv: #b35900; --tn: #0b7285; --tb: #d73a49; --tp: #6a4c93;
+  --l-cpp: #1f5f99; --l-c: #1f5f99; --l-java: #b0602a; --l-vhdl: #2e7d32; --l-python: #3b6fb6; --l-asm: #6a4c93; --l-sh: #555; --l-elisp: #7b3f99; --l-text: #888;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tk: #ff7ab2; --tt: #79b8ff; --ts: #85e89d; --tc: #8b949e; --tf: #d2a8ff; --tv: #ffab70; --tn: #56d4dd; --tb: #f97583; --tp: #b392f0;
+    --l-cpp: #58a6ff; --l-c: #58a6ff; --l-java: #f0883e; --l-vhdl: #56d364; --l-python: #79c0ff; --l-asm: #bc8cff; --l-sh: #aaa; --l-elisp: #d2a8ff; --l-text: #888;
+  }
+}
+figure.listing { margin: 1.3rem 0; border-left: 3px solid var(--lc, var(--l-text)); background: var(--box); border-radius: 0 6px 6px 0; }
+figure.listing figcaption { padding: 0.35rem 0.9rem 0; font: 0.78rem/1.4 system-ui, sans-serif; color: var(--dim); }
+figure.listing .lang { font-weight: 700; letter-spacing: 0.04em; color: var(--lc, var(--l-text)); text-transform: uppercase; margin-right: 0.3rem; }
+figure.listing pre.src { margin: 0; background: none; border-radius: 0; padding: 0.4rem 0.9rem 0.8rem; line-height: 1.5; }
+.lang-cpp { --lc: var(--l-cpp); } .lang-c { --lc: var(--l-c); } .lang-java { --lc: var(--l-java); }
+.lang-vhdl { --lc: var(--l-vhdl); } .lang-python { --lc: var(--l-python); } .lang-asm { --lc: var(--l-asm); }
+.lang-sh { --lc: var(--l-sh); } .lang-elisp { --lc: var(--l-elisp); }
+pre.src .k { color: var(--tk); font-weight: 600; } pre.src .t { color: var(--tt); } pre.src .s { color: var(--ts); }
+pre.src .c { color: var(--tc); font-style: italic; } pre.src .f { color: var(--tf); } pre.src .v { color: var(--tv); }
+pre.src .n { color: var(--tn); } pre.src .b { color: var(--tb); } pre.src .p { color: var(--tp); }
+
+/* Citations of the original papers, and the references page */
+.cite { font-size: 0.88em; color: var(--dim); white-space: nowrap; }
+.cite a.ref { color: var(--accent); }
+.ref.missing { color: #c92a2a; }
+ol.refs { padding-left: 1.4rem; }
+ol.refs li { margin: 0.9rem 0; }
+ol.refs li:target { background: var(--box); }
+.preview.refbox { font-size: 0.88rem; }
