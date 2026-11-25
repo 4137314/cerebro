@@ -7,4 +7,8 @@
  ("remote-sensing" :title "Remote Sensing" :root "uni/remote-sensing"
   :notes "study/kb" :config "study/kb-config.el")
  ("computer-science" :title "Computer Science" :root "uni/computer-science"
+  :notes "study/kb" :config "study/kb-config.el")
+ ("business" :title "Business" :root "uni/business"
+  :notes "study/kb" :config "study/kb-config.el")
+ ("physics" :title "Physics" :root "uni/physics"
   :notes "study/kb" :config "study/kb-config.el"))

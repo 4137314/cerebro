@@ -10,6 +10,8 @@ the page of the bases; `RET` enters one, `H` comes back from anywhere, `?` shows
 | Bachelor Thesis | `uni/bachelor-thesis/study/kb` | |
 | Remote Sensing | `uni/remote-sensing/study/kb` | |
 | Computer Science | `uni/computer-science/study/kb` | |
+| Business | `uni/business/study/kb` | 63 English notes: organization, strategy, marketing, procurement, operations, accounting, projects and revision |
+| Physics | `uni/physics/study/kb` | 161 English notes: quantum mechanics, quantum optics, QED, EM fields, optoelectronics, photonics, solid state, circuits, digital, power and superconducting electronics, revision |
 
 The bases are listed in `bases.el`. Roots are relative to the git superproject that
 contains cerebro (`~/dev`), so moving folders inside `~/dev` only needs `bases.el`
