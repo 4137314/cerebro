@@ -19,7 +19,11 @@
 (defconst site--file (or load-file-name buffer-file-name))
 
 ;; Links are resolved from the reader's index: org-id must not read or write a file.
-(setq org-id-locations-file null-device)
+(setq org-id-locations-file null-device
+      ;; Source blocks stay plain (no htmlize): styled by the stylesheet.
+      org-html-htmlize-output-type nil)
+
+(defvar site--base nil "Name of the base being built (its directory in the site).")
 
 (defvar site--used (make-hash-table :test 'equal) "SVG hashes used by the pages written.")
 
@@ -146,21 +150,59 @@ Roots are relative to HUB-ROOT, or to REGISTRY when they start with \".\" (as in
 
 (defun site--words (s) (if s (capitalize (replace-regexp-in-string "-" " " s)) ""))
 
-(defun site--page (title body &optional up)
-  "A whole page: TITLE (plain text), BODY (HTML); UP is \"../\" for pages in a base."
-  (format "<!doctype html>
+(defvar site-url (or (getenv "SITE_URL") "https://4137314.github.io/cerebro/")
+  "Public address of the site root, ending in /: canonical links and the sitemap.")
+
+(defconst site-home-url "https://4137314.github.io/" "The author's site, linked from the pages.")
+
+(defun site--plain (s)
+  "S as plain text: no links, no TeX delimiters, single spaces."
+  (replace-regexp-in-string "\\\\[][()]" "" (kb--clean (or s ""))))
+
+(defun site--attr (s) (replace-regexp-in-string "\"" "&quot;" (org-html-encode-plain-text s)))
+
+(defun site--page (title body &optional up path description)
+  "A whole page: TITLE, BODY (HTML); UP is \"../\" for pages in a base.
+PATH is the page's address relative to `site-url' (canonical link), DESCRIPTION its
+summary for search engines and link previews."
+  (let* ((title (site--plain title))
+         (url (concat site-url (or path "")))
+         (desc (truncate-string-to-width (site--plain description) 300 nil nil "…")))
+    (format "<!doctype html>
 <html lang=\"en\">
 <head>
 <meta charset=\"utf-8\">
 <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
 <title>%s</title>
+<meta name=\"description\" content=\"%s\">
+<link rel=\"canonical\" href=\"%s\">
+<meta property=\"og:type\" content=\"article\">
+<meta property=\"og:site_name\" content=\"cerebro\">
+<meta property=\"og:title\" content=\"%s\">
+<meta property=\"og:description\" content=\"%s\">
+<meta property=\"og:url\" content=\"%s\">
 <link rel=\"stylesheet\" href=\"%sstyle.css\">
 </head>
 <body>
 %s
+<footer><a href=\"%s\">Mattia Fait</a> · <a href=\"https://github.com/4137314/cerebro\">source</a></footer>
 </body>
 </html>
-" (org-html-encode-plain-text title) (or up "") body))
+" (org-html-encode-plain-text title) (site--attr desc) url (site--attr title) (site--attr desc) url
+  (or up "") body site-home-url)))
+
+(defun site--write-sitemap (out)
+  "Write OUT/sitemap.xml with every page under OUT (index.html as its directory)."
+  (let ((pages (sort (directory-files-recursively out "\\.html\\'") #'string<)))
+    (with-temp-file (expand-file-name "sitemap.xml" out)
+      (insert "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+              "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n")
+      (dolist (f pages)
+        (let ((rel (file-relative-name f out)))
+          (insert "<url><loc>" site-url
+                  (replace-regexp-in-string "\\(?:\\`\\|/\\)index\\.html\\'" (lambda (m) (if (string-prefix-p "/" m) "/" "")) rel)
+                  "</loc></url>\n")))
+      (insert "</urlset>\n"))))
 
 (defun site--raw-summary (file)
   (with-temp-buffer
@@ -194,12 +236,12 @@ Roots are relative to HUB-ROOT, or to REGISTRY when they start with \".\" (as in
       "</header>\n<main>\n"
       (site-note-html file)
       "</main>\n")
-     "../")))
+     "../" (format "%s/%s.html" site--base id) (kb--get id :summary))))
 
 (defun site--index-page (base-title)
   (let ((ids (seq-filter #'kb--node kb--order)))
     (site--page
-     base-title
+     (format "%s notes" base-title)
      (concat
       "<nav><a href=\"../index.html\">cerebro</a></nav>\n"
       (format "<header><h1>%s</h1><p class=\"meta\">%d notes, in study order</p></header>\n<main>\n"
@@ -229,13 +271,17 @@ Roots are relative to HUB-ROOT, or to REGISTRY when they start with \".\" (as in
              ""))))
        kb--domains "")
       "</main>\n")
-     "../")))
+     "../" (concat site--base "/")
+     (format "%s: %d notes on %s, one concept per note, in study order with their prerequisites."
+             base-title (length ids)
+             (string-join (mapcar (lambda (d) (downcase (site--words d))) kb--domains) ", ")))))
 
 (defun site-build-base (name title dir config out state)
   "Write the pages of base NAME (TITLE, notes in DIR, CONFIG) into OUT/NAME/.
 STATE is the base's state directory (SVG cache), shared with the hub."
   (setq kb-dir (file-name-as-directory (expand-file-name dir))
         kb-state-dir (file-name-as-directory (expand-file-name state))
+        site--base name
         site--used (make-hash-table :test 'equal))
   (make-directory kb-state-dir t)
   (when (and config (not (string-empty-p config)) (file-exists-p config))
@@ -275,7 +321,9 @@ STATE is the base's state directory (SVG cache), shared with the hub."
                          (car b) (org-html-encode-plain-text (plist-get (cdr b) :title))
                          (length (directory-files-recursively (plist-get (cdr b) :dir) "\\.org\\'"))))
                bases "")
-    "</ul>\n</main>\n")))
+    "</ul>\n</main>\n")
+   nil "" (format "Study notes by Mattia Fait: %s. One concept per note, formulas and figures rendered from LaTeX, prerequisites linked."
+                  (string-join (mapcar (lambda (b) (plist-get (cdr b) :title)) bases) ", "))))
 
 (defun site-main ()
   "Command line: REGISTRY HUB-ROOT OUT [STATE-ROOT]; builds every published base."
@@ -302,10 +350,12 @@ STATE is the base's state directory (SVG cache), shared with the hub."
                                        (expand-file-name (car b) state)))
             (push (car b) failed))
           (message "%s" (string-trim-right (buffer-string))))))
-    (copy-file (expand-file-name "site.css" (file-name-directory site--file))
-               (expand-file-name "style.css" out) t)
+    ;; Contents, not the file: a copy from the Nix store would stay read-only.
+    (with-temp-file (expand-file-name "style.css" out)
+      (insert-file-contents (expand-file-name "site.css" (file-name-directory site--file))))
     (with-temp-file (expand-file-name ".nojekyll" out))
     (with-temp-file (expand-file-name "index.html" out) (insert (site--home bases)))
+    (site--write-sitemap out)
     (when failed
       (message "site: failed: %s" (string-join failed " "))
       (kill-emacs 1))
