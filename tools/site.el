@@ -156,8 +156,16 @@ Roots are relative to HUB-ROOT, or to REGISTRY when they start with \".\" (as in
 (defconst site-home-url "https://4137314.github.io/" "The author's site, linked from the pages.")
 
 (defun site--plain (s)
-  "S as plain text: no links, no TeX delimiters, single spaces."
-  (replace-regexp-in-string "\\\\[][()]" "" (kb--clean (or s ""))))
+  "S as plain text: no links, emphasis markers or TeX delimiters, single spaces."
+  (let ((s (replace-regexp-in-string "\\\\[][()]" "" (kb--clean (or s "")))))
+    ;; Again until nothing changes: neighbouring markers share the space between them.
+    (let (prev)
+      (while (not (equal prev s))
+        (setq prev s
+              s (replace-regexp-in-string
+                 "\\(^\\|[[:space:](\"']\\)\\([/*=~+_]\\)\\([^[:space:]]\\(?:.*?[^[:space:]]\\)?\\)\\2\\([[:space:].,;:!?)\"']\\|$\\)"
+                 "\\1\\3\\4" s))))
+    (replace-regexp-in-string " -- " " – " s)))
 
 (defun site--attr (s) (replace-regexp-in-string "\"" "&quot;" (org-html-encode-plain-text s)))
 

@@ -6,7 +6,7 @@ the page of the bases; `RET` enters one, `H` comes back from anywhere, `?` shows
 
 | base | notes | where |
 |---|---|---|
-| Mathematics | `kb/` (this repo) | 209 notes: foundations, algebra, analysis, topology, geometry, probability, physics |
+| Mathematics | `personal/math/study/kb` | 209 notes: foundations, algebra, analysis, topology, geometry, probability, physics |
 | Bachelor Thesis | `uni/bachelor-thesis/study/kb` | |
 | Remote Sensing | `uni/remote-sensing/study/kb` | |
 | Computer Science | `uni/computer-science/study/kb` | |
@@ -48,12 +48,9 @@ a published base, the reader or cerebro (submodules count when their pointer mov
 Monday and by hand, and pushes only `_site/` here. A base is withdrawn by removing its
 `:publish t`.
 
-## Mathematics notes
-
-`kb/<domain>/<id>.org`, one concept per note, in the reader's format (see the
-`knowledge-base` README): `DOMAIN`, `AREA`, `KIND`, `REQUIRES`, `#+summary:`, theorems and
-proofs as `#+begin_theorem` / `#+begin_proof` blocks, `#+NAME` / `#+DEPENDS` labels.
-They were converted on 2026-11-17 from the org-roam notes of the old cerebro editor by
-`tools/convert_roam.py` (`make test`). The editor itself (Guix environment, org-roam,
-LaTeX export, issue tracker, Taskwarrior hooks) and the original notes, including the
-course and conjecture files, are in the history and on the `feature/emacs-ui` branch.
+The math notes lived in `kb/` until 2026-11-25 and are now the
+[`math`](https://github.com/4137314/math) repo; they were converted on 2026-11-17 from the
+org-roam notes of the old cerebro editor by `tools/convert_roam.py` (`make test`). The
+editor itself (Guix environment, org-roam, LaTeX export, issue tracker, Taskwarrior hooks)
+and the original notes, including the course and conjecture files, are in the history and
+on the `feature/emacs-ui` branch.

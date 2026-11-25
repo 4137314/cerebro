@@ -2,7 +2,8 @@
 ;; :root is relative to the git superproject that contains cerebro (~/dev), or to this
 ;; file when it starts with "."; :notes and :config are relative to :root.
 ;; :publish t puts the base on the public site (tools/site.el, `make site`).
-(("math" :title "Mathematics" :publish t :root "." :notes "kb" :config "kb-config.el")
+(("math" :title "Mathematics" :publish t :root "personal/math"
+  :notes "study/kb" :config "study/kb-config.el")
  ("thesis" :title "Bachelor Thesis" :root "uni/bachelor-thesis"
   :notes "study/kb" :config "study/kb-config.el")
  ("remote-sensing" :title "Remote Sensing" :publish t :root "uni/remote-sensing"

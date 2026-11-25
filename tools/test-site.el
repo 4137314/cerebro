@@ -106,6 +106,11 @@
       (should (string-match-p "<meta name=\"description\" content=\"Square-integrable f with &quot;quotes&quot; and &lt;tags&gt;.\">" html))
       (should (string-match-p "<meta property=\"og:url\" content=\"https://example.org/kb/math/l2.html\">" html)))))
 
+(ert-deftest site-test-plain-drops-markup ()
+  (should (equal (site--plain "An /abelian group/ is *the* =x= -- of [[id:g][groups]] \\(a\\).")
+                 "An abelian group is the x – of groups a."))
+  (should (equal (site--plain "a/b and 3*4") "a/b and 3*4")))
+
 (ert-deftest site-test-sitemap ()
   (let ((out (make-temp-file "site-test" t)) (site-url "https://example.org/kb/"))
     (unwind-protect
