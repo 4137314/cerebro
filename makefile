@@ -40,11 +40,22 @@ install: ## build the hub and add "Cerebro" to the launcher
 uninstall: ## remove the launcher entry and the profile (notes and caches stay)
 	rm -f $(DESKTOP) $(STATE)/profile
 
-site: ## the public site of the bases marked :publish t, in _site/
-	$(NIX) run $(ROOT)#site $(OVERRIDE) --no-write-lock-file -- $(ROOT)/bases.el $(HUB) $(SITE)
+SITE_RUN = $(NIX) run $(ROOT)\#$(1) $(OVERRIDE) --no-write-lock-file -- $(ROOT)/bases.el $(HUB) $(SITE)
+
+site: ## the public site of the bases marked :publish t, in _site/ (no PDF)
+	$(call SITE_RUN,site)
+
+site-pdf: ## the site with the PDF manuals of every base (whole, by domain, by area)
+	$(call SITE_RUN,site) --pdf
+
+site-base: ## one base with its manuals, no home page (BASE=physics), as in CI
+	$(call SITE_RUN,site) --pdf --no-index --base $(BASE)
+
+site-index: ## home page, search index and sitemap of the bases already in _site/
+	$(call SITE_RUN,site-index) --index-only
 
 test: ## tests of the conversion script and of the site exporter
 	python3 -m unittest tools.test_convert_roam
 	$(NIX) run $(ROOT)#site $(OVERRIDE) --no-write-lock-file -- --test
 
-.PHONY: help run check install uninstall site test
+.PHONY: help run check install uninstall site site-pdf site-base site-index test

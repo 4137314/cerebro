@@ -24,6 +24,28 @@
            ,@body)
        (delete-directory root t))))
 
+(defmacro site-test--with-notes (notes &rest body)
+  "Like `site-test--with-base' with NOTES as (ID AREA REQUIRES TEXT), all in domain d."
+  (declare (indent 1))
+  `(site-test--with-base
+       (mapcar (lambda (n)
+                 (cons (nth 0 n)
+                       (concat (if (nth 1 n) (format "#+begin_comment\n#+end_comment\n") "")
+                               (nth 3 n))))
+               ,notes)
+     ;; Areas and prerequisites go in the drawer: rewrite the files, then reindex.
+     (dolist (n ,notes)
+       (let ((f (expand-file-name (concat "d/" (nth 0 n) ".org") kb-dir)))
+         (with-temp-file f
+           (insert ":PROPERTIES:\n:ID: " (nth 0 n) "\n:DOMAIN: d\n"
+                   (if (nth 1 n) (concat ":AREA: " (nth 1 n) "\n") "")
+                   (if (nth 2 n) (concat ":REQUIRES: " (nth 2 n) "\n") "")
+                   ":END:\n#+title: Note " (nth 0 n) "\n#+summary: About " (nth 0 n) ".\n\n"
+                   (nth 3 n)))))
+     (setq kb-areas '("x" "y") site--base "base")
+     (kb-reload)
+     ,@body))
+
 (defun site-test--fake-svg (text)
   "Put a fake SVG for fragment TEXT in the cache."
   (make-directory (kb--cache-dir) t)
@@ -126,5 +148,42 @@
             (should (string-match-p "<loc>https://example.org/kb/math/group.html</loc>" xml))
             (should-not (string-match-p "index.html" xml))))
       (delete-directory out t))))
+
+(ert-deftest site-test-groups ()
+  (site-test--with-notes '(("a" "y" nil "A.") ("b" "x" nil "B.") ("c" nil nil "C.")
+                           ("e" "x" "b" "E."))
+    (should (equal (site--groups) '(("d" ("x" "b" "e") ("y" "a") (nil "c")))))))
+
+(ert-deftest site-test-note-nav ()
+  (site-test--with-notes '(("a" "x" nil "A.") ("b" "x" "a" "B.") ("c" "x" "b" "C.")
+                           ("z" "y" nil "Uses [[id:b][b]]."))
+    (setq site--sequence (site--reading-order))
+    (let ((first (site--note-page "a" "Base"))
+          (mid (site--note-page "b" "Base"))
+          (last (site--note-page "c" "Base")))
+      (should-not (string-match-p "rel=\"prev\"" first))
+      (should (string-match-p "rel=\"prev\" href=\"a.html\"" mid))
+      (should (string-match-p "rel=\"next\" href=\"c.html\"" mid))
+      (should (string-match-p "rel=\"up\" href=\"index.html#a-d--x\"" mid))
+      (should (string-match-p "href=\"index.html#d-d\"" mid))
+      ;; Learning path of c: a then b; b is mentioned in z.
+      (should (string-match-p "<details class=\"path\">.*2 notes" last))
+      (should (string-match-p "a.html.*b.html" (substring last (string-match "class=\"path\"" last))))
+      (should (string-match-p "mentioned in</span> <a href=\"z.html\"" mid)))))
+
+(ert-deftest site-test-search-entries ()
+  (site-test--with-notes '(("a" "x" nil "A."))
+    (let ((entries (site--search-entries "Base")))
+      (should (equal (alist-get 'u (car entries)) "base/a.html"))
+      (should (equal (alist-get 't (car entries)) "Note a"))
+      (should (equal (alist-get 's (car entries)) "About a."))
+      (should (seq-some (lambda (e) (equal (alist-get 'u e) "base/index.html#a-d--x")) entries)))))
+
+(ert-deftest site-test-args ()
+  (should (equal (site--parse-args '("r.el" "/hub" "out" "--base" "math" "--pdf" "--base" "physics"))
+                 '(:registry "r.el" :hub "/hub" :out "out" :bases ("math" "physics") :pdf t
+                   :build t :index t)))
+  (should (equal (plist-get (site--parse-args '("r.el" "/hub" "out" "--index-only")) :build) nil))
+  (should (equal (plist-get (site--parse-args '("r.el" "/hub" "out" "--no-index")) :index) nil)))
 
 ;;; test-site.el ends here
